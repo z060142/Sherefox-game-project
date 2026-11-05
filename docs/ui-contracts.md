@@ -188,3 +188,131 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 - 未做（合約沒有對應 port 或屬拖曳）：拖曳放卡與拖曳拉線、平移縮放、抽屜分頁、對手類型圖示與 `UI_TYPE_*` 滑鼠提示、五大標籤圖示、強攻／醜聞／動機圖示、已鑑定鋼印、推理輔助金齒輪、無效連結的火花動畫與卡片彈回演出、改理由時連結閃爍、1～3 選鏈。
 
 字串鍵：`UI_BOARD_TITLE`、`UI_BOARD_OPPONENT`（新增）、`UI_BOARD_DRAWER`、`UI_BOARD_LINK_SOLID`、`UI_BOARD_LINK_SOPH`、`UI_BOARD_LINK_INVALID`（新增）、`UI_BOARD_CHAIN_NO`（新增）、`UI_BOARD_CARDS`（新增）、`UI_BOARD_SOLID`（新增）、`UI_BOARD_SOPH`（新增）、`UI_BOARD_DMG`（新增）、`UI_BOARD_CHAIN_EMPTY`、`UI_BOARD_REASON`、`UI_BOARD_REASON_NONE`、`UI_BOARD_REASON_FIXED`、`UI_GRADE_*`、`BTN_APPRAISE`、`BTN_TO_DEBATE`。
+
+## debate（熱身、布丁論戰、主論戰，1280×720）
+
+依據：系統規格 §4.4、附錄 A、美術風格 §五「論戰」（號外版型：對手主張以頭條字體排成節點，四個行動是鉛字塊，主導權是蒸汽壓力錶，預兆在「小道消息」欄）。規則全部在流圖；UI 只顯示狀態、收集選擇、播放揭示演出。數字與文字都由流圖算好、在地化後寫入。
+
+**模式與對手**
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `mode` | number | in | 0 主論戰、1 熱身（只開放反駁，無壓力錶）、2 Ch.1 布丁論戰（無壓力錶，顯示矛盾計數）。 |
+| `opp_char` | string | in | 對手立繪 id（同 vn）；`me_char` 固定 `sherefox`。 |
+| `opp_name`、`opp_type` | string | in | 對手名牌與類型（犯人／庇護者…，已在地化）。 |
+| `hp_me`、`hp_me_max`、`hp_opp`、`hp_opp_max` | number | in | 壓力錶（主導權）；`mode` ≠ 0 時隱藏。數值可含小數，顯示時 UI 去掉多餘的 0（例 52.5）。 |
+| `counter_text` | string | in | Ch.1 的「矛盾 n／2　剩 r 回合」或熱身的「失誤 n／3」；空字串隱藏。 |
+| `round_text` | string | in | 「第 n 回合」。 |
+
+**對手主張鏈與預兆**
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `nodes` | list<struct{id: string, text: string, state: number, src: string}> | in | 主張節點（上方一排，最多 5）。`state`：0 一般、1 亮起、2 脆弱、3 第二說詞（紫框）、4 粉碎中（播放碎裂後由流圖移除）；`src` 非空時角落顯示「來自：你漏掉的證物」。 |
+| `claim_preview` | string | in | 節點旁的主張傷害預告（例「主張 26＋4×3＝38」）。 |
+| `tell_line` | string | in | 預兆台詞（對手立繪旁的泡泡）。 |
+| `tell_gesture` | string | in | 小動作的文字描述（原型以字幕代替動畫，例「拉袖口、鞠躬」）。 |
+| `tell_clarity` | number | in | 0 明示、1 模糊、2 劇本（鎖上的齒輪）。偽裝在 UI 上與無依據的明示相同（Ch.1～3 不會出現）。 |
+| `tell_basis` | string | in | 依據小銅牌文字（觀察／規則 3／教學／狐耳直覺／困獸）；空字串不顯示。 |
+| `tell_a`、`tell_b` | number | in | 候選行動圖示：0 主張、1 猛攻、2 補強、3 設陷；`tell_b` −1 表示只有一個（明示）。 |
+| `tell_star` | number | in | 標 ★ 的候選：−1 無、0 = a、1 = b。 |
+| `tell_star_text` | string | in | ★ 的說明（「較可能（規則 1）」）。 |
+| `hand` | number | in | 對手手牌數（卡背剪影）；0 隱藏。 |
+
+**我方推理鏈與行動**
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `chains` | list<struct{chain: number, pos: number, id: string, name: string, link: number, sel: bool}> | in | 下方的推理鏈（同 board 的 3×5；`link` 為與右鄰的連結，含 5＝已援護、6＝本回合斷開；`sel` 為目前選中的鏈段）。 |
+| `act_enabled` | list<bool> | in | 四個行動按鈕可按與否，依序 實證連鎖／詭辯／反駁／觀察。 |
+| `act_reason` | list<string> | in | 不可按時按鈕下的小字（例「失守：這一回合不能反駁」）。 |
+| `sel_act` | number | in | 目前選的行動 0 無、1～4。 |
+| `parry_cards` | list<struct{id: string, name: string}> | in | 反駁時下方滑出的破解證物；空清單＝不顯示選擇器。 |
+| `summary` | string | in | 鎖定確認列文字（例「反駁　對準：…　出示：E02_04」）；空字串隱藏確認列。 |
+| `preview`、`preview_vs` | string | in | 預估列與依候選行動的小字。 |
+| `can_lock` | bool | in | 「鎖定」可按。 |
+| `instinct_left`、`assist_left` | number | in | 狐耳直覺燈、援護燈（亮燈數）。 |
+| `instinct_ok` | bool | in | 狐耳直覺目前可用。 |
+| `assist_armed` | bool | in | 援護已預先啟動（確認列多一行提示）。 |
+| `act` | number | out | 選行動 1～4。 |
+| `seg` | number | out | 點我方鏈上的卡：chain × 5 + pos（第一次＝鏈段起點，第二次＝終點；流圖判斷）。 |
+| `target` | string | out | 點對手節點改選攻擊目標。 |
+| `card` | string | out | 在反駁選擇器中選卡。 |
+| `lock` | event | out | 鎖定。 |
+| `back` | event | out | 返回上一步（鎖定前）。 |
+| `instinct` | event | out | 使用狐耳直覺。 |
+| `assist` | event | out | 啟動／取消援護。 |
+
+**狀態**
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `st_shaken` | number | in | 動搖剩餘回合（0 無；顯示「動搖」銅牌與 ×1.5 燈）。 |
+| `st_break` | bool | in | 論破回合（「現在是論破的時機」）。 |
+| `st_tail` | number | in | 尾聲剩餘回合（0 無；兩錶之間的「尾聲」銅牌）。 |
+| `st_hachiku` | number | in | 破竹層數 0～3（Ch.1 為預覽，UI 以淡色顯示：`st_hachiku_preview`）。 |
+| `st_hachiku_preview` | bool | in | 破竹只作預覽（Ch.1）。 |
+| `st_konju`、`st_shisshu` | number | in | 困獸、失守剩餘回合（0 無）。 |
+| `st_flags` | string | in | 狀態列其他項目（不能補強／必定攻擊／聽眾不耐…），已在地化、以「・」連接。 |
+
+**揭示與結算演出**
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `phase` | number | in | 0 選擇中、1 揭示中（行動牌翻開與演出）、2 結算數字、3 論戰結束。選擇中以外，行動按鈕不可按。 |
+| `reveal_me`、`reveal_opp` | number | in | 翻開的行動牌：我方 1～4、對手 0～3（另 4＝垂死反撲）。 |
+| `reveal_seq` | number | in | 每回合揭示 +1，重播翻牌演出（3～6 秒，依 `reveal_combo` 的演出順序）。 |
+| `reveal_combo` | number | in | 0 我攻對手守、1 我守對手攻、2 交鋒、3 僵持。 |
+| `reveal_line` | string | in | 揭示時的台詞（對手陳述或 Sherefox 的「等一下！」）。 |
+| `float_opp`、`float_me` | string | in | 從錶上彈出的數字（例「−35」「+10」）；空字串不彈。 |
+| `result_line` | string | in | 本回合結算的一句話（MSG_DEB_*）。 |
+| `skip` | event | out | 快轉揭示（按住／點一下跳到結算數字）。 |
+| `next` | event | out | 揭示播完後繼續（自動播放時由流圖計時）。 |
+
+## cutin（書法大字與印章，覆蓋層，最上層，非 modal）
+
+依據：系統規格 §4.7、§8.14；美術風格 §七。大字在兩種語言都是中文；英文模式下，若「大字譯名」開啟，字下方加小字譯名。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `big` | string | in | 全幕大書 id（`CUT_RONPA`、`CUT_SHAKEN`、`CUT_HACHIKU3`、`CUT_KONJU`、`CUT_SHISSHU`、`CUT_BRINK`、`CUT_REVERSE`、`CUT_DOUBLE`、`CUT_COUNTER`）。 |
+| `big_seq` | number | in | 每播一次 +1（約 1.5 秒；論破約 4 秒）。 |
+| `stamp` | string | in | 角落印章 id（`STAMP_PARRY`、`STAMP_TRAP`、`STAMP_WHIFF`、`STAMP_CLASH`、`STAMP_SEEN`、`STAMP_ASSIST`、`STAMP_HACHIKU`、`STAMP_HACHIKU_LOST`）。 |
+| `stamp_seq` | number | in | 每蓋一次 +1（約 0.5 秒）。 |
+| `stamp_n` | number | in | 破竹印章的層數（×n）。 |
+| `subtitle` | string | in | 譯名小字（流圖依語言與設定決定；空字串不顯示）。 |
+| `done` | event | out | 大字播完。 |
+
+## result（結算，1280×720）
+
+依據：系統規格 §4.2「SCR_RESULT」、§8.8。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `win` | number | in | 1 勝利、0 敗北、2 未達成（Ch.1）。 |
+| `opp_line` | string | in | 對手的結局台詞。 |
+| `stats` | list<struct{label: string, value: string}> | in | 統計列（回合數、讀對預兆、截斷次數…；已在地化與格式化）。 |
+| `trust_from`、`trust_to` | number | in | 警督信任度變動；−1 隱藏。 |
+| `comment` | string | in | 亞瑟評語（ART_RES_*）。 |
+| `costs` | list<struct{text: string}> | in | 敗北時的「本案的代價」。 |
+| `can_retry` | bool | in | 顯示「重新論戰」。 |
+| `continue` | event | out | 繼續（進入報紙）。 |
+| `retry` | event | out | 重新論戰。 |
+
+## evbook（證物冊，覆蓋層，modal）
+
+依據：系統規格 §4.2、§8.4（UI_EVBOOK_*）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `tab` | number | in | 0 本案證物、1 黃金線索、2 私人收藏。 |
+| `cards` | list<struct{id: string, name: string, grade: number, appraised: bool, isnew: bool}> | in | 目前分頁的卡。 |
+| `sel_id`、`sel_name`、`sel_desc`、`sel_tags` | string | in | 詳情（同 board）。 |
+| `sel_grade` | number | in | 等級。 |
+| `sel_can_appraise` | bool | in | 「交給亞瑟」可按（蒐證中與線索板上）。 |
+| `appraise_left` | number | in | 鑑定剩餘次數。 |
+| `notes` | list<struct{text: string}> | in | 案件筆記（情報文字）。 |
+| `select_tab` | number | out | 切換分頁。 |
+| `select` | string | out | 選卡。 |
+| `appraise` | event | out | 交給亞瑟。 |
+| `close` | event | out | 關閉。 |
