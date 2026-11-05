@@ -1,0 +1,164 @@
+﻿term_zh,term_en,part_of_speech,note
+Sherefox,Sherefox,proper noun,Protagonist. Never translate or respell. Also the English title logo (UI_TITLE_LOGO).
+亞瑟・潘德爾頓,Arthur Pendleton,proper noun,Full name.
+亞瑟,Arthur,proper noun,"Short form; speaker label ""Arthur""."
+巴斯克維爾警督,Inspector Baskerville,proper noun,"Full title; speaker label ""Inspector Baskerville""."
+巴斯克維爾,Baskerville,proper noun,Short form.
+警督,Inspector,noun,"Rank; used as direct address (""Inspector"")."
+本警督 / 本督察,this Inspector,pronoun,Baskerville refers to himself pompously in the third person.
+狐狸小姐,Miss Fox,noun,How Baskerville addresses Sherefox.
+維多・克勞,Victor Crowe,proper noun,Rival detective (Ch.4+).
+維多,Victor,proper noun,Short form.
+Wolfhart,Wolfhart,proper noun,"Never translate. Voice: formal British, long subordinate clauses, passive voice."
+費奇,Fitch,proper noun,Ch.2 culprit; Gresham's attendant.
+羅蘭・皮爾斯,Roland Pierce,proper noun,Ch.3 culprit.
+皮爾斯,Pierce,proper noun,"Short form. Sherefox mockingly says 羅蘭先生 = ""Mr. Roland""."
+霍洛威,Holloway,proper noun,"Clockmaker, ""Mr. Holloway""; 霍洛威爺爺 = ""Grandpa Holloway""."
+格雷沙姆,Gresham,proper noun,"Wealthy merchant, ""Mr. Gresham""."
+老湯姆,Old Tom,proper noun,Bargeman.
+艾德溫・莫斯,Edwin Moss,proper noun,Ch.3 victim.
+報童小湯米,Tommy the newsboy,proper noun,Ch.2 witness.
+房東太太,the landlady,noun,Unnamed.
+貝克街,Baker Street,place ||,
+報時鳥鐘錶店,The Cuckoo Clockworks,place,"Chosen once; short form ""the clock shop""."
+報時鳥鐘,cuckoo clock,noun,"報時鳥 alone = ""the cuckoo""."
+月桂糕點鋪,Laurel Pastry Shop,place ||,
+發條焦糖布丁,Clockwork Caramel Pudding,noun,"British ""pudding""."
+倫敦提燈報,The London Lantern,place,FINAL newspaper name (all tabs and scripts).
+約克郡晨報,The Yorkshire Morning Post,place,Regional edition masthead.
+高地週刊,The Highland Weekly,place,Regional edition masthead.
+蘇格蘭場,Scotland Yard,place ||,
+銀牙會,The Silver Fang,place,Organisation; not used in Ch.1-3.
+北岸信託,North Bank Trust,place,Organisation; not used in Ch.1-3.
+泰晤士河,the Thames,place ||,
+大笨鐘,Big Ben,place ||,
+市政廳,the Municipal Hall,place,Neutral British rendering.
+倫敦,London,place ||,
+主導權,Dominance,noun,Per-side steam-pressure gauge; reaching 0 loses the debate.
+蒸汽壓力錶,steam pressure gauge,noun,Visual form of Dominance.
+論戰,Debate,noun,The core battle mode.
+熱身小論戰,Warm-up Debate,noun,No Dominance loss.
+布丁論戰,Pudding Debate,noun,Ch.1 tutorial debate.
+回合,Round,noun,"""Round {n}""."
+同時出招,simultaneous moves,noun,"Both sides lock in, then reveal together."
+主張 (action),Assert,verb,Opponent action; UI label.
+主張 (node),Claim,noun,A claim node on the opponent's chain.
+主張鏈,Claim Chain,noun,Row of opponent claims.
+主張節點,Claim Node,noun ||,
+猛攻,Onslaught,noun,1.25x Assert.
+補強,Reinforce,verb,Opponent defensive move.
+設陷,Set a Trap,verb,"Short label ""Trap""; noun ""trap""."
+實證連鎖,Solid Chain,noun,Player attack using solid links only.
+詭辯,Sophistry,noun,Player attack using dashed links.
+反駁,Rebut,verb,"Player defence; noun ""Rebuttal""."
+截斷,Cut-In,noun,"Successful Rebut interrupt. Verb ""cut in"" / ""cut off"". Matches stamp gloss CUT IN."
+觀察,Observe,verb ||,
+攻 / 守,Attack / Defend,noun,Button group labels.
+預兆,Tell,noun,Opponent's pre-move sign.
+明示,Clear,adjective,Tell clarity.
+模糊,Vague,adjective,Tell clarity.
+偽裝,Disguised,adjective,"Tell is deceptive; noun ""disguise""."
+小動作,gesture,noun,"The physical tic; ""trust the gesture""."
+候選,Candidates,noun ||,
+較可能,Likelier,adjective,Star-marked option.
+依據,Basis,noun,Brass tag.
+行為規則,Behaviour Rule,noun,British spelling.
+對決表,Matchup Table,noun ||,
+對手筆記,Opponent Notes,noun,"Full title 亞瑟的對手筆記 = ""Arthur's Opponent Notes""."
+狐耳直覺,Fox-Ear Instinct,noun,Twice per debate.
+援護,Cover,noun/verb,"Arthur blocks a crit; stamp subtitle ""COVERED""."
+鎖定,Lock In,verb ||,
+預估,Estimate,noun,Estimated damage bar.
+傷害,damage,noun ||,
+倍率,multiplier,noun ||,
+粉碎,Smash,verb,"Claim destroyed; ""smash a claim""."
+推翻,overturn,verb,Claim refuted.
+論破,Break,noun/verb,CORE TERM. Capitalised game term. Cut-in word stays 論破.
+反駁論破,Rebut-Break,noun,Break achieved via Rebut.
+逆・論破,Reverse Break,noun,Cut-in word stays 逆論破.
+二連論破,Double Break,noun,Cut-in word stays.
+反擊論破,Counter Break,noun,Cut-in word stays.
+絕境,At the Brink,noun,Cut-in word stays 絕境.
+絕境重組,Last-Ditch Rebuild,noun ||,
+動搖,Shaken,adjective/state,"""the opponent is Shaken"". Cut-in stays 動搖."
+困獸,Cornered,adjective/state,Cut-in stays 困獸.
+失守,Breached,adjective/state,"""your position is breached"". Cut-in stays 失守."
+破竹,Unstoppable,noun/state,"From 勢如破竹; stacks 1-3. ""Unstoppable x2"". Cut-in stays 破竹."
+勢如破竹,Unstoppable!,idiom ||,
+截 (stamp),Cut In (gloss CUT IN),stamp,Stamp word stays 截.
+中計 (stamp),Trapped (gloss TRAPPED),stamp,Stamp word stays 中計.
+落空 (stamp),Whiff (gloss WHIFF),stamp,Stamp word stays 落空.
+交鋒,Clash,noun,Both sides attack; stamp gloss CLASH; stamp word stays 交鋒.
+看穿,Seen Through (gloss SEEN THROUGH),stamp/verb,"Prose: ""see through""; stamp word stays 看穿."
+斷 (stamp),Broken (gloss BROKEN),stamp,Streak broken; stamp word stays 斷.
+書法大字,Brush Banner,noun,Full-screen calligraphy cut-in.
+角落印章,Corner Stamp,noun,Small cut-in stamp.
+譯名,subtitle gloss,noun,The small English line under a cut-in.
+尾聲,Endgame,noun,Final counterattack round after Break.
+玉石俱焚,Scorched Earth,noun,Endgame counterattack type (Ch.2/3 culprits).
+劇本回合,Scripted Round,noun ||,
+命運的回合,Round of Fate,noun ||,
+弱點,Weak Point,noun,Left on a chain by a Sophistry link.
+脆弱節點,Fragile Node,noun,脆弱 = Fragile.
+堅固節點,Sturdy Node,noun ||,
+失言,Slip of the Tongue,noun,"Short ""slip""; verb ""let slip""."
+線索板,Clue Board,noun ||,
+證物抽屜,Evidence Drawer,noun ||,
+推理鏈,Reasoning Chain,noun,"2-5 cards, no branching."
+鏈段,chain segment,noun ||,
+證物卡,Evidence Card,noun ||,
+證詞卡,Testimony Card,noun ||,
+連結,Link,noun/verb ||,
+實證連結,Solid Link,noun ||,
+詭辯連結,Sophistry Link,noun ||,
+實線 / 虛線,solid line / dashed line,noun ||,
+歸類理由,Rationale,noun,"""This evidence proves..."""
+標籤,Tag,noun,Five categories below.
+時間 (tag),Time,noun ||,
+地點 (tag),Place,noun ||,
+人物 (tag),Person,noun ||,
+物理特性 (tag),Physical,noun,"Short form ""Physical"" in tag lists."
+醜聞 (tag),Scandal,noun ||,
+擦邊 (tag),tangential,adjective,Surface-level tag that only brushes.
+蒐證,Evidence Search,noun,Screen/phase.
+結束蒐證,End Search,verb ||,
+調查點,Investigation Point,noun ||,
+檢視,Examine,noun,Point type.
+證物 (point type),Evidence,noun ||,
+證詞,Testimony,noun ||,
+機關,Mechanism,noun ||,
+鎖定區域,Locked Area,noun ||,
+懷錶 / 刻度,pocket watch / Ticks,noun ||,
+鑑定,Appraisal,noun,"Verb ""appraise""; button 交給亞瑟 = ""Hand to Arthur""."
+證物,evidence,noun,"""a piece of evidence""; ""exhibit"" not used."
+一般證物,Common Evidence,noun ||,
+關鍵證物,Key Evidence,noun ||,
+劇情證物,Story Evidence,noun ||,
+黃金線索,Golden Clue,noun ||,
+次級替代證物,Substitute Evidence,noun,Damaged stand-in; always dashed.
+強攻 (flag),Striker,noun,Evidence flag.
+動機 (flag),Motive,noun ||,
+鏈外事實,Outside Fact,noun ||,
+證物冊,Evidence Book,noun ||,
+私人收藏,Private Collection,noun ||,
+案件筆記,Case Notes,noun ||,
+偵探手帳,Detective's Handbook,noun,Tutorial panel.
+偵探筆記 / 亞瑟的偵探筆記,Arthur's Casebook,noun,Flow chart screen (post-clear).
+剪報簿,Scrapbook,noun ||,
+人物誌,Characters,noun ||,
+章節回想,Chapter Recall,noun ||,
+信任度,Trust,noun,"警督信任度 = ""Inspector's Trust""."
+惡名值,Notoriety,noun ||,
+風評,Reputation,noun ||,
+犯人,Culprit,noun,Opponent type.
+庇護者,Protector,noun,Opponent type.
+對手偵探,Rival Detective,noun,Opponent type.
+宿敵,Nemesis,noun,Opponent type.
+混合,Hybrid,noun,Opponent type.
+輿論,Public Opinion,noun ||,
+True End,True End,noun,Keep as-is.
+二週目,second playthrough,noun,"""Playthrough {n}""."
+新遊戲（繼承）,New Game+,noun ||,
+委託,Delegate,verb,委託亞瑟代辯.
+名偵探,Master Detective,noun,Difficulty name and achievement.
+故事模式 / 標準,Story Mode / Standard,noun,Difficulty names.

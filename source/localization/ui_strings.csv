@@ -1,0 +1,667 @@
+﻿ID,category,zh-TW,en,note
+UI_TITLE_LOGO,Title & Main Menu,狐耳摩斯,Sherefox,ctx: 標題 | Title logo. zh logo is 狐耳摩斯 (pun on Sherlock Holmes); English keeps the protagonist name. Art asset may stay as the zh logo.
+UI_TITLE_SUB,Title & Main Menu,Sherefox：霧都的狐狸偵探,Sherefox: The Fox Detective of the Fog City,ctx: 標題副標
+UI_TITLE_PRESS,Title & Main Menu,按任意鍵開始,Press any key to start,ctx: 標題，等待輸入
+BTN_CONTINUE,Title & Main Menu,繼續,Continue,ctx: 主選單
+BTN_NEWGAME,Title & Main Menu,新遊戲,New Game,ctx: 主選單
+BTN_NEWGAME_PLUS,Title & Main Menu,新遊戲（繼承）,New Game+,ctx: 主選單（通關後）
+BTN_LOAD,Title & Main Menu,讀取,Load,ctx: 主選單
+BTN_RECALL,Title & Main Menu,章節回想,Chapter Recall,ctx: 主選單
+BTN_NOTEBOOK,Title & Main Menu,偵探筆記,Casebook,ctx: 主選單（通關後） | Opens Arthur's Casebook (UI_FLOW_TITLE).
+BTN_SCRAPBOOK,Title & Main Menu,剪報簿,Scrapbook,ctx: 主選單
+BTN_CHARACTERS,Title & Main Menu,人物誌,Characters,ctx: 主選單
+BTN_SETTINGS,Title & Main Menu,設定,Settings,ctx: 主選單
+BTN_QUIT,Title & Main Menu,離開遊戲,Quit Game,ctx: 主選單
+WARN_QUIT,Title & Main Menu,要離開遊戲嗎？未存檔的進度將會遺失。,Quit the game? Unsaved progress will be lost.,ctx: 離開遊戲確認
+WARN_NEWGAME_OVER,Title & Main Menu,開始新遊戲不會刪除現有的存檔。要開始嗎？,Starting a new game will not delete your existing saves. Start anyway?,ctx: 新遊戲時已有存檔
+UI_DIFF_SELECT,Title & Main Menu,選擇難度,Select Difficulty,ctx: 新遊戲難度選擇標題
+UI_DIFF_STORY,Title & Main Menu,故事模式,Story Mode,ctx: 難度名稱
+UI_DIFF_STORY_DESC,Title & Main Menu,想專心看故事的人。論戰寬鬆，提示完整，可以隨時重來。,"For those who just want the story. Debates are lenient, hints are complete, and you can retry any time.",ctx: 難度說明
+UI_DIFF_NORMAL,Title & Main Menu,標準,Standard,ctx: 難度名稱
+UI_DIFF_NORMAL_DESC,Title & Main Menu,本作設計的體驗。要取捨、要推理，也允許失敗。,"The experience the game was designed around. Weigh your choices, reason it out, and failure is allowed.",ctx: 難度說明
+UI_DIFF_MASTER,Title & Main Menu,名偵探,Master Detective,ctx: 難度名稱
+UI_DIFF_MASTER_DESC,Title & Main Menu,沒有預估、沒有重來。蒐證更緊，對手更狠。,"No estimates, no retries. Tighter searches, nastier opponents.",ctx: 難度說明
+UI_DIFF_NOTE,Title & Main Menu,難度可在每章開始時於設定中更改。True End 在所有難度皆可達成。,You can change the difficulty in Settings at the start of each chapter. The True End is achievable on every difficulty.,ctx: 難度選擇底部
+BTN_OK,Common Buttons & System Menu,確定,OK,ctx: 通用
+BTN_CANCEL,Common Buttons & System Menu,取消,Cancel,ctx: 通用
+BTN_YES,Common Buttons & System Menu,是,Yes,ctx: 通用
+BTN_NO,Common Buttons & System Menu,否,No,ctx: 通用
+BTN_BACK,Common Buttons & System Menu,返回,Back,ctx: 通用
+BTN_CLOSE,Common Buttons & System Menu,關閉,Close,ctx: 通用
+BTN_NEXT,Common Buttons & System Menu,下一步,Next,ctx: 通用
+BTN_SKIP,Common Buttons & System Menu,略過,Skip,ctx: 演出
+BTN_AUTO,Common Buttons & System Menu,自動,Auto,ctx: 對話快捷列
+BTN_FAST,Common Buttons & System Menu,快轉,Fast,ctx: 對話快捷列
+BTN_LOG,Common Buttons & System Menu,紀錄,Log,ctx: 對話快捷列
+BTN_SAVE,Common Buttons & System Menu,存檔,Save,ctx: 快捷列、選單
+BTN_QSAVE,Common Buttons & System Menu,快速存檔,Quick Save,ctx: 選單
+BTN_QLOAD,Common Buttons & System Menu,快速讀取,Quick Load,ctx: 選單
+BTN_HIDE,Common Buttons & System Menu,隱藏介面,Hide UI,ctx: 對話快捷列
+UI_MENU_TITLE,Common Buttons & System Menu,選單,Menu,ctx: 系統選單標題
+BTN_MENU_RESUME,Common Buttons & System Menu,回到遊戲,Back to Game,ctx: 系統選單
+BTN_MENU_HANDBOOK,Common Buttons & System Menu,偵探手帳,Detective's Handbook,ctx: 系統選單
+BTN_MENU_EVIDENCE,Common Buttons & System Menu,證物冊,Evidence Book,ctx: 系統選單
+BTN_MENU_TITLE,Common Buttons & System Menu,回到標題,Return to Title,ctx: 系統選單
+WARN_TO_TITLE,Common Buttons & System Menu,要回到標題畫面嗎？未存檔的進度將會遺失。,Return to the title screen? Unsaved progress will be lost.,ctx: 回到標題確認
+UI_LOG_TITLE,Common Buttons & System Menu,對話紀錄,Backlog,ctx: 對話紀錄
+UI_AUTO_ON,Common Buttons & System Menu,自動播放,Auto-play,ctx: 自動播放開啟提示
+UI_FAST_ON,Common Buttons & System Menu,快轉中,Fast-forwarding,ctx: 快轉提示
+MSG_FAST_UNREAD,Common Buttons & System Menu,以下為未讀內容，已停止快轉。,Unread text ahead. Fast-forward stopped.,ctx: 未讀文字停止快轉
+UI_CHAPTER_CARD,Daily & Event,第 {n} 章　{chapterTitle},Chapter {n}: {chapterTitle},ctx: 章節開始字卡
+UI_CASE_CARD_9,Daily & Event,第九章之{n}　{caseTitle},"Chapter 9, Case {n}: {caseTitle}",ctx: Ch.9 子案件字卡
+UI_DAILY_MENU,Daily & Event,事務所,Office,ctx: 日常選單
+UI_CHOICE_KEY,Daily & Event,【{plotItem}】,【{plotItem}】,ctx: 劇情證物解鎖的選項前綴（以圖示呈現，文字供讀屏） | Prefix shown as an icon; text is for screen readers.
+MSG_PLOT_ITEM_USED,Daily & Event,你想起了「{plotItem}」。,"You remember ""{plotItem}"".",ctx: 隱藏選項選擇後
+UI_OPP_REVEAL,Daily & Event,本案的對手：{name}（{type}）,Today's opponent: {name} ({type}),ctx: 事件畫面對手登場
+UI_TYPE_CRIMINAL,Daily & Event,犯人,Culprit,ctx: 對手類型
+UI_TYPE_CRIMINAL_DESC,Daily & Event,他在說謊，主張裡一定藏著與事實衝突的矛盾。攻擊居多，被逼急就猛攻：等他開口時用反駁截斷最有效。,"He is lying, so his claims must hide a contradiction with the facts. Mostly attacks, and goes on the Onslaught when pushed: Rebut him as he speaks up for the best effect.",ctx: 類型說明
+UI_TYPE_PROTECTOR,Daily & Event,庇護者,Protector,ctx: 對手類型
+UI_TYPE_PROTECTOR_DESC,Daily & Event,他想保護某個人，會轉移焦點、打感情牌。補強居多：觀察與醜聞類證物最有效，補強時用詭辯可以打穿。,"He is shielding someone, deflecting and playing on emotion. Mostly Reinforces: Observe and Scandal evidence work best, and Sophistry punches through a Reinforce.",ctx: 類型說明
+UI_TYPE_RIVAL,Daily & Event,對手偵探,Rival Detective,ctx: 對手類型
+UI_TYPE_RIVAL_DESC,Daily & Event,他有自己的證物，包括你漏掉的那些。他會預判你重複上一手並出剋招，預兆可能是偽裝。換招，並且小心你的弱點。,"He has evidence of his own, including what you missed. He predicts you will repeat your last move and counters it, and his Tells may be Disguised. Change things up, and mind your Weak Points.",ctx: 類型說明
+UI_TYPE_NEMESIS,Daily & Event,宿敵,Nemesis,ctx: 對手類型
+UI_TYPE_NEMESIS_DESC,Daily & Event,她的推理完全自洽，預兆常是偽裝：台詞會騙人，小動作不會。只有鏈外的事實能打破它。,"Her reasoning is perfectly self-consistent and her Tells are often Disguised: her words lie, her gestures do not. Only a fact from outside the chain can break it.",ctx: 類型說明
+UI_TYPE_MIXED,Daily & Event,混合,Hybrid,ctx: 對手類型
+UI_TYPE_MIXED_DESC,Daily & Event,隨著局勢改變打法。注意狀態列上目前的類型。,Changes tactics as the situation shifts. Watch the type shown in the status bar.,ctx: 類型說明
+UI_INV_TITLE,Evidence Search,蒐證　{sceneName},Evidence Search: {sceneName},ctx: 蒐證畫面標題
+UI_INV_TICKS,Evidence Search,刻度 {left}／{total},Ticks {left}/{total},ctx: 懷錶
+UI_INV_TICKS_FREE,Evidence Search,刻度　不限,Ticks: Unlimited,ctx: 懷錶（不限）
+UI_INV_APPR_LEFT,Evidence Search,鑑定 {left}／{total},Appraisals {left}/{total},ctx: 鑑定箱
+UI_INV_APPR_FREE,Evidence Search,鑑定　不限,Appraisals: Unlimited,ctx: 鑑定箱（故事模式）
+UI_INV_NO_POLICE,Evidence Search,無警方支援,No Police Support,ctx: 外地章徽章
+UI_POINT_LOOK,Evidence Search,檢視,Examine,ctx: 調查點類型
+UI_POINT_ITEM,Evidence Search,證物,Evidence,ctx: 調查點類型
+UI_POINT_TALK,Evidence Search,證詞,Testimony,ctx: 調查點類型
+UI_POINT_DEVICE,Evidence Search,機關,Mechanism,ctx: 調查點類型
+UI_POINT_LOCKED,Evidence Search,鎖定區域,Locked Area,ctx: 調查點類型
+UI_POINT_DONE,Evidence Search,已調查,Investigated,ctx: 已調查
+UI_AREA_OPEN,Evidence Search,開放,Open,ctx: 區域狀態
+UI_AREA_PERMIT,Evidence Search,需許可,Permit Required,ctx: 區域狀態
+UI_AREA_SEALED,Evidence Search,封鎖,Sealed,ctx: 區域狀態
+MSG_GET_EVIDENCE,Evidence Search,取得證物：{name},Evidence obtained: {name},ctx: 取得證物
+MSG_GET_TESTIMONY,Evidence Search,取得證詞：{name},Testimony obtained: {name},ctx: 取得證詞
+MSG_GET_PLOT,Evidence Search,收進私人收藏：{name},Added to Private Collection: {name},ctx: 取得劇情證物
+MSG_GET_INFO,Evidence Search,案件筆記已更新。,Case Notes updated.,ctx: 取得情報
+MSG_TALK_LIMIT,Evidence Search,{name} 已經不想再談了。,{name} doesn't want to talk any more.,ctx: 同一證人第 3 次
+MSG_DEVICE_NEED,Evidence Search,需要某樣東西才能打開。,You need something to open this.,ctx: 機關缺少道具
+MSG_DEVICE_FAIL,Evidence Search,沒有反應。再試試看。,Nothing happens. Try again.,ctx: 機關操作失敗
+MSG_PERMIT_TRUST,Evidence Search,巴斯克維爾警督：「這裡讓你進去。別亂碰。」,"Inspector Baskerville: ""I'll let you in here. Don't touch anything.""",ctx: 依信任度開放區域
+MSG_PERMIT_NEED,Evidence Search,這個區域需要許可。,This area requires a permit.,ctx: 點選需許可區域
+BTN_NEGOTIATE,Evidence Search,交涉,Negotiate,ctx: 需許可區域
+UI_NEGO_PROMPT,Evidence Search,出示一件證物說服 {name}。（剩餘機會 {left}）,Present a piece of evidence to persuade {name}. (Chances left: {left}),ctx: 交涉畫面
+MSG_NEGO_OK,Evidence Search,{name} 讓開了路。,{name} stepped aside.,ctx: 交涉成功
+MSG_NEGO_FAIL,Evidence Search,{name} 不為所動。（刻度 −1）,{name} is unmoved. (Ticks −1),ctx: 交涉失敗
+MSG_NEGO_LOCK,Evidence Search,這條路行不通了。區域改為封鎖。,That route is closed. The area is now Sealed.,ctx: 交涉第 3 次失敗
+BTN_SNEAK,Evidence Search,潛入（刻度 −2）,Sneak In (Ticks −2),ctx: 封鎖區域
+MSG_SNEAK_NOTICK,Evidence Search,刻度不夠，潛入不了。,Not enough Ticks to sneak in.,ctx: 刻度不足 2
+MSG_SNEAK_FORBID,Evidence Search,這裡戒備太森嚴，潛不進去。,Security is too tight here to sneak in.,ctx: Ch.10～12 封鎖區域
+BTN_APPRAISE,Evidence Search,交給亞瑟,Hand to Arthur,ctx: 證物選中時
+UI_APPR_CONFIRM,Evidence Search,{type}鑑定・消耗 {cost} 次・剩餘 {left} 次。要鑑定嗎？,{type} appraisal. Uses {cost}; {left} remaining. Appraise?,ctx: 鑑定確認
+UI_APPR_MED,Evidence Search,醫療,Medical,ctx: 鑑定類型
+UI_APPR_MECH,Evidence Search,機械,Mechanical,ctx: 鑑定類型
+UI_APPR_DUAL,Evidence Search,雙重,Dual,ctx: 鑑定類型
+MSG_APPR_DONE,Evidence Search,鑑定完成：新的標籤已揭露。,Appraisal complete: new tags revealed.,ctx: 鑑定完成
+MSG_APPR_EMPTY,Evidence Search,本案的鑑定次數已經用完。,No appraisals left for this case.,ctx: 鑑定次數用完
+MSG_APPR_LOCKED,Evidence Search,論戰中不能鑑定。,You can't appraise during a debate.,ctx: 論戰中嘗試鑑定
+UI_TAG_HIDDEN,Evidence Search,？,?,ctx: 未鑑定標籤
+UI_TAG_APPRAISED,Evidence Search,已鑑定,Appraised,ctx: 已鑑定鋼印
+UI_TAG_TIME,Evidence Search,時間,Time,ctx: 標籤類別
+UI_TAG_PLACE,Evidence Search,地點,Place,ctx: 標籤類別
+UI_TAG_PERSON,Evidence Search,人物,Person,ctx: 標籤類別
+UI_TAG_PHYSICAL,Evidence Search,物理特性,Physical,ctx: 標籤類別
+UI_TAG_SCANDAL,Evidence Search,醜聞,Scandal,ctx: 標籤類別
+UI_GRADE_NORMAL,Evidence Search,一般證物,Common Evidence,ctx: 證物等級
+UI_GRADE_KEY,Evidence Search,關鍵證物,Key Evidence,ctx: 證物等級
+UI_GRADE_PLOT,Evidence Search,劇情證物,Story Evidence,ctx: 證物等級
+UI_GRADE_GOLDEN,Evidence Search,黃金線索,Golden Clue,ctx: 證物等級
+UI_GRADE_SUB,Evidence Search,次級替代證物,Substitute Evidence,ctx: 證物等級
+UI_FLAG_STRIKE,Evidence Search,強攻,Striker,ctx: 證物屬性
+UI_FLAG_MOTIVE,Evidence Search,動機,Motive,ctx: 證物屬性
+UI_FLAG_OUTSIDE,Evidence Search,鏈外事實,Outside Fact,ctx: 證物屬性
+BTN_INV_END,Evidence Search,結束蒐證,End Search,ctx: 蒐證
+MSG_INV_NEED,Evidence Search,還有一定得找到的東西。再找找看。,There is still something you must find. Keep looking.,ctx: 必需證物未齊
+WARN_INV_END,Evidence Search,還剩 {left} 格刻度。結束後就不能回到現場了，要結束蒐證嗎？,{left} Ticks remain. You can't return to the scene once the search ends. End the search?,ctx: 結束蒐證確認
+WARN_INV_END_ZERO,Evidence Search,所有地方都看過了。要結束蒐證嗎？,You've looked everywhere. End the search?,ctx: 全部調查完畢時
+MSG_INV_TIMEOUT,Evidence Search,時間到了。,Time's up.,ctx: 刻度歸零
+MSG_INV_SEAL,Evidence Search,{name} 封鎖了部分現場。（刻度 −{n}）,{name} has sealed off part of the scene. (Ticks −{n}),ctx: 劇情封鎖
+MSG_INV_RESCUE,Evidence Search,亞瑟替你撿起了：{name},Arthur picked this up for you: {name},ctx: 亞瑟補撿必需證物
+MSG_INV_MISSED,Evidence Search,有 {n} 件證物落入對手手中。,{n} pieces of evidence have fallen into the opponent's hands.,ctx: 漏證結算
+MSG_INV_MISSED_NONE,Evidence Search,現場的證物，一件都沒漏。,You missed nothing at the scene.,ctx: 沒有漏證
+UI_NOTES_TITLE,Evidence Search,案件筆記,Case Notes,ctx: 案件筆記
+UI_EVBOOK_TITLE,Evidence Search,證物冊,Evidence Book,ctx: 證物冊
+UI_EVBOOK_TAB_CASE,Evidence Search,本案證物,This Case,ctx: 證物冊分頁
+UI_EVBOOK_TAB_GOLD,Evidence Search,黃金線索,Golden Clues,ctx: 證物冊分頁
+UI_EVBOOK_TAB_PLOT,Evidence Search,私人收藏,Private Collection,ctx: 證物冊分頁
+UI_EVBOOK_GOLD_EMPTY,Evidence Search,檔案裡還沒有能用的東西。,Nothing usable in the files yet.,ctx: 黃金線索分頁（尚無可用）
+UI_CMP_COUNTER,Evidence Search,異樣 {found}／5,Differences {found}/5,ctx: 比對模式
+MSG_CMP_FOUND,Evidence Search,這裡變了。,Something has changed here.,ctx: 比對模式找到
+MSG_CMP_WRONG,Evidence Search,這裡和以前一樣。,This is the same as before.,ctx: 比對模式點錯
+UI_BOARD_TITLE,Clue Board,線索板,Clue Board,ctx: 線索板標題
+UI_BOARD_DRAWER,Clue Board,證物抽屜,Evidence Drawer,ctx: 抽屜
+UI_BOARD_REASON,Clue Board,歸類理由：這件證物證明了……,Rationale: This evidence proves…,ctx: 詳情面板
+UI_BOARD_REASON_NONE,Clue Board,理由未定,Rationale not set,ctx: 未選理由
+UI_BOARD_REASON_FIXED,Clue Board,理由已確定,Rationale fixed,ctx: 黃金線索
+UI_BOARD_CHAIN,Clue Board,推理鏈 {n}：{cards} 張・實證 {solid}・詭辯 {soph}・預估傷害 {dmg},Chain {n}: {cards} cards · Solid {solid} · Sophistry {soph} · Est. damage {dmg},ctx: 推理鏈列表
+UI_BOARD_CHAIN_EMPTY,Clue Board,尚未組成推理鏈,No Reasoning Chain yet,ctx: 推理鏈列表空
+UI_BOARD_LINK_SOLID,Clue Board,實證連結,Solid Link,ctx: 連結提示
+UI_BOARD_LINK_SOPH,Clue Board,詭辯連結（留下弱點）,Sophistry Link (leaves a Weak Point),ctx: 連結提示
+UI_BOARD_WEAK,Clue Board,弱點：對手反擊時會優先攻擊這裡。,Weak Point: the opponent's counterattack hits here first.,ctx: 弱點標記提示
+UI_BOARD_THRESHOLD,Clue Board,{stage}論破：{condition},{stage} Break: {condition},ctx: 上方論破門檻提示
+UI_BOARD_COND_EARLY,Clue Board,對手動搖時，出示 1 件強攻證物，或 2 張以上的實證連鎖,"When the opponent is Shaken: present 1 Striker evidence, or a Solid Chain of 2 or more cards",ctx: 前期條件
+UI_BOARD_COND_MID,Clue Board,對手動搖時，出示 2～3 張無弱點連鎖；或命中失言後的主張,"When the opponent is Shaken: present a chain of 2-3 cards with no Weak Points, or hit a claim exposed by a slip",ctx: 中期條件
+UI_BOARD_COND_LATE,Clue Board,對手動搖時，出示 3～4 張以上的連鎖，其中要有黃金線索,When the opponent is Shaken: present a chain of 3-4 or more cards that includes a Golden Clue,ctx: 後期條件
+MSG_LINK_INVALID,Clue Board,這兩件證物沒有共同點。,These two pieces of evidence have nothing in common.,ctx: 無效連結
+MSG_LINK_NOREASON,Clue Board,先替這件證物選好理由。,Choose a Rationale for this evidence first.,ctx: 未選理由就拉線
+MSG_LINK_HIDDEN,Clue Board,這件證物還有看不出來的地方。,This evidence has details you can't make out yet.,ctx: 只有未鑑定標籤可能相關時
+MSG_CHAIN_MAX,Clue Board,一條推理鏈最多 5 張，板上最多 3 條。,"A Reasoning Chain holds at most 5 cards, and the board holds at most 3 chains.",ctx: 超過 5 張或第 4 條鏈
+MSG_CHAIN_BRANCH,Clue Board,推理鏈必須是一直線。,A Reasoning Chain must run in a straight line.,ctx: 嘗試分岔或成環
+MSG_BOARD_FULL,Clue Board,板上放不下了。,The board is full.,ctx: 板面超過 15 張
+MSG_GOLD_REVEAL,Clue Board,檔案裡有一份東西，現在派得上用場了：{name}（取得於 {chapter}）,Something in the files has become useful: {name} (obtained in {chapter}),ctx: 黃金線索首次出現
+MSG_GOLD_ASSIST,Clue Board,「{name}」讓某個推論變得清楚了。,"""{name}"" makes one of your inferences clearer.",ctx: 推理輔助線索亮起
+BTN_TO_DEBATE,Clue Board,進入論戰,Enter Debate,ctx: 線索板
+MSG_BOARD_NOCHAIN,Clue Board,至少要組出一條推理鏈，才能進入論戰。,Form at least one Reasoning Chain before entering the Debate.,ctx: 沒有推理鏈
+WARN_BOARD_NOREASON,Clue Board,有 {n} 張卡還沒選理由，它們不能參戰。仍要進入論戰嗎？,{n} cards have no Rationale and can't join the fight. Enter the Debate anyway?,ctx: 有卡未選理由
+WARN_BOARD_UNAPPR,Clue Board,還有 {n} 件證物沒鑑定，亞瑟還能鑑定 {left} 次。仍要進入論戰嗎？,"{n} pieces of evidence are unappraised, and Arthur can still appraise {left} more. Enter the Debate anyway?",ctx: 有未鑑定證物且仍有次數
+WARN_BOARD_LOCK,Clue Board,進入論戰後，歸類理由將會鎖定，論戰中也不能修改線索板。確定嗎？,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?",ctx: 最後確認
+WARN_BOARD_REMOVE,Clue Board,移除這張卡會一併刪除它的連結。要移除嗎？,Removing this card will also delete its links. Remove it?,ctx: 移除已連結的卡
+UI_DEB_ROUND,Debate,第 {n} 回合,Round {n},ctx: 回合
+UI_DEB_HP,Debate,{now}／{max},{now}/{max},ctx: 壓力錶數字
+UI_DEB_HAND,Debate,手牌 ×{n},Hand ×{n},ctx: 對手手牌
+UI_DEB_COUNTER_PREVIEW,Debate,主張 {base}＋4×{n}＝{dmg},Assert {base}+4×{n}={dmg},ctx: 節點旁（預兆為主張）
+UI_DEB_COUNTER_PREVIEW_RUSH,Debate,猛攻 ({base}＋4×{n})×1.25＝{dmg},Onslaught ({base}+4×{n})×1.25={dmg},ctx: 節點旁（預兆為猛攻）
+UI_DEB_TELL,Debate,預兆,Tell,ctx: 預兆區標題
+UI_DEB_TELL_CLEAR,Debate,明示,Clear,ctx: 清晰度：明示
+UI_DEB_TELL_FUZZY,Debate,模糊,Vague,ctx: 清晰度：模糊
+UI_DEB_TELL_SEEN,Debate,看穿,Seen Through,ctx: 狐耳直覺看穿偽裝後
+UI_DEB_TELL_CANDIDATES,Debate,候選：{a}／{b},Candidates: {a}/{b},ctx: 模糊時的候選列
+UI_DEB_TELL_LIKELY,Debate,較可能（規則 {n}）,Likelier (Rule {n}),ctx: ★ 標記的說明
+UI_DEB_TELL_BASIS,Debate,依據：{basis},Basis: {basis},ctx: 依據小銅牌
+UI_DEB_TELL_BASIS_OBSERVE,Debate,觀察,Observe,ctx: 依據：觀察
+UI_DEB_TELL_BASIS_RULE,Debate,規則 {n},Rule {n},ctx: 依據：行為規則
+UI_DEB_TELL_BASIS_TUTORIAL,Debate,教學,Tutorial,ctx: 依據：教學
+UI_DEB_TELL_BASIS_INSTINCT,Debate,狐耳直覺,Fox-Ear Instinct,ctx: 依據：狐耳直覺
+UI_DEB_TELL_SCRIPT,Debate,命運的回合,Round of Fate,ctx: 劇本回合的預兆圖示
+UI_DEB_DISGUISER,Debate,此對手的預兆可能是偽裝：台詞與小動作對不上時，以小動作為準。,"This opponent's Tells may be Disguised: when their words and gestures disagree, trust the gesture.",ctx: 會偽裝的對手（常駐小字）
+UI_DEB_GESTURE_KNOWN,Debate,{gesture}＝{action},{gesture} = {action},ctx: 故事模式小動作提示
+UI_ACT_CLAIM,Debate,主張,Assert,ctx: 對手行動名稱
+UI_ACT_RUSH,Debate,猛攻,Onslaught,ctx: 對手行動名稱
+UI_ACT_REINFORCE,Debate,補強,Reinforce,ctx: 對手行動名稱
+UI_ACT_TRAP,Debate,設陷,Set a Trap,ctx: 對手行動名稱
+UI_ACT_GROUP_ATK,Debate,攻,Attack,ctx: 按鈕分組
+UI_ACT_GROUP_DEF,Debate,守,Defend,ctx: 按鈕分組
+BTN_DEB_SOLID,Debate,實證連鎖,Solid Chain,ctx: 行動按鈕
+BTN_DEB_SOPH,Debate,詭辯,Sophistry,ctx: 行動按鈕
+BTN_DEB_PARRY,Debate,反駁,Rebut,ctx: 行動按鈕
+BTN_DEB_OBSERVE,Debate,觀察,Observe,ctx: 行動按鈕
+BTN_DEB_SOPH_NEW,Debate,臨場硬接,Improvise a Link,ctx: 詭辯時的子選項
+BTN_DEB_PARRY_CHAIN,Debate,改出示推理鏈,Present a Chain Instead,ctx: 反駁選擇器分頁（論破回合）
+BTN_DEB_LOCK,Debate,鎖定,Lock In,ctx: 鎖定
+BTN_DEB_INSTINCT,Debate,狐耳直覺,Fox-Ear Instinct,ctx: 狐耳直覺
+BTN_DEB_ASSIST,Debate,援護,Cover,ctx: 援護按鈕
+BTN_DEB_TABLE,Debate,對決表,Matchup Table,ctx: 對決表把手
+BTN_DEB_NOTES,Debate,對手筆記,Opponent Notes,ctx: 對手筆記
+UI_DEB_LOCK_SUMMARY_ATK,Debate,{action}　目標：{node}　鏈段：{cards},{action} · Target: {node} · Segment: {cards},ctx: 鎖定確認列（攻擊）
+UI_DEB_LOCK_SUMMARY_PARRY,Debate,反駁　對準：{node}　出示：{card},Rebut · Aim: {node} · Present: {card},ctx: 鎖定確認列（反駁）
+UI_DEB_LOCK_SUMMARY_OBSERVE,Debate,觀察　這回合不出牌,Observe · No card this round,ctx: 鎖定確認列（觀察）
+UI_DEB_LOCKED,Debate,已鎖定,Locked in,ctx: 鎖定後
+UI_DEB_PREVIEW,Debate,傷害 {dmg}　倍率 ×{mult}　{shaken},Damage {dmg} · Multiplier ×{mult} · {shaken},ctx: 預估列
+UI_DEB_PREVIEW_SHAKEN,Debate,動搖 ×1.5,Shaken ×1.5,ctx: 預估列（動搖時）
+UI_DEB_PREVIEW_BREAK,Debate,可以論破,Can Break,ctx: 預估列（將觸發論破）
+UI_DEB_PREVIEW_SHAKE,Debate,可使對手動搖,Can leave the opponent Shaken,ctx: 預估列（將觸發動搖）
+UI_DEB_PREVIEW_SMASH,Debate,將粉碎主張 ×{n},Will smash claims ×{n},ctx: 預估列（將粉碎主張）
+UI_DEB_PREVIEW_VS,Debate,若{action}：{result},If {action}: {result},ctx: 預估列小字（依候選行動）
+UI_DEB_PREVIEW_PARRY,Debate,截斷：反擊 30、粉碎主張,"Cut-In: counter 30, smash the claim",ctx: 預估列（反駁）
+UI_DEB_PREVIEW_PARRY_NOREF,Debate,截斷：反擊 30（這個說法太堅固，主張會留著）,Cut-In: counter 30 (this claim is too sturdy and will stay),ctx: 預估列（反駁，堅固節點、非黃金線索）
+UI_DEB_BEST,Debate,推薦,Recommended,ctx: 故事模式對決表推薦格
+UI_TABLE_TITLE,Debate,對決表,Matchup Table,ctx: 對決表標題
+UI_TABLE_COL_ATK,Debate,主張／猛攻,Assert / Onslaught,ctx: 對決表欄名
+UI_TABLE_COL_REINFORCE,Debate,補強,Reinforce,ctx: 對決表欄名
+UI_TABLE_COL_TRAP,Debate,設陷,Set a Trap,ctx: 對決表欄名
+UI_TABLE_SOLID_ATK,Debate,交鋒：雙方都受傷（你的傷害減半）；含破解證物時移除該主張,"Clash: both sides take damage (yours is halved); if the chain contains evidence that refutes the claim, the claim is removed",ctx: 對決表：實證×攻
+UI_TABLE_SOLID_REINFORCE,Debate,傷害減半，仍可移除主張,Damage halved; the claim can still be removed,ctx: 對決表：實證×補強
+UI_TABLE_SOLID_TRAP,Debate,陷阱落空，全額傷害；對方下回合不能補強,The trap whiffs and you deal full damage; the opponent can't Reinforce next round,ctx: 對決表：實證×設陷
+UI_TABLE_SOPH_ATK,Debate,交鋒：雙方都受傷（你的傷害減半）,Clash: both sides take damage (yours is halved),ctx: 對決表：詭辯×攻
+UI_TABLE_SOPH_REINFORCE,Debate,全額傷害，壓過防守,"Full damage, overpowering the defence",ctx: 對決表：詭辯×補強
+UI_TABLE_SOPH_TRAP,Debate,中陷阱：傷害作廢，受暴擊、虛線斷開、惡名 +1,"Caught in the trap: damage void, you take a crit, the dashed link snaps, Notoriety +1",ctx: 對決表：詭辯×設陷
+UI_TABLE_PARRY_ATK,Debate,截斷：不受傷、粉碎主張、反擊 30；截斷猛攻時對方動搖,"Cut-In: you take no damage, the claim is smashed, counter 30; cutting in on an Onslaught leaves the opponent Shaken",ctx: 對決表：反駁×攻
+UI_TABLE_PARRY_REINFORCE,Debate,空過，對方補強成功,Whiff: the opponent's Reinforce succeeds,ctx: 對決表：反駁×補強
+UI_TABLE_PARRY_TRAP,Debate,空過，陷阱也落空,Whiff: the trap whiffs too,ctx: 對決表：反駁×設陷
+UI_TABLE_OBS_ATK,Debate,受傷減半；下回合預兆變為明示,Take half damage; next round's Tell becomes Clear,ctx: 對決表：觀察×攻
+UI_TABLE_OBS_REINFORCE,Debate,對方多一個脆弱主張,The opponent gains a Fragile claim,ctx: 對決表：觀察×補強
+UI_TABLE_OBS_TRAP,Debate,拆穿陷阱：對方多一個脆弱主張，下回合必定攻擊,Trap exposed: the opponent gains a Fragile claim and must attack next round,ctx: 對決表：觀察×設陷
+UI_NOTES_TITLE_DUP2,Debate,亞瑟的對手筆記,Arthur's Opponent Notes,ctx: 對手筆記標題 | Duplicate ID in source (UI_NOTES_TITLE also used by 8.4 Case Notes); renamed with _DUP2.
+UI_NOTES_TAB_OPP,Debate,這位對手,This Opponent,ctx: 對手筆記分頁
+UI_NOTES_TAB_RULES,Debate,行為規則,Behaviour Rules,ctx: 對手筆記分頁
+UI_NOTES_TAB_LOG,Debate,回合紀錄,Round Log,ctx: 對手筆記分頁
+UI_NOTES_GESTURE_EMPTY,Debate,（還沒看過他這樣做）,(Haven't seen this one yet),ctx: 尚未觀察到的小動作
+UI_NOTES_RULE_COUNT,Debate,本場已觸發 {n} 次,Triggered {n} times this debate,ctx: 規則觸發次數
+UI_NOTES_RULE_1,Debate,主張被推翻後，下一手傾向補強。,"After a claim is overturned, tends to Reinforce next.",ctx: 行為規則 1
+UI_NOTES_RULE_2,Debate,你上一回合出詭辯，下一手傾向設陷。,"If you used Sophistry last round, tends to Set a Trap next.",ctx: 行為規則 2
+UI_NOTES_RULE_3,Debate,主導權第一次降到一半以下時，下一手必定猛攻（明示）。,"The first time Dominance falls to half or below, the next move is always an Onslaught (Clear).",ctx: 行為規則 3
+UI_NOTES_RULE_4,Debate,補強成功後，下一手傾向主張。,"After a successful Reinforce, tends to Assert next.",ctx: 行為規則 4
+UI_NOTES_RULE_5,Debate,同一招連續出兩次後，第三次一定換招。,"After the same move twice in a row, always switches on the third.",ctx: 行為規則 5
+UI_NOTES_RULE_4W,Debate,她補強成功後不急著主張，傾向設陷。,After a successful Reinforce she doesn't rush to Assert; she tends to Set a Trap.,ctx: 行為規則 4（Wolfhart 改寫）
+UI_NOTES_RULE_MIRROR,Debate,他預判你會重複上一回合的行動，先出它的剋招。,"He predicts you will repeat your last move, and plays its counter first.",ctx: 維多的鏡像
+UI_NOTES_LOG_ROW,Debate,第 {n} 回合　預兆：{tell}　你：{mine}　對方：{theirs}　{result},Round {n} · Tell: {tell} · You: {mine} · Opponent: {theirs} · {result},ctx: 回合紀錄一列
+UI_NOTES_LOG_MISREAD,Debate,讀錯的一手,Misread,ctx: 敗北回顧標記
+UI_NODE_NORMAL,Debate,主張,Claim,ctx: 節點狀態
+UI_NODE_LIT,Debate,亮起,Lit,ctx: 節點狀態
+UI_NODE_FRAGILE,Debate,脆弱,Fragile,ctx: 節點狀態
+UI_NODE_STURDY,Debate,堅固,Sturdy,ctx: 節點狀態
+UI_NODE_STURDY_SRC,Debate,來自：你漏掉的證物,From: evidence you missed,ctx: 漏證節點小字
+UI_NODE_SECOND,Debate,第二說詞,Second Story,ctx: 節點狀態
+UI_NODE_HIDDEN,Debate,？,?,ctx: 隱藏節點
+UI_NODE_LAST,Debate,最後的堅持,Last Holdout,ctx: 最後的堅持節點
+MSG_DEB_SELECT_ACTION,Debate,選擇這回合的行動。,Choose your action for this round.,ctx: 引導
+MSG_DEB_SELECT_CHAIN,Debate,選擇要出示的鏈段。,Choose the chain segment to present.,ctx: 引導
+MSG_DEB_SELECT_TARGET,Debate,選擇要攻擊的主張（預設是亮起的那一個）。,Choose the claim to attack (the lit one by default).,ctx: 引導
+MSG_DEB_SELECT_PARRY,Debate,選擇要用來截斷的證物。,Choose the evidence to cut in with.,ctx: 引導
+MSG_DEB_NOTAG,Debate,這段推理和那個主張扯不上關係。,That reasoning has nothing to do with that claim.,ctx: 鏈段與節點無共同標籤
+MSG_DEB_NOSOLID,Debate,這段推理裡有虛線，只能用「詭辯」出示。,"This reasoning contains a dashed line, so it can only be presented as Sophistry.",ctx: 含詭辯卻按實證連鎖
+MSG_DEB_NOSOPH,Debate,這段推理沒有虛線。要硬接一條嗎？,This reasoning has no dashed line. Improvise one?,ctx: 不含詭辯卻按詭辯
+MSG_DEB_HIDDEN_TARGET,Debate,對方還沒把這件事說出口。,They haven't said that out loud yet.,ctx: 選擇隱藏節點
+MSG_DEB_NO_TARGET,Debate,現在手上的推理都打不到對方。可以防守，或臨場硬接一條線。,"None of your current reasoning can reach them. Defend, or improvise a link on the spot.",ctx: 沒有任何可攻擊的組合
+MSG_DEB_REVEAL,Debate,翻牌！,Cards up!,ctx: 揭示
+MSG_DEB_HIT,Debate,命中！,Hit!,ctx: 命中
+MSG_DEB_SMASH,Debate,主張被推翻了！,Claim overturned!,ctx: 粉碎主張
+MSG_DEB_FRAGILE_HIT,Debate,正中失言！（傷害 +10）,Right on the slip! (Damage +10),ctx: 打中脆弱節點
+MSG_DEB_STURDY,Debate,這個說法太堅固了。用實證連鎖打，或在他開口時用黃金線索截斷。,"That claim is too sturdy. Hit it with a Solid Chain, or cut in with a Golden Clue as they speak.",ctx: 打堅固節點未粉碎
+MSG_DEB_CLASH,Debate,交鋒！,Clash!,ctx: 交鋒
+MSG_DEB_STANDOFF,Debate,雙方都沒有出手。,Standoff: neither side made a move.,ctx: 僵持
+MSG_DEB_PARRY,Debate,等一下！（反擊 {n}）,Hold on! (Counter {n}),ctx: 截斷成功
+MSG_DEB_PARRY_NOREF,Debate,擋住了，但這個說法太堅固——要用黃金線索才推得翻。,"Blocked, but that claim is too sturdy: only a Golden Clue can overturn it.",ctx: 截斷堅固節點但未粉碎
+MSG_DEB_PARRY_WHIFF,Debate,對方沒有開口，你的反駁落空了。,"They didn't speak up, so your Rebut whiffed.",ctx: 反駁空過
+MSG_DEB_PARRY_OFFSET,Debate,對方推的是另一個說法！,They're pushing a different claim!,ctx: 反駁對準的不是對方推的主張
+MSG_DEB_REINFORCE,Debate,{name} 補強了說法。,{name} reinforced the story.,ctx: 補強成功
+MSG_DEB_REINFORCE_HEAL,Debate,{name} 穩住了陣腳。（主導權 +{n}）,{name} steadied up. (Dominance +{n}),ctx: 補強未被打中
+MSG_DEB_REINFORCE_HALF,Debate,被擋下了一半。,Half of it was blocked.,ctx: 攻擊撞上補強
+MSG_DEB_TRAP_HIT,Debate,是陷阱！,It's a trap!,ctx: 中陷阱
+MSG_DEB_TRAP_MISS,Debate,陷阱落空！{name} 下回合不能補強。,The trap whiffs! {name} can't Reinforce next round.,ctx: 陷阱落空
+MSG_DEB_TRAP_EXPOSED,Debate,你看穿了陷阱。{name} 下回合必定出手。,You saw through the trap. {name} will definitely strike next round.,ctx: 觀察拆穿陷阱
+MSG_DEB_OBSERVE,Debate,你靜靜聽對方說下去。,You listen quietly as they go on.,ctx: 觀察
+MSG_DEB_OBSERVE_HALF,Debate,你沉住氣，只受了一半的傷。,You stay composed and take only half the damage.,ctx: 觀察時受到攻擊
+MSG_DEB_SLIP,Debate,{name} 說溜嘴了！,{name} let something slip!,ctx: 失言
+MSG_DEB_REVEAL_HIDDEN,Debate,{name} 終於說出了那件事。,{name} finally said it out loud.,ctx: 隱藏節點揭露
+MSG_DEB_ATTACK,Debate,{name} 開口了！,{name} speaks up!,ctx: 對手主張
+MSG_DEB_RUSH,Debate,{name} 猛攻！,{name} goes on the Onslaught!,ctx: 對手猛攻
+MSG_DEB_SHAKEN,Debate,{name} 動搖了！,{name} is Shaken!,ctx: 對手動搖
+MSG_DEB_SHAKEN_RUSH,Debate,猛攻被截斷，{name} 亂了陣腳！,"The Onslaught was cut off, and {name} loses their footing!",ctx: 截斷猛攻造成動搖
+MSG_DEB_SHAKE_LINE,Debate,對方還沉得住氣。,They're still holding firm.,ctx: 4 張連鎖未達破防線
+MSG_DEB_SHAKEN_END,Debate,{name} 重新穩住了陣腳。,{name} has regained their composure.,ctx: 動搖結束
+MSG_DEB_BREAK_TURN,Debate,現在是論破的時機。,Now is the time to Break.,ctx: 論破回合提示
+MSG_DEB_PARRY_BREAK_MISS,Debate,對方沒有開口——論破的時機錯過了。,"They didn't speak up, and the chance to Break has passed.",ctx: 反駁論破落空
+MSG_DEB_WEAK_HIT,Debate,弱點被看穿了！,Your Weak Point was seen through!,ctx: 詭辯被陷阱抓到
+MSG_DEB_LINK_CUT,Debate,那條虛線斷了。下一回合不算倍率。,That dashed line snapped. No multiplier next round.,ctx: 詭辯連結斷開
+WARN_DEB_ASSIST,Debate,亞瑟：「這回合我替妳盯著陷阱？援護只有一次。」,"Arthur: ""Shall I watch for traps this round? I can only Cover once.""",ctx: 援護提示
+MSG_DEB_ASSISTED,Debate,亞瑟擋下了暴擊。這一回合的攻擊還是落空了。,Arthur blocked the crit. Your attack this round still came to nothing.,ctx: 援護成功
+MSG_DEB_ASSIST_EMPTY,Debate,援護已經用完了。,Cover has already been used.,ctx: 援護已用完
+UI_DEB_ASSIST_ARMED,Debate,援護待命：這回合若被陷阱抓到，亞瑟會擋下暴擊（鎖定即用掉）,"Cover ready: if a trap catches you this round, Arthur blocks the crit (spent as soon as you lock in)",ctx: 確認列（援護已啟動）
+MSG_DEB_ASSIST_WASTED,Debate,他沒有設陷——援護白白用掉了。,"No trap was set, so Cover was wasted.",ctx: 啟動援護但對手沒有設陷
+UI_DEB_NOPARRY_NOCARD,Debate,沒有能推翻這個主張的證物,No evidence that can overturn this claim,ctx: 反駁按鈕下方小字（沒有破解證物）
+MSG_DEB_NOPARRY_NOCARD,Debate,手上沒有能推翻這個主張的證物——截斷不了他。,"You have no evidence that can overturn this claim, so you can't cut in on them.",ctx: 沒有破解證物時按反駁
+MSG_DEB_INSTINCT_USE,Debate,狐耳一動——{name} 真正想做的是……,A fox ear twitches. What {name} really means to do is…,ctx: 使用狐耳直覺
+MSG_DEB_INSTINCT_SEEN,Debate,看穿了：{name} 要{action}。,Seen through: {name} will {action}.,ctx: 看穿偽裝
+MSG_DEB_INSTINCT_CONFIRM,Debate,不是偽裝。{name} 真的要{action}。,Not a disguise. {name} really will {action}.,ctx: 對真的明示使用
+MSG_DEB_INSTINCT_EMPTY,Debate,狐耳直覺已經用完了。,Fox-Ear Instinct has been used up.,ctx: 狐耳直覺用完
+MSG_DEB_INSTINCT_NA,Debate,這個預兆不需要直覺。,This Tell doesn't need Instinct.,ctx: 不能使用
+MSG_DEB_RULE_NEW,Debate,亞瑟在筆記上寫了一行：「{rule}」,"Arthur jotted a line in his notes: ""{rule}""",ctx: 首次記下行為規則
+MSG_DEB_GESTURE_NEW,Debate,亞瑟記下：{gesture}＝{action}。,Arthur noted: {gesture} = {action}.,ctx: 首次記下小動作
+MSG_DEB_ADDNODE,Debate,{name} 提出了新的說法。,{name} offered a new claim.,ctx: 對手補入節點
+MSG_DEB_LASTNODE,Debate,{name} 死守著最後一個說法。,{name} is clinging to one last claim.,ctx: 補入最後的堅持
+MSG_DEB_NO_REINFORCE,Debate,不能補強,Can't Reinforce,ctx: 狀態列：不能補強
+MSG_DEB_MUST_ATTACK,Debate,必定攻擊,Will attack,ctx: 狀態列：必定攻擊
+WARN_DEB_REVERSE,Debate,危險：這段推理含 3 條以上詭辯，援護已用完,Danger: this chain has 3 or more Sophistry links and Cover is spent,ctx: 逆・論破警告（狀態列）
+WARN_DEB_OBSERVE_TAIL,Debate,現在是尾聲，觀察擋不住對方的反撲（主導權 −{n}）。仍要觀察嗎？,This is the Endgame. Observe can't stop their counterattack (Dominance −{n}). Observe anyway?,ctx: 尾聲中按觀察
+MSG_DEB_IMPATIENT,Debate,聽眾開始不耐煩了。（對手攻擊 +5）,The audience is growing restless. (Opponent attack +5),ctx: 第 15 回合起
+UI_DEB_STATUS_SHAKEN,Debate,動搖（剩 {n} 回合）,Shaken ({n} rounds left),ctx: 狀態列
+UI_DEB_STATUS_BREAK_TURN,Debate,論破回合,Break Round,ctx: 狀態列
+UI_DEB_STATUS_TAIL,Debate,尾聲（剩 {n} 回合）,Endgame ({n} rounds left),ctx: 狀態列
+UI_DEB_STATUS_TYPE,Debate,目前打法：{type},Current style: {type},ctx: 狀態列（混合型）
+UI_DEB_PHASE,Debate,第 {n} 階段／共 {total} 階段,Phase {n} of {total},ctx: 多階段
+UI_DEB_SEGMENT,Debate,第 {n} 段：{name},Part {n}: {name},ctx: Ch.7 分段
+UI_OPINION,Debate,輿論 {n},Opinion {n},ctx: 輿論風向標
+MSG_OPINION_UP,Debate,群眾站到你這邊了。,The crowd is coming over to your side.,ctx: 輿論上升
+MSG_OPINION_DOWN,Debate,群眾開始噓你了。,The crowd is starting to boo you.,ctx: 輿論下降
+MSG_OPINION_EXPOSE,Debate,群眾倒戈！（主導權 −{n}）,The crowd turns on you! (Dominance −{n}),ctx: Ch.10 詭辯被設陷拆穿
+BTN_DEB_DELEGATE,Debate,委託亞瑟代辯,Let Arthur Argue It,ctx: 故事模式論戰委託
+WARN_DEB_DELEGATE,Debate,委託亞瑟代辯會直接判定勝利，但這場不計入 True End 的「全部論戰勝利」。要委託嗎？,"Delegating to Arthur wins the debate outright, but it won't count toward ""all debates won"" for the True End. Delegate?",ctx: 委託確認
+BTN_DEB_GIVEUP,Debate,放棄這場論戰,Forfeit This Debate,ctx: 論戰選單
+WARN_DEB_GIVEUP,Debate,放棄會直接判定敗北。確定嗎？,Forfeiting counts as an immediate loss. Are you sure?,ctx: 放棄確認
+UI_WARMUP_TITLE,Debate,熱身　糾正誤判,Warm-up: Correct the Misjudgement,ctx: 熱身小論戰標題
+UI_WARMUP_MISS,Debate,失誤 {n}／3,Mistakes {n}/3,ctx: 熱身錯誤計數
+MSG_WARMUP_WRONG,Debate,這證明不了他錯了。,That doesn't prove him wrong.,ctx: 熱身出示錯誤
+MSG_WARMUP_PERFECT,Debate,一次就說服了他。,You convinced him in one go.,ctx: 熱身零失誤
+MSG_WARMUP_FAIL,Debate,{name} 不耐煩地揮了揮手。,{name} waves a hand impatiently.,ctx: 熱身失誤 3 次
+UI_CH1_CONTRA,Debate,矛盾 {n}／2　剩 {r} 回合,Contradictions {n}/2 · {r} rounds left,ctx: Ch.1 布丁論戰計數
+MSG_CH1_CONTRA,Debate,第 {n} 個矛盾！,Contradiction {n}!,ctx: Ch.1 指出矛盾
+ART_REVIEW_PARRY_WHIFF,Debate,「這一手，他是在護東西，不是要開口。」,"""That round he was protecting something, not about to speak.""",ctx: 敗北回顧：對防守出反駁
+ART_REVIEW_TRAP,Debate,「他那時候在等妳的虛線。我記得他的動作。」,"""He was waiting for your dashed line. I remember his gesture.""",ctx: 敗北回顧：詭辯中陷阱
+ART_REVIEW_CLASH,Debate,「他要開口的時候，妳也搶著說話了。」,"""He was about to speak, and you jumped in at the same time.""",ctx: 敗北回顧：交鋒吃虧
+ART_REVIEW_DISGUISE,Debate,「他嘴上那樣說，手可不是那樣做的。」,"""That's what his mouth said. It's not what his hands were doing.""",ctx: 敗北回顧：信了偽裝的台詞
+ART_REVIEW_TAIL,Debate,「最後那一下，要的不是那張牌。」,"""For that last move, that wasn't the card you needed.""",ctx: 敗北回顧：尾聲答錯
+ART_REVIEW_HEAL,Debate,「他一直在補，我們一直在等。」,"""He kept reinforcing while we kept waiting.""",ctx: 敗北回顧：放任補強回復
+UI_BREAK,"Break, Endgame & Reversal",論破,論破,ctx: 論破字卡 | gloss: BREAK | cut-in word stays Chinese
+UI_BREAK_LINE,"Break, Endgame & Reversal",等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,ctx: 論破預設台詞
+UI_BREAK_LINE_PARRY,"Break, Endgame & Reversal",等一下——你剛才說的那句話，就是答案。,Hold on—what you just said is the answer.,ctx: 反駁論破預設台詞
+UI_DOUBLE_BREAK,"Break, Endgame & Reversal",二連論破,二連論破,ctx: 二連論破字卡 | gloss: DOUBLE BREAK | cut-in word stays Chinese
+UI_REVERSE_BREAK,"Break, Endgame & Reversal",逆・論破,逆・論破,ctx: 逆・論破字卡 | gloss: REVERSE BREAK | cut-in word stays Chinese
+UI_COUNTER_BREAK,"Break, Endgame & Reversal",反擊論破,反擊論破,ctx: 反擊論破字卡 | gloss: COUNTER BREAK | cut-in word stays Chinese
+UI_LAST_STAND,"Break, Endgame & Reversal",瀕死底線,Last Stand,"ctx: 瀕死底線 | Dominance locks at 1 instead of dropping to 0 (the ""Last Stand"" floor)."
+UI_TAIL,"Break, Endgame & Reversal",尾聲,Endgame,ctx: 尾聲銅牌
+MSG_TAIL_START,"Break, Endgame & Reversal",{name} 被逼到了絕境——但還沒認輸。,"{name} is driven to the brink, but hasn't given up yet.",ctx: 進入尾聲
+MSG_TAIL_CRIMINAL,"Break, Endgame & Reversal",{name} 開始胡亂栽贓！,{name} starts throwing blame around wildly!,ctx: 犯人反撲
+MSG_TAIL_PROTECTOR,"Break, Endgame & Reversal",{name}：「揭穿真相只會毀了一切，你承擔得起嗎？」,"{name}: ""Exposing the truth will only ruin everything. Can you bear that?""",ctx: 庇護者反撲
+MSG_TAIL_RIVAL,"Break, Endgame & Reversal",{name} 亮出了底牌。,{name} plays their hole card.,ctx: 對手偵探反撲
+MSG_TAIL_SECOND,"Break, Endgame & Reversal",{name} 換了一套說詞。,{name} switches to a different story.,ctx: 第二說詞出現
+MSG_TAIL_WRONG,"Break, Endgame & Reversal",對方的反撲打中了你！（主導權 −{n}）,Their counterattack hits you! (Dominance −{n}),ctx: 尾聲答錯
+MSG_TAIL_REFLECT,"Break, Endgame & Reversal",冷冰冰的證據說不動他。,"Cold, hard evidence doesn't move them.",ctx: 庇護者尾聲出示一般物證
+MSG_TAIL_TIMEOUT,"Break, Endgame & Reversal",{name} 撐過去了。論破失效！,{name} weathered the storm. The Break is void!,ctx: 尾聲回合用完
+MSG_TAIL_THRESHOLD_UP,"Break, Endgame & Reversal",這場論戰的論破條件提高了：需要多 1 張證物。,This debate's Break requirement has gone up: one more piece of evidence is needed.,ctx: 論破失效後
+MSG_REVERSE_HIT,"Break, Endgame & Reversal",你的推理鏈全斷了！,Your Reasoning Chains are shattered!,ctx: 被逆・論破
+MSG_REBUILD,"Break, Endgame & Reversal",絕境重組——對方亮出的那張證物，現在也在你手上。,Last-Ditch Rebuild: the evidence they just played is now in your hands too.,ctx: 絕境重組
+UI_REBUILD_BOARD,"Break, Endgame & Reversal",重新拉線（只有這一次）,Rebuild your links (this once only),ctx: 絕境重組線索板標題
+BTN_REBUILD_DONE,"Break, Endgame & Reversal",拉好了,Links Set,ctx: 絕境重組線索板
+MSG_REBUILD_FAIL,"Break, Endgame & Reversal",還差一點……這樣論破不了。,Almost there… but that won't Break them.,ctx: 反擊論破條件不符
+UI_RES_WIN,Results,勝利,Victory,ctx: 結算
+UI_RES_LOSE,Results,敗北,Defeat,ctx: 結算
+UI_RES_DELEGATE,Results,委託勝利,Victory by Delegation,ctx: 結算（委託）
+UI_RES_ROUNDS,Results,回合數,Rounds,ctx: 統計
+UI_RES_READS,Results,讀對預兆 {hit}／{total},Tells read correctly {hit}/{total},ctx: 統計
+UI_RES_PARRIES,Results,截斷次數,Cut-Ins,ctx: 統計
+UI_RES_INSTINCT,Results,狐耳直覺使用,Fox-Ear Instinct used,ctx: 統計
+UI_RES_MAXDMG,Results,最大單次傷害,Biggest single hit,ctx: 統計
+UI_RES_MAXCHAIN,Results,最長連鎖,Longest chain,ctx: 統計
+UI_RES_BREAKS,Results,論破次數,Breaks,ctx: 統計
+UI_RES_ASSIST,Results,援護使用,Cover used,ctx: 統計
+UI_RES_HP,Results,剩餘主導權,Dominance remaining,ctx: 統計
+UI_RES_TRUST,Results,警督信任度 {from} → {to},Inspector's Trust {from} → {to},ctx: 信任度變動
+UI_RES_COST,Results,本案的代價,The Cost of This Case,ctx: 敗北代價標題
+UI_RES_COST_TRUST,Results,警督信任度下降,The Inspector's Trust drops,ctx: 代價項目
+UI_RES_COST_OPP,Results,對手帶著優勢離開了,The opponent walked away with the upper hand,ctx: 代價項目
+UI_RES_COST_SEIZE,Results,證物「{name}」遭到扣押,"Evidence ""{name}"" was seized",ctx: 代價項目
+UI_RES_REPUTE,Results,風評：{level},Reputation: {level},ctx: 故事模式風評
+UI_RES_REPUTE_GOOD,Results,良好,Good,ctx: 風評等級
+UI_RES_REPUTE_MID,Results,爭議,Disputed,ctx: 風評等級
+UI_RES_REPUTE_BAD,Results,惡評,Infamous,ctx: 風評等級
+BTN_RES_CONTINUE,Results,繼續,Continue,ctx: 結算
+BTN_RES_RETRY,Results,重新論戰,Retry Debate,ctx: 結算（敗北）
+BTN_RES_ACCEPT,Results,接受結果,Accept Result,ctx: 結算（敗北）
+WARN_RES_RETRY,Results,回到這場論戰開始時。線索板維持原樣。要重新論戰嗎？,Return to the start of this debate. The Clue Board stays as it was. Retry the debate?,ctx: 重新論戰確認
+WARN_RES_ACCEPT,Results,帶著這個結果進入下一案。確定嗎？,Carry this result into the next case. Are you sure?,ctx: 接受敗北確認
+ART_RES_CLEAN,Results,「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」,"""Clean and sharp. I don't even know what to grumble about in the record.""",ctx: 亞瑟評語：勝利、惡名 0
+ART_RES_MID,Results,「贏是贏了。不過有幾段，我寫進紀錄的時候手有點抖。」,"""A win is a win. Though a few bits made my hand shake as I wrote them into the record.""",ctx: 亞瑟評語：勝利、惡名 1～2
+ART_RES_NOTORIOUS,Results,「Sherefox，明天的報紙……妳最好先別看。」,"""Sherefox, tomorrow's paper... you might want to skip it.""",ctx: 亞瑟評語：惡名 ≥ 3
+ART_RES_LOSE,Results,「輸了一場而已。案子還沒結束，我們也還沒。」,"""We only lost a round. The case isn't over, and neither are we.""",ctx: 亞瑟評語：敗北
+ART_RES_LOSE_NOTO,Results,「輸了，而且輸得很難看。回家吧，我煮點東西。」,"""We lost, and not prettily. Let's go home; I'll cook something.""",ctx: 亞瑟評語：敗北且惡名 ≥ 3
+ART_ASSIST_DONE,Results,「接下來真的只能靠妳自己了。」,"""From here on, you're really on your own.""",ctx: 援護用完時
+UI_PAPER_MAST,Newspaper & Scrapbook,倫敦提燈報,The London Lantern,ctx: 刊頭
+UI_PAPER_MAST_YORK,Newspaper & Scrapbook,約克郡晨報,The Yorkshire Morning Post,ctx: 地方版刊頭
+UI_PAPER_MAST_HIGH,Newspaper & Scrapbook,高地週刊,The Highland Weekly,ctx: 地方版刊頭
+UI_PAPER_DATE,Newspaper & Scrapbook,{date}・{weather}　每份一便士,{date} · {weather} · One Penny,ctx: 刊頭日期
+UI_PAPER_PAGE2,Newspaper & Scrapbook,第二版,Page Two,ctx: 第二頁標題
+UI_PAPER_SIDE,Newspaper & Scrapbook,城市短訊,City Briefs,ctx: 側欄標題
+UI_PAPER_ADS,Newspaper & Scrapbook,廣告,Advertisements,ctx: 廣告欄標題
+UI_PAPER_CREDIT,Newspaper & Scrapbook,另有民間人士協助。,Civilian assistance was also provided.,ctx: 內文末行（警察參與案件勝利）
+UI_PAPER_DISPUTE,Newspaper & Scrapbook,據稱過程頗有爭議。,The proceedings were reportedly rather contentious.,ctx: 惡名 1～2 副標附句
+UI_PAPER_NOTO_LOSE,Newspaper & Scrapbook,偵探手法亦遭質疑。,The detective's methods have also been called into question.,ctx: 敗北且惡名 ≥ 3 副標
+MSG_PAPER_CLIPPED,Newspaper & Scrapbook,已收入剪報簿。,Added to the Scrapbook.,ctx: 首次閱讀
+UI_SCRAP_TITLE,Newspaper & Scrapbook,剪報簿,Scrapbook,ctx: 剪報簿
+UI_SCRAP_COUNT,Newspaper & Scrapbook,收集 {n}／{total},Collected {n}/{total},ctx: 剪報簿
+UI_SCRAP_LOCKED,Newspaper & Scrapbook,尚未刊出,Not yet published,ctx: 未收集的版本
+UI_SIDE_TRACE,Newspaper & Scrapbook,Sherefox：「那時候我就該注意到的。」,"Sherefox: ""I should have noticed it back then.""",ctx: 二週目側欄點擊
+UI_SAVE_TITLE,Save & Load,存檔,Save,ctx: 存檔畫面
+UI_LOAD_TITLE,Save & Load,讀取,Load,ctx: 讀取畫面
+UI_SLOT_AUTO,Save & Load,自動存檔,Auto Save,ctx: 存檔欄
+UI_SLOT_QUICK,Save & Load,快速存檔,Quick Save,ctx: 存檔欄
+UI_SLOT_EMPTY,Save & Load,空白,Empty,ctx: 空存檔欄
+UI_SLOT_INFO,Save & Load,{chapter}・{step}　{playtime}　{difficulty}　第 {n} 週目,{chapter} · {step}   {playtime}   {difficulty}   Playthrough {n},ctx: 存檔欄資訊
+WARN_SAVE_OVERWRITE,Save & Load,要覆寫這個存檔嗎？,Overwrite this save?,ctx: 覆寫存檔
+WARN_LOAD,Save & Load,要讀取這個存檔嗎？未存檔的進度將會遺失。,Load this save? Unsaved progress will be lost.,ctx: 讀取確認
+WARN_SAVE_DELETE,Save & Load,要刪除這個存檔嗎？刪除後無法復原。,Delete this save? This can't be undone.,ctx: 刪除存檔
+MSG_SAVE_DONE,Save & Load,已存檔。,Saved.,ctx: 存檔完成
+MSG_QSAVE_DONE,Save & Load,已快速存檔。,Quick saved.,ctx: 快速存檔完成
+MSG_LOAD_DONE,Save & Load,已讀取。,Loaded.,ctx: 讀取完成
+MSG_SAVE_FORBID,Save & Load,現在不能存檔。,You can't save right now.,ctx: 論戰或演出中
+MSG_SAVE_FORBID_MASTER,Save & Load,名偵探難度只能在日常中存檔。,"On Master Detective difficulty, you can only save during Daily scenes.",ctx: 名偵探於蒐證或線索板
+MSG_SAVE_FAIL,Save & Load,存檔失敗。請確認儲存空間後再試一次。,Save failed. Please check your storage space and try again.,ctx: 寫入失敗
+MSG_LOAD_FAIL,Save & Load,這個存檔無法讀取，可能已經損毀。,This save can't be loaded. It may be corrupted.,ctx: 讀取失敗
+MSG_LOAD_VERSION,Save & Load,這個存檔來自不同的遊戲版本，將嘗試轉換。,This save is from a different game version and will be converted.,ctx: 版本不符
+MSG_AUTOSAVE,Save & Load,自動存檔中……請勿關閉遊戲。,Autosaving… Do not close the game.,ctx: 自動存檔圖示提示
+UI_RECALL_TITLE,Chapter Select & Casebook,章節回想,Chapter Recall,ctx: 章節回想
+UI_RECALL_NOTE,Chapter Select & Casebook,重看已通關章節的劇情。回想不會改變任何紀錄。,Replay the story of chapters you've cleared. Recall doesn't change any records.,ctx: 章節回想說明
+UI_RECALL_LOCKED,Chapter Select & Casebook,尚未到達,Not reached yet,ctx: 未通關章節
+UI_FLOW_TITLE,Chapter Select & Casebook,亞瑟的偵探筆記,Arthur's Casebook,ctx: 偵探筆記
+UI_FLOW_TRUE,Chapter Select & Casebook,True End 條件：關鍵推理 {a}／{b}　論戰勝利 {c}／{d}　黃金線索 {list},True End requirements: Key deductions {a}/{b} · Debates won {c}/{d} · Golden Clues {list},ctx: True End 條件列
+UI_FLOW_TRUE_READY,Chapter Select & Casebook,條件已全部達成。Ch.12 將以真相路線進行。,All requirements met. Chapter 12 will follow the True Route.,ctx: 條件全滿
+UI_FLOW_FILTER,Chapter Select & Casebook,只看缺漏,Show gaps only,ctx: 篩選
+UI_FLOW_DEBATE_WIN,Chapter Select & Casebook,論戰：勝利,Debate: Won,ctx: 節點
+UI_FLOW_DEBATE_LOSE,Chapter Select & Casebook,論戰：敗北,Debate: Lost,ctx: 節點
+UI_FLOW_DEBATE_NONE,Chapter Select & Casebook,論戰：未挑戰,Debate: Not attempted,ctx: 節點
+UI_FLOW_DEBATE_DELEG,Chapter Select & Casebook,論戰：委託勝利,Debate: Won by delegation,ctx: 節點
+UI_FLOW_KEY_OK,Chapter Select & Casebook,關鍵推理：正確,Key deduction: Correct,ctx: 節點
+UI_FLOW_KEY_NG,Chapter Select & Casebook,關鍵推理：錯誤,Key deduction: Incorrect,ctx: 節點
+UI_FLOW_KEY_MISS,Chapter Select & Casebook,關鍵推理：未取得證物,Key deduction: Evidence not obtained,ctx: 節點
+UI_FLOW_KEY_DETAIL,Chapter Select & Casebook,關鍵證物「{name}」的歸類理由不正確。,"The Rationale for Key Evidence ""{name}"" is incorrect.",ctx: 缺漏說明
+UI_FLOW_KEY_DETAIL_MISS,Chapter Select & Casebook,沒有找到關鍵證物「{name}」。,"Key Evidence ""{name}"" was not found.",ctx: 缺漏說明
+UI_FLOW_GOLD_SUB,Chapter Select & Casebook,替代證物,Substitute Evidence,ctx: 灰色管線終點
+UI_FLOW_ROUTE,Chapter Select & Casebook,目前路線：{route},Current route: {route},ctx: Ch.12 節點
+UI_FLOW_ROUTE_TRUE,Chapter Select & Casebook,真相路線,True Route,ctx: 路線名稱
+UI_FLOW_ROUTE_NORMAL,Chapter Select & Casebook,一般路線,Normal Route,ctx: 路線名稱
+UI_FLOW_MIXED,Chapter Select & Casebook,混合難度,Mixed difficulty,ctx: 週目標示
+BTN_FLOW_FROM_START,Chapter Select & Casebook,從章節開頭,From Chapter Start,ctx: 跳章
+BTN_FLOW_FROM_INV,Chapter Select & Casebook,從蒐證,From Evidence Search,ctx: 跳章
+BTN_FLOW_FROM_BOARD,Chapter Select & Casebook,從線索板,From Clue Board,ctx: 跳章
+BTN_FLOW_FROM_DEBATE,Chapter Select & Casebook,從論戰,From Debate,ctx: 跳章
+WARN_FLOW_JUMP,Chapter Select & Casebook,從「{chapter}・{step}」重新開始。目前的進度會先自動存檔。要開始嗎？,"Restart from ""{chapter} · {step}"". Your current progress will be autosaved first. Begin?",ctx: 跳章確認
+WARN_FLOW_WRITE,Chapter Select & Casebook,以下紀錄將會更新：{items}。較差的結果不會覆蓋原本的紀錄。要寫回嗎？,These records will be updated: {items}. Worse results won't overwrite your existing records. Write them back?,ctx: 重打通關後寫回
+MSG_FLOW_NOCHANGE,Chapter Select & Casebook,沒有需要更新的紀錄。,Nothing needs updating.,ctx: 重打沒有更好的結果
+WARN_FLOW_LEAVE,Chapter Select & Casebook,現在離開，這次重打不會寫回任何紀錄。要離開嗎？,"If you leave now, this replay won't write back any records. Leave?",ctx: 重打中途離開
+UI_FLOW_GEN_SWITCH,Chapter Select & Casebook,查看週目：第 {n} 週目,Viewing: Playthrough {n},ctx: 切換週目
+UI_SET_TAB_GAME,Settings,遊戲,Game,ctx: 設定分頁
+UI_SET_TAB_ASSIST,Settings,輔助,Assist,ctx: 設定分頁
+UI_SET_TAB_AUDIO,Settings,聲音,Audio,ctx: 設定分頁
+UI_SET_TAB_VIDEO,Settings,畫面,Video,ctx: 設定分頁
+UI_SET_TAB_INPUT,Settings,操作,Controls,ctx: 設定分頁
+UI_SET_TAB_LANG,Settings,語言,Language,ctx: 設定分頁
+UI_SET_DIFF,Settings,難度,Difficulty,ctx: 設定項目
+UI_SET_DIFF_LOCKED,Settings,只能在章節開始時更改難度。,Difficulty can only be changed at the start of a chapter.,ctx: 難度不可改時
+WARN_SET_DIFF_MASTER,Settings,更改難度後，這個週目將不再符合「名偵探」成就的條件。要更改嗎？,"Changing the difficulty will make this playthrough ineligible for the ""Master Detective"" achievement. Change it anyway?",ctx: 從名偵探改成其他難度
+UI_SET_TEXTSPEED,Settings,文字速度,Text Speed,ctx: 設定項目
+UI_SET_TEXT_INSTANT,Settings,立即顯示,Instant,ctx: 設定選項
+UI_SET_AUTOSPEED,Settings,自動播放間隔,Auto-Play Interval,ctx: 設定項目
+UI_SET_SKIP,Settings,快轉範圍,Skip Range,ctx: 設定項目
+UI_SET_SKIP_READ,Settings,只快轉已讀,Read text only,ctx: 設定選項
+UI_SET_SKIP_ALL,Settings,全部,All,ctx: 設定選項
+UI_SET_ASSIST_TIME,Settings,援護確認,Cover Confirmation,ctx: 設定項目
+UI_SET_ASSIST_NOLIMIT,Settings,不限時,No time limit,ctx: 設定選項
+UI_SET_BREAK_FX,Settings,論破演出,Break Presentation,ctx: 設定項目
+UI_SET_BREAK_FULL,Settings,完整,Full,ctx: 設定選項
+UI_SET_BREAK_SHORT,Settings,縮短,Shortened,ctx: 設定選項
+UI_SET_TUTORIAL,Settings,顯示教學,Show Tutorials,ctx: 設定項目
+UI_SET_POINTS,Settings,調查點常亮,Always Highlight Investigation Points,ctx: 設定項目
+UI_SET_HPNUM,Settings,壓力錶數字,Pressure Gauge Numbers,ctx: 設定項目
+UI_SET_LINKSTYLE,Settings,連結樣式強化,Enhanced Link Styles,ctx: 設定項目
+UI_SET_LINKSTYLE_DESC,Settings,實證連結加粗，詭辯連結改為鋸齒線，方便辨識。,"Solid Links are drawn thicker and Sophistry Links become jagged, making them easier to tell apart.",ctx: 設定說明
+UI_SET_FLASH,Settings,減少閃光,Reduce Flashing,ctx: 設定項目
+UI_SET_FONTSIZE,Settings,字體大小,Font Size,ctx: 設定項目
+UI_SET_DELEGATE,Settings,論戰委託,Debate Delegation,ctx: 設定項目
+UI_SET_DELEGATE_DESC,Settings,只在故事模式可用。委託通過的論戰不計入 True End。,Story Mode only. Debates won by delegation don't count toward the True End.,ctx: 設定說明
+UI_SET_VOL_MASTER,Settings,主音量,Master Volume,ctx: 設定項目
+UI_SET_VOL_BGM,Settings,音樂,Music,ctx: 設定項目
+UI_SET_VOL_SE,Settings,音效,Sound Effects,ctx: 設定項目
+UI_SET_VOL_VOICE,Settings,語音,Voice,ctx: 設定項目
+UI_SET_VOL_ENV,Settings,環境音,Ambience,ctx: 設定項目
+UI_SET_VOICE_CHAR,Settings,角色語音,Character Voices,ctx: 設定項目
+UI_SET_RES,Settings,解析度,Resolution,ctx: 設定項目
+UI_SET_WINDOW,Settings,顯示模式,Display Mode,ctx: 設定項目
+UI_SET_WINDOW_FULL,Settings,全螢幕,Fullscreen,ctx: 設定選項
+UI_SET_WINDOW_WIN,Settings,視窗,Windowed,ctx: 設定選項
+UI_SET_WINDOW_BORDERLESS,Settings,無邊框,Borderless,ctx: 設定選項
+UI_SET_VSYNC,Settings,垂直同步,V-Sync,ctx: 設定項目
+UI_SET_SHAKE,Settings,畫面震動,Screen Shake,ctx: 設定項目
+UI_SET_KEYBIND,Settings,按鍵設定,Key Bindings,ctx: 設定項目
+UI_SET_RUMBLE,Settings,手把震動,Controller Rumble,ctx: 設定項目
+UI_SET_PADICON,Settings,按鍵圖示,Button Icons,ctx: 設定項目
+UI_SET_PADICON_AUTO,Settings,自動,Auto,ctx: 設定選項
+UI_SET_LANG_TEXT,Settings,文字語言,Text Language,ctx: 設定項目
+UI_SET_LANG_VOICE,Settings,語音語言,Voice Language,ctx: 設定項目
+UI_SET_ON,Settings,開,On,ctx: 設定選項
+UI_SET_OFF,Settings,關,Off,ctx: 設定選項
+BTN_SET_DEFAULT,Settings,恢復預設值,Restore Defaults,ctx: 設定
+WARN_SET_DEFAULT,Settings,要把這一頁的設定恢復成預設值嗎？,Restore this page's settings to their defaults?,ctx: 恢復預設確認
+WARN_SET_UNSAVED,Settings,有尚未套用的變更。要套用嗎？,You have unapplied changes. Apply them?,ctx: 離開設定未套用
+WARN_KEY_CONFLICT,Settings,這個按鍵已經指定給「{action}」。要交換嗎？,"This key is already assigned to ""{action}"". Swap them?",ctx: 按鍵重複
+WARN_VIDEO_KEEP,Settings,要保留這個畫面設定嗎？{n} 秒後將自動還原。,Keep these display settings? They will revert automatically in {n} seconds.,ctx: 畫面設定變更後
+UI_END_BAD,"Endings, Achievements & Errors",敗北結局　還沒準備好的狐狸,Bad Ending: The Fox Who Wasn't Ready,ctx: 結局標題
+UI_END_NORMAL,"Endings, Achievements & Errors",勝利結局　桌角的銀袖扣,Victory Ending: The Silver Cufflink on the Table Corner,ctx: 結局標題
+UI_END_TRUE,"Endings, Achievements & Errors",真結局　附著咖啡豆的挑戰信,True Ending: The Challenge Letter with Coffee Beans,ctx: 結局標題
+MSG_END_UNLOCK_FLOW,"Endings, Achievements & Errors",「亞瑟的偵探筆記」已解鎖。可以從標題畫面或事務所選單開啟。,"""Arthur's Casebook"" is unlocked. Open it from the title screen or the Office menu.",ctx: 首次通關
+MSG_END_HINT_TRUE,"Endings, Achievements & Errors",似乎還有沒看清的真相。打開偵探筆記看看吧。,There seems to be a truth you haven't seen clearly. Open the Casebook and take a look.,ctx: 非真結局通關後
+UI_ACH_UNLOCK,"Endings, Achievements & Errors",成就解鎖：{name},Achievement unlocked: {name},ctx: 成就解鎖
+UI_ACH_MASTER,"Endings, Achievements & Errors",名偵探,Master Detective,ctx: 成就名稱
+UI_ACH_SCRAP,"Endings, Achievements & Errors",剪報狂,Scrapbook Fiend,ctx: 成就名稱
+UI_ACH_TRUE,"Endings, Achievements & Errors",狐與狼,Fox and Wolf,ctx: 成就名稱
+UI_ACH_CLEAN,"Endings, Achievements & Errors",從不詭辯的偵探（一週目全程未被拆穿詭辯）,The Sleuth Who Never Fibbed (no Sophistry exposed in the entire first playthrough),ctx: 成就名稱
+MSG_ERR_PAD,"Endings, Achievements & Errors",手把連線中斷。請重新連接。,Controller disconnected. Please reconnect it.,ctx: 手把斷線
+MSG_ERR_DISK,"Endings, Achievements & Errors",儲存空間不足，無法存檔。,Not enough storage space to save.,ctx: 儲存空間不足
+MSG_ERR_GENERIC,"Endings, Achievements & Errors",發生錯誤，即將回到標題畫面。最近的自動存檔已保留。,An error occurred. Returning to the title screen. Your most recent autosave has been kept.,ctx: 未預期的錯誤
+UI_STATE_HACHIKU,States & Brush Banners,破竹 ×{n},Unstoppable ×{n},ctx: 破竹圖示
+UI_STATE_HACHIKU_TIP,States & Brush Banners,勢如破竹：推理鏈傷害 +{dmg}%、反擊 +{ctr}%。滿 3 層時，論破少需 1 張證物。讀錯一手就會歸零。,"Unstoppable: chain damage +{dmg}%, counter +{ctr}%. At 3 stacks, a Break needs 1 fewer piece of evidence. One misread move resets it to zero.",ctx: 破竹說明
+UI_STATE_HACHIKU_MAX,States & Brush Banners,論破條件 −1 張,Break requirement −1 card,ctx: 破竹滿層說明
+UI_STATE_KONJU,States & Brush Banners,困獸（剩 {n} 回合）,Cornered ({n} rounds left),ctx: 困獸圖示
+UI_STATE_KONJU_TIP,States & Brush Banners,困獸之鬥：對手的攻擊更重，也不能補強——但他的預兆會更清楚。,"Cornered: the opponent hits harder and can't Reinforce, but their Tells become clearer.",ctx: 困獸說明
+UI_STATE_SHISSHU,States & Brush Banners,失守（剩 {n} 回合）,Breached ({n} rounds left),ctx: 失守圖示
+UI_STATE_SHISSHU_TIP,States & Brush Banners,失守陣地：這一回合不能反駁，破竹歸零。,"Position breached: you can't Rebut this round, and Unstoppable resets to zero.",ctx: 失守說明
+UI_DEB_TELL_BASIS_KONJU,States & Brush Banners,困獸,Cornered,ctx: 依據小銅牌：困獸
+UI_DEB_NOPARRY_SHISSHU,States & Brush Banners,失守：這一回合不能反駁,Breached: can't Rebut this round,ctx: 反駁按鈕下方小字
+MSG_DEB_NOPARRY_SHISSHU,States & Brush Banners,陣腳還沒站穩——這一回合沒辦法截斷他。,Your footing isn't steady yet. You can't cut in on them this round.,ctx: 失守時按反駁
+MSG_STATE_HACHIKU_UP,States & Brush Banners,勢如破竹！（×{n}）,Unstoppable! (×{n}),ctx: 破竹疊層
+MSG_STATE_HACHIKU_MAX,States & Brush Banners,勢如破竹，論破只差一步了！,Unstoppable! One step from a Break!,ctx: 破竹滿 3 層
+MSG_STATE_HACHIKU_LOST,States & Brush Banners,氣勢斷了。,The momentum is broken.,ctx: 破竹歸零
+MSG_STATE_KONJU,States & Brush Banners,{name} 被逼成了困獸——小心反撲。,{name} has been driven into a corner. Watch out for a counter.,ctx: 對手進入困獸
+MSG_STATE_KONJU_END,States & Brush Banners,{name} 喘過氣來了。,{name} has caught their breath.,ctx: 困獸解除
+MSG_STATE_SHISSHU,States & Brush Banners,陣地失守了！,Position breached!,ctx: 我方進入失守
+MSG_STATE_SHISSHU_END,States & Brush Banners,Sherefox 重新站穩了腳步。,Sherefox has regained her footing.,ctx: 失守解除
+ART_STATE_HACHIKU_MAX,States & Brush Banners,「就是現在，他已經擋不住了。」,"""Now. He can't hold you back any longer.""",ctx: 亞瑟：破竹滿層
+ART_STATE_KONJU,States & Brush Banners,「他急了。急了的人，動作最好讀。」,"""He's rattled. A rattled man is the easiest to read.""",ctx: 亞瑟：對手困獸
+ART_STATE_SHISSHU,States & Brush Banners,「先別急著截他，穩住再說。」,"""Don't rush to cut in on him. Steady yourself first.""",ctx: 亞瑟：我方失守
+UI_SET_CUTIN,States & Brush Banners,大字演出,Brush Banners,ctx: 設定項目
+UI_SET_CUTIN_FULL,States & Brush Banners,完整,Full,ctx: 選項
+UI_SET_CUTIN_SHORT,States & Brush Banners,縮短,Shortened,ctx: 選項
+UI_SET_CUTIN_SUB,States & Brush Banners,大字譯名,Banner Subtitles,ctx: 設定項目
+UI_SET_SHAKE_DUP2,States & Brush Banners,畫面震動強度,Screen Shake Intensity,ctx: 設定項目 | Duplicate ID in source (UI_SET_SHAKE also used in 8.12 as Screen Shake); renamed with _DUP2.
+UI_SET_REDUCE_SHAKE,States & Brush Banners,減少震動,Reduce Shaking,ctx: 設定項目
+UI_SET_REDUCE_SHAKE_DESC,States & Brush Banners,大字與論破時的畫面震動改為輕微的縮放，手把震動也會減弱。,"Screen shake during banners and Breaks becomes a gentle zoom, and controller rumble is weakened too.",ctx: 設定說明
+SHF_C1_IDLE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces.""",ctx: Ch.1 閒置 30 秒
+SHF_C1_REMAIN,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「等一下，還有東西沒看。我的耳朵在癢。」,"""Hold on, there's still something I haven't looked at. My ears are itching.""",ctx: Ch.1 還有證物沒找到時按結束
+ART_OPEN_GEN,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「先別急著下結論。從門口開始，一樣一樣看。」,"""Don't jump to conclusions. Start at the door and take things one at a time.""",ctx: 進入一般場景
+ART_OPEN_BODY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「讓我先看看他。死人不會說謊，但也不會主動開口。」,"""Let me take a look at him first. The dead don't lie, but they don't volunteer anything either.""",ctx: 進入有遺體的場景
+ART_OPEN_FIELD,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這裡沒有警督罩我們。進得去的地方，得自己想辦法。」,"""There's no Inspector to back us up here. We'll have to find our own way in.""",ctx: 外地章進入場景
+ART_IDLE_1,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「妳盯著那面牆已經半分鐘了。牆不會招供的。」,"""You've been staring at that wall for half a minute. Walls don't confess.""",ctx: 閒置 30 秒（第 1 次）
+ART_IDLE_2,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「要不要換個角落看看？我看那邊比較可疑……雖然我也說不出為什麼。」,"""Why not try another corner? That one looks more suspicious... though I couldn't tell you why.""",ctx: 閒置 30 秒（第 2 次起）
+ART_REMAIN_MANY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「我總覺得這裡還有很多東西沒看到。」,"""I can't shake the feeling there's a lot here we haven't seen.""",ctx: 結束前，剩餘未取得證物 ≥ 4
+ART_REMAIN_FEW,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「差不多了吧。不過……好像還漏了一兩樣。」,"""That's probably enough. Although... I think we've missed a thing or two.""",ctx: 結束前，剩餘未取得證物 1～3
+ART_REMAIN_NONE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「該看的都看了。剩下的交給妳那顆腦袋。」,"""We've seen everything there is to see. The rest is up to that head of yours.""",ctx: 結束前，已取得全部
+ART_TIME_LOW,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「時間不多了。警方……或別人，隨時會來收走現場。」,"""We're running short on time. The police... or someone else... could come and clear the scene any moment.""",ctx: 刻度剩 3 格
+ART_TIME_LOW_FIELD,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「天快黑了。再晚，這裡的人就不會讓我們待著了。」,"""It's getting dark. Any later and the locals won't let us stay.""",ctx: 外地章刻度剩 3 格
+ART_TIME_OUT,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「到此為止。走吧，Sherefox，再待下去就要被請出去了。」,"""That's it. Come on, Sherefox, any longer and we'll be shown the door.""",ctx: 刻度歸零
+ART_RESCUE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「等等，妳腳邊那個——我替妳撿起來了。這個總不能不要吧？」,"""Wait, the thing by your feet. I picked it up for you. We can't leave without this, can we?""",ctx: 刻度歸零但缺必需證物
+ART_FOUND_KEY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這東西……看起來不該出現在這裡。」,"""This... doesn't look like it should be here.""",ctx: 取得關鍵證物（不明說是關鍵）
+ART_FOUND_PLOT,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這和案子有關嗎？……算了，先收著。」,"""Does this have anything to do with the case? ...Never mind, we'll hang on to it.""",ctx: 取得劇情證物
+ART_APPR_MED,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「讓開一點，光線。……好，我看看。」,"""Give me some room, and some light. ...Right, let me see.""",ctx: 醫療鑑定開始
+ART_APPR_MED_DONE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這種傷口我在野戰醫護站見過。我能告訴妳它是什麼時候、怎麼造成的。」,"""I've seen wounds like this at a field hospital. I can tell you when and how it happened.""",ctx: 醫療鑑定完成
+ART_APPR_MECH,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這個我熟。給我一分鐘，還有那支細的螺絲起子。」,"""This I know. Give me a minute, and that thin screwdriver.""",ctx: 機械鑑定開始
+ART_APPR_MECH_DONE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「做工不差，但有人動過手腳。看這裡，刻痕是新的。」,"""Decent workmanship, but someone's tampered with it. Look here, the tool marks are fresh.""",ctx: 機械鑑定完成
+ART_APPR_DUAL,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「一半是血肉，一半是黃銅。兩種都得看——這可要花我不少工夫。」,"""Half flesh, half brass. I have to look at both, and that's going to cost me some effort.""",ctx: 雙重鑑定完成
+ART_APPR_INSIGHT,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「如果是這樣，妳剛才那個推論可能要重新想一下。」,"""If that's the case, your earlier inference might need a second look.""",ctx: 鑑定揭露的標籤讓某個理由變得可判斷
+ART_APPR_NONE,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這個用不著我。肉眼就看得出來。」,"""You don't need me for this one. The naked eye will do.""",ctx: 對已鑑定或不需鑑定的證物按鑑定
+ART_APPR_EMPTY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「我的工具箱已經見底了。剩下的，只能靠妳的眼睛。」,"""My toolbox has run dry. The rest is down to your eyes.""",ctx: 鑑定次數用完
+ART_NO_REPORT,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「警督這次不肯給驗屍報告。看來得由我親自來了。」,"""The Inspector won't hand over the post-mortem report this time. It looks like I'll have to do it myself.""",ctx: 信任度 ≤ 2，進入有遺體的現場
+ART_NEGO_FAIL,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「……人家不吃這套。換個東西給他看吧。」,"""...He's not buying it. Show him something else.""",ctx: 交涉失敗
+ART_NEGO_LOCK,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「沒戲了。要進去，只能用不太體面的方法。」,"""No luck. The only way in now is something less than respectable.""",ctx: 交涉第 3 次失敗
+ART_SNEAK,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「我什麼都沒看到。我只是個路過的修理工。」,"""I didn't see anything. I'm just a passing repairman.""",ctx: 潛入
+ART_SUB_FOUND,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這東西破成這樣，能派上用場嗎？……總比什麼都沒有好。」,"""Something this battered, can it really be of use? ...Better than nothing, I suppose.""",ctx: 取得次級替代證物
+ART_CMP_HINT,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「我記得以前……是在那一帶吧？看看那邊。」,"""I seem to remember... it was somewhere around there? Have a look over there.""",ctx: 比對模式點錯 3 次（區域提示）
+ART_CMP_HINT2,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「那個——對，就是那個。以前不是長這樣的。」,"""That, yes, that one. It didn't used to look like that.""",ctx: 比對模式點錯 5 次（物件提示）
+ART_CMP_REVEAL,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「Sherefox，看這裡。……這裡變了。我也是剛發現。」,"""Sherefox, look here. ...Something's changed. I've only just noticed it myself.""",ctx: 比對模式點錯 7 次（直接揭露）
+ART_SOPH_1,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「……妳是認真的嗎？這兩樣東西的關係，比我跟妳的作息還遠。」,"""...Are you serious? Those two things are less related than your sleep schedule and mine.""",ctx: 建立詭辯連結
+ART_SOPH_2,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「說得通，勉強說得通。但只要有人戳一下，這裡就會斷。」,"""It holds together, barely. But the moment someone pokes it, it'll snap right here.""",ctx: 建立詭辯連結
+ART_SOPH_3,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「我不反對。我只是想記下來，到時候出事了我有勸過妳。」,"""I'm not objecting. I just want it on record that I did warn you, in case this blows up.""",ctx: 建立詭辯連結
+ART_SOPH_4,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這條線嘛……我就當沒看見。」,"""That line... I'll pretend I didn't see it.""",ctx: 建立詭辯連結
+ART_SOLID,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這兩樣接得上。嗯，這條線很結實。」,"""Those two fit together. Yes, that line is sturdy.""",ctx: 第一次建立實證連結（每章 1 次）
+ART_INVALID,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這兩樣東西毫無關係。連詭辯都說不通。」,"""Those two have nothing to do with each other. Not even Sophistry can make that work.""",ctx: 嘗試無效連結（每章 1 次）
+ART_SUB_LINK,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這張破紙撐不了多久的，Sherefox。」,"""That scrap of paper won't hold for long, Sherefox.""",ctx: 用次級替代證物拉線
+ART_BOARD_READY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「準備好了？妳的推理鏈，我都替妳記下來了。」,"""Ready? I've kept track of all your Reasoning Chains.""",ctx: 按下進入論戰前
+NEWS_00_OPEN,Transition Newspaper (3.3),蒸汽電車東區延長線今日通車　白教堂只需十五分鐘,Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away,ctx: Ch.1 開場
+NEWS_00_OPEN_SUB,Transition Newspaper (3.3),第二版廣告：「招租：貝克街事務所二樓空房，限能忍受惡作劇者。」,"Page Two ad: ""To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply.""",ctx: Ch.1 開場 | second line / subhead; derived ID (_SUB)
+NEWS_01_END,Transition Newspaper (3.3),市議會擬加徵煤煙稅　工廠主人聯名抗議,City Council Mulls Soot Tax: Factory Owners Sign Joint Protest,ctx: Ch.1 → Ch.2
+NEWS_01_END_SUB,Transition Newspaper (3.3),第二版：「古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。」,"Page Two: ""Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence.""",ctx: Ch.1 → Ch.2 | second line / subhead; derived ID (_SUB)
+NEWS_02_WIN,Transition Newspaper (3.3),報時鳥鐘錶店掉包疑雲落幕　隨從調慢時鐘偽造不在場證明,Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi,ctx: Ch.2 勝利
+NEWS_02_WIN_SUB,Transition Newspaper (3.3),內文：「據悉由樓上一名年輕偵探當場識破。」,"Body: ""Reportedly exposed on the spot by a young detective from upstairs.""",ctx: Ch.2 勝利 | second line / subhead; derived ID (_SUB)
+NEWS_02_NOTO,Transition Newspaper (3.3),鐘錶店糾紛越吵越烈　樓上偵探當眾胡攪蠻纏,Clock Shop Dispute Grows Ever Fiercer: Upstairs Detective Makes a Public Nuisance of Herself,ctx: Ch.2 勝利・惡名
+NEWS_02_NOTO_SUB,Transition Newspaper (3.3),「富商：『這是對紳士的羞辱。』」,"Merchant: ""This is an insult to a gentleman.""",ctx: Ch.2 勝利・惡名 | second line / subhead; derived ID (_SUB)
+NEWS_02_LOSE,Transition Newspaper (3.3),百年老店蒙塵？鐘錶匠遭判賠償,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages,ctx: Ch.2 敗北
+NEWS_02_LOSE_SUB,Transition Newspaper (3.3),「店主拒絕受訪，櫥窗報時鳥停擺。」,"""The owner declined to be interviewed; the cuckoo in the shop window has stopped.""",ctx: Ch.2 敗北 | second line / subhead; derived ID (_SUB)
+NEWS_02_NEXT,Transition Newspaper (3.3),泰晤士河濃霧再起　市政廳官員陳屍駁船鍋爐室,Thames Fog Returns: Municipal Official Found Dead in Barge Boiler Room,ctx: Ch.2 → Ch.3 第二版
+NEWS_03_WIN,Transition Newspaper (3.3),巴斯克維爾警督神速破案　駁船命案元凶落網,Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested,ctx: Ch.3 勝利
+NEWS_03_WIN_SUB,Transition Newspaper (3.3),「警督：『蘇格蘭場從不讓霧遮住真相。』」,"Inspector: ""Scotland Yard never lets fog hide the truth.""",ctx: Ch.3 勝利 | second line / subhead; derived ID (_SUB)
+NEWS_03_NOTO,Transition Newspaper (3.3),駁船命案破了　但狐耳偵探「靠胡攪蠻纏逼供」遭議,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bullying a Confession Out of Him""",ctx: Ch.3 勝利・惡名
+NEWS_03_NOTO_SUB,Transition Newspaper (3.3),「警督拒絕評論協助者的手法。」,"""The Inspector declined to comment on the methods of his helper.""",ctx: Ch.3 勝利・惡名 | second line / subhead; derived ID (_SUB)
+NEWS_03_LOSE,Transition Newspaper (3.3),駁船命案以船夫認罪結案　家屬當庭喊冤,Barge Murder Closed on Bargeman's Confession: Family Cries Foul in Court,ctx: Ch.3 敗北
+NEWS_03_LOSE_SUB,Transition Newspaper (3.3),「合夥人表示將接手死者在市政廳的業務。」,"""The partner says he will take over the deceased's business at the Municipal Hall.""",ctx: Ch.3 敗北 | second line / subhead; derived ID (_SUB)
+NEWS_03_NEXT,Transition Newspaper (3.3),皇家歌劇院升降梯斷裂　首席女高音重傷,Royal Opera House Lift Cable Snaps: Prima Donna Gravely Injured,ctx: Ch.3 → Ch.4 第二版
+NEWS_03_NEXT_SUB,Transition Newspaper (3.3),「名偵探維多・克勞已受劇院委託。」,"""Famed detective Victor Crowe has been engaged by the theatre.""",ctx: Ch.3 → Ch.4 第二版 | second line / subhead; derived ID (_SUB)
+NEWS_SIDE_01,Transition Newspaper (3.3),鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship.",ctx: Ch.1 → Ch.2 | sidebar brief; hides a Wolfhart trace
+NEWS_SIDE_02,Transition Newspaper (3.3),市政廳擴編港務稽查，顧問 W 小姐表示「透明是效率的前提」。,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency.""",ctx: Ch.2 → Ch.3 | sidebar brief; hides a Wolfhart trace
+NEWS_SIDE_03,Transition Newspaper (3.3),匿名人士捐贈皇家歌劇院一批新式升降機零件。,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.,ctx: Ch.3 → Ch.4 | sidebar brief; hides a Wolfhart trace
+CUT_RONPA,Brush Banner (4.7),論破,論破,gloss: BREAK | tier: 全幕 | trigger: 我方論破成立 | priority: 3
+CUT_REVERSE,Brush Banner (4.7),逆論破,逆論破,gloss: REVERSE BREAK | tier: 全幕 | trigger: 對手對我方發動逆・論破 | priority: 4
+CUT_DOUBLE,Brush Banner (4.7),二連論破,二連論破,gloss: DOUBLE BREAK | tier: 全幕 | trigger: 尾聲中打出二連論破 | priority: 1
+CUT_COUNTER,Brush Banner (4.7),反擊論破,反擊論破,gloss: COUNTER BREAK | tier: 全幕 | trigger: 絕境重組後的反擊論破成立 | priority: 2
+CUT_BRINK,Brush Banner (4.7),絕境,絕境,gloss: AT THE BRINK | tier: 全幕 | trigger: 進入絕境重組（線索板重新開啟之前） | priority: 5
+CUT_SHAKEN,Brush Banner (4.7),動搖,動搖,gloss: SHAKEN | tier: 全幕 | trigger: 對手進入動搖 | priority: 6
+CUT_KONJU,Brush Banner (4.7),困獸,困獸,gloss: CORNERED | tier: 全幕 | trigger: 對手進入困獸 | priority: 7
+CUT_SHISSHU,Brush Banner (4.7),失守,失守,gloss: BREACHED | tier: 全幕 | trigger: 我方進入失守 | priority: 8
+CUT_HACHIKU3,Brush Banner (4.7),破竹,破竹,gloss: UNSTOPPABLE ×3 | tier: 全幕 | trigger: 破竹疊到第 3 層 | priority: 9
+STAMP_HACHIKU,Brush Banner (4.7),破竹,破竹,gloss: UNSTOPPABLE ×{n} | tier: 印章 | trigger: 破竹疊到第 1、2 層 | priority: —
+STAMP_PARRY,Brush Banner (4.7),截,截,gloss: CUT IN | tier: 印章 | trigger: 反駁截斷成功 | priority: —
+STAMP_TRAP,Brush Banner (4.7),中計,中計,gloss: TRAPPED | tier: 印章 | trigger: 詭辯中設陷 | priority: —
+STAMP_WHIFF,Brush Banner (4.7),落空,落空,gloss: WHIFF | tier: 印章 | trigger: 反駁空過，或對手的設陷落空 | priority: —
+STAMP_CLASH,Brush Banner (4.7),交鋒,交鋒,gloss: CLASH | tier: 印章 | trigger: 雙方皆攻 | priority: —
+STAMP_SEEN,Brush Banner (4.7),看穿,看穿,gloss: SEEN THROUGH | tier: 印章 | trigger: 狐耳直覺提升預兆 | priority: —
+STAMP_ASSIST,Brush Banner (4.7),援護,援護,gloss: COVERED | tier: 印章 | trigger: 亞瑟擋下暴擊 | priority: —
+STAMP_HACHIKU_LOST,Brush Banner (4.7),斷,斷,gloss: BROKEN | tier: 印章 (stamp) | trigger: 破竹歸零 (Unstoppable resets to zero); only listed in 8.14
+CUT_RONPA_LOG,Brush Banner (4.7),【論破】,【論破】,gloss: BREAK | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_REVERSE_LOG,Brush Banner (4.7),【逆論破】,【逆論破】,gloss: REVERSE BREAK | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_DOUBLE_LOG,Brush Banner (4.7),【二連論破】,【二連論破】,gloss: DOUBLE BREAK | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_COUNTER_LOG,Brush Banner (4.7),【反擊論破】,【反擊論破】,gloss: COUNTER BREAK | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_BRINK_LOG,Brush Banner (4.7),【絕境】,【絕境】,gloss: AT THE BRINK | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_SHAKEN_LOG,Brush Banner (4.7),【動搖】,【動搖】,gloss: SHAKEN | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_KONJU_LOG,Brush Banner (4.7),【困獸】,【困獸】,gloss: CORNERED | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_SHISSHU_LOG,Brush Banner (4.7),【失守】,【失守】,gloss: BREACHED | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_HACHIKU3_LOG,Brush Banner (4.7),【破竹】,【破竹】,gloss: UNSTOPPABLE ×3 | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_HACHIKU_LOG,Brush Banner (4.7),【破竹】,【破竹】,gloss: UNSTOPPABLE ×{n} | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_PARRY_LOG,Brush Banner (4.7),【截】,【截】,gloss: CUT IN | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_TRAP_LOG,Brush Banner (4.7),【中計】,【中計】,gloss: TRAPPED | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_WHIFF_LOG,Brush Banner (4.7),【落空】,【落空】,gloss: WHIFF | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_CLASH_LOG,Brush Banner (4.7),【交鋒】,【交鋒】,gloss: CLASH | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_SEEN_LOG,Brush Banner (4.7),【看穿】,【看穿】,gloss: SEEN THROUGH | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_ASSIST_LOG,Brush Banner (4.7),【援護】,【援護】,gloss: COVERED | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+STAMP_HACHIKU_LOST_LOG,Brush Banner (4.7),【斷】,【斷】,gloss: BROKEN | backlog line; derived ID (source ID + _LOG); kept Chinese in both languages
+CUT_RONPA_SUB,Brush Banner (4.7),,BREAK,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_REVERSE_SUB,Brush Banner (4.7),,REVERSE BREAK,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_DOUBLE_SUB,Brush Banner (4.7),,DOUBLE BREAK,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_COUNTER_SUB,Brush Banner (4.7),,COUNTER BREAK,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_BRINK_SUB,Brush Banner (4.7),,AT THE BRINK,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_SHAKEN_SUB,Brush Banner (4.7),,SHAKEN,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_KONJU_SUB,Brush Banner (4.7),,CORNERED,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_SHISSHU_SUB,Brush Banner (4.7),,BREACHED,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+CUT_HACHIKU3_SUB,Brush Banner (4.7),,UNSTOPPABLE ×3,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_HACHIKU_SUB,Brush Banner (4.7),,UNSTOPPABLE ×{n},"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_PARRY_SUB,Brush Banner (4.7),,CUT IN,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_TRAP_SUB,Brush Banner (4.7),,TRAPPED,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_WHIFF_SUB,Brush Banner (4.7),,WHIFF,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_CLASH_SUB,Brush Banner (4.7),,CLASH,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_SEEN_SUB,Brush Banner (4.7),,SEEN THROUGH,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_ASSIST_SUB,Brush Banner (4.7),,COVERED,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+STAMP_HACHIKU_LOST_SUB,Brush Banner (4.7),,BROKEN,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"

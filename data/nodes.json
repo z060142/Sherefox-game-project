@@ -1,0 +1,14 @@
+[
+{"id":"CH01_N1","chapter":1,"case":"CH01_MAIN","kind":"claim","idx":1,"textKey":"CLM_CH01_N1","tags":"time,person,place","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E01_06,E01_05"},
+{"id":"CH01_N2","chapter":1,"case":"CH01_MAIN","kind":"claim","idx":2,"textKey":"CLM_CH01_N2","tags":"phys,time,place","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E01_01,E01_04"},
+{"id":"CH01_N3","chapter":1,"case":"CH01_MAIN","kind":"claim","idx":3,"textKey":"CLM_CH01_N3","tags":"person,phys","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E01_03"},
+{"id":"CH02_N1","chapter":2,"case":"CH02_MAIN","kind":"claim","idx":1,"textKey":"CLM_CH02_N1","tags":"time,place,phys,person","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E02_02,E02_03,E02_04"},
+{"id":"CH02_N2","chapter":2,"case":"CH02_MAIN","kind":"claim","idx":2,"textKey":"CLM_CH02_N2","tags":"","grazingTags":"","truth":true,"refutable":false,"refutedBy":""},
+{"id":"CH02_N3","chapter":2,"case":"CH02_MAIN","kind":"claim","idx":3,"textKey":"CLM_CH02_N3","tags":"phys,place,scandal","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E02_06,E02_01"},
+{"id":"CH03_N1","chapter":3,"case":"CH03_MAIN","kind":"claim","idx":1,"textKey":"CLM_CH03_N1","tags":"time,place,person,phys","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E03_08,E03_06"},
+{"id":"CH03_N2","chapter":3,"case":"CH03_MAIN","kind":"claim","idx":2,"textKey":"CLM_CH03_N2","tags":"place,phys","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E03_02,E03_03"},
+{"id":"CH03_N3","chapter":3,"case":"CH03_MAIN","kind":"claim","idx":3,"textKey":"CLM_CH03_N3","tags":"scandal,person","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E03_07"},
+{"id":"CH02_T1","chapter":2,"case":"CH02_MAIN","kind":"tail","idx":1,"textKey":"SCR_CH02_S90_L026","tags":"person,phys,scandal","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E02_07,E02_01"},
+{"id":"CH03_T1","chapter":3,"case":"CH03_MAIN","kind":"tail","idx":1,"textKey":"SCR_CH03_S90_L026","tags":"person,place,phys","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E03_05,E03_03"},
+{"id":"CH03_W1","chapter":3,"case":"CH03_WARMUP","kind":"warmup","idx":1,"textKey":"SCR_CH03_S04_L003","tags":"person,place,phys","grazingTags":"","truth":false,"refutable":true,"refutedBy":"E03_05,E03_02"}
+]

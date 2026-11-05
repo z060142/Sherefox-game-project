@@ -1,0 +1,1539 @@
+key,text
+ART_APPR_DUAL,"""Half flesh, half brass. I have to look at both, and that's going to cost me some effort."""
+ART_APPR_EMPTY,"""My toolbox has run dry. The rest is down to your eyes."""
+ART_APPR_INSIGHT,"""If that's the case, your earlier inference might need a second look."""
+ART_APPR_MECH,"""This I know. Give me a minute, and that thin screwdriver."""
+ART_APPR_MECH_DONE,"""Decent workmanship, but someone's tampered with it. Look here, the tool marks are fresh."""
+ART_APPR_MED,"""Give me some room, and some light. ...Right, let me see."""
+ART_APPR_MED_DONE,"""I've seen wounds like this at a field hospital. I can tell you when and how it happened."""
+ART_APPR_NONE,"""You don't need me for this one. The naked eye will do."""
+ART_ASSIST_DONE,"""From here on, you're really on your own."""
+ART_BOARD_READY,"""Ready? I've kept track of all your Reasoning Chains."""
+ART_CMP_HINT,"""I seem to remember... it was somewhere around there? Have a look over there."""
+ART_CMP_HINT2,"""That, yes, that one. It didn't used to look like that."""
+ART_CMP_REVEAL,"""Sherefox, look here. ...Something's changed. I've only just noticed it myself."""
+ART_FOUND_KEY,"""This... doesn't look like it should be here."""
+ART_FOUND_PLOT,"""Does this have anything to do with the case? ...Never mind, we'll hang on to it."""
+ART_IDLE_1,"""You've been staring at that wall for half a minute. Walls don't confess."""
+ART_IDLE_2,"""Why not try another corner? That one looks more suspicious... though I couldn't tell you why."""
+ART_INVALID,"""Those two have nothing to do with each other. Not even Sophistry can make that work."""
+ART_NEGO_FAIL,"""...He's not buying it. Show him something else."""
+ART_NEGO_LOCK,"""No luck. The only way in now is something less than respectable."""
+ART_NO_REPORT,"""The Inspector won't hand over the post-mortem report this time. It looks like I'll have to do it myself."""
+ART_OPEN_BODY,"""Let me take a look at him first. The dead don't lie, but they don't volunteer anything either."""
+ART_OPEN_FIELD,"""There's no Inspector to back us up here. We'll have to find our own way in."""
+ART_OPEN_GEN,"""Don't jump to conclusions. Start at the door and take things one at a time."""
+ART_REMAIN_FEW,"""That's probably enough. Although... I think we've missed a thing or two."""
+ART_REMAIN_MANY,"""I can't shake the feeling there's a lot here we haven't seen."""
+ART_REMAIN_NONE,"""We've seen everything there is to see. The rest is up to that head of yours."""
+ART_RESCUE,"""Wait, the thing by your feet. I picked it up for you. We can't leave without this, can we?"""
+ART_RES_CLEAN,"""Clean and sharp. I don't even know what to grumble about in the record."""
+ART_RES_LOSE,"""We only lost a round. The case isn't over, and neither are we."""
+ART_RES_LOSE_NOTO,"""We lost, and not prettily. Let's go home; I'll cook something."""
+ART_RES_MID,"""A win is a win. Though a few bits made my hand shake as I wrote them into the record."""
+ART_RES_NOTORIOUS,"""Sherefox, tomorrow's paper... you might want to skip it."""
+ART_REVIEW_CLASH,"""He was about to speak, and you jumped in at the same time."""
+ART_REVIEW_DISGUISE,"""That's what his mouth said. It's not what his hands were doing."""
+ART_REVIEW_HEAL,"""He kept reinforcing while we kept waiting."""
+ART_REVIEW_PARRY_WHIFF,"""That round he was protecting something, not about to speak."""
+ART_REVIEW_TAIL,"""For that last move, that wasn't the card you needed."""
+ART_REVIEW_TRAP,"""He was waiting for your dashed line. I remember his gesture."""
+ART_SNEAK,"""I didn't see anything. I'm just a passing repairman."""
+ART_SOLID,"""Those two fit together. Yes, that line is sturdy."""
+ART_SOPH_1,"""...Are you serious? Those two things are less related than your sleep schedule and mine."""
+ART_SOPH_2,"""It holds together, barely. But the moment someone pokes it, it'll snap right here."""
+ART_SOPH_3,"""I'm not objecting. I just want it on record that I did warn you, in case this blows up."""
+ART_SOPH_4,"""That line... I'll pretend I didn't see it."""
+ART_STATE_HACHIKU_MAX,"""Now. He can't hold you back any longer."""
+ART_STATE_KONJU,"""He's rattled. A rattled man is the easiest to read."""
+ART_STATE_SHISSHU,"""Don't rush to cut in on him. Steady yourself first."""
+ART_SUB_FOUND,"""Something this battered, can it really be of use? ...Better than nothing, I suppose."""
+ART_SUB_LINK,"""That scrap of paper won't hold for long, Sherefox."""
+ART_TIME_LOW,"""We're running short on time. The police... or someone else... could come and clear the scene any moment."""
+ART_TIME_LOW_FIELD,"""It's getting dark. Any later and the locals won't let us stay."""
+ART_TIME_OUT,"""That's it. Come on, Sherefox, any longer and we'll be shown the door."""
+BTN_APPRAISE,Hand to Arthur
+BTN_AUTO,Auto
+BTN_BACK,Back
+BTN_CANCEL,Cancel
+BTN_CHARACTERS,Characters
+BTN_CLOSE,Close
+BTN_CONTINUE,Continue
+BTN_DEB_ASSIST,Cover
+BTN_DEB_DELEGATE,Let Arthur Argue It
+BTN_DEB_GIVEUP,Forfeit This Debate
+BTN_DEB_INSTINCT,Fox-Ear Instinct
+BTN_DEB_LOCK,Lock In
+BTN_DEB_NOTES,Opponent Notes
+BTN_DEB_OBSERVE,Observe
+BTN_DEB_PARRY,Rebut
+BTN_DEB_PARRY_CHAIN,Present a Chain Instead
+BTN_DEB_SOLID,Solid Chain
+BTN_DEB_SOPH,Sophistry
+BTN_DEB_SOPH_NEW,Improvise a Link
+BTN_DEB_TABLE,Matchup Table
+BTN_FAST,Fast
+BTN_FLOW_FROM_BOARD,From Clue Board
+BTN_FLOW_FROM_DEBATE,From Debate
+BTN_FLOW_FROM_INV,From Evidence Search
+BTN_FLOW_FROM_START,From Chapter Start
+BTN_HIDE,Hide UI
+BTN_INV_END,End Search
+BTN_LOAD,Load
+BTN_LOG,Log
+BTN_MENU_EVIDENCE,Evidence Book
+BTN_MENU_HANDBOOK,Detective's Handbook
+BTN_MENU_RESUME,Back to Game
+BTN_MENU_TITLE,Return to Title
+BTN_NEGOTIATE,Negotiate
+BTN_NEWGAME,New Game
+BTN_NEWGAME_PLUS,New Game+
+BTN_NEXT,Next
+BTN_NO,No
+BTN_NOTEBOOK,Casebook
+BTN_OK,OK
+BTN_QLOAD,Quick Load
+BTN_QSAVE,Quick Save
+BTN_QUIT,Quit Game
+BTN_REBUILD_DONE,Links Set
+BTN_RECALL,Chapter Recall
+BTN_RES_ACCEPT,Accept Result
+BTN_RES_CONTINUE,Continue
+BTN_RES_RETRY,Retry Debate
+BTN_SAVE,Save
+BTN_SCRAPBOOK,Scrapbook
+BTN_SETTINGS,Settings
+BTN_SET_DEFAULT,Restore Defaults
+BTN_SKIP,Skip
+BTN_SNEAK,Sneak In (Ticks −2)
+BTN_TO_DEBATE,Enter Debate
+BTN_YES,Yes
+CHAP_01_TITLE,The Vanishing Clockwork Caramel Pudding
+CHAP_02_TITLE,The Cuckoo Three Minutes Slow
+CHAP_03_TITLE,The Steam Barge Murder in the Fog on the Thames
+CLM_CH01_N1,I slept straight through until morning
+CLM_CH01_N2,The cat ate the pudding
+CLM_CH01_N3,I have nothing whatsoever to do with the pudding
+CLM_CH02_N1,I left the moment the cuckoo struck three
+CLM_CH02_N2,The owner had both the tools and the time to swap it
+CLM_CH02_N3,The new movement is one of this shop's parts
+CLM_CH03_N1,I got off the barge at 21:30
+CLM_CH03_N2,The door locked from the inside; it was an accident
+CLM_CH03_N3,Moss and I were just legitimate business partners
+CUT_BRINK,絕境
+CUT_BRINK_LOG,【絕境】
+CUT_BRINK_SUB,AT THE BRINK
+CUT_COUNTER,反擊論破
+CUT_COUNTER_LOG,【反擊論破】
+CUT_COUNTER_SUB,COUNTER BREAK
+CUT_DOUBLE,二連論破
+CUT_DOUBLE_LOG,【二連論破】
+CUT_DOUBLE_SUB,DOUBLE BREAK
+CUT_HACHIKU3,破竹
+CUT_HACHIKU3_LOG,【破竹】
+CUT_HACHIKU3_SUB,UNSTOPPABLE ×3
+CUT_KONJU,困獸
+CUT_KONJU_LOG,【困獸】
+CUT_KONJU_SUB,CORNERED
+CUT_REVERSE,逆論破
+CUT_REVERSE_LOG,【逆論破】
+CUT_REVERSE_SUB,REVERSE BREAK
+CUT_RONPA,論破
+CUT_RONPA_LOG,【論破】
+CUT_RONPA_SUB,BREAK
+CUT_SHAKEN,動搖
+CUT_SHAKEN_LOG,【動搖】
+CUT_SHAKEN_SUB,SHAKEN
+CUT_SHISSHU,失守
+CUT_SHISSHU_LOG,【失守】
+CUT_SHISSHU_SUB,BREACHED
+E01_01_DESC,"The plate is spotless, with only a perfect ring of caramel left on it. There are no spoon scrape marks."
+E01_01_NAME,The Empty Pudding Plate
+E01_01_REASON_A,"There are no spoon scrapes on the plate: the pudding slid off whole, it wasn't eaten."
+E01_01_REASON_B,Licked clean by a cat
+E01_01_REASON_C,You finished it yourself and forgot
+E01_01_TAGS,Physical · Time
+E01_02_DESC,"In the corner of the fridge is a small handkerchief bundle. Opened, it holds a little brass wheel, ice-cold."
+E01_02_NAME,The Handkerchief Bundle in the Fridge
+E01_02_REASON_A,Someone used the fridge last night to chill a precision brass part.
+E01_02_REASON_B,A part that fell off the fridge
+E01_02_REASON_C,The landlady's sewing kit
+E01_02_TAGS,Physical · Place
+E01_03_DESC,"There is an amber blob of caramel on the cuff, with a few grains of brass dust like gold powder stuck beside it."
+E01_03_NAME,Caramel Stain and Brass Filings on Arthur's Cuff
+E01_03_REASON_A,Last night he stood by the fridge and touched both the pudding and the watch part.
+E01_03_REASON_B,He took a bite of the pudding
+E01_03_REASON_C,It got on there while he was cooking in the daytime
+E01_03_TAGS,Person · Physical
+E01_04_DESC,The floor in front of the fridge shines bright enough to see your reflection; everywhere else is dull and dusty.
+E01_04_NAME,The Unusually Shiny Patch of Kitchen Floor
+E01_04_REASON_A,Someone wiped up a spill in the dead of night.
+E01_04_REASON_B,The landlady mopped it this morning
+E01_04_REASON_C,It's always been that shiny
+E01_04_TAGS,Place · Time
+E01_05_DESC,A rag hangs on the hook behind the door; it smells sweet.
+E01_05_NAME,The Caramel-Scented Rag Behind Arthur's Door
+E01_05_REASON_A,Whoever wiped the floor hid the rag back in their own room.
+E01_05_REASON_B,Arthur is obsessive about cleanliness
+E01_05_REASON_C,It's used for polishing shoes
+E01_05_TAGS,Place · Person
+E01_06_DESC,"A corner of a queue ticket pokes out of Arthur's coat pocket, printed with ""05:30, No. 1""."
+E01_06_NAME,Laurel Pastry Shop Queue Ticket (05:30)
+E01_06_REASON_A,"He left before dawn, hoping to buy a replacement pudding."
+E01_06_REASON_B,Picked up off the street
+E01_06_REASON_C,It's yesterday's old ticket
+E01_06_TAGS,Time · Person
+E01_07_DESC,"A blank calling card of very fine paper, slipped in at some point; nobody knows when."
+E01_07_NAME,The Blank Calling Card Under the Door
+E01_07_REASON_A,Someone came to the door late at night and deliberately left no name.
+E01_07_REASON_B,The paper boy slipped it under the wrong door
+E01_07_REASON_C,An advertising flyer
+E01_07_TAGS,Person · Place
+E02_01_DESC,"The gear inside the replacement movement gleams with a cold, hard light, its teeth too fine to be an antique, more like something out of an arsenal."
+E02_01_NAME,Custom Double-Mainspring Gear
+E02_01_REASON_A,"It's the latest military black-market spec: not antique, and not this shop's stock."
+E02_01_REASON_B,A rare part the owner kept privately
+E02_01_REASON_C,The wealthy merchant swapped it himself long ago
+E02_01_TAGS,Physical · Scandal
+E02_02_DESC,"The most eye-catching cuckoo clock in the shop; the little wooden bird has its head cocked, as though waiting for its next appearance."
+E02_02_NAME,The Cuckoo Clock
+E02_02_REASON_A,The clock was deliberately set exactly 3 minutes slow.
+E02_02_REASON_B,The spring wore out and it slowed naturally
+E02_02_REASON_C,The owner set it slow on purpose
+E02_02_TAGS,Time · Place
+E02_03_DESC,"A thin, fresh scratch runs along the edge of the cover; the metal beneath is still bright."
+E02_03_NAME,Fresh Scratches on the Pendulum Cover
+E02_03_REASON_A,Someone pried the cover open with a small screwdriver today.
+E02_03_REASON_B,Left by the owner's weekly maintenance
+E02_03_REASON_C,A cat's scratches
+E02_03_TAGS,Physical · Place
+E02_04_DESC,"""When Big Ben struck three, I saw the old gentleman go into the back through the window, and only that big brother in the black clothes was left at the counter."""
+E02_04_NAME,Tommy the Newsboy's Testimony
+E02_04_REASON_A,"When Big Ben struck three, only Fitch was left at the counter."
+E02_04_REASON_B,The boy misremembered the time
+E02_04_REASON_C,What he saw was the wealthy merchant
+E02_04_TAGS,Time · Person
+E02_05_DESC,"Old Mr. Holloway signed for it in neat handwriting, the time written as ""3:05"", going by the shop's clock."
+E02_05_NAME,Repair Receipt (Signed for at 3:05 Shop Time)
+E02_05_REASON_A,The receipt time was taken from the shop clock; the real time was 3:08.
+E02_05_REASON_B,The owner forged the time
+E02_05_REASON_C,The swap had already happened by the time it was signed for
+E02_05_TAGS,Time · Person
+E02_06_DESC,"Every part bought in over forty years is recorded in this ledger, the handwriting running from young to old."
+E02_06_NAME,The Shop's Parts Catalogue
+E02_06_REASON_A,This shop has never stocked a double mainspring.
+E02_06_REASON_B,The catalogue wasn't kept up to date
+E02_06_REASON_C,The owner bought parts privately and left them off the books
+E02_06_TAGS,Physical · Place
+E02_07_DESC,"When Fitch bowed, a little golden powder fell from his cuff."
+E02_07_NAME,Brass Filings on Fitch's Cuff
+E02_07_REASON_A,Same batch of brass as the replacement movement.
+E02_07_REASON_B,He picked them up polishing his master's carriage
+E02_07_REASON_C,Dust in the shop air
+E02_07_TAGS,Person · Physical
+E02_08_DESC,"(Obtained after the debate) A porcelain cup left behind by the lady in the corner, with a crack running from the rim to the base."
+E02_08_NAME,The Cracked Black Coffee Cup
+E02_08_REASON_A,Someone deliberately blocked the counterweight thrown at Sherefox.
+E02_08_REASON_B,The cup was already cracked
+E02_08_REASON_C,It cracked from the hot coffee
+E02_08_TAGS,Person · Place
+E03_01_DESC,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails."
+E03_01_NAME,Post-Mortem Findings on Moss
+E03_01_REASON_A,"Died of steam asphyxiation between 22:00 and 22:30, not of a blunt blow."
+E03_01_REASON_B,Fell while drunk
+E03_01_REASON_C,Heart attack
+E03_01_TAGS,Time · Person
+E03_02_DESC,"A heavy brass bolt, one end connected to a thin steam pipe, with limescale still on the pipe mouth."
+E03_02_NAME,The Bolt Dropped from the Inside
+E03_02_REASON_A,The bolt is driven by steam pressure and can be operated at a distance from the deck.
+E03_02_REASON_B,The deceased locked the door himself
+E03_02_REASON_C,The old bolt slid down on its own
+E03_02_TAGS,Place · Physical
+E03_03_DESC,"On the valve handle is a soot fingerprint, wide and long, a size larger than Old Tom's short, stubby fingers."
+E03_03_NAME,The Pressure Valve Turned on the Deck
+E03_03_REASON_A,"The soot fingerprint on the handle is fresh, and it isn't the bargeman's size."
+E03_03_REASON_B,The bargeman's routine operation
+E03_03_REASON_C,The waves rocking the barge turned it
+E03_03_TAGS,Place · Physical
+E03_04_DESC,"Jammed in the relief valve's outlet is a brass part that shouldn't be there, a string of tiny batch numbers engraved on its surface."
+E03_04_NAME,The Brass Part Jamming the Relief Valve
+E03_04_REASON_A,Its batch number matches the military black-market transcript: it's from the same stolen batch the deceased had skimmed.
+E03_04_REASON_B,Original boiler part
+E03_04_REASON_C,The bargeman stuffed it in carelessly
+E03_04_TAGS,Physical · Scandal
+E03_05_DESC,"A worn, polished old key that has opened only this barge's hatch for forty years."
+E03_05_NAME,Old Tom's Key
+E03_05_REASON_A,It opens only the hatch's outer lock and can't touch the pressure latch.
+E03_05_REASON_B,It proves only he could get in
+E03_05_REASON_C,He has a spare key
+E03_05_TAGS,Person · Place
+E03_06_DESC,"Mr. Pierce's coat is finely tailored, yet the hem is ringed with coal soot."
+E03_06_NAME,Coal Soot on the Hem of Pierce's Coat
+E03_06_REASON_A,It's the same soot as on the deck valve.
+E03_06_REASON_B,He'd been to the coal depot
+E03_06_REASON_C,Everyone in London has coal soot on them
+E03_06_TAGS,Person · Physical
+E03_07_DESC,"The municipal purchase order says ""brass parts, 300 units"", but the goods-received stamp covers only 200."
+E03_07_NAME,The Purchase Order Found on the Deceased
+E03_07_REASON_A,The ordered and received quantities don't match: the two partners skimmed it together.
+E03_07_REASON_B,An accounting error
+E03_07_REASON_C,The deceased was framed
+E03_07_TAGS,Scandal · Person
+E03_08_DESC,"The last page reads ""22:10, R. P. boards, counts cargo"", in hasty handwriting, but you can tell whose it is."
+E03_08_NAME,The Barge's Logbook
+E03_08_REASON_A,"Someone boarded at 22:10, and the handwriting is Pierce's."
+E03_08_REASON_B,The log was written up later by the bargeman
+E03_08_REASON_C,The time was recorded wrongly
+E03_08_TAGS,Time · Place
+E03_09_DESC,The notice on the victim's desk says the annual procurement audit begins next week; the proposer's column is signed with a single letter: W.
+E03_09_NAME,Municipal Audit Notice
+E03_09_REASON_A,"The audit was proposed by municipal advisor ""W."", which pushed the deceased toward confessing."
+E03_09_REASON_B,Routine business
+E03_09_REASON_C,Unrelated to the case
+E03_09_TAGS,Person · Scandal
+G-01,Military Black-Market Batch-Number Transcript
+G-01_SUB,Gear Rubbing
+GST_CH01_ASSERT,"chest out, hands on hips"
+GST_CH01_REINFORCE,tugging sleeve down
+GST_CH02_ASSERT,"tugging cuff, bowing"
+GST_CH02_REINFORCE,pulling out handkerchief to mop sweat
+GST_CH02_RUSH,"slapping the counter, voice rising"
+GST_CH02_TRAP,"glancing at the corner, mouth twitching"
+GST_CH03_ASSERT,fingering watch chain
+GST_CH03_REINFORCE,opening ledger
+GST_CH03_RUSH,"loosening cravat, stepping forward"
+GST_CH03_TRAP,"glancing at Arthur, tapping ledger cover"
+HEAD_CH01,"Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street"
+HEAD_CH01_SUB,"From the paper's classified column: ""Fox-Eared Detective Agency seeks a flatmate. Those who can cook preferred."""
+HEAD_CH02,Century-Old Antique Pocket Watch Swapped! Wealthy Merchant Sues Baker Street's Veteran Clockmaker
+HEAD_CH02_SUB,"Mr. Gresham: ""My watch was in perfect condition when it went into the shop."""
+HEAD_CH03,"Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted from Inside, Police Arrest Bargeman"
+HEAD_CH03_SUB,"Inspector Baskerville: ""The killer is on that barge. This case ends tonight."""
+MSG_APPR_DONE,Appraisal complete: new tags revealed.
+MSG_APPR_EMPTY,No appraisals left for this case.
+MSG_APPR_LOCKED,You can't appraise during a debate.
+MSG_AUTOSAVE,Autosaving… Do not close the game.
+MSG_BOARD_FULL,The board is full.
+MSG_BOARD_NOCHAIN,Form at least one Reasoning Chain before entering the Debate.
+MSG_CH1_CONTRA,Contradiction {n}!
+MSG_CHAIN_BRANCH,A Reasoning Chain must run in a straight line.
+MSG_CHAIN_MAX,"A Reasoning Chain holds at most 5 cards, and the board holds at most 3 chains."
+MSG_CMP_FOUND,Something has changed here.
+MSG_CMP_WRONG,This is the same as before.
+MSG_DEB_ADDNODE,{name} offered a new claim.
+MSG_DEB_ASSISTED,Arthur blocked the crit. Your attack this round still came to nothing.
+MSG_DEB_ASSIST_EMPTY,Cover has already been used.
+MSG_DEB_ASSIST_WASTED,"No trap was set, so Cover was wasted."
+MSG_DEB_ATTACK,{name} speaks up!
+MSG_DEB_BREAK_TURN,Now is the time to Break.
+MSG_DEB_CLASH,Clash!
+MSG_DEB_FRAGILE_HIT,Right on the slip! (Damage +10)
+MSG_DEB_GESTURE_NEW,Arthur noted: {gesture} = {action}.
+MSG_DEB_HIDDEN_TARGET,They haven't said that out loud yet.
+MSG_DEB_HIT,Hit!
+MSG_DEB_IMPATIENT,The audience is growing restless. (Opponent attack +5)
+MSG_DEB_INSTINCT_CONFIRM,Not a disguise. {name} really will {action}.
+MSG_DEB_INSTINCT_EMPTY,Fox-Ear Instinct has been used up.
+MSG_DEB_INSTINCT_NA,This Tell doesn't need Instinct.
+MSG_DEB_INSTINCT_SEEN,Seen through: {name} will {action}.
+MSG_DEB_INSTINCT_USE,A fox ear twitches. What {name} really means to do is…
+MSG_DEB_LASTNODE,{name} is clinging to one last claim.
+MSG_DEB_LINK_CUT,That dashed line snapped. No multiplier next round.
+MSG_DEB_MUST_ATTACK,Will attack
+MSG_DEB_NOPARRY_NOCARD,"You have no evidence that can overturn this claim, so you can't cut in on them."
+MSG_DEB_NOPARRY_SHISSHU,Your footing isn't steady yet. You can't cut in on them this round.
+MSG_DEB_NOSOLID,"This reasoning contains a dashed line, so it can only be presented as Sophistry."
+MSG_DEB_NOSOPH,This reasoning has no dashed line. Improvise one?
+MSG_DEB_NOTAG,That reasoning has nothing to do with that claim.
+MSG_DEB_NO_REINFORCE,Can't Reinforce
+MSG_DEB_NO_TARGET,"None of your current reasoning can reach them. Defend, or improvise a link on the spot."
+MSG_DEB_OBSERVE,You listen quietly as they go on.
+MSG_DEB_OBSERVE_HALF,You stay composed and take only half the damage.
+MSG_DEB_PARRY,Hold on! (Counter {n})
+MSG_DEB_PARRY_BREAK_MISS,"They didn't speak up, and the chance to Break has passed."
+MSG_DEB_PARRY_NOREF,"Blocked, but that claim is too sturdy: only a Golden Clue can overturn it."
+MSG_DEB_PARRY_OFFSET,They're pushing a different claim!
+MSG_DEB_PARRY_WHIFF,"They didn't speak up, so your Rebut whiffed."
+MSG_DEB_REINFORCE,{name} reinforced the story.
+MSG_DEB_REINFORCE_HALF,Half of it was blocked.
+MSG_DEB_REINFORCE_HEAL,{name} steadied up. (Dominance +{n})
+MSG_DEB_REVEAL,Cards up!
+MSG_DEB_REVEAL_HIDDEN,{name} finally said it out loud.
+MSG_DEB_RULE_NEW,"Arthur jotted a line in his notes: ""{rule}"""
+MSG_DEB_RUSH,{name} goes on the Onslaught!
+MSG_DEB_SELECT_ACTION,Choose your action for this round.
+MSG_DEB_SELECT_CHAIN,Choose the chain segment to present.
+MSG_DEB_SELECT_PARRY,Choose the evidence to cut in with.
+MSG_DEB_SELECT_TARGET,Choose the claim to attack (the lit one by default).
+MSG_DEB_SHAKEN,{name} is Shaken!
+MSG_DEB_SHAKEN_END,{name} has regained their composure.
+MSG_DEB_SHAKEN_RUSH,"The Onslaught was cut off, and {name} loses their footing!"
+MSG_DEB_SHAKE_LINE,They're still holding firm.
+MSG_DEB_SLIP,{name} let something slip!
+MSG_DEB_SMASH,Claim overturned!
+MSG_DEB_STANDOFF,Standoff: neither side made a move.
+MSG_DEB_STURDY,"That claim is too sturdy. Hit it with a Solid Chain, or cut in with a Golden Clue as they speak."
+MSG_DEB_TRAP_EXPOSED,You saw through the trap. {name} will definitely strike next round.
+MSG_DEB_TRAP_HIT,It's a trap!
+MSG_DEB_TRAP_MISS,The trap whiffs! {name} can't Reinforce next round.
+MSG_DEB_WEAK_HIT,Your Weak Point was seen through!
+MSG_DEVICE_FAIL,Nothing happens. Try again.
+MSG_DEVICE_NEED,You need something to open this.
+MSG_END_HINT_TRUE,There seems to be a truth you haven't seen clearly. Open the Casebook and take a look.
+MSG_END_UNLOCK_FLOW,"""Arthur's Casebook"" is unlocked. Open it from the title screen or the Office menu."
+MSG_ERR_DISK,Not enough storage space to save.
+MSG_ERR_GENERIC,An error occurred. Returning to the title screen. Your most recent autosave has been kept.
+MSG_ERR_PAD,Controller disconnected. Please reconnect it.
+MSG_FAST_UNREAD,Unread text ahead. Fast-forward stopped.
+MSG_FLOW_NOCHANGE,Nothing needs updating.
+MSG_GET_EVIDENCE,Evidence obtained: {name}
+MSG_GET_INFO,Case Notes updated.
+MSG_GET_PLOT,Added to Private Collection: {name}
+MSG_GET_TESTIMONY,Testimony obtained: {name}
+MSG_GOLD_ASSIST,"""{name}"" makes one of your inferences clearer."
+MSG_GOLD_REVEAL,Something in the files has become useful: {name} (obtained in {chapter})
+MSG_INV_MISSED,{n} pieces of evidence have fallen into the opponent's hands.
+MSG_INV_MISSED_NONE,You missed nothing at the scene.
+MSG_INV_NEED,There is still something you must find. Keep looking.
+MSG_INV_RESCUE,Arthur picked this up for you: {name}
+MSG_INV_SEAL,{name} has sealed off part of the scene. (Ticks −{n})
+MSG_INV_TIMEOUT,Time's up.
+MSG_LINK_HIDDEN,This evidence has details you can't make out yet.
+MSG_LINK_INVALID,These two pieces of evidence have nothing in common.
+MSG_LINK_NOREASON,Choose a Rationale for this evidence first.
+MSG_LOAD_DONE,Loaded.
+MSG_LOAD_FAIL,This save can't be loaded. It may be corrupted.
+MSG_LOAD_VERSION,This save is from a different game version and will be converted.
+MSG_NEGO_FAIL,{name} is unmoved. (Ticks −1)
+MSG_NEGO_LOCK,That route is closed. The area is now Sealed.
+MSG_NEGO_OK,{name} stepped aside.
+MSG_OPINION_DOWN,The crowd is starting to boo you.
+MSG_OPINION_EXPOSE,The crowd turns on you! (Dominance −{n})
+MSG_OPINION_UP,The crowd is coming over to your side.
+MSG_PAPER_CLIPPED,Added to the Scrapbook.
+MSG_PERMIT_NEED,This area requires a permit.
+MSG_PERMIT_TRUST,"Inspector Baskerville: ""I'll let you in here. Don't touch anything."""
+MSG_PLOT_ITEM_USED,"You remember ""{plotItem}""."
+MSG_QSAVE_DONE,Quick saved.
+MSG_REBUILD,Last-Ditch Rebuild: the evidence they just played is now in your hands too.
+MSG_REBUILD_FAIL,Almost there… but that won't Break them.
+MSG_REVERSE_HIT,Your Reasoning Chains are shattered!
+MSG_SAVE_DONE,Saved.
+MSG_SAVE_FAIL,Save failed. Please check your storage space and try again.
+MSG_SAVE_FORBID,You can't save right now.
+MSG_SAVE_FORBID_MASTER,"On Master Detective difficulty, you can only save during Daily scenes."
+MSG_SNEAK_FORBID,Security is too tight here to sneak in.
+MSG_SNEAK_NOTICK,Not enough Ticks to sneak in.
+MSG_STATE_HACHIKU_LOST,The momentum is broken.
+MSG_STATE_HACHIKU_MAX,Unstoppable! One step from a Break!
+MSG_STATE_HACHIKU_UP,Unstoppable! (×{n})
+MSG_STATE_KONJU,{name} has been driven into a corner. Watch out for a counter.
+MSG_STATE_KONJU_END,{name} has caught their breath.
+MSG_STATE_SHISSHU,Position breached!
+MSG_STATE_SHISSHU_END,Sherefox has regained her footing.
+MSG_TAIL_CRIMINAL,{name} starts throwing blame around wildly!
+MSG_TAIL_PROTECTOR,"{name}: ""Exposing the truth will only ruin everything. Can you bear that?"""
+MSG_TAIL_REFLECT,"Cold, hard evidence doesn't move them."
+MSG_TAIL_RIVAL,{name} plays their hole card.
+MSG_TAIL_SECOND,{name} switches to a different story.
+MSG_TAIL_START,"{name} is driven to the brink, but hasn't given up yet."
+MSG_TAIL_THRESHOLD_UP,This debate's Break requirement has gone up: one more piece of evidence is needed.
+MSG_TAIL_TIMEOUT,{name} weathered the storm. The Break is void!
+MSG_TAIL_WRONG,Their counterattack hits you! (Dominance −{n})
+MSG_TALK_LIMIT,{name} doesn't want to talk any more.
+MSG_WARMUP_FAIL,{name} waves a hand impatiently.
+MSG_WARMUP_PERFECT,You convinced him in one go.
+MSG_WARMUP_WRONG,That doesn't prove him wrong.
+NEWS_00_OPEN,Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away
+NEWS_00_OPEN_SUB,"Page Two ad: ""To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply."""
+NEWS_01_END,City Council Mulls Soot Tax: Factory Owners Sign Joint Protest
+NEWS_01_END_SUB,"Page Two: ""Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence."""
+NEWS_02_LOSE,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages
+NEWS_02_LOSE_SUB,"""The owner declined to be interviewed; the cuckoo in the shop window has stopped."""
+NEWS_02_NEXT,Thames Fog Returns: Municipal Official Found Dead in Barge Boiler Room
+NEWS_02_NOTO,Clock Shop Dispute Grows Ever Fiercer: Upstairs Detective Makes a Public Nuisance of Herself
+NEWS_02_NOTO_SUB,"Merchant: ""This is an insult to a gentleman."""
+NEWS_02_WIN,Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi
+NEWS_02_WIN_SUB,"Body: ""Reportedly exposed on the spot by a young detective from upstairs."""
+NEWS_03_LOSE,Barge Murder Closed on Bargeman's Confession: Family Cries Foul in Court
+NEWS_03_LOSE_SUB,"""The partner says he will take over the deceased's business at the Municipal Hall."""
+NEWS_03_NEXT,Royal Opera House Lift Cable Snaps: Prima Donna Gravely Injured
+NEWS_03_NEXT_SUB,"""Famed detective Victor Crowe has been engaged by the theatre."""
+NEWS_03_NOTO,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bullying a Confession Out of Him"""
+NEWS_03_NOTO_SUB,"""The Inspector declined to comment on the methods of his helper."""
+NEWS_03_WIN,Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested
+NEWS_03_WIN_SUB,"Inspector: ""Scotland Yard never lets fog hide the truth."""
+NEWS_SIDE_01,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship."
+NEWS_SIDE_02,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency."""
+NEWS_SIDE_03,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.
+SCR_CH01_S01_L001,Scene 1: Newspaper Front Page (Opening)
+SCR_CH01_S01_L002,"【The London Lantern · October 1887】Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street"
+SCR_CH01_S01_L003,"Our correspondent reports: Laurel Pastry Shop on Baker Street yesterday launched its new ""Clockwork Caramel Pudding"", famed for its caramel topping shaped like a brass clockwork spring. Limited to forty a day, they sold out within an hour of opening. Among the queue were many ladies and gentlemen who had come specially, including one fox-eared girl whose tail was reportedly ""never still from start to finish"". Also, this paper's classified column carries a notice: ""Fox-Eared Detective Agency seeks a flatmate. Cooks preferred; those afraid of fox fur need not apply."""
+SCR_CH01_S02_L001,Scene 2: Agency Living Room (Daily Life; The Night Before)
+SCR_CH01_S02_L002,"On my second day in Baker Street, I learned three things. First, the landlady's stew is far too salty. Second, my flatmate is a fox. Third, foxes treat pudding as a national treasure."
+SCR_CH01_S02_L003,"(Cradling the plate in both hands, tail swishing nonstop) Arthur, look closely. This is the Laurel Pastry Shop's Clockwork Caramel Pudding. Only forty a day, and I queued for an hour."
+SCR_CH01_S02_L004,It looks... very bouncy.
+SCR_CH01_S02_L005,"It's not just bouncy, it has dignity. (Plants a little flag in the plate) ""Foxes only. Thieves will be bitten."" I'm having it with tea tomorrow morning."
+SCR_CH01_S02_L006,Understood. I won't touch it.
+SCR_CH01_S02_L007,"(Opens the drawer, glances at the broken pocket watch, then quietly closes it again) ..."
+SCR_CH01_S02_L008,What happened to that pocket watch?
+SCR_CH01_S02_L009,"Nothing, nothing, just an old thing. I'm off to bed. Good night."
+SCR_CH01_S02_L010,"When she said ""nothing"", her ears drooped. I served as a medic on the battlefield, and I know that when people lie, the body confesses first. That night I decided to do something. It would prove to be the start of a string of small disasters."
+SCR_CH01_S03_L001,Scene 3: Agency Kitchen (Event; Morning)
+SCR_CH01_S03_L002,(Opens the fridge; her ears snap upright) ...Arthur.
+SCR_CH01_S03_L003,"(Poking his head out of his room, hair sticking up) M-morning."
+SCR_CH01_S03_L004,"My pudding is gone. The plate is here, the flag is here, the pudding is not. This is a kidnapping. This is a case of puddingnapping."
+SCR_CH01_S03_L005,Could it... be a cat?
+SCR_CH01_S03_L006,We don't have a cat.
+SCR_CH01_S03_L007,A stray. London strays are very nimble.
+SCR_CH01_S03_L008,"(Narrowing her eyes, tail swaying slowly) Arthur, did you leave your room last night?"
+SCR_CH01_S03_L009,N-no. I slept straight through until morning.
+SCR_CH01_S03_L010,Splendid. Then Suspect Number One in this puddingnapping is the only other person in the whole agency besides me.
+SCR_CH01_S03_L011,Are you accusing me?
+SCR_CH01_S03_L012,"No, I'm ""interrogating"" you. I'll apologise afterwards, if you turn out to be innocent."
+SCR_CH01_S04_L001,Scene 4: Evidence Search (Agency Kitchen)
+SCR_CH01_S04_L002,"The plate is spotless, with only a perfect ring of caramel left on it. There are no spoon scrape marks."
+SCR_CH01_S04_L003,"A-a cat would lick it very clean, wouldn't it?"
+SCR_CH01_S04_L004,Can a cat lick a ring that perfectly round? Then that cat belongs in a clockmaker's shop.
+SCR_CH01_S04_L005,"In the corner of the fridge is a small handkerchief bundle. Opened, it holds a little brass wheel, ice-cold."
+SCR_CH01_S04_L006,"Th-that's... a fridge part, I suppose."
+SCR_CH01_S04_L007,"There is an amber blob of caramel on the cuff, with a few grains of brass dust like gold powder stuck beside it."
+SCR_CH01_S04_L008,(Pulling his sleeve down) This is... sauce from last night's dinner.
+SCR_CH01_S04_L009,Last night's dinner was the landlady's stew. Stew is never sweet.
+SCR_CH01_S04_L010,The floor in front of the fridge shines bright enough to see your reflection; everywhere else is dull and dusty.
+SCR_CH01_S04_L011,The landlady is very fond of cleanliness.
+SCR_CH01_S04_L012,The landlady only wipes the places she can see herself.
+SCR_CH01_S04_L013,A rag hangs on the hook behind the door; it smells sweet.
+SCR_CH01_S04_L014,I-I like fragrant rags.
+SCR_CH01_S04_L015,"A corner of a queue ticket pokes out of Arthur's coat pocket, printed with ""05:30, No. 1""."
+SCR_CH01_S04_L016,...I found that.
+SCR_CH01_S04_L017,Number 1? You just happened to pick up the earliest riser in all London?
+SCR_CH01_S04_L018,"A blank calling card of very fine paper, slipped in at some point; nobody knows when."
+SCR_CH01_S04_L019,That one I really don't know about. (This time it seems to be true.)
+SCR_CH01_S04_L020,"Sherefox put it away in a drawer, saying good paper shouldn't be wasted."
+SCR_CH01_S05_L001,"Scene 5: Main Debate (Tutorial Debate, No Dominance Loss)"
+SCR_CH01_S05_L002,"The mini-debate begins. Each round, you and Arthur make your moves at the same time. Within 3 rounds, point out 2 contradictions in his story."
+SCR_CH01_S05_L003,"(Round 1 · Tell) Arthur puffs out his chest, hands on hips. Lit node: N1 ""I slept straight through until morning""."
+SCR_CH01_S05_L004,(Tell) I'll have you know I slept straight through until morning last night!
+SCR_CH01_S05_L005,"He's puffed out his chest and planted his hands on his hips. When someone's about to speak, cut him off with Rebut."
+SCR_CH01_S05_L006,(Assert) I was asleep in my room; the door never once—
+SCR_CH01_S05_L007,"(Rebut, presenting E01_06) Hold on! A Laurel Pastry Shop queue ticket: half past five in the morning, number 1. How does someone who ""slept straight through until morning"" beat the whole of London to the queue?"
+SCR_CH01_S05_L008,(Cut-In) I haven't finished—
+SCR_CH01_S05_L009,【印：截】　【印：破竹】(Layer 1; tutorial preview)
+SCR_CH01_S05_L010,Cut-In! First contradiction found.
+SCR_CH01_S05_L011,"(Round 2 · Tell) Arthur tugs his sleeve down. Lit node: N2 ""The cat ate the pudding""."
+SCR_CH01_S05_L012,"(Tell) W-well, let me put it another way..."
+SCR_CH01_S05_L013,"He's tugging at his sleeve. When someone's covering something up, it's time to strike."
+SCR_CH01_S05_L014,"(Solid Chain, E01_01→E01_04) There isn't a single spoon mark on that plate, just one perfect ring of caramel. And the floor in front of the fridge shines as if it had just been waxed. The pudding wasn't eaten: it slid whole onto the floor, and someone wiped it up in the dead of night."
+SCR_CH01_S05_L015,"(Reinforce) What I mean is, the cat... could also be the neighbour's cat."
+SCR_CH01_S05_L016,So the neighbour's cat also kindly mopped our floor on its way out? It should apply to be our flatmate.
+SCR_CH01_S05_L017,【大字：動搖】　【印：斷】(Unstoppable resets to zero; tutorial preview)
+SCR_CH01_S05_L018,A Reinforce can't stop solid evidence! Second contradiction found. Arthur is Shaken.
+SCR_CH01_S05_L019,"The opponent is Shaken! Next round, use Key Evidence to Break him."
+SCR_CH01_S05_L020,"(Round 3 · Tell) Arthur flails his arms, then puffs out his chest again. Lit node: N3 ""I have nothing whatsoever to do with the pudding""."
+SCR_CH01_S05_L021,"(Tell · Shaken) A-anyway, the pudding has nothing to do with me!"
+SCR_CH01_S05_L022,(Assert) I was a medic; I would never eat someone else's—
+SCR_CH01_S05_L023,Hold on—I've almost cracked it! ...No. I've completely cracked it!
+SCR_CH01_S05_L024,"(Rebut-Break, presenting E01_03) Arthur, there's caramel on your cuff, and brass filings stuck beside the caramel. In this whole house there's only one place with both pudding and brass: the fridge! What were you doing in front of the fridge last night that touched both pudding and gears?"
+SCR_CH01_S05_L025,【大字：論破】　【印：破竹】(Layer 1; tutorial preview)
+SCR_CH01_S05_L026,Break!
+SCR_CH01_S05_L027,"As she pointed her magnifying glass at me, her tail stood straight up. I learned later that this is her proudest expression."
+SCR_CH01_S05_L028,(Crestfallen) ...I knocked the pudding over. I'm sorry.
+SCR_CH01_S05_L029,I knew it!
+SCR_CH01_S05_L030,"But I wasn't stealing a bite. (Fetches a pocket watch from his room) I was fixing this. The balance wheel was bent, and it had to be chilled first to shrink a little before it would fit back in. When I opened the fridge, my sleeve caught on the plate... and it just slid off. In slow motion, even."
+SCR_CH01_S05_L031,"(Taking the watch, her ears slowly rising) ...It's ticking."
+SCR_CH01_S05_L032,"It's more accurate now than any clock in London. I meant to buy a new pudding and put it back before dawn, but the shop doesn't open until seven."
+SCR_CH01_S05_L033,"(Turning her head away, her tail giving a secret wag) ...It's ten to seven now. And your ticket is number 1, isn't it?"
+SCR_CH01_S05_L034,Yes.
+SCR_CH01_S05_L035,Then what are we waiting for? Your treat. Two of them.
+SCR_CH01_S06_L001,Scene 6: Results
+SCR_CH01_S06_L002,Victory
+SCR_CH01_S06_L003,"【The London Lantern · Classified Column】The Fox-Eared Detective Agency's notice seeking a flatmate is withdrawn as of today. The Laurel Pastry Shop also reports that its first customer today was a young gentleman with unruly hair, accompanied by a girl whose ears stood very high."
+SCR_CH01_S06_L004,"And so I became the fox's flatmate and assistant. She says I have the two skills a detective needs most: I can diagnose a corpse, and I can diagnose a machine. I asked about the pudding. She says pudding has only one ailment, and it's called ""not enough""."
+SCR_CH01_S06_L005,"Arthur has become your assistant. ""Specialist Appraisal"" and ""Debate Cover"" unlocked."
+SCR_CH01_S06_L006,Defeat
+SCR_CH01_S06_L007,"She never did manage to force a confession out of me: I owned up myself, because the way she stared at the empty plate was more effective than any interrogation. She insists it doesn't count as her losing, only as ""extra time"". Our rapport, it seems, needs a little more time to bed in."
+SCR_CH01_S06_L008,Chapter 2: the first Appraisal requires 1 additional investigation action.
+SCR_CH01_S07_L001,Scene 7: Arthur's Case-Closed Notes
+SCR_CH01_S07_L002,"Case name: The Vanishing Clockwork Caramel Pudding. Culprit: me. Method: my sleeve. Motive: a broken pocket watch, and a flatmate whose ears droop when she says ""nothing"". Postscript: she ate the second pudding very slowly, one bite at a time, with that pocket watch set beside the plate. Also, the blank calling card from under the door was put away by her in the deepest part of the drawer."
+SCR_CH01_S90_L001,Debate Line Library: Arthur (Ch.1)
+SCR_CH01_S90_L002,"In this chapter Arthur uses only Assert and Reinforce, and every Tell is Clear. Arthur is the opponent in this chapter, so hints come from the system's tutorial lines instead."
+SCR_CH01_S90_L003,I'll have you know I slept straight through until morning last night!
+SCR_CH01_S90_L004,"Listen carefully, I have something very important to explain."
+SCR_CH01_S90_L005,"A-anyway, the pudding has nothing to do with me!"
+SCR_CH01_S90_L006,"W-well, let me put it another way..."
+SCR_CH01_S90_L007,"Hold on, let me think."
+SCR_CH01_S90_L008,What I meant just now was...
+SCR_CH01_S90_L009,I was asleep in my room; the door was never even opened!
+SCR_CH01_S90_L010,It must have been a cat. A very nimble cat with a taste for caramel.
+SCR_CH01_S90_L011,I was a medic; I would never eat someone else's pudding!
+SCR_CH01_S90_L012,"What I mean is, the cat... could also be the neighbour's cat."
+SCR_CH01_S90_L013,"Even if I did leave my room, it was only for a glass of water."
+SCR_CH01_S90_L014,"It's only a pudding, after all... I mean, a very important pudding."
+SCR_CH01_S90_L015,"""Onslaught"" and ""Set a Trap"": not used in this chapter."
+SCR_CH01_S90_L016,"Evidence lined up in a row, one after another."
+SCR_CH01_S90_L017,You defend yours; I'll lay out mine.
+SCR_CH01_S90_L018,"These two don't look very related... but if I say they're related, they're related!"
+SCR_CH01_S90_L019,Hold on!
+SCR_CH01_S90_L020,Half a sentence is all I need from you.
+SCR_CH01_S90_L021,"...Go on, I'm listening."
+SCR_CH01_S90_L022,(Ears turn toward Arthur)
+SCR_CH01_S90_L023,...We both spoke at the same time.
+SCR_CH01_S90_L024,...How awkward.
+SCR_CH01_S90_L025,I haven't finished—
+SCR_CH01_S90_L026,The half-sentence you did get out is exactly where the flaw is.
+SCR_CH01_S90_L027,(The two stare at each other; the fridge hums)
+SCR_CH01_S90_L028,...Shall we have a cup of tea first?
+SCR_CH01_S90_L029,"He's puffed out his chest and planted his hands on his hips. When someone's about to speak, cut him off with Rebut."
+SCR_CH01_S90_L030,"He's tugging at his sleeve. When someone's covering something up, it's time to strike."
+SCR_CH01_S90_L031,"The opponent is Shaken! Next round, use Key Evidence to Break him."
+SCR_CH01_S90_L032,"W-wait, let me gather my thoughts! I was a medic, I'm perfectly calm!"
+SCR_CH01_S90_L033,"Fine, I admit I left my room! But only for a little while! About... two hours!"
+SCR_CH01_S90_L034,"If you look at my sleeve again, I'll... I'll go and wash it!"
+SCR_CH01_S90_L035,Um... your ears have drooped. Would you like something to eat first?
+SCR_CH01_S90_L036,"See? Even detectives guess wrong sometimes. It's perfectly normal, really."
+SCR_CH01_S90_L037,One.
+SCR_CH01_S90_L038,"Two. Arthur, you're running out of excuses."
+SCR_CH01_S90_L039,"Three! Unstoppable! Your pudding defences have crumbled, right down to caramel!"
+SCR_CH01_S90_L040,...(Ears droop) My ears feel so heavy.
+SCR_CH01_S90_L041,"H-hold on, let me rearrange my evidence..."
+SCR_CH01_S90_L042,Hold on—I've completely cracked it!
+SCR_CH01_S90_L043,See? Your sleeve is trembling.
+SCR_CH01_S90_L044,This blade cuts from the pudding plate all the way to your bedroom door!
+SCR_CH01_S90_L045,"Double Break, Counter Break and At the Brink do not appear in this chapter."
+SCR_CH01_S90_L046,"Read one move correctly and Unstoppable gains a layer; with three layers, a Break gets easier."
+SCR_CH01_S90_L047,Misread a move and Unstoppable resets to zero.
+SCR_CH01_S90_L048,This chapter is only a preview. Unstoppable doesn't take real effect until Chapter 2.
+SCR_CH01_S90_L049,"Not shown in this chapter. These two states don't trigger until Chapter 3, and will be explained then."
+SCR_CH02_S01_L001,Scene 1: Newspaper Front Page (Opening)
+SCR_CH02_S01_L002,【The London Lantern · October 1887】Century-Old Antique Pocket Watch Swapped! Wealthy Merchant Sues Baker Street's Veteran Clockmaker
+SCR_CH02_S01_L003,"Our correspondent reports: Wealthy merchant Mr. Gresham yesterday entrusted a century-old antique pocket watch to the Cuckoo Clockworks on Baker Street for cleaning. When he opened the case back that evening, he discovered the movement had been replaced. Mr. Gresham stated: ""My watch was in perfect condition when it went into the shop, and the shopkeeper is the only person who touched it."" The owner, old Mr. Holloway, has run his clock shop for over forty years and is highly regarded by his neighbours; he flatly denies the accusation. It is understood that the merchant has retained a solicitor and may file suit as early as this week."
+SCR_CH02_S02_L001,Scene 2: Agency Living Room (Daily Life)
+SCR_CH02_S02_L002,Mr. Holloway downstairs is being sued.
+SCR_CH02_S02_L003,(Ears popping up from behind the newspaper) Grandpa Holloway? The Grandpa Holloway who slips me a sweet every time I walk past?
+SCR_CH02_S02_L004,He slips me sweets too. I assumed it was his sales strategy.
+SCR_CH02_S02_L005,"Arthur, a man who has handed out sweets for forty years doesn't throw away forty years of sweetness over one little movement. Come on, downstairs."
+SCR_CH02_S02_L006,You haven't finished your breakfast.
+SCR_CH02_S02_L007,The truth is hotter than a scone. Bring it along and we'll eat on the way.
+SCR_CH02_S03_L001,Scene 3: The Cuckoo Clockworks (Event)
+SCR_CH02_S03_L002,That's him! My watch was fine when I handed it to that old man!
+SCR_CH02_S03_L003,"Sir, I swear, I only checked the face, I never even opened the case back..."
+SCR_CH02_S03_L004,"(Bowing) Master, please calm yourself. I left at three o'clock on the dot, just after the cuckoo called. After that there was only Mr. Holloway in the shop."
+SCR_CH02_S03_L005,Three on the dot? You're quite sure?
+SCR_CH02_S03_L006,The cuckoo called three times. I heard it clear as day.
+SCR_CH02_S03_L007,"In the corner sat a lady in a dark skirt suit, drinking black coffee. From the moment we walked in until now, she hasn't once put her cup down, and her eyes haven't once left Sherefox."
+SCR_CH02_S03_L008,"(In a low voice) Arthur, the lady in the corner is watching me."
+SCR_CH02_S03_L009,Probably her first time seeing a fox eat a scone while solving a case.
+SCR_CH02_S03_L010,No. That isn't the look of someone watching a curiosity. That's the look of someone playing chess.
+SCR_CH02_S04_L001,Scene 4: Evidence Search (The Cuckoo Clockworks)
+SCR_CH02_S04_L002,"The gear inside the replacement movement gleams with a cold, hard light, its teeth too fine to be an antique, more like something out of an arsenal."
+SCR_CH02_S04_L003,"Double mainspring, tooth pitch 0.3 mm. That's a military spec that only appeared last year. You can't buy it from a legitimate shop, only on the black market."
+SCR_CH02_S04_L004,"The most eye-catching cuckoo clock in the shop; the little wooden bird has its head cocked, as though waiting for its next appearance."
+SCR_CH02_S04_L005,I checked my pocket watch against it: it's a full three minutes slower than Big Ben. That's not an old spring. Ageing doesn't produce error this tidy.
+SCR_CH02_S04_L006,"A thin, fresh scratch runs along the edge of the cover; the metal beneath is still bright."
+SCR_CH02_S04_L007,"The scratch is new, and its width matches a small screwdriver exactly."
+SCR_CH02_S04_L008,"""When Big Ben struck three, I saw the old gentleman go into the back through the window, and only that big brother in the black clothes was left at the counter."""
+SCR_CH02_S04_L009,A child's testimony is very direct. And Big Ben can't be set slow.
+SCR_CH02_S04_L010,"Old Mr. Holloway signed for it in neat handwriting, the time written as ""3:05"", going by the shop's clock."
+SCR_CH02_S04_L011,"If the shop clock was three minutes slow, the real time of receipt was 3:08."
+SCR_CH02_S04_L012,"Every part bought in over forty years is recorded in this ledger, the handwriting running from young to old."
+SCR_CH02_S04_L013,I've been through all of it. There isn't a single entry for a double mainspring.
+SCR_CH02_S04_L014,"When Fitch bowed, a little golden powder fell from his cuff."
+SCR_CH02_S04_L015,The composition matches the brass casing of the replacement movement: the same batch of material. Polishing a carriage won't leave you with this.
+SCR_CH02_S04_L016,"(Obtained after the debate) A porcelain cup left behind by the lady in the corner, with a crack running from the rim to the base."
+SCR_CH02_S04_L017,The cup stopped that counterweight. Otherwise it would have been your head it hit. ...Who is she?
+SCR_CH02_S05_L001,Scene 5: Main Debate
+SCR_CH02_S05_L002,The Debate begins. Opponent: Fitch (Culprit). Both sides move at the same time.
+SCR_CH02_S05_L003,(Round 1 · Tell) Fitch tugs his cuff and bows slightly. Lit node: N1. Possible moves: Assert / Onslaught.
+SCR_CH02_S05_L004,"(Tell) I remember it perfectly clearly: the moment the cuckoo called, I left."
+SCR_CH02_S05_L005,"(Hint) Both possibilities are attacks. If he's going to speak, let him."
+SCR_CH02_S05_L006,(Assert) The cuckoo called three times; everyone in the—
+SCR_CH02_S05_L007,"(Rebut N1, presenting E02_02) Hold on! The bird you heard was a full three minutes slower than Big Ben. When it called ""three o'clock"", London was already three minutes past."
+SCR_CH02_S05_L008,(Cut-In) I remember—
+SCR_CH02_S05_L009,What you remember is a cuckoo three minutes slow.
+SCR_CH02_S05_L010,【印：截】
+SCR_CH02_S05_L011,【印：破竹×1】
+SCR_CH02_S05_L012,"Cut-In! N1 removed, counter 30. Fitch's Dominance: 70."
+SCR_CH02_S05_L013,"(Round 2 · Tell) Fitch tugs his cuff again, his eyes flicking toward the corner. Lit node: N2. Possible moves: Assert / Set a Trap (no star)."
+SCR_CH02_S05_L014,(Tell) I'm only a servant. I only say what I saw.
+SCR_CH02_S05_L015,"(Hint) N2 is true, so a Rebut would be bound to whiff. He glanced at the corner... maybe he's waiting for you to draw a careless link."
+SCR_CH02_S05_L016,"(Observe) ...Go on. Your cuff is talking, and I'm listening."
+SCR_CH02_S05_L017,"(Assert) The only one who could touch the movement was the owner, with his tools in hand."
+SCR_CH02_S05_L018,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N2 stays on the table."
+SCR_CH02_S05_L019,【印：斷】
+SCR_CH02_S05_L020,"This time he really did just want to talk. But you've heard him out, and next move he won't be able to hide."
+SCR_CH02_S05_L021,Next round's Tell becomes Clear.
+SCR_CH02_S05_L022,(Round 3 · Tell) Fitch pulls out a handkerchief and mops his brow. N1 is being restored. Clear (after Observe): Reinforce.
+SCR_CH02_S05_L023,(Tell) Th-this is just a small misunderstanding...
+SCR_CH02_S05_L024,(Hint) He's mopping his brow: he's plugging a leak. Attack now.
+SCR_CH02_S05_L025,"(Solid Chain, E02_03→E02_02→E02_04→E02_05) Fresh scratches on the pendulum cover; the cuckoo set three minutes slow. The newsboy says that when Big Ben struck three, you were alone at the counter. And the owner's receipt time was written by a clock three minutes slow! One, two, three, four, every tick lines up."
+SCR_CH02_S05_L026,"(Reinforce) Even if the clock ran a little slow, how was I to know..."
+SCR_CH02_S05_L027,【大字：動搖】
+SCR_CH02_S05_L028,"Chain damage 35, halved by the Reinforce to 17.5, but it can't stop solid evidence. N1 removed; the Reinforce was hit, so there is no recovery. The four-card chain lands, and Fitch is Shaken. Fitch's Dominance: 52.5."
+SCR_CH02_S05_L029,(Shaken) Th-this is just a coincidence! Clocks run slow all the time!
+SCR_CH02_S05_L030,(Round 4 · Tell) Fitch slams his hand down on the counter. Lit node: N3. Clear: Onslaught.
+SCR_CH02_S05_L031,(Tell) This is slander!
+SCR_CH02_S05_L032,"(Hint) His hand's about to slam down. Get ready to catch him. He's Shaken, so this is the moment to Break."
+SCR_CH02_S05_L033,(Onslaught) That movement is one of this shop's own parts! The old man swapped his master's—
+SCR_CH02_S05_L034,Hold on—I've completely cracked it!
+SCR_CH02_S05_L035,"(Rebut-Break, aimed at N3, presenting E02_06 + E02_01) This double-mainspring gear is black-market military spec that only appeared last year! Grandpa Holloway's parts catalogue goes back forty years and never once listed anything like it. The only person who could bring it into this shop is someone in debt to the black market!"
+SCR_CH02_S05_L036,【印：截】　【大字：論破】
+SCR_CH02_S05_L037,【印：破竹×1】
+SCR_CH02_S05_L038,"Onslaught cut off! Counter 30; Fitch's Dominance: 22.5. Break! Fitch's whole claim chain is smashed, and another 70 is taken off; Dominance locks at 1 and the Endgame begins."
+SCR_CH02_S05_L039,(Round 5 · Endgame) Fitch snatches up the clock's brass counterweight. Clear: Scorched Earth.
+SCR_CH02_S05_L040,"(Endgame · Scorched Earth) ...Yes, I set the clock! But that old man told me to! It's all your fault!"
+SCR_CH02_S05_L041,"(Staging) Fitch hurls the counterweight at Sherefox. The lady in the corner raises her coffee cup; the porcelain cracks, and the counterweight drops to the floor."
+SCR_CH02_S05_L042,"...That something less exact than time itself should be produced in a clockmaker's shop, of all places, would by most standards be considered among the least becoming of acts, Mr. Fitch."
+SCR_CH02_S05_L043,"(Startled for a moment, then recovering; Rebut, presenting E02_07 + E02_01) The brass filings on your cuff are from the same batch as the casing of this replacement movement. From setting the clock to swapping the movement, every step was your hand. That's your timetable, to the minute!"
+SCR_CH02_S05_L044,【印：截】
+SCR_CH02_S05_L045,Fitch's Dominance falls to zero. Debate won.
+SCR_CH02_S05_L046,(Collapsing to his knees) I... I only wanted to pay off my debt...
+SCR_CH02_S05_L047,(If the wrong card is played in the Endgame) The counterweight skims past your ear. Dominance −30.
+SCR_CH02_S06_L001,Scene 6: Results
+SCR_CH02_S06_L002,Victory
+SCR_CH02_S06_L003,【The London Lantern】Cuckoo Clock Unmasks Swap Scandal! Attendant Fitch Confesses on the Spot
+SCR_CH02_S06_L004,"Our correspondent reports: The truth behind the antique pocket-watch swap on Baker Street came to light yesterday. Fitch, attendant to the wealthy Mr. Gresham, admitted that to pay off gambling debts he privately set the shop's cuckoo clock three minutes slow, faked his time of leaving, and swapped in a black-market part for the movement. Old Mr. Holloway has been cleared, and the merchant apologised on the spot. According to witnesses, the one who exposed the truth was the fox-eared girl from the agency upstairs."
+SCR_CH02_S06_L005,"Little Fox, this is Grandpa's lifetime free-servicing voucher. From now on, Grandpa's got your pocket watch covered."
+SCR_CH02_S06_L006,Can my stomach be serviced too?
+SCR_CH02_S06_L007,Do sweets count?
+SCR_CH02_S06_L008,Deal.
+SCR_CH02_S06_L009,"(Pausing in the doorway on her way out) The speed of your reasoning might, by ordinary standards, be rated as respectable; it is regrettable, however, that your position was chosen so very poorly."
+SCR_CH02_S06_L010,...Who are you?
+SCR_CH02_S06_L011,"A customer who drinks coffee. As for the cost of the cup, it has already been paid."
+SCR_CH02_S06_L012,She paid enough to buy ten cups.
+SCR_CH02_S06_L013,Defeat
+SCR_CH02_S06_L014,"【The London Lantern】Veteran Clockmaker Ordered to Pay Damages, Fox-Eared Detective's Friendship with Neighbour Shattered"
+SCR_CH02_S06_L015,"Our correspondent reports: The preliminary mediation result in the Baker Street antique pocket-watch swap case is out: the Cuckoo Clockworks must compensate Mr. Gresham for his full loss. The fox-eared detective upstairs had tried to intervene, but failed to produce strong evidence. Old Mr. Holloway is understood to be closing temporarily."
+SCR_CH02_S06_L016,"On the day the iron shutter came down downstairs, Sherefox stood at the window for a long time. The gear was taken away by the merchant; she only had time to make a single rubbing of it. She says one day it will come in useful."
+SCR_CH02_S07_L001,Scene 7: Arthur's Case-Closed Notes
+SCR_CH02_S07_L002,"Case name: The Cuckoo Three Minutes Slow. Culprit: Fitch. Method: setting the shop clock slow to fake his time of departure. Note 1: Sherefox copied the batch number off that double-mainspring gear and tucked it into her notebook. Note 2: the lady in the corner left behind a cracked cup, which Sherefox has set on the mantelpiece as a ""trophy"". To me, it looks more like an IOU."
+SCR_CH02_S90_L001,Debate Line Library: Fitch
+SCR_CH02_S90_L002,"I remember it perfectly clearly: the moment the cuckoo called, I left."
+SCR_CH02_S90_L003,"If you'll permit me, let me explain once more."
+SCR_CH02_S90_L004,I'm only a servant. I only say what I saw.
+SCR_CH02_S90_L005,This is slander!
+SCR_CH02_S90_L006,"Enough! Master, don't listen to this fox's nonsense!"
+SCR_CH02_S90_L007,What does a slip of a girl know about clocks!
+SCR_CH02_S90_L008,Th-this is just a small misunderstanding...
+SCR_CH02_S90_L009,"What I mean is, around... roughly three o'clock."
+SCR_CH02_S90_L010,"Please, let me finish what I was saying."
+SCR_CH02_S90_L011,Tsk. What story is the young miss going to make up this time?
+SCR_CH02_S90_L012,I would very much like to hear how you'll carry this one off.
+SCR_CH02_S90_L013,"Go on, then. I'm all ears."
+SCR_CH02_S90_L014,The cuckoo called three times; everyone in the shop could hear it.
+SCR_CH02_S90_L015,"When I left, the watch was still sitting safely on the counter."
+SCR_CH02_S90_L016,"The only one who could touch the movement was the owner, with his tools in hand."
+SCR_CH02_S90_L017,That movement is one of this shop's own parts! The old man swapped my master's treasure!
+SCR_CH02_S90_L018,"Master, sue him! Sue him until he shuts up shop!"
+SCR_CH02_S90_L019,Forty years in business? Forty years a thief!
+SCR_CH02_S90_L020,"Even if the clock ran a little slow, how was I to know?"
+SCR_CH02_S90_L021,My memory's poor; it might have been one minute past three.
+SCR_CH02_S90_L022,"Anyway, when I left, the owner was still there."
+SCR_CH02_S90_L023,Ha! Those two things have nothing to do with each other!
+SCR_CH02_S90_L024,"Everything you've just said, I've noted down."
+SCR_CH02_S90_L025,"Did you hear that, Master? She's forcing connections!"
+SCR_CH02_S90_L026,I set the clock! But that old man told me to set it!
+SCR_CH02_S90_L027,It's all your fault!
+SCR_CH02_S90_L028,"Time will tell, especially time that's been set slow."
+SCR_CH02_S90_L029,"One, two, three, four, every tick lines up."
+SCR_CH02_S90_L030,The evidence has queued up. Step right in.
+SCR_CH02_S90_L031,"Maybe these two things aren't alike, but plenty of people like you are."
+SCR_CH02_S90_L032,"If you ask me, they're brothers."
+SCR_CH02_S90_L033,Not sure? Then grab hold first and sort it out later.
+SCR_CH02_S90_L034,Hold on!
+SCR_CH02_S90_L035,That's the one.
+SCR_CH02_S90_L036,The one who's three minutes slow is you.
+SCR_CH02_S90_L037,...Go on.
+SCR_CH02_S90_L038,"Your cuff is talking, and I'm listening."
+SCR_CH02_S90_L039,(Ears tilt slightly toward Fitch)
+SCR_CH02_S90_L040,You—
+SCR_CH02_S90_L041,—let me finish first. (Split screen; each side takes a hit)
+SCR_CH02_S90_L042,I remember—
+SCR_CH02_S90_L043,What you remember is a cuckoo three minutes slow.
+SCR_CH02_S90_L044,"(The cuckoo suddenly goes ""cuck"", and the whole room falls silent)"
+SCR_CH02_S90_L045,...Sorry. It does that.
+SCR_CH02_S90_L046,He's tugging his cuff. Everyone about to swear an oath does that.
+SCR_CH02_S90_L047,He's mopping his brow. That means he's plugging a leak. Attack now.
+SCR_CH02_S90_L048,His hand's about to slam down. Get ready to catch him.
+SCR_CH02_S90_L049,"He's smiling, and he's waiting. Don't go drawing any careless links."
+SCR_CH02_S90_L050,"Fine, fine! If I'm going down, we all go down! (Clenching the counterweight, veins standing out on the back of his hand)"
+SCR_CH02_S90_L051,I've got nothing left to fear...! (Glaring straight at Sherefox)
+SCR_CH02_S90_L052,S-stay back! My next words will make you regret this!
+SCR_CH02_S90_L053,"Oh dear, Miss Fox's ears have drooped? I'm ever so frightened."
+SCR_CH02_S90_L054,Cat got your tongue? Weren't you so good at talking about time a moment ago?
+SCR_CH02_S90_L055,One minute.
+SCR_CH02_S90_L056,Two minutes. Your clock's running slower and slower.
+SCR_CH02_S90_L057,"Three minutes, bang on time. Unstoppable! Your timetable ends here!"
+SCR_CH02_S90_L058,"...(Ears droop) Ow, that hit."
+SCR_CH02_S90_L059,"Calm down, Sherefox. Time hasn't stopped."
+SCR_CH02_S90_L060,Hold on—I've completely cracked it!
+SCR_CH02_S90_L061,"The cuckoo has called, Mr. Fitch. Now it's your turn to panic."
+SCR_CH02_S90_L062,Unstoppable! This blade cuts from the pendulum all the way to your cuff!
+SCR_CH02_S90_L063,"Double Break, Counter Break and At the Brink do not appear in this chapter."
+SCR_CH02_S90_L064,Nicely done. Three moves in a row read correctly.
+SCR_CH02_S90_L065,"Keep up this rhythm, and don't get greedy."
+SCR_CH02_S90_L066,"He's been driven into a corner. Careful: every punch from now on will be heavy, but easy to spot."
+SCR_CH02_S90_L067,He's stopped Reinforcing and only charges forward. Watch his hands.
+SCR_CH02_S90_L068,"Sherefox, don't Rebut for now. Steady your footing."
+SCR_CH02_S90_L069,"Next move, use solid evidence or Observe. I'll see you through it."
+SCR_CH03_S01_L001,Scene 1: Newspaper Front Page (Opening)
+SCR_CH03_S01_L002,"【The London Lantern · November 1887】Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted from Inside, Police Arrest Bargeman"
+SCR_CH03_S01_L003,"Our correspondent reports: Edwin Moss, an official in the Municipal Hall's Procurement Department, was found dead yesterday morning in the boiler room of a steam barge on the Thames. It is understood that the boiler-room door had been bolted from the inside; the first on the scene was the barge's bargeman, Old Tom, and police have arrested him on the strength of his possessing a key. Inspector Baskerville of Scotland Yard, who is in charge of the case, stated: ""The killer is on that barge. This case ends tonight."" A Municipal Hall spokesman expressed condolences over Mr. Moss's misfortune and stressed that next week's annual procurement audit will proceed as scheduled."
+SCR_CH03_S02_L001,Scene 2: Agency Living Room (Daily Life)
+SCR_CH03_S02_L002,"(Barging through the door, hat still on) Young Pendleton! I hear your shepherd's pie is the best in all of Baker Street!"
+SCR_CH03_S02_L003,"...Excuse me, who are you?"
+SCR_CH03_S02_L004,"Scotland Yard, Inspector Baskerville! This Inspector cracked a major case today and has come to celebrate!"
+SCR_CH03_S02_L005,(Flipping over on the sofa) What case did you crack?
+SCR_CH03_S02_L006,"The barge locked-room murder! The culprit is the bargeman, caught red-handed. This Inspector's nose is never wrong!"
+SCR_CH03_S02_L007,"The door was bolted from the inside, yet the bargeman opened it from the outside and found the body, and then you arrested him? Inspector, has your nose been blocked up by Thames fog?"
+SCR_CH03_S02_L008,(Ears twitching) M-Miss Fox! You are questioning the professionalism of Scotland Yard!
+SCR_CH03_S02_L009,"No, I'm questioning Scotland Yard's nose. The professionalism I'll judge once I've seen the scene."
+SCR_CH03_S02_L010,"...Then would you care to come and take a look together? And, while we're at it, might the pie be packed to take away?"
+SCR_CH03_S02_L011,That was my first meeting with Inspector Baskerville. He ate two portions of pie and took away a third.
+SCR_CH03_S03_L001,Scene 3: Thames Wharf and Barge (Event)
+SCR_CH03_S03_L002,"The fog was so thick it was as though the whole river had been steeped in milk. The barge was moored at Wharf Seven; the boiler had gone cold, but the deck still carried a smell of rust, like the aftermath of a scalding."
+SCR_CH03_S03_L003,"(In handcuffs) I didn't kill anybody! I only came to light the fire this morning, and the moment I opened the door, he was lying there!"
+SCR_CH03_S03_L004,"Silence! The bolt was shut from the inside, and you're the only one with a key. If it isn't you, who is it?"
+SCR_CH03_S03_L005,"Inspector, may I ask a small question? How does a man opening the door from the outside come to find a door that was bolted from the inside?"
+SCR_CH03_S03_L006,Th-that's because... he has a key!
+SCR_CH03_S03_L007,"A key opens the outer lock. The bolt, you see, is on the inside."
+SCR_CH03_S04_L001,Scene 4: Warm-up Debate (No Dominance Loss)
+SCR_CH03_S04_L002,Warm-up Debate. Opponent: Inspector Baskerville. No Dominance loss.
+SCR_CH03_S04_L003,"(Misjudgement) The key was on the bargeman, and the door was locked from the inside, so he is the killer! This Inspector's reasoning is flawless!"
+SCR_CH03_S04_L004,"(After appraisal) Inspector, this bolt isn't a manual one. It's connected to a steam pipe, and pressure pushes it up and down."
+SCR_CH03_S04_L005,(Presenting E03_05 + E03_02) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.
+SCR_CH03_S04_L006,...A st-steam bolt? Of course this Inspector knew! This Inspector was merely testing you!
+SCR_CH03_S04_L007,Then the test was a success. It proves you didn't know.
+SCR_CH03_S04_L008,"Ahem! At any rate, the bargeman stays in custody for now. This Inspector shall give you the post-mortem report and let you up on deck. But if you fail to find another suspect, he is sent on to trial tomorrow!"
+SCR_CH03_S04_L009,Inspector's Trust 3 or higher: obtain the post-mortem report (E03_01) and deck access.
+SCR_CH03_S05_L001,Scene 5: Evidence Search (Barge and Wharf)
+SCR_CH03_S05_L002,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails."
+SCR_CH03_S05_L003,"Cause of death is steam asphyxiation, not blunt force. Judging by lividity and body temperature, he died between ten and half past ten last night. He was clawing at the door until the end."
+SCR_CH03_S05_L004,"A heavy brass bolt, one end connected to a thin steam pipe, with limescale still on the pipe mouth."
+SCR_CH03_S05_L005,A pressure bolt. Turn the valve on deck and the steam pushes the bolt down. A man can stand outside and the door still locks from the inside.
+SCR_CH03_S05_L006,"On the valve handle is a soot fingerprint, wide and long, a size larger than Old Tom's short, stubby fingers."
+SCR_CH03_S05_L007,The soot hasn't been dampened by the fog yet. It was left last night.
+SCR_CH03_S05_L008,"Jammed in the relief valve's outlet is a brass part that shouldn't be there, a string of tiny batch numbers engraved on its surface."
+SCR_CH03_S05_L009,"This part was forced in, so the steam couldn't vent and could only flood into the boiler room. The batch number format... Sherefox, take out that transcript you tucked into your notebook and compare."
+SCR_CH03_S05_L010,"A worn, polished old key that has opened only this barge's hatch for forty years."
+SCR_CH03_S05_L011,It only opens the outer lock. Using it on a steam bolt is about as useful as using a spoon to open a safe.
+SCR_CH03_S05_L012,"Mr. Pierce's coat is finely tailored, yet the hem is ringed with coal soot."
+SCR_CH03_S05_L013,"The same colour and grain as the soot on the valve handle. London soot isn't all of one kind, you know."
+SCR_CH03_S05_L014,"The municipal purchase order says ""brass parts, 300 units"", but the goods-received stamp covers only 200."
+SCR_CH03_S05_L015,"A hundred short, which is just what a barge's hold can carry."
+SCR_CH03_S05_L016,"The last page reads ""22:10, R. P. boards, counts cargo"", in hasty handwriting, but you can tell whose it is."
+SCR_CH03_S05_L017,R. P.: Roland Pierce. He told everyone he left the barge at half past nine.
+SCR_CH03_S05_L018,The notice on the victim's desk says the annual procurement audit begins next week; the proposer's column is signed with a single letter: W.
+SCR_CH03_S05_L019,"A single audit notice, and a man panics so badly he wants to confess. Did the one who proposed it know all along that this would happen?"
+SCR_CH03_S06_L001,Scene 6: Main Debate
+SCR_CH03_S06_L002,The Debate begins. Opponent: Roland Pierce (Culprit).
+SCR_CH03_S06_L003,(Round 1 · Tell) Pierce fingers his watch chain. Lit node: N1. Possible moves: Assert / Onslaught.
+SCR_CH03_S06_L004,(Tell) I got off the barge at half past nine; the tavern keeper can vouch for me.
+SCR_CH03_S06_L005,(Hint) He's fingering his watch chain again. People about to speak always check the time first.
+SCR_CH03_S06_L006,"(Assert) When I left the barge, Moss was still on the deck—"
+SCR_CH03_S06_L007,"(Rebut N1, presenting E03_08) Hold on! The logbook's last page: ""22:10, R. P. boards, counts cargo."" In your own handwriting. The logbook disagrees with your half past nine."
+SCR_CH03_S06_L008,【印：截】
+SCR_CH03_S06_L009,【印：破竹×1】
+SCR_CH03_S06_L010,"Cut-In! N1 removed, counter 30. Pierce's Dominance: 70."
+SCR_CH03_S06_L011,"(Round 2 · Tell) Pierce fingers his watch chain, then glances at Arthur. Lit node: N3. Possible moves: Assert / Set a Trap (no star)."
+SCR_CH03_S06_L012,"(Tell) As a partner, I'm obliged to set things out clearly."
+SCR_CH03_S06_L013,(Hint) He glanced at me... he may be waiting for you to draw a dashed line.
+SCR_CH03_S06_L014,"(Observe) Please, go on, Mr. Roland. The more you say, the thinner the fog gets."
+SCR_CH03_S06_L015,"(Assert) We were carrying lawful government cargo, with paperwork to prove it."
+SCR_CH03_S06_L016,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N3 stays on the table."
+SCR_CH03_S06_L017,【印：斷】
+SCR_CH03_S06_L018,"He was just reciting his lines. But he's finished now, and next move he'll slip up."
+SCR_CH03_S06_L019,Next round's Tell becomes Clear.
+SCR_CH03_S06_L020,(Round 3 · Tell) Pierce opens the ledger. Lit node: N3. Clear (after Observe): Reinforce.
+SCR_CH03_S06_L021,"(Tell) Our books are spotless, every entry."
+SCR_CH03_S06_L022,"(Hint) He's opened the ledger: he's patching a hole, not reading. And the ledger happens to be his sore spot."
+SCR_CH03_S06_L023,"(Solid Chain, E03_07→E03_06) Spotless? The purchase order says three hundred, and the receiving book shows only two hundred. Did the other hundred go on holiday aboard your barge? The coal soot on your coat hem is their ticket."
+SCR_CH03_S06_L024,(Reinforce) Procurement and receiving books failing to match is... is common enough at the Municipal Hall.
+SCR_CH03_S06_L025,【大字：動搖】
+SCR_CH03_S06_L026,【印：破竹×1】
+SCR_CH03_S06_L027,"Chain damage 21, halved by the Reinforce to 10.5. Scandal evidence hits! N3 removed; the Reinforce was hit, so there is no recovery; Pierce is Shaken. Dominance: 59.5."
+SCR_CH03_S06_L028,(Shaken) Th-that's just an accounting error! The Municipal Hall's books are always a mess!
+SCR_CH03_S06_L029,(Round 4 · Tell) Pierce loosens his cravat and steps forward. Lit node: N2. Possible moves: Assert / Onslaught.
+SCR_CH03_S06_L030,(Tell) What would a slip of a girl like you know!
+SCR_CH03_S06_L031,"(Hint) His cravat's loosened: he's about to charge. He's still Shaken, so this is the moment."
+SCR_CH03_S06_L032,(Onslaught) The boiler-room door was bolted from the inside; that makes it an accident! You haven't one piece of evidence that—
+SCR_CH03_S06_L033,Hold on—I've completely cracked it!
+SCR_CH03_S06_L034,"(Rebut-Break, aimed at N2, presenting E03_02 + E03_04 + G-01) The bolt is steam-driven; a man standing on deck could bolt it from the inside. And the part jamming the relief valve carries a batch number from the very same black-market list as the gear in the clock shop! What you and Moss were skimming was military parts. Moss wanted to confess to the audit, so you used the very goods you'd stolen together to shut him in with the steam!"
+SCR_CH03_S06_L035,【印：截】　【大字：論破】
+SCR_CH03_S06_L036,【印：破竹×2】
+SCR_CH03_S06_L037,"Onslaught cut off! Counter 33 (Unstoppable bonus); Pierce's Dominance: 26.5. Break! Pierce's whole claim chain is smashed, and another 70 is taken off; Dominance locks at 1 and the Endgame begins."
+SCR_CH03_S06_L038,(Round 5 · Endgame) Pierce points at the handcuffed Old Tom. Clear: Scorched Earth.
+SCR_CH03_S06_L039,"(Endgame · Scorched Earth) ...Fine, I admit I boarded the barge! But the one who turned the valve was that old bargeman! He touches that valve every day; of course his fingerprints are on it!"
+SCR_CH03_S06_L040,I-I didn't...
+SCR_CH03_S06_L041,"(Hint) Don't wait for him to go on this time; he'll bite all the way down. One key, one fingerprint."
+SCR_CH03_S06_L042,"(Rebut, presenting E03_05 + E03_03) Old Tom's key only opens the outer lock, and the print on the valve handle is a size bigger than his hand, and fresh coal soot from last night, too. Mr. Roland, your story is like this barge: one good ram, and it goes under."
+SCR_CH03_S06_L043,【印：截】
+SCR_CH03_S06_L044,Pierce's Dominance falls to zero. Debate won.
+SCR_CH03_S06_L045,(Slumping into a seat) If he'd only held out one more week... just one week...
+SCR_CH03_S06_L046,"(If the wrong card is played in the Endgame) Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30."
+SCR_CH03_S07_L001,Scene 7: Results
+SCR_CH03_S07_L002,Victory
+SCR_CH03_S07_L003,【The London Lantern】Inspector Baskerville Solves Case at Lightning Speed! Mystery of the Barge Locked Room Revealed
+SCR_CH03_S07_L004,"Our correspondent reports: The truth behind the Thames barge murder came out last night. Inspector Baskerville of Scotland Yard arrested the deceased's partner, Roland Pierce, late in the night, and on the spot released the bargeman who had been mistakenly arrested. The Inspector stated: ""This Inspector found that partner suspicious from the very start."" It is understood that the case involves irregularities in municipal procurement, and the Municipal Hall has announced a widening of the audit."
+SCR_CH03_S07_L005,"(Holding up the newspaper) Miss Fox! Look, the front page! This Inspector's photograph looks so imposing!"
+SCR_CH03_S07_L006,Mm. Your nose came out especially clearly.
+SCR_CH03_S07_L007,"...Next time this Inspector comes for pie, he shall bring his own plate."
+SCR_CH03_S07_L008,Inspector's Trust +1.
+SCR_CH03_S07_L009,(Epilogue: The Docks)
+SCR_CH03_S07_L010,"As we left the docks, a lady with a black umbrella stood in the fog. The one from the corner of the clock shop."
+SCR_CH03_S07_L011,"An audit, which was originally designed to give an unfortunate official the opportunity to answer, within the bounds of the law, for his own errors; regrettably, certain actions have been shown to be swifter than audits."
+SCR_CH03_S07_L012,You're the coffee drinker from that day. Who exactly are you?
+SCR_CH03_S07_L013,"Municipal advisor, Wolfhart. The proposal for the audit was made by me. (A pause.) Your reasoning was carried out this evening with considerable cleanliness, Miss Sherefox. That is a thing which will be remembered."
+SCR_CH03_S07_L014,Remembered by whom?
+SCR_CH03_S07_L015,"(Tapping the knuckles of her glove, with a faint smile) By all those who have need of remembering it. Good night."
+SCR_CH03_S07_L016,Her smile didn't reach her eyes. But Sherefox's tail didn't lower for a long time after she left.
+SCR_CH03_S07_L017,Defeat
+SCR_CH03_S07_L018,【The London Lantern】Bargeman Indicted; Fox-Eared Detective's Meddling Comes to Nothing
+SCR_CH03_S07_L019,"Our correspondent reports: Old Tom, suspect in the Thames barge murder, was formally indicted yesterday. A fox-eared girl reportedly raised bizarre theories at the scene, such as ""steam bolts"", which were not accepted. Inspector Baskerville stated: ""The imagination of amateur detectives deserves encouragement, but police work runs on evidence."""
+SCR_CH03_S07_L020,"The part jammed in the relief valve was impounded as evidence. The Inspector said nothing as he saw us off the docks, and did not mention pie."
+SCR_CH03_S07_L021,Inspector's Trust −1.
+SCR_CH03_S08_L001,Scene 8: Arthur's Case-Closed Notes
+SCR_CH03_S08_L002,"Case name: The Steam Barge Murder in the Fog on the Thames. Culprit: Roland Pierce. Method: bolting the door remotely via the pressure valve, then jamming the relief valve with a black-market part. Note: that part's batch number comes from the same list as the clock shop's gear. Two cases on either side of one river, stitched together by a single thread. Sherefox circled the two batch numbers in her notebook and wrote a single letter beside them: W."
+SCR_CH03_S90_L001,Debate Line Library: Pierce
+SCR_CH03_S90_L002,I got off the barge at half past nine; the tavern keeper can vouch for me.
+SCR_CH03_S90_L003,Let me tell you all the order of events.
+SCR_CH03_S90_L004,"As a partner, I'm obliged to set things out clearly."
+SCR_CH03_S90_L005,What would a slip of a girl like you know!
+SCR_CH03_S90_L006,"Inspector, you're letting an amateur make a fool of herself here?"
+SCR_CH03_S90_L007,Enough! Let me show you what real evidence looks like!
+SCR_CH03_S90_L008,"Our books are spotless, every entry."
+SCR_CH03_S90_L009,Let me check the figures.
+SCR_CH03_S90_L010,...You misheard me. What I meant was—
+SCR_CH03_S90_L011,Do go on; I'm curious how much more the young lady can connect.
+SCR_CH03_S90_L012,"Mechanic, your mistress seems to be crossing wires again."
+SCR_CH03_S90_L013,I'm waiting.
+SCR_CH03_S90_L014,"When I left the barge, Moss was still smoking on the deck."
+SCR_CH03_S90_L015,The boiler-room door was bolted from the inside; that makes it an accident.
+SCR_CH03_S90_L016,"We were carrying lawful government cargo, with paperwork to prove it."
+SCR_CH03_S90_L017,"If it wasn't an accident, then it was the bargeman with the key!"
+SCR_CH03_S90_L018,You haven't one piece of evidence that puts me in the boiler room!
+SCR_CH03_S90_L019,"I'll sue you for slander, every one of you!"
+SCR_CH03_S90_L020,Procurement and receiving books failing to match is common enough at the Municipal Hall.
+SCR_CH03_S90_L021,"Even if I left the barge a little late, it doesn't prove anything."
+SCR_CH03_S90_L022,My solicitor will handle these details.
+SCR_CH03_S90_L023,Ha! Soot matching soot? Everyone in London has coal soot on them!
+SCR_CH03_S90_L024,"These two items, have you actually thought through how they connect?"
+SCR_CH03_S90_L025,"Inspector, note this down: she's forcing it."
+SCR_CH03_S90_L026,"Fine, I admit I boarded the barge! But the one who turned the valve was that old bargeman!"
+SCR_CH03_S90_L027,He touches that valve every day; of course his fingerprints are on it!
+SCR_CH03_S90_L028,This was no accident. It's valve-id reasoning!
+SCR_CH03_S90_L029,"Time, place, coal soot: three things pointing at the same man."
+SCR_CH03_S90_L030,Flip that ledger as fast as you like; you can't flip faster than the evidence.
+SCR_CH03_S90_L031,"With fog this thick, who can say for certain? Well, I can say for certain."
+SCR_CH03_S90_L032,"These two things are like you and Moss: they look unconnected, but they're very connected."
+SCR_CH03_S90_L033,Hold on!
+SCR_CH03_S90_L034,"Your story is like this barge: one good ram, and it goes under."
+SCR_CH03_S90_L035,The logbook disagrees.
+SCR_CH03_S90_L036,"Please, go on, Mr. Roland."
+SCR_CH03_S90_L037,"(Arms folded, tail perfectly still)"
+SCR_CH03_S90_L038,"The more you say, the thinner the fog gets."
+SCR_CH03_S90_L039,Young lady—
+SCR_CH03_S90_L040,—sir. (Both slam the table at the same time; each side takes a hit)
+SCR_CH03_S90_L041,I got off at half past nine—
+SCR_CH03_S90_L042,"Ten past ten, R. P. boards."
+SCR_CH03_S90_L043,(The foghorn sounds low; only the sound of water remains on deck)
+SCR_CH03_S90_L044,...Who speaks first?
+SCR_CH03_S90_L045,He's fingering his watch chain again. People about to speak always check the time first.
+SCR_CH03_S90_L046,"He's opened the ledger: he's patching a hole, not reading."
+SCR_CH03_S90_L047,His cravat's loosened. He's about to charge.
+SCR_CH03_S90_L048,"He's looking at me, and tapping the ledger. Don't draw any dashed lines."
+SCR_CH03_S90_L049,"Fine! If you want to lift the lid, I'll lift the whole boiler along with it! (Slamming the ledger onto the deck)"
+SCR_CH03_S90_L050,I've worked this river for twenty years. You think a slip of a girl is going to corner me?
+SCR_CH03_S90_L051,"Inspector, you'd better arrest her right now, or what I say next will be more than any of you can bear!"
+SCR_CH03_S90_L052,"What's the matter? Is the fog too thick for you to see, little girl?"
+SCR_CH03_S90_L053,Your ears have drooped. Go home and drink your milk.
+SCR_CH03_S90_L054,One strand.
+SCR_CH03_S90_L055,"Two strands. Your rope is about to snap, Mr. Roland."
+SCR_CH03_S90_L056,Three strands! Unstoppable! This barge of lies is going down!
+SCR_CH03_S90_L057,...(Ears droop) The fog is so heavy.
+SCR_CH03_S90_L058,It's all right. Fog always lifts.
+SCR_CH03_S90_L059,Hold on—I've completely cracked it!
+SCR_CH03_S90_L060,"Your ledger's trembling, Mr. Roland."
+SCR_CH03_S90_L061,Unstoppable! From the valve all the way into your ledger!
+SCR_CH03_S90_L062,"Double Break, Counter Break and At the Brink do not appear in this chapter."
+SCR_CH03_S90_L063,All three read correctly. His ledger can hardly stay open.
+SCR_CH03_S90_L064,"Keep going, but don't rush to draw dashed lines."
+SCR_CH03_S90_L065,"He's pacing the deck. His next move will be an attack, and a heavy one."
+SCR_CH03_S90_L066,"Don't clash head-on; wait for him to speak, then cut in."
+SCR_CH03_S90_L067,Steady. Don't Rebut this round.
+SCR_CH03_S90_L068,Hold on with solid evidence. The fog will lift.
+SHF_C1_IDLE,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces."""
+SHF_C1_REMAIN,"""Hold on, there's still something I haven't looked at. My ears are itching."""
+SPK_ARTHUR,Arthur
+SPK_FITCH,Fitch
+SPK_GRESHAM,Gresham
+SPK_HOLLOWAY,Holloway
+SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville
+SPK_NARRATION_ARTHURS_NOTES,Narration (Arthur's Notes)
+SPK_NEWSPAPER,Newspaper
+SPK_OLD_TOM,Old Tom
+SPK_PIERCE,Pierce
+SPK_SHEREFOX,Sherefox
+SPK_SYSTEM,System
+SPK_WOLFHART,Wolfhart
+STAMP_ASSIST,援護
+STAMP_ASSIST_LOG,【援護】
+STAMP_ASSIST_SUB,COVERED
+STAMP_CLASH,交鋒
+STAMP_CLASH_LOG,【交鋒】
+STAMP_CLASH_SUB,CLASH
+STAMP_HACHIKU,破竹
+STAMP_HACHIKU_LOG,【破竹】
+STAMP_HACHIKU_LOST,斷
+STAMP_HACHIKU_LOST_LOG,【斷】
+STAMP_HACHIKU_LOST_SUB,BROKEN
+STAMP_HACHIKU_SUB,UNSTOPPABLE ×{n}
+STAMP_PARRY,截
+STAMP_PARRY_LOG,【截】
+STAMP_PARRY_SUB,CUT IN
+STAMP_SEEN,看穿
+STAMP_SEEN_LOG,【看穿】
+STAMP_SEEN_SUB,SEEN THROUGH
+STAMP_TRAP,中計
+STAMP_TRAP_LOG,【中計】
+STAMP_TRAP_SUB,TRAPPED
+STAMP_WHIFF,落空
+STAMP_WHIFF_LOG,【落空】
+STAMP_WHIFF_SUB,WHIFF
+TUT_01_01_BODY,"Clues can hide in every corner of a scene. Move the cursor; anything that glows as you approach is an Investigation Point, and one click investigates it. There are five types: Examine, Evidence, Testimony, Mechanism, and Locked Area."
+TUT_01_01_TITLE,Evidence Search
+TUT_01_02_BODY,"What you find becomes an Evidence Card and goes into your Evidence Book. Each card carries five kinds of Tag: Time, Place, Person, Physical, and Scandal. When you reason later, the game uses these Tags to decide whether two pieces of evidence fit together."
+TUT_01_02_TITLE,Evidence Cards
+TUT_01_03_BODY,"Talking to people can turn up clues too. A Testimony Card can be used in reasoning just like an Evidence Card, and it always carries a 【Person】 Tag. You can question the same person at most twice per case, so think carefully about what to ask."
+TUT_01_03_TITLE,Testimony Cards
+TUT_01_04_BODY,"The pocket watch at the upper left is your Evidence Search clock. From the next chapter on, every new place you investigate costs one Tick, and when the Ticks run out, you must leave the scene. This chapter takes place in your own home, so time is unlimited. Take your time."
+TUT_01_04_TITLE,Pocket-Watch Ticks
+TUT_01_05_BODY,"When you feel you've seen enough, press ""End Search"". Once you do, you can't go back to the scene, and the clues you missed often end up in your opponent's hands."
+TUT_01_05_TITLE,End Search
+TUT_01_06_BODY,This is where you organise your reasoning. Drag Evidence Cards from the drawer on the left onto the board. The board holds up to 15 cards.
+TUT_01_06_TITLE,Clue Board
+TUT_01_07_BODY,"For each piece of evidence, write down ""what it proves"". Choose one of the three Rationales on the right. All three sound plausible, but only one matches the truth. A card with no Rationale can't be linked."
+TUT_01_07_TITLE,Rationale
+TUT_01_08_BODY,Drag from the brass socket on a card's right edge to another card to link the two pieces of evidence. Two cards that share a Tag and both have correct Rationales are joined by a solid line. This is called a Solid Link.
+TUT_01_08_TITLE,Drawing Links
+TUT_01_09_BODY,"If two cards share a Tag but one has the wrong Rationale, or they connect only through a tangential Tag, the line becomes dashed. This is called a Sophistry Link. Cards with no Tag in common can't be linked, and the line simply springs back. What dashed lines mean will be explained in a later, bigger case."
+TUT_01_09_TITLE,Dashed Lines and Bounce-Backs
+TUT_01_10_BODY,"Cards strung together by links in a straight line form a Reasoning Chain: 2 to 5 cards, no branching. The board holds at most 3 chains. In a Debate, the weapons you present are these chains."
+TUT_01_10_TITLE,Reasoning Chains
+TUT_01_11_BODY,"Each round of a Debate, you and your opponent decide on your moves at the same time, then reveal together. You can't see what they chose, but they give off a ""Tell"": a line, a small gesture, and a lit claim. In this debate Dominance isn't deducted; you win by pointing out Arthur's 2 contradictions within 3 rounds."
+TUT_01_11_TITLE,Simultaneous Moves
+TUT_01_12_BODY,"Arthur puffs out his chest and puts his hands on his hips, claiming he slept straight through until morning. He's about to Assert. The eye icon on the right is wide open, which means the Tell is ""Clear"": he will definitely make the move it shows."
+TUT_01_12_TITLE,Reading the Tell
+TUT_01_13_BODY,"When the opponent is about to speak up, choose ""Rebut"": aim at the lit claim, have evidence ready that can overturn it, and cut in halfway through his sentence. After choosing your evidence, press ""Lock In""."
+TUT_01_13_TITLE,"When He Speaks, Defend"
+TUT_01_14_BODY,"When a Cut-In lands, you take no damage and the targeted claim is overturned. But Rebut can only catch an Assert: if the opponent is defending, your Rebut whiffs."
+TUT_01_14_TITLE,Cut-In
+TUT_01_15_BODY,"Arthur tugs his sleeve down to hide his cuff: he's about to Reinforce his story. When the opponent is defending, that's your moment to strike. Choose ""Solid Chain"" and present a chain containing only solid lines."
+TUT_01_15_TITLE,"When He Covers Up, Attack"
+TUT_01_16_BODY,"There are two kinds of attack, Solid Chain and Sophistry, and two kinds of defence, Rebut and Observe. What happens when one meets another is all written in the ""Matchup Table"" on the right, which you can open at any time during a Debate."
+TUT_01_16_TITLE,Attack and Defence
+TUT_01_17_BODY,"Arthur is flustered. This is ""Shaken"". On the round after he's Shaken, strike with evidence that points straight at the truth and you can ""Break"" him. He's about to speak again: Rebut, aimed at his last claim, presenting the cuff."
+TUT_01_17_TITLE,Shaken and Break
+TUT_01_18_BODY,"Arthur records the gestures you've seen and the opponent's habits in the ""Opponent Notes"". Next time you face the same person, give them a read first."
+TUT_01_18_TITLE,Opponent Notes
+TUT_01_19_BODY,"Arthur is now officially your assistant. From the next chapter on, he can appraise medical and mechanical evidence, and will block one trap for you during a Debate."
+TUT_01_19_TITLE,A New Partner
+TUT_02_01_BODY,"From this chapter on, investigating a new spot costs pocket-watch Ticks. You'll only get through about seventy per cent of any scene, so it's up to you to decide where your time is best spent."
+TUT_02_01_TITLE,Limited Ticks
+TUT_02_02_BODY,"A ""?"" on a card means that Tag can't be made out yet. Select the card and press ""Hand to Arthur"", and he'll appraise it with his medical or mechanical knowledge. Appraisals cost no Ticks, but the number per case is limited. Unappraised Tags can't be used for linking."
+TUT_02_02_TITLE,Appraisal
+TUT_02_03_BODY,"Some of the evidence you didn't pick up will fall into your opponent's hands, making their story harder to overturn. The screen will only tell you how many pieces you missed, not which ones."
+TUT_02_03_TITLE,Missed Evidence
+TUT_02_04_BODY,"A Debate is a contest of whose reasoning is more self-consistent. The steam pressure gauges at the lower left and upper right are each side's ""Dominance"". Drive your opponent's to zero and you win; if yours hits zero, you lose."
+TUT_02_04_TITLE,Debate and Dominance
+TUT_02_05_BODY,"The row of claims along the top belongs to your opponent, and the lit one is the claim he'll push this round. When he Asserts, the damage is a base value plus 4 for every claim on the table; the more claims you've overturned, the less weight his words carry."
+TUT_02_05_TITLE,The Claim Chain
+TUT_02_06_BODY,"On a successful Cut-In you take no damage, the claim is overturned, and you bite back for 30 damage. A Rebut needs evidence that can overturn the lit claim; if you have none, the Rebut button is greyed out, and all you can do is Observe to reduce the damage."
+TUT_02_06_TITLE,Rebut and Cut-In
+TUT_02_07_BODY,"The opponent was defending this round, so your Rebut had nothing to catch. Their Reinforce succeeded, the claim returned to the table, and a Reinforce that isn't hit also restores some of their Dominance."
+TUT_02_07_TITLE,Whiff
+TUT_02_08_BODY,"A chain segment containing only solid lines is presented as a ""Solid Chain"". Base damage is 14, and each additional Solid Link adds 0.5 to the multiplier. If the evidence you present happens to overturn the target claim, the claim is smashed. Against a Reinforce, damage is halved."
+TUT_02_08_TITLE,Solid Chain
+TUT_02_09_BODY,"You struck just as your opponent struck: both sides take a hit, and in a Clash your chain deals only half its damage. When the opponent is about to speak, Rebut is usually better value than rushing in."
+TUT_02_09_TITLE,Clash
+TUT_02_10_BODY,"A half-open eye means ""Vague"": of the two moves listed below, one is real and one is a decoy. First check whether the two options are the same type. If both are attacks, defending is never wrong."
+TUT_02_10_TITLE,Vague Tells
+TUT_02_11_BODY,"The option with a star is more likely to be the real one: opponents have habits, such as ""tends to Reinforce after a claim is overturned"". These habits are called ""Behaviour Rules"", and Arthur records each one in the Opponent Notes as soon as he sees it. A star only means ""likelier"", not a guarantee."
+TUT_02_11_TITLE,Behaviour Rules
+TUT_02_12_BODY,"When you can't decide, use ""Fox-Ear Instinct"": a Vague Tell loses its decoy and leaves only the real move. You get just two per debate, so save them for the key rounds."
+TUT_02_12_TITLE,Fox-Ear Instinct
+TUT_02_13_BODY,"An overturned claim disappears, but each round the opponent restates their case and adds a claim back. If the added claim comes from evidence you missed, it's marked in the corner."
+TUT_02_13_TITLE,Smashing Claims
+TUT_02_14_BODY,"Losing a Debate doesn't end the game, but the next case starts from a worse position. Only the result of the final battle decides the ending directly."
+TUT_02_14_TITLE,After the Verdict
+TUT_02_15_BODY,"After each case, the paper prints ""the result as the world sees it"", which isn't always the truth. Every issue you read goes into your Scrapbook."
+TUT_02_15_TITLE,The Newspaper
+TUT_02_16_BODY,"You read their move correctly. Every time you make a favourable response (cutting in when they Assert, quietly Observing when they Reinforce, answering a trap with solid evidence or Observe, or Shaking them with Scandal evidence), a layer of ""Unstoppable"" stacks up at the lower left, up to three. Each layer raises chain damage and Cut-In counters by ten per cent; at three layers, a Break needs one fewer piece of evidence. But one wrong response breaks your momentum, and you start over. A Solid Chain against a Reinforce still chips them down, but it doesn't count as a correct read; to stack Unstoppable against a Reinforce, use Observe (or Sophistry, once you've learned it)."
+TUT_02_16_TITLE,Unstoppable
+TUT_03_01_BODY,"The badges at the upper right show how much Inspector Baskerville trusts you: five in all. The higher his trust, the more post-mortem reports, witness lists and scene access he provides; lose a debate, or use underhanded methods, and his trust drops."
+TUT_03_01_TITLE,Inspector's Trust
+TUT_03_02_BODY,"The Inspector has already confidently arrested someone. Before the real investigation, correct his misjudgement: when he speaks, use Rebut to present a piece of evidence that overturns him. Warm-ups don't cost Dominance; get it right in one go and he'll give you extra intelligence; get it wrong three times and he loses patience."
+TUT_03_02_TITLE,Warm-up Debate
+TUT_03_03_BODY,"Areas with yellow tape need a permit. In cases where the police are involved, the Inspector will let you in if his trust is high enough; if it isn't, you'll have to find another way."
+TUT_03_03_TITLE,Scene Access
+TUT_03_04_BODY,"The opponent loosens his cravat and steps forward: this is an ""Onslaught"". An Onslaught does 1.25 times the damage of an ordinary Assert. But it is also an opening: Cut In on an Onslaught with Rebut and they lose their footing on the spot."
+TUT_03_04_TITLE,Onslaught
+TUT_03_05_BODY,"The opponent's pressure gauge starts to leak: they are ""Shaken"". For the next round, the opponent takes 1.5 times damage from attacks, and a Break can only be played in that one round. Cutting in on an Onslaught, striking a sore spot with Scandal evidence, or presenting a Solid Chain of 4 or more cards can all leave an opponent Shaken."
+TUT_03_05_TITLE,Shaken
+TUT_03_06_BODY,"Now is the time to Break. Present a Striker evidence that points to a single fact, or a Solid Chain of 2 or more cards, and you can ""Break"" the opponent, stripping away seventy per cent of their Dominance outright. When you Break with a Solid Chain, Reinforce can't stop it and traps can't catch you; when you Break with Rebut, it only works if the opponent happens to speak up."
+TUT_03_06_TITLE,Break
+TUT_03_07_BODY,"The opponent was defending, so your Rebut-Break whiffed, and the Shaken state ended with it. Next time they're Shaken, if you can't tell whether they'll attack or defend, a Solid Chain is the safer bet."
+TUT_03_07_TITLE,Missed Window
+TUT_03_08_BODY,"A Broken opponent won't concede quietly; they will launch one last counterattack. The counterattack type is always Clear, but you must play the right card to stop it. The Endgame lasts only one round: answer wrongly and you take 30 damage, and the Break is voided."
+TUT_03_08_TITLE,Endgame
+TUT_03_09_BODY,"A cornered culprit starts flinging blame around wildly. Wait for him to speak, cut in with Rebut, and present a Solid Chain of 2 or more cards with no Weak Points to finish it for good. Don't Observe, and don't use Sophistry again."
+TUT_03_09_TITLE,Finishing Up: Culprit
+TUT_03_10_BODY,"The first time the opponent's Dominance drops to half or below, he will always go on the Onslaught, and the Tell will be Clear. Remember this rule: it's a perfect chance to cut in on his Onslaught and leave him Shaken."
+TUT_03_10_TITLE,Pushed Too Far
+TUT_03_11_BODY,"The key evidence you reasoned out correctly in the previous case has quietly been filed away, and is now a ""Golden Clue"". It points to a single fact and has the greatest attack power. A Golden Clue is not used up when you use it."
+TUT_03_11_TITLE,Golden Clue
+TUT_03_12_BODY,"You took his Onslaught head-on, and your position is breached. Next round you can't Rebut, only attack or Observe, and Unstoppable resets to zero. When you see the Tell of an Onslaught, cut in on it with Rebut to avoid being breached. You are also breached when a Sophistry is caught in a trap and Cover doesn't block it."
+TUT_03_12_TITLE,Breached
+TUT_03_13_BODY,"The opponent has been driven into a corner: that happens when you cut in on them a second time, or when their Dominance falls below thirty per cent. For the next two rounds they hit harder and can't Reinforce, but in their desperation their Tell is one level clearer. This is both a danger and an opportunity."
+TUT_03_13_TITLE,Cornered
+TUT_04_01_BODY,"The rival detective, Victor Crowe, has already sealed off part of the scene. You have less time to search than usual; any evidence you miss, he will pick up and use against you in the Debate."
+TUT_04_01_TITLE,Rival Detective
+TUT_04_02_BODY,"A dashed line is a ""Sophistry Link"": the two cards share a Tag, but one of them has an incorrect Rationale, or they connect only through a tangential Tag. Sophistry has a multiplier of 0.8, higher than Solid's 0.5, but every Sophistry Link leaves a Weak Point on the chain."
+TUT_04_02_TITLE,Sophistry Links
+TUT_04_03_BODY,"A chain segment containing a dashed line must be presented as ""Sophistry"". When the opponent Reinforces, Sophistry punches through their defence at full damage, which a Solid Chain can't do. You can also improvise a new dashed link on the spot, but it too leaves a Weak Point."
+TUT_04_03_TITLE,Sophistry
+TUT_04_04_BODY,"Victor pushes up his monocle: this is ""Set a Trap"". Traps catch Sophistry: if you use Sophistry then, your damage is voided, you take a 25-point crit, and that dashed line snaps next round. But traps do nothing against solid evidence: attack with a Solid Chain and you deal full damage, and he can't Reinforce next round."
+TUT_04_04_TITLE,Set a Trap
+TUT_04_05_BODY,"If you think he's about to Set a Trap but you have to use Sophistry anyway, press ""Cover"" before locking in: if the trap catches you this round, Arthur blocks the crit for you, the dashed line stays intact, and your Notoriety doesn't rise. But Cover can be used only once per debate, and it's spent the moment you lock in, even if he doesn't set a trap. It's a prediction."
+TUT_04_05_TITLE,Cover
+TUT_04_06_BODY,"You played no card and quietly watched him set the trap, and now everyone can see it. The opponent gains a Fragile claim, and next round they will definitely attack."
+TUT_04_06_TITLE,Exposing the Trap
+TUT_04_07_BODY,"An exposed Sophistry hurts more than once. The papers are watching, and so is the Inspector; if your methods look ugly enough, tomorrow's headline won't be kind."
+TUT_04_07_TITLE,Reputation
+TUT_04_08_BODY,"A claim marked ""From: evidence you missed"" in the corner was put together by the opponent from things you didn't pick up. It can be smashed like any other claim, but it's a reminder that there are things at the scene you haven't seen."
+TUT_04_08_TITLE,Missed Evidence
+TUT_04_09_BODY,"Victor predicts that you'll repeat your last round's action and plays its counter first: if you just used Sophistry, he Sets a Trap; if you just Rebutted, he Reinforces. Against this kind of opponent, changing your move is the counter."
+TUT_04_09_TITLE,Mirror
+TUT_04_10_BODY,"Victor says ""I concede"" while tossing his glove on the table: that's the motion of his Onslaught. When the words and the gesture disagree, that's a ""Disguise"": words can lie, gestures can't. Go by the gesture."
+TUT_04_10_TITLE,Disguised Tells
+TUT_04_11_BODY,"Victor won't concede so easily; he'll reveal the card up his sleeve, usually the very piece of evidence you missed. Read his gestures, cut in with Rebut when he strikes, and present 2 or more pieces of solid evidence that overturn his hole card to finish it. Later rival detectives will play dirtier."
+TUT_04_11_TITLE,Finishing Up: Rival Detective
+TUT_04_12_BODY,"Beware: the rival detective can Break you right back. If the chain you present contains 3 or more Sophistry links, Cover has already been spent, and you are caught by his trap, you will be ""Reverse Broken"". The status bar at the lower right will flash red to warn you first."
+TUT_04_12_TITLE,Reverse Break
+TUT_05_01_BODY,"This opponent isn't a culprit but a ""Protector"" who wants to shield someone. He mostly Reinforces his story and shifts the focus, so hard evidence has trouble hitting him head-on."
+TUT_05_01_TITLE,Protector
+TUT_05_02_BODY,"When you're unsure how to strike, you can ""Observe"": play no card this round and let him keep talking. If he speaks up, you take only half the damage and the next Tell becomes Clear; if he Reinforces, you force out a claim he let slip."
+TUT_05_02_TITLE,Observe
+TUT_05_03_BODY,"The more he says, the easier it is to let something slip. When he Reinforced, you spotted the flaw, so he gains a ""Fragile"" claim: any attack that hits it will smash it and deal 10 extra damage."
+TUT_05_03_TITLE,Slip of the Tongue
+TUT_05_04_BODY,"His Reinforce wasn't hit, so his Dominance recovered by ten per cent. Against opponents who love to Reinforce, rather than just defending, punch through with Sophistry as they Reinforce, or Observe first to force a slip."
+TUT_05_04_TITLE,Reinforce Recovery
+TUT_05_05_BODY,"Evidence with a lipstick-mark Tag is Scandal evidence. Present it in a Solid Chain and hit a claim tied to a person, and the opponent becomes Shaken, no matter how much Dominance he has left."
+TUT_05_05_TITLE,Scandal Evidence
+TUT_05_06_BODY,"From this chapter on, opponents hold their nerve better: a Solid Chain of 4 or more cards can only leave them Shaken once their Dominance drops below sixty per cent. Scandal evidence, Golden Clues and cutting in on an Onslaught are exempt from this limit."
+TUT_05_06_TITLE,The Breaking Line
+TUT_05_07_BODY,"From mid-game on, a Broken opponent switches to a second story, for example from ""I didn't do it"" to ""I did it to protect someone"". In the Endgame, aim at the new, purple-framed story. From mid-game on, a wrong answer in the Endgame costs you 60 damage."
+TUT_05_07_TITLE,A Second Story
+TUT_05_08_BODY,"Once exposed, the Protector plays the sympathy card: ""Exposing the truth will only ruin everything. Can you bear that?"" That is a kind of Reinforce, so strike back. But ordinary physical evidence won't move him. Present a Solid Chain with Motive evidence bearing a heart lock, to prove that hiding the truth will bring a greater disaster."
+TUT_05_08_TITLE,Finishing Up: Protector
+TUT_05_09_BODY,"This item can't be taken into a Debate, but it remembers a relationship. In some conversations later, it will open up a new option. Story Evidence is kept in the Evidence Book under ""Private Collection""."
+TUT_05_09_TITLE,Story Evidence
+TUT_06_01_BODY,"It's a long way from London, with no Inspector to open doors and no post-mortem reports. Bodies and machinery must be handed to Arthur to appraise; where you can't get in, you'll have to talk your way in."
+TUT_06_01_TITLE,No Police Support
+TUT_06_02_BODY,"Guards won't let you through just because you're a detective. Choose a piece of evidence from your Evidence Book that could persuade him, and present it. Choose right and you get in; choose wrong and a Tick is wasted. You can try the same person at most three times."
+TUT_06_02_TITLE,Negotiation
+TUT_06_03_BODY,"Areas with red tape can only be entered by sneaking. Sneaking costs two Ticks, and some places can't be sneaked into no matter what."
+TUT_06_03_TITLE,Sneaking In
+TUT_06_04_BODY,"In chapters away from London, there is no Inspector to correct, and so no Warm-up Debate. The more access you win during the Evidence Search, the more cards you'll hold in the Debate."
+TUT_06_04_TITLE,No Warm-up
+TUT_06_05_BODY,"From here on, the conditions for a Break are stricter: when the opponent is Shaken, present a chain of 2 to 3 cards with no Weak Points; or first use Observe to force out a Fragile claim, then hit it with 2 or more pieces of solid evidence. A Break strips seventy-five per cent of the opponent's Dominance."
+TUT_06_05_TITLE,Mid-Game Break
+TUT_06_06_BODY,"From here on, opponents mostly give only Vague Tells. First check whether the two candidates are the same type; then look for a star, and think about what happened last round: did he just lose a claim? Did you just use Sophistry? His habits are all in the Opponent Notes."
+TUT_06_06_TITLE,Hard-to-Read Opponents
+TUT_06_07_BODY,"The opponent has made the same move two rounds in a row. On the third round, he will definitely change his move: you can strike that move off the candidate list."
+TUT_06_07_TITLE,"Third Time, He Changes"
+TUT_06_08_BODY,"When the two candidates are one attack and one defence with no star to go on, look for the move that doesn't lose badly against either. If he might Reinforce or Assert, Observe: if he speaks up, you take half damage and see his next move; if he Reinforces, you force out a Fragile claim. If he might Set a Trap or Assert, a Solid Chain doesn't fear traps."
+TUT_06_08_TITLE,Cover Both Sides
+TUT_07_01_BODY,"This Debate comes in two parts. In the first, your opponent is the Countess (a Protector); once you've beaten her, Victor Crowe takes over, with a Rival Detective's style. Your Dominance carries over to the second part and is not restored; Arthur's Cover is available once per part, but Fox-Ear Instinct is shared across the whole debate."
+TUT_07_01_TITLE,Two Opponents
+TUT_07_02_BODY,"A claim marked ""?"" is backed by family evidence you can't get hold of. It can't be targeted yet. Observe can force the opponent to say it out loud; once said, it becomes an ordinary claim."
+TUT_07_02_TITLE,Offstage Evidence
+TUT_07_03_BODY,"Victor has taken over. The Opponent Notes have turned to his page: the gestures you learned in Chapter 4 are all still there. He will Disguise his Tells; when you see a Clear Tell without the ""Basis"" brass tag, watch his hands first."
+TUT_07_03_TITLE,A Change of Opponent
+TUT_07_04_BODY,"Victor admits the reasoning you just smashed was only bait, then reveals his real hole card. This move comes with a Disguised Tell: read his gestures, cut in with Rebut as he strikes, and present an ""Outside Fact"" (that is, a Golden Clue) or evidence made specifically to overturn that hole card. If it lands, it's a ""Double Break"", and you win outright."
+TUT_07_04_TITLE,Turning the Tables
+TUT_07_05_BODY,"Your Reasoning Chains have all been severed and only the last sliver of Dominance remains. But in order to Break you, the opponent has played the most deeply hidden evidence he had, and now it's on your Clue Board too. You get one chance to redraw your links: assemble a chain that meets this chapter's Break conditions using it, and you can land a ""Counter Break""."
+TUT_07_05_TITLE,Last-Ditch Rebuild
+TUT_07_06_BODY,"You've now learned every debating technique. The opponents to come will use them all, mixed together."
+TUT_07_06_TITLE,Graduation
+TUT_08_01_BODY,"On the left is the city as you remember it; on the right, as it is now. Find the five things that have changed. A wrong click costs nothing, but after a few wrong clicks, Arthur will start giving you hints."
+TUT_08_01_TITLE,"A Familiar, Unfamiliar City"
+TUT_09_01_BODY,"Evidence with a broken card frame stands in for a clue you didn't get. It can help you survive this fight, but any link you draw with it is always a dashed line, and it can't count as an Outside Fact."
+TUT_09_01_TITLE,Damaged Evidence
+TUT_09_02_BODY,"This opponent changes through three styles as their Dominance falls: first a Culprit, then a Protector, finally a Sophist. The opponent type icon changes with them, and the Opponent Notes turn to the matching page. You can only Break them in their final style."
+TUT_09_02_TITLE,Three Faces
+TUT_10_01_BODY,"This is a public debate, and the crowd is listening. When the opponent is Shaken, a Solid Chain with no Weak Points deals triple damage; chains containing Sophistry stay as they are. But if a Sophistry is caught in a trap in front of the crowd, you lose half your Dominance at a stroke."
+TUT_10_01_TITLE,The Weathervane of Public Opinion
+TUT_10_02_BODY,"The final opponents hold their nerve better still: a Solid Chain of 4 or more cards can leave them Shaken only once their Dominance falls to half or below. A Break needs a chain of 3 to 4 or more cards, and it must include a Golden Clue. A wrong answer in the late-game Endgame costs you 80 damage."
+TUT_10_02_TITLE,Late-Game Break
+TUT_10_03_BODY,"A claim in a black-iron frame is the core of the opponent's story. A Solid Chain can still smash it; but to cut in on it as he speaks, your Rebut must use a Golden Clue. A Rebut with Common Evidence will block the hit and counter, but the claim stays on the table."
+TUT_10_03_TITLE,Sturdy Claims
+TUT_11_01_BODY,"At a banquet, even questions need manners. The fan at the upper right is your etiquette: each breach of manners costs one segment, and when all three are gone, the nobles will no longer speak to you."
+TUT_11_01_TITLE,Social Etiquette
+TUT_11_02_BODY,"This Debate is split into several stages, with no return to the Clue Board in between, and the opponent's Dominance is not reset. Cover and Fox-Ear Instinct are shared across the whole debate, so use them sparingly."
+TUT_11_02_TITLE,Multi-Stage Debate
+TUT_12_01_BODY,"Wolfhart will deliberately show weakness or strength; many of her Tells are Disguised. Her words can't be trusted, but her hands don't lie: rapping her knuckles is Set a Trap, a gentle swirl of the wine glass is Reinforce, a cold smile is Assert; set the glass down and then smile coldly, and it's an Onslaught."
+TUT_12_01_TITLE,Retreat to Advance
+TUT_12_02_BODY,"You've seen through her. For her, the moment her words and gestures disagree is the moment she shows a weakness. Fox-Ear Instinct can also see through a disguise directly, but you only have two."
+TUT_12_02_TITLE,Seen Through
+TUT_12_03_BODY,"Ordinary evidence can't leave her Shaken. There are only two ways: cut in on her Onslaught with a Rebut that includes a Golden Clue; or, once she is at half Dominance or below, hit her with a Solid Chain of 4 or more cards that includes a Golden Clue."
+TUT_12_03_TITLE,The Wall of Perfect Consistency
+TUT_12_04_BODY,"The outcome of some rounds has already been written, and nothing you play can change it. The eye in the Tell area is replaced by a locked gear. Survive it, and the next round is yours."
+TUT_12_04_TITLE,Round of Fate
+UI_ACH_CLEAN,The Sleuth Who Never Fibbed (no Sophistry exposed in the entire first playthrough)
+UI_ACH_MASTER,Master Detective
+UI_ACH_SCRAP,Scrapbook Fiend
+UI_ACH_TRUE,Fox and Wolf
+UI_ACH_UNLOCK,Achievement unlocked: {name}
+UI_ACT_CLAIM,Assert
+UI_ACT_GROUP_ATK,Attack
+UI_ACT_GROUP_DEF,Defend
+UI_ACT_REINFORCE,Reinforce
+UI_ACT_RUSH,Onslaught
+UI_ACT_TRAP,Set a Trap
+UI_APPR_CONFIRM,{type} appraisal. Uses {cost}; {left} remaining. Appraise?
+UI_APPR_DUAL,Dual
+UI_APPR_MECH,Mechanical
+UI_APPR_MED,Medical
+UI_AREA_OPEN,Open
+UI_AREA_PERMIT,Permit Required
+UI_AREA_SEALED,Sealed
+UI_AUTO_ON,Auto-play
+UI_BOARD_CHAIN,Chain {n}: {cards} cards · Solid {solid} · Sophistry {soph} · Est. damage {dmg}
+UI_BOARD_CHAIN_EMPTY,No Reasoning Chain yet
+UI_BOARD_COND_EARLY,"When the opponent is Shaken: present 1 Striker evidence, or a Solid Chain of 2 or more cards"
+UI_BOARD_COND_LATE,When the opponent is Shaken: present a chain of 3-4 or more cards that includes a Golden Clue
+UI_BOARD_COND_MID,"When the opponent is Shaken: present a chain of 2-3 cards with no Weak Points, or hit a claim exposed by a slip"
+UI_BOARD_DRAWER,Evidence Drawer
+UI_BOARD_LINK_SOLID,Solid Link
+UI_BOARD_LINK_SOPH,Sophistry Link (leaves a Weak Point)
+UI_BOARD_REASON,Rationale: This evidence proves…
+UI_BOARD_REASON_FIXED,Rationale fixed
+UI_BOARD_REASON_NONE,Rationale not set
+UI_BOARD_THRESHOLD,{stage} Break: {condition}
+UI_BOARD_TITLE,Clue Board
+UI_BOARD_WEAK,Weak Point: the opponent's counterattack hits here first.
+UI_BREAK,論破
+UI_BREAK_LINE,Hold on—I've completely cracked it!
+UI_BREAK_LINE_PARRY,Hold on—what you just said is the answer.
+UI_CASE_CARD_9,"Chapter 9, Case {n}: {caseTitle}"
+UI_CH1_CONTRA,Contradictions {n}/2 · {r} rounds left
+UI_CHAPTER_CARD,Chapter {n}: {chapterTitle}
+UI_CHOICE_KEY,【{plotItem}】
+UI_CMP_COUNTER,Differences {found}/5
+UI_COUNTER_BREAK,反擊論破
+UI_DAILY_MENU,Office
+UI_DEB_ASSIST_ARMED,"Cover ready: if a trap catches you this round, Arthur blocks the crit (spent as soon as you lock in)"
+UI_DEB_BEST,Recommended
+UI_DEB_COUNTER_PREVIEW,Assert {base}+4×{n}={dmg}
+UI_DEB_COUNTER_PREVIEW_RUSH,Onslaught ({base}+4×{n})×1.25={dmg}
+UI_DEB_DISGUISER,"This opponent's Tells may be Disguised: when their words and gestures disagree, trust the gesture."
+UI_DEB_GESTURE_KNOWN,{gesture} = {action}
+UI_DEB_HAND,Hand ×{n}
+UI_DEB_HP,{now}/{max}
+UI_DEB_LOCKED,Locked in
+UI_DEB_LOCK_SUMMARY_ATK,{action} · Target: {node} · Segment: {cards}
+UI_DEB_LOCK_SUMMARY_OBSERVE,Observe · No card this round
+UI_DEB_LOCK_SUMMARY_PARRY,Rebut · Aim: {node} · Present: {card}
+UI_DEB_NOPARRY_NOCARD,No evidence that can overturn this claim
+UI_DEB_NOPARRY_SHISSHU,Breached: can't Rebut this round
+UI_DEB_PHASE,Phase {n} of {total}
+UI_DEB_PREVIEW,Damage {dmg} · Multiplier ×{mult} · {shaken}
+UI_DEB_PREVIEW_BREAK,Can Break
+UI_DEB_PREVIEW_PARRY,"Cut-In: counter 30, smash the claim"
+UI_DEB_PREVIEW_PARRY_NOREF,Cut-In: counter 30 (this claim is too sturdy and will stay)
+UI_DEB_PREVIEW_SHAKE,Can leave the opponent Shaken
+UI_DEB_PREVIEW_SHAKEN,Shaken ×1.5
+UI_DEB_PREVIEW_SMASH,Will smash claims ×{n}
+UI_DEB_PREVIEW_VS,If {action}: {result}
+UI_DEB_ROUND,Round {n}
+UI_DEB_SEGMENT,Part {n}: {name}
+UI_DEB_STATUS_BREAK_TURN,Break Round
+UI_DEB_STATUS_SHAKEN,Shaken ({n} rounds left)
+UI_DEB_STATUS_TAIL,Endgame ({n} rounds left)
+UI_DEB_STATUS_TYPE,Current style: {type}
+UI_DEB_TELL,Tell
+UI_DEB_TELL_BASIS,Basis: {basis}
+UI_DEB_TELL_BASIS_INSTINCT,Fox-Ear Instinct
+UI_DEB_TELL_BASIS_KONJU,Cornered
+UI_DEB_TELL_BASIS_OBSERVE,Observe
+UI_DEB_TELL_BASIS_RULE,Rule {n}
+UI_DEB_TELL_BASIS_TUTORIAL,Tutorial
+UI_DEB_TELL_CANDIDATES,Candidates: {a}/{b}
+UI_DEB_TELL_CLEAR,Clear
+UI_DEB_TELL_FUZZY,Vague
+UI_DEB_TELL_LIKELY,Likelier (Rule {n})
+UI_DEB_TELL_SCRIPT,Round of Fate
+UI_DEB_TELL_SEEN,Seen Through
+UI_DIFF_MASTER,Master Detective
+UI_DIFF_MASTER_DESC,"No estimates, no retries. Tighter searches, nastier opponents."
+UI_DIFF_NORMAL,Standard
+UI_DIFF_NORMAL_DESC,"The experience the game was designed around. Weigh your choices, reason it out, and failure is allowed."
+UI_DIFF_NOTE,You can change the difficulty in Settings at the start of each chapter. The True End is achievable on every difficulty.
+UI_DIFF_SELECT,Select Difficulty
+UI_DIFF_STORY,Story Mode
+UI_DIFF_STORY_DESC,"For those who just want the story. Debates are lenient, hints are complete, and you can retry any time."
+UI_DOUBLE_BREAK,二連論破
+UI_END_BAD,Bad Ending: The Fox Who Wasn't Ready
+UI_END_NORMAL,Victory Ending: The Silver Cufflink on the Table Corner
+UI_END_TRUE,True Ending: The Challenge Letter with Coffee Beans
+UI_EVBOOK_GOLD_EMPTY,Nothing usable in the files yet.
+UI_EVBOOK_TAB_CASE,This Case
+UI_EVBOOK_TAB_GOLD,Golden Clues
+UI_EVBOOK_TAB_PLOT,Private Collection
+UI_EVBOOK_TITLE,Evidence Book
+UI_FAST_ON,Fast-forwarding
+UI_FLAG_MOTIVE,Motive
+UI_FLAG_OUTSIDE,Outside Fact
+UI_FLAG_STRIKE,Striker
+UI_FLOW_DEBATE_DELEG,Debate: Won by delegation
+UI_FLOW_DEBATE_LOSE,Debate: Lost
+UI_FLOW_DEBATE_NONE,Debate: Not attempted
+UI_FLOW_DEBATE_WIN,Debate: Won
+UI_FLOW_FILTER,Show gaps only
+UI_FLOW_GEN_SWITCH,Viewing: Playthrough {n}
+UI_FLOW_GOLD_SUB,Substitute Evidence
+UI_FLOW_KEY_DETAIL,"The Rationale for Key Evidence ""{name}"" is incorrect."
+UI_FLOW_KEY_DETAIL_MISS,"Key Evidence ""{name}"" was not found."
+UI_FLOW_KEY_MISS,Key deduction: Evidence not obtained
+UI_FLOW_KEY_NG,Key deduction: Incorrect
+UI_FLOW_KEY_OK,Key deduction: Correct
+UI_FLOW_MIXED,Mixed difficulty
+UI_FLOW_ROUTE,Current route: {route}
+UI_FLOW_ROUTE_NORMAL,Normal Route
+UI_FLOW_ROUTE_TRUE,True Route
+UI_FLOW_TITLE,Arthur's Casebook
+UI_FLOW_TRUE,True End requirements: Key deductions {a}/{b} · Debates won {c}/{d} · Golden Clues {list}
+UI_FLOW_TRUE_READY,All requirements met. Chapter 12 will follow the True Route.
+UI_GRADE_GOLDEN,Golden Clue
+UI_GRADE_KEY,Key Evidence
+UI_GRADE_NORMAL,Common Evidence
+UI_GRADE_PLOT,Story Evidence
+UI_GRADE_SUB,Substitute Evidence
+UI_INV_APPR_FREE,Appraisals: Unlimited
+UI_INV_APPR_LEFT,Appraisals {left}/{total}
+UI_INV_NO_POLICE,No Police Support
+UI_INV_TICKS,Ticks {left}/{total}
+UI_INV_TICKS_FREE,Ticks: Unlimited
+UI_INV_TITLE,Evidence Search: {sceneName}
+UI_LAST_STAND,Last Stand
+UI_LOAD_TITLE,Load
+UI_LOG_TITLE,Backlog
+UI_MENU_TITLE,Menu
+UI_NEGO_PROMPT,Present a piece of evidence to persuade {name}. (Chances left: {left})
+UI_NODE_FRAGILE,Fragile
+UI_NODE_HIDDEN,?
+UI_NODE_LAST,Last Holdout
+UI_NODE_LIT,Lit
+UI_NODE_NORMAL,Claim
+UI_NODE_SECOND,Second Story
+UI_NODE_STURDY,Sturdy
+UI_NODE_STURDY_SRC,From: evidence you missed
+UI_NOTES_GESTURE_EMPTY,(Haven't seen this one yet)
+UI_NOTES_LOG_MISREAD,Misread
+UI_NOTES_LOG_ROW,Round {n} · Tell: {tell} · You: {mine} · Opponent: {theirs} · {result}
+UI_NOTES_RULE_1,"After a claim is overturned, tends to Reinforce next."
+UI_NOTES_RULE_2,"If you used Sophistry last round, tends to Set a Trap next."
+UI_NOTES_RULE_3,"The first time Dominance falls to half or below, the next move is always an Onslaught (Clear)."
+UI_NOTES_RULE_4,"After a successful Reinforce, tends to Assert next."
+UI_NOTES_RULE_4W,After a successful Reinforce she doesn't rush to Assert; she tends to Set a Trap.
+UI_NOTES_RULE_5,"After the same move twice in a row, always switches on the third."
+UI_NOTES_RULE_COUNT,Triggered {n} times this debate
+UI_NOTES_RULE_MIRROR,"He predicts you will repeat your last move, and plays its counter first."
+UI_NOTES_TAB_LOG,Round Log
+UI_NOTES_TAB_OPP,This Opponent
+UI_NOTES_TAB_RULES,Behaviour Rules
+UI_NOTES_TITLE,Case Notes
+UI_NOTES_TITLE_DUP2,Arthur's Opponent Notes
+UI_OPINION,Opinion {n}
+UI_OPP_REVEAL,Today's opponent: {name} ({type})
+UI_PAPER_ADS,Advertisements
+UI_PAPER_CREDIT,Civilian assistance was also provided.
+UI_PAPER_DATE,{date} · {weather} · One Penny
+UI_PAPER_DISPUTE,The proceedings were reportedly rather contentious.
+UI_PAPER_MAST,The London Lantern
+UI_PAPER_MAST_HIGH,The Highland Weekly
+UI_PAPER_MAST_YORK,The Yorkshire Morning Post
+UI_PAPER_NOTO_LOSE,The detective's methods have also been called into question.
+UI_PAPER_PAGE2,Page Two
+UI_PAPER_SIDE,City Briefs
+UI_POINT_DEVICE,Mechanism
+UI_POINT_DONE,Investigated
+UI_POINT_ITEM,Evidence
+UI_POINT_LOCKED,Locked Area
+UI_POINT_LOOK,Examine
+UI_POINT_TALK,Testimony
+UI_REBUILD_BOARD,Rebuild your links (this once only)
+UI_RECALL_LOCKED,Not reached yet
+UI_RECALL_NOTE,Replay the story of chapters you've cleared. Recall doesn't change any records.
+UI_RECALL_TITLE,Chapter Recall
+UI_RES_ASSIST,Cover used
+UI_RES_BREAKS,Breaks
+UI_RES_COST,The Cost of This Case
+UI_RES_COST_OPP,The opponent walked away with the upper hand
+UI_RES_COST_SEIZE,"Evidence ""{name}"" was seized"
+UI_RES_COST_TRUST,The Inspector's Trust drops
+UI_RES_DELEGATE,Victory by Delegation
+UI_RES_HP,Dominance remaining
+UI_RES_INSTINCT,Fox-Ear Instinct used
+UI_RES_LOSE,Defeat
+UI_RES_MAXCHAIN,Longest chain
+UI_RES_MAXDMG,Biggest single hit
+UI_RES_PARRIES,Cut-Ins
+UI_RES_READS,Tells read correctly {hit}/{total}
+UI_RES_REPUTE,Reputation: {level}
+UI_RES_REPUTE_BAD,Infamous
+UI_RES_REPUTE_GOOD,Good
+UI_RES_REPUTE_MID,Disputed
+UI_RES_ROUNDS,Rounds
+UI_RES_TRUST,Inspector's Trust {from} → {to}
+UI_RES_WIN,Victory
+UI_REVERSE_BREAK,逆・論破
+UI_SAVE_TITLE,Save
+UI_SCRAP_COUNT,Collected {n}/{total}
+UI_SCRAP_LOCKED,Not yet published
+UI_SCRAP_TITLE,Scrapbook
+UI_SET_ASSIST_NOLIMIT,No time limit
+UI_SET_ASSIST_TIME,Cover Confirmation
+UI_SET_AUTOSPEED,Auto-Play Interval
+UI_SET_BREAK_FULL,Full
+UI_SET_BREAK_FX,Break Presentation
+UI_SET_BREAK_SHORT,Shortened
+UI_SET_CUTIN,Brush Banners
+UI_SET_CUTIN_FULL,Full
+UI_SET_CUTIN_SHORT,Shortened
+UI_SET_CUTIN_SUB,Banner Subtitles
+UI_SET_DELEGATE,Debate Delegation
+UI_SET_DELEGATE_DESC,Story Mode only. Debates won by delegation don't count toward the True End.
+UI_SET_DIFF,Difficulty
+UI_SET_DIFF_LOCKED,Difficulty can only be changed at the start of a chapter.
+UI_SET_FLASH,Reduce Flashing
+UI_SET_FONTSIZE,Font Size
+UI_SET_HPNUM,Pressure Gauge Numbers
+UI_SET_KEYBIND,Key Bindings
+UI_SET_LANG_TEXT,Text Language
+UI_SET_LANG_VOICE,Voice Language
+UI_SET_LINKSTYLE,Enhanced Link Styles
+UI_SET_LINKSTYLE_DESC,"Solid Links are drawn thicker and Sophistry Links become jagged, making them easier to tell apart."
+UI_SET_OFF,Off
+UI_SET_ON,On
+UI_SET_PADICON,Button Icons
+UI_SET_PADICON_AUTO,Auto
+UI_SET_POINTS,Always Highlight Investigation Points
+UI_SET_REDUCE_SHAKE,Reduce Shaking
+UI_SET_REDUCE_SHAKE_DESC,"Screen shake during banners and Breaks becomes a gentle zoom, and controller rumble is weakened too."
+UI_SET_RES,Resolution
+UI_SET_RUMBLE,Controller Rumble
+UI_SET_SHAKE,Screen Shake
+UI_SET_SHAKE_DUP2,Screen Shake Intensity
+UI_SET_SKIP,Skip Range
+UI_SET_SKIP_ALL,All
+UI_SET_SKIP_READ,Read text only
+UI_SET_TAB_ASSIST,Assist
+UI_SET_TAB_AUDIO,Audio
+UI_SET_TAB_GAME,Game
+UI_SET_TAB_INPUT,Controls
+UI_SET_TAB_LANG,Language
+UI_SET_TAB_VIDEO,Video
+UI_SET_TEXTSPEED,Text Speed
+UI_SET_TEXT_INSTANT,Instant
+UI_SET_TUTORIAL,Show Tutorials
+UI_SET_VOICE_CHAR,Character Voices
+UI_SET_VOL_BGM,Music
+UI_SET_VOL_ENV,Ambience
+UI_SET_VOL_MASTER,Master Volume
+UI_SET_VOL_SE,Sound Effects
+UI_SET_VOL_VOICE,Voice
+UI_SET_VSYNC,V-Sync
+UI_SET_WINDOW,Display Mode
+UI_SET_WINDOW_BORDERLESS,Borderless
+UI_SET_WINDOW_FULL,Fullscreen
+UI_SET_WINDOW_WIN,Windowed
+UI_SIDE_TRACE,"Sherefox: ""I should have noticed it back then."""
+UI_SLOT_AUTO,Auto Save
+UI_SLOT_EMPTY,Empty
+UI_SLOT_INFO,{chapter} · {step}   {playtime}   {difficulty}   Playthrough {n}
+UI_SLOT_QUICK,Quick Save
+UI_STATE_HACHIKU,Unstoppable ×{n}
+UI_STATE_HACHIKU_MAX,Break requirement −1 card
+UI_STATE_HACHIKU_TIP,"Unstoppable: chain damage +{dmg}%, counter +{ctr}%. At 3 stacks, a Break needs 1 fewer piece of evidence. One misread move resets it to zero."
+UI_STATE_KONJU,Cornered ({n} rounds left)
+UI_STATE_KONJU_TIP,"Cornered: the opponent hits harder and can't Reinforce, but their Tells become clearer."
+UI_STATE_SHISSHU,Breached ({n} rounds left)
+UI_STATE_SHISSHU_TIP,"Position breached: you can't Rebut this round, and Unstoppable resets to zero."
+UI_TABLE_COL_ATK,Assert / Onslaught
+UI_TABLE_COL_REINFORCE,Reinforce
+UI_TABLE_COL_TRAP,Set a Trap
+UI_TABLE_OBS_ATK,Take half damage; next round's Tell becomes Clear
+UI_TABLE_OBS_REINFORCE,The opponent gains a Fragile claim
+UI_TABLE_OBS_TRAP,Trap exposed: the opponent gains a Fragile claim and must attack next round
+UI_TABLE_PARRY_ATK,"Cut-In: you take no damage, the claim is smashed, counter 30; cutting in on an Onslaught leaves the opponent Shaken"
+UI_TABLE_PARRY_REINFORCE,Whiff: the opponent's Reinforce succeeds
+UI_TABLE_PARRY_TRAP,Whiff: the trap whiffs too
+UI_TABLE_SOLID_ATK,"Clash: both sides take damage (yours is halved); if the chain contains evidence that refutes the claim, the claim is removed"
+UI_TABLE_SOLID_REINFORCE,Damage halved; the claim can still be removed
+UI_TABLE_SOLID_TRAP,The trap whiffs and you deal full damage; the opponent can't Reinforce next round
+UI_TABLE_SOPH_ATK,Clash: both sides take damage (yours is halved)
+UI_TABLE_SOPH_REINFORCE,"Full damage, overpowering the defence"
+UI_TABLE_SOPH_TRAP,"Caught in the trap: damage void, you take a crit, the dashed link snaps, Notoriety +1"
+UI_TABLE_TITLE,Matchup Table
+UI_TAG_APPRAISED,Appraised
+UI_TAG_HIDDEN,?
+UI_TAG_PERSON,Person
+UI_TAG_PHYSICAL,Physical
+UI_TAG_PLACE,Place
+UI_TAG_SCANDAL,Scandal
+UI_TAG_TIME,Time
+UI_TAIL,Endgame
+UI_TITLE_LOGO,Sherefox
+UI_TITLE_PRESS,Press any key to start
+UI_TITLE_SUB,Sherefox: The Fox Detective of the Fog City
+UI_TYPE_CRIMINAL,Culprit
+UI_TYPE_CRIMINAL_DESC,"He is lying, so his claims must hide a contradiction with the facts. Mostly attacks, and goes on the Onslaught when pushed: Rebut him as he speaks up for the best effect."
+UI_TYPE_MIXED,Hybrid
+UI_TYPE_MIXED_DESC,Changes tactics as the situation shifts. Watch the type shown in the status bar.
+UI_TYPE_NEMESIS,Nemesis
+UI_TYPE_NEMESIS_DESC,"Her reasoning is perfectly self-consistent and her Tells are often Disguised: her words lie, her gestures do not. Only a fact from outside the chain can break it."
+UI_TYPE_PROTECTOR,Protector
+UI_TYPE_PROTECTOR_DESC,"He is shielding someone, deflecting and playing on emotion. Mostly Reinforces: Observe and Scandal evidence work best, and Sophistry punches through a Reinforce."
+UI_TYPE_RIVAL,Rival Detective
+UI_TYPE_RIVAL_DESC,"He has evidence of his own, including what you missed. He predicts you will repeat your last move and counters it, and his Tells may be Disguised. Change things up, and mind your Weak Points."
+UI_WARMUP_MISS,Mistakes {n}/3
+UI_WARMUP_TITLE,Warm-up: Correct the Misjudgement
+WARN_BOARD_LOCK,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?"
+WARN_BOARD_NOREASON,{n} cards have no Rationale and can't join the fight. Enter the Debate anyway?
+WARN_BOARD_REMOVE,Removing this card will also delete its links. Remove it?
+WARN_BOARD_UNAPPR,"{n} pieces of evidence are unappraised, and Arthur can still appraise {left} more. Enter the Debate anyway?"
+WARN_DEB_ASSIST,"Arthur: ""Shall I watch for traps this round? I can only Cover once."""
+WARN_DEB_DELEGATE,"Delegating to Arthur wins the debate outright, but it won't count toward ""all debates won"" for the True End. Delegate?"
+WARN_DEB_GIVEUP,Forfeiting counts as an immediate loss. Are you sure?
+WARN_DEB_OBSERVE_TAIL,This is the Endgame. Observe can't stop their counterattack (Dominance −{n}). Observe anyway?
+WARN_DEB_REVERSE,Danger: this chain has 3 or more Sophistry links and Cover is spent
+WARN_FLOW_JUMP,"Restart from ""{chapter} · {step}"". Your current progress will be autosaved first. Begin?"
+WARN_FLOW_LEAVE,"If you leave now, this replay won't write back any records. Leave?"
+WARN_FLOW_WRITE,These records will be updated: {items}. Worse results won't overwrite your existing records. Write them back?
+WARN_INV_END,{left} Ticks remain. You can't return to the scene once the search ends. End the search?
+WARN_INV_END_ZERO,You've looked everywhere. End the search?
+WARN_KEY_CONFLICT,"This key is already assigned to ""{action}"". Swap them?"
+WARN_LOAD,Load this save? Unsaved progress will be lost.
+WARN_NEWGAME_OVER,Starting a new game will not delete your existing saves. Start anyway?
+WARN_QUIT,Quit the game? Unsaved progress will be lost.
+WARN_RES_ACCEPT,Carry this result into the next case. Are you sure?
+WARN_RES_RETRY,Return to the start of this debate. The Clue Board stays as it was. Retry the debate?
+WARN_SAVE_DELETE,Delete this save? This can't be undone.
+WARN_SAVE_OVERWRITE,Overwrite this save?
+WARN_SET_DEFAULT,Restore this page's settings to their defaults?
+WARN_SET_DIFF_MASTER,"Changing the difficulty will make this playthrough ineligible for the ""Master Detective"" achievement. Change it anyway?"
+WARN_SET_UNSAVED,You have unapplied changes. Apply them?
+WARN_TO_TITLE,Return to the title screen? Unsaved progress will be lost.
+WARN_VIDEO_KEEP,Keep these display settings? They will revert automatically in {n} seconds.

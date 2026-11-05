@@ -1,0 +1,6 @@
+[project]
+name = "sherefox-tools"
+version = "0.1.0"
+description = "Sherefox build and extraction scripts (standard library only)"
+requires-python = ">=3.11"
+dependencies = []

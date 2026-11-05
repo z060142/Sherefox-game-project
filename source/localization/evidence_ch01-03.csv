@@ -1,0 +1,162 @@
+﻿ID,zh-TW,en,note
+HEAD_CH01,月桂糕點鋪限量『發條焦糖布丁』開賣首日，排隊人龍繞過貝克街兩圈,"Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street",opening headline (Case tab)
+HEAD_CH01_SUB,本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」,"From the paper's classified column: ""Fox-Eared Detective Agency seeks a flatmate. Those who can cook preferred.""",opening sub-headline (Case tab)
+HEAD_CH02,百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠,Century-Old Antique Pocket Watch Swapped! Wealthy Merchant Sues Baker Street's Veteran Clockmaker,opening headline (Case tab)
+HEAD_CH02_SUB,格雷沙姆先生：「我的錶進店時完好如初。」,"Mr. Gresham: ""My watch was in perfect condition when it went into the shop.""",opening sub-headline (Case tab)
+HEAD_CH03,市政廳官員陳屍駁船鍋爐室！房門反鎖，警方已逮捕船夫,"Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted from Inside, Police Arrest Bargeman",opening headline (Case tab)
+HEAD_CH03_SUB,巴斯克維爾警督：「兇手就在船上，本案今晚結束。」,"Inspector Baskerville: ""The killer is on that barge. This case ends tonight.""",opening sub-headline (Case tab)
+E01_01_NAME,空空的布丁盤,The Empty Pudding Plate,grade: 一般 (Common) | appraisal: 無
+E01_01_TAGS,物理・時間,Physical · Time,"tag categories, see glossary"
+E01_01_DESC,盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。,"The plate is spotless, with only a perfect ring of caramel left on it. There are no spoon scrape marks.","flavour text from the Script tab (scene ""Evidence Search"")"
+E01_01_REASON_A,盤上沒有湯匙刮痕，布丁是整顆滑出去的，不是被吃掉的,"There are no spoon scrapes on the plate: the pudding slid off whole, it wasn't eaten.",Rationale option: CORRECT
+E01_01_REASON_B,被貓舔乾淨了,Licked clean by a cat,Rationale option: wrong
+E01_01_REASON_C,妳自己吃完忘了,You finished it yourself and forgot,Rationale option: wrong
+E01_02_NAME,冰箱裡的手帕小包,The Handkerchief Bundle in the Fridge,grade: 一般 (Common) | appraisal: 無
+E01_02_TAGS,物理・地點,Physical · Place,"tag categories, see glossary"
+E01_02_DESC,冰箱角落有一小包手帕，打開來是一個冰冰涼涼的黃銅小輪子。,"In the corner of the fridge is a small handkerchief bundle. Opened, it holds a little brass wheel, ice-cold.","flavour text from the Script tab (scene ""Evidence Search"")"
+E01_02_REASON_A,有人昨晚用冰箱冷卻一個精密的黃銅零件,Someone used the fridge last night to chill a precision brass part.,Rationale option: CORRECT
+E01_02_REASON_B,冰箱零件掉下來的,A part that fell off the fridge,Rationale option: wrong
+E01_02_REASON_C,房東太太的針線包,The landlady's sewing kit,Rationale option: wrong
+E01_03_NAME,亞瑟袖口的焦糖漬與黃銅細屑,Caramel Stain and Brass Filings on Arthur's Cuff,grade: 關鍵 (Key) | appraisal: 無
+E01_03_TAGS,人物・物理,Person · Physical,"tag categories, see glossary"
+E01_03_DESC,袖口有一小塊琥珀色的焦糖漬，旁邊黏著幾粒金粉一樣的黃銅屑。,"There is an amber blob of caramel on the cuff, with a few grains of brass dust like gold powder stuck beside it.","flavour text from the Script tab (scene ""Evidence Search"")"
+E01_03_REASON_A,他昨晚在冰箱旁，同時碰過布丁和懷錶零件,Last night he stood by the fridge and touched both the pudding and the watch part.,Rationale option: CORRECT
+E01_03_REASON_B,他偷吃了布丁,He took a bite of the pudding,Rationale option: wrong
+E01_03_REASON_C,白天做菜沾到的,It got on there while he was cooking in the daytime,Rationale option: wrong
+E01_04_NAME,廚房地板上特別亮的一塊,The Unusually Shiny Patch of Kitchen Floor,grade: 一般 (Common) | appraisal: 無
+E01_04_TAGS,地點・時間,Place · Time,"tag categories, see glossary"
+E01_04_DESC,冰箱前的地板亮得可以照出人影，其他地方都灰撲撲的。,The floor in front of the fridge shines bright enough to see your reflection; everywhere else is dull and dusty.,"flavour text from the Script tab (scene ""Evidence Search"")"
+E01_04_REASON_A,有人深夜把灑出來的東西擦掉了,Someone wiped up a spill in the dead of night.,Rationale option: CORRECT
+E01_04_REASON_B,房東太太早上拖過地,The landlady mopped it this morning,Rationale option: wrong
+E01_04_REASON_C,本來就這麼亮,It's always been that shiny,Rationale option: wrong
+E01_05_NAME,亞瑟房門後的焦糖味抹布,The Caramel-Scented Rag Behind Arthur's Door,grade: 一般 (Common) | appraisal: 無
+E01_05_TAGS,地點・人物,Place · Person,"tag categories, see glossary"
+E01_05_DESC,門後掛鉤上掛著一條抹布，聞起來甜甜的。,A rag hangs on the hook behind the door; it smells sweet.,"flavour text from the Script tab (scene ""Evidence Search"")"
+E01_05_REASON_A,擦地的人把抹布藏回了自己房間,Whoever wiped the floor hid the rag back in their own room.,Rationale option: CORRECT
+E01_05_REASON_B,亞瑟有潔癖,Arthur is obsessive about cleanliness,Rationale option: wrong
+E01_05_REASON_C,拿來擦皮鞋的,It's used for polishing shoes,Rationale option: wrong
+E01_06_NAME,月桂糕點鋪的排隊號碼牌（05:30）,Laurel Pastry Shop Queue Ticket (05:30),grade: 一般 (Common) | appraisal: 無
+E01_06_TAGS,時間・人物,Time · Person,"tag categories, see glossary"
+E01_06_DESC,亞瑟外套口袋露出一角號碼牌，上面印著「05:30，第 1 號」。,"A corner of a queue ticket pokes out of Arthur's coat pocket, printed with ""05:30, No. 1"".","flavour text from the Script tab (scene ""Evidence Search"")"
+E01_06_REASON_A,他天沒亮就出門，想買一顆新的布丁,"He left before dawn, hoping to buy a replacement pudding.",Rationale option: CORRECT
+E01_06_REASON_B,路上撿到的,Picked up off the street,Rationale option: wrong
+E01_06_REASON_C,昨天的舊號碼牌,It's yesterday's old ticket,Rationale option: wrong
+E01_07_NAME,門縫下的空白名片,The Blank Calling Card Under the Door,grade: 劇情 (Story) | appraisal: 無
+E01_07_TAGS,人物・地點,Person · Place,"tag categories, see glossary"
+E01_07_DESC,一張質地很好的空白名片，不知道什麼時候塞進來的。,"A blank calling card of very fine paper, slipped in at some point; nobody knows when.","flavour text from the Script tab (scene ""Evidence Search"")"
+E01_07_REASON_A,深夜有人來過門口，卻刻意不留名,Someone came to the door late at night and deliberately left no name.,Rationale option: CORRECT
+E01_07_REASON_B,送報童塞錯門,The paper boy slipped it under the wrong door,Rationale option: wrong
+E01_07_REASON_C,廣告傳單,An advertising flyer,Rationale option: wrong
+E02_01_NAME,特製雙層發條齒輪,Custom Double-Mainspring Gear,grade: 關鍵 (Key) | appraisal: 機械
+E02_01_TAGS,物理・醜聞,Physical · Scandal,"tag categories, see glossary"
+E02_01_DESC,替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。,"The gear inside the replacement movement gleams with a cold, hard light, its teeth too fine to be an antique, more like something out of an arsenal.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_01_REASON_A,這是最新的軍工黑市規格，不是古董，也不是本店庫存,"It's the latest military black-market spec: not antique, and not this shop's stock.",Rationale option: CORRECT
+E02_01_REASON_B,老闆私藏的稀有零件,A rare part the owner kept privately,Rationale option: wrong
+E02_01_REASON_C,富商自己早就換過,The wealthy merchant swapped it himself long ago,Rationale option: wrong
+E02_02_NAME,報時鳥鐘,The Cuckoo Clock,grade: 一般 (Common) | appraisal: 機械
+E02_02_TAGS,時間・地點,Time · Place,"tag categories, see glossary"
+E02_02_DESC,店裡最醒目的報時鳥鐘，木頭小鳥正歪著頭，像是在等下一次登場。,"The most eye-catching cuckoo clock in the shop; the little wooden bird has its head cocked, as though waiting for its next appearance.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_02_REASON_A,鐘被人為調慢了整整 3 分鐘,The clock was deliberately set exactly 3 minutes slow.,Rationale option: CORRECT
+E02_02_REASON_B,發條老化自然變慢,The spring wore out and it slowed naturally,Rationale option: wrong
+E02_02_REASON_C,老闆故意調慢,The owner set it slow on purpose,Rationale option: wrong
+E02_03_NAME,鐘擺護蓋上的新刮痕,Fresh Scratches on the Pendulum Cover,grade: 一般 (Common) | appraisal: 無
+E02_03_TAGS,物理・地點,Physical · Place,"tag categories, see glossary"
+E02_03_DESC,護蓋邊緣有一道細細的新刮痕，金屬底色還很亮。,"A thin, fresh scratch runs along the edge of the cover; the metal beneath is still bright.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_03_REASON_A,今天有人用小起子撬開護蓋,Someone pried the cover open with a small screwdriver today.,Rationale option: CORRECT
+E02_03_REASON_B,老闆每週保養留下的,Left by the owner's weekly maintenance,Rationale option: wrong
+E02_03_REASON_C,貓抓的,A cat's scratches,Rationale option: wrong
+E02_04_NAME,報童小湯米的證詞,Tommy the Newsboy's Testimony,grade: 一般 (Common) | appraisal: 無
+E02_04_TAGS,時間・人物,Time · Person,"tag categories, see glossary"
+E02_04_DESC,「大笨鐘敲三點的時候，我從窗戶看到老爺爺進去後面了，櫃台只剩那個穿黑衣服的大哥哥。」,"""When Big Ben struck three, I saw the old gentleman go into the back through the window, and only that big brother in the black clothes was left at the counter.""","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_04_REASON_A,大笨鐘敲三點時，櫃台只剩費奇一人,"When Big Ben struck three, only Fitch was left at the counter.",Rationale option: CORRECT
+E02_04_REASON_B,孩子記錯時間,The boy misremembered the time,Rationale option: wrong
+E02_04_REASON_C,他看到的是富商,What he saw was the wealthy merchant,Rationale option: wrong
+E02_05_NAME,寄修收據（店鐘 3:05 簽收）,Repair Receipt (Signed for at 3:05 Shop Time),grade: 一般 (Common) | appraisal: 無
+E02_05_TAGS,時間・人物,Time · Person,"tag categories, see glossary"
+E02_05_DESC,霍洛威老先生的簽收字跡工整，時間寫著「三點零五分」，依據的是店裡的鐘。,"Old Mr. Holloway signed for it in neat handwriting, the time written as ""3:05"", going by the shop's clock.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_05_REASON_A,收據時間依店鐘記錄，實際是 3:08,The receipt time was taken from the shop clock; the real time was 3:08.,Rationale option: CORRECT
+E02_05_REASON_B,老闆偽造時間,The owner forged the time,Rationale option: wrong
+E02_05_REASON_C,簽收時就已掉包,The swap had already happened by the time it was signed for,Rationale option: wrong
+E02_06_NAME,店內零件目錄,The Shop's Parts Catalogue,grade: 一般 (Common) | appraisal: 無
+E02_06_TAGS,物理・地點,Physical · Place,"tag categories, see glossary"
+E02_06_DESC,四十年來每一顆進貨零件都記在這本冊子裡，字跡從年輕寫到年老。,"Every part bought in over forty years is recorded in this ledger, the handwriting running from young to old.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_06_REASON_A,本店從未進過雙層發條,This shop has never stocked a double mainspring.,Rationale option: CORRECT
+E02_06_REASON_B,目錄沒更新,The catalogue wasn't kept up to date,Rationale option: wrong
+E02_06_REASON_C,老闆私下進貨不入帳,The owner bought parts privately and left them off the books,Rationale option: wrong
+E02_07_NAME,費奇袖口的黃銅細屑,Brass Filings on Fitch's Cuff,grade: 一般 (Common) | appraisal: 機械
+E02_07_TAGS,人物・物理,Person · Physical,"tag categories, see glossary"
+E02_07_DESC,費奇鞠躬時，袖口落下一點金色的粉末。,"When Fitch bowed, a little golden powder fell from his cuff.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_07_REASON_A,與替換機芯是同一批黃銅,Same batch of brass as the replacement movement.,Rationale option: CORRECT
+E02_07_REASON_B,他幫主人擦馬車留下的,He picked them up polishing his master's carriage,Rationale option: wrong
+E02_07_REASON_C,店裡空氣中的灰塵,Dust in the shop air,Rationale option: wrong
+E02_08_NAME,裂開的黑咖啡杯,The Cracked Black Coffee Cup,grade: 劇情 (Story) | appraisal: 無
+E02_08_TAGS,人物・地點,Person · Place,"tag categories, see glossary"
+E02_08_DESC,（論戰後取得）角落那位女士留下的瓷杯，杯身有一道從邊緣裂到杯底的痕。,"(Obtained after the debate) A porcelain cup left behind by the lady in the corner, with a crack running from the rim to the base.","flavour text from the Script tab (scene ""Evidence Search"")"
+E02_08_REASON_A,有人刻意擋下了擲向 Sherefox 的配重,Someone deliberately blocked the counterweight thrown at Sherefox.,Rationale option: CORRECT
+E02_08_REASON_B,杯子本來就有裂痕,The cup was already cracked,Rationale option: wrong
+E02_08_REASON_C,被熱咖啡燙裂,It cracked from the hot coffee,Rationale option: wrong
+E03_01_NAME,莫斯的驗屍結果,Post-Mortem Findings on Moss,grade: 一般 (Common) | appraisal: 醫療
+E03_01_TAGS,時間・人物,Time · Person,"tag categories, see glossary"
+E03_01_DESC,死者的皮膚有大片蒸汽燙傷，喉頭水腫，指甲裡卡著門板的木屑。,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_01_REASON_A,死於 22:00～22:30 的蒸汽窒息，不是鈍器,"Died of steam asphyxiation between 22:00 and 22:30, not of a blunt blow.",Rationale option: CORRECT
+E03_01_REASON_B,醉酒失足,Fell while drunk,Rationale option: wrong
+E03_01_REASON_C,心臟病發,Heart attack,Rationale option: wrong
+E03_02_NAME,從內側落下的門閂,The Bolt Dropped from the Inside,grade: 一般 (Common) | appraisal: 機械
+E03_02_TAGS,地點・物理,Place · Physical,"tag categories, see glossary"
+E03_02_DESC,沉重的黃銅門閂，一端連著一根細蒸汽管，管口還有水垢。,"A heavy brass bolt, one end connected to a thin steam pipe, with limescale still on the pipe mouth.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_02_REASON_A,門閂由蒸汽壓力推動，可從甲板遠端操作,The bolt is driven by steam pressure and can be operated at a distance from the deck.,Rationale option: CORRECT
+E03_02_REASON_B,死者自己鎖門,The deceased locked the door himself,Rationale option: wrong
+E03_02_REASON_C,門閂老舊自己滑落,The old bolt slid down on its own,Rationale option: wrong
+E03_03_NAME,甲板上被轉過的壓力閥,The Pressure Valve Turned on the Deck,grade: 一般 (Common) | appraisal: 無
+E03_03_TAGS,地點・物理,Place · Physical,"tag categories, see glossary"
+E03_03_DESC,閥柄上有一枚煤灰指印，指紋又寬又長，比老湯姆粗短的手指大了一圈。,"On the valve handle is a soot fingerprint, wide and long, a size larger than Old Tom's short, stubby fingers.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_03_REASON_A,閥柄上的煤灰指印是新的，不是船夫的大小,"The soot fingerprint on the handle is fresh, and it isn't the bargeman's size.",Rationale option: CORRECT
+E03_03_REASON_B,船夫例行操作,The bargeman's routine operation,Rationale option: wrong
+E03_03_REASON_C,浪打船身轉動,The waves rocking the barge turned it,Rationale option: wrong
+E03_04_NAME,卡死洩壓閥的黃銅零件,The Brass Part Jamming the Relief Valve,grade: 關鍵 (Key) | appraisal: 機械
+E03_04_TAGS,物理・醜聞,Physical · Scandal,"tag categories, see glossary"
+E03_04_DESC,洩壓閥的出口塞著一顆不該在那裡的黃銅零件，表面刻著一串細小的批號。,"Jammed in the relief valve's outlet is a brass part that shouldn't be there, a string of tiny batch numbers engraved on its surface.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_04_REASON_A,批號與軍工黑市抄本相符，是死者私吞的同批貨,Its batch number matches the military black-market transcript: it's from the same stolen batch the deceased had skimmed.,Rationale option: CORRECT
+E03_04_REASON_B,鍋爐原廠零件,Original boiler part,Rationale option: wrong
+E03_04_REASON_C,船夫亂塞的,The bargeman stuffed it in carelessly,Rationale option: wrong
+E03_05_NAME,老湯姆的鑰匙,Old Tom's Key,grade: 一般 (Common) | appraisal: 無
+E03_05_TAGS,人物・地點,Person · Place,"tag categories, see glossary"
+E03_05_DESC,一把磨得發亮的舊鑰匙，四十年來只開過這艘船的艙門。,"A worn, polished old key that has opened only this barge's hatch for forty years.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_05_REASON_A,只能開艙門外鎖，碰不到壓力閂,It opens only the hatch's outer lock and can't touch the pressure latch.,Rationale option: CORRECT
+E03_05_REASON_B,證明只有他進得去,It proves only he could get in,Rationale option: wrong
+E03_05_REASON_C,他有備份鑰匙,He has a spare key,Rationale option: wrong
+E03_06_NAME,皮爾斯大衣下擺的煤灰,Coal Soot on the Hem of Pierce's Coat,grade: 一般 (Common) | appraisal: 無
+E03_06_TAGS,人物・物理,Person · Physical,"tag categories, see glossary"
+E03_06_DESC,皮爾斯先生的大衣剪裁講究，下擺卻沾了一圈煤灰。,"Mr. Pierce's coat is finely tailored, yet the hem is ringed with coal soot.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_06_REASON_A,與甲板閥門上的煤灰相同,It's the same soot as on the deck valve.,Rationale option: CORRECT
+E03_06_REASON_B,他去過煤棧,He'd been to the coal depot,Rationale option: wrong
+E03_06_REASON_C,倫敦人人都有煤灰,Everyone in London has coal soot on them,Rationale option: wrong
+E03_07_NAME,死者懷中的採購單據,The Purchase Order Found on the Deceased,grade: 一般 (Common) | appraisal: 無
+E03_07_TAGS,醜聞・人物,Scandal · Person,"tag categories, see glossary"
+E03_07_DESC,市政採購單上寫著「黃銅零件三百件」，入庫章上卻只蓋了兩百件。,"The municipal purchase order says ""brass parts, 300 units"", but the goods-received stamp covers only 200.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_07_REASON_A,採購數與入庫數不符，兩人合夥私吞,The ordered and received quantities don't match: the two partners skimmed it together.,Rationale option: CORRECT
+E03_07_REASON_B,帳目誤差,An accounting error,Rationale option: wrong
+E03_07_REASON_C,死者被栽贓,The deceased was framed,Rationale option: wrong
+E03_08_NAME,駁船航行日誌,The Barge's Logbook,grade: 一般 (Common) | appraisal: 無
+E03_08_TAGS,時間・地點,Time · Place,"tag categories, see glossary"
+E03_08_DESC,最後一頁寫著「22:10，R. P. 登船，清點貨物」，字跡潦草，但看得出是誰的。,"The last page reads ""22:10, R. P. boards, counts cargo"", in hasty handwriting, but you can tell whose it is.","flavour text from the Script tab (scene ""Evidence Search"")"
+E03_08_REASON_A,22:10 有人登船，筆跡是皮爾斯的,"Someone boarded at 22:10, and the handwriting is Pierce's.",Rationale option: CORRECT
+E03_08_REASON_B,日誌是船夫補寫的,The log was written up later by the bargeman,Rationale option: wrong
+E03_08_REASON_C,時間記錯,The time was recorded wrongly,Rationale option: wrong
+E03_09_NAME,市政審計通知書,Municipal Audit Notice,grade: 劇情 (Story) | appraisal: 無
+E03_09_TAGS,人物・醜聞,Person · Scandal,"tag categories, see glossary"
+E03_09_DESC,死者桌上的通知書，下週開始年度採購審計，提議人欄只簽了一個字母：W.。,The notice on the victim's desk says the annual procurement audit begins next week; the proposer's column is signed with a single letter: W.,"flavour text from the Script tab (scene ""Evidence Search"")"
+E03_09_REASON_A,審計由市政顧問「W.」提議，促使死者想自首,"The audit was proposed by municipal advisor ""W."", which pushed the deceased toward confessing.",Rationale option: CORRECT
+E03_09_REASON_B,例行公事,Routine business,Rationale option: wrong
+E03_09_REASON_C,與案件無關,Unrelated to the case,Rationale option: wrong
+CLM_CH01_N1,我一覺睡到天亮,I slept straight through until morning,claim node N1; truth: 假; refuted by: E01_06 號碼牌（或 E01_05 抹布）
+CLM_CH01_N2,布丁是貓吃掉的,The cat ate the pudding,claim node N2; truth: 假; refuted by: E01_01 布丁盤＋E01_04 地板
+CLM_CH01_N3,布丁的事跟我一點關係都沒有,I have nothing whatsoever to do with the pudding,claim node N3; truth: 假; refuted by: E01_03 袖口（強攻）
+CLM_CH02_N1,我在報時鳥報三點時就離開了,I left the moment the cuckoo struck three,claim node N1; truth: 假（鐘被調慢）; refuted by: E02_02、E02_03、E02_04
+CLM_CH02_N2,老闆有工具也有時間掉包,The owner had both the tools and the time to swap it,claim node N2; truth: 真（但他沒做）; refuted by: 無；反駁此節點必定空過
+CLM_CH02_N3,新機芯是這家店的零件,The new movement is one of this shop's parts,claim node N3; truth: 假; refuted by: E02_06、E02_01
+CLM_CH03_N1,我 21:30 就下船了,I got off the barge at 21:30,claim node N1; truth: 假; refuted by: E03_08、E03_06
+CLM_CH03_N2,門從內側鎖上，是意外,The door locked from the inside; it was an accident,claim node N2; truth: 假; refuted by: E03_02、E03_03
+CLM_CH03_N3,莫斯和我只是正當的生意夥伴,Moss and I were just legitimate business partners,claim node N3; truth: 假; refuted by: E03_07（醜聞類，命中即動搖）
+G-01,軍工黑市批號抄本,Military Black-Market Batch-Number Transcript,Golden Clue obtained from E02_01 (Ch.2); zh name given in Case tab as 【軍工黑市批號抄本】
+G-01_SUB,齒輪拓印,Gear Rubbing,Substitute Evidence replacing G-01 if Ch.2 is lost; zh name given in Case tab as 【齒輪拓印】

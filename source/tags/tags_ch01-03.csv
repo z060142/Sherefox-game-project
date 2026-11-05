@@ -1,0 +1,85 @@
+owner,category,value,slug,grazing,hidden,note
+E01_01,物理,,,,auto,PLACEHOLDER category only
+E01_01,時間,,,,auto,PLACEHOLDER category only
+E01_02,物理,,,,auto,PLACEHOLDER category only
+E01_02,地點,,,,auto,PLACEHOLDER category only
+E01_03,人物,,,,auto,PLACEHOLDER category only
+E01_03,物理,,,,auto,PLACEHOLDER category only
+E01_04,地點,,,,auto,PLACEHOLDER category only
+E01_04,時間,,,,auto,PLACEHOLDER category only
+E01_05,地點,,,,auto,PLACEHOLDER category only
+E01_05,人物,,,,auto,PLACEHOLDER category only
+E01_06,時間,,,,auto,PLACEHOLDER category only
+E01_06,人物,,,,auto,PLACEHOLDER category only
+E01_07,人物,,,,auto,PLACEHOLDER category only
+E01_07,地點,,,,auto,PLACEHOLDER category only
+E02_01,物理,,,,auto,PLACEHOLDER category only
+E02_01,醜聞,,,,auto,PLACEHOLDER category only
+E02_02,時間,,,,auto,PLACEHOLDER category only
+E02_02,地點,,,,auto,PLACEHOLDER category only
+E02_03,物理,,,,auto,PLACEHOLDER category only
+E02_03,地點,,,,auto,PLACEHOLDER category only
+E02_04,時間,,,,auto,PLACEHOLDER category only
+E02_04,人物,,,,auto,PLACEHOLDER category only
+E02_05,時間,,,,auto,PLACEHOLDER category only
+E02_05,人物,,,,auto,PLACEHOLDER category only
+E02_06,物理,,,,auto,PLACEHOLDER category only
+E02_06,地點,,,,auto,PLACEHOLDER category only
+E02_07,人物,,,,auto,PLACEHOLDER category only
+E02_07,物理,,,,auto,PLACEHOLDER category only
+E02_08,人物,,,,auto,PLACEHOLDER category only
+E02_08,地點,,,,auto,PLACEHOLDER category only
+E03_01,時間,,,,auto,PLACEHOLDER category only
+E03_01,人物,,,,auto,PLACEHOLDER category only
+E03_02,地點,,,,auto,PLACEHOLDER category only
+E03_02,物理,,,,auto,PLACEHOLDER category only
+E03_03,地點,,,,auto,PLACEHOLDER category only
+E03_03,物理,,,,auto,PLACEHOLDER category only
+E03_04,物理,,,,auto,PLACEHOLDER category only
+E03_04,醜聞,,,,auto,PLACEHOLDER category only
+E03_05,人物,,,,auto,PLACEHOLDER category only
+E03_05,地點,,,,auto,PLACEHOLDER category only
+E03_06,人物,,,,auto,PLACEHOLDER category only
+E03_06,物理,,,,auto,PLACEHOLDER category only
+E03_07,醜聞,,,,auto,PLACEHOLDER category only
+E03_07,人物,,,,auto,PLACEHOLDER category only
+E03_08,時間,,,,auto,PLACEHOLDER category only
+E03_08,地點,,,,auto,PLACEHOLDER category only
+E03_09,人物,,,,auto,PLACEHOLDER category only
+E03_09,醜聞,,,,auto,PLACEHOLDER category only
+G-01,物理,,,,auto,PLACEHOLDER category only
+G-01,醜聞,,,,auto,PLACEHOLDER category only
+S-01,物理,,,,auto,PLACEHOLDER category only
+S-01,醜聞,,,,auto,PLACEHOLDER category only
+CH01_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N2,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N2,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N2,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N3,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH01_N3,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N3,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N3,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_N3,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N2,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N2,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N3,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_N3,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_T1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_T1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH02_T1,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_T1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_T1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_T1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_W1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_W1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+CH03_W1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands

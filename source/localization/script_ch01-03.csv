@@ -1,0 +1,497 @@
+﻿ID,speaker_zh,speaker_en,zh-TW,en,note
+SCR_CH01_S01_L001,（場景標題）,(Scene heading),場景 1：報紙頭版（開場）,Scene 1: Newspaper Front Page (Opening),scene heading
+SCR_CH01_S01_L002,報紙,Newspaper,【倫敦提燈報・1887 年 10 月】月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈,"【The London Lantern · October 1887】Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street",
+SCR_CH01_S01_L003,報紙,Newspaper,本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」,"Our correspondent reports: Laurel Pastry Shop on Baker Street yesterday launched its new ""Clockwork Caramel Pudding"", famed for its caramel topping shaped like a brass clockwork spring. Limited to forty a day, they sold out within an hour of opening. Among the queue were many ladies and gentlemen who had come specially, including one fox-eared girl whose tail was reportedly ""never still from start to finish"". Also, this paper's classified column carries a notice: ""Fox-Eared Detective Agency seeks a flatmate. Cooks preferred; those afraid of fox fur need not apply.""",
+SCR_CH01_S02_L001,（場景標題）,(Scene heading),場景 2：事務所客廳（日常・前一晚）,Scene 2: Agency Living Room (Daily Life; The Night Before),scene heading
+SCR_CH01_S02_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),我搬進貝克街的第二天，學到了三件事。第一，房東太太的燉菜很鹹。第二，我的室友是狐狸。第三，狐狸把布丁當成國寶。,"On my second day in Baker Street, I learned three things. First, the landlady's stew is far too salty. Second, my flatmate is a fox. Third, foxes treat pudding as a national treasure.",
+SCR_CH01_S02_L003,Sherefox,Sherefox,（雙手捧著盤子，尾巴晃個不停）亞瑟，看清楚。這是月桂糕點鋪的發條焦糖布丁，每天只有四十顆，我排了一個小時。,"(Cradling the plate in both hands, tail swishing nonstop) Arthur, look closely. This is the Laurel Pastry Shop's Clockwork Caramel Pudding. Only forty a day, and I queued for an hour.",
+SCR_CH01_S02_L004,亞瑟,Arthur,看起來……很有彈性。,It looks... very bouncy.,
+SCR_CH01_S02_L005,Sherefox,Sherefox,它不只有彈性，它有尊嚴。（在盤上插一面小旗）「狐狸專用，偷吃者咬。」明天早上我要配紅茶吃。,"It's not just bouncy, it has dignity. (Plants a little flag in the plate) ""Foxes only. Thieves will be bitten."" I'm having it with tea tomorrow morning.",
+SCR_CH01_S02_L006,亞瑟,Arthur,我明白了。我不會碰它的。,Understood. I won't touch it.,
+SCR_CH01_S02_L007,Sherefox,Sherefox,（拉開抽屜看了一眼摔壞的懷錶，又輕輕關上）……,"(Opens the drawer, glances at the broken pocket watch, then quietly closes it again) ...",
+SCR_CH01_S02_L008,亞瑟,Arthur,那只懷錶怎麼了？,What happened to that pocket watch?,
+SCR_CH01_S02_L009,Sherefox,Sherefox,沒事沒事，老東西了。我去睡了，晚安。,"Nothing, nothing, just an old thing. I'm off to bed. Good night.",
+SCR_CH01_S02_L010,旁白（亞瑟筆記）,Narration (Arthur's Notes),她說「沒事」的時候，耳朵是往下垂的。我在戰地當過醫護兵，知道人在說謊時身體會先招供。那一晚我決定做一件事。後來證明，那是一連串小災難的開始。,"When she said ""nothing"", her ears drooped. I served as a medic on the battlefield, and I know that when people lie, the body confesses first. That night I decided to do something. It would prove to be the start of a string of small disasters.",
+SCR_CH01_S03_L001,（場景標題）,(Scene heading),場景 3：事務所廚房（事件・早晨）,Scene 3: Agency Kitchen (Event; Morning),scene heading
+SCR_CH01_S03_L002,Sherefox,Sherefox,（打開冰箱，耳朵瞬間豎直）……亞瑟。,(Opens the fridge; her ears snap upright) ...Arthur.,
+SCR_CH01_S03_L003,亞瑟,Arthur,（從房裡探頭，頭髮亂翹）早、早安。,"(Poking his head out of his room, hair sticking up) M-morning.",
+SCR_CH01_S03_L004,Sherefox,Sherefox,我的布丁不見了。盤子還在，小旗還在，布丁不在。這是綁架。這是一樁綁架案。,"My pudding is gone. The plate is here, the flag is here, the pudding is not. This is a kidnapping. This is a case of puddingnapping.",
+SCR_CH01_S03_L005,亞瑟,Arthur,會不會……是貓？,Could it... be a cat?,
+SCR_CH01_S03_L006,Sherefox,Sherefox,我們沒有養貓。,We don't have a cat.,
+SCR_CH01_S03_L007,亞瑟,Arthur,野貓。倫敦的野貓很靈巧的。,A stray. London strays are very nimble.,
+SCR_CH01_S03_L008,Sherefox,Sherefox,（瞇眼，尾巴緩緩擺動）亞瑟，你昨晚出過房門嗎？,"(Narrowing her eyes, tail swaying slowly) Arthur, did you leave your room last night?",
+SCR_CH01_S03_L009,亞瑟,Arthur,沒、沒有。一覺睡到天亮。,N-no. I slept straight through until morning.,
+SCR_CH01_S03_L010,Sherefox,Sherefox,很好。那麼這樁布丁綁架案的第一號嫌疑人，就是全事務所除了我以外唯一的人。,Splendid. Then Suspect Number One in this puddingnapping is the only other person in the whole agency besides me.,
+SCR_CH01_S03_L011,亞瑟,Arthur,妳這是在懷疑我？,Are you accusing me?,
+SCR_CH01_S03_L012,Sherefox,Sherefox,不，是在「審問」你。審完我會道歉。如果你是無辜的話。,"No, I'm ""interrogating"" you. I'll apologise afterwards, if you turn out to be innocent.",
+SCR_CH01_S04_L001,（場景標題）,(Scene heading),場景 4：蒐證（事務所廚房）,Scene 4: Evidence Search (Agency Kitchen),scene heading
+SCR_CH01_S04_L002,（證物描述）,(Evidence description),盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。,"The plate is spotless, with only a perfect ring of caramel left on it. There are no spoon scrape marks.",evidence E01_01 The Empty Pudding Plate
+SCR_CH01_S04_L003,亞瑟,Arthur,貓、貓舔得很乾淨吧？,"A-a cat would lick it very clean, wouldn't it?",evidence E01_01 The Empty Pudding Plate
+SCR_CH01_S04_L004,Sherefox,Sherefox,貓舔得出這麼圓的圈？那牠應該去當鐘錶匠。,Can a cat lick a ring that perfectly round? Then that cat belongs in a clockmaker's shop.,evidence E01_01 The Empty Pudding Plate
+SCR_CH01_S04_L005,（證物描述）,(Evidence description),冰箱角落有一小包手帕，打開來是一個冰冰涼涼的黃銅小輪子。,"In the corner of the fridge is a small handkerchief bundle. Opened, it holds a little brass wheel, ice-cold.",evidence E01_02 The Handkerchief Bundle in the Fridge
+SCR_CH01_S04_L006,亞瑟,Arthur,那、那是……冰箱的零件吧。,"Th-that's... a fridge part, I suppose.",evidence E01_02 The Handkerchief Bundle in the Fridge
+SCR_CH01_S04_L007,（證物描述）,(Evidence description),袖口有一小塊琥珀色的焦糖漬，旁邊黏著幾粒金粉一樣的黃銅屑。,"There is an amber blob of caramel on the cuff, with a few grains of brass dust like gold powder stuck beside it.",evidence E01_03 Caramel Stain and Brass Filings on Arthur's Cuff
+SCR_CH01_S04_L008,亞瑟,Arthur,（把袖子往下拉）這是……昨天晚餐的醬汁。,(Pulling his sleeve down) This is... sauce from last night's dinner.,evidence E01_03 Caramel Stain and Brass Filings on Arthur's Cuff
+SCR_CH01_S04_L009,Sherefox,Sherefox,昨天晚餐是房東太太的燉菜。燉菜不會是甜的。,Last night's dinner was the landlady's stew. Stew is never sweet.,evidence E01_03 Caramel Stain and Brass Filings on Arthur's Cuff
+SCR_CH01_S04_L010,（證物描述）,(Evidence description),冰箱前的地板亮得可以照出人影，其他地方都灰撲撲的。,The floor in front of the fridge shines bright enough to see your reflection; everywhere else is dull and dusty.,evidence E01_04 The Unusually Shiny Patch of Kitchen Floor
+SCR_CH01_S04_L011,亞瑟,Arthur,房東太太很愛乾淨。,The landlady is very fond of cleanliness.,evidence E01_04 The Unusually Shiny Patch of Kitchen Floor
+SCR_CH01_S04_L012,Sherefox,Sherefox,房東太太只擦她自己看得到的地方。,The landlady only wipes the places she can see herself.,evidence E01_04 The Unusually Shiny Patch of Kitchen Floor
+SCR_CH01_S04_L013,（證物描述）,(Evidence description),門後掛鉤上掛著一條抹布，聞起來甜甜的。,A rag hangs on the hook behind the door; it smells sweet.,evidence E01_05 The Caramel-Scented Rag Behind Arthur's Door
+SCR_CH01_S04_L014,亞瑟,Arthur,我、我喜歡香香的抹布。,I-I like fragrant rags.,evidence E01_05 The Caramel-Scented Rag Behind Arthur's Door
+SCR_CH01_S04_L015,（證物描述）,(Evidence description),亞瑟外套口袋露出一角號碼牌，上面印著「05:30，第 1 號」。,"A corner of a queue ticket pokes out of Arthur's coat pocket, printed with ""05:30, No. 1"".",evidence E01_06 Laurel Pastry Shop Queue Ticket (05:30)
+SCR_CH01_S04_L016,亞瑟,Arthur,……那是撿到的。,...I found that.,evidence E01_06 Laurel Pastry Shop Queue Ticket (05:30)
+SCR_CH01_S04_L017,Sherefox,Sherefox,第 1 號？你撿到了全倫敦最早起床的那個人？,Number 1? You just happened to pick up the earliest riser in all London?,evidence E01_06 Laurel Pastry Shop Queue Ticket (05:30)
+SCR_CH01_S04_L018,（證物描述）,(Evidence description),一張質地很好的空白名片，不知道什麼時候塞進來的。,"A blank calling card of very fine paper, slipped in at some point; nobody knows when.",evidence E01_07 The Blank Calling Card Under the Door
+SCR_CH01_S04_L019,亞瑟,Arthur,那個我真的不知道。（這次好像是真的）,That one I really don't know about. (This time it seems to be true.),evidence E01_07 The Blank Calling Card Under the Door
+SCR_CH01_S04_L020,旁白（亞瑟筆記）,Narration (Arthur's Notes),Sherefox 把它收進抽屜，說好的紙不該浪費。,"Sherefox put it away in a drawer, saying good paper shouldn't be wasted.",evidence E01_07 The Blank Calling Card Under the Door
+SCR_CH01_S90_L001,（場景標題）,(Scene heading),論戰台詞庫：亞瑟（Ch.1）,Debate Line Library: Arthur (Ch.1),scene heading
+SCR_CH01_S90_L002,（備註）,(Note),亞瑟在本章只用「主張」與「補強」，預兆全部明示。本章亞瑟是對手，提示由系統教學台詞代替。,"In this chapter Arthur uses only Assert and Reinforce, and every Tell is Clear. Arthur is the opponent in this chapter, so hints come from the system's tutorial lines instead.",library intro note
+SCR_CH01_S90_L003,亞瑟,Arthur,我昨晚可是一覺睡到天亮！,I'll have you know I slept straight through until morning last night!,"Tell line: Assert (gesture: chest out, hands on hips)"
+SCR_CH01_S90_L004,亞瑟,Arthur,聽好了，我要說明一件很重要的事。,"Listen carefully, I have something very important to explain.","Tell line: Assert (gesture: chest out, hands on hips)"
+SCR_CH01_S90_L005,亞瑟,Arthur,總、總之布丁跟我無關！,"A-anyway, the pudding has nothing to do with me!","Tell line: Assert (gesture: chest out, hands on hips)"
+SCR_CH01_S90_L006,亞瑟,Arthur,那、那我換個說法……,"W-well, let me put it another way...",Tell line: Reinforce (gesture: tugging sleeve down)
+SCR_CH01_S90_L007,亞瑟,Arthur,等一下，讓我想一下。,"Hold on, let me think.",Tell line: Reinforce (gesture: tugging sleeve down)
+SCR_CH01_S90_L008,亞瑟,Arthur,我剛剛的意思是……,What I meant just now was...,Tell line: Reinforce (gesture: tugging sleeve down)
+SCR_CH01_S90_L009,亞瑟,Arthur,我在房裡睡覺，門都沒開過！,I was asleep in my room; the door was never even opened!,Action line: Assert
+SCR_CH01_S90_L010,亞瑟,Arthur,應該是貓。一隻很靈巧、很愛吃焦糖的貓。,It must have been a cat. A very nimble cat with a taste for caramel.,Action line: Assert
+SCR_CH01_S90_L011,亞瑟,Arthur,我當過醫護兵，我不會偷吃別人的布丁！,I was a medic; I would never eat someone else's pudding!,Action line: Assert
+SCR_CH01_S90_L012,亞瑟,Arthur,我的意思是，貓……也可能是隔壁的貓。,"What I mean is, the cat... could also be the neighbour's cat.",Action line: Reinforce
+SCR_CH01_S90_L013,亞瑟,Arthur,就算我出過房門，也只是去喝水而已。,"Even if I did leave my room, it was only for a glass of water.",Action line: Reinforce
+SCR_CH01_S90_L014,亞瑟,Arthur,一個布丁而已嘛……我是說，一個很重要的布丁。,"It's only a pudding, after all... I mean, a very important pudding.",Action line: Reinforce
+SCR_CH01_S90_L015,（備註）,(Note),「猛攻」與「設陷」：本章不使用。,"""Onslaught"" and ""Set a Trap"": not used in this chapter.",library note
+SCR_CH01_S90_L016,Sherefox,Sherefox,證物排排站，一個接一個。,"Evidence lined up in a row, one after another.",Sherefox action line | Solid Chain
+SCR_CH01_S90_L017,Sherefox,Sherefox,你護你的，我放我的。,You defend yours; I'll lay out mine.,Sherefox action line
+SCR_CH01_S90_L018,Sherefox,Sherefox,這兩個看起來不太有關……但我說有關就有關！,"These two don't look very related... but if I say they're related, they're related!",Sherefox action line | Sophistry | Tutorial not yet unlocked in this chapter
+SCR_CH01_S90_L019,Sherefox,Sherefox,等一下！,Hold on!,Sherefox action line | Rebut
+SCR_CH01_S90_L020,Sherefox,Sherefox,你說到一半就夠了。,Half a sentence is all I need from you.,Sherefox action line
+SCR_CH01_S90_L021,Sherefox,Sherefox,……你繼續說，我在聽。,"...Go on, I'm listening.",Sherefox action line | Observe
+SCR_CH01_S90_L022,（演出）,(Staging),（耳朵轉向亞瑟）,(Ears turn toward Arthur),Sherefox action line
+SCR_CH01_S90_L023,Sherefox,Sherefox,……我們兩個同時開口了。,...We both spoke at the same time.,Reaction line | Clash
+SCR_CH01_S90_L024,亞瑟,Arthur,……好尷尬。,...How awkward.,Reaction line
+SCR_CH01_S90_L025,亞瑟,Arthur,我還沒說完——,I haven't finished—,Reaction line | Cut-In
+SCR_CH01_S90_L026,Sherefox,Sherefox,你說到一半的那部分，就是破綻。,The half-sentence you did get out is exactly where the flaw is.,Reaction line
+SCR_CH01_S90_L027,（演出）,(Staging),（兩人互看，冰箱嗡嗡作響）,(The two stare at each other; the fridge hums),Reaction line | Standoff
+SCR_CH01_S90_L028,亞瑟,Arthur,……要不要先喫口茶？,...Shall we have a cup of tea first?,Reaction line
+SCR_CH01_S90_L029,系統,System,他挺胸叉腰了。要開口的人，就用反駁截斷他。,"He's puffed out his chest and planted his hands on his hips. When someone's about to speak, cut him off with Rebut.",Tutorial hint line (system; replaces Arthur's Tell hints)
+SCR_CH01_S90_L030,系統,System,他在拉袖子。在護東西的人，就是出手的時候。,"He's tugging at his sleeve. When someone's covering something up, it's time to strike.",Tutorial hint line (system; replaces Arthur's Tell hints)
+SCR_CH01_S90_L031,系統,System,對手動搖了！下一回合用關鍵證物，就能論破。,"The opponent is Shaken! Next round, use Key Evidence to Break him.",Tutorial hint line (system; replaces Arthur's Tell hints)
+SCR_CH01_S90_L032,亞瑟,Arthur,等、等等，讓我重新整理一下！我當過醫護兵，我很冷靜！,"W-wait, let me gather my thoughts! I was a medic, I'm perfectly calm!",Cornered line (Arthur)
+SCR_CH01_S90_L033,亞瑟,Arthur,好，我承認我出過房門！但只有一下下！大概……兩個小時！,"Fine, I admit I left my room! But only for a little while! About... two hours!",Cornered line (Arthur)
+SCR_CH01_S90_L034,亞瑟,Arthur,妳再看我的袖子，我就……我就去洗它！,"If you look at my sleeve again, I'll... I'll go and wash it!",Cornered line (Arthur)
+SCR_CH01_S90_L035,亞瑟,Arthur,呃……妳的耳朵垂下來了。要不要先吃點東西？,Um... your ears have drooped. Would you like something to eat first?,Taunt when Breached (Arthur)
+SCR_CH01_S90_L036,亞瑟,Arthur,看吧，偵探也會猜錯的。這很正常，真的。,"See? Even detectives guess wrong sometimes. It's perfectly normal, really.",Taunt when Breached (Arthur)
+SCR_CH01_S90_L037,Sherefox,Sherefox,一個。,One.,Sherefox state line | Unstoppable 1
+SCR_CH01_S90_L038,Sherefox,Sherefox,兩個。亞瑟，你的藉口快用完了喔。,"Two. Arthur, you're running out of excuses.",Sherefox state line | Unstoppable 2
+SCR_CH01_S90_L039,Sherefox,Sherefox,三個！勢如破竹——你的布丁防線，碎成焦糖了！,"Three! Unstoppable! Your pudding defences have crumbled, right down to caramel!",Sherefox state line | Unstoppable 3
+SCR_CH01_S90_L040,Sherefox,Sherefox,……（耳朵垂下）耳朵好重。,...(Ears droop) My ears feel so heavy.,Sherefox state line | Breached | Not triggered in this chapter; kept for replay / later reference
+SCR_CH01_S90_L041,Sherefox,Sherefox,等、等一下，讓我重新排一下證物……,"H-hold on, let me rearrange my evidence...",Sherefox state line | Not triggered in this chapter; kept for replay / later reference
+SCR_CH01_S90_L042,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,Sherefox state line | banner line for 論破 (Break)
+SCR_CH01_S90_L043,Sherefox,Sherefox,看吧，你的袖子在發抖。,See? Your sleeve is trembling.,Sherefox state line | banner line for 動搖 (Shaken)
+SCR_CH01_S90_L044,Sherefox,Sherefox,這一刀，從布丁盤一路劈到你的房門口！,This blade cuts from the pudding plate all the way to your bedroom door!,Sherefox state line | banner line for 破竹 (Unstoppable)
+SCR_CH01_S90_L045,（備註）,(Note),二連論破、反擊論破、絕境：本章不出現。,"Double Break, Counter Break and At the Brink do not appear in this chapter.",Sherefox state line
+SCR_CH01_S90_L046,系統,System,讀對一手，破竹疊一層；疊滿三層，論破更容易。,"Read one move correctly and Unstoppable gains a layer; with three layers, a Break gets easier.",State tutorial hint (system; replaces Arthur) | Unstoppable (preview)
+SCR_CH01_S90_L047,系統,System,讀錯一手，破竹就會歸零。,Misread a move and Unstoppable resets to zero.,State tutorial hint (system; replaces Arthur)
+SCR_CH01_S90_L048,系統,System,本章只是預覽，破竹從 Ch.2 起才真正生效。,This chapter is only a preview. Unstoppable doesn't take real effect until Chapter 2.,State tutorial hint (system; replaces Arthur)
+SCR_CH01_S90_L049,系統,System,本章不出現。這兩個狀態從 Ch.3 起才會觸發，屆時再提示。,"Not shown in this chapter. These two states don't trigger until Chapter 3, and will be explained then.","State tutorial hint (system; replaces Arthur) | Cornered, Breached"
+SCR_CH01_S05_L001,（場景標題）,(Scene heading),場景 5：主論戰（不扣血教學論戰）,"Scene 5: Main Debate (Tutorial Debate, No Dominance Loss)",scene heading
+SCR_CH01_S05_L002,系統,System,小論戰開始。每回合你和亞瑟會同時出招。在 3 回合內，指出他說法中的 2 個矛盾。,"The mini-debate begins. Each round, you and Arthur make your moves at the same time. Within 3 rounds, point out 2 contradictions in his story.",
+SCR_CH01_S05_L003,系統,System,（第 1 回合・預兆）亞瑟挺起胸、兩手叉腰。亮起節點：N1「我一覺睡到天亮」。,"(Round 1 · Tell) Arthur puffs out his chest, hands on hips. Lit node: N1 ""I slept straight through until morning"".",
+SCR_CH01_S05_L004,亞瑟,Arthur,（預兆）我昨晚可是一覺睡到天亮！,(Tell) I'll have you know I slept straight through until morning last night!,
+SCR_CH01_S05_L005,系統,System,他挺胸叉腰了。要開口的人，就用反駁截斷他。,"He's puffed out his chest and planted his hands on his hips. When someone's about to speak, cut him off with Rebut.",
+SCR_CH01_S05_L006,亞瑟,Arthur,（主張）我在房裡睡覺，門都沒——,(Assert) I was asleep in my room; the door never once—,
+SCR_CH01_S05_L007,Sherefox,Sherefox,（反駁，出示 E01_06）等一下！月桂糕點鋪的號碼牌，凌晨五點半，第 1 號。一個「一覺睡到天亮」的人，是怎麼比全倫敦都早去排隊的？,"(Rebut, presenting E01_06) Hold on! A Laurel Pastry Shop queue ticket: half past five in the morning, number 1. How does someone who ""slept straight through until morning"" beat the whole of London to the queue?",
+SCR_CH01_S05_L008,亞瑟,Arthur,（截斷）我還沒說完——,(Cut-In) I haven't finished—,
+SCR_CH01_S05_L009,（演出）,(Staging),【印：截】　【印：破竹】（第 1 層・教學預覽）,【印：截】　【印：破竹】(Layer 1; tutorial preview),
+SCR_CH01_S05_L010,系統,System,截斷！指出第 1 個矛盾。,Cut-In! First contradiction found.,
+SCR_CH01_S05_L011,系統,System,（第 2 回合・預兆）亞瑟把袖子往下拉。亮起節點：N2「布丁是貓吃掉的」。,"(Round 2 · Tell) Arthur tugs his sleeve down. Lit node: N2 ""The cat ate the pudding"".",
+SCR_CH01_S05_L012,亞瑟,Arthur,（預兆）那、那我換個說法……,"(Tell) W-well, let me put it another way...",
+SCR_CH01_S05_L013,系統,System,他在拉袖子。在護東西的人，就是出手的時候。,"He's tugging at his sleeve. When someone's covering something up, it's time to strike.",
+SCR_CH01_S05_L014,Sherefox,Sherefox,（實證連鎖，E01_01→E01_04）盤子上一道湯匙痕都沒有，只有一圈完美的焦糖圓。而冰箱前的地板，亮得像剛打過蠟。布丁不是被吃掉的，是整顆滑到地上，再被某個人半夜擦乾淨的。,"(Solid Chain, E01_01→E01_04) There isn't a single spoon mark on that plate, just one perfect ring of caramel. And the floor in front of the fridge shines as if it had just been waxed. The pudding wasn't eaten: it slid whole onto the floor, and someone wiped it up in the dead of night.",
+SCR_CH01_S05_L015,亞瑟,Arthur,（補強）我的意思是，貓……也可能是隔壁的貓。,"(Reinforce) What I mean is, the cat... could also be the neighbour's cat.",
+SCR_CH01_S05_L016,Sherefox,Sherefox,那隔壁的貓還順便幫我們拖了地？牠應該來應徵室友。,So the neighbour's cat also kindly mopped our floor on its way out? It should apply to be our flatmate.,
+SCR_CH01_S05_L017,（演出）,(Staging),【大字：動搖】　【印：斷】（破竹歸零・教學預覽）,【大字：動搖】　【印：斷】(Unstoppable resets to zero; tutorial preview),
+SCR_CH01_S05_L018,系統,System,補強擋不住實證！指出第 2 個矛盾。亞瑟陷入「動搖」。,A Reinforce can't stop solid evidence! Second contradiction found. Arthur is Shaken.,
+SCR_CH01_S05_L019,系統,System,對手動搖了！下一回合用關鍵證物，就能論破。,"The opponent is Shaken! Next round, use Key Evidence to Break him.",
+SCR_CH01_S05_L020,系統,System,（第 3 回合・預兆）亞瑟雙手亂揮，又挺起了胸。亮起節點：N3「布丁的事跟我一點關係都沒有」。,"(Round 3 · Tell) Arthur flails his arms, then puffs out his chest again. Lit node: N3 ""I have nothing whatsoever to do with the pudding"".",
+SCR_CH01_S05_L021,亞瑟,Arthur,（預兆・動搖）總、總之布丁跟我無關！,"(Tell · Shaken) A-anyway, the pudding has nothing to do with me!",
+SCR_CH01_S05_L022,亞瑟,Arthur,（主張）我當過醫護兵，我不會偷吃別人的——,(Assert) I was a medic; I would never eat someone else's—,
+SCR_CH01_S05_L023,Sherefox,Sherefox,等一下，我快解開了！……不，我已經徹底解開了！,Hold on—I've almost cracked it! ...No. I've completely cracked it!,
+SCR_CH01_S05_L024,Sherefox,Sherefox,（反駁論破，出示 E01_03）亞瑟，你袖口上有焦糖，焦糖旁邊還黏著黃銅屑。這間屋子裡，只有一個地方同時有布丁和黃銅——冰箱！你昨晚在冰箱前面做什麼，是會同時碰到布丁和齒輪的？,"(Rebut-Break, presenting E01_03) Arthur, there's caramel on your cuff, and brass filings stuck beside the caramel. In this whole house there's only one place with both pudding and brass: the fridge! What were you doing in front of the fridge last night that touched both pudding and gears?",
+SCR_CH01_S05_L025,（演出）,(Staging),【大字：論破】　【印：破竹】（第 1 層・教學預覽）,【大字：論破】　【印：破竹】(Layer 1; tutorial preview),
+SCR_CH01_S05_L026,系統,System,論破！,Break!,
+SCR_CH01_S05_L027,旁白（亞瑟筆記）,Narration (Arthur's Notes),她用放大鏡指著我的時候，尾巴高高翹起。我後來才知道，那是她最得意的表情。,"As she pointed her magnifying glass at me, her tail stood straight up. I learned later that this is her proudest expression.",
+SCR_CH01_S05_L028,亞瑟,Arthur,（垂頭喪氣）……布丁是我打翻的。對不起。,(Crestfallen) ...I knocked the pudding over. I'm sorry.,
+SCR_CH01_S05_L029,Sherefox,Sherefox,我就知道！,I knew it!,
+SCR_CH01_S05_L030,亞瑟,Arthur,但我不是在偷吃。（從房裡拿出懷錶）我是在修這個。擺輪歪了，要先冰過、縮一點才裝得回去。我開冰箱的時候，袖子勾到了盤子……它就這樣滑下去了，慢動作的那種。,"But I wasn't stealing a bite. (Fetches a pocket watch from his room) I was fixing this. The balance wheel was bent, and it had to be chilled first to shrink a little before it would fit back in. When I opened the fridge, my sleeve caught on the plate... and it just slid off. In slow motion, even.",
+SCR_CH01_S05_L031,Sherefox,Sherefox,（接過懷錶，耳朵慢慢豎起來）……它在走。,"(Taking the watch, her ears slowly rising) ...It's ticking.",
+SCR_CH01_S05_L032,亞瑟,Arthur,現在走得比倫敦所有的鐘都準。我本來想在天亮前買一顆新布丁放回去，可是店七點才開。,"It's more accurate now than any clock in London. I meant to buy a new pudding and put it back before dawn, but the shop doesn't open until seven.",
+SCR_CH01_S05_L033,Sherefox,Sherefox,（別過頭，尾巴偷偷晃了一下）……現在六點五十。你的號碼牌是第 1 號，對吧？,"(Turning her head away, her tail giving a secret wag) ...It's ten to seven now. And your ticket is number 1, isn't it?",
+SCR_CH01_S05_L034,亞瑟,Arthur,對。,Yes.,
+SCR_CH01_S05_L035,Sherefox,Sherefox,那還等什麼。你請客，兩顆。,Then what are we waiting for? Your treat. Two of them.,
+SCR_CH01_S06_L001,（場景標題）,(Scene heading),場景 6：結算,Scene 6: Results,scene heading
+SCR_CH01_S06_L002,（分支）,(Branch),勝利,Victory,
+SCR_CH01_S06_L003,報紙,Newspaper,【倫敦提燈報・小廣告欄】狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。,"【The London Lantern · Classified Column】The Fox-Eared Detective Agency's notice seeking a flatmate is withdrawn as of today. The Laurel Pastry Shop also reports that its first customer today was a young gentleman with unruly hair, accompanied by a girl whose ears stood very high.",
+SCR_CH01_S06_L004,旁白（亞瑟筆記）,Narration (Arthur's Notes),就這樣，我成了狐狸的同居人兼助手。她說我有兩項偵探最需要的專長：一是能幫屍體看病，二是能幫機器看病。我問那布丁呢，她說布丁的病只有一種，叫做「不夠吃」。,"And so I became the fox's flatmate and assistant. She says I have the two skills a detective needs most: I can diagnose a corpse, and I can diagnose a machine. I asked about the pudding. She says pudding has only one ailment, and it's called ""not enough"".",
+SCR_CH01_S06_L005,系統,System,亞瑟成為助手。解鎖「專業鑑定」與「論戰援護」。,"Arthur has become your assistant. ""Specialist Appraisal"" and ""Debate Cover"" unlocked.",
+SCR_CH01_S06_L006,（分支）,(Branch),敗北,Defeat,
+SCR_CH01_S06_L007,旁白（亞瑟筆記）,Narration (Arthur's Notes),她最後沒能逼我認罪，我是自己招的，因為她盯著空盤子的眼神，比任何審問都有效。她說這不算她輸，只是「延長賽」。我們的默契，看來還需要一點時間磨合。,"She never did manage to force a confession out of me: I owned up myself, because the way she stared at the empty plate was more effective than any interrogation. She insists it doesn't count as her losing, only as ""extra time"". Our rapport, it seems, needs a little more time to bed in.",
+SCR_CH01_S06_L008,系統,System,Ch.2 首次鑑定需要額外 1 次調查行動。,Chapter 2: the first Appraisal requires 1 additional investigation action.,
+SCR_CH01_S07_L001,（場景標題）,(Scene heading),場景 7：亞瑟的結案筆記,Scene 7: Arthur's Case-Closed Notes,scene heading
+SCR_CH01_S07_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：消失的發條焦糖布丁。犯人：我。手法：袖口。動機：一只摔壞的懷錶，和一個說「沒事」時耳朵往下垂的室友。附記：第二顆布丁她吃得很慢，一口一口，盤子旁邊擺著那只懷錶。另外，門縫下那張空白名片被她收進了抽屜最深處。,"Case name: The Vanishing Clockwork Caramel Pudding. Culprit: me. Method: my sleeve. Motive: a broken pocket watch, and a flatmate whose ears droop when she says ""nothing"". Postscript: she ate the second pudding very slowly, one bite at a time, with that pocket watch set beside the plate. Also, the blank calling card from under the door was put away by her in the deepest part of the drawer.",
+SCR_CH02_S01_L001,（場景標題）,(Scene heading),場景 1：報紙頭版（開場）,Scene 1: Newspaper Front Page (Opening),scene heading
+SCR_CH02_S01_L002,報紙,Newspaper,【倫敦提燈報・1887 年 10 月】百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠,【The London Lantern · October 1887】Century-Old Antique Pocket Watch Swapped! Wealthy Merchant Sues Baker Street's Veteran Clockmaker,
+SCR_CH02_S01_L003,報紙,Newspaper,本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。格雷沙姆先生表示：「我的錶進店時完好如初，店主是唯一碰過它的人。」店主霍洛威老先生經營鐘錶店逾四十年，鄰里評價甚佳，對此指控堅決否認。據悉，富商已委託律師，最快本週提告。,"Our correspondent reports: Wealthy merchant Mr. Gresham yesterday entrusted a century-old antique pocket watch to the Cuckoo Clockworks on Baker Street for cleaning. When he opened the case back that evening, he discovered the movement had been replaced. Mr. Gresham stated: ""My watch was in perfect condition when it went into the shop, and the shopkeeper is the only person who touched it."" The owner, old Mr. Holloway, has run his clock shop for over forty years and is highly regarded by his neighbours; he flatly denies the accusation. It is understood that the merchant has retained a solicitor and may file suit as early as this week.",
+SCR_CH02_S02_L001,（場景標題）,(Scene heading),場景 2：事務所客廳（日常）,Scene 2: Agency Living Room (Daily Life),scene heading
+SCR_CH02_S02_L002,亞瑟,Arthur,樓下的霍洛威先生被告了。,Mr. Holloway downstairs is being sued.,
+SCR_CH02_S02_L003,Sherefox,Sherefox,（從報紙後探出耳朵）霍洛威爺爺？那個每次我經過都會塞糖給我的霍洛威爺爺？,(Ears popping up from behind the newspaper) Grandpa Holloway? The Grandpa Holloway who slips me a sweet every time I walk past?,
+SCR_CH02_S02_L004,亞瑟,Arthur,他也會塞糖給我。我以為那是他的營業策略。,He slips me sweets too. I assumed it was his sales strategy.,
+SCR_CH02_S02_L005,Sherefox,Sherefox,亞瑟，一個塞了四十年糖的人，不會為了一顆機芯毀掉四十年的甜。走吧，下樓。,"Arthur, a man who has handed out sweets for forty years doesn't throw away forty years of sweetness over one little movement. Come on, downstairs.",
+SCR_CH02_S02_L006,亞瑟,Arthur,妳早餐還沒吃完。,You haven't finished your breakfast.,
+SCR_CH02_S02_L007,Sherefox,Sherefox,真相比司康餅熱。帶著吧，邊走邊吃。,The truth is hotter than a scone. Bring it along and we'll eat on the way.,
+SCR_CH02_S03_L001,（場景標題）,(Scene heading),場景 3：報時鳥鐘錶店（事件）,Scene 3: The Cuckoo Clockworks (Event),scene heading
+SCR_CH02_S03_L002,格雷沙姆,Gresham,就是他！我的錶交給這老頭的時候還好好的！,That's him! My watch was fine when I handed it to that old man!,
+SCR_CH02_S03_L003,霍洛威,Holloway,先生，我發誓，我只檢查了錶面，連錶背都沒打開……,"Sir, I swear, I only checked the face, I never even opened the case back...",
+SCR_CH02_S03_L004,費奇,Fitch,（鞠躬）主人，請冷靜。小人是三點整離開的，那時報時鳥剛剛叫過。之後店裡只有霍洛威先生一人。,"(Bowing) Master, please calm yourself. I left at three o'clock on the dot, just after the cuckoo called. After that there was only Mr. Holloway in the shop.",
+SCR_CH02_S03_L005,Sherefox,Sherefox,三點整？你很確定？,Three on the dot? You're quite sure?,
+SCR_CH02_S03_L006,費奇,Fitch,報時鳥叫了三聲，小人聽得清清楚楚。,The cuckoo called three times. I heard it clear as day.,
+SCR_CH02_S03_L007,旁白（亞瑟筆記）,Narration (Arthur's Notes),店角落坐著一位穿深色西裝裙的女士，正在喝黑咖啡。從我們進門到現在，她的杯子一次也沒有放下，眼睛也一次都沒有離開過 Sherefox。,"In the corner sat a lady in a dark skirt suit, drinking black coffee. From the moment we walked in until now, she hasn't once put her cup down, and her eyes haven't once left Sherefox.",
+SCR_CH02_S03_L008,Sherefox,Sherefox,（低聲）亞瑟，角落那位女士在看我。,"(In a low voice) Arthur, the lady in the corner is watching me.",
+SCR_CH02_S03_L009,亞瑟,Arthur,大概是第一次看到狐狸邊吃司康邊辦案。,Probably her first time seeing a fox eat a scone while solving a case.,
+SCR_CH02_S03_L010,Sherefox,Sherefox,不，那不是看稀奇的眼神。那是在下棋的眼神。,No. That isn't the look of someone watching a curiosity. That's the look of someone playing chess.,
+SCR_CH02_S04_L001,（場景標題）,(Scene heading),場景 4：蒐證（報時鳥鐘錶店）,Scene 4: Evidence Search (The Cuckoo Clockworks),scene heading
+SCR_CH02_S04_L002,（證物描述）,(Evidence description),替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。,"The gear inside the replacement movement gleams with a cold, hard light, its teeth too fine to be an antique, more like something out of an arsenal.",evidence E02_01 Custom Double-Mainspring Gear
+SCR_CH02_S04_L003,亞瑟,Arthur,雙層發條，齒距 0.3 釐，這是去年才出現的軍用規格。正規店家買不到，只有黑市才有。,"Double mainspring, tooth pitch 0.3 mm. That's a military spec that only appeared last year. You can't buy it from a legitimate shop, only on the black market.",appraisal | evidence E02_01 Custom Double-Mainspring Gear
+SCR_CH02_S04_L004,（證物描述）,(Evidence description),店裡最醒目的報時鳥鐘，木頭小鳥正歪著頭，像是在等下一次登場。,"The most eye-catching cuckoo clock in the shop; the little wooden bird has its head cocked, as though waiting for its next appearance.",evidence E02_02 The Cuckoo Clock
+SCR_CH02_S04_L005,亞瑟,Arthur,我拿懷錶對過了，它比大笨鐘慢了整整三分鐘。不是發條老化，老化不會這麼整齊。,I checked my pocket watch against it: it's a full three minutes slower than Big Ben. That's not an old spring. Ageing doesn't produce error this tidy.,appraisal | evidence E02_02 The Cuckoo Clock
+SCR_CH02_S04_L006,（證物描述）,(Evidence description),護蓋邊緣有一道細細的新刮痕，金屬底色還很亮。,"A thin, fresh scratch runs along the edge of the cover; the metal beneath is still bright.",evidence E02_03 Fresh Scratches on the Pendulum Cover
+SCR_CH02_S04_L007,亞瑟,Arthur,刮痕很新，寬度剛好跟小號螺絲起子一樣。,"The scratch is new, and its width matches a small screwdriver exactly.",evidence E02_03 Fresh Scratches on the Pendulum Cover
+SCR_CH02_S04_L008,（證物描述）,(Evidence description),大笨鐘敲三點的時候，我從窗戶看到老爺爺進去後面了，櫃台只剩那個穿黑衣服的大哥哥。,"""When Big Ben struck three, I saw the old gentleman go into the back through the window, and only that big brother in the black clothes was left at the counter.""",evidence E02_04 Tommy the Newsboy's Testimony
+SCR_CH02_S04_L009,亞瑟,Arthur,孩子的證詞很直接，而且大笨鐘不會被調慢。,A child's testimony is very direct. And Big Ben can't be set slow.,evidence E02_04 Tommy the Newsboy's Testimony
+SCR_CH02_S04_L010,（證物描述）,(Evidence description),霍洛威老先生的簽收字跡工整，時間寫著「三點零五分」，依據的是店裡的鐘。,"Old Mr. Holloway signed for it in neat handwriting, the time written as ""3:05"", going by the shop's clock.",evidence E02_05 Repair Receipt (Signed for at 3:05 Shop Time)
+SCR_CH02_S04_L011,亞瑟,Arthur,如果店鐘慢了三分鐘，實際簽收時間就是三點零八分。,"If the shop clock was three minutes slow, the real time of receipt was 3:08.",evidence E02_05 Repair Receipt (Signed for at 3:05 Shop Time)
+SCR_CH02_S04_L012,（證物描述）,(Evidence description),四十年來每一顆進貨零件都記在這本冊子裡，字跡從年輕寫到年老。,"Every part bought in over forty years is recorded in this ledger, the handwriting running from young to old.",evidence E02_06 The Shop's Parts Catalogue
+SCR_CH02_S04_L013,亞瑟,Arthur,翻遍了，沒有任何雙層發條的進貨紀錄。,I've been through all of it. There isn't a single entry for a double mainspring.,evidence E02_06 The Shop's Parts Catalogue
+SCR_CH02_S04_L014,（證物描述）,(Evidence description),費奇鞠躬時，袖口落下一點金色的粉末。,"When Fitch bowed, a little golden powder fell from his cuff.",evidence E02_07 Brass Filings on Fitch's Cuff
+SCR_CH02_S04_L015,亞瑟,Arthur,成分和替換機芯的黃銅外殼一樣，是同一批料。擦馬車可擦不出這種東西。,The composition matches the brass casing of the replacement movement: the same batch of material. Polishing a carriage won't leave you with this.,appraisal | evidence E02_07 Brass Filings on Fitch's Cuff
+SCR_CH02_S04_L016,（證物描述）,(Evidence description),（論戰後取得）角落那位女士留下的瓷杯，杯身有一道從邊緣裂到杯底的痕。,"(Obtained after the debate) A porcelain cup left behind by the lady in the corner, with a crack running from the rim to the base.",evidence E02_08 The Cracked Black Coffee Cup
+SCR_CH02_S04_L017,亞瑟,Arthur,杯子擋下了那塊配重，否則砸到的會是妳的頭。……她是誰？,The cup stopped that counterweight. Otherwise it would have been your head it hit. ...Who is she?,evidence E02_08 The Cracked Black Coffee Cup
+SCR_CH02_S90_L001,（場景標題）,(Scene heading),論戰台詞庫：費奇,Debate Line Library: Fitch,scene heading
+SCR_CH02_S90_L002,費奇,Fitch,小人記得清清楚楚，報時鳥一叫我就走了。,"I remember it perfectly clearly: the moment the cuckoo called, I left.","Tell line: Assert (gesture: tugging cuff, bowing)"
+SCR_CH02_S90_L003,費奇,Fitch,請容小人再說明一次。,"If you'll permit me, let me explain once more.","Tell line: Assert (gesture: tugging cuff, bowing)"
+SCR_CH02_S90_L004,費奇,Fitch,小人只是一介隨從，只說自己看到的事。,I'm only a servant. I only say what I saw.,"Tell line: Assert (gesture: tugging cuff, bowing)"
+SCR_CH02_S90_L005,費奇,Fitch,你們這是誣賴！,This is slander!,"Tell line: Onslaught (gesture: slapping the counter, voice rising)"
+SCR_CH02_S90_L006,費奇,Fitch,夠了！主人，別聽這狐狸胡說！,"Enough! Master, don't listen to this fox's nonsense!","Tell line: Onslaught (gesture: slapping the counter, voice rising)"
+SCR_CH02_S90_L007,費奇,Fitch,一個小姑娘懂什麼鐘錶！,What does a slip of a girl know about clocks!,"Tell line: Onslaught (gesture: slapping the counter, voice rising)"
+SCR_CH02_S90_L008,費奇,Fitch,這、這不過是一點小誤會……,Th-this is just a small misunderstanding...,Tell line: Reinforce (gesture: pulling out handkerchief to mop sweat)
+SCR_CH02_S90_L009,費奇,Fitch,小人的意思是，大概……差不多三點。,"What I mean is, around... roughly three o'clock.",Tell line: Reinforce (gesture: pulling out handkerchief to mop sweat)
+SCR_CH02_S90_L010,費奇,Fitch,請各位聽小人把話補完。,"Please, let me finish what I was saying.",Tell line: Reinforce (gesture: pulling out handkerchief to mop sweat)
+SCR_CH02_S90_L011,費奇,Fitch,嘖，小姐又想編什麼故事了？,Tsk. What story is the young miss going to make up this time?,"Tell line: Set a Trap (gesture: glancing at the corner, mouth twitching)"
+SCR_CH02_S90_L012,費奇,Fitch,小人很想聽聽，這次您要怎麼接。,I would very much like to hear how you'll carry this one off.,"Tell line: Set a Trap (gesture: glancing at the corner, mouth twitching)"
+SCR_CH02_S90_L013,費奇,Fitch,請吧，小人洗耳恭聽。,"Go on, then. I'm all ears.","Tell line: Set a Trap (gesture: glancing at the corner, mouth twitching)"
+SCR_CH02_S90_L014,費奇,Fitch,報時鳥叫了三聲，店裡的人都聽得到。,The cuckoo called three times; everyone in the shop could hear it.,Action line: Assert
+SCR_CH02_S90_L015,費奇,Fitch,我走的時候，錶還好好的放在櫃台上。,"When I left, the watch was still sitting safely on the counter.",Action line: Assert
+SCR_CH02_S90_L016,費奇,Fitch,能碰到錶芯的，只有拿著工具的老闆。,"The only one who could touch the movement was the owner, with his tools in hand.",Action line: Assert
+SCR_CH02_S90_L017,費奇,Fitch,那顆機芯就是這家店的零件！老頭換了主人的寶貝！,That movement is one of this shop's own parts! The old man swapped my master's treasure!,Action line: Onslaught
+SCR_CH02_S90_L018,費奇,Fitch,主人，告他！告到他關店！,"Master, sue him! Sue him until he shuts up shop!",Action line: Onslaught
+SCR_CH02_S90_L019,費奇,Fitch,四十年的老店？四十年的老賊！,Forty years in business? Forty years a thief!,Action line: Onslaught
+SCR_CH02_S90_L020,費奇,Fitch,就算鐘慢了一點，小人也不知道啊。,"Even if the clock ran a little slow, how was I to know?",Action line: Reinforce
+SCR_CH02_S90_L021,費奇,Fitch,小人的記性不好，可能是三點零一分。,My memory's poor; it might have been one minute past three.,Action line: Reinforce
+SCR_CH02_S90_L022,費奇,Fitch,反正小人走的時候，老闆還在。,"Anyway, when I left, the owner was still there.",Action line: Reinforce
+SCR_CH02_S90_L023,費奇,Fitch,哈！這兩樣東西根本沒有關係！,Ha! Those two things have nothing to do with each other!,Action line: Set a Trap
+SCR_CH02_S90_L024,費奇,Fitch,您剛剛說的，小人可都記下來了。,"Everything you've just said, I've noted down.",Action line: Set a Trap
+SCR_CH02_S90_L025,費奇,Fitch,聽到了嗎主人，她在亂拉關係！,"Did you hear that, Master? She's forcing connections!",Action line: Set a Trap
+SCR_CH02_S90_L026,費奇,Fitch,鐘是我調的！可那是老頭叫我調的！,I set the clock! But that old man told me to set it!,Endgame line: Scorched Earth
+SCR_CH02_S90_L027,費奇,Fitch,都是你們的錯！,It's all your fault!,Endgame line: Scorched Earth
+SCR_CH02_S90_L028,Sherefox,Sherefox,時間會證明一切，尤其是被調慢的時間。,"Time will tell, especially time that's been set slow.",Sherefox action line | Solid Chain
+SCR_CH02_S90_L029,Sherefox,Sherefox,一、二、三、四，每一格都對得上。,"One, two, three, four, every tick lines up.",Sherefox action line
+SCR_CH02_S90_L030,Sherefox,Sherefox,證物排好隊了，請進。,The evidence has queued up. Step right in.,Sherefox action line
+SCR_CH02_S90_L031,Sherefox,Sherefox,這兩件事也許不太像，但像你的人可不少。,"Maybe these two things aren't alike, but plenty of people like you are.",Sherefox action line | Sophistry
+SCR_CH02_S90_L032,Sherefox,Sherefox,要我說，它們是兄弟。,"If you ask me, they're brothers.",Sherefox action line
+SCR_CH02_S90_L033,Sherefox,Sherefox,不確定？那就先抓住再說。,Not sure? Then grab hold first and sort it out later.,Sherefox action line
+SCR_CH02_S90_L034,Sherefox,Sherefox,等一下！,Hold on!,Sherefox action line | Rebut
+SCR_CH02_S90_L035,Sherefox,Sherefox,就是那一句。,That's the one.,Sherefox action line
+SCR_CH02_S90_L036,Sherefox,Sherefox,慢了三分鐘的人，是你。,The one who's three minutes slow is you.,Sherefox action line
+SCR_CH02_S90_L037,Sherefox,Sherefox,……繼續。,...Go on.,Sherefox action line | Observe
+SCR_CH02_S90_L038,Sherefox,Sherefox,你的袖口在說話，我在聽。,"Your cuff is talking, and I'm listening.",Sherefox action line
+SCR_CH02_S90_L039,（演出）,(Staging),（耳朵微微轉向費奇）,(Ears tilt slightly toward Fitch),Sherefox action line
+SCR_CH02_S90_L040,費奇,Fitch,你——,You—,Reaction line | Clash
+SCR_CH02_S90_L041,Sherefox,Sherefox,——我先說完。（分割畫面，兩邊各中一擊）,—let me finish first. (Split screen; each side takes a hit),Reaction line
+SCR_CH02_S90_L042,費奇,Fitch,小人記得——,I remember—,Reaction line | Cut-In
+SCR_CH02_S90_L043,Sherefox,Sherefox,你記得的是一只慢了三分鐘的鳥。,What you remember is a cuckoo three minutes slow.,Reaction line
+SCR_CH02_S90_L044,（演出）,(Staging),（報時鳥突然「咕」了一聲，全場沉默）,"(The cuckoo suddenly goes ""cuck"", and the whole room falls silent)",Reaction line | Standoff
+SCR_CH02_S90_L045,霍洛威,Holloway,……抱歉，它就是這樣。,...Sorry. It does that.,Reaction line
+SCR_CH02_S90_L046,亞瑟,Arthur,他拉袖口了。要宣誓什麼的人都這樣。,He's tugging his cuff. Everyone about to swear an oath does that.,Arthur Tell-hint line | action: Assert
+SCR_CH02_S90_L047,亞瑟,Arthur,他在擦汗，是在堵漏洞。現在攻。,He's mopping his brow. That means he's plugging a leak. Attack now.,Arthur Tell-hint line | action: Reinforce
+SCR_CH02_S90_L048,亞瑟,Arthur,他的手快拍下去了——準備接住他。,His hand's about to slam down. Get ready to catch him.,Arthur Tell-hint line | action: Onslaught
+SCR_CH02_S90_L049,亞瑟,Arthur,他在笑，而且在等。別亂拉線。,"He's smiling, and he's waiting. Don't go drawing any careless links.",Arthur Tell-hint line | action: Set a Trap
+SCR_CH02_S90_L050,費奇,Fitch,好啊，好啊！要死大家一起死！（攥緊配重，手背青筋暴起）,"Fine, fine! If I'm going down, we all go down! (Clenching the counterweight, veins standing out on the back of his hand)",Cornered entrance line (Fitch)
+SCR_CH02_S90_L051,費奇,Fitch,小人沒什麼好怕的了……！（直直瞪著 Sherefox）,I've got nothing left to fear...! (Glaring straight at Sherefox),Cornered entrance line (Fitch)
+SCR_CH02_S90_L052,費奇,Fitch,別、別過來！小人下一句話，一定讓你們後悔！,S-stay back! My next words will make you regret this!,Cornered entrance line (Fitch)
+SCR_CH02_S90_L053,費奇,Fitch,哎呀，狐狸小姐的耳朵垂下來了？小人好怕喔。,"Oh dear, Miss Fox's ears have drooped? I'm ever so frightened.",Taunt when Breached (Fitch)
+SCR_CH02_S90_L054,費奇,Fitch,怎麼不說話了？剛剛不是很會講時間嗎？,Cat got your tongue? Weren't you so good at talking about time a moment ago?,Taunt when Breached (Fitch)
+SCR_CH02_S90_L055,Sherefox,Sherefox,一分。,One minute.,Sherefox state line | Unstoppable 1
+SCR_CH02_S90_L056,Sherefox,Sherefox,兩分。你的時鐘越走越慢了。,Two minutes. Your clock's running slower and slower.,Sherefox state line | Unstoppable 2
+SCR_CH02_S90_L057,Sherefox,Sherefox,三分鐘，剛剛好——勢如破竹！你的時間表，到此為止！,"Three minutes, bang on time. Unstoppable! Your timetable ends here!",Sherefox state line | Unstoppable 3
+SCR_CH02_S90_L058,Sherefox,Sherefox,……（耳朵垂下）嗚，被打中了。,"...(Ears droop) Ow, that hit.",Sherefox state line | Breached | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S90_L059,Sherefox,Sherefox,冷靜，Sherefox。時間還沒停。,"Calm down, Sherefox. Time hasn't stopped.",Sherefox state line | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S90_L060,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,Sherefox state line | banner line for 論破 (Break)
+SCR_CH02_S90_L061,Sherefox,Sherefox,報時鳥叫了，費奇先生——該你慌了。,"The cuckoo has called, Mr. Fitch. Now it's your turn to panic.",Sherefox state line | banner line for 動搖 (Shaken)
+SCR_CH02_S90_L062,Sherefox,Sherefox,勢如破竹！這一刀從鐘擺劈到你的袖口！,Unstoppable! This blade cuts from the pendulum all the way to your cuff!,Sherefox state line | banner line for 破竹 (Unstoppable)
+SCR_CH02_S90_L063,（備註）,(Note),二連論破、反擊論破、絕境：本章不出現。,"Double Break, Counter Break and At the Brink do not appear in this chapter.",Sherefox state line
+SCR_CH02_S90_L064,亞瑟,Arthur,漂亮，連三手都讀對了。,Nicely done. Three moves in a row read correctly.,Arthur state line | Unstoppable
+SCR_CH02_S90_L065,亞瑟,Arthur,保持這個節奏，別貪。,"Keep up this rhythm, and don't get greedy.",Arthur state line
+SCR_CH02_S90_L066,亞瑟,Arthur,他被逼到牆角了。小心，接下來的每一拳都會很重——但也很好認。,"He's been driven into a corner. Careful: every punch from now on will be heavy, but easy to spot.",Arthur state line | Cornered | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S90_L067,亞瑟,Arthur,他不補強了，只會往前衝。看手。,He's stopped Reinforcing and only charges forward. Watch his hands.,Arthur state line | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S90_L068,亞瑟,Arthur,Sherefox，先別反駁，站穩腳步。,"Sherefox, don't Rebut for now. Steady your footing.",Arthur state line | Breached | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S90_L069,亞瑟,Arthur,下一手用實證或觀察，我陪妳撐過去。,"Next move, use solid evidence or Observe. I'll see you through it.",Arthur state line | Not triggered in this chapter; kept for replay / later reference
+SCR_CH02_S05_L001,（場景標題）,(Scene heading),場景 5：主論戰,Scene 5: Main Debate,scene heading
+SCR_CH02_S05_L002,系統,System,論戰開始。對手：費奇（犯人型）。雙方同時出招。,The Debate begins. Opponent: Fitch (Culprit). Both sides move at the same time.,
+SCR_CH02_S05_L003,系統,System,（第 1 回合・預兆）費奇拉了拉袖口，微微鞠躬。亮起節點：N1。可能行動：主張／猛攻。,(Round 1 · Tell) Fitch tugs his cuff and bows slightly. Lit node: N1. Possible moves: Assert / Onslaught.,
+SCR_CH02_S05_L004,費奇,Fitch,（預兆）小人記得清清楚楚，報時鳥一叫我就走了。,"(Tell) I remember it perfectly clearly: the moment the cuckoo called, I left.",
+SCR_CH02_S05_L005,亞瑟,Arthur,（提示）兩個可能都是攻。他要開口，就等他開口。,"(Hint) Both possibilities are attacks. If he's going to speak, let him.",
+SCR_CH02_S05_L006,費奇,Fitch,（主張）報時鳥叫了三聲，店裡的人都——,(Assert) The cuckoo called three times; everyone in the—,
+SCR_CH02_S05_L007,Sherefox,Sherefox,（反駁 N1，出示 E02_02）等一下！你聽到的鳥，比大笨鐘慢了整整三分鐘。它叫「三點」的時候，倫敦已經三點零三分了。,"(Rebut N1, presenting E02_02) Hold on! The bird you heard was a full three minutes slower than Big Ben. When it called ""three o'clock"", London was already three minutes past.",
+SCR_CH02_S05_L008,費奇,Fitch,（截斷）小人記得——,(Cut-In) I remember—,
+SCR_CH02_S05_L009,Sherefox,Sherefox,你記得的是一只慢了三分鐘的鳥。,What you remember is a cuckoo three minutes slow.,
+SCR_CH02_S05_L010,（演出）,(Staging),【印：截】,【印：截】,
+SCR_CH02_S05_L011,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
+SCR_CH02_S05_L012,系統,System,截斷！移除 N1，反擊 30。費奇主導權 70。,"Cut-In! N1 removed, counter 30. Fitch's Dominance: 70.",
+SCR_CH02_S05_L013,系統,System,（第 2 回合・預兆）費奇又拉了拉袖口，眼角瞄向角落。亮起節點：N2。可能行動：主張／設陷（無標記）。,"(Round 2 · Tell) Fitch tugs his cuff again, his eyes flicking toward the corner. Lit node: N2. Possible moves: Assert / Set a Trap (no star).",
+SCR_CH02_S05_L014,費奇,Fitch,（預兆）小人只是一介隨從，只說自己看到的事。,(Tell) I'm only a servant. I only say what I saw.,
+SCR_CH02_S05_L015,亞瑟,Arthur,（提示）N2 是真話，反駁一定空過。他瞄了角落……也許在等妳亂拉線。,"(Hint) N2 is true, so a Rebut would be bound to whiff. He glanced at the corner... maybe he's waiting for you to draw a careless link.",
+SCR_CH02_S05_L016,Sherefox,Sherefox,（觀察）……繼續。你的袖口在說話，我在聽。,"(Observe) ...Go on. Your cuff is talking, and I'm listening.",
+SCR_CH02_S05_L017,費奇,Fitch,（主張）能碰到錶芯的，只有拿著工具的老闆。,"(Assert) The only one who could touch the movement was the owner, with his tools in hand.",
+SCR_CH02_S05_L018,系統,System,讀錯了——他出的是主張。觀察使傷害減半，我方受 19。我方主導權 81。N2 留在場上。,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N2 stays on the table.",
+SCR_CH02_S05_L019,（演出）,(Staging),【印：斷】,【印：斷】,
+SCR_CH02_S05_L020,亞瑟,Arthur,他這次真的只是想說話。不過妳聽完了，下一手他藏不住。,"This time he really did just want to talk. But you've heard him out, and next move he won't be able to hide.",
+SCR_CH02_S05_L021,系統,System,下一回合預兆變為明示。,Next round's Tell becomes Clear.,
+SCR_CH02_S05_L022,系統,System,（第 3 回合・預兆）費奇掏出手帕擦汗。N1 正在補回。明示（觀察後）：補強。,(Round 3 · Tell) Fitch pulls out a handkerchief and mops his brow. N1 is being restored. Clear (after Observe): Reinforce.,
+SCR_CH02_S05_L023,費奇,Fitch,（預兆）這、這不過是一點小誤會……,(Tell) Th-this is just a small misunderstanding...,
+SCR_CH02_S05_L024,亞瑟,Arthur,（提示）他在擦汗，是在堵漏洞。現在攻。,(Hint) He's mopping his brow: he's plugging a leak. Attack now.,
+SCR_CH02_S05_L025,Sherefox,Sherefox,（實證連鎖，E02_03→E02_02→E02_04→E02_05）鐘擺護蓋上有新刮痕，報時鳥被調慢了三分鐘。報童說，大笨鐘敲三點時櫃台只剩你一人。而老闆的簽收時間，是用一只慢了三分鐘的鐘寫的！一、二、三、四，每一格都對得上。,"(Solid Chain, E02_03→E02_02→E02_04→E02_05) Fresh scratches on the pendulum cover; the cuckoo set three minutes slow. The newsboy says that when Big Ben struck three, you were alone at the counter. And the owner's receipt time was written by a clock three minutes slow! One, two, three, four, every tick lines up.",
+SCR_CH02_S05_L026,費奇,Fitch,（補強）就算鐘慢了一點，小人也不知道啊……,"(Reinforce) Even if the clock ran a little slow, how was I to know...",
+SCR_CH02_S05_L027,（演出）,(Staging),【大字：動搖】,【大字：動搖】,
+SCR_CH02_S05_L028,系統,System,鏈傷害 35，補強減半為 17.5，但擋不住實證。移除 N1，補強被打中、不回復。四張連鎖命中，費奇陷入「動搖」。費奇主導權 52.5。,"Chain damage 35, halved by the Reinforce to 17.5, but it can't stop solid evidence. N1 removed; the Reinforce was hit, so there is no recovery. The four-card chain lands, and Fitch is Shaken. Fitch's Dominance: 52.5.",
+SCR_CH02_S05_L029,費奇,Fitch,（動搖）這、這只是巧合！鐘、鐘本來就會慢！,(Shaken) Th-this is just a coincidence! Clocks run slow all the time!,
+SCR_CH02_S05_L030,系統,System,（第 4 回合・預兆）費奇的手重重拍在櫃台上。亮起節點：N3。明示：猛攻。,(Round 4 · Tell) Fitch slams his hand down on the counter. Lit node: N3. Clear: Onslaught.,
+SCR_CH02_S05_L031,費奇,Fitch,（預兆）你們這是誣賴！,(Tell) This is slander!,
+SCR_CH02_S05_L032,亞瑟,Arthur,（提示）他的手快拍下去了——準備接住他。他動搖了，這是論破的時機。,"(Hint) His hand's about to slam down. Get ready to catch him. He's Shaken, so this is the moment to Break.",
+SCR_CH02_S05_L033,費奇,Fitch,（猛攻）那顆機芯就是這家店的零件！老頭換了主人的——,(Onslaught) That movement is one of this shop's own parts! The old man swapped his master's—,
+SCR_CH02_S05_L034,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,
+SCR_CH02_S05_L035,Sherefox,Sherefox,（反駁論破，對準 N3，出示 E02_06＋E02_01）這顆雙層發條齒輪，是去年才出現的軍工黑市規格！霍洛威爺爺的零件目錄記了四十年，從沒進過這種東西。能把它帶進店裡的，只有欠了黑市債的人！,"(Rebut-Break, aimed at N3, presenting E02_06 + E02_01) This double-mainspring gear is black-market military spec that only appeared last year! Grandpa Holloway's parts catalogue goes back forty years and never once listed anything like it. The only person who could bring it into this shop is someone in debt to the black market!",
+SCR_CH02_S05_L036,（演出）,(Staging),【印：截】　【大字：論破】,【印：截】　【大字：論破】,
+SCR_CH02_S05_L037,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
+SCR_CH02_S05_L038,系統,System,截斷猛攻！反擊 30，費奇主導權 22.5。論破！費奇的主張鏈全數粉碎，再扣 70，主導權鎖在 1，進入尾聲。,"Onslaught cut off! Counter 30; Fitch's Dominance: 22.5. Break! Fitch's whole claim chain is smashed, and another 70 is taken off; Dominance locks at 1 and the Endgame begins.",
+SCR_CH02_S05_L039,系統,System,（第 5 回合・尾聲）費奇一把抓起鐘的黃銅配重。明示：玉石俱焚。,(Round 5 · Endgame) Fitch snatches up the clock's brass counterweight. Clear: Scorched Earth.,
+SCR_CH02_S05_L040,費奇,Fitch,（尾聲・玉石俱焚）……是，鐘是我調的！可那是老頭叫我調的！都是你們的錯！,"(Endgame · Scorched Earth) ...Yes, I set the clock! But that old man told me to! It's all your fault!",
+SCR_CH02_S05_L041,系統,System,（演出）費奇把配重擲向 Sherefox。角落的女士舉起咖啡杯，瓷杯應聲裂開，配重落在地上。,"(Staging) Fitch hurls the counterweight at Sherefox. The lady in the corner raises her coffee cup; the porcelain cracks, and the counterweight drops to the floor.",
+SCR_CH02_S05_L042,Wolfhart,Wolfhart,……在一間鐘錶店裡，製造出比時間更不精確的東西，大概是被認為最不得體的行為之一了，費奇先生。,"...That something less exact than time itself should be produced in a clockmaker's shop, of all places, would by most standards be considered among the least becoming of acts, Mr. Fitch.",
+SCR_CH02_S05_L043,Sherefox,Sherefox,（愣了一下，回過神，反駁，出示 E02_07＋E02_01）你袖口的黃銅屑，跟這顆替換機芯的外殼是同一批料。從調鐘到換芯，每一步都是你的手。這就是你的時間表，一分不差！,"(Startled for a moment, then recovering; Rebut, presenting E02_07 + E02_01) The brass filings on your cuff are from the same batch as the casing of this replacement movement. From setting the clock to swapping the movement, every step was your hand. That's your timetable, to the minute!",
+SCR_CH02_S05_L044,（演出）,(Staging),【印：截】,【印：截】,
+SCR_CH02_S05_L045,系統,System,費奇的主導權歸零。論戰勝利。,Fitch's Dominance falls to zero. Debate won.,
+SCR_CH02_S05_L046,費奇,Fitch,（跪倒）我……我只是想還債……,(Collapsing to his knees) I... I only wanted to pay off my debt...,
+SCR_CH02_S05_L047,系統,System,（若尾聲出錯牌）配重擦過你的耳邊。主導權 −30。,(If the wrong card is played in the Endgame) The counterweight skims past your ear. Dominance −30.,
+SCR_CH02_S06_L001,（場景標題）,(Scene heading),場景 6：結算,Scene 6: Results,scene heading
+SCR_CH02_S06_L002,（分支）,(Branch),勝利,Victory,
+SCR_CH02_S06_L003,報紙,Newspaper,【倫敦提燈報】報時鳥揭穿掉包案！隨從費奇當場認罪,【The London Lantern】Cuckoo Clock Unmasks Swap Scandal! Attendant Fitch Confesses on the Spot,
+SCR_CH02_S06_L004,報紙,Newspaper,本報訊，貝克街古董懷錶掉包案昨日真相大白。富商格雷沙姆的隨從費奇坦承，為償還賭債，私自調慢店內報時鳥鐘三分鐘，偽造離店時間，並以黑市零件掉包機芯。霍洛威老先生獲得清白，富商當場致歉。據目擊者表示，揭穿真相者為樓上事務所的狐耳少女。,"Our correspondent reports: The truth behind the antique pocket-watch swap on Baker Street came to light yesterday. Fitch, attendant to the wealthy Mr. Gresham, admitted that to pay off gambling debts he privately set the shop's cuckoo clock three minutes slow, faked his time of leaving, and swapped in a black-market part for the movement. Old Mr. Holloway has been cleared, and the merchant apologised on the spot. According to witnesses, the one who exposed the truth was the fox-eared girl from the agency upstairs.",
+SCR_CH02_S06_L005,霍洛威,Holloway,小狐狸，這是爺爺的終身免費保養券。以後妳的懷錶，爺爺包了。,"Little Fox, this is Grandpa's lifetime free-servicing voucher. From now on, Grandpa's got your pocket watch covered.",
+SCR_CH02_S06_L006,Sherefox,Sherefox,那我的胃也能保養嗎？,Can my stomach be serviced too?,
+SCR_CH02_S06_L007,霍洛威,Holloway,糖果算嗎？,Do sweets count?,
+SCR_CH02_S06_L008,Sherefox,Sherefox,成交。,Deal.,
+SCR_CH02_S06_L009,Wolfhart,Wolfhart,（離開前，在門口停步）推理的速度，就一般標準而言，或許可以被評為不錯；可惜的是，站位被選擇得非常差。,"(Pausing in the doorway on her way out) The speed of your reasoning might, by ordinary standards, be rated as respectable; it is regrettable, however, that your position was chosen so very poorly.",
+SCR_CH02_S06_L010,Sherefox,Sherefox,……妳是誰？,...Who are you?,
+SCR_CH02_S06_L011,Wolfhart,Wolfhart,一位喝咖啡的客人。至於杯子的費用，已經被支付了。,"A customer who drinks coffee. As for the cost of the cup, it has already been paid.",
+SCR_CH02_S06_L012,旁白（亞瑟筆記）,Narration (Arthur's Notes),她付的錢，足夠買下十個杯子。,She paid enough to buy ten cups.,
+SCR_CH02_S06_L013,（分支）,(Branch),敗北,Defeat,
+SCR_CH02_S06_L014,報紙,Newspaper,【倫敦提燈報】老鐘錶匠被判賠償，狐耳偵探鄰居情誼破裂,"【The London Lantern】Veteran Clockmaker Ordered to Pay Damages, Fox-Eared Detective's Friendship with Neighbour Shattered",
+SCR_CH02_S06_L015,報紙,Newspaper,本報訊，貝克街古董懷錶掉包案初步調解結果出爐，報時鳥鐘錶店須賠償富商格雷沙姆先生全額損失。樓上事務所的狐耳偵探曾試圖介入，未能提出有力證據。據悉，霍洛威老先生將暫時停業。,"Our correspondent reports: The preliminary mediation result in the Baker Street antique pocket-watch swap case is out: the Cuckoo Clockworks must compensate Mr. Gresham for his full loss. The fox-eared detective upstairs had tried to intervene, but failed to produce strong evidence. Old Mr. Holloway is understood to be closing temporarily.",
+SCR_CH02_S06_L016,旁白（亞瑟筆記）,Narration (Arthur's Notes),樓下的鐵門拉下來的那天，Sherefox 在窗邊站了很久。那顆齒輪被富商帶走了，她只來得及拓下一張印子。她說，總有一天會用到。,"On the day the iron shutter came down downstairs, Sherefox stood at the window for a long time. The gear was taken away by the merchant; she only had time to make a single rubbing of it. She says one day it will come in useful.",
+SCR_CH02_S07_L001,（場景標題）,(Scene heading),場景 7：亞瑟的結案筆記,Scene 7: Arthur's Case-Closed Notes,scene heading
+SCR_CH02_S07_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：慢了三分鐘的報時鳥。犯人：費奇。手法：調慢店鐘，偽造離店時間。附記一：那顆雙層發條齒輪，Sherefox 抄下了上面的批號，夾進她的筆記本。附記二：角落那位女士留下一只裂開的杯子，Sherefox 把它擺在壁爐架上，說是「戰利品」。我倒覺得，那更像一張借據。,"Case name: The Cuckoo Three Minutes Slow. Culprit: Fitch. Method: setting the shop clock slow to fake his time of departure. Note 1: Sherefox copied the batch number off that double-mainspring gear and tucked it into her notebook. Note 2: the lady in the corner left behind a cracked cup, which Sherefox has set on the mantelpiece as a ""trophy"". To me, it looks more like an IOU.",
+SCR_CH03_S01_L001,（場景標題）,(Scene heading),場景 1：報紙頭版（開場）,Scene 1: Newspaper Front Page (Opening),scene heading
+SCR_CH03_S01_L002,報紙,Newspaper,【倫敦提燈報・1887 年 11 月】市政廳官員陳屍駁船鍋爐室！房門反鎖，警方已逮捕船夫,"【The London Lantern · November 1887】Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted from Inside, Police Arrest Bargeman",
+SCR_CH03_S01_L003,報紙,Newspaper,本報訊，市政廳採購科官員艾德溫・莫斯昨晨被發現陳屍於泰晤士河一艘蒸汽駁船的鍋爐室內。據悉，鍋爐室房門由內側閂上，第一發現者為該船船夫老湯姆，警方已依其持有鑰匙將其逮捕。負責本案的蘇格蘭場巴斯克維爾警督表示：「兇手就在船上，本案今晚結束。」市政廳發言人對莫斯先生的不幸表示哀悼，並強調下週的年度採購審計將如期進行。,"Our correspondent reports: Edwin Moss, an official in the Municipal Hall's Procurement Department, was found dead yesterday morning in the boiler room of a steam barge on the Thames. It is understood that the boiler-room door had been bolted from the inside; the first on the scene was the barge's bargeman, Old Tom, and police have arrested him on the strength of his possessing a key. Inspector Baskerville of Scotland Yard, who is in charge of the case, stated: ""The killer is on that barge. This case ends tonight."" A Municipal Hall spokesman expressed condolences over Mr. Moss's misfortune and stressed that next week's annual procurement audit will proceed as scheduled.",
+SCR_CH03_S02_L001,（場景標題）,(Scene heading),場景 2：事務所客廳（日常）,Scene 2: Agency Living Room (Daily Life),scene heading
+SCR_CH03_S02_L002,巴斯克維爾,Inspector Baskerville,（推門而入，帽子還沒摘）潘德爾頓小子！聽說你做的牧羊人派是全貝克街最好吃的！,"(Barging through the door, hat still on) Young Pendleton! I hear your shepherd's pie is the best in all of Baker Street!",
+SCR_CH03_S02_L003,亞瑟,Arthur,……請問您是？,"...Excuse me, who are you?",
+SCR_CH03_S02_L004,巴斯克維爾,Inspector Baskerville,蘇格蘭場，巴斯克維爾警督！本警督今天破了一樁大案，特地來慶功！,"Scotland Yard, Inspector Baskerville! This Inspector cracked a major case today and has come to celebrate!",
+SCR_CH03_S02_L005,Sherefox,Sherefox,（從沙發上翻過來）你破了什麼案？,(Flipping over on the sofa) What case did you crack?,
+SCR_CH03_S02_L006,巴斯克維爾,Inspector Baskerville,駁船密室命案！兇手是船夫，人贓俱獲，本警督的鼻子從不出錯！,"The barge locked-room murder! The culprit is the bargeman, caught red-handed. This Inspector's nose is never wrong!",
+SCR_CH03_S02_L007,Sherefox,Sherefox,門從裡面閂上，船夫卻從外面開門發現屍體，然後你抓了他？警督，你的鼻子是不是被泰晤士河的霧塞住了？,"The door was bolted from the inside, yet the bargeman opened it from the outside and found the body, and then you arrested him? Inspector, has your nose been blocked up by Thames fog?",
+SCR_CH03_S02_L008,巴斯克維爾,Inspector Baskerville,（耳朵抖了一下）狐、狐狸小姐！妳這是在質疑蘇格蘭場的專業！,(Ears twitching) M-Miss Fox! You are questioning the professionalism of Scotland Yard!,
+SCR_CH03_S02_L009,Sherefox,Sherefox,不，我是在質疑蘇格蘭場的鼻子。專業的部分，等我看過現場再說。,"No, I'm questioning Scotland Yard's nose. The professionalism I'll judge once I've seen the scene.",
+SCR_CH03_S02_L010,巴斯克維爾,Inspector Baskerville,……那妳要不要一起去看看？順便，派可以打包嗎？,"...Then would you care to come and take a look together? And, while we're at it, might the pie be packed to take away?",
+SCR_CH03_S02_L011,旁白（亞瑟筆記）,Narration (Arthur's Notes),這就是我和巴斯克維爾警督的第一次見面。他吃了兩份派，帶走了第三份。,That was my first meeting with Inspector Baskerville. He ate two portions of pie and took away a third.,
+SCR_CH03_S03_L001,（場景標題）,(Scene heading),場景 3：泰晤士河碼頭與駁船（事件）,Scene 3: Thames Wharf and Barge (Event),scene heading
+SCR_CH03_S03_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),霧濃得像是把整條河都泡進了牛奶裡。駁船靠在七號碼頭，鍋爐已經冷了，但甲板上仍有一股燙傷過後的鐵鏽味。,"The fog was so thick it was as though the whole river had been steeped in milk. The barge was moored at Wharf Seven; the boiler had gone cold, but the deck still carried a smell of rust, like the aftermath of a scalding.",
+SCR_CH03_S03_L003,老湯姆,Old Tom,（被銬著）我沒殺人！我只是早上來生火，一開門他就躺在那裡了！,"(In handcuffs) I didn't kill anybody! I only came to light the fire this morning, and the moment I opened the door, he was lying there!",
+SCR_CH03_S03_L004,巴斯克維爾,Inspector Baskerville,住口！門閂從裡面閂上，鑰匙只有你有，這不是你是誰？,"Silence! The bolt was shut from the inside, and you're the only one with a key. If it isn't you, who is it?",
+SCR_CH03_S03_L005,Sherefox,Sherefox,警督，我能問一個小問題嗎？從裡面閂上的門，是怎麼被一個從外面開門的人發現的？,"Inspector, may I ask a small question? How does a man opening the door from the outside come to find a door that was bolted from the inside?",
+SCR_CH03_S03_L006,巴斯克維爾,Inspector Baskerville,這、這是因為……他有鑰匙！,Th-that's because... he has a key!,
+SCR_CH03_S03_L007,Sherefox,Sherefox,鑰匙開的是外鎖，閂可是在裡面喔。,"A key opens the outer lock. The bolt, you see, is on the inside.",
+SCR_CH03_S04_L001,（場景標題）,(Scene heading),場景 4：熱身小論戰（不扣血）,Scene 4: Warm-up Debate (No Dominance Loss),scene heading
+SCR_CH03_S04_L002,系統,System,熱身小論戰。對手：巴斯克維爾警督。不扣血。,Warm-up Debate. Opponent: Inspector Baskerville. No Dominance loss.,
+SCR_CH03_S04_L003,巴斯克維爾,Inspector Baskerville,（誤判）鑰匙在船夫身上，門又從裡面鎖著，所以兇手就是他！本警督的推理天衣無縫！,"(Misjudgement) The key was on the bargeman, and the door was locked from the inside, so he is the killer! This Inspector's reasoning is flawless!",
+SCR_CH03_S04_L004,亞瑟,Arthur,（鑑定後）警督，這道門閂不是手動的。它接著一根蒸汽管，靠壓力推上推下。,"(After appraisal) Inspector, this bolt isn't a manual one. It's connected to a steam pipe, and pressure pushes it up and down.",
+SCR_CH03_S04_L005,Sherefox,Sherefox,（出示 E03_05＋E03_02）老湯姆的鑰匙只能開艙門外鎖，碰都碰不到這道蒸汽閂。能讓門從裡面閂上的，是甲板上的壓力閥。,(Presenting E03_05 + E03_02) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.,
+SCR_CH03_S04_L006,巴斯克維爾,Inspector Baskerville,……蒸、蒸汽閂？本警督當然知道！本警督只是在測試妳！,...A st-steam bolt? Of course this Inspector knew! This Inspector was merely testing you!,
+SCR_CH03_S04_L007,Sherefox,Sherefox,那你及格了，測試出你不知道。,Then the test was a success. It proves you didn't know.,
+SCR_CH03_S04_L008,巴斯克維爾,Inspector Baskerville,咳！總之，船夫先暫時羈押。驗屍報告給妳，甲板也讓妳上去。但妳要是查不出別人，他明天就移送！,"Ahem! At any rate, the bargeman stays in custody for now. This Inspector shall give you the post-mortem report and let you up on deck. But if you fail to find another suspect, he is sent on to trial tomorrow!",
+SCR_CH03_S04_L009,系統,System,警督信任度 3 以上：取得驗屍報告（E03_01）與甲板出入權限。,Inspector's Trust 3 or higher: obtain the post-mortem report (E03_01) and deck access.,
+SCR_CH03_S05_L001,（場景標題）,(Scene heading),場景 5：蒐證（駁船與碼頭）,Scene 5: Evidence Search (Barge and Wharf),scene heading
+SCR_CH03_S05_L002,（證物描述）,(Evidence description),死者的皮膚有大片蒸汽燙傷，喉頭水腫，指甲裡卡著門板的木屑。,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails.",evidence E03_01 Post-Mortem Findings on Moss
+SCR_CH03_S05_L003,亞瑟,Arthur,死因是蒸汽窒息，不是鈍器。從屍斑和體溫推算，死亡時間在昨晚十點到十點半。他死前一直在抓門。,"Cause of death is steam asphyxiation, not blunt force. Judging by lividity and body temperature, he died between ten and half past ten last night. He was clawing at the door until the end.",appraisal | evidence E03_01 Post-Mortem Findings on Moss
+SCR_CH03_S05_L004,（證物描述）,(Evidence description),沉重的黃銅門閂，一端連著一根細蒸汽管，管口還有水垢。,"A heavy brass bolt, one end connected to a thin steam pipe, with limescale still on the pipe mouth.",evidence E03_02 The Bolt Dropped from the Inside
+SCR_CH03_S05_L005,亞瑟,Arthur,壓力閂。甲板閥門一轉，蒸汽就會把閂推下去。人在外面，門也能從裡面鎖上。,A pressure bolt. Turn the valve on deck and the steam pushes the bolt down. A man can stand outside and the door still locks from the inside.,appraisal | evidence E03_02 The Bolt Dropped from the Inside
+SCR_CH03_S05_L006,（證物描述）,(Evidence description),閥柄上有一枚煤灰指印，指紋又寬又長，比老湯姆粗短的手指大了一圈。,"On the valve handle is a soot fingerprint, wide and long, a size larger than Old Tom's short, stubby fingers.",evidence E03_03 The Pressure Valve Turned on the Deck
+SCR_CH03_S05_L007,亞瑟,Arthur,煤灰還沒被霧氣打濕，是昨晚才留下的。,The soot hasn't been dampened by the fog yet. It was left last night.,evidence E03_03 The Pressure Valve Turned on the Deck
+SCR_CH03_S05_L008,（證物描述）,(Evidence description),洩壓閥的出口塞著一顆不該在那裡的黃銅零件，表面刻著一串細小的批號。,"Jammed in the relief valve's outlet is a brass part that shouldn't be there, a string of tiny batch numbers engraved on its surface.",evidence E03_04 The Brass Part Jamming the Relief Valve
+SCR_CH03_S05_L009,亞瑟,Arthur,這顆零件是被硬塞進去的，讓蒸汽沒辦法外洩，只能灌進鍋爐室。批號格式……Sherefox，妳夾在筆記本裡的那張抄本，拿出來對對看。,"This part was forced in, so the steam couldn't vent and could only flood into the boiler room. The batch number format... Sherefox, take out that transcript you tucked into your notebook and compare.",appraisal | evidence E03_04 The Brass Part Jamming the Relief Valve
+SCR_CH03_S05_L010,（證物描述）,(Evidence description),一把磨得發亮的舊鑰匙，四十年來只開過這艘船的艙門。,"A worn, polished old key that has opened only this barge's hatch for forty years.",evidence E03_05 Old Tom's Key
+SCR_CH03_S05_L011,亞瑟,Arthur,它只能開外鎖。拿它去碰蒸汽閂，跟拿湯匙去開保險箱差不多。,It only opens the outer lock. Using it on a steam bolt is about as useful as using a spoon to open a safe.,evidence E03_05 Old Tom's Key
+SCR_CH03_S05_L012,（證物描述）,(Evidence description),皮爾斯先生的大衣剪裁講究，下擺卻沾了一圈煤灰。,"Mr. Pierce's coat is finely tailored, yet the hem is ringed with coal soot.",evidence E03_06 Coal Soot on the Hem of Pierce's Coat
+SCR_CH03_S05_L013,亞瑟,Arthur,跟閥柄上的煤灰顏色、顆粒都一樣。倫敦的煤灰可不只一種。,"The same colour and grain as the soot on the valve handle. London soot isn't all of one kind, you know.",evidence E03_06 Coal Soot on the Hem of Pierce's Coat
+SCR_CH03_S05_L014,（證物描述）,(Evidence description),市政採購單上寫著「黃銅零件三百件」，入庫章上卻只蓋了兩百件。,"The municipal purchase order says ""brass parts, 300 units"", but the goods-received stamp covers only 200.",evidence E03_07 The Purchase Order Found on the Deceased
+SCR_CH03_S05_L015,亞瑟,Arthur,少了一百件，剛好是一艘駁船貨艙裝得下的量。,"A hundred short, which is just what a barge's hold can carry.",evidence E03_07 The Purchase Order Found on the Deceased
+SCR_CH03_S05_L016,（證物描述）,(Evidence description),最後一頁寫著「22:10，R. P. 登船，清點貨物」，字跡潦草，但看得出是誰的。,"The last page reads ""22:10, R. P. boards, counts cargo"", in hasty handwriting, but you can tell whose it is.",evidence E03_08 The Barge's Logbook
+SCR_CH03_S05_L017,亞瑟,Arthur,R. P.，羅蘭・皮爾斯。他對外說九點半就下船了。,R. P.: Roland Pierce. He told everyone he left the barge at half past nine.,evidence E03_08 The Barge's Logbook
+SCR_CH03_S05_L018,（證物描述）,(Evidence description),死者桌上的通知書，下週開始年度採購審計，提議人欄只簽了一個字母：W.。,The notice on the victim's desk says the annual procurement audit begins next week; the proposer's column is signed with a single letter: W.,evidence E03_09 Municipal Audit Notice
+SCR_CH03_S05_L019,亞瑟,Arthur,一份審計通知，讓一個人慌到想自首。提議的人，是不是早就知道會這樣？,"A single audit notice, and a man panics so badly he wants to confess. Did the one who proposed it know all along that this would happen?",evidence E03_09 Municipal Audit Notice
+SCR_CH03_S90_L001,（場景標題）,(Scene heading),論戰台詞庫：皮爾斯,Debate Line Library: Pierce,scene heading
+SCR_CH03_S90_L002,皮爾斯,Pierce,我九點半就下船了，酒館老闆可以作證。,I got off the barge at half past nine; the tavern keeper can vouch for me.,Tell line: Assert (gesture: fingering watch chain)
+SCR_CH03_S90_L003,皮爾斯,Pierce,我來告訴各位事情的先後順序。,Let me tell you all the order of events.,Tell line: Assert (gesture: fingering watch chain)
+SCR_CH03_S90_L004,皮爾斯,Pierce,作為合夥人，我有義務說清楚。,"As a partner, I'm obliged to set things out clearly.",Tell line: Assert (gesture: fingering watch chain)
+SCR_CH03_S90_L005,皮爾斯,Pierce,你這小姑娘懂什麼！,What would a slip of a girl like you know!,"Tell line: Onslaught (gesture: loosening cravat, stepping forward)"
+SCR_CH03_S90_L006,皮爾斯,Pierce,警督，你就放任一個外行人在這裡胡鬧？,"Inspector, you're letting an amateur make a fool of herself here?","Tell line: Onslaught (gesture: loosening cravat, stepping forward)"
+SCR_CH03_S90_L007,皮爾斯,Pierce,夠了！我來讓你們看看什麼叫證據！,Enough! Let me show you what real evidence looks like!,"Tell line: Onslaught (gesture: loosening cravat, stepping forward)"
+SCR_CH03_S90_L008,皮爾斯,Pierce,我們的帳，每一筆都清清白白。,"Our books are spotless, every entry.",Tell line: Reinforce (gesture: opening ledger)
+SCR_CH03_S90_L009,皮爾斯,Pierce,讓我對一下數字。,Let me check the figures.,Tell line: Reinforce (gesture: opening ledger)
+SCR_CH03_S90_L010,皮爾斯,Pierce,……你們聽錯了，我的意思是——,...You misheard me. What I meant was—,Tell line: Reinforce (gesture: opening ledger)
+SCR_CH03_S90_L011,皮爾斯,Pierce,請繼續吧，我很好奇小姐還能接出什麼。,Do go on; I'm curious how much more the young lady can connect.,"Tell line: Set a Trap (gesture: glancing at Arthur, tapping ledger cover)"
+SCR_CH03_S90_L012,皮爾斯,Pierce,修理匠，你的主子好像又要亂接線了。,"Mechanic, your mistress seems to be crossing wires again.","Tell line: Set a Trap (gesture: glancing at Arthur, tapping ledger cover)"
+SCR_CH03_S90_L013,皮爾斯,Pierce,我等著。,I'm waiting.,"Tell line: Set a Trap (gesture: glancing at Arthur, tapping ledger cover)"
+SCR_CH03_S90_L014,皮爾斯,Pierce,我下船的時候，莫斯還在甲板上抽煙。,"When I left the barge, Moss was still smoking on the deck.",Action line: Assert
+SCR_CH03_S90_L015,皮爾斯,Pierce,鍋爐室的門從裡面鎖上，這就是意外。,The boiler-room door was bolted from the inside; that makes it an accident.,Action line: Assert
+SCR_CH03_S90_L016,皮爾斯,Pierce,我們運的是政府的合法貨物，有單據為證。,"We were carrying lawful government cargo, with paperwork to prove it.",Action line: Assert
+SCR_CH03_S90_L017,皮爾斯,Pierce,若不是意外，那就是那個拿著鑰匙的船夫！,"If it wasn't an accident, then it was the bargeman with the key!",Action line: Onslaught
+SCR_CH03_S90_L018,皮爾斯,Pierce,你們沒有一件證據能把我放在鍋爐室！,You haven't one piece of evidence that puts me in the boiler room!,Action line: Onslaught
+SCR_CH03_S90_L019,皮爾斯,Pierce,我要告你們誣謗！每一個！,"I'll sue you for slander, every one of you!",Action line: Onslaught
+SCR_CH03_S90_L020,皮爾斯,Pierce,採購帳和入庫帳對不上，在市政廳是常有的事。,Procurement and receiving books failing to match is common enough at the Municipal Hall.,Action line: Reinforce
+SCR_CH03_S90_L021,皮爾斯,Pierce,就算我晚了一點下船，也不代表什麼。,"Even if I left the barge a little late, it doesn't prove anything.",Action line: Reinforce
+SCR_CH03_S90_L022,皮爾斯,Pierce,我的律師會處理這些細節。,My solicitor will handle these details.,Action line: Reinforce
+SCR_CH03_S90_L023,皮爾斯,Pierce,哈，煤灰和煤灰都一樣？倫敦人人身上都有煤灰！,Ha! Soot matching soot? Everyone in London has coal soot on them!,Action line: Set a Trap
+SCR_CH03_S90_L024,皮爾斯,Pierce,這兩件東西，妳自己有沒有想清楚它們怎麼接上的？,"These two items, have you actually thought through how they connect?",Action line: Set a Trap
+SCR_CH03_S90_L025,皮爾斯,Pierce,警督，記下來，她在硬拉。,"Inspector, note this down: she's forcing it.",Action line: Set a Trap
+SCR_CH03_S90_L026,皮爾斯,Pierce,好，我承認我上過船！但轉閥門的是那個老船夫！,"Fine, I admit I boarded the barge! But the one who turned the valve was that old bargeman!",Endgame line: Scorched Earth
+SCR_CH03_S90_L027,皮爾斯,Pierce,他每天都碰那個閥門，上面當然有他的指紋！,He touches that valve every day; of course his fingerprints are on it!,Endgame line: Scorched Earth
+SCR_CH03_S90_L028,Sherefox,Sherefox,這不是意外，這叫『閥』網恢恢。,This was no accident. It's valve-id reasoning!,"Sherefox action line | Solid Chain | Pun adaptation: original 「閥」網恢恢 puns on 天網恢恢 (the net of heaven is wide) with 閥 (valve). English plays on ""valid"" / ""valve""."
+SCR_CH03_S90_L029,Sherefox,Sherefox,時間、地點、煤灰，三件事指向同一個人。,"Time, place, coal soot: three things pointing at the same man.",Sherefox action line
+SCR_CH03_S90_L030,Sherefox,Sherefox,帳本翻得再快，也翻不過證物。,Flip that ledger as fast as you like; you can't flip faster than the evidence.,Sherefox action line
+SCR_CH03_S90_L031,Sherefox,Sherefox,霧這麼大，誰說得準呢？反正我說得準。,"With fog this thick, who can say for certain? Well, I can say for certain.",Sherefox action line | Sophistry
+SCR_CH03_S90_L032,Sherefox,Sherefox,這兩件事，就像你和莫斯——看起來沒關係，其實很有關係。,"These two things are like you and Moss: they look unconnected, but they're very connected.",Sherefox action line
+SCR_CH03_S90_L033,Sherefox,Sherefox,等一下！,Hold on!,Sherefox action line | Rebut
+SCR_CH03_S90_L034,Sherefox,Sherefox,你的說詞跟這艘船一樣，一駁就沉。,"Your story is like this barge: one good ram, and it goes under.","Sherefox action line | Pun: 駁 means both ""barge"" and ""rebut""; English cannot carry both, so it leans on the sinking image."
+SCR_CH03_S90_L035,Sherefox,Sherefox,航行日誌不同意。,The logbook disagrees.,Sherefox action line
+SCR_CH03_S90_L036,Sherefox,Sherefox,請繼續，羅蘭先生。,"Please, go on, Mr. Roland.",Sherefox action line | Observe
+SCR_CH03_S90_L037,（演出）,(Staging),（雙手抱胸，尾巴一動不動）,"(Arms folded, tail perfectly still)",Sherefox action line
+SCR_CH03_S90_L038,Sherefox,Sherefox,你說得越多，霧就越薄。,"The more you say, the thinner the fog gets.",Sherefox action line
+SCR_CH03_S90_L039,皮爾斯,Pierce,小姑娘——,Young lady—,Reaction line | Clash
+SCR_CH03_S90_L040,Sherefox,Sherefox,——先生。（兩人同時拍桌，兩邊各中一擊）,—sir. (Both slam the table at the same time; each side takes a hit),Reaction line
+SCR_CH03_S90_L041,皮爾斯,Pierce,我九點半就——,I got off at half past nine—,Reaction line | Cut-In
+SCR_CH03_S90_L042,Sherefox,Sherefox,十點十分，R. P. 登船。,"Ten past ten, R. P. boards.",Reaction line
+SCR_CH03_S90_L043,（演出）,(Staging),（霧笛低低鳴了一聲，甲板上只剩水聲）,(The foghorn sounds low; only the sound of water remains on deck),Reaction line | Standoff
+SCR_CH03_S90_L044,巴斯克維爾,Inspector Baskerville,……誰先說話？,...Who speaks first?,Reaction line
+SCR_CH03_S90_L045,亞瑟,Arthur,他又摸懷錶鏈了。要說話的人都先確認時間。,He's fingering his watch chain again. People about to speak always check the time first.,Arthur Tell-hint line | action: Assert
+SCR_CH03_S90_L046,亞瑟,Arthur,他翻開帳本，是在補洞，不是在念。,"He's opened the ledger: he's patching a hole, not reading.",Arthur Tell-hint line | action: Reinforce
+SCR_CH03_S90_L047,亞瑟,Arthur,領巾扯鬆了——他要衝了。,His cravat's loosened. He's about to charge.,Arthur Tell-hint line | action: Onslaught
+SCR_CH03_S90_L048,亞瑟,Arthur,他在看我，而且在敲帳本。別拉虛線。,"He's looking at me, and tapping the ledger. Don't draw any dashed lines.",Arthur Tell-hint line | action: Set a Trap
+SCR_CH03_S90_L049,皮爾斯,Pierce,好！既然你們要掀，我就連鍋爐一起掀了！（把帳本摔在甲板上）,"Fine! If you want to lift the lid, I'll lift the whole boiler along with it! (Slamming the ledger onto the deck)",Cornered entrance line (Pierce)
+SCR_CH03_S90_L050,皮爾斯,Pierce,我在這條河上混了二十年，你以為我會被一個小姑娘困住？,I've worked this river for twenty years. You think a slip of a girl is going to corner me?,Cornered entrance line (Pierce)
+SCR_CH03_S90_L051,皮爾斯,Pierce,警督，你最好現在就抓她——不然我說出來的話，你們誰都擔不起！,"Inspector, you'd better arrest her right now, or what I say next will be more than any of you can bear!",Cornered entrance line (Pierce)
+SCR_CH03_S90_L052,皮爾斯,Pierce,怎麼？霧太濃，看不清了嗎，小姑娘？,"What's the matter? Is the fog too thick for you to see, little girl?",Taunt when Breached (Pierce)
+SCR_CH03_S90_L053,皮爾斯,Pierce,耳朵都垂下來了。回家喝奶吧。,Your ears have drooped. Go home and drink your milk.,Taunt when Breached (Pierce)
+SCR_CH03_S90_L054,Sherefox,Sherefox,一節。,One strand.,Sherefox state line | Unstoppable 1
+SCR_CH03_S90_L055,Sherefox,Sherefox,兩節。你的纜繩快斷了，羅蘭先生。,"Two strands. Your rope is about to snap, Mr. Roland.",Sherefox state line | Unstoppable 2
+SCR_CH03_S90_L056,Sherefox,Sherefox,三節！勢如破竹——你這艘謊言駁船，該沉了！,Three strands! Unstoppable! This barge of lies is going down!,Sherefox state line | Unstoppable 3
+SCR_CH03_S90_L057,Sherefox,Sherefox,……（耳朵垂下）霧好重。,...(Ears droop) The fog is so heavy.,Sherefox state line | Breached
+SCR_CH03_S90_L058,Sherefox,Sherefox,沒關係，霧總會散的。,It's all right. Fog always lifts.,Sherefox state line
+SCR_CH03_S90_L059,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,Sherefox state line | banner line for 論破 (Break)
+SCR_CH03_S90_L060,Sherefox,Sherefox,帳本在抖喔，羅蘭先生。,"Your ledger's trembling, Mr. Roland.",Sherefox state line | banner line for 動搖 (Shaken)
+SCR_CH03_S90_L061,Sherefox,Sherefox,勢如破竹！從閥門一路劈進你的帳本！,Unstoppable! From the valve all the way into your ledger!,Sherefox state line | banner line for 破竹 (Unstoppable)
+SCR_CH03_S90_L062,（備註）,(Note),二連論破、反擊論破、絕境：本章不出現。,"Double Break, Counter Break and At the Brink do not appear in this chapter.",Sherefox state line
+SCR_CH03_S90_L063,亞瑟,Arthur,三手全讀對了。他的帳本快翻不下去了。,All three read correctly. His ledger can hardly stay open.,Arthur state line | Unstoppable
+SCR_CH03_S90_L064,亞瑟,Arthur,繼續，但別急著拉虛線。,"Keep going, but don't rush to draw dashed lines.",Arthur state line
+SCR_CH03_S90_L065,亞瑟,Arthur,他在甲板上亂轉了。下一手一定是攻，而且很重。,"He's pacing the deck. His next move will be an attack, and a heavy one.",Arthur state line | Cornered
+SCR_CH03_S90_L066,亞瑟,Arthur,別跟他硬碰，等他開口就截斷。,"Don't clash head-on; wait for him to speak, then cut in.",Arthur state line
+SCR_CH03_S90_L067,亞瑟,Arthur,穩住。這一回合先別反駁。,Steady. Don't Rebut this round.,Arthur state line | Breached
+SCR_CH03_S90_L068,亞瑟,Arthur,用實證撐住，霧會散的。,Hold on with solid evidence. The fog will lift.,Arthur state line
+SCR_CH03_S06_L001,（場景標題）,(Scene heading),場景 6：主論戰,Scene 6: Main Debate,scene heading
+SCR_CH03_S06_L002,系統,System,論戰開始。對手：羅蘭・皮爾斯（犯人型）。,The Debate begins. Opponent: Roland Pierce (Culprit).,
+SCR_CH03_S06_L003,系統,System,（第 1 回合・預兆）皮爾斯摸了摸懷錶鏈。亮起節點：N1。可能行動：主張／猛攻。,(Round 1 · Tell) Pierce fingers his watch chain. Lit node: N1. Possible moves: Assert / Onslaught.,
+SCR_CH03_S06_L004,皮爾斯,Pierce,（預兆）我九點半就下船了，酒館老闆可以作證。,(Tell) I got off the barge at half past nine; the tavern keeper can vouch for me.,
+SCR_CH03_S06_L005,亞瑟,Arthur,（提示）他又摸懷錶鏈了。要說話的人都先確認時間。,(Hint) He's fingering his watch chain again. People about to speak always check the time first.,
+SCR_CH03_S06_L006,皮爾斯,Pierce,（主張）我下船的時候，莫斯還在甲板上——,"(Assert) When I left the barge, Moss was still on the deck—",
+SCR_CH03_S06_L007,Sherefox,Sherefox,（反駁 N1，出示 E03_08）等一下！航行日誌最後一頁：「22:10，R. P. 登船，清點貨物」。你自己的字。航行日誌不同意你的九點半。,"(Rebut N1, presenting E03_08) Hold on! The logbook's last page: ""22:10, R. P. boards, counts cargo."" In your own handwriting. The logbook disagrees with your half past nine.",
+SCR_CH03_S06_L008,（演出）,(Staging),【印：截】,【印：截】,
+SCR_CH03_S06_L009,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
+SCR_CH03_S06_L010,系統,System,截斷！移除 N1，反擊 30。皮爾斯主導權 70。,"Cut-In! N1 removed, counter 30. Pierce's Dominance: 70.",
+SCR_CH03_S06_L011,系統,System,（第 2 回合・預兆）皮爾斯摸了摸懷錶鏈，又瞥了亞瑟一眼。亮起節點：N3。可能行動：主張／設陷（無標記）。,"(Round 2 · Tell) Pierce fingers his watch chain, then glances at Arthur. Lit node: N3. Possible moves: Assert / Set a Trap (no star).",
+SCR_CH03_S06_L012,皮爾斯,Pierce,（預兆）作為合夥人，我有義務說清楚。,"(Tell) As a partner, I'm obliged to set things out clearly.",
+SCR_CH03_S06_L013,亞瑟,Arthur,（提示）他瞥了我一眼……可能在等妳拉虛線。,(Hint) He glanced at me... he may be waiting for you to draw a dashed line.,
+SCR_CH03_S06_L014,Sherefox,Sherefox,（觀察）請繼續，羅蘭先生。你說得越多，霧就越薄。,"(Observe) Please, go on, Mr. Roland. The more you say, the thinner the fog gets.",
+SCR_CH03_S06_L015,皮爾斯,Pierce,（主張）我們運的是政府的合法貨物，有單據為證。,"(Assert) We were carrying lawful government cargo, with paperwork to prove it.",
+SCR_CH03_S06_L016,系統,System,讀錯了——他出的是主張。觀察使傷害減半，我方受 19。我方主導權 81。N3 留在場上。,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N3 stays on the table.",
+SCR_CH03_S06_L017,（演出）,(Staging),【印：斷】,【印：斷】,
+SCR_CH03_S06_L018,亞瑟,Arthur,他只是在念台詞。不過他說完了，下一手會露餡。,"He was just reciting his lines. But he's finished now, and next move he'll slip up.",
+SCR_CH03_S06_L019,系統,System,下一回合預兆變為明示。,Next round's Tell becomes Clear.,
+SCR_CH03_S06_L020,系統,System,（第 3 回合・預兆）皮爾斯翻開了帳本。亮起節點：N3。明示（觀察後）：補強。,(Round 3 · Tell) Pierce opens the ledger. Lit node: N3. Clear (after Observe): Reinforce.,
+SCR_CH03_S06_L021,皮爾斯,Pierce,（預兆）我們的帳，每一筆都清清白白。,"(Tell) Our books are spotless, every entry.",
+SCR_CH03_S06_L022,亞瑟,Arthur,（提示）他翻開帳本，是在補洞，不是在念。而且——帳本剛好是他的痛處。,"(Hint) He's opened the ledger: he's patching a hole, not reading. And the ledger happens to be his sore spot.",
+SCR_CH03_S06_L023,Sherefox,Sherefox,（實證連鎖，E03_07→E03_06）清清白白？採購單寫三百件，入庫只有兩百件。剩下的一百件，是搭你的船去度假了嗎？你大衣下擺的煤灰，就是它們的船票。,"(Solid Chain, E03_07→E03_06) Spotless? The purchase order says three hundred, and the receiving book shows only two hundred. Did the other hundred go on holiday aboard your barge? The coal soot on your coat hem is their ticket.",
+SCR_CH03_S06_L024,皮爾斯,Pierce,（補強）採購帳和入庫帳對不上，在市政廳是……是常有的事。,(Reinforce) Procurement and receiving books failing to match is... is common enough at the Municipal Hall.,
+SCR_CH03_S06_L025,（演出）,(Staging),【大字：動搖】,【大字：動搖】,
+SCR_CH03_S06_L026,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
+SCR_CH03_S06_L027,系統,System,鏈傷害 21，補強減半為 10.5。醜聞類證物命中！移除 N3，補強被打中、不回復；皮爾斯陷入「動搖」。主導權 59.5。,"Chain damage 21, halved by the Reinforce to 10.5. Scandal evidence hits! N3 removed; the Reinforce was hit, so there is no recovery; Pierce is Shaken. Dominance: 59.5.",
+SCR_CH03_S06_L028,皮爾斯,Pierce,（動搖）那、那是帳目誤差！市政廳的帳一向亂七八糟！,(Shaken) Th-that's just an accounting error! The Municipal Hall's books are always a mess!,
+SCR_CH03_S06_L029,系統,System,（第 4 回合・預兆）皮爾斯扯鬆領巾，往前踏了一步。亮起節點：N2。可能行動：主張／猛攻。,(Round 4 · Tell) Pierce loosens his cravat and steps forward. Lit node: N2. Possible moves: Assert / Onslaught.,
+SCR_CH03_S06_L030,皮爾斯,Pierce,（預兆）你這小姑娘懂什麼！,(Tell) What would a slip of a girl like you know!,
+SCR_CH03_S06_L031,亞瑟,Arthur,（提示）領巾扯鬆了——他要衝了。他還在動搖，就是這一手。,"(Hint) His cravat's loosened: he's about to charge. He's still Shaken, so this is the moment.",
+SCR_CH03_S06_L032,皮爾斯,Pierce,（猛攻）鍋爐室的門從裡面鎖上，這就是意外！你們沒有一件證據能——,(Onslaught) The boiler-room door was bolted from the inside; that makes it an accident! You haven't one piece of evidence that—,
+SCR_CH03_S06_L033,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,
+SCR_CH03_S06_L034,Sherefox,Sherefox,（反駁論破，對準 N2，出示 E03_02＋E03_04＋G-01）門閂是蒸汽推動的，人在甲板上就能從裡面鎖上。而卡死洩壓閥的這顆零件，批號跟鐘錶店那顆黑市齒輪出自同一份黑市清單！你和莫斯私吞的是軍工零件。莫斯想向審計自首，所以你用你們自己偷的貨，把他關進了蒸汽裡！,"(Rebut-Break, aimed at N2, presenting E03_02 + E03_04 + G-01) The bolt is steam-driven; a man standing on deck could bolt it from the inside. And the part jamming the relief valve carries a batch number from the very same black-market list as the gear in the clock shop! What you and Moss were skimming was military parts. Moss wanted to confess to the audit, so you used the very goods you'd stolen together to shut him in with the steam!",
+SCR_CH03_S06_L035,（演出）,(Staging),【印：截】　【大字：論破】,【印：截】　【大字：論破】,
+SCR_CH03_S06_L036,（演出）,(Staging),【印：破竹×2】,【印：破竹×2】,
+SCR_CH03_S06_L037,系統,System,截斷猛攻！反擊 33（破竹加成），皮爾斯主導權 26.5。論破！皮爾斯的主張鏈全數粉碎，再扣 70，主導權鎖在 1，進入尾聲。,"Onslaught cut off! Counter 33 (Unstoppable bonus); Pierce's Dominance: 26.5. Break! Pierce's whole claim chain is smashed, and another 70 is taken off; Dominance locks at 1 and the Endgame begins.",
+SCR_CH03_S06_L038,系統,System,（第 5 回合・尾聲）皮爾斯伸手指向被銬著的老湯姆。明示：玉石俱焚。,(Round 5 · Endgame) Pierce points at the handcuffed Old Tom. Clear: Scorched Earth.,
+SCR_CH03_S06_L039,皮爾斯,Pierce,（尾聲・玉石俱焚）……好，我承認我上過船！但轉閥門的是那個老船夫！他每天都碰那個閥門，上面當然有他的指紋！,"(Endgame · Scorched Earth) ...Fine, I admit I boarded the barge! But the one who turned the valve was that old bargeman! He touches that valve every day; of course his fingerprints are on it!",
+SCR_CH03_S06_L040,老湯姆,Old Tom,我、我沒有……,I-I didn't...,
+SCR_CH03_S06_L041,亞瑟,Arthur,（提示）這時候別等他繼續說，他會一路咬到底。一張鑰匙，一個指印。,"(Hint) Don't wait for him to go on this time; he'll bite all the way down. One key, one fingerprint.",
+SCR_CH03_S06_L042,Sherefox,Sherefox,（反駁，出示 E03_05＋E03_03）老湯姆的鑰匙只開得了外鎖，而閥柄上的指印比他的手大了一圈，還是昨晚的新煤灰。羅蘭先生，你的說詞跟這艘船一樣，一駁就沉。,"(Rebut, presenting E03_05 + E03_03) Old Tom's key only opens the outer lock, and the print on the valve handle is a size bigger than his hand, and fresh coal soot from last night, too. Mr. Roland, your story is like this barge: one good ram, and it goes under.",
+SCR_CH03_S06_L043,（演出）,(Staging),【印：截】,【印：截】,
+SCR_CH03_S06_L044,系統,System,皮爾斯的主導權歸零。論戰勝利。,Pierce's Dominance falls to zero. Debate won.,
+SCR_CH03_S06_L045,皮爾斯,Pierce,（頹然坐下）他只要再忍一週……一週就好了……,(Slumping into a seat) If he'd only held out one more week... just one week...,
+SCR_CH03_S06_L046,系統,System,（若尾聲出錯牌）老湯姆被推了一把，全場嘩然。主導權 −30。,"(If the wrong card is played in the Endgame) Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30.",source typo: 全場嘩然 -> intended 全場嘩然; translated as intended
+SCR_CH03_S07_L001,（場景標題）,(Scene heading),場景 7：結算,Scene 7: Results,scene heading
+SCR_CH03_S07_L002,（分支）,(Branch),勝利,Victory,
+SCR_CH03_S07_L003,報紙,Newspaper,【倫敦提燈報】巴斯克維爾警督神速破案！駁船密室之謎揭曉,【The London Lantern】Inspector Baskerville Solves Case at Lightning Speed! Mystery of the Barge Locked Room Revealed,
+SCR_CH03_S07_L004,報紙,Newspaper,本報訊，泰晤士河駁船命案昨夜真相大白。蘇格蘭場巴斯克維爾警督於深夜逮捕死者合夥人羅蘭・皮爾斯，並當場釋放遭誤捕的船夫。警督表示：「本警督從一開始就覺得那位合夥人很可疑。」據悉，案件牽涉市政採購弊端，市政廳已宣布擴大審計範圍。,"Our correspondent reports: The truth behind the Thames barge murder came out last night. Inspector Baskerville of Scotland Yard arrested the deceased's partner, Roland Pierce, late in the night, and on the spot released the bargeman who had been mistakenly arrested. The Inspector stated: ""This Inspector found that partner suspicious from the very start."" It is understood that the case involves irregularities in municipal procurement, and the Municipal Hall has announced a widening of the audit.",
+SCR_CH03_S07_L005,巴斯克維爾,Inspector Baskerville,（舉著報紙）狐狸小姐！妳看，頭版！本警督的照片拍得多威風！,"(Holding up the newspaper) Miss Fox! Look, the front page! This Inspector's photograph looks so imposing!",
+SCR_CH03_S07_L006,Sherefox,Sherefox,嗯，鼻子拍得特別清楚。,Mm. Your nose came out especially clearly.,
+SCR_CH03_S07_L007,巴斯克維爾,Inspector Baskerville,……下次吃派，本警督會自己帶盤子來。,"...Next time this Inspector comes for pie, he shall bring his own plate.",
+SCR_CH03_S07_L008,系統,System,警督信任度 +1。,Inspector's Trust +1.,
+SCR_CH03_S07_L009,（場景標題）,(Scene heading),（尾聲：碼頭）,(Epilogue: The Docks),scene heading
+SCR_CH03_S07_L010,旁白（亞瑟筆記）,Narration (Arthur's Notes),我們離開碼頭時，霧裡站著一位撐黑傘的女士。是鐘錶店角落那位。,"As we left the docks, a lady with a black umbrella stood in the fog. The one from the corner of the clock shop.",
+SCR_CH03_S07_L011,Wolfhart,Wolfhart,一份審計，原本是被設計來讓某位不幸的官員有機會在法律的範圍內為自己的錯誤負責的；遺憾的是，有些人的行動被證明比審計更快。,"An audit, which was originally designed to give an unfortunate official the opportunity to answer, within the bounds of the law, for his own errors; regrettably, certain actions have been shown to be swifter than audits.",
+SCR_CH03_S07_L012,Sherefox,Sherefox,妳是那天喝咖啡的人。妳到底是誰？,You're the coffee drinker from that day. Who exactly are you?,
+SCR_CH03_S07_L013,Wolfhart,Wolfhart,市政顧問，Wolfhart。審計的提議，是由我提出的。（停頓）妳的推理在今晚被執行得相當乾淨，Sherefox 小姐。這一點，會被記住的。,"Municipal advisor, Wolfhart. The proposal for the audit was made by me. (A pause.) Your reasoning was carried out this evening with considerable cleanliness, Miss Sherefox. That is a thing which will be remembered.",
+SCR_CH03_S07_L014,Sherefox,Sherefox,被誰記住？,Remembered by whom?,
+SCR_CH03_S07_L015,Wolfhart,Wolfhart,（敲了敲手套的指節，微微一笑）被所有需要記住它的人。晚安。,"(Tapping the knuckles of her glove, with a faint smile) By all those who have need of remembering it. Good night.",
+SCR_CH03_S07_L016,旁白（亞瑟筆記）,Narration (Arthur's Notes),她的笑沒有到達眼睛。但 Sherefox 的尾巴，在她走後很久都沒有放下來。,Her smile didn't reach her eyes. But Sherefox's tail didn't lower for a long time after she left.,
+SCR_CH03_S07_L017,（分支）,(Branch),敗北,Defeat,
+SCR_CH03_S07_L018,報紙,Newspaper,【倫敦提燈報】船夫遭起訴，狐耳偵探攪局未果,【The London Lantern】Bargeman Indicted; Fox-Eared Detective's Meddling Comes to Nothing,
+SCR_CH03_S07_L019,報紙,Newspaper,本報訊，泰晤士河駁船命案嫌犯老湯姆昨日遭正式起訴。據悉，一名狐耳少女曾於現場提出「蒸汽閂」等離奇說法，未獲採信。巴斯克維爾警督表示：「業餘偵探的想像力值得鼓勵，但辦案講的是證據。」,"Our correspondent reports: Old Tom, suspect in the Thames barge murder, was formally indicted yesterday. A fox-eared girl reportedly raised bizarre theories at the scene, such as ""steam bolts"", which were not accepted. Inspector Baskerville stated: ""The imagination of amateur detectives deserves encouragement, but police work runs on evidence.""",
+SCR_CH03_S07_L020,旁白（亞瑟筆記）,Narration (Arthur's Notes),那顆卡在洩壓閥裡的零件被列為證物扣押了。警督送我們出碼頭時沒有說話，也沒有提派的事。,"The part jammed in the relief valve was impounded as evidence. The Inspector said nothing as he saw us off the docks, and did not mention pie.",
+SCR_CH03_S07_L021,系統,System,警督信任度 −1。,Inspector's Trust −1.,
+SCR_CH03_S08_L001,（場景標題）,(Scene heading),場景 8：亞瑟的結案筆記,Scene 8: Arthur's Case-Closed Notes,scene heading
+SCR_CH03_S08_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：霧鎖泰晤士河的蒸汽駁船命案。犯人：羅蘭・皮爾斯。手法：以壓力閥遠端落閂，再用黑市零件卡死洩壓閥。附記：那顆零件的批號，與鐘錶店的齒輪出自同一份清單。兩起案子隔著一條河，卻被同一條線縫在一起。Sherefox 在筆記本上把兩個批號圈起來，在旁邊寫了一個字母：W.。,"Case name: The Steam Barge Murder in the Fog on the Thames. Culprit: Roland Pierce. Method: bolting the door remotely via the pressure valve, then jamming the relief valve with a black-market part. Note: that part's batch number comes from the same list as the clock shop's gear. Two cases on either side of one river, stitched together by a single thread. Sherefox circled the two batch numbers in her notebook and wrote a single letter beside them: W.",
