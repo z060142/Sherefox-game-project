@@ -339,7 +339,7 @@ HS_CH02_04_NAME,Tommy the Newsboy
 HS_CH02_05_NAME,Repair Receipt Book
 HS_CH02_06_NAME,Parts Cabinet and Catalogue
 HS_CH02_07_NAME,Fitch
-HS_CH02_08_NAME,Corner Coffee Table (After the Debate)
+HS_CH02_08_NAME,Corner Coffee Table
 HS_CH02_09_NAME,Workbench
 HS_CH02_09_NOTE,"The owner's tools are laid out in perfect order, every one polished bright. Would a man who treats his tools like this leave a scratch on his own clock?"
 HS_CH02_10_NAME,Sweet Jar by the Counter
@@ -390,7 +390,7 @@ HS_CH03_21_NAME,Inspector Baskerville
 HS_CH03_21_NOTE,"The Inspector is telling the reporters ""this case will be closed tonight"", for the third time."
 HS_CH03_22_NAME,The River in the Fog
 HS_CH03_22_NOTE,The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another.
-HS_CH03_23_NAME,New Spot in the Boiler-Room Corner (only without G-01)
+HS_CH03_23_NAME,Boiler-Room Corner
 MSG_APPR_DONE,Appraisal complete: new tags revealed.
 MSG_APPR_EMPTY,No appraisals left for this case.
 MSG_APPR_LOCKED,You can't appraise during a debate.

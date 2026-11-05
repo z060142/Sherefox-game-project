@@ -112,6 +112,8 @@ ZONE_SLUGS = {
 CH3_ZONE_SCENES = {"鍋爐室": "boiler_room", "甲板": "deck", "碼頭": "dock"}
 # Hotspot flags the design table states in words; the build cross-checks the words against these ids.
 HOTSPOT_POST_DEBATE = {"HS_CH02_08"}                   # name ends with （論戰後）
+# Ruling F3: granted by the flow when the main debate ends, no tick cost; excluded from the tick ratio (F1).
+HOTSPOT_AUTO = {"HS_CH02_08"}
 HOTSPOT_REQUIRES = {"HS_CH03_23": "missing:G-01"}      # name says 只在缺少 G-01 時出現 (01-systems 1.9, ruling D11)
 HOTSPOT_REVISIT = {"HS_CH03_03", "HS_CH03_07"}         # note starts with （事件中已取得 (card picked up during the event)
 HOTSPOT_PHASES = ("investigate", "postDebate")
@@ -764,6 +766,9 @@ def main() -> int:
                 typ = "testimony"  # the card is a witness statement (01-systems 1.2: 證詞)
             phase = "postDebate" if hid in HOTSPOT_POST_DEBATE else "investigate"
             requires = HOTSPOT_REQUIRES.get(hid, "")
+            auto = hid in HOTSPOT_AUTO
+            if auto and phase != "postDebate":
+                err(f"{hid}: an auto-grant hotspot must be phase=postDebate")
             revisit = hid in HOTSPOT_REVISIT
             # The design states these flags in words; the constants above must agree with the words.
             if ("論戰後" in spot["name"]) != (phase == "postDebate"):
@@ -784,9 +789,14 @@ def main() -> int:
             if bool(spot["hint"]) != (hint_key in strings):
                 err(f"{hid}: design hint is {'present' if spot['hint'] else 'absent'} but {hint_key} "
                     f"{'exists' if hint_key in strings else 'is missing'}")
+            # The design name may carry authoring notes (trailing parenthesised note, 「的新調查點」); the string
+            # table holds only the on-screen name (ruling F4). Accept the raw name or the name with them stripped.
+            stripped_name = re.sub(r"（[^（）]*）\s*$", "", spot["name"]).strip()
+            stripped_name = re.sub(r"的新調查點$", "", stripped_name)
             for key, want in ((name_key, spot["name"]), (note_key, None if ys else spot["note"]),
                               (hint_key, spot["hint"] or None)):
-                if want and key in strings and strings[key]["zh-TW"] != want:
+                ok = {want, stripped_name} if key == name_key else {want}
+                if want and key in strings and strings[key]["zh-TW"] not in ok:
                     warn(f"{key}: zh-TW text differs from the 10-cases 調查點 table")
             lines = [ln for e in ys for ln in sinfo["evidence_lines"].get(e, [])]
             for e in ys:
@@ -799,7 +809,7 @@ def main() -> int:
                              "phase": phase, "yields": ",".join(ys), "lines": ",".join(lines),
                              "nameKey": name_key, "noteKey": "" if ys else note_key,
                              "hintKey": hint_key if spot["hint"] else "", "requires": requires,
-                             "revisit": revisit,
+                             "revisit": revisit, "auto": auto,
                              "x": 100 + (i % 4) * 280, "y": 140 + (i // 4) * 200, "w": 160, "h": 120,
                              "placeholder": True})
         n_all = len(cases[c]["hotspots"])
@@ -1212,6 +1222,8 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
     for h in tables["hotspots"]:
         if h["phase"] not in HOTSPOT_PHASES:
             err(f"hotspots {h['id']}: unknown phase {h['phase']!r}")
+        if h["auto"] and (h["phase"] != "postDebate" or not h["yields"] or h["requires"] or h["revisit"]):
+            err(f"hotspots {h['id']}: auto needs phase=postDebate, a yielded card, no requires and no revisit")
         if h["requires"] and not re.fullmatch(r"missing:[A-Z]-\d\d", h["requires"]):
             err(f"hotspots {h['id']}: bad requires {h['requires']!r}")
         if not (0 <= h["x"] and h["x"] + h["w"] <= SCREEN_W and 0 <= h["y"] and h["y"] + h["h"] <= SCREEN_H):
@@ -1236,10 +1248,12 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
             if v != d[k]:
                 warn(f"Ch.{c} count mismatch vs 01-systems 1.3: {k} = {v}, design {d[k]}")
         hs = got["hotspots"]
-        if d["ticks"] > 0 and hs:
-            ratio = d["ticks"] / hs
+        # Auto-granted spots (ruling F3) cost no tick, so they are not part of the ratio (ruling F1).
+        tickable = len([h for h in tables["hotspots"] if h["chapter"] == c and not h["requires"] and not h["auto"]])
+        if d["ticks"] > 0 and tickable:
+            ratio = d["ticks"] / tickable
             if not 0.65 <= ratio <= 0.75:
-                warn(f"Ch.{c}: ticks/hotspots = {d['ticks']}/{hs} = {ratio:.2f}, design wants about 0.65-0.75 (01-systems 1.3)")
+                warn(f"Ch.{c}: ticks/tickable hotspots = {d['ticks']}/{tickable} = {ratio:.2f}, design wants about 0.65-0.75 (01-systems 1.3)")
         inspect = sum(h["type"] == "inspect" for h in tables["hotspots"] if h["chapter"] == c and not h["requires"])
         if hs:
             warn(f"Ch.{c}: {inspect}/{hs} hotspots are inspect-only ({inspect * 100 // hs}%; 01-systems 1.2 expects about 40%)") if abs(inspect * 100 - 40 * hs) > 10 * hs else None

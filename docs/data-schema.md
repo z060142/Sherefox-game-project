@@ -214,7 +214,7 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | area | number | 區域索引；每個場景一個區域，全部 0（裁決 D10；見待確認 Q24） |
 | zone | string | 設計表「區域」欄的 slug（`ZONE_SLUGS`）：Ch.1 `kitchen`／`living_room`；Ch.2 `counter`／`shop_floor`／`outside`／`back_room`／`corner`／`behind_counter`；Ch.3 同場景 slug。是調查點在畫面中的位置分組，無字串鍵 |
 | type | string | `inspect`（沒有證物）／`evidence`（產出證物）／`testimony`（產出的卡是證詞：卡名含「證詞」，目前只有 `HS_CH02_04` 報童小湯米）；01-systems §1.2。目前沒有 `mechanism`、`locked`（裁決 D9） |
-| phase | string | 何時可調查：`investigate`（蒐證步驟，預設）／`postDebate`（主論戰之後，目前只有 `HS_CH02_08`，名稱帶「（論戰後）」） |
+| phase | string | 何時可調查：`investigate`（蒐證步驟，預設）／`postDebate`（主論戰之後，目前只有 `HS_CH02_08`；設計表名稱帶「（論戰後）」，字串表 `HS_CH02_08_NAME` 只有「角落咖啡座」，裁決 F4） |
 | yields | string | 產出的證物 id，多值（最多 2） |
 | lines | string | 首次調查播放的劇本行，多值（＝所產出證物的 `evidence.lines` 依序串接）；檢視點空白（檢視點播放 `noteKey` 文字） |
 | nameKey | string | 調查點名稱 `HS_CH0n_nn_NAME`（每個點都有） |
@@ -222,6 +222,7 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | hintKey | string | 可選提示句 `HS_CH0n_nn_HINT`（設計表「提示」欄不是「—」者，共 9 個）；空白＝沒有 |
 | requires | string | 出現條件：`missing:G-01`＝沒有 G-01 時才出現（01-systems §1.9，裁決 D11；只有 `HS_CH03_23`）；空白＝永遠出現 |
 | revisit | bool | 產出的卡在事件中已取得（設計表案件筆記「事件中已取得…」：`HS_CH03_03`＝E03_02、`HS_CH03_07`＝E03_05）；此點只重看與鑑定，不再給卡。這兩張證物的 `evidence.obtain=event` |
+| auto | bool | 自動取得（裁決 F3）：流圖在主論戰結束時直接給卡，不扣刻度、不需點選；目前只有 `HS_CH02_08`（`phase=postDebate`、產出 E02_08、`evidence.obtain=afterDebate`）。建置驗證 `auto` 必須同時是 `postDebate`、有產出卡、無 `requires`、非 `revisit`；刻度比例不計入 `auto` 點 |
 | x, y, w, h | number | **佔位**版面矩形，1280×720 場景座標：同場景內第 i 個點（依設計表順序）`x=100+(i mod 4)×280`、`y=140+⌊i/4⌋×200`、`w=160`、`h=120`；同場景最多 12 點，矩形不重疊（建置驗證）。條件點與論戰後的點也占一格 |
 | placeholder | bool | 版面為佔位（全部 true） |
 
@@ -229,7 +230,8 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 調查點行為備註：
 - 已調查過的點再點只重播情報，不再扣刻度（01-systems §1.2）；`phase=postDebate` 的點在蒐證步驟不出現。
-- Ch.1 刻度不限；Ch.2 刻度 10、Ch.3 刻度 16，各自對 12、22 個點（`requires` 空白者計入；論戰後的點也計入設計數）。
+- Ch.1 刻度不限；Ch.2 刻度 8、Ch.3 刻度 16。設計點數 12、22 含論戰後的點（`HS_CH02_08`）；刻度比例排除 `requires` 與 `auto` 的點：Ch.2 為 8／11＝0.73，Ch.3 為 16／22＝0.73（裁決 F1）。01-systems §1.3 刻度欄可帶註記（「8（論戰後的咖啡座自動取得，不計）」），建置只取開頭的整數。
+- 調查點名稱檢查：字串表 `_NAME` 的 zh-TW 必須等於設計表名稱，或等於去掉尾端全形括號註記與「的新調查點」後的名稱（`HS_CH02_08`、`HS_CH03_23`；亞瑟（袖口）等括號屬於名稱本身者照原文相符）。
 
 ### 5.1 各章調查點一覽
 
@@ -437,5 +439,5 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | Q23 | 進入蒐證場景時亞瑟的開場觀察台詞（§1.4「每章 1 句」）沒有指定是哪一句；Ch.1 亞瑟還不是助手 | 01-systems §1.4、§1.11 | 不寫入表，由流圖決定（ART_OPEN_GEN／ART_OPEN_BODY） |
 | Q24 | 設計表「區域」欄：Ch.1 在同一場景分「廚房／客廳」，Ch.2 在同一場景分 6 個區域（櫃台、店面、店門外、後室門口、角落、櫃台後），超過 01-systems §1.2「每場景最多 3 個區域」；Ch.3 區域＝三個場景 | 10-cases 調查點表；01-systems §1.2；裁決 D10 | `area` 全部 0（每場景一個畫面）；區域欄轉成 `zone` slug 當位置分組，UI 可忽略；區域沒有字串鍵（只在在地化備註 `area: 廚房 / Kitchen`），需要顯示時再請在地化補 |
 | Q25 | 論戰後的 `HS_CH02_08`（角落咖啡座）：蒐證步驟之後沒有第二個 investigate 步驟，設計沒寫它在哪個畫面、是否花刻度 | 10-cases Ch.2 調查點表；20-script Ch.2 S04「（論戰後取得）」 | `phase=postDebate`，`evidence.obtain=afterDebate`；步驟序列不加步驟，由流圖決定 |
-| Q26 | 調查點數與 §1.3 一致後仍有兩項比例偏離：Ch.2 刻度 10 ÷ 12 點 ＝ 0.83（設計 0.65～0.75；蒐證階段實際可點 11 個，0.91）；Ch.3 檢視點 13／22 ＝ 59%（01-systems §1.2 約 40%，裁決 D1 原寫 11 個檢視點） | 01-systems §1.2、§1.3；裁決 D1；10-cases 調查點表 | 照設計表；建置以警告列出，不改數字 |
+| Q26 | 調查點數與 §1.3 一致後仍有兩項比例偏離：Ch.2 刻度 10 ÷ 12 點 ＝ 0.83（設計 0.65～0.75；蒐證階段實際可點 11 個，0.91）；Ch.3 檢視點 13／22 ＝ 59%（01-systems §1.2 約 40%，裁決 D1 原寫 11 個檢視點） | 01-systems §1.2、§1.3；裁決 D1；10-cases 調查點表 | Ch.2 已由裁決 F1 解決（刻度 8，8／11＝0.73，`hotspots.auto` 不計）；Ch.3 檢視點 59% 為接受的偏離，建置仍以警告列出 |
 | Q27 | `HS_CH03_23_NAME` 的 zh-TW 文字是「鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）」，括號是設計備註而非玩家文字；`HS_CH02_08_NAME` 帶「（論戰後）」 | 在地化包；10-cases 調查點表 | 照鍵輸出；UI 若不想顯示括號內文字需請在地化提供乾淨名稱 |

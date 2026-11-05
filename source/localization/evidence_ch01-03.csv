@@ -182,7 +182,7 @@ HS_CH02_04_NAME,報童小湯米,Tommy the Newsboy,hotspot name | area: 店門外
 HS_CH02_05_NAME,寄修收據簿,Repair Receipt Book,hotspot name | area: 櫃台 / Counter | evidence E02_05
 HS_CH02_06_NAME,零件櫃與目錄,Parts Cabinet and Catalogue,hotspot name | area: 後室門口 / Back-Room Door | evidence E02_06
 HS_CH02_07_NAME,費奇,Fitch,hotspot name | area: 店面 / Shop Floor | evidence E02_07
-HS_CH02_08_NAME,角落咖啡座（論戰後）,Corner Coffee Table (After the Debate),hotspot name | area: 角落 / Corner | evidence E02_08
+HS_CH02_08_NAME,角落咖啡座,Corner Coffee Table,hotspot name | area: 角落 / Corner | evidence E02_08
 HS_CH02_09_NAME,工作台,Workbench,hotspot name | area: 櫃台後 / Behind the Counter | inspect-only
 HS_CH02_09_NOTE,老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？,"The owner's tools are laid out in perfect order, every one polished bright. Would a man who treats his tools like this leave a scratch on his own clock?",hotspot case-note line (inspect-only; written into the Case Notes)
 HS_CH02_10_NAME,櫃台旁的糖果罐,Sweet Jar by the Counter,hotspot name | area: 櫃台 / Counter | inspect-only
@@ -233,7 +233,7 @@ HS_CH03_21_NAME,巴斯克維爾警督,Inspector Baskerville,hotspot name | area:
 HS_CH03_21_NOTE,警督正在對記者說「本案今晚結束」，同一句話已經講了第三遍。,"The Inspector is telling the reporters ""this case will be closed tonight"", for the third time.",hotspot case-note line (inspect-only; written into the Case Notes)
 HS_CH03_22_NAME,霧中的河面,The River in the Fog,hotspot name | area: 碼頭 / Wharf | inspect-only
 HS_CH03_22_NOTE,霧把河面蓋得看不見水，只聽得見駁船互相碰撞的悶響。,The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another.,hotspot case-note line (inspect-only; written into the Case Notes)
-HS_CH03_23_NAME,鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）,New Spot in the Boiler-Room Corner (only without G-01),"hotspot name | area: 鍋爐室 / Boiler Room | evidence S-01; conditional (only when G-01 is missing, 1.9), not counted in the 22"
+HS_CH03_23_NAME,鍋爐室角落,Boiler-Room Corner,"hotspot name | area: 鍋爐室 / Boiler Room | evidence S-01; conditional (only when G-01 is missing, 1.9), not counted in the 22"
 CLM_CH03_W1,鑰匙在船夫身上，門又從裡面鎖著，所以就是他！,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!",warm-up claim (Baskerville); refuted by: E03_05 或 E03_02（單張）
 CLM_CH02_T1,鐘是我調的！可那是老頭叫我調的！,"Yes, I set the clock! But the old man told me to!","tail second claim (Fitch, 玉石俱焚); refuted by: E02_07 (+E02_01, 2 solid cards)"
 CLM_CH03_T1,轉閥門的是那個老船夫！,It was that old bargeman who turned the valve!,"tail second claim (Pierce, 玉石俱焚); refuted by: E03_03 + E03_05 (2 solid cards)"
