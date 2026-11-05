@@ -1,0 +1,98 @@
+[
+ {
+  "id": "CH01_N1",
+  "case": "CH01_MAIN",
+  "kind": "claim",
+  "idx": 1,
+  "key": "CH01_MAIN:1",
+  "ps": 1
+ },
+ {
+  "id": "CH01_N2",
+  "case": "CH01_MAIN",
+  "kind": "claim",
+  "idx": 2,
+  "key": "CH01_MAIN:2",
+  "ps": 1
+ },
+ {
+  "id": "CH01_N3",
+  "case": "CH01_MAIN",
+  "kind": "claim",
+  "idx": 3,
+  "key": "CH01_MAIN:3",
+  "ps": 1
+ },
+ {
+  "id": "CH02_N1",
+  "case": "CH02_MAIN",
+  "kind": "claim",
+  "idx": 1,
+  "key": "CH02_MAIN:1",
+  "ps": 1
+ },
+ {
+  "id": "CH02_N2",
+  "case": "CH02_MAIN",
+  "kind": "claim",
+  "idx": 2,
+  "key": "CH02_MAIN:2",
+  "ps": 1
+ },
+ {
+  "id": "CH02_N3",
+  "case": "CH02_MAIN",
+  "kind": "claim",
+  "idx": 3,
+  "key": "CH02_MAIN:3",
+  "ps": 0
+ },
+ {
+  "id": "CH02_T1",
+  "case": "CH02_MAIN",
+  "kind": "tail",
+  "idx": 0,
+  "key": "CH02_MAIN:T",
+  "ps": 1
+ },
+ {
+  "id": "CH03_N1",
+  "case": "CH03_MAIN",
+  "kind": "claim",
+  "idx": 1,
+  "key": "CH03_MAIN:1",
+  "ps": 1
+ },
+ {
+  "id": "CH03_N2",
+  "case": "CH03_MAIN",
+  "kind": "claim",
+  "idx": 2,
+  "key": "CH03_MAIN:2",
+  "ps": 0
+ },
+ {
+  "id": "CH03_N3",
+  "case": "CH03_MAIN",
+  "kind": "claim",
+  "idx": 3,
+  "key": "CH03_MAIN:3",
+  "ps": 1
+ },
+ {
+  "id": "CH03_T1",
+  "case": "CH03_MAIN",
+  "kind": "tail",
+  "idx": 0,
+  "key": "CH03_MAIN:T",
+  "ps": 1
+ },
+ {
+  "id": "CH03_W1",
+  "case": "CH03_WARMUP",
+  "kind": "warmup",
+  "idx": 1,
+  "key": "CH03_WARMUP:1",
+  "ps": 1
+ }
+]

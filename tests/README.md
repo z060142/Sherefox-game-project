@@ -52,3 +52,11 @@ xtatrium play --game E:/coding4/Sherefox --replay tests/ch1_playthrough.atrec
 The recordings name the game as `E:/coding4/Sherefox` in their header; pass `--game` with exactly that string, or
 the CLI warns that the recording's game differs. The recordings carry no hash checkpoints (they are generated, not
 recorded), so give `--ticks` (printed by `uv run tests/gen_playthrough.py`).
+
+## Debate engine
+
+`uv run tests/check_debate.py` regenerates the debate engine (`tools/gen_debate.py`), replays every route of
+`tests/debate_routes.py` through the reference model `ref/`, writes the harness project `tests/debate_harness/`
+and runs it headless once, then prints PASS / FAIL per route with the first diverging round and field. Options:
+`--route NAME` (repeatable), `--keep` (keeps the dump in `tests/debate_harness/out/`), `--verbose`. See
+`docs/debate-engine.md` §6.

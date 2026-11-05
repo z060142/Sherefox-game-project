@@ -1,0 +1,38 @@
+[
+ {
+  "id": "solid",
+  "code": 0
+ },
+ {
+  "id": "sophistry",
+  "code": 1
+ },
+ {
+  "id": "rebut",
+  "code": 2
+ },
+ {
+  "id": "observe",
+  "code": 3
+ },
+ {
+  "id": "assert",
+  "code": 4
+ },
+ {
+  "id": "rush",
+  "code": 5
+ },
+ {
+  "id": "reinforce",
+  "code": 6
+ },
+ {
+  "id": "trap",
+  "code": 7
+ },
+ {
+  "id": "scorched",
+  "code": 8
+ }
+]

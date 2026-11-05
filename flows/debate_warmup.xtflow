@@ -1,0 +1,2675 @@
+{
+ "version": 1,
+ "nodes": [
+  {
+   "id": "caseRow",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debCase",
+    "column": "id"
+   }
+  },
+  {
+   "id": "c_hp",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "hp",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_pMax",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "pMax",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_oMax",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "oMax",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_cap",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "cap",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_base",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "base",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_per",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "per",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_rushN",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "rushN",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_rushD",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "rushD",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kjN",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kjN",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kjD",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kjD",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_shN",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "shN",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_shD",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "shD",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_impR",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "impR",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_impA",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "impA",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_counter",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "counter",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_heal",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "heal",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_crit",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "crit",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_brPct",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "brPct",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_brChain",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "brChain",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_brStrong",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "brStrong",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_brLine",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "brLine",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_tw",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "tw",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_tr",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "tr",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_voidPct",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "voidPct",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kjHp",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kjHp",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_r3",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "r3",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kjR",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kjR",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_shR",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "shR",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_hk",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "hk",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kjOn",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kjOn",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_ssOn",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "ssOn",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_soph",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "soph",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_assists",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "assists",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_fox",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "fox",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_hasTail",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "hasTail",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_ch1",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "ch1",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_conT",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "conT",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_conD",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "conD",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_rcap",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "rcap",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_mis",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "mis",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_gpN",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "gpN",
+    "type": "number"
+   }
+  },
+  {
+   "id": "c_kind",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "kind",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_brCard",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "brCard",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_gp1",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "gp1",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_gp2",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "gp2",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_n1",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "n1",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_n2",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "n2",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_n3",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "n3",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_t",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "t",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_g0",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "g0",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_g1",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "g1",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_g2",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "g2",
+    "type": "string"
+   }
+  },
+  {
+   "id": "c_g3",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCase",
+    "column": "g3",
+    "type": "string"
+   }
+  },
+  {
+   "id": "s_act",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k0",
+   "type": "constant",
+   "params": {
+    "value": "act"
+   }
+  },
+  {
+   "id": "s_r",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k1",
+   "type": "constant",
+   "params": {
+    "value": "r"
+   }
+  },
+  {
+   "id": "s_idx",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k2",
+   "type": "constant",
+   "params": {
+    "value": "idx"
+   }
+  },
+  {
+   "id": "s_mis",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k3",
+   "type": "constant",
+   "params": {
+    "value": "mis"
+   }
+  },
+  {
+   "id": "s_over",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k4",
+   "type": "constant",
+   "params": {
+    "value": "over"
+   }
+  },
+  {
+   "id": "s_auto",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "k5",
+   "type": "constant",
+   "params": {
+    "value": "auto"
+   }
+  },
+  {
+   "id": "kPA",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debCode",
+    "column": "id"
+   }
+  },
+  {
+   "id": "hasSeg",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "kFrom >= 0"
+   }
+  },
+  {
+   "id": "L",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "hasSeg ? abs(kTo - kFrom) + 1 : 0"
+   }
+  },
+  {
+   "id": "dir",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "kTo >= kFrom ? 1 : -1"
+   }
+  },
+  {
+   "id": "slot0",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "hasSeg && 0 < L ? kFrom + 0 * dir : -1"
+   }
+  },
+  {
+   "id": "card0",
+   "type": "atrium.coll.get",
+   "params": {
+    "name": "debBoard"
+   }
+  },
+  {
+   "id": "slot1",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "hasSeg && 1 < L ? kFrom + 1 * dir : -1"
+   }
+  },
+  {
+   "id": "card1",
+   "type": "atrium.coll.get",
+   "params": {
+    "name": "debBoard"
+   }
+  },
+  {
+   "id": "slot2",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "hasSeg && 2 < L ? kFrom + 2 * dir : -1"
+   }
+  },
+  {
+   "id": "card2",
+   "type": "atrium.coll.get",
+   "params": {
+    "name": "debBoard"
+   }
+  },
+  {
+   "id": "seg12",
+   "type": "format",
+   "params": {
+    "format": ",{a},{b}"
+   }
+  },
+  {
+   "id": "segCards",
+   "type": "format",
+   "params": {
+    "format": "{a}{b}"
+   }
+  },
+  {
+   "id": "segLen3",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "L >= 3"
+   }
+  },
+  {
+   "id": "segLen2",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "L == 2"
+   }
+  },
+  {
+   "id": "seg1",
+   "type": "format",
+   "params": {
+    "format": ",{a}"
+   }
+  },
+  {
+   "id": "segTail_c",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "k6",
+   "type": "constant",
+   "params": {
+    "value": 0
+   }
+  },
+  {
+   "id": "segTail",
+   "type": "select"
+  },
+  {
+   "id": "segTwo",
+   "type": "format",
+   "params": {
+    "format": "{a}{b}"
+   }
+  },
+  {
+   "id": "multi",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "L >= 2"
+   }
+  },
+  {
+   "id": "presented_c",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "presented",
+   "type": "select"
+  },
+  {
+   "id": "ckeyC",
+   "type": "format",
+   "params": {
+    "format": "{a}:{b}"
+   }
+  },
+  {
+   "id": "crowC",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debCard",
+    "column": "key"
+   }
+  },
+  {
+   "id": "r1_C",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCard",
+    "column": "r1",
+    "type": "number"
+   }
+  },
+  {
+   "id": "r2_C",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCard",
+    "column": "r2",
+    "type": "number"
+   }
+  },
+  {
+   "id": "r3_C",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debCard",
+    "column": "r3",
+    "type": "number"
+   }
+  },
+  {
+   "id": "k7",
+   "type": "constant",
+   "params": {
+    "value": ""
+   }
+  },
+  {
+   "id": "hasCard_c",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "hasCard",
+   "type": "select"
+  },
+  {
+   "id": "k8",
+   "type": "constant",
+   "params": {
+    "value": 1
+   }
+  },
+  {
+   "id": "claimNo",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "s_idx + 1"
+   }
+  },
+  {
+   "id": "claimKey",
+   "type": "format",
+   "params": {
+    "format": "{a}:{b}"
+   }
+  },
+  {
+   "id": "claimRow",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debNode",
+    "column": "key"
+   }
+  },
+  {
+   "id": "claimId",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debNode",
+    "column": "id",
+    "type": "string"
+   }
+  },
+  {
+   "id": "n",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "c_cap"
+   }
+  },
+  {
+   "id": "live",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "s_act && !s_over && kPA == 2"
+   }
+  },
+  {
+   "id": "ok",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "!hasSeg && hasCard && ((claimNo == 1 && r1_C) || (claimNo == 2 && r2_C) || (claimNo == 3 && r3_C))"
+   }
+  },
+  {
+   "id": "misN",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "ok ? s_mis : s_mis + 1"
+   }
+  },
+  {
+   "id": "autoNow",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "!ok && misN >= c_mis"
+   }
+  },
+  {
+   "id": "idxN",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "ok ? s_idx + 1 : autoNow ? n : s_idx"
+   }
+  },
+  {
+   "id": "overN",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "idxN >= n"
+   }
+  },
+  {
+   "id": "autoN",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "s_auto || autoNow"
+   }
+  },
+  {
+   "id": "trustD",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "autoN || misN >= c_mis ? -1 : misN == 0 ? 1 : 0"
+   }
+  },
+  {
+   "id": "reward",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "autoN || misN >= c_mis ? 0 : 1"
+   }
+  },
+  {
+   "id": "n_act",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "s_act"
+   }
+  },
+  {
+   "id": "n_r",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "s_r + 1"
+   }
+  },
+  {
+   "id": "n_idx",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "idxN"
+   }
+  },
+  {
+   "id": "n_mis",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "misN"
+   }
+  },
+  {
+   "id": "n_over",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "overN"
+   }
+  },
+  {
+   "id": "n_auto",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "autoN"
+   }
+  },
+  {
+   "id": "k9",
+   "type": "constant",
+   "params": {
+    "value": "warmup"
+   }
+  },
+  {
+   "id": "isWarm_c",
+   "type": "compare",
+   "params": {
+    "op": "eq"
+   }
+  },
+  {
+   "id": "isWarm",
+   "type": "select"
+  },
+  {
+   "id": "stClr",
+   "type": "atrium.map.clear",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "i_act",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "i_r",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "lkClrEv",
+   "type": "atrium.coll.clear",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "eReveal",
+   "type": "format",
+   "params": {
+    "format": "wReveal|{a}|{b}|{c}"
+   }
+  },
+  {
+   "id": "eReveal_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "eOkC",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && ok"
+   }
+  },
+  {
+   "id": "eOk",
+   "type": "format",
+   "params": {
+    "format": "wCorrected|{a}"
+   }
+  },
+  {
+   "id": "eOk_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "eMisC",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && !ok"
+   }
+  },
+  {
+   "id": "eMis",
+   "type": "format",
+   "params": {
+    "format": "wMistake|{a}"
+   }
+  },
+  {
+   "id": "eMis_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "autoC1",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && autoNow && s_idx < 1 && n >= 1"
+   }
+  },
+  {
+   "id": "autoK1",
+   "type": "format",
+   "params": {
+    "format": "{a}:1"
+   }
+  },
+  {
+   "id": "autoR1",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debNode",
+    "column": "key"
+   }
+  },
+  {
+   "id": "autoId1",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debNode",
+    "column": "id",
+    "type": "string"
+   }
+  },
+  {
+   "id": "eAuto1",
+   "type": "format",
+   "params": {
+    "format": "wAutoCorrected|{a}"
+   }
+  },
+  {
+   "id": "eAuto1_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "autoC2",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && autoNow && s_idx < 2 && n >= 2"
+   }
+  },
+  {
+   "id": "autoK2",
+   "type": "format",
+   "params": {
+    "format": "{a}:2"
+   }
+  },
+  {
+   "id": "autoR2",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debNode",
+    "column": "key"
+   }
+  },
+  {
+   "id": "autoId2",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debNode",
+    "column": "id",
+    "type": "string"
+   }
+  },
+  {
+   "id": "eAuto2",
+   "type": "format",
+   "params": {
+    "format": "wAutoCorrected|{a}"
+   }
+  },
+  {
+   "id": "eAuto2_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "autoC3",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && autoNow && s_idx < 3 && n >= 3"
+   }
+  },
+  {
+   "id": "autoK3",
+   "type": "format",
+   "params": {
+    "format": "{a}:3"
+   }
+  },
+  {
+   "id": "autoR3",
+   "type": "atrium.table.find",
+   "params": {
+    "table": "debNode",
+    "column": "key"
+   }
+  },
+  {
+   "id": "autoId3",
+   "type": "atrium.table.get",
+   "params": {
+    "table": "debNode",
+    "column": "id",
+    "type": "string"
+   }
+  },
+  {
+   "id": "eAuto3",
+   "type": "format",
+   "params": {
+    "format": "wAutoCorrected|{a}"
+   }
+  },
+  {
+   "id": "eAuto3_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "eEndC",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "live && overN"
+   }
+  },
+  {
+   "id": "eEnd",
+   "type": "format",
+   "params": {
+    "format": "wEnded|{a}|{b}|{c}"
+   }
+  },
+  {
+   "id": "eEnd_add",
+   "type": "atrium.coll.add",
+   "params": {
+    "name": "debEvents"
+   }
+  },
+  {
+   "id": "w_act",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "w_r",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "w_idx",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "w_mis",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "w_over",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "w_auto",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "dwState"
+   }
+  },
+  {
+   "id": "lg1_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg1",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg2_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg2",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg3_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg3",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg4_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg4",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg5_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg5",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg6_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg6",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg7_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg7",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg8_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg8",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lg9_g",
+   "type": "compare",
+   "params": {
+    "op": "ne"
+   }
+  },
+  {
+   "id": "lg9",
+   "type": "state",
+   "params": {
+    "states": [
+     "a",
+     "b"
+    ],
+    "initial": "a",
+    "transitions": [
+     {
+      "from": "a",
+      "on": "go",
+      "to": "b"
+     },
+     {
+      "from": "b",
+      "on": "go",
+      "to": "a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trustOut",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "!s_act ? 0 : s_auto || s_mis >= c_mis ? -1 : s_mis == 0 ? 1 : 0"
+   }
+  },
+  {
+   "id": "rewardOut",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "!s_act ? 0 : s_auto || s_mis >= c_mis ? 0 : 1"
+   }
+  }
+ ],
+ "edges": [
+  {
+   "from": "world.debCase",
+   "to": "caseRow.value"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_hp.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_pMax.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_oMax.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_cap.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_base.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_per.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_rushN.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_rushD.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kjN.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kjD.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_shN.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_shD.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_impR.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_impA.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_counter.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_heal.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_crit.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_brPct.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_brChain.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_brStrong.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_brLine.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_tw.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_tr.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_voidPct.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kjHp.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_r3.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kjR.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_shR.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_hk.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kjOn.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_ssOn.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_soph.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_assists.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_fox.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_hasTail.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_ch1.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_conT.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_conD.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_rcap.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_mis.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_gpN.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_kind.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_brCard.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_gp1.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_gp2.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_n1.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_n2.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_n3.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_t.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_g0.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_g1.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_g2.row"
+  },
+  {
+   "from": "caseRow.row",
+   "to": "c_g3.row"
+  },
+  {
+   "from": "k0.out",
+   "to": "s_act.key"
+  },
+  {
+   "from": "k1.out",
+   "to": "s_r.key"
+  },
+  {
+   "from": "k2.out",
+   "to": "s_idx.key"
+  },
+  {
+   "from": "k3.out",
+   "to": "s_mis.key"
+  },
+  {
+   "from": "k4.out",
+   "to": "s_over.key"
+  },
+  {
+   "from": "k5.out",
+   "to": "s_auto.key"
+  },
+  {
+   "from": "world.debCmdKind",
+   "to": "kPA.value"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "hasSeg.kFrom"
+  },
+  {
+   "from": "hasSeg.value",
+   "to": "L.hasSeg"
+  },
+  {
+   "from": "world.debCmdTo",
+   "to": "L.kTo"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "L.kFrom"
+  },
+  {
+   "from": "world.debCmdTo",
+   "to": "dir.kTo"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "dir.kFrom"
+  },
+  {
+   "from": "hasSeg.value",
+   "to": "slot0.hasSeg"
+  },
+  {
+   "from": "L.value",
+   "to": "slot0.L"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "slot0.kFrom"
+  },
+  {
+   "from": "dir.value",
+   "to": "slot0.dir"
+  },
+  {
+   "from": "slot0.value",
+   "to": "card0.index"
+  },
+  {
+   "from": "hasSeg.value",
+   "to": "slot1.hasSeg"
+  },
+  {
+   "from": "L.value",
+   "to": "slot1.L"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "slot1.kFrom"
+  },
+  {
+   "from": "dir.value",
+   "to": "slot1.dir"
+  },
+  {
+   "from": "slot1.value",
+   "to": "card1.index"
+  },
+  {
+   "from": "hasSeg.value",
+   "to": "slot2.hasSeg"
+  },
+  {
+   "from": "L.value",
+   "to": "slot2.L"
+  },
+  {
+   "from": "world.debCmdFrom",
+   "to": "slot2.kFrom"
+  },
+  {
+   "from": "dir.value",
+   "to": "slot2.dir"
+  },
+  {
+   "from": "slot2.value",
+   "to": "card2.index"
+  },
+  {
+   "from": "card1.value",
+   "to": "seg12.a"
+  },
+  {
+   "from": "card2.value",
+   "to": "seg12.b"
+  },
+  {
+   "from": "card0.value",
+   "to": "segCards.a"
+  },
+  {
+   "from": "seg12.out",
+   "to": "segCards.b"
+  },
+  {
+   "from": "L.value",
+   "to": "segLen3.L"
+  },
+  {
+   "from": "L.value",
+   "to": "segLen2.L"
+  },
+  {
+   "from": "card1.value",
+   "to": "seg1.a"
+  },
+  {
+   "from": "segLen3.value",
+   "to": "segTail_c.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "segTail_c.b"
+  },
+  {
+   "from": "segTail_c.out",
+   "to": "segTail.cond"
+  },
+  {
+   "from": "seg12.out",
+   "to": "segTail.a"
+  },
+  {
+   "from": "seg1.out",
+   "to": "segTail.b"
+  },
+  {
+   "from": "card0.value",
+   "to": "segTwo.a"
+  },
+  {
+   "from": "segTail.out",
+   "to": "segTwo.b"
+  },
+  {
+   "from": "L.value",
+   "to": "multi.L"
+  },
+  {
+   "from": "multi.value",
+   "to": "presented_c.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "presented_c.b"
+  },
+  {
+   "from": "presented_c.out",
+   "to": "presented.cond"
+  },
+  {
+   "from": "segTwo.out",
+   "to": "presented.a"
+  },
+  {
+   "from": "world.debCmdCard",
+   "to": "presented.b"
+  },
+  {
+   "from": "world.debCase",
+   "to": "ckeyC.a"
+  },
+  {
+   "from": "world.debCmdCard",
+   "to": "ckeyC.b"
+  },
+  {
+   "from": "ckeyC.out",
+   "to": "crowC.value"
+  },
+  {
+   "from": "crowC.row",
+   "to": "r1_C.row"
+  },
+  {
+   "from": "crowC.row",
+   "to": "r2_C.row"
+  },
+  {
+   "from": "crowC.row",
+   "to": "r3_C.row"
+  },
+  {
+   "from": "world.debCmdCard",
+   "to": "hasCard_c.a"
+  },
+  {
+   "from": "k7.out",
+   "to": "hasCard_c.b"
+  },
+  {
+   "from": "hasCard_c.out",
+   "to": "hasCard.cond"
+  },
+  {
+   "from": "k8.out",
+   "to": "hasCard.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "hasCard.b"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "claimNo.s_idx"
+  },
+  {
+   "from": "world.debCase",
+   "to": "claimKey.a"
+  },
+  {
+   "from": "claimNo.value",
+   "to": "claimKey.b"
+  },
+  {
+   "from": "claimKey.out",
+   "to": "claimRow.value"
+  },
+  {
+   "from": "claimRow.row",
+   "to": "claimId.row"
+  },
+  {
+   "from": "c_cap.value",
+   "to": "n.c_cap"
+  },
+  {
+   "from": "s_act.value",
+   "to": "live.s_act"
+  },
+  {
+   "from": "s_over.value",
+   "to": "live.s_over"
+  },
+  {
+   "from": "kPA.row",
+   "to": "live.kPA"
+  },
+  {
+   "from": "hasSeg.value",
+   "to": "ok.hasSeg"
+  },
+  {
+   "from": "hasCard.out",
+   "to": "ok.hasCard"
+  },
+  {
+   "from": "claimNo.value",
+   "to": "ok.claimNo"
+  },
+  {
+   "from": "r1_C.value",
+   "to": "ok.r1_C"
+  },
+  {
+   "from": "r2_C.value",
+   "to": "ok.r2_C"
+  },
+  {
+   "from": "r3_C.value",
+   "to": "ok.r3_C"
+  },
+  {
+   "from": "ok.value",
+   "to": "misN.ok"
+  },
+  {
+   "from": "s_mis.value",
+   "to": "misN.s_mis"
+  },
+  {
+   "from": "ok.value",
+   "to": "autoNow.ok"
+  },
+  {
+   "from": "misN.value",
+   "to": "autoNow.misN"
+  },
+  {
+   "from": "c_mis.value",
+   "to": "autoNow.c_mis"
+  },
+  {
+   "from": "ok.value",
+   "to": "idxN.ok"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "idxN.s_idx"
+  },
+  {
+   "from": "autoNow.value",
+   "to": "idxN.autoNow"
+  },
+  {
+   "from": "n.value",
+   "to": "idxN.n"
+  },
+  {
+   "from": "idxN.value",
+   "to": "overN.idxN"
+  },
+  {
+   "from": "n.value",
+   "to": "overN.n"
+  },
+  {
+   "from": "s_auto.value",
+   "to": "autoN.s_auto"
+  },
+  {
+   "from": "autoNow.value",
+   "to": "autoN.autoNow"
+  },
+  {
+   "from": "autoN.value",
+   "to": "trustD.autoN"
+  },
+  {
+   "from": "misN.value",
+   "to": "trustD.misN"
+  },
+  {
+   "from": "c_mis.value",
+   "to": "trustD.c_mis"
+  },
+  {
+   "from": "autoN.value",
+   "to": "reward.autoN"
+  },
+  {
+   "from": "misN.value",
+   "to": "reward.misN"
+  },
+  {
+   "from": "c_mis.value",
+   "to": "reward.c_mis"
+  },
+  {
+   "from": "s_act.value",
+   "to": "n_act.s_act"
+  },
+  {
+   "from": "s_r.value",
+   "to": "n_r.s_r"
+  },
+  {
+   "from": "idxN.value",
+   "to": "n_idx.idxN"
+  },
+  {
+   "from": "misN.value",
+   "to": "n_mis.misN"
+  },
+  {
+   "from": "overN.value",
+   "to": "n_over.overN"
+  },
+  {
+   "from": "autoN.value",
+   "to": "n_auto.autoN"
+  },
+  {
+   "from": "c_kind.value",
+   "to": "isWarm_c.a"
+  },
+  {
+   "from": "k9.out",
+   "to": "isWarm_c.b"
+  },
+  {
+   "from": "isWarm_c.out",
+   "to": "isWarm.cond"
+  },
+  {
+   "from": "k8.out",
+   "to": "isWarm.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "isWarm.b"
+  },
+  {
+   "from": "k0.out",
+   "to": "i_act.key"
+  },
+  {
+   "from": "isWarm.out",
+   "to": "i_act.value"
+  },
+  {
+   "from": "k1.out",
+   "to": "i_r.key"
+  },
+  {
+   "from": "k8.out",
+   "to": "i_r.value"
+  },
+  {
+   "from": "world.debStart",
+   "to": "stClr.trigger"
+  },
+  {
+   "from": "world.debStart",
+   "to": "i_act.trigger"
+  },
+  {
+   "from": "world.debStart",
+   "to": "i_r.trigger"
+  },
+  {
+   "from": "s_r.value",
+   "to": "eReveal.a"
+  },
+  {
+   "from": "claimId.value",
+   "to": "eReveal.b"
+  },
+  {
+   "from": "presented.out",
+   "to": "eReveal.c"
+  },
+  {
+   "from": "eReveal.out",
+   "to": "eReveal_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "eOkC.live"
+  },
+  {
+   "from": "ok.value",
+   "to": "eOkC.ok"
+  },
+  {
+   "from": "claimId.value",
+   "to": "eOk.a"
+  },
+  {
+   "from": "eOk.out",
+   "to": "eOk_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "eMisC.live"
+  },
+  {
+   "from": "ok.value",
+   "to": "eMisC.ok"
+  },
+  {
+   "from": "misN.value",
+   "to": "eMis.a"
+  },
+  {
+   "from": "eMis.out",
+   "to": "eMis_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "autoC1.live"
+  },
+  {
+   "from": "autoNow.value",
+   "to": "autoC1.autoNow"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "autoC1.s_idx"
+  },
+  {
+   "from": "n.value",
+   "to": "autoC1.n"
+  },
+  {
+   "from": "world.debCase",
+   "to": "autoK1.a"
+  },
+  {
+   "from": "autoK1.out",
+   "to": "autoR1.value"
+  },
+  {
+   "from": "autoR1.row",
+   "to": "autoId1.row"
+  },
+  {
+   "from": "autoId1.value",
+   "to": "eAuto1.a"
+  },
+  {
+   "from": "eAuto1.out",
+   "to": "eAuto1_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "autoC2.live"
+  },
+  {
+   "from": "autoNow.value",
+   "to": "autoC2.autoNow"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "autoC2.s_idx"
+  },
+  {
+   "from": "n.value",
+   "to": "autoC2.n"
+  },
+  {
+   "from": "world.debCase",
+   "to": "autoK2.a"
+  },
+  {
+   "from": "autoK2.out",
+   "to": "autoR2.value"
+  },
+  {
+   "from": "autoR2.row",
+   "to": "autoId2.row"
+  },
+  {
+   "from": "autoId2.value",
+   "to": "eAuto2.a"
+  },
+  {
+   "from": "eAuto2.out",
+   "to": "eAuto2_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "autoC3.live"
+  },
+  {
+   "from": "autoNow.value",
+   "to": "autoC3.autoNow"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "autoC3.s_idx"
+  },
+  {
+   "from": "n.value",
+   "to": "autoC3.n"
+  },
+  {
+   "from": "world.debCase",
+   "to": "autoK3.a"
+  },
+  {
+   "from": "autoK3.out",
+   "to": "autoR3.value"
+  },
+  {
+   "from": "autoR3.row",
+   "to": "autoId3.row"
+  },
+  {
+   "from": "autoId3.value",
+   "to": "eAuto3.a"
+  },
+  {
+   "from": "eAuto3.out",
+   "to": "eAuto3_add.value"
+  },
+  {
+   "from": "live.value",
+   "to": "eEndC.live"
+  },
+  {
+   "from": "overN.value",
+   "to": "eEndC.overN"
+  },
+  {
+   "from": "trustD.value",
+   "to": "eEnd.a"
+  },
+  {
+   "from": "reward.value",
+   "to": "eEnd.b"
+  },
+  {
+   "from": "misN.value",
+   "to": "eEnd.c"
+  },
+  {
+   "from": "eEnd.out",
+   "to": "eEnd_add.value"
+  },
+  {
+   "from": "k0.out",
+   "to": "w_act.key"
+  },
+  {
+   "from": "n_act.value",
+   "to": "w_act.value"
+  },
+  {
+   "from": "k1.out",
+   "to": "w_r.key"
+  },
+  {
+   "from": "n_r.value",
+   "to": "w_r.value"
+  },
+  {
+   "from": "k2.out",
+   "to": "w_idx.key"
+  },
+  {
+   "from": "n_idx.value",
+   "to": "w_idx.value"
+  },
+  {
+   "from": "k3.out",
+   "to": "w_mis.key"
+  },
+  {
+   "from": "n_mis.value",
+   "to": "w_mis.value"
+  },
+  {
+   "from": "k4.out",
+   "to": "w_over.key"
+  },
+  {
+   "from": "n_over.value",
+   "to": "w_over.value"
+  },
+  {
+   "from": "k5.out",
+   "to": "w_auto.key"
+  },
+  {
+   "from": "n_auto.value",
+   "to": "w_auto.value"
+  },
+  {
+   "from": "live.value",
+   "to": "lg1_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg1_g.b"
+  },
+  {
+   "from": "lg1_g.out",
+   "to": "lg1.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg1.go"
+  },
+  {
+   "from": "lg1.changed",
+   "to": "lkClrEv.trigger"
+  },
+  {
+   "from": "live.value",
+   "to": "lg2_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg2_g.b"
+  },
+  {
+   "from": "lg2_g.out",
+   "to": "lg2.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg2.go"
+  },
+  {
+   "from": "lg2.changed",
+   "to": "eReveal_add.trigger"
+  },
+  {
+   "from": "eOkC.value",
+   "to": "lg3_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg3_g.b"
+  },
+  {
+   "from": "lg3_g.out",
+   "to": "lg3.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg3.go"
+  },
+  {
+   "from": "lg3.changed",
+   "to": "eOk_add.trigger"
+  },
+  {
+   "from": "eMisC.value",
+   "to": "lg4_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg4_g.b"
+  },
+  {
+   "from": "lg4_g.out",
+   "to": "lg4.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg4.go"
+  },
+  {
+   "from": "lg4.changed",
+   "to": "eMis_add.trigger"
+  },
+  {
+   "from": "autoC1.value",
+   "to": "lg5_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg5_g.b"
+  },
+  {
+   "from": "lg5_g.out",
+   "to": "lg5.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg5.go"
+  },
+  {
+   "from": "lg5.changed",
+   "to": "eAuto1_add.trigger"
+  },
+  {
+   "from": "autoC2.value",
+   "to": "lg6_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg6_g.b"
+  },
+  {
+   "from": "lg6_g.out",
+   "to": "lg6.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg6.go"
+  },
+  {
+   "from": "lg6.changed",
+   "to": "eAuto2_add.trigger"
+  },
+  {
+   "from": "autoC3.value",
+   "to": "lg7_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg7_g.b"
+  },
+  {
+   "from": "lg7_g.out",
+   "to": "lg7.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg7.go"
+  },
+  {
+   "from": "lg7.changed",
+   "to": "eAuto3_add.trigger"
+  },
+  {
+   "from": "eEndC.value",
+   "to": "lg8_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg8_g.b"
+  },
+  {
+   "from": "lg8_g.out",
+   "to": "lg8.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg8.go"
+  },
+  {
+   "from": "lg8.changed",
+   "to": "eEnd_add.trigger"
+  },
+  {
+   "from": "live.value",
+   "to": "lg9_g.a"
+  },
+  {
+   "from": "k6.out",
+   "to": "lg9_g.b"
+  },
+  {
+   "from": "lg9_g.out",
+   "to": "lg9.guard"
+  },
+  {
+   "from": "world.debLock",
+   "to": "lg9.go"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_act.trigger"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_r.trigger"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_idx.trigger"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_mis.trigger"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_over.trigger"
+  },
+  {
+   "from": "lg9.changed",
+   "to": "w_auto.trigger"
+  },
+  {
+   "from": "s_act.value",
+   "to": "world.dwActive"
+  },
+  {
+   "from": "s_r.value",
+   "to": "world.dwRound"
+  },
+  {
+   "from": "s_idx.value",
+   "to": "world.dwIndex"
+  },
+  {
+   "from": "s_mis.value",
+   "to": "world.dwMistakes"
+  },
+  {
+   "from": "s_over.value",
+   "to": "world.dwOver"
+  },
+  {
+   "from": "s_auto.value",
+   "to": "world.dwAuto"
+  },
+  {
+   "from": "claimId.value",
+   "to": "world.dwClaim"
+  },
+  {
+   "from": "s_act.value",
+   "to": "trustOut.s_act"
+  },
+  {
+   "from": "s_auto.value",
+   "to": "trustOut.s_auto"
+  },
+  {
+   "from": "s_mis.value",
+   "to": "trustOut.s_mis"
+  },
+  {
+   "from": "c_mis.value",
+   "to": "trustOut.c_mis"
+  },
+  {
+   "from": "s_act.value",
+   "to": "rewardOut.s_act"
+  },
+  {
+   "from": "s_auto.value",
+   "to": "rewardOut.s_auto"
+  },
+  {
+   "from": "s_mis.value",
+   "to": "rewardOut.s_mis"
+  },
+  {
+   "from": "c_mis.value",
+   "to": "rewardOut.c_mis"
+  },
+  {
+   "from": "trustOut.value",
+   "to": "world.dwTrustDelta"
+  },
+  {
+   "from": "rewardOut.value",
+   "to": "world.dwReward"
+  }
+ ]
+}
