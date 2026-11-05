@@ -16,9 +16,10 @@ How a round is computed (docs/debate-engine.md §3): the live state is the numbe
 variable). A collection query reads the map as it was at the start of the tick (an effect earlier in the tick shows
 at the next evaluation, 08 §8.3.2), so the whole round, 系統規格 A-1 steps 1-5 plus the restate of the next round, is
 one pure function (a DAG of atrium.expr / select / table / collection queries) of that state, the round's command
-and the scripted opponent action. `world.debLock` then runs the effects in edge order (05 §5.4): the event records,
-the board-node list operations, and finally one map.set per state variable with its next value. Nothing in a round
-reads its own writes, so there is no cycle in the graph.
+and the opponent action (tail, script row, or the policy decision stored at the previous lock). `world.debLock` then
+runs the effects in edge order (05 §5.4): the event records, the board-node list operations, the 7 atrium.rng draws of
+the next round's policy decision (decide(), §3.4), and finally one map.set per state variable with its next value.
+Nothing in a round reads its own writes, so there is no cycle in the graph.
 """
 
 from __future__ import annotations
@@ -64,8 +65,9 @@ def derive_tables() -> dict[str, list[dict]]:
     nodes = _load("nodes")
     evidence = _load("evidence")
     standard = next(r for r in _load("difficulty") if r["id"] == "standard")
+    tells = _load("tells")
 
-    case_rows, card_rows, node_rows = [], [], []
+    case_rows, card_rows, node_rows, line_rows = [], [], [], []
     for o in opponents:
         cid, ch = o["id"], chapters[o["chapter"]]
         states = set(_split(ch["states"]))
@@ -77,6 +79,19 @@ def derive_tables() -> dict[str, list[dict]]:
         rush = Fraction(str(o["rushMul"]))
         gp = GOLDEN_PRIMARY.get(cid, ())
         hp_model = not o["noDamage"]
+        if o["kind"] != "warmup" and o["disguise"]:
+            raise SystemExit(f"{cid}: disguise tells are not modelled (ref policy: outside Ch.1-3)")
+        rules = {int(x) for x in _split(o["rules"])}
+        # tell lines (系統規格 4.4 預兆顯示): per action code the group of the tells table; scorched = the tail's
+        # endgame lines. Rows of one group are contiguous in debLine: [lb, lb + lc).
+        lb, lc = [], []
+        for code, act in enumerate(OA_NAMES):
+            cat = "endgame" if act == "scorched" else "tell"
+            grp = sorted((t for t in tells if t["case"] == cid and t["category"] == cat and t["action"] == act
+                          and not t["inactive"]), key=lambda t: t["n"])
+            lb.append(len(line_rows))
+            lc.append(len(grp))
+            line_rows += [{"id": t["id"], "case": cid, "code": code, "n": i} for i, t in enumerate(grp)]
         case_rows.append({
             "id": cid, "kind": o["kind"], "chapter": o["chapter"],
             "hp": int(hp_model), "pMax": o["playerHp"] if hp_model else 0, "oMax": o["hp"] if hp_model else 0,
@@ -101,6 +116,13 @@ def derive_tables() -> dict[str, list[dict]]:
             "gpN": len(gp), "gp1": gp[0] if gp else "", "gp2": gp[1] if len(gp) > 1 else "",
             "n1": pool_ids[0], "n2": pool_ids[1], "n3": pool_ids[2], "t": o["tailNode"],
             "g0": o["gestureAssert"], "g1": o["gestureRush"], "g2": o["gestureReinforce"], "g3": o["gestureTrap"],
+            # opponent policy (A-3, 數值總表 四, ref policy.py): personality weights (an action with weight 0 is not
+            # available, e.g. Ch.1 Arthur 25/0/50/0, ruling D7), clarity mix, behaviour rules 1..5, the tendency
+            # follow percentage, tutorial clarity (Ch.1: every tell clear, basis tutorial), tell line groups
+            "w0": o["w_claim"], "w1": o["w_rush"], "w2": o["w_reinforce"], "w3": o["w_trap"],
+            "cC": o["clear"], "cF": o["fuzzy"], "tut": int(o["kind"] == "pudding"), "fol": o["ruleBias"],
+            **{f"ru{i}": int(i in rules) for i in range(1, 6)},
+            **{f"lb{i}": lb[i] for i in range(5)}, **{f"lc{i}": lc[i] for i in range(5)},
         })
         for n in own:
             idx = n["idx"] if n["kind"] in ("claim", "warmup") else 0
@@ -123,7 +145,7 @@ def derive_tables() -> dict[str, list[dict]]:
                 "gp": int(e["id"] in gp), "goldenId": e["id"] if e["grade"] == "golden" else "",
             })
     codes = [{"id": k, "code": i} for i, k in enumerate(PA_NAMES + OA_NAMES)]
-    return {"debCase": case_rows, "debCard": card_rows, "debNode": node_rows, "debCode": codes}
+    return {"debCase": case_rows, "debCard": card_rows, "debNode": node_rows, "debCode": codes, "debLine": line_rows}
 
 
 # Command / action vocabulary = the data tables' (opponents.playerActions, tells.action).
@@ -140,6 +162,7 @@ SIGNALS: dict[str, dict] = {
     "debStart": {"type": "pulse"},
     "debLock": {"type": "pulse"},
     "debInstinct": {"type": "pulse"},
+    "debRedecide": {"type": "pulse"},
     "debCmdKind": {"type": "string", "initial": ""},
     "debCmdFrom": {"type": "number", "initial": -1},
     "debCmdTo": {"type": "number", "initial": -1},
@@ -180,7 +203,8 @@ SIGNALS: dict[str, dict] = {
     "debTellLit": {"type": "string", "initial": ""},
     "debTellGesture": {"type": "string", "initial": ""},
     "debTellLine": {"type": "string", "initial": ""},
-    "debWarn": {"type": "string", "initial": ""},
+    "debTellStarRule": {"type": "number", "initial": 0},
+    "debTellRule": {"type": "number", "initial": 0},
     # outputs (warmup, A-13)
     "dwActive": {"type": "number", "initial": 0},
     "dwRound": {"type": "number", "initial": 0},
@@ -205,7 +229,7 @@ COLLECTIONS: dict[str, dict] = {
     "debSnap": {"kind": "map", "type": "number", "capacity": 32},
     "debAssisted": {"kind": "map", "type": "number", "capacity": 32},
 }
-TABLES = {name: f"data/debate/{name}.json" for name in ("debCase", "debCard", "debNode", "debCode")}
+TABLES = {name: f"data/debate/{name}.json" for name in ("debCase", "debCard", "debNode", "debCode", "debLine")}
 SCRIPT_TABLE = "debScript"  # supplied by the game (or the harness): one row per scripted round
 
 # debState keys (docs/debate-engine.md §3.2): name -> meaning. All default to 0 after map.clear except the inits.
@@ -223,7 +247,17 @@ STATE_KEYS = {
     "nrn": "no reinforce next", "man": "must attack next", "r3f": "rule 3 fired", "r3p": "rule 3 pending",
     "nco": "next tell clear (observe)", "h1": "last opponent action + 1", "h2": "the one before + 1",
     "lpa": "last player action + 1", "soph": "sophistry counts as a 破竹 read vs reinforce",
+    "pln": "tell line row (debLine) + 1 shown in the round just resolved (never-same-line rule)",
 }
+# the opponent's decision for the coming round (A-3, ref policy.decide_next), drawn at debStart / debLock /
+# debRedecide (docs/debate-engine.md §3.4); read when the round has neither a tail nor a script row
+DEC_KEYS = {
+    "da": "action code 0 assert / 1 rush / 2 reinforce / 3 trap / 4 scorched", "dlit": "lit pool node 1..3 (0 none)",
+    "dcl": "clarity 0 clear / 1 fuzzy", "ds1": "shown action 1 + 1", "ds2": "shown action 2 + 1 (fuzzy; 0 none)",
+    "dst": "star action + 1 (0 none)", "dsr": "star rule 1/2/4 (0 none)", "db": "basis code (BASIS)",
+    "dru": "rule applied 1..4 (0 none; for the opponent notes)", "dln": "tell line row (debLine) + 1 (0 none)",
+}
+BASIS = ["", "tutorial", "observe", "rule3", "konju"]  # db codes; the tail shows "script", the instinct "fox"
 INIT_KEYS = ("act", "r", "php", "ohp", "as", "fox", "soph")
 
 
@@ -409,14 +443,16 @@ CASE_NUM = ["hp", "pMax", "oMax", "cap", "base", "per", "rushN", "rushD", "kjN",
             "counter", "heal", "crit", "brPct", "brChain", "brStrong", "brLine", "tw", "tr", "voidPct", "kjHp", "r3",
             "kjR", "shR", "hk", "kjOn", "ssOn", "soph", "assists", "fox", "hasTail", "ch1", "conT", "conD", "rcap",
             "mis", "gpN"]
+POLICY_NUM = ["w0", "w1", "w2", "w3", "cC", "cF", "tut", "fol", "ru1", "ru2", "ru3", "ru4", "ru5",
+              "lb0", "lb1", "lb2", "lb3", "lb4", "lc0", "lc1", "lc2", "lc3", "lc4"]  # main engine only
 CASE_STR = ["kind", "brCard", "gp1", "gp2", "n1", "n2", "n3", "t", "g0", "g1", "g2", "g3"]
 CARD_NUM = ["r1", "r2", "r3", "rT", "strong", "scandal", "brk", "gp"]
 SEG = 5  # max segment length (系統規格 2.5: chains of 2..5 cards)
 
 
-def case_inputs(g: Graph) -> None:
+def case_inputs(g: Graph, extra=()) -> None:
     g.tfind("caseRow", "debCase", "id", "world.debCase")
-    for c in CASE_NUM:
+    for c in CASE_NUM + list(extra):
         g.tget("c_" + c, "debCase", c, "caseRow")
     for c in CASE_STR:
         g.tget("c_" + c, "debCase", c, "caseRow", "string")
@@ -429,10 +465,10 @@ def state_reads(g: Graph, coll: str, keys) -> None:
         g.v[f"s_{k}"] = f"s_{k}.value"
 
 
-def state_commit(g: Graph, cas: Cascade, coll: str, keys, cond: str | None = None) -> None:
+def state_commit(g: Graph, cas: Cascade, coll: str, keys, cond: str | None = None, prefix: str = "w") -> None:
     triggers = []
     for k in keys:
-        nid = f"w_{k}"
+        nid = f"{prefix}_{k}"
         g.node(nid, "atrium.map.set", name=coll)
         g.edge(g.const(k), f"{nid}.key")
         g.edge(g.src(f"n_{k}"), f"{nid}.value")
@@ -440,10 +476,118 @@ def state_commit(g: Graph, cas: Cascade, coll: str, keys, cond: str | None = Non
     cas.on(cond, *triggers)
 
 
+DRAWS = 7  # atrium.rng draws per decision, u1..u7 (docs/debate-engine.md §3.4)
+
+
+def decide(g: Graph) -> None:
+    """The opponent policy (01-systems A-3, 數值總表 四; ref policy.decide_next, the oracle), as n_<DEC_KEYS>.
+
+    One decision graph serves three entry points through the mode state `dMode` (index 0 lock / 1 start /
+    2 redecide), which selects its inputs: at debLock the next state n_* (the round just resolved, restated), at
+    debStart the initial state, at debRedecide the stored state s_*. Every entry fires the 7 atrium.rng draws once,
+    in a fixed order, whether used or not:
+      u1 tendency follow (u * 100 < fol)   u2 action (weighted)   u3 clarity (clear / fuzzy)   u4 fuzzy decoy (weighted)
+      u5 fuzzy left/right order            u6 lit node (uniform)   u7 tell line (uniform, never the last line)
+    A weighted draw over a set: t = u * sum(w_i), the first i with t < w_0 + .. + w_i (canonical order assert, rush,
+    reinforce, trap); this is ref RngChooser's order with u in [0, 1) instead of roll(total).
+    """
+    x = g.x
+    g.node("dMode", "state", states=["lock", "start", "re"], initial="lock",
+           transitions=[{"from": a, "on": ev_, "to": b}
+                        for a in ("lock", "start", "re")
+                        for ev_, b in (("toLock", "lock"), ("toStart", "start"), ("toRe", "re")) if a != b])
+    g.edge(g.truth("dModeG", g.const(1)), "dMode.guard")
+    g.v["dm"] = "dMode.index"
+    g.node("dDraw", "merge")
+    for i in range(1, DRAWS + 1):
+        g.node(f"u{i}", "atrium.rng")
+        g.edge("dDraw.out", f"u{i}.trigger")
+        g.v[f"u{i}"] = f"u{i}.value"
+    # inputs: (key, start value)
+    for k, init in (("r", "1"), ("tail", "0"), ("g1", "c_cap < 1"), ("g2", "c_cap < 2"), ("g3", "c_cap < 3"),
+                    ("lnr", "0"), ("lrs", "0"), ("nrn", "0"), ("man", "0"), ("r3p", "0"), ("nco", "0"), ("kj", "0"),
+                    ("h1", "0"), ("h2", "0"), ("lpa", "0")):
+        x(f"d_{k}", f"dm == 1 ? ({init}) : dm == 2 ? s_{k} : n_{k}")
+    x("d_pl", "dm == 1 ? -1 : dm == 2 ? s_pln - 1 : curLine")  # the line shown in the round before
+
+    def pick(name: str, u: str, masks: list[str]) -> str:
+        for i, m in enumerate(masks):
+            x(f"{name}_a{i}", f"c_w{i} * ({m})")
+        x(f"{name}_t", f"{u} * ({name}_a0 + {name}_a1 + {name}_a2 + {name}_a3)")
+        a = [f"{name}_a{i}" for i in range(4)]
+        return x(name, f"{name}_t < {a[0]} ? 0 : {name}_t < {a[0]} + {a[1]} ? 1"
+                       f" : {name}_t < {a[0]} + {a[1]} + {a[2]} ? 2 : {a[3]} > 0 ? 3 : -1")
+
+    # available (weight > 0) and banned actions: rule 5 (the same action twice in a row), 不能補強 (a missed trap),
+    # 困獸 (no reinforce, A-15)
+    for i in range(4):
+        x(f"qAv{i}", f"c_w{i} > 0")
+    x("qR5", "c_ru5 && d_h1 > 0 && d_h1 == d_h2 ? d_h1 - 1 : -1")
+    x("qBanR", "d_nrn || (c_kjOn && d_kj > 0)")
+    for i in range(4):
+        x(f"qAl{i}", f"qAv{i} && qR5 != {i}" + (" && !qBanR" if i == 2 else ""))
+    # forced rules: rule 3 (first time <= 50%, B9), then the must-attack after an exposed trap
+    x("qR3", "c_ru3 && d_r3p && qAv1")
+    x("qMA", "!qR3 && d_man")
+    x("qMa0", "qAv0 && qR5 != 0")
+    x("qMa1", "qAv1 && qR5 != 1")
+    x("qMb0", "qMa0 || qMa1 ? qMa0 : qAv0")
+    x("qMb1", "qMa0 || qMa1 ? qMa1 : qAv1")
+    # tendency rules 1 (node removed -> reinforce), 2 (player sophistry -> trap), 4 (reinforce succeeded -> assert);
+    # the lowest number whose action is not deleted wins (A-3)
+    x("qT1", "c_ru1 && d_lnr && qAl2")
+    x("qT2", "c_ru2 && d_lpa == 2 && qAl3")
+    x("qT4", "c_ru4 && d_lrs && qAl0")
+    x("qTend", "!qR3 && !qMA")
+    x("qTgt", "!qTend ? -1 : qT1 ? 2 : qT2 ? 3 : qT4 ? 0 : -1")
+    x("qRule", "qR3 ? 3 : !qTend ? 0 : qT1 ? 1 : qT2 ? 2 : qT4 ? 4 : 0")
+    x("qFol", "qTgt >= 0 && u1 * 100 < c_fol")
+    # the action: the 20% personality draw includes the rule's own action (B11)
+    pick("qPick", "u2", ["qMA ? qMb0 : qAl0", "qMA ? qMb1 : qAl1", "!qMA && qAl2", "!qMA && qAl3"])
+    x("qAct0", "qR3 ? 1 : qFol ? qTgt : qPick")
+    x("qAct", "d_tail ? 4 : qAct0")
+    # clarity (A-3 table): tutorial, forced (basis rule 3 / observe), observe last round, else the case mix;
+    # 困獸 turns a fuzzy tell without a basis into clear (basis konju)
+    x("qForced", "qR3 || qMA")
+    x("qBas0", "c_tut ? 1 : qR3 ? 3 : qMA ? 2 : d_nco ? 2 : 0")
+    x("qFz0", "!c_tut && !qForced && !d_nco && u3 * (c_cC + c_cF) >= c_cC")
+    x("qKjC", "c_kjOn && d_kj > 0 && qBas0 == 0 && qFz0")
+    x("qFz1", "qFz0 && !qKjC")
+    x("qBas1", "qKjC ? 4 : qBas0")
+    # fuzzy: the true action + 1 decoy. A tendency rule's action always shows with a star (B12): it is the decoy when
+    # the action differs; otherwise the decoy is drawn by personality from the other allowed actions
+    x("qStar", "qFz1 && qTgt >= 0")
+    x("qDS", "qStar && qAct0 != qTgt")
+    pick("qDec", "u4", [f"qAl{i} && qAct0 != {i}" for i in range(4)])
+    x("qFz", "qFz1 && (qDS || qDec >= 0)")  # no legal decoy -> clear (ref SPEC-QUESTION)
+    x("qDecoy", "qDS ? qTgt : qDec")
+    x("qSw", "u5 >= 0.5")
+    x("qPlain", "d_tail || !qFz")
+    x("n_da", "qAct")
+    x("n_dcl", "!qPlain")
+    x("n_ds1", "qPlain ? qAct + 1 : (qSw ? qDecoy : qAct0) + 1")
+    x("n_ds2", "qPlain ? 0 : (qSw ? qAct0 : qDecoy) + 1")
+    x("n_dst", "!qPlain && qStar ? qTgt + 1 : 0")
+    x("n_dsr", "!qPlain && qStar ? qRule : 0")
+    x("n_db", "qPlain && !d_tail ? qBas1 : 0")
+    x("n_dru", "d_tail ? 0 : qRule")
+    # lit node: uniform over the visible non-fragile nodes after the restate (B13), pool order
+    for i in (1, 2, 3):
+        x(f"qOn{i}", f"!d_g{i}")
+    x("qK", "floor(u6 * (qOn1 + qOn2 + qOn3))")
+    x("n_dlit", "d_tail ? 0 : qOn1 && qK < qOn1 ? 1 : qOn2 && qK < qOn1 + qOn2 ? 2 : qOn3 ? 3 : 0")
+    # tell line (系統規格 4.4): uniform over the action's lines, never the line shown the round before
+    x("qLb", "qAct == 0 ? c_lb0 : qAct == 1 ? c_lb1 : qAct == 2 ? c_lb2 : qAct == 3 ? c_lb3 : c_lb4")
+    x("qLc", "qAct < 0 ? 0 : qAct == 0 ? c_lc0 : qAct == 1 ? c_lc1 : qAct == 2 ? c_lc2 : qAct == 3 ? c_lc3 : c_lc4")
+    x("qLe", "d_pl >= qLb && d_pl < qLb + qLc && qLc > 1 ? d_pl - qLb : -1")
+    x("qLk", "qLe >= 0 ? floor(u7 * (qLc - 1)) : floor(u7 * qLc)")
+    x("n_dln", "qLc > 0 ? qLb + (qLe >= 0 && qLk >= qLe ? qLk + 1 : qLk) + 1 : 0")
+
+
 def gen_engine() -> Graph:
     g = Graph()
-    case_inputs(g)
-    state_reads(g, "debState", STATE_KEYS)
+    case_inputs(g, POLICY_NUM)
+    state_reads(g, "debState", {**STATE_KEYS, **DEC_KEYS})
     for name in ("debCmdFrom", "debCmdTo", "debCmdAssist"):
         g.v["k" + name[6:]] = f"world.{name}"
     g.v["caseId"] = "world.debCase"
@@ -503,7 +647,8 @@ def gen_engine() -> Graph:
     g.fmt("goldA", "{a}{b}{c}{d}", "gold0", "gold1", "gold2", "gold3")
     g.fmt("golden", "{a}{b}", "goldA", "gold4")  # at most one golden clue per segment (Ch.1-3: only G-01)
 
-    # ---- opponent action of this round: tail -> 玉石俱焚 (A-9, A-11); else the script row; else claim + warning
+    # ---- opponent action of this round (A-3 order): tail -> 玉石俱焚 (A-9, A-11); else a script row (A-11); else the
+    # policy decision drawn when the round was set up (DEC_KEYS, §3.4)
     g.streq("hasScriptId", "world.debScript", g.const(""), op="ne")
     g.sel("scriptId", "hasScriptId", "world.debScript", "world.debCase")
     g.fmt("sKey", "{a}:{b}", "scriptId", "s_r")
@@ -514,18 +659,26 @@ def gen_engine() -> Graph:
     for col in ("action", "lit", "clarity", "shown1", "shown2", "star", "basis", "lineKey"):
         g.tget("sc_" + col, SCRIPT_TABLE, col, "sRow", "string")
     g.tget("sc_scripted", SCRIPT_TABLE, "scripted", "sRow")
-    g.node("firstOn", "atrium.coll.get", name="debOn")
-    g.edge(g.const(0), "firstOn.index")
-    g.v["firstOn"] = "firstOn.value"
-    g.sel("actA", "found", "sc_action", g.const("assert"))
+    g.tget("sc_starRule", SCRIPT_TABLE, "starRule", "sRow")
+    g.x("aiR", "!s_tail && !found")  # this round plays the policy decision
+    act_names = [""] + OA_NAMES  # code + 1 -> action word
+    g.lookup("aiAct", OA_NAMES, "s_da")
+    g.x("aiLitN1", "s_dlit == 1")
+    g.x("aiLitN2", "s_dlit == 2")
+    g.x("aiLitN3", "s_dlit == 3")
+    g.sel("aiLit3", "aiLitN3", "c_n3", g.const(""))
+    g.sel("aiLit23", "aiLitN2", "c_n2", "aiLit3")
+    g.sel("aiLit", "aiLitN1", "c_n1", "aiLit23")
+    g.sel("actA", "found", "sc_action", "aiAct")
     g.sel("actStr", "s_tail", g.const("scorched"), "actA")
-    g.sel("litA", "found", "sc_lit", "firstOn")
+    g.sel("litA", "found", "sc_lit", "aiLit")
     g.sel("litStr", "s_tail", "c_t", "litA")
     g.tfind("actRow", "debCode", "id", "actStr")
     g.x("oA", "actRow - 4")
     g.x("oScr", "s_tail ? 1 : found ? sc_scripted : 0")
-    g.x("warnCode", "!s_act || s_over || s_tail || found ? 0 : 1")
-    g.lookup("warn", ["", "WARN_DEB_NO_SCRIPT"], "warnCode")
+    # the tell line shown this round (debLine row, -1 none): the script row's, else the decided one
+    g.tfind("lineRowS", "debLine", "id", "sc_lineKey")
+    g.x("curLine", "found && !s_tail ? lineRowS : s_dln - 1")
 
     # ---- node indices: lit, target, pool positions
     g.tfind("litRow", "debNode", "id", "litStr")
@@ -735,12 +888,17 @@ def gen_engine() -> Graph:
     nxt("man", "oScr ? s_man : kPA == 3 && oA == 3", "s_man")
     x("r3fire", "!oScr && c_hp && !s_r3f && ohp3 <= c_oMax * c_r3 / 100")
     nxt("r3f", "s_r3f || r3fire", "s_r3f")
-    nxt("r3p", "s_r3p || r3fire", "s_r3p")
+    # the forced rush of rule 3 consumes the pending flag (ref decide_next); the engine clears it at the lock of the
+    # round that played it, so a debRedecide before that lock still sees it
+    x("r3used", "aiR && s_dru == 3")
+    nxt("r3p", "(s_r3p && !r3used) || r3fire", "s_r3p")
     nxt("nco", "kPA == 3 && oAtk", "s_nco")
     nxt("h1", "oA + 1", "oA + 1")
     nxt("h2", "s_h1", "s_h1")
     nxt("lpa", "kPA + 1", "kPA + 1")
     nxt("soph", "s_soph", "s_soph")
+    nxt("pln", "curLine + 1", "curLine + 1")
+    decide(g)
     x("overNow", "tailR ? tOver : overN1")
     x("endCode", "tailR ? (tCorrect ? 7 : tLoss ? 2 : 0) : endN")
 
@@ -795,11 +953,16 @@ def gen_engine() -> Graph:
     for i in (1, 2, 3):
         x(f"stAdd{i}", f"isMain && c_cap >= {i}")
         list_op(g, st, f"stOn{i}", f"stAdd{i}", "add", "debOn", f"c_n{i}")
+    # the decision for round 1 (A-1 step 6 of "round 0"), from the initial state
+    st.on("isMain", "dMode.toStart", "dDraw.in")
+    state_commit(g, st, "debState", DEC_KEYS, "isMain", prefix="sd")
     st.emit("world.debStart")
 
     # ---- fox instinct (world.debInstinct, before the lock): a fuzzy tell becomes clear (policy.use_fox_instinct)
-    g.streq("tellFuzzy", "sc_clarity", g.const("fuzzy"))
-    x("foxOk", "normal && found && tellFuzzy && s_fox > 0 && s_foxr != s_r")
+    g.lookup("aiClar", ["clear", "fuzzy"], "s_dcl")
+    g.sel("baseClar", "found", "sc_clarity", "aiClar")
+    g.streq("tellFuzzy", "baseClar", g.const("fuzzy"))
+    x("foxOk", "normal && tellFuzzy && s_fox > 0 && s_foxr != s_r")
     x("n_foxI", "s_fox - 1")
     x("n_foxrI", "s_r")
     fx = Cascade(g, "fg")
@@ -929,9 +1092,18 @@ def gen_engine() -> Graph:
     ev(g, lk, "eVoid4", "eVoid", "nodeRemoved|{a}|tail_void", "c_t")
     list_op(g, lk, "lVoidN", "eVoid", "add", "debOn", "c_n1")
     ev(g, lk, "eVoid5", "eVoid", "nodeAdded|{a}|normal|restate", "c_n1")
-    # state commit (last: nothing above reads the map again this tick)
-    state_commit(g, lk, "debState", STATE_KEYS, "live")
+    # the decision for the next round (A-1 step 6), from the next state; then the state commit (last: nothing above
+    # reads the map again this tick)
+    lk.on("live", "dMode.toLock", "dDraw.in")
+    state_commit(g, lk, "debState", {**STATE_KEYS, **DEC_KEYS}, "live")
     lk.emit("world.debLock")
+
+    # ---- redecide (world.debRedecide): draw the coming round's decision again from the stored state (tests; the
+    # game never fires it). Only the decision keys are written.
+    rd = Cascade(g, "rg")
+    rd.on("live", "dMode.toRe", "dDraw.in")
+    state_commit(g, rd, "debState", DEC_KEYS, "live", prefix="rd")
+    rd.emit("world.debRedecide")
 
     # ---- outputs
     def out(sig: str, src: str) -> None:
@@ -951,16 +1123,30 @@ def gen_engine() -> Graph:
     g.lookup("label", ["", "primary", "alternative"], "s_lbl")
     out("debBreakLabel", "label")
     out("debFragile", x("fragCount", "s_fseq - s_flo"))
-    out("debWarn", "warn")
-    # the tell of the coming round (script row; tail: clear, basis script; instinct: clear, basis fox)
+    # the tell of the coming round: tail -> clear, basis script; instinct -> clear, basis fox; a script row; else the
+    # policy decision (DEC_KEYS)
     x("foxNow", "!s_tail && s_foxr == s_r && s_r > 0")
     x("plainTell", "s_tail || foxNow")
-    g.sel("tClar", "plainTell", g.const("clear"), "sc_clarity")
-    g.sel("tSh1", "plainTell", "actStr", "sc_shown1")
-    g.sel("tSh2", "plainTell", g.const(""), "sc_shown2")
-    g.sel("tStar", "plainTell", g.const(""), "sc_star")
-    g.sel("tBasisA", "foxNow", g.const("fox"), "sc_basis")
+    g.lookup("aiSh1", act_names, "s_ds1")
+    g.lookup("aiSh2", act_names, "s_ds2")
+    g.lookup("aiStar", act_names, "s_dst")
+    g.lookup("aiBasis", BASIS, "s_db")
+    g.sel("bSh1", "found", "sc_shown1", "aiSh1")
+    g.sel("bSh2", "found", "sc_shown2", "aiSh2")
+    g.sel("bStar", "found", "sc_star", "aiStar")
+    g.sel("bBasis", "found", "sc_basis", "aiBasis")
+    g.sel("tClar", "plainTell", g.const("clear"), "baseClar")
+    g.sel("tSh1", "plainTell", "actStr", "bSh1")
+    g.sel("tSh2", "plainTell", g.const(""), "bSh2")
+    g.sel("tStar", "plainTell", g.const(""), "bStar")
+    g.sel("tBasisA", "foxNow", g.const("fox"), "bBasis")
     g.sel("tBasis", "s_tail", g.const("script"), "tBasisA")
+    x("tStarRule", "plainTell ? 0 : found ? sc_starRule : s_dsr")
+    x("tRule", "aiR ? s_dru : 0")
+    x("aiLineRow", "s_dln - 1")
+    g.tget("aiLine", "debLine", "id", "aiLineRow", "string")
+    x("lineFromRow", "found && !s_tail")
+    g.sel("tLine", "lineFromRow", "sc_lineKey", "aiLine")
     x("gIdx", "oA < 0 || oA > 3 ? 4 : oA")
     g.sel("gst01", x("gIs0", "gIdx == 0"), "c_g0", "c_g1")
     g.sel("gst23", x("gIs2", "gIdx == 2"), "c_g2", "c_g3")
@@ -968,7 +1154,8 @@ def gen_engine() -> Graph:
     g.sel("gesture", x("gNone", "gIdx == 4"), g.const(""), "gstA")
     for sig, k in (("debTellClarity", "tClar"), ("debTellShown1", "tSh1"), ("debTellShown2", "tSh2"),
                    ("debTellStar", "tStar"), ("debTellBasis", "tBasis"), ("debTellLit", "litStr"),
-                   ("debTellGesture", "gesture"), ("debTellLine", "sc_lineKey")):
+                   ("debTellGesture", "gesture"), ("debTellLine", "tLine"), ("debTellStarRule", "tStarRule"),
+                   ("debTellRule", "tRule")):
         out(sig, k)
     return g
 
@@ -1106,7 +1293,7 @@ SNAP_NUM = ["debRound", "debPlayerHp", "debOppHp", "debShaken", "debInTail", "de
             "debHachiku", "debKonju", "debShisshu", "debParries", "debContra", "debInfamy", "debAssist",
             "debInstinctLeft", "debOver", "debGoldenUsed", "debFragile",
             "dwActive", "dwRound", "dwIndex", "dwMistakes", "dwOver", "dwAuto", "dwTrustDelta", "dwReward"]
-SNAP_STR = ["debPhase", "debOutcome", "debBreakLabel", "debWarn", "dwClaim", "debTellClarity", "debTellBasis",
+SNAP_STR = ["debPhase", "debOutcome", "debBreakLabel", "dwClaim", "debTellClarity", "debTellBasis",
             "debTellLit", "debTellShown1"]
 SNAP_ON = 8  # board positions copied per snapshot
 H_IN_COLS = ["op", "route", "case", "script", "board", "ok", "links", "key", "value", "kind", "from", "to", "card",

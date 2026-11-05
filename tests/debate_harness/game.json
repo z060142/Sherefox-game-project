@@ -26,6 +26,9 @@
   "debInstinct": {
    "type": "pulse"
   },
+  "debRedecide": {
+   "type": "pulse"
+  },
   "debCmdKind": {
    "type": "string",
    "initial": ""
@@ -182,9 +185,13 @@
    "type": "string",
    "initial": ""
   },
-  "debWarn": {
-   "type": "string",
-   "initial": ""
+  "debTellStarRule": {
+   "type": "number",
+   "initial": 0
+  },
+  "debTellRule": {
+   "type": "number",
+   "initial": 0
   },
   "dwActive": {
    "type": "number",
@@ -237,6 +244,7 @@
   "debCard": "data/debCard.json",
   "debNode": "data/debNode.json",
   "debCode": "data/debCode.json",
+  "debLine": "data/debLine.json",
   "hIn": "data/hIn.json",
   "debScript": "data/debScript.json"
  },

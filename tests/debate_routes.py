@@ -20,7 +20,7 @@ from sherefox_ref.fixtures import (  # noqa: E402
     ch1_board, ch1_case, ch2_board, ch2_case, ch3_board, ch3_board_no_g01, ch3_case, ch3_warmup, data_node_id,
 )
 from sherefox_ref.model import OA, PA, Board, Clarity, OpponentAction, PlayerAction, initial_state  # noqa: E402
-from sherefox_ref.policy import Tell, use_fox_instinct  # noqa: E402
+from sherefox_ref.policy import FOLLOW_PCT, Tell, use_fox_instinct  # noqa: E402
 from sherefox_ref.resolve import resolve_round  # noqa: E402
 from sherefox_ref.rules import SOLID_LINK, SOPH_LINK, link_kind  # noqa: E402
 from sherefox_ref.warmup import resolve_warmup_round  # noqa: E402
@@ -379,7 +379,7 @@ def build(routes=None):
                              target=target, assist=int(p.assist), **base))
             script.append({"key": f"{rt.name}:{i}", "action": OA_NAME[o.kind],
                            "lit": node_id(rt.chapter, o.lit) if o.lit else "", "scripted": int(o.scripted),
-                           **tell, "star": "", "basis": "", "lineKey": ""})
+                           **tell, "star": "", "starRule": 0, "basis": "", "lineKey": ""})
             exp.after.append(snapshot(s, rt.chapter))
             exp.events.append([record(e, rt.chapter) for e in evs])
         expects.append(exp)
@@ -435,4 +435,21 @@ def case_param_mismatches() -> list[str]:
                 out.append(f"{CASE_ID[ch]}.{k}: data {r[k]!r}, ref {v!r}")
         if set(filter(None, (r["gp1"], r["gp2"]))) != set(c.golden_primary):
             out.append(f"{CASE_ID[ch]}.gp: data {r['gp1']},{r['gp2']}, ref {sorted(c.golden_primary)}")
+        # opponent policy (docs/debate-engine.md §3.4): available = weight > 0, the weights of the available actions,
+        # rules, clarity mix, tutorial clarity, follow percentage
+        prof = c.opponent
+        order = (OA.CLAIM, OA.RUSH, OA.REINFORCE, OA.TRAP)
+        w = dict(prof.weights)
+        pol = {
+            "available": ({a for i, a in enumerate(order) if r[f"w{i}"] > 0}, set(prof.available)),
+            "weights": ([r[f"w{i}"] for i, a in enumerate(order) if a in prof.available],
+                        [w[a] for a in order if a in prof.available]),
+            "rules": ({i for i in range(1, 6) if r[f"ru{i}"]}, set(prof.rules)),
+            "clarity": ((r["cC"], r["cF"], 0), tuple(prof.clarity_mix)),
+            "tut": (bool(r["tut"]), prof.tutorial_clear),
+            "fol": (r["fol"], FOLLOW_PCT),
+        }
+        for k, (got, want) in pol.items():
+            if got != want:
+                out.append(f"{CASE_ID[ch]}.{k}: data {got!r}, ref {want!r}")
     return out
