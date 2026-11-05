@@ -11,3 +11,13 @@ UI_TITLE_CONTENTS,In This Issue
 UI_TITLE_CH1,Ch.1 The Roommate Affair: The Vanishing Clockwork Caramel Pudding
 UI_TITLE_CH2,Ch.2 The Clockmaker's Affair: The Cuckoo Three Minutes Slow
 UI_TITLE_CH3,Ch.3 Murder on the Steam Barge in the Thames Fog
+BTN_AUTO,Auto
+BTN_FAST,Fast
+BTN_LOG,Log
+UI_PAPER_PAGE1,Front Page
+UI_PAPER_PAGE2,Page Two
+UI_PAPER_SIDE,City Briefs
+UI_PAPER_ADS,Advertisements
+UI_PAPER_EXTRA,Extra
+UI_PAPER_STAMP_CLOSED,Case Closed
+UI_PAPER_STAMP_FIX,Correction

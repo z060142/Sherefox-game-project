@@ -1,0 +1,13 @@
+version: 1
+id: dc1cf9a3-ff82-4b6e-abcf-608f1f6191e9
+type: image
+title: ch-c-partner
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_partner.png
+content: sha256:8c83138c86cdf554b5ba80dd3805716cb517e7ef8af46ffb6054a746c1a97f0c
+measured:
+  w: 440
+  h: 660
+  alpha: true

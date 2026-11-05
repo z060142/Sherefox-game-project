@@ -1,9 +1,11 @@
 {
   "name": "sherefox",
   "boards": {
-    "Title.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 720, "title": "Title", "page": "main" }
+    "Title.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 720, "title": "Title", "page": "main" },
+    "Vn.dc.html": { "x": 0, "y": 800, "w": 1280, "h": 720, "title": "VN", "page": "main" },
+    "Paper.dc.html": { "x": 0, "y": 1600, "w": 1280, "h": 720, "title": "Paper", "page": "main" }
   },
-  "order": ["Title.dc.html"],
+  "order": ["Title.dc.html", "Vn.dc.html", "Paper.dc.html"],
   "pages": ["main"],
   "designSystems": ["project"]
 }

@@ -1,0 +1,13 @@
+version: 1
+id: 18eb78ac-f0e5-4693-868f-1c6f8607816b
+type: image
+title: ui_ruled
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ui_ruled.png
+content: sha256:d629f3c04b16b330396aa4087184987453f78a105dcadb590637b9f1b0d5279f
+measured:
+  w: 8
+  h: 34
+  alpha: true

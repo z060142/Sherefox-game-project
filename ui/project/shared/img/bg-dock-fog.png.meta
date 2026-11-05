@@ -1,0 +1,13 @@
+version: 1
+id: 518f7d2d-ea3a-4121-a142-fa4786204efc
+type: image
+title: bg-dock-fog
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_dock_fog.png
+content: sha256:c2e26bed5819635749fd64ef7c522db46f1ac4a28af1b88a59359acf99d8eb13
+measured:
+  w: 1280
+  h: 720
+  alpha: false

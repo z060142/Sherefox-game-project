@@ -1,0 +1,13 @@
+version: 1
+id: 65aee6ab-0552-466e-93ab-5f76f6eae64c
+type: image
+title: ch-c-arthur
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_arthur.png
+content: sha256:e867c0c9b022b4f14bf7b74eb52373972930c6058a7b2dea783be092f91d67a6
+measured:
+  w: 440
+  h: 660
+  alpha: true

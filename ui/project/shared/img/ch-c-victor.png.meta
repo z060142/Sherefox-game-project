@@ -1,0 +1,13 @@
+version: 1
+id: d7219375-62fd-4ea5-bdc5-06447f23a7a1
+type: image
+title: ch-c-victor
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_victor.png
+content: sha256:e82cdcff7d2b0dfd579ae7a0644cb9a37a8c654189b67fb0d989935248312066
+measured:
+  w: 440
+  h: 660
+  alpha: true

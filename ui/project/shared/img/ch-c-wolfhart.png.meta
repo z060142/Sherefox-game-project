@@ -1,0 +1,13 @@
+version: 1
+id: ca529a78-52c2-4ce5-bfde-bab4b1a4fb22
+type: image
+title: ch-c-wolfhart
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_wolfhart.png
+content: sha256:09881bfba6348a3eecabc0e6c35220c5ab0765987b0026dc944ef9c80d2f771a
+measured:
+  w: 440
+  h: 660
+  alpha: true

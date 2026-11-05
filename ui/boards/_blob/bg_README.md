@@ -2,7 +2,9 @@
 
 Placeholder art generated for the prototype; not final.
 
-Generator: Image Summon (Codex CLI gpt-image), no reference images, 1 attempt per id. All files are 1672x941 PNG.
+Generator: Image Summon (Codex CLI gpt-image), no reference images, 1 attempt per id. Files were generated at 1672x941 and are now 1280x720 PNG.
+
+The files live flat in `_blob/` as `bg_<id>.png`: xtframe-import reads a blob id as one file name (`/_blob/<file>`), never a sub-path.
 
 Common prompt prefix: "Visual novel background illustration, wide 16:9 landscape, warm painterly thick-paint (impasto digital oil) style, fantasy steampunk Victorian London 1887." Common suffix: "Composition: clear open middle ground where character sprites will stand; the lower third of the image is calm, simple floor with low detail. No people, no characters, no text, no letters, no logos, no watermark, no frame. Clean game background art." Palette hints used: lamp gold #e0a050, copper #a65432, ink green #123a31, fog-night blue #1f2c3d.
 

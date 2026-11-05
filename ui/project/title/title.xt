@@ -22,7 +22,7 @@
       <div id="rule-top" class="rule-copper"/>
       <div id="mast-dock">
         <div id="masthead">
-          <img id="masthead-art" src="../shared/img/masthead-art.png"/>
+          <img id="masthead-art" class="s-b00406" src="../shared/img/masthead-art.png"/>
         </div>
         <svg id="mast-tick" viewBox="0 0 96 64">
           <path id="Stroke" d="M6 34 C14 38 22 46 30 56 C44 34 62 16 90 6" fill="none" stroke="#b8322a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" path-trim="0 1"/>
@@ -40,7 +40,7 @@
       </div>
       <div id="rule-column" class="rule-thin"/>
       <div id="contents">
-        <div id="contents-heading" class="kicker">@UI_TITLE_CONTENTS</div>
+        <div id="contents-heading" class="kicker s-7ee933">@UI_TITLE_CONTENTS</div>
         <button id="btn-ch1" class="entry" on:click="set(chapter, 1)">@UI_TITLE_CH1</button>
         <button id="btn-ch2" class="entry" on:click="set(chapter, 2)">@UI_TITLE_CH2</button>
         <button id="btn-ch3" class="entry" on:click="set(chapter, 3)">@UI_TITLE_CH3</button>
@@ -261,6 +261,7 @@
       padding-left: 16px;
     }
   </layout>
+  <style src="../shared/base.xts"/>
   <style src="title.xts"/>
   <timelines>
     @timeline intro {

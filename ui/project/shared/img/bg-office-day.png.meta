@@ -1,0 +1,13 @@
+version: 1
+id: bad251b5-c0a3-4b99-8824-39e267b72423
+type: image
+title: bg-office-day
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_office_day.png
+content: sha256:37fced29a970b60a318e23371cbd0155d48fbdadbb2044bfcd6cc882319aa00e
+measured:
+  w: 1280
+  h: 720
+  alpha: false

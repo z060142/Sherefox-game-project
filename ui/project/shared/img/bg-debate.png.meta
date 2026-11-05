@@ -1,0 +1,13 @@
+version: 1
+id: 95d660f6-8336-4e13-ad83-5d7aa3abbbff
+type: image
+title: bg-debate
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_debate.png
+content: sha256:c91ac81d6d800933b9e43b8170f0a24f78797f719a9f67f8c4e3226f76834fd0
+measured:
+  w: 1280
+  h: 720
+  alpha: false

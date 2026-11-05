@@ -36,6 +36,22 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "vn",
+      "doc": "vn/vn.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "paper",
+      "doc": "paper/paper.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {
@@ -43,7 +59,9 @@
     "fontDirs": [
       "shared/fonts"
     ],
-    "styles": [],
+    "styles": [
+      "shared/base.xts"
+    ],
     "templateDirs": [],
     "symbols": "shared/symbols",
     "tokens": "shared/tokens.xts",

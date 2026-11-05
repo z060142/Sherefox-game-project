@@ -13,6 +13,10 @@
   "ui": {
     "bundle": "ui/bundle",
     "flowRuntime": "atrium",
-    "surfaces": [{ "ui": "title", "width": 1280, "height": 720 }]
+    "surfaces": [
+      { "ui": "title", "width": 1280, "height": 720 },
+      { "ui": "vn", "width": 1280, "height": 720 },
+      { "ui": "paper", "width": 1280, "height": 720 }
+    ]
   }
 }

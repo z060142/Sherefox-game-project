@@ -1,0 +1,226 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>VN</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #f3eedf }
+  .bg-art { position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; object-fit: cover; }
+  .ch-art { position: absolute; left: 0px; top: 0px; width: 440px; height: 660px; object-fit: contain; }
+  .fig { filter: brightness(1) saturate(1); transition: filter 220ms ease-out }
+  .fig.dim { filter: brightness(0.86) saturate(0.5) }
+  .fig.dim.narr { filter: brightness(1) saturate(1) }
+  .kicker { font-family: var(--font-body); font-size: 14px; line-height: 22px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .qb { width: 76px; height: 26px; padding: 0px; flex-shrink: 0; line-height: 25px; text-align: center;
+        font-family: var(--font-body); font-size: 12px; letter-spacing: 2px; color: var(--ink);
+        background-color: var(--paper); border: 1px solid var(--ink); border-bottom-width: 0px;
+        transition: background-color 120ms linear, color 120ms linear }
+  .qb:hover { color: var(--paper); background-color: var(--ink) }
+  .qb:active { color: var(--ink); background-color: var(--paper-old) }
+  .choice { width: 936px; height: 40px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center;
+            gap: 12px; padding: 0px 16px 0px 16px; background-color: var(--paper); border: 1px solid var(--ink);
+            transition: background-color 120ms linear }
+  .choice:hover { background-color: var(--ink) }
+  .choice:active { background-color: var(--paper-old) }
+  .choice-num { width: 18px; height: 24px; flex-shrink: 0; font-family: var(--font-body); font-size: 15px;
+                line-height: 24px; text-align: center; color: var(--copper) }
+  .choice-key { width: 22px; height: 22px; flex-shrink: 0 }
+  .choice-text { height: 24px; flex-grow: 1; min-width: 200px; font-family: var(--font-body); font-size: 18px;
+                 line-height: 24px; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  .choice:hover .choice-text { color: var(--paper) }
+  .choice:hover .choice-num { color: var(--lamp-gold) }
+  .choice.locked { border-color: var(--copper) }
+  .choice.locked .choice-text { color: var(--copper) }
+  .choice.locked:hover .choice-text { color: var(--lamp-gold) }
+  .badge { width: 18px; height: 22px; flex-shrink: 0; border: 2px solid var(--ink);
+           border-radius: 0px 0px 9px 9px; background-color: var(--paper) }
+  .badge.on { background-color: var(--copper); border-color: var(--ink-deep) }
+  .dlg { background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+         box-shadow: 4px 4px 0px 0px #092e2859 }
+  .dlg-rule { background-color: var(--ink) }
+  .line { font-family: var(--font-body); font-size: 22px; line-height: 34px; color: var(--ink) }
+  .dlg.note { background-color: var(--paper-old); border-top-color: var(--copper) }
+  .note .dlg-rule { display: none }
+  .note .line { font-style: italic; color: var(--ink-deep); background-image: url(/_blob/ui_ruled.png);
+                background-repeat: repeat; border-left: 2px solid var(--copper); padding-left: 16px;
+                transform: skewX(-6deg) }
+  .dlg.sys { background-color: var(--ink-deep); border-top-color: var(--copper) }
+  .sys .dlg-rule { background-color: var(--copper) }
+  .sys .line { color: var(--paper); text-align: center; font-size: 19px }
+  .sys .kicker { color: var(--lamp-gold) }
+</style></helmet>
+<div id="vn" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='bg:string in = "kitchen_morning"; slot_l:string in = "sherefox"; slot_c:string in = ""; slot_r:string in = "arthur"; focus:number in = 1; speaker:string in = "Sherefox"; line:string in = "我的布丁不見了。盤子還在，小旗還在，布丁不在。這是綁架。"; line_seq:number in = 0; style:number in = 0; choice_count:number in = 0; choice1:string in = "再打開冰箱看一次"; choice2:string in = "問亞瑟昨晚幾點睡"; choice3:string in = "【摔壞的懷錶】那只懷錶怎麼了？"; choice4:string in = "先吃早餐再說"; choice_locked1:bool in = false; choice_locked2:bool in = false; choice_locked3:bool in = true; choice_locked4:bool in = false; trust:number in = -1; chapter_title:string in = "第 1 章　消失的發條焦糖布丁"; advance:event out; choose:number out = 0; auto:event out; skip:event out; log:event out'
+     data-xt-trigger="show:play(reveal); key(Enter):if port(choice_count) eq 0 emit(advance); key(Space):if port(choice_count) eq 0 emit(advance); key(A):emit(auto); key(Backspace):emit(log); key(1):if port(choice_count) ge 1 set(choose, 1); key(2):if port(choice_count) ge 2 set(choose, 2); key(3):if port(choice_count) ge 3 set(choose, 3); key(4):if port(choice_count) ge 4 set(choose, 4)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
+
+  <!-- Background: one painted image per known id; an unknown or empty id leaves the newsprint colour. -->
+  <div id="bg" data-xt-trigger="port(bg):play(bg-in)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: var(--paper);">
+    <div id="bg-art" data-xt-timeline="bg-in: 0 opacity 0.35, 360ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;">
+      <img id="bg-office-night" class="bg-art" src="/_blob/bg_office_night.png" data-xt-bind="display=bg | eq('office_night')">
+      <img id="bg-office-day" class="bg-art" src="/_blob/bg_office_day.png" data-xt-bind="display=bg | eq('office_day')">
+      <img id="bg-kitchen-morning" class="bg-art" src="/_blob/bg_kitchen_morning.png" data-xt-bind="display=bg | eq('kitchen_morning')">
+      <img id="bg-clockshop" class="bg-art" src="/_blob/bg_clockshop.png" data-xt-bind="display=bg | eq('clockshop')">
+      <img id="bg-dock-fog" class="bg-art" src="/_blob/bg_dock_fog.png" data-xt-bind="display=bg | eq('dock_fog')">
+      <img id="bg-barge-deck" class="bg-art" src="/_blob/bg_barge_deck.png" data-xt-bind="display=bg | eq('barge_deck')">
+      <img id="bg-boiler-room" class="bg-art" src="/_blob/bg_boiler_room.png" data-xt-bind="display=bg | eq('boiler_room')">
+      <img id="bg-debate" class="bg-art" src="/_blob/bg_debate.png" data-xt-bind="display=bg | eq('debate')">
+    </div>
+  </div>
+
+  <!-- Standees: each slot holds one cut-out per known character id; the slot's port picks it with eq().
+       A slot dims while another slot speaks (focus 1/2/3 = left/centre/right); with focus 0 nobody is dimmed. -->
+  <div id="slot-c" class="fig" data-xt-bind="class.dim=focus | ne(2); class.narr=focus | eq(0)"
+       style="position: absolute; left: 420px; top: 70px; width: 440px; height: 660px;">
+    <div id="ink-c" data-xt-trigger="port(slot_c):play(ink-in-c)"
+         data-xt-timeline="ink-in-c: 0 opacity 0, 420ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 440px; height: 660px;">
+      <img id="ch-c-sherefox" class="ch-art" src="/_blob/char_sherefox.png" data-xt-bind="display=slot_c | eq('sherefox')">
+      <img id="ch-c-arthur" class="ch-art" src="/_blob/char_arthur.png" data-xt-bind="display=slot_c | eq('arthur')">
+      <img id="ch-c-baskerville" class="ch-art" src="/_blob/char_baskerville.png" data-xt-bind="display=slot_c | eq('baskerville')">
+      <img id="ch-c-victor" class="ch-art" src="/_blob/char_victor.png" data-xt-bind="display=slot_c | eq('victor')">
+      <img id="ch-c-wolfhart" class="ch-art" src="/_blob/char_wolfhart.png" data-xt-bind="display=slot_c | eq('wolfhart')">
+      <img id="ch-c-valet" class="ch-art" src="/_blob/char_valet.png" data-xt-bind="display=slot_c | eq('valet')">
+      <img id="ch-c-partner" class="ch-art" src="/_blob/char_partner.png" data-xt-bind="display=slot_c | eq('partner')">
+    </div>
+  </div>
+  <div id="slot-l" class="fig" data-xt-bind="class.dim=focus | ne(1); class.narr=focus | eq(0)"
+       style="position: absolute; left: 40px; top: 70px; width: 440px; height: 660px;">
+    <div id="ink-l" data-xt-trigger="port(slot_l):play(ink-in-l)"
+         data-xt-timeline="ink-in-l: 0 opacity 0, 420ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 440px; height: 660px;">
+      <img id="ch-l-sherefox" class="ch-art" src="/_blob/char_sherefox.png" data-xt-bind="display=slot_l | eq('sherefox')">
+      <img id="ch-l-arthur" class="ch-art" src="/_blob/char_arthur.png" data-xt-bind="display=slot_l | eq('arthur')">
+      <img id="ch-l-baskerville" class="ch-art" src="/_blob/char_baskerville.png" data-xt-bind="display=slot_l | eq('baskerville')">
+      <img id="ch-l-victor" class="ch-art" src="/_blob/char_victor.png" data-xt-bind="display=slot_l | eq('victor')">
+      <img id="ch-l-wolfhart" class="ch-art" src="/_blob/char_wolfhart.png" data-xt-bind="display=slot_l | eq('wolfhart')">
+      <img id="ch-l-valet" class="ch-art" src="/_blob/char_valet.png" data-xt-bind="display=slot_l | eq('valet')">
+      <img id="ch-l-partner" class="ch-art" src="/_blob/char_partner.png" data-xt-bind="display=slot_l | eq('partner')">
+    </div>
+  </div>
+  <div id="slot-r" class="fig" data-xt-bind="class.dim=focus | ne(3); class.narr=focus | eq(0)"
+       style="position: absolute; left: 800px; top: 70px; width: 440px; height: 660px;">
+    <div id="ink-r" data-xt-trigger="port(slot_r):play(ink-in-r)"
+         data-xt-timeline="ink-in-r: 0 opacity 0, 420ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 440px; height: 660px;">
+      <img id="ch-r-sherefox" class="ch-art" src="/_blob/char_sherefox.png" data-xt-bind="display=slot_r | eq('sherefox')">
+      <img id="ch-r-arthur" class="ch-art" src="/_blob/char_arthur.png" data-xt-bind="display=slot_r | eq('arthur')">
+      <img id="ch-r-baskerville" class="ch-art" src="/_blob/char_baskerville.png" data-xt-bind="display=slot_r | eq('baskerville')">
+      <img id="ch-r-victor" class="ch-art" src="/_blob/char_victor.png" data-xt-bind="display=slot_r | eq('victor')">
+      <img id="ch-r-wolfhart" class="ch-art" src="/_blob/char_wolfhart.png" data-xt-bind="display=slot_r | eq('wolfhart')">
+      <img id="ch-r-valet" class="ch-art" src="/_blob/char_valet.png" data-xt-bind="display=slot_r | eq('valet')">
+      <img id="ch-r-partner" class="ch-art" src="/_blob/char_partner.png" data-xt-bind="display=slot_r | eq('partner')">
+    </div>
+  </div>
+
+  <!-- Ink shade under the column so the paper box sits on the scene. -->
+  <div id="shade" data-xt-bind="display=bg | ne('')" style="position: absolute; left: 0px; top: 400px; width: 1280px; height: 320px;
+       background: linear-gradient(180deg, #092e2800 0%, #092e2873 100%);"></div>
+
+  <!-- Click anywhere on the scene to advance (not while choices are shown). -->
+  <div id="hit" data-xt-trigger="click(left):if port(choice_count) eq 0 emit(advance)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+
+  <!-- Top right: chapter name tag and the inspector's trust badges (hidden while trust is -1). -->
+  <div id="hud-tr" style="position: absolute; right: 40px; top: 24px; width: 600px; height: 76px;
+       display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+    <div id="chapter-tag" data-xt-bind="text=chapter_title; display=chapter_title | ne('')"
+         style="max-width: 600px; height: 36px; flex-shrink: 0; padding: 0px 14px 0px 14px; text-align: right; white-space: nowrap;
+                font-family: var(--font-body); font-size: 15px; line-height: 31px; color: var(--ink);
+                background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);">第 1 章　消失的發條焦糖布丁</div>
+    <div id="trust" data-xt-bind="display=trust | ge(0)"
+         style="width: 148px; height: 34px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center;
+                justify-content: center; gap: 6px; background-color: var(--paper); border-bottom: 1px solid var(--ink);">
+      <div id="badge-1" class="badge" data-xt-bind="class.on=trust | ge(1)"></div>
+      <div id="badge-2" class="badge" data-xt-bind="class.on=trust | ge(2)"></div>
+      <div id="badge-3" class="badge" data-xt-bind="class.on=trust | ge(3)"></div>
+      <div id="badge-4" class="badge" data-xt-bind="class.on=trust | ge(4)"></div>
+      <div id="badge-5" class="badge" data-xt-bind="class.on=trust | ge(5)"></div>
+    </div>
+  </div>
+
+  <!-- The dialogue box is one newspaper column: double rule on top, copper kicker, serif text.
+       It grows upward when choices are shown below the line: the dock is anchored to the bottom edge,
+       the column sits on the dock's bottom. -->
+  <div id="dlg-dock" data-xt-anchor="bottom"
+       style="position: absolute; left: calc(50% - 500px); bottom: 20px; width: 1000px; height: 200px; pointer-events: none;">
+  <div id="dlg" class="dlg" data-xt-bind="class.note=style | eq(1); class.sys=style | eq(2)"
+       style="position: absolute; left: 0px; bottom: 0px; width: 1000px; pointer-events: auto;
+              display: flex; flex-direction: column; padding: 3px 0px 0px 0px;">
+    <div id="dlg-rule" class="dlg-rule" style="width: 1000px; height: 1px; flex-shrink: 0;"></div>
+    <div id="dlg-body" data-xt-trigger="click(left):if port(choice_count) eq 0 emit(advance)"
+         style="position: relative; width: 1000px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;
+                padding: 12px 32px 20px 32px;">
+      <div id="nameplate" data-xt-bind="display=speaker | ne('')"
+           style="width: 936px; height: 24px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 12px;">
+        <div id="speaker" class="kicker" data-xt-bind="text=speaker"
+             style="height: 22px; flex-shrink: 0; min-width: 40px;">Sherefox</div>
+        <div id="speaker-rule" style="width: 48px; height: 1px; flex-shrink: 0; background-color: var(--copper);"></div>
+      </div>
+      <div id="line" class="line" data-xt-bind="text=line" data-xt-trigger="port(line_seq):play(reveal)"
+           data-xt-timeline="reveal: 0 opacity 0, 0 transform translateY(6px), 260ms ease-out opacity 1, 260ms ease-out transform translateY(0px)"
+           style="width: 936px; min-height: 68px; flex-shrink: 0;">我的布丁不見了。盤子還在，小旗還在，布丁不在。這是綁架。</div>
+      <div id="choices" data-xt-bind="display=choice_count | gt(0)"
+           style="width: 936px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px; padding: 6px 0px 0px 0px;">
+        <div id="choice-1" class="choice" data-xt-bind="display=choice_count | ge(1); class.locked=choice_locked1"
+             data-xt-trigger="click(left):set(choose, 1)">
+          <div id="choice-1-num" class="choice-num">1</div>
+          <svg id="choice-1-key" class="choice-key" viewBox="0 0 22 22" data-xt-bind="display=choice_locked1">
+            <circle id="Bow" cx="6.5" cy="11" r="4" fill="none" stroke="#a65432" stroke-width="2.5"/>
+            <path id="Bit" d="M10.5 11 H20 M17 11 V15 M20 11 V14" fill="none" stroke="#a65432" stroke-width="2.5" stroke-linecap="square"/>
+          </svg>
+          <div id="choice-1-text" class="choice-text" data-xt-bind="text=choice1">再打開冰箱看一次</div>
+        </div>
+        <div id="choice-2" class="choice" data-xt-bind="display=choice_count | ge(2); class.locked=choice_locked2"
+             data-xt-trigger="click(left):set(choose, 2)">
+          <div id="choice-2-num" class="choice-num">2</div>
+          <svg id="choice-2-key" class="choice-key" viewBox="0 0 22 22" data-xt-bind="display=choice_locked2">
+            <circle id="Bow" cx="6.5" cy="11" r="4" fill="none" stroke="#a65432" stroke-width="2.5"/>
+            <path id="Bit" d="M10.5 11 H20 M17 11 V15 M20 11 V14" fill="none" stroke="#a65432" stroke-width="2.5" stroke-linecap="square"/>
+          </svg>
+          <div id="choice-2-text" class="choice-text" data-xt-bind="text=choice2">問亞瑟昨晚幾點睡</div>
+        </div>
+        <div id="choice-3" class="choice" data-xt-bind="display=choice_count | ge(3); class.locked=choice_locked3"
+             data-xt-trigger="click(left):set(choose, 3)">
+          <div id="choice-3-num" class="choice-num">3</div>
+          <svg id="choice-3-key" class="choice-key" viewBox="0 0 22 22" data-xt-bind="display=choice_locked3">
+            <circle id="Bow" cx="6.5" cy="11" r="4" fill="none" stroke="#a65432" stroke-width="2.5"/>
+            <path id="Bit" d="M10.5 11 H20 M17 11 V15 M20 11 V14" fill="none" stroke="#a65432" stroke-width="2.5" stroke-linecap="square"/>
+          </svg>
+          <div id="choice-3-text" class="choice-text" data-xt-bind="text=choice3">【摔壞的懷錶】那只懷錶怎麼了？</div>
+        </div>
+        <div id="choice-4" class="choice" data-xt-bind="display=choice_count | ge(4); class.locked=choice_locked4"
+             data-xt-trigger="click(left):set(choose, 4)">
+          <div id="choice-4-num" class="choice-num">4</div>
+          <svg id="choice-4-key" class="choice-key" viewBox="0 0 22 22" data-xt-bind="display=choice_locked4">
+            <circle id="Bow" cx="6.5" cy="11" r="4" fill="none" stroke="#a65432" stroke-width="2.5"/>
+            <path id="Bit" d="M10.5 11 H20 M17 11 V15 M20 11 V14" fill="none" stroke="#a65432" stroke-width="2.5" stroke-linecap="square"/>
+          </svg>
+          <div id="choice-4-text" class="choice-text" data-xt-bind="text=choice4">先吃早餐再說</div>
+        </div>
+      </div>
+      <!-- "More" mark at the column's foot; hidden while choices wait. -->
+      <svg id="more" viewBox="0 0 14 10" data-xt-bind="display=choice_count | eq(0)"
+           data-xt-timeline="idle loop: 0 opacity 1, 600ms ease-in-out opacity 0.25, 1200ms ease-in-out opacity 1"
+           style="position: absolute; right: 24px; bottom: 10px; width: 14px; height: 10px;">
+        <polygon id="Tri" points="0,0 14,0 7,10" fill="#a65432"/>
+      </svg>
+    </div>
+
+    <!-- Quick bar: three tabs standing on the column's top rule (right). -->
+    <div id="quickbar" style="position: absolute; right: 0px; top: -29px; width: 240px; height: 26px;
+         display: flex; flex-direction: row; justify-content: flex-end; gap: 4px;">
+      <div id="qb-auto" class="qb" data-xt-key="BTN_AUTO" data-xt-trigger="click(left):emit(auto)">自動</div>
+      <div id="qb-skip" class="qb" data-xt-key="BTN_FAST" data-xt-trigger="click(left):emit(skip)">快轉</div>
+      <div id="qb-log" class="qb" data-xt-key="BTN_LOG" data-xt-trigger="click(left):emit(log)">紀錄</div>
+    </div>
+  </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

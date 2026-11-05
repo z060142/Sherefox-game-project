@@ -1,0 +1,13 @@
+version: 1
+id: 96635e17-70f7-4894-8873-60634e47f839
+type: image
+title: ch-c-sherefox
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_sherefox.png
+content: sha256:4047e4f58dff066a9f1bfae888bbee7b1aa71bb56e7d38c94d2b0d7bbd44176e
+measured:
+  w: 440
+  h: 660
+  alpha: true

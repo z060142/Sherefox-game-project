@@ -51,6 +51,20 @@
 | `skip` | event | out | 切換快轉。 |
 | `log` | event | out | 開啟對話紀錄（原型可先不實作畫面，只送事件）。 |
 
+UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
+
+- **背景切換**：每個已知背景 id 各有一張 `<img id="bg-<id>">`，以 `bind:display="bg | eq('<id>')"` 只顯示相符的那一張；其他值（含空字串、未知 id）全部隱藏，露出新聞紙底色（下方墨色漸層也一併隱藏）。`bg` 變更時播 `bg-in`（360 ms 淡入）。已知 id：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`；圖檔 `ui/boards/_blob/bg_<id>.png`（1280×720）。
+- **立繪切換**：三個位置（`slot-l`、`slot-c`、`slot-r`）各有一組 `<img id="ch-<位置>-<id>">`，每個已知角色 id 一張去背圖，以 `bind:display="slot_x | eq('<id>')"` 只顯示相符的一張，未知或空 id 什麼都不畫（三組引用同一批圖檔，打包時去重）。位置元素綁 `class.dim = focus | ne(n)`（左 1、中 2、右 3）與 `class.narr = focus | eq(0)`：`.dim` 且非 `.narr` 時套色彩調整（亮度 −0.14、飽和度 −0.5，220 ms 過渡）；`focus` 0 時三人都不變暗。`slot_x` 變更時播 `ink-in-<位置>`（420 ms 淡入）。疊放順序：中在最下，左、右在上。不用符號：XTAtrium 會把符號實例內的每個元素（路徑 id 帶 `/`）登記成 `ui.vn.<id>.<事件>` 訊號而對每個發出「not a valid signal name」警告（一個 vn 畫面 225 行）。已知 id：`sherefox`、`arthur`、`baskerville`、`victor`、`wolfhart`、`valet`（Ch.2 費奇）、`partner`（Ch.3 皮爾斯）；圖檔 `ui/boards/_blob/char_<id>.png`（440×660）。
+- 新增背景或角色：在板子多加一張 `<img>`（同樣的 `eq` 綁定）並重新 import；流圖與合約不變。圖檔一律平放在 `_blob/` 下，因為 `xtframe-import` 的 blob id 只能是單一檔名（`/_blob/<file>`），不能有子目錄。
+- **文字演出**：`line_seq` 每次變更（及畫面顯示時）播 `reveal`：整句 260 ms 淡入並上移 6 px。逐字顯示（`text-reveal`）目前寫不進板子：轉換器把 `text-reveal` 當成樣式子集外的屬性丟掉。
+- **style**：0 一般（新聞紙底、雙線頂線）；1 亞瑟筆記（`.note`：舊紙底、銅色頂線、橫格線、銅色左邊線；只有 NotoSansTC Regular 一種中文字面，所以用 `skewX(-6deg)` 模擬手寫斜度，英文同樣斜排）；2 系統訊息（`.sys`：深墨底、新聞紙色字、置中）。
+- **選項**：`choice_count` > 0 時選項豎排在對白下方，對白框以底邊錨定、向上長高；第 n 個選項在 `choice_count` ≥ n 時顯示，`choice_lockedn` 為真時帶銅製鑰匙圖示並改銅色框字。
+- **輸入**：左鍵點場景或對白框、Enter、Space → `advance`（只在 `choice_count` = 0 時）；點選項或數字鍵 1～4 → `set(choose, n)`（n ≤ `choice_count`）；快捷列（對白框右上的三個頁籤）點擊 → `auto`／`skip`／`log`；A → `auto`，Backspace → `log`。鍵盤觸發需要 UI 根元素持有焦點：根元素有 `tabindex="0" autofocus`，`key-activation="none"`。
+- **其他**：`speaker` 空字串時隱藏名牌；`chapter_title` 空字串時隱藏章節頁籤；`trust` −1 時隱藏警徽列，0～5 時五枚警徽中前 `trust` 枚填銅色。
+- 未做（合約沒有對應 port 或屬宿主行為）：獸耳族名牌角落小圖示、右鍵隱藏介面、Ctrl 長按快轉、滾輪開紀錄。
+
+字串鍵：`BTN_AUTO`、`BTN_FAST`、`BTN_LOG`。
+
 ## paper（報紙：開場頭版、轉場報紙，1280×720）
 
 依據：系統規格 §3.3、§4.2「SCR_PAPER」、美術風格 §四、§五。
@@ -69,3 +83,16 @@
 | `stamp` | number | in | 頁面印章：0 無、1 結案、2 更正（敗北）。 |
 | `next` | event | out | 翻頁／看完（左鍵、Enter、→）。 |
 | `prev` | event | out | 回上一頁（←）。 |
+
+UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
+
+- **page**：1 顯示頭版（`#p1`），2 顯示第二版（`#p2`），其他值兩頁都不顯示；變更時播 `flip`（280 ms 淡入並右移收回）。頁尾中央的頁碼直接顯示 `page`。
+- **頭版**：報頭圖（與 title 共用同一檔）居中，左右耳框；雙線；`dateline` 置中；`headline` 大標兩行（中文 52 px、英文 40 px，以 `:lang(en)` 切換），顯示與變更時播 `intro`（活字落下）；`subhead` 斜體兩行；內文五欄。
+- **五欄內文的做法**：五欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高（264 px），外層 `overflow: hidden`，看起來就是同一段文字由第一欄接到第五欄。超出五欄（約每欄 14 字 × 12 行）的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
+- **mast**：0 平常版（左耳「倫敦提燈報」、右耳「頭版」）；1 號外（兩耳改為銅底「號外」）；2 滲透版（報頭粗線改狼影紫 `#3b2a4a`；token 表尚無此色）。
+- **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 標題與三欄 `page2_body`；右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。
+- **stamp**：1 結案、2 更正；朱紅印章（雙框、旋轉 −9°）疊在內文第二欄上，約占畫面 3%，兩頁都顯示；變更時播 `stamp-in`（180 ms 蓋印）。
+- **輸入**：左鍵（畫面任一處）、Enter、Space、→、PageDown → `next`；←、PageUp → `prev`。鍵盤同 vn，根元素持有焦點。
+- 已知落差：美術風格 §五「章節開場」要求鋼版畫主圖，合約沒有圖片 port；Ch.1 開場內文（`SCR_CH01_S01_L003`，約 170 字）只填滿五欄中的一欄多。「收入剪報簿」提示（系統規格 §4.2）沒有對應 port，未做。
+
+字串鍵：`UI_PAPER_MAST`、`UI_PAPER_PAGE1`、`UI_PAPER_PAGE2`、`UI_PAPER_SIDE`、`UI_PAPER_ADS`、`UI_PAPER_EXTRA`、`UI_PAPER_STAMP_CLOSED`、`UI_PAPER_STAMP_FIX`。

@@ -1,6 +1,22 @@
 {
   "assets": [
-    "shared/img/masthead-art.png"
+    "shared/img/masthead-art.png",
+    "shared/img/ui-ruled.png",
+    "shared/img/bg-office-night.png",
+    "shared/img/bg-office-day.png",
+    "shared/img/bg-kitchen-morning.png",
+    "shared/img/bg-clockshop.png",
+    "shared/img/bg-dock-fog.png",
+    "shared/img/bg-barge-deck.png",
+    "shared/img/bg-boiler-room.png",
+    "shared/img/bg-debate.png",
+    "shared/img/ch-c-sherefox.png",
+    "shared/img/ch-c-arthur.png",
+    "shared/img/ch-c-baskerville.png",
+    "shared/img/ch-c-victor.png",
+    "shared/img/ch-c-wolfhart.png",
+    "shared/img/ch-c-valet.png",
+    "shared/img/ch-c-partner.png"
   ],
   "bindings": [],
   "bundle": {
@@ -10,7 +26,10 @@
   "compileErrors": [],
   "compileWarnings": [],
   "conflicts": [],
-  "diagnostics": [],
+  "diagnostics": [
+    "Vn.dc.html <helmet>: note: transition: filter 220ms ease-out -> effect 220ms ease-out (box-shadow, filter and text-shadow are XTFrame's effect property, 18 §18.4)",
+    "Vn.dc.html <helmet>: filter brightness(0.86): degraded: brightness is additive in XTFrame (18 §18.3)"
+  ],
   "lint": [],
   "missingFonts": [],
   "nodes": [
@@ -182,23 +201,23 @@
     {
       "base": {
         "attrs": {
+          "class": "s-b00406",
           "src": "../shared/img/masthead-art.png"
         },
         "decls": {
           "height": "253px",
           "left": "0px",
-          "object-fit": "contain",
           "position": "absolute",
           "top": "-34px",
           "width": "760px"
         }
       },
-      "contentHash": "5b8b84a3fc885d53",
+      "contentHash": "d39477f38f9d66f6",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 56,
       "outId": "masthead-art",
-      "selfHash": "01965ebebabf252a",
+      "selfHash": "612390f61d339dbd",
       "sourceId": "Title.dc.html:1/3/0/0",
       "sourceName": "masthead-art",
       "ui": "title",
@@ -216,7 +235,7 @@
           "width": "760px"
         }
       },
-      "contentHash": "a2438abcde3b8280",
+      "contentHash": "c0b20a76e06fdccd",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 54,
@@ -260,7 +279,7 @@
           "size": "800px 172px"
         }
       },
-      "contentHash": "cc3c8b9575024155",
+      "contentHash": "7052e1fd74148d7d",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 53,
@@ -527,23 +546,21 @@
     {
       "base": {
         "attrs": {
-          "class": "kicker"
+          "class": "kicker s-7ee933"
         },
         "decls": {
-          "border-bottom-color": "#123a31",
-          "border-bottom-width": "3px",
           "flex-shrink": "0",
           "height": "28px",
           "width": "408px"
         },
         "text": "@UI_TITLE_CONTENTS"
       },
-      "contentHash": "2db981a078381362",
+      "contentHash": "233dc16bea35b975",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 101,
       "outId": "contents-heading",
-      "selfHash": "9a3c002088d3a9ee",
+      "selfHash": "05f293093193f70e",
       "sourceId": "Title.dc.html:1/10/0",
       "sourceName": "contents-heading",
       "ui": "title",
@@ -627,7 +644,7 @@
           "size": "408px 372px"
         }
       },
-      "contentHash": "10c4f260a56762fd",
+      "contentHash": "0010919274f3d887",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 98,
@@ -677,7 +694,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "be481e41e0278f3a",
+      "contentHash": "dd235078d66d75ee",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 24,
@@ -686,6 +703,3389 @@
       "sourceId": "Title.dc.html:1",
       "sourceName": "Title",
       "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('office_night')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-office-night.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "443a0a7f8b66320d",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 62,
+      "outId": "bg-office-night",
+      "selfHash": "69fd83b8ecbee776",
+      "sourceId": "Vn.dc.html:1/0/0/0",
+      "sourceName": "bg-office-night",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('office_day')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-office-day.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "a286a7631f9ce95c",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 63,
+      "outId": "bg-office-day",
+      "selfHash": "53faf390ec5917ca",
+      "sourceId": "Vn.dc.html:1/0/0/1",
+      "sourceName": "bg-office-day",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('kitchen_morning')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-kitchen-morning.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "89fed90094b56a40",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 64,
+      "outId": "bg-kitchen-morning",
+      "selfHash": "c7d9110edbade02c",
+      "sourceId": "Vn.dc.html:1/0/0/2",
+      "sourceName": "bg-kitchen-morning",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('clockshop')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-clockshop.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "f1d497475e38ceb0",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 65,
+      "outId": "bg-clockshop",
+      "selfHash": "02e36ceb80bf636f",
+      "sourceId": "Vn.dc.html:1/0/0/3",
+      "sourceName": "bg-clockshop",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('dock_fog')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-dock-fog.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "e17b71d08bb57908",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 66,
+      "outId": "bg-dock-fog",
+      "selfHash": "aaa7456b94265057",
+      "sourceId": "Vn.dc.html:1/0/0/4",
+      "sourceName": "bg-dock-fog",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('barge_deck')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-barge-deck.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "bc2920ad37edd7fb",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 67,
+      "outId": "bg-barge-deck",
+      "selfHash": "35f84f49b1451640",
+      "sourceId": "Vn.dc.html:1/0/0/5",
+      "sourceName": "bg-barge-deck",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('boiler_room')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-boiler-room.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "fd2e32950eb2dd64",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 68,
+      "outId": "bg-boiler-room",
+      "selfHash": "8fa3915f10db6e66",
+      "sourceId": "Vn.dc.html:1/0/0/6",
+      "sourceName": "bg-boiler-room",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('debate')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-debate.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "ccb19f38e8a376d8",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 69,
+      "outId": "bg-debate",
+      "selfHash": "59b928c3c06ccfa2",
+      "sourceId": "Vn.dc.html:1/0/0/7",
+      "sourceName": "bg-debate",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "100%",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100%"
+        }
+      },
+      "contentHash": "d915266de44cfb97",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 60,
+      "outId": "bg-art",
+      "selfHash": "a1cf03eeb3ecafa9",
+      "sourceId": "Vn.dc.html:1/0/0",
+      "sourceName": "bg-art",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(bg)": "play(bg-in)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen",
+          "background-color": "var(--paper)"
+        }
+      },
+      "contentHash": "972dca108641459c",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 58,
+      "outId": "bg",
+      "selfHash": "6169bc757daa7ff9",
+      "sourceId": "Vn.dc.html:1/0",
+      "sourceName": "bg",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('sherefox')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-sherefox.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "c7928960a85662dd",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 80,
+      "outId": "ch-c-sherefox",
+      "selfHash": "da4323d9d856d542",
+      "sourceId": "Vn.dc.html:1/1/0/0",
+      "sourceName": "ch-c-sherefox",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('arthur')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "fc6dc3fa309b11e2",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 81,
+      "outId": "ch-c-arthur",
+      "selfHash": "c5db85bb190777a2",
+      "sourceId": "Vn.dc.html:1/1/0/1",
+      "sourceName": "ch-c-arthur",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('baskerville')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-baskerville.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "3907c24298a6c509",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 82,
+      "outId": "ch-c-baskerville",
+      "selfHash": "6d609f096dda396a",
+      "sourceId": "Vn.dc.html:1/1/0/2",
+      "sourceName": "ch-c-baskerville",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('victor')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-victor.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "17d1be1ca2f417cf",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 83,
+      "outId": "ch-c-victor",
+      "selfHash": "36467c7b9b55f09d",
+      "sourceId": "Vn.dc.html:1/1/0/3",
+      "sourceName": "ch-c-victor",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('wolfhart')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-wolfhart.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "f8d149f5344e6c99",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 84,
+      "outId": "ch-c-wolfhart",
+      "selfHash": "b2b5ed5bf341bd83",
+      "sourceId": "Vn.dc.html:1/1/0/4",
+      "sourceName": "ch-c-wolfhart",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('valet')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-valet.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "1965cedb0afd28f8",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 85,
+      "outId": "ch-c-valet",
+      "selfHash": "7d6b2d8d16fa9838",
+      "sourceId": "Vn.dc.html:1/1/0/5",
+      "sourceName": "ch-c-valet",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_c | eq('partner')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-partner.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "acee3654d6d5ec26",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 86,
+      "outId": "ch-c-partner",
+      "selfHash": "51ecec05984a838c",
+      "sourceId": "Vn.dc.html:1/1/0/6",
+      "sourceName": "ch-c-partner",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(slot_c)": "play(ink-in-c)"
+        },
+        "decls": {
+          "height": "660px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "c675b0260da77f37",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 77,
+      "outId": "ink-c",
+      "selfHash": "d573796bc88fb065",
+      "sourceId": "Vn.dc.html:1/1/0",
+      "sourceName": "ink-c",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.dim": "focus | ne(2)",
+          "bind:class.narr": "focus | eq(0)",
+          "class": "fig"
+        },
+        "decls": {
+          "anchor": "center bottom",
+          "offset": "0 -28px",
+          "size": "440px 660px"
+        }
+      },
+      "contentHash": "8e5b1edf2ba6a869",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 75,
+      "outId": "slot-c",
+      "selfHash": "6cd1a0e475e2673e",
+      "sourceId": "Vn.dc.html:1/1",
+      "sourceName": "slot-c",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('sherefox')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-sherefox.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "16dbb356bf3a242a",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 94,
+      "outId": "ch-l-sherefox",
+      "selfHash": "1bc3b578f19d4e0e",
+      "sourceId": "Vn.dc.html:1/2/0/0",
+      "sourceName": "ch-l-sherefox",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('arthur')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "64e6648f6cb8ab2a",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 95,
+      "outId": "ch-l-arthur",
+      "selfHash": "106afda72b051bbe",
+      "sourceId": "Vn.dc.html:1/2/0/1",
+      "sourceName": "ch-l-arthur",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('baskerville')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-baskerville.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "a19fad6fd1451472",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 96,
+      "outId": "ch-l-baskerville",
+      "selfHash": "147e4a3242bbf94e",
+      "sourceId": "Vn.dc.html:1/2/0/2",
+      "sourceName": "ch-l-baskerville",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('victor')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-victor.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "147a1f5049a79a42",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 97,
+      "outId": "ch-l-victor",
+      "selfHash": "3a4b554d63f38f61",
+      "sourceId": "Vn.dc.html:1/2/0/3",
+      "sourceName": "ch-l-victor",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('wolfhart')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-wolfhart.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "db6a310b47917606",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 98,
+      "outId": "ch-l-wolfhart",
+      "selfHash": "8342cdd4ebbe11f7",
+      "sourceId": "Vn.dc.html:1/2/0/4",
+      "sourceName": "ch-l-wolfhart",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('valet')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-valet.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "8348eaee3ed5a18a",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 99,
+      "outId": "ch-l-valet",
+      "selfHash": "138c9ae2d522283c",
+      "sourceId": "Vn.dc.html:1/2/0/5",
+      "sourceName": "ch-l-valet",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_l | eq('partner')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-partner.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "20c682b00bf932ad",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 100,
+      "outId": "ch-l-partner",
+      "selfHash": "243ce19cead249e8",
+      "sourceId": "Vn.dc.html:1/2/0/6",
+      "sourceName": "ch-l-partner",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(slot_l)": "play(ink-in-l)"
+        },
+        "decls": {
+          "height": "660px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "271f2948e310c0d6",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 91,
+      "outId": "ink-l",
+      "selfHash": "d4ffab36e69caf4a",
+      "sourceId": "Vn.dc.html:1/2/0",
+      "sourceName": "ink-l",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.dim": "focus | ne(1)",
+          "bind:class.narr": "focus | eq(0)",
+          "class": "fig"
+        },
+        "decls": {
+          "anchor": "left bottom",
+          "offset": "8px -28px",
+          "size": "440px 660px"
+        }
+      },
+      "contentHash": "98c7ace38b936c18",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 89,
+      "outId": "slot-l",
+      "selfHash": "d4f936d010f7463a",
+      "sourceId": "Vn.dc.html:1/2",
+      "sourceName": "slot-l",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('sherefox')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-sherefox.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "4f149a9031f19939",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 108,
+      "outId": "ch-r-sherefox",
+      "selfHash": "4d752c691d0dbdfe",
+      "sourceId": "Vn.dc.html:1/3/0/0",
+      "sourceName": "ch-r-sherefox",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('arthur')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "e5008881a1d0669a",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 109,
+      "outId": "ch-r-arthur",
+      "selfHash": "3618423d4baefa0e",
+      "sourceId": "Vn.dc.html:1/3/0/1",
+      "sourceName": "ch-r-arthur",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('baskerville')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-baskerville.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "0565f157f54390cf",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 110,
+      "outId": "ch-r-baskerville",
+      "selfHash": "c29d3424abc7373e",
+      "sourceId": "Vn.dc.html:1/3/0/2",
+      "sourceName": "ch-r-baskerville",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('victor')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-victor.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "48aa736538b50bd9",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 111,
+      "outId": "ch-r-victor",
+      "selfHash": "9e9b1d877e6cc425",
+      "sourceId": "Vn.dc.html:1/3/0/3",
+      "sourceName": "ch-r-victor",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('wolfhart')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-wolfhart.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "0de77f17217a28dd",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 112,
+      "outId": "ch-r-wolfhart",
+      "selfHash": "45bed3533bad79eb",
+      "sourceId": "Vn.dc.html:1/3/0/4",
+      "sourceName": "ch-r-wolfhart",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('valet')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-valet.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "8342f4fe1b422145",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 113,
+      "outId": "ch-r-valet",
+      "selfHash": "bddd11dd9bab4bf4",
+      "sourceId": "Vn.dc.html:1/3/0/5",
+      "sourceName": "ch-r-valet",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "slot_r | eq('partner')",
+          "class": "ch-art",
+          "src": "../shared/img/ch-c-partner.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "82ebf1645b9c87e7",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 114,
+      "outId": "ch-r-partner",
+      "selfHash": "49ac6d2e05420d38",
+      "sourceId": "Vn.dc.html:1/3/0/6",
+      "sourceName": "ch-r-partner",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(slot_r)": "play(ink-in-r)"
+        },
+        "decls": {
+          "height": "660px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "3e7e3ca64681fec7",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 105,
+      "outId": "ink-r",
+      "selfHash": "e6a408e2c818176c",
+      "sourceId": "Vn.dc.html:1/3/0",
+      "sourceName": "ink-r",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.dim": "focus | ne(3)",
+          "bind:class.narr": "focus | eq(0)",
+          "class": "fig"
+        },
+        "decls": {
+          "anchor": "right bottom",
+          "offset": "8px -28px",
+          "size": "440px 660px"
+        }
+      },
+      "contentHash": "2f2bba3abeaf35fe",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 103,
+      "outId": "slot-r",
+      "selfHash": "16b57b3a3d9a3f09",
+      "sourceId": "Vn.dc.html:1/3",
+      "sourceName": "slot-r",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | ne('')"
+        },
+        "decls": {
+          "background-gradient": "linear-gradient(180deg, #092e2800 0%, #092e2873 100%)",
+          "bottom": "calc(1safe-bottom - 18px)",
+          "height": "320px",
+          "left": "0",
+          "position": "absolute",
+          "right": "0"
+        }
+      },
+      "contentHash": "2f8e6940028ebec4",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 119,
+      "outId": "shade",
+      "selfHash": "71bf93bc2d450166",
+      "sourceId": "Vn.dc.html:1/4",
+      "sourceName": "shade",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:click(left)": "if port(choice_count) eq 0 emit(advance)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "c23acb1ba2d779f8",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 123,
+      "outId": "hit",
+      "selfHash": "a036a9137d17f04f",
+      "sourceId": "Vn.dc.html:1/5",
+      "sourceName": "hit",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chapter_title | ne('')",
+          "bind:text": "chapter_title"
+        },
+        "decls": {
+          "background-color": "var(--paper)",
+          "border-bottom-color": "#123a31",
+          "border-bottom-width": "1px",
+          "border-top-color": "#123a31",
+          "border-top-width": "3px",
+          "color": "var(--ink)",
+          "flex-shrink": "0",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "15px",
+          "height": "36px",
+          "line-height": "31px",
+          "max-width": "600px",
+          "padding-bottom": "0px",
+          "padding-left": "14px",
+          "padding-right": "14px",
+          "padding-top": "0px",
+          "text-align": "right",
+          "white-space": "nowrap"
+        },
+        "text": "第 1 章　消失的發條焦糖布丁"
+      },
+      "contentHash": "8b957117e9deb0c4",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 129,
+      "outId": "chapter-tag",
+      "selfHash": "bba2ead7d0bf2016",
+      "sourceId": "Vn.dc.html:1/6/0",
+      "sourceName": "chapter-tag",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(1)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "c74be37407a1106e",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 136,
+      "outId": "badge-1",
+      "selfHash": "18d35db77998cf8c",
+      "sourceId": "Vn.dc.html:1/6/1/0",
+      "sourceName": "badge-1",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(2)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "72350bfe09734935",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 137,
+      "outId": "badge-2",
+      "selfHash": "6116925d42dbf05a",
+      "sourceId": "Vn.dc.html:1/6/1/1",
+      "sourceName": "badge-2",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(3)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "26c1ff20d81cb178",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 138,
+      "outId": "badge-3",
+      "selfHash": "fe5ea44212c896f8",
+      "sourceId": "Vn.dc.html:1/6/1/2",
+      "sourceName": "badge-3",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(4)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "ecf529202b0b7ced",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 139,
+      "outId": "badge-4",
+      "selfHash": "4ea0432bf96789aa",
+      "sourceId": "Vn.dc.html:1/6/1/3",
+      "sourceName": "badge-4",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(5)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "c03143d6a83389b9",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 140,
+      "outId": "badge-5",
+      "selfHash": "3b534600ea41c234",
+      "sourceId": "Vn.dc.html:1/6/1/4",
+      "sourceName": "badge-5",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "trust | ge(0)"
+        },
+        "decls": {
+          "align-items": "center",
+          "background-color": "var(--paper)",
+          "border-bottom-color": "#123a31",
+          "border-bottom-width": "1px",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "6px",
+          "height": "34px",
+          "justify-content": "center",
+          "width": "148px"
+        }
+      },
+      "contentHash": "7e8ec0311d3f1325",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 133,
+      "outId": "trust",
+      "selfHash": "0fdf48057b05ff0a",
+      "sourceId": "Vn.dc.html:1/6/1",
+      "sourceName": "trust",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "flex-end",
+          "anchor": "right top",
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "6px",
+          "offset": "8px 6px",
+          "size": "600px 76px"
+        }
+      },
+      "contentHash": "105af22470e17566",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 127,
+      "outId": "hud-tr",
+      "selfHash": "95bc165edc6a64e3",
+      "sourceId": "Vn.dc.html:1/6",
+      "sourceName": "hud-tr",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "dlg-rule"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "1px",
+          "width": "1000px"
+        }
+      },
+      "contentHash": "9b4b1f0095e5163c",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 152,
+      "outId": "dlg-rule",
+      "selfHash": "ab195ee2e38a6e34",
+      "sourceId": "Vn.dc.html:1/7/0/0",
+      "sourceName": "dlg-rule",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "speaker",
+          "class": "kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "min-width": "40px"
+        },
+        "text": "Sherefox"
+      },
+      "contentHash": "cba28e2bc10d4378",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 158,
+      "outId": "speaker",
+      "selfHash": "754cc062cf5b9f37",
+      "sourceId": "Vn.dc.html:1/7/0/1/0/0",
+      "sourceName": "speaker",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-color": "var(--copper)",
+          "flex-shrink": "0",
+          "height": "1px",
+          "width": "48px"
+        }
+      },
+      "contentHash": "d51d38be2c9c528b",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 160,
+      "outId": "speaker-rule",
+      "selfHash": "7dac9a6c04b3d364",
+      "sourceId": "Vn.dc.html:1/7/0/1/0/1",
+      "sourceName": "speaker-rule",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "speaker | ne('')"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "12px",
+          "height": "24px",
+          "width": "936px"
+        }
+      },
+      "contentHash": "e1a1abd23af1766e",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 156,
+      "outId": "nameplate",
+      "selfHash": "9f534a633c181d05",
+      "sourceId": "Vn.dc.html:1/7/0/1/0",
+      "sourceName": "nameplate",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "line",
+          "class": "line",
+          "on:port(line_seq)": "play(reveal)"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "min-height": "68px",
+          "width": "936px"
+        },
+        "text": "我的布丁不見了。盤子還在，小旗還在，布丁不在。這是綁架。"
+      },
+      "contentHash": "e7879d44ec060c3e",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 162,
+      "outId": "line",
+      "selfHash": "d9973db984d375e2",
+      "sourceId": "Vn.dc.html:1/7/0/1/1",
+      "sourceName": "line",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "choice-num"
+        },
+        "decls": {},
+        "text": "1"
+      },
+      "contentHash": "f7e7a89165a671b8",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 169,
+      "outId": "choice-1-num",
+      "selfHash": "0330f8f4787851c6",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/0/0",
+      "sourceName": "choice-1-num",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_locked1",
+          "class": "choice-key",
+          "viewBox": "0 0 22 22"
+        },
+        "decls": {}
+      },
+      "contentHash": "40f51f23b2fb9b56",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 170,
+      "outId": "choice-1-key",
+      "selfHash": "6555338ed8bbc038",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/0/1",
+      "sourceName": "choice-1-key",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "choice1",
+          "class": "choice-text"
+        },
+        "decls": {},
+        "text": "再打開冰箱看一次"
+      },
+      "contentHash": "cadd3bdc2b8fabff",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 174,
+      "outId": "choice-1-text",
+      "selfHash": "71623b54ac927a72",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/0/2",
+      "sourceName": "choice-1-text",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.locked": "choice_locked1",
+          "bind:display": "choice_count | ge(1)",
+          "class": "choice",
+          "on:click(left)": "set(choose, 1)"
+        },
+        "decls": {}
+      },
+      "contentHash": "2f59d16a2c34a243",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 167,
+      "outId": "choice-1",
+      "selfHash": "911a0baa95c140d8",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/0",
+      "sourceName": "choice-1",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "choice-num"
+        },
+        "decls": {},
+        "text": "2"
+      },
+      "contentHash": "cba1e25e22a7cc58",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 178,
+      "outId": "choice-2-num",
+      "selfHash": "08a94afc370aa00a",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/1/0",
+      "sourceName": "choice-2-num",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_locked2",
+          "class": "choice-key",
+          "viewBox": "0 0 22 22"
+        },
+        "decls": {}
+      },
+      "contentHash": "61fe5b3e880509cc",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 179,
+      "outId": "choice-2-key",
+      "selfHash": "2d1eb7dec6b93346",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/1/1",
+      "sourceName": "choice-2-key",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "choice2",
+          "class": "choice-text"
+        },
+        "decls": {},
+        "text": "問亞瑟昨晚幾點睡"
+      },
+      "contentHash": "4e12d6a90f75c569",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 183,
+      "outId": "choice-2-text",
+      "selfHash": "abcf29038fe21662",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/1/2",
+      "sourceName": "choice-2-text",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.locked": "choice_locked2",
+          "bind:display": "choice_count | ge(2)",
+          "class": "choice",
+          "on:click(left)": "set(choose, 2)"
+        },
+        "decls": {}
+      },
+      "contentHash": "836317b54960c7af",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 176,
+      "outId": "choice-2",
+      "selfHash": "b2846eb7cbacf74c",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/1",
+      "sourceName": "choice-2",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "choice-num"
+        },
+        "decls": {},
+        "text": "3"
+      },
+      "contentHash": "1787d345958a4d89",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 187,
+      "outId": "choice-3-num",
+      "selfHash": "b5662367697714a2",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/2/0",
+      "sourceName": "choice-3-num",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_locked3",
+          "class": "choice-key",
+          "viewBox": "0 0 22 22"
+        },
+        "decls": {}
+      },
+      "contentHash": "9f00c0b468e3086d",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 188,
+      "outId": "choice-3-key",
+      "selfHash": "84092539c4290164",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/2/1",
+      "sourceName": "choice-3-key",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "choice3",
+          "class": "choice-text"
+        },
+        "decls": {},
+        "text": "【摔壞的懷錶】那只懷錶怎麼了？"
+      },
+      "contentHash": "f27de7ef2e7a1a91",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 192,
+      "outId": "choice-3-text",
+      "selfHash": "50862ebbb8951e88",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/2/2",
+      "sourceName": "choice-3-text",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.locked": "choice_locked3",
+          "bind:display": "choice_count | ge(3)",
+          "class": "choice",
+          "on:click(left)": "set(choose, 3)"
+        },
+        "decls": {}
+      },
+      "contentHash": "4f08198cf165335a",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 185,
+      "outId": "choice-3",
+      "selfHash": "6ce6361c2fb1f2e8",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/2",
+      "sourceName": "choice-3",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "choice-num"
+        },
+        "decls": {},
+        "text": "4"
+      },
+      "contentHash": "d99368a1eca6738c",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 196,
+      "outId": "choice-4-num",
+      "selfHash": "1b1ff2f02a2ed44e",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/3/0",
+      "sourceName": "choice-4-num",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_locked4",
+          "class": "choice-key",
+          "viewBox": "0 0 22 22"
+        },
+        "decls": {}
+      },
+      "contentHash": "f692046d0a34bb19",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 197,
+      "outId": "choice-4-key",
+      "selfHash": "27aef2ddccadae6e",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/3/1",
+      "sourceName": "choice-4-key",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "choice4",
+          "class": "choice-text"
+        },
+        "decls": {},
+        "text": "先吃早餐再說"
+      },
+      "contentHash": "75b214467b1c8658",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 201,
+      "outId": "choice-4-text",
+      "selfHash": "b29134d387e6f5a5",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/3/2",
+      "sourceName": "choice-4-text",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.locked": "choice_locked4",
+          "bind:display": "choice_count | ge(4)",
+          "class": "choice",
+          "on:click(left)": "set(choose, 4)"
+        },
+        "decls": {}
+      },
+      "contentHash": "6e503a0233aa031b",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 194,
+      "outId": "choice-4",
+      "selfHash": "ef3ba694b7b48cbc",
+      "sourceId": "Vn.dc.html:1/7/0/1/2/3",
+      "sourceName": "choice-4",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_count | gt(0)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "6px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "6px",
+          "width": "936px"
+        }
+      },
+      "contentHash": "d47b725af319474b",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 165,
+      "outId": "choices",
+      "selfHash": "b2d6d53bd10103a6",
+      "sourceId": "Vn.dc.html:1/7/0/1/2",
+      "sourceName": "choices",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "choice_count | eq(0)",
+          "viewBox": "0 0 14 10"
+        },
+        "decls": {
+          "bottom": "10px",
+          "height": "10px",
+          "position": "absolute",
+          "right": "24px",
+          "width": "14px"
+        }
+      },
+      "contentHash": "71ad8a9640d44c5b",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 205,
+      "outId": "more",
+      "selfHash": "429fe1da08dd253f",
+      "sourceId": "Vn.dc.html:1/7/0/1/3",
+      "sourceName": "more",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:click(left)": "if port(choice_count) eq 0 emit(advance)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "6px",
+          "padding-bottom": "20px",
+          "padding-left": "32px",
+          "padding-right": "32px",
+          "padding-top": "12px",
+          "position": "relative",
+          "width": "1000px"
+        }
+      },
+      "contentHash": "6583e00157b38427",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 153,
+      "outId": "dlg-body",
+      "selfHash": "7973cabd3b6a2e49",
+      "sourceId": "Vn.dc.html:1/7/0/1",
+      "sourceName": "dlg-body",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "qb",
+          "on:click(left)": "emit(auto)"
+        },
+        "decls": {},
+        "text": "@BTN_AUTO"
+      },
+      "contentHash": "43909e8c3013fa55",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 215,
+      "outId": "qb-auto",
+      "selfHash": "600a1d82e57814f0",
+      "sourceId": "Vn.dc.html:1/7/0/2/0",
+      "sourceName": "qb-auto",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "qb",
+          "on:click(left)": "emit(skip)"
+        },
+        "decls": {},
+        "text": "@BTN_FAST"
+      },
+      "contentHash": "07572fd932054423",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 216,
+      "outId": "qb-skip",
+      "selfHash": "9c086199d5484873",
+      "sourceId": "Vn.dc.html:1/7/0/2/1",
+      "sourceName": "qb-skip",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "qb",
+          "on:click(left)": "emit(log)"
+        },
+        "decls": {},
+        "text": "@BTN_LOG"
+      },
+      "contentHash": "65f60d98a860162e",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 217,
+      "outId": "qb-log",
+      "selfHash": "6aa15e16b42d16a9",
+      "sourceId": "Vn.dc.html:1/7/0/2/2",
+      "sourceName": "qb-log",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "26px",
+          "justify-content": "flex-end",
+          "position": "absolute",
+          "right": "0px",
+          "top": "-29px",
+          "width": "240px"
+        }
+      },
+      "contentHash": "ecd763ad2c649617",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 213,
+      "outId": "quickbar",
+      "selfHash": "1d9c1bcdc79a818c",
+      "sourceId": "Vn.dc.html:1/7/0/2",
+      "sourceName": "quickbar",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.note": "style | eq(1)",
+          "bind:class.sys": "style | eq(2)",
+          "class": "dlg"
+        },
+        "decls": {
+          "bottom": "0px",
+          "display": "flex",
+          "flex-direction": "column",
+          "left": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "3px",
+          "pointer-events": "auto",
+          "position": "absolute",
+          "width": "1000px"
+        }
+      },
+      "contentHash": "bf233dcb4fdd1314",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 149,
+      "outId": "dlg",
+      "selfHash": "ed7e12d7e02e6e63",
+      "sourceId": "Vn.dc.html:1/7/0",
+      "sourceName": "dlg",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "center bottom",
+          "offset": "0 2px",
+          "pointer-events": "none",
+          "size": "1000px 200px"
+        }
+      },
+      "contentHash": "313e6f7a2e295dc5",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 147,
+      "outId": "dlg-dock",
+      "selfHash": "521642fd4d115a06",
+      "sourceId": "Vn.dc.html:1/7",
+      "sourceName": "dlg-dock",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(1)": "if port(choice_count) ge 1 set(choose, 1)",
+          "on:key(2)": "if port(choice_count) ge 2 set(choose, 2)",
+          "on:key(3)": "if port(choice_count) ge 3 set(choose, 3)",
+          "on:key(4)": "if port(choice_count) ge 4 set(choose, 4)",
+          "on:key(A)": "emit(auto)",
+          "on:key(Backspace)": "emit(log)",
+          "on:key(Enter)": "if port(choice_count) eq 0 emit(advance)",
+          "on:key(Space)": "if port(choice_count) eq 0 emit(advance)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "var(--paper)",
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "6a9c70ad36b98dee",
+      "fidelity": "High",
+      "file": "Vn.dc.html",
+      "line": 51,
+      "outId": "vn",
+      "selfHash": "44d835f17aaccd29",
+      "sourceId": "Vn.dc.html:1",
+      "sourceName": "VN",
+      "ui": "vn",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mast | ne(1)",
+          "class": "ear-text"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px",
+          "width": "240px"
+        },
+        "text": "@UI_PAPER_MAST"
+      },
+      "contentHash": "b94f6613f00bcefb",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 46,
+      "outId": "ear-l-name",
+      "selfHash": "2f67065a5c257e53",
+      "sourceId": "Paper.dc.html:1/0/0/0/0",
+      "sourceName": "ear-l-name",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mast | eq(1)",
+          "class": "ear-extra"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "44px",
+          "width": "240px"
+        },
+        "text": "@UI_PAPER_EXTRA"
+      },
+      "contentHash": "2ed9a86a537dff03",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 48,
+      "outId": "ear-l-extra",
+      "selfHash": "4cae54a0d6276eba",
+      "sourceId": "Paper.dc.html:1/0/0/0/1",
+      "sourceName": "ear-l-extra",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.extra": "mast | eq(1)",
+          "class": "ear"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "40px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "508879f56ff605e7",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 44,
+      "outId": "ear-l",
+      "selfHash": "d75e28f278c42c16",
+      "sourceId": "Paper.dc.html:1/0/0/0",
+      "sourceName": "ear-l",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mast | ne(1)",
+          "class": "ear-text"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px",
+          "width": "240px"
+        },
+        "text": "@UI_PAPER_PAGE1"
+      },
+      "contentHash": "763b3a82b48e55ce",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 53,
+      "outId": "ear-r-page",
+      "selfHash": "3247b105703132c4",
+      "sourceId": "Paper.dc.html:1/0/0/1/0",
+      "sourceName": "ear-r-page",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mast | eq(1)",
+          "class": "ear-extra"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "44px",
+          "width": "240px"
+        },
+        "text": "@UI_PAPER_EXTRA"
+      },
+      "contentHash": "1cf5e7f1aad90f76",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 55,
+      "outId": "ear-r-extra",
+      "selfHash": "78197ee6ea294118",
+      "sourceId": "Paper.dc.html:1/0/0/1/1",
+      "sourceName": "ear-r-extra",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.extra": "mast | eq(1)",
+          "class": "ear"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "982px",
+          "position": "absolute",
+          "top": "40px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "959fd133fca8877f",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 51,
+      "outId": "ear-r",
+      "selfHash": "1380af27d9b6e4d9",
+      "sourceId": "Paper.dc.html:1/0/0/1",
+      "sourceName": "ear-r",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/masthead-art.png"
+        },
+        "decls": {
+          "height": "200px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-27px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "3248247680e50f58",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 63,
+      "outId": "mast-art",
+      "selfHash": "a92f8c8a2ab1d704",
+      "sourceId": "Paper.dc.html:1/0/0/2/0/0",
+      "sourceName": "mast-art",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "136px",
+          "left": "0px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "0px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "87f6883725a5149b",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 61,
+      "outId": "mast",
+      "selfHash": "b9cca46ff4f14aa2",
+      "sourceId": "Paper.dc.html:1/0/0/2/0",
+      "sourceName": "mast",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "136px",
+          "left": "340px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "3f7589380366dd39",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 60,
+      "outId": "mast-dock",
+      "selfHash": "e06fac92002bebd1",
+      "sourceId": "Paper.dc.html:1/0/0/2",
+      "sourceName": "mast-dock",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.wolf": "mast | eq(2)",
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "150px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "dd9e4b56fe792fc7",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 68,
+      "outId": "p1-rule-a",
+      "selfHash": "7d37d762cbe83f0a",
+      "sourceId": "Paper.dc.html:1/0/0/3",
+      "sourceName": "p1-rule-a",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "156px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "b01fc888008f40cf",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 70,
+      "outId": "p1-rule-b",
+      "selfHash": "b4a1af028af5fca5",
+      "sourceId": "Paper.dc.html:1/0/0/4",
+      "sourceName": "p1-rule-b",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "dateline"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "14px",
+          "height": "26px",
+          "left": "48px",
+          "letter-spacing": "2px",
+          "line-height": "26px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "160px",
+          "width": "1184px"
+        },
+        "text": "1887 年 10 月 14 日・濃霧　每份一便士"
+      },
+      "contentHash": "513de15e978914ed",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 71,
+      "outId": "dateline",
+      "selfHash": "ea379602687d2626",
+      "sourceId": "Paper.dc.html:1/0/0/5",
+      "sourceName": "dateline",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "188px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "0dc9a46f772c0923",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 74,
+      "outId": "p1-rule-c",
+      "selfHash": "afd030e8e1377589",
+      "sourceId": "Paper.dc.html:1/0/0/6",
+      "sourceName": "p1-rule-c",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "headline",
+          "on:port(headline)": "play(intro)"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "52px",
+          "font-weight": "700",
+          "height": "132px",
+          "left": "48px",
+          "letter-spacing": "2px",
+          "line-clamp": "2",
+          "line-height": "66px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "0px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "198px",
+          "width": "1184px"
+        },
+        "text": "月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈"
+      },
+      "contentHash": "6a5e749f103025a6",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 77,
+      "outId": "headline",
+      "selfHash": "1be30156f1d8d6f7",
+      "sourceId": "Paper.dc.html:1/0/0/7",
+      "sourceName": "headline",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "subhead"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "19px",
+          "font-style": "italic",
+          "height": "52px",
+          "left": "148px",
+          "line-clamp": "2",
+          "line-height": "26px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "0px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "338px",
+          "width": "984px"
+        },
+        "text": "本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」"
+      },
+      "contentHash": "5bb76d842fd00610",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 82,
+      "outId": "subhead",
+      "selfHash": "2344afbb0d697669",
+      "sourceId": "Paper.dc.html:1/0/0/8",
+      "sourceName": "subhead",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "400px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "e0f73b244f1a3a75",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 86,
+      "outId": "p1-rule-d",
+      "selfHash": "fdafed081d0edd33",
+      "sourceId": "Paper.dc.html:1/0/0/9",
+      "sourceName": "p1-rule-d",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        },
+        "text": "本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」"
+      },
+      "contentHash": "50778c57ea61885a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 93,
+      "outId": "col-1-text",
+      "selfHash": "8cbed8e7c5e9a354",
+      "sourceId": "Paper.dc.html:1/0/0/10/0/0",
+      "sourceName": "col-1-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "22ecb0b0bbd49dbd",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 92,
+      "outId": "col-1",
+      "selfHash": "d89a3b5123418bec",
+      "sourceId": "Paper.dc.html:1/0/0/10/0",
+      "sourceName": "col-1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "228px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "b7748ee365fea841",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 96,
+      "outId": "col-rule-1",
+      "selfHash": "d1a01f839651e5c4",
+      "sourceId": "Paper.dc.html:1/0/0/10/1",
+      "sourceName": "col-rule-1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-264px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "0d0be3511e3ac3b7",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 98,
+      "outId": "col-2-text",
+      "selfHash": "5ab42a602bc5f03d",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/0",
+      "sourceName": "col-2-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "242px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "cf59ec13c6148b82",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 97,
+      "outId": "col-2",
+      "selfHash": "fc285370e0b58129",
+      "sourceId": "Paper.dc.html:1/0/0/10/2",
+      "sourceName": "col-2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "470px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "e6773f1afdeee859",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 101,
+      "outId": "col-rule-2",
+      "selfHash": "09cc12579a4961d2",
+      "sourceId": "Paper.dc.html:1/0/0/10/3",
+      "sourceName": "col-rule-2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-528px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "e65ebf7eedc162e8",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 103,
+      "outId": "col-3-text",
+      "selfHash": "c93a36ee6867e8e9",
+      "sourceId": "Paper.dc.html:1/0/0/10/4/0",
+      "sourceName": "col-3-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "484px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "f906ba07501a3ceb",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 102,
+      "outId": "col-3",
+      "selfHash": "d7b7747f44cff0b2",
+      "sourceId": "Paper.dc.html:1/0/0/10/4",
+      "sourceName": "col-3",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "712px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "704190a9cc13f22a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 106,
+      "outId": "col-rule-3",
+      "selfHash": "95cc50f704689910",
+      "sourceId": "Paper.dc.html:1/0/0/10/5",
+      "sourceName": "col-rule-3",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-792px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "7ca896cf3ebab344",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 108,
+      "outId": "col-4-text",
+      "selfHash": "b2bf15b19b08c419",
+      "sourceId": "Paper.dc.html:1/0/0/10/6/0",
+      "sourceName": "col-4-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "726px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "2c69fb73b39a8d0f",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 107,
+      "outId": "col-4",
+      "selfHash": "9240131cedcacdd0",
+      "sourceId": "Paper.dc.html:1/0/0/10/6",
+      "sourceName": "col-4",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "954px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "235e7070e054a377",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 111,
+      "outId": "col-rule-4",
+      "selfHash": "f9a0ff903332833f",
+      "sourceId": "Paper.dc.html:1/0/0/10/7",
+      "sourceName": "col-rule-4",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-1056px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "b8bc25626fab0c7a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 113,
+      "outId": "col-5-text",
+      "selfHash": "2c6198dcb0b65208",
+      "sourceId": "Paper.dc.html:1/0/0/10/8/0",
+      "sourceName": "col-5-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "264px",
+          "left": "968px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "ef3f9155cb917268",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 112,
+      "outId": "col-5",
+      "selfHash": "e5a22ffe7035e0d3",
+      "sourceId": "Paper.dc.html:1/0/0/10/8",
+      "sourceName": "col-5",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "264px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "412px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "7234a3efcdf452c9",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 90,
+      "outId": "cols",
+      "selfHash": "02f22136153a2a68",
+      "sourceId": "Paper.dc.html:1/0/0/10",
+      "sourceName": "cols",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "page | eq(1)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "7a6737faadc5c939",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 39,
+      "outId": "p1",
+      "selfHash": "86603bfb85070722",
+      "sourceId": "Paper.dc.html:1/0/0",
+      "sourceName": "p1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "26px",
+          "width": "300px"
+        },
+        "text": "@UI_PAPER_PAGE2"
+      },
+      "contentHash": "e7ecb73066b56eb8",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 123,
+      "outId": "p2-label",
+      "selfHash": "163164ffde371e9b",
+      "sourceId": "Paper.dc.html:1/0/1/0",
+      "sourceName": "p2-label",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "color": "var(--ink-deep)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "22px",
+          "height": "32px",
+          "left": "440px",
+          "letter-spacing": "5px",
+          "line-height": "32px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "20px",
+          "width": "400px"
+        },
+        "text": "@UI_PAPER_MAST"
+      },
+      "contentHash": "c75f17e8cf5f7fe0",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 125,
+      "outId": "p2-mast",
+      "selfHash": "53e6bdf6346b2f0a",
+      "sourceId": "Paper.dc.html:1/0/1/1",
+      "sourceName": "p2-mast",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "dateline"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "13px",
+          "height": "20px",
+          "left": "832px",
+          "letter-spacing": "1px",
+          "line-height": "20px",
+          "position": "absolute",
+          "text-align": "right",
+          "top": "26px",
+          "width": "400px"
+        },
+        "text": "1887 年 10 月 14 日・濃霧　每份一便士"
+      },
+      "contentHash": "87c951999bfbaaff",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 128,
+      "outId": "p2-date",
+      "selfHash": "ae0fe95c2ca7a3c0",
+      "sourceId": "Paper.dc.html:1/0/1/2",
+      "sourceName": "p2-date",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.wolf": "mast | eq(2)",
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "0459835e2c376c6d",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 131,
+      "outId": "p2-rule-a",
+      "selfHash": "e52d02595d41fb06",
+      "sourceId": "Paper.dc.html:1/0/1/3",
+      "sourceName": "p2-rule-a",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "62px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "6a88096864fdc8d9",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 133,
+      "outId": "p2-rule-b",
+      "selfHash": "8d2ff180f262499a",
+      "sourceId": "Paper.dc.html:1/0/1/4",
+      "sourceName": "p2-rule-b",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "page2_head"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "36px",
+          "font-weight": "700",
+          "height": "104px",
+          "left": "48px",
+          "line-clamp": "2",
+          "line-height": "52px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "0px",
+          "position": "absolute",
+          "top": "78px",
+          "width": "800px"
+        },
+        "text": "古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤"
+      },
+      "contentHash": "897d0851ed80913e",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 136,
+      "outId": "p2-headline",
+      "selfHash": "f55ffa834119e861",
+      "sourceId": "Paper.dc.html:1/0/1/5",
+      "sourceName": "p2-headline",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "194px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "4d28920c31dc34ff",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 140,
+      "outId": "p2-rule-c",
+      "selfHash": "9e379f4e870da525",
+      "sourceId": "Paper.dc.html:1/0/1/6",
+      "sourceName": "p2-rule-c",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "page2_body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1386px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "250px"
+        },
+        "text": "狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。"
+      },
+      "contentHash": "8bc9c24e25d7931c",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 143,
+      "outId": "p2-col-1-text",
+      "selfHash": "03e6014d98fa1731",
+      "sourceId": "Paper.dc.html:1/0/1/7/0/0",
+      "sourceName": "p2-col-1-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "462px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "ed18d373c501ece9",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 142,
+      "outId": "p2-col-1",
+      "selfHash": "73b330492e0d0b6d",
+      "sourceId": "Paper.dc.html:1/0/1/7/0",
+      "sourceName": "p2-col-1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "462px",
+          "left": "262px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "da3d14133d5b23f1",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 146,
+      "outId": "p2-col-rule-1",
+      "selfHash": "6e8c323a6de40e9d",
+      "sourceId": "Paper.dc.html:1/0/1/7/1",
+      "sourceName": "p2-col-rule-1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "page2_body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1386px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-462px",
+          "width": "250px"
+        },
+        "text": "狐耳偵探事務所"
+      },
+      "contentHash": "88c7cb960af33f04",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 148,
+      "outId": "p2-col-2-text",
+      "selfHash": "6a84a56a0309aa5f",
+      "sourceId": "Paper.dc.html:1/0/1/7/2/0",
+      "sourceName": "p2-col-2-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "462px",
+          "left": "275px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "8bc58b4d9f4cdedc",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 147,
+      "outId": "p2-col-2",
+      "selfHash": "e28c711d02dca322",
+      "sourceId": "Paper.dc.html:1/0/1/7/2",
+      "sourceName": "p2-col-2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "462px",
+          "left": "537px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "98d16cec9a2d3d78",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 151,
+      "outId": "p2-col-rule-2",
+      "selfHash": "fd59accfd2f751af",
+      "sourceId": "Paper.dc.html:1/0/1/7/3",
+      "sourceName": "p2-col-rule-2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "page2_body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1386px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-924px",
+          "width": "250px"
+        },
+        "text": "狐耳偵探事務所"
+      },
+      "contentHash": "701bd741f61855cc",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 153,
+      "outId": "p2-col-3-text",
+      "selfHash": "33bf7c7fc73eb1eb",
+      "sourceId": "Paper.dc.html:1/0/1/7/4/0",
+      "sourceName": "p2-col-3-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "462px",
+          "left": "550px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "390a9122124101c8",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 152,
+      "outId": "p2-col-3",
+      "selfHash": "07ce827246a89cd5",
+      "sourceId": "Paper.dc.html:1/0/1/7/4",
+      "sourceName": "p2-col-3",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "462px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "208px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "246b5b2acfb5770f",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 141,
+      "outId": "p2-cols",
+      "selfHash": "7f009a38561487d0",
+      "sourceId": "Paper.dc.html:1/0/1/7",
+      "sourceName": "p2-cols",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "592px",
+          "left": "872px",
+          "position": "absolute",
+          "top": "78px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "62e75d78136b5f57",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 158,
+      "outId": "p2-rule-side",
+      "selfHash": "d9376ad42425e24b",
+      "sourceId": "Paper.dc.html:1/0/1/8",
+      "sourceName": "p2-rule-side",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker s-7ee933"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "896px",
+          "position": "absolute",
+          "top": "78px",
+          "width": "336px"
+        },
+        "text": "@UI_PAPER_SIDE"
+      },
+      "contentHash": "44f5dad92d0dc1b4",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 161,
+      "outId": "side-head",
+      "selfHash": "056d39a7564c9bcb",
+      "sourceId": "Paper.dc.html:1/0/1/9",
+      "sourceName": "side-head",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "side",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "242px",
+          "left": "896px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "118px",
+          "width": "336px"
+        },
+        "text": "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"
+      },
+      "contentHash": "01a0b548f46ab842",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 163,
+      "outId": "side-text",
+      "selfHash": "123f94fe1d0bb91b",
+      "sourceId": "Paper.dc.html:1/0/1/10",
+      "sourceName": "side-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker s-7ee933"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "896px",
+          "position": "absolute",
+          "top": "376px",
+          "width": "336px"
+        },
+        "text": "@UI_PAPER_ADS"
+      },
+      "contentHash": "a20d3ea415c8a986",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 165,
+      "outId": "ads-head",
+      "selfHash": "fb5362aa1bb25d70",
+      "sourceId": "Paper.dc.html:1/0/1/11",
+      "sourceName": "ads-head",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "ad"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "18px",
+          "height": "202px",
+          "line-height": "28px",
+          "overflow": "hidden",
+          "text-align": "center",
+          "width": "282px"
+        },
+        "text": "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"
+      },
+      "contentHash": "c0e6add9da1e1d85",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 170,
+      "outId": "ad-text",
+      "selfHash": "60f939427b76598e",
+      "sourceId": "Paper.dc.html:1/0/1/12/0/0",
+      "sourceName": "ad-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-e68292"
+        },
+        "decls": {
+          "height": "240px",
+          "padding-bottom": "18px",
+          "padding-left": "20px",
+          "padding-right": "20px",
+          "padding-top": "18px",
+          "width": "324px"
+        }
+      },
+      "contentHash": "0b799ebaf939cd6a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 169,
+      "outId": "ad-frame",
+      "selfHash": "78e4bc7c142e9255",
+      "sourceId": "Paper.dc.html:1/0/1/12/0",
+      "sourceName": "ad-frame",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-e68292"
+        },
+        "decls": {
+          "height": "252px",
+          "left": "896px",
+          "padding-bottom": "5px",
+          "padding-left": "5px",
+          "padding-right": "5px",
+          "padding-top": "5px",
+          "position": "absolute",
+          "top": "418px",
+          "width": "336px"
+        }
+      },
+      "contentHash": "cca452d8e2d71506",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 167,
+      "outId": "ad-box",
+      "selfHash": "5919b34a5760f0e4",
+      "sourceId": "Paper.dc.html:1/0/1/12",
+      "sourceName": "ad-box",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "page | eq(2)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "9d5f581658c8f975",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 120,
+      "outId": "p2",
+      "selfHash": "72678647eda330d8",
+      "sourceId": "Paper.dc.html:1/0/1",
+      "sourceName": "p2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-copper"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "686px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "67d2e707fb6c7bb2",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 178,
+      "outId": "foot-rule",
+      "selfHash": "088d5ddab488ccf5",
+      "sourceId": "Paper.dc.html:1/0/2",
+      "sourceName": "foot-rule",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "page"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "13px",
+          "height": "20px",
+          "left": "590px",
+          "letter-spacing": "2px",
+          "line-height": "20px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "692px",
+          "width": "100px"
+        },
+        "text": "1"
+      },
+      "contentHash": "53e710ee440797ab",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 179,
+      "outId": "folio",
+      "selfHash": "4375d876d9d80c71",
+      "sourceId": "Paper.dc.html:1/0/3",
+      "sourceName": "folio",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "viewBox": "0 0 10 14"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "1222px",
+          "position": "absolute",
+          "top": "695px",
+          "width": "10px"
+        }
+      },
+      "contentHash": "ffe70c4630cfe927",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 182,
+      "outId": "turn-mark",
+      "selfHash": "15b128148251283e",
+      "sourceId": "Paper.dc.html:1/0/4",
+      "sourceName": "turn-mark",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "stamp | eq(1)"
+        },
+        "decls": {
+          "color": "var(--vermilion)",
+          "flex-shrink": "0",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "46px",
+          "font-weight": "700",
+          "height": "60px",
+          "letter-spacing": "10px",
+          "line-height": "60px",
+          "text-align": "center",
+          "text-transform": "uppercase",
+          "width": "210px"
+        },
+        "text": "@UI_PAPER_STAMP_CLOSED"
+      },
+      "contentHash": "2edea22e0997ede2",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 195,
+      "outId": "stamp-closed",
+      "selfHash": "0a2599fb6faab9c5",
+      "sourceId": "Paper.dc.html:1/0/5/0/0",
+      "sourceName": "stamp-closed",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "stamp | eq(2)"
+        },
+        "decls": {
+          "color": "var(--vermilion)",
+          "flex-shrink": "0",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "46px",
+          "font-weight": "700",
+          "height": "60px",
+          "letter-spacing": "10px",
+          "line-height": "60px",
+          "text-align": "center",
+          "text-transform": "uppercase",
+          "width": "210px"
+        },
+        "text": "@UI_PAPER_STAMP_FIX"
+      },
+      "contentHash": "7930a3f9cdda2c68",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 198,
+      "outId": "stamp-fix",
+      "selfHash": "6be8749c490bea04",
+      "sourceId": "Paper.dc.html:1/0/5/0/1",
+      "sourceName": "stamp-fix",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "border": "1px #b8322a",
+          "display": "flex",
+          "flex-direction": "column",
+          "height": "96px",
+          "justify-content": "center",
+          "width": "220px"
+        }
+      },
+      "contentHash": "f41a71535bb11c22",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 193,
+      "outId": "stamp-inner",
+      "selfHash": "ad0ea6c1f314a89f",
+      "sourceId": "Paper.dc.html:1/0/5/0",
+      "sourceName": "stamp-inner",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "stamp | gt(0)",
+          "on:port(stamp)": "play(stamp-in)"
+        },
+        "decls": {
+          "border": "4px #b8322a",
+          "height": "112px",
+          "left": "330px",
+          "opacity": "0.92",
+          "padding-bottom": "4px",
+          "padding-left": "4px",
+          "padding-right": "4px",
+          "padding-top": "4px",
+          "position": "absolute",
+          "top": "486px",
+          "transform": "rotate(-9deg) scale(1)",
+          "width": "236px"
+        }
+      },
+      "contentHash": "4983f3b79a0d9909",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 189,
+      "outId": "stamp",
+      "selfHash": "f29e26cde74c0565",
+      "sourceId": "Paper.dc.html:1/0/5",
+      "sourceName": "stamp",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "center center",
+          "size": "1280px 720px"
+        }
+      },
+      "contentHash": "6a05e0646781b8f5",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 35,
+      "outId": "sheet",
+      "selfHash": "480faae54cd2cdc3",
+      "sourceId": "Paper.dc.html:1/0",
+      "sourceName": "sheet",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:click(left)": "emit(next)",
+          "on:key(Enter)": "emit(next)",
+          "on:key(Left)": "emit(prev)",
+          "on:key(PageDown)": "emit(next)",
+          "on:key(PageUp)": "emit(prev)",
+          "on:key(Right)": "emit(next)",
+          "on:key(Space)": "emit(next)",
+          "on:port(page)": "play(flip)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#f3eedf",
+          "background-gradient": "radial-gradient(70.7107% 77.7817% at 50% 45%, #f3eedf 62%, #e3d9c2 100%)",
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "233391101acb287b",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 27,
+      "outId": "paper",
+      "selfHash": "20a5fe78b81ea096",
+      "sourceId": "Paper.dc.html:1",
+      "sourceName": "Paper",
+      "ui": "paper",
       "warnings": []
     }
   ],
@@ -699,13 +4099,13 @@
   "skipped": [],
   "topLevelFrames": [],
   "totals": {
-    "assets": 1,
+    "assets": 17,
     "dropped": 0,
-    "high": 28,
-    "inlineSvg": 1,
+    "high": 171,
+    "inlineSvg": 7,
     "low": 0,
     "medium": 0,
-    "nodes": 28,
+    "nodes": 171,
     "rasterized": 0,
     "vectors": 0
   },
@@ -722,6 +4122,33 @@
         "--ink-deep": "#092e28",
         "--paper": "#f3eedf",
         "--paper-old": "#e3d9c2"
+      }
+    },
+    {
+      "doc": "vn/vn.xt",
+      "flow": "",
+      "id": "vn",
+      "name": "VN",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2"
+      }
+    },
+    {
+      "doc": "paper/paper.xt",
+      "flow": "",
+      "id": "paper",
+      "name": "Paper",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--paper": "#f3eedf",
+        "--vermilion": "#b8322a"
       }
     }
   ]

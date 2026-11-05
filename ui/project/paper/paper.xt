@@ -1,0 +1,743 @@
+<xt version="2">
+  <head>
+    <title>Paper</title>
+  </head>
+
+  <ports>
+    page: number in = 1
+    mast: number in = 0
+    dateline: string in = "1887 年 10 月 14 日・濃霧　每份一便士"
+    headline: string in = "月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈"
+    subhead: string in = "本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」"
+    body: string in = "本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」"
+    page2_head: string in = "古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤"
+    page2_body: string in = "狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。"
+    side: string in = "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"
+    ad: string in = "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"
+    stamp: number in = 0
+    next: event out
+    prev: event out
+  </ports>
+
+  <body on:show="play(intro)" key-activation="none">
+    <div id="paper" tabindex="0" autofocus="" on:click(left)="emit(next)" on:key(Enter)="emit(next)" on:key(Space)="emit(next)" on:key(Right)="emit(next)" on:key(PageDown)="emit(next)" on:key(Left)="emit(prev)" on:key(PageUp)="emit(prev)" on:port(page)="play(flip)">
+      <div id="sheet">
+        <div id="p1" bind:display="page | eq(1)">
+          <div id="ear-l" class="ear" bind:class.extra="mast | eq(1)">
+            <div id="ear-l-name" class="ear-text" bind:display="mast | ne(1)">@UI_PAPER_MAST</div>
+            <div id="ear-l-extra" class="ear-extra" bind:display="mast | eq(1)">@UI_PAPER_EXTRA</div>
+          </div>
+          <div id="ear-r" class="ear" bind:class.extra="mast | eq(1)">
+            <div id="ear-r-page" class="ear-text" bind:display="mast | ne(1)">@UI_PAPER_PAGE1</div>
+            <div id="ear-r-extra" class="ear-extra" bind:display="mast | eq(1)">@UI_PAPER_EXTRA</div>
+          </div>
+          <div id="mast-dock">
+            <div id="mast">
+              <img id="mast-art" class="s-b00406" src="../shared/img/masthead-art.png"/>
+            </div>
+          </div>
+          <div id="p1-rule-a" class="rule-thick" bind:class.wolf="mast | eq(2)"/>
+          <div id="p1-rule-b" class="rule-thin"/>
+          <div id="dateline" bind:text="dateline">1887 年 10 月 14 日・濃霧　每份一便士</div>
+          <div id="p1-rule-c" class="rule-thin"/>
+          <h1 id="headline" on:port(headline)="play(intro)" bind:text="headline">月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈</h1>
+          <p id="subhead" bind:text="subhead">本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」</p>
+          <div id="p1-rule-d" class="rule-thin"/>
+          <div id="cols">
+            <div id="col-1" class="col">
+              <div id="col-1-text" class="col-text" bind:text="body">本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」</div>
+            </div>
+            <div id="col-rule-1" class="rule-col"/>
+            <div id="col-2" class="col">
+              <div id="col-2-text" class="col-text" bind:text="body">本報訊</div>
+            </div>
+            <div id="col-rule-2" class="rule-col"/>
+            <div id="col-3" class="col">
+              <div id="col-3-text" class="col-text" bind:text="body">本報訊</div>
+            </div>
+            <div id="col-rule-3" class="rule-col"/>
+            <div id="col-4" class="col">
+              <div id="col-4-text" class="col-text" bind:text="body">本報訊</div>
+            </div>
+            <div id="col-rule-4" class="rule-col"/>
+            <div id="col-5" class="col">
+              <div id="col-5-text" class="col-text" bind:text="body">本報訊</div>
+            </div>
+          </div>
+        </div>
+        <div id="p2" bind:display="page | eq(2)">
+          <div id="p2-label" class="kicker">@UI_PAPER_PAGE2</div>
+          <div id="p2-mast">@UI_PAPER_MAST</div>
+          <div id="p2-date" bind:text="dateline">1887 年 10 月 14 日・濃霧　每份一便士</div>
+          <div id="p2-rule-a" class="rule-thick" bind:class.wolf="mast | eq(2)"/>
+          <div id="p2-rule-b" class="rule-thin"/>
+          <h2 id="p2-headline" bind:text="page2_head">古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤</h2>
+          <div id="p2-rule-c" class="rule-thin"/>
+          <div id="p2-cols">
+            <div id="p2-col-1" class="col">
+              <div id="p2-col-1-text" class="col-text" bind:text="page2_body">狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。</div>
+            </div>
+            <div id="p2-col-rule-1" class="rule-col"/>
+            <div id="p2-col-2" class="col">
+              <div id="p2-col-2-text" class="col-text" bind:text="page2_body">狐耳偵探事務所</div>
+            </div>
+            <div id="p2-col-rule-2" class="rule-col"/>
+            <div id="p2-col-3" class="col">
+              <div id="p2-col-3-text" class="col-text" bind:text="page2_body">狐耳偵探事務所</div>
+            </div>
+          </div>
+          <div id="p2-rule-side" class="rule-thin"/>
+          <div id="side-head" class="kicker s-7ee933">@UI_PAPER_SIDE</div>
+          <div id="side-text" class="col-text" bind:text="side">鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。</div>
+          <div id="ads-head" class="kicker s-7ee933">@UI_PAPER_ADS</div>
+          <div id="ad-box" class="s-e68292">
+            <div id="ad-frame" class="s-e68292">
+              <div id="ad-text" bind:text="ad">招租：貝克街事務所二樓空房，限能忍受惡作劇者。</div>
+            </div>
+          </div>
+        </div>
+        <div id="foot-rule" class="rule-copper"/>
+        <div id="folio" bind:text="page">1</div>
+        <svg id="turn-mark" viewBox="0 0 10 14">
+          <polygon id="Tri" points="0,0 10,7 0,14" fill="#a65432"/>
+        </svg>
+        <div id="stamp" on:port(stamp)="play(stamp-in)" bind:display="stamp | gt(0)">
+          <div id="stamp-inner">
+            <div id="stamp-closed" bind:display="stamp | eq(1)">@UI_PAPER_STAMP_CLOSED</div>
+            <div id="stamp-fix" bind:display="stamp | eq(2)">@UI_PAPER_STAMP_FIX</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Paper.dc.html:1 */
+    #paper {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Paper.dc.html:1/0 */
+    #sheet {
+      anchor: center center;
+      size: 1280px 720px;
+    }
+    /* import: Paper.dc.html:1/0/0 */
+    #p1 {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Paper.dc.html:1/0/0/0 */
+    #ear-l {
+      height: 84px;
+      left: 48px;
+      position: absolute;
+      top: 40px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/0/0/0 */
+    #ear-l-name {
+      flex-shrink: 0;
+      height: 30px;
+      width: 240px;
+    }
+    /* import: Paper.dc.html:1/0/0/0/1 */
+    #ear-l-extra {
+      flex-shrink: 0;
+      height: 44px;
+      width: 240px;
+    }
+    /* import: Paper.dc.html:1/0/0/1 */
+    #ear-r {
+      height: 84px;
+      left: 982px;
+      position: absolute;
+      top: 40px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/0/1/0 */
+    #ear-r-page {
+      flex-shrink: 0;
+      height: 30px;
+      width: 240px;
+    }
+    /* import: Paper.dc.html:1/0/0/1/1 */
+    #ear-r-extra {
+      flex-shrink: 0;
+      height: 44px;
+      width: 240px;
+    }
+    /* import: Paper.dc.html:1/0/0/2 */
+    #mast-dock {
+      height: 136px;
+      left: 340px;
+      position: absolute;
+      top: 10px;
+      width: 600px;
+    }
+    /* import: Paper.dc.html:1/0/0/2/0 */
+    #mast {
+      height: 136px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      top: 0px;
+      width: 600px;
+    }
+    /* import: Paper.dc.html:1/0/0/2/0/0 */
+    #mast-art {
+      height: 200px;
+      left: 0px;
+      position: absolute;
+      top: -27px;
+      width: 600px;
+    }
+    /* import: Paper.dc.html:1/0/0/3 */
+    #p1-rule-a {
+      height: 3px;
+      left: 48px;
+      position: absolute;
+      top: 150px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/4 */
+    #p1-rule-b {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 156px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/5 */
+    #dateline {
+      height: 26px;
+      left: 48px;
+      position: absolute;
+      top: 160px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/6 */
+    #p1-rule-c {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 188px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/7 */
+    #headline {
+      height: 132px;
+      left: 48px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 0px;
+      position: absolute;
+      top: 198px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/8 */
+    #subhead {
+      height: 52px;
+      left: 148px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 0px;
+      position: absolute;
+      top: 338px;
+      width: 984px;
+    }
+    /* import: Paper.dc.html:1/0/0/9 */
+    #p1-rule-d {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 400px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/10 */
+    #cols {
+      height: 264px;
+      left: 48px;
+      position: absolute;
+      top: 412px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/0 */
+    #col-1 {
+      height: 264px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/0/0 */
+    #col-1-text {
+      height: 1320px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/1 */
+    #col-rule-1 {
+      height: 264px;
+      left: 228px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/2 */
+    #col-2 {
+      height: 264px;
+      left: 242px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/2/0 */
+    #col-2-text {
+      height: 1320px;
+      left: 0px;
+      position: absolute;
+      top: -264px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/3 */
+    #col-rule-2 {
+      height: 264px;
+      left: 470px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/4 */
+    #col-3 {
+      height: 264px;
+      left: 484px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/4/0 */
+    #col-3-text {
+      height: 1320px;
+      left: 0px;
+      position: absolute;
+      top: -528px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/5 */
+    #col-rule-3 {
+      height: 264px;
+      left: 712px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/6 */
+    #col-4 {
+      height: 264px;
+      left: 726px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/6/0 */
+    #col-4-text {
+      height: 1320px;
+      left: 0px;
+      position: absolute;
+      top: -792px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/7 */
+    #col-rule-4 {
+      height: 264px;
+      left: 954px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/8 */
+    #col-5 {
+      height: 264px;
+      left: 968px;
+      position: absolute;
+      top: 0px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/0/10/8/0 */
+    #col-5-text {
+      height: 1320px;
+      left: 0px;
+      position: absolute;
+      top: -1056px;
+      width: 216px;
+    }
+    /* import: Paper.dc.html:1/0/1 */
+    #p2 {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Paper.dc.html:1/0/1/0 */
+    #p2-label {
+      height: 20px;
+      left: 48px;
+      position: absolute;
+      top: 26px;
+      width: 300px;
+    }
+    /* import: Paper.dc.html:1/0/1/1 */
+    #p2-mast {
+      height: 32px;
+      left: 440px;
+      position: absolute;
+      top: 20px;
+      width: 400px;
+    }
+    /* import: Paper.dc.html:1/0/1/2 */
+    #p2-date {
+      height: 20px;
+      left: 832px;
+      position: absolute;
+      top: 26px;
+      width: 400px;
+    }
+    /* import: Paper.dc.html:1/0/1/3 */
+    #p2-rule-a {
+      height: 3px;
+      left: 48px;
+      position: absolute;
+      top: 56px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/1/4 */
+    #p2-rule-b {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 62px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/1/5 */
+    #p2-headline {
+      height: 104px;
+      left: 48px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 0px;
+      position: absolute;
+      top: 78px;
+      width: 800px;
+    }
+    /* import: Paper.dc.html:1/0/1/6 */
+    #p2-rule-c {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 194px;
+      width: 800px;
+    }
+    /* import: Paper.dc.html:1/0/1/7 */
+    #p2-cols {
+      height: 462px;
+      left: 48px;
+      position: absolute;
+      top: 208px;
+      width: 800px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/0 */
+    #p2-col-1 {
+      height: 462px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/0/0 */
+    #p2-col-1-text {
+      height: 1386px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/1 */
+    #p2-col-rule-1 {
+      height: 462px;
+      left: 262px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/2 */
+    #p2-col-2 {
+      height: 462px;
+      left: 275px;
+      position: absolute;
+      top: 0px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/2/0 */
+    #p2-col-2-text {
+      height: 1386px;
+      left: 0px;
+      position: absolute;
+      top: -462px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/3 */
+    #p2-col-rule-2 {
+      height: 462px;
+      left: 537px;
+      position: absolute;
+      top: 0px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/4 */
+    #p2-col-3 {
+      height: 462px;
+      left: 550px;
+      position: absolute;
+      top: 0px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/7/4/0 */
+    #p2-col-3-text {
+      height: 1386px;
+      left: 0px;
+      position: absolute;
+      top: -924px;
+      width: 250px;
+    }
+    /* import: Paper.dc.html:1/0/1/8 */
+    #p2-rule-side {
+      height: 592px;
+      left: 872px;
+      position: absolute;
+      top: 78px;
+      width: 1px;
+    }
+    /* import: Paper.dc.html:1/0/1/9 */
+    #side-head {
+      height: 28px;
+      left: 896px;
+      position: absolute;
+      top: 78px;
+      width: 336px;
+    }
+    /* import: Paper.dc.html:1/0/1/10 */
+    #side-text {
+      height: 242px;
+      left: 896px;
+      overflow: hidden;
+      position: absolute;
+      top: 118px;
+      width: 336px;
+    }
+    /* import: Paper.dc.html:1/0/1/11 */
+    #ads-head {
+      height: 28px;
+      left: 896px;
+      position: absolute;
+      top: 376px;
+      width: 336px;
+    }
+    /* import: Paper.dc.html:1/0/1/12 */
+    #ad-box {
+      height: 252px;
+      left: 896px;
+      padding-bottom: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 5px;
+      position: absolute;
+      top: 418px;
+      width: 336px;
+    }
+    /* import: Paper.dc.html:1/0/1/12/0 */
+    #ad-frame {
+      height: 240px;
+      padding-bottom: 18px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 18px;
+      width: 324px;
+    }
+    /* import: Paper.dc.html:1/0/1/12/0/0 */
+    #ad-text {
+      height: 202px;
+      overflow: hidden;
+      width: 282px;
+    }
+    /* import: Paper.dc.html:1/0/2 */
+    #foot-rule {
+      height: 1px;
+      left: 48px;
+      position: absolute;
+      top: 686px;
+      width: 1184px;
+    }
+    /* import: Paper.dc.html:1/0/3 */
+    #folio {
+      height: 20px;
+      left: 590px;
+      position: absolute;
+      top: 692px;
+      width: 100px;
+    }
+    /* import: Paper.dc.html:1/0/4 */
+    #turn-mark {
+      height: 14px;
+      left: 1222px;
+      position: absolute;
+      top: 695px;
+      width: 10px;
+    }
+    /* import: Paper.dc.html:1/0/5 */
+    #stamp {
+      height: 112px;
+      left: 330px;
+      padding-bottom: 4px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 4px;
+      position: absolute;
+      top: 486px;
+      transform: rotate(-9deg) scale(1);
+      width: 236px;
+    }
+    /* import: Paper.dc.html:1/0/5/0 */
+    #stamp-inner {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 96px;
+      justify-content: center;
+      width: 220px;
+    }
+    /* import: Paper.dc.html:1/0/5/0/0 */
+    #stamp-closed {
+      flex-shrink: 0;
+      height: 60px;
+      width: 210px;
+    }
+    /* import: Paper.dc.html:1/0/5/0/1 */
+    #stamp-fix {
+      flex-shrink: 0;
+      height: 60px;
+      width: 210px;
+    }
+    .col {
+      overflow: hidden;
+    }
+    .ear {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="paper.xts"/>
+  <timelines>
+    @timeline flip {
+      #p1 {
+        0ms {
+          opacity: 0;
+          transform: translateX(18px);
+        }
+        280ms ease-out {
+          opacity: 1;
+          transform: translateX(0px);
+        }
+      }
+      #p2 {
+        0ms {
+          opacity: 0;
+          transform: translateX(18px);
+        }
+        280ms ease-out {
+          opacity: 1;
+          transform: translateX(0px);
+        }
+      }
+    }
+    @timeline idle {
+      #turn-mark {
+        0ms {
+          opacity: 1;
+        }
+        600ms ease-in-out {
+          opacity: 0.25;
+        }
+        1200ms ease-in-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline intro {
+      #mast {
+        0ms {
+          opacity: 0;
+        }
+        300ms ease-out {
+          opacity: 1;
+        }
+      }
+      #headline {
+        0ms {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        120ms {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        420ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+      #cols {
+        0ms {
+          opacity: 0;
+        }
+        250ms {
+          opacity: 0;
+        }
+        600ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline stamp-in {
+      #stamp {
+        0ms {
+          opacity: 0;
+          transform: rotate(-9deg) scale(1.35);
+        }
+        180ms ease-in {
+          opacity: 1;
+          transform: rotate(-9deg) scale(1);
+        }
+      }
+    }
+  </timelines>
+</xt>

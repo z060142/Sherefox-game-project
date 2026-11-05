@@ -4,6 +4,38 @@
   "source": "ui/boards",
   "items": [
     {
+      "code": "import.notice",
+      "severity": "info",
+      "message": "Vn.dc.html <helmet>: note: transition: filter 220ms ease-out -> effect 220ms ease-out (box-shadow, filter and text-shadow are XTFrame's effect property, 18 §18.4)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {},
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.degraded",
+      "severity": "warning",
+      "message": "Vn.dc.html <helmet>: filter brightness(0.86): degraded: brightness is additive in XTFrame (18 §18.3)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {},
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
       "code": "anchor.rewritten",
       "severity": "info",
       "message": "anchor: #kicker left: 48px; top: 16px -> anchor: left top; offset: 16px -2px; size: 520px 20px",
@@ -436,6 +468,294 @@
       "accepted": false
     },
     {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #dlg-dock bottom: 20px -> anchor: center bottom; offset: 0 2px; size: 1000px 200px",
+      "element": "dlg-dock",
+      "source": "Vn.dc.html",
+      "line": 147,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "bottom: 20px",
+        "to": "anchor: center bottom; offset: 0 2px; size: 1000px 200px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #bg right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "bg",
+      "source": "Vn.dc.html",
+      "line": 58,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #slot-c left: 420px; bottom: auto; top: 70px -> anchor: center bottom; offset: 0 -28px; size: 440px 660px",
+      "element": "slot-c",
+      "source": "Vn.dc.html",
+      "line": 75,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 420px; bottom: auto; top: 70px",
+        "to": "anchor: center bottom; offset: 0 -28px; size: 440px 660px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #slot-l left: 40px; bottom: auto; top: 70px -> anchor: left bottom; offset: 8px -28px; size: 440px 660px",
+      "element": "slot-l",
+      "source": "Vn.dc.html",
+      "line": 89,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 40px; bottom: auto; top: 70px",
+        "to": "anchor: left bottom; offset: 8px -28px; size: 440px 660px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #slot-r right: auto; left: 800px; bottom: auto; top: 70px -> anchor: right bottom; offset: 8px -28px; size: 440px 660px",
+      "element": "slot-r",
+      "source": "Vn.dc.html",
+      "line": 103,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 800px; bottom: auto; top: 70px",
+        "to": "anchor: right bottom; offset: 8px -28px; size: 440px 660px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #shade right auto -> 0",
+      "element": "shade",
+      "source": "Vn.dc.html",
+      "line": 119,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "right",
+        "from": "auto",
+        "to": "0"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #shade width 1280px -> (removed)",
+      "element": "shade",
+      "source": "Vn.dc.html",
+      "line": 119,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "width",
+        "from": "1280px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #shade bottom auto -> calc(1safe-bottom - 18px)",
+      "element": "shade",
+      "source": "Vn.dc.html",
+      "line": 119,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "bottom",
+        "from": "auto",
+        "to": "calc(1safe-bottom - 18px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #shade top 400px -> (removed)",
+      "element": "shade",
+      "source": "Vn.dc.html",
+      "line": 119,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "top",
+        "from": "400px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hit right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "hit",
+      "source": "Vn.dc.html",
+      "line": 123,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hud-tr right: 40px; top: 24px -> anchor: right top; offset: 8px 6px; size: 600px 76px",
+      "element": "hud-tr",
+      "source": "Vn.dc.html",
+      "line": 127,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 40px; top: 24px",
+        "to": "anchor: right top; offset: 8px 6px; size: 600px 76px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
+      "element": "sheet",
+      "source": "Paper.dc.html",
+      "line": 35,
+      "col": 0,
+      "ui": "paper",
+      "detail": {
+        "property": "anchor",
+        "from": "position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px",
+        "to": "anchor: center center; size: 1280px 720px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "style.geometryInline",
       "severity": "info",
       "message": "the board's inline geometry of 26 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
@@ -455,6 +775,131 @@
           "op": "doc.source",
           "args": {
             "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 25 element(s) is written to their <layout> #id rules (#vn, #bg, #bg-art, #slot-c, #ink-c, ...)",
+      "element": "",
+      "source": "Vn.dc.html",
+      "line": 51,
+      "col": 0,
+      "ui": "vn",
+      "detail": {
+        "elements": "25",
+        "ids": "#vn #bg #bg-art #slot-c #ink-c #slot-l #ink-l #slot-r #ink-r #shade #hit #hud-tr #chapter-tag #trust #dlg-dock #dlg #dlg-rule #dlg-body #nameplate #speaker #speaker-rule #line #choices #more #quickbar"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
+      "element": "",
+      "source": "Paper.dc.html",
+      "line": 27,
+      "col": 0,
+      "ui": "paper",
+      "detail": {
+        "elements": "65",
+        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline #subhead #p1-rule-d #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #side-head #side-text #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-b00406 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-b00406",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-b00406"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-7ee933 used by 3 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-7ee933",
+        "nodes": "3"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-7ee933"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-e68292 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-e68292",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-e68292"
           }
         }
       },

@@ -1,9 +1,105 @@
 # Asset manifest (docs/design/26-layers-symbols-library.md 26.3.3); xtframe-pack fills `measured`.
 version: 1
 assets:
+  - id: bg-barge-deck
+    type: image
+    file: shared/img/bg-barge-deck.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-boiler-room
+    type: image
+    file: shared/img/bg-boiler-room.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-clockshop
+    type: image
+    file: shared/img/bg-clockshop.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-debate
+    type: image
+    file: shared/img/bg-debate.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-dock-fog
+    type: image
+    file: shared/img/bg-dock-fog.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-kitchen-morning
+    type: image
+    file: shared/img/bg-kitchen-morning.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-office-day
+    type: image
+    file: shared/img/bg-office-day.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: bg-office-night
+    type: image
+    file: shared/img/bg-office-night.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1280, h: 720, alpha: false }
+  - id: ch-c-arthur
+    type: image
+    file: shared/img/ch-c-arthur.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-baskerville
+    type: image
+    file: shared/img/ch-c-baskerville.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-partner
+    type: image
+    file: shared/img/ch-c-partner.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-sherefox
+    type: image
+    file: shared/img/ch-c-sherefox.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-valet
+    type: image
+    file: shared/img/ch-c-valet.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-victor
+    type: image
+    file: shared/img/ch-c-victor.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
+  - id: ch-c-wolfhart
+    type: image
+    file: shared/img/ch-c-wolfhart.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 440, h: 660, alpha: true }
   - id: masthead-art
     type: image
     file: shared/img/masthead-art.png
     source: import:claude-design
     status: draft
     measured: { w: 2172, h: 724, alpha: true }
+  - id: ui-ruled
+    type: image
+    file: shared/img/ui-ruled.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 8, h: 34, alpha: true }

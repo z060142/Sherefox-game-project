@@ -1,0 +1,13 @@
+version: 1
+id: c2bc0c26-9f46-43c3-aa2d-06f08fb6dc61
+type: image
+title: ch-c-baskerville
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_baskerville.png
+content: sha256:9a830d7d993ad41200a0d16adac11a01b022edb77190dfac3787a987c0f32889
+measured:
+  w: 440
+  h: 660
+  alpha: true
