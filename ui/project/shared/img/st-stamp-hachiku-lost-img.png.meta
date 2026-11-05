@@ -1,0 +1,13 @@
+version: 1
+id: 700e78e1-3740-43cf-bd3e-91ae6f7b793a
+type: image
+title: st-stamp-hachiku-lost-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_lost.png
+content: sha256:8769a8ccc0a56909a8fd40a399b02aa1d531e852f53e135aec33a57077b5b0bf
+measured:
+  w: 300
+  h: 298
+  alpha: true

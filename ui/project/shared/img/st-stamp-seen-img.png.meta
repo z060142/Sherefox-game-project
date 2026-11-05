@@ -1,0 +1,13 @@
+version: 1
+id: b0820f62-5601-4d17-b02b-7a9cf008aa73
+type: image
+title: st-stamp-seen-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_seen.png
+content: sha256:a7dadf9421a12a282b07927fc1640fea33fb580cb0a6f2e2ee05e0b0b4c3db94
+measured:
+  w: 300
+  h: 282
+  alpha: true

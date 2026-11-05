@@ -1,0 +1,13 @@
+version: 1
+id: 4831bfbf-d4b2-4237-b122-890b9ab85c01
+type: image
+title: big-cut-hachiku3
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/cut_hachiku.png
+content: sha256:50dbc3a907523b16df21276959a1d7f49225efc852d39a9695967c04550cb8d3
+measured:
+  w: 1100
+  h: 619
+  alpha: true

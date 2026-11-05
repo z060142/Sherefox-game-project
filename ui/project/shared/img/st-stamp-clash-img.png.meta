@@ -1,0 +1,13 @@
+version: 1
+id: 66e4c1d6-f7e1-407a-aaa7-a531d56dfbb7
+type: image
+title: st-stamp-clash-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_clash.png
+content: sha256:efcbbb4b3efff1df9669e981435acab8dfd69e394640a20a9d5e65ffba0a9503
+measured:
+  w: 300
+  h: 291
+  alpha: true

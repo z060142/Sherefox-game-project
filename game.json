@@ -57,6 +57,17 @@
         "ui": "board",
         "width": 1280,
         "height": 720
+      },
+      {
+        "ui": "debate",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "cutin",
+        "width": 1280,
+        "height": 720
       }
     ]
   }

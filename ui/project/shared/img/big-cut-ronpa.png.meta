@@ -1,0 +1,13 @@
+version: 1
+id: 668601e6-6ebc-4ef1-9c3b-4e736291ef4e
+type: image
+title: big-cut-ronpa
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/cut_ronpa.png
+content: sha256:b94c508613378f8690d48feab94334c53f91c1a3fb0cbe5ed3ca94a7a1ab140f
+measured:
+  w: 1100
+  h: 563
+  alpha: true

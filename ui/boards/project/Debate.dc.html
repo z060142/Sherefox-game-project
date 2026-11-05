@@ -1,0 +1,901 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Debate</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #092e28 }
+  .kicker { font-family: var(--font-body); font-size: 12px; line-height: 18px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper); white-space: nowrap }
+  .rule2 { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink) }
+  .sheet-paper { background-color: #f3eedfeb; box-shadow: 3px 3px 0px 0px #092e2859 }
+
+  /* Masthead (Extra edition). */
+  .mast-t { font-family: var(--font-display); font-size: 19px; line-height: 30px; letter-spacing: 4px; color: var(--ink-deep); white-space: nowrap }
+  .extra { background-color: var(--vermilion); color: var(--paper); text-align: center; font-family: var(--font-display);
+           font-size: 16px; line-height: 26px; font-weight: 700; letter-spacing: 4px; white-space: nowrap }
+  .round { font-family: var(--font-display); font-size: 17px; line-height: 30px; font-weight: 700; color: var(--copper); white-space: nowrap }
+
+  /* Claim nodes: headline slugs. */
+  .node { background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+          box-shadow: 3px 3px 0px 0px #092e2859; transition: background-color 120ms linear }
+  .node:hover { background-color: #fbf8ef }
+  .nk { display: none }
+  .node.s0 .nk-0 { display: block }
+  .node.s1 .nk-1 { display: block }
+  .node.s2 .nk-2 { display: block }
+  .node.s3 .nk-3 { display: block }
+  .node.s4 .nk-1 { display: block }
+  .node-text { font-family: var(--font-display); font-size: 17px; line-height: 22px; font-weight: 700; color: var(--ink-deep); line-clamp: 3 }
+  :lang(en) .node-text { font-size: 14px; line-height: 18px; line-clamp: 4 }
+  .node.s1 { border-top-color: var(--vermilion); background-color: #fff1cc; outline: 3px solid #b8322a; outline-offset: 1px; box-shadow: 0px 0px 18px 6px #e0a050;
+             animation: litpulse 1.4s ease-in-out infinite alternate }
+  .node.s1 .nk-1 { color: var(--paper); background-color: var(--vermilion); padding-left: 4px; letter-spacing: 2px }
+  .node.s2 { border-top-color: var(--vermilion); animation: fragile 0.9s ease-in-out infinite alternate }
+  .node.s3 { border-top-color: #3b2a4a; background-color: #efe8f0 }
+  .node.s3 .nk-3 { color: #3b2a4a }
+  .node.s4 { animation: shatter 900ms ease-in 300ms forwards }
+  .crack { display: none }
+  .node.s2 .crack { display: block }
+  .strike { display: none; transform-origin: 0% 50% }
+  .node.s4 .strike { display: block; animation: strike 320ms ease-out forwards }
+  .lit-mark { display: none }
+  .node.s1 .lit-mark { display: block }
+  .node-src { font-family: var(--font-body); font-size: 11px; line-height: 14px; color: var(--copper); white-space: nowrap }
+  :lang(en) .node-src { font-size: 10px; letter-spacing: 0px }
+  .pipe { background: linear-gradient(180deg, #e3b36a 0%, #a65432 55%, #5e2c18 100%); border: 1px solid #5e2c18 }
+  @keyframes litpulse { from { box-shadow: 0px 0px 6px 1px #e0a05099 } to { box-shadow: 0px 0px 22px 6px #e0a050ff } }
+  @keyframes fragile { from { opacity: 1 } to { opacity: 0.62 } }
+  @keyframes strike { from { transform: scaleX(0) rotate(-5deg) } to { transform: scaleX(1) rotate(-5deg) } }
+  @keyframes shatter { from { opacity: 1; transform: translateY(0px) rotate(0deg) } to { opacity: 0; transform: translateY(26px) rotate(5deg) } }
+
+  /* The gossip column (the tell). */
+  :lang(en) .col-head { font-size: 12px; letter-spacing: 0px }
+  :lang(en) #instinct-t { font-size: 12px; letter-spacing: 0px }
+  :lang(en) #tbl-title { font-size: 11px; letter-spacing: 0px }
+  .col-head { font-family: var(--font-display); font-size: 17px; line-height: 24px; font-weight: 700; letter-spacing: 3px; color: var(--ink-deep); white-space: nowrap }
+  .bubble { background-color: var(--paper); border: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2866 }
+  .tell-line { font-family: var(--font-body); font-size: 15px; line-height: 21px; color: var(--ink-deep); line-clamp: 3 }
+  :lang(en) .tell-line { font-size: 13px; line-height: 18px; line-clamp: 4 }
+  .q-en { display: none }
+  :lang(en) .q-en { display: block }
+  :lang(en) .q-zh { display: none }
+  .gesture { font-family: var(--font-body); font-size: 13px; line-height: 18px; font-style: italic; color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  .clar { display: none; font-family: var(--font-body); font-size: 13px; line-height: 22px; font-weight: 700; color: var(--copper); white-space: nowrap }
+  .tell.c0 .clar-0 { display: block }
+  .tell.c1 .clar-1 { display: block }
+  .tell.c2 .clar-2 { display: block }
+  .basis { background-color: var(--copper); color: var(--paper); font-family: var(--font-body); font-size: 11px; line-height: 18px;
+           text-align: center; white-space: nowrap; border: 1px solid #5e2c18 }
+  .cand { background-color: var(--paper); border: 1px solid #123a3199; box-shadow: 2px 2px 0px 0px #092e2840 }
+  .cand.star { border: 2px solid var(--lamp-gold); background-color: #fff8e6 }
+  .cand-l { display: none; font-family: var(--font-display); font-size: 15px; line-height: 22px; font-weight: 700; color: var(--ink-deep); white-space: nowrap }
+  .ci { display: none }
+  .cand.a0 .ca-0 { display: block } .cand.a1 .ca-1 { display: block } .cand.a2 .ca-2 { display: block } .cand.a3 .ca-3 { display: block }
+  .slash { font-family: var(--font-display); font-size: 20px; line-height: 40px; color: var(--copper); text-align: center }
+  .star-t { font-family: var(--font-body); font-size: 12px; line-height: 16px; color: var(--copper); white-space: nowrap }
+
+  /* Buttons (brass and ink). */
+  .bbtn { background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 2px 2px 0px 0px #092e2866;
+          transition: background-color 120ms linear }
+  .bbtn:hover { background-color: var(--copper) }
+  .bbtn:active { background-color: var(--ink-deep) }
+  .bbtn.off { background-color: #5b6662; border-color: #5b6662 }
+  .bbtn.off:hover { background-color: #5b6662 }
+  .bbtn-t { font-family: var(--font-body); font-size: 13px; line-height: 26px; letter-spacing: 1px; color: var(--paper); white-space: nowrap }
+  .lamp { border-radius: 5px; background-color: #3a2a1e; border: 1px solid #5e2c18 }
+  .lamp.on { background-color: var(--lamp-gold); box-shadow: 0px 0px 6px 1px #e0a050cc }
+
+  /* Gauges. */
+  .hub { border-radius: 7px; background-color: var(--ink-deep); border: 2px solid #e3b36a }
+  .gnum { font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700; color: var(--ink-deep);
+          text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap }
+  .gauge.mid .gnum { color: #9a5a14 }
+  .gauge.low .gnum { color: var(--vermilion) }
+  .gauge.low .dial-wrap { animation: rattle 0.2s linear infinite }
+  .gauge.brk .gring { display: block }
+  .gring { display: none; border-radius: 90px; border: 3px solid var(--vermilion); box-shadow: 0px 0px 14px 3px #b8322acc;
+           animation: brkpulse 0.8s ease-in-out infinite alternate }
+  @keyframes rattle { from { transform: translate(-1px, 0px) } to { transform: translate(1px, 1px) } }
+  @keyframes brkpulse { from { opacity: 0.45 } to { opacity: 1 } }
+  .plate { background: linear-gradient(180deg, #d79b55 0%, #a65432 60%, #7a3e24 100%); border: 1px solid #5e2c18;
+           box-shadow: 2px 2px 0px 0px #092e2866 }
+  .plate-t { font-family: var(--font-display); font-size: 14px; line-height: 24px; font-weight: 700; letter-spacing: 1px; color: var(--paper); white-space: nowrap }
+  .steam { border-radius: 30px; background: radial-gradient(ellipse closest-side, #ffffffee 0%, #ffffff00 100%); opacity: 0 }
+  .gauge.shaken .valve { animation: valve 0.7s ease-out infinite }
+  @keyframes valve { from { opacity: 0.9; transform: translate(0px, 0px) scale(0.6) } to { opacity: 0; transform: translate(14px, -18px) scale(1.5) } }
+  .float { font-family: var(--font-display); font-size: 34px; line-height: 40px; font-weight: 700; color: var(--vermilion);
+           text-align: center; text-shadow: 0px 0px 3px #f3eedf, 0px 0px 6px #f3eedf; opacity: 0 }
+
+  /* Name plate and hand. */
+  .opp-name { font-family: var(--font-display); font-size: 21px; line-height: 28px; font-weight: 700; color: var(--paper); white-space: nowrap }
+  .opp-type { font-family: var(--font-body); font-size: 12px; line-height: 16px; letter-spacing: 3px; color: var(--lamp-gold); white-space: nowrap }
+  .cback { background-color: var(--copper); border: 1px solid var(--ink-deep); box-shadow: 1px 1px 0px 0px #092e2880 }
+  .hand-n { font-family: var(--font-display); font-size: 16px; line-height: 26px; font-weight: 700; color: var(--paper); white-space: nowrap }
+  .counter { font-family: var(--font-display); font-size: 19px; line-height: 27px; font-weight: 700; color: var(--ink-deep); text-align: center }
+
+  /* Status icons. */
+  .sico { opacity: 0.22; transition: opacity 300ms linear }
+  .sico.on { opacity: 1 }
+  .sico.pre { opacity: 0.5 }
+  .sico-l { font-family: var(--font-display); font-size: 12px; line-height: 14px; font-weight: 700; color: var(--paper); text-align: center;
+            background-color: #092e28cc; white-space: nowrap }
+  .tip { display: none; background-color: var(--paper); border: 1px solid var(--ink); border-left: 3px solid var(--copper);
+         font-family: var(--font-body); font-size: 12px; line-height: 17px; color: var(--ink); box-shadow: 3px 3px 0px 0px #092e2866 }
+  #konju:hover #konju-tip { display: block }
+  #shisshu:hover #shisshu-tip { display: block }
+  .hk-n { font-family: var(--font-display); font-size: 13px; line-height: 16px; font-weight: 700; color: #2f5d3a; text-align: right }
+  .sico.gold { border: 2px solid var(--lamp-gold); box-shadow: 0px 0px 10px 2px #e0a050cc }
+
+  /* Our chains. */
+  .chains { background-color: #e3d9c2e6; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2859 }
+  .rowno { border-radius: 11px; background-color: var(--paper); border: 1px solid var(--ink-deep); text-align: center;
+           font-family: var(--font-display); font-size: 11px; line-height: 20px; font-weight: 700; color: var(--ink-deep) }
+  .chip { background-color: var(--paper); border: 1px solid #123a3199; box-shadow: 2px 2px 0px 0px #092e2840 }
+  .chip.sel { background-color: #fff3cf; border: 2px solid var(--vermilion); box-shadow: 0px 0px 8px 1px #b8322a99 }
+  .chip-t { font-family: var(--font-body); font-size: 12px; line-height: 15px; color: var(--ink); line-clamp: 2 }
+  .thread-red { background-color: var(--vermilion) }
+  .thread-gold { background-color: var(--lamp-gold) }
+  .thread-pencil { border-top: 2px dashed #2e2f2d }
+  .bandage { border-radius: 11px; border: 2px solid var(--copper); background-color: #f3eedf99 }
+  .cell { border: 1px solid #123a3100; transition: border-color 100ms linear }
+  .cell:hover { border-color: var(--copper); background-color: #a654321f }
+
+  /* Parry picker, preview, confirm bar. */
+  .pick { background-color: var(--paper); border: 1px solid var(--ink); border-left: 4px solid var(--vermilion);
+          box-shadow: 2px 2px 0px 0px #092e2866; transition: background-color 120ms linear }
+  .pick:hover { background-color: #fff3cf }
+  .pick-t { font-family: var(--font-body); font-size: 13px; line-height: 17px; color: var(--ink-deep); line-clamp: 2 }
+  .pick-id { font-family: var(--font-body); font-size: 10px; line-height: 12px; letter-spacing: 1px; color: var(--copper) }
+  .preview-t { font-family: var(--font-display); font-size: 17px; line-height: 22px; font-weight: 700; color: var(--ink-deep); line-clamp: 2 }
+  :lang(en) .preview-t { font-size: 15px; line-height: 19px }
+  .preview-vs { font-family: var(--font-body); font-size: 12px; line-height: 16px; color: var(--ink); line-clamp: 2 }
+  .confirm { background-color: var(--ink-deep); border: 1px solid #000000; box-shadow: 3px 3px 0px 0px #092e2866 }
+  .summary { font-family: var(--font-body); font-size: 15px; line-height: 36px; color: var(--paper); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  .confirm.armed .summary { line-height: 21px }
+  :lang(en) .summary { font-size: 13px }
+  .armed-t { font-family: var(--font-body); font-size: 11px; line-height: 14px; color: var(--lamp-gold); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  .lockb { background-color: var(--vermilion); border: 1px solid #5c1913; text-align: center; transition: background-color 120ms linear }
+  .lockb:hover { background-color: #d23f35 }
+  .lockb.off { background-color: #5b6662; border-color: #5b6662 }
+  .lockb-t { font-family: var(--font-display); font-size: 16px; line-height: 30px; font-weight: 700; letter-spacing: 3px; color: var(--paper); white-space: nowrap; text-align: center }
+  .backb { border: 1px solid #f3eedf66; text-align: center; transition: background-color 120ms linear }
+  .backb:hover { background-color: #f3eedf26 }
+  .backb-t { font-family: var(--font-body); font-size: 12px; line-height: 28px; color: var(--paper); white-space: nowrap; text-align: center }
+  .locked-t { font-family: var(--font-display); font-size: 15px; line-height: 30px; font-weight: 700; letter-spacing: 3px; color: var(--lamp-gold);
+              text-align: center; border: 2px solid var(--lamp-gold); white-space: nowrap }
+
+  /* Action type blocks. */
+  .grp { font-family: var(--font-display); font-size: 30px; line-height: 72px; font-weight: 700; color: var(--paper); text-align: center;
+         background-color: #092e28d9; border: 1px solid #000000 }
+  :lang(en) .grp { font-size: 11px; letter-spacing: 1px; text-transform: uppercase }
+  .tblock { background: linear-gradient(180deg, #2a4f45 0%, #123a31 45%, #092e28 100%); border: 1px solid #000000;
+            box-shadow: inset 0px 2px 0px 0px #ffffff26, inset 0px -3px 0px 0px #00000066, 3px 3px 0px 0px #092e2880;
+            transition: background-color 120ms linear }
+  .tblock:hover { background: linear-gradient(180deg, #c06a40 0%, #a65432 50%, #7a3e24 100%) }
+  .tblock.on { background: linear-gradient(180deg, #ffffff 0%, #f3eedf 60%, #e3d9c2 100%); border: 2px solid var(--vermilion);
+               box-shadow: inset 0px -5px 0px 0px #b8322a, 0px 0px 12px 2px #b8322a99 }
+  .tblock.off { background: linear-gradient(180deg, #7b8581 0%, #5b6662 100%) }
+  .tblock.off:hover { background: linear-gradient(180deg, #7b8581 0%, #5b6662 100%) }
+  .tb-t { font-family: var(--font-display); font-size: 21px; line-height: 30px; font-weight: 700; letter-spacing: 2px; color: var(--paper);
+          text-align: center; white-space: nowrap; text-shadow: 0px -1px 0px #000000 }
+  :lang(en) .tb-t { font-size: 17px; letter-spacing: 0px }
+  .tblock.on .tb-t { color: var(--ink-deep); text-shadow: 0px 1px 0px #ffffff }
+  .tblock.off .tb-t { color: #d7dbd6 }
+  .tb-k { font-family: var(--font-body); font-size: 11px; line-height: 14px; color: #f3eedf99; text-align: center }
+  .tblock.on .tb-k { color: var(--vermilion) }
+  .tb-r { font-family: var(--font-body); font-size: 11px; line-height: 13px; color: #fff3cf; text-align: center; line-clamp: 2 }
+  .tblock.on .tb-r { color: var(--vermilion) }
+  .tb-crack { display: none }
+  .tblock.cracked .tb-crack { display: block }
+  .divider { background: linear-gradient(90deg, #5e2c18 0%, #e3b36a 40%, #a65432 70%, #5e2c18 100%); border: 1px solid #3b1d10 }
+  .rivet { border-radius: 3px; background-color: #3b1d10 }
+  .acts.locked { opacity: 0.55 }
+
+  /* Arthur and status. */
+  .assist { background-color: #092e28d9; border: 1px solid #000000; transition: background-color 120ms linear }
+  .assist:hover { background-color: #123a31 }
+  .assist.armed { border: 2px solid var(--lamp-gold); box-shadow: 0px 0px 12px 2px #e0a050aa }
+  .face { border-radius: 26px; border: 2px solid var(--copper); background-color: var(--paper-old) }
+  .assist.spent .face { filter: grayscale(1); opacity: 0.55 }
+  .assist.armed .face { filter: grayscale(0); opacity: 1; border-color: var(--lamp-gold) }
+  .assist-t { font-family: var(--font-display); font-size: 16px; line-height: 22px; font-weight: 700; color: var(--paper); white-space: nowrap }
+  .assist.armed .assist-t { color: var(--lamp-gold) }
+  .status { background-color: #f3eedfeb; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2859 }
+  .st-row { font-family: var(--font-display); font-size: 14px; line-height: 22px; font-weight: 700; color: var(--ink-deep); white-space: nowrap }
+  .st-brk { background-color: var(--vermilion); color: var(--paper); padding-left: 6px }
+  .st-flags { font-family: var(--font-body); font-size: 12px; line-height: 17px; color: var(--ink); line-clamp: 3 }
+  .dot { border-radius: 4px; background-color: var(--copper) }
+  .tab { background: linear-gradient(180deg, #d79b55 0%, #a65432 60%, #7a3e24 100%); border: 1px solid #5e2c18; box-shadow: 2px 2px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .tab:hover { background: linear-gradient(180deg, #e8b06a 0%, #c06a40 60%, #a65432 100%) }
+  .tab-t { font-family: var(--font-body); font-size: 13px; line-height: 30px; letter-spacing: 1px; color: var(--paper); white-space: nowrap; text-align: center }
+
+  /* Matchup table (collapsible). */
+  #table-panel { display: none }
+  #table:state(Open) #table-panel { display: block }
+  .tbl { background-color: var(--paper); border: 2px solid var(--ink); box-shadow: 5px 5px 0px 0px #092e2880 }
+  .th { font-family: var(--font-display); font-size: 13px; line-height: 28px; font-weight: 700; color: var(--paper); background-color: var(--ink);
+        text-align: center; white-space: nowrap }
+  .th.lit-a, .th.lit-b { background-color: var(--vermilion) }
+  .td { font-family: var(--font-body); font-size: 12px; line-height: 16px; color: var(--ink); background-color: #fbf8ef; border: 1px solid #123a3140 }
+  .td.lit-a, .td.lit-b { background-color: #fff1d6; border-color: var(--lamp-gold) }
+  .rh { font-family: var(--font-display); font-size: 14px; line-height: 18px; font-weight: 700; color: var(--ink-deep); background-color: var(--paper-old) }
+  .trow.dim { opacity: 0.35 }
+
+  /* Reveal. */
+  .band { background-color: #092e28e6; border-top: 2px solid var(--copper); border-bottom: 2px solid var(--copper) }
+  .rcard { background-color: var(--paper); border: 3px solid #c58a45; box-shadow: 0px 0px 0px 2px #5e2c18, 6px 8px 0px 0px #00000080 }
+  .rback { background: repeating-linear-gradient(45deg, #a65432 0%, #a65432 6%, #7a3e24 6%, #7a3e24 12%); border: 3px solid #e3b36a }
+  .rwho { font-family: var(--font-body); font-size: 12px; line-height: 18px; letter-spacing: 3px; color: var(--copper); text-align: center; white-space: nowrap }
+  .rname { display: none; font-family: var(--font-display); font-size: 26px; line-height: 34px; font-weight: 700; color: var(--ink-deep); text-align: center; white-space: nowrap }
+  :lang(en) .rname { font-size: 20px }
+  .rcard.m1 .rm-1 { display: block } .rcard.m2 .rm-2 { display: block } .rcard.m3 .rm-3 { display: block } .rcard.m4 .rm-4 { display: block }
+  .rcard.o0 .ro-0 { display: block } .rcard.o1 .ro-1 { display: block } .rcard.o2 .ro-2 { display: block } .rcard.o3 .ro-3 { display: block } .rcard.o4 .ro-4 { display: block }
+  .rline { font-family: var(--font-body); font-size: 20px; line-height: 40px; color: var(--paper); text-align: center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  :lang(en) .rline { font-size: 17px }
+  .resline { font-family: var(--font-display); font-size: 22px; line-height: 40px; font-weight: 700; color: var(--paper); text-align: center;
+             white-space: nowrap; text-overflow: ellipsis; overflow: hidden; border-bottom: 3px solid var(--vermilion) }
+  :lang(en) .resline { font-size: 18px }
+  .clash-t { font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700; color: var(--lamp-gold); text-align: center; white-space: nowrap }
+  .rcards.stale .rcard { opacity: 0.7 }
+</style></helmet>
+<div id="debate" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='mode:number in = 0; opp_char:string in = "valet"; opp_name:string in = "費奇"; opp_type:string in = "犯人"; hp_me:number in = 81; hp_me_max:number in = 100; hp_opp:number in = 70; hp_opp_max:number in = 100; counter_text:string in = ""; round_text:string in = "第 3 回合"; nodes:list&lt;struct{id: string, text: string, state: number, src: string}&gt; in = [{"id":"CH02_N1","text":"我在報時鳥報三點時就離開了","state":1,"src":""},{"id":"CH02_N2","text":"老闆有工具也有時間掉包","state":0,"src":""},{"id":"CH02_N3","text":"新機芯是這家店的零件","state":0,"src":""}]; claim_preview:string in = "主張 26＋4×3＝38"; tell_line:string in = "小人記得清清楚楚，報時鳥一叫我就走了。"; tell_gesture:string in = "拉袖口、鞠躬"; tell_clarity:number in = 1; tell_basis:string in = ""; tell_a:number in = 0; tell_b:number in = 1; tell_star:number in = -1; tell_star_text:string in = ""; hand:number in = 1; chains:list&lt;struct{chain: number, pos: number, id: string, name: string, link: number, sel: bool}&gt; in = [{"chain":0,"pos":0,"id":"E02_03","name":"鐘擺護蓋上的新刮痕","link":1,"sel":false},{"chain":0,"pos":1,"id":"E02_02","name":"報時鳥鐘","link":1,"sel":false},{"chain":0,"pos":2,"id":"E02_04","name":"報童小湯米的證詞","link":1,"sel":false},{"chain":0,"pos":3,"id":"E02_05","name":"寄修收據（店鐘 3:05 簽收）","link":0,"sel":false},{"chain":1,"pos":0,"id":"E02_06","name":"店內零件目錄","link":2,"sel":false},{"chain":1,"pos":1,"id":"E02_01","name":"特製雙層發條齒輪","link":0,"sel":false}]; act_enabled:list&lt;bool&gt; in = [true,true,true,true]; act_reason:list&lt;string&gt; in = ["","","",""]; sel_act:number in = 3; parry_cards:list&lt;struct{id: string, name: string}&gt; in = [{"id":"E02_02","name":"報時鳥鐘"},{"id":"E02_04","name":"報童小湯米的證詞"}]; summary:string in = "反駁　對準：我在報時鳥報三點時就離開了　出示：報童小湯米的證詞"; preview:string in = "截斷：反擊 30、粉碎主張"; preview_vs:string in = "若主張：截斷成立　若猛攻：截斷，對方動搖"; can_lock:bool in = true; instinct_left:number in = 2; assist_left:number in = 1; instinct_ok:bool in = true; assist_armed:bool in = false; act:number out = 0; seg:number out = 0; target:string out = ""; card:string out = ""; lock:event out; back:event out; instinct:event out; assist:event out; st_shaken:number in = 0; st_break:bool in = false; st_tail:number in = 0; st_hachiku:number in = 1; st_hachiku_preview:bool in = false; st_konju:number in = 0; st_shisshu:number in = 0; st_flags:string in = ""; phase:number in = 0; reveal_me:number in = 3; reveal_opp:number in = 0; reveal_seq:number in = 0; reveal_combo:number in = 1; reveal_line:string in = "報時鳥叫了三聲，店裡的人都——"; float_opp:string in = ""; float_me:string in = ""; result_line:string in = ""; skip:event out; next:event out'
+     data-xt-trigger="show:play(intro); play(fidget); port(phase):if port(phase) eq 0 play(fidget) else pause(fidget); port(opp_char):play(ink-in); port(parry_cards):play(picker-in); port(reveal_seq):play(reveal); port(float_opp):play(float-opp); port(float_me):play(float-me); key(1):if port(phase) eq 0 set(act, 1); key(2):if port(phase) eq 0 set(act, 2); key(3):if port(phase) eq 0 set(act, 3); key(4):if port(phase) eq 0 set(act, 4); key(F):if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct); key(V):if port(phase) eq 0 emit(assist); key(T):state(Open, toggle, target=#table); key(Enter):if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next); key(Space):if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next); key(Backspace):if port(phase) eq 0 emit(back); click(right):if port(phase) eq 0 emit(back)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background-color: #092e28; font-family: var(--font-body); color: #123a31;">
+
+  <!-- The courtroom page: the debate background, full bleed. -->
+  <img id="bg-art" src="/_blob/bg_debate.jpg" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; object-fit: cover;">
+
+  <!-- Everything else sits on one 1280x720 sheet, centred, so the layout keeps its proportions on any aspect. -->
+  <div id="sheet" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+  <!-- Opponent standee (opp_char picks one cut-out, same ids as vn); it fidgets while the player chooses. -->
+  <div id="opp-fig" style="position: absolute; left: 800px; top: 30px; width: 300px; height: 450px;">
+    <div id="opp-ink" data-xt-timeline="ink-in: 0 opacity 0, 420ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px;">
+      <div id="opp-bob" data-xt-timeline="fidget loop: 0 transform translateY(0px) rotate(0deg), 750 ease-in-out transform translateY(-5px) rotate(-0.6deg), 1500 ease-in-out transform translateY(0px) rotate(0deg)"
+           style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; transform-origin: 50% 100%;">
+        <img id="opp-sherefox" src="/_blob/char_sherefox.png" data-xt-bind="display=opp_char | eq('sherefox')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-arthur" src="/_blob/char_arthur.png" data-xt-bind="display=opp_char | eq('arthur')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-baskerville" src="/_blob/char_baskerville.png" data-xt-bind="display=opp_char | eq('baskerville')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-victor" src="/_blob/char_victor.png" data-xt-bind="display=opp_char | eq('victor')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-wolfhart" src="/_blob/char_wolfhart.png" data-xt-bind="display=opp_char | eq('wolfhart')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-valet" src="/_blob/char_valet.png" data-xt-bind="display=opp_char | eq('valet')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+        <img id="opp-partner" src="/_blob/char_partner.png" data-xt-bind="display=opp_char | eq('partner')" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 450px; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+  <!-- Sherefox, our side (fixed). -->
+  <div id="me-fig" style="position: absolute; left: 0px; top: 186px; width: 250px; height: 534px; overflow: hidden;">
+    <img id="me-sherefox" src="/_blob/char_sherefox.png" style="position: absolute; left: -46px; top: 0px; width: 340px; height: 510px; object-fit: contain;">
+  </div>
+
+  <!-- Masthead: the Extra edition of the Lantern, the round, Ch.1 / warm-up counters, the endgame plate. -->
+  <div id="mast-bg" style="position: absolute; left: 12px; top: 6px; width: 800px; height: 52px; background-color: #f3eedfe6; box-shadow: 3px 3px 0px 0px #092e2859;"></div>
+  <div id="mast" style="position: absolute; left: 24px; top: 12px; width: 776px; height: 34px;
+       display: flex; flex-direction: row; align-items: center; gap: 12px;">
+    <div id="mast-name" class="mast-t" data-xt-key="UI_PAPER_MAST" style="height: 30px; flex-shrink: 0;">倫敦提燈報</div>
+    <div id="mast-extra" class="extra" data-xt-key="UI_PAPER_EXTRA" style="width: 64px; height: 26px; flex-shrink: 0;">號外</div>
+    <div id="round" class="round" data-xt-bind="text=round_text" style="height: 30px; flex-shrink: 0;">第 3 回合</div>
+  </div>
+  <div id="tail" class="plate" data-xt-bind="display=st_tail | gt(0)"
+       style="position: absolute; left: 640px; top: 8px; width: 160px; height: 38px; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;">
+    <div id="tail-t" class="plate-t" data-xt-key="UI_TAIL" style="height: 24px; flex-shrink: 0; font-size: 18px;">尾聲</div>
+    <div id="tail-l1" class="lamp on" style="width: 10px; height: 10px; flex-shrink: 0;"></div>
+    <div id="tail-l2" class="lamp on" data-xt-bind="display=st_tail | ge(2)" style="width: 10px; height: 10px; flex-shrink: 0;"></div>
+  </div>
+  <div id="mast-rule" class="rule2" style="position: absolute; left: 24px; top: 50px; width: 776px; height: 5px;"></div>
+
+  <!-- Their claims: up to five headline slugs joined by brass pipes (fixed slots k read nodes | item(k)). Click = target. -->
+  <div id="claims" style="position: absolute; left: 24px; top: 62px; width: 790px; height: 116px;
+       display: flex; flex-direction: row; align-items: flex-start; gap: 14px;">
+    <div id="node-0" class="node" data-xt-bind="display=nodes | item(0) | item(id) | ne(''); class.s0=nodes | item(0) | item(state) | eq(0); class.s1=nodes | item(0) | item(state) | eq(1); class.s2=nodes | item(0) | item(state) | eq(2); class.s3=nodes | item(0) | item(state) | eq(3); class.s4=nodes | item(0) | item(state) | eq(4)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(target, port(nodes) | item(0) | item(id))"
+         style="position: relative; width: 144px; height: 108px; flex-shrink: 0;">
+      <div id="nk-0" style="position: absolute; left: 8px; top: 4px; width: 128px; height: 18px;">
+        <div id="nk-0-0" class="kicker nk nk-0" data-xt-key="UI_NODE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">主張</div>
+        <div id="nk-0-1" class="kicker nk nk-1" data-xt-key="UI_NODE_LIT" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">亮起</div>
+        <div id="nk-0-2" class="kicker nk nk-2" data-xt-key="UI_NODE_FRAGILE" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px; color: #b8322a;">脆弱</div>
+        <div id="nk-0-3" class="kicker nk nk-3" data-xt-key="UI_NODE_SECOND" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">第二說詞</div>
+      </div>
+      <div id="lit-0" class="lit-mark" style="position: absolute; left: 120px; top: 6px; width: 14px; height: 14px;">
+        <svg id="lit-0-art" viewBox="0 0 14 14" style="position: absolute; left: 0px; top: 0px; width: 14px; height: 14px;">
+          <path id="Tri" d="M1 2 H13 L7 12 Z" fill="#f3eedf"/>
+        </svg>
+      </div>
+      <div id="node-0-t" class="node-text" data-xt-bind="text=nodes | item(0) | item(text)"
+           style="position: absolute; left: 8px; top: 24px; width: 128px; height: 66px;">我在報時鳥報三點時就離開了</div>
+      <div id="node-0-src" class="node-src" data-xt-key="UI_NODE_STURDY_SRC" data-xt-bind="display=nodes | item(0) | item(src) | ne('')"
+           style="position: absolute; left: 8px; top: 90px; width: 128px; height: 14px;">來自：你漏掉的證物</div>
+      <svg id="crack-0" class="crack" viewBox="0 0 40 40" style="position: absolute; left: 100px; top: 56px; width: 40px; height: 40px;">
+        <path id="Crack" d="M38 2 L28 12 L32 18 L20 26 L24 32 L12 38" fill="none" stroke="#b8322a" stroke-width="2"/>
+      </svg>
+      <div id="strike-0" class="strike" style="position: absolute; left: 0px; top: 46px; width: 144px; height: 9px;
+           background-color: #b8322a; border-radius: 4px;"></div>
+    </div>
+    <div id="node-1" class="node" data-xt-bind="display=nodes | item(1) | item(id) | ne(''); class.s0=nodes | item(1) | item(state) | eq(0); class.s1=nodes | item(1) | item(state) | eq(1); class.s2=nodes | item(1) | item(state) | eq(2); class.s3=nodes | item(1) | item(state) | eq(3); class.s4=nodes | item(1) | item(state) | eq(4)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(target, port(nodes) | item(1) | item(id))"
+         style="position: relative; width: 144px; height: 108px; flex-shrink: 0;">
+      <div id="pipe-1" class="pipe" style="position: absolute; left: -15px; top: 40px; width: 16px; height: 9px;"></div>
+      <div id="nk-1" style="position: absolute; left: 8px; top: 4px; width: 128px; height: 18px;">
+        <div id="nk-1-0" class="kicker nk nk-0" data-xt-key="UI_NODE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">主張</div>
+        <div id="nk-1-1" class="kicker nk nk-1" data-xt-key="UI_NODE_LIT" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">亮起</div>
+        <div id="nk-1-2" class="kicker nk nk-2" data-xt-key="UI_NODE_FRAGILE" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px; color: #b8322a;">脆弱</div>
+        <div id="nk-1-3" class="kicker nk nk-3" data-xt-key="UI_NODE_SECOND" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">第二說詞</div>
+      </div>
+      <div id="lit-1" class="lit-mark" style="position: absolute; left: 120px; top: 6px; width: 14px; height: 14px;">
+        <svg id="lit-1-art" viewBox="0 0 14 14" style="position: absolute; left: 0px; top: 0px; width: 14px; height: 14px;">
+          <path id="Tri" d="M1 2 H13 L7 12 Z" fill="#f3eedf"/>
+        </svg>
+      </div>
+      <div id="node-1-t" class="node-text" data-xt-bind="text=nodes | item(1) | item(text)"
+           style="position: absolute; left: 8px; top: 24px; width: 128px; height: 66px;">老闆有工具也有時間掉包</div>
+      <div id="node-1-src" class="node-src" data-xt-key="UI_NODE_STURDY_SRC" data-xt-bind="display=nodes | item(1) | item(src) | ne('')"
+           style="position: absolute; left: 8px; top: 90px; width: 128px; height: 14px;">來自：你漏掉的證物</div>
+      <svg id="crack-1" class="crack" viewBox="0 0 40 40" style="position: absolute; left: 100px; top: 56px; width: 40px; height: 40px;">
+        <path id="Crack" d="M38 2 L28 12 L32 18 L20 26 L24 32 L12 38" fill="none" stroke="#b8322a" stroke-width="2"/>
+      </svg>
+      <div id="strike-1" class="strike" style="position: absolute; left: 0px; top: 46px; width: 144px; height: 9px;
+           background-color: #b8322a; border-radius: 4px;"></div>
+    </div>
+    <div id="node-2" class="node" data-xt-bind="display=nodes | item(2) | item(id) | ne(''); class.s0=nodes | item(2) | item(state) | eq(0); class.s1=nodes | item(2) | item(state) | eq(1); class.s2=nodes | item(2) | item(state) | eq(2); class.s3=nodes | item(2) | item(state) | eq(3); class.s4=nodes | item(2) | item(state) | eq(4)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(target, port(nodes) | item(2) | item(id))"
+         style="position: relative; width: 144px; height: 108px; flex-shrink: 0;">
+      <div id="pipe-2" class="pipe" style="position: absolute; left: -15px; top: 40px; width: 16px; height: 9px;"></div>
+      <div id="nk-2" style="position: absolute; left: 8px; top: 4px; width: 128px; height: 18px;">
+        <div id="nk-2-0" class="kicker nk nk-0" data-xt-key="UI_NODE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">主張</div>
+        <div id="nk-2-1" class="kicker nk nk-1" data-xt-key="UI_NODE_LIT" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">亮起</div>
+        <div id="nk-2-2" class="kicker nk nk-2" data-xt-key="UI_NODE_FRAGILE" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px; color: #b8322a;">脆弱</div>
+        <div id="nk-2-3" class="kicker nk nk-3" data-xt-key="UI_NODE_SECOND" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">第二說詞</div>
+      </div>
+      <div id="lit-2" class="lit-mark" style="position: absolute; left: 120px; top: 6px; width: 14px; height: 14px;">
+        <svg id="lit-2-art" viewBox="0 0 14 14" style="position: absolute; left: 0px; top: 0px; width: 14px; height: 14px;">
+          <path id="Tri" d="M1 2 H13 L7 12 Z" fill="#f3eedf"/>
+        </svg>
+      </div>
+      <div id="node-2-t" class="node-text" data-xt-bind="text=nodes | item(2) | item(text)"
+           style="position: absolute; left: 8px; top: 24px; width: 128px; height: 66px;">新機芯是這家店的零件</div>
+      <div id="node-2-src" class="node-src" data-xt-key="UI_NODE_STURDY_SRC" data-xt-bind="display=nodes | item(2) | item(src) | ne('')"
+           style="position: absolute; left: 8px; top: 90px; width: 128px; height: 14px;">來自：你漏掉的證物</div>
+      <svg id="crack-2" class="crack" viewBox="0 0 40 40" style="position: absolute; left: 100px; top: 56px; width: 40px; height: 40px;">
+        <path id="Crack" d="M38 2 L28 12 L32 18 L20 26 L24 32 L12 38" fill="none" stroke="#b8322a" stroke-width="2"/>
+      </svg>
+      <div id="strike-2" class="strike" style="position: absolute; left: 0px; top: 46px; width: 144px; height: 9px;
+           background-color: #b8322a; border-radius: 4px;"></div>
+    </div>
+    <div id="node-3" class="node" data-xt-bind="display=nodes | item(3) | item(id) | ne(''); class.s0=nodes | item(3) | item(state) | eq(0); class.s1=nodes | item(3) | item(state) | eq(1); class.s2=nodes | item(3) | item(state) | eq(2); class.s3=nodes | item(3) | item(state) | eq(3); class.s4=nodes | item(3) | item(state) | eq(4)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(target, port(nodes) | item(3) | item(id))"
+         style="position: relative; width: 144px; height: 108px; flex-shrink: 0;">
+      <div id="pipe-3" class="pipe" style="position: absolute; left: -15px; top: 40px; width: 16px; height: 9px;"></div>
+      <div id="nk-3" style="position: absolute; left: 8px; top: 4px; width: 128px; height: 18px;">
+        <div id="nk-3-0" class="kicker nk nk-0" data-xt-key="UI_NODE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">主張</div>
+        <div id="nk-3-1" class="kicker nk nk-1" data-xt-key="UI_NODE_LIT" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">亮起</div>
+        <div id="nk-3-2" class="kicker nk nk-2" data-xt-key="UI_NODE_FRAGILE" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px; color: #b8322a;">脆弱</div>
+        <div id="nk-3-3" class="kicker nk nk-3" data-xt-key="UI_NODE_SECOND" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">第二說詞</div>
+      </div>
+      <div id="lit-3" class="lit-mark" style="position: absolute; left: 120px; top: 6px; width: 14px; height: 14px;">
+        <svg id="lit-3-art" viewBox="0 0 14 14" style="position: absolute; left: 0px; top: 0px; width: 14px; height: 14px;">
+          <path id="Tri" d="M1 2 H13 L7 12 Z" fill="#f3eedf"/>
+        </svg>
+      </div>
+      <div id="node-3-t" class="node-text" data-xt-bind="text=nodes | item(3) | item(text)"
+           style="position: absolute; left: 8px; top: 24px; width: 128px; height: 66px;"></div>
+      <div id="node-3-src" class="node-src" data-xt-key="UI_NODE_STURDY_SRC" data-xt-bind="display=nodes | item(3) | item(src) | ne('')"
+           style="position: absolute; left: 8px; top: 90px; width: 128px; height: 14px;">來自：你漏掉的證物</div>
+      <svg id="crack-3" class="crack" viewBox="0 0 40 40" style="position: absolute; left: 100px; top: 56px; width: 40px; height: 40px;">
+        <path id="Crack" d="M38 2 L28 12 L32 18 L20 26 L24 32 L12 38" fill="none" stroke="#b8322a" stroke-width="2"/>
+      </svg>
+      <div id="strike-3" class="strike" style="position: absolute; left: 0px; top: 46px; width: 144px; height: 9px;
+           background-color: #b8322a; border-radius: 4px;"></div>
+    </div>
+    <div id="node-4" class="node" data-xt-bind="display=nodes | item(4) | item(id) | ne(''); class.s0=nodes | item(4) | item(state) | eq(0); class.s1=nodes | item(4) | item(state) | eq(1); class.s2=nodes | item(4) | item(state) | eq(2); class.s3=nodes | item(4) | item(state) | eq(3); class.s4=nodes | item(4) | item(state) | eq(4)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(target, port(nodes) | item(4) | item(id))"
+         style="position: relative; width: 144px; height: 108px; flex-shrink: 0;">
+      <div id="pipe-4" class="pipe" style="position: absolute; left: -15px; top: 40px; width: 16px; height: 9px;"></div>
+      <div id="nk-4" style="position: absolute; left: 8px; top: 4px; width: 128px; height: 18px;">
+        <div id="nk-4-0" class="kicker nk nk-0" data-xt-key="UI_NODE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">主張</div>
+        <div id="nk-4-1" class="kicker nk nk-1" data-xt-key="UI_NODE_LIT" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">亮起</div>
+        <div id="nk-4-2" class="kicker nk nk-2" data-xt-key="UI_NODE_FRAGILE" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px; color: #b8322a;">脆弱</div>
+        <div id="nk-4-3" class="kicker nk nk-3" data-xt-key="UI_NODE_SECOND" style="position: absolute; left: 0px; top: 0px; width: 128px; height: 18px;">第二說詞</div>
+      </div>
+      <div id="lit-4" class="lit-mark" style="position: absolute; left: 120px; top: 6px; width: 14px; height: 14px;">
+        <svg id="lit-4-art" viewBox="0 0 14 14" style="position: absolute; left: 0px; top: 0px; width: 14px; height: 14px;">
+          <path id="Tri" d="M1 2 H13 L7 12 Z" fill="#f3eedf"/>
+        </svg>
+      </div>
+      <div id="node-4-t" class="node-text" data-xt-bind="text=nodes | item(4) | item(text)"
+           style="position: absolute; left: 8px; top: 24px; width: 128px; height: 66px;"></div>
+      <div id="node-4-src" class="node-src" data-xt-key="UI_NODE_STURDY_SRC" data-xt-bind="display=nodes | item(4) | item(src) | ne('')"
+           style="position: absolute; left: 8px; top: 90px; width: 128px; height: 14px;">來自：你漏掉的證物</div>
+      <svg id="crack-4" class="crack" viewBox="0 0 40 40" style="position: absolute; left: 100px; top: 56px; width: 40px; height: 40px;">
+        <path id="Crack" d="M38 2 L28 12 L32 18 L20 26 L24 32 L12 38" fill="none" stroke="#b8322a" stroke-width="2"/>
+      </svg>
+      <div id="strike-4" class="strike" style="position: absolute; left: 0px; top: 46px; width: 144px; height: 9px;
+           background-color: #b8322a; border-radius: 4px;"></div>
+    </div>
+  </div>
+  <div id="claim-preview" class="kicker" data-xt-bind="text=claim_preview; display=claim_preview | ne('')"
+       style="position: absolute; left: 340px; top: 182px; width: 456px; height: 18px; text-align: right; letter-spacing: 1px; text-transform: none; font-size: 13px; color: #b8322a;">主張 26＋4×3＝38</div>
+
+  <!-- Rebut picker: the refuting evidence slides up beside the forecast (empty list = hidden). -->
+  <div id="picker" class="sheet-paper" data-xt-bind="display=parry_cards | item(0) | item(id) | ne('')"
+       data-xt-timeline="picker-in: 0 opacity 0, 0 transform translateY(18px), 220ms ease-out opacity 1, 220ms ease-out transform translateY(0px)"
+       style="position: absolute; left: 250px; top: 206px; width: 300px; height: 128px; border-top: 3px solid #b8322a;">
+    <div id="picker-k" class="kicker" data-xt-key="MSG_DEB_SELECT_PARRY" style="position: absolute; left: 10px; top: 4px; width: 280px; height: 18px; letter-spacing: 1px; text-transform: none; overflow: hidden; text-overflow: ellipsis;">選擇要用來截斷的證物。</div>
+    <div id="picker-scroll" style="position: absolute; left: 10px; top: 24px; width: 284px; height: 100px; overflow-y: auto;">
+      <div id="picker-list" data-xt-repeat="parry_cards" style="width: 284px; display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px;">
+        <div id="pick" class="pick" data-xt-trigger="click(left):if port(phase) eq 0 set(card, item(id))"
+             style="position: relative; width: 136px; height: 52px; flex-shrink: 0;">
+          <div id="pick-id" class="pick-id" data-xt-bind="text=item(id)" style="position: absolute; left: 8px; top: 3px; width: 120px; height: 12px;">E02_02</div>
+          <div id="pick-t" class="pick-t" data-xt-bind="text=item(name)" style="position: absolute; left: 8px; top: 16px; width: 122px; height: 34px; line-clamp: 2;">報時鳥鐘</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="preview" class="sheet-paper" data-xt-bind="display=preview | ne('')"
+       style="position: absolute; left: 250px; top: 340px; width: 300px; height: 104px; border-top: 3px solid #123a31; border-left: 3px solid #a65432;">
+    <div id="preview-k" class="kicker" data-xt-key="UI_DEB_PREVIEW_LABEL" style="position: absolute; left: 12px; top: 4px; width: 270px; height: 18px;">預估</div>
+    <div id="preview-t" class="preview-t" data-xt-bind="text=preview" style="position: absolute; left: 12px; top: 24px; width: 276px; height: 44px;">截斷：反擊 30、粉碎主張</div>
+    <div id="preview-vs" class="preview-vs" data-xt-bind="text=preview_vs; display=preview_vs | ne('')" style="position: absolute; left: 12px; top: 70px; width: 276px; height: 32px;">若主張：截斷成立　若猛攻：截斷，對方動搖</div>
+  </div>
+
+  <!-- The gossip column ("word on the street"): the tell. Line in a bubble aimed at the standee, the gesture,
+       the brass eye (0 clear / 1 vague / 2 scripted), the basis plate, one or two candidate moves with a star, the instinct button. -->
+  <div id="tell" class="tell sheet-paper" data-xt-bind="class.c0=tell_clarity | eq(0); class.c1=tell_clarity | eq(1); class.c2=tell_clarity | eq(2)"
+       style="position: absolute; left: 556px; top: 206px; width: 290px; height: 238px; border-top: 3px solid #123a31; border-bottom: 1px solid #123a31;">
+    <div id="tell-head" class="col-head" data-xt-key="UI_DEB_GOSSIP" style="position: absolute; left: 10px; top: 4px; width: 126px; height: 24px;">小道消息</div>
+    <div id="btn-instinct" class="bbtn" data-xt-bind="class.off=instinct_ok | not"
+         data-xt-trigger="click(left):if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct); if port(phase) eq 0 and port(instinct_ok) eq true play(vignette)"
+         style="position: absolute; left: 134px; top: 4px; width: 146px; height: 26px;">
+      <div id="instinct-t" class="bbtn-t" data-xt-key="BTN_DEB_INSTINCT" style="position: absolute; left: 6px; top: 0px; width: 108px; height: 26px; overflow: hidden; text-overflow: ellipsis;">狐耳直覺</div>
+      <div id="instinct-l1" class="lamp" data-xt-bind="class.on=instinct_left | ge(1)" style="position: absolute; left: 116px; top: 8px; width: 10px; height: 10px;"></div>
+      <div id="instinct-l2" class="lamp" data-xt-bind="class.on=instinct_left | ge(2)" style="position: absolute; left: 130px; top: 8px; width: 10px; height: 10px;"></div>
+    </div>
+    <div id="tell-rule" style="position: absolute; left: 10px; top: 33px; width: 270px; height: 1px; background-color: #123a31;"></div>
+    <div id="tell-bubble" class="bubble" data-xt-bind="display=tell_line | ne('')" style="position: absolute; left: 10px; top: 40px; width: 262px; height: 74px;">
+      <div id="tell-q-zh" class="tell-line q-zh" data-xt-bind="text=format('「{0}」', tell_line)" style="position: absolute; left: 8px; top: 5px; width: 246px; height: 64px;">「小人記得清清楚楚，報時鳥一叫我就走了。」</div>
+      <div id="tell-q-en" class="tell-line q-en" data-xt-bind="text=format('“{0}”', tell_line)" style="position: absolute; left: 8px; top: 5px; width: 246px; height: 64px;">“I remember it clearly.”</div>
+      <div id="tell-tail" style="position: absolute; left: 256px; top: 26px; width: 12px; height: 12px; background-color: #f3eedf;
+           border-top: 1px solid #123a31; border-right: 1px solid #123a31; transform: rotate(45deg);"></div>
+    </div>
+    <div id="tell-gesture" data-xt-bind="display=tell_gesture | ne('')" style="position: absolute; left: 10px; top: 118px; width: 270px; height: 18px;">
+      <svg id="gesture-ico" viewBox="0 0 16 16" style="position: absolute; left: 0px; top: 1px; width: 16px; height: 16px;">
+        <path id="Hand" d="M3 9 V5 M6 8 V3 M9 8 V3 M12 8 V5 M3 9 C3 13 6 15 9 15 C12 15 13 12 13 9 V5" fill="none" stroke="#a65432" stroke-width="1.5"/>
+      </svg>
+      <div id="tell-gesture-t" class="gesture" data-xt-bind="text=tell_gesture" style="position: absolute; left: 20px; top: 0px; width: 250px; height: 18px;">拉袖口、鞠躬</div>
+    </div>
+    <div id="tell-clar" style="position: absolute; left: 10px; top: 140px; width: 270px; height: 24px;">
+      <svg id="eye-0" viewBox="0 0 30 20" data-xt-bind="display=tell_clarity | eq(0)" style="position: absolute; left: 0px; top: 2px; width: 30px; height: 20px;">
+        <path id="Lid" d="M1 10 C7 1 23 1 29 10 C23 19 7 19 1 10 Z" fill="#f3eedf" stroke="#a65432" stroke-width="2"/>
+        <circle id="Iris" cx="15" cy="10" r="5" fill="#a65432"/><circle id="Pupil" cx="15" cy="10" r="2" fill="#092e28"/>
+      </svg>
+      <svg id="eye-1" viewBox="0 0 30 20" data-xt-bind="display=tell_clarity | eq(1)" style="position: absolute; left: 0px; top: 2px; width: 30px; height: 20px;">
+        <path id="Lid" d="M1 10 C7 1 23 1 29 10 C23 19 7 19 1 10 Z" fill="#f3eedf" stroke="#a65432" stroke-width="2"/>
+        <circle id="Iris" cx="15" cy="12" r="5" fill="#a65432"/><circle id="Pupil" cx="15" cy="12" r="2" fill="#092e28"/>
+        <path id="Upper" d="M1 10 C7 1 23 1 29 10 Z" fill="#a65432"/>
+      </svg>
+      <svg id="eye-2" viewBox="0 0 30 20" data-xt-bind="display=tell_clarity | eq(2)" style="position: absolute; left: 0px; top: 0px; width: 30px; height: 22px;">
+        <path id="Shackle" d="M10 9 V6 C10 1 20 1 20 6 V9" fill="none" stroke="#a65432" stroke-width="2.4"/>
+        <rect id="Body" x="7" y="9" width="16" height="12" fill="#a65432"/><circle id="Hole" cx="15" cy="15" r="2" fill="#092e28"/>
+      </svg>
+      <div id="clar-0" class="clar clar-0" data-xt-key="UI_DEB_TELL_CLEAR" style="position: absolute; left: 38px; top: 0px; width: 80px; height: 22px;">明示</div>
+      <div id="clar-1" class="clar clar-1" data-xt-key="UI_DEB_TELL_FUZZY" style="position: absolute; left: 38px; top: 0px; width: 80px; height: 22px;">模糊</div>
+      <div id="clar-2" class="clar clar-2" data-xt-key="UI_DEB_TELL_SCRIPT" style="position: absolute; left: 38px; top: 0px; width: 120px; height: 22px;">命運的回合</div>
+      <div id="tell-basis" class="basis" data-xt-bind="text=tell_basis; display=tell_basis | ne('')" style="position: absolute; left: 150px; top: 2px; width: 120px; height: 20px;">觀察</div>
+    </div>
+    <div id="tell-cands" style="position: absolute; left: 10px; top: 170px; width: 270px; height: 40px; display: flex; flex-direction: row; gap: 4px;">
+      <div id="cand-a" class="cand" data-xt-bind="class.a0=tell_a | eq(0); class.a1=tell_a | eq(1); class.a2=tell_a | eq(2); class.a3=tell_a | eq(3); class.star=tell_star | eq(0)"
+           style="position: relative; width: 126px; height: 40px; flex-shrink: 0;">
+        <div id="cand-a-i0" class="ci ca-0" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-a-i0-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><rect id="Sheet" x="6" y="4" width="20" height="24" fill="#f3eedf" stroke="#123a31" stroke-width="2"/><rect id="Head" x="9" y="8" width="14" height="4" fill="#123a31"/><path id="Lines" d="M9 16 H23 M9 20 H23 M9 24 H18" fill="none" stroke="#123a31" stroke-width="1.6"/></svg></div>
+        <div id="cand-a-l0" class="cand-l ca-0" data-xt-key="UI_ACT_CLAIM" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">主張</div>
+        <div id="cand-a-i1" class="ci ca-1" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-a-i1-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Chev" d="M5 8 L12 16 L5 24 M12 8 L19 16 L12 24 M19 8 L26 16 L19 24" fill="none" stroke="#b8322a" stroke-width="3" stroke-linejoin="round"/></svg></div>
+        <div id="cand-a-l1" class="cand-l ca-1" data-xt-key="UI_ACT_RUSH" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">猛攻</div>
+        <div id="cand-a-i2" class="ci ca-2" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-a-i2-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Shield" d="M16 3 L27 7 V15 C27 22 22 27 16 29 C10 27 5 22 5 15 V7 Z" fill="#a65432" stroke="#092e28" stroke-width="1.6"/><path id="Band" d="M16 7 V25 M9 13 H23" fill="none" stroke="#e0a050" stroke-width="2"/></svg></div>
+        <div id="cand-a-l2" class="cand-l ca-2" data-xt-key="UI_ACT_REINFORCE" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">補強</div>
+        <div id="cand-a-i3" class="ci ca-3" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-a-i3-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Jaw" d="M4 18 C8 28 24 28 28 18" fill="none" stroke="#092e28" stroke-width="2.4"/><path id="Teeth" d="M5 17 L8 10 L11 17 L14 10 L17 17 L20 10 L23 17 L26 10 L28 17" fill="none" stroke="#123a31" stroke-width="2" stroke-linejoin="round"/><circle id="Pin" cx="16" cy="25" r="2" fill="#a65432"/></svg></div>
+        <div id="cand-a-l3" class="cand-l ca-3" data-xt-key="UI_ACT_TRAP" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">設陷</div>
+        <img id="cand-a-star" src="/_blob/ico_star.png" data-xt-bind="display=tell_star | eq(0)" style="position: absolute; left: 110px; top: -8px; width: 20px; height: 20px; object-fit: contain;">
+      </div>
+      <div id="cand-sep" class="slash" data-xt-bind="display=tell_b | ge(0)" style="width: 14px; height: 40px; flex-shrink: 0;">／</div>
+      <div id="cand-b" class="cand" data-xt-bind="class.a0=tell_b | eq(0); class.a1=tell_b | eq(1); class.a2=tell_b | eq(2); class.a3=tell_b | eq(3); class.star=tell_star | eq(1); display=tell_b | ge(0)"
+           style="position: relative; width: 126px; height: 40px; flex-shrink: 0;">
+        <div id="cand-b-i0" class="ci ca-0" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-b-i0-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><rect id="Sheet" x="6" y="4" width="20" height="24" fill="#f3eedf" stroke="#123a31" stroke-width="2"/><rect id="Head" x="9" y="8" width="14" height="4" fill="#123a31"/><path id="Lines" d="M9 16 H23 M9 20 H23 M9 24 H18" fill="none" stroke="#123a31" stroke-width="1.6"/></svg></div>
+        <div id="cand-b-l0" class="cand-l ca-0" data-xt-key="UI_ACT_CLAIM" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">主張</div>
+        <div id="cand-b-i1" class="ci ca-1" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-b-i1-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Chev" d="M5 8 L12 16 L5 24 M12 8 L19 16 L12 24 M19 8 L26 16 L19 24" fill="none" stroke="#b8322a" stroke-width="3" stroke-linejoin="round"/></svg></div>
+        <div id="cand-b-l1" class="cand-l ca-1" data-xt-key="UI_ACT_RUSH" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">猛攻</div>
+        <div id="cand-b-i2" class="ci ca-2" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-b-i2-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Shield" d="M16 3 L27 7 V15 C27 22 22 27 16 29 C10 27 5 22 5 15 V7 Z" fill="#a65432" stroke="#092e28" stroke-width="1.6"/><path id="Band" d="M16 7 V25 M9 13 H23" fill="none" stroke="#e0a050" stroke-width="2"/></svg></div>
+        <div id="cand-b-l2" class="cand-l ca-2" data-xt-key="UI_ACT_REINFORCE" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">補強</div>
+        <div id="cand-b-i3" class="ci ca-3" style="position: absolute; left: 4px; top: 4px; width: 32px; height: 32px;"><svg id="cand-b-i3-art" viewBox="0 0 32 32" style="width: 32px; height: 32px; flex-shrink: 0;"><path id="Jaw" d="M4 18 C8 28 24 28 28 18" fill="none" stroke="#092e28" stroke-width="2.4"/><path id="Teeth" d="M5 17 L8 10 L11 17 L14 10 L17 17 L20 10 L23 17 L26 10 L28 17" fill="none" stroke="#123a31" stroke-width="2" stroke-linejoin="round"/><circle id="Pin" cx="16" cy="25" r="2" fill="#a65432"/></svg></div>
+        <div id="cand-b-l3" class="cand-l ca-3" data-xt-key="UI_ACT_TRAP" style="position: absolute; left: 40px; top: 9px; width: 84px; height: 22px;">設陷</div>
+        <img id="cand-b-star" src="/_blob/ico_star.png" data-xt-bind="display=tell_star | eq(1)" style="position: absolute; left: 110px; top: -8px; width: 20px; height: 20px; object-fit: contain;">
+      </div>
+    </div>
+    <div id="tell-star" class="star-t" data-xt-bind="text=tell_star_text; display=tell_star_text | ne('')" style="position: absolute; left: 10px; top: 214px; width: 270px; height: 16px;">較可能（規則 1）</div>
+  </div>
+
+  <!-- Opponent's pressure gauge (top right): needle from right (full) to left (zero); white / amber / rust zones;
+       rattles in the rust zone; the Shaken plate and lamp; a vermilion ring in the Break round; Cornered claw at its lower left. -->
+  <div id="opp-gauge" class="gauge" data-xt-bind="display=mode | eq(0); class.mid=hp_opp | range(0, hp_opp_max, 0, 1) | between(0.2, 0.5); class.low=hp_opp | range(0, hp_opp_max, 0, 1) | lt(0.2); class.shaken=st_shaken | gt(0); class.brk=st_break"
+       style="position: absolute; left: 1100px; top: 12px; width: 164px; height: 196px;">
+    <div id="go-ring" class="gring" style="position: absolute; left: 1px; top: 1px; width: 162px; height: 162px;"></div>
+    <div id="go-wrap" class="dial-wrap" style="position: absolute; left: 4px; top: 4px; width: 156px; height: 156px;">
+      <svg id="go-dial" viewBox="0 0 156 156" style="position: absolute; left: 0px; top: 0px; width: 156px; height: 156px;"><defs><linearGradient id="go-brass" x1="0" y1="0" x2="156" y2="156" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e3b36a"/><stop offset="0.45" stop-color="#a65432"/><stop offset="1" stop-color="#5e2c18"/></linearGradient></defs><circle id="Bezel" cx="78.0" cy="78.0" r="76.0" fill="url(#go-brass)" stroke="#092e28" stroke-width="2"/><circle id="Face" cx="78.0" cy="78.0" r="67.0" fill="#f6f1e3" stroke="#5e2c18" stroke-width="1.5"/><path id="Track" d="M27.8 107.0 A58.0 58.0 0 1 1 128.2 107.0" fill="none" stroke="#092e28" stroke-width="11"/><path id="ZoneRust" d="M27.3 106.1 A58.0 58.0 0 0 1 22.8 60.1" fill="none" stroke="#9c3324" stroke-width="7"/><path id="ZoneAmber" d="M22.8 60.1 A58.0 58.0 0 0 1 78.0 20.0" fill="none" stroke="#d99034" stroke-width="7"/><path id="ZoneWhite" d="M78.0 20.0 A58.0 58.0 0 0 1 128.7 106.1" fill="none" stroke="#fffdf5" stroke-width="7"/><path id="Ticks" d="M33.8 103.5 L39.0 100.5 M27.3 83.3 L30.3 83.0 M29.5 62.2 L32.3 63.2 M40.1 43.9 L42.3 45.9 M57.3 31.4 L58.5 34.1 M78.0 27.0 L78.0 33.0 M98.7 31.4 L97.5 34.1 M115.9 43.9 L113.7 45.9 M126.5 62.2 L123.7 63.2 M128.7 83.3 L125.7 83.0 M122.2 103.5 L117.0 100.5" fill="none" stroke="#123a31" stroke-width="1.6"/><circle id="Rivet0" cx="128.9" cy="27.1" r="2.2" fill="#092e28"/><circle id="Rivet1" cx="128.9" cy="128.9" r="2.2" fill="#092e28"/><circle id="Rivet2" cx="27.1" cy="128.9" r="2.2" fill="#092e28"/><circle id="Rivet3" cx="27.1" cy="27.1" r="2.2" fill="#092e28"/></svg>
+      <div id="go-needle" class="needle" data-xt-bind="rotate=hp_opp | range(0, hp_opp_max, -120, 120)" style="position: absolute; left: 72.0px; top: 26.0px; width: 12px; height: 104.0px; transform-origin: 50% 50%;"><svg id="go-needle-art" viewBox="0 0 12 104.0" style="position: absolute; left: 0px; top: 0px; width: 12px; height: 104.0px;"><path id="Blade" d="M6 2 L9 52.0 L6 64.0 L3 52.0 Z" fill="#b8322a" stroke="#092e28" stroke-width="1"/></svg></div><div id="go-hub" class="hub" style="position: absolute; left: 71.0px; top: 71.0px; width: 14px; height: 14px;"></div>
+      <div id="go-num" class="gnum" data-xt-bind="text=format('{0}／{1}', hp_opp, hp_opp_max)" style="position: absolute; left: 28.0px; top: 94.0px; width: 100px; height: 24px;">70／100</div>
+    </div>
+    <div id="go-valve" class="steam valve" style="position: absolute; left: 132px; top: 8px; width: 34px; height: 34px;"></div>
+    <div id="go-steam" class="steam" data-xt-timeline="float-opp: 0 opacity 0.95, 0 transform scale(0.6), 700ms ease-out opacity 0, 700ms ease-out transform scale(1.8)"
+         style="position: absolute; left: -10px; top: 40px; width: 60px; height: 60px;"></div>
+    <div id="go-shaken" class="plate" data-xt-bind="display=st_shaken | gt(0)" style="position: absolute; left: 14px; top: 150px; width: 136px; height: 28px;">
+      <div id="go-shaken-l" class="lamp on" style="position: absolute; left: 8px; top: 8px; width: 10px; height: 10px;"></div>
+      <div id="go-shaken-t" class="plate-t" data-xt-key="UI_DEB_PREVIEW_SHAKEN" style="position: absolute; left: 24px; top: 1px; width: 108px; height: 24px; font-size: 13px;">動搖 ×1.5</div>
+    </div>
+  </div>
+  <div id="konju" class="sico" data-xt-bind="display=mode | eq(0); class.on=st_konju | gt(0)" style="position: absolute; left: 1060px; top: 118px; width: 44px; height: 58px;">
+    <svg id="konju-art" viewBox="0 0 44 44" style="position: absolute; left: 0px; top: 0px; width: 44px; height: 44px;">
+      <circle id="Disc" cx="22" cy="22" r="20" fill="#f3eedf" stroke="#b8322a" stroke-width="2"/>
+      <path id="Claw" d="M11 9 C16 17 15 27 10 35 M20 7 C25 16 24 27 19 37 M29 9 C34 17 33 27 28 35" fill="none" stroke="#b8322a" stroke-width="3.4"/>
+    </svg>
+    <div id="konju-l1" class="lamp" data-xt-bind="class.on=st_konju | ge(1)" style="position: absolute; left: 9px; top: 47px; width: 10px; height: 10px;"></div>
+    <div id="konju-l2" class="lamp" data-xt-bind="class.on=st_konju | ge(2)" style="position: absolute; left: 25px; top: 47px; width: 10px; height: 10px;"></div>
+    <div id="konju-tip" class="tip" data-xt-key="UI_STATE_KONJU_TIP" style="position: absolute; left: -200px; top: 60px; width: 240px; padding: 6px 8px 6px 8px;">困獸之鬥</div>
+  </div>
+  <div id="counter-box" class="sheet-paper" data-xt-bind="display=mode | ne(0)"
+       style="position: absolute; left: 1100px; top: 16px; width: 164px; height: 150px; border-top: 3px solid #b8322a; border-bottom: 1px solid #123a31;">
+    <div id="counter-box-k" class="kicker" data-xt-key="UI_PAPER_EXTRA" style="position: absolute; left: 10px; top: 6px; width: 144px; height: 18px; color: #b8322a;">號外</div>
+    <div id="counter-box-t" class="counter" data-xt-bind="text=counter_text" style="position: absolute; left: 8px; top: 30px; width: 148px; height: 112px;">矛盾 1／2　剩 2 回合</div>
+  </div>
+  <div id="opp-plate" style="position: absolute; left: 1100px; top: 212px; width: 164px; height: 52px; background-color: #092e28e6; border-left: 4px solid #b8322a;">
+    <div id="opp-name" class="opp-name" data-xt-bind="text=opp_name" style="position: absolute; left: 10px; top: 4px; width: 148px; height: 28px; overflow: hidden; text-overflow: ellipsis;">費奇</div>
+    <div id="opp-type" class="opp-type" data-xt-bind="text=opp_type" style="position: absolute; left: 10px; top: 32px; width: 148px; height: 16px;">犯人</div>
+  </div>
+  <div id="hand" data-xt-bind="display=hand | gt(0)" style="position: absolute; left: 1100px; top: 268px; width: 164px; height: 30px; background-color: #092e28cc;">
+    <div id="hand-c1" class="cback" style="position: absolute; left: 10px; top: 4px; width: 15px; height: 22px; transform: rotate(-8deg);"></div>
+    <div id="hand-c2" class="cback" data-xt-bind="display=hand | ge(2)" style="position: absolute; left: 22px; top: 4px; width: 15px; height: 22px;"></div>
+    <div id="hand-c3" class="cback" data-xt-bind="display=hand | ge(3)" style="position: absolute; left: 34px; top: 4px; width: 15px; height: 22px; transform: rotate(8deg);"></div>
+    <div id="hand-n" class="hand-n" data-xt-bind="text=format('×{0}', hand)" style="position: absolute; left: 58px; top: 2px; width: 60px; height: 26px;">×1</div>
+  </div>
+
+  <!-- Our gauge (bottom left), Breached seal at its upper left, Unstoppable bamboo at its upper right, Arthur's cover below. -->
+  <div id="me-gauge" class="gauge" data-xt-bind="display=mode | eq(0); class.mid=hp_me | range(0, hp_me_max, 0, 1) | between(0.2, 0.5); class.low=hp_me | range(0, hp_me_max, 0, 1) | lt(0.2)"
+       style="position: absolute; left: 36px; top: 452px; width: 164px; height: 164px;">
+    <div id="gm-wrap" class="dial-wrap" style="position: absolute; left: 0px; top: 0px; width: 164px; height: 164px;">
+      <svg id="gm-dial" viewBox="0 0 164 164" style="position: absolute; left: 0px; top: 0px; width: 164px; height: 164px;"><defs><linearGradient id="gm-brass" x1="0" y1="0" x2="164" y2="164" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e3b36a"/><stop offset="0.45" stop-color="#a65432"/><stop offset="1" stop-color="#5e2c18"/></linearGradient></defs><circle id="Bezel" cx="82.0" cy="82.0" r="80.0" fill="url(#gm-brass)" stroke="#092e28" stroke-width="2"/><circle id="Face" cx="82.0" cy="82.0" r="71.0" fill="#f6f1e3" stroke="#5e2c18" stroke-width="1.5"/><path id="Track" d="M28.3 113.0 A62.0 62.0 0 1 1 135.7 113.0" fill="none" stroke="#092e28" stroke-width="11"/><path id="ZoneRust" d="M27.8 112.1 A62.0 62.0 0 0 1 23.0 62.8" fill="none" stroke="#9c3324" stroke-width="7"/><path id="ZoneAmber" d="M23.0 62.8 A62.0 62.0 0 0 1 82.0 20.0" fill="none" stroke="#d99034" stroke-width="7"/><path id="ZoneWhite" d="M82.0 20.0 A62.0 62.0 0 0 1 136.2 112.1" fill="none" stroke="#fffdf5" stroke-width="7"/><path id="Ticks" d="M34.4 109.5 L39.6 106.5 M27.3 87.7 L30.3 87.4 M29.7 65.0 L32.5 65.9 M41.1 45.2 L43.4 47.2 M59.6 31.8 L60.8 34.5 M82.0 27.0 L82.0 33.0 M104.4 31.8 L103.2 34.5 M122.9 45.2 L120.6 47.2 M134.3 65.0 L131.5 65.9 M136.7 87.7 L133.7 87.4 M129.6 109.5 L124.4 106.5" fill="none" stroke="#123a31" stroke-width="1.6"/><circle id="Rivet0" cx="135.7" cy="28.3" r="2.2" fill="#092e28"/><circle id="Rivet1" cx="135.7" cy="135.7" r="2.2" fill="#092e28"/><circle id="Rivet2" cx="28.3" cy="135.7" r="2.2" fill="#092e28"/><circle id="Rivet3" cx="28.3" cy="28.3" r="2.2" fill="#092e28"/></svg>
+      <div id="gm-needle" class="needle" data-xt-bind="rotate=hp_me | range(0, hp_me_max, -120, 120)" style="position: absolute; left: 76.0px; top: 26.0px; width: 12px; height: 112.0px; transform-origin: 50% 50%;"><svg id="gm-needle-art" viewBox="0 0 12 112.0" style="position: absolute; left: 0px; top: 0px; width: 12px; height: 112.0px;"><path id="Blade" d="M6 2 L9 56.0 L6 68.0 L3 56.0 Z" fill="#b8322a" stroke="#092e28" stroke-width="1"/></svg></div><div id="gm-hub" class="hub" style="position: absolute; left: 75.0px; top: 75.0px; width: 14px; height: 14px;"></div>
+      <div id="gm-num" class="gnum" data-xt-bind="text=format('{0}／{1}', hp_me, hp_me_max)" style="position: absolute; left: 32.0px; top: 98.0px; width: 100px; height: 24px;">81／100</div>
+    </div>
+    <div id="gm-steam" class="steam" data-xt-timeline="float-me: 0 opacity 0.95, 0 transform scale(0.6), 700ms ease-out opacity 0, 700ms ease-out transform scale(1.8)"
+         style="position: absolute; left: 120px; top: 40px; width: 60px; height: 60px;"></div>
+  </div>
+  <div id="shisshu" class="sico" data-xt-bind="class.on=st_shisshu | gt(0)" style="position: absolute; left: 10px; top: 440px; width: 40px; height: 54px;">
+    <svg id="shisshu-art" viewBox="0 0 40 40" style="position: absolute; left: 0px; top: 0px; width: 40px; height: 40px;">
+      <rect id="Seal" x="3" y="3" width="34" height="34" fill="#f3eedf" stroke="#5b6662" stroke-width="3"/>
+      <rect id="Inner" x="9" y="9" width="22" height="22" fill="none" stroke="#5b6662" stroke-width="1.6"/>
+      <path id="Crack" d="M22 2 L18 13 L24 19 L15 28 L19 38" fill="none" stroke="#092e28" stroke-width="2"/>
+    </svg>
+    <div id="shisshu-l1" class="lamp" data-xt-bind="class.on=st_shisshu | ge(1)" style="position: absolute; left: 15px; top: 43px; width: 10px; height: 10px;"></div>
+    <div id="shisshu-tip" class="tip" data-xt-key="UI_STATE_SHISSHU_TIP" style="position: absolute; left: 44px; top: -40px; width: 240px; padding: 6px 8px 6px 8px;">失守陣地</div>
+  </div>
+  <div id="hachiku" class="sico" data-xt-bind="class.on=st_hachiku | gt(0); class.pre=st_hachiku_preview; class.gold=st_hachiku | ge(3)"
+       style="position: absolute; left: 190px; top: 438px; width: 42px; height: 58px; background-color: #f3eedfd9;">
+    <svg id="hachiku-art" viewBox="0 0 42 58" style="position: absolute; left: 0px; top: 0px; width: 42px; height: 58px;">
+      <rect id="Stem" x="14" y="3" width="14" height="52" rx="5" fill="#3d6b47" stroke="#20402a" stroke-width="1.4"/>
+      <path id="Nodes" d="M14 20 H28 M14 37 H28" fill="none" stroke="#20402a" stroke-width="2"/>
+      <path id="Leaf" d="M28 14 C36 10 40 12 41 16 C36 17 32 17 28 16 Z" fill="#3d6b47"/>
+    </svg>
+    <svg id="hk-c1" viewBox="0 0 42 58" data-xt-bind="display=st_hachiku | ge(1)" style="position: absolute; left: 0px; top: 0px; width: 42px; height: 58px;">
+      <path id="C1" d="M18 44 L23 48 L20 53" fill="none" stroke="#e0a050" stroke-width="2"/>
+    </svg>
+    <svg id="hk-c2" viewBox="0 0 42 58" data-xt-bind="display=st_hachiku | ge(2)" style="position: absolute; left: 0px; top: 0px; width: 42px; height: 58px;">
+      <path id="C2" d="M24 24 L19 29 L23 34" fill="none" stroke="#e0a050" stroke-width="2"/>
+    </svg>
+    <svg id="hk-c3" viewBox="0 0 42 58" data-xt-bind="display=st_hachiku | ge(3)" style="position: absolute; left: 0px; top: 0px; width: 42px; height: 58px;">
+      <path id="C3" d="M18 6 L23 11 L19 17" fill="none" stroke="#e0a050" stroke-width="2"/>
+    </svg>
+    <div id="hachiku-n" class="hk-n" data-xt-bind="text=format('×{0}', st_hachiku); display=st_hachiku | gt(0)" style="position: absolute; left: 0px; top: 42px; width: 40px; height: 16px;">×1</div>
+  </div>
+  <div id="assist" class="assist" data-xt-bind="class.armed=assist_armed; class.spent=assist_left | eq(0)" data-xt-trigger="click(left):if port(phase) eq 0 emit(assist)"
+       style="position: absolute; left: 16px; top: 628px; width: 216px; height: 76px;">
+    <div id="assist-face" class="face" style="position: absolute; left: 10px; top: 10px; width: 56px; height: 56px; overflow: hidden;">
+      <img id="assist-art" src="/_blob/char_arthur.png" style="position: absolute; left: -104px; top: -4px; width: 260px; height: 390px; object-fit: contain;">
+    </div>
+    <div id="assist-t" class="assist-t" data-xt-key="BTN_DEB_ASSIST" style="position: absolute; left: 76px; top: 12px; width: 130px; height: 22px;">援護</div>
+    <div id="assist-l1" class="lamp" data-xt-bind="class.on=assist_left | ge(1)" style="position: absolute; left: 78px; top: 44px; width: 12px; height: 12px;"></div>
+    <div id="assist-l2" class="lamp" data-xt-bind="display=assist_left | ge(2); class.on=assist_left | ge(2)" style="position: absolute; left: 96px; top: 44px; width: 12px; height: 12px;"></div>
+    <div id="assist-key" class="kicker" style="position: absolute; left: 180px; top: 50px; width: 30px; height: 18px; letter-spacing: 0px; color: #f3eedf80; text-align: right;">V</div>
+  </div>
+
+  <!-- Our chains (same 3 x 5 as the board): clipping chips placed by item(chain)/item(pos), the link to the right neighbour
+       drawn in the gap (1 red thread, 2 pencil dash + weak gear, 3 scissors, 4 gold + star, 5 covered = weak gear in a bandage ring,
+       6 snapped this round). Fixed hit cells on top send seg = chain x 5 + pos. -->
+  <div id="chains" class="chains" style="position: absolute; left: 240px; top: 448px; width: 760px; height: 134px;">
+    <div id="row-1" class="rowno" style="position: absolute; left: 6px; top: 13px; width: 22px; height: 22px;">I</div>
+    <div id="row-2" class="rowno" style="position: absolute; left: 6px; top: 57px; width: 22px; height: 22px;">II</div>
+    <div id="row-3" class="rowno" style="position: absolute; left: 6px; top: 101px; width: 22px; height: 22px;">III</div>
+    <div id="chips" data-xt-repeat="chains" style="position: absolute; left: 0px; top: 0px; width: 760px; height: 134px; pointer-events: none;">
+      <div id="chip" class="chip" data-xt-bind="display=item(id) | ne(''); class.sel=item(sel); translate-x=item(pos) | scale(146) | offset(36); translate-y=item(chain) | scale(44) | offset(5)"
+           style="position: absolute; left: 0px; top: 0px; width: 122px; height: 38px;">
+        <div id="chip-t" class="chip-t" data-xt-bind="text=item(name)" style="position: absolute; left: 6px; top: 4px; width: 110px; height: 30px;">鐘擺護蓋上的新刮痕</div>
+        <div id="lk" style="position: absolute; left: 122px; top: 0px; width: 24px; height: 38px;">
+          <div id="lk-red" class="thread-red" data-xt-bind="display=item(link) | eq(1)" style="position: absolute; left: 0px; top: 18px; width: 24px; height: 3px;"></div>
+          <div id="lk-gold" class="thread-gold" data-xt-bind="display=item(link) | eq(4)" style="position: absolute; left: 0px; top: 18px; width: 24px; height: 3px;"></div>
+          <img id="lk-star" src="/_blob/ico_star.png" data-xt-bind="display=item(link) | eq(4)" style="position: absolute; left: 3px; top: 10px; width: 18px; height: 18px; object-fit: contain;">
+          <div id="lk-pencil" class="thread-pencil" data-xt-bind="display=item(link) | eq(2)" style="position: absolute; left: 0px; top: 19px; width: 24px; height: 2px;"></div>
+          <img id="lk-weak" src="/_blob/ico_weak.png" data-xt-bind="display=item(link) | eq(2)" style="position: absolute; left: 1px; top: 8px; width: 22px; height: 22px; object-fit: contain;">
+          <div id="lk-pencil5" class="thread-pencil" data-xt-bind="display=item(link) | eq(5)" style="position: absolute; left: 0px; top: 19px; width: 24px; height: 2px;"></div>
+          <div id="lk-band" class="bandage" data-xt-bind="display=item(link) | eq(5)" style="position: absolute; left: 1px; top: 8px; width: 22px; height: 22px;"></div>
+          <img id="lk-weak5" src="/_blob/ico_weak.png" data-xt-bind="display=item(link) | eq(5)" style="position: absolute; left: 4px; top: 11px; width: 16px; height: 16px; object-fit: contain;">
+          <img id="lk-cut" src="/_blob/ico_scissors.png" data-xt-bind="display=item(link) | eq(3)" style="position: absolute; left: 1px; top: 8px; width: 22px; height: 22px; object-fit: contain;">
+          <div id="lk-snap-a" class="thread-pencil" data-xt-bind="display=item(link) | eq(6)" style="position: absolute; left: 0px; top: 19px; width: 8px; height: 2px;"></div>
+          <div id="lk-snap-b" class="thread-pencil" data-xt-bind="display=item(link) | eq(6)" style="position: absolute; left: 16px; top: 19px; width: 8px; height: 2px;"></div>
+          <div id="lk-snap-x" data-xt-bind="display=item(link) | eq(6)" style="position: absolute; left: 9px; top: 12px; width: 6px; height: 16px; border-left: 2px solid #b8322a; transform: rotate(20deg);"></div>
+        </div>
+      </div>
+    </div>
+    <div id="cell-0" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 0)" style="position: absolute; left: 36px; top: 5px; width: 122px; height: 38px;"></div>
+    <div id="cell-1" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 1)" style="position: absolute; left: 182px; top: 5px; width: 122px; height: 38px;"></div>
+    <div id="cell-2" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 2)" style="position: absolute; left: 328px; top: 5px; width: 122px; height: 38px;"></div>
+    <div id="cell-3" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 3)" style="position: absolute; left: 474px; top: 5px; width: 122px; height: 38px;"></div>
+    <div id="cell-4" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 4)" style="position: absolute; left: 620px; top: 5px; width: 122px; height: 38px;"></div>
+    <div id="cell-5" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 5)" style="position: absolute; left: 36px; top: 49px; width: 122px; height: 38px;"></div>
+    <div id="cell-6" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 6)" style="position: absolute; left: 182px; top: 49px; width: 122px; height: 38px;"></div>
+    <div id="cell-7" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 7)" style="position: absolute; left: 328px; top: 49px; width: 122px; height: 38px;"></div>
+    <div id="cell-8" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 8)" style="position: absolute; left: 474px; top: 49px; width: 122px; height: 38px;"></div>
+    <div id="cell-9" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 9)" style="position: absolute; left: 620px; top: 49px; width: 122px; height: 38px;"></div>
+    <div id="cell-10" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 10)" style="position: absolute; left: 36px; top: 93px; width: 122px; height: 38px;"></div>
+    <div id="cell-11" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 11)" style="position: absolute; left: 182px; top: 93px; width: 122px; height: 38px;"></div>
+    <div id="cell-12" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 12)" style="position: absolute; left: 328px; top: 93px; width: 122px; height: 38px;"></div>
+    <div id="cell-13" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 13)" style="position: absolute; left: 474px; top: 93px; width: 122px; height: 38px;"></div>
+    <div id="cell-14" class="cell" data-xt-trigger="click(left):if port(phase) eq 0 set(seg, 14)" style="position: absolute; left: 620px; top: 93px; width: 122px; height: 38px;"></div>
+  </div>
+
+  <!-- Lock-in confirmation: the summary (and the cover-armed line), Back, Lock (Enter). After locking: "Locked in". -->
+  <div id="confirm" class="confirm" data-xt-bind="display=summary | ne(''); class.armed=assist_armed"
+       style="position: absolute; left: 240px; top: 586px; width: 760px; height: 38px;">
+    <div id="confirm-mark" style="position: absolute; left: 0px; top: 0px; width: 6px; height: 38px; background-color: #b8322a;"></div>
+    <div id="summary" class="summary" data-xt-bind="text=summary" style="position: absolute; left: 16px; top: 0px; width: 520px; height: 36px;">反駁　對準：我在報時鳥報三點時就離開了　出示：報童小湯米的證詞</div>
+    <div id="armed-t" class="armed-t" data-xt-key="UI_DEB_ASSIST_ARMED" data-xt-bind="display=assist_armed" style="position: absolute; left: 16px; top: 21px; width: 520px; height: 14px;">援護待命</div>
+    <div id="btn-back" class="backb" data-xt-bind="display=phase | eq(0)" data-xt-trigger="click(left):if port(phase) eq 0 emit(back)"
+         style="position: absolute; left: 548px; top: 4px; width: 66px; height: 30px;">
+      <div id="btn-back-t" class="backb-t" data-xt-key="BTN_BACK" style="position: absolute; left: 0px; top: 0px; width: 64px; height: 28px;">返回</div>
+    </div>
+    <div id="btn-lock" class="lockb" data-xt-bind="display=phase | eq(0); class.off=can_lock | not" data-xt-trigger="click(left):if port(phase) eq 0 and port(can_lock) eq true emit(lock)"
+         style="position: absolute; left: 622px; top: 3px; width: 132px; height: 32px;">
+      <div id="btn-lock-t" class="lockb-t" data-xt-key="BTN_DEB_LOCK" style="position: absolute; left: 0px; top: 0px; width: 130px; height: 30px;">鎖定</div>
+    </div>
+    <div id="locked" class="locked-t" data-xt-key="UI_DEB_LOCKED" data-xt-bind="display=phase | ne(0)" style="position: absolute; left: 604px; top: 3px; width: 150px; height: 32px;">已鎖定</div>
+  </div>
+
+  <!-- The four moves as lead type blocks: Attack (Solid Chain, Sophistry) | brass divider | Defend (Rebut, Observe). -->
+  <div id="acts" class="acts" data-xt-bind="class.locked=phase | ne(0)"
+       style="position: absolute; left: 240px; top: 630px; width: 760px; height: 74px; display: flex; flex-direction: row; align-items: center; gap: 6px;">
+    <div id="grp-atk" class="grp" data-xt-key="UI_ACT_GROUP_ATK" style="width: 52px; height: 72px; flex-shrink: 0;">攻</div>
+    <div id="act-1" class="tblock" data-xt-bind="class.on=sel_act | eq(1); class.off=act_enabled | item(0) | not"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(act, 1)"
+         style="position: relative; width: 150px; height: 72px; flex-shrink: 0;">
+      <div id="tb-1-k" class="tb-k" style="position: absolute; left: 6px; top: 3px; width: 14px; height: 14px;">1</div>
+      <div id="tb-1-t" class="tb-t" data-xt-key="BTN_DEB_SOLID" style="position: absolute; left: 0px; top: 10px; width: 150px; height: 30px;">實證連鎖</div>
+      <div id="tb-1-r" class="tb-r" data-xt-bind="text=act_reason | item(0); display=act_reason | item(0) | ne('')" style="position: absolute; left: 6px; top: 42px; width: 138px; height: 26px;">失守：這一回合不能反駁</div>
+    </div>
+    <div id="act-2" class="tblock" data-xt-bind="class.on=sel_act | eq(2); class.off=act_enabled | item(1) | not"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(act, 2)"
+         style="position: relative; width: 150px; height: 72px; flex-shrink: 0;">
+      <div id="tb-2-k" class="tb-k" style="position: absolute; left: 6px; top: 3px; width: 14px; height: 14px;">2</div>
+      <div id="tb-2-t" class="tb-t" data-xt-key="BTN_DEB_SOPH" style="position: absolute; left: 0px; top: 10px; width: 150px; height: 30px;">詭辯</div>
+      <div id="tb-2-r" class="tb-r" data-xt-bind="text=act_reason | item(1); display=act_reason | item(1) | ne('')" style="position: absolute; left: 6px; top: 42px; width: 138px; height: 26px;">失守：這一回合不能反駁</div>
+    </div>
+    <div id="divider" class="divider" style="position: relative; width: 14px; height: 74px; flex-shrink: 0; margin: 0px 8px 0px 8px;">
+      <div id="rivet-1" class="rivet" style="position: absolute; left: 4px; top: 6px; width: 6px; height: 6px;"></div>
+      <div id="rivet-2" class="rivet" style="position: absolute; left: 4px; top: 62px; width: 6px; height: 6px;"></div>
+    </div>
+    <div id="grp-def" class="grp" data-xt-key="UI_ACT_GROUP_DEF" style="width: 52px; height: 72px; flex-shrink: 0;">守</div>
+    <div id="act-3" class="tblock" data-xt-bind="class.on=sel_act | eq(3); class.off=act_enabled | item(2) | not; class.cracked=st_shisshu | gt(0)"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(act, 3)"
+         style="position: relative; width: 150px; height: 72px; flex-shrink: 0;">
+      <div id="tb-3-k" class="tb-k" style="position: absolute; left: 6px; top: 3px; width: 14px; height: 14px;">3</div>
+      <div id="tb-3-t" class="tb-t" data-xt-key="BTN_DEB_PARRY" style="position: absolute; left: 0px; top: 10px; width: 150px; height: 30px;">反駁</div>
+      <div id="tb-3-r" class="tb-r" data-xt-bind="text=act_reason | item(2); display=act_reason | item(2) | ne('')" style="position: absolute; left: 6px; top: 42px; width: 138px; height: 26px;">失守：這一回合不能反駁</div>
+      <svg id="tb-3-crack" class="tb-crack" viewBox="0 0 150 72" style="position: absolute; left: 0px; top: 0px; width: 150px; height: 72px;">
+        <path id="Crack" d="M92 0 L80 18 L96 30 L70 48 L84 58 L74 72" fill="none" stroke="#f3eedfb3" stroke-width="2.4"/>
+      </svg>
+    </div>
+    <div id="act-4" class="tblock" data-xt-bind="class.on=sel_act | eq(4); class.off=act_enabled | item(3) | not"
+         data-xt-trigger="click(left):if port(phase) eq 0 set(act, 4)"
+         style="position: relative; width: 150px; height: 72px; flex-shrink: 0;">
+      <div id="tb-4-k" class="tb-k" style="position: absolute; left: 6px; top: 3px; width: 14px; height: 14px;">4</div>
+      <div id="tb-4-t" class="tb-t" data-xt-key="BTN_DEB_OBSERVE" style="position: absolute; left: 0px; top: 10px; width: 150px; height: 30px;">觀察</div>
+      <div id="tb-4-r" class="tb-r" data-xt-bind="text=act_reason | item(3); display=act_reason | item(3) | ne('')" style="position: absolute; left: 6px; top: 42px; width: 138px; height: 26px;">失守：這一回合不能反駁</div>
+    </div>
+  </div>
+
+  <!-- Status (bottom right): Shaken (x1.5 lamp, rounds as dots), Break round, Endgame, other flags; Opponent Notes below. -->
+  <div id="status" class="status" style="position: absolute; left: 1012px; top: 448px; width: 252px; height: 176px;">
+    <div id="status-k" class="kicker" data-xt-key="UI_DEB_STATUS_LABEL" style="position: absolute; left: 10px; top: 4px; width: 230px; height: 18px;">狀態</div>
+    <div id="status-list" style="position: absolute; left: 10px; top: 26px; width: 232px; height: 144px; display: flex; flex-direction: column; gap: 4px;">
+      <div id="st-brk" class="st-row st-brk" data-xt-key="UI_DEB_STATUS_BREAK_TURN" data-xt-bind="display=st_break" style="width: 232px; height: 22px; flex-shrink: 0;">論破回合</div>
+      <div id="st-shaken" data-xt-bind="display=st_shaken | gt(0)" style="width: 232px; height: 22px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 6px;">
+        <div id="st-shaken-l" class="lamp on" style="width: 10px; height: 10px; flex-shrink: 0;"></div>
+        <div id="st-shaken-t" class="st-row" data-xt-key="UI_DEB_PREVIEW_SHAKEN" style="height: 22px; flex-shrink: 0;">動搖 ×1.5</div>
+        <div id="st-shaken-d1" class="dot" style="width: 8px; height: 8px; flex-shrink: 0;"></div>
+        <div id="st-shaken-d2" class="dot" data-xt-bind="display=st_shaken | ge(2)" style="width: 8px; height: 8px; flex-shrink: 0;"></div>
+      </div>
+      <div id="st-tail" data-xt-bind="display=st_tail | gt(0)" style="width: 232px; height: 22px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 6px;">
+        <div id="st-tail-t" class="st-row" data-xt-key="UI_TAIL" style="height: 22px; flex-shrink: 0;">尾聲</div>
+        <div id="st-tail-d1" class="dot" style="width: 8px; height: 8px; flex-shrink: 0;"></div>
+        <div id="st-tail-d2" class="dot" data-xt-bind="display=st_tail | ge(2)" style="width: 8px; height: 8px; flex-shrink: 0;"></div>
+      </div>
+      <div id="st-none-1" data-xt-bind="display=st_break | not" style="width: 232px; flex-shrink: 0;">
+        <div id="st-none-2" data-xt-bind="display=st_shaken | eq(0)" style="width: 232px;">
+          <div id="st-none-3" data-xt-bind="display=st_tail | eq(0)" style="width: 232px;">
+            <div id="st-none" class="st-flags" data-xt-bind="display=st_flags | eq('')" style="width: 232px; height: 17px; color: #123a3180;">—</div>
+          </div>
+        </div>
+      </div>
+      <div id="st-flags" class="st-flags" data-xt-bind="text=st_flags; display=st_flags | ne('')" style="width: 232px; flex-shrink: 0;">不能補強・聽眾不耐</div>
+    </div>
+  </div>
+  <div id="btn-notes" class="tab" style="position: absolute; left: 1012px; top: 632px; width: 252px; height: 32px;">
+    <div id="btn-notes-t" class="tab-t" data-xt-key="BTN_DEB_NOTES" style="position: absolute; left: 0px; top: 0px; width: 250px; height: 30px;">對手筆記</div>
+  </div>
+
+  <!-- Damage / heal numbers popping off the gauges. -->
+  <div id="float-opp" class="float" data-xt-bind="text=float_opp; display=float_opp | ne('')"
+       data-xt-timeline="float-opp: 0 opacity 0, 0 transform translateY(14px) scale(1.3), 140ms ease-out opacity 1, 140ms ease-out transform translateY(0px) scale(1), 1000ms opacity 1, 1000ms transform translateY(-6px) scale(1), 1400ms ease-in opacity 0, 1400ms ease-in transform translateY(-30px) scale(1)"
+       style="position: absolute; left: 980px; top: 60px; width: 120px; height: 40px;">−35</div>
+  <div id="float-me" class="float" data-xt-bind="text=float_me; display=float_me | ne('')"
+       data-xt-timeline="float-me: 0 opacity 0, 0 transform translateY(14px) scale(1.3), 140ms ease-out opacity 1, 140ms ease-out transform translateY(0px) scale(1), 1000ms opacity 1, 1000ms transform translateY(-6px) scale(1), 1400ms ease-in opacity 0, 1400ms ease-in transform translateY(-30px) scale(1)"
+       style="position: absolute; left: 58px; top: 470px; width: 120px; height: 40px;">−22</div>
+
+  <!-- Matchup table: a brass handle on the right edge (click or T) opens the 4 x 3 table; the tell's candidate columns light up;
+       the Rebut row greys out while Breached. -->
+  <div id="table" style="position: absolute; left: 414px; top: 172px; width: 850px; height: 464px; pointer-events: none;">
+    <div id="table-handle" class="tab" data-xt-trigger="click(left):state(Open, toggle, target=#table)"
+         style="position: absolute; left: 686px; top: 132px; width: 164px; height: 32px; pointer-events: auto;">
+      <div id="table-handle-t" class="tab-t" data-xt-key="BTN_DEB_TABLE" style="position: absolute; left: 8px; top: 0px; width: 128px; height: 32px;">對決表</div>
+      <svg id="table-handle-arrow" viewBox="0 0 12 12" style="position: absolute; left: 142px; top: 10px; width: 12px; height: 12px;">
+        <path id="Tri" d="M2 1 L11 6 L2 11 Z" fill="#f3eedf"/>
+      </svg>
+    </div>
+    <div id="table-panel" class="tbl" style="position: absolute; left: 0px; top: 0px; width: 682px; height: 464px; pointer-events: auto;">
+      <div id="tbl-title" class="col-head" data-xt-key="UI_TABLE_TITLE" style="position: absolute; left: 12px; top: 6px; width: 100px; height: 28px; line-height: 28px;">對決表</div>
+      <div id="th-atk" class="th" data-xt-key="UI_TABLE_COL_ATK" data-xt-bind="class.lit-a=tell_a | le(1); class.lit-b=tell_b | between(0, 1)" style="position: absolute; left: 116px; top: 6px; width: 182px; height: 28px;">主張／猛攻</div>
+      <div id="th-rf" class="th" data-xt-key="UI_TABLE_COL_REINFORCE" data-xt-bind="class.lit-a=tell_a | eq(2); class.lit-b=tell_b | eq(2)" style="position: absolute; left: 302px; top: 6px; width: 182px; height: 28px;">補強</div>
+      <div id="th-trap" class="th" data-xt-key="UI_TABLE_COL_TRAP" data-xt-bind="class.lit-a=tell_a | eq(3); class.lit-b=tell_b | eq(3)" style="position: absolute; left: 488px; top: 6px; width: 182px; height: 28px;">設陷</div>
+      <div id="tr-solid" class="trow" style="position: absolute; left: 0px; top: 40px; width: 682px; height: 100px;">
+        <div id="rh-solid" class="rh" style="position: absolute; left: 12px; top: 0px; width: 100px; height: 100px; padding: 8px 6px 0px 8px;">
+          <div id="rh-solid-t" data-xt-key="BTN_DEB_SOLID" style="width: 86px;">實證連鎖</div>
+        </div>
+        <div id="td-solid-atk" class="td" data-xt-bind="class.lit-a=tell_a | le(1); class.lit-b=tell_b | between(0, 1)" style="position: absolute; left: 116px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-solid-atk-t" data-xt-key="UI_TABLE_SOLID_ATK" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-solid-rf" class="td" data-xt-bind="class.lit-a=tell_a | eq(2); class.lit-b=tell_b | eq(2)" style="position: absolute; left: 302px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-solid-rf-t" data-xt-key="UI_TABLE_SOLID_REINFORCE" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-solid-trap" class="td" data-xt-bind="class.lit-a=tell_a | eq(3); class.lit-b=tell_b | eq(3)" style="position: absolute; left: 488px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-solid-trap-t" data-xt-key="UI_TABLE_SOLID_TRAP" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+      </div>
+      <div id="tr-soph" class="trow" style="position: absolute; left: 0px; top: 144px; width: 682px; height: 100px;">
+        <div id="rh-soph" class="rh" style="position: absolute; left: 12px; top: 0px; width: 100px; height: 100px; padding: 8px 6px 0px 8px;">
+          <div id="rh-soph-t" data-xt-key="BTN_DEB_SOPH" style="width: 86px;">詭辯</div>
+        </div>
+        <div id="td-soph-atk" class="td" data-xt-bind="class.lit-a=tell_a | le(1); class.lit-b=tell_b | between(0, 1)" style="position: absolute; left: 116px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-soph-atk-t" data-xt-key="UI_TABLE_SOPH_ATK" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-soph-rf" class="td" data-xt-bind="class.lit-a=tell_a | eq(2); class.lit-b=tell_b | eq(2)" style="position: absolute; left: 302px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-soph-rf-t" data-xt-key="UI_TABLE_SOPH_REINFORCE" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-soph-trap" class="td" data-xt-bind="class.lit-a=tell_a | eq(3); class.lit-b=tell_b | eq(3)" style="position: absolute; left: 488px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-soph-trap-t" data-xt-key="UI_TABLE_SOPH_TRAP" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+      </div>
+      <div id="tr-parry" class="trow" data-xt-bind="class.dim=st_shisshu | gt(0)" style="position: absolute; left: 0px; top: 248px; width: 682px; height: 100px;">
+        <div id="rh-parry" class="rh" style="position: absolute; left: 12px; top: 0px; width: 100px; height: 100px; padding: 8px 6px 0px 8px;">
+          <div id="rh-parry-t" data-xt-key="BTN_DEB_PARRY" style="width: 86px;">反駁</div>
+        </div>
+        <div id="td-parry-atk" class="td" data-xt-bind="class.lit-a=tell_a | le(1); class.lit-b=tell_b | between(0, 1)" style="position: absolute; left: 116px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-parry-atk-t" data-xt-key="UI_TABLE_PARRY_ATK" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-parry-rf" class="td" data-xt-bind="class.lit-a=tell_a | eq(2); class.lit-b=tell_b | eq(2)" style="position: absolute; left: 302px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-parry-rf-t" data-xt-key="UI_TABLE_PARRY_REINFORCE" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-parry-trap" class="td" data-xt-bind="class.lit-a=tell_a | eq(3); class.lit-b=tell_b | eq(3)" style="position: absolute; left: 488px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-parry-trap-t" data-xt-key="UI_TABLE_PARRY_TRAP" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+      </div>
+      <div id="tr-obs" class="trow" style="position: absolute; left: 0px; top: 352px; width: 682px; height: 100px;">
+        <div id="rh-obs" class="rh" style="position: absolute; left: 12px; top: 0px; width: 100px; height: 100px; padding: 8px 6px 0px 8px;">
+          <div id="rh-obs-t" data-xt-key="BTN_DEB_OBSERVE" style="width: 86px;">觀察</div>
+        </div>
+        <div id="td-obs-atk" class="td" data-xt-bind="class.lit-a=tell_a | le(1); class.lit-b=tell_b | between(0, 1)" style="position: absolute; left: 116px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-obs-atk-t" data-xt-key="UI_TABLE_OBS_ATK" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-obs-rf" class="td" data-xt-bind="class.lit-a=tell_a | eq(2); class.lit-b=tell_b | eq(2)" style="position: absolute; left: 302px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-obs-rf-t" data-xt-key="UI_TABLE_OBS_REINFORCE" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+        <div id="td-obs-trap" class="td" data-xt-bind="class.lit-a=tell_a | eq(3); class.lit-b=tell_b | eq(3)" style="position: absolute; left: 488px; top: 0px; width: 182px; height: 100px; padding: 5px 6px 4px 7px;">
+          <div id="td-obs-trap-t" data-xt-key="UI_TABLE_OBS_TRAP" style="width: 168px; line-clamp: 6;">…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reveal (phase 1-3): a stop-press band; both brass-edged move cards fly in from the sides and flip (reveal_seq replays it);
+       the line being spoken, then the round's result. Click / Enter / Space: phase 1 = skip, phase 2+ = next. -->
+  <div id="reveal" data-xt-bind="display=phase | ne(0)" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+    <div id="reveal-band" class="band" style="position: absolute; left: 0px; top: 198px; width: 1280px; height: 248px;"></div>
+    <div id="reveal-cards" class="rcards" data-xt-bind="class.stale=reveal_combo | eq(3)" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+    <div id="rc-me" class="rcard" data-xt-bind="class.m1=reveal_me | eq(1); class.m2=reveal_me | eq(2); class.m3=reveal_me | eq(3); class.m4=reveal_me | eq(4)"
+         data-xt-timeline="reveal: 0 transform translateX(-760px) scaleX(1), 300ms ease-out transform translateX(0px) scaleX(1), 420ms ease-in transform translateX(0px) scaleX(0), 540ms ease-out transform translateX(0px) scaleX(1)"
+         style="position: absolute; left: 404px; top: 214px; width: 184px; height: 176px;">
+      <div id="rc-me-front" data-xt-timeline="reveal: 0 opacity 0, 419ms opacity 0, 420ms opacity 1" style="position: absolute; left: 0px; top: 0px; width: 178px; height: 170px;">
+        <div id="rc-me-who" class="rwho" data-xt-key="SPK_SHEREFOX" style="position: absolute; left: 4px; top: 10px; width: 170px; height: 18px;">Sherefox</div>
+        <div id="rc-me-rule" style="position: absolute; left: 14px; top: 34px; width: 150px; height: 3px; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+        <div id="rc-me-i1" class="rname rm-1" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-me-i1-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><rect id="L1" x="3" y="11" width="16" height="10" rx="5" fill="none" stroke="#b8322a" stroke-width="2.6"/><rect id="L2" x="13" y="11" width="16" height="10" rx="5" fill="none" stroke="#b8322a" stroke-width="2.6"/></svg></div>
+        <div id="rc-me-n1" class="rname rm-1" data-xt-key="BTN_DEB_SOLID" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">實證連鎖</div>
+        <div id="rc-me-i2" class="rname rm-2" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-me-i2-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Dash" d="M2 16 H7 M25 16 H30" fill="none" stroke="#2e2f2d" stroke-width="2.4"/><circle id="Gear" cx="16" cy="16" r="8" fill="#a65432" stroke="#092e28" stroke-width="1.6"/><circle id="Hub" cx="16" cy="16" r="3" fill="#f3eedf"/><path id="Crack" d="M14 7 L17 12 L14 16 L18 21 L16 25" fill="none" stroke="#f3eedf" stroke-width="1.6"/></svg></div>
+        <div id="rc-me-n2" class="rname rm-2" data-xt-key="BTN_DEB_SOPH" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">詭辯</div>
+        <div id="rc-me-i3" class="rname rm-3" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-me-i3-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><circle id="Ring" cx="16" cy="16" r="12" fill="none" stroke="#b8322a" stroke-width="2.6"/><rect id="Bar" x="14.5" y="8" width="3" height="11" fill="#b8322a"/><circle id="Dot" cx="16" cy="23" r="2" fill="#b8322a"/></svg></div>
+        <div id="rc-me-n3" class="rname rm-3" data-xt-key="BTN_DEB_PARRY" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">反駁</div>
+        <div id="rc-me-i4" class="rname rm-4" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-me-i4-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Lid" d="M3 16 C9 7 23 7 29 16 C23 25 9 25 3 16 Z" fill="#f3eedf" stroke="#123a31" stroke-width="2"/><circle id="Iris" cx="16" cy="16" r="5" fill="#123a31"/><circle id="Glint" cx="17.5" cy="14.5" r="1.6" fill="#f3eedf"/></svg></div>
+        <div id="rc-me-n4" class="rname rm-4" data-xt-key="BTN_DEB_OBSERVE" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">觀察</div>
+      </div>
+      <div id="rc-me-back" class="rback" data-xt-timeline="reveal: 0 opacity 1, 419ms opacity 1, 420ms opacity 0" style="position: absolute; left: 0px; top: 0px; width: 178px; height: 170px; opacity: 0;"></div>
+    </div>
+
+    <div id="rc-opp" class="rcard" data-xt-bind="class.o0=reveal_opp | eq(0); class.o1=reveal_opp | eq(1); class.o2=reveal_opp | eq(2); class.o3=reveal_opp | eq(3); class.o4=reveal_opp | eq(4)"
+         data-xt-timeline="reveal: 0 transform translateX(760px) scaleX(1), 300ms ease-out transform translateX(0px) scaleX(1), 420ms ease-in transform translateX(0px) scaleX(0), 540ms ease-out transform translateX(0px) scaleX(1)"
+         style="position: absolute; left: 692px; top: 214px; width: 184px; height: 176px;">
+      <div id="rc-opp-front" data-xt-timeline="reveal: 0 opacity 0, 419ms opacity 0, 420ms opacity 1" style="position: absolute; left: 0px; top: 0px; width: 178px; height: 170px;">
+        <div id="rc-opp-who" class="rwho" data-xt-bind="text=opp_name" style="position: absolute; left: 4px; top: 10px; width: 170px; height: 18px;">費奇</div>
+        <div id="rc-opp-rule" style="position: absolute; left: 14px; top: 34px; width: 150px; height: 3px; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+        <div id="rc-opp-i0" class="rname ro-0" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-opp-i0-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><rect id="Sheet" x="6" y="4" width="20" height="24" fill="#f3eedf" stroke="#123a31" stroke-width="2"/><rect id="Head" x="9" y="8" width="14" height="4" fill="#123a31"/><path id="Lines" d="M9 16 H23 M9 20 H23 M9 24 H18" fill="none" stroke="#123a31" stroke-width="1.6"/></svg></div>
+        <div id="rc-opp-n0" class="rname ro-0" data-xt-key="UI_ACT_CLAIM" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">主張</div>
+        <div id="rc-opp-i1" class="rname ro-1" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-opp-i1-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Chev" d="M5 8 L12 16 L5 24 M12 8 L19 16 L12 24 M19 8 L26 16 L19 24" fill="none" stroke="#b8322a" stroke-width="3" stroke-linejoin="round"/></svg></div>
+        <div id="rc-opp-n1" class="rname ro-1" data-xt-key="UI_ACT_RUSH" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">猛攻</div>
+        <div id="rc-opp-i2" class="rname ro-2" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-opp-i2-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Shield" d="M16 3 L27 7 V15 C27 22 22 27 16 29 C10 27 5 22 5 15 V7 Z" fill="#a65432" stroke="#092e28" stroke-width="1.6"/><path id="Band" d="M16 7 V25 M9 13 H23" fill="none" stroke="#e0a050" stroke-width="2"/></svg></div>
+        <div id="rc-opp-n2" class="rname ro-2" data-xt-key="UI_ACT_REINFORCE" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">補強</div>
+        <div id="rc-opp-i3" class="rname ro-3" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-opp-i3-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Jaw" d="M4 18 C8 28 24 28 28 18" fill="none" stroke="#092e28" stroke-width="2.4"/><path id="Teeth" d="M5 17 L8 10 L11 17 L14 10 L17 17 L20 10 L23 17 L26 10 L28 17" fill="none" stroke="#123a31" stroke-width="2" stroke-linejoin="round"/><circle id="Pin" cx="16" cy="25" r="2" fill="#a65432"/></svg></div>
+        <div id="rc-opp-n3" class="rname ro-3" data-xt-key="UI_ACT_TRAP" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">設陷</div>
+        <div id="rc-opp-i4" class="rname ro-4" style="position: absolute; left: 65px; top: 48px; width: 48px; height: 48px;"><svg id="rc-opp-i4-art" viewBox="0 0 32 32" style="width: 48px; height: 48px; flex-shrink: 0;"><path id="Claw" d="M8 4 C12 12 12 20 7 28 M16 3 C20 12 20 20 15 29 M24 4 C28 12 28 20 23 28" fill="none" stroke="#b8322a" stroke-width="3"/></svg></div>
+        <div id="rc-opp-n4" class="rname ro-4" data-xt-key="UI_TAIL" style="position: absolute; left: 4px; top: 108px; width: 170px; height: 34px;">尾聲</div>
+      </div>
+      <div id="rc-opp-back" class="rback" data-xt-timeline="reveal: 0 opacity 1, 419ms opacity 1, 420ms opacity 0" style="position: absolute; left: 0px; top: 0px; width: 178px; height: 170px; opacity: 0;"></div>
+    </div>
+
+    </div>
+    <div id="clash" data-xt-bind="display=reveal_combo | eq(2)" data-xt-timeline="reveal: 0 opacity 0, 0 transform scale(0.4), 540ms opacity 0, 540ms transform scale(0.4), 640ms ease-out opacity 1, 640ms ease-out transform scale(1.1), 760ms transform scale(1)"
+         style="position: absolute; left: 588px; top: 250px; width: 104px; height: 100px;">
+      <svg id="clash-art" viewBox="0 0 104 70" style="position: absolute; left: 0px; top: 0px; width: 104px; height: 70px;">
+        <xt-star id="Burst" cx="52" cy="35" points="10" r="34" r2="14" fill="#e0a050"/>
+        <path id="Cross" d="M30 14 L74 56 M74 14 L30 56" fill="none" stroke="#b8322a" stroke-width="5"/>
+      </svg>
+      <div id="clash-t" class="clash-t" data-xt-key="MSG_DEB_CLASH" style="position: absolute; left: 0px; top: 72px; width: 104px; height: 24px;">交鋒！</div>
+    </div>
+    <div id="rl-wrap" data-xt-bind="display=phase | eq(1)" style="position: absolute; left: 140px; top: 400px; width: 1000px; height: 40px;">
+      <div id="reveal-line" class="rline" data-xt-bind="text=reveal_line; display=reveal_line | ne('')"
+           data-xt-timeline="reveal: 0 opacity 0, 560ms opacity 0, 760ms ease-out opacity 1" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 40px;">報時鳥叫了三聲，店裡的人都——</div>
+    </div>
+    <div id="res-wrap" data-xt-bind="display=phase | ge(2)" style="position: absolute; left: 240px; top: 400px; width: 800px; height: 42px;">
+      <div id="result-line" class="resline" data-xt-bind="text=result_line; display=result_line | ne('')" style="position: absolute; left: 0px; top: 0px; width: 800px; height: 42px;">截斷！移除主張，反擊 30。</div>
+    </div>
+    <div id="reveal-hit" data-xt-trigger="click(left):if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)"
+         style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+  </div>
+
+  <!-- Fox-ear instinct: the screen edges darken for half a second. -->
+  <div id="vignette" data-xt-timeline="vignette: 0 opacity 0, 120ms ease-out opacity 1, 520ms ease-in opacity 0"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; pointer-events: none; opacity: 0;
+              background: radial-gradient(ellipse, #092e2800 45%, #092e28e6 100%);"></div>
+  </div>
+
+  <!-- Opening: the printing roller wipes across and leaves the page printed. -->
+  <div id="roller" data-xt-timeline="intro: 0 transform translateX(-40px), 600ms ease-in-out transform translateX(2700px), 0 opacity 1, 590ms opacity 1, 600ms opacity 0"
+       style="position: absolute; left: 0px; top: 0px; width: 2600px; height: 720px; pointer-events: none; transform: translateX(2700px); opacity: 0;
+              background: linear-gradient(90deg, #092e28 0%, #123a31 0.8%, #a65432 1.2%, #f3eedf 1.6%, #f3eedf 100%);"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

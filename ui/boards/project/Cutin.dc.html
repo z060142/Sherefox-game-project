@@ -1,0 +1,100 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cutin</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: transparent }
+  .veil { background-color: #092e28b3; color: var(--ink) }
+  .band { background-color: #f3eedf; border-top: 4px solid #123a31; border-bottom: 4px solid #123a31;
+          box-shadow: 0px 0px 0px 2px #f3eedf, 0px 0px 40px 8px #00000080 }
+  .band-rule { border-top: 1px solid #123a31; color: var(--copper) }
+  .big-img { object-fit: contain }
+  .big-txt { font-family: var(--font-display); font-size: 168px; line-height: 400px; font-weight: 700; color: #b8322a;
+             text-align: center; white-space: nowrap; letter-spacing: 6px }
+  .big-sub { font-family: var(--font-display); font-size: 30px; line-height: 40px; font-weight: 700; letter-spacing: 10px;
+             color: var(--paper); text-align: center; white-space: nowrap; text-transform: uppercase;
+             text-shadow: 0px 2px 0px #092e28, 0px 0px 6px #092e28 }
+  .st-img { object-fit: contain }
+  .st-sub { font-family: var(--font-display); font-size: 15px; line-height: 22px; font-weight: 700; letter-spacing: 3px;
+            color: #f3eedf; background-color: #092e28d9; text-align: center; white-space: nowrap; text-transform: uppercase;
+            border-bottom: 2px solid var(--copper) }
+  .st-hk { font-family: var(--font-display); font-size: 64px; line-height: 120px; font-weight: 700; color: #2f6b3a;
+           text-align: center; white-space: nowrap; border: 6px solid #2f6b3a; border-radius: 12px; background-color: #f3eedfcc }
+  .st-hk-n { font-family: var(--font-display); font-size: 30px; line-height: 34px; font-weight: 700; color: #2f6b3a; text-align: right }
+</style></helmet>
+<div id="cutin" data-xt-uiscale="fit"
+     data-xt-port='big:string in = "CUT_RONPA"; big_seq:number in = 0; stamp:string in = "STAMP_PARRY"; stamp_seq:number in = 0; stamp_n:number in = 1; subtitle:string in = ""; done:event out'
+     data-xt-trigger="port(big_seq):if port(big) eq 'CUT_RONPA' play(ronpa) else play(big); port(stamp_seq):play(stamp); timeline(big).end:emit(done); timeline(ronpa).end:emit(done)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; pointer-events: none;">
+
+  <!-- Full-screen calligraphy: the screen dims 70%, a newsprint band, the brushed word lands with a shake and fades like ink
+       (about 1.5 s; Break about 4 s). Words without artwork are set large in vermilion. The translation line shows when subtitle is set. -->
+  <div id="big-grp" data-xt-timeline="big: 0 opacity 0, 120ms ease-out opacity 1, 1100ms opacity 1, 1500ms ease-in opacity 0; ronpa: 0 opacity 0, 120ms ease-out opacity 1, 3500ms opacity 1, 4000ms ease-in opacity 0" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; opacity: 0;">
+    <div id="veil" class="veil" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+    <div id="band" class="band" data-xt-timeline="big: 0 transform scaleY(0.2), 160ms ease-out transform scaleY(1); ronpa: 0 transform scaleY(0.2), 160ms ease-out transform scaleY(1), 3500ms transform scaleY(1), 4000ms ease-in transform scaleY(0.9)" style="position: absolute; left: -20px; top: 170px; width: 1320px; height: 380px;">
+      <div id="band-r1" class="band-rule" style="position: absolute; left: 20px; top: 8px; width: 1280px; height: 1px;"></div>
+      <div id="band-r2" class="band-rule" style="position: absolute; left: 20px; top: 366px; width: 1280px; height: 1px;"></div>
+    </div>
+    <div id="big-art" data-xt-timeline="big: 0 opacity 0, 0 transform translate(0px, 0px) scale(1.3), 0 filter blur(6px), 420ms ease-out opacity 1, 420ms ease-out transform translate(0px, 0px) scale(1), 420ms ease-out filter blur(0px), 450ms transform translate(-9px, 5px) scale(1), 480ms transform translate(8px, -6px) scale(1), 510ms transform translate(-6px, 3px) scale(1), 540ms transform translate(4px, -2px) scale(1), 580ms transform translate(0px, 0px) scale(1), 1100ms opacity 1, 1100ms transform translate(0px, 0px) scale(1), 1100ms filter blur(0px), 1500ms ease-in opacity 0, 1500ms ease-in transform translate(0px, -8px) scale(1.05), 1500ms ease-in filter blur(5px); ronpa: 0 opacity 0, 0 transform translate(0px, 0px) scale(1.45), 0 filter blur(8px), 520ms ease-out opacity 1, 520ms ease-out transform translate(0px, 0px) scale(1), 520ms ease-out filter blur(0px), 550ms transform translate(-9px, 5px) scale(1), 590ms transform translate(8px, -6px) scale(1), 630ms transform translate(-6px, 3px) scale(1), 670ms transform translate(4px, -2px) scale(1), 720ms transform translate(0px, 0px) scale(1), 3500ms opacity 1, 3500ms transform translate(0px, 0px) scale(1.03), 3500ms filter blur(0px), 4000ms ease-in opacity 0, 4000ms ease-in transform translate(0px, -10px) scale(1.08), 4000ms ease-in filter blur(6px)" style="position: absolute; left: 190px; top: 130px; width: 900px; height: 430px;">
+      <img id="big-cut-ronpa" class="big-img" src="/_blob/cut_ronpa.png" data-xt-bind="display=big | eq('CUT_RONPA')" style="position: absolute; left: 0px; top: 0px; width: 900px; height: 430px;">
+      <img id="big-cut-shaken" class="big-img" src="/_blob/cut_shaken.png" data-xt-bind="display=big | eq('CUT_SHAKEN')" style="position: absolute; left: 0px; top: 0px; width: 900px; height: 430px;">
+      <img id="big-cut-hachiku3" class="big-img" src="/_blob/cut_hachiku.png" data-xt-bind="display=big | eq('CUT_HACHIKU3')" style="position: absolute; left: 0px; top: 0px; width: 900px; height: 430px;">
+      <img id="big-cut-konju" class="big-img" src="/_blob/cut_konju.png" data-xt-bind="display=big | eq('CUT_KONJU')" style="position: absolute; left: 0px; top: 0px; width: 900px; height: 430px;">
+      <img id="big-cut-shisshu" class="big-img" src="/_blob/cut_shisshu.png" data-xt-bind="display=big | eq('CUT_SHISSHU')" style="position: absolute; left: 0px; top: 0px; width: 900px; height: 430px;">
+      <div id="big-cut-brink" class="big-txt" data-xt-key="CUT_BRINK" data-xt-bind="display=big | eq('CUT_BRINK')" style="position: absolute; left: 0px; top: 15px; width: 900px; height: 400px;">絕境</div>
+      <div id="big-cut-reverse" class="big-txt" data-xt-key="CUT_REVERSE" data-xt-bind="display=big | eq('CUT_REVERSE')" style="position: absolute; left: 0px; top: 15px; width: 900px; height: 400px;">逆論破</div>
+      <div id="big-cut-double" class="big-txt" data-xt-key="CUT_DOUBLE" data-xt-bind="display=big | eq('CUT_DOUBLE')" style="position: absolute; left: 0px; top: 15px; width: 900px; height: 400px;">二連論破</div>
+      <div id="big-cut-counter" class="big-txt" data-xt-key="CUT_COUNTER" data-xt-bind="display=big | eq('CUT_COUNTER')" style="position: absolute; left: 0px; top: 15px; width: 900px; height: 400px;">反擊論破</div>
+    </div>
+    <div id="big-sub" class="big-sub" data-xt-bind="text=subtitle; display=subtitle | ne('')"
+         data-xt-timeline="big: 0 opacity 0, 620ms opacity 0, 820ms ease-out opacity 1; ronpa: 0 opacity 0, 720ms opacity 0, 920ms ease-out opacity 1"
+         style="position: absolute; left: 140px; top: 566px; width: 1000px; height: 40px;">BREAK</div>
+  </div>
+
+  <!-- Corner stamps (about 0.5 s down, then shrunk into the corner for 2 s): opponent-side events top right, ours bottom left.
+       Unstoppable x1 / x2 has no artwork: green-ink seal with the count. -->
+  <div id="stamp-tr" data-xt-timeline="stamp: 0 opacity 0, 0 transform scale(1.9) rotate(-14deg), 150ms ease-in opacity 1, 150ms ease-in transform scale(1) rotate(-6deg), 175ms ease-out transform scale(0.93) rotate(-6deg), 210ms ease-out transform scale(1) rotate(-6deg), 500ms opacity 1, 500ms transform scale(1) rotate(-6deg), 700ms ease-in-out transform scale(0.55) rotate(-6deg), 2700ms opacity 1, 3100ms ease-in opacity 0" style="position: absolute; left: 1060px; top: 36px; width: 168px; height: 168px; opacity: 0; transform-origin: 100% 0%;">
+      <div id="st-stamp-parry" data-xt-bind="display=stamp | eq('STAMP_PARRY')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-parry-img" class="st-img" src="/_blob/stamp_parry.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-clash" data-xt-bind="display=stamp | eq('STAMP_CLASH')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-clash-img" class="st-img" src="/_blob/stamp_clash.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-seen" data-xt-bind="display=stamp | eq('STAMP_SEEN')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-seen-img" class="st-img" src="/_blob/stamp_seen.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+  </div>
+  <div id="stamp-tr-sub" data-xt-timeline="stamp: 0 opacity 0, 150ms opacity 0, 260ms ease-out opacity 1, 520ms opacity 1, 680ms ease-in opacity 0" style="position: absolute; left: 1060px; top: 36px; width: 168px; height: 200px; opacity: 0;">
+      <div id="sts-stamp-parry" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_PARRY')" style="position: absolute; left: 0px; top: 168px; width: 168px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-clash" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_CLASH')" style="position: absolute; left: 0px; top: 168px; width: 168px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-seen" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_SEEN')" style="position: absolute; left: 0px; top: 168px; width: 168px; height: 22px;">CUT IN</div>
+  </div>
+  <div id="stamp-bl" data-xt-timeline="stamp: 0 opacity 0, 0 transform scale(1.9) rotate(-14deg), 150ms ease-in opacity 1, 150ms ease-in transform scale(1) rotate(-6deg), 175ms ease-out transform scale(0.93) rotate(-6deg), 210ms ease-out transform scale(1) rotate(-6deg), 500ms opacity 1, 500ms transform scale(1) rotate(-6deg), 700ms ease-in-out transform scale(0.55) rotate(-6deg), 2700ms opacity 1, 3100ms ease-in opacity 0" style="position: absolute; left: 52px; top: 500px; width: 168px; height: 168px; opacity: 0; transform-origin: 0% 100%;">
+      <div id="st-stamp-trap" data-xt-bind="display=stamp | eq('STAMP_TRAP')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-trap-img" class="st-img" src="/_blob/stamp_trap.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-whiff" data-xt-bind="display=stamp | eq('STAMP_WHIFF')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-whiff-img" class="st-img" src="/_blob/stamp_whiff.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-assist" data-xt-bind="display=stamp | eq('STAMP_ASSIST')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-assist-img" class="st-img" src="/_blob/stamp_assist.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-hachiku-lost" data-xt-bind="display=stamp | eq('STAMP_HACHIKU_LOST')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <img id="st-stamp-hachiku-lost-img" class="st-img" src="/_blob/stamp_lost.png" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+      </div>
+      <div id="st-stamp-hachiku" data-xt-bind="display=stamp | eq('STAMP_HACHIKU')" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 168px;">
+        <div id="st-hk-seal" class="st-hk" data-xt-key="STAMP_HACHIKU" style="position: absolute; left: 14px; top: 14px; width: 140px; height: 132px;">破竹</div>
+        <div id="st-hk-n" class="st-hk-n" data-xt-bind="text=format('×{0}', stamp_n)" style="position: absolute; left: 60px; top: 128px; width: 104px; height: 34px;">×1</div>
+      </div>
+  </div>
+  <div id="stamp-bl-sub" data-xt-timeline="stamp: 0 opacity 0, 150ms opacity 0, 260ms ease-out opacity 1, 520ms opacity 1, 680ms ease-in opacity 0" style="position: absolute; left: 52px; top: 500px; width: 380px; height: 168px; opacity: 0;">
+      <div id="sts-stamp-trap" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_TRAP')" style="position: absolute; left: 176px; top: 64px; width: 200px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-whiff" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_WHIFF')" style="position: absolute; left: 176px; top: 64px; width: 200px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-assist" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_ASSIST')" style="position: absolute; left: 176px; top: 64px; width: 200px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-hachiku-lost" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_HACHIKU_LOST')" style="position: absolute; left: 176px; top: 64px; width: 200px; height: 22px;">CUT IN</div>
+      <div id="sts-stamp-hachiku" class="st-sub" data-xt-bind="text=subtitle; display=stamp | eq('STAMP_HACHIKU')" style="position: absolute; left: 176px; top: 64px; width: 200px; height: 22px;">UNSTOPPABLE ×1</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

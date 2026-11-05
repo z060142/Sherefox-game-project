@@ -1374,6 +1374,7 @@ UI_DEB_COUNTER_PREVIEW,主張 {base}＋4×{n}＝{dmg}
 UI_DEB_COUNTER_PREVIEW_RUSH,猛攻 ({base}＋4×{n})×1.25＝{dmg}
 UI_DEB_DISGUISER,此對手的預兆可能是偽裝：台詞與小動作對不上時，以小動作為準。
 UI_DEB_GESTURE_KNOWN,{gesture}＝{action}
+UI_DEB_GOSSIP,小道消息
 UI_DEB_HAND,手牌 ×{n}
 UI_DEB_HP,{now}／{max}
 UI_DEB_LOCKED,已鎖定
@@ -1385,6 +1386,7 @@ UI_DEB_NOPARRY_SHISSHU,失守：這一回合不能反駁
 UI_DEB_PHASE,第 {n} 階段／共 {total} 階段
 UI_DEB_PREVIEW,傷害 {dmg}　倍率 ×{mult}　{shaken}
 UI_DEB_PREVIEW_BREAK,可以論破
+UI_DEB_PREVIEW_LABEL,預估
 UI_DEB_PREVIEW_PARRY,截斷：反擊 30、粉碎主張
 UI_DEB_PREVIEW_PARRY_NOREF,截斷：反擊 30（這個說法太堅固，主張會留著）
 UI_DEB_PREVIEW_SHAKE,可使對手動搖
@@ -1394,6 +1396,7 @@ UI_DEB_PREVIEW_VS,若{action}：{result}
 UI_DEB_ROUND,第 {n} 回合
 UI_DEB_SEGMENT,第 {n} 段：{name}
 UI_DEB_STATUS_BREAK_TURN,論破回合
+UI_DEB_STATUS_LABEL,狀態
 UI_DEB_STATUS_SHAKEN,動搖（剩 {n} 回合）
 UI_DEB_STATUS_TAIL,尾聲（剩 {n} 回合）
 UI_DEB_STATUS_TYPE,目前打法：{type}

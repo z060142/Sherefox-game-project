@@ -49,6 +49,36 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
+  - id: big-cut-hachiku3
+    type: image
+    file: shared/img/big-cut-hachiku3.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1100, h: 619, alpha: true }
+  - id: big-cut-konju
+    type: image
+    file: shared/img/big-cut-konju.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1100, h: 550, alpha: true }
+  - id: big-cut-ronpa
+    type: image
+    file: shared/img/big-cut-ronpa.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1100, h: 563, alpha: true }
+  - id: big-cut-shaken
+    type: image
+    file: shared/img/big-cut-shaken.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1100, h: 533, alpha: true }
+  - id: big-cut-shisshu
+    type: image
+    file: shared/img/big-cut-shisshu.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1100, h: 550, alpha: true }
   - id: ch-c-arthur
     type: image
     file: shared/img/ch-c-arthur.png
@@ -157,6 +187,48 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 2172, h: 724, alpha: true }
+  - id: st-stamp-assist-img
+    type: image
+    file: shared/img/st-stamp-assist-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 300, h: 295, alpha: true }
+  - id: st-stamp-clash-img
+    type: image
+    file: shared/img/st-stamp-clash-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 300, h: 291, alpha: true }
+  - id: st-stamp-hachiku-lost-img
+    type: image
+    file: shared/img/st-stamp-hachiku-lost-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 300, h: 298, alpha: true }
+  - id: st-stamp-parry-img
+    type: image
+    file: shared/img/st-stamp-parry-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 300, h: 299, alpha: true }
+  - id: st-stamp-seen-img
+    type: image
+    file: shared/img/st-stamp-seen-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 300, h: 282, alpha: true }
+  - id: st-stamp-trap-img
+    type: image
+    file: shared/img/st-stamp-trap-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 288, h: 300, alpha: true }
+  - id: st-stamp-whiff-img
+    type: image
+    file: shared/img/st-stamp-whiff-img.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 296, h: 300, alpha: true }
   - id: ui-cork
     type: image
     file: shared/img/ui-cork.jpg

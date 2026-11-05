@@ -1,0 +1,13 @@
+version: 1
+id: e980acaf-302a-427f-9a0a-4b31853a923e
+type: image
+title: st-stamp-whiff-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_whiff.png
+content: sha256:3c7a543ca3eda39f1a2a95418b4cb34d24d221138ae0344f256199fa939da2d1
+measured:
+  w: 296
+  h: 300
+  alpha: true

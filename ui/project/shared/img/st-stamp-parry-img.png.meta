@@ -1,0 +1,13 @@
+version: 1
+id: a768c7ac-2a8f-4c7b-98c6-fff60eef8942
+type: image
+title: st-stamp-parry-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_parry.png
+content: sha256:a736b7ee98817e9076c258012fced0817f4567acf91ae0f164203c87546e8ded
+measured:
+  w: 300
+  h: 299
+  alpha: true

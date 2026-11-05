@@ -1,0 +1,13 @@
+version: 1
+id: a67099c4-e4e6-4762-be28-a16c41f34fce
+type: image
+title: st-stamp-assist-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_assist.png
+content: sha256:85222e7c99c2cc9c89353259ded9591e1561135a0b2cfdfe6789e76154a241db
+measured:
+  w: 300
+  h: 295
+  alpha: true

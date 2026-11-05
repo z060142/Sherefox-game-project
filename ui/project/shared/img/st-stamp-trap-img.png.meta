@@ -1,0 +1,13 @@
+version: 1
+id: 6b510348-d310-4aba-82fa-2392bce0ec1a
+type: image
+title: st-stamp-trap-img
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/stamp_trap.png
+content: sha256:d2309474348fba45f85c4aba9719f5dda32904eafe12e56438ec1865e48704cd
+measured:
+  w: 288
+  h: 300
+  alpha: true

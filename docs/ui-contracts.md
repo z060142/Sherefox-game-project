@@ -10,6 +10,7 @@
 - 用 `xtframe-view` 量測或截圖時一律加 `--lang zh-TW`（或 `en`）：未指定語言時目前顯示原始鍵名，版面寬度會不同（T-623 修正前）。
 - 已知轉換器問題（下一版轉換器修正）：重新 import 時未經編輯器修改的觸發器不會更新（T-618，暫用 `--force`）；置中的 dock 被錨成 `left top`（T-619）。
 - 介面上的固定文字一律是字串鍵（`@key`），字串表在 `ui/project/shared/strings/<lang>.csv`（RFC 4180，`key,text`，有標頭列）。
+- 板子的行內 `style` 不寫 `var(--token)`，改寫色碼（token 的值）：import 會把兩個以上元素相同的行內樣式合併成 `shared/base.xts` 的共用 class，而 `base.xts` 沒有宣告 token，編譯時警告「var(--x) is undefined」且顏色落回初始值；`<helmet>` 裡的 class 規則照常用 `var()`。另外，UI 的 `.xts` 只宣告它整值用到的 token，若別的 UI 的共用 class 用到某個 token，該 UI 也要至少整值用一次（例如 cutin 為此用了一次 `var(--copper)`）。
 
 ## title（標題畫面，1280×720）
 
@@ -269,6 +270,29 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 | `skip` | event | out | 快轉揭示（按住／點一下跳到結算數字）。 |
 | `next` | event | out | 揭示播完後繼續（自動播放時由流圖計時）。 |
 
+UI 側實作（板子 `ui/boards/project/Debate.dc.html`）：
+
+- **整體**：背景 `_blob/bg_debate.jpg` 滿版；其餘全部放在一張 1280×720 的 `#sheet`（`calc(50% - 640px)` 置中），寬螢幕兩側露出背景。號外版型：左上報頭條（`UI_PAPER_MAST`＋朱紅「號外」`UI_PAPER_EXTRA`＋`round_text`），其下雙線；對手立繪在右（`opp_char` 用與 vn 相同的 `eq` 圖組，`char_<id>.png`，300×450），Sherefox 立繪固定在左。`show` 時播 `intro`（印刷滾筒由左往右刷過，600 ms，播完自隱）。立繪在 `phase` 0 時循環播 `fidget`（1.5 秒一輪的輕微起伏，代替小動作動畫），`phase` ≠ 0 時暫停；`opp_char` 變更時播 `ink-in`。
+- **對手主張鏈（`nodes`）**：上方五個**固定欄位**，第 k 欄讀 `nodes | item(k)`（`id` 空字串不顯示，所以清單照順序最多 5 筆），欄間以銅管相連。不用 `<repeat>`：清單範本裡的 `@key` 不會在地化，而節點的小標（`UI_NODE_NORMAL`／`UI_NODE_LIT`／`UI_NODE_FRAGILE`／`UI_NODE_SECOND`）與 `UI_NODE_STURDY_SRC` 都是固定文字。每欄是一塊頭條鉛字（頭條字體三行，英文四行）。`state` 1 亮起：朱紅外框＋燈火金光暈（呼吸）＋朱紅小標與 ▼；2 脆弱：右下裂紋、閃爍；3 第二說詞：狼影紫小標、淡紫底；4 粉碎中：朱筆一劃劃掉頭條（320 ms）後下墜淡出（900 ms，停在透明，等流圖移除）。`src` 非空時角落顯示 `UI_NODE_STURDY_SRC`（UI 不顯示 `src` 的內容）。點擊 → `set(target, nodes[k].id)`（`phase` 0 時）。`claim_preview` 在主張列右下（朱紅小字，空字串隱藏）。
+- **小道消息欄（預兆）**：欄頭 `UI_DEB_GOSSIP`（新增）＋右側狐耳直覺鈕（`BTN_DEB_INSTINCT`，兩顆燈依 `instinct_left`；`instinct_ok` 為 false 時灰且不送；點擊或 F → `emit(instinct)`，同時畫面邊緣暗下 0.5 秒）；台詞泡泡（`tell_line`，中文加「」、英文加“”，以 `:lang(en)` 切換；泡泡尾巴指向立繪；空字串隱藏）；小動作字幕（`tell_gesture`，手形小圖示）；黃銅眼睛（`tell_clarity` 0 全睜＋`UI_DEB_TELL_CLEAR`、1 半睜＋`UI_DEB_TELL_FUZZY`、2 鎖頭＋`UI_DEB_TELL_SCRIPT`）與依據小銅牌（`tell_basis`，空字串隱藏）；候選行動牌 A／B（圖示＋`UI_ACT_*`；`tell_b` −1 時只有一張；`tell_star` 0／1 的那張金框加星）；`tell_star_text` 在最下方。
+- **壓力錶**：兩個 SVG 圓錶（銅框、新聞紙錶面），指針 `rotate = hp | range(0, hp_max, -120, 120)`（右滿左零，240° 行程），錶環三段：50% 以上白、20～50% 琥珀、20% 以下鏽紅；中央數字 `format('{0}／{1}')`（數字以 %.6g 印出，52.5 不會多 0）。數字依區段變色，鏽紅區錶面抖動。對手錶在右上（`st_shaken` > 0：錶下掛 `UI_DEB_PREVIEW_SHAKEN`「動搖 ×1.5」銅牌與燈、洩壓閥冒汽；`st_break`：錶外一圈朱紅呼吸光環），我方錶在左下。`mode` ≠ 0 時兩錶都隱藏，右上改為報框顯示 `counter_text`。`float_opp`／`float_me` 變更時數字從錶旁彈出並淡出（1.4 秒），同時錶側噴一團白汽。
+- **對手名牌與手牌**：右側 `opp_name`＋`opp_type`；`hand` > 0 時顯示 1～3 張卡背剪影＋「×n」。
+- **狀態圖示**（常駐，失效時淡到 22%）：困獸（朱紅爪痕，對手錶左下，兩顆燈＝`st_konju`，滑鼠移上顯示 `UI_STATE_KONJU_TIP`）；失守（淡墨裂開的方印，我方錶左上，一顆燈，移上顯示 `UI_STATE_SHISSHU_TIP`）；破竹（綠竹節，我方錶右上，依 `st_hachiku` 亮起裂痕＋「×n」，3 層金框；`st_hachiku_preview` 時 50% 淡色）。`UI_STATE_HACHIKU_TIP` 含 `{dmg}`／`{ctr}` 佔位，UI 無法填值，破竹沒有滑鼠提示。
+- **我方推理鏈（`chains`）**：同 board 的 3×5，`<repeat>` 剪報小卡依 `item(chain)`、`item(pos)` 定位（`id` 空字串不畫），與右鄰的連結畫在卡右側的間隙：1 紅線、2 鉛筆虛線＋弱點齒輪、3 剪刀、4 金線＋星、5 已援護（虛線＋銅色繃帶圈裡的弱點齒輪）、6 本回合斷開（兩段斷線＋朱紅斜劃）。`sel` 為 true 的卡朱紅框、淡黃底。卡上方疊 15 個**固定透明格**，點擊 → `set(seg, chain × 5 + pos)`（常數 0～14，`phase` 0 時），所以空格也會送出，由流圖判斷。
+- **反駁選擇器（`parry_cards`）**：第一筆 `id` 非空時，預估框上方滑出一塊（`picker-in`，220 ms），小標 `MSG_DEB_SELECT_PARRY`，卡片兩欄（證物 id＋卡名兩行），可捲動；點擊 → `set(card, item(id))`。與設計「從畫面下方滑出」不同：放在推理鏈上方，鏈保持可見（論破回合仍可點鏈段，由流圖判斷是否改出示推理鏈），所以沒有做 `BTN_DEB_PARRY_CHAIN` 分頁。合約沒有「已選的卡」port，選中的卡只在確認列文字中看得到。
+- **預估框**：`UI_DEB_PREVIEW_LABEL`（新增）＋`preview`（兩行）＋`preview_vs`（兩行小字）；`preview` 空字串時整框隱藏。
+- **確認列**：`summary` 空字串隱藏；`assist_armed` 時多一行 `UI_DEB_ASSIST_ARMED`（燈火金）。右側 `BTN_BACK`（→ `emit(back)`）與 `BTN_DEB_LOCK`（`can_lock` 為 false 時灰且不送；→ `emit(lock)`）；`phase` ≠ 0 時兩鈕換成 `UI_DEB_LOCKED` 框。
+- **四個行動（鉛字塊）**：`UI_ACT_GROUP_ATK`「攻」＋實證連鎖、詭辯 │ 黃銅隔條 │ `UI_ACT_GROUP_DEF`「守」＋反駁、觀察；左上角小字 1～4。`sel_act` 選中的塊反白（新聞紙底、朱紅底線與光暈）；`act_enabled | item(i)` 為 false 時灰，`act_reason | item(i)` 印在塊內下方；`st_shisshu` > 0 時反駁塊蓋一道裂紋；`phase` ≠ 0 時整列變淡。**灰色的塊仍會送出 `act`**（`phase` 0 時）：系統規格 §4.4 要求失守時按下反駁要跳 MSG_DEB_NOPARRY_SHISSHU，所以由流圖判斷是否接受並顯示原因；流圖不得因此選取不可按的行動。
+- **援護**：左下亞瑟頭像（`char_arthur.png` 裁頭部）＋`BTN_DEB_ASSIST`＋燈（`assist_left`；2 時才出現第二顆）；`assist_armed` 時燈火金框光；`assist_left` 0 且未待命時頭像去色。點擊或 V → `emit(assist)`（`phase` 0 時）。
+- **狀態列**（右下）：`UI_DEB_STATUS_LABEL`（新增）；`st_break` → 朱紅 `UI_DEB_STATUS_BREAK_TURN`；`st_shaken` > 0 → 燈＋`UI_DEB_PREVIEW_SHAKEN`＋剩餘回合圓點；`st_tail` > 0 → `UI_TAIL`＋圓點；`st_flags`（最多三行）。全都沒有時顯示淡色「—」。其下 `BTN_DEB_NOTES`（合約沒有 port，只有外觀，不送事件）。`st_tail` > 0 時報頭列右端另掛「尾聲」大銅牌（設計說在兩錶之間）。
+- **對決表**：右緣銅把手 `BTN_DEB_TABLE ▸`，點擊或 T 切換 `#table` 的 `Open` 狀態（UI 自己的狀態，不經 port）；展開為 4×3 的表（列 `BTN_DEB_*`、欄 `UI_TABLE_COL_*`、格 `UI_TABLE_*`，每格最多六行），疊在畫面中央之上；`tell_a`／`tell_b` 指到的欄（0／1 → 主張／猛攻、2 → 補強、3 → 設陷）表頭朱紅、格子淡黃；`st_shisshu` > 0 時反駁列淡出。不記住展開狀態。
+- **揭示（`phase` 1～3）**：中段蓋上一條深墨帶；`reveal_seq` 變更時播 `reveal`：雙方黃銅邊大卡從兩側飛入（300 ms）、翻面（420～540 ms），我方卡顯示 `BTN_DEB_*`（`reveal_me` 1～4），對手卡顯示 `UI_ACT_*`（`reveal_opp` 0～3；4 垂死反撲顯示 `UI_TAIL` 與爪痕）；卡頂是 `SPK_SHEREFOX` 與 `opp_name`。`reveal_combo` 2：兩卡之間金色爆光＋`MSG_DEB_CLASH`；3：兩卡變淡（僵持）；0／1 外觀相同（演出順序由流圖計時）。`phase` 1 時帶子下緣顯示 `reveal_line`（760 ms 淡入），`phase` ≥ 2 時改顯示 `result_line`（朱筆底線）。揭示期間全畫面點擊、Enter、Space：`phase` 1 → `emit(skip)`，`phase` ≥ 2 → `emit(next)`。
+- **鍵盤**（根元素持有焦點，同 vn）：1～4 行動、F 狐耳直覺、V 援護、T 對決表、Enter 鎖定（`can_lock`）／快轉／繼續、Space 快轉／繼續、Backspace 與右鍵 → `back`（`phase` 0 時）。
+- **預設值**（截圖用）：Ch.2 主論戰第 3 回合：費奇（`valet`）70／100、我方 81／100，N1 亮起＋N2、N3，模糊預兆「主張／猛攻」與小動作「拉袖口、鞠躬」，推理鏈同 board 的樣本，破竹 1，已選反駁、選擇器兩張（E02_02、E02_04），確認列與預估列有字，手牌 1。
+- 未做（合約沒有對應 port，或需要動畫素材）：立繪的小動作動畫（以字幕代替）、管線蒸汽流向亮起節點、論破時版面撕裂與齒輪撞擊主張鏈、鎖在 1 的「瀕死底線」紅燈、壓力錶玻璃碎裂、故事模式的推薦格與小動作標註、偽裝對手的常駐說明 `UI_DEB_DISGUISER`、看穿時台詞泡泡上的裂開面具、援護確認、方向鍵選節點／證物／鏈、滾輪捲動選擇器、Ctrl 長按快轉、對決表展開狀態的記憶、對手筆記畫面（只有按鈕）。
+
+字串鍵：`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`UI_NODE_NORMAL`、`UI_NODE_LIT`、`UI_NODE_FRAGILE`、`UI_NODE_SECOND`、`UI_NODE_STURDY_SRC`、`UI_DEB_GOSSIP`（新增）、`BTN_DEB_INSTINCT`、`UI_DEB_TELL_CLEAR`、`UI_DEB_TELL_FUZZY`、`UI_DEB_TELL_SCRIPT`、`UI_ACT_CLAIM`、`UI_ACT_RUSH`、`UI_ACT_REINFORCE`、`UI_ACT_TRAP`、`UI_ACT_GROUP_ATK`、`UI_ACT_GROUP_DEF`、`MSG_DEB_SELECT_PARRY`、`UI_DEB_PREVIEW_LABEL`（新增）、`UI_DEB_PREVIEW_SHAKEN`、`UI_STATE_KONJU_TIP`、`UI_STATE_SHISSHU_TIP`、`BTN_BACK`、`BTN_DEB_LOCK`、`UI_DEB_LOCKED`、`UI_DEB_ASSIST_ARMED`、`BTN_DEB_SOLID`、`BTN_DEB_SOPH`、`BTN_DEB_PARRY`、`BTN_DEB_OBSERVE`、`BTN_DEB_ASSIST`、`UI_DEB_STATUS_LABEL`（新增）、`UI_DEB_STATUS_BREAK_TURN`、`UI_TAIL`、`BTN_DEB_NOTES`、`BTN_DEB_TABLE`、`UI_TABLE_TITLE`、`UI_TABLE_COL_*`、`UI_TABLE_*`、`SPK_SHEREFOX`、`MSG_DEB_CLASH`。新增的三個鍵只在 `ui/project/shared/strings/<lang>.csv`（`tools/build_data.py` 會保留並列為 UI-only），尚未進根目錄 `strings/`。
+
 ## cutin（書法大字與印章，覆蓋層，最上層，非 modal）
 
 依據：系統規格 §4.7、§8.14；美術風格 §七。大字在兩種語言都是中文；英文模式下，若「大字譯名」開啟，字下方加小字譯名。
@@ -282,6 +306,16 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 | `stamp_n` | number | in | 破竹印章的層數（×n）。 |
 | `subtitle` | string | in | 譯名小字（流圖依語言與設定決定；空字串不顯示）。 |
 | `done` | event | out | 大字播完。 |
+
+UI 側實作（板子 `ui/boards/project/Cutin.dc.html`）：
+
+- **整個畫面透明、不吃輸入**（根元素 `pointer-events: none`，沒有背景），所以它在 `game.json` 是最後一個 surface、保持可見、非 modal；平時什麼都不畫，鍵盤輸入照常送到下層（宿主把輸入排給每個可見的 surface）。
+- **全幕大書**：`big_seq` 變更時，`big` 為 `CUT_RONPA` 播 `ronpa`（4.0 秒），其他播 `big`（1.5 秒）：畫面變暗 70%（深墨）、中央一條新聞紙帶（雙線上下框，由中線展開 160 ms；黑墨大字在暗底上看不見，所以寫在紙帶上），大字由 1.3 倍縮入並由模糊轉清晰（420 ms；論破 1.45 倍、520 ms），落定時抖動四下（約 130 ms），停留到 1.1 秒（論破 3.5 秒），再放大、模糊、淡出（墨散）。圖檔：`CUT_RONPA`→`cut_ronpa.png`、`CUT_SHAKEN`→`cut_shaken.png`、`CUT_HACHIKU3`→`cut_hachiku.png`、`CUT_KONJU`→`cut_konju.png`、`CUT_SHISSHU`→`cut_shisshu.png`（900×430 contain）；沒有圖的 `CUT_BRINK`、`CUT_REVERSE`、`CUT_DOUBLE`、`CUT_COUNTER` 以 `@CUT_*`（兩種語言都是中文）朱紅大字代替。timeline 播完 → `emit(done)`（1.5／4.0 秒）。跳過、縮短、首播規則、震動強度由流圖決定（合約沒有對應 port）。
+- **譯名**：`subtitle` 非空時，大字下方（紙帶外、暗底上）以新聞紙色大寫字距小字淡入（約 0.62 秒，論破 0.72 秒）；印章則在印章旁（右上的在印章下方、左下的在右側）顯示同一個 `subtitle`（0.15～0.68 秒）。只有一個 `subtitle` port：大字與印章同時播放時兩處顯示同一句。
+- **角落印章**：`stamp_seq` 變更時播 `stamp`（168×168）：1.9 倍斜壓蓋下（150 ms）、回彈，停留到 0.5 秒，再縮成 0.55 倍留在角落到 2.7 秒，3.1 秒淡出。右上（對手側）：`STAMP_PARRY`、`STAMP_CLASH`、`STAMP_SEEN`；左下（我方側）：`STAMP_TRAP`、`STAMP_WHIFF`、`STAMP_ASSIST`、`STAMP_HACHIKU_LOST`（`stamp_lost.png`）、`STAMP_HACHIKU`（沒有圖：綠墨方框 `@STAMP_HACHIKU`「破竹」＋`format('×{0}', stamp_n)`）。
+- 已知落差：系統規格 §4.7 規定落空印章蓋在「落空的那一方」，合約沒有方向 port，UI 一律蓋在左下（玩家反駁空過）；同一角落最多 3 枚並存、第 4 枚擠掉最舊一枚做不到（只有一個 `stamp` port，新印章直接重播）；大字的筆順寫入需要分筆素材，現為整張縮入。
+
+字串鍵：`CUT_BRINK`、`CUT_REVERSE`、`CUT_DOUBLE`、`CUT_COUNTER`、`STAMP_HACHIKU`。
 
 ## result（結算，1280×720）
 

@@ -1,0 +1,700 @@
+<xt version="2">
+  <head>
+    <title>Cutin</title>
+  </head>
+
+  <ports>
+    big: string in = "CUT_RONPA"
+    big_seq: number in = 0
+    stamp: string in = "STAMP_PARRY"
+    stamp_seq: number in = 0
+    stamp_n: number in = 1
+    subtitle: string in = ""
+    done: event out
+  </ports>
+
+  <body>
+    <div id="cutin" on:port(big_seq)="if port(big) eq 'CUT_RONPA' play(ronpa) else play(big)" on:port(stamp_seq)="play(stamp)" on:timeline(big).end="emit(done)" on:timeline(ronpa).end="emit(done)">
+      <div id="big-grp">
+        <div id="veil" class="veil"/>
+        <div id="band" class="band">
+          <div id="band-r1" class="band-rule"/>
+          <div id="band-r2" class="band-rule"/>
+        </div>
+        <div id="big-art">
+          <img id="big-cut-ronpa" class="big-img" src="../shared/img/big-cut-ronpa.png" bind:display="big | eq('CUT_RONPA')"/>
+          <img id="big-cut-shaken" class="big-img" src="../shared/img/big-cut-shaken.png" bind:display="big | eq('CUT_SHAKEN')"/>
+          <img id="big-cut-hachiku3" class="big-img" src="../shared/img/big-cut-hachiku3.png" bind:display="big | eq('CUT_HACHIKU3')"/>
+          <img id="big-cut-konju" class="big-img" src="../shared/img/big-cut-konju.png" bind:display="big | eq('CUT_KONJU')"/>
+          <img id="big-cut-shisshu" class="big-img" src="../shared/img/big-cut-shisshu.png" bind:display="big | eq('CUT_SHISSHU')"/>
+          <div id="big-cut-brink" class="big-txt" bind:display="big | eq('CUT_BRINK')">@CUT_BRINK</div>
+          <div id="big-cut-reverse" class="big-txt" bind:display="big | eq('CUT_REVERSE')">@CUT_REVERSE</div>
+          <div id="big-cut-double" class="big-txt" bind:display="big | eq('CUT_DOUBLE')">@CUT_DOUBLE</div>
+          <div id="big-cut-counter" class="big-txt" bind:display="big | eq('CUT_COUNTER')">@CUT_COUNTER</div>
+        </div>
+        <div id="big-sub" class="big-sub" bind:text="subtitle" bind:display="subtitle | ne('')">BREAK</div>
+      </div>
+      <div id="stamp-tr">
+        <div id="st-stamp-parry" bind:display="stamp | eq('STAMP_PARRY')">
+          <img id="st-stamp-parry-img" class="st-img" src="../shared/img/st-stamp-parry-img.png"/>
+        </div>
+        <div id="st-stamp-clash" bind:display="stamp | eq('STAMP_CLASH')">
+          <img id="st-stamp-clash-img" class="st-img" src="../shared/img/st-stamp-clash-img.png"/>
+        </div>
+        <div id="st-stamp-seen" bind:display="stamp | eq('STAMP_SEEN')">
+          <img id="st-stamp-seen-img" class="st-img" src="../shared/img/st-stamp-seen-img.png"/>
+        </div>
+      </div>
+      <div id="stamp-tr-sub">
+        <div id="sts-stamp-parry" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_PARRY')">CUT IN</div>
+        <div id="sts-stamp-clash" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_CLASH')">CUT IN</div>
+        <div id="sts-stamp-seen" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_SEEN')">CUT IN</div>
+      </div>
+      <div id="stamp-bl">
+        <div id="st-stamp-trap" bind:display="stamp | eq('STAMP_TRAP')">
+          <img id="st-stamp-trap-img" class="st-img" src="../shared/img/st-stamp-trap-img.png"/>
+        </div>
+        <div id="st-stamp-whiff" bind:display="stamp | eq('STAMP_WHIFF')">
+          <img id="st-stamp-whiff-img" class="st-img" src="../shared/img/st-stamp-whiff-img.png"/>
+        </div>
+        <div id="st-stamp-assist" bind:display="stamp | eq('STAMP_ASSIST')">
+          <img id="st-stamp-assist-img" class="st-img" src="../shared/img/st-stamp-assist-img.png"/>
+        </div>
+        <div id="st-stamp-hachiku-lost" bind:display="stamp | eq('STAMP_HACHIKU_LOST')">
+          <img id="st-stamp-hachiku-lost-img" class="st-img" src="../shared/img/st-stamp-hachiku-lost-img.png"/>
+        </div>
+        <div id="st-stamp-hachiku" bind:display="stamp | eq('STAMP_HACHIKU')">
+          <div id="st-hk-seal" class="st-hk">@STAMP_HACHIKU</div>
+          <div id="st-hk-n" class="st-hk-n" bind:text="format('×{0}', stamp_n)">×1</div>
+        </div>
+      </div>
+      <div id="stamp-bl-sub">
+        <div id="sts-stamp-trap" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_TRAP')">CUT IN</div>
+        <div id="sts-stamp-whiff" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_WHIFF')">CUT IN</div>
+        <div id="sts-stamp-assist" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_ASSIST')">CUT IN</div>
+        <div id="sts-stamp-hachiku-lost" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_HACHIKU_LOST')">CUT IN</div>
+        <div id="sts-stamp-hachiku" class="st-sub" bind:text="subtitle" bind:display="stamp | eq('STAMP_HACHIKU')">UNSTOPPABLE ×1</div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Cutin.dc.html:1 */
+    #cutin {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Cutin.dc.html:1/0 */
+    #big-grp {
+      anchor: stretch stretch screen;
+    }
+    /* import: Cutin.dc.html:1/0/0 */
+    #veil {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Cutin.dc.html:1/0/1 */
+    #band {
+      height: 380px;
+      left: -20px;
+      position: absolute;
+      top: 170px;
+      width: 1320px;
+    }
+    /* import: Cutin.dc.html:1/0/1/0 */
+    #band-r1 {
+      height: 1px;
+      left: 20px;
+      position: absolute;
+      top: 8px;
+      width: 1280px;
+    }
+    /* import: Cutin.dc.html:1/0/1/1 */
+    #band-r2 {
+      height: 1px;
+      left: 20px;
+      position: absolute;
+      top: 366px;
+      width: 1280px;
+    }
+    /* import: Cutin.dc.html:1/0/2 */
+    #big-art {
+      height: 430px;
+      left: 190px;
+      position: absolute;
+      top: 130px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/0 */
+    #big-cut-ronpa {
+      height: 430px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/1 */
+    #big-cut-shaken {
+      height: 430px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/2 */
+    #big-cut-hachiku3 {
+      height: 430px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/3 */
+    #big-cut-konju {
+      height: 430px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/4 */
+    #big-cut-shisshu {
+      height: 430px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/5 */
+    #big-cut-brink {
+      height: 400px;
+      left: 0px;
+      position: absolute;
+      top: 15px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/6 */
+    #big-cut-reverse {
+      height: 400px;
+      left: 0px;
+      position: absolute;
+      top: 15px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/7 */
+    #big-cut-double {
+      height: 400px;
+      left: 0px;
+      position: absolute;
+      top: 15px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/2/8 */
+    #big-cut-counter {
+      height: 400px;
+      left: 0px;
+      position: absolute;
+      top: 15px;
+      width: 900px;
+    }
+    /* import: Cutin.dc.html:1/0/3 */
+    #big-sub {
+      height: 40px;
+      left: 140px;
+      position: absolute;
+      top: 566px;
+      width: 1000px;
+    }
+    /* import: Cutin.dc.html:1/1 */
+    #stamp-tr {
+      anchor: right top;
+      offset: 20px 18px;
+      size: 168px 168px;
+      transform-origin: 100% 0%;
+    }
+    /* import: Cutin.dc.html:1/1/0 */
+    #st-stamp-parry {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/1/0/0 */
+    #st-stamp-parry-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/1/1 */
+    #st-stamp-clash {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/1/1/0 */
+    #st-stamp-clash-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/1/2 */
+    #st-stamp-seen {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/1/2/0 */
+    #st-stamp-seen-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/2 */
+    #stamp-tr-sub {
+      anchor: right top;
+      offset: 20px 18px;
+      size: 168px 200px;
+    }
+    /* import: Cutin.dc.html:1/2/0 */
+    #sts-stamp-parry {
+      height: 22px;
+      left: 0px;
+      position: absolute;
+      top: 168px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/2/1 */
+    #sts-stamp-clash {
+      height: 22px;
+      left: 0px;
+      position: absolute;
+      top: 168px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/2/2 */
+    #sts-stamp-seen {
+      height: 22px;
+      left: 0px;
+      position: absolute;
+      top: 168px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3 */
+    #stamp-bl {
+      anchor: left bottom;
+      offset: 20px 34px;
+      size: 168px 168px;
+      transform-origin: 0% 100%;
+    }
+    /* import: Cutin.dc.html:1/3/0 */
+    #st-stamp-trap {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/0/0 */
+    #st-stamp-trap-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/1 */
+    #st-stamp-whiff {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/1/0 */
+    #st-stamp-whiff-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/2 */
+    #st-stamp-assist {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/2/0 */
+    #st-stamp-assist-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/3 */
+    #st-stamp-hachiku-lost {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/3/0 */
+    #st-stamp-hachiku-lost-img {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/4 */
+    #st-stamp-hachiku {
+      height: 168px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: Cutin.dc.html:1/3/4/0 */
+    #st-hk-seal {
+      height: 132px;
+      left: 14px;
+      position: absolute;
+      top: 14px;
+      width: 140px;
+    }
+    /* import: Cutin.dc.html:1/3/4/1 */
+    #st-hk-n {
+      height: 34px;
+      left: 60px;
+      position: absolute;
+      top: 128px;
+      width: 104px;
+    }
+    /* import: Cutin.dc.html:1/4 */
+    #stamp-bl-sub {
+      anchor: left bottom;
+      offset: 20px 34px;
+      size: 380px 168px;
+    }
+    /* import: Cutin.dc.html:1/4/0 */
+    #sts-stamp-trap {
+      height: 22px;
+      left: 176px;
+      position: absolute;
+      top: 64px;
+      width: 200px;
+    }
+    /* import: Cutin.dc.html:1/4/1 */
+    #sts-stamp-whiff {
+      height: 22px;
+      left: 176px;
+      position: absolute;
+      top: 64px;
+      width: 200px;
+    }
+    /* import: Cutin.dc.html:1/4/2 */
+    #sts-stamp-assist {
+      height: 22px;
+      left: 176px;
+      position: absolute;
+      top: 64px;
+      width: 200px;
+    }
+    /* import: Cutin.dc.html:1/4/3 */
+    #sts-stamp-hachiku-lost {
+      height: 22px;
+      left: 176px;
+      position: absolute;
+      top: 64px;
+      width: 200px;
+    }
+    /* import: Cutin.dc.html:1/4/4 */
+    #sts-stamp-hachiku {
+      height: 22px;
+      left: 176px;
+      position: absolute;
+      top: 64px;
+      width: 200px;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="cutin.xts"/>
+  <timelines>
+    @timeline big {
+      #big-grp {
+        0ms {
+          opacity: 0;
+        }
+        120ms ease-out {
+          opacity: 1;
+        }
+        1100ms {
+          opacity: 1;
+        }
+        1500ms ease-in {
+          opacity: 0;
+        }
+      }
+      #band {
+        0ms {
+          transform: scaleY(0.2);
+        }
+        160ms ease-out {
+          transform: scaleY(1);
+        }
+      }
+      #big-art {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 0px) scale(1.3);
+          effect.blur.radiusX: 6px;
+          effect.blur.radiusY: 6px;
+        }
+        420ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1);
+          effect.blur.radiusX: 0px;
+          effect.blur.radiusY: 0px;
+        }
+        450ms {
+          transform: translate(-9px, 5px) scale(1);
+        }
+        480ms {
+          transform: translate(8px, -6px) scale(1);
+        }
+        510ms {
+          transform: translate(-6px, 3px) scale(1);
+        }
+        540ms {
+          transform: translate(4px, -2px) scale(1);
+        }
+        580ms {
+          transform: translate(0px, 0px) scale(1);
+        }
+        1100ms {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1);
+          effect.blur.radiusX: 0px;
+          effect.blur.radiusY: 0px;
+        }
+        1500ms ease-in {
+          opacity: 0;
+          transform: translate(0px, -8px) scale(1.05);
+          effect.blur.radiusX: 5px;
+          effect.blur.radiusY: 5px;
+        }
+      }
+      #big-sub {
+        0ms {
+          opacity: 0;
+        }
+        620ms {
+          opacity: 0;
+        }
+        820ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline ronpa {
+      #big-grp {
+        0ms {
+          opacity: 0;
+        }
+        120ms ease-out {
+          opacity: 1;
+        }
+        3500ms {
+          opacity: 1;
+        }
+        4000ms ease-in {
+          opacity: 0;
+        }
+      }
+      #band {
+        0ms {
+          transform: scaleY(0.2);
+        }
+        160ms ease-out {
+          transform: scaleY(1);
+        }
+        3500ms {
+          transform: scaleY(1);
+        }
+        4000ms ease-in {
+          transform: scaleY(0.9);
+        }
+      }
+      #big-art {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 0px) scale(1.45);
+          effect.blur.radiusX: 8px;
+          effect.blur.radiusY: 8px;
+        }
+        520ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1);
+          effect.blur.radiusX: 0px;
+          effect.blur.radiusY: 0px;
+        }
+        550ms {
+          transform: translate(-9px, 5px) scale(1);
+        }
+        590ms {
+          transform: translate(8px, -6px) scale(1);
+        }
+        630ms {
+          transform: translate(-6px, 3px) scale(1);
+        }
+        670ms {
+          transform: translate(4px, -2px) scale(1);
+        }
+        720ms {
+          transform: translate(0px, 0px) scale(1);
+        }
+        3500ms {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1.03);
+          effect.blur.radiusX: 0px;
+          effect.blur.radiusY: 0px;
+        }
+        4000ms ease-in {
+          opacity: 0;
+          transform: translate(0px, -10px) scale(1.08);
+          effect.blur.radiusX: 6px;
+          effect.blur.radiusY: 6px;
+        }
+      }
+      #big-sub {
+        0ms {
+          opacity: 0;
+        }
+        720ms {
+          opacity: 0;
+        }
+        920ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline stamp {
+      #stamp-tr {
+        0ms {
+          opacity: 0;
+          transform: scale(1.9) rotate(-14deg);
+        }
+        150ms ease-in {
+          opacity: 1;
+          transform: scale(1) rotate(-6deg);
+        }
+        175ms ease-out {
+          transform: scale(0.93) rotate(-6deg);
+        }
+        210ms ease-out {
+          transform: scale(1) rotate(-6deg);
+        }
+        500ms {
+          opacity: 1;
+          transform: scale(1) rotate(-6deg);
+        }
+        700ms ease-in-out {
+          transform: scale(0.55) rotate(-6deg);
+        }
+        2700ms {
+          opacity: 1;
+        }
+        3100ms ease-in {
+          opacity: 0;
+        }
+      }
+      #stamp-tr-sub {
+        0ms {
+          opacity: 0;
+        }
+        150ms {
+          opacity: 0;
+        }
+        260ms ease-out {
+          opacity: 1;
+        }
+        520ms {
+          opacity: 1;
+        }
+        680ms ease-in {
+          opacity: 0;
+        }
+      }
+      #stamp-bl {
+        0ms {
+          opacity: 0;
+          transform: scale(1.9) rotate(-14deg);
+        }
+        150ms ease-in {
+          opacity: 1;
+          transform: scale(1) rotate(-6deg);
+        }
+        175ms ease-out {
+          transform: scale(0.93) rotate(-6deg);
+        }
+        210ms ease-out {
+          transform: scale(1) rotate(-6deg);
+        }
+        500ms {
+          opacity: 1;
+          transform: scale(1) rotate(-6deg);
+        }
+        700ms ease-in-out {
+          transform: scale(0.55) rotate(-6deg);
+        }
+        2700ms {
+          opacity: 1;
+        }
+        3100ms ease-in {
+          opacity: 0;
+        }
+      }
+      #stamp-bl-sub {
+        0ms {
+          opacity: 0;
+        }
+        150ms {
+          opacity: 0;
+        }
+        260ms ease-out {
+          opacity: 1;
+        }
+        520ms {
+          opacity: 1;
+        }
+        680ms ease-in {
+          opacity: 0;
+        }
+      }
+    }
+  </timelines>
+</xt>

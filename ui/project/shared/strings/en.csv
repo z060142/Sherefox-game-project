@@ -1374,6 +1374,7 @@ UI_DEB_COUNTER_PREVIEW,Assert {base}+4×{n}={dmg}
 UI_DEB_COUNTER_PREVIEW_RUSH,Onslaught ({base}+4×{n})×1.25={dmg}
 UI_DEB_DISGUISER,"This opponent's Tells may be Disguised: when their words and gestures disagree, trust the gesture."
 UI_DEB_GESTURE_KNOWN,{gesture} = {action}
+UI_DEB_GOSSIP,Word on the Street
 UI_DEB_HAND,Hand ×{n}
 UI_DEB_HP,{now}/{max}
 UI_DEB_LOCKED,Locked in
@@ -1385,6 +1386,7 @@ UI_DEB_NOPARRY_SHISSHU,Breached: can't Rebut this round
 UI_DEB_PHASE,Phase {n} of {total}
 UI_DEB_PREVIEW,Damage {dmg} · Multiplier ×{mult} · {shaken}
 UI_DEB_PREVIEW_BREAK,Can Break
+UI_DEB_PREVIEW_LABEL,Forecast
 UI_DEB_PREVIEW_PARRY,"Cut-In: counter 30, smash the claim"
 UI_DEB_PREVIEW_PARRY_NOREF,Cut-In: counter 30 (this claim is too sturdy and will stay)
 UI_DEB_PREVIEW_SHAKE,Can leave the opponent Shaken
@@ -1394,6 +1396,7 @@ UI_DEB_PREVIEW_VS,If {action}: {result}
 UI_DEB_ROUND,Round {n}
 UI_DEB_SEGMENT,Part {n}: {name}
 UI_DEB_STATUS_BREAK_TURN,Break Round
+UI_DEB_STATUS_LABEL,Status
 UI_DEB_STATUS_SHAKEN,Shaken ({n} rounds left)
 UI_DEB_STATUS_TAIL,Endgame ({n} rounds left)
 UI_DEB_STATUS_TYPE,Current style: {type}

@@ -1,0 +1,13 @@
+version: 1
+id: c9ba55bb-92c8-43a1-8bee-53b8dca0c6e7
+type: image
+title: big-cut-shisshu
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/cut_shisshu.png
+content: sha256:4e7a7f3a33af961f15f5f76abcffd3c5fd0c3f3ef96b4fbcbceaddd8b27cd3e9
+measured:
+  w: 1100
+  h: 550
+  alpha: true

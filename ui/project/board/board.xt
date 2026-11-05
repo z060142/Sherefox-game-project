@@ -53,7 +53,7 @@
           <div id="appr-count" bind:text="format('×{0}', appraise_left)">×2</div>
         </div>
         <div id="btn-debate" class="btn" on:click(left)="emit(to_debate)">@BTN_TO_DEBATE</div>
-        <div id="hdr-rule"/>
+        <div id="hdr-rule" class="s-e35e37"/>
         <div id="drawer">
           <div id="drawer-kicker" class="kicker">@UI_BOARD_DRAWER</div>
           <div id="drawer-scroll">

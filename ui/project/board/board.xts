@@ -46,14 +46,6 @@
   line-height: 28px;
 }
 
-/* import: Board.dc.html:1/0/4 */
-#hdr-rule {
-  border-bottom-color: #123a31;
-  border-bottom-width: 1px;
-  border-top-color: #123a31;
-  border-top-width: 3px;
-}
-
 /* import: Board.dc.html:1/0/5/2 */
 #legend {
   border-top-color: #123a31;

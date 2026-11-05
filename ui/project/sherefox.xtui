@@ -68,6 +68,22 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "debate",
+      "doc": "debate/debate.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "cutin",
+      "doc": "cutin/cutin.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

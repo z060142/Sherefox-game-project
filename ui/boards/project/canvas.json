@@ -1,13 +1,76 @@
 {
   "name": "sherefox",
   "boards": {
-    "Title.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 720, "title": "Title", "page": "main" },
-    "Vn.dc.html": { "x": 0, "y": 800, "w": 1280, "h": 720, "title": "VN", "page": "main" },
-    "Paper.dc.html": { "x": 0, "y": 1600, "w": 1280, "h": 720, "title": "Paper", "page": "main" },
-    "Investigate.dc.html": { "x": 0, "y": 2400, "w": 1280, "h": 720, "title": "Investigate", "page": "main" },
-    "Board.dc.html": { "x": 0, "y": 3200, "w": 1280, "h": 720, "title": "Board", "page": "main" }
+    "Title.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "title": "Title",
+      "page": "main"
+    },
+    "Vn.dc.html": {
+      "x": 0,
+      "y": 800,
+      "w": 1280,
+      "h": 720,
+      "title": "VN",
+      "page": "main"
+    },
+    "Paper.dc.html": {
+      "x": 0,
+      "y": 1600,
+      "w": 1280,
+      "h": 720,
+      "title": "Paper",
+      "page": "main"
+    },
+    "Investigate.dc.html": {
+      "x": 0,
+      "y": 2400,
+      "w": 1280,
+      "h": 720,
+      "title": "Investigate",
+      "page": "main"
+    },
+    "Board.dc.html": {
+      "x": 0,
+      "y": 3200,
+      "w": 1280,
+      "h": 720,
+      "title": "Board",
+      "page": "main"
+    },
+    "Debate.dc.html": {
+      "x": 0,
+      "y": 4000,
+      "w": 1280,
+      "h": 720,
+      "title": "Debate",
+      "page": "main"
+    },
+    "Cutin.dc.html": {
+      "x": 0,
+      "y": 4800,
+      "w": 1280,
+      "h": 720,
+      "title": "Cutin",
+      "page": "main"
+    }
   },
-  "order": ["Title.dc.html", "Vn.dc.html", "Paper.dc.html", "Investigate.dc.html", "Board.dc.html"],
-  "pages": ["main"],
-  "designSystems": ["project"]
+  "order": [
+    "Title.dc.html",
+    "Vn.dc.html",
+    "Paper.dc.html",
+    "Investigate.dc.html",
+    "Board.dc.html",
+    "Debate.dc.html",
+    "Cutin.dc.html"
+  ],
+  "pages": [
+    "main"
+  ],
+  "designSystems": [
+    "project"
+  ]
 }
