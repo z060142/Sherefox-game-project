@@ -169,6 +169,9 @@ SIGNALS: dict[str, dict] = {
     "debCmdCard": {"type": "string", "initial": ""},
     "debCmdTarget": {"type": "string", "initial": ""},
     "debCmdAssist": {"type": "number", "initial": 0},
+    # 01-systems §1.8 / A-1, ruling D4: added to the opponent's start and max HP (missed cards x hpPerMissed); read at
+    # debStart and every round (keep it unchanged through the debate)
+    "debOppBonus": {"type": "number", "initial": 0},
     # outputs (main debate)
     "debPhase": {"type": "string", "initial": "idle"},
     "debRound": {"type": "number", "initial": 0},
@@ -453,6 +456,11 @@ SEG = 5  # max segment length (系統規格 2.5: chains of 2..5 cards)
 def case_inputs(g: Graph, extra=()) -> None:
     g.tfind("caseRow", "debCase", "id", "world.debCase")
     for c in CASE_NUM + list(extra):
+        if c == "oMax":  # + the missed-card bonus (debOppBonus, ruling D4) in HP debates
+            g.tget("c_oMax0", "debCase", c, "caseRow")
+            g.v["oBonus"] = "world.debOppBonus"
+            g.x("c_oMax", "c_oMax0 + (c_hp ? oBonus : 0)")
+            continue
         g.tget("c_" + c, "debCase", c, "caseRow")
     for c in CASE_STR:
         g.tget("c_" + c, "debCase", c, "caseRow", "string")

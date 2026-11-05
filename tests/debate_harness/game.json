@@ -53,6 +53,10 @@
    "type": "number",
    "initial": 0
   },
+  "debOppBonus": {
+   "type": "number",
+   "initial": 0
+  },
   "debPhase": {
    "type": "string",
    "initial": "idle"

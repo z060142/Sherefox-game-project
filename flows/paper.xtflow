@@ -166,7 +166,35 @@
       "type": "atrium.text"
     },
     {
-      "id": "sideWinKey",
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "lose"
+      }
+    },
+    {
+      "id": "ocLose",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "notorious"
+      }
+    },
+    {
+      "id": "ocNoto",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "swKey",
       "type": "atrium.table.get",
       "params": {
         "table": "papers",
@@ -175,11 +203,37 @@
       }
     },
     {
-      "id": "resultHead",
+      "id": "snKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideNotoKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "slKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideLoseKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "svKey",
+      "type": "select"
+    },
+    {
+      "id": "sxKey",
+      "type": "select"
+    },
+    {
+      "id": "resultKey",
       "type": "atrium.text"
     },
     {
-      "id": "sideWinSubKey",
+      "id": "swSubKey",
       "type": "atrium.table.get",
       "params": {
         "table": "papers",
@@ -188,7 +242,33 @@
       }
     },
     {
-      "id": "resultSub",
+      "id": "snSubKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideNotoSubKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "slSubKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideLoseSubKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "svSubKey",
+      "type": "select"
+    },
+    {
+      "id": "sxSubKey",
+      "type": "select"
+    },
+    {
+      "id": "resultSubKey",
       "type": "atrium.text"
     },
     {
@@ -384,27 +464,107 @@
       "to": "ui#paper.ad"
     },
     {
+      "from": "world.caseOutcome",
+      "to": "ocLose.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "ocLose.b"
+    },
+    {
+      "from": "world.caseOutcome",
+      "to": "ocNoto.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "ocNoto.b"
+    },
+    {
       "from": "prow.row",
-      "to": "sideWinKey.row"
+      "to": "swKey.row"
     },
     {
-      "from": "sideWinKey.value",
-      "to": "resultHead.key"
+      "from": "prow.row",
+      "to": "snKey.row"
     },
     {
-      "from": "resultHead.text",
+      "from": "prow.row",
+      "to": "slKey.row"
+    },
+    {
+      "from": "ocNoto.out",
+      "to": "svKey.cond"
+    },
+    {
+      "from": "snKey.value",
+      "to": "svKey.a"
+    },
+    {
+      "from": "swKey.value",
+      "to": "svKey.b"
+    },
+    {
+      "from": "ocLose.out",
+      "to": "sxKey.cond"
+    },
+    {
+      "from": "slKey.value",
+      "to": "sxKey.a"
+    },
+    {
+      "from": "svKey.out",
+      "to": "sxKey.b"
+    },
+    {
+      "from": "sxKey.out",
+      "to": "resultKey.key"
+    },
+    {
+      "from": "resultKey.text",
       "to": "ui#paper.result_head"
     },
     {
       "from": "prow.row",
-      "to": "sideWinSubKey.row"
+      "to": "swSubKey.row"
     },
     {
-      "from": "sideWinSubKey.value",
-      "to": "resultSub.key"
+      "from": "prow.row",
+      "to": "snSubKey.row"
     },
     {
-      "from": "resultSub.text",
+      "from": "prow.row",
+      "to": "slSubKey.row"
+    },
+    {
+      "from": "ocNoto.out",
+      "to": "svSubKey.cond"
+    },
+    {
+      "from": "snSubKey.value",
+      "to": "svSubKey.a"
+    },
+    {
+      "from": "swSubKey.value",
+      "to": "svSubKey.b"
+    },
+    {
+      "from": "ocLose.out",
+      "to": "sxSubKey.cond"
+    },
+    {
+      "from": "slSubKey.value",
+      "to": "sxSubKey.a"
+    },
+    {
+      "from": "svSubKey.out",
+      "to": "sxSubKey.b"
+    },
+    {
+      "from": "sxSubKey.out",
+      "to": "resultSubKey.key"
+    },
+    {
+      "from": "resultSubKey.text",
       "to": "ui#paper.result_sub"
     },
     {

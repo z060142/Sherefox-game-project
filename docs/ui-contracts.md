@@ -307,6 +307,8 @@ UI 側實作（板子 `ui/boards/project/Debate.dc.html`）：
 
 字串鍵：`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`UI_NODE_NORMAL`、`UI_NODE_LIT`、`UI_NODE_FRAGILE`、`UI_NODE_SECOND`、`UI_NODE_STURDY_SRC`、`UI_DEB_GOSSIP`（新增）、`BTN_DEB_INSTINCT`、`UI_DEB_TELL_CLEAR`、`UI_DEB_TELL_FUZZY`、`UI_DEB_TELL_SCRIPT`、`UI_ACT_CLAIM`、`UI_ACT_RUSH`、`UI_ACT_REINFORCE`、`UI_ACT_TRAP`、`UI_ACT_GROUP_ATK`、`UI_ACT_GROUP_DEF`、`MSG_DEB_SELECT_PARRY`、`UI_DEB_PREVIEW_LABEL`（新增）、`UI_DEB_PREVIEW_SHAKEN`、`UI_STATE_KONJU_TIP`、`UI_STATE_SHISSHU_TIP`、`BTN_BACK`、`BTN_DEB_LOCK`、`UI_DEB_LOCKED`、`UI_DEB_ASSIST_ARMED`、`BTN_DEB_SOLID`、`BTN_DEB_SOPH`、`BTN_DEB_PARRY`、`BTN_DEB_OBSERVE`、`BTN_DEB_ASSIST`、`UI_DEB_STATUS_LABEL`（新增）、`UI_DEB_STATUS_BREAK_TURN`、`UI_TAIL`、`BTN_DEB_NOTES`、`BTN_DEB_TABLE`、`UI_TABLE_TITLE`、`UI_TABLE_COL_*`、`UI_TABLE_*`、`SPK_SHEREFOX`、`MSG_DEB_CLASH`。新增的三個鍵只在 `ui/project/shared/strings/<lang>.csv`（`tools/build_data.py` 會保留並列為 UI-only），尚未進根目錄 `strings/`。
 
+流圖側（`flows/debate_ui.xtflow`，`docs/flows.md` §4.8，M4c）：除了 `act_enabled`／`act_reason`（`atrium.ui.list` 只寫物件陣列：`list<bool>` 被拒、`list<string>` 顯示不出字，`docs/flows.md` §7.2 第 3 項；按不可用的行動時改在 `summary` 顯示原因）、`preview_vs` 與 `st_flags`（空字串）以外的 port 全部寫入。`summary`、`preview` 的具名佔位樣板填不了，以在地化片段加空白組成；`round_text`、`counter_text`、`tell_star_text`、`claim_preview` 用 `tools/build_data.py` 展開的 `<KEY>__<值>` 鍵。`skip`／`next` 在揭示中都是快轉，結算數字停留時 `next` 進下一回合（或結束）。
+
 ## cutin（書法大字與印章，覆蓋層，最上層，非 modal）
 
 依據：系統規格 §4.7、§8.14；美術風格 §七。大字在兩種語言都是中文；英文模式下，若「大字譯名」開啟，字下方加小字譯名。
@@ -360,6 +362,8 @@ UI 側實作（板子 `ui/boards/project/Result.dc.html`）：
 - 未做（合約沒有對應 port）：敗北時先開對手筆記的回合紀錄、故事模式風評（`UI_RES_REPUTE`）、`BTN_RES_ACCEPT`。
 
 字串鍵：`UI_PAPER_MAST`、`UI_RES_WIN`、`UI_RES_LOSE`、`UI_RES_UNACHIEVED`（新增，UI-only）、`UI_RES_TRUST_LABEL`（新增，UI-only）、`SPK_ARTHUR`、`UI_RES_COST`、`UI_PAPER_STAMP_CLOSED`、`BTN_RES_CONTINUE`、`BTN_RES_RETRY`。
+
+流圖側（`flows/result.xtflow`，`docs/flows.md` §4.9，M4c）：全部 port 寫入；`stats` 的 `value` 是字串（數字以 `%.6g`），「讀對預兆」沒有資料不列；`continue` 之後畫面換成 vn 播結算場景的台詞，`retry` 回到論戰步驟。cutin 由 `debate_ui` 寫（`big`／`big_seq`、`stamp`／`stamp_seq`／`stamp_n`、英文時的 `subtitle`）；`done` 不讀。
 
 ## evbook（證物冊，覆蓋層，modal）
 

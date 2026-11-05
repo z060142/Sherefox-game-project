@@ -1,0 +1,5 @@
+[
+{"key":"CH01_MAIN:1","action":"assert","lit":"CH01_N1","scripted":1,"clarity":"clear","shown1":"assert","shown2":"","star":"","starRule":0,"basis":"tutorial","lineKey":"SCR_CH01_S90_L003"},
+{"key":"CH01_MAIN:2","action":"reinforce","lit":"CH01_N2","scripted":1,"clarity":"clear","shown1":"reinforce","shown2":"","star":"","starRule":0,"basis":"tutorial","lineKey":"SCR_CH01_S90_L006"},
+{"key":"CH01_MAIN:3","action":"assert","lit":"CH01_N3","scripted":1,"clarity":"clear","shown1":"assert","shown2":"","star":"","starRule":0,"basis":"tutorial","lineKey":"SCR_CH01_S90_L005"}
+]

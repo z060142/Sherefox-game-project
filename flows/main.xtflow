@@ -202,7 +202,9 @@
           "paper",
           "vn",
           "investigate",
-          "board"
+          "board",
+          "debate",
+          "result"
         ],
         "transitions": [
           {
@@ -229,6 +231,16 @@
             "from": "*",
             "on": "to_board",
             "to": "board"
+          },
+          {
+            "from": "*",
+            "on": "to_debate",
+            "to": "debate"
+          },
+          {
+            "from": "*",
+            "on": "to_result",
+            "to": "result"
           }
         ]
       }
@@ -304,6 +316,48 @@
       }
     },
     {
+      "id": "isDebTag",
+      "type": "constant",
+      "params": {
+        "value": "debate"
+      }
+    },
+    {
+      "id": "isDeb",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isWarmTag",
+      "type": "constant",
+      "params": {
+        "value": "warmup"
+      }
+    },
+    {
+      "id": "isWarm",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isResTag",
+      "type": "constant",
+      "params": {
+        "value": "result"
+      }
+    },
+    {
+      "id": "isRes",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "card",
       "type": "state",
       "params": {
@@ -360,6 +414,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -371,6 +427,8 @@
         "values": [
           false,
           true,
+          false,
+          false,
           false,
           false,
           false
@@ -386,6 +444,8 @@
           false,
           true,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -399,6 +459,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false
         ]
       }
@@ -408,6 +470,38 @@
       "type": "lookup",
       "params": {
         "values": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visDebate",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visResult",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
           false,
           false,
           false,
@@ -567,6 +661,10 @@
       "to": "cur.increment"
     },
     {
+      "from": "world.debRetry",
+      "to": "cur.decrement"
+    },
+    {
       "from": "cur.value",
       "to": "kind.row"
     },
@@ -679,6 +777,46 @@
       "to": "screen.to_board"
     },
     {
+      "from": "kind.value",
+      "to": "isDeb.a"
+    },
+    {
+      "from": "isDebTag.out",
+      "to": "isDeb.b"
+    },
+    {
+      "from": "isDeb.true",
+      "to": "screen.to_debate"
+    },
+    {
+      "from": "kind.value",
+      "to": "isWarm.a"
+    },
+    {
+      "from": "isWarmTag.out",
+      "to": "isWarm.b"
+    },
+    {
+      "from": "isWarm.true",
+      "to": "screen.to_debate"
+    },
+    {
+      "from": "kind.value",
+      "to": "isRes.a"
+    },
+    {
+      "from": "isResTag.out",
+      "to": "isRes.b"
+    },
+    {
+      "from": "isRes.true",
+      "to": "screen.to_result"
+    },
+    {
+      "from": "world.resultLines",
+      "to": "screen.to_vn"
+    },
+    {
       "from": "isEnd.true",
       "to": "card.rearm"
     },
@@ -749,6 +887,22 @@
     {
       "from": "visBoard.out",
       "to": "ui#board.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visDebate.index"
+    },
+    {
+      "from": "visDebate.out",
+      "to": "ui#debate.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visResult.index"
+    },
+    {
+      "from": "visResult.out",
+      "to": "ui#result.visible"
     },
     {
       "from": "isInv.out",

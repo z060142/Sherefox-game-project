@@ -16,7 +16,8 @@
 The click count per step comes from the data tables (steps, script), so the recording follows the data:
 paper = 2 clicks (page 1 -> page 2 -> done), vn = one click per playable line (script.playable; the first line
 is shown when the step begins, the click after the last line ends the step); investigate and board steps take the
-shortest route of tests/gen_case.py (MINIMAL); the other kinds are stubs that need no input.
+shortest route of tests/gen_case.py (MINIMAL); warmup, debate and result steps the shortest sure way of
+tests/gen_debate_play.py (minimal: observe until the debate ends, continue, the result scene's lose lines).
 
 Usage (from the project root):
     uv run tests/gen_playthrough.py
@@ -97,6 +98,10 @@ class Recording:
 def case_step(r: "Recording", step_id: str) -> bool:
     """Investigate / board steps: their inputs (tests/gen_case.py MINIMAL); True when the step was one."""
     step = next(s for s in load("steps") if s["id"] == step_id)
+    if step["kind"] in ("warmup", "debate", "result"):
+        import gen_debate_play   # imports this module
+        gen_debate_play.minimal(r, step["kind"], step["chapter"])
+        return True
     if step["kind"] not in ("investigate", "board"):
         return False
     import gen_case   # imports this module
@@ -104,7 +109,10 @@ def case_step(r: "Recording", step_id: str) -> bool:
     return True
 
 
-def ch1_playthrough() -> int:
+def ch1_playthrough(lang: str = "zh-TW") -> int:
+    """`lang`: the board's reason rows are found from the text of that language (tests/gen_case.reason_xy)."""
+    import gen_case
+    gen_case.MINIMAL_LANG = lang
     r = Recording()
     r.at(HOLD[("TITLE", 0)], click("title", TITLE_CH[1]))
     for step_id, ui, clicks in plan(1):
@@ -130,6 +138,8 @@ def play_chapters(r: Recording, chapters) -> None:
 
 
 def full_run() -> int:
+    import gen_case
+    gen_case.MINIMAL_LANG = "zh-TW"
     r = Recording()
     r.at(40, click("title", TITLE_CH[1]))
     play_chapters(r, (1, 2, 3))

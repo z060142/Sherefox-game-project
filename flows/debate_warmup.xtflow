@@ -28,12 +28,19 @@
    }
   },
   {
-   "id": "c_oMax",
+   "id": "c_oMax0",
    "type": "atrium.table.get",
    "params": {
     "table": "debCase",
     "column": "oMax",
     "type": "number"
+   }
+  },
+  {
+   "id": "c_oMax",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "c_oMax0 + (c_hp ? oBonus : 0)"
    }
   },
   {
@@ -1529,7 +1536,19 @@
   },
   {
    "from": "caseRow.row",
-   "to": "c_oMax.row"
+   "to": "c_oMax0.row"
+  },
+  {
+   "from": "c_oMax0.value",
+   "to": "c_oMax.c_oMax0"
+  },
+  {
+   "from": "c_hp.value",
+   "to": "c_oMax.c_hp"
+  },
+  {
+   "from": "world.debOppBonus",
+   "to": "c_oMax.oBonus"
   },
   {
    "from": "caseRow.row",

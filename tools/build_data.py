@@ -1059,10 +1059,29 @@ def main() -> int:
     for key, (zh, en) in sinfo["speakers"].items():
         strings[key] = {"zh-TW": zh, "en": en}
 
+    # ---- debate script rows (docs/debate-engine.md §2.4, A-11): ruling G2, Ch.1 R1-R3 follow the tutorial
+    # (TUT_01_12/15/17): R1 assert N1 (L003), R2 reinforce N2 (L006), R3 assert N3 (L005), all clear, basis
+    # tutorial, scripted (no behaviour-rule memory); R4 on (after a missed break) is the AI. Line ids are the
+    # S90 rows of the case's tells (tells.id); the tails are not script rows (the engine plays them itself).
+    deb_script = []
+    for case, rnd, action, node, line in (("CH01_MAIN", 1, "assert", "CH01_N1", "SCR_CH01_S90_L003"),
+                                          ("CH01_MAIN", 2, "reinforce", "CH01_N2", "SCR_CH01_S90_L006"),
+                                          ("CH01_MAIN", 3, "assert", "CH01_N3", "SCR_CH01_S90_L005")):
+        tell = next((r for r in tells if r["id"] == line), None)
+        if tell is None or tell["case"] != case or tell["category"] != "tell" or tell["action"] != action:
+            err(f"debScript {case}:{rnd}: {line} is not a {action} tell line of {case}")
+        if not any(n["id"] == node and n["case"] == case for n in nodes):
+            err(f"debScript {case}:{rnd}: unknown node {node}")
+        deb_script.append({"key": f"{case}:{rnd}", "action": action, "lit": node, "scripted": 1, "clarity": "clear",
+                           "shown1": action, "shown2": "", "star": "", "starRule": 0, "basis": "tutorial",
+                           "lineKey": line})
+
     tables = {"chapters": chapters, "steps": steps, "script": script, "evidence": evidence, "tags": tag_table,
               "hotspots": hotspots,
-              "nodes": nodes, "opponents": opponents, "tells": tells, "papers": papers, "difficulty": difficulty}
+              "nodes": nodes, "opponents": opponents, "tells": tells, "papers": papers, "difficulty": difficulty,
+              "debScript": deb_script}
 
+    expand_templates(strings, opponents, evidence)
     validate(tables, strings, systems, base)
 
     for w in warnings:
@@ -1101,6 +1120,66 @@ KEY_COLUMNS = {
 PAPER_PICTURES = {"", "ch01", "ch02", "ch03", "ch04"}
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
+
+
+# Strings with named placeholders ({n}, {name}, ...) that the debate and result flows show: Atrium Script's `format`
+# only takes a static pattern with {a}..{d}, so it cannot fill a localized template (docs/flows.md §7, framework
+# request: atrium.textf). Until then the pipeline writes every value the flows need as its own key,
+# `<KEY>__<v1>_<v2>` (the template with its placeholders filled, per language); the flows pick the key with format.
+# The domains are small and come from the data (rounds, counts, opponents, the cost cards).
+TEMPLATE_SPK = ("MSG_DEB_TRAP_MISS", "MSG_DEB_SLIP", "MSG_DEB_TRAP_EXPOSED", "MSG_DEB_SHAKEN", "MSG_DEB_SHAKEN_END",
+                "MSG_DEB_REINFORCE", "MSG_TAIL_START", "MSG_TAIL_SECOND", "MSG_TAIL_TIMEOUT", "MSG_WARMUP_FAIL")
+COST_SEIZED = ("E02_01", "E03_04")  # 10-cases Ch.2 / Ch.3 敗北: E02_01 taken by the client, E03_04 seized
+
+
+def expand_templates(strings: dict, opponents: list[dict], evidence: list[dict]) -> None:
+    def put(key: str, suffix: list, values: dict) -> None:
+        if key not in strings:
+            err(f"template {key} is missing from the string tables")
+            return
+        out = {}
+        for lang, text in strings[key].items():
+            for name, v in values.items():
+                v = v[lang] if isinstance(v, dict) else ("%g" % v if isinstance(v, float) else str(v))
+                text = text.replace("{" + name + "}", v)
+            if "{" in text:
+                err(f"template {key}: unfilled placeholder in {text!r} ({lang})")
+            out[lang] = text
+        strings[key + "__" + "_".join(str(s) for s in suffix)] = out
+
+    for n in range(1, 31):
+        put("UI_DEB_ROUND", [n], {"n": n})
+    for n in range(0, 5):
+        for r in range(0, 7):
+            put("UI_CH1_CONTRA", [n, r], {"n": n, "r": r})
+    for n in range(0, 4):
+        put("UI_WARMUP_MISS", [n], {"n": n})
+    for n in (1, 2, 4):
+        put("UI_DEB_TELL_LIKELY", [n], {"n": n})
+    for n in range(1, 6):
+        put("UI_DEB_TELL_BASIS_RULE", [n], {"n": n})
+    for n in range(1, 4):
+        put("STAMP_HACHIKU_SUB", [n], {"n": n})
+    for n in range(1, 5):
+        put("MSG_CH1_CONTRA", [n], {"n": n})
+    for n in (30, 33, 36, 39):  # 反擊 30 x (10 + 破竹) / 10
+        put("MSG_DEB_PARRY", [n], {"n": n})
+    for o in opponents:
+        if o["noDamage"]:
+            continue
+        base, per = o["damageBase"], o["damagePerNode"]
+        for n in range(0, o["nodeCap"] + 1):
+            put("UI_DEB_COUNTER_PREVIEW", [base, n], {"base": base, "n": n, "dmg": float(base + per * n)})
+            put("UI_DEB_COUNTER_PREVIEW_RUSH", [base, n],
+                {"base": base, "n": n, "dmg": float((base + per * n) * o["rushMul"])})
+    for n in (30,):  # tail penalty, chapters.tailPenalty (Ch.1-3: 30)
+        put("MSG_TAIL_WRONG", [n], {"n": n})
+    for spk in sorted({o["speaker"] for o in opponents}):
+        for key in TEMPLATE_SPK:
+            put(key, [spk], {"name": strings[spk]})
+    names = {e["id"]: e["nameKey"] for e in evidence}
+    for card in COST_SEIZED:
+        put("UI_RES_COST_SEIZE", [card], {"name": strings[names[card]]})
 
 
 def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:

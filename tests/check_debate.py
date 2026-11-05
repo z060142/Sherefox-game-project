@@ -17,8 +17,8 @@ Usage (from the project root):
    and the round's event records (exact, in order); warmup routes: round, index, mistakes, over, auto, trust, reward
    and records. Prints PASS / FAIL per route with the first diverging round and field.
 
-Environment: XTATRIUM (default E:/coding4/XTArtrium; its Release build of src/XTAtrium.Headless is used),
-XTATRIUM_XTFRAME_DIR (default <XTATRIUM>/artifacts/xtframe). Exit code 0 when every route passes.
+Environment: the CLI of tests/xt_cli.py (XTATRIUM_EXE, else the installed SDK, else the XTATRIUM checkout) and
+XTATRIUM_XTFRAME_DIR. Exit code 0 when every route passes.
 """
 
 from __future__ import annotations
@@ -37,10 +37,8 @@ sys.path.insert(0, str(ROOT / "tests"))
 import gen_debate as G  # noqa: E402
 import debate_routes as R  # noqa: E402
 
-XTATRIUM = Path(os.environ.get("XTATRIUM", "E:/coding4/XTArtrium"))
-XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(XTATRIUM / "artifacts" / "xtframe"))
-EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / (
-    "xtatrium.exe" if os.name == "nt" else "xtatrium")
+sys.path.insert(0, str(ROOT / "tests"))
+from xt_cli import EXE, XTFRAME  # noqa: E402  (tests/xt_cli.py: XTATRIUM_EXE, the SDK, or the checkout)
 HARNESS = ROOT / "tests" / "debate_harness"
 MAIN_FIELDS = ["debRound", "debPlayerHp", "debOppHp", "nodes", "debShaken", "debInTail", "debTailLeft", "debVoids",
                "debHachiku", "debKonju", "debShisshu", "debParries", "debContra", "debInfamy", "debAssist", "debOver",

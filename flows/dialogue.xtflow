@@ -44,6 +44,49 @@
       }
     },
     {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "result"
+      }
+    },
+    {
+      "id": "isRes",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isVnN",
+      "type": "select"
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "isResN",
+      "type": "select"
+    },
+    {
+      "id": "vnOrRes",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isVnN || isResN"
+      }
+    },
+    {
       "id": "vnScene",
       "type": "select"
     },
@@ -59,16 +102,28 @@
       }
     },
     {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "branch",
+      "type": "select"
+    },
+    {
       "id": "first",
       "type": "atrium.table.find",
       "params": {
         "table": "script",
         "column": "sceneKey",
+        "filterColumn": "branch",
         "filters": "{\"playable\": \"true\"}"
       }
     },
     {
-      "id": "K0",
+      "id": "K4",
       "type": "constant",
       "params": {
         "value": "row"
@@ -94,6 +149,7 @@
       "params": {
         "table": "script",
         "column": "sceneKey",
+        "filterColumn": "branch",
         "filters": "{\"playable\": \"true\"}"
       }
     },
@@ -124,6 +180,29 @@
     },
     {
       "id": "beginGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "resBeginG",
       "type": "state",
       "params": {
         "states": [
@@ -321,6 +400,46 @@
   "edges": [
     {
       "from": "world.stepKind",
+      "to": "isRes.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "isRes.b"
+    },
+    {
+      "from": "isVn.out",
+      "to": "isVnN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isVnN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isVnN.b"
+    },
+    {
+      "from": "isRes.out",
+      "to": "isResN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isResN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isResN.b"
+    },
+    {
+      "from": "isVnN.out",
+      "to": "vnOrRes.isVnN"
+    },
+    {
+      "from": "isResN.out",
+      "to": "vnOrRes.isResN"
+    },
+    {
+      "from": "world.stepKind",
       "to": "isVn.a"
     },
     {
@@ -328,7 +447,7 @@
       "to": "isVn.b"
     },
     {
-      "from": "isVn.out",
+      "from": "vnOrRes.truth",
       "to": "vnScene.cond"
     },
     {
@@ -352,11 +471,27 @@
       "to": "sceneKey.b"
     },
     {
+      "from": "isRes.out",
+      "to": "branch.cond"
+    },
+    {
+      "from": "world.resultBranch",
+      "to": "branch.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "branch.b"
+    },
+    {
       "from": "sceneKey.out",
       "to": "first.value"
     },
     {
-      "from": "K0.out",
+      "from": "branch.out",
+      "to": "first.filterValue"
+    },
+    {
+      "from": "K4.out",
       "to": "cur.key"
     },
     {
@@ -366,6 +501,10 @@
     {
       "from": "sceneKey.out",
       "to": "next.value"
+    },
+    {
+      "from": "branch.out",
+      "to": "next.filterValue"
     },
     {
       "from": "from.value",
@@ -400,7 +539,15 @@
       "to": "beginGate.go"
     },
     {
-      "from": "isVn.out",
+      "from": "isRes.out",
+      "to": "resBeginG.guard"
+    },
+    {
+      "from": "world.resultLines",
+      "to": "resBeginG.go"
+    },
+    {
+      "from": "vnOrRes.truth",
       "to": "advGate.guard"
     },
     {
@@ -412,11 +559,19 @@
       "to": "atBegin.setTrue"
     },
     {
+      "from": "resBeginG.changed",
+      "to": "atBegin.setTrue"
+    },
+    {
       "from": "advGate.changed",
       "to": "atBegin.setFalse"
     },
     {
       "from": "beginGate.changed",
+      "to": "show.in"
+    },
+    {
+      "from": "resBeginG.changed",
       "to": "show.in"
     },
     {
@@ -452,7 +607,7 @@
       "to": "disp.trigger"
     },
     {
-      "from": "K0.out",
+      "from": "K4.out",
       "to": "setRow.key"
     },
     {

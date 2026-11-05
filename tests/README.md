@@ -89,3 +89,26 @@ situation in all), and compares the observed frequencies of every tell outcome, 
 outcomes the reference cannot produce must never occur); free-play debates driven by the engine's own decisions are
 replayed in `ref/`. It also asserts the hard rules on every decision. Options: `--samples N`, `--seeds K`,
 `--verbose` (per-cell table). About 30 s.
+
+## Debates, result and consequences (M4c)
+
+```
+uv run tests/check_debate_play.py
+```
+
+It regenerates the recordings and the scripted-opponent harness (`tests/gen_debate_play.py`; `tests/play_harness/` is a
+generated copy of the game whose `debScript` also plays the opponent moves of the ref route `ch2_route` — game paths
+may not leave the game directory — do not edit it), replays them with `--ports` and `--dump` and checks
+(`docs/flows.md` §4.8, §4.9):
+
+| Recording | Route | What it asserts |
+|---|---|---|
+| `ch1_debate` (game) | `ch1_case`'s board; R1 rebut E01_06, R2 solid E01_01 -> E01_04, R3 rebut E01_03 against the G2 script rows | the reveal pairs, the nodes and statuses shown after each round equal the ref route `ch1_route`; the cut-in sequence equals the ref records (full-screen played -> `big`, stamps, demoted 破竹 3 -> the 破竹 stamp); the contradiction counter; result win, `ART_RES_CLEAN`, Arthur's line; the result scene's win lines and the notes; the Ch.2 paper strip |
+| `ch2_debate` (`play_harness`) | every evidence spot, three appraisals, the ref board `ch2_board`, the five rounds of `ch2_route` | per round: HP of both sides, nodes, 破竹, 動搖, 尾聲 equal the ref; cut-ins; result win / comment / Fitch's line; win lines; the Ch.3 paper shows `NEWS_02_WIN`; E02_08 in `held` (F3), G-01 kept, no costs |
+| `ch2_lose` (game, seeded AI) | `ch2_case`'s first chain; observe every round until the debate is lost; retry; lost again; continue | two defeat screens (win 0, `ART_RES_LOSE`, retry offered), the cost line (E02_01 seized), the retried debate starts again, the lose lines, the Ch.3 paper shows `NEWS_02_LOSE`, G-01 removed, no E02_08, the missed card's hand |
+
+The story playthroughs (`check_playthrough.py`) now go through every warmup, debate and result step the shortest
+sure way (`gen_debate_play.minimal`: the warmup's first card, observe until the debate ends, continue, the lose
+lines), so their line lists include the result scenes' lose branch and the papers' strips are the lose variants.
+`check_debate.py`, `check_policy.py` and `check_playthrough.py` use the CLI of `tests/xt_cli.py` (`XTATRIUM_EXE`,
+else the installed SDK, else the `XTATRIUM` checkout).

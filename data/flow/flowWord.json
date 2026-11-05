@@ -1,0 +1,20 @@
+[
+  {"key": "pa:solid", "code": 0, "text": ""},
+  {"key": "pa:sophistry", "code": 1, "text": ""},
+  {"key": "pa:rebut", "code": 2, "text": ""},
+  {"key": "pa:observe", "code": 3, "text": ""},
+  {"key": "oa:assert", "code": 0, "text": ""},
+  {"key": "oa:rush", "code": 1, "text": ""},
+  {"key": "oa:reinforce", "code": 2, "text": ""},
+  {"key": "oa:trap", "code": 3, "text": ""},
+  {"key": "oa:scorched", "code": 4, "text": ""},
+  {"key": "st:player_attack_vs_defense", "code": 0, "text": ""},
+  {"key": "st:defense_vs_attack", "code": 1, "text": ""},
+  {"key": "st:clash", "code": 2, "text": ""},
+  {"key": "st:standoff", "code": 3, "text": ""},
+  {"key": "basis:tutorial", "code": 0, "text": "UI_DEB_TELL_BASIS_TUTORIAL"},
+  {"key": "basis:observe", "code": 0, "text": "UI_DEB_TELL_BASIS_OBSERVE"},
+  {"key": "basis:rule3", "code": 0, "text": "UI_DEB_TELL_BASIS_RULE__3"},
+  {"key": "basis:konju", "code": 0, "text": "UI_DEB_TELL_BASIS_KONJU"},
+  {"key": "basis:fox", "code": 0, "text": "UI_DEB_TELL_BASIS_INSTINCT"}
+]

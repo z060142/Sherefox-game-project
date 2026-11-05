@@ -163,7 +163,7 @@ def check_ch1(fail: cp.Failures, frames: Path | None) -> None:
     fail.check(remarks(tr)[-1:] == [s["ART_SOLID"]], f"{label}: remarks {remarks(tr)}")
     check_board_input(fail, label, colls, ch1_case(), ch1_board())
     fail.check(items(colls, "golden") == [], f"{label}: golden")
-    fail.check(cp.main_visible(tr.ticks[-1][2]) == {"vn"}, f"{label}: after the debate stub: {tr.ticks[-1][2]}")
+    fail.check(cp.main_visible(tr.ticks[-1][2]) == {"debate"}, f"{label}: after the board: {tr.ticks[-1][2]}")
     print(f"{label}: 10 spots, {len(kinds)} popups, chain E01_01-E01_04 solid, debBoard matches ref ch1_board"
           if not fail.items else f"{label}: done")
 

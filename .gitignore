@@ -5,3 +5,4 @@ node_modules/
 __pycache__/
 .venv/
 !tests/*.atrec
+tests/play_harness/

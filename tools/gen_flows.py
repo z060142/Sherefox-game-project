@@ -426,7 +426,7 @@ def table_text(rows: list[dict]) -> str:
 SIGNALS = {
     "trust": {"type": "number", "initial": 3},          # 01-systems §3.1: permanent trust, starts at 3
     "bookOpen": {"type": "bool", "initial": False},     # main: the evidence book overlay is open
-    "caseOutcome": {"type": "string", "initial": ""},   # debate result of the current case (stub: "win")
+    "caseOutcome": {"type": "string", "initial": ""},   # result: win / notorious / lose (the paper's sidebar)
 }
 COLLECTIONS = {
     # case state (investigation -> board -> debate)
@@ -465,18 +465,28 @@ COLLECTIONS = {
     # dialogue cursor
     "dlgState": {"kind": "map", "type": "number", "capacity": 2},
 }
-FLOW_ORDER = ["main", "dialogue", "paper", "investigate", "board", "stubs"]
+# debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
+# docs/debate-engine.md §7.6), result after it.
+FLOW_ORDER = ["main", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
+              "result"]
 
 
 def game_json_text(tables: dict) -> str:
+    import gen_debui
     game = json.loads(GAME_JSON.read_text(encoding="utf-8"))
-    for name, decl in SIGNALS.items():
+    # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py)
+    for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS}.items():
         game["signals"][name] = decl
     colls = game.get("collections", {})
+    colls.update(gen_debate.COLLECTIONS)
     colls.update(COLLECTIONS)
+    colls.update(gen_debui.COLLECTIONS)
     game["collections"] = colls
     for name in tables:
         game["tables"][name] = f"data/flow/{name}.json"
+    for name, rel in gen_debate.TABLES.items():
+        game["tables"][name] = rel
+    game["tables"][gen_debate.SCRIPT_TABLE] = "data/debScript.json"   # tools/build_data.py (ruling G2)
     game["flows"] = [f"flows/{f}.xtflow" for f in FLOW_ORDER]
     return json.dumps(game, ensure_ascii=False, indent=2) + "\n"
 
@@ -492,7 +502,10 @@ def lang_changed(g: Graph) -> str:
 def chapter_values(g: Graph) -> None:
     """Values of the current chapter: chapters row, flowCase row, police report (01-systems §3.1: trust >= 3)."""
     g.put("ch", "world.chapter")
-    g.put("trust", "world.trust")
+    # effective trust of this case (01-systems §3.1): the permanent trust + the warmup's modifier (caseMod)
+    g.put("trustP", "world.trust")
+    g.mget("trustD", "caseMod", g.k("trust"))
+    g.x("trust", "clamp(trustP + trustD, 0, 5)")
     g.tostr("chText", "world.chapter")
     g.tfind("chRow", "chapters", "id", "chText")
     g.tget("ticksInit", "chapters", "ticks", "chRow", "number")
@@ -638,6 +651,7 @@ def gen_main() -> Graph:
     g.edge("ui#title.chapter.emitted", "chPick.trigger")
     g.edge("chPick.out", "cur.set")
     g.edge("world.stepDone", "cur.increment")
+    g.edge("world.debRetry", "cur.decrement")    # result -> the debate step again (A-14 retry)
     g.edge("cur.value", "kind.row")
     g.edge("cur.value", "arg.row")
     g.edge("cur.value", "scene.row")
@@ -653,18 +667,21 @@ def gen_main() -> Graph:
     g.edge("sameGate.changed", "rebegin.in")
     g.edge("rebegin.out", "world.stepBegin")
 
-    # Screens: exactly one of title / paper / vn / investigate / board is visible. Stub steps (warmup, debate,
-    # result) leave the current screen as it is; `end` shows the title with its end card.
-    screens = ["title", "paper", "vn", "investigate", "board"]
+    # Screens: exactly one of title / paper / vn / investigate / board / debate / result is visible; `end` shows
+    # the title with its end card; warmup and debate steps show the debate; a result step shows the result, then
+    # the vn for its scene's lines (world.resultLines).
+    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result"]
     g.node("screen", "state", initial="title", states=screens,
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
     for name, tag, scr in (("isEnd", "end", "title"), ("isPaper", "paper", "paper"), ("isVn", "vn", "vn"),
-                           ("isInv", "investigate", "investigate"), ("isBoard", "board", "board")):
+                           ("isInv", "investigate", "investigate"), ("isBoard", "board", "board"),
+                           ("isDeb", "debate", "debate"), ("isWarm", "warmup", "debate"), ("isRes", "result", "result")):
         g.const(name + "Tag", tag)
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
         g.edge(name + "Tag.out", name + ".b")
         g.edge(name + ".true", f"screen.to_{scr}")
+    g.edge("world.resultLines", "screen.to_vn")
 
     # End card: shown while the step is `end` until the title's end_dismiss. The step stays `end`, so the chapter
     # list (no longer covered) starts a new run; entering an end step shows the card again.
@@ -722,23 +739,36 @@ def gen_dialogue() -> Graph:
     g.const("zero", 0)
     g.const("minusOne", -1)
     g.node("isVn", "compare", op="eq")
+    g.cmp("isRes", "world.stepKind", g.k("result"))
+    g.n("isVnN", "isVn.out")
+    g.n("isResN", "isRes.out")
+    g.x("vnOrRes", "isVnN || isResN")
     g.node("vnScene", "select")
     g.node("chText", "toString")
     g.node("sceneKey", "format", format="CH0{a}_{b}")   # script.sceneKey, e.g. CH01_S02 (chapters 1-9)
     g.edge("world.stepKind", "isVn.a")
     g.edge("vnTag.out", "isVn.b")
-    g.edge("isVn.out", "vnScene.cond")
+    g.edge("vnOrRes.truth", "vnScene.cond")
     g.edge("world.stepScene", "vnScene.a")
     g.edge("empty.out", "vnScene.b")
     g.edge("world.chapter", "chText.in")
     g.edge("world.chapter", "sceneKey.a")
     g.edge("vnScene.out", "sceneKey.b")
 
+    # A result step's lines (world.resultLines, after the result screen) are the rows of its branch (script.branch
+    # win / lose, world.resultBranch); vn scenes have no branch rows.
     playable = {"playable": "true"}
-    g.tfind("first", "script", "sceneKey", "sceneKey.out", filters=playable)
-    g.mget("cur", "dlgState", g.k("row"))
-    g.x("from", "cur + 1")
-    g.tfind("next", "script", "sceneKey", "sceneKey.out", filters=playable, frm="from")
+    g.sel("branch", "isRes.out", "world.resultBranch", g.k(""))
+    for nm in ("first", "next"):
+        g.node(nm, "atrium.table.find", table="script", column="sceneKey", filterColumn="branch",
+               filters=json.dumps(playable))
+        g.edge("sceneKey.out", f"{nm}.value")
+        g.edge("branch", f"{nm}.filterValue")
+        g.put(nm, f"{nm}.row")
+        if nm == "first":
+            g.mget("cur", "dlgState", g.k("row"))
+            g.x("from", "cur + 1")
+    g.edge("from", "next.from")
     g.toggle("atBegin")
     g.sel("pick", "atBegin.value", "first", "next")
     g.x("pickOk", "pick >= 0")
@@ -749,13 +779,16 @@ def gen_dialogue() -> Graph:
     g.gate("beginGate")
     g.edge("isVn.out", "beginGate.guard")
     g.edge("world.stepBegin", "beginGate.go")
+    resBegin = g.when("resBeginG", "world.resultLines", "isRes.out")
     g.gate("advGate")
-    g.edge("isVn.out", "advGate.guard")
+    g.edge("vnOrRes.truth", "advGate.guard")
     g.edge("ui#vn.advance", "advGate.go")
     g.edge("beginGate.changed", "atBegin.setTrue")
+    g.edge(resBegin, "atBegin.setTrue")
     g.edge("advGate.changed", "atBegin.setFalse")
     g.node("show", "merge")
     g.edge("beginGate.changed", "show.in")
+    g.edge(resBegin, "show.in")
     g.edge("advGate.changed", "show.in")
     shown = g.when("showGate", "show.out", "pickOk_t")
     over = g.when("overGate", "show.out", "pickNo_t")
@@ -856,9 +889,15 @@ def gen_paper() -> Graph:
     text("page2Body", key("page2BodyKey", "page2BodyKey"), "page2_body")
     text("side", key("sideKey", "sideKey"), "side")
     text("ad", key("adKey", "adKey"), "ad")
-    # The "previous case" strip. The debate is still a stub (world.caseOutcome = win): always the WIN variant.
-    text("resultHead", key("sideWinKey", "sideWinKey"), "result_head")
-    text("resultSub", key("sideWinSubKey", "sideWinSubKey"), "result_sub")
+    # The "previous case" strip (01-systems §3.3 判定順序): world.caseOutcome lose / notorious / win (anything
+    # else, e.g. a chapter chosen from the title: win).
+    g.cmp("ocLose", "world.caseOutcome", g.k("lose"))
+    g.cmp("ocNoto", "world.caseOutcome", g.k("notorious"))
+    for port, col in (("result_head", "Key"), ("result_sub", "SubKey")):
+        w, n, l = key(f"sw{col}", f"sideWin{col}"), key(f"sn{col}", f"sideNoto{col}"), key(f"sl{col}", f"sideLose{col}")
+        g.sel(f"sv{col}", "ocNoto.out", n, w)
+        g.sel(f"sx{col}", "ocLose.out", l, f"sv{col}")
+        text(f"result{col}", f"sx{col}", port)
     g.edge(key("pictureId", "pictureId"), "ui#paper.picture")
 
     # No data for these yet (docs/flows.md): plain masthead, no stamp, no dateline.
@@ -1230,13 +1269,18 @@ def gen_board() -> Graph:
             terms_fm.append(f"L{s}_fm{t}")
         g.x(f"L{s}_shared", " + ".join(terms_sh))
         g.x(f"L{s}_firm", " + ".join(terms_fm))
-        g.x(f"k{s}", f"!(v{s} && v{s + 1}) ? 0 : L{s}_shared == 0 ? 3 : "
+        # A card without a chosen reason links to nothing (01-systems §2.3): 0, the row is split there; invalid
+        # (nothing shared) still bounces a card when it is placed, reason or not.
+        g.x(f"k{s}", f"!(v{s} && v{s + 1}) ? 0 : L{s}_shared == 0 ? 3 : !({a}_rset && {bb}_rset) ? 0 : "
                      f"(L{s}_firm > 0 && {a}_ok && {bb}_ok && !{a}_sub && !{bb}_sub) ? "
                      f"(({a}_goldenCard || {bb}_goldenCard) ? 4 : 1) : 2")
         g.x(f"dl{s}", f"(k{s} == 1 || k{s} == 4) ? 1 : k{s} == 2 ? 2 : 0")   # debBoardLink value
     for r in range(3):
         sl = [s for s in links if s // 5 == r]
-        g.x(f"cnt{r}", " + ".join(f"v{s}" for s in range(5 * r, 5 * r + 5)))
+        # cards of the row that are linked to a neighbour (an unreasoned card is in no chain, §2.3)
+        g.x(f"cnt{r}", " + ".join(
+            f"(v{s} && ({' || '.join(f'(k{j} == 1 || k{j} == 2 || k{j} == 4)' for j in (s - 1, s) if j in links and j // 5 == r)}))"
+            for s in range(5 * r, 5 * r + 5)))
         g.x(f"solid{r}", " + ".join(f"(k{s} == 1 || k{s} == 4)" for s in sl))
         g.x(f"soph{r}", " + ".join(f"(k{s} == 2)" for s in sl))
         # 01-systems §2.5: 14 x (1 + 0.5 solid + 0.8 sophistry), written like ref rules.chain_damage_breakdown.
@@ -1434,8 +1478,10 @@ def gen_board() -> Graph:
     for coll in ("debBoard", "debBoardOk", "debBoardLink"):
         g.edge(commit, g.eff(f"cm_clr_{coll}", "atrium.coll.clear", coll))
     for s in range(SLOTS):
-        g.sel(f"cmId{s}", f"id{s}_ok", f"id{s}", g.k("-"))
-        g.x(f"cmOk{s}", f"v{s} ? s{s}_ok : 1")
+        # a placed card without a reason does not fight (§2.7): an empty slot for the engine
+        g.x(f"cmOn{s}", f"v{s} && s{s}_rset")
+        g.sel(f"cmId{s}", f"cmOn{s}_t", f"id{s}", g.k("-"))
+        g.x(f"cmOk{s}", f"cmOn{s} ? s{s}_ok : 1")
         g.edge(commit, g.eff(f"cmB{s}", "atrium.coll.add", "debBoard", value=f"cmId{s}"))
         g.edge(commit, g.eff(f"cmO{s}", "atrium.coll.add", "debBoardOk", value=f"cmOk{s}"))
         g.edge(commit, g.eff(f"cmL{s}", "atrium.coll.add", "debBoardLink",
@@ -1504,41 +1550,20 @@ def gen_board() -> Graph:
 
 # ---------------------------------------------------------------- stubs
 
-STUB_KINDS = ["warmup", "debate", "result"]
+import gen_debate  # noqa: E402  (the engine's interface: signals, collections, tables)
 
 
-def gen_stubs() -> Graph:
-    """Step kinds without a flow yet report done at once. The debate stub records a win (world.caseOutcome), so the
-    papers and results downstream have an outcome. E02_08 (ruling F3, auto-granted when the Ch.2 debate ends) is
-    for the debate pass (M4c)."""
-    g = Graph()
-    g.node("done", "merge")
-    g.edge("done.out", "world.stepDone")
-    for k in STUB_KINDS:
-        g.const(k + "Tag", k)
-        g.node(k + "Is", "compare", op="eq")
-        g.gate(k + "Gate")
-        g.edge("world.stepKind", k + "Is.a")
-        g.edge(k + "Tag.out", k + "Is.b")
-        g.edge(k + "Is.out", k + "Gate.guard")
-        g.edge("world.stepBegin", k + "Gate.go")
-        if k == "debate":
-            g.const("win", "win")
-            g.node("outcome", "filter", op="sample")
-            g.edge("win.out", "outcome.in")
-            g.edge(k + "Gate.changed", "outcome.trigger")
-            g.edge("outcome.out", "world.caseOutcome")
-        g.edge(k + "Gate.changed", "done.in")
-    return g
-
-
-GRAPHS = {"main": gen_main, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
-          "board": gen_board, "stubs": gen_stubs}
+def graphs() -> dict:
+    import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
+    return {"main": gen_main, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
+            "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result}
 
 
 def outputs() -> dict[Path, str]:
-    out = {FLOWS / f"{name}.xtflow": fn().text_out() for name, fn in GRAPHS.items()}
+    import gen_debui
+    out = {FLOWS / f"{name}.xtflow": fn().text_out() for name, fn in graphs().items()}
     tables = flow_tables()
+    tables.update(gen_debui.tables())
     for name, rows in tables.items():
         out[FLOW_DATA / f"{name}.json"] = table_text(rows)
     out[GAME_JSON] = game_json_text(tables)
@@ -1557,7 +1582,7 @@ def main() -> int:
             path.write_bytes(text.encode("utf-8"))
             print(f"wrote {path.relative_to(ROOT).as_posix()}")
     if "--stats" in sys.argv[1:]:
-        for name, fn in GRAPHS.items():
+        for name, fn in graphs().items():
             n, e = fn().stats()
             print(f"{name}: {n} nodes, {e} edges")
     if stale:

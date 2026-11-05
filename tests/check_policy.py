@@ -54,10 +54,8 @@ from sherefox_ref.policy import decide_next  # noqa: E402
 from sherefox_ref.resolve import resolve_round  # noqa: E402
 from sherefox_ref.rules import IllegalAction  # noqa: E402
 
-XTATRIUM = Path(os.environ.get("XTATRIUM", "E:/coding4/XTArtrium"))
-XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(XTATRIUM / "artifacts" / "xtframe"))
-EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / (
-    "xtatrium.exe" if os.name == "nt" else "xtatrium")
+sys.path.insert(0, str(ROOT / "tests"))
+from xt_cli import EXE, XTFRAME  # noqa: E402  (tests/xt_cli.py: XTATRIUM_EXE, the SDK, or the checkout)
 HARNESS = ROOT / "tests" / "policy_harness"
 Z_MAX = 4.0
 

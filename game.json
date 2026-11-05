@@ -54,6 +54,240 @@
     "caseOutcome": {
       "type": "string",
       "initial": ""
+    },
+    "debCase": {
+      "type": "string",
+      "initial": ""
+    },
+    "debScript": {
+      "type": "string",
+      "initial": ""
+    },
+    "debStart": {
+      "type": "pulse"
+    },
+    "debLock": {
+      "type": "pulse"
+    },
+    "debInstinct": {
+      "type": "pulse"
+    },
+    "debRedecide": {
+      "type": "pulse"
+    },
+    "debCmdKind": {
+      "type": "string",
+      "initial": ""
+    },
+    "debCmdFrom": {
+      "type": "number",
+      "initial": -1
+    },
+    "debCmdTo": {
+      "type": "number",
+      "initial": -1
+    },
+    "debCmdCard": {
+      "type": "string",
+      "initial": ""
+    },
+    "debCmdTarget": {
+      "type": "string",
+      "initial": ""
+    },
+    "debCmdAssist": {
+      "type": "number",
+      "initial": 0
+    },
+    "debOppBonus": {
+      "type": "number",
+      "initial": 0
+    },
+    "debPhase": {
+      "type": "string",
+      "initial": "idle"
+    },
+    "debRound": {
+      "type": "number",
+      "initial": 0
+    },
+    "debHpModel": {
+      "type": "number",
+      "initial": 0
+    },
+    "debPlayerHp": {
+      "type": "number",
+      "initial": 0
+    },
+    "debPlayerMax": {
+      "type": "number",
+      "initial": 0
+    },
+    "debOppHp": {
+      "type": "number",
+      "initial": 0
+    },
+    "debOppMax": {
+      "type": "number",
+      "initial": 0
+    },
+    "debShaken": {
+      "type": "number",
+      "initial": 0
+    },
+    "debInTail": {
+      "type": "number",
+      "initial": 0
+    },
+    "debTailLeft": {
+      "type": "number",
+      "initial": 0
+    },
+    "debVoids": {
+      "type": "number",
+      "initial": 0
+    },
+    "debHachiku": {
+      "type": "number",
+      "initial": 0
+    },
+    "debHachikuMode": {
+      "type": "number",
+      "initial": 0
+    },
+    "debKonju": {
+      "type": "number",
+      "initial": 0
+    },
+    "debShisshu": {
+      "type": "number",
+      "initial": 0
+    },
+    "debParries": {
+      "type": "number",
+      "initial": 0
+    },
+    "debContra": {
+      "type": "number",
+      "initial": 0
+    },
+    "debInfamy": {
+      "type": "number",
+      "initial": 0
+    },
+    "debAssist": {
+      "type": "number",
+      "initial": 0
+    },
+    "debInstinctLeft": {
+      "type": "number",
+      "initial": 0
+    },
+    "debOver": {
+      "type": "number",
+      "initial": 0
+    },
+    "debOutcome": {
+      "type": "string",
+      "initial": ""
+    },
+    "debBreakLabel": {
+      "type": "string",
+      "initial": ""
+    },
+    "debGoldenUsed": {
+      "type": "number",
+      "initial": 0
+    },
+    "debFragile": {
+      "type": "number",
+      "initial": 0
+    },
+    "debTellClarity": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellShown1": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellShown2": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellStar": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellBasis": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellLit": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellGesture": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellLine": {
+      "type": "string",
+      "initial": ""
+    },
+    "debTellStarRule": {
+      "type": "number",
+      "initial": 0
+    },
+    "debTellRule": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwActive": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwRound": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwIndex": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwClaim": {
+      "type": "string",
+      "initial": ""
+    },
+    "dwMistakes": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwOver": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwAuto": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwTrustDelta": {
+      "type": "number",
+      "initial": 0
+    },
+    "dwReward": {
+      "type": "number",
+      "initial": 0
+    },
+    "resultLines": {
+      "type": "pulse"
+    },
+    "resultBranch": {
+      "type": "string",
+      "initial": "win"
+    },
+    "debRetry": {
+      "type": "pulse"
     }
   },
   "input": {
@@ -66,7 +300,10 @@
     "flows/paper.xtflow",
     "flows/investigate.xtflow",
     "flows/board.xtflow",
-    "flows/stubs.xtflow"
+    "flows/debate_ui.xtflow",
+    "flows/debate_engine.xtflow",
+    "flows/debate_warmup.xtflow",
+    "flows/result.xtflow"
   ],
   "ui": {
     "bundle": "ui/bundle",
@@ -147,7 +384,19 @@
     "flowBook": "data/flow/flowBook.json",
     "flowSlot": "data/flow/flowSlot.json",
     "flowLink": "data/flow/flowLink.json",
-    "flowChain": "data/flow/flowChain.json"
+    "flowChain": "data/flow/flowChain.json",
+    "flowDebCase": "data/flow/flowDebCase.json",
+    "flowWord": "data/flow/flowWord.json",
+    "flowNodeView": "data/flow/flowNodeView.json",
+    "flowChainView": "data/flow/flowChainView.json",
+    "flowEvLine": "data/flow/flowEvLine.json",
+    "flowCut": "data/flow/flowCut.json",
+    "debCase": "data/debate/debCase.json",
+    "debCard": "data/debate/debCard.json",
+    "debNode": "data/debate/debNode.json",
+    "debCode": "data/debate/debCode.json",
+    "debLine": "data/debate/debLine.json",
+    "debScript": "data/debScript.json"
   },
   "collections": {
     "held": {
@@ -312,6 +561,123 @@
       "kind": "map",
       "type": "number",
       "capacity": 16
+    },
+    "debState": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 64
+    },
+    "dwState": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 16
+    },
+    "debOn": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "debEvents": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "debSnap": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "debAssisted": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "dbui": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "dbuiS": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "caseMod": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 4
+    },
+    "progress": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 8
+    },
+    "uiNodeIds": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "uiShat": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16,
+      "unique": true
+    },
+    "uiNodes": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "uiChains": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 15
+    },
+    "uiCands": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24,
+      "unique": true
+    },
+    "uiParryAll": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24
+    },
+    "uiParry": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24
+    },
+    "uiActOn": {
+      "kind": "list",
+      "type": "bool",
+      "capacity": 4
+    },
+    "uiActWhy": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 4
+    },
+    "evF": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "evN": {
+      "kind": "list",
+      "type": "number",
+      "capacity": 8
+    },
+    "resStats": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 12
+    },
+    "resCosts": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
     }
   }
 }

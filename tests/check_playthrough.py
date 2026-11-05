@@ -54,21 +54,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tests"))
 import gen_playthrough  # noqa: E402
 
-# The CLI: XTATRIUM_EXE; else the installed SDK (XTATRIUM_SDK, default E:/coding4/xtatrium-sdk) when it exists;
-# else the Release build of the XTAtrium checkout (XTATRIUM). Its XTFrame toolchain: XTATRIUM_XTFRAME_DIR, else the
-# SDK's xtframe/ or the checkout's artifacts/xtframe.
-_NAME = "xtatrium.exe" if os.name == "nt" else "xtatrium"
-XTATRIUM = Path(os.environ.get("XTATRIUM", "E:/coding4/XTArtrium"))
-SDK = Path(os.environ.get("XTATRIUM_SDK", "E:/coding4/xtatrium-sdk"))
-if os.environ.get("XTATRIUM_EXE"):
-    EXE = Path(os.environ["XTATRIUM_EXE"])
-    _XTFRAME = EXE.parent / "xtframe"
-elif (SDK / _NAME).exists() and "XTATRIUM" not in os.environ:
-    EXE, _XTFRAME = SDK / _NAME, SDK / "xtframe"
-else:
-    EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / _NAME
-    _XTFRAME = XTATRIUM / "artifacts" / "xtframe"
-XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(_XTFRAME))
+from xt_cli import EXE, XTFRAME  # noqa: E402  (the CLI and its XTFrame runtime, tests/xt_cli.py)
 MAIN_SCREENS = ("title", "paper", "vn", "investigate", "board", "debate", "result")
 
 
@@ -200,18 +186,20 @@ def expected_lines(chapter: int, lang: str):
     s = strings(lang)
     script = load("script")
     out = []
+    import gen_debate_play   # the result steps play their scene's lines of the minimal outcome's branch
     for step in load("steps"):
-        if step["chapter"] != chapter or step["kind"] != "vn":
+        if step["chapter"] != chapter or step["kind"] not in ("vn", "result"):
             continue
+        branch = gen_debate_play.MINIMAL_BRANCH if step["kind"] == "result" else ""
         for r in script:
-            if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"]:
+            if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"] and r["branch"] == branch:
                 out.append((r["id"], s[r["text"]], s[r["speaker"]] if r["focus"] != 0 else ""))
     return out
 
 
 def check_playthrough(fail: Failures, lang: str, frames: Path | None) -> None:
     label = f"ch1_playthrough[{lang}]"
-    ticks = gen_playthrough.ch1_playthrough()
+    ticks = gen_playthrough.ch1_playthrough(lang)
     events, err = run("ch1_playthrough", ticks, None if lang == "zh-TW" else lang, frames / "_ppm" if frames else None)
     for line in err.splitlines():
         fail.check(not line.startswith(("warning:", "error:")), f"{label}: stderr: {line}")
@@ -245,7 +233,7 @@ def check_playthrough(fail: Failures, lang: str, frames: Path | None) -> None:
     fail.check(main_visible(vis_end) == {"paper"}, f"{label}: last tick visible = {sorted(vis_end)}")
     fail.check(ports_end.get("paper.headline") == ch2_head, f"{label}: last paper headline {ports_end.get('paper.headline')!r}")
     fail.check(ports_end.get("paper.page") == 1, f"{label}: last paper page {ports_end.get('paper.page')!r}")
-    fail.check(ports_end.get("paper.result_head") == s[papers["CH02_OPEN"]["sideWinKey"]],
+    fail.check(ports_end.get("paper.result_head") == s[papers["CH02_OPEN"]["sideLoseKey"]],
                f"{label}: Ch.2 result strip {ports_end.get('paper.result_head')!r}")
     fail.check(ports_end.get("title.lang_en") == (lang == "en"), f"{label}: title.lang_en {ports_end.get('title.lang_en')!r}")
 
@@ -271,8 +259,8 @@ def check_full_run(fail: Failures) -> None:
     # Every opening paper, then the final paper (CH04_OPEN) with the Ch.3 result strip, each while paper is visible;
     # every paper port that has a papers column (data-schema §9; an empty key is an empty string).
     paper_ports = {"headline": "headlineKey", "subhead": "subKey", "body": "bodyKey", "page2_head": "page2HeadKey",
-                   "page2_body": "page2BodyKey", "side": "sideKey", "ad": "adKey", "result_head": "sideWinKey",
-                   "result_sub": "sideWinSubKey"}
+                   "page2_body": "page2BodyKey", "side": "sideKey", "ad": "adKey", "result_head": "sideLoseKey",
+                   "result_sub": "sideLoseSubKey"}   # the minimal play loses every debate (gen_debate_play)
     seen = [ports for _, ports, visible, _ in tr.ticks if main_visible(visible) == {"paper"}]
     for group in ("CH01_OPEN", "CH02_OPEN", "CH03_OPEN", "CH04_OPEN"):
         row = papers[group]

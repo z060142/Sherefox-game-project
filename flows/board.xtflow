@@ -2,6 +2,27 @@
   "version": 1,
   "nodes": [
     {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "trust"
+      }
+    },
+    {
+      "id": "trustD",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "caseMod"
+      }
+    },
+    {
+      "id": "trust",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "clamp(trustP + trustD, 0, 5)"
+      }
+    },
+    {
       "id": "chText",
       "type": "toString"
     },
@@ -146,7 +167,7 @@
       }
     },
     {
-      "id": "K0",
+      "id": "K1",
       "type": "constant",
       "params": {
         "value": "appr"
@@ -160,7 +181,7 @@
       }
     },
     {
-      "id": "K1",
+      "id": "K2",
       "type": "constant",
       "params": {
         "value": "en"
@@ -178,7 +199,7 @@
       "type": "merge"
     },
     {
-      "id": "K2",
+      "id": "K3",
       "type": "constant",
       "params": {
         "value": "board"
@@ -215,7 +236,7 @@
       }
     },
     {
-      "id": "K3",
+      "id": "K4",
       "type": "constant",
       "params": {
         "value": "locked"
@@ -229,7 +250,7 @@
       }
     },
     {
-      "id": "K4",
+      "id": "K5",
       "type": "constant",
       "params": {
         "value": "armed"
@@ -243,7 +264,7 @@
       }
     },
     {
-      "id": "K5",
+      "id": "K6",
       "type": "constant",
       "params": {
         "value": "bouncing"
@@ -257,7 +278,7 @@
       }
     },
     {
-      "id": "K6",
+      "id": "K7",
       "type": "constant",
       "params": {
         "value": "placeMode"
@@ -271,7 +292,7 @@
       }
     },
     {
-      "id": "K7",
+      "id": "K8",
       "type": "constant",
       "params": {
         "value": "solidSaid"
@@ -285,7 +306,7 @@
       }
     },
     {
-      "id": "K8",
+      "id": "K9",
       "type": "constant",
       "params": {
         "value": "invalidSaid"
@@ -418,7 +439,7 @@
       }
     },
     {
-      "id": "K9",
+      "id": "K10",
       "type": "constant",
       "params": {
         "value": ""
@@ -450,14 +471,14 @@
       "type": "select"
     },
     {
-      "id": "K10",
+      "id": "K11",
       "type": "constant",
       "params": {
         "value": 1
       }
     },
     {
-      "id": "K11",
+      "id": "K12",
       "type": "constant",
       "params": {
         "value": 0
@@ -969,7 +990,7 @@
       }
     },
     {
-      "id": "K12",
+      "id": "K13",
       "type": "constant",
       "params": {
         "value": 2
@@ -1212,7 +1233,7 @@
       }
     },
     {
-      "id": "K13",
+      "id": "K14",
       "type": "constant",
       "params": {
         "value": 3
@@ -1455,7 +1476,7 @@
       }
     },
     {
-      "id": "K14",
+      "id": "K15",
       "type": "constant",
       "params": {
         "value": 4
@@ -4407,7 +4428,7 @@
       "id": "k0",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v0 && v1) ? 0 : L0_shared == 0 ? 3 : (L0_firm > 0 && s0_ok && s1_ok && !s0_sub && !s1_sub) ? ((s0_goldenCard || s1_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v0 && v1) ? 0 : L0_shared == 0 ? 3 : !(s0_rset && s1_rset) ? 0 : (L0_firm > 0 && s0_ok && s1_ok && !s0_sub && !s1_sub) ? ((s0_goldenCard || s1_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -4767,7 +4788,7 @@
       "id": "k1",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v1 && v2) ? 0 : L1_shared == 0 ? 3 : (L1_firm > 0 && s1_ok && s2_ok && !s1_sub && !s2_sub) ? ((s1_goldenCard || s2_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v1 && v2) ? 0 : L1_shared == 0 ? 3 : !(s1_rset && s2_rset) ? 0 : (L1_firm > 0 && s1_ok && s2_ok && !s1_sub && !s2_sub) ? ((s1_goldenCard || s2_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -5127,7 +5148,7 @@
       "id": "k2",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v2 && v3) ? 0 : L2_shared == 0 ? 3 : (L2_firm > 0 && s2_ok && s3_ok && !s2_sub && !s3_sub) ? ((s2_goldenCard || s3_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v2 && v3) ? 0 : L2_shared == 0 ? 3 : !(s2_rset && s3_rset) ? 0 : (L2_firm > 0 && s2_ok && s3_ok && !s2_sub && !s3_sub) ? ((s2_goldenCard || s3_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -5487,7 +5508,7 @@
       "id": "k3",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v3 && v4) ? 0 : L3_shared == 0 ? 3 : (L3_firm > 0 && s3_ok && s4_ok && !s3_sub && !s4_sub) ? ((s3_goldenCard || s4_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v3 && v4) ? 0 : L3_shared == 0 ? 3 : !(s3_rset && s4_rset) ? 0 : (L3_firm > 0 && s3_ok && s4_ok && !s3_sub && !s4_sub) ? ((s3_goldenCard || s4_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -5847,7 +5868,7 @@
       "id": "k5",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v5 && v6) ? 0 : L5_shared == 0 ? 3 : (L5_firm > 0 && s5_ok && s6_ok && !s5_sub && !s6_sub) ? ((s5_goldenCard || s6_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v5 && v6) ? 0 : L5_shared == 0 ? 3 : !(s5_rset && s6_rset) ? 0 : (L5_firm > 0 && s5_ok && s6_ok && !s5_sub && !s6_sub) ? ((s5_goldenCard || s6_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -6207,7 +6228,7 @@
       "id": "k6",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v6 && v7) ? 0 : L6_shared == 0 ? 3 : (L6_firm > 0 && s6_ok && s7_ok && !s6_sub && !s7_sub) ? ((s6_goldenCard || s7_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v6 && v7) ? 0 : L6_shared == 0 ? 3 : !(s6_rset && s7_rset) ? 0 : (L6_firm > 0 && s6_ok && s7_ok && !s6_sub && !s7_sub) ? ((s6_goldenCard || s7_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -6567,7 +6588,7 @@
       "id": "k7",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v7 && v8) ? 0 : L7_shared == 0 ? 3 : (L7_firm > 0 && s7_ok && s8_ok && !s7_sub && !s8_sub) ? ((s7_goldenCard || s8_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v7 && v8) ? 0 : L7_shared == 0 ? 3 : !(s7_rset && s8_rset) ? 0 : (L7_firm > 0 && s7_ok && s8_ok && !s7_sub && !s8_sub) ? ((s7_goldenCard || s8_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -6927,7 +6948,7 @@
       "id": "k8",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v8 && v9) ? 0 : L8_shared == 0 ? 3 : (L8_firm > 0 && s8_ok && s9_ok && !s8_sub && !s9_sub) ? ((s8_goldenCard || s9_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v8 && v9) ? 0 : L8_shared == 0 ? 3 : !(s8_rset && s9_rset) ? 0 : (L8_firm > 0 && s8_ok && s9_ok && !s8_sub && !s9_sub) ? ((s8_goldenCard || s9_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -7287,7 +7308,7 @@
       "id": "k10",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v10 && v11) ? 0 : L10_shared == 0 ? 3 : (L10_firm > 0 && s10_ok && s11_ok && !s10_sub && !s11_sub) ? ((s10_goldenCard || s11_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v10 && v11) ? 0 : L10_shared == 0 ? 3 : !(s10_rset && s11_rset) ? 0 : (L10_firm > 0 && s10_ok && s11_ok && !s10_sub && !s11_sub) ? ((s10_goldenCard || s11_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -7647,7 +7668,7 @@
       "id": "k11",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v11 && v12) ? 0 : L11_shared == 0 ? 3 : (L11_firm > 0 && s11_ok && s12_ok && !s11_sub && !s12_sub) ? ((s11_goldenCard || s12_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v11 && v12) ? 0 : L11_shared == 0 ? 3 : !(s11_rset && s12_rset) ? 0 : (L11_firm > 0 && s11_ok && s12_ok && !s11_sub && !s12_sub) ? ((s11_goldenCard || s12_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -8007,7 +8028,7 @@
       "id": "k12",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v12 && v13) ? 0 : L12_shared == 0 ? 3 : (L12_firm > 0 && s12_ok && s13_ok && !s12_sub && !s13_sub) ? ((s12_goldenCard || s13_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v12 && v13) ? 0 : L12_shared == 0 ? 3 : !(s12_rset && s13_rset) ? 0 : (L12_firm > 0 && s12_ok && s13_ok && !s12_sub && !s13_sub) ? ((s12_goldenCard || s13_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -8367,7 +8388,7 @@
       "id": "k13",
       "type": "atrium.expr",
       "params": {
-        "expr": "!(v13 && v14) ? 0 : L13_shared == 0 ? 3 : (L13_firm > 0 && s13_ok && s14_ok && !s13_sub && !s14_sub) ? ((s13_goldenCard || s14_goldenCard) ? 4 : 1) : 2"
+        "expr": "!(v13 && v14) ? 0 : L13_shared == 0 ? 3 : !(s13_rset && s14_rset) ? 0 : (L13_firm > 0 && s13_ok && s14_ok && !s13_sub && !s14_sub) ? ((s13_goldenCard || s14_goldenCard) ? 4 : 1) : 2"
       }
     },
     {
@@ -8381,7 +8402,7 @@
       "id": "cnt0",
       "type": "atrium.expr",
       "params": {
-        "expr": "v0 + v1 + v2 + v3 + v4"
+        "expr": "(v0 && ((k0 == 1 || k0 == 2 || k0 == 4))) + (v1 && ((k0 == 1 || k0 == 2 || k0 == 4) || (k1 == 1 || k1 == 2 || k1 == 4))) + (v2 && ((k1 == 1 || k1 == 2 || k1 == 4) || (k2 == 1 || k2 == 2 || k2 == 4))) + (v3 && ((k2 == 1 || k2 == 2 || k2 == 4) || (k3 == 1 || k3 == 2 || k3 == 4))) + (v4 && ((k3 == 1 || k3 == 2 || k3 == 4)))"
       }
     },
     {
@@ -8409,7 +8430,7 @@
       "id": "cnt1",
       "type": "atrium.expr",
       "params": {
-        "expr": "v5 + v6 + v7 + v8 + v9"
+        "expr": "(v5 && ((k5 == 1 || k5 == 2 || k5 == 4))) + (v6 && ((k5 == 1 || k5 == 2 || k5 == 4) || (k6 == 1 || k6 == 2 || k6 == 4))) + (v7 && ((k6 == 1 || k6 == 2 || k6 == 4) || (k7 == 1 || k7 == 2 || k7 == 4))) + (v8 && ((k7 == 1 || k7 == 2 || k7 == 4) || (k8 == 1 || k8 == 2 || k8 == 4))) + (v9 && ((k8 == 1 || k8 == 2 || k8 == 4)))"
       }
     },
     {
@@ -8437,7 +8458,7 @@
       "id": "cnt2",
       "type": "atrium.expr",
       "params": {
-        "expr": "v10 + v11 + v12 + v13 + v14"
+        "expr": "(v10 && ((k10 == 1 || k10 == 2 || k10 == 4))) + (v11 && ((k10 == 1 || k10 == 2 || k10 == 4) || (k11 == 1 || k11 == 2 || k11 == 4))) + (v12 && ((k11 == 1 || k11 == 2 || k11 == 4) || (k12 == 1 || k12 == 2 || k12 == 4))) + (v13 && ((k12 == 1 || k12 == 2 || k12 == 4) || (k13 == 1 || k13 == 2 || k13 == 4))) + (v14 && ((k13 == 1 || k13 == 2 || k13 == 4)))"
       }
     },
     {
@@ -8684,7 +8705,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K15",
+      "id": "K16",
       "type": "constant",
       "params": {
         "value": "ART_INVALID"
@@ -9242,7 +9263,7 @@
       }
     },
     {
-      "id": "K16",
+      "id": "K17",
       "type": "constant",
       "params": {
         "value": 5
@@ -9286,7 +9307,7 @@
       }
     },
     {
-      "id": "K17",
+      "id": "K18",
       "type": "constant",
       "params": {
         "value": 6
@@ -9330,7 +9351,7 @@
       }
     },
     {
-      "id": "K18",
+      "id": "K19",
       "type": "constant",
       "params": {
         "value": 7
@@ -9374,7 +9395,7 @@
       }
     },
     {
-      "id": "K19",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": 8
@@ -9418,7 +9439,7 @@
       }
     },
     {
-      "id": "K20",
+      "id": "K21",
       "type": "constant",
       "params": {
         "value": 9
@@ -9462,7 +9483,7 @@
       }
     },
     {
-      "id": "K21",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": 10
@@ -9506,7 +9527,7 @@
       }
     },
     {
-      "id": "K22",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": 11
@@ -9550,7 +9571,7 @@
       }
     },
     {
-      "id": "K23",
+      "id": "K24",
       "type": "constant",
       "params": {
         "value": 12
@@ -9594,7 +9615,7 @@
       }
     },
     {
-      "id": "K24",
+      "id": "K25",
       "type": "constant",
       "params": {
         "value": 13
@@ -9638,7 +9659,7 @@
       }
     },
     {
-      "id": "K25",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": 14
@@ -9706,7 +9727,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K26",
+      "id": "K27",
       "type": "constant",
       "params": {
         "value": "0"
@@ -9724,7 +9745,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K27",
+      "id": "K28",
       "type": "constant",
       "params": {
         "value": "1"
@@ -9742,7 +9763,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K28",
+      "id": "K29",
       "type": "constant",
       "params": {
         "value": "2"
@@ -9760,7 +9781,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K29",
+      "id": "K30",
       "type": "constant",
       "params": {
         "value": "3"
@@ -9778,7 +9799,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K30",
+      "id": "K31",
       "type": "constant",
       "params": {
         "value": "5"
@@ -9796,7 +9817,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K31",
+      "id": "K32",
       "type": "constant",
       "params": {
         "value": "6"
@@ -9814,7 +9835,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K32",
+      "id": "K33",
       "type": "constant",
       "params": {
         "value": "7"
@@ -9832,7 +9853,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K33",
+      "id": "K34",
       "type": "constant",
       "params": {
         "value": "8"
@@ -9850,7 +9871,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K34",
+      "id": "K35",
       "type": "constant",
       "params": {
         "value": "10"
@@ -9868,7 +9889,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K35",
+      "id": "K36",
       "type": "constant",
       "params": {
         "value": "11"
@@ -9886,7 +9907,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K36",
+      "id": "K37",
       "type": "constant",
       "params": {
         "value": "12"
@@ -9904,7 +9925,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K37",
+      "id": "K38",
       "type": "constant",
       "params": {
         "value": "13"
@@ -10806,7 +10827,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K38",
+      "id": "K39",
       "type": "constant",
       "params": {
         "value": "MSG_CHAIN_MAX"
@@ -11526,7 +11547,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K39",
+      "id": "K40",
       "type": "constant",
       "params": {
         "value": "MSG_BOARD_NOCHAIN"
@@ -11551,14 +11572,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K40",
+      "id": "K41",
       "type": "constant",
       "params": {
         "value": "WARN_BOARD_NOREASON"
       }
     },
     {
-      "id": "K41",
+      "id": "K42",
       "type": "constant",
       "params": {
         "value": "WARN_BOARD_UNAPPR"
@@ -11615,7 +11636,14 @@
       }
     },
     {
-      "id": "K42",
+      "id": "cmOn0",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v0 && s0_rset"
+      }
+    },
+    {
+      "id": "K43",
       "type": "constant",
       "params": {
         "value": "-"
@@ -11629,7 +11657,7 @@
       "id": "cmOk0",
       "type": "atrium.expr",
       "params": {
-        "expr": "v0 ? s0_ok : 1"
+        "expr": "cmOn0 ? s0_ok : 1"
       }
     },
     {
@@ -11654,6 +11682,13 @@
       }
     },
     {
+      "id": "cmOn1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v1 && s1_rset"
+      }
+    },
+    {
       "id": "cmId1",
       "type": "select"
     },
@@ -11661,7 +11696,7 @@
       "id": "cmOk1",
       "type": "atrium.expr",
       "params": {
-        "expr": "v1 ? s1_ok : 1"
+        "expr": "cmOn1 ? s1_ok : 1"
       }
     },
     {
@@ -11686,6 +11721,13 @@
       }
     },
     {
+      "id": "cmOn2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v2 && s2_rset"
+      }
+    },
+    {
       "id": "cmId2",
       "type": "select"
     },
@@ -11693,7 +11735,7 @@
       "id": "cmOk2",
       "type": "atrium.expr",
       "params": {
-        "expr": "v2 ? s2_ok : 1"
+        "expr": "cmOn2 ? s2_ok : 1"
       }
     },
     {
@@ -11718,6 +11760,13 @@
       }
     },
     {
+      "id": "cmOn3",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v3 && s3_rset"
+      }
+    },
+    {
       "id": "cmId3",
       "type": "select"
     },
@@ -11725,7 +11774,7 @@
       "id": "cmOk3",
       "type": "atrium.expr",
       "params": {
-        "expr": "v3 ? s3_ok : 1"
+        "expr": "cmOn3 ? s3_ok : 1"
       }
     },
     {
@@ -11750,6 +11799,13 @@
       }
     },
     {
+      "id": "cmOn4",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v4 && s4_rset"
+      }
+    },
+    {
       "id": "cmId4",
       "type": "select"
     },
@@ -11757,7 +11813,7 @@
       "id": "cmOk4",
       "type": "atrium.expr",
       "params": {
-        "expr": "v4 ? s4_ok : 1"
+        "expr": "cmOn4 ? s4_ok : 1"
       }
     },
     {
@@ -11782,6 +11838,13 @@
       }
     },
     {
+      "id": "cmOn5",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v5 && s5_rset"
+      }
+    },
+    {
       "id": "cmId5",
       "type": "select"
     },
@@ -11789,7 +11852,7 @@
       "id": "cmOk5",
       "type": "atrium.expr",
       "params": {
-        "expr": "v5 ? s5_ok : 1"
+        "expr": "cmOn5 ? s5_ok : 1"
       }
     },
     {
@@ -11814,6 +11877,13 @@
       }
     },
     {
+      "id": "cmOn6",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v6 && s6_rset"
+      }
+    },
+    {
       "id": "cmId6",
       "type": "select"
     },
@@ -11821,7 +11891,7 @@
       "id": "cmOk6",
       "type": "atrium.expr",
       "params": {
-        "expr": "v6 ? s6_ok : 1"
+        "expr": "cmOn6 ? s6_ok : 1"
       }
     },
     {
@@ -11846,6 +11916,13 @@
       }
     },
     {
+      "id": "cmOn7",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v7 && s7_rset"
+      }
+    },
+    {
       "id": "cmId7",
       "type": "select"
     },
@@ -11853,7 +11930,7 @@
       "id": "cmOk7",
       "type": "atrium.expr",
       "params": {
-        "expr": "v7 ? s7_ok : 1"
+        "expr": "cmOn7 ? s7_ok : 1"
       }
     },
     {
@@ -11878,6 +11955,13 @@
       }
     },
     {
+      "id": "cmOn8",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v8 && s8_rset"
+      }
+    },
+    {
       "id": "cmId8",
       "type": "select"
     },
@@ -11885,7 +11969,7 @@
       "id": "cmOk8",
       "type": "atrium.expr",
       "params": {
-        "expr": "v8 ? s8_ok : 1"
+        "expr": "cmOn8 ? s8_ok : 1"
       }
     },
     {
@@ -11910,6 +11994,13 @@
       }
     },
     {
+      "id": "cmOn9",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v9 && s9_rset"
+      }
+    },
+    {
       "id": "cmId9",
       "type": "select"
     },
@@ -11917,7 +12008,7 @@
       "id": "cmOk9",
       "type": "atrium.expr",
       "params": {
-        "expr": "v9 ? s9_ok : 1"
+        "expr": "cmOn9 ? s9_ok : 1"
       }
     },
     {
@@ -11942,6 +12033,13 @@
       }
     },
     {
+      "id": "cmOn10",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v10 && s10_rset"
+      }
+    },
+    {
       "id": "cmId10",
       "type": "select"
     },
@@ -11949,7 +12047,7 @@
       "id": "cmOk10",
       "type": "atrium.expr",
       "params": {
-        "expr": "v10 ? s10_ok : 1"
+        "expr": "cmOn10 ? s10_ok : 1"
       }
     },
     {
@@ -11974,6 +12072,13 @@
       }
     },
     {
+      "id": "cmOn11",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v11 && s11_rset"
+      }
+    },
+    {
       "id": "cmId11",
       "type": "select"
     },
@@ -11981,7 +12086,7 @@
       "id": "cmOk11",
       "type": "atrium.expr",
       "params": {
-        "expr": "v11 ? s11_ok : 1"
+        "expr": "cmOn11 ? s11_ok : 1"
       }
     },
     {
@@ -12006,6 +12111,13 @@
       }
     },
     {
+      "id": "cmOn12",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v12 && s12_rset"
+      }
+    },
+    {
       "id": "cmId12",
       "type": "select"
     },
@@ -12013,7 +12125,7 @@
       "id": "cmOk12",
       "type": "atrium.expr",
       "params": {
-        "expr": "v12 ? s12_ok : 1"
+        "expr": "cmOn12 ? s12_ok : 1"
       }
     },
     {
@@ -12038,6 +12150,13 @@
       }
     },
     {
+      "id": "cmOn13",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v13 && s13_rset"
+      }
+    },
+    {
       "id": "cmId13",
       "type": "select"
     },
@@ -12045,7 +12164,7 @@
       "id": "cmOk13",
       "type": "atrium.expr",
       "params": {
-        "expr": "v13 ? s13_ok : 1"
+        "expr": "cmOn13 ? s13_ok : 1"
       }
     },
     {
@@ -12070,6 +12189,13 @@
       }
     },
     {
+      "id": "cmOn14",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "v14 && s14_rset"
+      }
+    },
+    {
       "id": "cmId14",
       "type": "select"
     },
@@ -12077,7 +12203,7 @@
       "id": "cmOk14",
       "type": "atrium.expr",
       "params": {
-        "expr": "v14 ? s14_ok : 1"
+        "expr": "cmOn14 ? s14_ok : 1"
       }
     },
     {
@@ -13031,7 +13157,7 @@
       }
     },
     {
-      "id": "K43",
+      "id": "K44",
       "type": "constant",
       "params": {
         "value": "UI_TAG_HIDDEN"
@@ -13336,7 +13462,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K44",
+      "id": "K45",
       "type": "constant",
       "params": {
         "value": "mid"
@@ -13350,14 +13476,14 @@
       }
     },
     {
-      "id": "K45",
+      "id": "K46",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_MID"
       }
     },
     {
-      "id": "K46",
+      "id": "K47",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_EARLY"
@@ -13368,7 +13494,7 @@
       "type": "select"
     },
     {
-      "id": "K47",
+      "id": "K48",
       "type": "constant",
       "params": {
         "value": "late"
@@ -13382,7 +13508,7 @@
       }
     },
     {
-      "id": "K48",
+      "id": "K49",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_LATE"
@@ -13570,6 +13696,18 @@
   ],
   "edges": [
     {
+      "from": "K0.out",
+      "to": "trustD.key"
+    },
+    {
+      "from": "world.trust",
+      "to": "trust.trustP"
+    },
+    {
+      "from": "trustD.value",
+      "to": "trust.trustD"
+    },
+    {
       "from": "world.chapter",
       "to": "chText.in"
     },
@@ -13614,7 +13752,7 @@
       "to": "policeOn.policeCh"
     },
     {
-      "from": "world.trust",
+      "from": "trust.value",
       "to": "policeOn.trust"
     },
     {
@@ -13642,7 +13780,7 @@
       "to": "caseCardsText.row"
     },
     {
-      "from": "K0.out",
+      "from": "K1.out",
       "to": "apprLeft.key"
     },
     {
@@ -13650,7 +13788,7 @@
       "to": "langEn.a"
     },
     {
-      "from": "K1.out",
+      "from": "K2.out",
       "to": "langEn.b"
     },
     {
@@ -13666,7 +13804,7 @@
       "to": "isBoard.a"
     },
     {
-      "from": "K2.out",
+      "from": "K3.out",
       "to": "isBoard.b"
     },
     {
@@ -13678,27 +13816,27 @@
       "to": "beginGate.go"
     },
     {
-      "from": "K3.out",
+      "from": "K4.out",
       "to": "lockedN.key"
     },
     {
-      "from": "K4.out",
+      "from": "K5.out",
       "to": "armedN.key"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "bouncingN.key"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "placeModeN.key"
     },
     {
-      "from": "K7.out",
+      "from": "K8.out",
       "to": "solidSaidN.key"
     },
     {
-      "from": "K8.out",
+      "from": "K9.out",
       "to": "invalidSaidN.key"
     },
     {
@@ -13762,7 +13900,7 @@
       "to": "sophN.reset"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "remark1_key.in"
     },
     {
@@ -13794,11 +13932,11 @@
       "to": "ce_held.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "ce_held.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ce_held.b"
     },
     {
@@ -13810,11 +13948,11 @@
       "to": "ce_gold.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "ce_gold.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ce_gold.b"
     },
     {
@@ -13850,7 +13988,7 @@
       "to": "refresh.in"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "id0.index"
     },
     {
@@ -13858,11 +13996,11 @@
       "to": "v0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v0.b"
     },
     {
@@ -13954,11 +14092,11 @@
       "to": "s0_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s0_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s0_apprHas.b"
     },
     {
@@ -14010,7 +14148,7 @@
       "to": "noR0.s0_rset"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "id1.index"
     },
     {
@@ -14018,11 +14156,11 @@
       "to": "v1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v1.b"
     },
     {
@@ -14114,11 +14252,11 @@
       "to": "s1_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s1_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s1_apprHas.b"
     },
     {
@@ -14170,7 +14308,7 @@
       "to": "noR1.s1_rset"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "id2.index"
     },
     {
@@ -14178,11 +14316,11 @@
       "to": "v2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v2.b"
     },
     {
@@ -14274,11 +14412,11 @@
       "to": "s2_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s2_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s2_apprHas.b"
     },
     {
@@ -14330,7 +14468,7 @@
       "to": "noR2.s2_rset"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "id3.index"
     },
     {
@@ -14338,11 +14476,11 @@
       "to": "v3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v3.b"
     },
     {
@@ -14434,11 +14572,11 @@
       "to": "s3_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s3_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s3_apprHas.b"
     },
     {
@@ -14490,7 +14628,7 @@
       "to": "noR3.s3_rset"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "id4.index"
     },
     {
@@ -14498,11 +14636,11 @@
       "to": "v4.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v4.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v4.b"
     },
     {
@@ -14594,11 +14732,11 @@
       "to": "s4_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s4_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s4_apprHas.b"
     },
     {
@@ -14650,7 +14788,7 @@
       "to": "noR4.s4_rset"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "id5.index"
     },
     {
@@ -14658,11 +14796,11 @@
       "to": "v5.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v5.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v5.b"
     },
     {
@@ -14754,11 +14892,11 @@
       "to": "s5_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s5_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s5_apprHas.b"
     },
     {
@@ -14810,7 +14948,7 @@
       "to": "noR5.s5_rset"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "id6.index"
     },
     {
@@ -14818,11 +14956,11 @@
       "to": "v6.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v6.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v6.b"
     },
     {
@@ -14914,11 +15052,11 @@
       "to": "s6_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s6_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s6_apprHas.b"
     },
     {
@@ -14970,7 +15108,7 @@
       "to": "noR6.s6_rset"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "id7.index"
     },
     {
@@ -14978,11 +15116,11 @@
       "to": "v7.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v7.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v7.b"
     },
     {
@@ -15074,11 +15212,11 @@
       "to": "s7_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s7_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s7_apprHas.b"
     },
     {
@@ -15130,7 +15268,7 @@
       "to": "noR7.s7_rset"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "id8.index"
     },
     {
@@ -15138,11 +15276,11 @@
       "to": "v8.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v8.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v8.b"
     },
     {
@@ -15234,11 +15372,11 @@
       "to": "s8_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s8_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s8_apprHas.b"
     },
     {
@@ -15290,7 +15428,7 @@
       "to": "noR8.s8_rset"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "id9.index"
     },
     {
@@ -15298,11 +15436,11 @@
       "to": "v9.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v9.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v9.b"
     },
     {
@@ -15394,11 +15532,11 @@
       "to": "s9_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s9_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s9_apprHas.b"
     },
     {
@@ -15450,7 +15588,7 @@
       "to": "noR9.s9_rset"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "id10.index"
     },
     {
@@ -15458,11 +15596,11 @@
       "to": "v10.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v10.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v10.b"
     },
     {
@@ -15554,11 +15692,11 @@
       "to": "s10_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s10_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s10_apprHas.b"
     },
     {
@@ -15610,7 +15748,7 @@
       "to": "noR10.s10_rset"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "id11.index"
     },
     {
@@ -15618,11 +15756,11 @@
       "to": "v11.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v11.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v11.b"
     },
     {
@@ -15714,11 +15852,11 @@
       "to": "s11_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s11_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s11_apprHas.b"
     },
     {
@@ -15770,7 +15908,7 @@
       "to": "noR11.s11_rset"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "id12.index"
     },
     {
@@ -15778,11 +15916,11 @@
       "to": "v12.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v12.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v12.b"
     },
     {
@@ -15874,11 +16012,11 @@
       "to": "s12_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s12_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s12_apprHas.b"
     },
     {
@@ -15930,7 +16068,7 @@
       "to": "noR12.s12_rset"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "id13.index"
     },
     {
@@ -15938,11 +16076,11 @@
       "to": "v13.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v13.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v13.b"
     },
     {
@@ -16034,11 +16172,11 @@
       "to": "s13_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s13_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s13_apprHas.b"
     },
     {
@@ -16090,7 +16228,7 @@
       "to": "noR13.s13_rset"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "id14.index"
     },
     {
@@ -16098,11 +16236,11 @@
       "to": "v14.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "v14.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "v14.b"
     },
     {
@@ -16194,11 +16332,11 @@
       "to": "s14_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "s14_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s14_apprHas.b"
     },
     {
@@ -16266,11 +16404,11 @@
       "to": "L0_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_in0.b"
     },
     {
@@ -16286,11 +16424,11 @@
       "to": "L0_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_hb0.b"
     },
     {
@@ -16306,11 +16444,11 @@
       "to": "L0_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ha0.b"
     },
     {
@@ -16326,11 +16464,11 @@
       "to": "L0_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ga0.b"
     },
     {
@@ -16346,11 +16484,11 @@
       "to": "L0_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_gb0.b"
     },
     {
@@ -16402,11 +16540,11 @@
       "to": "L0_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_in1.b"
     },
     {
@@ -16422,11 +16560,11 @@
       "to": "L0_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_hb1.b"
     },
     {
@@ -16442,11 +16580,11 @@
       "to": "L0_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ha1.b"
     },
     {
@@ -16462,11 +16600,11 @@
       "to": "L0_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ga1.b"
     },
     {
@@ -16482,11 +16620,11 @@
       "to": "L0_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_gb1.b"
     },
     {
@@ -16538,11 +16676,11 @@
       "to": "L0_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_in2.b"
     },
     {
@@ -16558,11 +16696,11 @@
       "to": "L0_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_hb2.b"
     },
     {
@@ -16578,11 +16716,11 @@
       "to": "L0_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ha2.b"
     },
     {
@@ -16598,11 +16736,11 @@
       "to": "L0_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ga2.b"
     },
     {
@@ -16618,11 +16756,11 @@
       "to": "L0_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_gb2.b"
     },
     {
@@ -16674,11 +16812,11 @@
       "to": "L0_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_in3.b"
     },
     {
@@ -16694,11 +16832,11 @@
       "to": "L0_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_hb3.b"
     },
     {
@@ -16714,11 +16852,11 @@
       "to": "L0_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ha3.b"
     },
     {
@@ -16734,11 +16872,11 @@
       "to": "L0_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_ga3.b"
     },
     {
@@ -16754,11 +16892,11 @@
       "to": "L0_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L0_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L0_gb3.b"
     },
     {
@@ -16838,6 +16976,14 @@
       "to": "k0.L0_shared"
     },
     {
+      "from": "s0_rset.value",
+      "to": "k0.s0_rset"
+    },
+    {
+      "from": "s1_rset.value",
+      "to": "k0.s1_rset"
+    },
+    {
       "from": "L0_firm.value",
       "to": "k0.L0_firm"
     },
@@ -16886,11 +17032,11 @@
       "to": "L1_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_in0.b"
     },
     {
@@ -16906,11 +17052,11 @@
       "to": "L1_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_hb0.b"
     },
     {
@@ -16926,11 +17072,11 @@
       "to": "L1_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ha0.b"
     },
     {
@@ -16946,11 +17092,11 @@
       "to": "L1_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ga0.b"
     },
     {
@@ -16966,11 +17112,11 @@
       "to": "L1_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_gb0.b"
     },
     {
@@ -17022,11 +17168,11 @@
       "to": "L1_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_in1.b"
     },
     {
@@ -17042,11 +17188,11 @@
       "to": "L1_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_hb1.b"
     },
     {
@@ -17062,11 +17208,11 @@
       "to": "L1_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ha1.b"
     },
     {
@@ -17082,11 +17228,11 @@
       "to": "L1_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ga1.b"
     },
     {
@@ -17102,11 +17248,11 @@
       "to": "L1_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_gb1.b"
     },
     {
@@ -17158,11 +17304,11 @@
       "to": "L1_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_in2.b"
     },
     {
@@ -17178,11 +17324,11 @@
       "to": "L1_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_hb2.b"
     },
     {
@@ -17198,11 +17344,11 @@
       "to": "L1_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ha2.b"
     },
     {
@@ -17218,11 +17364,11 @@
       "to": "L1_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ga2.b"
     },
     {
@@ -17238,11 +17384,11 @@
       "to": "L1_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_gb2.b"
     },
     {
@@ -17294,11 +17440,11 @@
       "to": "L1_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_in3.b"
     },
     {
@@ -17314,11 +17460,11 @@
       "to": "L1_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_hb3.b"
     },
     {
@@ -17334,11 +17480,11 @@
       "to": "L1_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ha3.b"
     },
     {
@@ -17354,11 +17500,11 @@
       "to": "L1_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_ga3.b"
     },
     {
@@ -17374,11 +17520,11 @@
       "to": "L1_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L1_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L1_gb3.b"
     },
     {
@@ -17458,6 +17604,14 @@
       "to": "k1.L1_shared"
     },
     {
+      "from": "s1_rset.value",
+      "to": "k1.s1_rset"
+    },
+    {
+      "from": "s2_rset.value",
+      "to": "k1.s2_rset"
+    },
+    {
       "from": "L1_firm.value",
       "to": "k1.L1_firm"
     },
@@ -17506,11 +17660,11 @@
       "to": "L2_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_in0.b"
     },
     {
@@ -17526,11 +17680,11 @@
       "to": "L2_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_hb0.b"
     },
     {
@@ -17546,11 +17700,11 @@
       "to": "L2_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ha0.b"
     },
     {
@@ -17566,11 +17720,11 @@
       "to": "L2_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ga0.b"
     },
     {
@@ -17586,11 +17740,11 @@
       "to": "L2_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_gb0.b"
     },
     {
@@ -17642,11 +17796,11 @@
       "to": "L2_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_in1.b"
     },
     {
@@ -17662,11 +17816,11 @@
       "to": "L2_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_hb1.b"
     },
     {
@@ -17682,11 +17836,11 @@
       "to": "L2_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ha1.b"
     },
     {
@@ -17702,11 +17856,11 @@
       "to": "L2_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ga1.b"
     },
     {
@@ -17722,11 +17876,11 @@
       "to": "L2_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_gb1.b"
     },
     {
@@ -17778,11 +17932,11 @@
       "to": "L2_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_in2.b"
     },
     {
@@ -17798,11 +17952,11 @@
       "to": "L2_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_hb2.b"
     },
     {
@@ -17818,11 +17972,11 @@
       "to": "L2_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ha2.b"
     },
     {
@@ -17838,11 +17992,11 @@
       "to": "L2_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ga2.b"
     },
     {
@@ -17858,11 +18012,11 @@
       "to": "L2_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_gb2.b"
     },
     {
@@ -17914,11 +18068,11 @@
       "to": "L2_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_in3.b"
     },
     {
@@ -17934,11 +18088,11 @@
       "to": "L2_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_hb3.b"
     },
     {
@@ -17954,11 +18108,11 @@
       "to": "L2_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ha3.b"
     },
     {
@@ -17974,11 +18128,11 @@
       "to": "L2_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_ga3.b"
     },
     {
@@ -17994,11 +18148,11 @@
       "to": "L2_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L2_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L2_gb3.b"
     },
     {
@@ -18078,6 +18232,14 @@
       "to": "k2.L2_shared"
     },
     {
+      "from": "s2_rset.value",
+      "to": "k2.s2_rset"
+    },
+    {
+      "from": "s3_rset.value",
+      "to": "k2.s3_rset"
+    },
+    {
       "from": "L2_firm.value",
       "to": "k2.L2_firm"
     },
@@ -18126,11 +18288,11 @@
       "to": "L3_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_in0.b"
     },
     {
@@ -18146,11 +18308,11 @@
       "to": "L3_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_hb0.b"
     },
     {
@@ -18166,11 +18328,11 @@
       "to": "L3_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ha0.b"
     },
     {
@@ -18186,11 +18348,11 @@
       "to": "L3_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ga0.b"
     },
     {
@@ -18206,11 +18368,11 @@
       "to": "L3_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_gb0.b"
     },
     {
@@ -18262,11 +18424,11 @@
       "to": "L3_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_in1.b"
     },
     {
@@ -18282,11 +18444,11 @@
       "to": "L3_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_hb1.b"
     },
     {
@@ -18302,11 +18464,11 @@
       "to": "L3_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ha1.b"
     },
     {
@@ -18322,11 +18484,11 @@
       "to": "L3_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ga1.b"
     },
     {
@@ -18342,11 +18504,11 @@
       "to": "L3_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_gb1.b"
     },
     {
@@ -18398,11 +18560,11 @@
       "to": "L3_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_in2.b"
     },
     {
@@ -18418,11 +18580,11 @@
       "to": "L3_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_hb2.b"
     },
     {
@@ -18438,11 +18600,11 @@
       "to": "L3_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ha2.b"
     },
     {
@@ -18458,11 +18620,11 @@
       "to": "L3_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ga2.b"
     },
     {
@@ -18478,11 +18640,11 @@
       "to": "L3_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_gb2.b"
     },
     {
@@ -18534,11 +18696,11 @@
       "to": "L3_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_in3.b"
     },
     {
@@ -18554,11 +18716,11 @@
       "to": "L3_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_hb3.b"
     },
     {
@@ -18574,11 +18736,11 @@
       "to": "L3_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ha3.b"
     },
     {
@@ -18594,11 +18756,11 @@
       "to": "L3_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_ga3.b"
     },
     {
@@ -18614,11 +18776,11 @@
       "to": "L3_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L3_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L3_gb3.b"
     },
     {
@@ -18698,6 +18860,14 @@
       "to": "k3.L3_shared"
     },
     {
+      "from": "s3_rset.value",
+      "to": "k3.s3_rset"
+    },
+    {
+      "from": "s4_rset.value",
+      "to": "k3.s4_rset"
+    },
+    {
       "from": "L3_firm.value",
       "to": "k3.L3_firm"
     },
@@ -18746,11 +18916,11 @@
       "to": "L5_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_in0.b"
     },
     {
@@ -18766,11 +18936,11 @@
       "to": "L5_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_hb0.b"
     },
     {
@@ -18786,11 +18956,11 @@
       "to": "L5_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ha0.b"
     },
     {
@@ -18806,11 +18976,11 @@
       "to": "L5_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ga0.b"
     },
     {
@@ -18826,11 +18996,11 @@
       "to": "L5_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_gb0.b"
     },
     {
@@ -18882,11 +19052,11 @@
       "to": "L5_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_in1.b"
     },
     {
@@ -18902,11 +19072,11 @@
       "to": "L5_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_hb1.b"
     },
     {
@@ -18922,11 +19092,11 @@
       "to": "L5_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ha1.b"
     },
     {
@@ -18942,11 +19112,11 @@
       "to": "L5_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ga1.b"
     },
     {
@@ -18962,11 +19132,11 @@
       "to": "L5_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_gb1.b"
     },
     {
@@ -19018,11 +19188,11 @@
       "to": "L5_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_in2.b"
     },
     {
@@ -19038,11 +19208,11 @@
       "to": "L5_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_hb2.b"
     },
     {
@@ -19058,11 +19228,11 @@
       "to": "L5_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ha2.b"
     },
     {
@@ -19078,11 +19248,11 @@
       "to": "L5_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ga2.b"
     },
     {
@@ -19098,11 +19268,11 @@
       "to": "L5_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_gb2.b"
     },
     {
@@ -19154,11 +19324,11 @@
       "to": "L5_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_in3.b"
     },
     {
@@ -19174,11 +19344,11 @@
       "to": "L5_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_hb3.b"
     },
     {
@@ -19194,11 +19364,11 @@
       "to": "L5_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ha3.b"
     },
     {
@@ -19214,11 +19384,11 @@
       "to": "L5_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_ga3.b"
     },
     {
@@ -19234,11 +19404,11 @@
       "to": "L5_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L5_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L5_gb3.b"
     },
     {
@@ -19318,6 +19488,14 @@
       "to": "k5.L5_shared"
     },
     {
+      "from": "s5_rset.value",
+      "to": "k5.s5_rset"
+    },
+    {
+      "from": "s6_rset.value",
+      "to": "k5.s6_rset"
+    },
+    {
       "from": "L5_firm.value",
       "to": "k5.L5_firm"
     },
@@ -19366,11 +19544,11 @@
       "to": "L6_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_in0.b"
     },
     {
@@ -19386,11 +19564,11 @@
       "to": "L6_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_hb0.b"
     },
     {
@@ -19406,11 +19584,11 @@
       "to": "L6_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ha0.b"
     },
     {
@@ -19426,11 +19604,11 @@
       "to": "L6_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ga0.b"
     },
     {
@@ -19446,11 +19624,11 @@
       "to": "L6_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_gb0.b"
     },
     {
@@ -19502,11 +19680,11 @@
       "to": "L6_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_in1.b"
     },
     {
@@ -19522,11 +19700,11 @@
       "to": "L6_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_hb1.b"
     },
     {
@@ -19542,11 +19720,11 @@
       "to": "L6_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ha1.b"
     },
     {
@@ -19562,11 +19740,11 @@
       "to": "L6_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ga1.b"
     },
     {
@@ -19582,11 +19760,11 @@
       "to": "L6_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_gb1.b"
     },
     {
@@ -19638,11 +19816,11 @@
       "to": "L6_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_in2.b"
     },
     {
@@ -19658,11 +19836,11 @@
       "to": "L6_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_hb2.b"
     },
     {
@@ -19678,11 +19856,11 @@
       "to": "L6_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ha2.b"
     },
     {
@@ -19698,11 +19876,11 @@
       "to": "L6_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ga2.b"
     },
     {
@@ -19718,11 +19896,11 @@
       "to": "L6_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_gb2.b"
     },
     {
@@ -19774,11 +19952,11 @@
       "to": "L6_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_in3.b"
     },
     {
@@ -19794,11 +19972,11 @@
       "to": "L6_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_hb3.b"
     },
     {
@@ -19814,11 +19992,11 @@
       "to": "L6_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ha3.b"
     },
     {
@@ -19834,11 +20012,11 @@
       "to": "L6_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_ga3.b"
     },
     {
@@ -19854,11 +20032,11 @@
       "to": "L6_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L6_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L6_gb3.b"
     },
     {
@@ -19938,6 +20116,14 @@
       "to": "k6.L6_shared"
     },
     {
+      "from": "s6_rset.value",
+      "to": "k6.s6_rset"
+    },
+    {
+      "from": "s7_rset.value",
+      "to": "k6.s7_rset"
+    },
+    {
       "from": "L6_firm.value",
       "to": "k6.L6_firm"
     },
@@ -19986,11 +20172,11 @@
       "to": "L7_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_in0.b"
     },
     {
@@ -20006,11 +20192,11 @@
       "to": "L7_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_hb0.b"
     },
     {
@@ -20026,11 +20212,11 @@
       "to": "L7_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ha0.b"
     },
     {
@@ -20046,11 +20232,11 @@
       "to": "L7_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ga0.b"
     },
     {
@@ -20066,11 +20252,11 @@
       "to": "L7_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_gb0.b"
     },
     {
@@ -20122,11 +20308,11 @@
       "to": "L7_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_in1.b"
     },
     {
@@ -20142,11 +20328,11 @@
       "to": "L7_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_hb1.b"
     },
     {
@@ -20162,11 +20348,11 @@
       "to": "L7_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ha1.b"
     },
     {
@@ -20182,11 +20368,11 @@
       "to": "L7_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ga1.b"
     },
     {
@@ -20202,11 +20388,11 @@
       "to": "L7_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_gb1.b"
     },
     {
@@ -20258,11 +20444,11 @@
       "to": "L7_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_in2.b"
     },
     {
@@ -20278,11 +20464,11 @@
       "to": "L7_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_hb2.b"
     },
     {
@@ -20298,11 +20484,11 @@
       "to": "L7_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ha2.b"
     },
     {
@@ -20318,11 +20504,11 @@
       "to": "L7_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ga2.b"
     },
     {
@@ -20338,11 +20524,11 @@
       "to": "L7_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_gb2.b"
     },
     {
@@ -20394,11 +20580,11 @@
       "to": "L7_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_in3.b"
     },
     {
@@ -20414,11 +20600,11 @@
       "to": "L7_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_hb3.b"
     },
     {
@@ -20434,11 +20620,11 @@
       "to": "L7_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ha3.b"
     },
     {
@@ -20454,11 +20640,11 @@
       "to": "L7_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_ga3.b"
     },
     {
@@ -20474,11 +20660,11 @@
       "to": "L7_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L7_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L7_gb3.b"
     },
     {
@@ -20558,6 +20744,14 @@
       "to": "k7.L7_shared"
     },
     {
+      "from": "s7_rset.value",
+      "to": "k7.s7_rset"
+    },
+    {
+      "from": "s8_rset.value",
+      "to": "k7.s8_rset"
+    },
+    {
       "from": "L7_firm.value",
       "to": "k7.L7_firm"
     },
@@ -20606,11 +20800,11 @@
       "to": "L8_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_in0.b"
     },
     {
@@ -20626,11 +20820,11 @@
       "to": "L8_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_hb0.b"
     },
     {
@@ -20646,11 +20840,11 @@
       "to": "L8_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ha0.b"
     },
     {
@@ -20666,11 +20860,11 @@
       "to": "L8_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ga0.b"
     },
     {
@@ -20686,11 +20880,11 @@
       "to": "L8_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_gb0.b"
     },
     {
@@ -20742,11 +20936,11 @@
       "to": "L8_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_in1.b"
     },
     {
@@ -20762,11 +20956,11 @@
       "to": "L8_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_hb1.b"
     },
     {
@@ -20782,11 +20976,11 @@
       "to": "L8_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ha1.b"
     },
     {
@@ -20802,11 +20996,11 @@
       "to": "L8_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ga1.b"
     },
     {
@@ -20822,11 +21016,11 @@
       "to": "L8_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_gb1.b"
     },
     {
@@ -20878,11 +21072,11 @@
       "to": "L8_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_in2.b"
     },
     {
@@ -20898,11 +21092,11 @@
       "to": "L8_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_hb2.b"
     },
     {
@@ -20918,11 +21112,11 @@
       "to": "L8_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ha2.b"
     },
     {
@@ -20938,11 +21132,11 @@
       "to": "L8_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ga2.b"
     },
     {
@@ -20958,11 +21152,11 @@
       "to": "L8_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_gb2.b"
     },
     {
@@ -21014,11 +21208,11 @@
       "to": "L8_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_in3.b"
     },
     {
@@ -21034,11 +21228,11 @@
       "to": "L8_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_hb3.b"
     },
     {
@@ -21054,11 +21248,11 @@
       "to": "L8_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ha3.b"
     },
     {
@@ -21074,11 +21268,11 @@
       "to": "L8_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_ga3.b"
     },
     {
@@ -21094,11 +21288,11 @@
       "to": "L8_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L8_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L8_gb3.b"
     },
     {
@@ -21178,6 +21372,14 @@
       "to": "k8.L8_shared"
     },
     {
+      "from": "s8_rset.value",
+      "to": "k8.s8_rset"
+    },
+    {
+      "from": "s9_rset.value",
+      "to": "k8.s9_rset"
+    },
+    {
       "from": "L8_firm.value",
       "to": "k8.L8_firm"
     },
@@ -21226,11 +21428,11 @@
       "to": "L10_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_in0.b"
     },
     {
@@ -21246,11 +21448,11 @@
       "to": "L10_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_hb0.b"
     },
     {
@@ -21266,11 +21468,11 @@
       "to": "L10_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ha0.b"
     },
     {
@@ -21286,11 +21488,11 @@
       "to": "L10_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ga0.b"
     },
     {
@@ -21306,11 +21508,11 @@
       "to": "L10_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_gb0.b"
     },
     {
@@ -21362,11 +21564,11 @@
       "to": "L10_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_in1.b"
     },
     {
@@ -21382,11 +21584,11 @@
       "to": "L10_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_hb1.b"
     },
     {
@@ -21402,11 +21604,11 @@
       "to": "L10_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ha1.b"
     },
     {
@@ -21422,11 +21624,11 @@
       "to": "L10_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ga1.b"
     },
     {
@@ -21442,11 +21644,11 @@
       "to": "L10_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_gb1.b"
     },
     {
@@ -21498,11 +21700,11 @@
       "to": "L10_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_in2.b"
     },
     {
@@ -21518,11 +21720,11 @@
       "to": "L10_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_hb2.b"
     },
     {
@@ -21538,11 +21740,11 @@
       "to": "L10_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ha2.b"
     },
     {
@@ -21558,11 +21760,11 @@
       "to": "L10_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ga2.b"
     },
     {
@@ -21578,11 +21780,11 @@
       "to": "L10_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_gb2.b"
     },
     {
@@ -21634,11 +21836,11 @@
       "to": "L10_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_in3.b"
     },
     {
@@ -21654,11 +21856,11 @@
       "to": "L10_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_hb3.b"
     },
     {
@@ -21674,11 +21876,11 @@
       "to": "L10_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ha3.b"
     },
     {
@@ -21694,11 +21896,11 @@
       "to": "L10_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_ga3.b"
     },
     {
@@ -21714,11 +21916,11 @@
       "to": "L10_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L10_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L10_gb3.b"
     },
     {
@@ -21798,6 +22000,14 @@
       "to": "k10.L10_shared"
     },
     {
+      "from": "s10_rset.value",
+      "to": "k10.s10_rset"
+    },
+    {
+      "from": "s11_rset.value",
+      "to": "k10.s11_rset"
+    },
+    {
       "from": "L10_firm.value",
       "to": "k10.L10_firm"
     },
@@ -21846,11 +22056,11 @@
       "to": "L11_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_in0.b"
     },
     {
@@ -21866,11 +22076,11 @@
       "to": "L11_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_hb0.b"
     },
     {
@@ -21886,11 +22096,11 @@
       "to": "L11_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ha0.b"
     },
     {
@@ -21906,11 +22116,11 @@
       "to": "L11_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ga0.b"
     },
     {
@@ -21926,11 +22136,11 @@
       "to": "L11_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_gb0.b"
     },
     {
@@ -21982,11 +22192,11 @@
       "to": "L11_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_in1.b"
     },
     {
@@ -22002,11 +22212,11 @@
       "to": "L11_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_hb1.b"
     },
     {
@@ -22022,11 +22232,11 @@
       "to": "L11_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ha1.b"
     },
     {
@@ -22042,11 +22252,11 @@
       "to": "L11_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ga1.b"
     },
     {
@@ -22062,11 +22272,11 @@
       "to": "L11_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_gb1.b"
     },
     {
@@ -22118,11 +22328,11 @@
       "to": "L11_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_in2.b"
     },
     {
@@ -22138,11 +22348,11 @@
       "to": "L11_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_hb2.b"
     },
     {
@@ -22158,11 +22368,11 @@
       "to": "L11_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ha2.b"
     },
     {
@@ -22178,11 +22388,11 @@
       "to": "L11_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ga2.b"
     },
     {
@@ -22198,11 +22408,11 @@
       "to": "L11_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_gb2.b"
     },
     {
@@ -22254,11 +22464,11 @@
       "to": "L11_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_in3.b"
     },
     {
@@ -22274,11 +22484,11 @@
       "to": "L11_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_hb3.b"
     },
     {
@@ -22294,11 +22504,11 @@
       "to": "L11_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ha3.b"
     },
     {
@@ -22314,11 +22524,11 @@
       "to": "L11_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_ga3.b"
     },
     {
@@ -22334,11 +22544,11 @@
       "to": "L11_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L11_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L11_gb3.b"
     },
     {
@@ -22418,6 +22628,14 @@
       "to": "k11.L11_shared"
     },
     {
+      "from": "s11_rset.value",
+      "to": "k11.s11_rset"
+    },
+    {
+      "from": "s12_rset.value",
+      "to": "k11.s12_rset"
+    },
+    {
       "from": "L11_firm.value",
       "to": "k11.L11_firm"
     },
@@ -22466,11 +22684,11 @@
       "to": "L12_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_in0.b"
     },
     {
@@ -22486,11 +22704,11 @@
       "to": "L12_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_hb0.b"
     },
     {
@@ -22506,11 +22724,11 @@
       "to": "L12_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ha0.b"
     },
     {
@@ -22526,11 +22744,11 @@
       "to": "L12_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ga0.b"
     },
     {
@@ -22546,11 +22764,11 @@
       "to": "L12_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_gb0.b"
     },
     {
@@ -22602,11 +22820,11 @@
       "to": "L12_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_in1.b"
     },
     {
@@ -22622,11 +22840,11 @@
       "to": "L12_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_hb1.b"
     },
     {
@@ -22642,11 +22860,11 @@
       "to": "L12_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ha1.b"
     },
     {
@@ -22662,11 +22880,11 @@
       "to": "L12_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ga1.b"
     },
     {
@@ -22682,11 +22900,11 @@
       "to": "L12_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_gb1.b"
     },
     {
@@ -22738,11 +22956,11 @@
       "to": "L12_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_in2.b"
     },
     {
@@ -22758,11 +22976,11 @@
       "to": "L12_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_hb2.b"
     },
     {
@@ -22778,11 +22996,11 @@
       "to": "L12_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ha2.b"
     },
     {
@@ -22798,11 +23016,11 @@
       "to": "L12_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ga2.b"
     },
     {
@@ -22818,11 +23036,11 @@
       "to": "L12_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_gb2.b"
     },
     {
@@ -22874,11 +23092,11 @@
       "to": "L12_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_in3.b"
     },
     {
@@ -22894,11 +23112,11 @@
       "to": "L12_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_hb3.b"
     },
     {
@@ -22914,11 +23132,11 @@
       "to": "L12_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ha3.b"
     },
     {
@@ -22934,11 +23152,11 @@
       "to": "L12_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_ga3.b"
     },
     {
@@ -22954,11 +23172,11 @@
       "to": "L12_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L12_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L12_gb3.b"
     },
     {
@@ -23038,6 +23256,14 @@
       "to": "k12.L12_shared"
     },
     {
+      "from": "s12_rset.value",
+      "to": "k12.s12_rset"
+    },
+    {
+      "from": "s13_rset.value",
+      "to": "k12.s13_rset"
+    },
+    {
       "from": "L12_firm.value",
       "to": "k12.L12_firm"
     },
@@ -23086,11 +23312,11 @@
       "to": "L13_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_in0.b"
     },
     {
@@ -23106,11 +23332,11 @@
       "to": "L13_hb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_hb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_hb0.b"
     },
     {
@@ -23126,11 +23352,11 @@
       "to": "L13_ha0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ha0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ha0.b"
     },
     {
@@ -23146,11 +23372,11 @@
       "to": "L13_ga0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ga0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ga0.b"
     },
     {
@@ -23166,11 +23392,11 @@
       "to": "L13_gb0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_gb0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_gb0.b"
     },
     {
@@ -23222,11 +23448,11 @@
       "to": "L13_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_in1.b"
     },
     {
@@ -23242,11 +23468,11 @@
       "to": "L13_hb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_hb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_hb1.b"
     },
     {
@@ -23262,11 +23488,11 @@
       "to": "L13_ha1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ha1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ha1.b"
     },
     {
@@ -23282,11 +23508,11 @@
       "to": "L13_ga1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ga1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ga1.b"
     },
     {
@@ -23302,11 +23528,11 @@
       "to": "L13_gb1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_gb1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_gb1.b"
     },
     {
@@ -23358,11 +23584,11 @@
       "to": "L13_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_in2.b"
     },
     {
@@ -23378,11 +23604,11 @@
       "to": "L13_hb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_hb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_hb2.b"
     },
     {
@@ -23398,11 +23624,11 @@
       "to": "L13_ha2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ha2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ha2.b"
     },
     {
@@ -23418,11 +23644,11 @@
       "to": "L13_ga2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ga2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ga2.b"
     },
     {
@@ -23438,11 +23664,11 @@
       "to": "L13_gb2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_gb2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_gb2.b"
     },
     {
@@ -23494,11 +23720,11 @@
       "to": "L13_in3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_in3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_in3.b"
     },
     {
@@ -23514,11 +23740,11 @@
       "to": "L13_hb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_hb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_hb3.b"
     },
     {
@@ -23534,11 +23760,11 @@
       "to": "L13_ha3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ha3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ha3.b"
     },
     {
@@ -23554,11 +23780,11 @@
       "to": "L13_ga3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_ga3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_ga3.b"
     },
     {
@@ -23574,11 +23800,11 @@
       "to": "L13_gb3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "L13_gb3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "L13_gb3.b"
     },
     {
@@ -23658,6 +23884,14 @@
       "to": "k13.L13_shared"
     },
     {
+      "from": "s13_rset.value",
+      "to": "k13.s13_rset"
+    },
+    {
+      "from": "s14_rset.value",
+      "to": "k13.s14_rset"
+    },
+    {
       "from": "L13_firm.value",
       "to": "k13.L13_firm"
     },
@@ -23694,16 +23928,32 @@
       "to": "cnt0.v0"
     },
     {
+      "from": "k0.value",
+      "to": "cnt0.k0"
+    },
+    {
       "from": "v1.out",
       "to": "cnt0.v1"
+    },
+    {
+      "from": "k1.value",
+      "to": "cnt0.k1"
     },
     {
       "from": "v2.out",
       "to": "cnt0.v2"
     },
     {
+      "from": "k2.value",
+      "to": "cnt0.k2"
+    },
+    {
       "from": "v3.out",
       "to": "cnt0.v3"
+    },
+    {
+      "from": "k3.value",
+      "to": "cnt0.k3"
     },
     {
       "from": "v4.out",
@@ -23758,16 +24008,32 @@
       "to": "cnt1.v5"
     },
     {
+      "from": "k5.value",
+      "to": "cnt1.k5"
+    },
+    {
       "from": "v6.out",
       "to": "cnt1.v6"
+    },
+    {
+      "from": "k6.value",
+      "to": "cnt1.k6"
     },
     {
       "from": "v7.out",
       "to": "cnt1.v7"
     },
     {
+      "from": "k7.value",
+      "to": "cnt1.k7"
+    },
+    {
       "from": "v8.out",
       "to": "cnt1.v8"
+    },
+    {
+      "from": "k8.value",
+      "to": "cnt1.k8"
     },
     {
       "from": "v9.out",
@@ -23822,16 +24088,32 @@
       "to": "cnt2.v10"
     },
     {
+      "from": "k10.value",
+      "to": "cnt2.k10"
+    },
+    {
       "from": "v11.out",
       "to": "cnt2.v11"
+    },
+    {
+      "from": "k11.value",
+      "to": "cnt2.k11"
     },
     {
       "from": "v12.out",
       "to": "cnt2.v12"
     },
     {
+      "from": "k12.value",
+      "to": "cnt2.k12"
+    },
+    {
       "from": "v13.out",
       "to": "cnt2.v13"
+    },
+    {
+      "from": "k13.value",
+      "to": "cnt2.k13"
     },
     {
       "from": "v14.out",
@@ -24566,11 +24848,11 @@
       "to": "bounceX.trigger"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "bs1_bouncing.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs1_bouncing.value"
     },
     {
@@ -24594,7 +24876,7 @@
       "to": "invRemark.trigger"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "remark2_key.in"
     },
     {
@@ -24610,11 +24892,11 @@
       "to": "remarkSeq.increment"
     },
     {
-      "from": "K8.out",
+      "from": "K9.out",
       "to": "bs2_invalidSaid.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs2_invalidSaid.value"
     },
     {
@@ -25090,11 +25372,11 @@
       "to": "plSolidG.trigger"
     },
     {
-      "from": "K7.out",
+      "from": "K8.out",
       "to": "bs3_solidSaid.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs3_solidSaid.value"
     },
     {
@@ -25102,11 +25384,11 @@
       "to": "bs3_solidSaid.trigger"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "bs4_placeMode.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs4_placeMode.value"
     },
     {
@@ -25126,7 +25408,7 @@
       "to": "clrSlots.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sk0.a"
     },
     {
@@ -25150,7 +25432,7 @@
       "to": "sk0A.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sk1.a"
     },
     {
@@ -25174,7 +25456,7 @@
       "to": "sk1A.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "sk2.a"
     },
     {
@@ -25198,7 +25480,7 @@
       "to": "sk2A.trigger"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "sk3.a"
     },
     {
@@ -25222,7 +25504,7 @@
       "to": "sk3A.trigger"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "sk4.a"
     },
     {
@@ -25246,7 +25528,7 @@
       "to": "sk4A.trigger"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "sk5.a"
     },
     {
@@ -25270,7 +25552,7 @@
       "to": "sk5A.trigger"
     },
     {
-      "from": "K17.out",
+      "from": "K18.out",
       "to": "sk6.a"
     },
     {
@@ -25294,7 +25576,7 @@
       "to": "sk6A.trigger"
     },
     {
-      "from": "K18.out",
+      "from": "K19.out",
       "to": "sk7.a"
     },
     {
@@ -25318,7 +25600,7 @@
       "to": "sk7A.trigger"
     },
     {
-      "from": "K19.out",
+      "from": "K20.out",
       "to": "sk8.a"
     },
     {
@@ -25342,7 +25624,7 @@
       "to": "sk8A.trigger"
     },
     {
-      "from": "K20.out",
+      "from": "K21.out",
       "to": "sk9.a"
     },
     {
@@ -25366,7 +25648,7 @@
       "to": "sk9A.trigger"
     },
     {
-      "from": "K21.out",
+      "from": "K22.out",
       "to": "sk10.a"
     },
     {
@@ -25390,7 +25672,7 @@
       "to": "sk10A.trigger"
     },
     {
-      "from": "K22.out",
+      "from": "K23.out",
       "to": "sk11.a"
     },
     {
@@ -25414,7 +25696,7 @@
       "to": "sk11A.trigger"
     },
     {
-      "from": "K23.out",
+      "from": "K24.out",
       "to": "sk12.a"
     },
     {
@@ -25438,7 +25720,7 @@
       "to": "sk12A.trigger"
     },
     {
-      "from": "K24.out",
+      "from": "K25.out",
       "to": "sk13.a"
     },
     {
@@ -25462,7 +25744,7 @@
       "to": "sk13A.trigger"
     },
     {
-      "from": "K25.out",
+      "from": "K26.out",
       "to": "sk14.a"
     },
     {
@@ -25502,7 +25784,7 @@
       "to": "lk0G.trigger"
     },
     {
-      "from": "K26.out",
+      "from": "K27.out",
       "to": "lk0S.key"
     },
     {
@@ -25522,7 +25804,7 @@
       "to": "lk1G.trigger"
     },
     {
-      "from": "K27.out",
+      "from": "K28.out",
       "to": "lk1S.key"
     },
     {
@@ -25542,7 +25824,7 @@
       "to": "lk2G.trigger"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "lk2S.key"
     },
     {
@@ -25562,7 +25844,7 @@
       "to": "lk3G.trigger"
     },
     {
-      "from": "K29.out",
+      "from": "K30.out",
       "to": "lk3S.key"
     },
     {
@@ -25582,7 +25864,7 @@
       "to": "lk5G.trigger"
     },
     {
-      "from": "K30.out",
+      "from": "K31.out",
       "to": "lk5S.key"
     },
     {
@@ -25602,7 +25884,7 @@
       "to": "lk6G.trigger"
     },
     {
-      "from": "K31.out",
+      "from": "K32.out",
       "to": "lk6S.key"
     },
     {
@@ -25622,7 +25904,7 @@
       "to": "lk7G.trigger"
     },
     {
-      "from": "K32.out",
+      "from": "K33.out",
       "to": "lk7S.key"
     },
     {
@@ -25642,7 +25924,7 @@
       "to": "lk8G.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K34.out",
       "to": "lk8S.key"
     },
     {
@@ -25662,7 +25944,7 @@
       "to": "lk10G.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "lk10S.key"
     },
     {
@@ -25682,7 +25964,7 @@
       "to": "lk11G.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K36.out",
       "to": "lk11S.key"
     },
     {
@@ -25702,7 +25984,7 @@
       "to": "lk12G.trigger"
     },
     {
-      "from": "K36.out",
+      "from": "K37.out",
       "to": "lk12S.key"
     },
     {
@@ -25722,7 +26004,7 @@
       "to": "lk13G.trigger"
     },
     {
-      "from": "K37.out",
+      "from": "K38.out",
       "to": "lk13S.key"
     },
     {
@@ -25742,7 +26024,7 @@
       "to": "clrChains.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ck0.a"
     },
     {
@@ -25770,7 +26052,7 @@
       "to": "ck0S.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "ck1.a"
     },
     {
@@ -25798,7 +26080,7 @@
       "to": "ck1S.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "ck2.a"
     },
     {
@@ -25930,11 +26212,11 @@
       "to": "di_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "di_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "di_apprHas.b"
     },
     {
@@ -25986,11 +26268,11 @@
       "to": "di_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "di_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "di_in0.b"
     },
     {
@@ -26002,11 +26284,11 @@
       "to": "di_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "di_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "di_in1.b"
     },
     {
@@ -26018,11 +26300,11 @@
       "to": "di_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "di_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "di_in2.b"
     },
     {
@@ -26154,11 +26436,11 @@
       "to": "bx2R.trigger"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "bs5_bouncing.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs5_bouncing.value"
     },
     {
@@ -26214,7 +26496,7 @@
       "to": "sel.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sel.b"
     },
     {
@@ -26306,11 +26588,11 @@
       "to": "sc_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_apprHas.b"
     },
     {
@@ -26358,7 +26640,7 @@
       "to": "sc_hasC.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_hasC.b"
     },
     {
@@ -26366,11 +26648,11 @@
       "to": "sc_has.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_has.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_has.b"
     },
     {
@@ -26394,11 +26676,11 @@
       "to": "in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "in0.b"
     },
     {
@@ -26410,11 +26692,11 @@
       "to": "in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "in1.b"
     },
     {
@@ -26426,11 +26708,11 @@
       "to": "in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "in2.b"
     },
     {
@@ -26518,7 +26800,7 @@
       "to": "fullG.trigger"
     },
     {
-      "from": "K38.out",
+      "from": "K39.out",
       "to": "remark4_key.in"
     },
     {
@@ -26686,11 +26968,11 @@
       "to": "ins2I.trigger"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "bs6_placeMode.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs6_placeMode.value"
     },
     {
@@ -26698,11 +26980,11 @@
       "to": "bs6_placeMode.trigger"
     },
     {
-      "from": "K4.out",
+      "from": "K5.out",
       "to": "bs7_armed.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs7_armed.value"
     },
     {
@@ -26802,11 +27084,11 @@
       "to": "un2R.trigger"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "bs8_placeMode.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs8_placeMode.value"
     },
     {
@@ -26814,11 +27096,11 @@
       "to": "bs8_placeMode.trigger"
     },
     {
-      "from": "K4.out",
+      "from": "K5.out",
       "to": "bs9_armed.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs9_armed.value"
     },
     {
@@ -26870,11 +27152,11 @@
       "to": "rsSet.trigger"
     },
     {
-      "from": "K4.out",
+      "from": "K5.out",
       "to": "bs10_armed.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs10_armed.value"
     },
     {
@@ -26990,11 +27272,11 @@
       "to": "ap_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "ap_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ap_apprHas.b"
     },
     {
@@ -27018,7 +27300,7 @@
       "to": "ap_hasC.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "ap_hasC.b"
     },
     {
@@ -27026,11 +27308,11 @@
       "to": "ap_has.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "ap_has.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ap_has.b"
     },
     {
@@ -27090,7 +27372,7 @@
       "to": "ap_add.trigger"
     },
     {
-      "from": "K0.out",
+      "from": "K1.out",
       "to": "ap_set.key"
     },
     {
@@ -27190,7 +27472,7 @@
       "to": "noChainG.trigger"
     },
     {
-      "from": "K39.out",
+      "from": "K40.out",
       "to": "remark6_key.in"
     },
     {
@@ -27222,11 +27504,11 @@
       "to": "warnKey.cond"
     },
     {
-      "from": "K40.out",
+      "from": "K41.out",
       "to": "warnKey.a"
     },
     {
-      "from": "K41.out",
+      "from": "K42.out",
       "to": "warnKey.b"
     },
     {
@@ -27246,11 +27528,11 @@
       "to": "remarkSeq.increment"
     },
     {
-      "from": "K4.out",
+      "from": "K5.out",
       "to": "bs11_armed.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs11_armed.value"
     },
     {
@@ -27282,7 +27564,15 @@
       "to": "cm_clr_debBoardLink.trigger"
     },
     {
-      "from": "id0.valid",
+      "from": "v0.out",
+      "to": "cmOn0.v0"
+    },
+    {
+      "from": "s0_rset.value",
+      "to": "cmOn0.s0_rset"
+    },
+    {
+      "from": "cmOn0.truth",
       "to": "cmId0.cond"
     },
     {
@@ -27290,12 +27580,12 @@
       "to": "cmId0.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId0.b"
     },
     {
-      "from": "v0.out",
-      "to": "cmOk0.v0"
+      "from": "cmOn0.value",
+      "to": "cmOk0.cmOn0"
     },
     {
       "from": "s0_ok.value",
@@ -27326,7 +27616,15 @@
       "to": "cmL0.trigger"
     },
     {
-      "from": "id1.valid",
+      "from": "v1.out",
+      "to": "cmOn1.v1"
+    },
+    {
+      "from": "s1_rset.value",
+      "to": "cmOn1.s1_rset"
+    },
+    {
+      "from": "cmOn1.truth",
       "to": "cmId1.cond"
     },
     {
@@ -27334,12 +27632,12 @@
       "to": "cmId1.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId1.b"
     },
     {
-      "from": "v1.out",
-      "to": "cmOk1.v1"
+      "from": "cmOn1.value",
+      "to": "cmOk1.cmOn1"
     },
     {
       "from": "s1_ok.value",
@@ -27370,7 +27668,15 @@
       "to": "cmL1.trigger"
     },
     {
-      "from": "id2.valid",
+      "from": "v2.out",
+      "to": "cmOn2.v2"
+    },
+    {
+      "from": "s2_rset.value",
+      "to": "cmOn2.s2_rset"
+    },
+    {
+      "from": "cmOn2.truth",
       "to": "cmId2.cond"
     },
     {
@@ -27378,12 +27684,12 @@
       "to": "cmId2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId2.b"
     },
     {
-      "from": "v2.out",
-      "to": "cmOk2.v2"
+      "from": "cmOn2.value",
+      "to": "cmOk2.cmOn2"
     },
     {
       "from": "s2_ok.value",
@@ -27414,7 +27720,15 @@
       "to": "cmL2.trigger"
     },
     {
-      "from": "id3.valid",
+      "from": "v3.out",
+      "to": "cmOn3.v3"
+    },
+    {
+      "from": "s3_rset.value",
+      "to": "cmOn3.s3_rset"
+    },
+    {
+      "from": "cmOn3.truth",
       "to": "cmId3.cond"
     },
     {
@@ -27422,12 +27736,12 @@
       "to": "cmId3.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId3.b"
     },
     {
-      "from": "v3.out",
-      "to": "cmOk3.v3"
+      "from": "cmOn3.value",
+      "to": "cmOk3.cmOn3"
     },
     {
       "from": "s3_ok.value",
@@ -27458,7 +27772,15 @@
       "to": "cmL3.trigger"
     },
     {
-      "from": "id4.valid",
+      "from": "v4.out",
+      "to": "cmOn4.v4"
+    },
+    {
+      "from": "s4_rset.value",
+      "to": "cmOn4.s4_rset"
+    },
+    {
+      "from": "cmOn4.truth",
       "to": "cmId4.cond"
     },
     {
@@ -27466,12 +27788,12 @@
       "to": "cmId4.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId4.b"
     },
     {
-      "from": "v4.out",
-      "to": "cmOk4.v4"
+      "from": "cmOn4.value",
+      "to": "cmOk4.cmOn4"
     },
     {
       "from": "s4_ok.value",
@@ -27494,7 +27816,7 @@
       "to": "cmO4.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "cmL4.value"
     },
     {
@@ -27502,7 +27824,15 @@
       "to": "cmL4.trigger"
     },
     {
-      "from": "id5.valid",
+      "from": "v5.out",
+      "to": "cmOn5.v5"
+    },
+    {
+      "from": "s5_rset.value",
+      "to": "cmOn5.s5_rset"
+    },
+    {
+      "from": "cmOn5.truth",
       "to": "cmId5.cond"
     },
     {
@@ -27510,12 +27840,12 @@
       "to": "cmId5.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId5.b"
     },
     {
-      "from": "v5.out",
-      "to": "cmOk5.v5"
+      "from": "cmOn5.value",
+      "to": "cmOk5.cmOn5"
     },
     {
       "from": "s5_ok.value",
@@ -27546,7 +27876,15 @@
       "to": "cmL5.trigger"
     },
     {
-      "from": "id6.valid",
+      "from": "v6.out",
+      "to": "cmOn6.v6"
+    },
+    {
+      "from": "s6_rset.value",
+      "to": "cmOn6.s6_rset"
+    },
+    {
+      "from": "cmOn6.truth",
       "to": "cmId6.cond"
     },
     {
@@ -27554,12 +27892,12 @@
       "to": "cmId6.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId6.b"
     },
     {
-      "from": "v6.out",
-      "to": "cmOk6.v6"
+      "from": "cmOn6.value",
+      "to": "cmOk6.cmOn6"
     },
     {
       "from": "s6_ok.value",
@@ -27590,7 +27928,15 @@
       "to": "cmL6.trigger"
     },
     {
-      "from": "id7.valid",
+      "from": "v7.out",
+      "to": "cmOn7.v7"
+    },
+    {
+      "from": "s7_rset.value",
+      "to": "cmOn7.s7_rset"
+    },
+    {
+      "from": "cmOn7.truth",
       "to": "cmId7.cond"
     },
     {
@@ -27598,12 +27944,12 @@
       "to": "cmId7.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId7.b"
     },
     {
-      "from": "v7.out",
-      "to": "cmOk7.v7"
+      "from": "cmOn7.value",
+      "to": "cmOk7.cmOn7"
     },
     {
       "from": "s7_ok.value",
@@ -27634,7 +27980,15 @@
       "to": "cmL7.trigger"
     },
     {
-      "from": "id8.valid",
+      "from": "v8.out",
+      "to": "cmOn8.v8"
+    },
+    {
+      "from": "s8_rset.value",
+      "to": "cmOn8.s8_rset"
+    },
+    {
+      "from": "cmOn8.truth",
       "to": "cmId8.cond"
     },
     {
@@ -27642,12 +27996,12 @@
       "to": "cmId8.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId8.b"
     },
     {
-      "from": "v8.out",
-      "to": "cmOk8.v8"
+      "from": "cmOn8.value",
+      "to": "cmOk8.cmOn8"
     },
     {
       "from": "s8_ok.value",
@@ -27678,7 +28032,15 @@
       "to": "cmL8.trigger"
     },
     {
-      "from": "id9.valid",
+      "from": "v9.out",
+      "to": "cmOn9.v9"
+    },
+    {
+      "from": "s9_rset.value",
+      "to": "cmOn9.s9_rset"
+    },
+    {
+      "from": "cmOn9.truth",
       "to": "cmId9.cond"
     },
     {
@@ -27686,12 +28048,12 @@
       "to": "cmId9.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId9.b"
     },
     {
-      "from": "v9.out",
-      "to": "cmOk9.v9"
+      "from": "cmOn9.value",
+      "to": "cmOk9.cmOn9"
     },
     {
       "from": "s9_ok.value",
@@ -27714,7 +28076,7 @@
       "to": "cmO9.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "cmL9.value"
     },
     {
@@ -27722,7 +28084,15 @@
       "to": "cmL9.trigger"
     },
     {
-      "from": "id10.valid",
+      "from": "v10.out",
+      "to": "cmOn10.v10"
+    },
+    {
+      "from": "s10_rset.value",
+      "to": "cmOn10.s10_rset"
+    },
+    {
+      "from": "cmOn10.truth",
       "to": "cmId10.cond"
     },
     {
@@ -27730,12 +28100,12 @@
       "to": "cmId10.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId10.b"
     },
     {
-      "from": "v10.out",
-      "to": "cmOk10.v10"
+      "from": "cmOn10.value",
+      "to": "cmOk10.cmOn10"
     },
     {
       "from": "s10_ok.value",
@@ -27766,7 +28136,15 @@
       "to": "cmL10.trigger"
     },
     {
-      "from": "id11.valid",
+      "from": "v11.out",
+      "to": "cmOn11.v11"
+    },
+    {
+      "from": "s11_rset.value",
+      "to": "cmOn11.s11_rset"
+    },
+    {
+      "from": "cmOn11.truth",
       "to": "cmId11.cond"
     },
     {
@@ -27774,12 +28152,12 @@
       "to": "cmId11.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId11.b"
     },
     {
-      "from": "v11.out",
-      "to": "cmOk11.v11"
+      "from": "cmOn11.value",
+      "to": "cmOk11.cmOn11"
     },
     {
       "from": "s11_ok.value",
@@ -27810,7 +28188,15 @@
       "to": "cmL11.trigger"
     },
     {
-      "from": "id12.valid",
+      "from": "v12.out",
+      "to": "cmOn12.v12"
+    },
+    {
+      "from": "s12_rset.value",
+      "to": "cmOn12.s12_rset"
+    },
+    {
+      "from": "cmOn12.truth",
       "to": "cmId12.cond"
     },
     {
@@ -27818,12 +28204,12 @@
       "to": "cmId12.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId12.b"
     },
     {
-      "from": "v12.out",
-      "to": "cmOk12.v12"
+      "from": "cmOn12.value",
+      "to": "cmOk12.cmOn12"
     },
     {
       "from": "s12_ok.value",
@@ -27854,7 +28240,15 @@
       "to": "cmL12.trigger"
     },
     {
-      "from": "id13.valid",
+      "from": "v13.out",
+      "to": "cmOn13.v13"
+    },
+    {
+      "from": "s13_rset.value",
+      "to": "cmOn13.s13_rset"
+    },
+    {
+      "from": "cmOn13.truth",
       "to": "cmId13.cond"
     },
     {
@@ -27862,12 +28256,12 @@
       "to": "cmId13.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId13.b"
     },
     {
-      "from": "v13.out",
-      "to": "cmOk13.v13"
+      "from": "cmOn13.value",
+      "to": "cmOk13.cmOn13"
     },
     {
       "from": "s13_ok.value",
@@ -27898,7 +28292,15 @@
       "to": "cmL13.trigger"
     },
     {
-      "from": "id14.valid",
+      "from": "v14.out",
+      "to": "cmOn14.v14"
+    },
+    {
+      "from": "s14_rset.value",
+      "to": "cmOn14.s14_rset"
+    },
+    {
+      "from": "cmOn14.truth",
       "to": "cmId14.cond"
     },
     {
@@ -27906,12 +28308,12 @@
       "to": "cmId14.a"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "cmId14.b"
     },
     {
-      "from": "v14.out",
-      "to": "cmOk14.v14"
+      "from": "cmOn14.value",
+      "to": "cmOk14.cmOn14"
     },
     {
       "from": "s14_ok.value",
@@ -27934,7 +28336,7 @@
       "to": "cmO14.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "cmL14.value"
     },
     {
@@ -28038,11 +28440,11 @@
       "to": "li_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "li_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "li_apprHas.b"
     },
     {
@@ -28094,11 +28496,11 @@
       "to": "li_in0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "li_in0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "li_in0.b"
     },
     {
@@ -28110,11 +28512,11 @@
       "to": "li_in1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "li_in1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "li_in1.b"
     },
     {
@@ -28126,11 +28528,11 @@
       "to": "li_in2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "li_in2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "li_in2.b"
     },
     {
@@ -28170,7 +28572,7 @@
       "to": "li_O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "li_L.value"
     },
     {
@@ -28198,7 +28600,7 @@
       "to": "pad0G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad0B.value"
     },
     {
@@ -28206,7 +28608,7 @@
       "to": "pad0B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad0O.value"
     },
     {
@@ -28214,7 +28616,7 @@
       "to": "pad0O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad0L.value"
     },
     {
@@ -28234,7 +28636,7 @@
       "to": "pad1G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad1B.value"
     },
     {
@@ -28242,7 +28644,7 @@
       "to": "pad1B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad1O.value"
     },
     {
@@ -28250,7 +28652,7 @@
       "to": "pad1O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad1L.value"
     },
     {
@@ -28270,7 +28672,7 @@
       "to": "pad2G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad2B.value"
     },
     {
@@ -28278,7 +28680,7 @@
       "to": "pad2B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad2O.value"
     },
     {
@@ -28286,7 +28688,7 @@
       "to": "pad2O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad2L.value"
     },
     {
@@ -28306,7 +28708,7 @@
       "to": "pad3G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad3B.value"
     },
     {
@@ -28314,7 +28716,7 @@
       "to": "pad3B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad3O.value"
     },
     {
@@ -28322,7 +28724,7 @@
       "to": "pad3O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad3L.value"
     },
     {
@@ -28342,7 +28744,7 @@
       "to": "pad4G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad4B.value"
     },
     {
@@ -28350,7 +28752,7 @@
       "to": "pad4B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad4O.value"
     },
     {
@@ -28358,7 +28760,7 @@
       "to": "pad4O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad4L.value"
     },
     {
@@ -28378,7 +28780,7 @@
       "to": "pad5G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad5B.value"
     },
     {
@@ -28386,7 +28788,7 @@
       "to": "pad5B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad5O.value"
     },
     {
@@ -28394,7 +28796,7 @@
       "to": "pad5O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad5L.value"
     },
     {
@@ -28414,7 +28816,7 @@
       "to": "pad6G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad6B.value"
     },
     {
@@ -28422,7 +28824,7 @@
       "to": "pad6B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad6O.value"
     },
     {
@@ -28430,7 +28832,7 @@
       "to": "pad6O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad6L.value"
     },
     {
@@ -28450,7 +28852,7 @@
       "to": "pad7G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad7B.value"
     },
     {
@@ -28458,7 +28860,7 @@
       "to": "pad7B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad7O.value"
     },
     {
@@ -28466,7 +28868,7 @@
       "to": "pad7O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad7L.value"
     },
     {
@@ -28486,7 +28888,7 @@
       "to": "pad8G.trigger"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "pad8B.value"
     },
     {
@@ -28494,7 +28896,7 @@
       "to": "pad8B.trigger"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "pad8O.value"
     },
     {
@@ -28502,7 +28904,7 @@
       "to": "pad8O.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pad8L.value"
     },
     {
@@ -28602,11 +29004,11 @@
       "to": "gi_apprHas.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "gi_apprHas.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "gi_apprHas.b"
     },
     {
@@ -28658,11 +29060,11 @@
       "to": "gi_on.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "gi_on.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "gi_on.b"
     },
     {
@@ -28670,7 +29072,7 @@
       "to": "gi_hasGC.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "gi_hasGC.b"
     },
     {
@@ -28678,11 +29080,11 @@
       "to": "gi_hasG.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "gi_hasG.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "gi_hasG.b"
     },
     {
@@ -28742,11 +29144,11 @@
       "to": "gi_rem.trigger"
     },
     {
-      "from": "K3.out",
+      "from": "K4.out",
       "to": "bs12_locked.key"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "bs12_locked.value"
     },
     {
@@ -28798,11 +29200,11 @@
       "to": "sc_h0.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_h0.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_h0.b"
     },
     {
@@ -28830,7 +29232,7 @@
       "to": "sc_key0.a"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "sc_key0.b"
     },
     {
@@ -28838,7 +29240,7 @@
       "to": "sc_e0.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_e0.b"
     },
     {
@@ -28850,7 +29252,7 @@
       "to": "sc_kk0.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_kk0.b"
     },
     {
@@ -28874,11 +29276,11 @@
       "to": "sc_h1.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_h1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_h1.b"
     },
     {
@@ -28906,7 +29308,7 @@
       "to": "sc_key1.a"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "sc_key1.b"
     },
     {
@@ -28914,7 +29316,7 @@
       "to": "sc_e1.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_e1.b"
     },
     {
@@ -28926,7 +29328,7 @@
       "to": "sc_kk1.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_kk1.b"
     },
     {
@@ -28946,7 +29348,7 @@
       "to": "sc_p1.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_p1.b"
     },
     {
@@ -28966,11 +29368,11 @@
       "to": "sc_h2.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_h2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_h2.b"
     },
     {
@@ -28998,7 +29400,7 @@
       "to": "sc_key2.a"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "sc_key2.b"
     },
     {
@@ -29006,7 +29408,7 @@
       "to": "sc_e2.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_e2.b"
     },
     {
@@ -29018,7 +29420,7 @@
       "to": "sc_kk2.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_kk2.b"
     },
     {
@@ -29038,7 +29440,7 @@
       "to": "sc_p2.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_p2.b"
     },
     {
@@ -29058,11 +29460,11 @@
       "to": "sc_h3.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "sc_h3.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_h3.b"
     },
     {
@@ -29090,7 +29492,7 @@
       "to": "sc_key3.a"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "sc_key3.b"
     },
     {
@@ -29098,7 +29500,7 @@
       "to": "sc_e3.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_e3.b"
     },
     {
@@ -29110,7 +29512,7 @@
       "to": "sc_kk3.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_kk3.b"
     },
     {
@@ -29130,7 +29532,7 @@
       "to": "sc_p3.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "sc_p3.b"
     },
     {
@@ -29190,7 +29592,7 @@
       "to": "sc_fixedB.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "sc_fixedB.b"
     },
     {
@@ -29246,7 +29648,7 @@
       "to": "phaseMid.a"
     },
     {
-      "from": "K44.out",
+      "from": "K45.out",
       "to": "phaseMid.b"
     },
     {
@@ -29254,11 +29656,11 @@
       "to": "condKey0.cond"
     },
     {
-      "from": "K45.out",
+      "from": "K46.out",
       "to": "condKey0.a"
     },
     {
-      "from": "K46.out",
+      "from": "K47.out",
       "to": "condKey0.b"
     },
     {
@@ -29266,7 +29668,7 @@
       "to": "phaseLate.a"
     },
     {
-      "from": "K47.out",
+      "from": "K48.out",
       "to": "phaseLate.b"
     },
     {
@@ -29274,7 +29676,7 @@
       "to": "condKey.cond"
     },
     {
-      "from": "K48.out",
+      "from": "K49.out",
       "to": "condKey.a"
     },
     {
@@ -29294,7 +29696,7 @@
       "to": "remark_key_is1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "remark_key_is1.b"
     },
     {
@@ -29306,7 +29708,7 @@
       "to": "remark_key_1.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "remark_key_1.b"
     },
     {
@@ -29314,7 +29716,7 @@
       "to": "remark_key_is2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "remark_key_is2.b"
     },
     {
@@ -29334,7 +29736,7 @@
       "to": "remark_key_is3.a"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "remark_key_is3.b"
     },
     {
@@ -29354,7 +29756,7 @@
       "to": "remark_key_is4.a"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "remark_key_is4.b"
     },
     {
@@ -29374,7 +29776,7 @@
       "to": "remark_key_is5.a"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "remark_key_is5.b"
     },
     {
@@ -29394,7 +29796,7 @@
       "to": "remark_key_is6.a"
     },
     {
-      "from": "K17.out",
+      "from": "K18.out",
       "to": "remark_key_is6.b"
     },
     {
@@ -29414,7 +29816,7 @@
       "to": "remark_key_is7.a"
     },
     {
-      "from": "K18.out",
+      "from": "K19.out",
       "to": "remark_key_is7.b"
     },
     {

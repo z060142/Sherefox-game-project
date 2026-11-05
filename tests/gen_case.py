@@ -55,14 +55,15 @@ def load(name: str):
     return json.loads((ROOT / "data" / f"{name}.json").read_text(encoding="utf-8"))
 
 
-def strings() -> dict[str, str]:
-    with open(ROOT / "strings" / "zh-TW.csv", encoding="utf-8-sig", newline="") as f:
+def strings(lang: str = "zh-TW") -> dict[str, str]:
+    with open(ROOT / "strings" / f"{lang}.csv", encoding="utf-8-sig", newline="") as f:
         return {r[0]: r[1] for r in list(csv.reader(f))[1:]}
 
 
 EV = {e["id"]: e for e in load("evidence")}
 TAGS = {t["id"]: t for t in load("tags")}
 S = strings()
+S_EN = strings("en")
 
 
 def spot_xy(spot_id: str) -> tuple[int, int]:
@@ -95,9 +96,15 @@ def lines(text: str, font: float, width: float) -> int:
     return n
 
 
-def reason_xy(card: str, which: int, revealed: bool) -> tuple[int, int]:
+def reason_xy(card: str, which: int, revealed: bool, lang: str = "zh-TW") -> tuple[int, int]:
     """Centre of the first line of reason row `which` (1..3) while no reason is chosen (UI_BOARD_REASON_NONE shown).
-    The detail body is a flex column from y 122 with 8 px gaps (Board.dc.html #detail-body)."""
+    The detail body is a flex column from y 122 with 8 px gaps (Board.dc.html #detail-body); the text is measured
+    in the recording's language."""
+    return 1108, reason_span(card, which, revealed, S_EN if lang == "en" else S)[0] + 18
+
+
+def reason_span(card: str, which: int, revealed: bool, S: dict) -> tuple[int, int]:
+    """(top, bottom) of reason row `which` in the language of the string table S."""
     e = EV[card]
     hidden = set(e["hiddenTags"].split(",")) - {""}
     tags = " ".join("？" if (t in hidden and not revealed) else S[TAGS[t]["nameKey"]] for t in e["tags"].split(","))
@@ -110,7 +117,7 @@ def reason_xy(card: str, which: int, revealed: bool) -> tuple[int, int]:
     y += 20 + 8      # reason none
     for k in range(1, which):
         y += 18 + lines(S[e[f"reason{k - 1}Key"]], 14, 218) * 20 + 8
-    return 1108, y + 18
+    return y + 4, y + 18 + lines(S[e[f"reason{which - 1}Key"]], 14, 218) * 20 - 4
 
 
 class Rec(gp.Recording):
@@ -144,6 +151,7 @@ class Board:
     def __init__(self, r: Rec, drawer: list[str], appraised=()) -> None:
         self.r, self.drawer, self.appraised = r, drawer, set(appraised)
         self.first = True
+        self.lang = "zh-TW"
         self.reason_set: set[str] = set()
 
     def select(self, card: str) -> None:
@@ -154,7 +162,7 @@ class Board:
         assert card not in self.reason_set, "the reason rows move once a reason is chosen"
         e = EV[card]
         revealed = not e["hiddenTags"] or card in self.appraised
-        self.r.click("board", reason_xy(card, which, revealed), GAP)
+        self.r.click("board", reason_xy(card, which, revealed, self.lang), GAP)
         self.reason_set.add(card)
 
     def correct(self, card: str) -> None:
@@ -239,13 +247,16 @@ def ch2() -> int:
 
 
 # The shortest way through each chapter's investigation and board, for the story playthroughs
-# (tests/gen_playthrough.py): the required spots (plus one card to chain with), end; one two-card chain without
-# reasons, to the debate twice (the first press only shows the warning remark, 01-systems §2.7).
+# (tests/gen_playthrough.py): the required spots (plus one card to chain with), end; one two-card chain with the
+# right reasons, to the debate twice (the first press may only show the 「unappraised」 warning, 01-systems §2.7).
 MINIMAL = {
     1: (["HS_CH01_02", "HS_CH01_07"], ["E01_01", "E01_03"]),
     2: (["HS_CH02_02", "HS_CH02_03", "HS_CH02_06"], ["E02_03", "E02_02"]),
     3: (["HS_CH03_02"], ["E03_02", "E03_05"]),
 }
+
+
+MINIMAL_LANG = "zh-TW"   # the language the story playthrough is replayed in (gen_playthrough.ch1_playthrough)
 
 
 def minimal(r: gp.Recording, kind: str, chapter: int) -> None:
@@ -261,8 +272,10 @@ def minimal(r: gp.Recording, kind: str, chapter: int) -> None:
     held |= {e["id"] for e in EV.values() if e["chapter"] == chapter and e["obtain"] == "event"}
     held |= {e["id"] for e in EV.values() if e["chapter"] == chapter and e["policeTags"]}   # trust 3: report
     b = Board(rr, drawer_of(chapter, held))
+    b.lang = MINIMAL_LANG
     for slot, card in enumerate(chain):
         b.select(card)
+        b.correct(card)     # a card without a reason links to nothing (01-systems §2.3)
         b.place(slot)
     b.debate(16)
     b.debate(16)
