@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "vnTag",
+      "type": "constant",
+      "params": {
+        "value": "vn"
+      }
+    },
+    {
+      "id": "empty",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "no",
+      "type": "constant",
+      "params": {
+        "value": false
+      }
+    },
+    {
+      "id": "zero",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "minusOne",
+      "type": "constant",
+      "params": {
+        "value": -1
+      }
+    },
+    {
+      "id": "isVn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "vnScene",
+      "type": "select"
+    },
+    {
+      "id": "chText",
+      "type": "toString"
+    },
+    {
+      "id": "first",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "scene",
+        "filterColumn": "chapter"
+      }
+    },
+    {
+      "id": "off",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "row",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "first + 1 + off"
+      }
+    },
+    {
+      "id": "rowScene",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "scene",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sceneEq",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "inScene",
+      "type": "select"
+    },
+    {
+      "id": "doneCmp",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "show",
+      "type": "merge"
+    },
+    {
+      "id": "showGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "disp",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "seqBarrier",
+      "type": "merge"
+    },
+    {
+      "id": "lineSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "advGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "spk",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "speaker",
+        "type": "string"
+      }
+    },
+    {
+      "id": "txt",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "text",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bg",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "bg",
+        "type": "string"
+      }
+    },
+    {
+      "id": "slotL",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "slot_l",
+        "type": "string"
+      }
+    },
+    {
+      "id": "slotC",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "slot_c",
+        "type": "string"
+      }
+    },
+    {
+      "id": "slotR",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "slot_r",
+        "type": "string"
+      }
+    },
+    {
+      "id": "focus",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "focus",
+        "type": "number"
+      }
+    },
+    {
+      "id": "style",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "style",
+        "type": "number"
+      }
+    },
+    {
+      "id": "hasSpeaker",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "spkKey",
+      "type": "select"
+    },
+    {
+      "id": "spkText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lineText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "chRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "chapters",
+        "column": "id"
+      }
+    },
+    {
+      "id": "chTitleKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "titleKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "chTitle",
+      "type": "atrium.text"
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.stepKind",
+      "to": "isVn.a"
+    },
+    {
+      "from": "vnTag.out",
+      "to": "isVn.b"
+    },
+    {
+      "from": "isVn.out",
+      "to": "vnScene.cond"
+    },
+    {
+      "from": "world.stepScene",
+      "to": "vnScene.a"
+    },
+    {
+      "from": "empty.out",
+      "to": "vnScene.b"
+    },
+    {
+      "from": "world.chapter",
+      "to": "chText.in"
+    },
+    {
+      "from": "vnScene.out",
+      "to": "first.value"
+    },
+    {
+      "from": "chText.out",
+      "to": "first.filterValue"
+    },
+    {
+      "from": "first.row",
+      "to": "row.first"
+    },
+    {
+      "from": "off.value",
+      "to": "row.off"
+    },
+    {
+      "from": "row.value",
+      "to": "rowScene.row"
+    },
+    {
+      "from": "rowScene.value",
+      "to": "sceneEq.a"
+    },
+    {
+      "from": "vnScene.out",
+      "to": "sceneEq.b"
+    },
+    {
+      "from": "isVn.out",
+      "to": "inScene.cond"
+    },
+    {
+      "from": "sceneEq.out",
+      "to": "inScene.a"
+    },
+    {
+      "from": "no.out",
+      "to": "inScene.b"
+    },
+    {
+      "from": "inScene.out",
+      "to": "doneCmp.a"
+    },
+    {
+      "from": "no.out",
+      "to": "doneCmp.b"
+    },
+    {
+      "from": "doneCmp.true",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "off.reset"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "show.in"
+    },
+    {
+      "from": "isVn.out",
+      "to": "advGate.guard"
+    },
+    {
+      "from": "ui#vn.advance",
+      "to": "advGate.go"
+    },
+    {
+      "from": "advGate.changed",
+      "to": "off.increment"
+    },
+    {
+      "from": "advGate.changed",
+      "to": "show.in"
+    },
+    {
+      "from": "show.out",
+      "to": "showGate.go"
+    },
+    {
+      "from": "inScene.out",
+      "to": "showGate.guard"
+    },
+    {
+      "from": "row.value",
+      "to": "disp.in"
+    },
+    {
+      "from": "showGate.changed",
+      "to": "disp.trigger"
+    },
+    {
+      "from": "showGate.changed",
+      "to": "seqBarrier.in"
+    },
+    {
+      "from": "seqBarrier.out",
+      "to": "lineSeq.increment"
+    },
+    {
+      "from": "lineSeq.value",
+      "to": "ui#vn.line_seq"
+    },
+    {
+      "from": "disp.out",
+      "to": "spk.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "txt.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "bg.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "slotL.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "slotC.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "slotR.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "focus.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "style.row"
+    },
+    {
+      "from": "focus.value",
+      "to": "hasSpeaker.a"
+    },
+    {
+      "from": "zero.out",
+      "to": "hasSpeaker.b"
+    },
+    {
+      "from": "hasSpeaker.out",
+      "to": "spkKey.cond"
+    },
+    {
+      "from": "spk.value",
+      "to": "spkKey.a"
+    },
+    {
+      "from": "empty.out",
+      "to": "spkKey.b"
+    },
+    {
+      "from": "spkKey.out",
+      "to": "spkText.key"
+    },
+    {
+      "from": "spkText.text",
+      "to": "ui#vn.speaker"
+    },
+    {
+      "from": "txt.value",
+      "to": "lineText.key"
+    },
+    {
+      "from": "lineText.text",
+      "to": "ui#vn.line"
+    },
+    {
+      "from": "bg.value",
+      "to": "ui#vn.bg"
+    },
+    {
+      "from": "slotL.value",
+      "to": "ui#vn.slot_l"
+    },
+    {
+      "from": "slotC.value",
+      "to": "ui#vn.slot_c"
+    },
+    {
+      "from": "slotR.value",
+      "to": "ui#vn.slot_r"
+    },
+    {
+      "from": "focus.value",
+      "to": "ui#vn.focus"
+    },
+    {
+      "from": "style.value",
+      "to": "ui#vn.style"
+    },
+    {
+      "from": "chText.out",
+      "to": "chRow.value"
+    },
+    {
+      "from": "chRow.row",
+      "to": "chTitleKey.row"
+    },
+    {
+      "from": "chTitleKey.value",
+      "to": "chTitle.key"
+    },
+    {
+      "from": "chTitle.text",
+      "to": "ui#vn.chapter_title"
+    },
+    {
+      "from": "zero.out",
+      "to": "ui#vn.choice_count"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#vn.choice1"
+    },
+    {
+      "from": "no.out",
+      "to": "ui#vn.choice_locked1"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#vn.choice2"
+    },
+    {
+      "from": "no.out",
+      "to": "ui#vn.choice_locked2"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#vn.choice3"
+    },
+    {
+      "from": "no.out",
+      "to": "ui#vn.choice_locked3"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#vn.choice4"
+    },
+    {
+      "from": "no.out",
+      "to": "ui#vn.choice_locked4"
+    },
+    {
+      "from": "minusOne.out",
+      "to": "ui#vn.trust"
+    }
+  ]
+}

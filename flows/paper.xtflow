@@ -1,0 +1,524 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "paperTag",
+      "type": "constant",
+      "params": {
+        "value": "paper"
+      }
+    },
+    {
+      "id": "empty",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "zero",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "three",
+      "type": "constant",
+      "params": {
+        "value": 3
+      }
+    },
+    {
+      "id": "isPaper",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "paperBegin",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "paperId",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "prow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "papers",
+        "column": "group"
+      }
+    },
+    {
+      "id": "headlineKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "headlineKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "headline",
+      "type": "atrium.text"
+    },
+    {
+      "id": "subKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "subKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "subhead",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bodyKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "bodyKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "body",
+      "type": "atrium.text"
+    },
+    {
+      "id": "page2Key",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "page2Key",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ad",
+      "type": "atrium.text"
+    },
+    {
+      "id": "resultChapter",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "resultChapter",
+        "type": "number"
+      }
+    },
+    {
+      "id": "hasResult",
+      "type": "compare",
+      "params": {
+        "op": "gt"
+      }
+    },
+    {
+      "id": "sideKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sideWinKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideWinKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sideWinSubKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "sideWinSubKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sideSel",
+      "type": "select"
+    },
+    {
+      "id": "sideSelText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "resHeadSel",
+      "type": "select"
+    },
+    {
+      "id": "resHeadSelText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "resSubSel",
+      "type": "select"
+    },
+    {
+      "id": "resSubSelText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "chapter",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "chapter",
+        "type": "number"
+      }
+    },
+    {
+      "id": "picture",
+      "type": "format",
+      "params": {
+        "format": "ch0{a}"
+      }
+    },
+    {
+      "id": "pg",
+      "type": "counter",
+      "params": {
+        "initial": 1,
+        "min": 1,
+        "max": 3
+      }
+    },
+    {
+      "id": "page",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "min(pg, 2)"
+      }
+    },
+    {
+      "id": "pgDone",
+      "type": "compare",
+      "params": {
+        "op": "ge"
+      }
+    },
+    {
+      "id": "nextGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prevGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.stepKind",
+      "to": "isPaper.a"
+    },
+    {
+      "from": "paperTag.out",
+      "to": "isPaper.b"
+    },
+    {
+      "from": "isPaper.out",
+      "to": "paperBegin.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "paperBegin.go"
+    },
+    {
+      "from": "world.stepArg",
+      "to": "paperId.in"
+    },
+    {
+      "from": "paperBegin.changed",
+      "to": "paperId.trigger"
+    },
+    {
+      "from": "paperId.out",
+      "to": "prow.value"
+    },
+    {
+      "from": "prow.row",
+      "to": "headlineKey.row"
+    },
+    {
+      "from": "headlineKey.value",
+      "to": "headline.key"
+    },
+    {
+      "from": "headline.text",
+      "to": "ui#paper.headline"
+    },
+    {
+      "from": "prow.row",
+      "to": "subKey.row"
+    },
+    {
+      "from": "subKey.value",
+      "to": "subhead.key"
+    },
+    {
+      "from": "subhead.text",
+      "to": "ui#paper.subhead"
+    },
+    {
+      "from": "prow.row",
+      "to": "bodyKey.row"
+    },
+    {
+      "from": "bodyKey.value",
+      "to": "body.key"
+    },
+    {
+      "from": "body.text",
+      "to": "ui#paper.body"
+    },
+    {
+      "from": "prow.row",
+      "to": "page2Key.row"
+    },
+    {
+      "from": "page2Key.value",
+      "to": "ad.key"
+    },
+    {
+      "from": "ad.text",
+      "to": "ui#paper.ad"
+    },
+    {
+      "from": "prow.row",
+      "to": "resultChapter.row"
+    },
+    {
+      "from": "resultChapter.value",
+      "to": "hasResult.a"
+    },
+    {
+      "from": "zero.out",
+      "to": "hasResult.b"
+    },
+    {
+      "from": "prow.row",
+      "to": "sideKey.row"
+    },
+    {
+      "from": "prow.row",
+      "to": "sideWinKey.row"
+    },
+    {
+      "from": "prow.row",
+      "to": "sideWinSubKey.row"
+    },
+    {
+      "from": "hasResult.out",
+      "to": "sideSel.cond"
+    },
+    {
+      "from": "sideKey.value",
+      "to": "sideSel.a"
+    },
+    {
+      "from": "sideWinKey.value",
+      "to": "sideSel.b"
+    },
+    {
+      "from": "sideSel.out",
+      "to": "sideSelText.key"
+    },
+    {
+      "from": "sideSelText.text",
+      "to": "ui#paper.side"
+    },
+    {
+      "from": "hasResult.out",
+      "to": "resHeadSel.cond"
+    },
+    {
+      "from": "sideWinKey.value",
+      "to": "resHeadSel.a"
+    },
+    {
+      "from": "empty.out",
+      "to": "resHeadSel.b"
+    },
+    {
+      "from": "resHeadSel.out",
+      "to": "resHeadSelText.key"
+    },
+    {
+      "from": "resHeadSelText.text",
+      "to": "ui#paper.result_head"
+    },
+    {
+      "from": "hasResult.out",
+      "to": "resSubSel.cond"
+    },
+    {
+      "from": "sideWinSubKey.value",
+      "to": "resSubSel.a"
+    },
+    {
+      "from": "empty.out",
+      "to": "resSubSel.b"
+    },
+    {
+      "from": "resSubSel.out",
+      "to": "resSubSelText.key"
+    },
+    {
+      "from": "resSubSelText.text",
+      "to": "ui#paper.result_sub"
+    },
+    {
+      "from": "prow.row",
+      "to": "chapter.row"
+    },
+    {
+      "from": "chapter.value",
+      "to": "picture.a"
+    },
+    {
+      "from": "picture.out",
+      "to": "ui#paper.picture"
+    },
+    {
+      "from": "zero.out",
+      "to": "ui#paper.mast"
+    },
+    {
+      "from": "zero.out",
+      "to": "ui#paper.stamp"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#paper.dateline"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#paper.page2_head"
+    },
+    {
+      "from": "empty.out",
+      "to": "ui#paper.page2_body"
+    },
+    {
+      "from": "paperBegin.changed",
+      "to": "pg.reset"
+    },
+    {
+      "from": "isPaper.out",
+      "to": "nextGate.guard"
+    },
+    {
+      "from": "isPaper.out",
+      "to": "prevGate.guard"
+    },
+    {
+      "from": "ui#paper.next",
+      "to": "nextGate.go"
+    },
+    {
+      "from": "ui#paper.prev",
+      "to": "prevGate.go"
+    },
+    {
+      "from": "nextGate.changed",
+      "to": "pg.increment"
+    },
+    {
+      "from": "prevGate.changed",
+      "to": "pg.decrement"
+    },
+    {
+      "from": "pg.value",
+      "to": "page.pg"
+    },
+    {
+      "from": "page.value",
+      "to": "ui#paper.page"
+    },
+    {
+      "from": "pg.value",
+      "to": "pgDone.a"
+    },
+    {
+      "from": "three.out",
+      "to": "pgDone.b"
+    },
+    {
+      "from": "pgDone.true",
+      "to": "world.stepDone"
+    }
+  ]
+}

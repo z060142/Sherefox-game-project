@@ -20,6 +20,28 @@
     "chapter": {
       "type": "number",
       "initial": 0
+    },
+    "stepRow": {
+      "type": "number",
+      "initial": -1
+    },
+    "stepKind": {
+      "type": "string",
+      "initial": ""
+    },
+    "stepArg": {
+      "type": "string",
+      "initial": ""
+    },
+    "stepScene": {
+      "type": "string",
+      "initial": ""
+    },
+    "stepBegin": {
+      "type": "pulse"
+    },
+    "stepDone": {
+      "type": "pulse"
     }
   },
   "input": {
@@ -27,7 +49,10 @@
     "axes": []
   },
   "flows": [
-    "flows/main.xtflow"
+    "flows/main.xtflow",
+    "flows/dialogue.xtflow",
+    "flows/paper.xtflow",
+    "flows/stubs.xtflow"
   ],
   "ui": {
     "bundle": "ui/bundle",
@@ -87,5 +112,18 @@
         "height": 720
       }
     ]
+  },
+  "tables": {
+    "chapters": "data/chapters.json",
+    "steps": "data/steps.json",
+    "script": "data/script.json",
+    "evidence": "data/evidence.json",
+    "tags": "data/tags.json",
+    "hotspots": "data/hotspots.json",
+    "nodes": "data/nodes.json",
+    "opponents": "data/opponents.json",
+    "tells": "data/tells.json",
+    "papers": "data/papers.json",
+    "difficulty": "data/difficulty.json"
   }
 }

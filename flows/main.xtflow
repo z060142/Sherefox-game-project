@@ -25,20 +25,6 @@
       }
     },
     {
-      "id": "enTag",
-      "type": "constant",
-      "params": {
-        "value": "en"
-      }
-    },
-    {
-      "id": "isEn",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
       "id": "langTag",
       "type": "lookup",
       "params": {
@@ -47,13 +33,230 @@
           "en"
         ]
       }
+    },
+    {
+      "id": "enTag",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "langIsEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langName",
+      "type": "select"
+    },
+    {
+      "id": "zhName",
+      "type": "constant",
+      "params": {
+        "value": "zh"
+      }
+    },
+    {
+      "id": "enName",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "one",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "isEnUi",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "chText",
+      "type": "toString"
+    },
+    {
+      "id": "zeroText",
+      "type": "constant",
+      "params": {
+        "value": "0"
+      }
+    },
+    {
+      "id": "chStart",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "steps",
+        "column": "chapter",
+        "filterColumn": "idx"
+      }
+    },
+    {
+      "id": "cur",
+      "type": "counter",
+      "params": {
+        "initial": -1
+      }
+    },
+    {
+      "id": "kind",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "steps",
+        "column": "kind",
+        "type": "string"
+      }
+    },
+    {
+      "id": "arg",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "steps",
+        "column": "arg",
+        "type": "string"
+      }
+    },
+    {
+      "id": "scene",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "steps",
+        "column": "scene",
+        "type": "string"
+      }
+    },
+    {
+      "id": "chapter",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "steps",
+        "column": "chapter",
+        "type": "number"
+      }
+    },
+    {
+      "id": "begin",
+      "type": "filter",
+      "params": {
+        "op": "deadband",
+        "threshold": 0
+      }
+    },
+    {
+      "id": "screen",
+      "type": "state",
+      "params": {
+        "initial": "title",
+        "states": [
+          "title",
+          "paper",
+          "vn"
+        ],
+        "transitions": [
+          {
+            "from": "*",
+            "on": "toTitle",
+            "to": "title"
+          },
+          {
+            "from": "*",
+            "on": "toPaper",
+            "to": "paper"
+          },
+          {
+            "from": "*",
+            "on": "toVn",
+            "to": "vn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "isEndTag",
+      "type": "constant",
+      "params": {
+        "value": "end"
+      }
+    },
+    {
+      "id": "isEnd",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isPaperTag",
+      "type": "constant",
+      "params": {
+        "value": "paper"
+      }
+    },
+    {
+      "id": "isPaper",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isVnTag",
+      "type": "constant",
+      "params": {
+        "value": "vn"
+      }
+    },
+    {
+      "id": "isVn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "visTitle",
+      "type": "lookup",
+      "params": {
+        "values": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visPaper",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visVn",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
+          true
+        ]
+      }
     }
   ],
   "edges": [
-    {
-      "from": "ui#title.chapter",
-      "to": "world.chapter"
-    },
     {
       "from": "ui#title.lang_toggle",
       "to": "lang.toggle"
@@ -68,15 +271,167 @@
     },
     {
       "from": "world.language",
-      "to": "isEn.a"
+      "to": "langIsEn.a"
     },
     {
       "from": "enTag.out",
-      "to": "isEn.b"
+      "to": "langIsEn.b"
     },
     {
-      "from": "isEn.out",
+      "from": "langIsEn.out",
+      "to": "langName.cond"
+    },
+    {
+      "from": "enName.out",
+      "to": "langName.a"
+    },
+    {
+      "from": "zhName.out",
+      "to": "langName.b"
+    },
+    {
+      "from": "langName.out",
+      "to": "lang.set"
+    },
+    {
+      "from": "lang.index",
+      "to": "isEnUi.a"
+    },
+    {
+      "from": "one.out",
+      "to": "isEnUi.b"
+    },
+    {
+      "from": "isEnUi.out",
       "to": "ui#title.lang_en"
+    },
+    {
+      "from": "ui#title.chapter",
+      "to": "chText.in"
+    },
+    {
+      "from": "chText.out",
+      "to": "chStart.value"
+    },
+    {
+      "from": "zeroText.out",
+      "to": "chStart.filterValue"
+    },
+    {
+      "from": "chStart.row",
+      "to": "cur.set"
+    },
+    {
+      "from": "world.stepDone",
+      "to": "cur.increment"
+    },
+    {
+      "from": "cur.value",
+      "to": "kind.row"
+    },
+    {
+      "from": "cur.value",
+      "to": "arg.row"
+    },
+    {
+      "from": "cur.value",
+      "to": "scene.row"
+    },
+    {
+      "from": "cur.value",
+      "to": "chapter.row"
+    },
+    {
+      "from": "cur.value",
+      "to": "world.stepRow"
+    },
+    {
+      "from": "kind.value",
+      "to": "world.stepKind"
+    },
+    {
+      "from": "arg.value",
+      "to": "world.stepArg"
+    },
+    {
+      "from": "scene.value",
+      "to": "world.stepScene"
+    },
+    {
+      "from": "chapter.value",
+      "to": "world.chapter"
+    },
+    {
+      "from": "cur.value",
+      "to": "begin.in"
+    },
+    {
+      "from": "begin.passed",
+      "to": "world.stepBegin"
+    },
+    {
+      "from": "kind.value",
+      "to": "isEnd.a"
+    },
+    {
+      "from": "isEndTag.out",
+      "to": "isEnd.b"
+    },
+    {
+      "from": "kind.value",
+      "to": "isPaper.a"
+    },
+    {
+      "from": "isPaperTag.out",
+      "to": "isPaper.b"
+    },
+    {
+      "from": "kind.value",
+      "to": "isVn.a"
+    },
+    {
+      "from": "isVnTag.out",
+      "to": "isVn.b"
+    },
+    {
+      "from": "isEnd.true",
+      "to": "screen.toTitle"
+    },
+    {
+      "from": "isPaper.true",
+      "to": "screen.toPaper"
+    },
+    {
+      "from": "isVn.true",
+      "to": "screen.toVn"
+    },
+    {
+      "from": "isEnd.out",
+      "to": "ui#title.ended"
+    },
+    {
+      "from": "screen.index",
+      "to": "visTitle.index"
+    },
+    {
+      "from": "visTitle.out",
+      "to": "ui#title.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visPaper.index"
+    },
+    {
+      "from": "visPaper.out",
+      "to": "ui#paper.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visVn.index"
+    },
+    {
+      "from": "visVn.out",
+      "to": "ui#vn.visible"
     }
   ]
 }

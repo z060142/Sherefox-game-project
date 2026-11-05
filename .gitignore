@@ -4,3 +4,4 @@ node_modules/
 *.atrec
 __pycache__/
 .venv/
+!tests/*.atrec

@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "done",
+      "type": "merge"
+    },
+    {
+      "id": "warmupTag",
+      "type": "constant",
+      "params": {
+        "value": "warmup"
+      }
+    },
+    {
+      "id": "warmupIs",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "warmupGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "investigateTag",
+      "type": "constant",
+      "params": {
+        "value": "investigate"
+      }
+    },
+    {
+      "id": "investigateIs",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "investigateGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "boardTag",
+      "type": "constant",
+      "params": {
+        "value": "board"
+      }
+    },
+    {
+      "id": "boardIs",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "boardGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "debateTag",
+      "type": "constant",
+      "params": {
+        "value": "debate"
+      }
+    },
+    {
+      "id": "debateIs",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "debateGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "resultTag",
+      "type": "constant",
+      "params": {
+        "value": "result"
+      }
+    },
+    {
+      "id": "resultIs",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "resultGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "done.out",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "warmupIs.a"
+    },
+    {
+      "from": "warmupTag.out",
+      "to": "warmupIs.b"
+    },
+    {
+      "from": "warmupIs.out",
+      "to": "warmupGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "warmupGate.go"
+    },
+    {
+      "from": "warmupGate.changed",
+      "to": "done.in"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "investigateIs.a"
+    },
+    {
+      "from": "investigateTag.out",
+      "to": "investigateIs.b"
+    },
+    {
+      "from": "investigateIs.out",
+      "to": "investigateGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "investigateGate.go"
+    },
+    {
+      "from": "investigateGate.changed",
+      "to": "done.in"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "boardIs.a"
+    },
+    {
+      "from": "boardTag.out",
+      "to": "boardIs.b"
+    },
+    {
+      "from": "boardIs.out",
+      "to": "boardGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "boardGate.go"
+    },
+    {
+      "from": "boardGate.changed",
+      "to": "done.in"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "debateIs.a"
+    },
+    {
+      "from": "debateTag.out",
+      "to": "debateIs.b"
+    },
+    {
+      "from": "debateIs.out",
+      "to": "debateGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "debateGate.go"
+    },
+    {
+      "from": "debateGate.changed",
+      "to": "done.in"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "resultIs.a"
+    },
+    {
+      "from": "resultTag.out",
+      "to": "resultIs.b"
+    },
+    {
+      "from": "resultIs.out",
+      "to": "resultGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "resultGate.go"
+    },
+    {
+      "from": "resultGate.changed",
+      "to": "done.in"
+    }
+  ]
+}
