@@ -223,6 +223,54 @@
       }
     },
     {
+      "id": "card",
+      "type": "state",
+      "params": {
+        "initial": "open",
+        "states": [
+          "open",
+          "closed"
+        ],
+        "transitions": [
+          {
+            "from": "open",
+            "on": "dismiss",
+            "to": "closed"
+          },
+          {
+            "from": "*",
+            "on": "rearm",
+            "to": "open"
+          }
+        ]
+      }
+    },
+    {
+      "id": "zeroIdx",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "no",
+      "type": "constant",
+      "params": {
+        "value": false
+      }
+    },
+    {
+      "id": "cardOpen",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "ended",
+      "type": "select"
+    },
+    {
       "id": "visTitle",
       "type": "lookup",
       "params": {
@@ -406,7 +454,35 @@
       "to": "screen.toVn"
     },
     {
+      "from": "isEnd.true",
+      "to": "card.rearm"
+    },
+    {
+      "from": "ui#title.end_dismiss",
+      "to": "card.dismiss"
+    },
+    {
+      "from": "card.index",
+      "to": "cardOpen.a"
+    },
+    {
+      "from": "zeroIdx.out",
+      "to": "cardOpen.b"
+    },
+    {
       "from": "isEnd.out",
+      "to": "ended.cond"
+    },
+    {
+      "from": "cardOpen.out",
+      "to": "ended.a"
+    },
+    {
+      "from": "no.out",
+      "to": "ended.b"
+    },
+    {
+      "from": "ended.out",
       "to": "ui#title.ended"
     },
     {

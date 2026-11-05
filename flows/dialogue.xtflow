@@ -37,6 +37,13 @@
       }
     },
     {
+      "id": "yesText",
+      "type": "constant",
+      "params": {
+        "value": "true"
+      }
+    },
+    {
       "id": "isVn",
       "type": "compare",
       "params": {
@@ -52,12 +59,19 @@
       "type": "toString"
     },
     {
+      "id": "sceneKey",
+      "type": "format",
+      "params": {
+        "format": "CH0{a}_{b}"
+      }
+    },
+    {
       "id": "first",
       "type": "atrium.table.find",
       "params": {
         "table": "script",
-        "column": "scene",
-        "filterColumn": "chapter"
+        "column": "sceneKey",
+        "filterColumn": "playable"
       }
     },
     {
@@ -71,7 +85,7 @@
       "id": "row",
       "type": "atrium.expr",
       "params": {
-        "expr": "first + 1 + off"
+        "expr": "first + off"
       }
     },
     {
@@ -79,8 +93,17 @@
       "type": "atrium.table.get",
       "params": {
         "table": "script",
-        "column": "scene",
+        "column": "sceneKey",
         "type": "string"
+      }
+    },
+    {
+      "id": "rowPlayable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "playable",
+        "type": "bool"
       }
     },
     {
@@ -89,6 +112,10 @@
       "params": {
         "op": "eq"
       }
+    },
+    {
+      "id": "playableIn",
+      "type": "select"
     },
     {
       "id": "inScene",
@@ -308,11 +335,19 @@
       "to": "chText.in"
     },
     {
+      "from": "world.chapter",
+      "to": "sceneKey.a"
+    },
+    {
       "from": "vnScene.out",
+      "to": "sceneKey.b"
+    },
+    {
+      "from": "sceneKey.out",
       "to": "first.value"
     },
     {
-      "from": "chText.out",
+      "from": "yesText.out",
       "to": "first.filterValue"
     },
     {
@@ -328,19 +363,35 @@
       "to": "rowScene.row"
     },
     {
+      "from": "row.value",
+      "to": "rowPlayable.row"
+    },
+    {
       "from": "rowScene.value",
       "to": "sceneEq.a"
     },
     {
-      "from": "vnScene.out",
+      "from": "sceneKey.out",
       "to": "sceneEq.b"
+    },
+    {
+      "from": "sceneEq.out",
+      "to": "playableIn.cond"
+    },
+    {
+      "from": "rowPlayable.value",
+      "to": "playableIn.a"
+    },
+    {
+      "from": "no.out",
+      "to": "playableIn.b"
     },
     {
       "from": "isVn.out",
       "to": "inScene.cond"
     },
     {
-      "from": "sceneEq.out",
+      "from": "playableIn.out",
       "to": "inScene.a"
     },
     {

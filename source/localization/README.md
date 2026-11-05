@@ -7,11 +7,11 @@ All files are UTF-8 (CSV files have a BOM). Build this table with the glossary f
 | File | Rows | Content |
 | :--- | ---: | :--- |
 | glossary.csv | 166 | term_zh, term_en, part_of_speech, note (names, places, game terms) |
-| ui_strings.csv | 739 | ID, category, zh-TW, en, note. 612 text strings (systems.md section 8 + Arthur/Sherefox hint lines + Ch.1-3 transition newspaper) plus 51 brush-banner rows (4.7 / 8.14), 46 evidence-tag value rows (TAG_*), 3 per-chapter investigation openers (ART_OPEN_CH0x), 3 chapter titles (CHAP_0x_TITLE), 10 opponent gestures (GESTURE_*), the prototype's 「待續」 card (UI_TO_BE_CONTINUED), 4 paper-screen keys (UI_PAPER_*) and 9 investigation/board labels (UI_INV_*, UI_BOARD_*) |
+| ui_strings.csv | 752 | ID, category, zh-TW, en, note. 612 text strings (systems.md section 8 + Arthur/Sherefox hint lines + Ch.1-3 transition newspaper) plus 51 brush-banner rows (4.7 / 8.14), 46 evidence-tag value rows (TAG_*), 3 per-chapter investigation openers (ART_OPEN_CH0x), 3 chapter titles (CHAP_0x_TITLE), 10 opponent gestures (GESTURE_*), the prototype's 「待續」 card (UI_TO_BE_CONTINUED), 4 paper-screen keys (UI_PAPER_*), 9 investigation/board labels (UI_INV_*, UI_BOARD_*), 7 title-screen keys (UI_TITLE_*, UI_CHAP_NO), 3 debate HUD headings (UI_DEB_GOSSIP, UI_DEB_PREVIEW_LABEL, UI_DEB_STATUS_LABEL) and 3 result/paper labels (UI_PAPER_PREV_CASE, UI_RES_UNACHIEVED, UI_RES_TRUST_LABEL) |
 | tutorial.csv | 190 | ID, chapter, zh-TW, en, note. 95 tutorials (all of section 7, Ch.1-12), two rows each (_TITLE, _BODY) |
 | evidence_ch01-03.csv | 240 | ID, zh-TW, en, note. 24 evidence items (NAME, TAGS, DESC, REASON_A/B/C), 4 opening headlines (+ sub; HEAD_CH04 is the prototype-ending teaser), 12 claim nodes (9 main + the Ch.3 warm-up claim + 2 tail second claims), G-01 and its substitute (G-01_SUB = Case tab S-01), 45 hotspots (HS_*: 45 names, 20 case-note lines, 9 hints) |
 | script_ch01-03.csv | 499 | ID, speaker_zh, speaker_en, zh-TW, en, note. Ch.1 = 139, Ch.2 = 171, Ch.3 = 186, plus Ch.4 S01 = 3 (the opening paper only, used as the prototype-ending teaser) |
-| strings.json | 1668 | `{"<ID>": {"zh-TW": "...", "en": "..."}}`, merge of ui + tutorial + evidence + script (glossary excluded) |
+| strings.json | 1681 | `{"<ID>": {"zh-TW": "...", "en": "..."}}`, merge of ui + tutorial + evidence + script (glossary excluded) |
 
 ## ID scheme
 

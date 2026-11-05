@@ -1,6 +1,6 @@
 # 資料表規格（Ch.1～3 原型）
 
-狀態：M1 草案 2026-11-06。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
+狀態：M2 草案 2026-11-06（`papers` 欄位重整、`script.sceneKey`／`playable`）。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
 
 ## 0. 總則
 
@@ -18,7 +18,7 @@
 
 | 來源 | 內容 |
 |---|---|
-| `source/localization/` | 在地化包（2026-11-06 第四批：1659 個鍵，含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、4 個 `UI_PAPER_*`）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
+| `source/localization/` | 在地化包（2026-11-06 第五批：1681 個鍵，含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、`UI_PAPER_*`、標題畫面 `UI_TITLE_*`／`UI_CHAP_NO`；報紙 `_SUB` 文字已去掉「第二版：」「內文：」標籤）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
 | `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
 | `source/tags/tags_ch01-03.csv` | 每張證物卡與每個節點的「類別：值」標籤（§0.4），抄自 10-cases 各章「標籤值」表 |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
@@ -66,7 +66,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 ### 0.5 驗證（建置時執行）
 
-錯誤（建置失敗）：標籤檔標頭不符、標籤缺 value 或 slug、同一 slug 對應兩個值、`hidden` 不是 medical／mech／no 或與證物的鑑定類型不符、非證物標籤被隱藏、`police=yes` 但標籤沒隱藏、`policeTags` 不是 `hiddenTags` 的子集、沒有鑑定類型的證物有隱藏標籤、節點或證物沒有標籤；表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；調查點（§5）的 id 格式錯誤、區域沒有 slug（`ZONE_SLUGS`）、一個點產出超過 2 張卡、`HOTSPOT_*` 常數與設計表的文字（「論戰後」「只在缺少 G-01 時出現」「事件中已取得」）不一致、`_NAME` 鍵缺少、檢視點沒有 `_NOTE`、產出證物的點有 `_NOTE`、設計表有／沒有提示但 `_HINT` 鍵沒有／有、各章列數與表頭句「共 n 個調查點，m 個產出證物、k 個只寫進案件筆記」不符（條件點不計入 n）、同一張證物由兩個點產出、佔位矩形超出 1280×720 或同一場景內重疊、`phase` 不在 `investigate`／`postDebate`、`requires` 格式錯誤；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點或事件取得（`obtain` 必須是 `hotspot` 或 `event`）、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
+錯誤（建置失敗）：標籤檔標頭不符、標籤缺 value 或 slug、同一 slug 對應兩個值、`hidden` 不是 medical／mech／no 或與證物的鑑定類型不符、非證物標籤被隱藏、`police=yes` 但標籤沒隱藏、`policeTags` 不是 `hiddenTags` 的子集、沒有鑑定類型的證物有隱藏標籤、節點或證物沒有標籤；表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；調查點（§5）的 id 格式錯誤、區域沒有 slug（`ZONE_SLUGS`）、一個點產出超過 2 張卡、`HOTSPOT_*` 常數與設計表的文字（「論戰後」「只在缺少 G-01 時出現」「事件中已取得」）不一致、`_NAME` 鍵缺少、檢視點沒有 `_NOTE`、產出證物的點有 `_NOTE`、設計表有／沒有提示但 `_HINT` 鍵沒有／有、各章列數與表頭句「共 n 個調查點，m 個產出證物、k 個只寫進案件筆記」不符（條件點不計入 n）、同一張證物由兩個點產出、佔位矩形超出 1280×720 或同一場景內重疊、`phase` 不在 `investigate`／`postDebate`、`requires` 格式錯誤；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點或事件取得（`obtain` 必須是 `hotspot` 或 `event`）、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`、`pictureId` 不是板子已知的鋼版畫 id（`PAPER_PICTURES`）、`page2HeadKey` 與 `page2BodyKey` 只有一個有值。
 
 警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物；調查點數不含條件點）；調查點名稱／案件筆記／提示的 zh-TW 與設計表文字不同；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；在地化與 10-cases 證物表的等級／鑑定／類別不同；證物的非擦邊標籤類別與 10-cases 證物表的類別不同（擦邊值可以落在類別欄以外；全為擦邊的 S-01 比對全部標籤）；`TAG_` 顯示鍵不在在地化包（en 暫用 zh-TW）；對手小動作的在地化 zh 與 10-cases 對手行為表不同。
 
@@ -136,6 +136,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn` |
 | chapter | number | 章號 |
 | scene | string | `S01`…；`S90`＝論戰台詞庫 |
+| sceneKey | string | 章與場景的複合鍵 `CH0n_Sss`（例 `CH01_S02`）；流圖以單欄 `atrium.table.find` 找場景（`scene` 只在章內唯一） |
 | seq | number | 場景內行號（`L` 的數字；`1` 是場景標題） |
 | kind | string | `heading`（場景標題，L001）、`subheading`（場景中的小標，例 Ch.3 S07 L009「（尾聲：碼頭）」）、`evidence`（證物描述）、`staging`（純演出行）、`branch`（分支標記）、`note`（備註，不播放）、`line`（有說話者的一般行；含旁白、系統、報紙） |
 | speaker | string | 說話者字串鍵 `SPK_*`；`line` 以外為空白 |
@@ -148,10 +149,13 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | appraisal | bool | 此行是鑑定台詞（在地化備註含 `appraisal`） |
 | banner | string | 演出行中的書法大字／印章：`【大字：X】`→ `CUT_*`、`【印：X】`→ `STAMP_*`（以 ui_strings 中 zh-TW 文字對應；`破竹×n` 取 `STAMP_HACHIKU`），多值依出現順序 |
 | inactive | bool | 在地化備註寫「Not triggered in this chapter」或「not yet unlocked」（本章不會觸發，保留供重玩） |
+| playable | bool | 對白播放器會顯示的行：`kind = line` 且 `inactive = false` 且不在 `S90`（論戰台詞庫由 `tells` 表供論戰使用，不逐行播放）。規則見下 |
 | bg | string | 這行的背景 id（`vn.bg`）：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`，空字串＝新聞紙底。來自演出檔（§3.1） |
 | slot_l、slot_c、slot_r | string | 左／中／右立繪的角色 id（`vn.slot_*`），空字串＝無人。來自演出檔 |
 | focus | number | 說話位置：0 無（旁白、系統、報紙）、1 左、2 中、3 右；指向的位置一定有人。來自演出檔 |
 | style | number | 文字樣式（`vn.style`）：0 對白、1 亞瑟筆記旁白、2 系統／報紙／證物描述等非人物文字。來自演出檔 |
+
+`playable` 的規則只看 `kind`、`inactive` 與場景：`line`（含旁白、系統、報紙行；`style` 2 的非人物文字也照樣顯示，所以 `style` 不影響可播放）為 true；`heading`、`subheading`、`evidence`、`staging`、`branch`、`note` 為 false。分支行（`branch` 有值）仍是 true，由播放器依結果另行篩選；`S90` 一律 false（其中的 `inactive` 行都在 `S90`）。哪一種畫面播放某行由它所屬場景的步驟種類決定（`steps.kind`：vn、result、debate…），不由本欄決定。
 
 不產生 `expr`（立繪表情）、`cmd`、`next`：劇本沒有寫明，不自行設計。`bg`、立繪與焦點、樣式由演出檔（§3.1）補上，劇本行文字與數量不因此改變。
 
@@ -330,20 +334,22 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | chapter | number | 它開啟的那一章（`CH04_OPEN` 為 4；這一步記在 Ch.3 的步驟序列末尾） |
 | kind | string | `open`（章首合併報紙，含 `CH04_OPEN`） |
 | group | string | 報紙群組（＝id）；`steps.arg` 與 `chapters.openPaper`／`endPaper` 指向群組 |
-| resultChapter | number | 側欄結果所屬的案件章號；`0`＝沒有上一案（Ch.1，側欄是開場城市新聞 `NEWS_00_OPEN`） |
+| resultChapter | number | 側欄結果所屬的案件章號；`0`＝沒有上一案（Ch.1：`side*` 結果欄全空白，「上一案結果」條隱藏） |
 | mastKey | string | 刊頭 `UI_PAPER_MAST` |
+| pictureId | string | 頭版鋼版畫 id（`paper.picture`）：`ch0n`（n＝`chapter`，`ch01`～`ch04`；UI 已知的 id 見 ui-contracts paper；空字串＝無圖） |
 | headlineKey | string | 主頭條：`HEAD_CH0n` |
 | subKey | string | 主頭條副標：`HEAD_CH0n_SUB` |
 | bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`（`CH04_OPEN` 用 `SCR_CH04_S01_L003`；Ch.4 的劇本行不進 `script` 表，只當這份報紙的導言） |
-| page2Key | string | 第二版：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，開場廣告）；其餘空白 |
-| page2SubKey | string | 第二版副標；目前全空白 |
-| sideKey | string | 側欄的社會短訊 `NEWS_SIDE_0n`（n＝`resultChapter`；`resultChapter=0` 時空白） |
+| page2HeadKey／page2BodyKey | string | 第二版文章的標題與內文（`paper.page2_head`／`page2_body`）；原型的轉場報紙都沒有第二版文章，全空白（兩欄同時有值或同時空白，建置時驗證） |
+| sideKey | string | 側欄城市短訊（`paper.side`）：`NEWS_SIDE_0n`（n＝`resultChapter`）；`CH01_OPEN` 為開場城市新聞 `NEWS_00_OPEN` |
+| adKey | string | 廣告欄（`paper.ad`）：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，事務所招租）；其餘空白 |
 | sideWinKey／sideWinSubKey | string | 側欄結果：勝利版的標題與副標（`NEWS_0n_WIN`、`NEWS_0n_WIN_SUB`） |
 | sideNotoKey／sideNotoSubKey | string | 側欄結果：惡名版（`NEWS_0n_NOTO`、`_SUB`） |
 | sideLoseKey／sideLoseSubKey | string | 側欄結果：敗北版（`NEWS_0n_LOSE`、`_SUB`） |
 
-- 只有一個版本的結果（`NEWS_00_OPEN`、`NEWS_01_END`）：三組欄位填同一個鍵，流圖不需特判。
-- 副標欄：zh 文字以「第二版」開頭的 `_SUB` 是下一案引子，不是副標，不寫進表（引子即下一章的 S01 主頭條）：`NEWS_01_END_SUB` 因此不使用；`NEWS_00_OPEN_SUB` 是第二版廣告，放 `CH01_OPEN.page2Key`。`NEWS_xx_NEXT` 鍵已廢除（裁決 E1）。
+- 只有一個版本的結果（`NEWS_01_END`）：三組欄位填同一個鍵，流圖不需特判。
+- 副標欄：`NEWS_xx_yy_SUB` 是結果的第二行（在地化 README：「second line / subhead」），寫進 `side*SubKey`；在地化包 2026-11-06 已刪掉文字裡殘留的「第二版：」「內文：」標籤，所以 `NEWS_01_END_SUB` 現在是 Ch.1 結果的副標。`NEWS_00_OPEN_SUB` 是廣告，放 `CH01_OPEN.adKey`。`NEWS_xx_NEXT` 鍵已廢除（裁決 E1）。
+- 日期線：字串表只有 `UI_PAPER_DATE`（`{date}・{weather}　每份一便士`），沒有各期報紙的日期與天氣字串，所以不產生 `dateKey`／`weatherKey`（見「待確認」）。
 - `CH04_OPEN` 的側欄是 Ch.3 的結果（`NEWS_03_WIN`／`NOTO`／`LOSE` 與 `_SUB`）。
 - 流圖選版：敗北 → `sideLoseKey`；勝利且惡名 ≥ 3 → `sideNotoKey`；否則 `sideWinKey`（01-systems §3.3 頭條判定順序）。
 - 結算場景（裁決 D6）：劇本結算台詞在 `result` 步驟播放；`NEWS_*` 結果頭條只在這張表的側欄出現。
@@ -390,11 +396,11 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 
 ## 11. 字串表
 
-- `strings.json` 的全部 1659 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
+- `strings.json` 的全部 1681 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
 - 新增（共 12 個）：
   - `SPK_*`（12 個）：劇本說話者欄的名稱，鍵＝`SPK_`＋英文說話者名稱大寫、非英數字元換成 `_`（例 `SPK_INSPECTOR_BASKERVILLE`、`SPK_NARRATION_ARTHURS_NOTES`）。演出、證物描述、分支、備註、場景標題這些偽說話者沒有鍵。
 - 標籤值（`TAG_*`）、小動作（`GESTURE_*`）、章名（`CHAP_0n_TITLE`）、尾聲與熱身主張（`CLM_CH0n_T1`、`CLM_CH03_W1`）都由在地化包提供，不再由建置產生。
-- 合計 1671 鍵。
+- 合計 1693 鍵。
 
 ## 12. `game.json` 的 tables 區塊
 
@@ -441,3 +447,4 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | Q25 | 論戰後的 `HS_CH02_08`（角落咖啡座）：蒐證步驟之後沒有第二個 investigate 步驟，設計沒寫它在哪個畫面、是否花刻度 | 10-cases Ch.2 調查點表；20-script Ch.2 S04「（論戰後取得）」 | `phase=postDebate`，`evidence.obtain=afterDebate`；步驟序列不加步驟，由流圖決定 |
 | Q26 | 調查點數與 §1.3 一致後仍有兩項比例偏離：Ch.2 刻度 10 ÷ 12 點 ＝ 0.83（設計 0.65～0.75；蒐證階段實際可點 11 個，0.91）；Ch.3 檢視點 13／22 ＝ 59%（01-systems §1.2 約 40%，裁決 D1 原寫 11 個檢視點） | 01-systems §1.2、§1.3；裁決 D1；10-cases 調查點表 | Ch.2 已由裁決 F1 解決（刻度 8，8／11＝0.73，`hotspots.auto` 不計）；Ch.3 檢視點 59% 為接受的偏離，建置仍以警告列出 |
 | Q27 | `HS_CH03_23_NAME` 的 zh-TW 文字是「鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）」，括號是設計備註而非玩家文字；`HS_CH02_08_NAME` 帶「（論戰後）」 | 在地化包；10-cases 調查點表 | 照鍵輸出；UI 若不想顯示括號內文字需請在地化提供乾淨名稱 |
+| Q28 | 報紙日期線：`UI_PAPER_DATE` 有 `{date}`、`{weather}` 佔位，但字串表沒有各期報紙（`CH01_OPEN`～`CH04_OPEN`）的日期與天氣字串；`paper.dateline` 需要時另有「每份一便士」的組版 | 在地化包；系統規格 §4.2 SCR_PAPER；ui-contracts paper | 不產生 `dateKey`／`weatherKey`；`paper.dateline` 空字串。需要時請在地化提供每期的日期、天氣鍵 |

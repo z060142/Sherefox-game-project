@@ -13,14 +13,18 @@ Environment:
     XTATRIUM_XTFRAME_DIR  XTFrame runtime directory (default <XTATRIUM>/artifacts/xtframe)
 
 Checks:
-1. Data assumptions of flows/dialogue.xtflow: every vn scene of Ch.1-3 starts with its heading and every later
-   row of the scene is a playable line (kind line, not inactive).
+1. Data assumptions of flows/dialogue.xtflow: the playable rows (script.playable) of every vn scene of Ch.1-3 are
+   contiguous and not empty, script.playable follows its rule (kind line, not inactive, not S90), and sceneKey is
+   CH0n_Sss with n < 10 (the flow builds it with format "CH0{a}_{b}").
 2. ch1_playthrough (zh-TW and --lang en): every playable line of Ch.1's vn steps is shown exactly once, in order
    (one vn.line_seq change per line, with the expected vn.line and vn.speaker text), the vn surface is the only
    visible main screen while lines are shown, the Ch.1 paper shows both pages while it is the only visible main
    screen, and the run ends on the Ch.2 opening paper (page 1). No warning or error on stderr.
 3. full_run: every playable line of Ch.1-3 in order, every opening paper and the final paper (CH04_OPEN) with
-   the previous case's strip, and the run ends on the title with its end card (title.ended).
+   the previous case's strip, and the title's end card (title.ended). A click on the end card emits end_dismiss
+   and clears title.ended with the title still the only main screen; the chapter list then starts Ch.3 (its lines
+   again, up to the end card a second time); Enter on the end card dismisses it too, and the Ch.2 entry then
+   opens the Ch.2 paper.
 4. lang_toggle: the title's toggle flips title.lang_en (true, false, true) and the paper and the first vn line
    are then in English.
 
@@ -75,15 +79,20 @@ class Failures:
 
 def check_data(fail: Failures) -> None:
     script = load("script")
+    for r in script:
+        fail.check(r["playable"] == (r["kind"] == "line" and not r["inactive"] and r["scene"] != "S90"),
+                   f"{r['id']}: playable {r['playable']} does not follow the rule (data-schema §3)")
+        fail.check(r["sceneKey"] == f"CH0{r['chapter']}_{r['scene']}" and r["chapter"] < 10,
+                   f"{r['id']}: sceneKey {r['sceneKey']!r}")
     for step in load("steps"):
         if step["kind"] != "vn":
             continue
-        rows = [r for r in script if r["chapter"] == step["chapter"] and r["scene"] == step["scene"]]
-        idx = [i for i, r in enumerate(script) if r["chapter"] == step["chapter"] and r["scene"] == step["scene"]]
-        fail.check(idx == list(range(idx[0], idx[0] + len(idx))), f"{step['id']}: scene rows are not contiguous")
-        fail.check(rows[0]["kind"] == "heading", f"{step['id']}: first row of {step['scene']} is not its heading")
-        for r in rows[1:]:
-            fail.check(r["kind"] == "line" and not r["inactive"], f"{step['id']}: {r['id']} is not a playable line")
+        key = f"CH0{step['chapter']}_{step['scene']}"
+        idx = [i for i, r in enumerate(script) if r["sceneKey"] == key and r["playable"]]
+        fail.check(bool(idx), f"{step['id']}: {key} has no playable row")
+        if idx:
+            fail.check(idx == list(range(idx[0], idx[0] + len(idx))),
+                       f"{step['id']}: the playable rows of {key} are not contiguous")
 
 
 # ---------------------------------------------------------------- run and parse
@@ -156,7 +165,9 @@ class Trace:
                     ports[name] = changed[name] = unquote(value)
                 elif kind == "event":
                     parts = rest.split(" ")
-                    if parts[1] == "SHOWN":
+                    if parts[1] == "EMIT":
+                        changed[f"emit:{parts[0]}.{parts[2]}"] = True
+                    elif parts[1] == "SHOWN":
                         visible.add(parts[0])
                     elif parts[1] == "HIDDEN":
                         visible.discard(parts[0])
@@ -180,7 +191,7 @@ def expected_lines(chapter: int, lang: str):
         if step["chapter"] != chapter or step["kind"] != "vn":
             continue
         for r in script:
-            if r["chapter"] == chapter and r["scene"] == step["scene"] and r["kind"] == "line" and not r["inactive"]:
+            if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"]:
                 out.append((r["id"], s[r["text"]], s[r["speaker"]] if r["focus"] != 0 else ""))
     return out
 
@@ -240,23 +251,56 @@ def check_full_run(fail: Failures) -> None:
     papers = {p["group"]: p for p in load("papers")}
     shown = [(t, ports.get("vn.line"), ports.get("vn.speaker"), main_visible(visible))
              for t, ports, visible, changed in tr.ticks if "vn.line_seq" in changed and changed["vn.line_seq"] != 0]
-    exp = expected_lines(1, "zh-TW") + expected_lines(2, "zh-TW") + expected_lines(3, "zh-TW")
+    exp = expected_lines(1, "zh-TW") + expected_lines(2, "zh-TW") + expected_lines(3, "zh-TW") * 2
     fail.check([(x[1], x[2]) for x in shown] == [(e[1], e[2]) for e in exp],
-               f"{label}: {len(shown)} lines shown, {len(exp)} expected, or out of order")
+               f"{label}: {len(shown)} lines shown, {len(exp)} expected (Ch.1-3, then Ch.3 again), or out of order")
     fail.check(all(x[3] == {"vn"} for x in shown), f"{label}: a line was shown while vn was not the only main screen")
-    # Every opening paper, then the final paper (CH04_OPEN) with the Ch.3 result strip, each while paper is visible.
-    seen = [(ports.get("paper.headline"), ports.get("paper.result_head")) for _, ports, visible, _ in tr.ticks
-            if main_visible(visible) == {"paper"}]
+    # Every opening paper, then the final paper (CH04_OPEN) with the Ch.3 result strip, each while paper is visible;
+    # every paper port that has a papers column (data-schema §9; an empty key is an empty string).
+    paper_ports = {"headline": "headlineKey", "subhead": "subKey", "body": "bodyKey", "page2_head": "page2HeadKey",
+                   "page2_body": "page2BodyKey", "side": "sideKey", "ad": "adKey", "result_head": "sideWinKey",
+                   "result_sub": "sideWinSubKey"}
+    seen = [ports for _, ports, visible, _ in tr.ticks if main_visible(visible) == {"paper"}]
     for group in ("CH01_OPEN", "CH02_OPEN", "CH03_OPEN", "CH04_OPEN"):
         row = papers[group]
-        strip = s[row["sideWinKey"]] if row["resultChapter"] > 0 else ""
-        fail.check((s[row["headlineKey"]], strip) in seen, f"{label}: paper {group} not shown with result strip {strip!r}")
+        want = {f"paper.{port}": s.get(row[col], "") for port, col in paper_ports.items()}
+        want["paper.picture"] = row["pictureId"]
+        fail.check(any(all(p.get(k) == v for k, v in want.items()) for p in seen),
+                   f"{label}: paper {group} not shown with its columns {want}")
+    # The end card: shown twice (Ch.3 is played again after the first dismissal), each time on the title alone.
+    # Each end_dismiss (a click, then Enter) clears title.ended by the next tick; the title then stays the only main
+    # screen, without its card, until the chapter list starts a chapter (Ch.3, then Ch.2) and its paper shows.
     ended = [t for t, ports, visible, ch in tr.ticks if ch.get("title.ended") is True]
-    fail.check(len(ended) == 1, f"{label}: title.ended set {len(ended)} times")
+    fail.check(len(ended) == 2, f"{label}: title.ended set {len(ended)} times, expected 2")
+    for t, ports, visible, ch in tr.ticks:
+        if ch.get("title.ended") is True:
+            fail.check(main_visible(visible) == {"title"}, f"{label}: t={t} end card while visible = {sorted(visible)}")
+    dismiss = [t for t, _, _, ch in tr.ticks if ch.get("emit:title.end_dismiss")]
+    fail.check(len(dismiss) == 2, f"{label}: title.end_dismiss emitted {len(dismiss)} times, expected 2")
+    for i, t in enumerate(dismiss):
+        want_group, want_ch = ("CH03_OPEN", 3) if i == 0 else ("CH02_OPEN", 2)
+        after = [x for x in tr.ticks if x[0] > t]
+        cleared = next((x[0] for x in after if x[3].get("title.ended") is False), None)
+        fail.check(cleared is not None and cleared <= t + 1, f"{label}: end_dismiss at t={t} did not clear title.ended")
+        pick = next((x for x in after if "title.chapter" in x[3]), None)
+        fail.check(pick is not None and pick[1].get("title.chapter") == want_ch,
+                   f"{label}: no title.chapter={want_ch} after end_dismiss at t={t}")
+        if cleared is None or pick is None:
+            continue
+        idle = [x for x in after if cleared <= x[0] < pick[0]]
+        fail.check(all(main_visible(v) == {"title"} and p.get("title.ended") is False for _, p, v, _ in idle),
+                   f"{label}: after end_dismiss at t={t} the title is not shown alone without its card")
+        head = s[papers[want_group]["headlineKey"]]
+        fail.check(any(main_visible(v) == {"paper"} and p.get("paper.headline") == head
+                       for tt, p, v, _ in after if tt > pick[0]),
+                   f"{label}: the chapter list did not open {want_group} after end_dismiss at t={t}")
     t_end, ports_end, vis_end, _ = tr.ticks[-1]
-    fail.check(main_visible(vis_end) == {"title"} and ports_end.get("title.ended") is True,
-               f"{label}: does not end on the title end card ({sorted(vis_end)}, ended={ports_end.get('title.ended')})")
-    print(f"{label}: {len(shown)} of {len(exp)} lines (Ch.1-3) in order, 4 papers, end card at t={ended[0] if ended else '-'}")
+    fail.check(main_visible(vis_end) == {"paper"} and ports_end.get("paper.page") == 1
+               and ports_end.get("paper.headline") == s[papers["CH02_OPEN"]["headlineKey"]],
+               f"{label}: does not end on the Ch.2 opening paper ({sorted(vis_end)}, {ports_end.get('paper.headline')!r})")
+    print(f"{label}: {len(shown)} of {len(exp)} lines (Ch.1-3, Ch.3 again) in order, 4 papers, end card at "
+          f"t={','.join(map(str, ended)) or '-'}, end_dismiss at t={','.join(map(str, dismiss)) or '-'} (click, Enter), "
+          f"chapter list opens Ch.3 then Ch.2")
 
 
 def check_lang_toggle(fail: Failures) -> None:
@@ -328,7 +372,8 @@ def main() -> int:
         frames.mkdir(parents=True, exist_ok=True)
     fail = Failures()
     check_data(fail)
-    print("data: vn scenes are heading + playable lines" if not fail.items else "data: assumption broken")
+    print("data: playable rows of each vn scene are contiguous; playable and sceneKey follow their rules"
+          if not fail.items else "data: assumption broken")
     if frames:
         (frames / "_ppm").mkdir(exist_ok=True)
     check_playthrough(fail, "zh-TW", frames)

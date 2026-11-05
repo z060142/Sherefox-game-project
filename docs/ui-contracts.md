@@ -20,18 +20,20 @@
 | `lang_toggle` | event | out | 玩家按了語言切換（中文／English）。UI 不自己切換語言，只送出事件。 |
 | `lang_en` | bool | in | 目前語言是否為英文：`true` 時切換鈕的「English」反白，`false` 時「中文」反白（預設 `false`）。 |
 | `ended` | bool | in | 「待續」結尾卡：`true` 時整個標題畫面被結尾卡蓋住（流圖在 Ch.4 預告報紙之後顯示 title 並設為 `true`）；預設 `false`。 |
+| `end_dismiss` | event | out | 玩家在結尾卡上點一下或按 Enter／Space：要求關掉結尾卡。UI 不自己關，流圖把 `ended` 設回 `false`。 |
 
 流圖側（`flows/main.xtflow`）：
 
 | 來源 | 去向 | 說明 |
 |---|---|---|
-| `ui#title.chapter` | `world.chapter`（number，`game.json` 宣告，初始 0） | 記錄所選章節；後續章節流程讀 `world.chapter`。 |
-| `ui#title.lang_toggle` | 語言切換 | 目標：翻轉 `world.language`（zh-TW ↔ en），並由 `world.language` 推出 `lang_en`。XTAtrium 在地化（08 §8.1，AT-031）落地前沒有 `world.language`，暫以 `toggle` 節點直接驅動 `ui#title.lang_en`（只切換反白，不切換文字）。 |
+| `ui#title.chapter` | 步驟執行器 | 跳到該章 `steps` 的第一列（idx 0）。`world.chapter`（number，`game.json` 宣告，初始 0）＝**目前步驟所屬的章**（`steps.chapter`），由 `main` 寫入；開始時與所選章相同，之後隨步驟前進（Ch.3 末尾的最終報紙與 `end` 仍是 3）。見 `docs/flows.md` §2、§4.1。 |
+| `ui#title.lang_toggle` | 語言切換 | 翻轉 `main` 的 `lang` 狀態，寫入 `world.language`（zh-TW ↔ en）；`lang_en` 由 `lang` 推出。`world.language` 被外部寫入（`--lang`）時狀態跟著它。 |
+| `ui#title.end_dismiss` | 結尾卡 | `main` 把 `ui#title.ended` 設回 `false`（步驟仍是 `end`，標題與目錄照常顯示，選章即重新開始）；再次進入 `end` 步驟時結尾卡重新出現。 |
 
 UI 側實作（板子 `ui/boards/project/Title.dc.html`）：
 
 - **目錄欄**：每章一個可聚焦的 `<div class="entry">`（`btn-ch1`～`btn-ch3`，`tabindex="0"`，Enter／Space 由預設的鍵盤啟用觸發點擊），內含兩個元素：`Ch.n`（純文字、兩種語言相同，銅色小字）與 `@CHAP_0n_TITLE`（章名）。字串表沒有 `UI_CHAP_NO`（只有含 `{n}`／`{chapterTitle}` 佔位的 `UI_CHAPTER_CARD`），UI 無法填佔位，所以章號寫成字面。不用 `<button>`：按鈕裡放兩個子元素會被折成一段 rich text，子元素上的 `@key` 不會解析。點擊 → `set(chapter, n)`。
-- **結尾卡（`ended`）**：`#end-card` 以 `bind:display="ended"` 蓋住整個畫面（報頭圖、粗細雙線、大字 `UI_TO_BE_CONTINUED`、下方小字 `UI_TITLE_LOGO`），吃掉所有點擊（目錄與語言切換都按不到）；`ended` 變更時播 `end-in`（500 ms 淡入，大字由 1.12 倍縮入）。結尾卡不送出任何事件：要關掉它，流圖把 `ended` 設回 `false`（合約目前沒有「點一下回標題」的 out port）。
+- **結尾卡（`ended`）**：`#end-card` 以 `bind:display="ended"` 蓋住整個畫面（報頭圖、粗細雙線、大字 `UI_TO_BE_CONTINUED`、下方小字 `UI_TITLE_LOGO`），吃掉所有點擊（目錄與語言切換都按不到）；`ended` 變更時播 `end-in`（500 ms 淡入，大字由 1.12 倍縮入）並取得焦點（`tabindex="0"`、`focus()`）。在卡上點一下（`click:emit(end_dismiss)`；Enter／Space 由預設的鍵盤啟用觸發同一個點擊）→ `end_dismiss`；卡片本身不關，等流圖把 `ended` 設回 `false`。
 
 字串鍵：`UI_PAPER_MAST`、`UI_TITLE_KICKER`、`UI_TITLE_LANG`、`UI_TITLE_LANG_ZH`、`UI_TITLE_LANG_EN`、`UI_TITLE_LEAD`、`UI_TITLE_LOGO`、`UI_TITLE_SUB`、`UI_TITLE_CONTENTS`、`CHAP_01_TITLE`、`CHAP_02_TITLE`、`CHAP_03_TITLE`、`UI_TO_BE_CONTINUED`。`UI_TITLE_CH1`～`UI_TITLE_CH3` 已退役，並自 `ui/project/shared/strings/<lang>.csv` 移除。
 
@@ -100,13 +102,13 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 - **頭版**：報頭圖（與 title 共用同一檔）居中，左右耳框；雙線；`dateline` 置中；`headline` 大標最多兩行（中文 52 px、英文 40 px，以 `:lang(en)` 切換），放在 124 px 高的 flex 框裡垂直置中（一行的頭條不會在下方留白），顯示與變更時播 `intro`（活字落下）。
 - **有圖（`picture` 非空）**：頭條下一列：左側鋼版畫框橫跨 3 欄（700 px 寬，`object-fit: cover`，960×640 原圖上下會裁掉一些），右側 2 欄先放 `subhead`（斜體，最多三行，在 72 px 高的框裡垂直置中），細線下是導言兩欄（下述位移法）。已知 id：`ch01`～`ch04` → `_blob/paper_ch0x.jpg`（每個 id 一張 `<img>`，`bind:display="picture | eq('ch0x')"`）；未知 id 只畫空框。
 - **無圖（`picture` 空字串）**：`subhead` 置中橫跨全頁（兩行），其下內文五欄。
-- **多欄內文的做法**：每欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高，外層 `overflow: hidden`，看起來就是同一段文字逐欄接下去。欄寬 216 px（約 14 個中文字），欄高在有「上一案結果」條時 198 px（9 行）、沒有時 264 px（12 行）。有圖時只有兩欄（中文約 250 字；英文 Ch.2 開場內文最後一兩句會被截掉），無圖時五欄。超出的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
+- **多欄內文的做法**：每欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高，外層 `overflow: hidden`，看起來就是同一段文字逐欄接下去。欄寬 216 px（約 14 個中文字），欄高在有「上一案結果」條時 198 px（9 行）、沒有時 264 px（12 行）。有圖時只有兩欄（中文約 250 字），無圖時五欄。英文的有圖導言用較小的內文字（設計 session 2026-11-06 核准）：`:lang(en) #lead-col-1-text`／`#lead-col-2-text` 13 px、行高 16.5 px（198 px＝12 行、264 px＝16 行，位移量不變），Ch.1～4 開場內文（473～677 字元）都排得下；中文維持 15／22 px。超出的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
 - **側欄・上一案結果（`result_head`、`result_sub`）**：頁尾線上方一條舊紙底、上粗下細框線的橫條：左端深墨底標籤 `UI_PAPER_PREV_CASE`（UI-only 鍵「上一案結果」），右側 `result_head`（粗體一行）與 `result_sub`（斜體一行，空字串隱藏；兩行在條內垂直置中）。`result_head` 空字串時整條隱藏，同時 `#p1` 帶上 `class.tall`（`bind:class.tall="result_head | eq('')"`）：鋼版畫框與各欄改用較高的尺寸，位移量跟著換（`<helmet>` 的 `.tall #…` 規則，進 `<layout>`），頁面一直排到頁尾。
 - **mast**：0 平常版（左耳「倫敦提燈報」、右耳「頭版」）；1 號外（兩耳改為銅底「號外」）；2 滲透版（報頭粗線改狼影紫 `#3b2a4a`；token 表尚無此色）。
-- **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 非空時是標題與三欄 `page2_body`，右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。`page2_head` 空字串時（原型的轉場報紙都沒有第二版文章：`papers` 表的 `page2Key` 只有 Ch.1 有值）`#p2` 帶上 `class.wide`：文章區隱藏，城市短訊（左 680 px，頭條字體 30 px 粗體）與廣告（右 456 px，28 px）展開占滿整頁，中間一道直線。
+- **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 非空時是標題與三欄 `page2_body`，右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。`page2_head` 空字串時（原型的轉場報紙都沒有第二版文章：`papers.page2HeadKey` 全空白）`#p2` 帶上 `class.wide`：文章區隱藏，城市短訊（左 680 px，頭條字體 30 px 粗體）與廣告（右 456 px，28 px）展開占滿整頁，中間一道直線。
 - **stamp**：1 結案、2 更正；朱紅印章（雙框、旋轉 −9°）疊在畫面左下（有圖時蓋在鋼版畫上），兩頁都顯示；變更時播 `stamp-in`（180 ms 蓋印）。
 - **輸入**：左鍵（畫面任一處）、Enter、Space、→、PageDown → `next`；←、PageUp → `prev`。鍵盤同 vn，根元素持有焦點。
-- **預設值**（截圖用）：Ch.2 開場（`CH02_OPEN`：`HEAD_CH02`、`HEAD_CH02_SUB`、`SCR_CH02_S01_L003`、`NEWS_SIDE_01`），`picture` = `ch02`，上一案結果條是 Ch.1 的 `NEWS_01_END`（沒有副標），第二版沒有文章（展開版）。
+- **預設值**（截圖用）：Ch.2 開場（`CH02_OPEN`：`HEAD_CH02`、`HEAD_CH02_SUB`、`SCR_CH02_S01_L003`、`NEWS_SIDE_01`），`picture` = `ch02`，上一案結果條是 Ch.1 的 `NEWS_01_END`（板子預設沒有副標；在地化包 2026-11-06 起 `NEWS_01_END_SUB` 是它的副標，流圖會送出），第二版沒有文章（展開版）。
 - 已知落差：「收入剪報簿」提示（系統規格 §4.2）沒有對應 port，未做。
 
 字串鍵：`UI_PAPER_MAST`、`UI_PAPER_PAGE1`、`UI_PAPER_PAGE2`、`UI_PAPER_SIDE`、`UI_PAPER_ADS`、`UI_PAPER_EXTRA`、`UI_PAPER_STAMP_CLOSED`、`UI_PAPER_STAMP_FIX`、`UI_PAPER_PREV_CASE`（新增，UI-only）。

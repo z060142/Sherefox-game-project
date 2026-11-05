@@ -593,11 +593,11 @@ ART_INVALID,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這兩樣東西毫無�
 ART_SUB_LINK,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「這張破紙撐不了多久的，Sherefox。」,"""That scrap of paper won't hold for long, Sherefox.""",ctx: 用次級替代證物拉線
 ART_BOARD_READY,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「準備好了？妳的推理鏈，我都替妳記下來了。」,"""Ready? I've kept track of all your Reasoning Chains.""",ctx: 按下進入論戰前
 NEWS_00_OPEN,Transition Newspaper (3.3),蒸汽電車東區延長線今日通車　白教堂只需十五分鐘,Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away,ctx: Ch.1 開場
-NEWS_00_OPEN_SUB,Transition Newspaper (3.3),第二版廣告：「招租：貝克街事務所二樓空房，限能忍受惡作劇者。」,"Page Two ad: ""To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply.""",ctx: Ch.1 開場 | second line / subhead; derived ID (_SUB)
+NEWS_00_OPEN_SUB,Transition Newspaper (3.3),招租：貝克街事務所二樓空房，限能忍受惡作劇者。,To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply.,ctx: Ch.1 開場 | second line / subhead; derived ID (_SUB)
 NEWS_01_END,Transition Newspaper (3.3),市議會擬加徵煤煙稅　工廠主人聯名抗議,City Council Mulls Soot Tax: Factory Owners Sign Joint Protest,ctx: Ch.1 → Ch.2
-NEWS_01_END_SUB,Transition Newspaper (3.3),第二版：「古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。」,"Page Two: ""Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence.""",ctx: Ch.1 → Ch.2 | second line / subhead; derived ID (_SUB)
+NEWS_01_END_SUB,Transition Newspaper (3.3),古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。,Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence.,ctx: Ch.1 → Ch.2 | second line / subhead; derived ID (_SUB)
 NEWS_02_WIN,Transition Newspaper (3.3),報時鳥鐘錶店掉包疑雲落幕　隨從調慢時鐘偽造不在場證明,Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi,ctx: Ch.2 勝利
-NEWS_02_WIN_SUB,Transition Newspaper (3.3),內文：「據悉由樓上一名年輕偵探當場識破。」,"Body: ""Reportedly exposed on the spot by a young detective from upstairs.""",ctx: Ch.2 勝利 | second line / subhead; derived ID (_SUB)
+NEWS_02_WIN_SUB,Transition Newspaper (3.3),據悉由樓上一名年輕偵探當場識破。,Reportedly exposed on the spot by a young detective from upstairs.,ctx: Ch.2 勝利 | second line / subhead; derived ID (_SUB)
 NEWS_02_NOTO,Transition Newspaper (3.3),鐘錶店糾紛越吵越烈　樓上偵探當眾胡攪蠻纏,Clock Shop Dispute Grows Ever Fiercer: Upstairs Detective Makes a Public Nuisance of Herself,ctx: Ch.2 勝利・惡名
 NEWS_02_NOTO_SUB,Transition Newspaper (3.3),「富商：『這是對紳士的羞辱。』」,"Merchant: ""This is an insult to a gentleman.""",ctx: Ch.2 勝利・惡名 | second line / subhead; derived ID (_SUB)
 NEWS_02_LOSE,Transition Newspaper (3.3),百年老店蒙塵？鐘錶匠遭判賠償,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages,ctx: Ch.2 敗北
@@ -738,3 +738,16 @@ UI_BOARD_SOLID,Clue Board,實證,Solid,link-type label (solid link)
 UI_BOARD_SOPH,Clue Board,詭辯,Sophistry,link-type label (sophistry link)
 UI_BOARD_DMG,Clue Board,預估傷害,Est. Dmg,short label on a small plate
 UI_BOARD_LINK_INVALID,Clue Board,無效連結：沒有共同標籤,Invalid link: no shared tag,shown as the card bounces back; the bounce itself is animation
+UI_TITLE_KICKER,Title,狐耳偵探事務所,Sherefox Detective Agency,kicker above the masthead (matches sherefox.com)
+UI_TITLE_LEAD,Title,本日頭條,Today's Headline,front-page lead label
+UI_TITLE_CONTENTS,Title,本期目錄,In This Issue,contents column (chapter select)
+UI_TITLE_LANG,Title,語言,Language,language switch label
+UI_TITLE_LANG_ZH,Title,繁體中文,繁體中文,language self-name; identical in both locales
+UI_TITLE_LANG_EN,Title,English,English,language self-name; identical in both locales
+UI_CHAP_NO,Title,Ch.{n},Ch.{n},chapter number prefix; combine with CHAP_0x_TITLE
+UI_DEB_GOSSIP,Debate,小道消息,Word on the Street,tell column heading on the Extra layout (美術風格 §五)
+UI_DEB_PREVIEW_LABEL,Debate,預估,Forecast,heading of the per-action preview row
+UI_DEB_STATUS_LABEL,Debate,狀態,Status,heading of the status row (破竹/困獸/失守)
+UI_PAPER_PREV_CASE,Newspaper,上一案結果,Last Case,label on the merged paper's result strip
+UI_RES_UNACHIEVED,Result,未達成,Not Achieved,Ch.1 verdict when the contradictions are not found in time (no defeat)
+UI_RES_TRUST_LABEL,Result,警督信任度,Inspector's Trust,static label beside the trust badge row; UI_RES_TRUST keeps {from}/{to} for the log

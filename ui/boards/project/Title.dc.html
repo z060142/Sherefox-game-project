@@ -36,7 +36,7 @@
                 text-align: center; color: var(--ink) }
 </style></helmet>
 <div id="title" data-xt-uiscale="fit"
-     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false"
+     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false; end_dismiss:event out"
      data-xt-trigger="show:play(intro)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
@@ -131,8 +131,10 @@
   <div id="rule-foot" class="rule-copper"
        style="position: absolute; left: 48px; top: 692px; width: 1184px; height: 1px;"></div>
 
-  <!-- End card (待續): covers the title while ended is true and takes every click. -->
-  <div id="end-card" class="end-card" data-xt-bind="display=ended" data-xt-trigger="port(ended):play(end-in)"
+  <!-- End card (待續): covers the title while ended is true and takes every click. A click (or Enter / Space:
+       the card takes the focus when it appears) sends end_dismiss; the flow then sets ended back to false. -->
+  <div id="end-card" class="end-card" tabindex="0" data-xt-bind="display=ended"
+       data-xt-trigger="port(ended):play(end-in); focus(); click:emit(end_dismiss)"
        data-xt-timeline="end-in: 0 opacity 0, 500ms ease-out opacity 1"
        style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
     <div id="end-dock" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">

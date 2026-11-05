@@ -6,14 +6,16 @@
 
 - tests/ch1_playthrough.atrec: click Ch.1 on the title, then click through every page and line of Ch.1 until the
   Ch.2 opening paper is on screen.
-- tests/full_run.atrec: Ch.1 on the title, then every page and line of Ch.1, Ch.2 and Ch.3 up to the end card,
-  then a click on the title's Ch.2 entry.
+- tests/full_run.atrec: Ch.1 on the title, then every page and line of Ch.1, Ch.2 and Ch.3 up to the end card;
+  a click on the end card (end_dismiss), Ch.3 from the title again and through it to the end card; Enter on the
+  end card, then a click on the title's Ch.2 entry (its opening paper).
 - tests/lang_toggle.atrec: press the title's language toggle three times (zh -> en -> zh -> en), choose Ch.1, turn
   both pages of the opening paper, so the first vn line is shown in English.
 
 The click count per step comes from the data tables (steps, script), so the recording follows the data:
-paper = 2 clicks (page 1 -> page 2 -> done), vn = one click per playable line (the first line is shown when the
-step begins; the click after the last line ends the step), other kinds are stubs that need no input.
+paper = 2 clicks (page 1 -> page 2 -> done), vn = one click per playable line (script.playable; the first line
+is shown when the step begins, the click after the last line ends the step), other kinds are stubs that need no
+input.
 
 Usage (from the project root):
     uv run tests/gen_playthrough.py
@@ -39,7 +41,9 @@ HOLD = {           # extra wait (ticks) before a click, so a frame can be inspec
 END_WAIT = 90      # ticks to keep running after the last click (the Ch.2 paper settles)
 
 # Pointer positions (1280x720 surface coordinates).
-TITLE_CH = {1: (1000, 365), 2: (1000, 425), 3: (1000, 485)}
+TITLE_CH = {1: (1000, 382), 2: (1000, 490), 3: (1000, 598)}   # entries btn-ch1..3: y 328-436, 436-544, 544-652
+END_CARD = (640, 360)
+KEY_ENTER = 40     # XtKey.Enter
 TITLE_LANG = (1150, 25)
 PAPER_CLICK = (640, 400)
 VN_CLICK = (640, 620)
@@ -50,7 +54,7 @@ def load(name: str):
 
 
 def playable(script, chapter: int, scene: str):
-    return [r for r in script if r["chapter"] == chapter and r["scene"] == scene and r["kind"] == "line" and not r["inactive"]]
+    return [r for r in script if r["chapter"] == chapter and r["scene"] == scene and r["playable"]]
 
 
 def plan(chapter: int):
@@ -102,17 +106,25 @@ def ch1_playthrough() -> int:
     return r.write("ch1_playthrough", END_WAIT)
 
 
-def full_run() -> int:
-    r = Recording()
-    r.at(40, click("title", TITLE_CH[1]))
-    for chapter in (1, 2, 3):
+def play_chapters(r: Recording, chapters) -> None:
+    for chapter in chapters:
         for step_id, ui, clicks in plan(chapter):
             if ui is None:
                 r.t += 2
                 continue
             for k in range(clicks):
                 r.at(SETTLE if k == 0 else GAP, click(ui, PAPER_CLICK if ui == "paper" else VN_CLICK))
-    r.at(90, click("title", TITLE_CH[2]))
+
+
+def full_run() -> int:
+    r = Recording()
+    r.at(40, click("title", TITLE_CH[1]))
+    play_chapters(r, (1, 2, 3))
+    r.at(90, click("title", END_CARD))                     # end card -> end_dismiss
+    r.at(SETTLE, click("title", TITLE_CH[3]))              # the chapter list works again
+    play_chapters(r, (3,))
+    r.at(90, [["title", "kd", KEY_ENTER, 0], ["title", "ku", KEY_ENTER, 0]])   # Enter on the end card
+    r.at(SETTLE, click("title", TITLE_CH[2]))
     return r.write("full_run", 60)
 
 

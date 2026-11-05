@@ -527,15 +527,15 @@ MSG_WARMUP_FAIL,{name} 不耐煩地揮了揮手。
 MSG_WARMUP_PERFECT,一次就說服了他。
 MSG_WARMUP_WRONG,這證明不了他錯了。
 NEWS_00_OPEN,蒸汽電車東區延長線今日通車　白教堂只需十五分鐘
-NEWS_00_OPEN_SUB,第二版廣告：「招租：貝克街事務所二樓空房，限能忍受惡作劇者。」
+NEWS_00_OPEN_SUB,招租：貝克街事務所二樓空房，限能忍受惡作劇者。
 NEWS_01_END,市議會擬加徵煤煙稅　工廠主人聯名抗議
-NEWS_01_END_SUB,第二版：「古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。」
+NEWS_01_END_SUB,古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。
 NEWS_02_LOSE,百年老店蒙塵？鐘錶匠遭判賠償
 NEWS_02_LOSE_SUB,「店主拒絕受訪，櫥窗報時鳥停擺。」
 NEWS_02_NOTO,鐘錶店糾紛越吵越烈　樓上偵探當眾胡攪蠻纏
 NEWS_02_NOTO_SUB,「富商：『這是對紳士的羞辱。』」
 NEWS_02_WIN,報時鳥鐘錶店掉包疑雲落幕　隨從調慢時鐘偽造不在場證明
-NEWS_02_WIN_SUB,內文：「據悉由樓上一名年輕偵探當場識破。」
+NEWS_02_WIN_SUB,據悉由樓上一名年輕偵探當場識破。
 NEWS_03_LOSE,駁船命案以船夫認罪結案　家屬當庭喊冤
 NEWS_03_LOSE_SUB,「合夥人表示將接手死者在市政廳的業務。」
 NEWS_03_NOTO,駁船命案破了　但狐耳偵探「靠胡攪蠻纏逼供」遭議
@@ -1364,6 +1364,7 @@ UI_BREAK_LINE_PARRY,等一下——你剛才說的那句話，就是答案。
 UI_CASE_CARD_9,第九章之{n}　{caseTitle}
 UI_CH1_CONTRA,矛盾 {n}／2　剩 {r} 回合
 UI_CHAPTER_CARD,第 {n} 章　{chapterTitle}
+UI_CHAP_NO,Ch.{n}
 UI_CHOICE_KEY,【{plotItem}】
 UI_CMP_COUNTER,異樣 {found}／5
 UI_COUNTER_BREAK,反擊論破
@@ -1374,6 +1375,7 @@ UI_DEB_COUNTER_PREVIEW,主張 {base}＋4×{n}＝{dmg}
 UI_DEB_COUNTER_PREVIEW_RUSH,猛攻 ({base}＋4×{n})×1.25＝{dmg}
 UI_DEB_DISGUISER,此對手的預兆可能是偽裝：台詞與小動作對不上時，以小動作為準。
 UI_DEB_GESTURE_KNOWN,{gesture}＝{action}
+UI_DEB_GOSSIP,小道消息
 UI_DEB_HAND,手牌 ×{n}
 UI_DEB_HP,{now}／{max}
 UI_DEB_LOCKED,已鎖定
@@ -1385,6 +1387,7 @@ UI_DEB_NOPARRY_SHISSHU,失守：這一回合不能反駁
 UI_DEB_PHASE,第 {n} 階段／共 {total} 階段
 UI_DEB_PREVIEW,傷害 {dmg}　倍率 ×{mult}　{shaken}
 UI_DEB_PREVIEW_BREAK,可以論破
+UI_DEB_PREVIEW_LABEL,預估
 UI_DEB_PREVIEW_PARRY,截斷：反擊 30、粉碎主張
 UI_DEB_PREVIEW_PARRY_NOREF,截斷：反擊 30（這個說法太堅固，主張會留著）
 UI_DEB_PREVIEW_SHAKE,可使對手動搖
@@ -1394,6 +1397,7 @@ UI_DEB_PREVIEW_VS,若{action}：{result}
 UI_DEB_ROUND,第 {n} 回合
 UI_DEB_SEGMENT,第 {n} 段：{name}
 UI_DEB_STATUS_BREAK_TURN,論破回合
+UI_DEB_STATUS_LABEL,狀態
 UI_DEB_STATUS_SHAKEN,動搖（剩 {n} 回合）
 UI_DEB_STATUS_TAIL,尾聲（剩 {n} 回合）
 UI_DEB_STATUS_TYPE,目前打法：{type}
@@ -1505,6 +1509,7 @@ UI_PAPER_MAST_YORK,約克郡晨報
 UI_PAPER_NOTO_LOSE,偵探手法亦遭質疑。
 UI_PAPER_PAGE1,頭版
 UI_PAPER_PAGE2,第二版
+UI_PAPER_PREV_CASE,上一案結果
 UI_PAPER_SIDE,城市短訊
 UI_PAPER_STAMP_CLOSED,結案
 UI_PAPER_STAMP_FIX,更正
@@ -1538,6 +1543,8 @@ UI_RES_REPUTE_GOOD,良好
 UI_RES_REPUTE_MID,爭議
 UI_RES_ROUNDS,回合數
 UI_RES_TRUST,警督信任度 {from} → {to}
+UI_RES_TRUST_LABEL,警督信任度
+UI_RES_UNACHIEVED,未達成
 UI_RES_WIN,勝利
 UI_REVERSE_BREAK,逆・論破
 UI_SAVE_TITLE,存檔
@@ -1636,6 +1643,12 @@ UI_TAG_PLACE,地點
 UI_TAG_SCANDAL,醜聞
 UI_TAG_TIME,時間
 UI_TAIL,尾聲
+UI_TITLE_CONTENTS,本期目錄
+UI_TITLE_KICKER,狐耳偵探事務所
+UI_TITLE_LANG,語言
+UI_TITLE_LANG_EN,English
+UI_TITLE_LANG_ZH,繁體中文
+UI_TITLE_LEAD,本日頭條
 UI_TITLE_LOGO,狐耳摩斯
 UI_TITLE_PRESS,按任意鍵開始
 UI_TITLE_SUB,Sherefox：霧都的狐狸偵探

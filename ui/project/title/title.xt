@@ -8,6 +8,7 @@
     lang_toggle: event out
     lang_en: bool in = false
     ended: bool in = false
+    end_dismiss: event out
   </ports>
 
   <body on:show="play(intro)">
@@ -56,7 +57,7 @@
         </div>
       </div>
       <div id="rule-foot" class="rule-copper"/>
-      <div id="end-card" class="end-card" on:port(ended)="play(end-in)" bind:display="ended">
+      <div id="end-card" class="end-card" tabindex="0" on:port(ended)="play(end-in); focus()" on:click="emit(end_dismiss)" bind:display="ended">
         <div id="end-dock">
           <div id="end-mast">
             <img id="end-mast-art" class="s-b00406" src="../shared/img/masthead-art.png"/>

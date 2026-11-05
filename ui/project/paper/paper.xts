@@ -314,6 +314,16 @@
   line-height: 38px;
 }
 
+:lang(en) #lead-col-1-text {
+  font-size: 13px;
+  line-height: 16.5px;
+}
+
+:lang(en) #lead-col-2-text {
+  font-size: 13px;
+  line-height: 16.5px;
+}
+
 :root {
   --copper: #a65432;
   --ink: #123a31;

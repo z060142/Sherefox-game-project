@@ -515,7 +515,7 @@
       "message": "anchor: #end-card right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "end-card",
       "source": "Title.dc.html",
-      "line": 135,
+      "line": 136,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -803,7 +803,7 @@
       "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
       "element": "sheet",
       "source": "Paper.dc.html",
-      "line": 97,
+      "line": 102,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -1213,7 +1213,7 @@
       "message": "the board's inline geometry of 91 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
       "element": "",
       "source": "Paper.dc.html",
-      "line": 89,
+      "line": 94,
       "col": 0,
       "ui": "paper",
       "detail": {

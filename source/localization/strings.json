@@ -2376,24 +2376,24 @@
   "en": "Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away"
  },
  "NEWS_00_OPEN_SUB": {
-  "zh-TW": "第二版廣告：「招租：貝克街事務所二樓空房，限能忍受惡作劇者。」",
-  "en": "Page Two ad: \"To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply.\""
+  "zh-TW": "招租：貝克街事務所二樓空房，限能忍受惡作劇者。",
+  "en": "To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply."
  },
  "NEWS_01_END": {
   "zh-TW": "市議會擬加徵煤煙稅　工廠主人聯名抗議",
   "en": "City Council Mulls Soot Tax: Factory Owners Sign Joint Protest"
  },
  "NEWS_01_END_SUB": {
-  "zh-TW": "第二版：「古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。」",
-  "en": "Page Two: \"Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence.\""
+  "zh-TW": "古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。",
+  "en": "Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence."
  },
  "NEWS_02_WIN": {
   "zh-TW": "報時鳥鐘錶店掉包疑雲落幕　隨從調慢時鐘偽造不在場證明",
   "en": "Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi"
  },
  "NEWS_02_WIN_SUB": {
-  "zh-TW": "內文：「據悉由樓上一名年輕偵探當場識破。」",
-  "en": "Body: \"Reportedly exposed on the spot by a young detective from upstairs.\""
+  "zh-TW": "據悉由樓上一名年輕偵探當場識破。",
+  "en": "Reportedly exposed on the spot by a young detective from upstairs."
  },
  "NEWS_02_NOTO": {
   "zh-TW": "鐘錶店糾紛越吵越烈　樓上偵探當眾胡攪蠻纏",
@@ -6670,5 +6670,57 @@
  "UI_BOARD_LINK_INVALID": {
   "zh-TW": "無效連結：沒有共同標籤",
   "en": "Invalid link: no shared tag"
+ },
+ "UI_TITLE_KICKER": {
+  "zh-TW": "狐耳偵探事務所",
+  "en": "Sherefox Detective Agency"
+ },
+ "UI_TITLE_LEAD": {
+  "zh-TW": "本日頭條",
+  "en": "Today's Headline"
+ },
+ "UI_TITLE_CONTENTS": {
+  "zh-TW": "本期目錄",
+  "en": "In This Issue"
+ },
+ "UI_TITLE_LANG": {
+  "zh-TW": "語言",
+  "en": "Language"
+ },
+ "UI_TITLE_LANG_ZH": {
+  "zh-TW": "繁體中文",
+  "en": "繁體中文"
+ },
+ "UI_TITLE_LANG_EN": {
+  "zh-TW": "English",
+  "en": "English"
+ },
+ "UI_CHAP_NO": {
+  "zh-TW": "Ch.{n}",
+  "en": "Ch.{n}"
+ },
+ "UI_DEB_GOSSIP": {
+  "zh-TW": "小道消息",
+  "en": "Word on the Street"
+ },
+ "UI_DEB_PREVIEW_LABEL": {
+  "zh-TW": "預估",
+  "en": "Forecast"
+ },
+ "UI_DEB_STATUS_LABEL": {
+  "zh-TW": "狀態",
+  "en": "Status"
+ },
+ "UI_PAPER_PREV_CASE": {
+  "zh-TW": "上一案結果",
+  "en": "Last Case"
+ },
+ "UI_RES_UNACHIEVED": {
+  "zh-TW": "未達成",
+  "en": "Not Achieved"
+ },
+ "UI_RES_TRUST_LABEL": {
+  "zh-TW": "警督信任度",
+  "en": "Inspector's Trust"
  }
 }

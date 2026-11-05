@@ -441,7 +441,7 @@
       "message": "anchor: #end-card right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "end-card",
       "source": "Title.dc.html",
-      "line": 135,
+      "line": 136,
       "col": 0,
       "ui": "title",
       "detail": {

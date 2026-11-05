@@ -136,7 +136,24 @@ def gen_main() -> Graph:
     g.edge("isEnd.true", "screen.toTitle")
     g.edge("isPaper.true", "screen.toPaper")
     g.edge("isVn.true", "screen.toVn")
-    g.edge("isEnd.out", "ui#title.ended")
+
+    # End card: shown while the step is `end` until the title's end_dismiss. The step stays `end`, so the chapter
+    # list (no longer covered) starts a new run; entering an end step shows the card again.
+    g.node("card", "state", initial="open", states=["open", "closed"],
+           transitions=[{"from": "open", "on": "dismiss", "to": "closed"},
+                        {"from": "*", "on": "rearm", "to": "open"}])
+    g.const("zeroIdx", 0)
+    g.const("no", False)
+    g.node("cardOpen", "compare", op="eq")
+    g.node("ended", "select")
+    g.edge("isEnd.true", "card.rearm")
+    g.edge("ui#title.end_dismiss", "card.dismiss")
+    g.edge("card.index", "cardOpen.a")
+    g.edge("zeroIdx.out", "cardOpen.b")
+    g.edge("isEnd.out", "ended.cond")
+    g.edge("cardOpen.out", "ended.a")
+    g.edge("no.out", "ended.b")
+    g.edge("ended.out", "ui#title.ended")
     for ui, flags in (("title", [True, False, False]), ("paper", [False, True, False]), ("vn", [False, False, True])):
         nid = "vis" + ui.capitalize()
         g.node(nid, "lookup", values=flags)
@@ -155,35 +172,46 @@ def gen_dialogue() -> Graph:
     g.const("no", False)
     g.const("zero", 0)
     g.const("minusOne", -1)
+    g.const("yesText", "true")
     g.node("isVn", "compare", op="eq")
     g.node("vnScene", "select")
     g.node("chText", "toString")
+    g.node("sceneKey", "format", format="CH0{a}_{b}")   # script.sceneKey, e.g. CH01_S02 (chapters 1-9)
     g.edge("world.stepKind", "isVn.a")
     g.edge("vnTag.out", "isVn.b")
     g.edge("isVn.out", "vnScene.cond")
     g.edge("world.stepScene", "vnScene.a")
     g.edge("empty.out", "vnScene.b")
     g.edge("world.chapter", "chText.in")
+    g.edge("world.chapter", "sceneKey.a")
+    g.edge("vnScene.out", "sceneKey.b")
 
-    # Cursor: row = (first row of the scene, its L001 heading) + 1 + off. off counts advances and is reset at
-    # every step begin. Assumes every row after the heading up to the next scene is a playable line (true for the
-    # vn scenes of Ch.1-3; tests/check_playthrough.py verifies it); see docs/flows.md "known limits".
-    g.node("first", "atrium.table.find", table="script", column="scene", filterColumn="chapter")
+    # Cursor: row = (first playable row of the scene) + off. off counts advances and is reset at every step begin.
+    # The cursor walks rows one by one and the scene ends at its first non-playable row, so this assumes the
+    # playable rows of a vn scene are contiguous (true for Ch.1-3; tests/check_playthrough.py verifies it).
+    # Skipping non-playable rows needs table.find with a start row (docs/flows.md "known limits").
+    g.node("first", "atrium.table.find", table="script", column="sceneKey", filterColumn="playable")
     g.node("off", "counter", initial=0)
-    g.node("row", "atrium.expr", expr="first + 1 + off")
-    g.node("rowScene", "atrium.table.get", table="script", column="scene", type="string")
+    g.node("row", "atrium.expr", expr="first + off")
+    g.node("rowScene", "atrium.table.get", table="script", column="sceneKey", type="string")
+    g.node("rowPlayable", "atrium.table.get", table="script", column="playable", type="bool")
     g.node("sceneEq", "compare", op="eq")
+    g.node("playableIn", "select")
     g.node("inScene", "select")
     g.node("doneCmp", "compare", op="eq")
-    g.edge("vnScene.out", "first.value")
-    g.edge("chText.out", "first.filterValue")
+    g.edge("sceneKey.out", "first.value")
+    g.edge("yesText.out", "first.filterValue")
     g.edge("first.row", "row.first")
     g.edge("off.value", "row.off")
     g.edge("row.value", "rowScene.row")
+    g.edge("row.value", "rowPlayable.row")
     g.edge("rowScene.value", "sceneEq.a")
-    g.edge("vnScene.out", "sceneEq.b")
+    g.edge("sceneKey.out", "sceneEq.b")
+    g.edge("sceneEq.out", "playableIn.cond")
+    g.edge("rowPlayable.value", "playableIn.a")
+    g.edge("no.out", "playableIn.b")
     g.edge("isVn.out", "inScene.cond")
-    g.edge("sceneEq.out", "inScene.a")
+    g.edge("playableIn.out", "inScene.a")
     g.edge("no.out", "inScene.b")
     # Step done: the cursor left the scene (inScene true -> false). compare fires `true` only on that change.
     g.edge("inScene.out", "doneCmp.a")
@@ -289,45 +317,24 @@ def gen_paper() -> Graph:
             g.edge(nid + ".text", f"ui#paper.{port}")
         return nid + ".text"
 
+    # One papers column per port (data-schema §9). An empty key gives an empty string, which hides that part:
+    # no second-page story, no advert, no "previous case" strip on the Ch.1 paper.
     text("headline", key("headlineKey", "headlineKey"), "headline")
     text("subhead", key("subKey", "subKey"), "subhead")
     text("body", key("bodyKey", "bodyKey"), "body")
-    # page2Key is the second-page advert (only CH01_OPEN has one: NEWS_00_OPEN_SUB); data-schema §9.
-    text("ad", key("page2Key", "page2Key"), "ad")
+    text("page2Head", key("page2HeadKey", "page2HeadKey"), "page2_head")
+    text("page2Body", key("page2BodyKey", "page2BodyKey"), "page2_body")
+    text("side", key("sideKey", "sideKey"), "side")
+    text("ad", key("adKey", "adKey"), "ad")
+    # The "previous case" strip. M2 has no result yet: always the WIN variant (docs/flows.md).
+    text("resultHead", key("sideWinKey", "sideWinKey"), "result_head")
+    text("resultSub", key("sideWinSubKey", "sideWinSubKey"), "result_sub")
+    g.edge(key("pictureId", "pictureId"), "ui#paper.picture")
 
-    # Side column and the "previous case" strip. resultChapter 0 (Ch.1) has no previous case: the side column
-    # carries the opening city news (side*Win*Key) and the strip stays hidden. M2 has no result yet: always the
-    # WIN variant (docs/flows.md).
-    g.node("resultChapter", "atrium.table.get", table="papers", column="resultChapter", type="number")
-    g.edge("prow.row", "resultChapter.row")
-    g.node("hasResult", "compare", op="gt")
-    g.edge("resultChapter.value", "hasResult.a")
-    g.edge("zero.out", "hasResult.b")
-    side_key = key("sideKey", "sideKey")
-    win_key = key("sideWinKey", "sideWinKey")
-    win_sub_key = key("sideWinSubKey", "sideWinSubKey")
-    for nid, a, b, port in (("sideSel", side_key, win_key, "side"),
-                            ("resHeadSel", win_key, "empty.out", "result_head"),
-                            ("resSubSel", win_sub_key, "empty.out", "result_sub")):
-        g.node(nid, "select")
-        g.edge("hasResult.out", nid + ".cond")
-        g.edge(a, nid + ".a")
-        g.edge(b, nid + ".b")
-        text(nid + "Text", nid + ".out", port)
-
-    # Front-page engraving ch01..ch04 from the paper's chapter.
-    g.node("chapter", "atrium.table.get", table="papers", column="chapter", type="number")
-    g.node("picture", "format", format="ch0{a}")
-    g.edge("prow.row", "chapter.row")
-    g.edge("chapter.value", "picture.a")
-    g.edge("picture.out", "ui#paper.picture")
-
-    # No data for these yet (docs/flows.md): plain masthead, no stamp, no dateline, no second-page story.
+    # No data for these yet (docs/flows.md): plain masthead, no stamp, no dateline.
     g.edge("zero.out", "ui#paper.mast")
     g.edge("zero.out", "ui#paper.stamp")
     g.edge("empty.out", "ui#paper.dateline")
-    g.edge("empty.out", "ui#paper.page2_head")
-    g.edge("empty.out", "ui#paper.page2_body")
 
     # Pages: pg 1 = front page, 2 = second page, 3 = read (step done). Reset when a paper step begins; next/prev
     # only count during a paper step.

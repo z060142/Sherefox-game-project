@@ -527,15 +527,15 @@ MSG_WARMUP_FAIL,{name} 不耐煩地揮了揮手。
 MSG_WARMUP_PERFECT,一次就說服了他。
 MSG_WARMUP_WRONG,這證明不了他錯了。
 NEWS_00_OPEN,蒸汽電車東區延長線今日通車　白教堂只需十五分鐘
-NEWS_00_OPEN_SUB,第二版廣告：「招租：貝克街事務所二樓空房，限能忍受惡作劇者。」
+NEWS_00_OPEN_SUB,招租：貝克街事務所二樓空房，限能忍受惡作劇者。
 NEWS_01_END,市議會擬加徵煤煙稅　工廠主人聯名抗議
-NEWS_01_END_SUB,第二版：「古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。」
+NEWS_01_END_SUB,古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤。
 NEWS_02_LOSE,百年老店蒙塵？鐘錶匠遭判賠償
 NEWS_02_LOSE_SUB,「店主拒絕受訪，櫥窗報時鳥停擺。」
 NEWS_02_NOTO,鐘錶店糾紛越吵越烈　樓上偵探當眾胡攪蠻纏
 NEWS_02_NOTO_SUB,「富商：『這是對紳士的羞辱。』」
 NEWS_02_WIN,報時鳥鐘錶店掉包疑雲落幕　隨從調慢時鐘偽造不在場證明
-NEWS_02_WIN_SUB,內文：「據悉由樓上一名年輕偵探當場識破。」
+NEWS_02_WIN_SUB,據悉由樓上一名年輕偵探當場識破。
 NEWS_03_LOSE,駁船命案以船夫認罪結案　家屬當庭喊冤
 NEWS_03_LOSE_SUB,「合夥人表示將接手死者在市政廳的業務。」
 NEWS_03_NOTO,駁船命案破了　但狐耳偵探「靠胡攪蠻纏逼供」遭議
@@ -1364,6 +1364,7 @@ UI_BREAK_LINE_PARRY,等一下——你剛才說的那句話，就是答案。
 UI_CASE_CARD_9,第九章之{n}　{caseTitle}
 UI_CH1_CONTRA,矛盾 {n}／2　剩 {r} 回合
 UI_CHAPTER_CARD,第 {n} 章　{chapterTitle}
+UI_CHAP_NO,Ch.{n}
 UI_CHOICE_KEY,【{plotItem}】
 UI_CMP_COUNTER,異樣 {found}／5
 UI_COUNTER_BREAK,反擊論破
@@ -1646,7 +1647,7 @@ UI_TITLE_CONTENTS,本期目錄
 UI_TITLE_KICKER,狐耳偵探事務所
 UI_TITLE_LANG,語言
 UI_TITLE_LANG_EN,English
-UI_TITLE_LANG_ZH,中文
+UI_TITLE_LANG_ZH,繁體中文
 UI_TITLE_LEAD,本日頭條
 UI_TITLE_LOGO,狐耳摩斯
 UI_TITLE_PRESS,按任意鍵開始

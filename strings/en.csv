@@ -527,15 +527,15 @@ MSG_WARMUP_FAIL,{name} waves a hand impatiently.
 MSG_WARMUP_PERFECT,You convinced him in one go.
 MSG_WARMUP_WRONG,That doesn't prove him wrong.
 NEWS_00_OPEN,Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away
-NEWS_00_OPEN_SUB,"Page Two ad: ""To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply."""
+NEWS_00_OPEN_SUB,To let: spare room on the second floor of the Baker Street office. Only those who can put up with practical jokes need apply.
 NEWS_01_END,City Council Mulls Soot Tax: Factory Owners Sign Joint Protest
-NEWS_01_END_SUB,"Page Two: ""Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence."""
+NEWS_01_END_SUB,Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence.
 NEWS_02_LOSE,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages
 NEWS_02_LOSE_SUB,"""The owner declined to be interviewed; the cuckoo in the shop window has stopped."""
 NEWS_02_NOTO,Clock Shop Dispute Grows Ever Fiercer: Upstairs Detective Makes a Public Nuisance of Herself
 NEWS_02_NOTO_SUB,"Merchant: ""This is an insult to a gentleman."""
 NEWS_02_WIN,Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi
-NEWS_02_WIN_SUB,"Body: ""Reportedly exposed on the spot by a young detective from upstairs."""
+NEWS_02_WIN_SUB,Reportedly exposed on the spot by a young detective from upstairs.
 NEWS_03_LOSE,Barge Murder Closed on Bargeman's Confession: Family Cries Foul in Court
 NEWS_03_LOSE_SUB,"""The partner says he will take over the deceased's business at the Municipal Hall."""
 NEWS_03_NOTO,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bullying a Confession Out of Him"""
@@ -1364,6 +1364,7 @@ UI_BREAK_LINE_PARRY,Hold on—what you just said is the answer.
 UI_CASE_CARD_9,"Chapter 9, Case {n}: {caseTitle}"
 UI_CH1_CONTRA,Contradictions {n}/2 · {r} rounds left
 UI_CHAPTER_CARD,Chapter {n}: {chapterTitle}
+UI_CHAP_NO,Ch.{n}
 UI_CHOICE_KEY,【{plotItem}】
 UI_CMP_COUNTER,Differences {found}/5
 UI_COUNTER_BREAK,反擊論破
@@ -1374,6 +1375,7 @@ UI_DEB_COUNTER_PREVIEW,Assert {base}+4×{n}={dmg}
 UI_DEB_COUNTER_PREVIEW_RUSH,Onslaught ({base}+4×{n})×1.25={dmg}
 UI_DEB_DISGUISER,"This opponent's Tells may be Disguised: when their words and gestures disagree, trust the gesture."
 UI_DEB_GESTURE_KNOWN,{gesture} = {action}
+UI_DEB_GOSSIP,Word on the Street
 UI_DEB_HAND,Hand ×{n}
 UI_DEB_HP,{now}/{max}
 UI_DEB_LOCKED,Locked in
@@ -1385,6 +1387,7 @@ UI_DEB_NOPARRY_SHISSHU,Breached: can't Rebut this round
 UI_DEB_PHASE,Phase {n} of {total}
 UI_DEB_PREVIEW,Damage {dmg} · Multiplier ×{mult} · {shaken}
 UI_DEB_PREVIEW_BREAK,Can Break
+UI_DEB_PREVIEW_LABEL,Forecast
 UI_DEB_PREVIEW_PARRY,"Cut-In: counter 30, smash the claim"
 UI_DEB_PREVIEW_PARRY_NOREF,Cut-In: counter 30 (this claim is too sturdy and will stay)
 UI_DEB_PREVIEW_SHAKE,Can leave the opponent Shaken
@@ -1394,6 +1397,7 @@ UI_DEB_PREVIEW_VS,If {action}: {result}
 UI_DEB_ROUND,Round {n}
 UI_DEB_SEGMENT,Part {n}: {name}
 UI_DEB_STATUS_BREAK_TURN,Break Round
+UI_DEB_STATUS_LABEL,Status
 UI_DEB_STATUS_SHAKEN,Shaken ({n} rounds left)
 UI_DEB_STATUS_TAIL,Endgame ({n} rounds left)
 UI_DEB_STATUS_TYPE,Current style: {type}
@@ -1505,6 +1509,7 @@ UI_PAPER_MAST_YORK,The Yorkshire Morning Post
 UI_PAPER_NOTO_LOSE,The detective's methods have also been called into question.
 UI_PAPER_PAGE1,Front Page
 UI_PAPER_PAGE2,Page Two
+UI_PAPER_PREV_CASE,Last Case
 UI_PAPER_SIDE,City Briefs
 UI_PAPER_STAMP_CLOSED,Case Closed
 UI_PAPER_STAMP_FIX,Correction
@@ -1538,6 +1543,8 @@ UI_RES_REPUTE_GOOD,Good
 UI_RES_REPUTE_MID,Disputed
 UI_RES_ROUNDS,Rounds
 UI_RES_TRUST,Inspector's Trust {from} → {to}
+UI_RES_TRUST_LABEL,Inspector's Trust
+UI_RES_UNACHIEVED,Not Achieved
 UI_RES_WIN,Victory
 UI_REVERSE_BREAK,逆・論破
 UI_SAVE_TITLE,Save
@@ -1636,6 +1643,12 @@ UI_TAG_PLACE,Place
 UI_TAG_SCANDAL,Scandal
 UI_TAG_TIME,Time
 UI_TAIL,Endgame
+UI_TITLE_CONTENTS,In This Issue
+UI_TITLE_KICKER,Sherefox Detective Agency
+UI_TITLE_LANG,Language
+UI_TITLE_LANG_EN,English
+UI_TITLE_LANG_ZH,繁體中文
+UI_TITLE_LEAD,Today's Headline
 UI_TITLE_LOGO,Sherefox
 UI_TITLE_PRESS,Press any key to start
 UI_TITLE_SUB,Sherefox: The Fox Detective of the Fog City

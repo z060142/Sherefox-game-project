@@ -501,11 +501,15 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
                     err(f"script: {r['ID']} banner 【{tier}：{word}】 has no CUT_/STAMP_ key")
         inactive = any(seg.strip().startswith("Not triggered") or "not yet unlocked" in seg for seg in note.split("|"))
         out.append({
-            "id": r["ID"], "chapter": c, "scene": scene, "seq": l, "kind": kind, "speaker": speaker,
+            "id": r["ID"], "chapter": c, "scene": scene, "sceneKey": f"{ch_key(c)}_{scene}", "seq": l, "kind": kind,
+            "speaker": speaker,
             "text": r["ID"], "branch": state.get("branch", ""),
             "round": state.get("round", 0) if scene_kind in ("debate", "warmup") else 0,
             "act": act, "node": node, "evidence": ",".join(evidence), "appraisal": appraisal,
             "banner": ",".join(banner), "inactive": inactive,
+            # Shown by a dialogue runner: a spoken / narrated line (kind line, incl. system and newspaper lines),
+            # not marked inactive, and not in the S90 tell library (data-schema §3).
+            "playable": kind == "line" and not inactive and s != 90,
         })
     return out, info
 
@@ -933,44 +937,43 @@ def main() -> int:
     papers = []
     side = {c: f"NEWS_SIDE_{c:02d}" for c in CHAPTERS}
 
-    def page_sub(key):
-        # A _SUB whose zh text starts with 第二版 is a page-two teaser, not a sub-headline: dropped here (the
-        # teaser of the next case is that chapter's S01, now the main headline).
-        if key in strings and not strings[key]["zh-TW"].startswith("第二版"):
-            return key
-        return ""
-
     def result_keys(c):
-        # (headline, sub) for win / notorious / lose of the case that ended in chapter c.
+        # (headline, sub) for win / notorious / lose of the case that ended in chapter c. Every _SUB is the
+        # result's second line (localization README: "second line / subhead"; the stray 第二版／內文 labels
+        # were removed from the text on 2026-11-06).
+        def sub(key):
+            return key if key in strings else ""
         if f"NEWS_{c:02d}_WIN" in strings:
-            return [(f"NEWS_{c:02d}_{x}", page_sub(f"NEWS_{c:02d}_{x}_SUB")) for x in ("WIN", "NOTO", "LOSE")]
+            return [(f"NEWS_{c:02d}_{x}", sub(f"NEWS_{c:02d}_{x}_SUB")) for x in ("WIN", "NOTO", "LOSE")]
         k = f"NEWS_{c:02d}_END"  # a single version fills all three slots
-        return [(k, page_sub(f"{k}_SUB"))] * 3
+        return [(k, sub(f"{k}_SUB"))] * 3
 
-    def paper(pid, c, kind, group, result_ch, head, sub, body, page2, res):
+    def paper(pid, c, kind, group, result_ch, head, sub, body, side_key, ad, res):
         row = {"id": pid, "chapter": c, "kind": kind, "group": group, "resultChapter": result_ch,
-               "mastKey": "UI_PAPER_MAST", "headlineKey": head, "subKey": sub, "bodyKey": body,
-               "page2Key": page2, "page2SubKey": "", "sideKey": side.get(result_ch, "")}
+               "mastKey": "UI_PAPER_MAST", "pictureId": f"ch{c:02d}", "headlineKey": head, "subKey": sub,
+               "bodyKey": body, "page2HeadKey": "", "page2BodyKey": "", "sideKey": side_key, "adKey": ad}
         for name, (hk, sk) in zip(("Win", "Noto", "Lose"), res):
             row[f"side{name}Key"] = hk
             row[f"side{name}SubKey"] = sk
         papers.append(row)
 
+    no_result = [("", "")] * 3
     for c in CHAPTERS:
         body = next((s["id"] for s in script if s["chapter"] == c and s["scene"] == "S01" and s["seq"] == 3), "")
         if c == 1:
-            # No previous case: the sidebar is the opening city news NEWS_00_OPEN (01-systems 3.3); its ad is page two.
-            res, page2 = [("NEWS_00_OPEN", "")] * 3, "NEWS_00_OPEN_SUB"
+            # No previous case: the side column is the opening city news NEWS_00_OPEN (01-systems 3.3), the
+            # result strip is empty, and NEWS_00_OPEN_SUB (the room-to-let notice) is the advert.
+            side_key, ad, res = "NEWS_00_OPEN", "NEWS_00_OPEN_SUB", no_result
         else:
-            res, page2 = result_keys(c - 1), ""
+            side_key, ad, res = side[c - 1], "", result_keys(c - 1)
         paper(f"{ch_key(c)}_OPEN", c, "open", f"{ch_key(c)}_OPEN", c - 1, f"HEAD_{ch_key(c)}",
-              f"HEAD_{ch_key(c)}_SUB", body, page2, res)
+              f"HEAD_{ch_key(c)}_SUB", body, side_key, ad, res)
     # Ruling E1: the prototype ends with the Ch.4 opening merged paper (HEAD_CH04 / _SUB and the Ch.4 S01 lead,
     # Ch.3's result in the sidebar), then a 「待續」 card. Ch.4 itself is out of scope.
     last = CHAPTERS[-1]
     nxt = ch_key(last + 1)
     paper(f"{nxt}_OPEN", last + 1, "open", f"{nxt}_OPEN", last, f"HEAD_{nxt}", f"HEAD_{nxt}_SUB",
-          f"SCR_{nxt}_S01_L003", "", result_keys(last))
+          f"SCR_{nxt}_S01_L003", side[last], "", result_keys(last))
 
     # ---- steps
     steps = []
@@ -1090,10 +1093,12 @@ def main() -> int:
 KEY_COLUMNS = {
     "chapters": ["titleKey"], "script": ["text", "speaker"], "evidence": ["nameKey", "descKey", "tagsKey", "appraisalKey", "reason0Key", "reason1Key", "reason2Key"],
     "nodes": ["textKey"], "opponents": ["speaker", "gestureAssert", "gestureRush", "gestureReinforce", "gestureTrap"],
-    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2Key", "page2SubKey", "sideKey",
+    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2HeadKey", "page2BodyKey", "sideKey", "adKey",
                "sideWinKey", "sideWinSubKey", "sideNotoKey", "sideNotoSubKey", "sideLoseKey", "sideLoseSubKey"],
     "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"], "hotspots": ["nameKey", "noteKey", "hintKey"],
 }
+# Engravings the paper board knows (ui#paper.picture; docs/ui-contracts.md paper). "" = no picture.
+PAPER_PICTURES = {"", "ch01", "ch02", "ch03", "ch04"}
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
 
@@ -1214,6 +1219,10 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
     for r in tables["papers"]:
         if r["kind"] == "open" and not r["bodyKey"]:
             err(f"papers {r['id']}: an opening paper needs the S01 lead as bodyKey (ruling D5)")
+        if r["pictureId"] not in PAPER_PICTURES:
+            err(f"papers {r['id']}: pictureId {r['pictureId']!r} has no engraving in ui#paper (ui-contracts paper)")
+        if bool(r["page2HeadKey"]) != bool(r["page2BodyKey"]):
+            err(f"papers {r['id']}: page2HeadKey and page2BodyKey are set together")
     for key, v in strings.items():
         for lang in LANGS:
             if lang not in v or not isinstance(v[lang], str):

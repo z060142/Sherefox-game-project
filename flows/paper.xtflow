@@ -114,33 +114,30 @@
       "type": "atrium.text"
     },
     {
-      "id": "page2Key",
+      "id": "page2HeadKey",
       "type": "atrium.table.get",
       "params": {
         "table": "papers",
-        "column": "page2Key",
+        "column": "page2HeadKey",
         "type": "string"
       }
     },
     {
-      "id": "ad",
+      "id": "page2Head",
       "type": "atrium.text"
     },
     {
-      "id": "resultChapter",
+      "id": "page2BodyKey",
       "type": "atrium.table.get",
       "params": {
         "table": "papers",
-        "column": "resultChapter",
-        "type": "number"
+        "column": "page2BodyKey",
+        "type": "string"
       }
     },
     {
-      "id": "hasResult",
-      "type": "compare",
-      "params": {
-        "op": "gt"
-      }
+      "id": "page2Body",
+      "type": "atrium.text"
     },
     {
       "id": "sideKey",
@@ -152,6 +149,23 @@
       }
     },
     {
+      "id": "side",
+      "type": "atrium.text"
+    },
+    {
+      "id": "adKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "adKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ad",
+      "type": "atrium.text"
+    },
+    {
       "id": "sideWinKey",
       "type": "atrium.table.get",
       "params": {
@@ -159,6 +173,10 @@
         "column": "sideWinKey",
         "type": "string"
       }
+    },
+    {
+      "id": "resultHead",
+      "type": "atrium.text"
     },
     {
       "id": "sideWinSubKey",
@@ -170,43 +188,16 @@
       }
     },
     {
-      "id": "sideSel",
-      "type": "select"
-    },
-    {
-      "id": "sideSelText",
+      "id": "resultSub",
       "type": "atrium.text"
     },
     {
-      "id": "resHeadSel",
-      "type": "select"
-    },
-    {
-      "id": "resHeadSelText",
-      "type": "atrium.text"
-    },
-    {
-      "id": "resSubSel",
-      "type": "select"
-    },
-    {
-      "id": "resSubSelText",
-      "type": "atrium.text"
-    },
-    {
-      "id": "chapter",
+      "id": "pictureId",
       "type": "atrium.table.get",
       "params": {
         "table": "papers",
-        "column": "chapter",
-        "type": "number"
-      }
-    },
-    {
-      "id": "picture",
-      "type": "format",
-      "params": {
-        "format": "ch0{a}"
+        "column": "pictureId",
+        "type": "string"
       }
     },
     {
@@ -346,10 +337,46 @@
     },
     {
       "from": "prow.row",
-      "to": "page2Key.row"
+      "to": "page2HeadKey.row"
     },
     {
-      "from": "page2Key.value",
+      "from": "page2HeadKey.value",
+      "to": "page2Head.key"
+    },
+    {
+      "from": "page2Head.text",
+      "to": "ui#paper.page2_head"
+    },
+    {
+      "from": "prow.row",
+      "to": "page2BodyKey.row"
+    },
+    {
+      "from": "page2BodyKey.value",
+      "to": "page2Body.key"
+    },
+    {
+      "from": "page2Body.text",
+      "to": "ui#paper.page2_body"
+    },
+    {
+      "from": "prow.row",
+      "to": "sideKey.row"
+    },
+    {
+      "from": "sideKey.value",
+      "to": "side.key"
+    },
+    {
+      "from": "side.text",
+      "to": "ui#paper.side"
+    },
+    {
+      "from": "prow.row",
+      "to": "adKey.row"
+    },
+    {
+      "from": "adKey.value",
       "to": "ad.key"
     },
     {
@@ -358,98 +385,34 @@
     },
     {
       "from": "prow.row",
-      "to": "resultChapter.row"
-    },
-    {
-      "from": "resultChapter.value",
-      "to": "hasResult.a"
-    },
-    {
-      "from": "zero.out",
-      "to": "hasResult.b"
-    },
-    {
-      "from": "prow.row",
-      "to": "sideKey.row"
-    },
-    {
-      "from": "prow.row",
       "to": "sideWinKey.row"
+    },
+    {
+      "from": "sideWinKey.value",
+      "to": "resultHead.key"
+    },
+    {
+      "from": "resultHead.text",
+      "to": "ui#paper.result_head"
     },
     {
       "from": "prow.row",
       "to": "sideWinSubKey.row"
     },
     {
-      "from": "hasResult.out",
-      "to": "sideSel.cond"
-    },
-    {
-      "from": "sideKey.value",
-      "to": "sideSel.a"
-    },
-    {
-      "from": "sideWinKey.value",
-      "to": "sideSel.b"
-    },
-    {
-      "from": "sideSel.out",
-      "to": "sideSelText.key"
-    },
-    {
-      "from": "sideSelText.text",
-      "to": "ui#paper.side"
-    },
-    {
-      "from": "hasResult.out",
-      "to": "resHeadSel.cond"
-    },
-    {
-      "from": "sideWinKey.value",
-      "to": "resHeadSel.a"
-    },
-    {
-      "from": "empty.out",
-      "to": "resHeadSel.b"
-    },
-    {
-      "from": "resHeadSel.out",
-      "to": "resHeadSelText.key"
-    },
-    {
-      "from": "resHeadSelText.text",
-      "to": "ui#paper.result_head"
-    },
-    {
-      "from": "hasResult.out",
-      "to": "resSubSel.cond"
-    },
-    {
       "from": "sideWinSubKey.value",
-      "to": "resSubSel.a"
+      "to": "resultSub.key"
     },
     {
-      "from": "empty.out",
-      "to": "resSubSel.b"
-    },
-    {
-      "from": "resSubSel.out",
-      "to": "resSubSelText.key"
-    },
-    {
-      "from": "resSubSelText.text",
+      "from": "resultSub.text",
       "to": "ui#paper.result_sub"
     },
     {
       "from": "prow.row",
-      "to": "chapter.row"
+      "to": "pictureId.row"
     },
     {
-      "from": "chapter.value",
-      "to": "picture.a"
-    },
-    {
-      "from": "picture.out",
+      "from": "pictureId.value",
       "to": "ui#paper.picture"
     },
     {
@@ -463,14 +426,6 @@
     {
       "from": "empty.out",
       "to": "ui#paper.dateline"
-    },
-    {
-      "from": "empty.out",
-      "to": "ui#paper.page2_head"
-    },
-    {
-      "from": "empty.out",
-      "to": "ui#paper.page2_body"
     },
     {
       "from": "paperBegin.changed",
