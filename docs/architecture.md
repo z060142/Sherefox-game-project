@@ -87,3 +87,9 @@
 - 不做：語音、存檔／讀檔（以章節選擇代替）、二週目流程圖、剪報簿、成就、難度切換（固定「標準」）、手把重新指定、論戰委託。
 - 簡化：音樂與音效先只列需求清單（`docs/audio-requests.md`），由使用者準備素材；背景、證物插圖、CG 先用佔位圖，立繪用設計 session 提供的去背圖。
 - 線索板的拉線支援「點卡 A 再點卡 B」（設計文件的手把流程）；拖曳拉線視 XTFrame 能力再加。
+
+## 8. 畫面切換（XTAtrium AT-039）
+
+- 每個 surface 有匯流排訊號 `ui.<id>.visible`（bool）；`main` 流圖以一個 `state` 節點寫入各 surface 的 `ui#<id>.visible`。宿主把變化轉成 request_show／request_hide，intro／outro 照播，`ui#<id>.shown`／`hidden` 照常發。
+- `game.json` 的 `ui.surfaces[]`：`title` 可見，其餘 `"visible": false`；覆蓋層（`evbook`、`cutin`）放在陣列最後，需要擋住下層輸入的設 `"modal": true`。繪製順序＝陣列順序，後者在上。
+- 隱藏的 surface 不更新、不繪製、不收輸入；輸入由上而下只經可見 surface，遇到第一個可見的 modal 即停。
