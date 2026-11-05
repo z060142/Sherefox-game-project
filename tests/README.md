@@ -16,8 +16,10 @@ Environment (both optional):
 
 | Variable | Default |
 |---|---|
+| `XTATRIUM_EXE` | — (the CLI to use; overrides the rest) |
+| `XTATRIUM_SDK` | `E:/coding4/xtatrium-sdk` (used by `check_playthrough.py` and `check_case.py` when it exists and `XTATRIUM` is not set) |
 | `XTATRIUM` | `E:/coding4/XTArtrium` (the checkout whose `src/XTAtrium.Headless/bin/Release/net10.0/xtatrium.exe` is used) |
-| `XTATRIUM_XTFRAME_DIR` | `<XTATRIUM>/artifacts/xtframe` |
+| `XTATRIUM_XTFRAME_DIR` | the SDK's `xtframe/`, or `<XTATRIUM>/artifacts/xtframe` |
 
 ## Run
 
@@ -32,9 +34,9 @@ It regenerates the recordings first (`tests/gen_playthrough.py`, from the `steps
 
 | Check | Recording | What it asserts |
 |---|---|---|
-| data | — | `script.playable` and `script.sceneKey` follow their rules (`docs/data-schema.md` §3); the playable rows of every vn scene of Ch.1-3 are contiguous and not empty |
+| data | — | `script.playable` and `script.sceneKey` follow their rules (`docs/data-schema.md` §3); every vn scene of Ch.1-3 has playable rows |
 | `ch1_playthrough[zh-TW]`, `[en]` | `ch1_playthrough.atrec` (`--lang en` for the second) | each of Ch.1's 21 playable lines is shown once, in order, with the right text and name plate, while vn is the only visible main screen; the Ch.1 paper shows both pages; the run ends on the Ch.2 opening paper, page 1, with the Ch.1 result strip; nothing on stderr |
-| `full_run` | `full_run.atrec` | all 54 playable lines of Ch.1-3 in order; the four papers (CH01..CH04_OPEN) with every port that has a `papers` column (result strip, side column, advert, picture id); the title's end card (`title.ended`); a click on the card emits `title.end_dismiss` and clears `title.ended` with the title still the only main screen, and the chapter list then starts Ch.3 (its lines again, up to a second end card); Enter on the card dismisses it too, and the Ch.2 entry then opens the Ch.2 paper, where the run ends |
+| `full_run` | `full_run.atrec` | all 54 playable lines of Ch.1-3 in order; the four papers (CH01..CH04_OPEN) with every port that has a `papers` column (result strip, side column, advert, picture id); the title's end card (`title.ended`); a click on the card emits `title.end_dismiss` and clears `title.ended` with the title still the only main screen, and the chapter list then starts Ch.3 (its lines again, up to a second end card); Enter on the card dismisses it too, and the Ch.3 entry, clicked again with the same value (AT-040 `.emitted`), then opens the Ch.3 paper, where the run ends |
 | `lang_toggle` | `lang_toggle.atrec` | the title's language toggle flips `title.lang_en` (true, false, true); the Ch.1 paper and first line are then in English |
 
 Exit code 0 and a final `ok` line when everything passes; each failure is printed as `FAIL ...`.
@@ -53,6 +55,25 @@ The recordings name the game as `E:/coding4/Sherefox` in their header; pass `--g
 the CLI warns that the recording's game differs. The recordings carry no hash checkpoints (they are generated, not
 recorded), so give `--ticks` (printed by `uv run tests/gen_playthrough.py`).
 
+## Investigation and clue board
+
+```
+uv run tests/check_case.py
+uv run tests/check_case.py --frames <dir>     # also writes inv_ch1/2.png, popup_card.png, evbook.png, board_*.png
+```
+
+It regenerates `tests/ch1_case.atrec` and `tests/ch2_case.atrec` (`tests/gen_case.py`), replays each with `--ports`
+and `--dump`, and checks the port trace, the JSON written into the list ports (`write ... document.<port>` lines of
+the port log; a list port reads back as an empty string) and the collections at the end (`docs/flows.md` §6):
+
+| Recording | Route | What it asserts |
+|---|---|---|
+| `ch1_case` | Ch.1: all 10 hotspots, Sherefox's hint, end; chain E01_01 -> E01_04 and every reason correct; to the debate | hotspot list (10 rows, types, all visited at the end), popup kinds, Ch.1 ticks / appraisals hidden, hint lines, `held`, no opponent hand, drawer / slots / links / chain plate, ART_SOLID, `debBoard*` equal to the ref board `fixtures.ch1_board`, no golden clue, the notes vn after the debate stub |
+| `ch2_case` | Ch.2: six evidence spots and one inspect spot (E02_05 missed), E02_01 appraised in the evidence book, Arthur's hint; E02_02 and E02_07 appraised on the board, chain I E02_03 -> E02_02 -> E02_04 (E02_04 wrong reason), E02_06 tried next to E02_04 (bounced), chain II E02_06 -> E02_01 -> E02_07 | ticks 8 -> 1, popup kinds (testimony 3), hint and remark sequences (ART_TIME_LOW, ART_APPR_MECH_DONE, ART_SOLID, ART_SOPH_1, ART_INVALID), appraisals 3 -> 0, the book's card list, `oppHand` = [E02_05], an invalid link shown before the bounce, final links and chain plates (dmg 32.2 / 28), `debBoard*` equal to the ref board for the same route (`ch2_case` with E02_04's reason wrong), `golden` = [G-01] |
+
+The board clicks go to element positions of the boards; the detail panel's reason rows move with the text above them,
+so `gen_case.reason_xy` computes them from the strings (a line-count model of the panel).
+
 ## Debate engine
 
 `uv run tests/check_debate.py` regenerates the debate engine (`tools/gen_debate.py`), replays every route of
@@ -60,3 +81,11 @@ recorded), so give `--ticks` (printed by `uv run tests/gen_playthrough.py`).
 and runs it headless once, then prints PASS / FAIL per route with the first diverging round and field. Options:
 `--route NAME` (repeatable), `--keep` (keeps the dump in `tests/debate_harness/out/`), `--verbose`. See
 `docs/debate-engine.md` §6.
+
+`uv run tests/check_policy.py` checks the opponent AI (`docs/debate-engine.md` §3.4, §6.2): for every situation it
+computes the exact distribution of the reference policy (`ref/` `decide_next`, every choice enumerated with its
+probability), runs the harness `tests/policy_harness/` headless with `--seed 1..4` in parallel (4000 decisions per
+situation in all), and compares the observed frequencies of every tell outcome, lit node and tell line (|z| <= 4,
+outcomes the reference cannot produce must never occur); free-play debates driven by the engine's own decisions are
+replayed in `ref/`. It also asserts the hard rules on every decision. Options: `--samples N`, `--seeds K`,
+`--verbose` (per-cell table). About 30 s.

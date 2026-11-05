@@ -43,80 +43,6 @@
       }
     },
     {
-      "id": "investigateTag",
-      "type": "constant",
-      "params": {
-        "value": "investigate"
-      }
-    },
-    {
-      "id": "investigateIs",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
-      "id": "investigateGate",
-      "type": "state",
-      "params": {
-        "states": [
-          "a",
-          "b"
-        ],
-        "initial": "a",
-        "transitions": [
-          {
-            "from": "a",
-            "on": "go",
-            "to": "b"
-          },
-          {
-            "from": "b",
-            "on": "go",
-            "to": "a"
-          }
-        ]
-      }
-    },
-    {
-      "id": "boardTag",
-      "type": "constant",
-      "params": {
-        "value": "board"
-      }
-    },
-    {
-      "id": "boardIs",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
-      "id": "boardGate",
-      "type": "state",
-      "params": {
-        "states": [
-          "a",
-          "b"
-        ],
-        "initial": "a",
-        "transitions": [
-          {
-            "from": "a",
-            "on": "go",
-            "to": "b"
-          },
-          {
-            "from": "b",
-            "on": "go",
-            "to": "a"
-          }
-        ]
-      }
-    },
-    {
       "id": "debateTag",
       "type": "constant",
       "params": {
@@ -151,6 +77,20 @@
             "to": "a"
           }
         ]
+      }
+    },
+    {
+      "id": "win",
+      "type": "constant",
+      "params": {
+        "value": "win"
+      }
+    },
+    {
+      "id": "outcome",
+      "type": "filter",
+      "params": {
+        "op": "sample"
       }
     },
     {
@@ -218,46 +158,6 @@
     },
     {
       "from": "world.stepKind",
-      "to": "investigateIs.a"
-    },
-    {
-      "from": "investigateTag.out",
-      "to": "investigateIs.b"
-    },
-    {
-      "from": "investigateIs.out",
-      "to": "investigateGate.guard"
-    },
-    {
-      "from": "world.stepBegin",
-      "to": "investigateGate.go"
-    },
-    {
-      "from": "investigateGate.changed",
-      "to": "done.in"
-    },
-    {
-      "from": "world.stepKind",
-      "to": "boardIs.a"
-    },
-    {
-      "from": "boardTag.out",
-      "to": "boardIs.b"
-    },
-    {
-      "from": "boardIs.out",
-      "to": "boardGate.guard"
-    },
-    {
-      "from": "world.stepBegin",
-      "to": "boardGate.go"
-    },
-    {
-      "from": "boardGate.changed",
-      "to": "done.in"
-    },
-    {
-      "from": "world.stepKind",
       "to": "debateIs.a"
     },
     {
@@ -271,6 +171,18 @@
     {
       "from": "world.stepBegin",
       "to": "debateGate.go"
+    },
+    {
+      "from": "win.out",
+      "to": "outcome.in"
+    },
+    {
+      "from": "debateGate.changed",
+      "to": "outcome.trigger"
+    },
+    {
+      "from": "outcome.out",
+      "to": "world.caseOutcome"
     },
     {
       "from": "debateGate.changed",

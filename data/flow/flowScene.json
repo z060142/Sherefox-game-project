@@ -1,0 +1,7 @@
+[
+  {"key": "1:0", "chapter": 1, "idx": 0, "bg": "kitchen_morning", "spots": "HS_CH01_01,HS_CH01_02,HS_CH01_03,HS_CH01_04,HS_CH01_05,HS_CH01_06,HS_CH01_07,HS_CH01_08,HS_CH01_09,HS_CH01_10"},
+  {"key": "2:0", "chapter": 2, "idx": 0, "bg": "clockshop", "spots": "HS_CH02_01,HS_CH02_02,HS_CH02_03,HS_CH02_04,HS_CH02_05,HS_CH02_06,HS_CH02_07,HS_CH02_09,HS_CH02_10,HS_CH02_11,HS_CH02_12"},
+  {"key": "3:0", "chapter": 3, "idx": 0, "bg": "boiler_room", "spots": "HS_CH03_01,HS_CH03_02,HS_CH03_03,HS_CH03_04,HS_CH03_10,HS_CH03_11,HS_CH03_12,HS_CH03_13,HS_CH03_23"},
+  {"key": "3:1", "chapter": 3, "idx": 1, "bg": "barge_deck", "spots": "HS_CH03_05,HS_CH03_06,HS_CH03_14,HS_CH03_15,HS_CH03_16,HS_CH03_17"},
+  {"key": "3:2", "chapter": 3, "idx": 2, "bg": "dock_fog", "spots": "HS_CH03_07,HS_CH03_08,HS_CH03_09,HS_CH03_18,HS_CH03_19,HS_CH03_20,HS_CH03_21,HS_CH03_22"}
+]

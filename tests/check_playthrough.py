@@ -8,13 +8,16 @@ Usage (from the project root):
     uv run tests/check_playthrough.py [--frames DIR] [--keep-trace]
 
 Environment:
+    XTATRIUM_EXE          the xtatrium CLI to use (overrides the two below)
+    XTATRIUM_SDK          installed XTAtrium SDK (default E:/coding4/xtatrium-sdk), used when it exists and
+                          XTATRIUM is not set
     XTATRIUM              XTAtrium checkout (default E:/coding4/XTArtrium); its Release build of
                           src/XTAtrium.Headless is used (dotnet build src/XTAtrium.Headless -c Release)
-    XTATRIUM_XTFRAME_DIR  XTFrame runtime directory (default <XTATRIUM>/artifacts/xtframe)
+    XTATRIUM_XTFRAME_DIR  XTFrame runtime directory (default: the SDK's xtframe/, or <XTATRIUM>/artifacts/xtframe)
 
 Checks:
-1. Data assumptions of flows/dialogue.xtflow: the playable rows (script.playable) of every vn scene of Ch.1-3 are
-   contiguous and not empty, script.playable follows its rule (kind line, not inactive, not S90), and sceneKey is
+1. Data assumptions of flows/dialogue.xtflow: every vn scene of Ch.1-3 has playable rows (script.playable; the
+   flow skips the others, so they need not be contiguous), script.playable follows its rule (kind line, not inactive, not S90), and sceneKey is
    CH0n_Sss with n < 10 (the flow builds it with format "CH0{a}_{b}").
 2. ch1_playthrough (zh-TW and --lang en): every playable line of Ch.1's vn steps is shown exactly once, in order
    (one vn.line_seq change per line, with the expected vn.line and vn.speaker text), the vn surface is the only
@@ -23,7 +26,8 @@ Checks:
 3. full_run: every playable line of Ch.1-3 in order, every opening paper and the final paper (CH04_OPEN) with
    the previous case's strip, and the title's end card (title.ended). A click on the end card emits end_dismiss
    and clears title.ended with the title still the only main screen; the chapter list then starts Ch.3 (its lines
-   again, up to the end card a second time); Enter on the end card dismisses it too, and the Ch.2 entry then
+   again, up to the end card a second time); Enter on the end card dismisses it too, and the Ch.3 entry (clicked
+   again, the same value) then
    opens the Ch.2 paper.
 4. lang_toggle: the title's toggle flips title.lang_en (true, false, true) and the paper and the first vn line
    are then in English.
@@ -50,9 +54,21 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tests"))
 import gen_playthrough  # noqa: E402
 
+# The CLI: XTATRIUM_EXE; else the installed SDK (XTATRIUM_SDK, default E:/coding4/xtatrium-sdk) when it exists;
+# else the Release build of the XTAtrium checkout (XTATRIUM). Its XTFrame toolchain: XTATRIUM_XTFRAME_DIR, else the
+# SDK's xtframe/ or the checkout's artifacts/xtframe.
+_NAME = "xtatrium.exe" if os.name == "nt" else "xtatrium"
 XTATRIUM = Path(os.environ.get("XTATRIUM", "E:/coding4/XTArtrium"))
-XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(XTATRIUM / "artifacts" / "xtframe"))
-EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / ("xtatrium.exe" if os.name == "nt" else "xtatrium")
+SDK = Path(os.environ.get("XTATRIUM_SDK", "E:/coding4/xtatrium-sdk"))
+if os.environ.get("XTATRIUM_EXE"):
+    EXE = Path(os.environ["XTATRIUM_EXE"])
+    _XTFRAME = EXE.parent / "xtframe"
+elif (SDK / _NAME).exists() and "XTATRIUM" not in os.environ:
+    EXE, _XTFRAME = SDK / _NAME, SDK / "xtframe"
+else:
+    EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / _NAME
+    _XTFRAME = XTATRIUM / "artifacts" / "xtframe"
+XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(_XTFRAME))
 MAIN_SCREENS = ("title", "paper", "vn", "investigate", "board", "debate", "result")
 
 
@@ -90,9 +106,6 @@ def check_data(fail: Failures) -> None:
         key = f"CH0{step['chapter']}_{step['scene']}"
         idx = [i for i, r in enumerate(script) if r["sceneKey"] == key and r["playable"]]
         fail.check(bool(idx), f"{step['id']}: {key} has no playable row")
-        if idx:
-            fail.check(idx == list(range(idx[0], idx[0] + len(idx))),
-                       f"{step['id']}: the playable rows of {key} are not contiguous")
 
 
 # ---------------------------------------------------------------- run and parse
@@ -269,7 +282,8 @@ def check_full_run(fail: Failures) -> None:
                    f"{label}: paper {group} not shown with its columns {want}")
     # The end card: shown twice (Ch.3 is played again after the first dismissal), each time on the title alone.
     # Each end_dismiss (a click, then Enter) clears title.ended by the next tick; the title then stays the only main
-    # screen, without its card, until the chapter list starts a chapter (Ch.3, then Ch.2) and its paper shows.
+    # screen, without its card, until the chapter list starts a chapter (Ch.3, then Ch.3 again: the same value,
+    # seen through the emit) and its paper shows.
     ended = [t for t, ports, visible, ch in tr.ticks if ch.get("title.ended") is True]
     fail.check(len(ended) == 2, f"{label}: title.ended set {len(ended)} times, expected 2")
     for t, ports, visible, ch in tr.ticks:
@@ -278,11 +292,11 @@ def check_full_run(fail: Failures) -> None:
     dismiss = [t for t, _, _, ch in tr.ticks if ch.get("emit:title.end_dismiss")]
     fail.check(len(dismiss) == 2, f"{label}: title.end_dismiss emitted {len(dismiss)} times, expected 2")
     for i, t in enumerate(dismiss):
-        want_group, want_ch = ("CH03_OPEN", 3) if i == 0 else ("CH02_OPEN", 2)
+        want_group, want_ch = "CH03_OPEN", 3
         after = [x for x in tr.ticks if x[0] > t]
         cleared = next((x[0] for x in after if x[3].get("title.ended") is False), None)
         fail.check(cleared is not None and cleared <= t + 1, f"{label}: end_dismiss at t={t} did not clear title.ended")
-        pick = next((x for x in after if "title.chapter" in x[3]), None)
+        pick = next((x for x in after if "emit:title.chapter" in x[3]), None)
         fail.check(pick is not None and pick[1].get("title.chapter") == want_ch,
                    f"{label}: no title.chapter={want_ch} after end_dismiss at t={t}")
         if cleared is None or pick is None:
@@ -296,11 +310,11 @@ def check_full_run(fail: Failures) -> None:
                    f"{label}: the chapter list did not open {want_group} after end_dismiss at t={t}")
     t_end, ports_end, vis_end, _ = tr.ticks[-1]
     fail.check(main_visible(vis_end) == {"paper"} and ports_end.get("paper.page") == 1
-               and ports_end.get("paper.headline") == s[papers["CH02_OPEN"]["headlineKey"]],
-               f"{label}: does not end on the Ch.2 opening paper ({sorted(vis_end)}, {ports_end.get('paper.headline')!r})")
+               and ports_end.get("paper.headline") == s[papers["CH03_OPEN"]["headlineKey"]],
+               f"{label}: does not end on the Ch.3 opening paper ({sorted(vis_end)}, {ports_end.get('paper.headline')!r})")
     print(f"{label}: {len(shown)} of {len(exp)} lines (Ch.1-3, Ch.3 again) in order, 4 papers, end card at "
           f"t={','.join(map(str, ended)) or '-'}, end_dismiss at t={','.join(map(str, dismiss)) or '-'} (click, Enter), "
-          f"chapter list opens Ch.3 then Ch.2")
+          f"chapter list opens Ch.3, then Ch.3 again")
 
 
 def check_lang_toggle(fail: Failures) -> None:
@@ -372,7 +386,7 @@ def main() -> int:
         frames.mkdir(parents=True, exist_ok=True)
     fail = Failures()
     check_data(fail)
-    print("data: playable rows of each vn scene are contiguous; playable and sceneKey follow their rules"
+    print("data: every vn scene has playable rows; playable and sceneKey follow their rules"
           if not fail.items else "data: assumption broken")
     if frames:
         (frames / "_ppm").mkdir(exist_ok=True)

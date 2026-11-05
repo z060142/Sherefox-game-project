@@ -37,13 +37,6 @@
       }
     },
     {
-      "id": "yesText",
-      "type": "constant",
-      "params": {
-        "value": "true"
-      }
-    },
-    {
       "id": "isVn",
       "type": "compare",
       "params": {
@@ -71,69 +64,66 @@
       "params": {
         "table": "script",
         "column": "sceneKey",
-        "filterColumn": "playable"
+        "filters": "{\"playable\": \"true\"}"
       }
     },
     {
-      "id": "off",
-      "type": "counter",
+      "id": "K0",
+      "type": "constant",
       "params": {
-        "initial": 0
+        "value": "row"
       }
     },
     {
-      "id": "row",
+      "id": "cur",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "dlgState"
+      }
+    },
+    {
+      "id": "from",
       "type": "atrium.expr",
       "params": {
-        "expr": "first + off"
+        "expr": "cur + 1"
       }
     },
     {
-      "id": "rowScene",
-      "type": "atrium.table.get",
+      "id": "next",
+      "type": "atrium.table.find",
       "params": {
         "table": "script",
         "column": "sceneKey",
-        "type": "string"
+        "filters": "{\"playable\": \"true\"}"
       }
     },
     {
-      "id": "rowPlayable",
-      "type": "atrium.table.get",
+      "id": "atBegin",
+      "type": "toggle",
       "params": {
-        "table": "script",
-        "column": "playable",
-        "type": "bool"
+        "initial": false
       }
     },
     {
-      "id": "sceneEq",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
-      "id": "playableIn",
+      "id": "pick",
       "type": "select"
     },
     {
-      "id": "inScene",
-      "type": "select"
-    },
-    {
-      "id": "doneCmp",
-      "type": "compare",
+      "id": "pickOk",
+      "type": "atrium.expr",
       "params": {
-        "op": "eq"
+        "expr": "pick >= 0"
       }
     },
     {
-      "id": "show",
-      "type": "merge"
+      "id": "pickNo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pick < 0"
+      }
     },
     {
-      "id": "showGate",
+      "id": "beginGate",
       "type": "state",
       "params": {
         "states": [
@@ -153,24 +143,6 @@
             "to": "a"
           }
         ]
-      }
-    },
-    {
-      "id": "disp",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
-    },
-    {
-      "id": "seqBarrier",
-      "type": "merge"
-    },
-    {
-      "id": "lineSeq",
-      "type": "counter",
-      "params": {
-        "initial": 0
       }
     },
     {
@@ -194,6 +166,43 @@
             "to": "a"
           }
         ]
+      }
+    },
+    {
+      "id": "show",
+      "type": "merge"
+    },
+    {
+      "id": "showGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "overGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "disp",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "setRow",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dlgState"
+      }
+    },
+    {
+      "id": "seqBarrier",
+      "type": "merge"
+    },
+    {
+      "id": "lineSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
       }
     },
     {
@@ -347,76 +356,48 @@
       "to": "first.value"
     },
     {
-      "from": "yesText.out",
-      "to": "first.filterValue"
+      "from": "K0.out",
+      "to": "cur.key"
     },
     {
-      "from": "first.row",
-      "to": "row.first"
-    },
-    {
-      "from": "off.value",
-      "to": "row.off"
-    },
-    {
-      "from": "row.value",
-      "to": "rowScene.row"
-    },
-    {
-      "from": "row.value",
-      "to": "rowPlayable.row"
-    },
-    {
-      "from": "rowScene.value",
-      "to": "sceneEq.a"
+      "from": "cur.value",
+      "to": "from.cur"
     },
     {
       "from": "sceneKey.out",
-      "to": "sceneEq.b"
+      "to": "next.value"
     },
     {
-      "from": "sceneEq.out",
-      "to": "playableIn.cond"
+      "from": "from.value",
+      "to": "next.from"
     },
     {
-      "from": "rowPlayable.value",
-      "to": "playableIn.a"
+      "from": "atBegin.value",
+      "to": "pick.cond"
     },
     {
-      "from": "no.out",
-      "to": "playableIn.b"
+      "from": "first.row",
+      "to": "pick.a"
+    },
+    {
+      "from": "next.row",
+      "to": "pick.b"
+    },
+    {
+      "from": "pick.out",
+      "to": "pickOk.pick"
+    },
+    {
+      "from": "pick.out",
+      "to": "pickNo.pick"
     },
     {
       "from": "isVn.out",
-      "to": "inScene.cond"
-    },
-    {
-      "from": "playableIn.out",
-      "to": "inScene.a"
-    },
-    {
-      "from": "no.out",
-      "to": "inScene.b"
-    },
-    {
-      "from": "inScene.out",
-      "to": "doneCmp.a"
-    },
-    {
-      "from": "no.out",
-      "to": "doneCmp.b"
-    },
-    {
-      "from": "doneCmp.true",
-      "to": "world.stepDone"
+      "to": "beginGate.guard"
     },
     {
       "from": "world.stepBegin",
-      "to": "off.reset"
-    },
-    {
-      "from": "world.stepBegin",
-      "to": "show.in"
+      "to": "beginGate.go"
     },
     {
       "from": "isVn.out",
@@ -427,31 +408,63 @@
       "to": "advGate.go"
     },
     {
+      "from": "beginGate.changed",
+      "to": "atBegin.setTrue"
+    },
+    {
       "from": "advGate.changed",
-      "to": "off.increment"
+      "to": "atBegin.setFalse"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "show.in"
     },
     {
       "from": "advGate.changed",
       "to": "show.in"
     },
     {
+      "from": "pickOk.value",
+      "to": "showGate.cond"
+    },
+    {
       "from": "show.out",
-      "to": "showGate.go"
+      "to": "showGate.trigger"
     },
     {
-      "from": "inScene.out",
-      "to": "showGate.guard"
+      "from": "pickNo.value",
+      "to": "overGate.cond"
     },
     {
-      "from": "row.value",
+      "from": "show.out",
+      "to": "overGate.trigger"
+    },
+    {
+      "from": "overGate.pass",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "pick.out",
       "to": "disp.in"
     },
     {
-      "from": "showGate.changed",
+      "from": "showGate.pass",
       "to": "disp.trigger"
     },
     {
-      "from": "showGate.changed",
+      "from": "K0.out",
+      "to": "setRow.key"
+    },
+    {
+      "from": "pick.out",
+      "to": "setRow.value"
+    },
+    {
+      "from": "showGate.pass",
+      "to": "setRow.trigger"
+    },
+    {
+      "from": "showGate.pass",
       "to": "seqBarrier.in"
     },
     {

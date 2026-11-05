@@ -1,0 +1,7154 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "chText",
+      "type": "toString"
+    },
+    {
+      "id": "chRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "chapters",
+        "column": "id"
+      }
+    },
+    {
+      "id": "ticksInit",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "ticks",
+        "type": "number"
+      }
+    },
+    {
+      "id": "apprInit",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "appraisals",
+        "type": "number"
+      }
+    },
+    {
+      "id": "unlockedN",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "appraisalUnlocked",
+        "type": "number"
+      }
+    },
+    {
+      "id": "policeCh",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "police",
+        "type": "number"
+      }
+    },
+    {
+      "id": "trustShownN",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "trustShown",
+        "type": "number"
+      }
+    },
+    {
+      "id": "missToHand",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "missToHand",
+        "type": "number"
+      }
+    },
+    {
+      "id": "oppId",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "debate",
+        "type": "string"
+      }
+    },
+    {
+      "id": "phase",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "chapters",
+        "column": "phase",
+        "type": "string"
+      }
+    },
+    {
+      "id": "policeOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "policeCh && trust >= 3"
+      }
+    },
+    {
+      "id": "caseRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCase",
+        "column": "id"
+      }
+    },
+    {
+      "id": "caseScenes",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCase",
+        "column": "scenes",
+        "type": "number"
+      }
+    },
+    {
+      "id": "caseSpotsText",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCase",
+        "column": "spots",
+        "type": "string"
+      }
+    },
+    {
+      "id": "caseEvent",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCase",
+        "column": "eventCards",
+        "type": "string"
+      }
+    },
+    {
+      "id": "casePolice",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCase",
+        "column": "policeCards",
+        "type": "string"
+      }
+    },
+    {
+      "id": "caseCardsText",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCase",
+        "column": "cards",
+        "type": "string"
+      }
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "appr"
+      }
+    },
+    {
+      "id": "apprLeft",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "caseNum"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "langEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langChanged",
+      "type": "merge"
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": "investigate"
+      }
+    },
+    {
+      "id": "isInv",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "beginGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lim",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ticksInit > 0"
+      }
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "ticks"
+      }
+    },
+    {
+      "id": "ticks",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": "sc"
+      }
+    },
+    {
+      "id": "sc",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": "pop"
+      }
+    },
+    {
+      "id": "popOpenN",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "popOpen",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "bookNew",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "bookOpenN",
+      "type": "select"
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "neededN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "toFindN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "outOfTime",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lim && ticks <= 0"
+      }
+    },
+    {
+      "id": "canEndN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "neededN == 0"
+      }
+    },
+    {
+      "id": "inputOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!popOpenN && !bookOpenN"
+      }
+    },
+    {
+      "id": "hintSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "popSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "clr_held",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "clr_appraised",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "clr_spotSeen",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "spotSeen"
+      }
+    },
+    {
+      "id": "clr_toFind",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "clr_needed",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "clr_oppHand",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "oppHand"
+      }
+    },
+    {
+      "id": "clr_notes",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "notes"
+      }
+    },
+    {
+      "id": "clr_newCards",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "clr_spotsHere",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "spotsHere"
+      }
+    },
+    {
+      "id": "clr_caseSpots",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "caseSpots"
+      }
+    },
+    {
+      "id": "addEvent",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "policeGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "addPolice",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "addSpots",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "caseSpots"
+      }
+    },
+    {
+      "id": "clr_invState",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "ticksSet",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "apprSet",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "caseNum"
+      }
+    },
+    {
+      "id": "openKey",
+      "type": "format",
+      "params": {
+        "format": "ART_OPEN_CH0{a}"
+      }
+    },
+    {
+      "id": "noReport",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "policeCh && !policeOn"
+      }
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "ART_NO_REPORT"
+      }
+    },
+    {
+      "id": "openLine",
+      "type": "select"
+    },
+    {
+      "id": "hint1_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "spotEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "caseSpots"
+      }
+    },
+    {
+      "id": "si_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "si_type",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "type",
+        "type": "number"
+      }
+    },
+    {
+      "id": "si_yield",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "yield",
+        "type": "string"
+      }
+    },
+    {
+      "id": "si_req",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "reqMissing",
+        "type": "string"
+      }
+    },
+    {
+      "id": "si_heldC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "si_held",
+      "type": "select"
+    },
+    {
+      "id": "si_goldC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "golden"
+      }
+    },
+    {
+      "id": "si_gold",
+      "type": "select"
+    },
+    {
+      "id": "si_crow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "si_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "si_noReqC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "si_noReq",
+      "type": "select"
+    },
+    {
+      "id": "si_find",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "si_type > 0 && (si_noReq || !si_gold) && !si_held"
+      }
+    },
+    {
+      "id": "si_need",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "si_find && si_required"
+      }
+    },
+    {
+      "id": "si_findG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "si_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "si_needG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "si_needA",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "sceneKey",
+      "type": "format",
+      "params": {
+        "format": "{a}:{b}"
+      }
+    },
+    {
+      "id": "sceneRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowScene",
+        "column": "key"
+      }
+    },
+    {
+      "id": "sceneBg",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowScene",
+        "column": "bg",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sceneSpotsText",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowScene",
+        "column": "spots",
+        "type": "string"
+      }
+    },
+    {
+      "id": "navPrev",
+      "type": "compare",
+      "params": {
+        "op": "gt"
+      }
+    },
+    {
+      "id": "lastScene",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "caseScenes - 1"
+      }
+    },
+    {
+      "id": "navNext",
+      "type": "compare",
+      "params": {
+        "op": "lt"
+      }
+    },
+    {
+      "id": "spotsList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.investigate.spots",
+        "source": "spotsHere",
+        "fields": "{\"id\": \"key\", \"name\": \"nameKey\", \"x\": \"x\", \"y\": \"y\", \"w\": \"w\", \"h\": \"h\", \"type\": \"type\", \"state\": \"value\"}",
+        "join": "{\"table\": \"flowSpot\", \"column\": \"id\"}",
+        "localize": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "rebuild",
+      "type": "merge"
+    },
+    {
+      "id": "clrHere",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "spotsHere"
+      }
+    },
+    {
+      "id": "clrScene",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "sceneSpots"
+      }
+    },
+    {
+      "id": "addScene",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "sceneSpots"
+      }
+    },
+    {
+      "id": "sceneEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "sceneSpots"
+      }
+    },
+    {
+      "id": "ss_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "ss_req",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "reqMissing",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ss_noReqC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "ss_noReq",
+      "type": "select"
+    },
+    {
+      "id": "ss_goldC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "golden"
+      }
+    },
+    {
+      "id": "ss_gold",
+      "type": "select"
+    },
+    {
+      "id": "ss_seenC",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "spotSeen"
+      }
+    },
+    {
+      "id": "ss_seen",
+      "type": "select"
+    },
+    {
+      "id": "ss_show",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ss_noReq || !ss_gold"
+      }
+    },
+    {
+      "id": "ss_showG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "ss_set",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "spotsHere"
+      }
+    },
+    {
+      "id": "navInv",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "navGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "navIncN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "navV > 0 && sc < caseScenes - 1"
+      }
+    },
+    {
+      "id": "navDecN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "navV < 0 && sc > 0"
+      }
+    },
+    {
+      "id": "scUp",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "sc + 1"
+      }
+    },
+    {
+      "id": "scDown",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "sc - 1"
+      }
+    },
+    {
+      "id": "navInc",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "navIncS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "navDec",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "navDecS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "c_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "c_type",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "type",
+        "type": "number"
+      }
+    },
+    {
+      "id": "c_yield",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "yield",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_name",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_note",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "noteKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "cy_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cy_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cy_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "cy_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "cy_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!cy_hidden || cy_apprHas || (policeOn && cy_policeFull)"
+      }
+    },
+    {
+      "id": "c_seenC",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "spotSeen"
+      }
+    },
+    {
+      "id": "c_seen",
+      "type": "select"
+    },
+    {
+      "id": "c_heldC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "c_held",
+      "type": "select"
+    },
+    {
+      "id": "c_costs",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!c_seen"
+      }
+    },
+    {
+      "id": "c_obtain",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "c_type > 0 && !c_held"
+      }
+    },
+    {
+      "id": "c_kind",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "c_type == 0 ? 1 : c_obtain ? (c_type == 2 ? 3 : 2) : 1"
+      }
+    },
+    {
+      "id": "c_inspect",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "c_type == 0"
+      }
+    },
+    {
+      "id": "c_title",
+      "type": "select"
+    },
+    {
+      "id": "c_body",
+      "type": "select"
+    },
+    {
+      "id": "clickOkN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "inputOk && !outOfTime"
+      }
+    },
+    {
+      "id": "clickInv",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "clickGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "c_costG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "c_seenSet",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "spotSeen"
+      }
+    },
+    {
+      "id": "c_hereSet",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "spotsHere"
+      }
+    },
+    {
+      "id": "ticksLess",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ticks - 1"
+      }
+    },
+    {
+      "id": "c_tickG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "c_tickS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "c_obtG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "c_do_held",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "c_do_toFind",
+      "type": "atrium.coll.remove",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "c_do_needed",
+      "type": "atrium.coll.remove",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "c_do_newCards",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "c_noteG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "c_noteAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "notes"
+      }
+    },
+    {
+      "id": "pop1_kind",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_title",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_body",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_grade",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "c_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "c_hint",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ch == 1 ? 0 : (lim && c_costs && ticks == 1) ? 1 : (lim && c_costs && ticks == 4) ? 2 : c_obtain ? (cy_grade == 1 ? 3 : cy_grade == 2 ? 4 : cy_grade == 4 ? 5 : 0) : 0"
+      }
+    },
+    {
+      "id": "c_hintKey",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "",
+          "ART_TIME_OUT",
+          "ART_TIME_LOW",
+          "ART_FOUND_KEY",
+          "ART_FOUND_PLOT",
+          "ART_SUB_FOUND"
+        ]
+      }
+    },
+    {
+      "id": "c_hintM",
+      "type": "merge"
+    },
+    {
+      "id": "c_hintG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "hint2_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "dismissInv",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dismissGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "rescueN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "outOfTime && neededN > 0"
+      }
+    },
+    {
+      "id": "rescueGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "rc",
+      "type": "atrium.coll.get",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "rcv_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "rcv_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "rcv_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rcv_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "rcv_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "rcv_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!rcv_hidden || rcv_apprHas || (policeOn && rcv_policeFull)"
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": 2
+      }
+    },
+    {
+      "id": "pop2_kind",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_title",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_body",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_grade",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": "ART_RESCUE"
+      }
+    },
+    {
+      "id": "hint3_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "r_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "rescueEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "r_held",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "r_toFind",
+      "type": "atrium.coll.remove",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "r_newCards",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "r_clear",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "finish",
+      "type": "merge"
+    },
+    {
+      "id": "timeoutN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "outOfTime && neededN == 0"
+      }
+    },
+    {
+      "id": "timeoutEnd",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "endOkN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "inputOk && canEndN"
+      }
+    },
+    {
+      "id": "endInv",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "endGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "missEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "toFind"
+      }
+    },
+    {
+      "id": "mi_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "mi_obt",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "mi_n",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "mi_obt && missToHand"
+      }
+    },
+    {
+      "id": "mi_g",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "mi_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "oppHand"
+      }
+    },
+    {
+      "id": "finishDone",
+      "type": "merge"
+    },
+    {
+      "id": "askInv",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "askGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "askIdx",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ch == 1 ? (toFindN > 0 ? 1 : 2) : toFindN >= 4 ? 3 : toFindN >= 1 ? 4 : 5"
+      }
+    },
+    {
+      "id": "askKey",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "",
+          "SHF_C1_REMAIN",
+          "SHF_C1_IDLE",
+          "ART_REMAIN_MANY",
+          "ART_REMAIN_FEW",
+          "ART_REMAIN_NONE"
+        ]
+      }
+    },
+    {
+      "id": "hint4_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bookState",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": true
+      }
+    },
+    {
+      "id": "clrNew",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "tab",
+      "type": "counter",
+      "params": {
+        "initial": 0,
+        "min": 0,
+        "max": 2
+      }
+    },
+    {
+      "id": "tabPick",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bsel",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bs_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bs_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bs_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "bs_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "bs_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bs_hidden || bs_apprHas || (policeOn && bs_policeFull)"
+      }
+    },
+    {
+      "id": "bs_name",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_desc",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_t0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "tag0",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_hC0",
+      "type": "atrium.table.has",
+      "params": {
+        "table": "flowCard",
+        "column": "hiddenTags"
+      }
+    },
+    {
+      "id": "bs_h0",
+      "type": "select"
+    },
+    {
+      "id": "bs_tr0",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "tags",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bs_tk0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "tags",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_rvN0",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bs_h0 || bs_full"
+      }
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "UI_TAG_HIDDEN"
+      }
+    },
+    {
+      "id": "bs_key0",
+      "type": "select"
+    },
+    {
+      "id": "bs_e0",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "bs_kk0",
+      "type": "select"
+    },
+    {
+      "id": "bs_tx0",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_t1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "tag1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_hC1",
+      "type": "atrium.table.has",
+      "params": {
+        "table": "flowCard",
+        "column": "hiddenTags"
+      }
+    },
+    {
+      "id": "bs_h1",
+      "type": "select"
+    },
+    {
+      "id": "bs_tr1",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "tags",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bs_tk1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "tags",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_rvN1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bs_h1 || bs_full"
+      }
+    },
+    {
+      "id": "bs_key1",
+      "type": "select"
+    },
+    {
+      "id": "bs_e1",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "bs_kk1",
+      "type": "select"
+    },
+    {
+      "id": "bs_tx1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_sp1",
+      "type": "format",
+      "params": {
+        "format": " {a}"
+      }
+    },
+    {
+      "id": "bs_p1",
+      "type": "select"
+    },
+    {
+      "id": "bs_t2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "tag2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_hC2",
+      "type": "atrium.table.has",
+      "params": {
+        "table": "flowCard",
+        "column": "hiddenTags"
+      }
+    },
+    {
+      "id": "bs_h2",
+      "type": "select"
+    },
+    {
+      "id": "bs_tr2",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "tags",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bs_tk2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "tags",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_rvN2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bs_h2 || bs_full"
+      }
+    },
+    {
+      "id": "bs_key2",
+      "type": "select"
+    },
+    {
+      "id": "bs_e2",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "bs_kk2",
+      "type": "select"
+    },
+    {
+      "id": "bs_tx2",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_sp2",
+      "type": "format",
+      "params": {
+        "format": " {a}"
+      }
+    },
+    {
+      "id": "bs_p2",
+      "type": "select"
+    },
+    {
+      "id": "bs_t3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "tag3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_hC3",
+      "type": "atrium.table.has",
+      "params": {
+        "table": "flowCard",
+        "column": "hiddenTags"
+      }
+    },
+    {
+      "id": "bs_h3",
+      "type": "select"
+    },
+    {
+      "id": "bs_tr3",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "tags",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bs_tk3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "tags",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bs_rvN3",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bs_h3 || bs_full"
+      }
+    },
+    {
+      "id": "bs_key3",
+      "type": "select"
+    },
+    {
+      "id": "bs_e3",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "bs_kk3",
+      "type": "select"
+    },
+    {
+      "id": "bs_tx3",
+      "type": "atrium.text"
+    },
+    {
+      "id": "bs_sp3",
+      "type": "format",
+      "params": {
+        "format": " {a}"
+      }
+    },
+    {
+      "id": "bs_p3",
+      "type": "select"
+    },
+    {
+      "id": "bs_tags",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}{d}"
+      }
+    },
+    {
+      "id": "bs_can",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "unlockedN && bs_cost > 0 && !bs_full && apprLeft >= bs_cost"
+      }
+    },
+    {
+      "id": "bookAppr",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ba_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "ba_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ba_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "ba_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "ba_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!ba_hidden || ba_apprHas || (policeOn && ba_policeFull)"
+      }
+    },
+    {
+      "id": "ba_hasC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "ba_has",
+      "type": "select"
+    },
+    {
+      "id": "ba_idx",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!(ba_has && unlockedN) ? 0 : (ba_cost == 0 || ba_full) ? 1 : apprLeft < ba_cost ? 2 : 2 + ba_appraise"
+      }
+    },
+    {
+      "id": "ba_line",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "",
+          "ART_APPR_NONE",
+          "ART_APPR_EMPTY",
+          "ART_APPR_MED_DONE",
+          "ART_APPR_MECH_DONE",
+          "ART_APPR_DUAL"
+        ]
+      }
+    },
+    {
+      "id": "ba_newLeft",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "apprLeft - ba_cost"
+      }
+    },
+    {
+      "id": "ba_doN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ba_idx >= 3"
+      }
+    },
+    {
+      "id": "ba_do",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "ba_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "ba_set",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "caseNum"
+      }
+    },
+    {
+      "id": "ba_said",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "hint5_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "clrBook",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "bookList"
+      }
+    },
+    {
+      "id": "bi0Each",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "bi0TabN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "tab == 0"
+      }
+    },
+    {
+      "id": "bi0Tab",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi0_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bi0_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi0_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi0_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "bi0_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "bi0_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bi0_hidden || bi0_apprHas || (policeOn && bi0_policeFull)"
+      }
+    },
+    {
+      "id": "bi0_newC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "bi0_new",
+      "type": "select"
+    },
+    {
+      "id": "bi0_key",
+      "type": "format",
+      "params": {
+        "format": "{a}|{b}|{c}"
+      }
+    },
+    {
+      "id": "bi0_n",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bi0_story"
+      }
+    },
+    {
+      "id": "bi0_g",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi0_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "bookList"
+      }
+    },
+    {
+      "id": "bi1Each",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "golden"
+      }
+    },
+    {
+      "id": "bi1TabN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "tab == 1"
+      }
+    },
+    {
+      "id": "bi1Tab",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi1_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bi1_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi1_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi1_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "bi1_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "bi1_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bi1_hidden || bi1_apprHas || (policeOn && bi1_policeFull)"
+      }
+    },
+    {
+      "id": "bi1_newC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "bi1_new",
+      "type": "select"
+    },
+    {
+      "id": "bi1_key",
+      "type": "format",
+      "params": {
+        "format": "{a}|{b}|{c}"
+      }
+    },
+    {
+      "id": "bi1_n",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "1"
+      }
+    },
+    {
+      "id": "bi1_g",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi1_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "bookList"
+      }
+    },
+    {
+      "id": "bi2Each",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "held"
+      }
+    },
+    {
+      "id": "bi2TabN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "tab == 2"
+      }
+    },
+    {
+      "id": "bi2Tab",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi2_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bi2_grade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "grade",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_story",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "story",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_appraise",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "appraise",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_cost",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "cost",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_hidden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "hidden",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_policeFull",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "policeFull",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_fixed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "fixed",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_correct",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "correct",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_goldenCard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "goldenCard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_sub",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "sub",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_obtainable",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "obtainable",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_required",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "required",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_onBoard",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "onBoard",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bi2_nameKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_descKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "descKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_golden",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "golden",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_reason1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_reason2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason2",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_reason3",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "reason3",
+        "type": "string"
+      }
+    },
+    {
+      "id": "bi2_apprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "appraised"
+      }
+    },
+    {
+      "id": "bi2_apprHas",
+      "type": "select"
+    },
+    {
+      "id": "bi2_full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!bi2_hidden || bi2_apprHas || (policeOn && bi2_policeFull)"
+      }
+    },
+    {
+      "id": "bi2_newC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "newCards"
+      }
+    },
+    {
+      "id": "bi2_new",
+      "type": "select"
+    },
+    {
+      "id": "bi2_key",
+      "type": "format",
+      "params": {
+        "format": "{a}|{b}|{c}"
+      }
+    },
+    {
+      "id": "bi2_n",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "bi2_story"
+      }
+    },
+    {
+      "id": "bi2_g",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bi2_add",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "bookList"
+      }
+    },
+    {
+      "id": "cardsList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.evbook.cards",
+        "source": "bookList",
+        "fields": "{\"id\": \"id\", \"name\": \"nameKey\", \"grade\": \"grade\", \"appraised\": \"appraised\", \"isnew\": \"isnew\"}",
+        "join": "{\"table\": \"flowBook\", \"column\": \"key\"}",
+        "localize": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "notesList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.evbook.notes",
+        "source": "notes",
+        "fields": "{\"text\": \"item\"}",
+        "localize": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "ticksPort",
+      "type": "select"
+    },
+    {
+      "id": "ticksMax",
+      "type": "select"
+    },
+    {
+      "id": "unlockedB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": -1
+      }
+    },
+    {
+      "id": "apprPort",
+      "type": "select"
+    },
+    {
+      "id": "trustShownB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "trustPort",
+      "type": "select"
+    },
+    {
+      "id": "hintSrc",
+      "type": "state",
+      "params": {
+        "initial": "s0",
+        "states": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5"
+        ],
+        "transitions": [
+          {
+            "from": "*",
+            "on": "e1",
+            "to": "s1"
+          },
+          {
+            "from": "*",
+            "on": "e2",
+            "to": "s2"
+          },
+          {
+            "from": "*",
+            "on": "e3",
+            "to": "s3"
+          },
+          {
+            "from": "*",
+            "on": "e4",
+            "to": "s4"
+          },
+          {
+            "from": "*",
+            "on": "e5",
+            "to": "s5"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hint_key_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_key_1",
+      "type": "select"
+    },
+    {
+      "id": "hint_key_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_key_2",
+      "type": "select"
+    },
+    {
+      "id": "K15",
+      "type": "constant",
+      "params": {
+        "value": 3
+      }
+    },
+    {
+      "id": "hint_key_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_key_3",
+      "type": "select"
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": 4
+      }
+    },
+    {
+      "id": "hint_key_is4",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_key_4",
+      "type": "select"
+    },
+    {
+      "id": "K17",
+      "type": "constant",
+      "params": {
+        "value": 5
+      }
+    },
+    {
+      "id": "hint_key_is5",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_key_5",
+      "type": "select"
+    },
+    {
+      "id": "hintText",
+      "type": "atrium.text"
+    },
+    {
+      "id": "popSrc",
+      "type": "state",
+      "params": {
+        "initial": "s0",
+        "states": [
+          "s0",
+          "s1",
+          "s2"
+        ],
+        "transitions": [
+          {
+            "from": "*",
+            "on": "e1",
+            "to": "s1"
+          },
+          {
+            "from": "*",
+            "on": "e2",
+            "to": "s2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pop_kind_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_kind_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_kind_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_kind_2",
+      "type": "select"
+    },
+    {
+      "id": "popKind",
+      "type": "select"
+    },
+    {
+      "id": "pop_title_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_title_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_title_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_title_2",
+      "type": "select"
+    },
+    {
+      "id": "popTitle",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pop_body_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_body_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_body_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_body_2",
+      "type": "select"
+    },
+    {
+      "id": "popBody",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pop_grade_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_grade_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_grade_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_grade_2",
+      "type": "select"
+    },
+    {
+      "id": "initTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "bookTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "navTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.chapter",
+      "to": "chText.in"
+    },
+    {
+      "from": "chText.out",
+      "to": "chRow.value"
+    },
+    {
+      "from": "chRow.row",
+      "to": "ticksInit.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "apprInit.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "unlockedN.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "policeCh.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "trustShownN.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "missToHand.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "oppId.row"
+    },
+    {
+      "from": "chRow.row",
+      "to": "phase.row"
+    },
+    {
+      "from": "policeCh.value",
+      "to": "policeOn.policeCh"
+    },
+    {
+      "from": "world.trust",
+      "to": "policeOn.trust"
+    },
+    {
+      "from": "chText.out",
+      "to": "caseRow.value"
+    },
+    {
+      "from": "caseRow.row",
+      "to": "caseScenes.row"
+    },
+    {
+      "from": "caseRow.row",
+      "to": "caseSpotsText.row"
+    },
+    {
+      "from": "caseRow.row",
+      "to": "caseEvent.row"
+    },
+    {
+      "from": "caseRow.row",
+      "to": "casePolice.row"
+    },
+    {
+      "from": "caseRow.row",
+      "to": "caseCardsText.row"
+    },
+    {
+      "from": "K0.out",
+      "to": "apprLeft.key"
+    },
+    {
+      "from": "world.language",
+      "to": "langEn.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "langEn.b"
+    },
+    {
+      "from": "langEn.true",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "langEn.false",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isInv.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isInv.b"
+    },
+    {
+      "from": "isInv.out",
+      "to": "beginGate.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "beginGate.go"
+    },
+    {
+      "from": "ticksInit.value",
+      "to": "lim.ticksInit"
+    },
+    {
+      "from": "K3.out",
+      "to": "ticks.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "sc.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "popOpenN.key"
+    },
+    {
+      "from": "popOpenN.value",
+      "to": "popOpen.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "popOpen.b"
+    },
+    {
+      "from": "world.bookOpen",
+      "to": "bookOpenN.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bookOpenN.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bookOpenN.b"
+    },
+    {
+      "from": "lim.value",
+      "to": "outOfTime.lim"
+    },
+    {
+      "from": "ticks.value",
+      "to": "outOfTime.ticks"
+    },
+    {
+      "from": "neededN.count",
+      "to": "canEndN.neededN"
+    },
+    {
+      "from": "popOpenN.value",
+      "to": "inputOk.popOpenN"
+    },
+    {
+      "from": "bookOpenN.out",
+      "to": "inputOk.bookOpenN"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_held.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_appraised.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_spotSeen.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_toFind.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_needed.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_oppHand.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_notes.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_newCards.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_spotsHere.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_caseSpots.trigger"
+    },
+    {
+      "from": "caseEvent.value",
+      "to": "addEvent.text"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "addEvent.trigger"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "policeGate.cond"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "policeGate.trigger"
+    },
+    {
+      "from": "casePolice.value",
+      "to": "addPolice.text"
+    },
+    {
+      "from": "policeGate.pass",
+      "to": "addPolice.trigger"
+    },
+    {
+      "from": "caseSpotsText.value",
+      "to": "addSpots.text"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "addSpots.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_invState.trigger"
+    },
+    {
+      "from": "K3.out",
+      "to": "ticksSet.key"
+    },
+    {
+      "from": "ticksInit.value",
+      "to": "ticksSet.value"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "ticksSet.trigger"
+    },
+    {
+      "from": "K0.out",
+      "to": "apprSet.key"
+    },
+    {
+      "from": "apprInit.value",
+      "to": "apprSet.value"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "apprSet.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "bookNew.reset"
+    },
+    {
+      "from": "world.chapter",
+      "to": "openKey.a"
+    },
+    {
+      "from": "policeCh.value",
+      "to": "noReport.policeCh"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "noReport.policeOn"
+    },
+    {
+      "from": "noReport.truth",
+      "to": "openLine.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "openLine.a"
+    },
+    {
+      "from": "openKey.out",
+      "to": "openLine.b"
+    },
+    {
+      "from": "openLine.out",
+      "to": "hint1_key.in"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "hint1_key.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "hintSrc.e1"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "initTimer.start"
+    },
+    {
+      "from": "initTimer.tick",
+      "to": "spotEach.trigger"
+    },
+    {
+      "from": "spotEach.item",
+      "to": "si_row.value"
+    },
+    {
+      "from": "si_row.row",
+      "to": "si_type.row"
+    },
+    {
+      "from": "si_row.row",
+      "to": "si_yield.row"
+    },
+    {
+      "from": "si_row.row",
+      "to": "si_req.row"
+    },
+    {
+      "from": "si_yield.value",
+      "to": "si_heldC.value"
+    },
+    {
+      "from": "si_heldC.has",
+      "to": "si_held.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "si_held.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "si_held.b"
+    },
+    {
+      "from": "si_req.value",
+      "to": "si_goldC.value"
+    },
+    {
+      "from": "si_goldC.has",
+      "to": "si_gold.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "si_gold.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "si_gold.b"
+    },
+    {
+      "from": "si_yield.value",
+      "to": "si_crow.value"
+    },
+    {
+      "from": "si_crow.row",
+      "to": "si_required.row"
+    },
+    {
+      "from": "si_req.value",
+      "to": "si_noReqC.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "si_noReqC.b"
+    },
+    {
+      "from": "si_noReqC.out",
+      "to": "si_noReq.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "si_noReq.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "si_noReq.b"
+    },
+    {
+      "from": "si_type.value",
+      "to": "si_find.si_type"
+    },
+    {
+      "from": "si_noReq.out",
+      "to": "si_find.si_noReq"
+    },
+    {
+      "from": "si_gold.out",
+      "to": "si_find.si_gold"
+    },
+    {
+      "from": "si_held.out",
+      "to": "si_find.si_held"
+    },
+    {
+      "from": "si_find.value",
+      "to": "si_need.si_find"
+    },
+    {
+      "from": "si_required.value",
+      "to": "si_need.si_required"
+    },
+    {
+      "from": "si_find.value",
+      "to": "si_findG.cond"
+    },
+    {
+      "from": "spotEach.each",
+      "to": "si_findG.trigger"
+    },
+    {
+      "from": "si_yield.value",
+      "to": "si_add.value"
+    },
+    {
+      "from": "si_findG.pass",
+      "to": "si_add.trigger"
+    },
+    {
+      "from": "si_need.value",
+      "to": "si_needG.cond"
+    },
+    {
+      "from": "spotEach.each",
+      "to": "si_needG.trigger"
+    },
+    {
+      "from": "si_yield.value",
+      "to": "si_needA.value"
+    },
+    {
+      "from": "si_needG.pass",
+      "to": "si_needA.trigger"
+    },
+    {
+      "from": "world.chapter",
+      "to": "sceneKey.a"
+    },
+    {
+      "from": "sc.value",
+      "to": "sceneKey.b"
+    },
+    {
+      "from": "sceneKey.out",
+      "to": "sceneRow.value"
+    },
+    {
+      "from": "sceneRow.row",
+      "to": "sceneBg.row"
+    },
+    {
+      "from": "sceneBg.value",
+      "to": "ui#investigate.bg"
+    },
+    {
+      "from": "sceneRow.row",
+      "to": "sceneSpotsText.row"
+    },
+    {
+      "from": "sc.value",
+      "to": "navPrev.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "navPrev.b"
+    },
+    {
+      "from": "navPrev.out",
+      "to": "ui#investigate.nav_prev"
+    },
+    {
+      "from": "caseScenes.value",
+      "to": "lastScene.caseScenes"
+    },
+    {
+      "from": "sc.value",
+      "to": "navNext.a"
+    },
+    {
+      "from": "lastScene.value",
+      "to": "navNext.b"
+    },
+    {
+      "from": "navNext.out",
+      "to": "ui#investigate.nav_next"
+    },
+    {
+      "from": "K9.out",
+      "to": "ui#investigate.area_name"
+    },
+    {
+      "from": "rebuild.out",
+      "to": "clrHere.trigger"
+    },
+    {
+      "from": "rebuild.out",
+      "to": "clrScene.trigger"
+    },
+    {
+      "from": "sceneSpotsText.value",
+      "to": "addScene.text"
+    },
+    {
+      "from": "rebuild.out",
+      "to": "addScene.trigger"
+    },
+    {
+      "from": "rebuild.out",
+      "to": "sceneEach.trigger"
+    },
+    {
+      "from": "rebuild.out",
+      "to": "spotsList.trigger"
+    },
+    {
+      "from": "sceneEach.item",
+      "to": "ss_row.value"
+    },
+    {
+      "from": "ss_row.row",
+      "to": "ss_req.row"
+    },
+    {
+      "from": "ss_req.value",
+      "to": "ss_noReqC.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "ss_noReqC.b"
+    },
+    {
+      "from": "ss_noReqC.out",
+      "to": "ss_noReq.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "ss_noReq.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ss_noReq.b"
+    },
+    {
+      "from": "ss_req.value",
+      "to": "ss_goldC.value"
+    },
+    {
+      "from": "ss_goldC.has",
+      "to": "ss_gold.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "ss_gold.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ss_gold.b"
+    },
+    {
+      "from": "sceneEach.item",
+      "to": "ss_seenC.key"
+    },
+    {
+      "from": "ss_seenC.has",
+      "to": "ss_seen.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "ss_seen.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ss_seen.b"
+    },
+    {
+      "from": "ss_noReq.out",
+      "to": "ss_show.ss_noReq"
+    },
+    {
+      "from": "ss_gold.out",
+      "to": "ss_show.ss_gold"
+    },
+    {
+      "from": "ss_show.value",
+      "to": "ss_showG.cond"
+    },
+    {
+      "from": "sceneEach.each",
+      "to": "ss_showG.trigger"
+    },
+    {
+      "from": "sceneEach.item",
+      "to": "ss_set.key"
+    },
+    {
+      "from": "ss_seen.out",
+      "to": "ss_set.value"
+    },
+    {
+      "from": "ss_showG.pass",
+      "to": "ss_set.trigger"
+    },
+    {
+      "from": "initTimer.tick",
+      "to": "rebuild.in"
+    },
+    {
+      "from": "langChanged.out",
+      "to": "spotsList.trigger"
+    },
+    {
+      "from": "isInv.out",
+      "to": "navInv.guard"
+    },
+    {
+      "from": "ui#investigate.nav.emitted",
+      "to": "navInv.go"
+    },
+    {
+      "from": "inputOk.value",
+      "to": "navGate.cond"
+    },
+    {
+      "from": "navInv.changed",
+      "to": "navGate.trigger"
+    },
+    {
+      "from": "ui#investigate.nav",
+      "to": "navIncN.navV"
+    },
+    {
+      "from": "sc.value",
+      "to": "navIncN.sc"
+    },
+    {
+      "from": "caseScenes.value",
+      "to": "navIncN.caseScenes"
+    },
+    {
+      "from": "ui#investigate.nav",
+      "to": "navDecN.navV"
+    },
+    {
+      "from": "sc.value",
+      "to": "navDecN.sc"
+    },
+    {
+      "from": "sc.value",
+      "to": "scUp.sc"
+    },
+    {
+      "from": "sc.value",
+      "to": "scDown.sc"
+    },
+    {
+      "from": "navIncN.value",
+      "to": "navInc.cond"
+    },
+    {
+      "from": "navGate.pass",
+      "to": "navInc.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "navIncS.key"
+    },
+    {
+      "from": "scUp.value",
+      "to": "navIncS.value"
+    },
+    {
+      "from": "navInc.pass",
+      "to": "navIncS.trigger"
+    },
+    {
+      "from": "navDecN.value",
+      "to": "navDec.cond"
+    },
+    {
+      "from": "navGate.pass",
+      "to": "navDec.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "navDecS.key"
+    },
+    {
+      "from": "scDown.value",
+      "to": "navDecS.value"
+    },
+    {
+      "from": "navDec.pass",
+      "to": "navDecS.trigger"
+    },
+    {
+      "from": "navGate.pass",
+      "to": "navTimer.start"
+    },
+    {
+      "from": "navTimer.tick",
+      "to": "rebuild.in"
+    },
+    {
+      "from": "ui#investigate.spot",
+      "to": "c_row.value"
+    },
+    {
+      "from": "c_row.row",
+      "to": "c_type.row"
+    },
+    {
+      "from": "c_row.row",
+      "to": "c_yield.row"
+    },
+    {
+      "from": "c_row.row",
+      "to": "c_name.row"
+    },
+    {
+      "from": "c_row.row",
+      "to": "c_note.row"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "cy_row.value"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_grade.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_story.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_appraise.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_cost.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_hidden.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_policeFull.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_fixed.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_correct.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_goldenCard.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_sub.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_obtainable.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_required.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_onBoard.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_nameKey.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_descKey.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_golden.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_reason1.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_reason2.row"
+    },
+    {
+      "from": "cy_row.row",
+      "to": "cy_reason3.row"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "cy_apprC.value"
+    },
+    {
+      "from": "cy_apprC.has",
+      "to": "cy_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "cy_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "cy_apprHas.b"
+    },
+    {
+      "from": "cy_hidden.value",
+      "to": "cy_full.cy_hidden"
+    },
+    {
+      "from": "cy_apprHas.out",
+      "to": "cy_full.cy_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "cy_full.policeOn"
+    },
+    {
+      "from": "cy_policeFull.value",
+      "to": "cy_full.cy_policeFull"
+    },
+    {
+      "from": "ui#investigate.spot",
+      "to": "c_seenC.key"
+    },
+    {
+      "from": "c_seenC.has",
+      "to": "c_seen.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_seen.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "c_seen.b"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "c_heldC.value"
+    },
+    {
+      "from": "c_heldC.has",
+      "to": "c_held.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_held.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "c_held.b"
+    },
+    {
+      "from": "c_seen.out",
+      "to": "c_costs.c_seen"
+    },
+    {
+      "from": "c_type.value",
+      "to": "c_obtain.c_type"
+    },
+    {
+      "from": "c_held.out",
+      "to": "c_obtain.c_held"
+    },
+    {
+      "from": "c_type.value",
+      "to": "c_kind.c_type"
+    },
+    {
+      "from": "c_obtain.value",
+      "to": "c_kind.c_obtain"
+    },
+    {
+      "from": "c_type.value",
+      "to": "c_inspect.c_type"
+    },
+    {
+      "from": "c_inspect.truth",
+      "to": "c_title.cond"
+    },
+    {
+      "from": "c_name.value",
+      "to": "c_title.a"
+    },
+    {
+      "from": "cy_nameKey.value",
+      "to": "c_title.b"
+    },
+    {
+      "from": "c_inspect.truth",
+      "to": "c_body.cond"
+    },
+    {
+      "from": "c_note.value",
+      "to": "c_body.a"
+    },
+    {
+      "from": "cy_descKey.value",
+      "to": "c_body.b"
+    },
+    {
+      "from": "inputOk.value",
+      "to": "clickOkN.inputOk"
+    },
+    {
+      "from": "outOfTime.value",
+      "to": "clickOkN.outOfTime"
+    },
+    {
+      "from": "isInv.out",
+      "to": "clickInv.guard"
+    },
+    {
+      "from": "ui#investigate.spot.emitted",
+      "to": "clickInv.go"
+    },
+    {
+      "from": "clickOkN.value",
+      "to": "clickGate.cond"
+    },
+    {
+      "from": "clickInv.changed",
+      "to": "clickGate.trigger"
+    },
+    {
+      "from": "c_costs.value",
+      "to": "c_costG.cond"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_costG.trigger"
+    },
+    {
+      "from": "ui#investigate.spot",
+      "to": "c_seenSet.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_seenSet.value"
+    },
+    {
+      "from": "c_costG.pass",
+      "to": "c_seenSet.trigger"
+    },
+    {
+      "from": "ui#investigate.spot",
+      "to": "c_hereSet.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_hereSet.value"
+    },
+    {
+      "from": "c_costG.pass",
+      "to": "c_hereSet.trigger"
+    },
+    {
+      "from": "ticks.value",
+      "to": "ticksLess.ticks"
+    },
+    {
+      "from": "lim.value",
+      "to": "c_tickG.cond"
+    },
+    {
+      "from": "c_costG.pass",
+      "to": "c_tickG.trigger"
+    },
+    {
+      "from": "K3.out",
+      "to": "c_tickS.key"
+    },
+    {
+      "from": "ticksLess.value",
+      "to": "c_tickS.value"
+    },
+    {
+      "from": "c_tickG.pass",
+      "to": "c_tickS.trigger"
+    },
+    {
+      "from": "c_obtain.value",
+      "to": "c_obtG.cond"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_obtG.trigger"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "c_do_held.value"
+    },
+    {
+      "from": "c_obtG.pass",
+      "to": "c_do_held.trigger"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "c_do_toFind.value"
+    },
+    {
+      "from": "c_obtG.pass",
+      "to": "c_do_toFind.trigger"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "c_do_needed.value"
+    },
+    {
+      "from": "c_obtG.pass",
+      "to": "c_do_needed.trigger"
+    },
+    {
+      "from": "c_yield.value",
+      "to": "c_do_newCards.value"
+    },
+    {
+      "from": "c_obtG.pass",
+      "to": "c_do_newCards.trigger"
+    },
+    {
+      "from": "c_obtG.pass",
+      "to": "bookNew.increment"
+    },
+    {
+      "from": "c_inspect.value",
+      "to": "c_noteG.cond"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_noteG.trigger"
+    },
+    {
+      "from": "c_note.value",
+      "to": "c_noteAdd.value"
+    },
+    {
+      "from": "c_noteG.pass",
+      "to": "c_noteAdd.trigger"
+    },
+    {
+      "from": "c_kind.value",
+      "to": "pop1_kind.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_kind.trigger"
+    },
+    {
+      "from": "c_title.out",
+      "to": "pop1_title.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_title.trigger"
+    },
+    {
+      "from": "c_body.out",
+      "to": "pop1_body.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_body.trigger"
+    },
+    {
+      "from": "cy_grade.value",
+      "to": "pop1_grade.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_grade.trigger"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "popSrc.e1"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "popSeq.increment"
+    },
+    {
+      "from": "K5.out",
+      "to": "c_popS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_popS.value"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_popS.trigger"
+    },
+    {
+      "from": "world.chapter",
+      "to": "c_hint.ch"
+    },
+    {
+      "from": "lim.value",
+      "to": "c_hint.lim"
+    },
+    {
+      "from": "c_costs.value",
+      "to": "c_hint.c_costs"
+    },
+    {
+      "from": "ticks.value",
+      "to": "c_hint.ticks"
+    },
+    {
+      "from": "c_obtain.value",
+      "to": "c_hint.c_obtain"
+    },
+    {
+      "from": "cy_grade.value",
+      "to": "c_hint.cy_grade"
+    },
+    {
+      "from": "c_hint.value",
+      "to": "c_hintKey.index"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_hintM.in"
+    },
+    {
+      "from": "c_hint.value",
+      "to": "c_hintG.cond"
+    },
+    {
+      "from": "c_hintM.out",
+      "to": "c_hintG.trigger"
+    },
+    {
+      "from": "c_hintKey.out",
+      "to": "hint2_key.in"
+    },
+    {
+      "from": "c_hintG.pass",
+      "to": "hint2_key.trigger"
+    },
+    {
+      "from": "c_hintG.pass",
+      "to": "hintSrc.e2"
+    },
+    {
+      "from": "c_hintG.pass",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "spotsList.trigger"
+    },
+    {
+      "from": "isInv.out",
+      "to": "dismissInv.guard"
+    },
+    {
+      "from": "ui#investigate.dismiss",
+      "to": "dismissInv.go"
+    },
+    {
+      "from": "popOpen.out",
+      "to": "dismissGate.guard"
+    },
+    {
+      "from": "dismissInv.changed",
+      "to": "dismissGate.go"
+    },
+    {
+      "from": "K5.out",
+      "to": "d_popS.key"
+    },
+    {
+      "from": "K6.out",
+      "to": "d_popS.value"
+    },
+    {
+      "from": "dismissGate.changed",
+      "to": "d_popS.trigger"
+    },
+    {
+      "from": "outOfTime.value",
+      "to": "rescueN.outOfTime"
+    },
+    {
+      "from": "neededN.count",
+      "to": "rescueN.neededN"
+    },
+    {
+      "from": "rescueN.value",
+      "to": "rescueGate.cond"
+    },
+    {
+      "from": "dismissGate.changed",
+      "to": "rescueGate.trigger"
+    },
+    {
+      "from": "K6.out",
+      "to": "rc.index"
+    },
+    {
+      "from": "rc.value",
+      "to": "rcv_row.value"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_grade.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_story.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_appraise.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_cost.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_hidden.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_policeFull.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_fixed.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_correct.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_goldenCard.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_sub.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_obtainable.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_required.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_onBoard.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_nameKey.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_descKey.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_golden.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_reason1.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_reason2.row"
+    },
+    {
+      "from": "rcv_row.row",
+      "to": "rcv_reason3.row"
+    },
+    {
+      "from": "rc.value",
+      "to": "rcv_apprC.value"
+    },
+    {
+      "from": "rcv_apprC.has",
+      "to": "rcv_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "rcv_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "rcv_apprHas.b"
+    },
+    {
+      "from": "rcv_hidden.value",
+      "to": "rcv_full.rcv_hidden"
+    },
+    {
+      "from": "rcv_apprHas.out",
+      "to": "rcv_full.rcv_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "rcv_full.policeOn"
+    },
+    {
+      "from": "rcv_policeFull.value",
+      "to": "rcv_full.rcv_policeFull"
+    },
+    {
+      "from": "K10.out",
+      "to": "pop2_kind.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_kind.trigger"
+    },
+    {
+      "from": "rcv_nameKey.value",
+      "to": "pop2_title.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_title.trigger"
+    },
+    {
+      "from": "rcv_descKey.value",
+      "to": "pop2_body.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_body.trigger"
+    },
+    {
+      "from": "rcv_grade.value",
+      "to": "pop2_grade.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_grade.trigger"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "popSrc.e2"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "popSeq.increment"
+    },
+    {
+      "from": "K11.out",
+      "to": "hint3_key.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "hint3_key.trigger"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "hintSrc.e3"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "K5.out",
+      "to": "r_popS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "r_popS.value"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "r_popS.trigger"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "rescueEach.trigger"
+    },
+    {
+      "from": "rescueEach.item",
+      "to": "r_held.value"
+    },
+    {
+      "from": "rescueEach.each",
+      "to": "r_held.trigger"
+    },
+    {
+      "from": "rescueEach.item",
+      "to": "r_toFind.value"
+    },
+    {
+      "from": "rescueEach.each",
+      "to": "r_toFind.trigger"
+    },
+    {
+      "from": "rescueEach.item",
+      "to": "r_newCards.value"
+    },
+    {
+      "from": "rescueEach.each",
+      "to": "r_newCards.trigger"
+    },
+    {
+      "from": "rescueEach.each",
+      "to": "bookNew.increment"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "r_clear.trigger"
+    },
+    {
+      "from": "outOfTime.value",
+      "to": "timeoutN.outOfTime"
+    },
+    {
+      "from": "neededN.count",
+      "to": "timeoutN.neededN"
+    },
+    {
+      "from": "timeoutN.value",
+      "to": "timeoutEnd.cond"
+    },
+    {
+      "from": "dismissGate.changed",
+      "to": "timeoutEnd.trigger"
+    },
+    {
+      "from": "timeoutEnd.pass",
+      "to": "finish.in"
+    },
+    {
+      "from": "inputOk.value",
+      "to": "endOkN.inputOk"
+    },
+    {
+      "from": "canEndN.value",
+      "to": "endOkN.canEndN"
+    },
+    {
+      "from": "isInv.out",
+      "to": "endInv.guard"
+    },
+    {
+      "from": "ui#investigate.end",
+      "to": "endInv.go"
+    },
+    {
+      "from": "endOkN.value",
+      "to": "endGate.cond"
+    },
+    {
+      "from": "endInv.changed",
+      "to": "endGate.trigger"
+    },
+    {
+      "from": "endGate.pass",
+      "to": "finish.in"
+    },
+    {
+      "from": "finish.out",
+      "to": "missEach.trigger"
+    },
+    {
+      "from": "missEach.item",
+      "to": "mi_row.value"
+    },
+    {
+      "from": "mi_row.row",
+      "to": "mi_obt.row"
+    },
+    {
+      "from": "mi_obt.value",
+      "to": "mi_n.mi_obt"
+    },
+    {
+      "from": "missToHand.value",
+      "to": "mi_n.missToHand"
+    },
+    {
+      "from": "mi_n.value",
+      "to": "mi_g.cond"
+    },
+    {
+      "from": "missEach.each",
+      "to": "mi_g.trigger"
+    },
+    {
+      "from": "missEach.item",
+      "to": "mi_add.value"
+    },
+    {
+      "from": "mi_g.pass",
+      "to": "mi_add.trigger"
+    },
+    {
+      "from": "finish.out",
+      "to": "finishDone.in"
+    },
+    {
+      "from": "finishDone.out",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "isInv.out",
+      "to": "askInv.guard"
+    },
+    {
+      "from": "ui#investigate.ask_hint",
+      "to": "askInv.go"
+    },
+    {
+      "from": "inputOk.value",
+      "to": "askGate.cond"
+    },
+    {
+      "from": "askInv.changed",
+      "to": "askGate.trigger"
+    },
+    {
+      "from": "world.chapter",
+      "to": "askIdx.ch"
+    },
+    {
+      "from": "toFindN.count",
+      "to": "askIdx.toFindN"
+    },
+    {
+      "from": "askIdx.value",
+      "to": "askKey.index"
+    },
+    {
+      "from": "askKey.out",
+      "to": "hint4_key.in"
+    },
+    {
+      "from": "askGate.pass",
+      "to": "hint4_key.trigger"
+    },
+    {
+      "from": "askGate.pass",
+      "to": "hintSrc.e4"
+    },
+    {
+      "from": "askGate.pass",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "world.bookOpen",
+      "to": "bookState.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "bookState.b"
+    },
+    {
+      "from": "bookState.true",
+      "to": "bookNew.reset"
+    },
+    {
+      "from": "bookState.true",
+      "to": "bookTimer.start"
+    },
+    {
+      "from": "bookState.false",
+      "to": "clrNew.trigger"
+    },
+    {
+      "from": "ui#evbook.select_tab",
+      "to": "tabPick.in"
+    },
+    {
+      "from": "ui#evbook.select_tab.emitted",
+      "to": "tabPick.trigger"
+    },
+    {
+      "from": "tabPick.out",
+      "to": "tab.set"
+    },
+    {
+      "from": "ui#evbook.select_tab.emitted",
+      "to": "bookTimer.start"
+    },
+    {
+      "from": "langChanged.out",
+      "to": "bookTimer.start"
+    },
+    {
+      "from": "ui#evbook.select",
+      "to": "bsel.in"
+    },
+    {
+      "from": "ui#evbook.select.emitted",
+      "to": "bsel.trigger"
+    },
+    {
+      "from": "bsel.out",
+      "to": "bs_row.value"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_grade.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_story.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_appraise.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_cost.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_hidden.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_policeFull.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_fixed.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_correct.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_goldenCard.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_sub.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_obtainable.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_required.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_onBoard.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_nameKey.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_descKey.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_golden.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_reason1.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_reason2.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_reason3.row"
+    },
+    {
+      "from": "bsel.out",
+      "to": "bs_apprC.value"
+    },
+    {
+      "from": "bs_apprC.has",
+      "to": "bs_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bs_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bs_apprHas.b"
+    },
+    {
+      "from": "bs_hidden.value",
+      "to": "bs_full.bs_hidden"
+    },
+    {
+      "from": "bs_apprHas.out",
+      "to": "bs_full.bs_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "bs_full.policeOn"
+    },
+    {
+      "from": "bs_policeFull.value",
+      "to": "bs_full.bs_policeFull"
+    },
+    {
+      "from": "bsel.out",
+      "to": "ui#evbook.sel_id"
+    },
+    {
+      "from": "bs_nameKey.value",
+      "to": "bs_name.key"
+    },
+    {
+      "from": "bs_name.text",
+      "to": "ui#evbook.sel_name"
+    },
+    {
+      "from": "bs_descKey.value",
+      "to": "bs_desc.key"
+    },
+    {
+      "from": "bs_desc.text",
+      "to": "ui#evbook.sel_desc"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_t0.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_hC0.row"
+    },
+    {
+      "from": "bs_t0.value",
+      "to": "bs_hC0.value"
+    },
+    {
+      "from": "bs_hC0.has",
+      "to": "bs_h0.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bs_h0.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bs_h0.b"
+    },
+    {
+      "from": "bs_t0.value",
+      "to": "bs_tr0.value"
+    },
+    {
+      "from": "bs_tr0.row",
+      "to": "bs_tk0.row"
+    },
+    {
+      "from": "bs_h0.out",
+      "to": "bs_rvN0.bs_h0"
+    },
+    {
+      "from": "bs_full.value",
+      "to": "bs_rvN0.bs_full"
+    },
+    {
+      "from": "bs_rvN0.truth",
+      "to": "bs_key0.cond"
+    },
+    {
+      "from": "bs_tk0.value",
+      "to": "bs_key0.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "bs_key0.b"
+    },
+    {
+      "from": "bs_t0.value",
+      "to": "bs_e0.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_e0.b"
+    },
+    {
+      "from": "bs_e0.out",
+      "to": "bs_kk0.cond"
+    },
+    {
+      "from": "bs_key0.out",
+      "to": "bs_kk0.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_kk0.b"
+    },
+    {
+      "from": "bs_kk0.out",
+      "to": "bs_tx0.key"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_t1.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_hC1.row"
+    },
+    {
+      "from": "bs_t1.value",
+      "to": "bs_hC1.value"
+    },
+    {
+      "from": "bs_hC1.has",
+      "to": "bs_h1.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bs_h1.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bs_h1.b"
+    },
+    {
+      "from": "bs_t1.value",
+      "to": "bs_tr1.value"
+    },
+    {
+      "from": "bs_tr1.row",
+      "to": "bs_tk1.row"
+    },
+    {
+      "from": "bs_h1.out",
+      "to": "bs_rvN1.bs_h1"
+    },
+    {
+      "from": "bs_full.value",
+      "to": "bs_rvN1.bs_full"
+    },
+    {
+      "from": "bs_rvN1.truth",
+      "to": "bs_key1.cond"
+    },
+    {
+      "from": "bs_tk1.value",
+      "to": "bs_key1.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "bs_key1.b"
+    },
+    {
+      "from": "bs_t1.value",
+      "to": "bs_e1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_e1.b"
+    },
+    {
+      "from": "bs_e1.out",
+      "to": "bs_kk1.cond"
+    },
+    {
+      "from": "bs_key1.out",
+      "to": "bs_kk1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_kk1.b"
+    },
+    {
+      "from": "bs_kk1.out",
+      "to": "bs_tx1.key"
+    },
+    {
+      "from": "bs_tx1.text",
+      "to": "bs_sp1.a"
+    },
+    {
+      "from": "bs_e1.out",
+      "to": "bs_p1.cond"
+    },
+    {
+      "from": "bs_sp1.out",
+      "to": "bs_p1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_p1.b"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_t2.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_hC2.row"
+    },
+    {
+      "from": "bs_t2.value",
+      "to": "bs_hC2.value"
+    },
+    {
+      "from": "bs_hC2.has",
+      "to": "bs_h2.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bs_h2.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bs_h2.b"
+    },
+    {
+      "from": "bs_t2.value",
+      "to": "bs_tr2.value"
+    },
+    {
+      "from": "bs_tr2.row",
+      "to": "bs_tk2.row"
+    },
+    {
+      "from": "bs_h2.out",
+      "to": "bs_rvN2.bs_h2"
+    },
+    {
+      "from": "bs_full.value",
+      "to": "bs_rvN2.bs_full"
+    },
+    {
+      "from": "bs_rvN2.truth",
+      "to": "bs_key2.cond"
+    },
+    {
+      "from": "bs_tk2.value",
+      "to": "bs_key2.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "bs_key2.b"
+    },
+    {
+      "from": "bs_t2.value",
+      "to": "bs_e2.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_e2.b"
+    },
+    {
+      "from": "bs_e2.out",
+      "to": "bs_kk2.cond"
+    },
+    {
+      "from": "bs_key2.out",
+      "to": "bs_kk2.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_kk2.b"
+    },
+    {
+      "from": "bs_kk2.out",
+      "to": "bs_tx2.key"
+    },
+    {
+      "from": "bs_tx2.text",
+      "to": "bs_sp2.a"
+    },
+    {
+      "from": "bs_e2.out",
+      "to": "bs_p2.cond"
+    },
+    {
+      "from": "bs_sp2.out",
+      "to": "bs_p2.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_p2.b"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_t3.row"
+    },
+    {
+      "from": "bs_row.row",
+      "to": "bs_hC3.row"
+    },
+    {
+      "from": "bs_t3.value",
+      "to": "bs_hC3.value"
+    },
+    {
+      "from": "bs_hC3.has",
+      "to": "bs_h3.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bs_h3.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bs_h3.b"
+    },
+    {
+      "from": "bs_t3.value",
+      "to": "bs_tr3.value"
+    },
+    {
+      "from": "bs_tr3.row",
+      "to": "bs_tk3.row"
+    },
+    {
+      "from": "bs_h3.out",
+      "to": "bs_rvN3.bs_h3"
+    },
+    {
+      "from": "bs_full.value",
+      "to": "bs_rvN3.bs_full"
+    },
+    {
+      "from": "bs_rvN3.truth",
+      "to": "bs_key3.cond"
+    },
+    {
+      "from": "bs_tk3.value",
+      "to": "bs_key3.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "bs_key3.b"
+    },
+    {
+      "from": "bs_t3.value",
+      "to": "bs_e3.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_e3.b"
+    },
+    {
+      "from": "bs_e3.out",
+      "to": "bs_kk3.cond"
+    },
+    {
+      "from": "bs_key3.out",
+      "to": "bs_kk3.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_kk3.b"
+    },
+    {
+      "from": "bs_kk3.out",
+      "to": "bs_tx3.key"
+    },
+    {
+      "from": "bs_tx3.text",
+      "to": "bs_sp3.a"
+    },
+    {
+      "from": "bs_e3.out",
+      "to": "bs_p3.cond"
+    },
+    {
+      "from": "bs_sp3.out",
+      "to": "bs_p3.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "bs_p3.b"
+    },
+    {
+      "from": "bs_tx0.text",
+      "to": "bs_tags.a"
+    },
+    {
+      "from": "bs_p1.out",
+      "to": "bs_tags.b"
+    },
+    {
+      "from": "bs_p2.out",
+      "to": "bs_tags.c"
+    },
+    {
+      "from": "bs_p3.out",
+      "to": "bs_tags.d"
+    },
+    {
+      "from": "bs_tags.out",
+      "to": "ui#evbook.sel_tags"
+    },
+    {
+      "from": "bs_grade.value",
+      "to": "ui#evbook.sel_grade"
+    },
+    {
+      "from": "unlockedN.value",
+      "to": "bs_can.unlockedN"
+    },
+    {
+      "from": "bs_cost.value",
+      "to": "bs_can.bs_cost"
+    },
+    {
+      "from": "bs_full.value",
+      "to": "bs_can.bs_full"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "bs_can.apprLeft"
+    },
+    {
+      "from": "bs_can.truth",
+      "to": "ui#evbook.sel_can_appraise"
+    },
+    {
+      "from": "tab.value",
+      "to": "ui#evbook.tab"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "ui#evbook.appraise_left"
+    },
+    {
+      "from": "isInv.out",
+      "to": "bookAppr.guard"
+    },
+    {
+      "from": "ui#evbook.appraise",
+      "to": "bookAppr.go"
+    },
+    {
+      "from": "bsel.out",
+      "to": "ba_row.value"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_grade.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_story.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_appraise.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_cost.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_hidden.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_policeFull.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_fixed.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_correct.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_goldenCard.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_sub.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_obtainable.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_required.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_onBoard.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_nameKey.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_descKey.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_golden.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_reason1.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_reason2.row"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_reason3.row"
+    },
+    {
+      "from": "bsel.out",
+      "to": "ba_apprC.value"
+    },
+    {
+      "from": "ba_apprC.has",
+      "to": "ba_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "ba_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ba_apprHas.b"
+    },
+    {
+      "from": "ba_hidden.value",
+      "to": "ba_full.ba_hidden"
+    },
+    {
+      "from": "ba_apprHas.out",
+      "to": "ba_full.ba_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "ba_full.policeOn"
+    },
+    {
+      "from": "ba_policeFull.value",
+      "to": "ba_full.ba_policeFull"
+    },
+    {
+      "from": "bsel.out",
+      "to": "ba_hasC.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "ba_hasC.b"
+    },
+    {
+      "from": "ba_hasC.out",
+      "to": "ba_has.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "ba_has.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ba_has.b"
+    },
+    {
+      "from": "ba_has.out",
+      "to": "ba_idx.ba_has"
+    },
+    {
+      "from": "unlockedN.value",
+      "to": "ba_idx.unlockedN"
+    },
+    {
+      "from": "ba_cost.value",
+      "to": "ba_idx.ba_cost"
+    },
+    {
+      "from": "ba_full.value",
+      "to": "ba_idx.ba_full"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "ba_idx.apprLeft"
+    },
+    {
+      "from": "ba_appraise.value",
+      "to": "ba_idx.ba_appraise"
+    },
+    {
+      "from": "ba_idx.value",
+      "to": "ba_line.index"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "ba_newLeft.apprLeft"
+    },
+    {
+      "from": "ba_cost.value",
+      "to": "ba_newLeft.ba_cost"
+    },
+    {
+      "from": "ba_idx.value",
+      "to": "ba_doN.ba_idx"
+    },
+    {
+      "from": "ba_doN.value",
+      "to": "ba_do.cond"
+    },
+    {
+      "from": "bookAppr.changed",
+      "to": "ba_do.trigger"
+    },
+    {
+      "from": "bsel.out",
+      "to": "ba_add.value"
+    },
+    {
+      "from": "ba_do.pass",
+      "to": "ba_add.trigger"
+    },
+    {
+      "from": "K0.out",
+      "to": "ba_set.key"
+    },
+    {
+      "from": "ba_newLeft.value",
+      "to": "ba_set.value"
+    },
+    {
+      "from": "ba_do.pass",
+      "to": "ba_set.trigger"
+    },
+    {
+      "from": "ba_idx.value",
+      "to": "ba_said.cond"
+    },
+    {
+      "from": "bookAppr.changed",
+      "to": "ba_said.trigger"
+    },
+    {
+      "from": "ba_line.out",
+      "to": "hint5_key.in"
+    },
+    {
+      "from": "ba_said.pass",
+      "to": "hint5_key.trigger"
+    },
+    {
+      "from": "ba_said.pass",
+      "to": "hintSrc.e5"
+    },
+    {
+      "from": "ba_said.pass",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "ba_said.pass",
+      "to": "bookTimer.start"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "clrBook.trigger"
+    },
+    {
+      "from": "tab.value",
+      "to": "bi0TabN.tab"
+    },
+    {
+      "from": "bi0TabN.value",
+      "to": "bi0Tab.cond"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "bi0Tab.trigger"
+    },
+    {
+      "from": "bi0Tab.pass",
+      "to": "bi0Each.trigger"
+    },
+    {
+      "from": "bi0Each.item",
+      "to": "bi0_row.value"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_grade.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_story.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_appraise.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_cost.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_hidden.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_policeFull.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_fixed.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_correct.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_goldenCard.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_sub.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_obtainable.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_required.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_onBoard.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_nameKey.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_descKey.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_golden.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_reason1.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_reason2.row"
+    },
+    {
+      "from": "bi0_row.row",
+      "to": "bi0_reason3.row"
+    },
+    {
+      "from": "bi0Each.item",
+      "to": "bi0_apprC.value"
+    },
+    {
+      "from": "bi0_apprC.has",
+      "to": "bi0_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi0_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi0_apprHas.b"
+    },
+    {
+      "from": "bi0_hidden.value",
+      "to": "bi0_full.bi0_hidden"
+    },
+    {
+      "from": "bi0_apprHas.out",
+      "to": "bi0_full.bi0_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "bi0_full.policeOn"
+    },
+    {
+      "from": "bi0_policeFull.value",
+      "to": "bi0_full.bi0_policeFull"
+    },
+    {
+      "from": "bi0Each.item",
+      "to": "bi0_newC.value"
+    },
+    {
+      "from": "bi0_newC.has",
+      "to": "bi0_new.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi0_new.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi0_new.b"
+    },
+    {
+      "from": "bi0Each.item",
+      "to": "bi0_key.a"
+    },
+    {
+      "from": "bi0_full.value",
+      "to": "bi0_key.b"
+    },
+    {
+      "from": "bi0_new.out",
+      "to": "bi0_key.c"
+    },
+    {
+      "from": "bi0_story.value",
+      "to": "bi0_n.bi0_story"
+    },
+    {
+      "from": "bi0_n.value",
+      "to": "bi0_g.cond"
+    },
+    {
+      "from": "bi0Each.each",
+      "to": "bi0_g.trigger"
+    },
+    {
+      "from": "bi0_key.out",
+      "to": "bi0_add.value"
+    },
+    {
+      "from": "bi0_g.pass",
+      "to": "bi0_add.trigger"
+    },
+    {
+      "from": "tab.value",
+      "to": "bi1TabN.tab"
+    },
+    {
+      "from": "bi1TabN.value",
+      "to": "bi1Tab.cond"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "bi1Tab.trigger"
+    },
+    {
+      "from": "bi1Tab.pass",
+      "to": "bi1Each.trigger"
+    },
+    {
+      "from": "bi1Each.item",
+      "to": "bi1_row.value"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_grade.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_story.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_appraise.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_cost.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_hidden.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_policeFull.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_fixed.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_correct.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_goldenCard.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_sub.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_obtainable.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_required.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_onBoard.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_nameKey.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_descKey.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_golden.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_reason1.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_reason2.row"
+    },
+    {
+      "from": "bi1_row.row",
+      "to": "bi1_reason3.row"
+    },
+    {
+      "from": "bi1Each.item",
+      "to": "bi1_apprC.value"
+    },
+    {
+      "from": "bi1_apprC.has",
+      "to": "bi1_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi1_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi1_apprHas.b"
+    },
+    {
+      "from": "bi1_hidden.value",
+      "to": "bi1_full.bi1_hidden"
+    },
+    {
+      "from": "bi1_apprHas.out",
+      "to": "bi1_full.bi1_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "bi1_full.policeOn"
+    },
+    {
+      "from": "bi1_policeFull.value",
+      "to": "bi1_full.bi1_policeFull"
+    },
+    {
+      "from": "bi1Each.item",
+      "to": "bi1_newC.value"
+    },
+    {
+      "from": "bi1_newC.has",
+      "to": "bi1_new.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi1_new.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi1_new.b"
+    },
+    {
+      "from": "bi1Each.item",
+      "to": "bi1_key.a"
+    },
+    {
+      "from": "bi1_full.value",
+      "to": "bi1_key.b"
+    },
+    {
+      "from": "bi1_new.out",
+      "to": "bi1_key.c"
+    },
+    {
+      "from": "bi1_n.value",
+      "to": "bi1_g.cond"
+    },
+    {
+      "from": "bi1Each.each",
+      "to": "bi1_g.trigger"
+    },
+    {
+      "from": "bi1_key.out",
+      "to": "bi1_add.value"
+    },
+    {
+      "from": "bi1_g.pass",
+      "to": "bi1_add.trigger"
+    },
+    {
+      "from": "tab.value",
+      "to": "bi2TabN.tab"
+    },
+    {
+      "from": "bi2TabN.value",
+      "to": "bi2Tab.cond"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "bi2Tab.trigger"
+    },
+    {
+      "from": "bi2Tab.pass",
+      "to": "bi2Each.trigger"
+    },
+    {
+      "from": "bi2Each.item",
+      "to": "bi2_row.value"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_grade.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_story.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_appraise.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_cost.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_hidden.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_policeFull.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_fixed.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_correct.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_goldenCard.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_sub.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_obtainable.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_required.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_onBoard.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_nameKey.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_descKey.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_golden.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_reason1.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_reason2.row"
+    },
+    {
+      "from": "bi2_row.row",
+      "to": "bi2_reason3.row"
+    },
+    {
+      "from": "bi2Each.item",
+      "to": "bi2_apprC.value"
+    },
+    {
+      "from": "bi2_apprC.has",
+      "to": "bi2_apprHas.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi2_apprHas.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi2_apprHas.b"
+    },
+    {
+      "from": "bi2_hidden.value",
+      "to": "bi2_full.bi2_hidden"
+    },
+    {
+      "from": "bi2_apprHas.out",
+      "to": "bi2_full.bi2_apprHas"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "bi2_full.policeOn"
+    },
+    {
+      "from": "bi2_policeFull.value",
+      "to": "bi2_full.bi2_policeFull"
+    },
+    {
+      "from": "bi2Each.item",
+      "to": "bi2_newC.value"
+    },
+    {
+      "from": "bi2_newC.has",
+      "to": "bi2_new.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "bi2_new.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "bi2_new.b"
+    },
+    {
+      "from": "bi2Each.item",
+      "to": "bi2_key.a"
+    },
+    {
+      "from": "bi2_full.value",
+      "to": "bi2_key.b"
+    },
+    {
+      "from": "bi2_new.out",
+      "to": "bi2_key.c"
+    },
+    {
+      "from": "bi2_story.value",
+      "to": "bi2_n.bi2_story"
+    },
+    {
+      "from": "bi2_n.value",
+      "to": "bi2_g.cond"
+    },
+    {
+      "from": "bi2Each.each",
+      "to": "bi2_g.trigger"
+    },
+    {
+      "from": "bi2_key.out",
+      "to": "bi2_add.value"
+    },
+    {
+      "from": "bi2_g.pass",
+      "to": "bi2_add.trigger"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "cardsList.trigger"
+    },
+    {
+      "from": "bookTimer.tick",
+      "to": "notesList.trigger"
+    },
+    {
+      "from": "lim.truth",
+      "to": "ticksPort.cond"
+    },
+    {
+      "from": "ticks.value",
+      "to": "ticksPort.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ticksPort.b"
+    },
+    {
+      "from": "ticksPort.out",
+      "to": "ui#investigate.ticks"
+    },
+    {
+      "from": "lim.truth",
+      "to": "ticksMax.cond"
+    },
+    {
+      "from": "ticksInit.value",
+      "to": "ticksMax.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "ticksMax.b"
+    },
+    {
+      "from": "ticksMax.out",
+      "to": "ui#investigate.ticks_max"
+    },
+    {
+      "from": "unlockedN.value",
+      "to": "unlockedB.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "unlockedB.b"
+    },
+    {
+      "from": "unlockedB.out",
+      "to": "apprPort.cond"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "apprPort.a"
+    },
+    {
+      "from": "K14.out",
+      "to": "apprPort.b"
+    },
+    {
+      "from": "apprPort.out",
+      "to": "ui#investigate.appraise_left"
+    },
+    {
+      "from": "trustShownN.value",
+      "to": "trustShownB.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "trustShownB.b"
+    },
+    {
+      "from": "trustShownB.out",
+      "to": "trustPort.cond"
+    },
+    {
+      "from": "world.trust",
+      "to": "trustPort.a"
+    },
+    {
+      "from": "K14.out",
+      "to": "trustPort.b"
+    },
+    {
+      "from": "trustPort.out",
+      "to": "ui#investigate.trust"
+    },
+    {
+      "from": "bookNew.value",
+      "to": "ui#investigate.book_new"
+    },
+    {
+      "from": "canEndN.truth",
+      "to": "ui#investigate.can_end"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_key_is1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "hint_key_is1.b"
+    },
+    {
+      "from": "hint_key_is1.out",
+      "to": "hint_key_1.cond"
+    },
+    {
+      "from": "hint1_key.out",
+      "to": "hint_key_1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "hint_key_1.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_key_is2.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "hint_key_is2.b"
+    },
+    {
+      "from": "hint_key_is2.out",
+      "to": "hint_key_2.cond"
+    },
+    {
+      "from": "hint2_key.out",
+      "to": "hint_key_2.a"
+    },
+    {
+      "from": "hint_key_1.out",
+      "to": "hint_key_2.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_key_is3.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "hint_key_is3.b"
+    },
+    {
+      "from": "hint_key_is3.out",
+      "to": "hint_key_3.cond"
+    },
+    {
+      "from": "hint3_key.out",
+      "to": "hint_key_3.a"
+    },
+    {
+      "from": "hint_key_2.out",
+      "to": "hint_key_3.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_key_is4.a"
+    },
+    {
+      "from": "K16.out",
+      "to": "hint_key_is4.b"
+    },
+    {
+      "from": "hint_key_is4.out",
+      "to": "hint_key_4.cond"
+    },
+    {
+      "from": "hint4_key.out",
+      "to": "hint_key_4.a"
+    },
+    {
+      "from": "hint_key_3.out",
+      "to": "hint_key_4.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_key_is5.a"
+    },
+    {
+      "from": "K17.out",
+      "to": "hint_key_is5.b"
+    },
+    {
+      "from": "hint_key_is5.out",
+      "to": "hint_key_5.cond"
+    },
+    {
+      "from": "hint5_key.out",
+      "to": "hint_key_5.a"
+    },
+    {
+      "from": "hint_key_4.out",
+      "to": "hint_key_5.b"
+    },
+    {
+      "from": "hint_key_5.out",
+      "to": "hintText.key"
+    },
+    {
+      "from": "hintText.text",
+      "to": "ui#investigate.hint"
+    },
+    {
+      "from": "hintSeq.value",
+      "to": "ui#investigate.hint_seq"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_kind_is1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_kind_is1.b"
+    },
+    {
+      "from": "pop_kind_is1.out",
+      "to": "pop_kind_1.cond"
+    },
+    {
+      "from": "pop1_kind.out",
+      "to": "pop_kind_1.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "pop_kind_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_kind_is2.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "pop_kind_is2.b"
+    },
+    {
+      "from": "pop_kind_is2.out",
+      "to": "pop_kind_2.cond"
+    },
+    {
+      "from": "pop2_kind.out",
+      "to": "pop_kind_2.a"
+    },
+    {
+      "from": "pop_kind_1.out",
+      "to": "pop_kind_2.b"
+    },
+    {
+      "from": "popOpen.out",
+      "to": "popKind.cond"
+    },
+    {
+      "from": "pop_kind_2.out",
+      "to": "popKind.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "popKind.b"
+    },
+    {
+      "from": "popKind.out",
+      "to": "ui#investigate.popup_kind"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_title_is1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_title_is1.b"
+    },
+    {
+      "from": "pop_title_is1.out",
+      "to": "pop_title_1.cond"
+    },
+    {
+      "from": "pop1_title.out",
+      "to": "pop_title_1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "pop_title_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_title_is2.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "pop_title_is2.b"
+    },
+    {
+      "from": "pop_title_is2.out",
+      "to": "pop_title_2.cond"
+    },
+    {
+      "from": "pop2_title.out",
+      "to": "pop_title_2.a"
+    },
+    {
+      "from": "pop_title_1.out",
+      "to": "pop_title_2.b"
+    },
+    {
+      "from": "pop_title_2.out",
+      "to": "popTitle.key"
+    },
+    {
+      "from": "popTitle.text",
+      "to": "ui#investigate.popup_title"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_body_is1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_body_is1.b"
+    },
+    {
+      "from": "pop_body_is1.out",
+      "to": "pop_body_1.cond"
+    },
+    {
+      "from": "pop1_body.out",
+      "to": "pop_body_1.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "pop_body_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_body_is2.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "pop_body_is2.b"
+    },
+    {
+      "from": "pop_body_is2.out",
+      "to": "pop_body_2.cond"
+    },
+    {
+      "from": "pop2_body.out",
+      "to": "pop_body_2.a"
+    },
+    {
+      "from": "pop_body_1.out",
+      "to": "pop_body_2.b"
+    },
+    {
+      "from": "pop_body_2.out",
+      "to": "popBody.key"
+    },
+    {
+      "from": "popBody.text",
+      "to": "ui#investigate.popup_body"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_grade_is1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_grade_is1.b"
+    },
+    {
+      "from": "pop_grade_is1.out",
+      "to": "pop_grade_1.cond"
+    },
+    {
+      "from": "pop1_grade.out",
+      "to": "pop_grade_1.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "pop_grade_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_grade_is2.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "pop_grade_is2.b"
+    },
+    {
+      "from": "pop_grade_is2.out",
+      "to": "pop_grade_2.cond"
+    },
+    {
+      "from": "pop2_grade.out",
+      "to": "pop_grade_2.a"
+    },
+    {
+      "from": "pop_grade_1.out",
+      "to": "pop_grade_2.b"
+    },
+    {
+      "from": "pop_grade_2.out",
+      "to": "ui#investigate.popup_grade"
+    },
+    {
+      "from": "popSeq.value",
+      "to": "ui#investigate.popup_seq"
+    }
+  ]
+}

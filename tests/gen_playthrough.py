@@ -8,14 +8,15 @@
   Ch.2 opening paper is on screen.
 - tests/full_run.atrec: Ch.1 on the title, then every page and line of Ch.1, Ch.2 and Ch.3 up to the end card;
   a click on the end card (end_dismiss), Ch.3 from the title again and through it to the end card; Enter on the
-  end card, then a click on the title's Ch.2 entry (its opening paper).
+  end card, then a click on the title's Ch.3 entry again (the same value as before: the chapter list reacts to
+  every click, AT-040 `.emitted`), up to its opening paper.
 - tests/lang_toggle.atrec: press the title's language toggle three times (zh -> en -> zh -> en), choose Ch.1, turn
   both pages of the opening paper, so the first vn line is shown in English.
 
 The click count per step comes from the data tables (steps, script), so the recording follows the data:
 paper = 2 clicks (page 1 -> page 2 -> done), vn = one click per playable line (script.playable; the first line
-is shown when the step begins, the click after the last line ends the step), other kinds are stubs that need no
-input.
+is shown when the step begins, the click after the last line ends the step); investigate and board steps take the
+shortest route of tests/gen_case.py (MINIMAL); the other kinds are stubs that need no input.
 
 Usage (from the project root):
     uv run tests/gen_playthrough.py
@@ -93,12 +94,23 @@ class Recording:
         return ticks
 
 
+def case_step(r: "Recording", step_id: str) -> bool:
+    """Investigate / board steps: their inputs (tests/gen_case.py MINIMAL); True when the step was one."""
+    step = next(s for s in load("steps") if s["id"] == step_id)
+    if step["kind"] not in ("investigate", "board"):
+        return False
+    import gen_case   # imports this module
+    gen_case.minimal(r, step["kind"], step["chapter"])
+    return True
+
+
 def ch1_playthrough() -> int:
     r = Recording()
     r.at(HOLD[("TITLE", 0)], click("title", TITLE_CH[1]))
     for step_id, ui, clicks in plan(1):
         if ui is None:
-            r.t += 2   # stub: done one tick after it begins
+            if not case_step(r, step_id):
+                r.t += 2   # stub: done one tick after it begins
             continue
         for k in range(clicks):
             wait = (SETTLE if k == 0 else GAP) + HOLD.get((step_id, k), 0)
@@ -110,7 +122,8 @@ def play_chapters(r: Recording, chapters) -> None:
     for chapter in chapters:
         for step_id, ui, clicks in plan(chapter):
             if ui is None:
-                r.t += 2
+                if not case_step(r, step_id):
+                    r.t += 2
                 continue
             for k in range(clicks):
                 r.at(SETTLE if k == 0 else GAP, click(ui, PAPER_CLICK if ui == "paper" else VN_CLICK))
@@ -124,7 +137,7 @@ def full_run() -> int:
     r.at(SETTLE, click("title", TITLE_CH[3]))              # the chapter list works again
     play_chapters(r, (3,))
     r.at(90, [["title", "kd", KEY_ENTER, 0], ["title", "ku", KEY_ENTER, 0]])   # Enter on the end card
-    r.at(SETTLE, click("title", TITLE_CH[2]))
+    r.at(SETTLE, click("title", TITLE_CH[3]))
     return r.write("full_run", 60)
 
 
