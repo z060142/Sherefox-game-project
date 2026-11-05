@@ -41,22 +41,26 @@
       {
         "ui": "vn",
         "width": 1280,
-        "height": 720
+        "height": 720,
+        "visible": false
       },
       {
         "ui": "paper",
         "width": 1280,
-        "height": 720
+        "height": 720,
+        "visible": false
       },
       {
         "ui": "investigate",
         "width": 1280,
-        "height": 720
+        "height": 720,
+        "visible": false
       },
       {
         "ui": "board",
         "width": 1280,
-        "height": 720
+        "height": 720,
+        "visible": false
       },
       {
         "ui": "debate",
