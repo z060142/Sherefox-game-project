@@ -6634,5 +6634,41 @@
  "UI_PAPER_STAMP_FIX": {
   "zh-TW": "更正",
   "en": "Correction"
+ },
+ "UI_INV_KICKER": {
+  "zh-TW": "蒐證",
+  "en": "Evidence Search"
+ },
+ "UI_INV_APPR": {
+  "zh-TW": "鑑定",
+  "en": "Appraisals"
+ },
+ "UI_BOARD_OPPONENT": {
+  "zh-TW": "本案對手",
+  "en": "Opponent"
+ },
+ "UI_BOARD_CHAIN_NO": {
+  "zh-TW": "推理鏈",
+  "en": "Chain"
+ },
+ "UI_BOARD_CARDS": {
+  "zh-TW": "張",
+  "en": "cards"
+ },
+ "UI_BOARD_SOLID": {
+  "zh-TW": "實證",
+  "en": "Solid"
+ },
+ "UI_BOARD_SOPH": {
+  "zh-TW": "詭辯",
+  "en": "Sophistry"
+ },
+ "UI_BOARD_DMG": {
+  "zh-TW": "預估傷害",
+  "en": "Est. Dmg"
+ },
+ "UI_BOARD_LINK_INVALID": {
+  "zh-TW": "無效連結：沒有共同標籤",
+  "en": "Invalid link: no shared tag"
  }
 }

@@ -1077,6 +1077,7 @@ def main() -> int:
             write_table(DATA_OUT / f"{name}.json", rows)
         for lang in LANGS:
             write_strings(STRINGS_OUT / f"{lang}.csv", strings, lang)
+        sync_ui_strings(strings)
     for name, rows in tables.items():
         print(f"{'checked' if args.check else 'wrote'} data/{name}.json: {len(rows)} rows")
     print(f"{'checked' if args.check else 'wrote'} strings/zh-TW.csv, strings/en.csv: {len(strings)} keys")
@@ -1277,6 +1278,35 @@ def write_strings(path: Path, strings: dict, lang: str) -> None:
     for key in sorted(strings):
         w.writerow([key, strings[key][lang]])
     path.write_text(buf.getvalue(), encoding="utf-8", newline="\n")
+
+
+UI_STRINGS_OUT = ROOT / "ui" / "project" / "shared" / "strings"
+
+
+def sync_ui_strings(strings: dict) -> None:
+    """The UI project's string tables = the game's string tables (one source).
+
+    Keys that exist only in the UI project (added by a UI pass before the
+    localization package had them) are kept and reported, so nothing is lost.
+    """
+    if not UI_STRINGS_OUT.is_dir():
+        return
+    merged = {k: dict(v) for k, v in strings.items()}
+    ui_only: set[str] = set()
+    for lang in LANGS:
+        f = UI_STRINGS_OUT / f"{lang}.csv"
+        if not f.exists():
+            continue
+        rows = list(csv.reader(io.StringIO(f.read_text(encoding="utf-8-sig"))))
+        for row in rows[1:] if rows and rows[0][:2] == ["key", "text"] else rows:
+            if len(row) >= 2 and row[0] and row[0] not in strings:
+                merged.setdefault(row[0], {l: "" for l in LANGS})[lang] = row[1]
+                ui_only.add(row[0])
+    for lang in LANGS:
+        write_strings(UI_STRINGS_OUT / f"{lang}.csv", merged, lang)
+    if ui_only:
+        print("warning: UI-only string keys (add them to the localization):", ", ".join(sorted(ui_only)))
+    print(f"wrote ui/project/shared/strings: {len(merged)} keys")
 
 
 if __name__ == "__main__":

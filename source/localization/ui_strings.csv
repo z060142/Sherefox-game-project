@@ -729,3 +729,12 @@ UI_PAPER_PAGE1,Newspaper,頭版,Front Page,paper screen page label
 UI_PAPER_EXTRA,Newspaper,號外,Extra,banner on special editions
 UI_PAPER_STAMP_CLOSED,Newspaper,結案,Case Closed,rubber stamp on result paper (win)
 UI_PAPER_STAMP_FIX,Newspaper,更正,Correction,rubber stamp on result paper (loss / correction notice)
+UI_INV_KICKER,Investigation,蒐證,Evidence Search,kicker label on the investigation screen
+UI_INV_APPR,Investigation,鑑定,Appraisals,remaining appraisals counter label
+UI_BOARD_OPPONENT,Clue Board,本案對手,Opponent,board header: this case's opponent
+UI_BOARD_CHAIN_NO,Clue Board,推理鏈,Chain,"chain slot label, followed by its number"
+UI_BOARD_CARDS,Clue Board,張,cards,unit after a card count (n 張 / n cards)
+UI_BOARD_SOLID,Clue Board,實證,Solid,link-type label (solid link)
+UI_BOARD_SOPH,Clue Board,詭辯,Sophistry,link-type label (sophistry link)
+UI_BOARD_DMG,Clue Board,預估傷害,Est. Dmg,short label on a small plate
+UI_BOARD_LINK_INVALID,Clue Board,無效連結：沒有共同標籤,Invalid link: no shared tag,shown as the card bounces back; the bounce itself is animation

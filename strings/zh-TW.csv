@@ -1337,17 +1337,24 @@ UI_AREA_OPEN,開放
 UI_AREA_PERMIT,需許可
 UI_AREA_SEALED,封鎖
 UI_AUTO_ON,自動播放
+UI_BOARD_CARDS,張
 UI_BOARD_CHAIN,推理鏈 {n}：{cards} 張・實證 {solid}・詭辯 {soph}・預估傷害 {dmg}
 UI_BOARD_CHAIN_EMPTY,尚未組成推理鏈
+UI_BOARD_CHAIN_NO,推理鏈
 UI_BOARD_COND_EARLY,對手動搖時，出示 1 件強攻證物，或 2 張以上的實證連鎖
 UI_BOARD_COND_LATE,對手動搖時，出示 3～4 張以上的連鎖，其中要有黃金線索
 UI_BOARD_COND_MID,對手動搖時，出示 2～3 張無弱點連鎖；或命中失言後的主張
+UI_BOARD_DMG,預估傷害
 UI_BOARD_DRAWER,證物抽屜
+UI_BOARD_LINK_INVALID,無效連結：沒有共同標籤
 UI_BOARD_LINK_SOLID,實證連結
 UI_BOARD_LINK_SOPH,詭辯連結（留下弱點）
+UI_BOARD_OPPONENT,本案對手
 UI_BOARD_REASON,歸類理由：這件證物證明了……
 UI_BOARD_REASON_FIXED,理由已確定
 UI_BOARD_REASON_NONE,理由未定
+UI_BOARD_SOLID,實證
+UI_BOARD_SOPH,詭辯
 UI_BOARD_THRESHOLD,{stage}論破：{condition}
 UI_BOARD_TITLE,線索板
 UI_BOARD_WEAK,弱點：對手反擊時會優先攻擊這裡。
@@ -1448,8 +1455,10 @@ UI_GRADE_KEY,關鍵證物
 UI_GRADE_NORMAL,一般證物
 UI_GRADE_PLOT,劇情證物
 UI_GRADE_SUB,次級替代證物
+UI_INV_APPR,鑑定
 UI_INV_APPR_FREE,鑑定　不限
 UI_INV_APPR_LEFT,鑑定 {left}／{total}
+UI_INV_KICKER,蒐證
 UI_INV_NO_POLICE,無警方支援
 UI_INV_TICKS,刻度 {left}／{total}
 UI_INV_TICKS_FREE,刻度　不限
