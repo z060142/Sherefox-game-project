@@ -83,6 +83,8 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 | `side` | string | in | 側欄短訊（城市短訊）。 |
 | `ad` | string | in | 廣告欄。 |
 | `stamp` | number | in | 頁面印章：0 無、1 結案、2 更正（敗北）。 |
+| `picture` | string | in | 頭版鋼版畫 id（`ch01`～`ch04` → `paper_ch0x.jpg`；空字串＝無圖，內文改排五欄）。版面（設計 session 2026-11-06 核准）：頭條 → 鋼版畫橫跨 3 欄 ＋ 導言 2 欄 → 「側欄・上一案結果」條。 |
+| `result_head`、`result_sub` | string | in | 「側欄・上一案結果」條的標題與副標（NEWS_xx_WIN／NOTO／LOSE）；空字串隱藏該條（Ch.1）。 |
 | `next` | event | out | 翻頁／看完（左鍵、Enter、→）。 |
 | `prev` | event | out | 回上一頁（←）。 |
 
