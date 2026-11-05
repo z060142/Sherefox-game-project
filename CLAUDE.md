@@ -13,5 +13,10 @@
 - Determinism: no wall clock, no unseeded randomness, no iteration order that depends on hash maps.
 - Commit prefixes: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`.
 
+## Running
+- XTAtrium SDK (self-contained, built from the framework repo with `tools/install-sdk.ps1 -Out E:\coding4\xtatrium-sdk`; rebuild after framework bumps): `E:\coding4\xtatrium-sdk\xtatrium.exe pack|run|play|publish --game E:\coding4\Sherefox`.
+- From the framework dev repo instead: `dotnet run --project E:\coding4\XTArtrium\src\XTAtrium.Headless -c Release -- <command> --game E:\coding4\Sherefox`.
+- Data: `uv run tools/build_data.py`; flows: `uv run tools/gen_flows.py`, `uv run tools/gen_debate.py`; checks: `uv run tests/check_playthrough.py`, `tests/check_debate.py`, `tests/check_policy.py`.
+
 ## Layout
 - `docs/design/` design snapshots and notes; `data/` game data tables (generated or authored JSON); `strings/` localization; `flows/` orchestration graphs; `ui/` boards and UI project; `tools/` build/extraction scripts (Python, uv); `ref/` executable reference model of the rules (Python) used as golden traces.
