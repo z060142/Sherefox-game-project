@@ -18,12 +18,12 @@
 
 | 來源 | 內容 |
 |---|---|
-| `source/localization/` | 在地化包（2026-11-06 第三批，含 Ch.4 開場報紙）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
+| `source/localization/` | 在地化包（2026-11-06 第四批：1659 個鍵，含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、4 個 `UI_PAPER_*`）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
 | `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
 | `source/tags/tags_ch01-03.csv` | 每張證物卡與每個節點的「類別：值」標籤（§0.4），抄自 10-cases 各章「標籤值」表 |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
 | `docs/design/02-numbers.md` | §一（前期欄，解析）、§四（類型權重，解析）、§五（各案主導權／節點上限／主張傷害，解析；說明文字中的「Ch.n 鑑定 k 次」覆寫 01-systems §1.3 的鑑定次數） |
-| `docs/design/10-cases-ch01-04.md` | 各章「場景與登場人物」「證物表」「對手行為表」（解析）；其餘條目以常數寫在腳本內並註明出處 |
+| `docs/design/10-cases-ch01-04.md` | 各章「場景與登場人物」「證物表」「對手行為表」「調查點」（解析；調查點表是 `hotspots` 的唯一來源，§5）；其餘條目以常數寫在腳本內並註明出處 |
 | `docs/rulings.md` | 設計裁決 B15、B16、B20、A4、C1～C4，以常數寫在腳本內（以裁決編號註記） |
 
 來源優先序（不一致時）：數值總表 ＞ 系統規格 ＞ 各章設計 ＞ 完整劇本 ＞ 設計總覽；裁決紀錄優先於尚未同步的快照。
@@ -66,9 +66,9 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 ### 0.5 驗證（建置時執行）
 
-錯誤（建置失敗）：標籤檔標頭不符、標籤缺 value 或 slug、同一 slug 對應兩個值、`hidden` 不是 medical／mech／no 或與證物的鑑定類型不符、非證物標籤被隱藏、`police=yes` 但標籤沒隱藏、`policeTags` 不是 `hiddenTags` 的子集、沒有鑑定類型的證物有隱藏標籤、節點或證物沒有標籤；表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點取得、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
+錯誤（建置失敗）：標籤檔標頭不符、標籤缺 value 或 slug、同一 slug 對應兩個值、`hidden` 不是 medical／mech／no 或與證物的鑑定類型不符、非證物標籤被隱藏、`police=yes` 但標籤沒隱藏、`policeTags` 不是 `hiddenTags` 的子集、沒有鑑定類型的證物有隱藏標籤、節點或證物沒有標籤；表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；調查點（§5）的 id 格式錯誤、區域沒有 slug（`ZONE_SLUGS`）、一個點產出超過 2 張卡、`HOTSPOT_*` 常數與設計表的文字（「論戰後」「只在缺少 G-01 時出現」「事件中已取得」）不一致、`_NAME` 鍵缺少、檢視點沒有 `_NOTE`、產出證物的點有 `_NOTE`、設計表有／沒有提示但 `_HINT` 鍵沒有／有、各章列數與表頭句「共 n 個調查點，m 個產出證物、k 個只寫進案件筆記」不符（條件點不計入 n）、同一張證物由兩個點產出、佔位矩形超出 1280×720 或同一場景內重疊、`phase` 不在 `investigate`／`postDebate`、`requires` 格式錯誤；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點或事件取得（`obtain` 必須是 `hotspot` 或 `event`）、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
 
-警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物）；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；在地化與 10-cases 證物表的等級／鑑定／類別不同；證物的非擦邊標籤類別與 10-cases 證物表的類別不同（擦邊值可以落在類別欄以外；全為擦邊的 S-01 比對全部標籤）；`TAG_` 顯示鍵不在在地化包（en 暫用 zh-TW）；對手小動作的在地化 zh 與 10-cases 對手行為表不同。
+警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物；調查點數不含條件點）；調查點名稱／案件筆記／提示的 zh-TW 與設計表文字不同；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；在地化與 10-cases 證物表的等級／鑑定／類別不同；證物的非擦邊標籤類別與 10-cases 證物表的類別不同（擦邊值可以落在類別欄以外；全為擦邊的 S-01 比對全部標籤）；`TAG_` 顯示鍵不在在地化包（en 暫用 zh-TW）；對手小動作的在地化 zh 與 10-cases 對手行為表不同。
 
 ## 1. `chapters`：章節（每章一列，依章號）
 
@@ -192,65 +192,63 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | scandal | bool | 醜聞旗標＝帶醜聞類標籤 | 01-systems §2.8 |
 | motive | bool | 動機 | 設計未指定任何一張 → 全部 false |
 | offChain | bool | 鏈外事實 | 01-systems §2.8（黃金線索都帶）；裁決 C2 |
-| required | bool | 必需證物 | 裁決 D2：Ch.1 E01_03；Ch.2 E02_02、E02_06；Ch.3 E03_02、E03_07；其餘 false（建置常數 `REQUIRED`） |
+| required | bool | 必需證物 | 裁決 D2：Ch.1 E01_03；Ch.2 E02_02、E02_06；Ch.3 E03_02、E03_07；其餘 false（建置常數 `REQUIRED`）。E03_02 在事件中已取得（`obtain=event`），所以自動滿足 |
 | obtainable | bool | 對手可取得（漏撿時進對手手牌） | 裁決 D3：一般與關鍵可取得；劇情、黃金線索（G-*）、替代證物（S-*）不可；再套用 D2：必需證物一律不可取得。Ch.1 另由 `chapters.missToHand=false` 關掉 |
 | refutes | string | 這張卡能破解的節點，多值 | `nodes.refutedBy` 反查 |
 | golden | string | 推理正確時產出的黃金線索 id | 10-cases Ch.2 結算（E02_01 → G-01） |
-| obtain | string | 取得方式：`hotspot`／`afterDebate`／`golden` | E02_08：劇本「（論戰後取得）」；G-01：E02_01 理由正確 |
-| hotspot | string | 產出它的調查點 id | `hotspots.yields` 反查 |
+| obtain | string | 取得方式：`hotspot`（蒐證時由調查點取得）／`event`（事件中已取得，調查點只供重看與鑑定：E03_02、E03_05）／`afterDebate`（論戰後的調查點 `phase=postDebate`：E02_08）／`golden` | 由產出它的調查點的 `phase`、`revisit` 推導；G-01：E02_01 理由正確 |
+| hotspot | string | 產出它的調查點 id（`HS_CH0n_nn`；`golden` 為空白） | `hotspots.yields` 反查 |
 | lines | string | 調查時播放的劇本行（證物描述＋反應，不含鑑定行），多值 | 劇本蒐證場景，依在地化備註 `evidence Exx_nn` 分組 |
 
 理由顯示順序（固定、可重現）：令 `h` 為 id 的 UTF-8 位元組做 SHA-256 後的第一個位元組，`correct = h mod 3`；`REASON_A`（在地化包中 A 恆為正確）放在 `correct` 位置，其餘兩格依序放 `REASON_B`、`REASON_C`。劇情證物也照此計算（雖然不上線索板）。
 
-## 5. `hotspots`：調查點（依章、場景出現順序、場景內順序）
+## 5. `hotspots`：調查點（依章、設計表順序；條件點 `HS_CH03_23` 在 Ch.3 最後）
+
+來源是設計文件各章分頁的「調查點」表（10-cases，每章一張，欄位：ID、調查點、區域、證物、案件筆記、提示），逐列轉成一列；沒有再由管線自行對應或補點。數量：Ch.1 10（證物點 7、檢視點 3）、Ch.2 12（8、4；含論戰後的 `HS_CH02_08`）、Ch.3 22（9、13；另有條件點 `HS_CH03_23`，不計入 22），與 01-systems §1.3 一致。
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
-| id | string | `H0n_nn`（章內流水號） |
+| id | string | 設計表的 ID，`HS_CH0n_nn`；也是字串鍵的前綴 |
 | chapter | number | 章號 |
-| scene | string | 場景 slug（見 §5.1） |
-| area | number | 區域索引；設計每個場景只列一個區域，全部 0 |
-| type | string | `inspect`（檢視）／`evidence`（證物）／`testimony`（證詞）／`mechanism`（機關）／`locked`（鎖定區域），01-systems §1.2；目前沒有機關與鎖定 |
-| yields | string | 產出的證物 id，多值（最多 2，§1.2） |
-| lines | string | 首次調查播放的劇本行，多值（＝所產出證物的 `evidence.lines` 依序串接）；檢視點目前空白 |
-| requires | string | 出現條件；`missing:G-01`＝沒有 G-01 時才出現（01-systems §1.9）；空白＝永遠出現 |
-| x, y, w, h | number | **佔位**版面矩形，1280×720 場景座標：場景內第 i 個點 `x=100+(i mod 4)×280`、`y=140+⌊i/4⌋×200`、`w=160`、`h=120` |
+| scene | string | 場景 slug：`kitchen`（Ch.1）、`clock_shop`（Ch.2）、`boiler_room`／`deck`／`dock`（Ch.3，由區域欄決定）。對應 `script.bg`：`kitchen_morning`、`clockshop`、`boiler_room`、`barge_deck`、`dock_fog` |
+| area | number | 區域索引；每個場景一個區域，全部 0（裁決 D10；見待確認 Q24） |
+| zone | string | 設計表「區域」欄的 slug（`ZONE_SLUGS`）：Ch.1 `kitchen`／`living_room`；Ch.2 `counter`／`shop_floor`／`outside`／`back_room`／`corner`／`behind_counter`；Ch.3 同場景 slug。是調查點在畫面中的位置分組，無字串鍵 |
+| type | string | `inspect`（沒有證物）／`evidence`（產出證物）／`testimony`（產出的卡是證詞：卡名含「證詞」，目前只有 `HS_CH02_04` 報童小湯米）；01-systems §1.2。目前沒有 `mechanism`、`locked`（裁決 D9） |
+| phase | string | 何時可調查：`investigate`（蒐證步驟，預設）／`postDebate`（主論戰之後，目前只有 `HS_CH02_08`，名稱帶「（論戰後）」） |
+| yields | string | 產出的證物 id，多值（最多 2） |
+| lines | string | 首次調查播放的劇本行，多值（＝所產出證物的 `evidence.lines` 依序串接）；檢視點空白（檢視點播放 `noteKey` 文字） |
+| nameKey | string | 調查點名稱 `HS_CH0n_nn_NAME`（每個點都有） |
+| noteKey | string | 案件筆記句 `HS_CH0n_nn_NOTE`：只有檢視點（`type=inspect`）有；證物點空白（設計表寫「見證物描述」或一句導引，後者不是字串鍵，見下） |
+| hintKey | string | 可選提示句 `HS_CH0n_nn_HINT`（設計表「提示」欄不是「—」者，共 9 個）；空白＝沒有 |
+| requires | string | 出現條件：`missing:G-01`＝沒有 G-01 時才出現（01-systems §1.9，裁決 D11；只有 `HS_CH03_23`）；空白＝永遠出現 |
+| revisit | bool | 產出的卡在事件中已取得（設計表案件筆記「事件中已取得…」：`HS_CH03_03`＝E03_02、`HS_CH03_07`＝E03_05）；此點只重看與鑑定，不再給卡。這兩張證物的 `evidence.obtain=event` |
+| x, y, w, h | number | **佔位**版面矩形，1280×720 場景座標：同場景內第 i 個點（依設計表順序）`x=100+(i mod 4)×280`、`y=140+⌊i/4⌋×200`、`w=160`、`h=120`；同場景最多 12 點，矩形不重疊（建置驗證）。條件點與論戰後的點也占一格 |
 | placeholder | bool | 版面為佔位（全部 true） |
 
-### 5.1 調查點對應表（`build_data.py` 的 `POINT_YIELDS`／`EXTRA_HOTSPOTS`）
+設計表中不是字串鍵的導引句（`HS_CH03_01` 的「警督信任度 ≥ 3 時，驗屍報告已由警方提供，這裡只看得到現場」、`HS_CH03_03`、`HS_CH03_07` 的「事件中已取得…」）只在設計文件，不進資料表；`revisit` 與 E03_01 的信任度分支由流圖處理（待確認 Q13、Q14）。
 
-場景與調查點名稱取自 10-cases 各章「場景與登場人物」表；證物對應是本管線的判斷（全部列入待確認 Q6）。「額外」＝設計的調查點清單裡沒有、但證物需要一個來源而補的點。
+調查點行為備註：
+- 已調查過的點再點只重播情報，不再扣刻度（01-systems §1.2）；`phase=postDebate` 的點在蒐證步驟不出現。
+- Ch.1 刻度不限；Ch.2 刻度 10、Ch.3 刻度 16，各自對 12、22 個點（`requires` 空白者計入；論戰後的點也計入設計數）。
 
-| id | 場景（slug） | 調查點 | 類型 | 產出 |
+### 5.1 各章調查點一覽
+
+| id | 區域 | 調查點 | 類型 | 產出 |
 |---|---|---|---|---|
-| H01_01 | 事務所廚房兼客廳（kitchen） | 冰箱 | evidence | E01_02 |
-| H01_02 | 〃 | 空布丁盤 | evidence | E01_01 |
-| H01_03 | 〃 | 廚房地板 | evidence | E01_04 |
-| H01_04 | 〃 | 亞瑟房門 | evidence | E01_05 |
-| H01_05 | 〃 | 外套口袋 | evidence | E01_06 |
-| H01_06 | 〃 | 大門門縫 | evidence | E01_07 |
-| H01_07 | 〃 | 亞瑟袖口（額外） | evidence | E01_03 |
-| H02_01 | 報時鳥鐘錶店（clock_shop） | 報時鳥鐘 | evidence | E02_02 |
-| H02_02 | 〃 | 鐘擺護蓋 | evidence | E02_03 |
-| H02_03 | 〃 | 櫃台 | inspect | — |
-| H02_04 | 〃 | 寄修收據簿 | evidence | E02_05 |
-| H02_05 | 〃 | 零件櫃與目錄 | evidence | E02_06 |
-| H02_06 | 〃 | 角落咖啡座 | inspect | —（E02_08 論戰後取得） |
-| H02_07 | 〃 | 替換機芯（額外） | evidence | E02_01 |
-| H02_08 | 〃 | 報童小湯米（額外） | testimony | E02_04 |
-| H02_09 | 〃 | 費奇袖口（額外） | evidence | E02_07 |
-| H03_01 | 駁船鍋爐室（boiler_room） | 屍體 | evidence | E03_01、E03_07 |
-| H03_02 | 〃 | 從內側落下的門閂 | evidence | E03_02 |
-| H03_03 | 〃 | 洩壓閥 | evidence | E03_04 |
-| H03_04 | 〃 | 貨箱 | inspect | — |
-| H03_05 | 〃 | 次級替代證物（額外，requires missing:G-01） | evidence | S-01 |
-| H03_06 | 駁船甲板（deck） | 壓力閥門 | evidence | E03_03 |
-| H03_07 | 〃 | 航行日誌 | evidence | E03_08 |
-| H03_08 | 〃 | 纜繩 | inspect | — |
-| H03_09 | 碼頭（dock） | 煤灰腳印 | inspect | — |
-| H03_10 | 〃 | 警方臨時拘留處 | evidence | E03_05 |
-| H03_11 | 〃 | 市政公告欄 | evidence | E03_09 |
-| H03_12 | 〃 | 皮爾斯大衣下擺（額外） | evidence | E03_06 |
+| HS_CH01_01～07 | 廚房／客廳（`kitchen` 場景） | 冰箱、空布丁盤、廚房地板（廚房）；亞瑟房門、亞瑟的外套口袋、大門門縫、亞瑟（袖口）（客廳） | evidence | E01_02、E01_01、E01_04、E01_05、E01_06、E01_07、E01_03 |
+| HS_CH01_08～10 | 廚房、廚房、客廳 | 窗台、流理台上的茶杯、壁爐架上的相框 | inspect | — |
+| HS_CH02_01～07 | 櫃台、店面、店面、店門外、櫃台、後室門口、店面 | 櫃台上的懷錶、報時鳥鐘、鐘擺護蓋、報童小湯米（`testimony`）、寄修收據簿、零件櫃與目錄、費奇 | evidence／testimony | E02_01～E02_07 |
+| HS_CH02_08 | 角落 | 角落咖啡座（論戰後） | evidence，`phase=postDebate` | E02_08 |
+| HS_CH02_09～12 | 櫃台後、櫃台、店面、店面 | 工作台、櫃台旁的糖果罐、格雷沙姆先生、牆上的掛鐘群 | inspect | — |
+| HS_CH03_01～04 | 鍋爐室 | 遺體、死者的外套內袋、從內側落下的門閂（`revisit`）、洩壓閥 | evidence | E03_01、E03_07、E03_02、E03_04 |
+| HS_CH03_05～06 | 甲板 | 甲板上的壓力閥門、航行日誌 | evidence | E03_03、E03_08 |
+| HS_CH03_07～09 | 碼頭 | 警方臨時拘留處（老湯姆，`revisit`）、皮爾斯先生、市政公告欄 | evidence | E03_05、E03_06、E03_09 |
+| HS_CH03_10～13 | 鍋爐室 | 貨箱、鍋爐本體、牆上的水痕、死者的懷錶 | inspect | — |
+| HS_CH03_14～17 | 甲板 | 纜繩、欄杆邊的空酒瓶、舵輪、通往鍋爐室的小窗 | inspect | — |
+| HS_CH03_18～22 | 碼頭 | 碼頭上的煤灰腳印、煤棧、「錨與燈」酒館、巴斯克維爾警督、霧中的河面 | inspect | — |
+| HS_CH03_23 | 鍋爐室 | 鍋爐室角落的新調查點（`requires=missing:G-01`） | evidence | S-01 |
+
+Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外套內袋）兩個點；舊版的「兩張卡同一點」對應已廢除。
 
 ## 6. `nodes`：主張節點（主張依章、編號；之後是尾聲與熱身節點）
 
@@ -390,11 +388,11 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 ## 11. 字串表
 
-- `strings.json` 的全部 1655 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
+- `strings.json` 的全部 1659 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
 - 新增（共 12 個）：
   - `SPK_*`（12 個）：劇本說話者欄的名稱，鍵＝`SPK_`＋英文說話者名稱大寫、非英數字元換成 `_`（例 `SPK_INSPECTOR_BASKERVILLE`、`SPK_NARRATION_ARTHURS_NOTES`）。演出、證物描述、分支、備註、場景標題這些偽說話者沒有鍵。
 - 標籤值（`TAG_*`）、小動作（`GESTURE_*`）、章名（`CHAP_0n_TITLE`）、尾聲與熱身主張（`CLM_CH0n_T1`、`CLM_CH03_W1`）都由在地化包提供，不再由建置產生。
-- 合計 1667 鍵。
+- 合計 1671 鍵。
 
 ## 12. `game.json` 的 tables 區塊
 
@@ -425,21 +423,19 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 ## 待確認
 
-每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3、D2、D3、D5、D6 已套用；C4、D8、D11、D13 已依 10-cases 標籤值套用；D12、D13 的鍵已由在地化包第二批提供，原 Q1、Q2、Q18、Q19、Q20 刪除；原 Q3、Q4、Q5、Q11 因此刪除，其餘編號不變）。
+每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3、D2、D3、D5、D6 已套用；C4、D8、D11、D13 已依 10-cases 標籤值套用；D12、D13 的鍵已由在地化包第二批提供，原 Q1、Q2、Q18、Q19、Q20 刪除；原 Q3、Q4、Q5、Q11 因此刪除；調查點表（10-cases「調查點」，裁決 D1）定案後，原 Q6、Q7、Q8、Q15、Q16、Q17 刪除，新增 Q24～Q27；其餘編號不變）。
 
 | # | 問題 | 來源 | 目前的選擇 |
 |---|---|---|---|
-| Q6 | 調查點與證物的對應未定；設計清單裡沒有 E01_03、E02_01、E02_04、E02_07、E03_06 的調查點；E03_09 劇本寫「死者桌上」，對應到市政公告欄 | 10-cases 場景表；20-script 蒐證場景 | 見 §5.1；缺的補「額外」調查點；E03_07 依「死者懷中」併入屍體（同點最多 2 張） |
-| Q7 | 調查點數遠少於 §1.3（Ch.1 7／10、Ch.2 9／12、Ch.3 11／22）；刻度÷調查點 Ch.2 1.11、Ch.3 1.45（設計要 0.65～0.75）；純情報點 0%／22%／27%（設計約 40%）；檢視點沒有情報文字 | 01-systems §1.2、§1.3；10-cases | 不補設計沒有的點；檢視點 `lines` 空白 |
-| Q8 | 證物數與 §1.3 不符：Ch.1 關鍵 1（E01_03）vs 0；Ch.2 劇情 1（E02_08）vs 0；Ch.3 一般 7 vs 9 | 01-systems §1.3；10-cases 證物表 | 照 10-cases 與在地化的實際證物 |
 | Q9 | Ch.1 亞瑟的性格權重未給（只說「補強居多、不用猛攻與設陷」） | 10-cases Ch.1 對手行為表；02-numbers §四 | 庇護者型 25／5／50／20 去掉猛攻與設陷 → 25／0／50／0 |
 | Q10 | 「每漏 1 件 → 手牌 +1、主導權 +10」只出現在 10-cases 的暫定數值卡（Ch.2、Ch.3）；01-systems A-1 只對 Ch.4／Ch.5 寫明節點 +1 | 10-cases 數值卡；01-systems A-1；02-numbers §五 | `handPerMissed=1`、`hpPerMissed=10`（Ch.2、Ch.3） |
 | Q12 | 在地化包的 E03_01_TAGS（時間・人物）、E03_03_TAGS（地點・物理）比 10-cases 證物表（時間・人物・物理、地點・物理・人物）少一類 | 10-cases Ch.3 證物表；在地化 evidence | 機器標籤照 10-cases 標籤值；顯示字串 `tagsKey` 待在地化更新（建置警告） |
-| Q13 | 熱身手牌 E03_05、E03_02 依 A-13 要在熱身前持有（事件中自動取得），10-cases 又把門閂列為鍋爐室調查點；E03_02 需機械鑑定，劇本熱身中有「（鑑定後）」 | 01-systems A-13；10-cases Ch.3 熱身／場景表；20-script Ch.3 S04 | 熱身開始時把 `hand` 加入持有；調查點照列（已持有則不重複）。熱身中的鑑定是否扣次數未定 |
-| Q14 | 驗屍報告（E03_01）在信任度 ≥ 3 時由熱身獎勵自動給予（已鑑定），否則要在屍體調查點取得並醫療鑑定 | 10-cases Ch.3 熱身；01-systems §3.1 | 表中 E03_01 `obtain=hotspot`；信任度分支由流圖處理 |
-| Q15 | Ch.3 甲板權限：10-cases 說熱身後不論信任度都給甲板權限；§3.1 信任度 3 有「1 個區域需許可」 | 10-cases Ch.3 熱身；01-systems §3.1 | 不產生 `locked` 調查點；三個場景都開放 |
-| Q16 | 場景與區域：§1.3 說 Ch.3 有 3 個場景，§1.2 的例子把鍋爐室／甲板列為同一場景的區域 | 01-systems §1.2、§1.3；10-cases Ch.3 | 依 10-cases 的「場景」列：3 個場景、各 1 個區域（`area=0`） |
-| Q17 | 10-cases Ch.3 的替代路線是 E03_02→E03_03，不用拓印 S-01 | 01-systems §1.9；10-cases Ch.2 敗北、Ch.3 論破與標籤值 | S-01 標籤依裁決 D11（G-01 的值、全擦邊，只能接成詭辯）；調查點放在鍋爐室，`requires=missing:G-01` |
+| Q13 | 熱身手牌 E03_05、E03_02 依 A-13 在熱身前持有（事件中自動取得）；調查點表已把 `HS_CH03_03`、`HS_CH03_07` 寫成「事件中已取得，可重看」，建置標 `revisit=true`、`evidence.obtain=event`。未定：重看是否消耗刻度、鑑定 E03_02 在熱身中是否扣次數 | 01-systems A-13；10-cases Ch.3 調查點表、熱身；20-script Ch.3 S04 | 熱身開始時把 `hand` 加入持有；重看照一般調查點處理（首次花 1 刻度、之後免費）；熱身中的鑑定次數由流圖決定 |
+| Q14 | 驗屍報告（E03_01）在信任度 ≥ 3 時由警方直接給予（已鑑定），調查點表的案件筆記寫「這裡只看得到現場」；信任度 < 3 時要在 `HS_CH03_01` 取得並醫療鑑定。信任度 ≥ 3 時這個點是否還花刻度、播放什麼，設計沒寫 | 10-cases Ch.3 調查點表、熱身；01-systems §3.1 | 表中 E03_01 `obtain=hotspot`；信任度分支由流圖處理 |
 | Q21 | E02_01 的 `refutes` 同時含 N3 與尾聲 T1；E03_04（強攻）不在任何節點的破解清單，論破時靠 N2 的 E03_02 | 10-cases 主張節點表；裁決 C3 | 照列 |
 | Q22 | 動機旗標：Ch.1 對手是庇護者但沒有尾聲；Ch.1～3 都沒有指定動機證物 | 01-systems §2.8；10-cases | 全部 false |
 | Q23 | 進入蒐證場景時亞瑟的開場觀察台詞（§1.4「每章 1 句」）沒有指定是哪一句；Ch.1 亞瑟還不是助手 | 01-systems §1.4、§1.11 | 不寫入表，由流圖決定（ART_OPEN_GEN／ART_OPEN_BODY） |
+| Q24 | 設計表「區域」欄：Ch.1 在同一場景分「廚房／客廳」，Ch.2 在同一場景分 6 個區域（櫃台、店面、店門外、後室門口、角落、櫃台後），超過 01-systems §1.2「每場景最多 3 個區域」；Ch.3 區域＝三個場景 | 10-cases 調查點表；01-systems §1.2；裁決 D10 | `area` 全部 0（每場景一個畫面）；區域欄轉成 `zone` slug 當位置分組，UI 可忽略；區域沒有字串鍵（只在在地化備註 `area: 廚房 / Kitchen`），需要顯示時再請在地化補 |
+| Q25 | 論戰後的 `HS_CH02_08`（角落咖啡座）：蒐證步驟之後沒有第二個 investigate 步驟，設計沒寫它在哪個畫面、是否花刻度 | 10-cases Ch.2 調查點表；20-script Ch.2 S04「（論戰後取得）」 | `phase=postDebate`，`evidence.obtain=afterDebate`；步驟序列不加步驟，由流圖決定 |
+| Q26 | 調查點數與 §1.3 一致後仍有兩項比例偏離：Ch.2 刻度 10 ÷ 12 點 ＝ 0.83（設計 0.65～0.75；蒐證階段實際可點 11 個，0.91）；Ch.3 檢視點 13／22 ＝ 59%（01-systems §1.2 約 40%，裁決 D1 原寫 11 個檢視點） | 01-systems §1.2、§1.3；裁決 D1；10-cases 調查點表 | 照設計表；建置以警告列出，不改數字 |
+| Q27 | `HS_CH03_23_NAME` 的 zh-TW 文字是「鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）」，括號是設計備註而非玩家文字；`HS_CH02_08_NAME` 帶「（論戰後）」 | 在地化包；10-cases 調查點表 | 照鍵輸出；UI 若不想顯示括號內文字需請在地化提供乾淨名稱 |

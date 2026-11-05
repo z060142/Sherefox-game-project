@@ -99,30 +99,23 @@ SCENE_SLUGS = {
     "駁船鍋爐室": "boiler_room", "駁船甲板": "deck", "碼頭": "dock",
 }
 
-# Investigation point (10-cases) -> evidence it yields. [] = inspect point (no card).
-# Points not listed in 10-cases but needed for an evidence card are EXTRA (see EXTRA_HOTSPOTS).
-# Every entry is listed under 待確認 in docs/data-schema.md.
-POINT_YIELDS = {
-    1: {"冰箱": ["E01_02"], "空布丁盤": ["E01_01"], "廚房地板": ["E01_04"], "亞瑟房門": ["E01_05"],
-        "外套口袋": ["E01_06"], "大門門縫": ["E01_07"]},
-    2: {"報時鳥鐘": ["E02_02"], "鐘擺護蓋": ["E02_03"], "櫃台": [], "寄修收據簿": ["E02_05"],
-        "零件櫃與目錄": ["E02_06"], "角落咖啡座": []},
-    3: {"屍體": ["E03_01", "E03_07"], "從內側落下的門閂": ["E03_02"], "洩壓閥": ["E03_04"], "貨箱": [],
-        "壓力閥門": ["E03_03"], "航行日誌": ["E03_08"], "纜繩": [],
-        "煤灰腳印": [], "警方臨時拘留處": ["E03_05"], "市政公告欄": ["E03_09"]},
+# Hotspots come from the 「調查點」 table of each chapter in 10-cases (ids HS_CH0n_nn). The table gives the name,
+# zone (區域), yielded card(s), case-note line and hint; the identifiers below are the only hand-made part.
+# Zone label (區域) -> zone slug. Ch.3 zones are the three scenes themselves (rulings D9, D10).
+ZONE_SLUGS = {
+    "廚房": "kitchen", "客廳": "living_room",
+    "櫃台": "counter", "店面": "shop_floor", "店門外": "outside", "後室門口": "back_room",
+    "角落": "corner", "櫃台後": "behind_counter",
+    "鍋爐室": "boiler_room", "甲板": "deck", "碼頭": "dock",
 }
-# (chapter, scene slug, label for docs, yields, type, requires)
-EXTRA_HOTSPOTS = [
-    (1, "kitchen", "亞瑟袖口", ["E01_03"], "evidence", ""),
-    (2, "clock_shop", "替換機芯", ["E02_01"], "evidence", ""),
-    (2, "clock_shop", "報童小湯米", ["E02_04"], "testimony", ""),
-    (2, "clock_shop", "費奇袖口", ["E02_07"], "evidence", ""),
-    (3, "boiler_room", "次級替代證物（G-01 缺少時出現，01-systems 1.9）", ["S-01"], "evidence", "missing:G-01"),
-    (3, "dock", "皮爾斯大衣下擺", ["E03_06"], "evidence", ""),
-]
-# Evidence not obtained from a hotspot.
-OBTAIN_OVERRIDE = {"E02_08": "afterDebate"}  # script Ch.2 S04: 「（論戰後取得）」
-
+# Ch.3 zone label -> scene slug (Ch.1 and Ch.2 have a single scene, taken from the scene table).
+CH3_ZONE_SCENES = {"鍋爐室": "boiler_room", "甲板": "deck", "碼頭": "dock"}
+# Hotspot flags the design table states in words; the build cross-checks the words against these ids.
+HOTSPOT_POST_DEBATE = {"HS_CH02_08"}                   # name ends with （論戰後）
+HOTSPOT_REQUIRES = {"HS_CH03_23": "missing:G-01"}      # name says 只在缺少 G-01 時出現 (01-systems 1.9, ruling D11)
+HOTSPOT_REVISIT = {"HS_CH03_03", "HS_CH03_07"}         # note starts with （事件中已取得 (card picked up during the event)
+HOTSPOT_PHASES = ("investigate", "postDebate")
+SCREEN_W, SCREEN_H = 1280, 720
 # Ruling C1 / C2 (docs/rulings.md) and explicit 強攻 marks in 10-cases.
 STRONG = {"E01_03", "E02_01", "E03_04", "G-01"}
 # Ruling D2: required evidence per case. Required cards are never opponent-obtainable (ruling D3).
@@ -280,7 +273,19 @@ def parse_cases() -> dict:
         behaviour = {}
         for row in md_rows(md_section(body, r"^#### 對手行為表"))[1:]:
             behaviour[row[0]] = row[1]
-        out[c] = {"scenes": scenes, "evidence": evidence, "behaviour": behaviour}
+        spots_sec = md_section(body, r"^### 調查點")
+        spots = []
+        for row in md_rows(spots_sec)[1:]:
+            if len(row) != 6:
+                raise SystemExit(f"10-cases Ch.{c} 調查點: expected 6 columns, got {row!r}")
+            spots.append({"id": row[0], "name": row[1], "zone": row[2],
+                          "yields": [] if row[3] in ("", "—") else [e.strip() for e in row[3].split("、")],
+                          "note": row[4], "hint": "" if row[5] in ("", "—") else row[5]})
+        m = re.search(r"共 (\d+) 個調查點，(\d+) 個產出證物、(\d+) 個只寫進案件筆記", spots_sec)
+        if not m:
+            raise SystemExit(f"10-cases Ch.{c} 調查點: summary sentence not found")
+        out[c] = {"scenes": scenes, "evidence": evidence, "behaviour": behaviour, "hotspots": spots,
+                  "hotspotSummary": tuple(int(x) for x in m.groups())}
     return out
 
 
@@ -724,49 +729,87 @@ def main() -> int:
         for e in refs:
             refutes_of.setdefault(e, []).append(nid)
 
-    # ---- hotspots
+    # ---- hotspots (10-cases 「調查點」 tables are canonical; yielded cards are checked against the evidence)
     hotspots = []
     yielded: dict[str, str] = {}
-    hotspot_doc = []  # (id, label) for the schema doc
     for c in CHAPTERS:
         design_scenes = cases[c]["scenes"]
-        seen_points = set()
-        per_scene: dict[str, list] = {}
-        for scene_name, points in design_scenes:
-            slug = SCENE_SLUGS.get(scene_name)
-            if not slug:
-                err(f"10-cases Ch.{c}: scene {scene_name!r} has no slug")
+        scene_slugs = [SCENE_SLUGS.get(name) for name, _ in design_scenes]
+        if None in scene_slugs:
+            err(f"10-cases Ch.{c}: a scene has no slug in SCENE_SLUGS")
+            continue
+        per_scene_count: dict[str, int] = {}
+        for spot in cases[c]["hotspots"]:
+            hid = spot["id"]
+            if not re.fullmatch(rf"HS_CH{c:02d}_\d\d", hid):
+                err(f"10-cases Ch.{c} 調查點: bad id {hid!r}")
                 continue
-            for p in points:
-                if p not in POINT_YIELDS[c]:
-                    err(f"10-cases Ch.{c}: investigation point {p!r} has no mapping in POINT_YIELDS")
+            zone_label = spot["zone"]
+            zone = ZONE_SLUGS.get(zone_label)
+            if not zone:
+                err(f"{hid}: zone {zone_label!r} has no slug in ZONE_SLUGS")
+                continue
+            if len(scene_slugs) == 1:
+                scene = scene_slugs[0]
+            else:
+                scene = CH3_ZONE_SCENES.get(zone_label)
+                if scene not in scene_slugs:
+                    err(f"{hid}: zone {zone_label!r} is not one of the Ch.{c} scenes")
                     continue
-                seen_points.add(p)
-                ys = POINT_YIELDS[c][p]
-                typ = "evidence" if ys else "inspect"
-                per_scene.setdefault(slug, []).append((p, ys, typ, ""))
-        for p in POINT_YIELDS[c]:
-            if p not in seen_points:
-                err(f"POINT_YIELDS Ch.{c}: point {p!r} not in the 10-cases scene table")
-        for ec, slug, label, ys, typ, req in EXTRA_HOTSPOTS:
-            if ec == c:
-                per_scene.setdefault(slug, []).append((label + "（額外）", ys, typ, req))
-        n = 0
-        for scene_name, _ in design_scenes:
-            slug = SCENE_SLUGS.get(scene_name)
-            for i, (label, ys, typ, req) in enumerate(per_scene.get(slug, [])):
-                n += 1
-                hid = f"H{c:02d}_{n:02d}"
-                lines = [ln for e in ys for ln in sinfo["evidence_lines"].get(e, [])]
-                for e in ys:
-                    if e in yielded:
-                        err(f"hotspots: {e} yielded by both {yielded[e]} and {hid}")
-                    yielded[e] = hid
-                hotspots.append({"id": hid, "chapter": c, "scene": slug, "area": 0, "type": typ,
-                                 "yields": ",".join(ys), "lines": ",".join(lines), "requires": req,
-                                 "x": 100 + (i % 4) * 280, "y": 140 + (i // 4) * 200, "w": 160, "h": 120,
-                                 "placeholder": True})
-                hotspot_doc.append((hid, scene_name, label))
+            ys = spot["yields"]
+            if len(ys) > 2:
+                err(f"{hid}: yields more than 2 cards (01-systems 1.2)")
+            typ = "inspect" if not ys else "evidence"
+            if any("證詞" in ev_loc.get(f"{e}_NAME", {}).get("zh-TW", "") for e in ys):
+                typ = "testimony"  # the card is a witness statement (01-systems 1.2: 證詞)
+            phase = "postDebate" if hid in HOTSPOT_POST_DEBATE else "investigate"
+            requires = HOTSPOT_REQUIRES.get(hid, "")
+            revisit = hid in HOTSPOT_REVISIT
+            # The design states these flags in words; the constants above must agree with the words.
+            if ("論戰後" in spot["name"]) != (phase == "postDebate"):
+                err(f"{hid}: design name {spot['name']!r} and HOTSPOT_POST_DEBATE disagree")
+            if ("只在缺少 G-01 時出現" in spot["name"]) != bool(requires):
+                err(f"{hid}: design name {spot['name']!r} and HOTSPOT_REQUIRES disagree")
+            if spot["note"].startswith("（事件中已取得") != revisit:
+                err(f"{hid}: design note {spot['note']!r} and HOTSPOT_REVISIT disagree")
+            if revisit and not ys:
+                err(f"{hid}: a revisit hotspot must yield the card it revisits")
+            name_key, note_key, hint_key = f"{hid}_NAME", f"{hid}_NOTE", f"{hid}_HINT"
+            if name_key not in strings:
+                err(f"{hid}: string key {name_key} missing")
+            if not ys and note_key not in strings:
+                err(f"{hid}: inspect-only hotspot has no {note_key}")
+            if ys and note_key in strings:
+                err(f"{hid}: {note_key} exists but the hotspot yields a card")
+            if bool(spot["hint"]) != (hint_key in strings):
+                err(f"{hid}: design hint is {'present' if spot['hint'] else 'absent'} but {hint_key} "
+                    f"{'exists' if hint_key in strings else 'is missing'}")
+            for key, want in ((name_key, spot["name"]), (note_key, None if ys else spot["note"]),
+                              (hint_key, spot["hint"] or None)):
+                if want and key in strings and strings[key]["zh-TW"] != want:
+                    warn(f"{key}: zh-TW text differs from the 10-cases 調查點 table")
+            lines = [ln for e in ys for ln in sinfo["evidence_lines"].get(e, [])]
+            for e in ys:
+                if e in yielded:
+                    err(f"hotspots: {e} yielded by both {yielded[e]} and {hid}")
+                yielded[e] = hid
+            i = per_scene_count.get(scene, 0)
+            per_scene_count[scene] = i + 1
+            hotspots.append({"id": hid, "chapter": c, "scene": scene, "area": 0, "zone": zone, "type": typ,
+                             "phase": phase, "yields": ",".join(ys), "lines": ",".join(lines),
+                             "nameKey": name_key, "noteKey": "" if ys else note_key,
+                             "hintKey": hint_key if spot["hint"] else "", "requires": requires,
+                             "revisit": revisit,
+                             "x": 100 + (i % 4) * 280, "y": 140 + (i // 4) * 200, "w": 160, "h": 120,
+                             "placeholder": True})
+        n_all = len(cases[c]["hotspots"])
+        n_ev = sum(1 for sp in cases[c]["hotspots"] if sp["yields"])
+        n_cond = sum(1 for h in hotspots if h["chapter"] == c and h["requires"])
+        want_all, want_ev, want_insp = cases[c]["hotspotSummary"]
+        # The summary sentence counts the conditional spot outside the total ("不計入 22 個").
+        if (n_all - n_cond, n_ev - n_cond, n_all - n_ev) != (want_all, want_ev, want_insp):
+            err(f"10-cases Ch.{c} 調查點: table has {n_all} rows ({n_ev} with cards, {n_cond} conditional) but the "
+                f"summary says {want_all} / {want_ev} / {want_insp}")
 
     # ---- evidence table
     evidence = []
@@ -789,11 +832,14 @@ def main() -> int:
         else:
             keys, correct = ["", "", ""], -1
         grade = b["grade"]
-        if eid in OBTAIN_OVERRIDE:
-            obtain = OBTAIN_OVERRIDE[eid]
-        elif grade == "golden":
+        spot_row = next((h for h in hotspots if h["id"] == yielded.get(eid)), None)
+        if grade == "golden":
             obtain = "golden"
-        elif eid in yielded:
+        elif spot_row and spot_row["phase"] == "postDebate":
+            obtain = "afterDebate"  # the spot only appears after the main debate
+        elif spot_row and spot_row["revisit"]:
+            obtain = "event"  # picked up during the event; the spot only replays and appraises
+        elif spot_row:
             obtain = "hotspot"
         else:
             obtain = ""
@@ -1035,7 +1081,7 @@ KEY_COLUMNS = {
     "nodes": ["textKey"], "opponents": ["speaker", "gestureAssert", "gestureRush", "gestureReinforce", "gestureTrap"],
     "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2Key", "page2SubKey", "sideKey",
                "sideWinKey", "sideWinSubKey", "sideNotoKey", "sideNotoSubKey", "sideLoseKey", "sideLoseSubKey"],
-    "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"],
+    "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"], "hotspots": ["nameKey", "noteKey", "hintKey"],
 }
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
@@ -1129,8 +1175,8 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
             continue
         if not r["required"] or r["obtainable"]:
             err(f"evidence {e}: must be required=true and obtainable=false (rulings D2, D3)")
-        if r["grade"] not in ("common", "key") or r["obtain"] != "hotspot":
-            err(f"evidence {e}: a required card must be common/key and obtained from a hotspot")
+        if r["grade"] not in ("common", "key") or r["obtain"] not in ("hotspot", "event"):
+            err(f"evidence {e}: a required card must be common/key and obtained from a hotspot or the event")
     for r in tables["evidence"]:
         if r["required"] and r["id"] not in REQUIRED:
             err(f"evidence {r['id']}: required but not in REQUIRED (ruling D2)")
@@ -1162,6 +1208,20 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
             if lang not in v or not isinstance(v[lang], str):
                 err(f"strings: {key} has no {lang} text")
 
+    # ---- hotspots: placeholder rectangles stay on the 1280x720 screen and do not overlap within a scene
+    for h in tables["hotspots"]:
+        if h["phase"] not in HOTSPOT_PHASES:
+            err(f"hotspots {h['id']}: unknown phase {h['phase']!r}")
+        if h["requires"] and not re.fullmatch(r"missing:[A-Z]-\d\d", h["requires"]):
+            err(f"hotspots {h['id']}: bad requires {h['requires']!r}")
+        if not (0 <= h["x"] and h["x"] + h["w"] <= SCREEN_W and 0 <= h["y"] and h["y"] + h["h"] <= SCREEN_H):
+            err(f"hotspots {h['id']}: rectangle leaves the {SCREEN_W}x{SCREEN_H} screen")
+    for i, a in enumerate(tables["hotspots"]):
+        for b in tables["hotspots"][i + 1:]:
+            if (a["chapter"], a["scene"]) == (b["chapter"], b["scene"]) and a["x"] < b["x"] + b["w"] \
+                    and b["x"] < a["x"] + a["w"] and a["y"] < b["y"] + b["h"] and b["y"] < a["y"] + a["h"]:
+                err(f"hotspots {a['id']} and {b['id']}: placeholder rectangles overlap")
+
     # ---- design counts (01-systems 1.3): warnings only
     for c in CHAPTERS:
         d = systems["scale"][c]
@@ -1182,7 +1242,7 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
                 warn(f"Ch.{c}: ticks/hotspots = {d['ticks']}/{hs} = {ratio:.2f}, design wants about 0.65-0.75 (01-systems 1.3)")
         inspect = sum(h["type"] == "inspect" for h in tables["hotspots"] if h["chapter"] == c and not h["requires"])
         if hs:
-            warn(f"Ch.{c}: {inspect}/{hs} hotspots are inspect-only ({inspect * 100 // hs}%; 01-systems 1.2 expects about 40%)") if abs(inspect / hs - 0.4) > 0.1 else None
+            warn(f"Ch.{c}: {inspect}/{hs} hotspots are inspect-only ({inspect * 100 // hs}%; 01-systems 1.2 expects about 40%)") if abs(inspect * 100 - 40 * hs) > 10 * hs else None
         nodes = [n for n in tables["nodes"] if n["chapter"] == c and n["kind"] == "claim"]
         cap = next(o["nodeCap"] for o in tables["opponents"] if o["id"] == f"{ch_key(c)}_MAIN")
         if len(nodes) < cap:

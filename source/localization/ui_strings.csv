@@ -725,3 +725,7 @@ GESTURE_PIERCE_ONSLAUGHT,Opponent Gestures,扯鬆領巾、往前踏一步,Loosen
 GESTURE_PIERCE_REINFORCE,Opponent Gestures,翻開帳本,Opens his ledger,ctx: Ch.3 對手行為表；皮爾斯・補強
 GESTURE_PIERCE_TRAP,Opponent Gestures,瞥向亞瑟、手指敲帳本封面,"Glances at Arthur, fingers drumming on the ledger's cover",ctx: Ch.3 對手行為表；皮爾斯・設陷
 UI_TO_BE_CONTINUED,Prototype Ending,待續,To Be Continued,ctx: 原型版結尾卡；Ch.3 結算後的合併轉場報紙（頭版＝Ch.4 開場 HEAD_CH04，側欄＝Ch.3 結果 NEWS_03_*）之後顯示
+UI_PAPER_PAGE1,Newspaper,頭版,Front Page,paper screen page label
+UI_PAPER_EXTRA,Newspaper,號外,Extra,banner on special editions
+UI_PAPER_STAMP_CLOSED,Newspaper,結案,Case Closed,rubber stamp on result paper (win)
+UI_PAPER_STAMP_FIX,Newspaper,更正,Correction,rubber stamp on result paper (loss / correction notice)

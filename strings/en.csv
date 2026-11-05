@@ -1489,12 +1489,16 @@ UI_PAPER_ADS,Advertisements
 UI_PAPER_CREDIT,Civilian assistance was also provided.
 UI_PAPER_DATE,{date} · {weather} · One Penny
 UI_PAPER_DISPUTE,The proceedings were reportedly rather contentious.
+UI_PAPER_EXTRA,Extra
 UI_PAPER_MAST,The London Lantern
 UI_PAPER_MAST_HIGH,The Highland Weekly
 UI_PAPER_MAST_YORK,The Yorkshire Morning Post
 UI_PAPER_NOTO_LOSE,The detective's methods have also been called into question.
+UI_PAPER_PAGE1,Front Page
 UI_PAPER_PAGE2,Page Two
 UI_PAPER_SIDE,City Briefs
+UI_PAPER_STAMP_CLOSED,Case Closed
+UI_PAPER_STAMP_FIX,Correction
 UI_POINT_DEVICE,Mechanism
 UI_POINT_DONE,Investigated
 UI_POINT_ITEM,Evidence

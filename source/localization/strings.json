@@ -6618,5 +6618,21 @@
  "HEAD_CH04_SUB": {
   "zh-TW": "學院派名偵探維多・克勞已封鎖現場：「真相明早公布。」",
   "en": "Celebrated academic detective Victor Crowe has sealed off the scene: \"The truth will be made known tomorrow morning.\""
+ },
+ "UI_PAPER_PAGE1": {
+  "zh-TW": "頭版",
+  "en": "Front Page"
+ },
+ "UI_PAPER_EXTRA": {
+  "zh-TW": "號外",
+  "en": "Extra"
+ },
+ "UI_PAPER_STAMP_CLOSED": {
+  "zh-TW": "結案",
+  "en": "Case Closed"
+ },
+ "UI_PAPER_STAMP_FIX": {
+  "zh-TW": "更正",
+  "en": "Correction"
  }
 }

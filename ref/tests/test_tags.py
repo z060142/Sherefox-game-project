@@ -115,6 +115,7 @@ def design_nodes(chapter: int) -> dict:
         tags = [_tag(p, slugs)[0] for p in row[2].split("、")]
         breakers = {}
         for cid, shared in re.findall(r"(E\d\d_\d\d|G-\d\d)（([^）]*)）", row[3]):
+            shared = shared.split("，")[0]  # drop trailing annotations such as "，需機械鑑定"
             breakers[cid] = {_tag(p, slugs)[0] for p in shared.split("、")}
         if not breakers:
             assert row[3].startswith("無"), row
@@ -176,15 +177,7 @@ def _node_ids():
     out = []
     for c in (1, 2, 3):
         for nid in design_nodes(c):
-            marks = ()
-            if nid == "CH02_T1":
-                marks = pytest.mark.xfail(
-                    strict=True,
-                    reason="design finding: the Ch.2 標籤值 node table lists only E02_07 as breaker of the tail "
-                    "second claim, but ruling C3 (and the route R5 parry E02_07+E02_01) gives {E02_07, E02_01}; "
-                    "E02_01 does share 物理特性：替換機芯黃銅 with it (after mechanical appraisal).",
-                )
-            out.append(pytest.param(c, nid, id=nid, marks=marks))
+            out.append(pytest.param(c, nid, id=nid))
     return out
 
 
@@ -208,7 +201,7 @@ BREAKERS = _breaker_cases()
 
 
 def test_breaker_pair_count():
-    assert len(BREAKERS) == 20
+    assert len(BREAKERS) == 21  # +E02_01 -> CH02_T1 (ruling C3)
 
 
 @pytest.mark.parametrize("chapter,nid,cid,shared", BREAKERS, ids=[f"{n}-{c}" for _, n, c, _ in BREAKERS])

@@ -55,7 +55,7 @@
 | `steps` | 章節的一步 | chapter, idx, kind（paper／vn／warmup／investigate／board／debate／result）, arg |
 | `script` | 一行劇本 | id, chapter, scene, seq, speaker, expr, bg, cmd, arg, next |
 | `evidence` | 一張證物卡 | id, chapter, grade, tags, hiddenTags, grazingTags, appraise, reason0..2（字串鍵）, correct, flags, refutes, golden, obtainable, required |
-| `hotspots` | 一個調查點 | chapter, scene, area, id, type, x, y, w, h, yields, lineStart |
+| `hotspots` | 一個調查點 | 欄位見 `docs/data-schema.md` §5 |
 | `nodes` | 一個主張節點 | case, id, textKey, tags, truth |
 | `opponents` | 一場論戰的對手 | case, type, hp, nodeCap, base, w_claim, w_rush, w_reinforce, w_trap, clear, fuzzy, disguise, rules |
 | `tells` | 對手的一種行動 | case, action, gestureKey, lines（字串鍵，以 `|` 分隔） |
