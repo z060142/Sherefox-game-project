@@ -13,3 +13,4 @@
 | 轉換器升級 | 使用者發佈 0.15.1 轉換器套件 | 拿掉 `--force` 匯入、inline 色碼、repeat 內 PNG 圖示與 @key 的繞道 |
 | 蒐證反應台詞 | M5 | `hotspots.lines` 的台詞（亞瑟的吐槽等）目前沒播；investigate 彈窗加說話者＋台詞 port |
 | 英文報頭 | M5 | 英文模式報紙左上「The London Lantern」折兩行 |
+| 新字串接線 | M4c 完成後 | 重新匯入在地化；SCENE_CH0x_* → investigate `area_name`；HS_CH03_01_NOTE_REPORT（信任度 ≥3 的遺體筆記）；G-01_DESC／G-01_REASON／S-01_DESC（S-01 名稱沿用 G-01_SUB）；UI_TAG_SEP 作為標籤分隔 |
