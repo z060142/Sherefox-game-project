@@ -1,0 +1,550 @@
+<xt version="2">
+  <head>
+    <title>Result</title>
+  </head>
+
+  <ports>
+    win: number in = 1
+    opp_line: string in = "（跪倒）我……我只是想還債……"
+    stats: list<struct{label: string, value: string}> in = [{"label":"回合數","value":"6"},{"label":"讀對預兆","value":"4／6"},{"label":"截斷次數","value":"2"},{"label":"最大單次傷害","value":"38"},{"label":"最長連鎖","value":"4"},{"label":"論破次數","value":"1"},{"label":"援護使用","value":"1"},{"label":"狐耳直覺使用","value":"1"},{"label":"剩餘主導權","value":"64"}]
+    trust_from: number in = -1
+    trust_to: number in = -1
+    comment: string in = "「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」"
+    costs: list<struct{text: string}> in = []
+    can_retry: bool in = false
+    continue: event out
+    retry: event out
+  </ports>
+
+  <body on:show="play(verdict-in); play(trust-in)" key-activation="none">
+    <div id="result" tabindex="0" autofocus="" on:port(win)="play(verdict-in)" on:port(trust_to)="play(trust-in)" on:key(Enter)="emit(continue)" on:key(Space)="emit(continue)" on:key(R)="if port(can_retry) eq true emit(retry)">
+      <div id="sheet">
+        <div id="clip" class="clip">
+          <div id="tape-l" class="tape"/>
+          <div id="tape-r" class="tape"/>
+          <div id="res-mast" class="f-disp">@UI_PAPER_MAST</div>
+          <div id="res-rule-a" class="rule-thick"/>
+          <div id="res-rule-b" class="rule-thin"/>
+          <div id="verdict">
+            <div id="v-win" class="verdict v-win" bind:display="win | eq(1)">@UI_RES_WIN</div>
+            <div id="v-lose" class="verdict v-lose" bind:display="win | eq(0)">@UI_RES_LOSE</div>
+            <div id="v-none" class="verdict v-none" bind:display="win | eq(2)">@UI_RES_UNACHIEVED</div>
+          </div>
+          <div id="opp-line" class="opp-line" bind:text="opp_line" bind:display="opp_line | ne('')">（跪倒）我……我只是想還債……</div>
+          <div id="res-rule-c" class="rule-thin"/>
+          <repeat id="stats" port="stats">
+            <div id="stat">
+              <div id="stat-label" class="st-label" bind:text="item(label)">回合數</div>
+              <div id="stat-dots" class="st-dots"/>
+              <div id="stat-value" class="st-value" bind:text="item(value)">6</div>
+            </div>
+          </repeat>
+          <div id="res-rule-col" class="rule-col"/>
+          <div id="side">
+            <div id="trust" bind:display="trust_from | ge(0)">
+              <div id="trust-label" class="kicker">@UI_RES_TRUST_LABEL</div>
+              <div id="trust-from">
+                <div id="tf-1" class="badge" bind:class.on="trust_from | ge(1)"/>
+                <div id="tf-2" class="badge" bind:class.on="trust_from | ge(2)"/>
+                <div id="tf-3" class="badge" bind:class.on="trust_from | ge(3)"/>
+                <div id="tf-4" class="badge" bind:class.on="trust_from | ge(4)"/>
+                <div id="tf-5" class="badge" bind:class.on="trust_from | ge(5)"/>
+              </div>
+              <div id="trust-to">
+                <div id="tt-1" class="badge" bind:class.on="trust_to | ge(1)"/>
+                <div id="tt-2" class="badge" bind:class.on="trust_to | ge(2)"/>
+                <div id="tt-3" class="badge" bind:class.on="trust_to | ge(3)"/>
+                <div id="tt-4" class="badge" bind:class.on="trust_to | ge(4)"/>
+                <div id="tt-5" class="badge" bind:class.on="trust_to | ge(5)"/>
+              </div>
+              <div id="trust-num" class="trust-num" bind:text="format('{0} → {1}', trust_from, trust_to)">3 → 2</div>
+            </div>
+            <div id="comment" class="note" bind:display="comment | ne('')">
+              <div id="comment-face" class="face">
+                <img id="comment-art" class="s-b00406" src="../shared/img/ch-c-arthur.png"/>
+              </div>
+              <div id="comment-who" class="kicker">@SPK_ARTHUR</div>
+              <div id="comment-text" class="note-line" bind:text="comment">「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」</div>
+            </div>
+            <div id="costs" class="costs" bind:display="win | eq(0)">
+              <div id="costs-head" class="kicker">@UI_RES_COST</div>
+              <repeat id="costs-list" port="costs">
+                <div id="cost">
+                  <div id="cost-mark" class="cost-mark"/>
+                  <div id="cost-text" class="cost-text" bind:text="item(text)">警督信任度下降</div>
+                </div>
+              </repeat>
+            </div>
+          </div>
+          <div id="res-stamp" class="s-6ed937" bind:display="win | eq(1)">
+            <div id="res-stamp-inner" class="s-eb9710">
+              <div id="res-stamp-text" class="stamp-text">@UI_PAPER_STAMP_CLOSED</div>
+            </div>
+          </div>
+          <div id="btns">
+            <div id="btn-retry" class="btn alt" on:click(left)="emit(retry)" bind:display="can_retry">@BTN_RES_RETRY</div>
+            <div id="btn-continue" class="btn" on:click(left)="emit(continue)">@BTN_RES_CONTINUE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Result.dc.html:1 */
+    #result {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Result.dc.html:1/0 */
+    #sheet {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: Result.dc.html:1/0/0 */
+    #clip {
+      height: 664px;
+      left: 120px;
+      position: absolute;
+      top: 28px;
+      width: 1040px;
+    }
+    /* import: Result.dc.html:1/0/0/0 */
+    #tape-l {
+      height: 30px;
+      left: -30px;
+      position: absolute;
+      top: -10px;
+      transform: rotate(-24deg);
+      width: 130px;
+    }
+    /* import: Result.dc.html:1/0/0/1 */
+    #tape-r {
+      height: 30px;
+      left: 940px;
+      position: absolute;
+      top: -10px;
+      transform: rotate(22deg);
+      width: 130px;
+    }
+    /* import: Result.dc.html:1/0/0/2 */
+    #res-mast {
+      height: 30px;
+      left: 320px;
+      position: absolute;
+      top: 14px;
+      width: 400px;
+    }
+    /* import: Result.dc.html:1/0/0/3 */
+    #res-rule-a {
+      height: 3px;
+      left: 32px;
+      position: absolute;
+      top: 50px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/4 */
+    #res-rule-b {
+      height: 1px;
+      left: 32px;
+      position: absolute;
+      top: 56px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/5 */
+    #verdict {
+      height: 140px;
+      left: 32px;
+      position: absolute;
+      top: 66px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/5/0 */
+    #v-win {
+      height: 140px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/5/1 */
+    #v-lose {
+      height: 140px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/5/2 */
+    #v-none {
+      height: 140px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/6 */
+    #opp-line {
+      height: 56px;
+      left: 90px;
+      position: absolute;
+      top: 210px;
+      width: 860px;
+    }
+    /* import: Result.dc.html:1/0/0/7 */
+    #res-rule-c {
+      height: 1px;
+      left: 32px;
+      position: absolute;
+      top: 276px;
+      width: 976px;
+    }
+    /* import: Result.dc.html:1/0/0/8 */
+    #stats {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      height: 300px;
+      left: 32px;
+      overflow: hidden;
+      position: absolute;
+      top: 290px;
+      width: 440px;
+    }
+    /* import: Result.dc.html:1/0/0/8/0 */
+    #stat {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 10px;
+      height: 30px;
+      width: 440px;
+    }
+    /* import: Result.dc.html:1/0/0/8/0/0 */
+    #stat-label {
+      flex-shrink: 0;
+      height: 30px;
+      min-width: 40px;
+    }
+    /* import: Result.dc.html:1/0/0/8/0/1 */
+    #stat-dots {
+      flex-grow: 1;
+      height: 1px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 8px;
+      min-width: 20px;
+    }
+    /* import: Result.dc.html:1/0/0/8/0/2 */
+    #stat-value {
+      flex-shrink: 0;
+      height: 30px;
+      min-width: 40px;
+    }
+    /* import: Result.dc.html:1/0/0/9 */
+    #res-rule-col {
+      height: 300px;
+      left: 504px;
+      position: absolute;
+      top: 290px;
+      width: 1px;
+    }
+    /* import: Result.dc.html:1/0/0/10 */
+    #side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 300px;
+      left: 536px;
+      position: absolute;
+      top: 290px;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/0 */
+    #trust {
+      flex-shrink: 0;
+      height: 52px;
+      position: relative;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/0/0 */
+    #trust-label {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 16px;
+      width: 170px;
+    }
+    /* import: Result.dc.html:1/0/0/10/0/1 */
+    #trust-from {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 26px;
+      left: 180px;
+      position: absolute;
+      top: 13px;
+      width: 130px;
+    }
+    /* import: Result.dc.html:1/0/0/10/0/2 */
+    #trust-to {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 26px;
+      left: 180px;
+      position: absolute;
+      top: 13px;
+      width: 130px;
+    }
+    /* import: Result.dc.html:1/0/0/10/0/3 */
+    #trust-num {
+      height: 30px;
+      left: 332px;
+      position: absolute;
+      top: 11px;
+      width: 140px;
+    }
+    /* import: Result.dc.html:1/0/0/10/1 */
+    #comment {
+      flex-shrink: 0;
+      height: 124px;
+      position: relative;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/1/0 */
+    #comment-face {
+      height: 38px;
+      left: 14px;
+      position: absolute;
+      top: 12px;
+      width: 38px;
+    }
+    /* import: Result.dc.html:1/0/0/10/1/0/0 */
+    #comment-art {
+      height: 300px;
+      left: -76px;
+      position: absolute;
+      top: -4px;
+      width: 200px;
+    }
+    /* import: Result.dc.html:1/0/0/10/1/1 */
+    #comment-who {
+      height: 20px;
+      left: 62px;
+      position: absolute;
+      top: 21px;
+      width: 300px;
+    }
+    /* import: Result.dc.html:1/0/0/10/1/2 */
+    #comment-text {
+      height: 68px;
+      left: 22px;
+      position: absolute;
+      top: 54px;
+      width: 432px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2 */
+    #costs {
+      flex-shrink: 0;
+      height: 98px;
+      position: relative;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2/0 */
+    #costs-head {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 6px;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2/1 */
+    #costs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      height: 64px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      top: 30px;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2/1/0 */
+    #cost {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 10px;
+      height: 24px;
+      width: 472px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2/1/0/0 */
+    #cost-mark {
+      flex-shrink: 0;
+      height: 8px;
+      width: 8px;
+    }
+    /* import: Result.dc.html:1/0/0/10/2/1/0/1 */
+    #cost-text {
+      flex-shrink: 0;
+      height: 24px;
+      width: 450px;
+    }
+    /* import: Result.dc.html:1/0/0/11 */
+    #res-stamp {
+      height: 112px;
+      left: 700px;
+      padding-bottom: 4px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 4px;
+      position: absolute;
+      top: 450px;
+      transform: rotate(-9deg) scale(1);
+      width: 236px;
+    }
+    /* import: Result.dc.html:1/0/0/11/0 */
+    #res-stamp-inner {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 96px;
+      justify-content: center;
+      width: 220px;
+    }
+    /* import: Result.dc.html:1/0/0/11/0/0 */
+    #res-stamp-text {
+      flex-shrink: 0;
+      height: 60px;
+      width: 210px;
+    }
+    /* import: Result.dc.html:1/0/0/12 */
+    #btns {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      height: 44px;
+      justify-content: flex-end;
+      left: 536px;
+      position: absolute;
+      top: 600px;
+      width: 472px;
+    }
+    .badge {
+      width: 18px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .note-line {
+      padding-left: 14px;
+      transform: skewX(-6deg);
+    }
+    .face {
+      overflow: hidden;
+    }
+    .cost-text {
+      overflow: hidden;
+    }
+    .btn {
+      width: 180px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="result.xts"/>
+  <timelines>
+    @timeline trust-in {
+      #trust-from {
+        0ms {
+          opacity: 1;
+        }
+        500ms {
+          opacity: 1;
+        }
+        900ms ease-in-out {
+          opacity: 0;
+        }
+      }
+      #trust-to {
+        0ms {
+          opacity: 0;
+          transform: scale(1);
+        }
+        500ms {
+          opacity: 0;
+          transform: scale(1.18);
+        }
+        900ms ease-in-out {
+          opacity: 1;
+        }
+        1100ms ease-out {
+          transform: scale(1);
+        }
+      }
+    }
+    @timeline verdict-in {
+      #verdict {
+        0ms {
+          opacity: 0;
+          transform: scale(1.35);
+        }
+        80ms {
+          opacity: 0;
+          transform: scale(1.35);
+        }
+        360ms ease-in {
+          opacity: 1;
+          transform: scale(1);
+        }
+        440ms ease-out {
+          transform: scale(1.03);
+        }
+        520ms ease-out {
+          transform: scale(1);
+        }
+      }
+      #opp-line {
+        0ms {
+          opacity: 0;
+        }
+        420ms {
+          opacity: 0;
+        }
+        760ms ease-out {
+          opacity: 1;
+        }
+      }
+      #res-stamp {
+        0ms {
+          opacity: 0;
+          transform: rotate(-9deg) scale(1.35);
+        }
+        700ms {
+          opacity: 0;
+          transform: rotate(-9deg) scale(1.35);
+        }
+        880ms ease-in {
+          opacity: 0.92;
+          transform: rotate(-9deg) scale(1);
+        }
+      }
+    }
+  </timelines>
+</xt>

@@ -19,13 +19,75 @@
               text-align: center; color: var(--ink) }
   .ear-extra { font-family: var(--font-display); font-size: 34px; line-height: 44px; font-weight: 700;
                letter-spacing: 6px; text-align: center; text-transform: uppercase; color: var(--paper) }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+
+  /* Front page: the steel engraving (3 of 5 columns), the deck and the lead (2 columns). */
+  .pic-frame { overflow: hidden; background-color: var(--paper); border: 1px solid var(--ink);
+               box-shadow: 3px 3px 0px 0px #092e2833 }
+  .pic-art { position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; object-fit: cover }
+  .deck { font-family: var(--font-body); font-size: 18px; line-height: 24px; font-style: italic; color: var(--ink-deep) }
+
+  /* The previous case's result strip ("side column: last case"). */
+  .prev { background-color: var(--paper-old); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink) }
+  .prev-label { font-family: var(--font-body); font-size: 14px; line-height: 20px; letter-spacing: 3px;
+                text-align: center; color: var(--paper); background-color: var(--ink) }
+  .prev-head { font-family: var(--font-display); font-size: 19px; line-height: 26px; font-weight: 700;
+               color: var(--ink-deep); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+  .prev-sub { font-family: var(--font-body); font-size: 14px; line-height: 20px; font-style: italic;
+              color: var(--ink); white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+
+  /* Without the result strip (Ch.1) the front page runs down to the footer. */
+  .tall #pic-frame { height: 346px }
+  .tall #pic-rule { height: 346px }
+  .tall #lead-col-1 { height: 264px }
+  .tall #lead-col-rule { height: 264px }
+  .tall #lead-col-2 { height: 264px }
+  .tall #lead-col-2-text { top: -264px }
+  .tall #cols { height: 264px }
+  .tall #col-1 { height: 264px }
+  .tall #col-2 { height: 264px }
+  .tall #col-3 { height: 264px }
+  .tall #col-4 { height: 264px }
+  .tall #col-5 { height: 264px }
+  .tall #col-rule-1 { height: 264px }
+  .tall #col-rule-2 { height: 264px }
+  .tall #col-rule-3 { height: 264px }
+  .tall #col-rule-4 { height: 264px }
+  .tall #col-2-text { top: -264px }
+  .tall #col-3-text { top: -528px }
+  .tall #col-4-text { top: -792px }
+  .tall #col-5-text { top: -1056px }
+
+  /* Page 2: with no second-section story (page2_head empty) the briefs and the advertisement take the page. */
+  .ad-box { padding: 5px; border: 1px solid var(--ink) }
+  .ad-frame { padding: 18px 20px 18px 20px; border: 1px solid var(--ink) }
+  .ad-text { overflow: hidden; text-align: center; font-family: var(--font-display); font-size: 18px; line-height: 28px;
+             color: var(--ink-deep) }
+  .side-text { overflow: hidden; font-family: var(--font-body); font-size: 16px; line-height: 26px; color: var(--ink) }
+  .brief-orn { display: none }
+  .wide #p2-briefs { left: 48px; width: 1184px; flex-direction: row; gap: 0px }
+  .wide #brief-side { width: 680px; height: 592px }
+  .wide #brief-orn { display: block }
+  .wide #brief-ads { width: 456px; height: 592px }
+  .wide #side-head { width: 680px; height: 40px; font-size: 18px; line-height: 34px; letter-spacing: 6px }
+  .wide #side-text { width: 680px; height: 480px; font-family: var(--font-display); font-size: 30px; line-height: 48px;
+                    font-weight: 700; color: var(--ink-deep) }
+  .wide #side-text-rule { width: 680px }
+  .wide #ads-head { width: 456px; height: 40px; font-size: 18px; line-height: 34px; letter-spacing: 6px }
+  .wide #ad-box { width: 456px; height: 536px }
+  .wide #ad-frame { width: 444px; height: 524px; padding: 120px 36px 120px 36px }
+  .wide #ad-text { width: 370px; height: 282px; font-size: 28px; line-height: 44px }
+
   :lang(en) #headline { font-size: 40px; line-height: 50px; letter-spacing: 0px }
   :lang(en) #p2-headline { font-size: 30px; line-height: 38px }
   :lang(en) #stamp-closed { font-size: 24px; letter-spacing: 2px }
   :lang(en) #stamp-fix { font-size: 24px; letter-spacing: 2px }
+  :lang(en) .wide #side-text { font-size: 26px; line-height: 40px }
+  :lang(en) .wide #ad-text { font-size: 24px; line-height: 38px }
 </style></helmet>
 <div id="paper" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
-     data-xt-port='page:number in = 1; mast:number in = 0; dateline:string in = "1887 年 10 月 14 日・濃霧　每份一便士"; headline:string in = "月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈"; subhead:string in = "本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」"; body:string in = "本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」"; page2_head:string in = "古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤"; page2_body:string in = "狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。"; side:string in = "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"; ad:string in = "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"; stamp:number in = 0; next:event out; prev:event out'
+     data-xt-port='page:number in = 1; mast:number in = 0; dateline:string in = "1887 年 10 月・陰雨　每份一便士"; headline:string in = "百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠"; subhead:string in = "格雷沙姆先生：「我的錶進店時完好如初。」"; body:string in = "本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。格雷沙姆先生表示：「我的錶進店時完好如初，店主是唯一碰過它的人。」店主霍洛威老先生經營鐘錶店逾四十年，鄰里評價甚佳，對此指控堅決否認。據悉，富商已委託律師，最快本週提告。"; page2_head:string in = ""; page2_body:string in = ""; side:string in = "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"; ad:string in = "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"; stamp:number in = 0; picture:string in = "ch02"; result_head:string in = "市議會擬加徵煤煙稅　工廠主人聯名抗議"; result_sub:string in = ""; next:event out; prev:event out'
      data-xt-trigger="show:play(intro); click(left):emit(next); key(Enter):emit(next); key(Space):emit(next); key(Right):emit(next); key(PageDown):emit(next); key(Left):emit(prev); key(PageUp):emit(prev); port(page):play(flip)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background: radial-gradient(ellipse at 50% 45%, #f3eedf 62%, #e3d9c2 100%);
@@ -36,7 +98,7 @@
        style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
 
   <!-- ===== Page 1: front page. ===== -->
-  <div id="p1" data-xt-bind="display=page | eq(1)"
+  <div id="p1" data-xt-bind="display=page | eq(1); class.tall=result_head | eq('')"
        data-xt-timeline="flip: 0 opacity 0, 0 transform translateX(18px), 280ms ease-out opacity 1, 280ms ease-out transform translateX(0px)"
        style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
 
@@ -68,117 +130,182 @@
     <div id="p1-rule-a" class="rule-thick" data-xt-bind="class.wolf=mast | eq(2)"
          style="position: absolute; left: 48px; top: 150px; width: 1184px; height: 3px;"></div>
     <div id="p1-rule-b" class="rule-thin" style="position: absolute; left: 48px; top: 156px; width: 1184px; height: 1px;"></div>
-    <div id="dateline" data-xt-bind="text=dateline"
+    <div id="dateline" class="f-body" data-xt-bind="text=dateline"
          style="position: absolute; left: 48px; top: 160px; width: 1184px; height: 26px; text-align: center;
-                font-family: var(--font-body); font-size: 14px; line-height: 26px; letter-spacing: 2px; color: var(--ink);">1887 年 10 月 14 日・濃霧　每份一便士</div>
+                font-size: 14px; line-height: 26px; letter-spacing: 2px; color: #123a31;">1887 年 10 月・陰雨　每份一便士</div>
     <div id="p1-rule-c" class="rule-thin" style="position: absolute; left: 48px; top: 188px; width: 1184px; height: 1px;"></div>
 
     <!-- The headline drops in like set type. -->
-    <h1 id="headline" data-xt-bind="text=headline" data-xt-trigger="port(headline):play(intro)"
-        data-xt-timeline="intro: 0 opacity 0, 0 transform translateY(-10px), 120ms opacity 0, 120ms transform translateY(-10px), 420ms ease-out opacity 1, 420ms ease-out transform translateY(0px)"
-        style="position: absolute; left: 48px; top: 198px; width: 1184px; height: 132px; margin: 0px;
-               text-align: center; font-family: var(--font-display); font-size: 52px; line-height: 66px;
-               font-weight: 700; letter-spacing: 2px; color: var(--ink-deep); line-clamp: 2;">月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈</h1>
-    <p id="subhead" data-xt-bind="text=subhead"
-       style="position: absolute; left: 148px; top: 338px; width: 984px; height: 52px; margin: 0px;
-              text-align: center; font-family: var(--font-body); font-size: 19px; line-height: 26px;
-              font-style: italic; color: var(--ink); line-clamp: 2;">本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」</p>
-    <div id="p1-rule-d" class="rule-thin" style="position: absolute; left: 48px; top: 400px; width: 1184px; height: 1px;"></div>
+    <!-- The headline box centres one or two lines vertically. -->
+    <div id="headline-box" style="position: absolute; left: 48px; top: 194px; width: 1184px; height: 124px;
+         display: flex; flex-direction: column; justify-content: center;">
+      <h1 id="headline" class="f-disp" data-xt-bind="text=headline" data-xt-trigger="port(headline):play(intro)"
+          data-xt-timeline="intro: 0 opacity 0, 0 transform translateY(-10px), 120ms opacity 0, 120ms transform translateY(-10px), 420ms ease-out opacity 1, 420ms ease-out transform translateY(0px)"
+          style="width: 1184px; flex-shrink: 0; margin: 0px;
+                 text-align: center; font-size: 52px; line-height: 62px;
+                 font-weight: 700; letter-spacing: 2px; color: #092e28; line-clamp: 2;">百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠</h1>
+    </div>
+    <div id="p1-rule-d" class="rule-thin" style="position: absolute; left: 48px; top: 322px; width: 1184px; height: 1px;"></div>
 
-    <!-- Five columns: every column shows the same body text, shifted up by one column height,
-         so the text flows from column to column. -->
-    <div id="cols" data-xt-timeline="intro: 0 opacity 0, 250ms opacity 0, 600ms ease-out opacity 1"
-         style="position: absolute; left: 48px; top: 412px; width: 1184px; height: 264px;">
-      <div id="col-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 216px; height: 264px;">
-        <div id="col-1-text" class="col-text" data-xt-bind="text=body"
-             style="position: absolute; left: 0px; top: 0px; width: 216px; height: 1320px;">本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」</div>
+    <!-- With a picture: the steel engraving across columns 1-3, the deck and the lead in columns 4-5.
+         The lead uses the same flowing-column trick as the five-column page (column 2 shifted up by one column height). -->
+    <div id="lead-pic" data-xt-bind="display=picture | ne('')"
+         data-xt-timeline="intro: 0 opacity 0, 200ms opacity 0, 560ms ease-out opacity 1"
+         style="position: absolute; left: 48px; top: 330px; width: 1184px; height: 356px;">
+      <div id="pic-frame" class="pic-frame" style="position: absolute; left: 0px; top: 0px; width: 700px; height: 282px;">
+        <img id="pic-ch01" class="pic-art" src="/_blob/paper_ch01.jpg" data-xt-bind="display=picture | eq('ch01')">
+        <img id="pic-ch02" class="pic-art" src="/_blob/paper_ch02.jpg" data-xt-bind="display=picture | eq('ch02')">
+        <img id="pic-ch03" class="pic-art" src="/_blob/paper_ch03.jpg" data-xt-bind="display=picture | eq('ch03')">
+        <img id="pic-ch04" class="pic-art" src="/_blob/paper_ch04.jpg" data-xt-bind="display=picture | eq('ch04')">
       </div>
-      <div id="col-rule-1" class="rule-col" style="position: absolute; left: 228px; top: 0px; width: 1px; height: 264px;"></div>
-      <div id="col-2" class="col" style="position: absolute; left: 242px; top: 0px; width: 216px; height: 264px;">
-        <div id="col-2-text" class="col-text" data-xt-bind="text=body"
-             style="position: absolute; left: 0px; top: -264px; width: 216px; height: 1320px;">本報訊</div>
+      <div id="pic-rule" class="rule-col" style="position: absolute; left: 713px; top: 0px; width: 1px; height: 282px;"></div>
+      <div id="pic-deck-box" style="position: absolute; left: 726px; top: 0px; width: 458px; height: 72px;
+           display: flex; flex-direction: column; justify-content: center;">
+        <p id="pic-deck" class="deck" data-xt-bind="text=subhead"
+           style="width: 458px; flex-shrink: 0; margin: 0px; line-clamp: 3;">格雷沙姆先生：「我的錶進店時完好如初。」</p>
       </div>
-      <div id="col-rule-2" class="rule-col" style="position: absolute; left: 470px; top: 0px; width: 1px; height: 264px;"></div>
-      <div id="col-3" class="col" style="position: absolute; left: 484px; top: 0px; width: 216px; height: 264px;">
-        <div id="col-3-text" class="col-text" data-xt-bind="text=body"
-             style="position: absolute; left: 0px; top: -528px; width: 216px; height: 1320px;">本報訊</div>
+      <div id="lead-rule" class="rule-thin" style="position: absolute; left: 726px; top: 80px; width: 458px; height: 1px;"></div>
+      <div id="lead-col-1" class="col" style="position: absolute; left: 726px; top: 88px; width: 216px; height: 198px;">
+        <div id="lead-col-1-text" class="col-text" data-xt-bind="text=body"
+             style="position: absolute; left: 0px; top: 0px; width: 216px; height: 1320px;">本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。格雷沙姆先生表示：「我的錶進店時完好如初，店主是唯一碰過它的人。」店主霍洛威老先生經營鐘錶店逾四十年，鄰里評價甚佳，對此指控堅決否認。據悉，富商已委託律師，最快本週提告。</div>
       </div>
-      <div id="col-rule-3" class="rule-col" style="position: absolute; left: 712px; top: 0px; width: 1px; height: 264px;"></div>
-      <div id="col-4" class="col" style="position: absolute; left: 726px; top: 0px; width: 216px; height: 264px;">
-        <div id="col-4-text" class="col-text" data-xt-bind="text=body"
-             style="position: absolute; left: 0px; top: -792px; width: 216px; height: 1320px;">本報訊</div>
+      <div id="lead-col-rule" class="rule-col" style="position: absolute; left: 954px; top: 88px; width: 1px; height: 198px;"></div>
+      <div id="lead-col-2" class="col" style="position: absolute; left: 968px; top: 88px; width: 216px; height: 198px;">
+        <div id="lead-col-2-text" class="col-text" data-xt-bind="text=body"
+             style="position: absolute; left: 0px; top: -198px; width: 216px; height: 1320px;">本報訊</div>
       </div>
-      <div id="col-rule-4" class="rule-col" style="position: absolute; left: 954px; top: 0px; width: 1px; height: 264px;"></div>
-      <div id="col-5" class="col" style="position: absolute; left: 968px; top: 0px; width: 216px; height: 264px;">
-        <div id="col-5-text" class="col-text" data-xt-bind="text=body"
-             style="position: absolute; left: 0px; top: -1056px; width: 216px; height: 1320px;">本報訊</div>
+    </div>
+
+    <!-- Without a picture: the subhead across the page and the body in five flowing columns. -->
+    <div id="lead-text" data-xt-bind="display=picture | eq('')"
+         style="position: absolute; left: 48px; top: 330px; width: 1184px; height: 356px;">
+      <p id="subhead" class="f-body" data-xt-bind="text=subhead"
+         style="position: absolute; left: 100px; top: 0px; width: 984px; height: 52px; margin: 0px;
+                text-align: center; font-size: 19px; line-height: 26px;
+                font-style: italic; color: #123a31; line-clamp: 2;">格雷沙姆先生：「我的錶進店時完好如初。」</p>
+      <div id="p1-rule-e" class="rule-thin" style="position: absolute; left: 0px; top: 62px; width: 1184px; height: 1px;"></div>
+      <div id="cols" data-xt-timeline="intro: 0 opacity 0, 250ms opacity 0, 600ms ease-out opacity 1"
+           style="position: absolute; left: 0px; top: 72px; width: 1184px; height: 198px;">
+        <div id="col-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 216px; height: 198px;">
+          <div id="col-1-text" class="col-text" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: 0px; width: 216px; height: 1320px;">本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。</div>
+        </div>
+        <div id="col-rule-1" class="rule-col" style="position: absolute; left: 228px; top: 0px; width: 1px; height: 198px;"></div>
+        <div id="col-2" class="col" style="position: absolute; left: 242px; top: 0px; width: 216px; height: 198px;">
+          <div id="col-2-text" class="col-text" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -198px; width: 216px; height: 1320px;">本報訊</div>
+        </div>
+        <div id="col-rule-2" class="rule-col" style="position: absolute; left: 470px; top: 0px; width: 1px; height: 198px;"></div>
+        <div id="col-3" class="col" style="position: absolute; left: 484px; top: 0px; width: 216px; height: 198px;">
+          <div id="col-3-text" class="col-text" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -396px; width: 216px; height: 1320px;">本報訊</div>
+        </div>
+        <div id="col-rule-3" class="rule-col" style="position: absolute; left: 712px; top: 0px; width: 1px; height: 198px;"></div>
+        <div id="col-4" class="col" style="position: absolute; left: 726px; top: 0px; width: 216px; height: 198px;">
+          <div id="col-4-text" class="col-text" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -594px; width: 216px; height: 1320px;">本報訊</div>
+        </div>
+        <div id="col-rule-4" class="rule-col" style="position: absolute; left: 954px; top: 0px; width: 1px; height: 198px;"></div>
+        <div id="col-5" class="col" style="position: absolute; left: 968px; top: 0px; width: 216px; height: 198px;">
+          <div id="col-5-text" class="col-text" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -792px; width: 216px; height: 1320px;">本報訊</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side column, last case: the result the public read (NEWS_xx_WIN / NOTO / LOSE); hidden when empty (Ch.1). -->
+    <div id="prev-case" class="prev" data-xt-bind="display=result_head | ne('')"
+         data-xt-timeline="intro: 0 opacity 0, 350ms opacity 0, 700ms ease-out opacity 1"
+         style="position: absolute; left: 48px; top: 622px; width: 1184px; height: 58px;">
+      <div id="prev-label" class="prev-label" data-xt-key="UI_PAPER_PREV_CASE"
+           style="position: absolute; left: 0px; top: 0px; width: 150px; height: 54px; padding: 17px 10px 17px 10px;">上一案結果</div>
+      <div id="prev-text" style="position: absolute; left: 166px; top: 0px; width: 1006px; height: 54px;
+           display: flex; flex-direction: column; justify-content: center; gap: 0px;">
+        <div id="prev-head" class="prev-head" data-xt-bind="text=result_head"
+             style="width: 1006px; height: 26px; flex-shrink: 0;">市議會擬加徵煤煙稅　工廠主人聯名抗議</div>
+        <div id="prev-sub" class="prev-sub" data-xt-bind="text=result_sub; display=result_sub | ne('')"
+             style="width: 1006px; height: 20px; flex-shrink: 0;">「店主拒絕受訪，櫥窗報時鳥停擺。」</div>
       </div>
     </div>
   </div>
 
   <!-- ===== Page 2: second section, city briefs and advertisements. ===== -->
-  <div id="p2" data-xt-bind="display=page | eq(2)"
+  <div id="p2" data-xt-bind="display=page | eq(2); class.wide=page2_head | eq('')"
        data-xt-timeline="flip: 0 opacity 0, 0 transform translateX(18px), 280ms ease-out opacity 1, 280ms ease-out transform translateX(0px)"
        style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
     <div id="p2-label" class="kicker" data-xt-key="UI_PAPER_PAGE2"
          style="position: absolute; left: 48px; top: 26px; width: 300px; height: 20px;">第二版</div>
-    <div id="p2-mast" data-xt-key="UI_PAPER_MAST"
+    <div id="p2-mast" class="f-disp" data-xt-key="UI_PAPER_MAST"
          style="position: absolute; left: 440px; top: 20px; width: 400px; height: 32px; text-align: center;
-                font-family: var(--font-display); font-size: 22px; line-height: 32px; letter-spacing: 5px; color: var(--ink-deep);">倫敦提燈報</div>
-    <div id="p2-date" data-xt-bind="text=dateline"
+                font-size: 22px; line-height: 32px; letter-spacing: 5px; color: #092e28;">倫敦提燈報</div>
+    <div id="p2-date" class="f-body" data-xt-bind="text=dateline"
          style="position: absolute; left: 832px; top: 26px; width: 400px; height: 20px; text-align: right;
-                font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 1px; color: var(--ink);">1887 年 10 月 14 日・濃霧　每份一便士</div>
+                font-size: 13px; line-height: 20px; letter-spacing: 1px; color: #123a31;">1887 年 10 月・陰雨　每份一便士</div>
     <div id="p2-rule-a" class="rule-thick" data-xt-bind="class.wolf=mast | eq(2)"
          style="position: absolute; left: 48px; top: 56px; width: 1184px; height: 3px;"></div>
     <div id="p2-rule-b" class="rule-thin" style="position: absolute; left: 48px; top: 62px; width: 1184px; height: 1px;"></div>
 
-    <!-- Second section: its head and three flowing columns. -->
-    <h2 id="p2-headline" data-xt-bind="text=page2_head"
-        style="position: absolute; left: 48px; top: 78px; width: 800px; height: 104px; margin: 0px;
-               font-family: var(--font-display); font-size: 36px; line-height: 52px; font-weight: 700;
-               color: var(--ink-deep); line-clamp: 2;">古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤</h2>
-    <div id="p2-rule-c" class="rule-thin" style="position: absolute; left: 48px; top: 194px; width: 800px; height: 1px;"></div>
-    <div id="p2-cols" style="position: absolute; left: 48px; top: 208px; width: 800px; height: 462px;">
-      <div id="p2-col-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 250px; height: 462px;">
-        <div id="p2-col-1-text" class="col-text" data-xt-bind="text=page2_body"
-             style="position: absolute; left: 0px; top: 0px; width: 250px; height: 1386px;">狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。</div>
+    <!-- Second section: its head and three flowing columns (only when page2_head is set). -->
+    <div id="p2-article" data-xt-bind="display=page2_head | ne('')"
+         style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+      <h2 id="p2-headline" class="f-disp" data-xt-bind="text=page2_head"
+          style="position: absolute; left: 48px; top: 78px; width: 800px; height: 104px; margin: 0px;
+                 font-size: 36px; line-height: 52px; font-weight: 700;
+                 color: #092e28; line-clamp: 2;">古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤</h2>
+      <div id="p2-rule-c" class="rule-thin" style="position: absolute; left: 48px; top: 194px; width: 800px; height: 1px;"></div>
+      <div id="p2-cols" style="position: absolute; left: 48px; top: 208px; width: 800px; height: 462px;">
+        <div id="p2-col-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 250px; height: 462px;">
+          <div id="p2-col-1-text" class="col-text" data-xt-bind="text=page2_body"
+               style="position: absolute; left: 0px; top: 0px; width: 250px; height: 1386px;">狐耳偵探事務所誠徵室友啟事，即日起撤除。另據月桂糕點鋪表示，今日第一位客人是一位頭髮亂翹的年輕紳士，身旁跟著一位耳朵豎得很高的少女。</div>
+        </div>
+        <div id="p2-col-rule-1" class="rule-col" style="position: absolute; left: 262px; top: 0px; width: 1px; height: 462px;"></div>
+        <div id="p2-col-2" class="col" style="position: absolute; left: 275px; top: 0px; width: 250px; height: 462px;">
+          <div id="p2-col-2-text" class="col-text" data-xt-bind="text=page2_body"
+               style="position: absolute; left: 0px; top: -462px; width: 250px; height: 1386px;">狐耳偵探事務所</div>
+        </div>
+        <div id="p2-col-rule-2" class="rule-col" style="position: absolute; left: 537px; top: 0px; width: 1px; height: 462px;"></div>
+        <div id="p2-col-3" class="col" style="position: absolute; left: 550px; top: 0px; width: 250px; height: 462px;">
+          <div id="p2-col-3-text" class="col-text" data-xt-bind="text=page2_body"
+               style="position: absolute; left: 0px; top: -924px; width: 250px; height: 1386px;">狐耳偵探事務所</div>
+        </div>
       </div>
-      <div id="p2-col-rule-1" class="rule-col" style="position: absolute; left: 262px; top: 0px; width: 1px; height: 462px;"></div>
-      <div id="p2-col-2" class="col" style="position: absolute; left: 275px; top: 0px; width: 250px; height: 462px;">
-        <div id="p2-col-2-text" class="col-text" data-xt-bind="text=page2_body"
-             style="position: absolute; left: 0px; top: -462px; width: 250px; height: 1386px;">狐耳偵探事務所</div>
-      </div>
-      <div id="p2-col-rule-2" class="rule-col" style="position: absolute; left: 537px; top: 0px; width: 1px; height: 462px;"></div>
-      <div id="p2-col-3" class="col" style="position: absolute; left: 550px; top: 0px; width: 250px; height: 462px;">
-        <div id="p2-col-3-text" class="col-text" data-xt-bind="text=page2_body"
-             style="position: absolute; left: 0px; top: -924px; width: 250px; height: 1386px;">狐耳偵探事務所</div>
-      </div>
+      <div id="p2-rule-side" class="rule-thin" style="position: absolute; left: 872px; top: 78px; width: 1px; height: 592px;"></div>
     </div>
 
-    <div id="p2-rule-side" class="rule-thin" style="position: absolute; left: 872px; top: 78px; width: 1px; height: 592px;"></div>
-
-    <!-- Side column: city briefs, then the advertisement box. -->
-    <div id="side-head" class="kicker" data-xt-key="UI_PAPER_SIDE"
-         style="position: absolute; left: 896px; top: 78px; width: 336px; height: 28px; border-bottom: 3px solid var(--ink);">城市短訊</div>
-    <div id="side-text" class="col-text" data-xt-bind="text=side"
-         style="position: absolute; left: 896px; top: 118px; width: 336px; height: 242px; overflow: hidden;">鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。</div>
-    <div id="ads-head" class="kicker" data-xt-key="UI_PAPER_ADS"
-         style="position: absolute; left: 896px; top: 376px; width: 336px; height: 28px; border-bottom: 3px solid var(--ink);">廣告</div>
-    <div id="ad-box" style="position: absolute; left: 896px; top: 418px; width: 336px; height: 252px;
-         padding: 5px; border: 1px solid var(--ink);">
-      <div id="ad-frame" style="width: 324px; height: 240px; padding: 18px 20px 18px 20px; border: 1px solid var(--ink);">
-        <div id="ad-text" data-xt-bind="text=ad"
-             style="width: 282px; height: 202px; overflow: hidden; text-align: center; font-family: var(--font-display);
-                    font-size: 18px; line-height: 28px; color: var(--ink-deep);">招租：貝克街事務所二樓空房，限能忍受惡作劇者。</div>
+    <!-- Side column: city briefs, then the advertisement box. Without a second-section story both
+         spread over the whole page (class wide). -->
+    <div id="p2-briefs" style="position: absolute; left: 896px; top: 78px; width: 336px; height: 592px;
+         display: flex; flex-direction: column; gap: 16px;">
+      <div id="brief-side" style="position: relative; width: 336px; height: 300px; flex-shrink: 0;
+           display: flex; flex-direction: column; gap: 12px;">
+        <div id="side-head" class="kicker" data-xt-key="UI_PAPER_SIDE"
+             style="width: 336px; height: 28px; flex-shrink: 0; border-bottom: 3px solid #123a31;">城市短訊</div>
+        <div id="side-text" class="side-text" data-xt-bind="text=side"
+             style="width: 336px; height: 232px; flex-shrink: 0;">鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。</div>
+        <div id="side-text-rule" class="rule-col" style="width: 336px; height: 1px; flex-shrink: 0;"></div>
+      </div>
+      <div id="brief-orn" class="brief-orn" style="width: 48px; height: 592px; flex-shrink: 0; position: relative;">
+        <div id="brief-orn-rule" class="rule-thin" style="position: absolute; left: 23px; top: 0px; width: 1px; height: 592px;"></div>
+      </div>
+      <div id="brief-ads" style="width: 336px; height: 276px; flex-shrink: 0;
+           display: flex; flex-direction: column; gap: 12px;">
+        <div id="ads-head" class="kicker" data-xt-key="UI_PAPER_ADS"
+             style="width: 336px; height: 28px; flex-shrink: 0; border-bottom: 3px solid #123a31;">廣告</div>
+        <div id="ad-box" class="ad-box" style="width: 336px; height: 236px; flex-shrink: 0;">
+          <div id="ad-frame" class="ad-frame" style="width: 324px; height: 224px;">
+            <div id="ad-text" class="ad-text" data-xt-bind="text=ad"
+                 style="width: 282px; height: 186px;">招租：貝克街事務所二樓空房，限能忍受惡作劇者。</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Footer on both pages: rule, folio, the turn mark. -->
   <div id="foot-rule" class="rule-copper" style="position: absolute; left: 48px; top: 686px; width: 1184px; height: 1px;"></div>
-  <div id="folio" data-xt-bind="text=page"
+  <div id="folio" class="f-body" data-xt-bind="text=page"
        style="position: absolute; left: 590px; top: 692px; width: 100px; height: 20px; text-align: center;
-              font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 2px; color: var(--ink);">1</div>
+              font-size: 13px; line-height: 20px; letter-spacing: 2px; color: #123a31;">1</div>
   <svg id="turn-mark" viewBox="0 0 10 14"
        data-xt-timeline="idle loop: 0 opacity 1, 600ms ease-in-out opacity 0.25, 1200ms ease-in-out opacity 1"
        style="position: absolute; left: 1222px; top: 695px; width: 10px; height: 14px;">
@@ -189,15 +316,15 @@
   <div id="stamp" data-xt-bind="display=stamp | gt(0)" data-xt-trigger="port(stamp):play(stamp-in)"
        data-xt-timeline="stamp-in: 0 opacity 0, 0 transform rotate(-9deg) scale(1.35), 180ms ease-in opacity 1, 180ms ease-in transform rotate(-9deg) scale(1)"
        style="position: absolute; left: 330px; top: 486px; width: 236px; height: 112px; padding: 4px;
-              border: 4px solid var(--vermilion); transform: rotate(-9deg) scale(1); opacity: 0.92;">
+              border: 4px solid #b8322a; transform: rotate(-9deg) scale(1); opacity: 0.92;">
     <div id="stamp-inner" style="width: 220px; height: 96px; display: flex; flex-direction: column;
-         align-items: center; justify-content: center; border: 1px solid var(--vermilion);">
-      <div id="stamp-closed" data-xt-key="UI_PAPER_STAMP_CLOSED" data-xt-bind="display=stamp | eq(1)"
-           style="width: 210px; height: 60px; flex-shrink: 0; text-align: center; font-family: var(--font-display);
-                  font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px; color: var(--vermilion); text-transform: uppercase;">結案</div>
-      <div id="stamp-fix" data-xt-key="UI_PAPER_STAMP_FIX" data-xt-bind="display=stamp | eq(2)"
-           style="width: 210px; height: 60px; flex-shrink: 0; text-align: center; font-family: var(--font-display);
-                  font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px; color: var(--vermilion); text-transform: uppercase;">更正</div>
+         align-items: center; justify-content: center; border: 1px solid #b8322a;">
+      <div id="stamp-closed" class="f-disp" data-xt-key="UI_PAPER_STAMP_CLOSED" data-xt-bind="display=stamp | eq(1)"
+           style="width: 210px; height: 60px; flex-shrink: 0; text-align: center;
+                  font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px; color: #b8322a; text-transform: uppercase;">結案</div>
+      <div id="stamp-fix" class="f-disp" data-xt-key="UI_PAPER_STAMP_FIX" data-xt-bind="display=stamp | eq(2)"
+           style="width: 210px; height: 60px; flex-shrink: 0; text-align: center;
+                  font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px; color: #b8322a; text-transform: uppercase;">更正</div>
     </div>
   </div>
 

@@ -1,0 +1,194 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Result</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #e3d9c2 }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+  .rule-col { background-color: var(--ink); opacity: 0.55 }
+
+  /* The clipping on the desk, held by two strips of tape. */
+  .clip { background-color: var(--paper); border: 1px solid #123a3166; box-shadow: 6px 7px 0px 0px #092e2840 }
+  .tape { background-color: #f3eedfb3; border: 1px solid #a6543233 }
+
+  /* Verdict: 勝利 gold, 敗北 rust, 未達成 ink grey; set like a headline in heavy type. */
+  .verdict { font-family: var(--font-display); font-size: 112px; line-height: 140px; font-weight: 700;
+             letter-spacing: 28px; text-align: center; text-transform: uppercase }
+  .v-win { color: var(--lamp-gold); text-shadow: 3px 3px 0px #092e28 }
+  .v-lose { color: var(--copper); text-shadow: 3px 3px 0px #092e2833 }
+  .v-none { color: #5b6662; text-shadow: 3px 3px 0px #092e2826 }
+  :lang(en) .verdict { font-size: 84px; letter-spacing: 6px }
+  .opp-line { font-family: var(--font-body); font-size: 19px; line-height: 28px; font-style: italic;
+              text-align: center; color: var(--ink-deep); line-clamp: 2 }
+
+  /* Stats: label .... value */
+  .st-label { font-family: var(--font-body); font-size: 15px; line-height: 30px; color: var(--ink); white-space: nowrap }
+  .st-dots { border-top: 1px dashed #123a3180 }
+  .st-value { font-family: var(--font-display); font-size: 19px; line-height: 30px; font-weight: 700; color: var(--ink-deep);
+              text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums }
+
+  /* Inspector's trust: police badges (as in vn). */
+  .badge { width: 18px; height: 22px; flex-shrink: 0; border: 2px solid var(--ink);
+           border-radius: 0px 0px 9px 9px; background-color: var(--paper) }
+  .badge.on { background-color: var(--copper); border-color: var(--ink-deep) }
+  .trust-num { font-family: var(--font-display); font-size: 22px; line-height: 30px; font-weight: 700;
+               color: var(--ink-deep); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap }
+
+  /* Arthur's comment in his notebook (vn style 1). */
+  .note { background-color: var(--paper-old); border-top: 3px solid var(--copper); box-shadow: 3px 3px 0px 0px #092e2833 }
+  .note-line { font-family: var(--font-body); font-size: 18px; line-height: 34px; font-style: italic; color: var(--ink-deep);
+               background-image: url(/_blob/ui_ruled.png); background-repeat: repeat; border-left: 2px solid var(--copper);
+               padding-left: 14px; transform: skewX(-6deg); line-clamp: 2 }
+  .face { overflow: hidden; border-radius: 19px; border: 2px solid var(--copper); background-color: var(--paper) }
+
+  /* The cost of this case (defeat). */
+  .costs { border-top: 3px solid var(--vermilion); border-bottom: 1px solid var(--vermilion) }
+  .cost-mark { background-color: var(--vermilion) }
+  .cost-text { font-family: var(--font-body); font-size: 15px; line-height: 24px; color: var(--ink-deep); white-space: nowrap;
+               text-overflow: ellipsis; overflow: hidden }
+
+  .stamp-text { font-family: var(--font-display); font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px;
+                text-align: center; text-transform: uppercase; color: var(--vermilion) }
+  :lang(en) .stamp-text { font-size: 24px; letter-spacing: 2px }
+  .btn { width: 180px; height: 44px; flex-shrink: 0; text-align: center; line-height: 42px;
+         font-family: var(--font-body); font-size: 16px; letter-spacing: 2px; color: var(--paper);
+         background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { background-color: var(--copper) }
+  .btn:active { background-color: var(--ink-deep) }
+  .btn.alt { color: var(--ink); background-color: var(--paper); border-color: var(--ink) }
+  .btn.alt:hover { color: var(--paper); background-color: var(--copper) }
+</style></helmet>
+<div id="result" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='win:number in = 1; opp_line:string in = "（跪倒）我……我只是想還債……"; stats:list&lt;struct{label: string, value: string}&gt; in = [{"label":"回合數","value":"6"},{"label":"讀對預兆","value":"4／6"},{"label":"截斷次數","value":"2"},{"label":"最大單次傷害","value":"38"},{"label":"最長連鎖","value":"4"},{"label":"論破次數","value":"1"},{"label":"援護使用","value":"1"},{"label":"狐耳直覺使用","value":"1"},{"label":"剩餘主導權","value":"64"}]; trust_from:number in = -1; trust_to:number in = -1; comment:string in = "「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」"; costs:list&lt;struct{text: string}&gt; in = []; can_retry:bool in = false; continue:event out; retry:event out'
+     data-xt-trigger="show:play(verdict-in); play(trust-in); port(win):play(verdict-in); port(trust_to):play(trust-in); key(Enter):emit(continue); key(Space):emit(continue); key(R):if port(can_retry) eq true emit(retry)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background: radial-gradient(ellipse at 50% 40%, #e3d9c2 55%, #cbbd9c 100%); color: #123a31;">
+
+  <!-- One 1280x720 sheet, centred; the desk colour shows around it on other aspects. -->
+  <div id="sheet" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+  <div id="clip" class="clip" style="position: absolute; left: 120px; top: 28px; width: 1040px; height: 664px;">
+    <div id="tape-l" class="tape" style="position: absolute; left: -30px; top: -10px; width: 130px; height: 30px; transform: rotate(-24deg);"></div>
+    <div id="tape-r" class="tape" style="position: absolute; left: 940px; top: -10px; width: 130px; height: 30px; transform: rotate(22deg);"></div>
+
+    <!-- Paper name and double rule. -->
+    <div id="res-mast" class="f-disp" data-xt-key="UI_PAPER_MAST"
+         style="position: absolute; left: 320px; top: 14px; width: 400px; height: 30px; text-align: center;
+                font-size: 20px; line-height: 30px; letter-spacing: 5px; color: #092e28;">倫敦提燈報</div>
+    <div id="res-rule-a" class="rule-thick" style="position: absolute; left: 32px; top: 50px; width: 976px; height: 3px;"></div>
+    <div id="res-rule-b" class="rule-thin" style="position: absolute; left: 32px; top: 56px; width: 976px; height: 1px;"></div>
+
+    <!-- Verdict, stamped in on show and on change. -->
+    <div id="verdict" data-xt-timeline="verdict-in: 0 opacity 0, 0 transform scale(1.35), 80ms opacity 0, 80ms transform scale(1.35), 360ms ease-in opacity 1, 360ms ease-in transform scale(1), 440ms ease-out transform scale(1.03), 520ms ease-out transform scale(1)"
+         style="position: absolute; left: 32px; top: 66px; width: 976px; height: 140px;">
+      <div id="v-win" class="verdict v-win" data-xt-key="UI_RES_WIN" data-xt-bind="display=win | eq(1)"
+           style="position: absolute; left: 0px; top: 0px; width: 976px; height: 140px;">勝利</div>
+      <div id="v-lose" class="verdict v-lose" data-xt-key="UI_RES_LOSE" data-xt-bind="display=win | eq(0)"
+           style="position: absolute; left: 0px; top: 0px; width: 976px; height: 140px;">敗北</div>
+      <div id="v-none" class="verdict v-none" data-xt-key="UI_RES_UNACHIEVED" data-xt-bind="display=win | eq(2)"
+           style="position: absolute; left: 0px; top: 0px; width: 976px; height: 140px;">未達成</div>
+    </div>
+    <div id="opp-line" class="opp-line" data-xt-bind="text=opp_line; display=opp_line | ne('')"
+         data-xt-timeline="verdict-in: 0 opacity 0, 420ms opacity 0, 760ms ease-out opacity 1"
+         style="position: absolute; left: 90px; top: 210px; width: 860px; height: 56px;">（跪倒）我……我只是想還債……</div>
+    <div id="res-rule-c" class="rule-thin" style="position: absolute; left: 32px; top: 276px; width: 976px; height: 1px;"></div>
+
+    <!-- Left: the statistics, one row per entry (label .... value). -->
+    <div id="stats" data-xt-repeat="stats"
+         style="position: absolute; left: 32px; top: 290px; width: 440px; height: 300px; overflow: hidden;
+                display: flex; flex-direction: column; gap: 3px;">
+      <div id="stat" style="width: 440px; height: 30px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 10px;">
+        <div id="stat-label" class="st-label" data-xt-bind="text=item(label)" style="height: 30px; flex-shrink: 0; min-width: 40px;">回合數</div>
+        <div id="stat-dots" class="st-dots" style="height: 1px; flex-grow: 1; min-width: 20px; margin: 8px 0px 0px 0px;"></div>
+        <div id="stat-value" class="st-value" data-xt-bind="text=item(value)" style="height: 30px; flex-shrink: 0; min-width: 40px;">6</div>
+      </div>
+    </div>
+    <div id="res-rule-col" class="rule-col" style="position: absolute; left: 504px; top: 290px; width: 1px; height: 300px;"></div>
+
+    <!-- Right: trust, Arthur's comment, and (on defeat) the cost of this case. -->
+    <div id="side" style="position: absolute; left: 536px; top: 290px; width: 472px; height: 300px;
+         display: flex; flex-direction: column; gap: 14px;">
+      <div id="trust" data-xt-bind="display=trust_from | ge(0)"
+           style="position: relative; width: 472px; height: 52px; flex-shrink: 0; border-bottom: 1px solid #123a31;">
+        <div id="trust-label" class="kicker" data-xt-key="UI_RES_TRUST_LABEL"
+             style="position: absolute; left: 0px; top: 16px; width: 170px; height: 20px;">警督信任度</div>
+        <div id="trust-from" data-xt-timeline="trust-in: 0 opacity 1, 500ms opacity 1, 900ms ease-in-out opacity 0"
+             style="position: absolute; left: 180px; top: 13px; width: 130px; height: 26px; display: flex; flex-direction: row; align-items: center; gap: 8px;">
+          <div id="tf-1" class="badge" data-xt-bind="class.on=trust_from | ge(1)"></div>
+          <div id="tf-2" class="badge" data-xt-bind="class.on=trust_from | ge(2)"></div>
+          <div id="tf-3" class="badge" data-xt-bind="class.on=trust_from | ge(3)"></div>
+          <div id="tf-4" class="badge" data-xt-bind="class.on=trust_from | ge(4)"></div>
+          <div id="tf-5" class="badge" data-xt-bind="class.on=trust_from | ge(5)"></div>
+        </div>
+        <div id="trust-to" data-xt-timeline="trust-in: 0 opacity 0, 0 transform scale(1), 500ms opacity 0, 500ms transform scale(1.18), 900ms ease-in-out opacity 1, 1100ms ease-out transform scale(1)"
+             style="position: absolute; left: 180px; top: 13px; width: 130px; height: 26px; display: flex; flex-direction: row; align-items: center; gap: 8px;">
+          <div id="tt-1" class="badge" data-xt-bind="class.on=trust_to | ge(1)"></div>
+          <div id="tt-2" class="badge" data-xt-bind="class.on=trust_to | ge(2)"></div>
+          <div id="tt-3" class="badge" data-xt-bind="class.on=trust_to | ge(3)"></div>
+          <div id="tt-4" class="badge" data-xt-bind="class.on=trust_to | ge(4)"></div>
+          <div id="tt-5" class="badge" data-xt-bind="class.on=trust_to | ge(5)"></div>
+        </div>
+        <div id="trust-num" class="trust-num" data-xt-bind="text=format('{0} → {1}', trust_from, trust_to)"
+             style="position: absolute; left: 332px; top: 11px; width: 140px; height: 30px;">3 → 2</div>
+      </div>
+
+      <div id="comment" class="note" data-xt-bind="display=comment | ne('')"
+           style="position: relative; width: 472px; height: 124px; flex-shrink: 0;">
+        <div id="comment-face" class="face" style="position: absolute; left: 14px; top: 12px; width: 38px; height: 38px;">
+          <img id="comment-art" src="/_blob/char_arthur.png"
+               style="position: absolute; left: -76px; top: -4px; width: 200px; height: 300px; object-fit: contain;">
+        </div>
+        <div id="comment-who" class="kicker" data-xt-key="SPK_ARTHUR"
+             style="position: absolute; left: 62px; top: 21px; width: 300px; height: 20px;">亞瑟</div>
+        <div id="comment-text" class="note-line" data-xt-bind="text=comment"
+             style="position: absolute; left: 22px; top: 54px; width: 432px; height: 68px;">「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」</div>
+      </div>
+
+      <div id="costs" class="costs" data-xt-bind="display=win | eq(0)"
+           style="position: relative; width: 472px; height: 98px; flex-shrink: 0;">
+        <div id="costs-head" class="kicker" data-xt-key="UI_RES_COST"
+             style="position: absolute; left: 0px; top: 6px; width: 472px; height: 20px; color: #b8322a;">本案的代價</div>
+        <div id="costs-list" data-xt-repeat="costs"
+             style="position: absolute; left: 0px; top: 30px; width: 472px; height: 64px; overflow: hidden;
+                    display: flex; flex-direction: column; gap: 2px;">
+          <div id="cost" style="width: 472px; height: 24px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 10px;">
+            <div id="cost-mark" class="cost-mark" style="width: 8px; height: 8px; flex-shrink: 0;"></div>
+            <div id="cost-text" class="cost-text" data-xt-bind="text=item(text)" style="width: 450px; height: 24px; flex-shrink: 0;">警督信任度下降</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Victory: the paper's case-closed stamp in the free space under the comment. -->
+    <div id="res-stamp" data-xt-bind="display=win | eq(1)"
+         data-xt-timeline="verdict-in: 0 opacity 0, 0 transform rotate(-9deg) scale(1.35), 700ms opacity 0, 700ms transform rotate(-9deg) scale(1.35), 880ms ease-in opacity 0.92, 880ms ease-in transform rotate(-9deg) scale(1)"
+         style="position: absolute; left: 700px; top: 450px; width: 236px; height: 112px; padding: 4px;
+                border: 4px solid #b8322a; transform: rotate(-9deg) scale(1); opacity: 0.92;">
+      <div id="res-stamp-inner" style="width: 220px; height: 96px; display: flex; flex-direction: column;
+           align-items: center; justify-content: center; border: 1px solid #b8322a;">
+        <div id="res-stamp-text" class="stamp-text" data-xt-key="UI_PAPER_STAMP_CLOSED"
+             style="width: 210px; height: 60px; flex-shrink: 0;">結案</div>
+      </div>
+    </div>
+
+    <!-- Buttons: retry (defeat only) and continue. -->
+    <div id="btns" style="position: absolute; left: 536px; top: 600px; width: 472px; height: 44px;
+         display: flex; flex-direction: row; justify-content: flex-end; gap: 14px;">
+      <div id="btn-retry" class="btn alt" data-xt-key="BTN_RES_RETRY" data-xt-bind="display=can_retry"
+           data-xt-trigger="click(left):emit(retry)">重新論戰</div>
+      <div id="btn-continue" class="btn" data-xt-key="BTN_RES_CONTINUE"
+           data-xt-trigger="click(left):emit(continue)">繼續</div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

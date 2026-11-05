@@ -1,0 +1,556 @@
+<xt version="2">
+  <head>
+    <title>Evbook</title>
+  </head>
+
+  <ports>
+    tab: number in = 0
+    cards: list<struct{id: string, name: string, grade: number, appraised: bool, isnew: bool}> in = [{"id":"E02_01","name":"特製雙層發條齒輪","grade":1,"appraised":false,"isnew":false},{"id":"E02_02","name":"報時鳥鐘","grade":0,"appraised":true,"isnew":false},{"id":"E02_03","name":"鐘擺護蓋上的新刮痕","grade":0,"appraised":true,"isnew":false},{"id":"E02_04","name":"報童小湯米的證詞","grade":0,"appraised":true,"isnew":false},{"id":"E02_05","name":"寄修收據（店鐘 3:05 簽收）","grade":0,"appraised":true,"isnew":true},{"id":"E02_06","name":"店內零件目錄","grade":0,"appraised":true,"isnew":true}]
+    sel_id: string in = "E02_01"
+    sel_name: string in = "特製雙層發條齒輪"
+    sel_desc: string in = "替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。"
+    sel_tags: string in = "物理：雙層發條・物理：黃銅・？・？"
+    sel_grade: number in = 1
+    sel_can_appraise: bool in = true
+    appraise_left: number in = 2
+    notes: list<struct{text: string}> in = [{"text":"老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？"},{"text":"格雷沙姆先生一直在看自己的懷錶，又一直催律師。比起那只錶，他好像更在意這場官司。"}]
+    select_tab: number out = 0
+    select: string out = ""
+    appraise: event out
+    close: event out
+  </ports>
+
+  <body on:show="play(open)" key-activation="none">
+    <div id="evbook" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
+      <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
+      <div id="book-dock">
+        <div id="book" class="book">
+          <div id="book-title" class="f-disp">@UI_EVBOOK_TITLE</div>
+          <div id="tabs">
+            <div id="tab-case" class="tab" on:click(left)="set(select_tab, 0)" bind:class.on="tab | eq(0)">@UI_EVBOOK_TAB_CASE</div>
+            <div id="tab-gold" class="tab" on:click(left)="set(select_tab, 1)" bind:class.on="tab | eq(1)">@UI_EVBOOK_TAB_GOLD</div>
+            <div id="tab-plot" class="tab" on:click(left)="set(select_tab, 2)" bind:class.on="tab | eq(2)">@UI_EVBOOK_TAB_PLOT</div>
+          </div>
+          <div id="btn-close" class="btn alt" on:click(left)="emit(close)">@BTN_CLOSE</div>
+          <div id="book-rule-a" class="rule-thick"/>
+          <div id="book-rule-b" class="rule-thin"/>
+          <div id="page-l" class="page-l">
+            <div id="cards-scroll">
+              <repeat id="cards-list" port="cards">
+                <div id="card" class="evc" on:click(left)="set(select, item(id))" bind:class.sel="item(id) | eq(sel_id)" bind:class.g1="item(grade) | eq(1)" bind:class.g2="item(grade) | eq(2)" bind:class.g3="item(grade) | eq(3)" bind:class.g4="item(grade) | eq(4)">
+                  <div id="card-bar" class="gbar"/>
+                  <div id="card-tape" class="tape"/>
+                  <div id="card-id" class="evc-id" bind:text="item(id)">E02_01</div>
+                  <div id="card-q" class="qmark" bind:display="item(appraised) | not">?</div>
+                  <div id="card-name" class="evc-name" bind:text="item(name)">特製雙層發條齒輪</div>
+                  <div id="card-rule" class="s-329dcb"/>
+                  <div id="card-new" class="newdot" bind:display="item(isnew)"/>
+                </div>
+              </repeat>
+            </div>
+            <div id="gold-empty-box" class="s-66a9df" bind:display="tab | eq(1)">
+              <div id="gold-empty" class="empty" bind:display="cards | item(0) | item(id) | eq('')">@UI_EVBOOK_GOLD_EMPTY</div>
+            </div>
+            <div id="notes" class="notes-box">
+              <div id="notes-head" class="kicker">@UI_NOTES_TITLE</div>
+              <div id="notes-scroll">
+                <repeat id="notes-list" port="notes">
+                  <div id="note">
+                    <div id="note-mark" class="note-mark"/>
+                    <div id="note-text" class="note-text" bind:text="item(text)">老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？</div>
+                  </div>
+                </repeat>
+              </div>
+            </div>
+          </div>
+          <div id="spine" class="spine"/>
+          <div id="page-r" class="page-r">
+            <div id="detail" class="panel" bind:display="sel_id | ne('')" bind:class.g0="sel_grade | eq(0)" bind:class.g1="sel_grade | eq(1)" bind:class.g2="sel_grade | eq(2)" bind:class.g3="sel_grade | eq(3)" bind:class.g4="sel_grade | eq(4)">
+              <div id="detail-bar" class="gbar"/>
+              <div id="detail-grade">
+                <div id="gl-0" class="kicker glbl gl-0">@UI_GRADE_NORMAL</div>
+                <div id="gl-1" class="kicker glbl gl-1">@UI_GRADE_KEY</div>
+                <div id="gl-2" class="kicker glbl gl-2">@UI_GRADE_PLOT</div>
+                <div id="gl-3" class="kicker glbl gl-3">@UI_GRADE_GOLDEN</div>
+                <div id="gl-4" class="kicker glbl gl-4">@UI_GRADE_SUB</div>
+              </div>
+              <div id="detail-id" class="evc-id s-12e6e5" bind:text="sel_id">E02_01</div>
+              <div id="detail-body">
+                <div id="sel-name" class="f-disp" bind:text="sel_name">特製雙層發條齒輪</div>
+                <div id="sel-tags" class="f-body" bind:text="sel_tags">物理：雙層發條・物理：黃銅・？・？</div>
+                <div id="sel-rule" class="s-15baa9"/>
+                <div id="sel-desc" class="f-body" bind:text="sel_desc">替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。</div>
+              </div>
+              <div id="appr-row">
+                <svg id="appr-box" viewBox="0 0 48 28">
+                  <path id="Handle" d="M17 8 V4 H31 V8" fill="none" stroke="#a65432" stroke-width="2.4"/>
+                  <rect id="Box" x="4" y="8" width="40" height="18" fill="#a65432"/>
+                  <rect id="Lid" x="4" y="13" width="40" height="2" fill="#f3eedf"/>
+                  <rect id="Latch" x="21" y="11" width="6" height="7" fill="#e0a050"/>
+                </svg>
+                <div id="appr-label" class="kicker s-1813e6">@UI_INV_APPR</div>
+                <div id="appr-count" class="appr-n" bind:text="format('×{0}', appraise_left)">×2</div>
+                <div id="appr-gap"/>
+                <div id="btn-appraise" class="btn" on:click(left)="if port(sel_can_appraise) eq true emit(appraise)" bind:class.off="sel_can_appraise | not">@BTN_APPRAISE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Evbook.dc.html:1 */
+    #evbook {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Evbook.dc.html:1/0 */
+    #scrim {
+      anchor: stretch stretch screen;
+    }
+    /* import: Evbook.dc.html:1/1 */
+    #book-dock {
+      height: 640px;
+      left: calc(50% - 560px);
+      position: absolute;
+      top: calc(50% - 320px);
+      width: 1120px;
+    }
+    /* import: Evbook.dc.html:1/1/0 */
+    #book {
+      height: 640px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1120px;
+    }
+    /* import: Evbook.dc.html:1/1/0/0 */
+    #book-title {
+      height: 40px;
+      left: 28px;
+      position: absolute;
+      top: 14px;
+      width: 196px;
+    }
+    /* import: Evbook.dc.html:1/1/0/1 */
+    #tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 34px;
+      left: 236px;
+      position: absolute;
+      top: 18px;
+      width: 470px;
+    }
+    /* import: Evbook.dc.html:1/1/0/2 */
+    #btn-close {
+      left: 964px;
+      position: absolute;
+      top: 15px;
+      width: 128px;
+    }
+    /* import: Evbook.dc.html:1/1/0/3 */
+    #book-rule-a {
+      height: 3px;
+      left: 20px;
+      position: absolute;
+      top: 64px;
+      width: 1076px;
+    }
+    /* import: Evbook.dc.html:1/1/0/4 */
+    #book-rule-b {
+      height: 1px;
+      left: 20px;
+      position: absolute;
+      top: 70px;
+      width: 1076px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5 */
+    #page-l {
+      height: 544px;
+      left: 20px;
+      position: absolute;
+      top: 80px;
+      width: 530px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0 */
+    #cards-scroll {
+      height: 318px;
+      left: 10px;
+      overflow-y: auto;
+      position: absolute;
+      top: 14px;
+      width: 514px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0 */
+    #cards-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px 10px;
+      padding-bottom: 4px;
+      padding-left: 4px;
+      padding-right: 0px;
+      padding-top: 6px;
+      width: 510px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0 */
+    #card {
+      flex-shrink: 0;
+      height: 140px;
+      position: relative;
+      width: 116px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/0 */
+    #card-bar {
+      height: 5px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/1 */
+    #card-tape {
+      height: 16px;
+      left: 34px;
+      position: absolute;
+      top: -8px;
+      transform: rotate(-6deg);
+      width: 48px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/2 */
+    #card-id {
+      height: 16px;
+      left: 8px;
+      position: absolute;
+      top: 12px;
+      width: 76px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/3 */
+    #card-q {
+      height: 18px;
+      left: 92px;
+      position: absolute;
+      top: 11px;
+      width: 18px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/4 */
+    #card-name {
+      height: 78px;
+      left: 8px;
+      position: absolute;
+      top: 32px;
+      width: 100px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/5 */
+    #card-rule {
+      height: 3px;
+      left: 8px;
+      position: absolute;
+      top: 118px;
+      width: 100px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/0/0/0/6 */
+    #card-new {
+      height: 14px;
+      left: 104px;
+      position: absolute;
+      top: -6px;
+      width: 14px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/1 */
+    #gold-empty-box {
+      height: 60px;
+      left: 10px;
+      position: absolute;
+      top: 120px;
+      width: 510px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/1/0 */
+    #gold-empty {
+      height: 48px;
+      width: 510px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2 */
+    #notes {
+      height: 190px;
+      left: 10px;
+      position: absolute;
+      top: 344px;
+      width: 510px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/0 */
+    #notes-head {
+      height: 20px;
+      left: 14px;
+      position: absolute;
+      top: 8px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/1 */
+    #notes-scroll {
+      height: 148px;
+      left: 14px;
+      overflow-y: auto;
+      position: absolute;
+      top: 34px;
+      width: 486px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/1/0 */
+    #notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 482px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/1/0/0 */
+    #note {
+      flex-shrink: 0;
+      padding-bottom: 0px;
+      padding-left: 20px;
+      padding-right: 0px;
+      padding-top: 0px;
+      position: relative;
+      width: 482px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/1/0/0/0 */
+    #note-mark {
+      height: 7px;
+      left: 3px;
+      position: absolute;
+      top: 8px;
+      width: 7px;
+    }
+    /* import: Evbook.dc.html:1/1/0/5/2/1/0/0/1 */
+    #note-text {
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/6 */
+    #spine {
+      height: 556px;
+      left: 546px;
+      position: absolute;
+      top: 76px;
+      width: 28px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7 */
+    #page-r {
+      height: 544px;
+      left: 570px;
+      position: absolute;
+      top: 80px;
+      width: 530px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0 */
+    #detail {
+      height: 516px;
+      left: 16px;
+      position: absolute;
+      top: 14px;
+      width: 498px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/0 */
+    #detail-bar {
+      height: 5px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 498px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1 */
+    #detail-grade {
+      height: 20px;
+      left: 18px;
+      position: absolute;
+      top: 16px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1/0 */
+    #gl-0 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1/1 */
+    #gl-1 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1/2 */
+    #gl-2 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1/3 */
+    #gl-3 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/1/4 */
+    #gl-4 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/2 */
+    #detail-id {
+      height: 16px;
+      left: 380px;
+      position: absolute;
+      top: 18px;
+      width: 100px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/3 */
+    #detail-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 380px;
+      left: 18px;
+      position: absolute;
+      top: 44px;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/3/0 */
+    #sel-name {
+      flex-shrink: 0;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/3/1 */
+    #sel-tags {
+      flex-shrink: 0;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/3/2 */
+    #sel-rule {
+      flex-shrink: 0;
+      height: 3px;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/3/3 */
+    #sel-desc {
+      flex-shrink: 0;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4 */
+    #appr-row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      height: 48px;
+      left: 18px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 8px;
+      position: absolute;
+      top: 448px;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/0 */
+    #appr-box {
+      flex-shrink: 0;
+      height: 26px;
+      width: 44px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/1 */
+    #appr-label {
+      flex-shrink: 0;
+      height: 20px;
+      min-width: 40px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/2 */
+    #appr-count {
+      flex-shrink: 0;
+      height: 28px;
+      width: 60px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/3 */
+    #appr-gap {
+      flex-grow: 1;
+      height: 4px;
+      min-width: 4px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/4 */
+    #btn-appraise {
+      width: 180px;
+    }
+    .tab {
+      width: 150px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+    .btn {
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .note-mark {
+      transform: rotate(45deg);
+    }
+    .glbl {
+      display: none;
+    }
+    .panel.g0 .gl-0 {
+      display: block;
+    }
+    .panel.g1 .gl-1 {
+      display: block;
+    }
+    .panel.g2 .gl-2 {
+      display: block;
+    }
+    .panel.g3 .gl-3 {
+      display: block;
+    }
+    .panel.g4 .gl-4 {
+      display: block;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="evbook.xts"/>
+  <timelines>
+    @timeline open {
+      #scrim {
+        0ms {
+          opacity: 0;
+        }
+        200ms ease-out {
+          opacity: 1;
+        }
+      }
+      #book {
+        0ms {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        240ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

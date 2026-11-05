@@ -12,17 +12,31 @@
               font-family: var(--font-body); font-size: 13px; letter-spacing: 1px;
               color: var(--ink); background-color: var(--paper) }
   .lang-opt.active { color: var(--paper); background-color: var(--ink) }
-  .entry { width: 408px; height: 108px; padding: 12px 16px 12px 16px; text-align: left;
-           font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 400;
-           color: var(--ink); background-color: var(--paper);
+  .entry { width: 408px; height: 108px; padding: 14px 16px 14px 16px; display: flex; flex-direction: column;
+           justify-content: center; gap: 2px; color: var(--ink); background-color: var(--paper);
            border: 0px solid var(--ink); border-bottom: 1px dashed var(--ink);
-           transition: background-color 150ms linear, color 150ms linear }
-  .entry:hover { color: var(--paper); background-color: var(--ink) }
-  .entry:active { color: var(--ink); background-color: var(--paper-old) }
+           transition: background-color 150ms linear }
+  .entry:hover { background-color: var(--ink) }
+  .entry:active { background-color: var(--paper-old) }
   .entry:focus { outline: 2px solid var(--copper); outline-offset: -4px }
+  .entry-no { font-family: var(--font-body); font-size: 13px; line-height: 22px; letter-spacing: 3px; color: var(--copper) }
+  .entry-title { font-family: var(--font-display); font-size: 22px; line-height: 30px; font-weight: 400; color: var(--ink);
+                 line-clamp: 2 }
+  .entry:hover .entry-no { color: var(--lamp-gold) }
+  .entry:hover .entry-title { color: var(--paper) }
+  .entry:active .entry-no { color: var(--copper) }
+  .entry:active .entry-title { color: var(--ink) }
+
+  /* End card: shown over everything while ended is true (after the Ch.4 teaser paper). */
+  .end-card { background: radial-gradient(ellipse at 50% 45%, #f3eedf 60%, #e3d9c2 100%) }
+  .end-text { font-family: var(--font-display); font-size: 132px; line-height: 160px; font-weight: 700;
+              letter-spacing: 24px; text-align: center; color: var(--ink-deep) }
+  :lang(en) .end-text { font-size: 84px; letter-spacing: 6px }
+  .end-kicker { font-family: var(--font-body); font-size: 16px; line-height: 28px; letter-spacing: 6px;
+                text-align: center; color: var(--ink) }
 </style></helmet>
 <div id="title" data-xt-uiscale="fit"
-     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false"
+     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false"
      data-xt-trigger="show:play(intro)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
@@ -100,16 +114,44 @@
               display: flex; flex-direction: column; gap: 0px;">
     <div id="contents-heading" class="kicker" data-xt-key="UI_TITLE_CONTENTS"
          style="width: 408px; height: 28px; flex-shrink: 0; border-bottom: 3px solid var(--ink);">本期目錄</div>
-    <button id="btn-ch1" class="entry" data-xt-key="UI_TITLE_CH1"
-            data-xt-trigger="click:set(chapter, 1)" style="flex-shrink: 0;">Ch.1 室友事件：消失的發條焦糖布丁</button>
-    <button id="btn-ch2" class="entry" data-xt-key="UI_TITLE_CH2"
-            data-xt-trigger="click:set(chapter, 2)" style="flex-shrink: 0;">Ch.2 鐘錶店事件：慢了三分鐘的報時鳥</button>
-    <button id="btn-ch3" class="entry" data-xt-key="UI_TITLE_CH3"
-            data-xt-trigger="click:set(chapter, 3)" style="flex-shrink: 0;">Ch.3 霧鎖泰晤士河的蒸汽駁船命案</button>
+    <div id="btn-ch1" class="entry" tabindex="0" data-xt-trigger="click:set(chapter, 1)" style="flex-shrink: 0;">
+      <div id="btn-ch1-no" class="entry-no" style="width: 376px; height: 22px; flex-shrink: 0;">Ch.1</div>
+      <div id="btn-ch1-title" class="entry-title" data-xt-key="CHAP_01_TITLE" style="width: 376px; flex-shrink: 0;">消失的發條焦糖布丁</div>
+    </div>
+    <div id="btn-ch2" class="entry" tabindex="0" data-xt-trigger="click:set(chapter, 2)" style="flex-shrink: 0;">
+      <div id="btn-ch2-no" class="entry-no" style="width: 376px; height: 22px; flex-shrink: 0;">Ch.2</div>
+      <div id="btn-ch2-title" class="entry-title" data-xt-key="CHAP_02_TITLE" style="width: 376px; flex-shrink: 0;">慢了三分鐘的報時鳥</div>
+    </div>
+    <div id="btn-ch3" class="entry" tabindex="0" data-xt-trigger="click:set(chapter, 3)" style="flex-shrink: 0;">
+      <div id="btn-ch3-no" class="entry-no" style="width: 376px; height: 22px; flex-shrink: 0;">Ch.3</div>
+      <div id="btn-ch3-title" class="entry-title" data-xt-key="CHAP_03_TITLE" style="width: 376px; flex-shrink: 0;">霧鎖泰晤士河的蒸汽駁船命案</div>
+    </div>
   </div>
 
   <div id="rule-foot" class="rule-copper"
        style="position: absolute; left: 48px; top: 692px; width: 1184px; height: 1px;"></div>
+
+  <!-- End card (待續): covers the title while ended is true and takes every click. -->
+  <div id="end-card" class="end-card" data-xt-bind="display=ended" data-xt-trigger="port(ended):play(end-in)"
+       data-xt-timeline="end-in: 0 opacity 0, 500ms ease-out opacity 1"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+    <div id="end-dock" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+      <div id="end-mast" style="position: absolute; left: 340px; top: 96px; width: 600px; height: 136px; overflow: hidden;">
+        <img id="end-mast-art" src="/_blob/art_masthead.png"
+             style="position: absolute; left: 0px; top: -27px; width: 600px; height: 200px; object-fit: contain;">
+      </div>
+      <div id="end-rule-a" class="rule-thick" style="position: absolute; left: 240px; top: 252px; width: 800px; height: 3px;"></div>
+      <div id="end-rule-b" class="rule-thin" style="position: absolute; left: 240px; top: 258px; width: 800px; height: 1px;"></div>
+      <div id="end-text" class="end-text" data-xt-key="UI_TO_BE_CONTINUED"
+           data-xt-timeline="end-in: 0 opacity 0, 0 transform scale(1.12), 250ms opacity 0, 250ms transform scale(1.12), 800ms ease-out opacity 1, 800ms ease-out transform scale(1)"
+           style="position: absolute; left: 240px; top: 284px; width: 800px; height: 160px;">待續</div>
+      <div id="end-rule-c" class="rule-thin" style="position: absolute; left: 240px; top: 470px; width: 800px; height: 1px;"></div>
+      <div id="end-rule-d" class="rule-thick" style="position: absolute; left: 240px; top: 474px; width: 800px; height: 3px;"></div>
+      <div id="end-name" class="end-kicker" data-xt-key="UI_TITLE_LOGO"
+           data-xt-timeline="end-in: 0 opacity 0, 700ms opacity 0, 1100ms ease-out opacity 1"
+           style="position: absolute; left: 340px; top: 494px; width: 600px; height: 28px;">狐耳摩斯</div>
+    </div>
+  </div>
 
 </div>
 </x-dc>

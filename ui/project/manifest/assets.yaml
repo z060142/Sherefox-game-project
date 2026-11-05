@@ -187,6 +187,30 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 2172, h: 724, alpha: true }
+  - id: pic-ch01
+    type: image
+    file: shared/img/pic-ch01.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 960, h: 640, alpha: false }
+  - id: pic-ch02
+    type: image
+    file: shared/img/pic-ch02.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 960, h: 640, alpha: false }
+  - id: pic-ch03
+    type: image
+    file: shared/img/pic-ch03.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 960, h: 640, alpha: false }
+  - id: pic-ch04
+    type: image
+    file: shared/img/pic-ch04.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 960, h: 640, alpha: false }
   - id: st-stamp-assist-img
     type: image
     file: shared/img/st-stamp-assist-img.png

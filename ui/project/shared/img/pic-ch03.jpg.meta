@@ -1,0 +1,13 @@
+version: 1
+id: 06adfcc6-9c96-48ac-8a88-bd5b74feae07
+type: image
+title: pic-ch03
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/paper_ch03.jpg
+content: sha256:f42bb0c79b4bbd50ed61f249526b3fc1b8d95eca5fae651e4e355cc666ef1ac3
+measured:
+  w: 960
+  h: 640
+  alpha: false

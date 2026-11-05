@@ -56,6 +56,22 @@
       "h": 720,
       "title": "Cutin",
       "page": "main"
+    },
+    "Result.dc.html": {
+      "x": 0,
+      "y": 5600,
+      "w": 1280,
+      "h": 720,
+      "title": "Result",
+      "page": "main"
+    },
+    "Evbook.dc.html": {
+      "x": 0,
+      "y": 6400,
+      "w": 1280,
+      "h": 720,
+      "title": "Evbook",
+      "page": "main"
     }
   },
   "order": [
@@ -65,7 +81,9 @@
     "Investigate.dc.html",
     "Board.dc.html",
     "Debate.dc.html",
-    "Cutin.dc.html"
+    "Cutin.dc.html",
+    "Result.dc.html",
+    "Evbook.dc.html"
   ],
   "pages": [
     "main"

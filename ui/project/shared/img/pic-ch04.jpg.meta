@@ -1,0 +1,13 @@
+version: 1
+id: 2e39b787-a077-4d62-ab6b-065291a61b1e
+type: image
+title: pic-ch04
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/paper_ch04.jpg
+content: sha256:d074d585abb527de0f70a1325515a7158ba626612066dab0be5276edbe7c88b9
+measured:
+  w: 960
+  h: 640
+  alpha: false

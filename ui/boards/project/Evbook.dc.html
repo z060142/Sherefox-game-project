@@ -1,0 +1,211 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Evbook</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #092e28 }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+
+  /* The book: two pages of a scrapbook on a dimmed screen. */
+  .scrim { background-color: #092e28b8 }
+  .book { background-color: var(--paper-old); border: 2px solid var(--ink-deep); box-shadow: 8px 8px 0px 0px #00000059 }
+  .page-l { background-color: var(--paper) }
+  .page-r { background-color: var(--paper) }
+  .spine { background: linear-gradient(90deg, #092e2800 0%, #092e2833 45%, #092e2866 50%, #092e2833 55%, #092e2800 100%) }
+
+  /* Tabs and buttons. */
+  .tab { width: 150px; height: 34px; flex-shrink: 0; text-align: center; line-height: 32px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 2px; color: var(--ink);
+         background-color: var(--paper-old); border: 1px solid var(--ink); transition: background-color 120ms linear }
+  :lang(en) .tab { font-size: 13px; letter-spacing: 0px }
+  :lang(en) #book-title { font-size: 22px; letter-spacing: 1px }
+  .tab:hover { background-color: var(--paper) }
+  .tab.on { color: var(--paper); background-color: var(--ink); border-color: var(--ink-deep) }
+  .btn { height: 40px; flex-shrink: 0; text-align: center; line-height: 38px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 2px; color: var(--paper);
+         background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { background-color: var(--copper) }
+  .btn:active { background-color: var(--ink-deep) }
+  .btn.off { color: #f3eedf8c; background-color: #5b6662; border-color: #5b6662 }
+  .btn.off:hover { background-color: #5b6662 }
+  .btn.alt { color: var(--ink); background-color: var(--paper); border-color: var(--ink) }
+  .btn.alt:hover { color: var(--paper); background-color: var(--copper) }
+
+  /* Grade colours (as on the board): 0 common brass, 1 key silver, 2 story (old paper, deep ink frame),
+     3 golden (gold frame and glow), 4 substitute (damaged brass, dashed). */
+  .gbar { background-color: var(--copper) }
+  .g1 .gbar { background-color: #9ea7aa }
+  .g2 .gbar { background-color: var(--ink-deep) }
+  .g3 .gbar { background-color: var(--lamp-gold) }
+  .g4 .gbar { background-color: #a6543280 }
+
+  /* Clipping cards pasted in the book. */
+  .evc { background-color: var(--paper); border: 1px solid #123a3166; box-shadow: 2px 3px 0px 0px #092e2859;
+         transition: background-color 120ms linear }
+  .evc:hover { background-color: #fbf8ef }
+  .evc.g1 { border-color: #9ea7aa }
+  .evc.g2 { background-color: var(--paper-old); border: 2px solid var(--ink-deep) }
+  .evc.g3 { border-color: var(--lamp-gold); box-shadow: 0px 0px 12px 2px #e0a050b3 }
+  .evc.g4 { background-color: var(--paper-old); border-style: dashed; border-color: var(--copper) }
+  .evc.sel { outline: 3px solid var(--vermilion); outline-offset: 2px }
+  .tape { background-color: #e3d9c2cc; border: 1px solid #a6543226 }
+  .evc-id { font-family: var(--font-body); font-size: 11px; line-height: 16px; letter-spacing: 1px; color: var(--copper) }
+  .evc-name { font-family: var(--font-body); font-size: 13px; line-height: 19px; color: var(--ink); line-clamp: 4 }
+  .qmark { border-radius: 9px; background-color: var(--vermilion); color: var(--paper); text-align: center;
+           font-family: var(--font-body); font-size: 12px; line-height: 18px; font-weight: 700 }
+  .newdot { border-radius: 6px; background-color: var(--vermilion); border: 2px solid var(--paper) }
+  .empty { font-family: var(--font-body); font-size: 15px; line-height: 24px; font-style: italic; color: #5b6662; text-align: center }
+
+  /* Case notes (Sherefox's notebook). */
+  .notes-box { background-color: var(--paper-old); border-top: 3px solid var(--copper) }
+  .note-mark { background-color: var(--copper); transform: rotate(45deg) }
+  .note-text { font-family: var(--font-body); font-size: 14px; line-height: 22px; color: var(--ink-deep) }
+
+  /* Detail panel (as on the board). */
+  .panel { background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink) }
+  .glbl { display: none }
+  .panel.g0 .gl-0 { display: block }
+  .panel.g1 .gl-1 { display: block }
+  .panel.g2 .gl-2 { display: block }
+  .panel.g3 .gl-3 { display: block }
+  .panel.g4 .gl-4 { display: block }
+  .appr-n { font-family: var(--font-body); font-size: 18px; line-height: 28px; font-weight: 700; color: var(--copper);
+            font-variant-numeric: tabular-nums; white-space: nowrap }
+</style></helmet>
+<div id="evbook" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='tab:number in = 0; cards:list&lt;struct{id: string, name: string, grade: number, appraised: bool, isnew: bool}&gt; in = [{"id":"E02_01","name":"特製雙層發條齒輪","grade":1,"appraised":false,"isnew":false},{"id":"E02_02","name":"報時鳥鐘","grade":0,"appraised":true,"isnew":false},{"id":"E02_03","name":"鐘擺護蓋上的新刮痕","grade":0,"appraised":true,"isnew":false},{"id":"E02_04","name":"報童小湯米的證詞","grade":0,"appraised":true,"isnew":false},{"id":"E02_05","name":"寄修收據（店鐘 3:05 簽收）","grade":0,"appraised":true,"isnew":true},{"id":"E02_06","name":"店內零件目錄","grade":0,"appraised":true,"isnew":true}]; sel_id:string in = "E02_01"; sel_name:string in = "特製雙層發條齒輪"; sel_desc:string in = "替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。"; sel_tags:string in = "物理：雙層發條・物理：黃銅・？・？"; sel_grade:number in = 1; sel_can_appraise:bool in = true; appraise_left:number in = 2; notes:list&lt;struct{text: string}&gt; in = [{"text":"老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？"},{"text":"格雷沙姆先生一直在看自己的懷錶，又一直催律師。比起那只錶，他好像更在意這場官司。"}]; select_tab:number out = 0; select:string out = ""; appraise:event out; close:event out'
+     data-xt-trigger="show:play(open); key(Escape):emit(close); key(Tab):emit(close); key(Backspace):emit(close); key(1):set(select_tab, 0); key(2):set(select_tab, 1); key(3):set(select_tab, 2); key(Q):set(select_tab, port(tab) | offset(-1) | clamp(0, 2)); key(E):set(select_tab, port(tab) | offset(1) | clamp(0, 2))"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; color: #123a31;">
+
+  <!-- Dimmed screen: a click outside the book closes it. -->
+  <div id="scrim" class="scrim" data-xt-trigger="click(left):emit(close)"
+       data-xt-timeline="open: 0 opacity 0, 200ms ease-out opacity 1"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+
+  <div id="book-dock" style="position: absolute; left: calc(50% - 560px); top: calc(50% - 320px); width: 1120px; height: 640px;">
+  <div id="book" class="book"
+       data-xt-timeline="open: 0 opacity 0, 0 transform translateY(16px), 240ms ease-out opacity 1, 240ms ease-out transform translateY(0px)"
+       style="position: absolute; left: 0px; top: 0px; width: 1120px; height: 640px;">
+
+    <!-- Header: title, tabs, close. -->
+    <div id="book-title" class="f-disp" data-xt-key="UI_EVBOOK_TITLE"
+         style="position: absolute; left: 28px; top: 14px; width: 196px; height: 40px; font-size: 26px; line-height: 40px;
+                font-weight: 700; letter-spacing: 3px; color: #092e28; white-space: nowrap;">證物冊</div>
+    <div id="tabs" style="position: absolute; left: 236px; top: 18px; width: 470px; height: 34px;
+         display: flex; flex-direction: row; gap: 8px;">
+      <div id="tab-case" class="tab" data-xt-key="UI_EVBOOK_TAB_CASE" data-xt-bind="class.on=tab | eq(0)"
+           data-xt-trigger="click(left):set(select_tab, 0)">本案證物</div>
+      <div id="tab-gold" class="tab" data-xt-key="UI_EVBOOK_TAB_GOLD" data-xt-bind="class.on=tab | eq(1)"
+           data-xt-trigger="click(left):set(select_tab, 1)">黃金線索</div>
+      <div id="tab-plot" class="tab" data-xt-key="UI_EVBOOK_TAB_PLOT" data-xt-bind="class.on=tab | eq(2)"
+           data-xt-trigger="click(left):set(select_tab, 2)">私人收藏</div>
+    </div>
+    <div id="btn-close" class="btn alt" data-xt-key="BTN_CLOSE" data-xt-trigger="click(left):emit(close)"
+         style="position: absolute; left: 964px; top: 15px; width: 128px;">關閉</div>
+    <div id="book-rule-a" class="rule-thick" style="position: absolute; left: 20px; top: 64px; width: 1076px; height: 3px;"></div>
+    <div id="book-rule-b" class="rule-thin" style="position: absolute; left: 20px; top: 70px; width: 1076px; height: 1px;"></div>
+
+    <!-- Left page: the clippings of the current tab, then the case notes. -->
+    <div id="page-l" class="page-l" style="position: absolute; left: 20px; top: 80px; width: 530px; height: 544px;">
+      <div id="cards-scroll" style="position: absolute; left: 10px; top: 14px; width: 514px; height: 318px; overflow-y: auto;">
+        <div id="cards-list" data-xt-repeat="cards"
+             style="width: 510px; display: flex; flex-direction: row; flex-wrap: wrap; gap: 14px 10px; padding: 6px 0px 4px 4px;">
+          <div id="card" class="evc"
+               data-xt-bind="class.sel=item(id) | eq(sel_id); class.g1=item(grade) | eq(1); class.g2=item(grade) | eq(2); class.g3=item(grade) | eq(3); class.g4=item(grade) | eq(4)"
+               data-xt-trigger="click(left):set(select, item(id))"
+               style="position: relative; width: 116px; height: 140px; flex-shrink: 0;">
+            <div id="card-bar" class="gbar" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 5px;"></div>
+            <div id="card-tape" class="tape" style="position: absolute; left: 34px; top: -8px; width: 48px; height: 16px; transform: rotate(-6deg);"></div>
+            <div id="card-id" class="evc-id" data-xt-bind="text=item(id)"
+                 style="position: absolute; left: 8px; top: 12px; width: 76px; height: 16px;">E02_01</div>
+            <div id="card-q" class="qmark" data-xt-bind="display=item(appraised) | not"
+                 style="position: absolute; left: 92px; top: 11px; width: 18px; height: 18px;">?</div>
+            <div id="card-name" class="evc-name" data-xt-bind="text=item(name)"
+                 style="position: absolute; left: 8px; top: 32px; width: 100px; height: 78px;">特製雙層發條齒輪</div>
+            <div id="card-rule" style="position: absolute; left: 8px; top: 118px; width: 100px; height: 3px;
+                 border-top: 1px solid #123a3199; border-bottom: 1px solid #123a3199;"></div>
+            <div id="card-new" class="newdot" data-xt-bind="display=item(isnew)"
+                 style="position: absolute; left: 104px; top: -6px; width: 14px; height: 14px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Golden Clue tab with nothing usable yet. -->
+      <div id="gold-empty-box" data-xt-bind="display=tab | eq(1)"
+           style="position: absolute; left: 10px; top: 120px; width: 510px; height: 60px; pointer-events: none;">
+        <div id="gold-empty" class="empty" data-xt-key="UI_EVBOOK_GOLD_EMPTY" data-xt-bind="display=cards | item(0) | item(id) | eq('')"
+             style="width: 510px; height: 48px;">檔案裡還沒有能用的東西。</div>
+      </div>
+
+      <div id="notes" class="notes-box" style="position: absolute; left: 10px; top: 344px; width: 510px; height: 190px;">
+        <div id="notes-head" class="kicker" data-xt-key="UI_NOTES_TITLE"
+             style="position: absolute; left: 14px; top: 8px; width: 300px; height: 20px;">案件筆記</div>
+        <div id="notes-scroll" style="position: absolute; left: 14px; top: 34px; width: 486px; height: 148px; overflow-y: auto;">
+          <div id="notes-list" data-xt-repeat="notes" style="width: 482px; display: flex; flex-direction: column; gap: 8px;">
+            <div id="note" style="position: relative; width: 482px; flex-shrink: 0; padding: 0px 0px 0px 20px;">
+              <div id="note-mark" class="note-mark" style="position: absolute; left: 3px; top: 8px; width: 7px; height: 7px;"></div>
+              <div id="note-text" class="note-text" data-xt-bind="text=item(text)" style="width: 462px;">老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="spine" class="spine" style="position: absolute; left: 546px; top: 76px; width: 28px; height: 556px;"></div>
+
+    <!-- Right page: the selected clipping (hidden while sel_id is empty). -->
+    <div id="page-r" class="page-r" style="position: absolute; left: 570px; top: 80px; width: 530px; height: 544px;">
+      <div id="detail" class="panel"
+           data-xt-bind="display=sel_id | ne(''); class.g0=sel_grade | eq(0); class.g1=sel_grade | eq(1); class.g2=sel_grade | eq(2); class.g3=sel_grade | eq(3); class.g4=sel_grade | eq(4)"
+           style="position: absolute; left: 16px; top: 14px; width: 498px; height: 516px;">
+        <div id="detail-bar" class="gbar" style="position: absolute; left: 0px; top: 0px; width: 498px; height: 5px;"></div>
+        <div id="detail-grade" style="position: absolute; left: 18px; top: 16px; width: 300px; height: 20px;">
+          <div id="gl-0" class="kicker glbl gl-0" data-xt-key="UI_GRADE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">一般證物</div>
+          <div id="gl-1" class="kicker glbl gl-1" data-xt-key="UI_GRADE_KEY" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">關鍵證物</div>
+          <div id="gl-2" class="kicker glbl gl-2" data-xt-key="UI_GRADE_PLOT" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">劇情證物</div>
+          <div id="gl-3" class="kicker glbl gl-3" data-xt-key="UI_GRADE_GOLDEN" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">黃金線索</div>
+          <div id="gl-4" class="kicker glbl gl-4" data-xt-key="UI_GRADE_SUB" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">次級替代證物</div>
+        </div>
+        <div id="detail-id" class="evc-id" data-xt-bind="text=sel_id"
+             style="position: absolute; left: 380px; top: 18px; width: 100px; height: 16px; text-align: right;">E02_01</div>
+        <div id="detail-body" style="position: absolute; left: 18px; top: 44px; width: 462px; height: 380px;
+             display: flex; flex-direction: column; gap: 10px;">
+          <div id="sel-name" class="f-disp" data-xt-bind="text=sel_name"
+               style="width: 462px; flex-shrink: 0; font-size: 26px; line-height: 34px; font-weight: 700; color: #092e28; line-clamp: 2;">特製雙層發條齒輪</div>
+          <div id="sel-tags" class="f-body" data-xt-bind="text=sel_tags"
+               style="width: 462px; flex-shrink: 0; font-size: 14px; line-height: 22px; color: #a65432; line-clamp: 2;">物理：雙層發條・物理：黃銅・？・？</div>
+          <div id="sel-rule" style="width: 462px; height: 3px; flex-shrink: 0; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+          <div id="sel-desc" class="f-body" data-xt-bind="text=sel_desc"
+               style="width: 462px; flex-shrink: 0; font-size: 16px; line-height: 26px; color: #123a31; line-clamp: 9;">替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。</div>
+        </div>
+        <!-- Appraisal: Arthur's toolbox, the count, and the hand-over button. -->
+        <div id="appr-row" style="position: absolute; left: 18px; top: 448px; width: 462px; height: 48px;
+             display: flex; flex-direction: row; align-items: center; gap: 10px; border-top: 1px dashed #123a3180;
+             padding: 8px 0px 0px 0px;">
+          <svg id="appr-box" viewBox="0 0 48 28" style="width: 44px; height: 26px; flex-shrink: 0;">
+            <path id="Handle" d="M17 8 V4 H31 V8" fill="none" stroke="#a65432" stroke-width="2.4"/>
+            <rect id="Box" x="4" y="8" width="40" height="18" fill="#a65432"/>
+            <rect id="Lid" x="4" y="13" width="40" height="2" fill="#f3eedf"/>
+            <rect id="Latch" x="21" y="11" width="6" height="7" fill="#e0a050"/>
+          </svg>
+          <div id="appr-label" class="kicker" data-xt-key="UI_INV_APPR" style="height: 20px; flex-shrink: 0; min-width: 40px; white-space: nowrap;">鑑定</div>
+          <div id="appr-count" class="appr-n" data-xt-bind="text=format('×{0}', appraise_left)"
+               style="width: 60px; height: 28px; flex-shrink: 0;">×2</div>
+          <div id="appr-gap" style="height: 4px; flex-grow: 1; min-width: 4px;"></div>
+          <div id="btn-appraise" class="btn" data-xt-key="BTN_APPRAISE" data-xt-bind="class.off=sel_can_appraise | not"
+               data-xt-trigger="click(left):if port(sel_can_appraise) eq true emit(appraise)"
+               style="width: 180px;">交給亞瑟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

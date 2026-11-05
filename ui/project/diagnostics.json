@@ -83,7 +83,7 @@
       "message": "anchor: #kicker left: 48px; top: 16px -> anchor: left top; offset: 16px -2px; size: 520px 20px",
       "element": "kicker",
       "source": "Title.dc.html",
-      "line": 31,
+      "line": 45,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -107,7 +107,7 @@
       "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 260px 30px",
       "element": "lang-toggle",
       "source": "Title.dc.html",
-      "line": 34,
+      "line": 48,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -131,7 +131,7 @@
       "message": "anchor: #rule-top left: 48px; top: 46px -> anchor: left top; offset: 16px 28px; size: 1184px 1px",
       "element": "rule-top",
       "source": "Title.dc.html",
-      "line": 48,
+      "line": 62,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -155,7 +155,7 @@
       "message": "anchor: #mast-dock left: 240px; top: 52px -> anchor: left top; offset: 208px 34px; size: 800px 172px",
       "element": "mast-dock",
       "source": "Title.dc.html",
-      "line": 53,
+      "line": 67,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -179,7 +179,7 @@
       "message": "anchor: #rule-mast-thick left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 68,
+      "line": 82,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -203,7 +203,7 @@
       "message": "anchor: #rule-mast-thick top 230px -> calc(32.08% - 0.96px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 68,
+      "line": 82,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -227,7 +227,7 @@
       "message": "anchor: #rule-mast-thin left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 70,
+      "line": 84,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -251,7 +251,7 @@
       "message": "anchor: #rule-mast-thin top 236px -> calc(32.82% - 0.33px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 70,
+      "line": 84,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -275,7 +275,7 @@
       "message": "anchor: #paper-name left 340px -> calc(50% - 300px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 72,
+      "line": 86,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -299,7 +299,7 @@
       "message": "anchor: #paper-name top 242px -> calc(34.97% - 9.79px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 72,
+      "line": 86,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -323,7 +323,7 @@
       "message": "anchor: #rule-name left 48px -> calc(1safe-left + 16px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 76,
+      "line": 90,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -347,7 +347,7 @@
       "message": "anchor: #rule-name top 274px -> calc(38.11% - 0.38px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 76,
+      "line": 90,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -371,7 +371,7 @@
       "message": "anchor: #lead left: 48px; bottom: auto; top: 300px -> anchor: left bottom; offset: 16px 22px; size: 712px 380px",
       "element": "lead",
       "source": "Title.dc.html",
-      "line": 80,
+      "line": 94,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -395,7 +395,7 @@
       "message": "anchor: #rule-column left 792px -> calc(61.92% - 0.62px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -419,7 +419,7 @@
       "message": "anchor: #rule-column bottom auto -> calc(1safe-bottom + 30px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -443,7 +443,7 @@
       "message": "anchor: #rule-column top 300px -> (removed)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -467,7 +467,7 @@
       "message": "anchor: #contents right: auto; left: 824px; bottom: auto; top: 300px -> anchor: right bottom; offset: 16px 30px; size: 408px 372px",
       "element": "contents",
       "source": "Title.dc.html",
-      "line": 98,
+      "line": 112,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -491,13 +491,37 @@
       "message": "anchor: #rule-foot left: 48px; bottom: auto; top: 692px -> anchor: left bottom; offset: 16px 9px; size: 1184px 1px",
       "element": "rule-foot",
       "source": "Title.dc.html",
-      "line": 111,
+      "line": 131,
       "col": 0,
       "ui": "title",
       "detail": {
         "property": "anchor",
         "from": "left: 48px; bottom: auto; top: 692px",
         "to": "anchor: left bottom; offset: 16px 9px; size: 1184px 1px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #end-card right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "end-card",
+      "source": "Title.dc.html",
+      "line": 135,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
       },
       "fix": {
         "kind": "editor",
@@ -779,7 +803,7 @@
       "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
       "element": "sheet",
       "source": "Paper.dc.html",
-      "line": 35,
+      "line": 97,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -1110,17 +1134,41 @@
       "accepted": false
     },
     {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #scrim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "scrim",
+      "source": "Evbook.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "evbook",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 26 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
+      "message": "the board's inline geometry of 42 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
       "element": "",
       "source": "Title.dc.html",
-      "line": 24,
+      "line": 38,
       "col": 0,
       "ui": "title",
       "detail": {
-        "elements": "26",
-        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #rule-column #contents #contents-heading #btn-ch1 #btn-ch2 #btn-ch3 #rule-foot"
+        "elements": "42",
+        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #rule-column #contents #contents-heading #btn-ch1 #btn-ch1-no #btn-ch1-title #btn-ch2 #btn-ch2-no #btn-ch2-title #btn-ch3 #btn-ch3-no #btn-ch3-title #rule-foot #end-card #end-dock #end-mast #end-mast-art #end-rule-a #end-rule-b #end-text #end-rule-c #end-rule-d #end-name"
       },
       "fix": {
         "kind": "editor",
@@ -1162,15 +1210,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
+      "message": "the board's inline geometry of 91 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
       "element": "",
       "source": "Paper.dc.html",
-      "line": 27,
+      "line": 89,
       "col": 0,
       "ui": "paper",
       "detail": {
-        "elements": "65",
-        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline #subhead #p1-rule-d #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #side-head #side-text #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
+        "elements": "91",
+        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline-box #headline #p1-rule-d #lead-pic #pic-frame #pic-rule #pic-deck-box #pic-deck #lead-rule #lead-col-1 #lead-col-1-text #lead-col-rule #lead-col-2 #lead-col-2-text #lead-text #subhead #p1-rule-e #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #prev-case #prev-label #prev-text #prev-head #prev-sub #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-article #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #p2-briefs #brief-side #side-head #side-text #side-text-rule #brief-orn #brief-orn-rule #brief-ads #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
       },
       "fix": {
         "kind": "editor",
@@ -1285,9 +1333,59 @@
       "accepted": false
     },
     {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 41 element(s) is written to their <layout> #id rules (#result, #sheet, #clip, #tape-l, #tape-r, ...)",
+      "element": "",
+      "source": "Result.dc.html",
+      "line": 66,
+      "col": 0,
+      "ui": "result",
+      "detail": {
+        "elements": "41",
+        "ids": "#result #sheet #clip #tape-l #tape-r #res-mast #res-rule-a #res-rule-b #verdict #v-win #v-lose #v-none #opp-line #res-rule-c #stats #stat #stat-label #stat-dots #stat-value #res-rule-col #side #trust #trust-label #trust-from #trust-to #trust-num #comment #comment-face #comment-art #comment-who #comment-text #costs #costs-head #costs-list #cost #cost-mark #cost-text #res-stamp #res-stamp-inner #res-stamp-text #btns"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 51 element(s) is written to their <layout> #id rules (#evbook, #scrim, #book-dock, #book, #book-title, ...)",
+      "element": "",
+      "source": "Evbook.dc.html",
+      "line": 80,
+      "col": 0,
+      "ui": "evbook",
+      "detail": {
+        "elements": "51",
+        "ids": "#evbook #scrim #book-dock #book #book-title #tabs #btn-close #book-rule-a #book-rule-b #page-l #cards-scroll #cards-list #card #card-bar #card-tape #card-id #card-q #card-name #card-rule #card-new #gold-empty-box #gold-empty #notes #notes-head #notes-scroll #notes-list #note #note-mark #note-text #spine #page-r #detail #detail-bar #detail-grade #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #detail-id #detail-body #sel-name #sel-tags #sel-rule #sel-desc #appr-row #appr-box #appr-label #appr-count #appr-gap #btn-appraise"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-12e6e5 used by 5 node(s)",
+      "message": "shared class .s-12e6e5 used by 6 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1295,7 +1393,7 @@
       "ui": "",
       "detail": {
         "class": ".s-12e6e5",
-        "nodes": "5"
+        "nodes": "6"
       },
       "fix": {
         "kind": "editor",
@@ -1312,7 +1410,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-b00406 used by 25 node(s)",
+      "message": "shared class .s-b00406 used by 27 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1320,7 +1418,7 @@
       "ui": "",
       "detail": {
         "class": ".s-b00406",
-        "nodes": "25"
+        "nodes": "27"
       },
       "fix": {
         "kind": "editor",
@@ -1387,14 +1485,14 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-e68292 used by 2 node(s)",
+      "message": "shared class .s-6ed937 used by 2 node(s)",
       "element": "",
       "source": "",
       "line": 0,
       "col": 0,
       "ui": "",
       "detail": {
-        "class": ".s-e68292",
+        "class": ".s-6ed937",
         "nodes": "2"
       },
       "fix": {
@@ -1403,7 +1501,32 @@
         "editor": {
           "op": "repair.dedup",
           "args": {
-            "class": ".s-e68292"
+            "class": ".s-6ed937"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-eb9710 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-eb9710",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-eb9710"
           }
         }
       },
@@ -1437,7 +1560,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-66a9df used by 7 node(s)",
+      "message": "shared class .s-66a9df used by 8 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1445,7 +1568,7 @@
       "ui": "",
       "detail": {
         "class": ".s-66a9df",
-        "nodes": "7"
+        "nodes": "8"
       },
       "fix": {
         "kind": "editor",
@@ -1487,7 +1610,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-15baa9 used by 4 node(s)",
+      "message": "shared class .s-15baa9 used by 5 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1495,7 +1618,7 @@
       "ui": "",
       "detail": {
         "class": ".s-15baa9",
-        "nodes": "4"
+        "nodes": "5"
       },
       "fix": {
         "kind": "editor",
@@ -1537,7 +1660,32 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-1813e6 used by 3 node(s)",
+      "message": "shared class .s-329dcb used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-329dcb",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-329dcb"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-1813e6 used by 4 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1545,7 +1693,7 @@
       "ui": "",
       "detail": {
         "class": ".s-1813e6",
-        "nodes": "3"
+        "nodes": "4"
       },
       "fix": {
         "kind": "editor",

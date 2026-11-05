@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #scrim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "scrim",
+      "source": "Evbook.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "evbook",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 51 element(s) is written to their <layout> #id rules (#evbook, #scrim, #book-dock, #book, #book-title, ...)",
+      "element": "",
+      "source": "Evbook.dc.html",
+      "line": 80,
+      "col": 0,
+      "ui": "evbook",
+      "detail": {
+        "elements": "51",
+        "ids": "#evbook #scrim #book-dock #book #book-title #tabs #btn-close #book-rule-a #book-rule-b #page-l #cards-scroll #cards-list #card #card-bar #card-tape #card-id #card-q #card-name #card-rule #card-new #gold-empty-box #gold-empty #notes #notes-head #notes-scroll #notes-list #note #note-mark #note-text #spine #page-r #detail #detail-bar #detail-grade #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #detail-id #detail-body #sel-name #sel-tags #sel-rule #sel-desc #appr-row #appr-box #appr-label #appr-count #appr-gap #btn-appraise"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

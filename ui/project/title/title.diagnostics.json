@@ -9,7 +9,7 @@
       "message": "anchor: #kicker left: 48px; top: 16px -> anchor: left top; offset: 16px -2px; size: 520px 20px",
       "element": "kicker",
       "source": "Title.dc.html",
-      "line": 31,
+      "line": 45,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -33,7 +33,7 @@
       "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 260px 30px",
       "element": "lang-toggle",
       "source": "Title.dc.html",
-      "line": 34,
+      "line": 48,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -57,7 +57,7 @@
       "message": "anchor: #rule-top left: 48px; top: 46px -> anchor: left top; offset: 16px 28px; size: 1184px 1px",
       "element": "rule-top",
       "source": "Title.dc.html",
-      "line": 48,
+      "line": 62,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -81,7 +81,7 @@
       "message": "anchor: #mast-dock left: 240px; top: 52px -> anchor: left top; offset: 208px 34px; size: 800px 172px",
       "element": "mast-dock",
       "source": "Title.dc.html",
-      "line": 53,
+      "line": 67,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -105,7 +105,7 @@
       "message": "anchor: #rule-mast-thick left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 68,
+      "line": 82,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -129,7 +129,7 @@
       "message": "anchor: #rule-mast-thick top 230px -> calc(32.08% - 0.96px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 68,
+      "line": 82,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -153,7 +153,7 @@
       "message": "anchor: #rule-mast-thin left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 70,
+      "line": 84,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -177,7 +177,7 @@
       "message": "anchor: #rule-mast-thin top 236px -> calc(32.82% - 0.33px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 70,
+      "line": 84,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -201,7 +201,7 @@
       "message": "anchor: #paper-name left 340px -> calc(50% - 300px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 72,
+      "line": 86,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -225,7 +225,7 @@
       "message": "anchor: #paper-name top 242px -> calc(34.97% - 9.79px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 72,
+      "line": 86,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -249,7 +249,7 @@
       "message": "anchor: #rule-name left 48px -> calc(1safe-left + 16px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 76,
+      "line": 90,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -273,7 +273,7 @@
       "message": "anchor: #rule-name top 274px -> calc(38.11% - 0.38px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 76,
+      "line": 90,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -297,7 +297,7 @@
       "message": "anchor: #lead left: 48px; bottom: auto; top: 300px -> anchor: left bottom; offset: 16px 22px; size: 712px 380px",
       "element": "lead",
       "source": "Title.dc.html",
-      "line": 80,
+      "line": 94,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -321,7 +321,7 @@
       "message": "anchor: #rule-column left 792px -> calc(61.92% - 0.62px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -345,7 +345,7 @@
       "message": "anchor: #rule-column bottom auto -> calc(1safe-bottom + 30px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -369,7 +369,7 @@
       "message": "anchor: #rule-column top 300px -> (removed)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -393,7 +393,7 @@
       "message": "anchor: #contents right: auto; left: 824px; bottom: auto; top: 300px -> anchor: right bottom; offset: 16px 30px; size: 408px 372px",
       "element": "contents",
       "source": "Title.dc.html",
-      "line": 98,
+      "line": 112,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -417,7 +417,7 @@
       "message": "anchor: #rule-foot left: 48px; bottom: auto; top: 692px -> anchor: left bottom; offset: 16px 9px; size: 1184px 1px",
       "element": "rule-foot",
       "source": "Title.dc.html",
-      "line": 111,
+      "line": 131,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -436,17 +436,41 @@
       "accepted": false
     },
     {
-      "code": "style.geometryInline",
+      "code": "anchor.rewritten",
       "severity": "info",
-      "message": "the board's inline geometry of 26 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
-      "element": "",
+      "message": "anchor: #end-card right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "end-card",
       "source": "Title.dc.html",
-      "line": 24,
+      "line": 135,
       "col": 0,
       "ui": "title",
       "detail": {
-        "elements": "26",
-        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #rule-column #contents #contents-heading #btn-ch1 #btn-ch2 #btn-ch3 #rule-foot"
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 42 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
+      "element": "",
+      "source": "Title.dc.html",
+      "line": 38,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "elements": "42",
+        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #rule-column #contents #contents-heading #btn-ch1 #btn-ch1-no #btn-ch1-title #btn-ch2 #btn-ch2-no #btn-ch2-title #btn-ch3 #btn-ch3-no #btn-ch3-title #rule-foot #end-card #end-dock #end-mast #end-mast-art #end-rule-a #end-rule-b #end-text #end-rule-c #end-rule-d #end-name"
       },
       "fix": {
         "kind": "editor",

@@ -19,6 +19,7 @@
 | `chapter` | number | out | 玩家在目錄欄選了章節：值為章節編號 1、2、3（預設 0 = 尚未選擇）。每次點擊送出一次，同一章重複點擊也會送出。 |
 | `lang_toggle` | event | out | 玩家按了語言切換（中文／English）。UI 不自己切換語言，只送出事件。 |
 | `lang_en` | bool | in | 目前語言是否為英文：`true` 時切換鈕的「English」反白，`false` 時「中文」反白（預設 `false`）。 |
+| `ended` | bool | in | 「待續」結尾卡：`true` 時整個標題畫面被結尾卡蓋住（流圖在 Ch.4 預告報紙之後顯示 title 並設為 `true`）；預設 `false`。 |
 
 流圖側（`flows/main.xtflow`）：
 
@@ -27,7 +28,12 @@
 | `ui#title.chapter` | `world.chapter`（number，`game.json` 宣告，初始 0） | 記錄所選章節；後續章節流程讀 `world.chapter`。 |
 | `ui#title.lang_toggle` | 語言切換 | 目標：翻轉 `world.language`（zh-TW ↔ en），並由 `world.language` 推出 `lang_en`。XTAtrium 在地化（08 §8.1，AT-031）落地前沒有 `world.language`，暫以 `toggle` 節點直接驅動 `ui#title.lang_en`（只切換反白，不切換文字）。 |
 
-字串鍵：`UI_PAPER_MAST`、`UI_TITLE_KICKER`、`UI_TITLE_LANG`、`UI_TITLE_LANG_ZH`、`UI_TITLE_LANG_EN`、`UI_TITLE_LEAD`、`UI_TITLE_LOGO`、`UI_TITLE_SUB`、`UI_TITLE_CONTENTS`、`UI_TITLE_CH1`、`UI_TITLE_CH2`、`UI_TITLE_CH3`。
+UI 側實作（板子 `ui/boards/project/Title.dc.html`）：
+
+- **目錄欄**：每章一個可聚焦的 `<div class="entry">`（`btn-ch1`～`btn-ch3`，`tabindex="0"`，Enter／Space 由預設的鍵盤啟用觸發點擊），內含兩個元素：`Ch.n`（純文字、兩種語言相同，銅色小字）與 `@CHAP_0n_TITLE`（章名）。字串表沒有 `UI_CHAP_NO`（只有含 `{n}`／`{chapterTitle}` 佔位的 `UI_CHAPTER_CARD`），UI 無法填佔位，所以章號寫成字面。不用 `<button>`：按鈕裡放兩個子元素會被折成一段 rich text，子元素上的 `@key` 不會解析。點擊 → `set(chapter, n)`。
+- **結尾卡（`ended`）**：`#end-card` 以 `bind:display="ended"` 蓋住整個畫面（報頭圖、粗細雙線、大字 `UI_TO_BE_CONTINUED`、下方小字 `UI_TITLE_LOGO`），吃掉所有點擊（目錄與語言切換都按不到）；`ended` 變更時播 `end-in`（500 ms 淡入，大字由 1.12 倍縮入）。結尾卡不送出任何事件：要關掉它，流圖把 `ended` 設回 `false`（合約目前沒有「點一下回標題」的 out port）。
+
+字串鍵：`UI_PAPER_MAST`、`UI_TITLE_KICKER`、`UI_TITLE_LANG`、`UI_TITLE_LANG_ZH`、`UI_TITLE_LANG_EN`、`UI_TITLE_LEAD`、`UI_TITLE_LOGO`、`UI_TITLE_SUB`、`UI_TITLE_CONTENTS`、`CHAP_01_TITLE`、`CHAP_02_TITLE`、`CHAP_03_TITLE`、`UI_TO_BE_CONTINUED`。`UI_TITLE_CH1`～`UI_TITLE_CH3` 已退役，並自 `ui/project/shared/strings/<lang>.csv` 移除。
 
 ## vn（日常、事件、劇情對白，1280×720）
 
@@ -91,15 +97,19 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 
 - **page**：1 顯示頭版（`#p1`），2 顯示第二版（`#p2`），其他值兩頁都不顯示；變更時播 `flip`（280 ms 淡入並右移收回）。頁尾中央的頁碼直接顯示 `page`。
-- **頭版**：報頭圖（與 title 共用同一檔）居中，左右耳框；雙線；`dateline` 置中；`headline` 大標兩行（中文 52 px、英文 40 px，以 `:lang(en)` 切換），顯示與變更時播 `intro`（活字落下）；`subhead` 斜體兩行；內文五欄。
-- **五欄內文的做法**：五欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高（264 px），外層 `overflow: hidden`，看起來就是同一段文字由第一欄接到第五欄。超出五欄（約每欄 14 字 × 12 行）的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
+- **頭版**：報頭圖（與 title 共用同一檔）居中，左右耳框；雙線；`dateline` 置中；`headline` 大標最多兩行（中文 52 px、英文 40 px，以 `:lang(en)` 切換），放在 124 px 高的 flex 框裡垂直置中（一行的頭條不會在下方留白），顯示與變更時播 `intro`（活字落下）。
+- **有圖（`picture` 非空）**：頭條下一列：左側鋼版畫框橫跨 3 欄（700 px 寬，`object-fit: cover`，960×640 原圖上下會裁掉一些），右側 2 欄先放 `subhead`（斜體，最多三行，在 72 px 高的框裡垂直置中），細線下是導言兩欄（下述位移法）。已知 id：`ch01`～`ch04` → `_blob/paper_ch0x.jpg`（每個 id 一張 `<img>`，`bind:display="picture | eq('ch0x')"`）；未知 id 只畫空框。
+- **無圖（`picture` 空字串）**：`subhead` 置中橫跨全頁（兩行），其下內文五欄。
+- **多欄內文的做法**：每欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高，外層 `overflow: hidden`，看起來就是同一段文字逐欄接下去。欄寬 216 px（約 14 個中文字），欄高在有「上一案結果」條時 198 px（9 行）、沒有時 264 px（12 行）。有圖時只有兩欄（中文約 250 字；英文 Ch.2 開場內文最後一兩句會被截掉），無圖時五欄。超出的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
+- **側欄・上一案結果（`result_head`、`result_sub`）**：頁尾線上方一條舊紙底、上粗下細框線的橫條：左端深墨底標籤 `UI_PAPER_PREV_CASE`（UI-only 鍵「上一案結果」），右側 `result_head`（粗體一行）與 `result_sub`（斜體一行，空字串隱藏；兩行在條內垂直置中）。`result_head` 空字串時整條隱藏，同時 `#p1` 帶上 `class.tall`（`bind:class.tall="result_head | eq('')"`）：鋼版畫框與各欄改用較高的尺寸，位移量跟著換（`<helmet>` 的 `.tall #…` 規則，進 `<layout>`），頁面一直排到頁尾。
 - **mast**：0 平常版（左耳「倫敦提燈報」、右耳「頭版」）；1 號外（兩耳改為銅底「號外」）；2 滲透版（報頭粗線改狼影紫 `#3b2a4a`；token 表尚無此色）。
-- **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 標題與三欄 `page2_body`；右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。
-- **stamp**：1 結案、2 更正；朱紅印章（雙框、旋轉 −9°）疊在內文第二欄上，約占畫面 3%，兩頁都顯示；變更時播 `stamp-in`（180 ms 蓋印）。
+- **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 非空時是標題與三欄 `page2_body`，右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。`page2_head` 空字串時（原型的轉場報紙都沒有第二版文章：`papers` 表的 `page2Key` 只有 Ch.1 有值）`#p2` 帶上 `class.wide`：文章區隱藏，城市短訊（左 680 px，頭條字體 30 px 粗體）與廣告（右 456 px，28 px）展開占滿整頁，中間一道直線。
+- **stamp**：1 結案、2 更正；朱紅印章（雙框、旋轉 −9°）疊在畫面左下（有圖時蓋在鋼版畫上），兩頁都顯示；變更時播 `stamp-in`（180 ms 蓋印）。
 - **輸入**：左鍵（畫面任一處）、Enter、Space、→、PageDown → `next`；←、PageUp → `prev`。鍵盤同 vn，根元素持有焦點。
-- 已知落差：美術風格 §五「章節開場」要求鋼版畫主圖，合約沒有圖片 port；Ch.1 開場內文（`SCR_CH01_S01_L003`，約 170 字）只填滿五欄中的一欄多。「收入剪報簿」提示（系統規格 §4.2）沒有對應 port，未做。
+- **預設值**（截圖用）：Ch.2 開場（`CH02_OPEN`：`HEAD_CH02`、`HEAD_CH02_SUB`、`SCR_CH02_S01_L003`、`NEWS_SIDE_01`），`picture` = `ch02`，上一案結果條是 Ch.1 的 `NEWS_01_END`（沒有副標），第二版沒有文章（展開版）。
+- 已知落差：「收入剪報簿」提示（系統規格 §4.2）沒有對應 port，未做。
 
-字串鍵：`UI_PAPER_MAST`、`UI_PAPER_PAGE1`、`UI_PAPER_PAGE2`、`UI_PAPER_SIDE`、`UI_PAPER_ADS`、`UI_PAPER_EXTRA`、`UI_PAPER_STAMP_CLOSED`、`UI_PAPER_STAMP_FIX`。
+字串鍵：`UI_PAPER_MAST`、`UI_PAPER_PAGE1`、`UI_PAPER_PAGE2`、`UI_PAPER_SIDE`、`UI_PAPER_ADS`、`UI_PAPER_EXTRA`、`UI_PAPER_STAMP_CLOSED`、`UI_PAPER_STAMP_FIX`、`UI_PAPER_PREV_CASE`（新增，UI-only）。
 
 ## investigate（蒐證，1280×720）
 
@@ -335,6 +345,20 @@ UI 側實作（板子 `ui/boards/project/Cutin.dc.html`）：
 | `continue` | event | out | 繼續（進入報紙）。 |
 | `retry` | event | out | 重新論戰。 |
 
+UI 側實作（板子 `ui/boards/project/Result.dc.html`）：
+
+- **整體**：桌面色（舊紙徑向漸層）上一張 1040×664 的剪報（新聞紙底、硬陰影、左右上角兩條斜貼的膠帶），放在以 `calc(50% - 640px)` 置中的 1280×720 `#sheet` 裡。剪報頂端是報名 `UI_PAPER_MAST` 與粗細雙線。
+- **勝敗大字**（`win`）：三個元素依 `win | eq(1／0／2)` 只顯示一個：1 `UI_RES_WIN` 燈火金字＋深墨 3 px 硬陰影、0 `UI_RES_LOSE` 銅鏽色、2 `UI_RES_UNACHIEVED`（UI-only 鍵「未達成」）灰墨。中文 112 px、英文 84 px。顯示時與 `win` 變更時播 `verdict-in`（1.35 倍蓋下、回彈），`opp_line`（斜體置中，兩行，空字串隱藏）在 0.42 秒後淡入。勝利時剪報右下另蓋一枚 `UI_PAPER_STAMP_CLOSED` 朱紅印章（同 paper 的印章樣式，0.7 秒後蓋下）。
+- **統計**（`stats`）：左欄 `<repeat>`，每筆一列「`item(label)` ⋯⋯ `item(value)`」（虛線導引、數值粗體右對齊、等寬數字）；列高 30 px，最多 9 列（超出截掉）。文字全由流圖在地化與格式化（`UI_RES_READS` 等含佔位的鍵由流圖代入後寫入）。
+- **信任度**（`trust_from`、`trust_to`）：右欄頂端，`trust_from` < 0 時整列隱藏（Ch.2 沒有警督）。小標 `UI_RES_TRUST_LABEL`（UI-only 鍵「警督信任度」；`UI_RES_TRUST` 含 `{from}`／`{to}` 佔位，UI 無法填值），五枚警徽（同 vn 的 `.badge`）分兩層重疊：`trust_from` 層與 `trust_to` 層；顯示時與 `trust_to` 變更時播 `trust-in`：0.5～0.9 秒舊層淡出、新層淡入並由 1.18 倍縮回。右側 `format('{0} → {1}', trust_from, trust_to)`。
+- **亞瑟評語**（`comment`）：亞瑟筆記本樣式（同 vn style 1：舊紙底、銅色頂線、`ui_ruled.png` 橫格線、銅色左邊線、`skewX(-6deg)` 斜體），頭像（`char_arthur.png` 裁頭部）＋`SPK_ARTHUR`；兩行，空字串隱藏。
+- **本案的代價**（`costs`）：`win` = 0 時顯示，朱紅上下框、小標 `UI_RES_COST`，`<repeat>` 每筆一列（朱紅小方塊＋`item(text)`），可見 2～3 列。
+- **按鈕**：右下 `BTN_RES_RETRY`（`can_retry` 為 false 時隱藏）→ `emit(retry)`；`BTN_RES_CONTINUE` → `emit(continue)`。鍵盤（根元素持有焦點，同 vn）：Enter／Space → `continue`，R → `retry`（`can_retry` 時）。
+- **預設值**（截圖用）：Ch.2 勝利、費奇的結局台詞 `SCR_CH02_S05_L046`、9 列統計樣本、`trust_from`／`trust_to` = −1、`ART_RES_CLEAN`、沒有代價、不能重來。
+- 未做（合約沒有對應 port）：敗北時先開對手筆記的回合紀錄、故事模式風評（`UI_RES_REPUTE`）、`BTN_RES_ACCEPT`。
+
+字串鍵：`UI_PAPER_MAST`、`UI_RES_WIN`、`UI_RES_LOSE`、`UI_RES_UNACHIEVED`（新增，UI-only）、`UI_RES_TRUST_LABEL`（新增，UI-only）、`SPK_ARTHUR`、`UI_RES_COST`、`UI_PAPER_STAMP_CLOSED`、`BTN_RES_CONTINUE`、`BTN_RES_RETRY`。
+
 ## evbook（證物冊，覆蓋層，modal）
 
 依據：系統規格 §4.2、§8.4（UI_EVBOOK_*）。
@@ -352,3 +376,16 @@ UI 側實作（板子 `ui/boards/project/Cutin.dc.html`）：
 | `select` | string | out | 選卡。 |
 | `appraise` | event | out | 交給亞瑟。 |
 | `close` | event | out | 關閉。 |
+
+UI 側實作（板子 `ui/boards/project/Evbook.dc.html`）：
+
+- **整體**：`game.json` 裡 `"modal": true` 的覆蓋層。全畫面深墨半透明遮罩（點一下 → `emit(close)`），中央一本攤開的剪貼簿（1120×640，以 `calc` 置中的 dock）：上方書名 `UI_EVBOOK_TITLE`、三個分頁、`BTN_CLOSE`、粗細雙線；左頁是卡片與案件筆記，中間書脊陰影，右頁是詳情。顯示時播 `open`（遮罩淡入、書本上移淡入）。
+- **分頁**（`tab`、`select_tab`）：`UI_EVBOOK_TAB_CASE`／`UI_EVBOOK_TAB_GOLD`／`UI_EVBOOK_TAB_PLOT`，`tab | eq(n)` 的那一頁深墨底；點擊 → `set(select_tab, n)`。UI 不自己換頁，等流圖寫回 `tab` 與 `cards`。黃金線索分頁且 `cards` 第一筆 `id` 為空時顯示 `UI_EVBOOK_GOLD_EMPTY`。
+- **卡片**（`cards`）：`<repeat>` 換行排列（每列 4 張、116×140）的剪報卡：頂端等級色條、膠帶、`item(id)`（小字編號）、卡名四行、`appraised` 為 false 時朱紅「?」、`isnew` 時右上朱紅圓點；等級框同 board／investigate（1 銀框、2 舊紙＋深墨 2 px 框、3 金框＋金光、4 虛線框舊紙）；`item(id) | eq(sel_id)` 時朱紅外框。點擊 → `set(select, item(id))`。卡片區 318 px 高、可捲動（約 2 列可見）。範本內沒有固定文字（範本裡的 `@key` 不會在地化）。
+- **案件筆記**（`notes`）：左頁下方舊紙底、銅色頂線的框，小標 `UI_NOTES_TITLE`，`<repeat>` 每筆一段（銅色菱形＋`item(text)`，自動換行），可捲動。
+- **詳情**（`sel_*`；`sel_id` 空字串隱藏）：同 board 的詳情面板：等級小標 `UI_GRADE_*`、頂端等級色條、右上 `sel_id`、`sel_name`、`sel_tags`、雙線、`sel_desc`（最多 9 行）；底部鑑定箱圖示＋`UI_INV_APPR`＋`format('×{0}', appraise_left)`，`BTN_APPRAISE`（`sel_can_appraise` 為 false 時灰色且不送）→ `emit(appraise)`。
+- **鍵盤**（根元素持有焦點，同 vn）：Esc、Tab、Backspace → `close`；1／2／3 → `set(select_tab, 0／1／2)`；Q／E → `set(select_tab, tab ∓ 1)`（`offset` 後 `clamp(0, 2)`）。
+- **預設值**（截圖用）：Ch.2 本案證物分頁 6 張（E02_01～E02_06；E02_01 為未鑑定的關鍵證物並選中，E02_05、E02_06 為新取得），案件筆記 2 則（`HS_CH02_09_NOTE`、`HS_CH02_11_NOTE`），鑑定 2 次。
+- 未做（合約沒有對應 port）：卡片上的五大標籤圖示與已鑑定鋼印、方向鍵選卡、筆記分類。
+
+字串鍵：`UI_EVBOOK_TITLE`、`UI_EVBOOK_TAB_CASE`、`UI_EVBOOK_TAB_GOLD`、`UI_EVBOOK_TAB_PLOT`、`UI_EVBOOK_GOLD_EMPTY`、`UI_NOTES_TITLE`、`BTN_CLOSE`、`UI_GRADE_*`、`UI_INV_APPR`、`BTN_APPRAISE`。

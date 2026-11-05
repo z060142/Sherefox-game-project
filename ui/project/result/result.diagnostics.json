@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 41 element(s) is written to their <layout> #id rules (#result, #sheet, #clip, #tape-l, #tape-r, ...)",
+      "element": "",
+      "source": "Result.dc.html",
+      "line": 66,
+      "col": 0,
+      "ui": "result",
+      "detail": {
+        "elements": "41",
+        "ids": "#result #sheet #clip #tape-l #tape-r #res-mast #res-rule-a #res-rule-b #verdict #v-win #v-lose #v-none #opp-line #res-rule-c #stats #stat #stat-label #stat-dots #stat-value #res-rule-col #side #trust #trust-label #trust-from #trust-to #trust-num #comment #comment-face #comment-art #comment-who #comment-text #costs #costs-head #costs-list #cost #cost-mark #cost-text #res-stamp #res-stamp-inner #res-stamp-text #btns"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

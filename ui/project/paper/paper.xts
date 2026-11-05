@@ -10,30 +10,32 @@
 
 /* import: Paper.dc.html:1/0/0/5 */
 #dateline {
-  color: var(--ink);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #123a31;
   font-size: 14px;
   letter-spacing: 2px;
   line-height: 26px;
   text-align: center;
 }
 
-/* import: Paper.dc.html:1/0/0/7 */
+/* import: Paper.dc.html:1/0/0/7/0 */
 #headline {
-  color: var(--ink-deep);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #092e28;
   font-size: 52px;
   font-weight: 700;
   letter-spacing: 2px;
   line-clamp: 2;
-  line-height: 66px;
+  line-height: 62px;
   text-align: center;
 }
 
-/* import: Paper.dc.html:1/0/0/8 */
+/* import: Paper.dc.html:1/0/0/9/2/0 */
+#pic-deck {
+  line-clamp: 3;
+}
+
+/* import: Paper.dc.html:1/0/0/10/0 */
 #subhead {
-  color: var(--ink);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #123a31;
   font-size: 19px;
   font-style: italic;
   line-clamp: 2;
@@ -43,8 +45,7 @@
 
 /* import: Paper.dc.html:1/0/1/1 */
 #p2-mast {
-  color: var(--ink-deep);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #092e28;
   font-size: 22px;
   letter-spacing: 5px;
   line-height: 32px;
@@ -53,58 +54,34 @@
 
 /* import: Paper.dc.html:1/0/1/2 */
 #p2-date {
-  color: var(--ink);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #123a31;
   font-size: 13px;
   letter-spacing: 1px;
   line-height: 20px;
   text-align: right;
 }
 
-/* import: Paper.dc.html:1/0/1/5 */
+/* import: Paper.dc.html:1/0/1/5/0 */
 #p2-headline {
-  color: var(--ink-deep);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #092e28;
   font-size: 36px;
   font-weight: 700;
   line-clamp: 2;
   line-height: 52px;
 }
 
-/* import: Paper.dc.html:1/0/1/12/0/0 */
-#ad-text {
-  color: var(--ink-deep);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 18px;
-  line-height: 28px;
-  text-align: center;
-}
-
 /* import: Paper.dc.html:1/0/3 */
 #folio {
-  color: var(--ink);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #123a31;
   font-size: 13px;
   letter-spacing: 2px;
   line-height: 20px;
   text-align: center;
 }
 
-/* import: Paper.dc.html:1/0/5 */
-#stamp {
-  border: 4px #b8322a;
-  opacity: 0.92;
-}
-
-/* import: Paper.dc.html:1/0/5/0 */
-#stamp-inner {
-  border: 1px #b8322a;
-}
-
 /* import: Paper.dc.html:1/0/5/0/0 */
 #stamp-closed {
-  color: var(--vermilion);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #b8322a;
   font-size: 46px;
   font-weight: 700;
   letter-spacing: 10px;
@@ -115,8 +92,7 @@
 
 /* import: Paper.dc.html:1/0/5/0/1 */
 #stamp-fix {
-  color: var(--vermilion);
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  color: #b8322a;
   font-size: 46px;
   font-weight: 700;
   letter-spacing: 10px;
@@ -195,6 +171,118 @@
   color: var(--paper);
 }
 
+.f-body {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+}
+
+.f-disp {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+}
+
+.pic-frame {
+  background-color: var(--paper);
+  border: 1px #123a31;
+  effect: shadow(3px 3px 0px 0px #092e2833);
+}
+
+.pic-art {
+  object-fit: cover;
+}
+
+.deck {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 18px;
+  line-height: 24px;
+  font-style: italic;
+  color: var(--ink-deep);
+}
+
+.prev {
+  background-color: var(--paper-old);
+  border-top-width: 3px;
+  border-top-color: #123a31;
+  border-bottom-width: 1px;
+  border-bottom-color: #123a31;
+}
+
+.prev-label {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 3px;
+  text-align: center;
+  color: var(--paper);
+  background-color: var(--ink);
+}
+
+.prev-head {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 19px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.prev-sub {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  font-style: italic;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ad-box {
+  border: 1px #123a31;
+}
+
+.ad-frame {
+  border: 1px #123a31;
+}
+
+.ad-text {
+  text-align: center;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--ink-deep);
+}
+
+.side-text {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--ink);
+}
+
+.wide #side-head {
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 6px;
+}
+
+.wide #side-text {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 30px;
+  line-height: 48px;
+  font-weight: 700;
+  color: var(--ink-deep);
+}
+
+.wide #ads-head {
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 6px;
+}
+
+.wide #ad-text {
+  font-size: 28px;
+  line-height: 44px;
+}
+
 :lang(en) #headline {
   font-size: 40px;
   line-height: 50px;
@@ -216,11 +304,21 @@
   letter-spacing: 2px;
 }
 
+:lang(en) .wide #side-text {
+  font-size: 26px;
+  line-height: 40px;
+}
+
+:lang(en) .wide #ad-text {
+  font-size: 24px;
+  line-height: 38px;
+}
+
 :root {
   --copper: #a65432;
   --ink: #123a31;
   --ink-deep: #092e28;
   --paper: #f3eedf;
-  --vermilion: #b8322a;
+  --paper-old: #e3d9c2;
 }
 

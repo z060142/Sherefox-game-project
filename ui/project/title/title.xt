@@ -7,6 +7,7 @@
     chapter: number out = 0
     lang_toggle: event out
     lang_en: bool in = false
+    ended: bool in = false
   </ports>
 
   <body on:show="play(intro)">
@@ -41,11 +42,33 @@
       <div id="rule-column" class="rule-thin"/>
       <div id="contents">
         <div id="contents-heading" class="kicker s-7ee933">@UI_TITLE_CONTENTS</div>
-        <button id="btn-ch1" class="entry" on:click="set(chapter, 1)">@UI_TITLE_CH1</button>
-        <button id="btn-ch2" class="entry" on:click="set(chapter, 2)">@UI_TITLE_CH2</button>
-        <button id="btn-ch3" class="entry" on:click="set(chapter, 3)">@UI_TITLE_CH3</button>
+        <div id="btn-ch1" class="entry" tabindex="0" on:click="set(chapter, 1)">
+          <div id="btn-ch1-no" class="entry-no">Ch.1</div>
+          <div id="btn-ch1-title" class="entry-title">@CHAP_01_TITLE</div>
+        </div>
+        <div id="btn-ch2" class="entry" tabindex="0" on:click="set(chapter, 2)">
+          <div id="btn-ch2-no" class="entry-no">Ch.2</div>
+          <div id="btn-ch2-title" class="entry-title">@CHAP_02_TITLE</div>
+        </div>
+        <div id="btn-ch3" class="entry" tabindex="0" on:click="set(chapter, 3)">
+          <div id="btn-ch3-no" class="entry-no">Ch.3</div>
+          <div id="btn-ch3-title" class="entry-title">@CHAP_03_TITLE</div>
+        </div>
       </div>
       <div id="rule-foot" class="rule-copper"/>
+      <div id="end-card" class="end-card" on:port(ended)="play(end-in)" bind:display="ended">
+        <div id="end-dock">
+          <div id="end-mast">
+            <img id="end-mast-art" class="s-b00406" src="../shared/img/masthead-art.png"/>
+          </div>
+          <div id="end-rule-a" class="rule-thick"/>
+          <div id="end-rule-b" class="rule-thin"/>
+          <div id="end-text" class="end-text">@UI_TO_BE_CONTINUED</div>
+          <div id="end-rule-c" class="rule-thin"/>
+          <div id="end-rule-d" class="rule-thick"/>
+          <div id="end-name" class="end-kicker">@UI_TITLE_LOGO</div>
+        </div>
+      </div>
     </div>
   </body>
 
@@ -233,19 +256,129 @@
     #btn-ch1 {
       flex-shrink: 0;
     }
+    /* import: Title.dc.html:1/10/1/0 */
+    #btn-ch1-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 376px;
+    }
+    /* import: Title.dc.html:1/10/1/1 */
+    #btn-ch1-title {
+      flex-shrink: 0;
+      width: 376px;
+    }
     /* import: Title.dc.html:1/10/2 */
     #btn-ch2 {
       flex-shrink: 0;
     }
+    /* import: Title.dc.html:1/10/2/0 */
+    #btn-ch2-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 376px;
+    }
+    /* import: Title.dc.html:1/10/2/1 */
+    #btn-ch2-title {
+      flex-shrink: 0;
+      width: 376px;
+    }
     /* import: Title.dc.html:1/10/3 */
     #btn-ch3 {
       flex-shrink: 0;
+    }
+    /* import: Title.dc.html:1/10/3/0 */
+    #btn-ch3-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 376px;
+    }
+    /* import: Title.dc.html:1/10/3/1 */
+    #btn-ch3-title {
+      flex-shrink: 0;
+      width: 376px;
     }
     /* import: Title.dc.html:1/11 */
     #rule-foot {
       anchor: left bottom;
       offset: 16px 9px;
       size: 1184px 1px;
+    }
+    /* import: Title.dc.html:1/12 */
+    #end-card {
+      anchor: stretch stretch screen;
+    }
+    /* import: Title.dc.html:1/12/0 */
+    #end-dock {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: Title.dc.html:1/12/0/0 */
+    #end-mast {
+      height: 136px;
+      left: 340px;
+      overflow: hidden;
+      position: absolute;
+      top: 96px;
+      width: 600px;
+    }
+    /* import: Title.dc.html:1/12/0/0/0 */
+    #end-mast-art {
+      height: 200px;
+      left: 0px;
+      position: absolute;
+      top: -27px;
+      width: 600px;
+    }
+    /* import: Title.dc.html:1/12/0/1 */
+    #end-rule-a {
+      height: 3px;
+      left: 240px;
+      position: absolute;
+      top: 252px;
+      width: 800px;
+    }
+    /* import: Title.dc.html:1/12/0/2 */
+    #end-rule-b {
+      height: 1px;
+      left: 240px;
+      position: absolute;
+      top: 258px;
+      width: 800px;
+    }
+    /* import: Title.dc.html:1/12/0/3 */
+    #end-text {
+      height: 160px;
+      left: 240px;
+      position: absolute;
+      top: 284px;
+      width: 800px;
+    }
+    /* import: Title.dc.html:1/12/0/4 */
+    #end-rule-c {
+      height: 1px;
+      left: 240px;
+      position: absolute;
+      top: 470px;
+      width: 800px;
+    }
+    /* import: Title.dc.html:1/12/0/5 */
+    #end-rule-d {
+      height: 3px;
+      left: 240px;
+      position: absolute;
+      top: 474px;
+      width: 800px;
+    }
+    /* import: Title.dc.html:1/12/0/6 */
+    #end-name {
+      height: 28px;
+      left: 340px;
+      position: absolute;
+      top: 494px;
+      width: 600px;
     }
     .lang-opt {
       width: 76px;
@@ -255,15 +388,54 @@
     .entry {
       width: 408px;
       height: 108px;
-      padding-top: 12px;
+      padding-top: 14px;
       padding-right: 16px;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
     }
   </layout>
   <style src="../shared/base.xts"/>
   <style src="title.xts"/>
   <timelines>
+    @timeline end-in {
+      #end-card {
+        0ms {
+          opacity: 0;
+        }
+        500ms ease-out {
+          opacity: 1;
+        }
+      }
+      #end-text {
+        0ms {
+          opacity: 0;
+          transform: scale(1.12);
+        }
+        250ms {
+          opacity: 0;
+          transform: scale(1.12);
+        }
+        800ms ease-out {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      #end-name {
+        0ms {
+          opacity: 0;
+        }
+        700ms {
+          opacity: 0;
+        }
+        1100ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
     @timeline intro {
       #masthead {
         0ms {

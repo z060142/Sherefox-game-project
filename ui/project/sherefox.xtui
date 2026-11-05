@@ -84,6 +84,22 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "result",
+      "doc": "result/result.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "evbook",
+      "doc": "evbook/evbook.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

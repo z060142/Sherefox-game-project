@@ -1508,6 +1508,7 @@ UI_PAPER_MAST_YORK,The Yorkshire Morning Post
 UI_PAPER_NOTO_LOSE,The detective's methods have also been called into question.
 UI_PAPER_PAGE1,Front Page
 UI_PAPER_PAGE2,Page Two
+UI_PAPER_PREV_CASE,Last Case
 UI_PAPER_SIDE,City Briefs
 UI_PAPER_STAMP_CLOSED,Case Closed
 UI_PAPER_STAMP_FIX,Correction
@@ -1541,6 +1542,8 @@ UI_RES_REPUTE_GOOD,Good
 UI_RES_REPUTE_MID,Disputed
 UI_RES_ROUNDS,Rounds
 UI_RES_TRUST,Inspector's Trust {from} → {to}
+UI_RES_TRUST_LABEL,Inspector's Trust
+UI_RES_UNACHIEVED,Not Achieved
 UI_RES_WIN,Victory
 UI_REVERSE_BREAK,逆・論破
 UI_SAVE_TITLE,Save
@@ -1639,9 +1642,6 @@ UI_TAG_PLACE,Place
 UI_TAG_SCANDAL,Scandal
 UI_TAG_TIME,Time
 UI_TAIL,Endgame
-UI_TITLE_CH1,Ch.1 The Roommate Affair: The Vanishing Clockwork Caramel Pudding
-UI_TITLE_CH2,Ch.2 The Clockmaker's Affair: The Cuckoo Three Minutes Slow
-UI_TITLE_CH3,Ch.3 Murder on the Steam Barge in the Thames Fog
 UI_TITLE_CONTENTS,In This Issue
 UI_TITLE_KICKER,Sherefox Detective Agency
 UI_TITLE_LANG,Language

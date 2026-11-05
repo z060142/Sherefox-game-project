@@ -17,6 +17,10 @@
     "shared/img/ch-c-wolfhart.png",
     "shared/img/ch-c-valet.png",
     "shared/img/ch-c-partner.png",
+    "shared/img/pic-ch01.jpg",
+    "shared/img/pic-ch02.jpg",
+    "shared/img/pic-ch03.jpg",
+    "shared/img/pic-ch04.jpg",
     "shared/img/ico-look.png",
     "shared/img/ico-item.png",
     "shared/img/ico-talk.png",
@@ -72,7 +76,7 @@
       "contentHash": "c9bd1334bb763015",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 31,
+      "line": 45,
       "outId": "kicker",
       "selfHash": "34ee05a2f36b589f",
       "sourceId": "Title.dc.html:1/0",
@@ -95,7 +99,7 @@
       "contentHash": "227ae75eeb864f11",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 37,
+      "line": 51,
       "outId": "lang-label",
       "selfHash": "655960d7639de8e6",
       "sourceId": "Title.dc.html:1/1/0",
@@ -115,7 +119,7 @@
       "contentHash": "6df6d8fe670e465c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 41,
+      "line": 55,
       "outId": "lang-zh",
       "selfHash": "4c10043df79e5244",
       "sourceId": "Title.dc.html:1/1/1/0",
@@ -135,7 +139,7 @@
       "contentHash": "3cabe25c3eeb841a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 43,
+      "line": 57,
       "outId": "lang-en",
       "selfHash": "cbd4b27fcea17e83",
       "sourceId": "Title.dc.html:1/1/1/1",
@@ -164,7 +168,7 @@
       "contentHash": "479f5f2495856cd8",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 39,
+      "line": 53,
       "outId": "lang-switch",
       "selfHash": "d574f8e0e8d12ce8",
       "sourceId": "Title.dc.html:1/1/1",
@@ -191,7 +195,7 @@
       "contentHash": "d08cca3bde564321",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 34,
+      "line": 48,
       "outId": "lang-toggle",
       "selfHash": "bce0e66262e162f1",
       "sourceId": "Title.dc.html:1/1",
@@ -213,7 +217,7 @@
       "contentHash": "9f8ae72ef13a4f78",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 48,
+      "line": 62,
       "outId": "rule-top",
       "selfHash": "74f353e1d4457593",
       "sourceId": "Title.dc.html:1/2",
@@ -238,7 +242,7 @@
       "contentHash": "d39477f38f9d66f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 56,
+      "line": 70,
       "outId": "masthead-art",
       "selfHash": "612390f61d339dbd",
       "sourceId": "Title.dc.html:1/3/0/0",
@@ -261,7 +265,7 @@
       "contentHash": "c0b20a76e06fdccd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 54,
+      "line": 68,
       "outId": "masthead",
       "selfHash": "7a94dd2856d2b8a1",
       "sourceId": "Title.dc.html:1/3/0",
@@ -285,7 +289,7 @@
       "contentHash": "26598414c8264761",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 59,
+      "line": 73,
       "outId": "mast-tick",
       "selfHash": "8112e663c7e1bc68",
       "sourceId": "Title.dc.html:1/3/1",
@@ -305,7 +309,7 @@
       "contentHash": "7052e1fd74148d7d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 53,
+      "line": 67,
       "outId": "mast-dock",
       "selfHash": "3d673906c470bc0a",
       "sourceId": "Title.dc.html:1/3",
@@ -329,7 +333,7 @@
       "contentHash": "9e9fc70be642bbe4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 68,
+      "line": 82,
       "outId": "rule-mast-thick",
       "selfHash": "4c775b55937b1764",
       "sourceId": "Title.dc.html:1/4",
@@ -353,7 +357,7 @@
       "contentHash": "0191409c641f5b6c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 70,
+      "line": 84,
       "outId": "rule-mast-thin",
       "selfHash": "ba2ed9e2ed01b1a9",
       "sourceId": "Title.dc.html:1/5",
@@ -382,7 +386,7 @@
       "contentHash": "a4730fd9b4bb56e3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 72,
+      "line": 86,
       "outId": "paper-name",
       "selfHash": "7bebc8cda4750ea5",
       "sourceId": "Title.dc.html:1/6",
@@ -406,7 +410,7 @@
       "contentHash": "92f1397661c102ee",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 76,
+      "line": 90,
       "outId": "rule-name",
       "selfHash": "530a8219c7de4986",
       "sourceId": "Title.dc.html:1/7",
@@ -429,7 +433,7 @@
       "contentHash": "feaac93aee4e7e80",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 83,
+      "line": 97,
       "outId": "lead-kicker",
       "selfHash": "49135128b83fafa1",
       "sourceId": "Title.dc.html:1/8/0",
@@ -460,7 +464,7 @@
       "contentHash": "b12acc56e4edb4dd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 85,
+      "line": 99,
       "outId": "lead-headline",
       "selfHash": "c2c91f544474b334",
       "sourceId": "Title.dc.html:1/8/1",
@@ -482,7 +486,7 @@
       "contentHash": "c13f55154d206bc7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 88,
+      "line": 102,
       "outId": "lead-rule",
       "selfHash": "3fd9c460f3f595e4",
       "sourceId": "Title.dc.html:1/8/2",
@@ -511,7 +515,7 @@
       "contentHash": "52b1c7201f0aeb26",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 89,
+      "line": 103,
       "outId": "lead-deck",
       "selfHash": "4bc899ed63aaaa42",
       "sourceId": "Title.dc.html:1/8/3",
@@ -534,7 +538,7 @@
       "contentHash": "c0e68cf51343fa54",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 80,
+      "line": 94,
       "outId": "lead",
       "selfHash": "8b0923b256c11e12",
       "sourceId": "Title.dc.html:1/8",
@@ -558,7 +562,7 @@
       "contentHash": "60ebeea2ae037403",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 94,
+      "line": 108,
       "outId": "rule-column",
       "selfHash": "3b82e7804de7986b",
       "sourceId": "Title.dc.html:1/9",
@@ -581,7 +585,7 @@
       "contentHash": "233dc16bea35b975",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 101,
+      "line": 115,
       "outId": "contents-heading",
       "selfHash": "05f293093193f70e",
       "sourceId": "Title.dc.html:1/10/0",
@@ -592,20 +596,65 @@
     {
       "base": {
         "attrs": {
+          "class": "entry-no"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "376px"
+        },
+        "text": "Ch.1"
+      },
+      "contentHash": "c698067b17c6612d",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 118,
+      "outId": "btn-ch1-no",
+      "selfHash": "87f1f901f1e2b97b",
+      "sourceId": "Title.dc.html:1/10/1/0",
+      "sourceName": "btn-ch1-no",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "entry-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "376px"
+        },
+        "text": "@CHAP_01_TITLE"
+      },
+      "contentHash": "d98d8c4159ff2bfa",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 119,
+      "outId": "btn-ch1-title",
+      "selfHash": "d0c88b33f74cd4cc",
+      "sourceId": "Title.dc.html:1/10/1/1",
+      "sourceName": "btn-ch1-title",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
           "class": "entry",
-          "on:click": "set(chapter, 1)"
+          "on:click": "set(chapter, 1)",
+          "tabindex": "0"
         },
         "decls": {
           "flex-shrink": "0"
-        },
-        "text": "@UI_TITLE_CH1"
+        }
       },
-      "contentHash": "bb22df1268f25f92",
+      "contentHash": "8c72ed8d0703e3bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 103,
+      "line": 117,
       "outId": "btn-ch1",
-      "selfHash": "34e77effc83d5d18",
+      "selfHash": "4c2b9a5d56ba7057",
       "sourceId": "Title.dc.html:1/10/1",
       "sourceName": "btn-ch1",
       "ui": "title",
@@ -614,20 +663,65 @@
     {
       "base": {
         "attrs": {
+          "class": "entry-no"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "376px"
+        },
+        "text": "Ch.2"
+      },
+      "contentHash": "d6e4ac83cf46e3d4",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 122,
+      "outId": "btn-ch2-no",
+      "selfHash": "d1cfd98f26e0e3ab",
+      "sourceId": "Title.dc.html:1/10/2/0",
+      "sourceName": "btn-ch2-no",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "entry-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "376px"
+        },
+        "text": "@CHAP_02_TITLE"
+      },
+      "contentHash": "49aed684c6122047",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 123,
+      "outId": "btn-ch2-title",
+      "selfHash": "9bcc2c1bc3b67e50",
+      "sourceId": "Title.dc.html:1/10/2/1",
+      "sourceName": "btn-ch2-title",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
           "class": "entry",
-          "on:click": "set(chapter, 2)"
+          "on:click": "set(chapter, 2)",
+          "tabindex": "0"
         },
         "decls": {
           "flex-shrink": "0"
-        },
-        "text": "@UI_TITLE_CH2"
+        }
       },
-      "contentHash": "0a1fe957f7871e94",
+      "contentHash": "179994c2c6917c8f",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 105,
+      "line": 121,
       "outId": "btn-ch2",
-      "selfHash": "719ad2a5682d65a5",
+      "selfHash": "9d9e043d79fee23d",
       "sourceId": "Title.dc.html:1/10/2",
       "sourceName": "btn-ch2",
       "ui": "title",
@@ -636,20 +730,65 @@
     {
       "base": {
         "attrs": {
+          "class": "entry-no"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "376px"
+        },
+        "text": "Ch.3"
+      },
+      "contentHash": "a04e87a29f64a96d",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 126,
+      "outId": "btn-ch3-no",
+      "selfHash": "bfd22da34df1d8cf",
+      "sourceId": "Title.dc.html:1/10/3/0",
+      "sourceName": "btn-ch3-no",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "entry-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "376px"
+        },
+        "text": "@CHAP_03_TITLE"
+      },
+      "contentHash": "47be5e010027e1bd",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 127,
+      "outId": "btn-ch3-title",
+      "selfHash": "cd1763d84d255400",
+      "sourceId": "Title.dc.html:1/10/3/1",
+      "sourceName": "btn-ch3-title",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
           "class": "entry",
-          "on:click": "set(chapter, 3)"
+          "on:click": "set(chapter, 3)",
+          "tabindex": "0"
         },
         "decls": {
           "flex-shrink": "0"
-        },
-        "text": "@UI_TITLE_CH3"
+        }
       },
-      "contentHash": "3eaecdd0bf6e4e6c",
+      "contentHash": "7d7f7ece068a2e21",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 107,
+      "line": 125,
       "outId": "btn-ch3",
-      "selfHash": "b241f2380dadd332",
+      "selfHash": "aa57c5b222728017",
       "sourceId": "Title.dc.html:1/10/3",
       "sourceName": "btn-ch3",
       "ui": "title",
@@ -667,10 +806,10 @@
           "size": "408px 372px"
         }
       },
-      "contentHash": "0010919274f3d887",
+      "contentHash": "6068f84ad877f066",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 98,
+      "line": 112,
       "outId": "contents",
       "selfHash": "e022461cbd3dcd7e",
       "sourceId": "Title.dc.html:1/10",
@@ -692,11 +831,249 @@
       "contentHash": "af23d1f1262aa2ef",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 111,
+      "line": 131,
       "outId": "rule-foot",
       "selfHash": "003a043cfa4db92f",
       "sourceId": "Title.dc.html:1/11",
       "sourceName": "rule-foot",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/masthead-art.png"
+        },
+        "decls": {
+          "height": "200px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-27px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "9d9311710b97541a",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 140,
+      "outId": "end-mast-art",
+      "selfHash": "ad2d5f8afe181de8",
+      "sourceId": "Title.dc.html:1/12/0/0/0",
+      "sourceName": "end-mast-art",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "136px",
+          "left": "340px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "96px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "ad6641bf74edd5f6",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 139,
+      "outId": "end-mast",
+      "selfHash": "924c2ac15ba401a2",
+      "sourceId": "Title.dc.html:1/12/0/0",
+      "sourceName": "end-mast",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "240px",
+          "position": "absolute",
+          "top": "252px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "e56ea059a3df441b",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 143,
+      "outId": "end-rule-a",
+      "selfHash": "079b53f93c774f09",
+      "sourceId": "Title.dc.html:1/12/0/1",
+      "sourceName": "end-rule-a",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "240px",
+          "position": "absolute",
+          "top": "258px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "e9a6b2070b728379",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 144,
+      "outId": "end-rule-b",
+      "selfHash": "dbde0159673de502",
+      "sourceId": "Title.dc.html:1/12/0/2",
+      "sourceName": "end-rule-b",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "end-text"
+        },
+        "decls": {
+          "height": "160px",
+          "left": "240px",
+          "position": "absolute",
+          "top": "284px",
+          "width": "800px"
+        },
+        "text": "@UI_TO_BE_CONTINUED"
+      },
+      "contentHash": "e9f02341ce2ad624",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 145,
+      "outId": "end-text",
+      "selfHash": "dcb22d54c5ac6146",
+      "sourceId": "Title.dc.html:1/12/0/3",
+      "sourceName": "end-text",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "240px",
+          "position": "absolute",
+          "top": "470px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "5cd38174b78e8b4a",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 148,
+      "outId": "end-rule-c",
+      "selfHash": "887cf4238550165d",
+      "sourceId": "Title.dc.html:1/12/0/4",
+      "sourceName": "end-rule-c",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "240px",
+          "position": "absolute",
+          "top": "474px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "9786b658d0767466",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 149,
+      "outId": "end-rule-d",
+      "selfHash": "39e60eba3b1187b6",
+      "sourceId": "Title.dc.html:1/12/0/5",
+      "sourceName": "end-rule-d",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "end-kicker"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "340px",
+          "position": "absolute",
+          "top": "494px",
+          "width": "600px"
+        },
+        "text": "@UI_TITLE_LOGO"
+      },
+      "contentHash": "f83a4f4f37e2dfa3",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 150,
+      "outId": "end-name",
+      "selfHash": "5d8ef2d558a3e80e",
+      "sourceId": "Title.dc.html:1/12/0/6",
+      "sourceName": "end-name",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "e23b3fd5293d3bff",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 138,
+      "outId": "end-dock",
+      "selfHash": "23ef726b795eae1a",
+      "sourceId": "Title.dc.html:1/12/0",
+      "sourceName": "end-dock",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ended",
+          "class": "end-card",
+          "on:port(ended)": "play(end-in)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "7289ff62d62f5c48",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 135,
+      "outId": "end-card",
+      "selfHash": "42d6cbb09a941d23",
+      "sourceId": "Title.dc.html:1/12",
+      "sourceName": "end-card",
       "ui": "title",
       "warnings": []
     },
@@ -717,10 +1094,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "0de31b0603ec3fd4",
+      "contentHash": "bf5516686994c630",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 24,
+      "line": 38,
       "outId": "title",
       "selfHash": "aed19fb1d6d103ba",
       "sourceId": "Title.dc.html:1",
@@ -2441,7 +2818,7 @@
       "contentHash": "b94f6613f00bcefb",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 46,
+      "line": 108,
       "outId": "ear-l-name",
       "selfHash": "2f67065a5c257e53",
       "sourceId": "Paper.dc.html:1/0/0/0/0",
@@ -2465,7 +2842,7 @@
       "contentHash": "2ed9a86a537dff03",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 48,
+      "line": 110,
       "outId": "ear-l-extra",
       "selfHash": "4cae54a0d6276eba",
       "sourceId": "Paper.dc.html:1/0/0/0/1",
@@ -2490,7 +2867,7 @@
       "contentHash": "508879f56ff605e7",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 44,
+      "line": 106,
       "outId": "ear-l",
       "selfHash": "d75e28f278c42c16",
       "sourceId": "Paper.dc.html:1/0/0/0",
@@ -2514,7 +2891,7 @@
       "contentHash": "763b3a82b48e55ce",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 53,
+      "line": 115,
       "outId": "ear-r-page",
       "selfHash": "3247b105703132c4",
       "sourceId": "Paper.dc.html:1/0/0/1/0",
@@ -2538,7 +2915,7 @@
       "contentHash": "1cf5e7f1aad90f76",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 55,
+      "line": 117,
       "outId": "ear-r-extra",
       "selfHash": "78197ee6ea294118",
       "sourceId": "Paper.dc.html:1/0/0/1/1",
@@ -2563,7 +2940,7 @@
       "contentHash": "959fd133fca8877f",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 51,
+      "line": 113,
       "outId": "ear-r",
       "selfHash": "1380af27d9b6e4d9",
       "sourceId": "Paper.dc.html:1/0/0/1",
@@ -2588,7 +2965,7 @@
       "contentHash": "3248247680e50f58",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 63,
+      "line": 125,
       "outId": "mast-art",
       "selfHash": "a92f8c8a2ab1d704",
       "sourceId": "Paper.dc.html:1/0/0/2/0/0",
@@ -2611,7 +2988,7 @@
       "contentHash": "87f6883725a5149b",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 61,
+      "line": 123,
       "outId": "mast",
       "selfHash": "b9cca46ff4f14aa2",
       "sourceId": "Paper.dc.html:1/0/0/2/0",
@@ -2633,7 +3010,7 @@
       "contentHash": "3f7589380366dd39",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 60,
+      "line": 122,
       "outId": "mast-dock",
       "selfHash": "e06fac92002bebd1",
       "sourceId": "Paper.dc.html:1/0/0/2",
@@ -2658,7 +3035,7 @@
       "contentHash": "dd9e4b56fe792fc7",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 68,
+      "line": 130,
       "outId": "p1-rule-a",
       "selfHash": "7d37d762cbe83f0a",
       "sourceId": "Paper.dc.html:1/0/0/3",
@@ -2682,7 +3059,7 @@
       "contentHash": "b01fc888008f40cf",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 70,
+      "line": 132,
       "outId": "p1-rule-b",
       "selfHash": "b4a1af028af5fca5",
       "sourceId": "Paper.dc.html:1/0/0/4",
@@ -2693,11 +3070,11 @@
     {
       "base": {
         "attrs": {
-          "bind:text": "dateline"
+          "bind:text": "dateline",
+          "class": "f-body"
         },
         "decls": {
-          "color": "var(--ink)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#123a31",
           "font-size": "14px",
           "height": "26px",
           "left": "48px",
@@ -2708,14 +3085,14 @@
           "top": "160px",
           "width": "1184px"
         },
-        "text": "1887 年 10 月 14 日・濃霧　每份一便士"
+        "text": "1887 年 10 月・陰雨　每份一便士"
       },
-      "contentHash": "513de15e978914ed",
+      "contentHash": "07d65405eaa65974",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 71,
+      "line": 133,
       "outId": "dateline",
-      "selfHash": "ea379602687d2626",
+      "selfHash": "6e14ce554cdebd63",
       "sourceId": "Paper.dc.html:1/0/0/5",
       "sourceName": "dateline",
       "ui": "paper",
@@ -2737,7 +3114,7 @@
       "contentHash": "0dc9a46f772c0923",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 74,
+      "line": 136,
       "outId": "p1-rule-c",
       "selfHash": "afd030e8e1377589",
       "sourceId": "Paper.dc.html:1/0/0/6",
@@ -2749,73 +3126,59 @@
       "base": {
         "attrs": {
           "bind:text": "headline",
+          "class": "f-disp",
           "on:port(headline)": "play(intro)"
         },
         "decls": {
-          "color": "var(--ink-deep)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#092e28",
+          "flex-shrink": "0",
           "font-size": "52px",
           "font-weight": "700",
-          "height": "132px",
-          "left": "48px",
           "letter-spacing": "2px",
           "line-clamp": "2",
-          "line-height": "66px",
+          "line-height": "62px",
           "margin-bottom": "0px",
           "margin-left": "0px",
           "margin-right": "0px",
           "margin-top": "0px",
-          "position": "absolute",
           "text-align": "center",
-          "top": "198px",
           "width": "1184px"
         },
-        "text": "月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈"
+        "text": "百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠"
       },
-      "contentHash": "6a5e749f103025a6",
+      "contentHash": "7780bd0e5cd88df3",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 77,
+      "line": 142,
       "outId": "headline",
-      "selfHash": "1be30156f1d8d6f7",
-      "sourceId": "Paper.dc.html:1/0/0/7",
+      "selfHash": "30b525d7cc93631d",
+      "sourceId": "Paper.dc.html:1/0/0/7/0",
       "sourceName": "headline",
       "ui": "paper",
       "warnings": []
     },
     {
       "base": {
-        "attrs": {
-          "bind:text": "subhead"
-        },
+        "attrs": {},
         "decls": {
-          "color": "var(--ink)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
-          "font-size": "19px",
-          "font-style": "italic",
-          "height": "52px",
-          "left": "148px",
-          "line-clamp": "2",
-          "line-height": "26px",
-          "margin-bottom": "0px",
-          "margin-left": "0px",
-          "margin-right": "0px",
-          "margin-top": "0px",
+          "display": "flex",
+          "flex-direction": "column",
+          "height": "124px",
+          "justify-content": "center",
+          "left": "48px",
           "position": "absolute",
-          "text-align": "center",
-          "top": "338px",
-          "width": "984px"
-        },
-        "text": "本報小廣告欄：「狐耳偵探事務所誠徵室友，會做飯者優先。」"
+          "top": "194px",
+          "width": "1184px"
+        }
       },
-      "contentHash": "5bb76d842fd00610",
+      "contentHash": "4604cc7cecbfbb48",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 82,
-      "outId": "subhead",
-      "selfHash": "2344afbb0d697669",
-      "sourceId": "Paper.dc.html:1/0/0/8",
-      "sourceName": "subhead",
+      "line": 140,
+      "outId": "headline-box",
+      "selfHash": "b6be76dd32ba77d5",
+      "sourceId": "Paper.dc.html:1/0/0/7",
+      "sourceName": "headline-box",
       "ui": "paper",
       "warnings": []
     },
@@ -2828,18 +3191,223 @@
           "height": "1px",
           "left": "48px",
           "position": "absolute",
-          "top": "400px",
+          "top": "322px",
           "width": "1184px"
         }
       },
-      "contentHash": "e0f73b244f1a3a75",
+      "contentHash": "5f1aa45b96ae8085",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 86,
+      "line": 148,
       "outId": "p1-rule-d",
-      "selfHash": "fdafed081d0edd33",
-      "sourceId": "Paper.dc.html:1/0/0/9",
+      "selfHash": "72ee80062e07fc9e",
+      "sourceId": "Paper.dc.html:1/0/0/8",
       "sourceName": "p1-rule-d",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picture | eq('ch01')",
+          "class": "pic-art",
+          "src": "../shared/img/pic-ch01.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "391f318fe4f67206",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 156,
+      "outId": "pic-ch01",
+      "selfHash": "759b272f16e9660f",
+      "sourceId": "Paper.dc.html:1/0/0/9/0/0",
+      "sourceName": "pic-ch01",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picture | eq('ch02')",
+          "class": "pic-art",
+          "src": "../shared/img/pic-ch02.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "63596f3a53a5a140",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 157,
+      "outId": "pic-ch02",
+      "selfHash": "b0d56dc42881c93a",
+      "sourceId": "Paper.dc.html:1/0/0/9/0/1",
+      "sourceName": "pic-ch02",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picture | eq('ch03')",
+          "class": "pic-art",
+          "src": "../shared/img/pic-ch03.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "954832f4c129850c",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 158,
+      "outId": "pic-ch03",
+      "selfHash": "14ae756301cc54f5",
+      "sourceId": "Paper.dc.html:1/0/0/9/0/2",
+      "sourceName": "pic-ch03",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picture | eq('ch04')",
+          "class": "pic-art",
+          "src": "../shared/img/pic-ch04.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "0d5443dff98677b1",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 159,
+      "outId": "pic-ch04",
+      "selfHash": "191c8e4df61f09e8",
+      "sourceId": "Paper.dc.html:1/0/0/9/0/3",
+      "sourceName": "pic-ch04",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pic-frame"
+        },
+        "decls": {
+          "height": "282px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "700px"
+        }
+      },
+      "contentHash": "53ceed7a1dc28162",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 155,
+      "outId": "pic-frame",
+      "selfHash": "eaf0816e6a8c1e6e",
+      "sourceId": "Paper.dc.html:1/0/0/9/0",
+      "sourceName": "pic-frame",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "282px",
+          "left": "713px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "0f474a1daf39eacd",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 161,
+      "outId": "pic-rule",
+      "selfHash": "ce2f274b1d64fc87",
+      "sourceId": "Paper.dc.html:1/0/0/9/1",
+      "sourceName": "pic-rule",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "subhead",
+          "class": "deck"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "line-clamp": "3",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "0px",
+          "width": "458px"
+        },
+        "text": "格雷沙姆先生：「我的錶進店時完好如初。」"
+      },
+      "contentHash": "a9bbfd9bb430916d",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 164,
+      "outId": "pic-deck",
+      "selfHash": "4976a45450ac81ce",
+      "sourceId": "Paper.dc.html:1/0/0/9/2/0",
+      "sourceName": "pic-deck",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "height": "72px",
+          "justify-content": "center",
+          "left": "726px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "458px"
+        }
+      },
+      "contentHash": "838f5038616841cd",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 162,
+      "outId": "pic-deck-box",
+      "selfHash": "332f5a205c64be89",
+      "sourceId": "Paper.dc.html:1/0/0/9/2",
+      "sourceName": "pic-deck-box",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "726px",
+          "position": "absolute",
+          "top": "80px",
+          "width": "458px"
+        }
+      },
+      "contentHash": "2ef4e9e8c39bd975",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 167,
+      "outId": "lead-rule",
+      "selfHash": "9c36c993dd2f2deb",
+      "sourceId": "Paper.dc.html:1/0/0/9/3",
+      "sourceName": "lead-rule",
       "ui": "paper",
       "warnings": []
     },
@@ -2856,15 +3424,223 @@
           "top": "0px",
           "width": "216px"
         },
-        "text": "本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」"
+        "text": "本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。格雷沙姆先生表示：「我的錶進店時完好如初，店主是唯一碰過它的人。」店主霍洛威老先生經營鐘錶店逾四十年，鄰里評價甚佳，對此指控堅決否認。據悉，富商已委託律師，最快本週提告。"
       },
-      "contentHash": "50778c57ea61885a",
+      "contentHash": "fe89fd3d06be05ed",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 93,
+      "line": 169,
+      "outId": "lead-col-1-text",
+      "selfHash": "18e27d1439d8bc81",
+      "sourceId": "Paper.dc.html:1/0/0/9/4/0",
+      "sourceName": "lead-col-1-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "198px",
+          "left": "726px",
+          "position": "absolute",
+          "top": "88px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "281eee90da3cea64",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 168,
+      "outId": "lead-col-1",
+      "selfHash": "6d5dd0669dbec900",
+      "sourceId": "Paper.dc.html:1/0/0/9/4",
+      "sourceName": "lead-col-1",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "198px",
+          "left": "954px",
+          "position": "absolute",
+          "top": "88px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "1908ff2d71fd9a0a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 172,
+      "outId": "lead-col-rule",
+      "selfHash": "ce666c36f95615f5",
+      "sourceId": "Paper.dc.html:1/0/0/9/5",
+      "sourceName": "lead-col-rule",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-198px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "44ab8628e9f92d7e",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 174,
+      "outId": "lead-col-2-text",
+      "selfHash": "3fe148df36c98b90",
+      "sourceId": "Paper.dc.html:1/0/0/9/6/0",
+      "sourceName": "lead-col-2-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "198px",
+          "left": "968px",
+          "position": "absolute",
+          "top": "88px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "2c32a85ef71cfc26",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 173,
+      "outId": "lead-col-2",
+      "selfHash": "7234a19bd021cef3",
+      "sourceId": "Paper.dc.html:1/0/0/9/6",
+      "sourceName": "lead-col-2",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picture | ne('')"
+        },
+        "decls": {
+          "height": "356px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "330px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "6db29fa446c5260a",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 152,
+      "outId": "lead-pic",
+      "selfHash": "43ef36bab96cf77b",
+      "sourceId": "Paper.dc.html:1/0/0/9",
+      "sourceName": "lead-pic",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "subhead",
+          "class": "f-body"
+        },
+        "decls": {
+          "color": "#123a31",
+          "font-size": "19px",
+          "font-style": "italic",
+          "height": "52px",
+          "left": "100px",
+          "line-clamp": "2",
+          "line-height": "26px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "0px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "0px",
+          "width": "984px"
+        },
+        "text": "格雷沙姆先生：「我的錶進店時完好如初。」"
+      },
+      "contentHash": "fba70cd1be3a5202",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 182,
+      "outId": "subhead",
+      "selfHash": "f400f2c43e25b04c",
+      "sourceId": "Paper.dc.html:1/0/0/10/0",
+      "sourceName": "subhead",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "62px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "a5fdad1bdf5165cf",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 186,
+      "outId": "p1-rule-e",
+      "selfHash": "666051934db5c8ca",
+      "sourceId": "Paper.dc.html:1/0/0/10/1",
+      "sourceName": "p1-rule-e",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        },
+        "text": "本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。"
+      },
+      "contentHash": "0eee0751dd1c5c4c",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 190,
       "outId": "col-1-text",
-      "selfHash": "8cbed8e7c5e9a354",
-      "sourceId": "Paper.dc.html:1/0/0/10/0/0",
+      "selfHash": "31af0c78b4945187",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/0/0",
       "sourceName": "col-1-text",
       "ui": "paper",
       "warnings": []
@@ -2875,20 +3651,20 @@
           "class": "col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "0px",
           "position": "absolute",
           "top": "0px",
           "width": "216px"
         }
       },
-      "contentHash": "22ecb0b0bbd49dbd",
+      "contentHash": "59dcff4218d1cc41",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 92,
+      "line": 189,
       "outId": "col-1",
-      "selfHash": "d89a3b5123418bec",
-      "sourceId": "Paper.dc.html:1/0/0/10/0",
+      "selfHash": "2c602184543a364e",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/0",
       "sourceName": "col-1",
       "ui": "paper",
       "warnings": []
@@ -2899,20 +3675,20 @@
           "class": "rule-col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "228px",
           "position": "absolute",
           "top": "0px",
           "width": "1px"
         }
       },
-      "contentHash": "b7748ee365fea841",
+      "contentHash": "e19dd8ae3b6182f3",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 96,
+      "line": 193,
       "outId": "col-rule-1",
-      "selfHash": "d1a01f839651e5c4",
-      "sourceId": "Paper.dc.html:1/0/0/10/1",
+      "selfHash": "203498fc8d96834e",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/1",
       "sourceName": "col-rule-1",
       "ui": "paper",
       "warnings": []
@@ -2927,18 +3703,18 @@
           "height": "1320px",
           "left": "0px",
           "position": "absolute",
-          "top": "-264px",
+          "top": "-198px",
           "width": "216px"
         },
         "text": "本報訊"
       },
-      "contentHash": "0d0be3511e3ac3b7",
+      "contentHash": "c24c6c5cf7451c31",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 98,
+      "line": 195,
       "outId": "col-2-text",
-      "selfHash": "5ab42a602bc5f03d",
-      "sourceId": "Paper.dc.html:1/0/0/10/2/0",
+      "selfHash": "eef97a2f73a547c7",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/2/0",
       "sourceName": "col-2-text",
       "ui": "paper",
       "warnings": []
@@ -2949,20 +3725,20 @@
           "class": "col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "242px",
           "position": "absolute",
           "top": "0px",
           "width": "216px"
         }
       },
-      "contentHash": "cf59ec13c6148b82",
+      "contentHash": "dfd70b3e886ca518",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 97,
+      "line": 194,
       "outId": "col-2",
-      "selfHash": "fc285370e0b58129",
-      "sourceId": "Paper.dc.html:1/0/0/10/2",
+      "selfHash": "6e1ce3f86e5cdc83",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/2",
       "sourceName": "col-2",
       "ui": "paper",
       "warnings": []
@@ -2973,20 +3749,20 @@
           "class": "rule-col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "470px",
           "position": "absolute",
           "top": "0px",
           "width": "1px"
         }
       },
-      "contentHash": "e6773f1afdeee859",
+      "contentHash": "8d9960ea5f0db38e",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 101,
+      "line": 198,
       "outId": "col-rule-2",
-      "selfHash": "09cc12579a4961d2",
-      "sourceId": "Paper.dc.html:1/0/0/10/3",
+      "selfHash": "099856104108c1d0",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/3",
       "sourceName": "col-rule-2",
       "ui": "paper",
       "warnings": []
@@ -3001,18 +3777,18 @@
           "height": "1320px",
           "left": "0px",
           "position": "absolute",
-          "top": "-528px",
+          "top": "-396px",
           "width": "216px"
         },
         "text": "本報訊"
       },
-      "contentHash": "e65ebf7eedc162e8",
+      "contentHash": "cf64275143ebdcef",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 103,
+      "line": 200,
       "outId": "col-3-text",
-      "selfHash": "c93a36ee6867e8e9",
-      "sourceId": "Paper.dc.html:1/0/0/10/4/0",
+      "selfHash": "352f679e5759f6a0",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/4/0",
       "sourceName": "col-3-text",
       "ui": "paper",
       "warnings": []
@@ -3023,20 +3799,20 @@
           "class": "col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "484px",
           "position": "absolute",
           "top": "0px",
           "width": "216px"
         }
       },
-      "contentHash": "f906ba07501a3ceb",
+      "contentHash": "e2e43bca51b58036",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 102,
+      "line": 199,
       "outId": "col-3",
-      "selfHash": "d7b7747f44cff0b2",
-      "sourceId": "Paper.dc.html:1/0/0/10/4",
+      "selfHash": "ccccee72dec6f2d4",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/4",
       "sourceName": "col-3",
       "ui": "paper",
       "warnings": []
@@ -3047,21 +3823,95 @@
           "class": "rule-col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "712px",
           "position": "absolute",
           "top": "0px",
           "width": "1px"
         }
       },
-      "contentHash": "704190a9cc13f22a",
+      "contentHash": "5429d3ca2bfa19cb",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 106,
+      "line": 203,
       "outId": "col-rule-3",
-      "selfHash": "95cc50f704689910",
-      "sourceId": "Paper.dc.html:1/0/0/10/5",
+      "selfHash": "93703717a3f45592",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/5",
       "sourceName": "col-rule-3",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "body",
+          "class": "col-text"
+        },
+        "decls": {
+          "height": "1320px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "-594px",
+          "width": "216px"
+        },
+        "text": "本報訊"
+      },
+      "contentHash": "24c33c56e9b4b0b4",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 205,
+      "outId": "col-4-text",
+      "selfHash": "eb8f912b1d460371",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/6/0",
+      "sourceName": "col-4-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "col"
+        },
+        "decls": {
+          "height": "198px",
+          "left": "726px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "216px"
+        }
+      },
+      "contentHash": "c07fb366815a8fd9",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 204,
+      "outId": "col-4",
+      "selfHash": "90c73c82b6b20626",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/6",
+      "sourceName": "col-4",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "198px",
+          "left": "954px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "f3dbd1ffc0db89d1",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 208,
+      "outId": "col-rule-4",
+      "selfHash": "9a556e3944cb3319",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/7",
+      "sourceName": "col-rule-4",
       "ui": "paper",
       "warnings": []
     },
@@ -3080,87 +3930,13 @@
         },
         "text": "本報訊"
       },
-      "contentHash": "7ca896cf3ebab344",
+      "contentHash": "21640ed2748f9424",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 108,
-      "outId": "col-4-text",
-      "selfHash": "b2bf15b19b08c419",
-      "sourceId": "Paper.dc.html:1/0/0/10/6/0",
-      "sourceName": "col-4-text",
-      "ui": "paper",
-      "warnings": []
-    },
-    {
-      "base": {
-        "attrs": {
-          "class": "col"
-        },
-        "decls": {
-          "height": "264px",
-          "left": "726px",
-          "position": "absolute",
-          "top": "0px",
-          "width": "216px"
-        }
-      },
-      "contentHash": "2c69fb73b39a8d0f",
-      "fidelity": "High",
-      "file": "Paper.dc.html",
-      "line": 107,
-      "outId": "col-4",
-      "selfHash": "9240131cedcacdd0",
-      "sourceId": "Paper.dc.html:1/0/0/10/6",
-      "sourceName": "col-4",
-      "ui": "paper",
-      "warnings": []
-    },
-    {
-      "base": {
-        "attrs": {
-          "class": "rule-col"
-        },
-        "decls": {
-          "height": "264px",
-          "left": "954px",
-          "position": "absolute",
-          "top": "0px",
-          "width": "1px"
-        }
-      },
-      "contentHash": "235e7070e054a377",
-      "fidelity": "High",
-      "file": "Paper.dc.html",
-      "line": 111,
-      "outId": "col-rule-4",
-      "selfHash": "f9a0ff903332833f",
-      "sourceId": "Paper.dc.html:1/0/0/10/7",
-      "sourceName": "col-rule-4",
-      "ui": "paper",
-      "warnings": []
-    },
-    {
-      "base": {
-        "attrs": {
-          "bind:text": "body",
-          "class": "col-text"
-        },
-        "decls": {
-          "height": "1320px",
-          "left": "0px",
-          "position": "absolute",
-          "top": "-1056px",
-          "width": "216px"
-        },
-        "text": "本報訊"
-      },
-      "contentHash": "b8bc25626fab0c7a",
-      "fidelity": "High",
-      "file": "Paper.dc.html",
-      "line": 113,
+      "line": 210,
       "outId": "col-5-text",
-      "selfHash": "2c6198dcb0b65208",
-      "sourceId": "Paper.dc.html:1/0/0/10/8/0",
+      "selfHash": "3fbd2bd3014bccf2",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/8/0",
       "sourceName": "col-5-text",
       "ui": "paper",
       "warnings": []
@@ -3171,20 +3947,20 @@
           "class": "col"
         },
         "decls": {
-          "height": "264px",
+          "height": "198px",
           "left": "968px",
           "position": "absolute",
           "top": "0px",
           "width": "216px"
         }
       },
-      "contentHash": "ef3f9155cb917268",
+      "contentHash": "6cae44e9459975b8",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 112,
+      "line": 209,
       "outId": "col-5",
-      "selfHash": "e5a22ffe7035e0d3",
-      "sourceId": "Paper.dc.html:1/0/0/10/8",
+      "selfHash": "fc1e51164affdc41",
+      "sourceId": "Paper.dc.html:1/0/0/10/2/8",
       "sourceName": "col-5",
       "ui": "paper",
       "warnings": []
@@ -3193,20 +3969,20 @@
       "base": {
         "attrs": {},
         "decls": {
-          "height": "264px",
-          "left": "48px",
+          "height": "198px",
+          "left": "0px",
           "position": "absolute",
-          "top": "412px",
+          "top": "72px",
           "width": "1184px"
         }
       },
-      "contentHash": "7234a3efcdf452c9",
+      "contentHash": "a3282a48cb6ba265",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 90,
+      "line": 187,
       "outId": "cols",
-      "selfHash": "02f22136153a2a68",
-      "sourceId": "Paper.dc.html:1/0/0/10",
+      "selfHash": "e769ab672274e8c2",
+      "sourceId": "Paper.dc.html:1/0/0/10/2",
       "sourceName": "cols",
       "ui": "paper",
       "warnings": []
@@ -3214,6 +3990,160 @@
     {
       "base": {
         "attrs": {
+          "bind:display": "picture | eq('')"
+        },
+        "decls": {
+          "height": "356px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "330px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "3486aeebcf50f699",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 180,
+      "outId": "lead-text",
+      "selfHash": "b091ced6fe4a87b5",
+      "sourceId": "Paper.dc.html:1/0/0/10",
+      "sourceName": "lead-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "prev-label"
+        },
+        "decls": {
+          "height": "54px",
+          "left": "0px",
+          "padding-bottom": "17px",
+          "padding-left": "10px",
+          "padding-right": "10px",
+          "padding-top": "17px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "150px"
+        },
+        "text": "@UI_PAPER_PREV_CASE"
+      },
+      "contentHash": "e9fcb7392d90e57e",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 220,
+      "outId": "prev-label",
+      "selfHash": "bc5e6c7ff3a648a7",
+      "sourceId": "Paper.dc.html:1/0/0/11/0",
+      "sourceName": "prev-label",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "result_head",
+          "class": "prev-head"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "26px",
+          "width": "1006px"
+        },
+        "text": "市議會擬加徵煤煙稅　工廠主人聯名抗議"
+      },
+      "contentHash": "945a414157627fc6",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 224,
+      "outId": "prev-head",
+      "selfHash": "24bd03a5800417ff",
+      "sourceId": "Paper.dc.html:1/0/0/11/1/0",
+      "sourceName": "prev-head",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "result_sub | ne('')",
+          "bind:text": "result_sub",
+          "class": "prev-sub"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "1006px"
+        },
+        "text": "「店主拒絕受訪，櫥窗報時鳥停擺。」"
+      },
+      "contentHash": "619f41376c6a9a4d",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 226,
+      "outId": "prev-sub",
+      "selfHash": "99148f7dfe8032f4",
+      "sourceId": "Paper.dc.html:1/0/0/11/1/1",
+      "sourceName": "prev-sub",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "0px",
+          "height": "54px",
+          "justify-content": "center",
+          "left": "166px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1006px"
+        }
+      },
+      "contentHash": "afe9255c369df84d",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 222,
+      "outId": "prev-text",
+      "selfHash": "a6a044ab8906f13b",
+      "sourceId": "Paper.dc.html:1/0/0/11/1",
+      "sourceName": "prev-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "result_head | ne('')",
+          "class": "prev"
+        },
+        "decls": {
+          "height": "58px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "622px",
+          "width": "1184px"
+        }
+      },
+      "contentHash": "9c70900d132bbbcc",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 217,
+      "outId": "prev-case",
+      "selfHash": "a133883c7a8a1dfb",
+      "sourceId": "Paper.dc.html:1/0/0/11",
+      "sourceName": "prev-case",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.tall": "result_head | eq('')",
           "bind:display": "page | eq(1)"
         },
         "decls": {
@@ -3224,12 +4154,12 @@
           "width": "1280px"
         }
       },
-      "contentHash": "7a6737faadc5c939",
+      "contentHash": "922edced52cf8c8a",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 39,
+      "line": 101,
       "outId": "p1",
-      "selfHash": "86603bfb85070722",
+      "selfHash": "28809c4d60763cc6",
       "sourceId": "Paper.dc.html:1/0/0",
       "sourceName": "p1",
       "ui": "paper",
@@ -3252,7 +4182,7 @@
       "contentHash": "e7ecb73066b56eb8",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 123,
+      "line": 236,
       "outId": "p2-label",
       "selfHash": "163164ffde371e9b",
       "sourceId": "Paper.dc.html:1/0/1/0",
@@ -3262,10 +4192,11 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "f-disp"
+        },
         "decls": {
-          "color": "var(--ink-deep)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#092e28",
           "font-size": "22px",
           "height": "32px",
           "left": "440px",
@@ -3278,12 +4209,12 @@
         },
         "text": "@UI_PAPER_MAST"
       },
-      "contentHash": "c75f17e8cf5f7fe0",
+      "contentHash": "74debb173cfc31ed",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 125,
+      "line": 238,
       "outId": "p2-mast",
-      "selfHash": "53e6bdf6346b2f0a",
+      "selfHash": "2a638cd1b3ede4c8",
       "sourceId": "Paper.dc.html:1/0/1/1",
       "sourceName": "p2-mast",
       "ui": "paper",
@@ -3292,11 +4223,11 @@
     {
       "base": {
         "attrs": {
-          "bind:text": "dateline"
+          "bind:text": "dateline",
+          "class": "f-body"
         },
         "decls": {
-          "color": "var(--ink)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#123a31",
           "font-size": "13px",
           "height": "20px",
           "left": "832px",
@@ -3307,14 +4238,14 @@
           "top": "26px",
           "width": "400px"
         },
-        "text": "1887 年 10 月 14 日・濃霧　每份一便士"
+        "text": "1887 年 10 月・陰雨　每份一便士"
       },
-      "contentHash": "87c951999bfbaaff",
+      "contentHash": "fc012655d081280c",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 128,
+      "line": 241,
       "outId": "p2-date",
-      "selfHash": "ae0fe95c2ca7a3c0",
+      "selfHash": "aca21c1f0784235b",
       "sourceId": "Paper.dc.html:1/0/1/2",
       "sourceName": "p2-date",
       "ui": "paper",
@@ -3337,7 +4268,7 @@
       "contentHash": "0459835e2c376c6d",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 131,
+      "line": 244,
       "outId": "p2-rule-a",
       "selfHash": "e52d02595d41fb06",
       "sourceId": "Paper.dc.html:1/0/1/3",
@@ -3361,7 +4292,7 @@
       "contentHash": "6a88096864fdc8d9",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 133,
+      "line": 246,
       "outId": "p2-rule-b",
       "selfHash": "8d2ff180f262499a",
       "sourceId": "Paper.dc.html:1/0/1/4",
@@ -3372,11 +4303,11 @@
     {
       "base": {
         "attrs": {
-          "bind:text": "page2_head"
+          "bind:text": "page2_head",
+          "class": "f-disp"
         },
         "decls": {
-          "color": "var(--ink-deep)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#092e28",
           "font-size": "36px",
           "font-weight": "700",
           "height": "104px",
@@ -3393,13 +4324,13 @@
         },
         "text": "古董收藏家控訴報時鳥鐘錶店掉包機芯，店家喊冤"
       },
-      "contentHash": "897d0851ed80913e",
+      "contentHash": "3e3d709ec21c17c6",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 136,
+      "line": 251,
       "outId": "p2-headline",
-      "selfHash": "f55ffa834119e861",
-      "sourceId": "Paper.dc.html:1/0/1/5",
+      "selfHash": "474e5a9c11a5e1d7",
+      "sourceId": "Paper.dc.html:1/0/1/5/0",
       "sourceName": "p2-headline",
       "ui": "paper",
       "warnings": []
@@ -3420,10 +4351,10 @@
       "contentHash": "4d28920c31dc34ff",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 140,
+      "line": 255,
       "outId": "p2-rule-c",
       "selfHash": "9e379f4e870da525",
-      "sourceId": "Paper.dc.html:1/0/1/6",
+      "sourceId": "Paper.dc.html:1/0/1/5/1",
       "sourceName": "p2-rule-c",
       "ui": "paper",
       "warnings": []
@@ -3446,10 +4377,10 @@
       "contentHash": "8bc9c24e25d7931c",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 143,
+      "line": 258,
       "outId": "p2-col-1-text",
       "selfHash": "03e6014d98fa1731",
-      "sourceId": "Paper.dc.html:1/0/1/7/0/0",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/0/0",
       "sourceName": "p2-col-1-text",
       "ui": "paper",
       "warnings": []
@@ -3470,10 +4401,10 @@
       "contentHash": "ed18d373c501ece9",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 142,
+      "line": 257,
       "outId": "p2-col-1",
       "selfHash": "73b330492e0d0b6d",
-      "sourceId": "Paper.dc.html:1/0/1/7/0",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/0",
       "sourceName": "p2-col-1",
       "ui": "paper",
       "warnings": []
@@ -3494,10 +4425,10 @@
       "contentHash": "da3d14133d5b23f1",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 146,
+      "line": 261,
       "outId": "p2-col-rule-1",
       "selfHash": "6e8c323a6de40e9d",
-      "sourceId": "Paper.dc.html:1/0/1/7/1",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/1",
       "sourceName": "p2-col-rule-1",
       "ui": "paper",
       "warnings": []
@@ -3520,10 +4451,10 @@
       "contentHash": "88c7cb960af33f04",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 148,
+      "line": 263,
       "outId": "p2-col-2-text",
       "selfHash": "6a84a56a0309aa5f",
-      "sourceId": "Paper.dc.html:1/0/1/7/2/0",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/2/0",
       "sourceName": "p2-col-2-text",
       "ui": "paper",
       "warnings": []
@@ -3544,10 +4475,10 @@
       "contentHash": "8bc58b4d9f4cdedc",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 147,
+      "line": 262,
       "outId": "p2-col-2",
       "selfHash": "e28c711d02dca322",
-      "sourceId": "Paper.dc.html:1/0/1/7/2",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/2",
       "sourceName": "p2-col-2",
       "ui": "paper",
       "warnings": []
@@ -3568,10 +4499,10 @@
       "contentHash": "98d16cec9a2d3d78",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 151,
+      "line": 266,
       "outId": "p2-col-rule-2",
       "selfHash": "fd59accfd2f751af",
-      "sourceId": "Paper.dc.html:1/0/1/7/3",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/3",
       "sourceName": "p2-col-rule-2",
       "ui": "paper",
       "warnings": []
@@ -3594,10 +4525,10 @@
       "contentHash": "701bd741f61855cc",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 153,
+      "line": 268,
       "outId": "p2-col-3-text",
       "selfHash": "33bf7c7fc73eb1eb",
-      "sourceId": "Paper.dc.html:1/0/1/7/4/0",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/4/0",
       "sourceName": "p2-col-3-text",
       "ui": "paper",
       "warnings": []
@@ -3618,10 +4549,10 @@
       "contentHash": "390a9122124101c8",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 152,
+      "line": 267,
       "outId": "p2-col-3",
       "selfHash": "07ce827246a89cd5",
-      "sourceId": "Paper.dc.html:1/0/1/7/4",
+      "sourceId": "Paper.dc.html:1/0/1/5/2/4",
       "sourceName": "p2-col-3",
       "ui": "paper",
       "warnings": []
@@ -3640,10 +4571,10 @@
       "contentHash": "246b5b2acfb5770f",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 141,
+      "line": 256,
       "outId": "p2-cols",
       "selfHash": "7f009a38561487d0",
-      "sourceId": "Paper.dc.html:1/0/1/7",
+      "sourceId": "Paper.dc.html:1/0/1/5/2",
       "sourceName": "p2-cols",
       "ui": "paper",
       "warnings": []
@@ -3664,11 +4595,35 @@
       "contentHash": "62e75d78136b5f57",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 158,
+      "line": 272,
       "outId": "p2-rule-side",
       "selfHash": "d9376ad42425e24b",
-      "sourceId": "Paper.dc.html:1/0/1/8",
+      "sourceId": "Paper.dc.html:1/0/1/5/3",
       "sourceName": "p2-rule-side",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "page2_head | ne('')"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "a7421a87c236b6a4",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 249,
+      "outId": "p2-article",
+      "selfHash": "5c5908246ebbf9c9",
+      "sourceId": "Paper.dc.html:1/0/1/5",
+      "sourceName": "p2-article",
       "ui": "paper",
       "warnings": []
     },
@@ -3678,21 +4633,19 @@
           "class": "kicker s-7ee933"
         },
         "decls": {
+          "flex-shrink": "0",
           "height": "28px",
-          "left": "896px",
-          "position": "absolute",
-          "top": "78px",
           "width": "336px"
         },
         "text": "@UI_PAPER_SIDE"
       },
-      "contentHash": "44f5dad92d0dc1b4",
+      "contentHash": "8ed584395a315e2c",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 161,
+      "line": 281,
       "outId": "side-head",
-      "selfHash": "056d39a7564c9bcb",
-      "sourceId": "Paper.dc.html:1/0/1/9",
+      "selfHash": "982f03a2f4eeeb2e",
+      "sourceId": "Paper.dc.html:1/0/1/6/0/0",
       "sourceName": "side-head",
       "ui": "paper",
       "warnings": []
@@ -3701,26 +4654,116 @@
       "base": {
         "attrs": {
           "bind:text": "side",
-          "class": "col-text"
+          "class": "side-text"
         },
         "decls": {
-          "height": "242px",
-          "left": "896px",
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": "118px",
+          "flex-shrink": "0",
+          "height": "232px",
           "width": "336px"
         },
         "text": "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"
       },
-      "contentHash": "01a0b548f46ab842",
+      "contentHash": "ab25488c3dc86ffd",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 163,
+      "line": 283,
       "outId": "side-text",
-      "selfHash": "123f94fe1d0bb91b",
-      "sourceId": "Paper.dc.html:1/0/1/10",
+      "selfHash": "429057d84e96a536",
+      "sourceId": "Paper.dc.html:1/0/1/6/0/1",
       "sourceName": "side-text",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "1px",
+          "width": "336px"
+        }
+      },
+      "contentHash": "cf3c0499509f0f6c",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 285,
+      "outId": "side-text-rule",
+      "selfHash": "5fbf61f7bb293f7e",
+      "sourceId": "Paper.dc.html:1/0/1/6/0/2",
+      "sourceName": "side-text-rule",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "12px",
+          "height": "300px",
+          "position": "relative",
+          "width": "336px"
+        }
+      },
+      "contentHash": "711ccc71f027599b",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 279,
+      "outId": "brief-side",
+      "selfHash": "e141022cfbf26552",
+      "sourceId": "Paper.dc.html:1/0/1/6/0",
+      "sourceName": "brief-side",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "592px",
+          "left": "23px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "679b05018e3ddd4d",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 288,
+      "outId": "brief-orn-rule",
+      "selfHash": "10f5abf3ea1c6ca0",
+      "sourceId": "Paper.dc.html:1/0/1/6/1/0",
+      "sourceName": "brief-orn-rule",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "brief-orn"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "592px",
+          "position": "relative",
+          "width": "48px"
+        }
+      },
+      "contentHash": "37b12b78353c6e82",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 287,
+      "outId": "brief-orn",
+      "selfHash": "ff665430d8e445c0",
+      "sourceId": "Paper.dc.html:1/0/1/6/1",
+      "sourceName": "brief-orn",
       "ui": "paper",
       "warnings": []
     },
@@ -3730,21 +4773,19 @@
           "class": "kicker s-7ee933"
         },
         "decls": {
+          "flex-shrink": "0",
           "height": "28px",
-          "left": "896px",
-          "position": "absolute",
-          "top": "376px",
           "width": "336px"
         },
         "text": "@UI_PAPER_ADS"
       },
-      "contentHash": "a20d3ea415c8a986",
+      "contentHash": "694c75f013df7ee7",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 165,
+      "line": 292,
       "outId": "ads-head",
-      "selfHash": "fb5362aa1bb25d70",
-      "sourceId": "Paper.dc.html:1/0/1/11",
+      "selfHash": "511e7b1c69371498",
+      "sourceId": "Paper.dc.html:1/0/1/6/2/0",
       "sourceName": "ads-head",
       "ui": "paper",
       "warnings": []
@@ -3752,27 +4793,22 @@
     {
       "base": {
         "attrs": {
-          "bind:text": "ad"
+          "bind:text": "ad",
+          "class": "ad-text"
         },
         "decls": {
-          "color": "var(--ink-deep)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
-          "font-size": "18px",
-          "height": "202px",
-          "line-height": "28px",
-          "overflow": "hidden",
-          "text-align": "center",
+          "height": "186px",
           "width": "282px"
         },
         "text": "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"
       },
-      "contentHash": "c0e6add9da1e1d85",
+      "contentHash": "fbf32ed7d0b7a5b0",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 170,
+      "line": 296,
       "outId": "ad-text",
-      "selfHash": "60f939427b76598e",
-      "sourceId": "Paper.dc.html:1/0/1/12/0/0",
+      "selfHash": "04471f03ee40a11a",
+      "sourceId": "Paper.dc.html:1/0/1/6/2/1/0/0",
       "sourceName": "ad-text",
       "ui": "paper",
       "warnings": []
@@ -3780,24 +4816,20 @@
     {
       "base": {
         "attrs": {
-          "class": "s-e68292"
+          "class": "ad-frame"
         },
         "decls": {
-          "height": "240px",
-          "padding-bottom": "18px",
-          "padding-left": "20px",
-          "padding-right": "20px",
-          "padding-top": "18px",
+          "height": "224px",
           "width": "324px"
         }
       },
-      "contentHash": "0b799ebaf939cd6a",
+      "contentHash": "57445927cd38882d",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 169,
+      "line": 295,
       "outId": "ad-frame",
-      "selfHash": "78e4bc7c142e9255",
-      "sourceId": "Paper.dc.html:1/0/1/12/0",
+      "selfHash": "ba2970f98ba20005",
+      "sourceId": "Paper.dc.html:1/0/1/6/2/1/0",
       "sourceName": "ad-frame",
       "ui": "paper",
       "warnings": []
@@ -3805,34 +4837,77 @@
     {
       "base": {
         "attrs": {
-          "class": "s-e68292"
+          "class": "ad-box"
         },
         "decls": {
-          "height": "252px",
-          "left": "896px",
-          "padding-bottom": "5px",
-          "padding-left": "5px",
-          "padding-right": "5px",
-          "padding-top": "5px",
-          "position": "absolute",
-          "top": "418px",
+          "flex-shrink": "0",
+          "height": "236px",
           "width": "336px"
         }
       },
-      "contentHash": "cca452d8e2d71506",
+      "contentHash": "771c5382e5a411e7",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 167,
+      "line": 294,
       "outId": "ad-box",
-      "selfHash": "5919b34a5760f0e4",
-      "sourceId": "Paper.dc.html:1/0/1/12",
+      "selfHash": "2a7e57aeaa2728b5",
+      "sourceId": "Paper.dc.html:1/0/1/6/2/1",
       "sourceName": "ad-box",
       "ui": "paper",
       "warnings": []
     },
     {
       "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "12px",
+          "height": "276px",
+          "width": "336px"
+        }
+      },
+      "contentHash": "8795cce72aacd474",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 290,
+      "outId": "brief-ads",
+      "selfHash": "81d182aa26b0718f",
+      "sourceId": "Paper.dc.html:1/0/1/6/2",
+      "sourceName": "brief-ads",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "16px",
+          "height": "592px",
+          "left": "896px",
+          "position": "absolute",
+          "top": "78px",
+          "width": "336px"
+        }
+      },
+      "contentHash": "c4bad8655b7698d1",
+      "fidelity": "High",
+      "file": "Paper.dc.html",
+      "line": 277,
+      "outId": "p2-briefs",
+      "selfHash": "780c63abebf3aa3e",
+      "sourceId": "Paper.dc.html:1/0/1/6",
+      "sourceName": "p2-briefs",
+      "ui": "paper",
+      "warnings": []
+    },
+    {
+      "base": {
         "attrs": {
+          "bind:class.wide": "page2_head | eq('')",
           "bind:display": "page | eq(2)"
         },
         "decls": {
@@ -3843,12 +4918,12 @@
           "width": "1280px"
         }
       },
-      "contentHash": "9d5f581658c8f975",
+      "contentHash": "46f45dc510aaf5ad",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 120,
+      "line": 233,
       "outId": "p2",
-      "selfHash": "72678647eda330d8",
+      "selfHash": "c29c19f30ab8fa24",
       "sourceId": "Paper.dc.html:1/0/1",
       "sourceName": "p2",
       "ui": "paper",
@@ -3870,7 +4945,7 @@
       "contentHash": "67d2e707fb6c7bb2",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 178,
+      "line": 305,
       "outId": "foot-rule",
       "selfHash": "088d5ddab488ccf5",
       "sourceId": "Paper.dc.html:1/0/2",
@@ -3881,11 +4956,11 @@
     {
       "base": {
         "attrs": {
-          "bind:text": "page"
+          "bind:text": "page",
+          "class": "f-body"
         },
         "decls": {
-          "color": "var(--ink)",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "color": "#123a31",
           "font-size": "13px",
           "height": "20px",
           "left": "590px",
@@ -3898,12 +4973,12 @@
         },
         "text": "1"
       },
-      "contentHash": "53e710ee440797ab",
+      "contentHash": "cc344fd7bc8fbcc5",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 179,
+      "line": 306,
       "outId": "folio",
-      "selfHash": "4375d876d9d80c71",
+      "selfHash": "2dcf9395565b7b35",
       "sourceId": "Paper.dc.html:1/0/3",
       "sourceName": "folio",
       "ui": "paper",
@@ -3925,7 +5000,7 @@
       "contentHash": "ffe70c4630cfe927",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 182,
+      "line": 309,
       "outId": "turn-mark",
       "selfHash": "15b128148251283e",
       "sourceId": "Paper.dc.html:1/0/4",
@@ -3936,12 +5011,12 @@
     {
       "base": {
         "attrs": {
-          "bind:display": "stamp | eq(1)"
+          "bind:display": "stamp | eq(1)",
+          "class": "f-disp"
         },
         "decls": {
-          "color": "var(--vermilion)",
+          "color": "#b8322a",
           "flex-shrink": "0",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
           "font-size": "46px",
           "font-weight": "700",
           "height": "60px",
@@ -3953,12 +5028,12 @@
         },
         "text": "@UI_PAPER_STAMP_CLOSED"
       },
-      "contentHash": "2edea22e0997ede2",
+      "contentHash": "a9467e72dc898e04",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 195,
+      "line": 322,
       "outId": "stamp-closed",
-      "selfHash": "0a2599fb6faab9c5",
+      "selfHash": "ff36ecd3a03414db",
       "sourceId": "Paper.dc.html:1/0/5/0/0",
       "sourceName": "stamp-closed",
       "ui": "paper",
@@ -3967,12 +5042,12 @@
     {
       "base": {
         "attrs": {
-          "bind:display": "stamp | eq(2)"
+          "bind:display": "stamp | eq(2)",
+          "class": "f-disp"
         },
         "decls": {
-          "color": "var(--vermilion)",
+          "color": "#b8322a",
           "flex-shrink": "0",
-          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
           "font-size": "46px",
           "font-weight": "700",
           "height": "60px",
@@ -3984,12 +5059,12 @@
         },
         "text": "@UI_PAPER_STAMP_FIX"
       },
-      "contentHash": "7930a3f9cdda2c68",
+      "contentHash": "4970bd443a6ff1ea",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 198,
+      "line": 325,
       "outId": "stamp-fix",
-      "selfHash": "6be8749c490bea04",
+      "selfHash": "cbb6358d2b841e26",
       "sourceId": "Paper.dc.html:1/0/5/0/1",
       "sourceName": "stamp-fix",
       "ui": "paper",
@@ -3997,10 +5072,11 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "s-eb9710"
+        },
         "decls": {
           "align-items": "center",
-          "border": "1px #b8322a",
           "display": "flex",
           "flex-direction": "column",
           "height": "96px",
@@ -4008,12 +5084,12 @@
           "width": "220px"
         }
       },
-      "contentHash": "f41a71535bb11c22",
+      "contentHash": "554e2a742aad8cf6",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 193,
+      "line": 320,
       "outId": "stamp-inner",
-      "selfHash": "ad0ea6c1f314a89f",
+      "selfHash": "864a95ff80a956e7",
       "sourceId": "Paper.dc.html:1/0/5/0",
       "sourceName": "stamp-inner",
       "ui": "paper",
@@ -4023,13 +5099,12 @@
       "base": {
         "attrs": {
           "bind:display": "stamp | gt(0)",
+          "class": "s-6ed937",
           "on:port(stamp)": "play(stamp-in)"
         },
         "decls": {
-          "border": "4px #b8322a",
           "height": "112px",
           "left": "330px",
-          "opacity": "0.92",
           "padding-bottom": "4px",
           "padding-left": "4px",
           "padding-right": "4px",
@@ -4040,12 +5115,12 @@
           "width": "236px"
         }
       },
-      "contentHash": "4983f3b79a0d9909",
+      "contentHash": "b682c82d2502174a",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 189,
+      "line": 316,
       "outId": "stamp",
-      "selfHash": "f29e26cde74c0565",
+      "selfHash": "57f38eaa0beedff9",
       "sourceId": "Paper.dc.html:1/0/5",
       "sourceName": "stamp",
       "ui": "paper",
@@ -4059,10 +5134,10 @@
           "size": "1280px 720px"
         }
       },
-      "contentHash": "6a05e0646781b8f5",
+      "contentHash": "447886b3058e1a80",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 35,
+      "line": 97,
       "outId": "sheet",
       "selfHash": "480faae54cd2cdc3",
       "sourceId": "Paper.dc.html:1/0",
@@ -4099,10 +5174,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "233391101acb287b",
+      "contentHash": "679e860121886e7d",
       "fidelity": "High",
       "file": "Paper.dc.html",
-      "line": 27,
+      "line": 89,
       "outId": "paper",
       "selfHash": "20a5fe78b81ea096",
       "sourceId": "Paper.dc.html:1",
@@ -7484,12 +8559,10 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "s-329dcb"
+        },
         "decls": {
-          "border-bottom-color": "#123a3199",
-          "border-bottom-width": "1px",
-          "border-top-color": "#123a3199",
-          "border-top-width": "1px",
           "height": "3px",
           "left": "8px",
           "position": "absolute",
@@ -7497,12 +8570,12 @@
           "width": "90px"
         }
       },
-      "contentHash": "78e0b7267c089e03",
+      "contentHash": "8c0f11b3ff4ab61d",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 203,
       "outId": "card-rule",
-      "selfHash": "ab922459e206a3c4",
+      "selfHash": "b7ff1c945931ef6c",
       "sourceId": "Board.dc.html:1/0/6/18/0/3",
       "sourceName": "card-rule",
       "ui": "board",
@@ -7530,7 +8603,7 @@
           "width": "108px"
         }
       },
-      "contentHash": "6d0fa115a54e3ae1",
+      "contentHash": "b83fd76f574b6abd",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 195,
@@ -7555,7 +8628,7 @@
           "width": "692px"
         }
       },
-      "contentHash": "4712eec9ed640561",
+      "contentHash": "0340ad760406d59d",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 193,
@@ -7916,7 +8989,7 @@
           "width": "704px"
         }
       },
-      "contentHash": "e0ce875338e86050",
+      "contentHash": "7303c93e41720704",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 171,
@@ -9752,7 +10825,7 @@
           "width": "1280px"
         }
       },
-      "contentHash": "2a03cf91a102fa07",
+      "contentHash": "ab284d7b1bae7542",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 100,
@@ -9785,7 +10858,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "ee33ffdddb6e3fe3",
+      "contentHash": "71146b877493493f",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 94,
@@ -20755,6 +21828,2616 @@
       "sourceName": "Cutin",
       "ui": "cutin",
       "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tape"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "-30px",
+          "position": "absolute",
+          "top": "-10px",
+          "transform": "rotate(-24deg)",
+          "width": "130px"
+        }
+      },
+      "contentHash": "42b045170ee4848a",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 76,
+      "outId": "tape-l",
+      "selfHash": "47cb7283525c75bf",
+      "sourceId": "Result.dc.html:1/0/0/0",
+      "sourceName": "tape-l",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tape"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "940px",
+          "position": "absolute",
+          "top": "-10px",
+          "transform": "rotate(22deg)",
+          "width": "130px"
+        }
+      },
+      "contentHash": "2756be4f323623d3",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 77,
+      "outId": "tape-r",
+      "selfHash": "e5b8225dda4a39d9",
+      "sourceId": "Result.dc.html:1/0/0/1",
+      "sourceName": "tape-r",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "f-disp"
+        },
+        "decls": {
+          "color": "#092e28",
+          "font-size": "20px",
+          "height": "30px",
+          "left": "320px",
+          "letter-spacing": "5px",
+          "line-height": "30px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "14px",
+          "width": "400px"
+        },
+        "text": "@UI_PAPER_MAST"
+      },
+      "contentHash": "c7089b1c5f16b67f",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 80,
+      "outId": "res-mast",
+      "selfHash": "7999ce5cf6a21460",
+      "sourceId": "Result.dc.html:1/0/0/2",
+      "sourceName": "res-mast",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "32px",
+          "position": "absolute",
+          "top": "50px",
+          "width": "976px"
+        }
+      },
+      "contentHash": "b78bc7395ce58e8e",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 83,
+      "outId": "res-rule-a",
+      "selfHash": "7af9cf3542744895",
+      "sourceId": "Result.dc.html:1/0/0/3",
+      "sourceName": "res-rule-a",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "32px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "976px"
+        }
+      },
+      "contentHash": "1170377e1fdbc92d",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 84,
+      "outId": "res-rule-b",
+      "selfHash": "1c448472c7a123b8",
+      "sourceId": "Result.dc.html:1/0/0/4",
+      "sourceName": "res-rule-b",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "win | eq(1)",
+          "class": "verdict v-win"
+        },
+        "decls": {
+          "height": "140px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "976px"
+        },
+        "text": "@UI_RES_WIN"
+      },
+      "contentHash": "787607a6e00a240a",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 89,
+      "outId": "v-win",
+      "selfHash": "962df26e9b0d9155",
+      "sourceId": "Result.dc.html:1/0/0/5/0",
+      "sourceName": "v-win",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "win | eq(0)",
+          "class": "verdict v-lose"
+        },
+        "decls": {
+          "height": "140px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "976px"
+        },
+        "text": "@UI_RES_LOSE"
+      },
+      "contentHash": "b8ada4716d53c3ca",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 91,
+      "outId": "v-lose",
+      "selfHash": "569555f5422f3615",
+      "sourceId": "Result.dc.html:1/0/0/5/1",
+      "sourceName": "v-lose",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "win | eq(2)",
+          "class": "verdict v-none"
+        },
+        "decls": {
+          "height": "140px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "976px"
+        },
+        "text": "@UI_RES_UNACHIEVED"
+      },
+      "contentHash": "c6532ea44254f537",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 93,
+      "outId": "v-none",
+      "selfHash": "0e7e7743c83fae5a",
+      "sourceId": "Result.dc.html:1/0/0/5/2",
+      "sourceName": "v-none",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "140px",
+          "left": "32px",
+          "position": "absolute",
+          "top": "66px",
+          "width": "976px"
+        }
+      },
+      "contentHash": "bd81adc8db3875b4",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 87,
+      "outId": "verdict",
+      "selfHash": "6d98afcad8591969",
+      "sourceId": "Result.dc.html:1/0/0/5",
+      "sourceName": "verdict",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "opp_line | ne('')",
+          "bind:text": "opp_line",
+          "class": "opp-line"
+        },
+        "decls": {
+          "height": "56px",
+          "left": "90px",
+          "position": "absolute",
+          "top": "210px",
+          "width": "860px"
+        },
+        "text": "（跪倒）我……我只是想還債……"
+      },
+      "contentHash": "978376e5da4962d4",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 96,
+      "outId": "opp-line",
+      "selfHash": "6a290acac8cffb44",
+      "sourceId": "Result.dc.html:1/0/0/6",
+      "sourceName": "opp-line",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "32px",
+          "position": "absolute",
+          "top": "276px",
+          "width": "976px"
+        }
+      },
+      "contentHash": "c69dff94c5e9d374",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 99,
+      "outId": "res-rule-c",
+      "selfHash": "a7fd2d9a0031fce3",
+      "sourceId": "Result.dc.html:1/0/0/7",
+      "sourceName": "res-rule-c",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "st-label"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px",
+          "min-width": "40px"
+        },
+        "text": "回合數"
+      },
+      "contentHash": "e6ca7f1326df5f98",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 106,
+      "outId": "stat-label",
+      "selfHash": "4583f8661946668c",
+      "sourceId": "Result.dc.html:1/0/0/8/0/0",
+      "sourceName": "stat-label",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "st-dots"
+        },
+        "decls": {
+          "flex-grow": "1",
+          "height": "1px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "margin-right": "0px",
+          "margin-top": "8px",
+          "min-width": "20px"
+        }
+      },
+      "contentHash": "811dce41f337025a",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 107,
+      "outId": "stat-dots",
+      "selfHash": "cb960211db04a639",
+      "sourceId": "Result.dc.html:1/0/0/8/0/1",
+      "sourceName": "stat-dots",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(value)",
+          "class": "st-value"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px",
+          "min-width": "40px"
+        },
+        "text": "6"
+      },
+      "contentHash": "4fa1a7ab7ee9a3dc",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 108,
+      "outId": "stat-value",
+      "selfHash": "e7fc06aa7e976f15",
+      "sourceId": "Result.dc.html:1/0/0/8/0/2",
+      "sourceName": "stat-value",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "10px",
+          "height": "30px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "feb72a6d606c3501",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 105,
+      "outId": "stat",
+      "selfHash": "264727ed0a541ae4",
+      "sourceId": "Result.dc.html:1/0/0/8/0",
+      "sourceName": "stat",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "stats"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "3px",
+          "height": "300px",
+          "left": "32px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "290px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "776a288bc5caf8bf",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 102,
+      "outId": "stats",
+      "selfHash": "455f947ee5dd504e",
+      "sourceId": "Result.dc.html:1/0/0/8",
+      "sourceName": "stats",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-col"
+        },
+        "decls": {
+          "height": "300px",
+          "left": "504px",
+          "position": "absolute",
+          "top": "290px",
+          "width": "1px"
+        }
+      },
+      "contentHash": "f6f1a46863c832b4",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 111,
+      "outId": "res-rule-col",
+      "selfHash": "43076e0b3f921ad2",
+      "sourceId": "Result.dc.html:1/0/0/9",
+      "sourceName": "res-rule-col",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "170px"
+        },
+        "text": "@UI_RES_TRUST_LABEL"
+      },
+      "contentHash": "cbe987def33466b4",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 118,
+      "outId": "trust-label",
+      "selfHash": "8e14b82c93ae8273",
+      "sourceId": "Result.dc.html:1/0/0/10/0/0",
+      "sourceName": "trust-label",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_from | ge(1)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "4e6b27e94057dd07",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 122,
+      "outId": "tf-1",
+      "selfHash": "f732775ca9c051fe",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1/0",
+      "sourceName": "tf-1",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_from | ge(2)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "a0a1ca4d545a2a8f",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 123,
+      "outId": "tf-2",
+      "selfHash": "0330081ee6515dee",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1/1",
+      "sourceName": "tf-2",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_from | ge(3)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "e2669ad93379cc54",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 124,
+      "outId": "tf-3",
+      "selfHash": "37a25f1fa145749e",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1/2",
+      "sourceName": "tf-3",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_from | ge(4)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "b84752b9cf1f7a08",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 125,
+      "outId": "tf-4",
+      "selfHash": "e6e4471f137e8876",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1/3",
+      "sourceName": "tf-4",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_from | ge(5)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "08c091386aee27a1",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 126,
+      "outId": "tf-5",
+      "selfHash": "99536dad9eb2f02e",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1/4",
+      "sourceName": "tf-5",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "26px",
+          "left": "180px",
+          "position": "absolute",
+          "top": "13px",
+          "width": "130px"
+        }
+      },
+      "contentHash": "159cc7c25f82ba79",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 120,
+      "outId": "trust-from",
+      "selfHash": "87ccc9669326a4c3",
+      "sourceId": "Result.dc.html:1/0/0/10/0/1",
+      "sourceName": "trust-from",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_to | ge(1)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "a560c661cb719f3c",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 130,
+      "outId": "tt-1",
+      "selfHash": "4fa2968dd976119f",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2/0",
+      "sourceName": "tt-1",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_to | ge(2)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "bfedfaf9a84fd658",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 131,
+      "outId": "tt-2",
+      "selfHash": "64043254679f4117",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2/1",
+      "sourceName": "tt-2",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_to | ge(3)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "cbc125d4fbe73ceb",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 132,
+      "outId": "tt-3",
+      "selfHash": "19ad522f13fae13f",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2/2",
+      "sourceName": "tt-3",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_to | ge(4)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "67b775919121b553",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 133,
+      "outId": "tt-4",
+      "selfHash": "e99d4b3735b445a7",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2/3",
+      "sourceName": "tt-4",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust_to | ge(5)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "57ff8678cda86808",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 134,
+      "outId": "tt-5",
+      "selfHash": "2fba5ae4572d2d27",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2/4",
+      "sourceName": "tt-5",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "26px",
+          "left": "180px",
+          "position": "absolute",
+          "top": "13px",
+          "width": "130px"
+        }
+      },
+      "contentHash": "dcbe27d28597e595",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 128,
+      "outId": "trust-to",
+      "selfHash": "63a0437400bcfdd8",
+      "sourceId": "Result.dc.html:1/0/0/10/0/2",
+      "sourceName": "trust-to",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('{0} → {1}', trust_from, trust_to)",
+          "class": "trust-num"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "332px",
+          "position": "absolute",
+          "top": "11px",
+          "width": "140px"
+        },
+        "text": "3 → 2"
+      },
+      "contentHash": "628747cb9ce08c6c",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 136,
+      "outId": "trust-num",
+      "selfHash": "eb0dff045d2970d3",
+      "sourceId": "Result.dc.html:1/0/0/10/0/3",
+      "sourceName": "trust-num",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "trust_from | ge(0)"
+        },
+        "decls": {
+          "border-bottom-color": "#123a31",
+          "border-bottom-width": "1px",
+          "flex-shrink": "0",
+          "height": "52px",
+          "position": "relative",
+          "width": "472px"
+        }
+      },
+      "contentHash": "eae6a5ae790d3d45",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 116,
+      "outId": "trust",
+      "selfHash": "493a7ca72c7f7103",
+      "sourceId": "Result.dc.html:1/0/0/10/0",
+      "sourceName": "trust",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {
+          "height": "300px",
+          "left": "-76px",
+          "position": "absolute",
+          "top": "-4px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "b6ce8e850f56d1c4",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 143,
+      "outId": "comment-art",
+      "selfHash": "75da05be353029db",
+      "sourceId": "Result.dc.html:1/0/0/10/1/0/0",
+      "sourceName": "comment-art",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "face"
+        },
+        "decls": {
+          "height": "38px",
+          "left": "14px",
+          "position": "absolute",
+          "top": "12px",
+          "width": "38px"
+        }
+      },
+      "contentHash": "5af678c2a51a2b68",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 142,
+      "outId": "comment-face",
+      "selfHash": "6eaac7d589b534eb",
+      "sourceId": "Result.dc.html:1/0/0/10/1/0",
+      "sourceName": "comment-face",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "62px",
+          "position": "absolute",
+          "top": "21px",
+          "width": "300px"
+        },
+        "text": "@SPK_ARTHUR"
+      },
+      "contentHash": "a7ed11a115ecb809",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 146,
+      "outId": "comment-who",
+      "selfHash": "c7f9823314b39fa1",
+      "sourceId": "Result.dc.html:1/0/0/10/1/1",
+      "sourceName": "comment-who",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "comment",
+          "class": "note-line"
+        },
+        "decls": {
+          "height": "68px",
+          "left": "22px",
+          "position": "absolute",
+          "top": "54px",
+          "width": "432px"
+        },
+        "text": "「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」"
+      },
+      "contentHash": "c23521abbafe27fe",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 148,
+      "outId": "comment-text",
+      "selfHash": "32ec688dfdfa1efe",
+      "sourceId": "Result.dc.html:1/0/0/10/1/2",
+      "sourceName": "comment-text",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "comment | ne('')",
+          "class": "note"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "124px",
+          "position": "relative",
+          "width": "472px"
+        }
+      },
+      "contentHash": "f371c3f513b22c4c",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 140,
+      "outId": "comment",
+      "selfHash": "1754c67847028f46",
+      "sourceId": "Result.dc.html:1/0/0/10/1",
+      "sourceName": "comment",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "color": "#b8322a",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "472px"
+        },
+        "text": "@UI_RES_COST"
+      },
+      "contentHash": "7843b669c34f626b",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 154,
+      "outId": "costs-head",
+      "selfHash": "ca542190a2a1cf4e",
+      "sourceId": "Result.dc.html:1/0/0/10/2/0",
+      "sourceName": "costs-head",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cost-mark"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "8px",
+          "width": "8px"
+        }
+      },
+      "contentHash": "6964a8d4d49cf4bb",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 160,
+      "outId": "cost-mark",
+      "selfHash": "326b295232b7ca38",
+      "sourceId": "Result.dc.html:1/0/0/10/2/1/0/0",
+      "sourceName": "cost-mark",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(text)",
+          "class": "cost-text"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "24px",
+          "width": "450px"
+        },
+        "text": "警督信任度下降"
+      },
+      "contentHash": "e7b647190998131e",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 161,
+      "outId": "cost-text",
+      "selfHash": "3ceb8523ac3bf0e0",
+      "sourceId": "Result.dc.html:1/0/0/10/2/1/0/1",
+      "sourceName": "cost-text",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "10px",
+          "height": "24px",
+          "width": "472px"
+        }
+      },
+      "contentHash": "4cb031a1d595a1d9",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 159,
+      "outId": "cost",
+      "selfHash": "614ec5bf3d77028f",
+      "sourceId": "Result.dc.html:1/0/0/10/2/1/0",
+      "sourceName": "cost",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "costs"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "2px",
+          "height": "64px",
+          "left": "0px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "30px",
+          "width": "472px"
+        }
+      },
+      "contentHash": "1039107dc5d003f9",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 156,
+      "outId": "costs-list",
+      "selfHash": "0fe434dbd67e19d5",
+      "sourceId": "Result.dc.html:1/0/0/10/2/1",
+      "sourceName": "costs-list",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "win | eq(0)",
+          "class": "costs"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "98px",
+          "position": "relative",
+          "width": "472px"
+        }
+      },
+      "contentHash": "3cbfddc7620eeb3d",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 152,
+      "outId": "costs",
+      "selfHash": "257bb673ab92f2bd",
+      "sourceId": "Result.dc.html:1/0/0/10/2",
+      "sourceName": "costs",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "14px",
+          "height": "300px",
+          "left": "536px",
+          "position": "absolute",
+          "top": "290px",
+          "width": "472px"
+        }
+      },
+      "contentHash": "efc91cb42b9f3fd6",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 114,
+      "outId": "side",
+      "selfHash": "789aa39a4677ae3c",
+      "sourceId": "Result.dc.html:1/0/0/10",
+      "sourceName": "side",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "stamp-text"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "60px",
+          "width": "210px"
+        },
+        "text": "@UI_PAPER_STAMP_CLOSED"
+      },
+      "contentHash": "7631fcbf80d74d4d",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 174,
+      "outId": "res-stamp-text",
+      "selfHash": "171d04e7f4b3f8cc",
+      "sourceId": "Result.dc.html:1/0/0/11/0/0",
+      "sourceName": "res-stamp-text",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-eb9710"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "column",
+          "height": "96px",
+          "justify-content": "center",
+          "width": "220px"
+        }
+      },
+      "contentHash": "33ed1ef025450d39",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 172,
+      "outId": "res-stamp-inner",
+      "selfHash": "5040d78b5de18604",
+      "sourceId": "Result.dc.html:1/0/0/11/0",
+      "sourceName": "res-stamp-inner",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "win | eq(1)",
+          "class": "s-6ed937"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "700px",
+          "padding-bottom": "4px",
+          "padding-left": "4px",
+          "padding-right": "4px",
+          "padding-top": "4px",
+          "position": "absolute",
+          "top": "450px",
+          "transform": "rotate(-9deg) scale(1)",
+          "width": "236px"
+        }
+      },
+      "contentHash": "0356f6f3da431c53",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 168,
+      "outId": "res-stamp",
+      "selfHash": "d1e24a1b9f5fabca",
+      "sourceId": "Result.dc.html:1/0/0/11",
+      "sourceName": "res-stamp",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "can_retry",
+          "class": "btn alt",
+          "on:click(left)": "emit(retry)"
+        },
+        "decls": {},
+        "text": "@BTN_RES_RETRY"
+      },
+      "contentHash": "05f7bc3909bc1c95",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 182,
+      "outId": "btn-retry",
+      "selfHash": "a5f19ee020c28eb2",
+      "sourceId": "Result.dc.html:1/0/0/12/0",
+      "sourceName": "btn-retry",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn",
+          "on:click(left)": "emit(continue)"
+        },
+        "decls": {},
+        "text": "@BTN_RES_CONTINUE"
+      },
+      "contentHash": "732d7d00e8d46679",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 184,
+      "outId": "btn-continue",
+      "selfHash": "9cb11a65932595f9",
+      "sourceId": "Result.dc.html:1/0/0/12/1",
+      "sourceName": "btn-continue",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "14px",
+          "height": "44px",
+          "justify-content": "flex-end",
+          "left": "536px",
+          "position": "absolute",
+          "top": "600px",
+          "width": "472px"
+        }
+      },
+      "contentHash": "5a2a400fd4180b27",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 180,
+      "outId": "btns",
+      "selfHash": "107b826aae28dfca",
+      "sourceId": "Result.dc.html:1/0/0/12",
+      "sourceName": "btns",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "clip"
+        },
+        "decls": {
+          "height": "664px",
+          "left": "120px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "1040px"
+        }
+      },
+      "contentHash": "a05587d12e5d2552",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 75,
+      "outId": "clip",
+      "selfHash": "536ad84fa0405ffb",
+      "sourceId": "Result.dc.html:1/0/0",
+      "sourceName": "clip",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "b32ccc4db0db0d75",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 73,
+      "outId": "sheet",
+      "selfHash": "e120efa88a3022be",
+      "sourceId": "Result.dc.html:1/0",
+      "sourceName": "sheet",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Enter)": "emit(continue)",
+          "on:key(R)": "if port(can_retry) eq true emit(retry)",
+          "on:key(Space)": "emit(continue)",
+          "on:port(trust_to)": "play(trust-in)",
+          "on:port(win)": "play(verdict-in)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#e3d9c2",
+          "background-gradient": "radial-gradient(70.7107% 84.8528% at 50% 40%, #e3d9c2 55%, #cbbd9c 100%)",
+          "color": "#123a31",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "c509a2b84a42e603",
+      "fidelity": "High",
+      "file": "Result.dc.html",
+      "line": 66,
+      "outId": "result",
+      "selfHash": "f5bcf89a20821320",
+      "sourceId": "Result.dc.html:1",
+      "sourceName": "Result",
+      "ui": "result",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "scrim",
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "88c8fe1a7dc8c798",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 86,
+      "outId": "scrim",
+      "selfHash": "1127c84342dc708f",
+      "sourceId": "Evbook.dc.html:1/0",
+      "sourceName": "scrim",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "f-disp"
+        },
+        "decls": {
+          "color": "#092e28",
+          "font-size": "26px",
+          "font-weight": "700",
+          "height": "40px",
+          "left": "28px",
+          "letter-spacing": "3px",
+          "line-height": "40px",
+          "position": "absolute",
+          "top": "14px",
+          "white-space": "nowrap",
+          "width": "196px"
+        },
+        "text": "@UI_EVBOOK_TITLE"
+      },
+      "contentHash": "a7ba00dbf77146fe",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 96,
+      "outId": "book-title",
+      "selfHash": "8a4e797cbd003839",
+      "sourceId": "Evbook.dc.html:1/1/0/0",
+      "sourceName": "book-title",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "tab | eq(0)",
+          "class": "tab",
+          "on:click(left)": "set(select_tab, 0)"
+        },
+        "decls": {},
+        "text": "@UI_EVBOOK_TAB_CASE"
+      },
+      "contentHash": "abe177e6d4a1f602",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 101,
+      "outId": "tab-case",
+      "selfHash": "ff62790291b2c668",
+      "sourceId": "Evbook.dc.html:1/1/0/1/0",
+      "sourceName": "tab-case",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "tab | eq(1)",
+          "class": "tab",
+          "on:click(left)": "set(select_tab, 1)"
+        },
+        "decls": {},
+        "text": "@UI_EVBOOK_TAB_GOLD"
+      },
+      "contentHash": "5116c05223fd6e15",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 103,
+      "outId": "tab-gold",
+      "selfHash": "9639fd2c85df0830",
+      "sourceId": "Evbook.dc.html:1/1/0/1/1",
+      "sourceName": "tab-gold",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "tab | eq(2)",
+          "class": "tab",
+          "on:click(left)": "set(select_tab, 2)"
+        },
+        "decls": {},
+        "text": "@UI_EVBOOK_TAB_PLOT"
+      },
+      "contentHash": "b9a943f2a6b2546f",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 105,
+      "outId": "tab-plot",
+      "selfHash": "930d3898eed855f2",
+      "sourceId": "Evbook.dc.html:1/1/0/1/2",
+      "sourceName": "tab-plot",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "34px",
+          "left": "236px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "470px"
+        }
+      },
+      "contentHash": "73bd40225147a891",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 99,
+      "outId": "tabs",
+      "selfHash": "1505693c98667ea7",
+      "sourceId": "Evbook.dc.html:1/1/0/1",
+      "sourceName": "tabs",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn alt",
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "left": "964px",
+          "position": "absolute",
+          "top": "15px",
+          "width": "128px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "3fbb9488423381cb",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 108,
+      "outId": "btn-close",
+      "selfHash": "69d235b94a6653da",
+      "sourceId": "Evbook.dc.html:1/1/0/2",
+      "sourceName": "btn-close",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "64px",
+          "width": "1076px"
+        }
+      },
+      "contentHash": "e5974563e1bac0fe",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 110,
+      "outId": "book-rule-a",
+      "selfHash": "b2b9e2ed7656cf34",
+      "sourceId": "Evbook.dc.html:1/1/0/3",
+      "sourceName": "book-rule-a",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "70px",
+          "width": "1076px"
+        }
+      },
+      "contentHash": "4487e43889279247",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 111,
+      "outId": "book-rule-b",
+      "selfHash": "fd2cfc36e8587932",
+      "sourceId": "Evbook.dc.html:1/1/0/4",
+      "sourceName": "book-rule-b",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "gbar"
+        },
+        "decls": {
+          "height": "5px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100%"
+        }
+      },
+      "contentHash": "d0348399aac9fbf5",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 122,
+      "outId": "card-bar",
+      "selfHash": "0c9e6aad5f117d54",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/0",
+      "sourceName": "card-bar",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tape"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "34px",
+          "position": "absolute",
+          "top": "-8px",
+          "transform": "rotate(-6deg)",
+          "width": "48px"
+        }
+      },
+      "contentHash": "78a5723911c65e0d",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 123,
+      "outId": "card-tape",
+      "selfHash": "27afa07bdab27057",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/1",
+      "sourceName": "card-tape",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(id)",
+          "class": "evc-id"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "12px",
+          "width": "76px"
+        },
+        "text": "E02_01"
+      },
+      "contentHash": "172bbec83ddc4148",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 124,
+      "outId": "card-id",
+      "selfHash": "0cb0897d4862f9eb",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/2",
+      "sourceName": "card-id",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(appraised) | not",
+          "class": "qmark"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "92px",
+          "position": "absolute",
+          "top": "11px",
+          "width": "18px"
+        },
+        "text": "?"
+      },
+      "contentHash": "71b0b1479d8e6270",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 126,
+      "outId": "card-q",
+      "selfHash": "eab2ee137c32f185",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/3",
+      "sourceName": "card-q",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "evc-name"
+        },
+        "decls": {
+          "height": "78px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "32px",
+          "width": "100px"
+        },
+        "text": "特製雙層發條齒輪"
+      },
+      "contentHash": "c4b00020cd28d3ac",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 128,
+      "outId": "card-name",
+      "selfHash": "10abc834abe99485",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/4",
+      "sourceName": "card-name",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-329dcb"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "118px",
+          "width": "100px"
+        }
+      },
+      "contentHash": "4257b8d58930e2a2",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 130,
+      "outId": "card-rule",
+      "selfHash": "75e8c6d2cc5a6d49",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/5",
+      "sourceName": "card-rule",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(isnew)",
+          "class": "newdot"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "104px",
+          "position": "absolute",
+          "top": "-6px",
+          "width": "14px"
+        }
+      },
+      "contentHash": "b9b021e7e0c40534",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 132,
+      "outId": "card-new",
+      "selfHash": "a59d1240e26c61e3",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0/6",
+      "sourceName": "card-new",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g1": "item(grade) | eq(1)",
+          "bind:class.g2": "item(grade) | eq(2)",
+          "bind:class.g3": "item(grade) | eq(3)",
+          "bind:class.g4": "item(grade) | eq(4)",
+          "bind:class.sel": "item(id) | eq(sel_id)",
+          "class": "evc",
+          "on:click(left)": "set(select, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "140px",
+          "position": "relative",
+          "width": "116px"
+        }
+      },
+      "contentHash": "f6dec6564d95c29d",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 118,
+      "outId": "card",
+      "selfHash": "95265183a94aa3df",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0/0",
+      "sourceName": "card",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "cards"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-wrap": "wrap",
+          "gap": "14px 10px",
+          "padding-bottom": "4px",
+          "padding-left": "4px",
+          "padding-right": "0px",
+          "padding-top": "6px",
+          "width": "510px"
+        }
+      },
+      "contentHash": "fa931bb3c31aa356",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 116,
+      "outId": "cards-list",
+      "selfHash": "b4010b971b108731",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0/0",
+      "sourceName": "cards-list",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "318px",
+          "left": "10px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "14px",
+          "width": "514px"
+        }
+      },
+      "contentHash": "58b3eff61a64ec8b",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 115,
+      "outId": "cards-scroll",
+      "selfHash": "017e357d57e99a0d",
+      "sourceId": "Evbook.dc.html:1/1/0/5/0",
+      "sourceName": "cards-scroll",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "cards | item(0) | item(id) | eq('')",
+          "class": "empty"
+        },
+        "decls": {
+          "height": "48px",
+          "width": "510px"
+        },
+        "text": "@UI_EVBOOK_GOLD_EMPTY"
+      },
+      "contentHash": "d6b2538419a26c5a",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 140,
+      "outId": "gold-empty",
+      "selfHash": "dca13205607ae432",
+      "sourceId": "Evbook.dc.html:1/1/0/5/1/0",
+      "sourceName": "gold-empty",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tab | eq(1)",
+          "class": "s-66a9df"
+        },
+        "decls": {
+          "height": "60px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "120px",
+          "width": "510px"
+        }
+      },
+      "contentHash": "6f1943e0494eeb39",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 138,
+      "outId": "gold-empty-box",
+      "selfHash": "9b425e5487ff3f66",
+      "sourceId": "Evbook.dc.html:1/1/0/5/1",
+      "sourceName": "gold-empty-box",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "14px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "300px"
+        },
+        "text": "@UI_NOTES_TITLE"
+      },
+      "contentHash": "67ce0faf95ce7e10",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 145,
+      "outId": "notes-head",
+      "selfHash": "a025dddb4c6963c1",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/0",
+      "sourceName": "notes-head",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "note-mark"
+        },
+        "decls": {
+          "height": "7px",
+          "left": "3px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "7px"
+        }
+      },
+      "contentHash": "440c5f7cd51df0d7",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 150,
+      "outId": "note-mark",
+      "selfHash": "bc7e387a28129d28",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/1/0/0/0",
+      "sourceName": "note-mark",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(text)",
+          "class": "note-text"
+        },
+        "decls": {
+          "width": "462px"
+        },
+        "text": "老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？"
+      },
+      "contentHash": "b5765afa9fe577d9",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 151,
+      "outId": "note-text",
+      "selfHash": "e6c377be0a49add9",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/1/0/0/1",
+      "sourceName": "note-text",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "flex-shrink": "0",
+          "padding-bottom": "0px",
+          "padding-left": "20px",
+          "padding-right": "0px",
+          "padding-top": "0px",
+          "position": "relative",
+          "width": "482px"
+        }
+      },
+      "contentHash": "b91a0ba3340af93d",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 149,
+      "outId": "note",
+      "selfHash": "5727c63924c2a16e",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/1/0/0",
+      "sourceName": "note",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "notes"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "width": "482px"
+        }
+      },
+      "contentHash": "9dc1ebdea505c16c",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 148,
+      "outId": "notes-list",
+      "selfHash": "2cfb137653aa73a7",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/1/0",
+      "sourceName": "notes-list",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "148px",
+          "left": "14px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "34px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "5ffa31e5d9dd83de",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 147,
+      "outId": "notes-scroll",
+      "selfHash": "baa179e6d913927e",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2/1",
+      "sourceName": "notes-scroll",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "notes-box"
+        },
+        "decls": {
+          "height": "190px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "344px",
+          "width": "510px"
+        }
+      },
+      "contentHash": "208133f8ea13da9a",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 144,
+      "outId": "notes",
+      "selfHash": "401f142d99c95cb5",
+      "sourceId": "Evbook.dc.html:1/1/0/5/2",
+      "sourceName": "notes",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "page-l"
+        },
+        "decls": {
+          "height": "544px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "80px",
+          "width": "530px"
+        }
+      },
+      "contentHash": "598146abee20953a",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 114,
+      "outId": "page-l",
+      "selfHash": "b50f02bc5d902078",
+      "sourceId": "Evbook.dc.html:1/1/0/5",
+      "sourceName": "page-l",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "spine"
+        },
+        "decls": {
+          "height": "556px",
+          "left": "546px",
+          "position": "absolute",
+          "top": "76px",
+          "width": "28px"
+        }
+      },
+      "contentHash": "91527b4bf04ea127",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 158,
+      "outId": "spine",
+      "selfHash": "2c1e6faa8a3c31e3",
+      "sourceId": "Evbook.dc.html:1/1/0/6",
+      "sourceName": "spine",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "gbar"
+        },
+        "decls": {
+          "height": "5px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "498px"
+        }
+      },
+      "contentHash": "26c4272c6b9459a5",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 165,
+      "outId": "detail-bar",
+      "selfHash": "87d155e133d5ed42",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/0",
+      "sourceName": "detail-bar",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_NORMAL"
+      },
+      "contentHash": "b040b55ce57aadfa",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 167,
+      "outId": "gl-0",
+      "selfHash": "84fcd4afa7b9f624",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1/0",
+      "sourceName": "gl-0",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_KEY"
+      },
+      "contentHash": "85a50e0fb971a9cf",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 168,
+      "outId": "gl-1",
+      "selfHash": "de0b09ae16d85ff8",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1/1",
+      "sourceName": "gl-1",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_PLOT"
+      },
+      "contentHash": "9b5c0993a451f7ad",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 169,
+      "outId": "gl-2",
+      "selfHash": "cc5defd3b3dcbf34",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1/2",
+      "sourceName": "gl-2",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-3"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_GOLDEN"
+      },
+      "contentHash": "dadcb4661ffcd524",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 170,
+      "outId": "gl-3",
+      "selfHash": "768f1520b03b8124",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1/3",
+      "sourceName": "gl-3",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-4"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_SUB"
+      },
+      "contentHash": "7ee1ebebbc2c9d46",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 171,
+      "outId": "gl-4",
+      "selfHash": "00950c357e6cb069",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1/4",
+      "sourceName": "gl-4",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "20px",
+          "left": "18px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "8e77eed024af38d8",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 166,
+      "outId": "detail-grade",
+      "selfHash": "878ca31c92e90fca",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/1",
+      "sourceName": "detail-grade",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_id",
+          "class": "evc-id s-12e6e5"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "380px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "100px"
+        },
+        "text": "E02_01"
+      },
+      "contentHash": "8e031348ab082053",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 173,
+      "outId": "detail-id",
+      "selfHash": "858372a4c77b62c8",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/2",
+      "sourceName": "detail-id",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_name",
+          "class": "f-disp"
+        },
+        "decls": {
+          "color": "#092e28",
+          "flex-shrink": "0",
+          "font-size": "26px",
+          "font-weight": "700",
+          "line-clamp": "2",
+          "line-height": "34px",
+          "width": "462px"
+        },
+        "text": "特製雙層發條齒輪"
+      },
+      "contentHash": "dd5a78b33d5a9fc9",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 177,
+      "outId": "sel-name",
+      "selfHash": "c89c4ed6ff553bf5",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/3/0",
+      "sourceName": "sel-name",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_tags",
+          "class": "f-body"
+        },
+        "decls": {
+          "color": "#a65432",
+          "flex-shrink": "0",
+          "font-size": "14px",
+          "line-clamp": "2",
+          "line-height": "22px",
+          "width": "462px"
+        },
+        "text": "物理：雙層發條・物理：黃銅・？・？"
+      },
+      "contentHash": "e64cbb3cda8b435d",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 179,
+      "outId": "sel-tags",
+      "selfHash": "d707efe34e996f11",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/3/1",
+      "sourceName": "sel-tags",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-15baa9"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "3px",
+          "width": "462px"
+        }
+      },
+      "contentHash": "422a7ec7e2c68e12",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 181,
+      "outId": "sel-rule",
+      "selfHash": "a5a34dff7e495f7b",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/3/2",
+      "sourceName": "sel-rule",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_desc",
+          "class": "f-body"
+        },
+        "decls": {
+          "color": "#123a31",
+          "flex-shrink": "0",
+          "font-size": "16px",
+          "line-clamp": "9",
+          "line-height": "26px",
+          "width": "462px"
+        },
+        "text": "替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。"
+      },
+      "contentHash": "67ee9029963a5ba0",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 182,
+      "outId": "sel-desc",
+      "selfHash": "7fd7a89f8731afc2",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/3/3",
+      "sourceName": "sel-desc",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "10px",
+          "height": "380px",
+          "left": "18px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "462px"
+        }
+      },
+      "contentHash": "2fd2089c7619ab51",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 175,
+      "outId": "detail-body",
+      "selfHash": "bb3f0aff79686ca4",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/3",
+      "sourceName": "detail-body",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "viewBox": "0 0 48 28"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "26px",
+          "width": "44px"
+        }
+      },
+      "contentHash": "15072f8228b0d80a",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 189,
+      "outId": "appr-box",
+      "selfHash": "a1fdc0457882536e",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4/0",
+      "sourceName": "appr-box",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker s-1813e6"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "min-width": "40px"
+        },
+        "text": "@UI_INV_APPR"
+      },
+      "contentHash": "1f46d522e3419fdd",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 195,
+      "outId": "appr-label",
+      "selfHash": "55e293a06c692394",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4/1",
+      "sourceName": "appr-label",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('×{0}', appraise_left)",
+          "class": "appr-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "28px",
+          "width": "60px"
+        },
+        "text": "×2"
+      },
+      "contentHash": "d4c509eef0b56dda",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 196,
+      "outId": "appr-count",
+      "selfHash": "02dba4bc6e5fdebf",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4/2",
+      "sourceName": "appr-count",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "flex-grow": "1",
+          "height": "4px",
+          "min-width": "4px"
+        }
+      },
+      "contentHash": "e3cb5016e859ab95",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 198,
+      "outId": "appr-gap",
+      "selfHash": "26c987a2bcb87b8b",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4/3",
+      "sourceName": "appr-gap",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "sel_can_appraise | not",
+          "class": "btn",
+          "on:click(left)": "if port(sel_can_appraise) eq true emit(appraise)"
+        },
+        "decls": {
+          "width": "180px"
+        },
+        "text": "@BTN_APPRAISE"
+      },
+      "contentHash": "568549c7af9c0255",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 199,
+      "outId": "btn-appraise",
+      "selfHash": "2ecc0b244d87ab43",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4/4",
+      "sourceName": "btn-appraise",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "border-top-color": "#123a3180",
+          "border-top-style": "dashed",
+          "border-top-width": "1px",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "10px",
+          "height": "48px",
+          "left": "18px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "8px",
+          "position": "absolute",
+          "top": "448px",
+          "width": "462px"
+        }
+      },
+      "contentHash": "cc80e2120640d2f5",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 186,
+      "outId": "appr-row",
+      "selfHash": "58a12331cf389056",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0/4",
+      "sourceName": "appr-row",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g0": "sel_grade | eq(0)",
+          "bind:class.g1": "sel_grade | eq(1)",
+          "bind:class.g2": "sel_grade | eq(2)",
+          "bind:class.g3": "sel_grade | eq(3)",
+          "bind:class.g4": "sel_grade | eq(4)",
+          "bind:display": "sel_id | ne('')",
+          "class": "panel"
+        },
+        "decls": {
+          "height": "516px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "498px"
+        }
+      },
+      "contentHash": "ec2102e7e9b912d0",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 162,
+      "outId": "detail",
+      "selfHash": "deaa2c7dd7433e89",
+      "sourceId": "Evbook.dc.html:1/1/0/7/0",
+      "sourceName": "detail",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "page-r"
+        },
+        "decls": {
+          "height": "544px",
+          "left": "570px",
+          "position": "absolute",
+          "top": "80px",
+          "width": "530px"
+        }
+      },
+      "contentHash": "0cecf720a8e1e975",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 161,
+      "outId": "page-r",
+      "selfHash": "cdcdfc47ab100dc8",
+      "sourceId": "Evbook.dc.html:1/1/0/7",
+      "sourceName": "page-r",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "book"
+        },
+        "decls": {
+          "height": "640px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1120px"
+        }
+      },
+      "contentHash": "e270ccccf2159a39",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 91,
+      "outId": "book",
+      "selfHash": "65926e46d37f8cdf",
+      "sourceId": "Evbook.dc.html:1/1/0",
+      "sourceName": "book",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "640px",
+          "left": "calc(50% - 560px)",
+          "position": "absolute",
+          "top": "calc(50% - 320px)",
+          "width": "1120px"
+        }
+      },
+      "contentHash": "531772be203d842c",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 90,
+      "outId": "book-dock",
+      "selfHash": "b11ccad9970bedc1",
+      "sourceId": "Evbook.dc.html:1/1",
+      "sourceName": "book-dock",
+      "ui": "evbook",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(1)": "set(select_tab, 0)",
+          "on:key(2)": "set(select_tab, 1)",
+          "on:key(3)": "set(select_tab, 2)",
+          "on:key(Backspace)": "emit(close)",
+          "on:key(E)": "set(select_tab, port(tab) | offset(1) | clamp(0, 2))",
+          "on:key(Escape)": "emit(close)",
+          "on:key(Q)": "set(select_tab, port(tab) | offset(-1) | clamp(0, 2))",
+          "on:key(Tab)": "emit(close)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#092e28",
+          "color": "#123a31",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "38cc9d5e664f11a4",
+      "fidelity": "High",
+      "file": "Evbook.dc.html",
+      "line": 80,
+      "outId": "evbook",
+      "selfHash": "981647ed7aec4424",
+      "sourceId": "Evbook.dc.html:1",
+      "sourceName": "Evbook",
+      "ui": "evbook",
+      "warnings": []
     }
   ],
   "notes": [],
@@ -20767,13 +24450,13 @@
   "skipped": [],
   "topLevelFrames": [],
   "totals": {
-    "assets": 40,
+    "assets": 44,
     "dropped": 0,
-    "high": 842,
-    "inlineSvg": 55,
+    "high": 995,
+    "inlineSvg": 56,
     "low": 0,
     "medium": 0,
-    "nodes": 842,
+    "nodes": 995,
     "rasterized": 0,
     "vectors": 0
   },
@@ -20788,6 +24471,7 @@
         "--copper": "#a65432",
         "--ink": "#123a31",
         "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
         "--paper": "#f3eedf",
         "--paper-old": "#e3d9c2"
       }
@@ -20816,7 +24500,7 @@
         "--ink": "#123a31",
         "--ink-deep": "#092e28",
         "--paper": "#f3eedf",
-        "--vermilion": "#b8322a"
+        "--paper-old": "#e3d9c2"
       }
     },
     {
@@ -20873,6 +24557,36 @@
         "--copper": "#a65432",
         "--ink": "#123a31",
         "--paper": "#f3eedf"
+      }
+    },
+    {
+      "doc": "result/result.xt",
+      "flow": "",
+      "id": "result",
+      "name": "Result",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "evbook/evbook.xt",
+      "flow": "",
+      "id": "evbook",
+      "name": "Evbook",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
       }
     }
   ]

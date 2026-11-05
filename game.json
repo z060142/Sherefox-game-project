@@ -69,6 +69,19 @@
         "visible": false
       },
       {
+        "ui": "result",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "evbook",
+        "width": 1280,
+        "height": 720,
+        "visible": false,
+        "modal": true
+      },
+      {
         "ui": "cutin",
         "width": 1280,
         "height": 720

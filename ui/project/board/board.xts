@@ -52,14 +52,6 @@
   border-top-width: 1px;
 }
 
-/* import: Board.dc.html:1/0/6/18/0/3 */
-#card-rule {
-  border-bottom-color: #123a3199;
-  border-bottom-width: 1px;
-  border-top-color: #123a3199;
-  border-top-width: 1px;
-}
-
 /* import: Board.dc.html:1/0/6/20/0 */
 #remark-face {
   background-color: var(--paper-old);

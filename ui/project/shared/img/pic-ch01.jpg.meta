@@ -1,0 +1,13 @@
+version: 1
+id: 2d83d6b9-30bd-4e17-a3a5-66eebc3af4e9
+type: image
+title: pic-ch01
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/paper_ch01.jpg
+content: sha256:f6eb23af4ca89b24b6615a56d14d58369bf4b8cad5195163e0889db0551b210a
+measured:
+  w: 960
+  h: 640
+  alpha: false

@@ -9,7 +9,7 @@
       "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
       "element": "sheet",
       "source": "Paper.dc.html",
-      "line": 35,
+      "line": 97,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -30,15 +30,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
+      "message": "the board's inline geometry of 91 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
       "element": "",
       "source": "Paper.dc.html",
-      "line": 27,
+      "line": 89,
       "col": 0,
       "ui": "paper",
       "detail": {
-        "elements": "65",
-        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline #subhead #p1-rule-d #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #side-head #side-text #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
+        "elements": "91",
+        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline-box #headline #p1-rule-d #lead-pic #pic-frame #pic-rule #pic-deck-box #pic-deck #lead-rule #lead-col-1 #lead-col-1-text #lead-col-rule #lead-col-2 #lead-col-2-text #lead-text #subhead #p1-rule-e #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #prev-case #prev-label #prev-text #prev-head #prev-sub #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-article #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #p2-briefs #brief-side #side-head #side-text #side-text-rule #brief-orn #brief-orn-rule #brief-ads #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
       },
       "fix": {
         "kind": "editor",

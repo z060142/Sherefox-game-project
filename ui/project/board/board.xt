@@ -106,7 +106,7 @@
               <div id="card-bar" class="gbar"/>
               <div id="card-pin" class="pin"/>
               <div id="card-name" class="clip-name" bind:text="item(name)">鐘擺護蓋上的新刮痕</div>
-              <div id="card-rule"/>
+              <div id="card-rule" class="s-329dcb"/>
             </div>
           </repeat>
           <repeat id="links-list" class="s-66a9df" port="links">
