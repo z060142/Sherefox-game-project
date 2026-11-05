@@ -2,21 +2,32 @@
   "assets": [
     "shared/img/masthead-art.png",
     "shared/img/ui-ruled.png",
-    "shared/img/bg-office-night.png",
-    "shared/img/bg-office-day.png",
-    "shared/img/bg-kitchen-morning.png",
-    "shared/img/bg-clockshop.png",
-    "shared/img/bg-dock-fog.png",
-    "shared/img/bg-barge-deck.png",
-    "shared/img/bg-boiler-room.png",
-    "shared/img/bg-debate.png",
+    "shared/img/bg-office-night.jpg",
+    "shared/img/bg-office-day.jpg",
+    "shared/img/bg-kitchen-morning.jpg",
+    "shared/img/bg-clockshop.jpg",
+    "shared/img/bg-dock-fog.jpg",
+    "shared/img/bg-barge-deck.jpg",
+    "shared/img/bg-boiler-room.jpg",
+    "shared/img/bg-debate.jpg",
     "shared/img/ch-c-sherefox.png",
     "shared/img/ch-c-arthur.png",
     "shared/img/ch-c-baskerville.png",
     "shared/img/ch-c-victor.png",
     "shared/img/ch-c-wolfhart.png",
     "shared/img/ch-c-valet.png",
-    "shared/img/ch-c-partner.png"
+    "shared/img/ch-c-partner.png",
+    "shared/img/ico-look.png",
+    "shared/img/ico-item.png",
+    "shared/img/ico-talk.png",
+    "shared/img/ico-device.png",
+    "shared/img/ico-seal.png",
+    "shared/img/ico-done.png",
+    "shared/img/ui-cork.jpg",
+    "shared/img/dcard-pin.png",
+    "shared/img/lg-bad-ico.png",
+    "shared/img/link-star.png",
+    "shared/img/link-weak.png"
   ],
   "bindings": [],
   "bundle": {
@@ -59,22 +70,21 @@
     {
       "base": {
         "attrs": {
-          "class": "kicker"
+          "class": "kicker s-12e6e5"
         },
         "decls": {
           "flex-shrink": "0",
           "height": "20px",
-          "text-align": "right",
           "width": "88px"
         },
         "text": "@UI_TITLE_LANG"
       },
-      "contentHash": "25fa31245109324a",
+      "contentHash": "227ae75eeb864f11",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 37,
       "outId": "lang-label",
-      "selfHash": "66dc65e71d06f640",
+      "selfHash": "655960d7639de8e6",
       "sourceId": "Title.dc.html:1/1/0",
       "sourceName": "lang-label",
       "ui": "title",
@@ -165,7 +175,7 @@
           "size": "260px 30px"
         }
       },
-      "contentHash": "98b50f4513811d47",
+      "contentHash": "d08cca3bde564321",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 34,
@@ -694,7 +704,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "dd235078d66d75ee",
+      "contentHash": "0de31b0603ec3fd4",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 24,
@@ -710,16 +720,16 @@
         "attrs": {
           "bind:display": "bg | eq('office_night')",
           "class": "bg-art",
-          "src": "../shared/img/bg-office-night.png"
+          "src": "../shared/img/bg-office-night.jpg"
         },
         "decls": {}
       },
-      "contentHash": "443a0a7f8b66320d",
+      "contentHash": "25454c8963ad30cd",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 62,
       "outId": "bg-office-night",
-      "selfHash": "69fd83b8ecbee776",
+      "selfHash": "d898ce8fb0d44a5e",
       "sourceId": "Vn.dc.html:1/0/0/0",
       "sourceName": "bg-office-night",
       "ui": "vn",
@@ -730,16 +740,16 @@
         "attrs": {
           "bind:display": "bg | eq('office_day')",
           "class": "bg-art",
-          "src": "../shared/img/bg-office-day.png"
+          "src": "../shared/img/bg-office-day.jpg"
         },
         "decls": {}
       },
-      "contentHash": "a286a7631f9ce95c",
+      "contentHash": "7911bee5466c93c9",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 63,
       "outId": "bg-office-day",
-      "selfHash": "53faf390ec5917ca",
+      "selfHash": "1b1107b4ab4da112",
       "sourceId": "Vn.dc.html:1/0/0/1",
       "sourceName": "bg-office-day",
       "ui": "vn",
@@ -750,16 +760,16 @@
         "attrs": {
           "bind:display": "bg | eq('kitchen_morning')",
           "class": "bg-art",
-          "src": "../shared/img/bg-kitchen-morning.png"
+          "src": "../shared/img/bg-kitchen-morning.jpg"
         },
         "decls": {}
       },
-      "contentHash": "89fed90094b56a40",
+      "contentHash": "8c4075b9ca502fc5",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 64,
       "outId": "bg-kitchen-morning",
-      "selfHash": "c7d9110edbade02c",
+      "selfHash": "7ea0b8f6ab576b84",
       "sourceId": "Vn.dc.html:1/0/0/2",
       "sourceName": "bg-kitchen-morning",
       "ui": "vn",
@@ -770,16 +780,16 @@
         "attrs": {
           "bind:display": "bg | eq('clockshop')",
           "class": "bg-art",
-          "src": "../shared/img/bg-clockshop.png"
+          "src": "../shared/img/bg-clockshop.jpg"
         },
         "decls": {}
       },
-      "contentHash": "f1d497475e38ceb0",
+      "contentHash": "57859092fd06f9db",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 65,
       "outId": "bg-clockshop",
-      "selfHash": "02e36ceb80bf636f",
+      "selfHash": "7403c72cd3e1d257",
       "sourceId": "Vn.dc.html:1/0/0/3",
       "sourceName": "bg-clockshop",
       "ui": "vn",
@@ -790,16 +800,16 @@
         "attrs": {
           "bind:display": "bg | eq('dock_fog')",
           "class": "bg-art",
-          "src": "../shared/img/bg-dock-fog.png"
+          "src": "../shared/img/bg-dock-fog.jpg"
         },
         "decls": {}
       },
-      "contentHash": "e17b71d08bb57908",
+      "contentHash": "560ae9b2822e84bb",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 66,
       "outId": "bg-dock-fog",
-      "selfHash": "aaa7456b94265057",
+      "selfHash": "d181d9ad65a710ff",
       "sourceId": "Vn.dc.html:1/0/0/4",
       "sourceName": "bg-dock-fog",
       "ui": "vn",
@@ -810,16 +820,16 @@
         "attrs": {
           "bind:display": "bg | eq('barge_deck')",
           "class": "bg-art",
-          "src": "../shared/img/bg-barge-deck.png"
+          "src": "../shared/img/bg-barge-deck.jpg"
         },
         "decls": {}
       },
-      "contentHash": "bc2920ad37edd7fb",
+      "contentHash": "a21dadd5a44d2047",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 67,
       "outId": "bg-barge-deck",
-      "selfHash": "35f84f49b1451640",
+      "selfHash": "711c3c4db72644c8",
       "sourceId": "Vn.dc.html:1/0/0/5",
       "sourceName": "bg-barge-deck",
       "ui": "vn",
@@ -830,16 +840,16 @@
         "attrs": {
           "bind:display": "bg | eq('boiler_room')",
           "class": "bg-art",
-          "src": "../shared/img/bg-boiler-room.png"
+          "src": "../shared/img/bg-boiler-room.jpg"
         },
         "decls": {}
       },
-      "contentHash": "fd2e32950eb2dd64",
+      "contentHash": "3afa4ded94ef37e7",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 68,
       "outId": "bg-boiler-room",
-      "selfHash": "8fa3915f10db6e66",
+      "selfHash": "e9582bf20ab4b6f6",
       "sourceId": "Vn.dc.html:1/0/0/6",
       "sourceName": "bg-boiler-room",
       "ui": "vn",
@@ -850,16 +860,16 @@
         "attrs": {
           "bind:display": "bg | eq('debate')",
           "class": "bg-art",
-          "src": "../shared/img/bg-debate.png"
+          "src": "../shared/img/bg-debate.jpg"
         },
         "decls": {}
       },
-      "contentHash": "ccb19f38e8a376d8",
+      "contentHash": "d58af745480d93d2",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 69,
       "outId": "bg-debate",
-      "selfHash": "59b928c3c06ccfa2",
+      "selfHash": "5e9972165102576a",
       "sourceId": "Vn.dc.html:1/0/0/7",
       "sourceName": "bg-debate",
       "ui": "vn",
@@ -876,7 +886,7 @@
           "width": "100%"
         }
       },
-      "contentHash": "d915266de44cfb97",
+      "contentHash": "05116f0f9f34159b",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 60,
@@ -897,7 +907,7 @@
           "background-color": "var(--paper)"
         }
       },
-      "contentHash": "972dca108641459c",
+      "contentHash": "aa2a2639501fcc85",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 58,
@@ -2316,7 +2326,7 @@
         "attrs": {
           "bind:class.note": "style | eq(1)",
           "bind:class.sys": "style | eq(2)",
-          "class": "dlg"
+          "class": "dlg s-e1040c"
         },
         "decls": {
           "bottom": "0px",
@@ -2327,17 +2337,16 @@
           "padding-left": "0px",
           "padding-right": "0px",
           "padding-top": "3px",
-          "pointer-events": "auto",
           "position": "absolute",
           "width": "1000px"
         }
       },
-      "contentHash": "bf233dcb4fdd1314",
+      "contentHash": "8d15439f95fd53ac",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 149,
       "outId": "dlg",
-      "selfHash": "ed7e12d7e02e6e63",
+      "selfHash": "e24fbd704e3dda99",
       "sourceId": "Vn.dc.html:1/7/0",
       "sourceName": "dlg",
       "ui": "vn",
@@ -2353,7 +2362,7 @@
           "size": "1000px 200px"
         }
       },
-      "contentHash": "313e6f7a2e295dc5",
+      "contentHash": "60a83b70fcb6d36b",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 147,
@@ -2392,7 +2401,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "6a9c70ad36b98dee",
+      "contentHash": "7464a40fb121f195",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 51,
@@ -4087,6 +4096,5694 @@
       "sourceName": "Paper",
       "ui": "paper",
       "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('office_night')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-office-night.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "25454c8963ad30cd",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 106,
+      "outId": "bg-office-night",
+      "selfHash": "d898ce8fb0d44a5e",
+      "sourceId": "Investigate.dc.html:1/0/0/0/0",
+      "sourceName": "bg-office-night",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('office_day')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-office-day.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "7911bee5466c93c9",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 107,
+      "outId": "bg-office-day",
+      "selfHash": "1b1107b4ab4da112",
+      "sourceId": "Investigate.dc.html:1/0/0/0/1",
+      "sourceName": "bg-office-day",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('kitchen_morning')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-kitchen-morning.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "8c4075b9ca502fc5",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 108,
+      "outId": "bg-kitchen-morning",
+      "selfHash": "7ea0b8f6ab576b84",
+      "sourceId": "Investigate.dc.html:1/0/0/0/2",
+      "sourceName": "bg-kitchen-morning",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('clockshop')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-clockshop.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "57859092fd06f9db",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 109,
+      "outId": "bg-clockshop",
+      "selfHash": "7403c72cd3e1d257",
+      "sourceId": "Investigate.dc.html:1/0/0/0/3",
+      "sourceName": "bg-clockshop",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('dock_fog')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-dock-fog.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "560ae9b2822e84bb",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 110,
+      "outId": "bg-dock-fog",
+      "selfHash": "d181d9ad65a710ff",
+      "sourceId": "Investigate.dc.html:1/0/0/0/4",
+      "sourceName": "bg-dock-fog",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('barge_deck')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-barge-deck.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "a21dadd5a44d2047",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 111,
+      "outId": "bg-barge-deck",
+      "selfHash": "711c3c4db72644c8",
+      "sourceId": "Investigate.dc.html:1/0/0/0/5",
+      "sourceName": "bg-barge-deck",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('boiler_room')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-boiler-room.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "3afa4ded94ef37e7",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 112,
+      "outId": "bg-boiler-room",
+      "selfHash": "e9582bf20ab4b6f6",
+      "sourceId": "Investigate.dc.html:1/0/0/0/6",
+      "sourceName": "bg-boiler-room",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('debate')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-debate.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "d58af745480d93d2",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 113,
+      "outId": "bg-debate",
+      "selfHash": "5e9972165102576a",
+      "sourceId": "Investigate.dc.html:1/0/0/0/7",
+      "sourceName": "bg-debate",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "100%",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100%"
+        }
+      },
+      "contentHash": "05116f0f9f34159b",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 104,
+      "outId": "bg-art",
+      "selfHash": "a1cf03eeb3ecafa9",
+      "sourceId": "Investigate.dc.html:1/0/0/0",
+      "sourceName": "bg-art",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(bg)": "play(bg-in)"
+        },
+        "decls": {
+          "background-color": "var(--paper)",
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "cc391e2e97f2c70f",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 102,
+      "outId": "bg",
+      "selfHash": "40a51e070f0da1cb",
+      "sourceId": "Investigate.dc.html:1/0/0",
+      "sourceName": "bg",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-gradient": "linear-gradient(180deg, #092e2873 0%, #092e2800 100%)",
+          "height": "150px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "27faebcd915a45e9",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 116,
+      "outId": "shade-top",
+      "selfHash": "201805c27a981f81",
+      "sourceId": "Investigate.dc.html:1/0/1",
+      "sourceName": "shade-top",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-gradient": "linear-gradient(180deg, #092e2800 0%, #092e2866 100%)",
+          "height": "160px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "560px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "abf5dd78a4c4a5ba",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 118,
+      "outId": "shade-bottom",
+      "selfHash": "9fdc9f71abe30807",
+      "sourceId": "Investigate.dc.html:1/0/2",
+      "sourceName": "shade-bottom",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ring"
+        },
+        "decls": {
+          "bottom": "-6px",
+          "left": "-6px",
+          "position": "absolute",
+          "right": "-6px",
+          "top": "-6px"
+        }
+      },
+      "contentHash": "1b4db82ceef7ee1c",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 129,
+      "outId": "spot-ring",
+      "selfHash": "025e292374f0b43a",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/0",
+      "sourceName": "spot-ring",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ring2"
+        },
+        "decls": {
+          "bottom": "-3px",
+          "left": "-2px",
+          "position": "absolute",
+          "right": "-10px",
+          "top": "-9px"
+        }
+      },
+      "contentHash": "74e72eae08031379",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 130,
+      "outId": "spot-ring2",
+      "selfHash": "f5585cf8f2bec0a7",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/1",
+      "sourceName": "spot-ring2",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(0)",
+          "class": "ico",
+          "src": "../shared/img/ico-look.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "0c6ae8751a746dbf",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 132,
+      "outId": "ico-look",
+      "selfHash": "b07e3c45f56d834a",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/0",
+      "sourceName": "ico-look",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(1)",
+          "class": "ico",
+          "src": "../shared/img/ico-item.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "2287b225ddeace2f",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 133,
+      "outId": "ico-item",
+      "selfHash": "33ef5a2bda897d99",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/1",
+      "sourceName": "ico-item",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(2)",
+          "class": "ico",
+          "src": "../shared/img/ico-talk.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "96ff28484468b380",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 134,
+      "outId": "ico-talk",
+      "selfHash": "d1e7650ed6ed6e9e",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/2",
+      "sourceName": "ico-talk",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(3)",
+          "class": "ico",
+          "src": "../shared/img/ico-device.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "a63f46a3dcb204d8",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 135,
+      "outId": "ico-device",
+      "selfHash": "fa6e2a3ad928eed5",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/3",
+      "sourceName": "ico-device",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(4)",
+          "class": "ico",
+          "src": "../shared/img/ico-seal.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "ecebd24ff0d70ebf",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 136,
+      "outId": "ico-seal",
+      "selfHash": "2b6c65ea2ccf4fd6",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/4",
+      "sourceName": "ico-seal",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ico-done",
+          "src": "../shared/img/ico-done.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "d1566d3b19abbb9a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 137,
+      "outId": "ico-done",
+      "selfHash": "473804dbd6fab23e",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2/5",
+      "sourceName": "ico-done",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "chip"
+        },
+        "decls": {
+          "position": "relative"
+        }
+      },
+      "contentHash": "002365cea5150f02",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 131,
+      "outId": "spot-chip",
+      "selfHash": "54b70fe1f9878290",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/2",
+      "sourceName": "spot-chip",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "spot-name"
+        },
+        "decls": {},
+        "text": "桌上的甜點盤"
+      },
+      "contentHash": "29e612daf9d26548",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 139,
+      "outId": "spot-name",
+      "selfHash": "a0e8c50affe7898c",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0/3",
+      "sourceName": "spot-name",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.done": "item(state) | eq(1)",
+          "bind:class.locked": "item(state) | eq(2)",
+          "bind:height": "item(h) | range(0, 720, 0px, 720px)",
+          "bind:translate-x": "item(x)",
+          "bind:translate-y": "item(y)",
+          "bind:width": "item(w) | range(0, 1280, 0px, 1280px)",
+          "class": "spot",
+          "on:click(left)": "if port(popup_kind) eq 0 set(spot, item(id))"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "height": "62px",
+          "justify-content": "center",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "124px"
+        }
+      },
+      "contentHash": "1660a1685dd8f8da",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 124,
+      "outId": "spot",
+      "selfHash": "87dbc08ce64d0812",
+      "sourceId": "Investigate.dc.html:1/0/3/0/0",
+      "sourceName": "spot",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "spots"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "5b2f2a0c69c8da9a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 123,
+      "outId": "spots-list",
+      "selfHash": "a2deb0c6d69fd24f",
+      "sourceId": "Investigate.dc.html:1/0/3/0",
+      "sourceName": "spots-list",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "2d960d5b0036e0c6",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 122,
+      "outId": "spots-layer",
+      "selfHash": "0b71f51fe3ab1b9f",
+      "sourceId": "Investigate.dc.html:1/0/3",
+      "sourceName": "spots-layer",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "8b62a4572d7eea84",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 100,
+      "outId": "scene",
+      "selfHash": "9778c6310b212908",
+      "sourceId": "Investigate.dc.html:1/0",
+      "sourceName": "scene",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "240px"
+        },
+        "text": "@UI_INV_KICKER"
+      },
+      "contentHash": "17d54e4701ea8105",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 148,
+      "outId": "inv-kicker",
+      "selfHash": "ac95df41f2951484",
+      "sourceId": "Investigate.dc.html:1/1/0",
+      "sourceName": "inv-kicker",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "watch-ink",
+          "viewBox": "0 0 48 52"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "48px"
+        }
+      },
+      "contentHash": "cabfe1dd17548328",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 152,
+      "outId": "watch-ink",
+      "selfHash": "969dba9dae5114c7",
+      "sourceId": "Investigate.dc.html:1/1/1/0/0",
+      "sourceName": "watch-ink",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "watch-red",
+          "viewBox": "0 0 48 52"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "48px"
+        }
+      },
+      "contentHash": "2074a51a8fe891fb",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 159,
+      "outId": "watch-red",
+      "selfHash": "5b70941fe004445b",
+      "sourceId": "Investigate.dc.html:1/1/1/0/1",
+      "sourceName": "watch-red",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ticks_max | gt(0)",
+          "bind:rotate": "ticks | range(0, ticks_max, 0, 360)"
+        },
+        "decls": {
+          "background-color": "var(--ink-deep)",
+          "height": "14px",
+          "left": "23px",
+          "position": "absolute",
+          "top": "15px",
+          "transform-origin": "50% 100%",
+          "width": "2px"
+        }
+      },
+      "contentHash": "b68151474e5b5e5e",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 167,
+      "outId": "watch-hand",
+      "selfHash": "68804c1837cd1b23",
+      "sourceId": "Investigate.dc.html:1/1/1/0/2",
+      "sourceName": "watch-hand",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-color": "var(--ink-deep)",
+          "border-radius": "3px",
+          "height": "6px",
+          "left": "21px",
+          "position": "absolute",
+          "top": "26px",
+          "width": "6px"
+        }
+      },
+      "contentHash": "e069bc00b2ef8dd9",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 170,
+      "outId": "watch-hub",
+      "selfHash": "7e371a784ceddd5f",
+      "sourceId": "Investigate.dc.html:1/1/1/0/3",
+      "sourceName": "watch-hub",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "flex-shrink": "0",
+          "height": "52px",
+          "position": "relative",
+          "width": "48px"
+        }
+      },
+      "contentHash": "72cf5c50cac7a110",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 151,
+      "outId": "watch-dial",
+      "selfHash": "ee859a8ac240bc7e",
+      "sourceId": "Investigate.dc.html:1/1/1/0",
+      "sourceName": "watch-dial",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "ticks",
+          "class": "tick-num s-12e6e5"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "40px",
+          "width": "44px"
+        },
+        "text": "7"
+      },
+      "contentHash": "098e599b10552dbc",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 175,
+      "outId": "ticks-left",
+      "selfHash": "d5254f67ef51a4d6",
+      "sourceId": "Investigate.dc.html:1/1/1/1/0",
+      "sourceName": "ticks-left",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('／{0}', ticks_max)",
+          "class": "tick-max"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "40px",
+          "width": "80px"
+        },
+        "text": "／10"
+      },
+      "contentHash": "4e2b6494e119197a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 176,
+      "outId": "ticks-total",
+      "selfHash": "624ce6d01a6eeda2",
+      "sourceId": "Investigate.dc.html:1/1/1/1/1",
+      "sourceName": "ticks-total",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ticks_max | gt(0)"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "2px",
+          "height": "40px",
+          "width": "170px"
+        }
+      },
+      "contentHash": "70e049de809a13ec",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 173,
+      "outId": "ticks-limited",
+      "selfHash": "382e02a208ce5972",
+      "sourceId": "Investigate.dc.html:1/1/1/1",
+      "sourceName": "ticks-limited",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ticks_max | eq(0)"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "flex-shrink": "0",
+          "font-size": "17px",
+          "height": "40px",
+          "line-height": "40px",
+          "white-space": "nowrap",
+          "width": "170px"
+        },
+        "text": "@UI_INV_TICKS_FREE"
+      },
+      "contentHash": "ae1436eddf617468",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 178,
+      "outId": "ticks-free",
+      "selfHash": "23ee50c117f693cb",
+      "sourceId": "Investigate.dc.html:1/1/1/2",
+      "sourceName": "ticks-free",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.limited": "ticks_max | gt(0)",
+          "bind:class.low": "ticks | le(3)",
+          "class": "watch"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "10px",
+          "height": "52px",
+          "width": "240px"
+        }
+      },
+      "contentHash": "9080b9588d7a8209",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 149,
+      "outId": "watch",
+      "selfHash": "f9b084ea3f1bbcd7",
+      "sourceId": "Investigate.dc.html:1/1/1",
+      "sourceName": "watch",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "viewBox": "0 0 48 28"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "28px",
+          "width": "48px"
+        }
+      },
+      "contentHash": "57631ae67e9307dc",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 183,
+      "outId": "appraise-box",
+      "selfHash": "5f4efb578781065e",
+      "sourceId": "Investigate.dc.html:1/1/2/0",
+      "sourceName": "appraise-box",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "color": "var(--ink)",
+          "flex-shrink": "0",
+          "font-size": "15px",
+          "height": "28px",
+          "line-height": "28px",
+          "white-space": "nowrap",
+          "width": "110px"
+        },
+        "text": "@UI_INV_APPR"
+      },
+      "contentHash": "cb565f74af31dff7",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 189,
+      "outId": "appraise-label",
+      "selfHash": "63b54b35f6ff3be2",
+      "sourceId": "Investigate.dc.html:1/1/2/1",
+      "sourceName": "appraise-label",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('×{0}', appraise_left)"
+        },
+        "decls": {
+          "color": "var(--copper)",
+          "flex-shrink": "0",
+          "font-size": "20px",
+          "font-variant-numeric": "tabular-nums",
+          "font-weight": "700",
+          "height": "28px",
+          "line-height": "28px",
+          "text-align": "right",
+          "width": "60px"
+        },
+        "text": "×2"
+      },
+      "contentHash": "f35f596326295763",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 190,
+      "outId": "appraise-count",
+      "selfHash": "dca08a80eba6aa63",
+      "sourceId": "Investigate.dc.html:1/1/2/2",
+      "sourceName": "appraise-count",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "appraise_left | ge(0)"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "10px",
+          "height": "30px",
+          "width": "240px"
+        }
+      },
+      "contentHash": "e0c14f7f9d0947cc",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 181,
+      "outId": "appraise",
+      "selfHash": "42c18393c30e613d",
+      "sourceId": "Investigate.dc.html:1/1/2",
+      "sourceName": "appraise",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "hud-card"
+        },
+        "decls": {
+          "anchor": "left top",
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "offset": "-8px -2px",
+          "padding-bottom": "8px",
+          "padding-left": "14px",
+          "padding-right": "14px",
+          "padding-top": "8px",
+          "size": "268px 128px"
+        }
+      },
+      "contentHash": "45ec0307f2ad956d",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 146,
+      "outId": "hud-tl",
+      "selfHash": "15842c492aa3a64a",
+      "sourceId": "Investigate.dc.html:1/1",
+      "sourceName": "hud-tl",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "nav_prev | not",
+          "class": "nav",
+          "on:click(left)": "if port(nav_prev) eq true set(nav, -1)"
+        },
+        "decls": {},
+        "text": "◀"
+      },
+      "contentHash": "24a1dde88854006f",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 198,
+      "outId": "nav-prev",
+      "selfHash": "af92bd1602ef4a87",
+      "sourceId": "Investigate.dc.html:1/2/0",
+      "sourceName": "nav-prev",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "area_name"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "19px",
+          "font-weight": "700",
+          "height": "42px",
+          "left": "0px",
+          "line-height": "42px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "0px",
+          "white-space": "nowrap",
+          "width": "400px"
+        },
+        "text": "事務所廚房　早晨"
+      },
+      "contentHash": "38c965d5a8b27923",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 200,
+      "outId": "area-name",
+      "selfHash": "e7af36ae356a3d00",
+      "sourceId": "Investigate.dc.html:1/2/1/0",
+      "sourceName": "area-name",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "hud-card"
+        },
+        "decls": {
+          "border-top-width": "1px",
+          "flex-shrink": "0",
+          "height": "44px",
+          "width": "400px"
+        }
+      },
+      "contentHash": "ef0aa32a03a18e41",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 199,
+      "outId": "area-plate",
+      "selfHash": "ef206574b6c337ff",
+      "sourceId": "Investigate.dc.html:1/2/1",
+      "sourceName": "area-plate",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "nav_next | not",
+          "class": "nav",
+          "on:click(left)": "if port(nav_next) eq true set(nav, 1)"
+        },
+        "decls": {},
+        "text": "▶"
+      },
+      "contentHash": "d390babd00f2f91c",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 204,
+      "outId": "nav-next",
+      "selfHash": "e4d4b3b6dc982db5",
+      "sourceId": "Investigate.dc.html:1/2/2",
+      "sourceName": "nav-next",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "anchor": "center top",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "0px",
+          "offset": "0 -2px",
+          "size": "480px 44px"
+        }
+      },
+      "contentHash": "91eccf106efc91e9",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 196,
+      "outId": "area",
+      "selfHash": "be989905d626148b",
+      "sourceId": "Investigate.dc.html:1/2",
+      "sourceName": "area",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(1)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "c74be37407a1106e",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 211,
+      "outId": "badge-1",
+      "selfHash": "18d35db77998cf8c",
+      "sourceId": "Investigate.dc.html:1/3/0",
+      "sourceName": "badge-1",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(2)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "72350bfe09734935",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 212,
+      "outId": "badge-2",
+      "selfHash": "6116925d42dbf05a",
+      "sourceId": "Investigate.dc.html:1/3/1",
+      "sourceName": "badge-2",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(3)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "26c1ff20d81cb178",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 213,
+      "outId": "badge-3",
+      "selfHash": "fe5ea44212c896f8",
+      "sourceId": "Investigate.dc.html:1/3/2",
+      "sourceName": "badge-3",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(4)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "ecf529202b0b7ced",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 214,
+      "outId": "badge-4",
+      "selfHash": "4ea0432bf96789aa",
+      "sourceId": "Investigate.dc.html:1/3/3",
+      "sourceName": "badge-4",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "trust | ge(5)",
+          "class": "badge"
+        },
+        "decls": {}
+      },
+      "contentHash": "c03143d6a83389b9",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 215,
+      "outId": "badge-5",
+      "selfHash": "3b534600ea41c234",
+      "sourceId": "Investigate.dc.html:1/3/4",
+      "sourceName": "badge-5",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "trust | ge(0)",
+          "class": "hud-card"
+        },
+        "decls": {
+          "align-items": "center",
+          "anchor": "right top",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "justify-content": "center",
+          "offset": "-8px -2px",
+          "size": "148px 40px"
+        }
+      },
+      "contentHash": "37c1e7a869cc146a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 208,
+      "outId": "trust",
+      "selfHash": "da808cc852d42b3d",
+      "sourceId": "Investigate.dc.html:1/3",
+      "sourceName": "trust",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {
+          "height": "660px",
+          "left": "-164px",
+          "position": "absolute",
+          "top": "-6px",
+          "width": "440px"
+        }
+      },
+      "contentHash": "72fd6dd8680df1e0",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 224,
+      "outId": "avatar-art",
+      "selfHash": "7bd34a7da3645b7e",
+      "sourceId": "Investigate.dc.html:1/4/0/0",
+      "sourceName": "avatar-art",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:click(left)": "emit(ask_hint)"
+        },
+        "decls": {
+          "background-color": "var(--paper-old)",
+          "border": "3px #a65432",
+          "border-radius": "44px",
+          "bottom": "0px",
+          "height": "88px",
+          "left": "0px",
+          "overflow": "hidden",
+          "pointer-events": "auto",
+          "position": "absolute",
+          "width": "88px"
+        }
+      },
+      "contentHash": "f45cd1744e04ca9a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 221,
+      "outId": "avatar",
+      "selfHash": "3455ff8f56091d59",
+      "sourceId": "Investigate.dc.html:1/4/0",
+      "sourceName": "avatar",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "hint",
+          "class": "hint-text"
+        },
+        "decls": {
+          "width": "484px"
+        },
+        "text": "「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」"
+      },
+      "contentHash": "1d346e5d240a299d",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 230,
+      "outId": "hint-text",
+      "selfHash": "8223dac2b83eb834",
+      "sourceId": "Investigate.dc.html:1/4/1/0",
+      "sourceName": "hint-text",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "hint | ne('')",
+          "class": "bubble s-e1040c",
+          "on:port(hint_seq)": "play(hint-in)"
+        },
+        "decls": {
+          "bottom": "6px",
+          "left": "104px",
+          "padding-bottom": "10px",
+          "padding-left": "16px",
+          "padding-right": "16px",
+          "padding-top": "10px",
+          "position": "absolute",
+          "width": "520px"
+        }
+      },
+      "contentHash": "12e57fceb7c7edfc",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 227,
+      "outId": "hint-bubble",
+      "selfHash": "d3cfcd83515397a5",
+      "sourceId": "Investigate.dc.html:1/4/1",
+      "sourceName": "hint-bubble",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "left bottom",
+          "offset": "-8px 2px",
+          "pointer-events": "none",
+          "size": "640px 120px"
+        }
+      },
+      "contentHash": "497bc7ff53030101",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 219,
+      "outId": "hint-dock",
+      "selfHash": "d44e11a2e368f103",
+      "sourceId": "Investigate.dc.html:1/4",
+      "sourceName": "hint-dock",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn paper",
+          "on:click(left)": "emit(book)"
+        },
+        "decls": {
+          "left": "0px",
+          "position": "absolute",
+          "top": "4px"
+        },
+        "text": "@BTN_MENU_EVIDENCE"
+      },
+      "contentHash": "c652a43863533eb2",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 236,
+      "outId": "btn-book",
+      "selfHash": "070159ad8cdabfc1",
+      "sourceId": "Investigate.dc.html:1/5/0",
+      "sourceName": "btn-book",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "book_new | gt(0)",
+          "bind:text": "book_new"
+        },
+        "decls": {
+          "background-color": "var(--vermilion)",
+          "border-radius": "12px",
+          "color": "var(--paper)",
+          "font-size": "13px",
+          "font-weight": "700",
+          "height": "24px",
+          "left": "140px",
+          "line-height": "24px",
+          "pointer-events": "none",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "-6px",
+          "width": "24px"
+        },
+        "text": "1"
+      },
+      "contentHash": "5a982934370b9312",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 238,
+      "outId": "book-dot",
+      "selfHash": "c46da68f1fc6d726",
+      "sourceId": "Investigate.dc.html:1/5/1",
+      "sourceName": "book-dot",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "can_end | not",
+          "class": "btn",
+          "on:click(left)": "if port(can_end) eq true emit(end)"
+        },
+        "decls": {
+          "left": "176px",
+          "position": "absolute",
+          "top": "4px"
+        },
+        "text": "@BTN_INV_END"
+      },
+      "contentHash": "d12ad51a4a6ec065",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 241,
+      "outId": "btn-end",
+      "selfHash": "6752b0a6c07c4022",
+      "sourceId": "Investigate.dc.html:1/5/2",
+      "sourceName": "btn-end",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "right bottom",
+          "offset": "-8px 2px",
+          "size": "332px 52px"
+        }
+      },
+      "contentHash": "60c429693cdbce32",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 235,
+      "outId": "actions",
+      "selfHash": "33520b6b5999ad74",
+      "sourceId": "Investigate.dc.html:1/5",
+      "sourceName": "actions",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_kind | eq(1)",
+          "class": "s-8ecb27",
+          "on:click(left)": "emit(dismiss)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "b925e2bacc8f5dc4",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 249,
+      "outId": "pop-shade-info",
+      "selfHash": "6a0a8e242836c033",
+      "sourceId": "Investigate.dc.html:1/6/0",
+      "sourceName": "pop-shade-info",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_kind | ge(2)",
+          "class": "s-8ecb27",
+          "on:click(left)": "play(fly) then emit(dismiss)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "8a72ffcdf7fa9691",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 251,
+      "outId": "pop-shade-card",
+      "selfHash": "eaeb203e104a131d",
+      "sourceId": "Investigate.dc.html:1/6/1",
+      "sourceName": "pop-shade-card",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "504px"
+        },
+        "text": "@UI_POINT_LOOK"
+      },
+      "contentHash": "d7a455b90457e4ac",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 258,
+      "outId": "info-kicker",
+      "selfHash": "4c8fc1894c6216b7",
+      "sourceId": "Investigate.dc.html:1/6/2/0",
+      "sourceName": "info-kicker",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_title",
+          "class": "pop-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "504px"
+        },
+        "text": "空空的布丁盤"
+      },
+      "contentHash": "8a9cc276b3439171",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 259,
+      "outId": "info-title",
+      "selfHash": "005a5a152e388534",
+      "sourceId": "Investigate.dc.html:1/6/2/1",
+      "sourceName": "info-title",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-color": "var(--ink)",
+          "flex-shrink": "0",
+          "height": "1px",
+          "width": "504px"
+        }
+      },
+      "contentHash": "c61208a14db28da6",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 260,
+      "outId": "info-rule",
+      "selfHash": "0501b5a75773dad5",
+      "sourceId": "Investigate.dc.html:1/6/2/2",
+      "sourceName": "info-rule",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_body",
+          "class": "pop-body"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "504px"
+        },
+        "text": "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"
+      },
+      "contentHash": "9d1da17005c090bd",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 261,
+      "outId": "info-body",
+      "selfHash": "073acfbb23289b2d",
+      "sourceId": "Investigate.dc.html:1/6/2/3",
+      "sourceName": "info-body",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-398118"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "504px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "76833ffd40b60740",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 262,
+      "outId": "info-close",
+      "selfHash": "df5933637bab2f2d",
+      "sourceId": "Investigate.dc.html:1/6/2/4",
+      "sourceName": "info-close",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_kind | eq(1)",
+          "class": "hud-card s-66a9df",
+          "on:port(popup_seq)": "play(pop-in)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "left": "360px",
+          "padding-bottom": "22px",
+          "padding-left": "28px",
+          "padding-right": "28px",
+          "padding-top": "18px",
+          "position": "absolute",
+          "top": "210px",
+          "width": "560px"
+        }
+      },
+      "contentHash": "00e116639e788ca0",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 254,
+      "outId": "pop-info",
+      "selfHash": "2d9517b30d2622ec",
+      "sourceId": "Investigate.dc.html:1/6/2",
+      "sourceName": "pop-info",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "clip-band"
+        },
+        "decls": {
+          "height": "8px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "512px"
+        }
+      },
+      "contentHash": "6e028e0ff8b79e04",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 271,
+      "outId": "clip-band",
+      "selfHash": "0861aaddceded3c1",
+      "sourceId": "Investigate.dc.html:1/6/3/0",
+      "sourceName": "clip-band",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_NORMAL"
+      },
+      "contentHash": "4c8200a9deee090a",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 273,
+      "outId": "gl-0",
+      "selfHash": "72fa541d7e11a4fb",
+      "sourceId": "Investigate.dc.html:1/6/3/1/0",
+      "sourceName": "gl-0",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_KEY"
+      },
+      "contentHash": "87f38db1fe0a9949",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 274,
+      "outId": "gl-1",
+      "selfHash": "6574e13f866df8f7",
+      "sourceId": "Investigate.dc.html:1/6/3/1/1",
+      "sourceName": "gl-1",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_PLOT"
+      },
+      "contentHash": "33f51c930a4217d1",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 275,
+      "outId": "gl-2",
+      "selfHash": "7986afb3fa86f56f",
+      "sourceId": "Investigate.dc.html:1/6/3/1/2",
+      "sourceName": "gl-2",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-3"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_GOLDEN"
+      },
+      "contentHash": "b53cfa5505474f41",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 276,
+      "outId": "gl-3",
+      "selfHash": "5bddf0bca7c16dc9",
+      "sourceId": "Investigate.dc.html:1/6/3/1/3",
+      "sourceName": "gl-3",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-4"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_GRADE_SUB"
+      },
+      "contentHash": "7b8d1b3c191f9319",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 277,
+      "outId": "gl-4",
+      "selfHash": "f663a621f68bef88",
+      "sourceId": "Investigate.dc.html:1/6/3/1/4",
+      "sourceName": "gl-4",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pop-kicker grade-lbl gl-talk"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        },
+        "text": "@UI_POINT_TALK"
+      },
+      "contentHash": "bde7bcd1dc76b7db",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 278,
+      "outId": "gl-talk",
+      "selfHash": "526eaf767cb126ed",
+      "sourceId": "Investigate.dc.html:1/6/3/1/5",
+      "sourceName": "gl-talk",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "position": "relative",
+          "width": "464px"
+        }
+      },
+      "contentHash": "6c5a3769c03239b8",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 272,
+      "outId": "clip-kicker",
+      "selfHash": "e3c6dd17828cf179",
+      "sourceId": "Investigate.dc.html:1/6/3/1",
+      "sourceName": "clip-kicker",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_title",
+          "class": "pop-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "464px"
+        },
+        "text": "空空的布丁盤"
+      },
+      "contentHash": "1c56b7ee227fe8f0",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 280,
+      "outId": "card-title",
+      "selfHash": "7d12e51bae999959",
+      "sourceId": "Investigate.dc.html:1/6/3/2",
+      "sourceName": "card-title",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-15baa9"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "3px",
+          "width": "464px"
+        }
+      },
+      "contentHash": "999fdbe0ea8ad77f",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 281,
+      "outId": "card-rule",
+      "selfHash": "02cf0fdf4cba432b",
+      "sourceId": "Investigate.dc.html:1/6/3/3",
+      "sourceName": "card-rule",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_body",
+          "class": "pop-body"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "464px"
+        },
+        "text": "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"
+      },
+      "contentHash": "927484c76a899da4",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 282,
+      "outId": "card-body",
+      "selfHash": "7dec1f66f37e0f44",
+      "sourceId": "Investigate.dc.html:1/6/3/4",
+      "sourceName": "card-body",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-398118"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "120px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "9290c5f2c6c0f131",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 284,
+      "outId": "card-close",
+      "selfHash": "9ec65e2914d84025",
+      "sourceId": "Investigate.dc.html:1/6/3/5/0",
+      "sourceName": "card-close",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "height": "24px",
+          "justify-content": "flex-end",
+          "width": "464px"
+        }
+      },
+      "contentHash": "6ab3a70e1fa4c8ea",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 283,
+      "outId": "card-foot",
+      "selfHash": "5c44af7971440704",
+      "sourceId": "Investigate.dc.html:1/6/3/5",
+      "sourceName": "card-foot",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plot-stamp"
+        },
+        "decls": {
+          "border": "2px #b8322a",
+          "color": "var(--vermilion)",
+          "font-size": "16px",
+          "height": "36px",
+          "letter-spacing": "2px",
+          "line-height": "30px",
+          "position": "absolute",
+          "right": "22px",
+          "text-align": "center",
+          "top": "22px",
+          "transform": "rotate(-9deg)",
+          "width": "132px"
+        },
+        "text": "@UI_EVBOOK_TAB_PLOT"
+      },
+      "contentHash": "e409c361f529bf49",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 286,
+      "outId": "plot-stamp",
+      "selfHash": "0cfb169966dde9df",
+      "sourceId": "Investigate.dc.html:1/6/3/6",
+      "sourceName": "plot-stamp",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g0": "popup_grade | eq(0)",
+          "bind:class.g1": "popup_grade | eq(1)",
+          "bind:class.g2": "popup_grade | eq(2)",
+          "bind:class.g3": "popup_grade | eq(3)",
+          "bind:class.g4": "popup_grade | eq(4)",
+          "bind:class.talk": "popup_kind | eq(3)",
+          "bind:display": "popup_kind | ge(2)",
+          "class": "clip s-66a9df",
+          "on:port(popup_seq)": "play(pop-in)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "left": "380px",
+          "padding-bottom": "20px",
+          "padding-left": "28px",
+          "padding-right": "28px",
+          "padding-top": "22px",
+          "position": "absolute",
+          "top": "170px",
+          "width": "520px"
+        }
+      },
+      "contentHash": "e4cac3a7715a45d0",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 265,
+      "outId": "pop-card",
+      "selfHash": "ac538da3ceec8098",
+      "sourceId": "Investigate.dc.html:1/6/3",
+      "sourceName": "pop-card",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_kind | gt(0)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "525165f75d2024eb",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 247,
+      "outId": "pop",
+      "selfHash": "110d620c27f877e8",
+      "sourceId": "Investigate.dc.html:1/6",
+      "sourceName": "pop",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(E)": "if port(nav_next) eq true set(nav, 1)",
+          "on:key(Enter)": "if port(popup_kind) gt 0 emit(dismiss)",
+          "on:key(Escape)": "if port(popup_kind) gt 0 emit(dismiss)",
+          "on:key(F)": "if port(can_end) eq true emit(end)",
+          "on:key(Q)": "if port(nav_prev) eq true set(nav, -1)",
+          "on:key(Space)": "if port(popup_kind) gt 0 emit(dismiss)",
+          "on:key(Tab)": "emit(book)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "var(--ink-deep)",
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "4803c9d61d7d2ab4",
+      "fidelity": "High",
+      "file": "Investigate.dc.html",
+      "line": 92,
+      "outId": "investigate",
+      "selfHash": "cea81fecf453b13f",
+      "sourceId": "Investigate.dc.html:1",
+      "sourceName": "Investigate",
+      "ui": "investigate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "300px"
+        },
+        "text": "@UI_BOARD_TITLE"
+      },
+      "contentHash": "a6933090e36a30a5",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 105,
+      "outId": "board-kicker",
+      "selfHash": "5e58f8cc085af562",
+      "sourceId": "Board.dc.html:1/0/0/0",
+      "sourceName": "board-kicker",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "color": "var(--copper)",
+          "flex-shrink": "0",
+          "font-size": "13px",
+          "height": "26px",
+          "line-height": "26px",
+          "white-space": "nowrap",
+          "width": "80px"
+        },
+        "text": "@UI_BOARD_OPPONENT"
+      },
+      "contentHash": "1e896cc05d6f8bf1",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 107,
+      "outId": "opp-label",
+      "selfHash": "a535c36eb8ba45e8",
+      "sourceId": "Board.dc.html:1/0/0/1/0",
+      "sourceName": "opp-label",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "opponent_name"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "flex-shrink": "0",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "18px",
+          "font-weight": "700",
+          "height": "26px",
+          "line-height": "26px",
+          "white-space": "nowrap",
+          "width": "210px"
+        },
+        "text": "費奇　犯人"
+      },
+      "contentHash": "40d77e441e548bfe",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 108,
+      "outId": "opp-name",
+      "selfHash": "756f7a26ca6223c1",
+      "sourceId": "Board.dc.html:1/0/0/1/1",
+      "sourceName": "opp-name",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "10px",
+          "height": "26px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "fccc6e9de46f80a8",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 106,
+      "outId": "opp-row",
+      "selfHash": "1687c68f8f3a1e7c",
+      "sourceId": "Board.dc.html:1/0/0/1",
+      "sourceName": "opp-row",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "height": "52px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "12px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "8b23aedc2a666cca",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 103,
+      "outId": "hdr-left",
+      "selfHash": "b729e871b129a5f0",
+      "sourceId": "Board.dc.html:1/0/0",
+      "sourceName": "hdr-left",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "threshold_text | ne('')",
+          "bind:text": "threshold_text"
+        },
+        "decls": {
+          "background-color": "var(--paper-old)",
+          "border-left-color": "#b8322a",
+          "border-left-width": "3px",
+          "color": "var(--ink-deep)",
+          "font-size": "14px",
+          "height": "48px",
+          "left": "340px",
+          "line-clamp": "2",
+          "line-height": "20px",
+          "padding-bottom": "4px",
+          "padding-left": "14px",
+          "padding-right": "14px",
+          "padding-top": "4px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "600px"
+        },
+        "text": "前期論破：對手動搖時，出示 1 件強攻證物，或 2 張以上的實證連鎖"
+      },
+      "contentHash": "84a1aba970f078a0",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 111,
+      "outId": "threshold",
+      "selfHash": "a0891c60cea081ef",
+      "sourceId": "Board.dc.html:1/0/1",
+      "sourceName": "threshold",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "viewBox": "0 0 48 28"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "28px",
+          "width": "48px"
+        }
+      },
+      "contentHash": "1e6396d676dc1a5a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 117,
+      "outId": "appr-box",
+      "selfHash": "3ea29715ddc9c8f8",
+      "sourceId": "Board.dc.html:1/0/2/0",
+      "sourceName": "appr-box",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('×{0}', appraise_left)"
+        },
+        "decls": {
+          "color": "var(--copper)",
+          "flex-shrink": "0",
+          "font-size": "20px",
+          "font-variant-numeric": "tabular-nums",
+          "font-weight": "700",
+          "height": "28px",
+          "line-height": "28px",
+          "width": "64px"
+        },
+        "text": "×2"
+      },
+      "contentHash": "dee8444833b3b51a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 123,
+      "outId": "appr-count",
+      "selfHash": "968ea9e87c502861",
+      "sourceId": "Board.dc.html:1/0/2/1",
+      "sourceName": "appr-count",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "40px",
+          "left": "960px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "128px"
+        }
+      },
+      "contentHash": "ff68aa13c3542cd9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 115,
+      "outId": "appr",
+      "selfHash": "af790b4d74391157",
+      "sourceId": "Board.dc.html:1/0/2",
+      "sourceName": "appr",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn",
+          "on:click(left)": "emit(to_debate)"
+        },
+        "decls": {
+          "left": "1100px",
+          "position": "absolute",
+          "top": "16px"
+        },
+        "text": "@BTN_TO_DEBATE"
+      },
+      "contentHash": "6ff788ed36449d30",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 126,
+      "outId": "btn-debate",
+      "selfHash": "5c9f3bc432479546",
+      "sourceId": "Board.dc.html:1/0/3",
+      "sourceName": "btn-debate",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "border-bottom-color": "#123a31",
+          "border-bottom-width": "1px",
+          "border-top-color": "#123a31",
+          "border-top-width": "3px",
+          "height": "5px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "70px",
+          "width": "1232px"
+        }
+      },
+      "contentHash": "d65e54165e9998b2",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 128,
+      "outId": "hdr-rule",
+      "selfHash": "38403e18c26de5dd",
+      "sourceId": "Board.dc.html:1/0/4",
+      "sourceName": "hdr-rule",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "208px"
+        },
+        "text": "@UI_BOARD_DRAWER"
+      },
+      "contentHash": "9ef3739b435e2810",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 133,
+      "outId": "drawer-kicker",
+      "selfHash": "628c9764a98b0c6c",
+      "sourceId": "Board.dc.html:1/0/5/0",
+      "sourceName": "drawer-kicker",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "gbar"
+        },
+        "decls": {
+          "height": "50px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "6px"
+        }
+      },
+      "contentHash": "912ee7bb56c94fe6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 140,
+      "outId": "dcard-bar",
+      "selfHash": "52129ab2a0fce680",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0/0",
+      "sourceName": "dcard-bar",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "drow-name"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "14px",
+          "position": "absolute",
+          "top": "5px",
+          "width": "128px"
+        },
+        "text": "特製雙層發條齒輪"
+      },
+      "contentHash": "8325ff8d47c3ad38",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 141,
+      "outId": "dcard-name",
+      "selfHash": "46393dbdeeec9e8f",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0/1",
+      "sourceName": "dcard-name",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(appraised) | not",
+          "class": "qmark"
+        },
+        "decls": {
+          "height": "20px",
+          "position": "absolute",
+          "right": "8px",
+          "top": "5px",
+          "width": "20px"
+        },
+        "text": "?"
+      },
+      "contentHash": "9091fd43b620e7e9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 143,
+      "outId": "dcard-q",
+      "selfHash": "aa811b377c81fb6a",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0/2",
+      "sourceName": "dcard-q",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(reason_set)",
+          "class": "s-b00406",
+          "src": "../shared/img/ico-done.png"
+        },
+        "decls": {
+          "height": "18px",
+          "position": "absolute",
+          "right": "9px",
+          "top": "28px",
+          "width": "18px"
+        }
+      },
+      "contentHash": "22c93c10f40a1820",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 145,
+      "outId": "dcard-reason",
+      "selfHash": "8141604075ad1fa8",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0/3",
+      "sourceName": "dcard-reason",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(placed)",
+          "class": "s-b00406",
+          "src": "../shared/img/dcard-pin.png"
+        },
+        "decls": {
+          "height": "22px",
+          "position": "absolute",
+          "right": "32px",
+          "top": "15px",
+          "width": "22px"
+        }
+      },
+      "contentHash": "96235b332d29e358",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 147,
+      "outId": "dcard-pin",
+      "selfHash": "20947fb4959ade8f",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0/4",
+      "sourceName": "dcard-pin",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g1": "item(grade) | eq(1)",
+          "bind:class.g3": "item(grade) | eq(3)",
+          "bind:class.g4": "item(grade) | eq(4)",
+          "bind:class.placed": "item(placed)",
+          "bind:class.sel": "item(id) | eq(sel_id)",
+          "class": "drow",
+          "on:click(left)": "set(select, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "52px",
+          "position": "relative",
+          "width": "208px"
+        }
+      },
+      "contentHash": "56cc0bdbcc92d4d9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 136,
+      "outId": "dcard",
+      "selfHash": "846fe251ab3c582c",
+      "sourceId": "Board.dc.html:1/0/5/1/0/0",
+      "sourceName": "dcard",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "drawer"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "6px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "7d61b856599fad98",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 135,
+      "outId": "drawer-list",
+      "selfHash": "c621a84405483f65",
+      "sourceId": "Board.dc.html:1/0/5/1/0",
+      "sourceName": "drawer-list",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "476px",
+          "left": "0px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "28px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "bfb927c2a6547498",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 134,
+      "outId": "drawer-scroll",
+      "selfHash": "84c8e89e99604544",
+      "sourceId": "Board.dc.html:1/0/5/1",
+      "sourceName": "drawer-scroll",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "thread-red"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "3px",
+          "width": "28px"
+        }
+      },
+      "contentHash": "f6d62540f0ebc548",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 155,
+      "outId": "lg-solid-line",
+      "selfHash": "ae741c602f77da01",
+      "sourceId": "Board.dc.html:1/0/5/2/0/0",
+      "sourceName": "lg-solid-line",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "legend-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "172px"
+        },
+        "text": "@UI_BOARD_LINK_SOLID"
+      },
+      "contentHash": "0666d63aad22302d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 156,
+      "outId": "lg-solid-t",
+      "selfHash": "e9a37e5282d7643e",
+      "sourceId": "Board.dc.html:1/0/5/2/0/1",
+      "sourceName": "lg-solid-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "8px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "d4fd0240aedb9ef8",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 154,
+      "outId": "lg-solid",
+      "selfHash": "1084b482509954c1",
+      "sourceId": "Board.dc.html:1/0/5/2/0",
+      "sourceName": "lg-solid",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "thread-pencil"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "2px",
+          "width": "28px"
+        }
+      },
+      "contentHash": "981020f64eb33e43",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 159,
+      "outId": "lg-soph-line",
+      "selfHash": "610c5ef6acd89403",
+      "sourceId": "Board.dc.html:1/0/5/2/1/0",
+      "sourceName": "lg-soph-line",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "legend-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "172px"
+        },
+        "text": "@UI_BOARD_LINK_SOPH"
+      },
+      "contentHash": "ff6f0ff16cbf4896",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 160,
+      "outId": "lg-soph-t",
+      "selfHash": "9ac4b3eb5f8b5d7c",
+      "sourceId": "Board.dc.html:1/0/5/2/1/1",
+      "sourceName": "lg-soph-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "8px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "194eb0c9734168a8",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 158,
+      "outId": "lg-soph",
+      "selfHash": "ebb3260cda9502a6",
+      "sourceId": "Board.dc.html:1/0/5/2/1",
+      "sourceName": "lg-soph",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/lg-bad-ico.png"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "18px",
+          "width": "28px"
+        }
+      },
+      "contentHash": "8384e662b9927122",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 163,
+      "outId": "lg-bad-ico",
+      "selfHash": "3d6fa11748e62438",
+      "sourceId": "Board.dc.html:1/0/5/2/2/0",
+      "sourceName": "lg-bad-ico",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "legend-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "172px"
+        },
+        "text": "@UI_BOARD_LINK_INVALID"
+      },
+      "contentHash": "c37c4934ccff741d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 164,
+      "outId": "lg-bad-t",
+      "selfHash": "e8984e526fc93e7a",
+      "sourceId": "Board.dc.html:1/0/5/2/2/1",
+      "sourceName": "lg-bad-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "8px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "3d3031ddccd90f4d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 162,
+      "outId": "lg-bad",
+      "selfHash": "14d46c10c86196a1",
+      "sourceId": "Board.dc.html:1/0/5/2/2",
+      "sourceName": "lg-bad",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "border-top-color": "#123a31",
+          "border-top-width": "1px",
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "6px",
+          "height": "108px",
+          "left": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "6px",
+          "position": "absolute",
+          "top": "512px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "945868a0b9b665d1",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 152,
+      "outId": "legend",
+      "selfHash": "fd9e1e2951266872",
+      "sourceId": "Board.dc.html:1/0/5/2",
+      "sourceName": "legend",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "620px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "84px",
+          "width": "208px"
+        }
+      },
+      "contentHash": "9a294967b1864a5d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 132,
+      "outId": "drawer",
+      "selfHash": "d5233dc8f33da495",
+      "sourceId": "Board.dc.html:1/0/5",
+      "sourceName": "drawer",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rowno"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "64px",
+          "width": "28px"
+        },
+        "text": "I"
+      },
+      "contentHash": "fd0f348e53d09385",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 172,
+      "outId": "row-1",
+      "selfHash": "3c22171bde943b91",
+      "sourceId": "Board.dc.html:1/0/6/0",
+      "sourceName": "row-1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rowno"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "204px",
+          "width": "28px"
+        },
+        "text": "II"
+      },
+      "contentHash": "8aa976ceaed3cc7a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 173,
+      "outId": "row-2",
+      "selfHash": "480225ee50760521",
+      "sourceId": "Board.dc.html:1/0/6/1",
+      "sourceName": "row-2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rowno"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "344px",
+          "width": "28px"
+        },
+        "text": "III"
+      },
+      "contentHash": "7d4208f1613bea63",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 174,
+      "outId": "row-3",
+      "selfHash": "f7595ff402f8fbcc",
+      "sourceId": "Board.dc.html:1/0/6/2",
+      "sourceName": "row-3",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 0)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "40px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "c64f624cd74e21cd",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 176,
+      "outId": "slot-0",
+      "selfHash": "e25d609993deb823",
+      "sourceId": "Board.dc.html:1/0/6/3",
+      "sourceName": "slot-0",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 1)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "172px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "af717ef87340a62d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 177,
+      "outId": "slot-1",
+      "selfHash": "ea313bb195ab80eb",
+      "sourceId": "Board.dc.html:1/0/6/4",
+      "sourceName": "slot-1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 2)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "304px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "3caec1b5422c0c2a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 178,
+      "outId": "slot-2",
+      "selfHash": "5fff197dafdb6c16",
+      "sourceId": "Board.dc.html:1/0/6/5",
+      "sourceName": "slot-2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 3)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "436px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "4c2059fd437ffc3f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 179,
+      "outId": "slot-3",
+      "selfHash": "f59c51bf4808a6b8",
+      "sourceId": "Board.dc.html:1/0/6/6",
+      "sourceName": "slot-3",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 4)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "568px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "a9c9fea59f633dbd",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 180,
+      "outId": "slot-4",
+      "selfHash": "c735b96acdc3e976",
+      "sourceId": "Board.dc.html:1/0/6/7",
+      "sourceName": "slot-4",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 5)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "40px",
+          "position": "absolute",
+          "top": "158px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "303910bc90c70598",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 181,
+      "outId": "slot-5",
+      "selfHash": "8082580bff5ecad2",
+      "sourceId": "Board.dc.html:1/0/6/8",
+      "sourceName": "slot-5",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 6)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "172px",
+          "position": "absolute",
+          "top": "158px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "344cafd4a338192f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 182,
+      "outId": "slot-6",
+      "selfHash": "9206d11947101746",
+      "sourceId": "Board.dc.html:1/0/6/9",
+      "sourceName": "slot-6",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 7)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "304px",
+          "position": "absolute",
+          "top": "158px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "01c091b802e1c524",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 183,
+      "outId": "slot-7",
+      "selfHash": "7240869a21ce9fa9",
+      "sourceId": "Board.dc.html:1/0/6/10",
+      "sourceName": "slot-7",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 8)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "436px",
+          "position": "absolute",
+          "top": "158px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "8da841ea32f67dea",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 184,
+      "outId": "slot-8",
+      "selfHash": "126b8bba45a64e93",
+      "sourceId": "Board.dc.html:1/0/6/11",
+      "sourceName": "slot-8",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 9)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "568px",
+          "position": "absolute",
+          "top": "158px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "99137e621df21922",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 185,
+      "outId": "slot-9",
+      "selfHash": "30dbbebc218584a5",
+      "sourceId": "Board.dc.html:1/0/6/12",
+      "sourceName": "slot-9",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 10)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "40px",
+          "position": "absolute",
+          "top": "298px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "87d04494dfb6307b",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 186,
+      "outId": "slot-10",
+      "selfHash": "d809d57e07a0f783",
+      "sourceId": "Board.dc.html:1/0/6/13",
+      "sourceName": "slot-10",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 11)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "172px",
+          "position": "absolute",
+          "top": "298px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "0ffc664e268744ee",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 187,
+      "outId": "slot-11",
+      "selfHash": "7b3c23e2578c1831",
+      "sourceId": "Board.dc.html:1/0/6/14",
+      "sourceName": "slot-11",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 12)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "304px",
+          "position": "absolute",
+          "top": "298px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "834e9ac92500e840",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 188,
+      "outId": "slot-12",
+      "selfHash": "13fc156421065174",
+      "sourceId": "Board.dc.html:1/0/6/15",
+      "sourceName": "slot-12",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 13)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "436px",
+          "position": "absolute",
+          "top": "298px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "1c03e99ed5f6f388",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 189,
+      "outId": "slot-13",
+      "selfHash": "3bc330aa5113bf90",
+      "sourceId": "Board.dc.html:1/0/6/16",
+      "sourceName": "slot-13",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "slot",
+          "on:click(left)": "set(place, 14)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "568px",
+          "position": "absolute",
+          "top": "298px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "74d4b2842bdc109f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 190,
+      "outId": "slot-14",
+      "selfHash": "4061f1c7f428e300",
+      "sourceId": "Board.dc.html:1/0/6/17",
+      "sourceName": "slot-14",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "gbar"
+        },
+        "decls": {
+          "height": "5px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "106px"
+        }
+      },
+      "contentHash": "27001c0093cd77b5",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 199,
+      "outId": "card-bar",
+      "selfHash": "cc07b2cbffccd19b",
+      "sourceId": "Board.dc.html:1/0/6/18/0/0",
+      "sourceName": "card-bar",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "pin"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "46px",
+          "position": "absolute",
+          "top": "-5px",
+          "width": "14px"
+        }
+      },
+      "contentHash": "d11d45847e7abe58",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 200,
+      "outId": "card-pin",
+      "selfHash": "ceca3730f5fe59b4",
+      "sourceId": "Board.dc.html:1/0/6/18/0/1",
+      "sourceName": "card-pin",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "clip-name"
+        },
+        "decls": {
+          "height": "78px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "90px"
+        },
+        "text": "鐘擺護蓋上的新刮痕"
+      },
+      "contentHash": "808a929570ffdcb9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 201,
+      "outId": "card-name",
+      "selfHash": "a87aa93785b25bad",
+      "sourceId": "Board.dc.html:1/0/6/18/0/2",
+      "sourceName": "card-name",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "border-bottom-color": "#123a3199",
+          "border-bottom-width": "1px",
+          "border-top-color": "#123a3199",
+          "border-top-width": "1px",
+          "height": "3px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "100px",
+          "width": "90px"
+        }
+      },
+      "contentHash": "78e0b7267c089e03",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 203,
+      "outId": "card-rule",
+      "selfHash": "ab922459e206a3c4",
+      "sourceId": "Board.dc.html:1/0/6/18/0/3",
+      "sourceName": "card-rule",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g1": "item(grade) | eq(1)",
+          "bind:class.g3": "item(grade) | eq(3)",
+          "bind:class.g4": "item(grade) | eq(4)",
+          "bind:class.sel": "item(id) | eq(sel_id)",
+          "bind:display": "item(id) | ne('')",
+          "bind:translate-x": "item(pos) | scale(132) | offset(40)",
+          "bind:translate-y": "item(chain) | scale(140) | offset(18)",
+          "class": "clip s-e1040c",
+          "on:click(left)": "set(select, item(id))",
+          "on:click(right)": "set(unplace, item(id))"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "108px"
+        }
+      },
+      "contentHash": "6d0fa115a54e3ae1",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 195,
+      "outId": "card",
+      "selfHash": "e5975a656213b369",
+      "sourceId": "Board.dc.html:1/0/6/18/0",
+      "sourceName": "card",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-66a9df",
+          "port": "slots"
+        },
+        "decls": {
+          "height": "476px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "692px"
+        }
+      },
+      "contentHash": "4712eec9ed640561",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 193,
+      "outId": "slots-list",
+      "selfHash": "d77ffeb6335f4852",
+      "sourceId": "Board.dc.html:1/0/6/18",
+      "sourceName": "slots-list",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(1)",
+          "class": "thread-red"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "132px"
+        }
+      },
+      "contentHash": "3c44a842084245b3",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 213,
+      "outId": "link-red",
+      "selfHash": "a29ab347b95c1960",
+      "sourceId": "Board.dc.html:1/0/6/19/0/0",
+      "sourceName": "link-red",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(4)",
+          "class": "thread-gold"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "132px"
+        }
+      },
+      "contentHash": "d8bf7822ab879e60",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 215,
+      "outId": "link-gold",
+      "selfHash": "fbf57490db299905",
+      "sourceId": "Board.dc.html:1/0/6/19/0/1",
+      "sourceName": "link-gold",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(4)",
+          "class": "s-b00406",
+          "src": "../shared/img/link-star.png"
+        },
+        "decls": {
+          "height": "26px",
+          "left": "53px",
+          "position": "absolute",
+          "top": "11px",
+          "width": "26px"
+        }
+      },
+      "contentHash": "a277a2b2f046d52f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 217,
+      "outId": "link-star",
+      "selfHash": "1872f04ce8dd3cc3",
+      "sourceId": "Board.dc.html:1/0/6/19/0/2",
+      "sourceName": "link-star",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(2)",
+          "class": "thread-pencil"
+        },
+        "decls": {
+          "height": "2px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "23px",
+          "width": "132px"
+        }
+      },
+      "contentHash": "46863b934a0790b6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 219,
+      "outId": "link-pencil",
+      "selfHash": "504cad57c718a5ef",
+      "sourceId": "Board.dc.html:1/0/6/19/0/3",
+      "sourceName": "link-pencil",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(2)",
+          "class": "s-b00406",
+          "src": "../shared/img/link-weak.png"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "49px",
+          "position": "absolute",
+          "top": "7px",
+          "width": "34px"
+        }
+      },
+      "contentHash": "5f7fcd1478cb3cdd",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 221,
+      "outId": "link-weak",
+      "selfHash": "e7e3b0c09bdf5a95",
+      "sourceId": "Board.dc.html:1/0/6/19/0/4",
+      "sourceName": "link-weak",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(kind) | eq(3)",
+          "class": "s-b00406",
+          "src": "../shared/img/lg-bad-ico.png"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "36px"
+        }
+      },
+      "contentHash": "4427aa25285bf791",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 223,
+      "outId": "link-cut",
+      "selfHash": "246311a8dbe4ad08",
+      "sourceId": "Board.dc.html:1/0/6/19/0/5",
+      "sourceName": "link-cut",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:translate-x": "item(pos) | scale(132) | offset(94)",
+          "bind:translate-y": "item(chain) | scale(140) | offset(-4)"
+        },
+        "decls": {
+          "height": "48px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "132px"
+        }
+      },
+      "contentHash": "b5a79fc119db04d0",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 211,
+      "outId": "link",
+      "selfHash": "368ce76fecc9a7ff",
+      "sourceId": "Board.dc.html:1/0/6/19/0",
+      "sourceName": "link",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-66a9df",
+          "port": "links"
+        },
+        "decls": {
+          "height": "476px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "692px"
+        }
+      },
+      "contentHash": "7cc5dbe107dc636b",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 209,
+      "outId": "links-list",
+      "selfHash": "a6ea6d1765dd3906",
+      "sourceId": "Board.dc.html:1/0/6/19",
+      "sourceName": "links-list",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {
+          "height": "330px",
+          "left": "-82px",
+          "position": "absolute",
+          "top": "-3px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "c7f58aaaf70a9ca8",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 234,
+      "outId": "remark-art",
+      "selfHash": "e7f43d26887976ad",
+      "sourceId": "Board.dc.html:1/0/6/20/0/0",
+      "sourceName": "remark-art",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-color": "var(--paper-old)",
+          "border": "2px #a65432",
+          "border-radius": "21px",
+          "height": "42px",
+          "left": "0px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "0px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "14d84e3753857002",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 232,
+      "outId": "remark-face",
+      "selfHash": "e5d2315af1c125b4",
+      "sourceId": "Board.dc.html:1/0/6/20/0",
+      "sourceName": "remark-face",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "remark"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "font-size": "13px",
+          "height": "36px",
+          "left": "12px",
+          "line-clamp": "2",
+          "line-height": "17px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "2px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "560px"
+        },
+        "text": "「說得通，勉強說得通。但只要有人戳一下，這裡就會斷。」"
+      },
+      "contentHash": "56ff2a907bf256c9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 238,
+      "outId": "remark-text",
+      "selfHash": "076e8e0fd92972ae",
+      "sourceId": "Board.dc.html:1/0/6/20/1/0",
+      "sourceName": "remark-text",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bubble"
+        },
+        "decls": {
+          "height": "38px",
+          "left": "52px",
+          "position": "absolute",
+          "top": "2px",
+          "width": "584px"
+        }
+      },
+      "contentHash": "199d77bd689f7318",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 237,
+      "outId": "remark-bubble",
+      "selfHash": "1f3c0367b34fe669",
+      "sourceId": "Board.dc.html:1/0/6/20/1",
+      "sourceName": "remark-bubble",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "remark | ne('')",
+          "class": "s-66a9df",
+          "on:port(remark_seq)": "play(remark-in)"
+        },
+        "decls": {
+          "height": "42px",
+          "left": "40px",
+          "position": "absolute",
+          "top": "428px",
+          "width": "636px"
+        }
+      },
+      "contentHash": "f301e2e35124e30f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 229,
+      "outId": "remark",
+      "selfHash": "0a02d741d4108b5d",
+      "sourceId": "Board.dc.html:1/0/6/20",
+      "sourceName": "remark",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cork"
+        },
+        "decls": {
+          "height": "488px",
+          "left": "244px",
+          "position": "absolute",
+          "top": "84px",
+          "width": "704px"
+        }
+      },
+      "contentHash": "e0ce875338e86050",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 171,
+      "outId": "cork",
+      "selfHash": "ebdd33277d9bd962",
+      "sourceId": "Board.dc.html:1/0/6",
+      "sourceName": "cork",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t s-1813e6"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px"
+        },
+        "text": "@UI_BOARD_CHAIN_NO"
+      },
+      "contentHash": "f732c955590721b4",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 248,
+      "outId": "plate-0-lbl",
+      "selfHash": "2ca059f584c60d29",
+      "sourceId": "Board.dc.html:1/0/7/0/0",
+      "sourceName": "plate-0-lbl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "32px"
+        },
+        "text": "I"
+      },
+      "contentHash": "c3dc8324034b8a2c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 249,
+      "outId": "plate-0-no",
+      "selfHash": "36355f30c9d84376",
+      "sourceId": "Board.dc.html:1/0/7/0/1",
+      "sourceName": "plate-0-no",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "height": "22px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "120px"
+        }
+      },
+      "contentHash": "92f8d52c78d075eb",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 247,
+      "outId": "plate-0-t",
+      "selfHash": "a854e6815dc4c04d",
+      "sourceId": "Board.dc.html:1/0/7/0",
+      "sourceName": "plate-0-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s s-12e6e5"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100px"
+        },
+        "text": "@UI_BOARD_DMG"
+      },
+      "contentHash": "adb81abfd1382983",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 253,
+      "outId": "plate-0-dmgl",
+      "selfHash": "0e2ff85a0626bf01",
+      "sourceId": "Board.dc.html:1/0/7/1/0",
+      "sourceName": "plate-0-dmgl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(0) | item(dmg) | round(0)",
+          "class": "plate-dmg"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "100px"
+        },
+        "text": "35"
+      },
+      "contentHash": "a8a837c8f0dc6662",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 254,
+      "outId": "plate-0-dmg",
+      "selfHash": "de3e8a224e3713c3",
+      "sourceId": "Board.dc.html:1/0/7/1/1",
+      "sourceName": "plate-0-dmg",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(0) | item(cards)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "18px"
+        },
+        "text": "4"
+      },
+      "contentHash": "afe41595800c0430",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 256,
+      "outId": "plate-0-cards",
+      "selfHash": "4d7ece2138419807",
+      "sourceId": "Board.dc.html:1/0/7/1/2/0",
+      "sourceName": "plate-0-cards",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "60px"
+        },
+        "text": "@UI_BOARD_CARDS"
+      },
+      "contentHash": "8b1c8c5c776743b4",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 257,
+      "outId": "plate-0-cards-l",
+      "selfHash": "3ca8a4eac31d8f6b",
+      "sourceId": "Board.dc.html:1/0/7/1/2/1",
+      "sourceName": "plate-0-cards-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "dcc1638c17a00f1e",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 255,
+      "outId": "plate-0-r1",
+      "selfHash": "2c046892452f3747",
+      "sourceId": "Board.dc.html:1/0/7/1/2",
+      "sourceName": "plate-0-r1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "56px"
+        },
+        "text": "@UI_BOARD_SOLID"
+      },
+      "contentHash": "e30076f06cd2fb2e",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 260,
+      "outId": "plate-0-solid-l",
+      "selfHash": "cb12c22a5c106200",
+      "sourceId": "Board.dc.html:1/0/7/1/3/0",
+      "sourceName": "plate-0-solid-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(0) | item(solid)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "3"
+      },
+      "contentHash": "128f1e6137fac15f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 261,
+      "outId": "plate-0-solid",
+      "selfHash": "1acddd8738c13033",
+      "sourceId": "Board.dc.html:1/0/7/1/3/1",
+      "sourceName": "plate-0-solid",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "72px"
+        },
+        "text": "@UI_BOARD_SOPH"
+      },
+      "contentHash": "117fc96b785d1a41",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 262,
+      "outId": "plate-0-soph-l",
+      "selfHash": "837abca3e1070696",
+      "sourceId": "Board.dc.html:1/0/7/1/3/2",
+      "sourceName": "plate-0-soph-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(0) | item(soph)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "0"
+      },
+      "contentHash": "a9ff610bac23eaaa",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 263,
+      "outId": "plate-0-soph",
+      "selfHash": "494fd643adb4b714",
+      "sourceId": "Board.dc.html:1/0/7/1/3/3",
+      "sourceName": "plate-0-soph",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "76px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "8a062e2ab799025d",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 259,
+      "outId": "plate-0-r2",
+      "selfHash": "d406ea088fcc4328",
+      "sourceId": "Board.dc.html:1/0/7/1/3",
+      "sourceName": "plate-0-r2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(0) | item(cards) | ge(2)"
+        },
+        "decls": {
+          "height": "96px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "4c9777d8f7dfb1ce",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 251,
+      "outId": "plate-0-stats",
+      "selfHash": "5473faa2dfc5a01f",
+      "sourceId": "Board.dc.html:1/0/7/1",
+      "sourceName": "plate-0-stats",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(0) | item(cards) | lt(2)",
+          "class": "plate-empty"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "200px"
+        },
+        "text": "@UI_BOARD_CHAIN_EMPTY"
+      },
+      "contentHash": "2880803a7d1fa2e2",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 266,
+      "outId": "plate-0-empty",
+      "selfHash": "9af0b4e86d0bb428",
+      "sourceId": "Board.dc.html:1/0/7/2",
+      "sourceName": "plate-0-empty",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.empty": "chain_info | item(0) | item(cards) | lt(2)",
+          "class": "plate"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "244px",
+          "position": "absolute",
+          "top": "584px",
+          "width": "224px"
+        }
+      },
+      "contentHash": "f797219f79481473",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 245,
+      "outId": "plate-0",
+      "selfHash": "29796feb606027da",
+      "sourceId": "Board.dc.html:1/0/7",
+      "sourceName": "plate-0",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t s-1813e6"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px"
+        },
+        "text": "@UI_BOARD_CHAIN_NO"
+      },
+      "contentHash": "4b12c849a25b5b49",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 272,
+      "outId": "plate-1-lbl",
+      "selfHash": "c2e5cad6fe13074c",
+      "sourceId": "Board.dc.html:1/0/8/0/0",
+      "sourceName": "plate-1-lbl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "32px"
+        },
+        "text": "II"
+      },
+      "contentHash": "e5ea9e7e2bb5905c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 273,
+      "outId": "plate-1-no",
+      "selfHash": "c339342b5937f70e",
+      "sourceId": "Board.dc.html:1/0/8/0/1",
+      "sourceName": "plate-1-no",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "height": "22px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "120px"
+        }
+      },
+      "contentHash": "6d187fa368931bec",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 271,
+      "outId": "plate-1-t",
+      "selfHash": "436d282b3ccb9b0a",
+      "sourceId": "Board.dc.html:1/0/8/0",
+      "sourceName": "plate-1-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s s-12e6e5"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100px"
+        },
+        "text": "@UI_BOARD_DMG"
+      },
+      "contentHash": "7422456c17e3b107",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 277,
+      "outId": "plate-1-dmgl",
+      "selfHash": "cebdce206d67754e",
+      "sourceId": "Board.dc.html:1/0/8/1/0",
+      "sourceName": "plate-1-dmgl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(1) | item(dmg) | round(0)",
+          "class": "plate-dmg"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "100px"
+        },
+        "text": "25"
+      },
+      "contentHash": "7c4a6a53cd705cba",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 278,
+      "outId": "plate-1-dmg",
+      "selfHash": "42d8d224f1081b56",
+      "sourceId": "Board.dc.html:1/0/8/1/1",
+      "sourceName": "plate-1-dmg",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(1) | item(cards)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "18px"
+        },
+        "text": "2"
+      },
+      "contentHash": "3e4db693bc0b38e2",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 280,
+      "outId": "plate-1-cards",
+      "selfHash": "9857619ba6de783d",
+      "sourceId": "Board.dc.html:1/0/8/1/2/0",
+      "sourceName": "plate-1-cards",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "60px"
+        },
+        "text": "@UI_BOARD_CARDS"
+      },
+      "contentHash": "81d63f85d67fc09e",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 281,
+      "outId": "plate-1-cards-l",
+      "selfHash": "390ea5e8dd53a9dc",
+      "sourceId": "Board.dc.html:1/0/8/1/2/1",
+      "sourceName": "plate-1-cards-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "e9ae14960d453dca",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 279,
+      "outId": "plate-1-r1",
+      "selfHash": "462aa3eee99ae3ae",
+      "sourceId": "Board.dc.html:1/0/8/1/2",
+      "sourceName": "plate-1-r1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "56px"
+        },
+        "text": "@UI_BOARD_SOLID"
+      },
+      "contentHash": "015d009591028656",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 284,
+      "outId": "plate-1-solid-l",
+      "selfHash": "1fbb431bc35d39d7",
+      "sourceId": "Board.dc.html:1/0/8/1/3/0",
+      "sourceName": "plate-1-solid-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(1) | item(solid)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "0"
+      },
+      "contentHash": "65ca6b654867ee7b",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 285,
+      "outId": "plate-1-solid",
+      "selfHash": "972d996b9d1e4c00",
+      "sourceId": "Board.dc.html:1/0/8/1/3/1",
+      "sourceName": "plate-1-solid",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "72px"
+        },
+        "text": "@UI_BOARD_SOPH"
+      },
+      "contentHash": "5e08f43d5f4dc226",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 286,
+      "outId": "plate-1-soph-l",
+      "selfHash": "21da3cd50c0c938d",
+      "sourceId": "Board.dc.html:1/0/8/1/3/2",
+      "sourceName": "plate-1-soph-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(1) | item(soph)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "1"
+      },
+      "contentHash": "610d59b1940735be",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 287,
+      "outId": "plate-1-soph",
+      "selfHash": "67251f1789c02497",
+      "sourceId": "Board.dc.html:1/0/8/1/3/3",
+      "sourceName": "plate-1-soph",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "76px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "91720f4184846e31",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 283,
+      "outId": "plate-1-r2",
+      "selfHash": "fb404c01323ffbb5",
+      "sourceId": "Board.dc.html:1/0/8/1/3",
+      "sourceName": "plate-1-r2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(1) | item(cards) | ge(2)"
+        },
+        "decls": {
+          "height": "96px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "8fc9b672cde9c464",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 275,
+      "outId": "plate-1-stats",
+      "selfHash": "47b618f2e80d472d",
+      "sourceId": "Board.dc.html:1/0/8/1",
+      "sourceName": "plate-1-stats",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(1) | item(cards) | lt(2)",
+          "class": "plate-empty"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "200px"
+        },
+        "text": "@UI_BOARD_CHAIN_EMPTY"
+      },
+      "contentHash": "80078500b5a86547",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 290,
+      "outId": "plate-1-empty",
+      "selfHash": "35c6bca4668374a2",
+      "sourceId": "Board.dc.html:1/0/8/2",
+      "sourceName": "plate-1-empty",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.empty": "chain_info | item(1) | item(cards) | lt(2)",
+          "class": "plate"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "484px",
+          "position": "absolute",
+          "top": "584px",
+          "width": "224px"
+        }
+      },
+      "contentHash": "0ef65eaf0237dfd3",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 269,
+      "outId": "plate-1",
+      "selfHash": "bc443cc0a7493fb6",
+      "sourceId": "Board.dc.html:1/0/8",
+      "sourceName": "plate-1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t s-1813e6"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px"
+        },
+        "text": "@UI_BOARD_CHAIN_NO"
+      },
+      "contentHash": "33954aeec7f50781",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 296,
+      "outId": "plate-2-lbl",
+      "selfHash": "f6b036cde53b184b",
+      "sourceId": "Board.dc.html:1/0/9/0/0",
+      "sourceName": "plate-2-lbl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "32px"
+        },
+        "text": "III"
+      },
+      "contentHash": "2d34563a28242392",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 297,
+      "outId": "plate-2-no",
+      "selfHash": "6f3ac1c2d40b8556",
+      "sourceId": "Board.dc.html:1/0/9/0/1",
+      "sourceName": "plate-2-no",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "height": "22px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "120px"
+        }
+      },
+      "contentHash": "0bae8bc9cafa7cbd",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 295,
+      "outId": "plate-2-t",
+      "selfHash": "e6e4fd3a6d5e974b",
+      "sourceId": "Board.dc.html:1/0/9/0",
+      "sourceName": "plate-2-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s s-12e6e5"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100px"
+        },
+        "text": "@UI_BOARD_DMG"
+      },
+      "contentHash": "4900810843189ff6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 301,
+      "outId": "plate-2-dmgl",
+      "selfHash": "c3e790672b4c60fb",
+      "sourceId": "Board.dc.html:1/0/9/1/0",
+      "sourceName": "plate-2-dmgl",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(2) | item(dmg) | round(0)",
+          "class": "plate-dmg"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "100px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "100px"
+        },
+        "text": "0"
+      },
+      "contentHash": "63d114b26051c90c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 302,
+      "outId": "plate-2-dmg",
+      "selfHash": "e02df67e9f3a6481",
+      "sourceId": "Board.dc.html:1/0/9/1/1",
+      "sourceName": "plate-2-dmg",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(2) | item(cards)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "18px"
+        },
+        "text": "0"
+      },
+      "contentHash": "e4ef9efa9de3c176",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 304,
+      "outId": "plate-2-cards",
+      "selfHash": "0a572c3809a4400b",
+      "sourceId": "Board.dc.html:1/0/9/1/2/0",
+      "sourceName": "plate-2-cards",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "60px"
+        },
+        "text": "@UI_BOARD_CARDS"
+      },
+      "contentHash": "d7c5a04953228ca6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 305,
+      "outId": "plate-2-cards-l",
+      "selfHash": "a36ddd89620ccad5",
+      "sourceId": "Board.dc.html:1/0/9/1/2/1",
+      "sourceName": "plate-2-cards-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "422d4f6c2b4c6a92",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 303,
+      "outId": "plate-2-r1",
+      "selfHash": "e296f44a95ab933d",
+      "sourceId": "Board.dc.html:1/0/9/1/2",
+      "sourceName": "plate-2-r1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "56px"
+        },
+        "text": "@UI_BOARD_SOLID"
+      },
+      "contentHash": "c950552c188f04c3",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 308,
+      "outId": "plate-2-solid-l",
+      "selfHash": "894b8dd9178d4b9a",
+      "sourceId": "Board.dc.html:1/0/9/1/3/0",
+      "sourceName": "plate-2-solid-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(2) | item(solid)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "0"
+      },
+      "contentHash": "39725de2021f5186",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 309,
+      "outId": "plate-2-solid",
+      "selfHash": "325ed3ca408799b4",
+      "sourceId": "Board.dc.html:1/0/9/1/3/1",
+      "sourceName": "plate-2-solid",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-s"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "72px"
+        },
+        "text": "@UI_BOARD_SOPH"
+      },
+      "contentHash": "40d65ccc51b0424e",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 310,
+      "outId": "plate-2-soph-l",
+      "selfHash": "0f09d0d64c6bc4cc",
+      "sourceId": "Board.dc.html:1/0/9/1/3/2",
+      "sourceName": "plate-2-soph-l",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "chain_info | item(2) | item(soph)",
+          "class": "plate-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "22px"
+        },
+        "text": "0"
+      },
+      "contentHash": "28962fdde494ec1a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 311,
+      "outId": "plate-2-soph",
+      "selfHash": "753499e0199065a8",
+      "sourceId": "Board.dc.html:1/0/9/1/3/3",
+      "sourceName": "plate-2-soph",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "76px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "69368e4d2cb3e796",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 307,
+      "outId": "plate-2-r2",
+      "selfHash": "69da024caf522cf6",
+      "sourceId": "Board.dc.html:1/0/9/1/3",
+      "sourceName": "plate-2-r2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(2) | item(cards) | ge(2)"
+        },
+        "decls": {
+          "height": "96px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "fffff1d2c6b0ef3c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 299,
+      "outId": "plate-2-stats",
+      "selfHash": "8262bbcc77556ad3",
+      "sourceId": "Board.dc.html:1/0/9/1",
+      "sourceName": "plate-2-stats",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "chain_info | item(2) | item(cards) | lt(2)",
+          "class": "plate-empty"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "200px"
+        },
+        "text": "@UI_BOARD_CHAIN_EMPTY"
+      },
+      "contentHash": "9fbb04b1fad0abd6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 314,
+      "outId": "plate-2-empty",
+      "selfHash": "e3d0c33dad263530",
+      "sourceId": "Board.dc.html:1/0/9/2",
+      "sourceName": "plate-2-empty",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.empty": "chain_info | item(2) | item(cards) | lt(2)",
+          "class": "plate"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "724px",
+          "position": "absolute",
+          "top": "584px",
+          "width": "224px"
+        }
+      },
+      "contentHash": "7593827bd667c2d7",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 293,
+      "outId": "plate-2",
+      "selfHash": "8e82a4ff3769b03d",
+      "sourceId": "Board.dc.html:1/0/9",
+      "sourceName": "plate-2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "gbar"
+        },
+        "decls": {
+          "height": "5px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "296px"
+        }
+      },
+      "contentHash": "3d29b156df98d20f",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 322,
+      "outId": "detail-bar",
+      "selfHash": "81adff487c918686",
+      "sourceId": "Board.dc.html:1/0/10/0",
+      "sourceName": "detail-bar",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "264px"
+        },
+        "text": "@UI_GRADE_NORMAL"
+      },
+      "contentHash": "dc15e466439053c0",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 324,
+      "outId": "gl-0",
+      "selfHash": "3b6e15aa1f957737",
+      "sourceId": "Board.dc.html:1/0/10/1/0",
+      "sourceName": "gl-0",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "264px"
+        },
+        "text": "@UI_GRADE_KEY"
+      },
+      "contentHash": "71ec60615358244a",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 325,
+      "outId": "gl-1",
+      "selfHash": "4f70dc9e26e68ffb",
+      "sourceId": "Board.dc.html:1/0/10/1/1",
+      "sourceName": "gl-1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "264px"
+        },
+        "text": "@UI_GRADE_PLOT"
+      },
+      "contentHash": "b06aedfd4a1553b6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 326,
+      "outId": "gl-2",
+      "selfHash": "2c49b0d313b611c7",
+      "sourceId": "Board.dc.html:1/0/10/1/2",
+      "sourceName": "gl-2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-3"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "264px"
+        },
+        "text": "@UI_GRADE_GOLDEN"
+      },
+      "contentHash": "e19d3fcd6a875305",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 327,
+      "outId": "gl-3",
+      "selfHash": "2d00561b28170237",
+      "sourceId": "Board.dc.html:1/0/10/1/3",
+      "sourceName": "gl-3",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker glbl gl-4"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "264px"
+        },
+        "text": "@UI_GRADE_SUB"
+      },
+      "contentHash": "d28fa0a86abdd965",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 328,
+      "outId": "gl-4",
+      "selfHash": "f8a057d58da456ee",
+      "sourceId": "Board.dc.html:1/0/10/1/4",
+      "sourceName": "gl-4",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "20px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "264px"
+        }
+      },
+      "contentHash": "5fed9de939beb99e",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 323,
+      "outId": "detail-grade",
+      "selfHash": "84f3969ec76a26e5",
+      "sourceId": "Board.dc.html:1/0/10/1",
+      "sourceName": "detail-grade",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_name"
+        },
+        "decls": {
+          "color": "var(--ink-deep)",
+          "flex-shrink": "0",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "21px",
+          "font-weight": "700",
+          "line-clamp": "2",
+          "line-height": "28px",
+          "width": "264px"
+        },
+        "text": "特製雙層發條齒輪"
+      },
+      "contentHash": "468922db822a6892",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 332,
+      "outId": "sel-name",
+      "selfHash": "0fe3f120082b8fff",
+      "sourceId": "Board.dc.html:1/0/10/2/0",
+      "sourceName": "sel-name",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_tags",
+          "class": "s-97552f"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "264px"
+        },
+        "text": "物理：雙層發條・物理：黃銅・？・？"
+      },
+      "contentHash": "07e8f941dd9438cc",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 334,
+      "outId": "sel-tags",
+      "selfHash": "252eda8b1e7be86d",
+      "sourceId": "Board.dc.html:1/0/10/2/1",
+      "sourceName": "sel-tags",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-15baa9"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "3px",
+          "width": "264px"
+        }
+      },
+      "contentHash": "d10f3efed34e84ee",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 336,
+      "outId": "sel-rule",
+      "selfHash": "6b7dc4397ecfe953",
+      "sourceId": "Board.dc.html:1/0/10/2/2",
+      "sourceName": "sel-rule",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_desc"
+        },
+        "decls": {
+          "color": "var(--ink)",
+          "flex-shrink": "0",
+          "font-size": "14px",
+          "line-clamp": "4",
+          "line-height": "22px",
+          "width": "264px"
+        },
+        "text": "替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。"
+      },
+      "contentHash": "d8d58f8efe9472cb",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 337,
+      "outId": "sel-desc",
+      "selfHash": "deeaac54c968916d",
+      "sourceId": "Board.dc.html:1/0/10/2/3",
+      "sourceName": "sel-desc",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "letter-spacing": "1px",
+          "text-transform": "none",
+          "width": "264px"
+        },
+        "text": "@UI_BOARD_REASON"
+      },
+      "contentHash": "6b871804f3fcb0af",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 339,
+      "outId": "reason-kicker",
+      "selfHash": "a957dadb696fb806",
+      "sourceId": "Board.dc.html:1/0/10/2/4",
+      "sourceName": "reason-kicker",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "sel_reason | eq(0)"
+        },
+        "decls": {
+          "color": "var(--vermilion)",
+          "flex-shrink": "0",
+          "font-size": "13px",
+          "height": "20px",
+          "line-height": "20px",
+          "width": "264px"
+        },
+        "text": "@UI_BOARD_REASON_NONE"
+      },
+      "contentHash": "2179bc251a41522c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 340,
+      "outId": "reason-none",
+      "selfHash": "62a761834466951f",
+      "sourceId": "Board.dc.html:1/0/10/2/5",
+      "sourceName": "reason-none",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "sel_fixed",
+          "class": "s-97552f"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "264px"
+        },
+        "text": "@UI_BOARD_REASON_FIXED"
+      },
+      "contentHash": "9d75837d90e0afca",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 342,
+      "outId": "reason-fixed",
+      "selfHash": "3b04f05e4bde706b",
+      "sourceId": "Board.dc.html:1/0/10/2/6",
+      "sourceName": "reason-fixed",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "radio"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "16px"
+        }
+      },
+      "contentHash": "27610d734454de7b",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 347,
+      "outId": "reason-1-radio",
+      "selfHash": "bd3fa5a8443e7656",
+      "sourceId": "Board.dc.html:1/0/10/2/7/0",
+      "sourceName": "reason-1-radio",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_reason1",
+          "class": "reason-t"
+        },
+        "decls": {
+          "width": "218px"
+        },
+        "text": "老闆私藏的稀有零件"
+      },
+      "contentHash": "f67ca4919111dfae",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 348,
+      "outId": "reason-1-t",
+      "selfHash": "460a46185fa90938",
+      "sourceId": "Board.dc.html:1/0/10/2/7/1",
+      "sourceName": "reason-1-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.fixed": "sel_fixed",
+          "bind:class.on": "sel_reason | eq(1)",
+          "bind:display": "sel_reason1 | ne('')",
+          "class": "reason",
+          "on:click(left)": "if port(sel_fixed) eq false set(reason, 1)"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "padding-bottom": "8px",
+          "padding-left": "36px",
+          "padding-right": "10px",
+          "padding-top": "8px",
+          "position": "relative",
+          "width": "264px"
+        }
+      },
+      "contentHash": "7376be93a93e527b",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 344,
+      "outId": "reason-1",
+      "selfHash": "b06844793b94e6d5",
+      "sourceId": "Board.dc.html:1/0/10/2/7",
+      "sourceName": "reason-1",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "radio"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "16px"
+        }
+      },
+      "contentHash": "996d07fd97a6ec57",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 353,
+      "outId": "reason-2-radio",
+      "selfHash": "903c3710c87f35fb",
+      "sourceId": "Board.dc.html:1/0/10/2/8/0",
+      "sourceName": "reason-2-radio",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_reason2",
+          "class": "reason-t"
+        },
+        "decls": {
+          "width": "218px"
+        },
+        "text": "這是最新的軍工黑市規格，不是古董，也不是本店庫存"
+      },
+      "contentHash": "d37c334d0a46f3cd",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 354,
+      "outId": "reason-2-t",
+      "selfHash": "0afb2d63da9c190e",
+      "sourceId": "Board.dc.html:1/0/10/2/8/1",
+      "sourceName": "reason-2-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.fixed": "sel_fixed",
+          "bind:class.on": "sel_reason | eq(2)",
+          "bind:display": "sel_reason2 | ne('')",
+          "class": "reason",
+          "on:click(left)": "if port(sel_fixed) eq false set(reason, 2)"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "padding-bottom": "8px",
+          "padding-left": "36px",
+          "padding-right": "10px",
+          "padding-top": "8px",
+          "position": "relative",
+          "width": "264px"
+        }
+      },
+      "contentHash": "15afd11852aa9312",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 350,
+      "outId": "reason-2",
+      "selfHash": "fcf03c5a786ee36f",
+      "sourceId": "Board.dc.html:1/0/10/2/8",
+      "sourceName": "reason-2",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "radio"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "16px"
+        }
+      },
+      "contentHash": "01a97924dd24f3c7",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 359,
+      "outId": "reason-3-radio",
+      "selfHash": "5a832969806db4e8",
+      "sourceId": "Board.dc.html:1/0/10/2/9/0",
+      "sourceName": "reason-3-radio",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_reason3",
+          "class": "reason-t"
+        },
+        "decls": {
+          "width": "218px"
+        },
+        "text": "富商自己早就換過"
+      },
+      "contentHash": "294851e1ca390f63",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 360,
+      "outId": "reason-3-t",
+      "selfHash": "12f6a22428cbe8b0",
+      "sourceId": "Board.dc.html:1/0/10/2/9/1",
+      "sourceName": "reason-3-t",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.fixed": "sel_fixed",
+          "bind:class.on": "sel_reason | eq(3)",
+          "bind:display": "sel_reason3 | ne('')",
+          "class": "reason",
+          "on:click(left)": "if port(sel_fixed) eq false set(reason, 3)"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "padding-bottom": "8px",
+          "padding-left": "36px",
+          "padding-right": "10px",
+          "padding-top": "8px",
+          "position": "relative",
+          "width": "264px"
+        }
+      },
+      "contentHash": "bd5435c7c1ac4bce",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 356,
+      "outId": "reason-3",
+      "selfHash": "1ae4e930ff0a3f05",
+      "sourceId": "Board.dc.html:1/0/10/2/9",
+      "sourceName": "reason-3",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "height": "516px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "38px",
+          "width": "264px"
+        }
+      },
+      "contentHash": "bbb833fda2332f44",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 330,
+      "outId": "detail-body",
+      "selfHash": "e2437c08149873b5",
+      "sourceId": "Board.dc.html:1/0/10/2",
+      "sourceName": "detail-body",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "sel_can_appraise | not",
+          "class": "btn",
+          "on:click(left)": "if port(sel_can_appraise) eq true emit(appraise)"
+        },
+        "decls": {
+          "left": "16px",
+          "position": "absolute",
+          "top": "560px",
+          "width": "264px"
+        },
+        "text": "@BTN_APPRAISE"
+      },
+      "contentHash": "072e79ac2a50cee9",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 363,
+      "outId": "btn-appraise",
+      "selfHash": "20a1c8860bfdee7d",
+      "sourceId": "Board.dc.html:1/0/10/3",
+      "sourceName": "btn-appraise",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.g0": "sel_grade | eq(0)",
+          "bind:class.g1": "sel_grade | eq(1)",
+          "bind:class.g2": "sel_grade | eq(2)",
+          "bind:class.g3": "sel_grade | eq(3)",
+          "bind:class.g4": "sel_grade | eq(4)",
+          "bind:display": "sel_id | ne('')",
+          "class": "panel"
+        },
+        "decls": {
+          "height": "620px",
+          "left": "960px",
+          "position": "absolute",
+          "top": "84px",
+          "width": "296px"
+        }
+      },
+      "contentHash": "11afa3ea93e4e349",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 319,
+      "outId": "detail",
+      "selfHash": "5d288faf9073a296",
+      "sourceId": "Board.dc.html:1/0/10",
+      "sourceName": "detail",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "7eb89292f42df32c",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 100,
+      "outId": "sheet",
+      "selfHash": "e120efa88a3022be",
+      "sourceId": "Board.dc.html:1/0",
+      "sourceName": "sheet",
+      "ui": "board",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Delete)": "if port(sel_id) ne '' set(unplace, port(sel_id))",
+          "on:key(Enter)": "emit(to_debate)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "var(--paper)",
+          "color": "var(--ink)",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "d2b1fec05ffa21b6",
+      "fidelity": "High",
+      "file": "Board.dc.html",
+      "line": 94,
+      "outId": "board",
+      "selfHash": "667bf51bd88351d7",
+      "sourceId": "Board.dc.html:1",
+      "sourceName": "Board",
+      "ui": "board",
+      "warnings": []
     }
   ],
   "notes": [],
@@ -4099,13 +9796,13 @@
   "skipped": [],
   "topLevelFrames": [],
   "totals": {
-    "assets": 17,
+    "assets": 28,
     "dropped": 0,
-    "high": 171,
-    "inlineSvg": 7,
+    "high": 403,
+    "inlineSvg": 11,
     "low": 0,
     "medium": 0,
-    "nodes": 171,
+    "nodes": 403,
     "rasterized": 0,
     "vectors": 0
   },
@@ -4148,6 +9845,36 @@
         "--ink": "#123a31",
         "--ink-deep": "#092e28",
         "--paper": "#f3eedf",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "investigate/investigate.xt",
+      "flow": "",
+      "id": "investigate",
+      "name": "Investigate",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "board/board.xt",
+      "flow": "",
+      "id": "board",
+      "name": "Board",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
         "--vermilion": "#b8322a"
       }
     }

@@ -7,6 +7,7 @@
 - 方向以 UI 文件為準：`out` 由 UI 送出，流圖以 `ui#<surface>.<port>` 讀取；`in` 由流圖寫入（`ui#<surface>.<port>` 當邊的終點），UI 以 `bind:` 顯示。
 - 流圖不得讀 `in` port、不得寫 `out` port（XTFrame 53 §53.5.4）。
 - 值型（number／string／bool）`out` port 只用 `set(<port>, <值>)`：每次 `set` 都會儲存並發出一次 emit（同值也會發），這是 XTFrame 27 §27.13 的設計。event 型 `out` port 只用 `emit(<port>)`。兩者不混用（主線 2026-11-06 裁定；lint `trigger.setThenEmit` 將檢查）。
+- 用 `xtframe-view` 量測或截圖時一律加 `--lang zh-TW`（或 `en`）：未指定語言時目前顯示原始鍵名，版面寬度會不同（T-623 修正前）。
 - 已知轉換器問題（下一版轉換器修正）：重新 import 時未經編輯器修改的觸發器不會更新（T-618，暫用 `--force`）；置中的 dock 被錨成 `left top`（T-619）。
 - 介面上的固定文字一律是字串鍵（`@key`），字串表在 `ui/project/shared/strings/<lang>.csv`（RFC 4180，`key,text`，有標頭列）。
 
@@ -53,7 +54,7 @@
 
 UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 
-- **背景切換**：每個已知背景 id 各有一張 `<img id="bg-<id>">`，以 `bind:display="bg | eq('<id>')"` 只顯示相符的那一張；其他值（含空字串、未知 id）全部隱藏，露出新聞紙底色（下方墨色漸層也一併隱藏）。`bg` 變更時播 `bg-in`（360 ms 淡入）。已知 id：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`；圖檔 `ui/boards/_blob/bg_<id>.png`（1280×720）。
+- **背景切換**：每個已知背景 id 各有一張 `<img id="bg-<id>">`，以 `bind:display="bg | eq('<id>')"` 只顯示相符的那一張；其他值（含空字串、未知 id）全部隱藏，露出新聞紙底色（下方墨色漸層也一併隱藏）。`bg` 變更時播 `bg-in`（360 ms 淡入）。已知 id：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`；圖檔 `ui/boards/_blob/bg_<id>.jpg`（1280×720 JPEG，品質 88；2026-11-06 由 PNG 轉換，bundle 由 24.8 MB 降到 15.6 MB）。
 - **立繪切換**：三個位置（`slot-l`、`slot-c`、`slot-r`）各有一組 `<img id="ch-<位置>-<id>">`，每個已知角色 id 一張去背圖，以 `bind:display="slot_x | eq('<id>')"` 只顯示相符的一張，未知或空 id 什麼都不畫（三組引用同一批圖檔，打包時去重）。位置元素綁 `class.dim = focus | ne(n)`（左 1、中 2、右 3）與 `class.narr = focus | eq(0)`：`.dim` 且非 `.narr` 時套色彩調整（亮度 −0.14、飽和度 −0.5，220 ms 過渡）；`focus` 0 時三人都不變暗。`slot_x` 變更時播 `ink-in-<位置>`（420 ms 淡入）。疊放順序：中在最下，左、右在上。不用符號：XTAtrium 會把符號實例內的每個元素（路徑 id 帶 `/`）登記成 `ui.vn.<id>.<事件>` 訊號而對每個發出「not a valid signal name」警告（一個 vn 畫面 225 行）。已知 id：`sherefox`、`arthur`、`baskerville`、`victor`、`wolfhart`、`valet`（Ch.2 費奇）、`partner`（Ch.3 皮爾斯）；圖檔 `ui/boards/_blob/char_<id>.png`（440×660）。
 - 新增背景或角色：在板子多加一張 `<img>`（同樣的 `eq` 綁定）並重新 import；流圖與合約不變。圖檔一律平放在 `_blob/` 下，因為 `xtframe-import` 的 blob id 只能是單一檔名（`/_blob/<file>`），不能有子目錄。
 - **文字演出**：`line_seq` 每次變更（及畫面顯示時）播 `reveal`：整句 260 ms 淡入並上移 6 px。逐字顯示（`text-reveal`）目前寫不進板子：轉換器把 `text-reveal` 當成樣式子集外的屬性丟掉。
@@ -125,6 +126,23 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 | `ask_hint` | event | out | 點亞瑟頭像要一句提示。 |
 | `end` | event | out | 結束蒐證（只在 `can_end` 為 true 時送出）。 |
 
+UI 側實作（板子 `ui/boards/project/Investigate.dc.html`）：
+
+- **場景與調查點同一個框**：背景（同 vn 的 `bg-<id>` 圖組與 `eq` 綁定、`bg-in` 淡入）與調查點清單放在同一個 1280×720 的 `#scene` 裡，以 `left: calc(50% - 640px); top: calc(50% - 360px)` 置中、不滿版；寬螢幕兩側露出深墨底。這樣 `spots` 的矩形永遠對得上畫面（滿版 `cover` 會依螢幕比例縮放裁切背景，矩形就偏了）。用 `calc` 而不用 `data-xt-anchor="center"`：後者被錨成 `left top`（T-619）。
+- **調查點**：`<repeat port="spots">`，每筆一個 `#spot`，以 `translate-x／-y = item(x)／item(y)`、`width／height = item(w)／item(h) | range(0, 1280／720, 0px, 1280px／720px)` 放到矩形上；本身透明。滑鼠移上去才出現：鉛筆圈（兩道略錯開的橢圓框線＋燈火金微光）、類型圖示圓章（`type` 0～4：放大鏡、齒輪、對話框、鑰匙、封條）與名稱條（`item(name)`）。`state` 1（已調查）：常駐淡灰圈與去色圖示，右下角加勾；`state` 2（不可用）：常駐朱紅框的圖示。點擊 → `set(spot, item(id))`，`popup_kind` ≠ 0 時不送。
+- **圖示一律是 PNG**（`_blob/ico_*.png`，44×44，由 SVG 轉出，見 `_blob/bg_README.md`）：XTFrame 0.15.0 不畫 `<repeat>` 範本裡的行內 `<svg>`（圖片照常）。範本裡的 `@key` 文字也不會在地化（顯示鍵名），所以清單項目內不放固定文字（「已調查」改用勾號表示）。
+- **左上**：小標 `UI_INV_KICKER`；蒸汽懷錶（`ticks_max` > 0：指針轉到 `ticks／ticks_max` 的比例、右側「剩餘／總數」；`ticks_max` 0：不畫指針，顯示 `UI_INV_TICKS_FREE`）；`ticks` ≤ 3 且 `ticks_max` > 0 時錶殼與數字換朱紅（兩組 SVG 以 class 切換）。下一行鑑定箱＋`UI_INV_APPR`＋「×`appraise_left`」，−1 時整行隱藏。
+- **上方中央**：區域名稱牌，左右箭頭；`nav_prev／nav_next` 為 false 時箭頭變淡且點擊不送。點擊或 Q／E → `set(nav, -1／1)`。
+- **右上**：警徽列，同 vn（`trust` −1 隱藏）。
+- **左下**：亞瑟頭像（`char_arthur.png` 裁頭部）點擊 → `emit(ask_hint)`；提示氣泡 `hint` 空字串隱藏，`hint_seq` 變更時播 `hint-in`。
+- **右下**：`BTN_MENU_EVIDENCE`（`book_new` > 0 時右上角紅點顯示數字）→ `emit(book)`；`BTN_INV_END`，`can_end` 為 false 時灰色且點擊不送。
+- **彈窗**：`popup_kind` > 0 時全畫面墨色遮罩（吃掉所有點擊）。1：新聞紙情報卡（小標 `UI_POINT_LOOK`、`popup_title`、`popup_body`），點任一處 → `emit(dismiss)`。2／3：剪報卡，等級框色依 `popup_grade`（0 黃銅、1 銀、2 舊紙＋深墨框＋朱紅「私人收藏」印 `UI_EVBOOK_TAB_PLOT`、3 金框＋金光、4 破損黃銅＝虛線框舊紙），小標為等級名 `UI_GRADE_*`（3 證詞卡改 `UI_POINT_TALK`）；點任一處先播 `fly`（420 ms，卡片縮小飛向證物冊按鈕）再 `emit(dismiss)`。`popup_seq` 變更時兩種卡都播 `pop-in`。Esc／Enter／Space → `emit(dismiss)`（不播飛入）。
+- **鍵盤**（根元素持有焦點，同 vn）：Q／E 切區域、Tab 證物冊、F 結束蒐證（`can_end` 時）、Esc／Enter／Space 關彈窗。
+- **預設值**（截圖用）：Ch.1 事務所廚房、6 個調查點（布丁盤已調查）、刻度不限、鑑定 2、證物冊紅點 1、Sherefox 自言自語 `SHF_C1_IDLE`；彈窗內容預設為「空空的布丁盤」，但 `popup_kind` 預設 0（不開窗）。
+- 未做（合約沒有對應 port）：區域箭頭的封條狀態圖示、「調查點常亮」輔助選項與 Shift 顯示全部調查點、案件筆記按鈕、外地章「無警方支援」灰色徽章（合約以 `trust` −1 隱藏）、亞瑟／Sherefox 頭像切換（Ch.1 提示是 Sherefox 自言自語，頭像仍是亞瑟）、場景平移、刻度剩 3 格的提示音。
+
+字串鍵：`UI_INV_KICKER`（新增）、`UI_INV_TICKS_FREE`、`UI_INV_APPR`（新增）、`UI_POINT_LOOK`、`UI_POINT_TALK`、`UI_GRADE_NORMAL`、`UI_GRADE_KEY`、`UI_GRADE_PLOT`、`UI_GRADE_GOLDEN`、`UI_GRADE_SUB`、`UI_EVBOOK_TAB_PLOT`、`BTN_MENU_EVIDENCE`、`BTN_INV_END`、`BTN_CLOSE`。新增的鍵只在 `ui/project/shared/strings/<lang>.csv`，尚未進根目錄 `strings/`。
+
 ## board（線索板，1280×720）
 
 依據：系統規格 §2、§4.2「SCR_BOARD」、美術風格 §五「線索板」。
@@ -155,3 +173,18 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 | `reason` | number | out | 為選中的卡選理由 1～3。 |
 | `appraise` | event | out | 把選中的卡交給亞瑟鑑定。 |
 | `to_debate` | event | out | 進入論戰（確認流程由流圖以 vn 系統訊息或彈窗處理）。 |
+
+UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
+
+- **整張板是一個 1280×720 的 `#sheet`**，以 `calc(50% - 640px)` 置中，不同比例時整體不散開。
+- **頂列**：小標 `UI_BOARD_TITLE`、`UI_BOARD_OPPONENT`＋`opponent_name`；`threshold_text`（舊紙底、朱紅左線，最多兩行）；鑑定箱＋「×`appraise_left`」；`BTN_TO_DEBATE` → `emit(to_debate)`（Enter 同）。
+- **左：證物抽屜**：`<repeat port="drawer">`，每筆一條剪報：左緣等級色條、卡名（兩行）、`appraised` 為 false 時朱紅「?」、`reason_set` 時打勾、`placed` 時釘針圖示並變淡；`item(id) | eq(sel_id)` 時反白。點擊 → `set(select, item(id))`。列表 476 px 高、可捲動（約 8 筆可見）。下方圖例：`UI_BOARD_LINK_SOLID`、`UI_BOARD_LINK_SOPH`、`UI_BOARD_LINK_INVALID`（新增）。
+- **中：軟木板**（`_blob/ui_cork.jpg` 平鋪、銅框）3 列 × 5 格，列首 I／II／III。15 個空格框是固定元素，點擊 → `set(place, chain × 5 + pos)`（常數 0～14）。剪報卡是 `<repeat port="slots">`，以 `translate = item(pos) × 132 + 40、item(chain) × 140 + 18` 放到格上，`id` 空字串不畫；卡頂朱紅圖釘、等級色條（一般黃銅、關鍵銀、黃金金框＋金光、替代虛線框舊紙）、卡名四行；選中時朱紅外框。左鍵 → `set(select, item(id))`，右鍵 → `set(unplace, item(id))`；Delete → `set(unplace, sel_id)`（`sel_id` 非空時）。
+- **連結**：`<repeat port="links">`，每筆畫在第 pos 與 pos+1 格的圖釘之間（畫在卡片之上、不吃點擊）：1 朱紅線（紅線）、2 鉛筆虛線＋中點裂紋齒輪（弱點）、3 剪刀（無效）、4 金線＋中點星（鏈外事實）、0 不畫。
+- **下：推理鏈銅牌**：三塊固定的牌子，第 k 塊讀 `chain_info | item(k)`（**假設流圖依 chain 0、1、2 的順序送三筆**），顯示 `UI_BOARD_CHAIN_NO`＋I／II／III、`UI_BOARD_DMG`＋`dmg`（四捨五入）、`cards`＋`UI_BOARD_CARDS`、`UI_BOARD_SOLID`＋`solid`、`UI_BOARD_SOPH`＋`soph`；`cards` < 2 時改顯示 `UI_BOARD_CHAIN_EMPTY` 並變淡。用固定牌子而不用清單，是因為清單範本內的 `@key` 不會在地化。
+- **右：詳情面板**（`sel_id` 空字串隱藏）：等級小標 `UI_GRADE_*`（依 `sel_grade`）、頂端等級色條、`sel_name`、`sel_tags`、`sel_desc`（四行）、`UI_BOARD_REASON`；`sel_reason` 0 時顯示 `UI_BOARD_REASON_NONE`，`sel_fixed` 時顯示 `UI_BOARD_REASON_FIXED`；三個理由列（`sel_reasonN` 空字串時該列隱藏，所以黃金線索只剩一列），選中的列深墨底、朱紅圓點；點擊 → `set(reason, n)`，`sel_fixed` 時不送。`BTN_APPRAISE` → `emit(appraise)`，`sel_can_appraise` 為 false 時灰色且不送。
+- **亞瑟的一句話**：軟木板底部，頭像＋氣泡（兩行），`remark` 空字串隱藏，`remark_seq` 變更時播 `remark-in`。
+- **預設值**（截圖用）：Ch.2，抽屜 7 張（E02_01～E02_07，其中 6 張已上板；任務單寫「抽屜 5 張」與兩條鏈共 6 張衝突，取「抽屜列出全部可參戰卡」），鏈 I：E02_03→E02_02→E02_04→E02_05（三條實證），鏈 II：E02_06→E02_01（詭辯：E02_01 選了錯誤理由「老闆私藏的稀有零件」），詳情面板為 E02_01，亞瑟台詞 `ART_SOPH_2`。
+- 未做（合約沒有對應 port 或屬拖曳）：拖曳放卡與拖曳拉線、平移縮放、抽屜分頁、對手類型圖示與 `UI_TYPE_*` 滑鼠提示、五大標籤圖示、強攻／醜聞／動機圖示、已鑑定鋼印、推理輔助金齒輪、無效連結的火花動畫與卡片彈回演出、改理由時連結閃爍、1～3 選鏈。
+
+字串鍵：`UI_BOARD_TITLE`、`UI_BOARD_OPPONENT`（新增）、`UI_BOARD_DRAWER`、`UI_BOARD_LINK_SOLID`、`UI_BOARD_LINK_SOPH`、`UI_BOARD_LINK_INVALID`（新增）、`UI_BOARD_CHAIN_NO`（新增）、`UI_BOARD_CARDS`（新增）、`UI_BOARD_SOLID`（新增）、`UI_BOARD_SOPH`（新增）、`UI_BOARD_DMG`（新增）、`UI_BOARD_CHAIN_EMPTY`、`UI_BOARD_REASON`、`UI_BOARD_REASON_NONE`、`UI_BOARD_REASON_FIXED`、`UI_GRADE_*`、`BTN_APPRAISE`、`BTN_TO_DEBATE`。

@@ -756,6 +756,150 @@
       "accepted": false
     },
     {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hint-dock left: 24px; bottom: 20px -> anchor: left bottom; offset: -8px 2px; size: 640px 120px",
+      "element": "hint-dock",
+      "source": "Investigate.dc.html",
+      "line": 219,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 24px; bottom: 20px",
+        "to": "anchor: left bottom; offset: -8px 2px; size: 640px 120px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hud-tl left: 24px; top: 16px -> anchor: left top; offset: -8px -2px; size: 268px 128px",
+      "element": "hud-tl",
+      "source": "Investigate.dc.html",
+      "line": 146,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 24px; top: 16px",
+        "to": "anchor: left top; offset: -8px -2px; size: 268px 128px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #area left: 400px; top: 16px -> anchor: center top; offset: 0 -2px; size: 480px 44px",
+      "element": "area",
+      "source": "Investigate.dc.html",
+      "line": 196,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 400px; top: 16px",
+        "to": "anchor: center top; offset: 0 -2px; size: 480px 44px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #trust right: 24px; top: 16px -> anchor: right top; offset: -8px -2px; size: 148px 40px",
+      "element": "trust",
+      "source": "Investigate.dc.html",
+      "line": 208,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 24px; top: 16px",
+        "to": "anchor: right top; offset: -8px -2px; size: 148px 40px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #actions right: 24px; bottom: 20px -> anchor: right bottom; offset: -8px 2px; size: 332px 52px",
+      "element": "actions",
+      "source": "Investigate.dc.html",
+      "line": 235,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 24px; bottom: 20px",
+        "to": "anchor: right bottom; offset: -8px 2px; size: 332px 52px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "pop",
+      "source": "Investigate.dc.html",
+      "line": 247,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "style.geometryInline",
       "severity": "info",
       "message": "the board's inline geometry of 26 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
@@ -831,9 +975,84 @@
       "accepted": false
     },
     {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#investigate, #scene, #bg, #bg-art, #shade-top, ...)",
+      "element": "",
+      "source": "Investigate.dc.html",
+      "line": 92,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "elements": "65",
+        "ids": "#investigate #scene #bg #bg-art #shade-top #shade-bottom #spots-layer #spots-list #spot #spot-ring #spot-ring2 #spot-chip #hud-tl #inv-kicker #watch #watch-dial #watch-ink #watch-red #watch-hand #watch-hub #ticks-limited #ticks-left #ticks-total #ticks-free #appraise #appraise-box #appraise-label #appraise-count #area #area-plate #area-name #trust #hint-dock #avatar #avatar-art #hint-bubble #hint-text #actions #btn-book #book-dot #btn-end #pop #pop-shade-info #pop-shade-card #pop-info #info-kicker #info-title #info-rule #info-body #info-close #pop-card #clip-band #clip-kicker #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #gl-talk #card-title #card-rule #card-body #card-foot #card-close #plot-stamp"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 145 element(s) is written to their <layout> #id rules (#board, #sheet, #hdr-left, #board-kicker, #opp-row, ...)",
+      "element": "",
+      "source": "Board.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "board",
+      "detail": {
+        "elements": "145",
+        "ids": "#board #sheet #hdr-left #board-kicker #opp-row #opp-label #opp-name #threshold #appr #appr-box #appr-count #btn-debate #hdr-rule #drawer #drawer-kicker #drawer-scroll #drawer-list #dcard #dcard-bar #dcard-name #dcard-q #dcard-reason #dcard-pin #legend #lg-solid #lg-solid-line #lg-solid-t #lg-soph #lg-soph-line #lg-soph-t #lg-bad #lg-bad-ico #lg-bad-t #cork #row-1 #row-2 #row-3 #slot-0 #slot-1 #slot-2 #slot-3 #slot-4 #slot-5 #slot-6 #slot-7 #slot-8 #slot-9 #slot-10 #slot-11 #slot-12 #slot-13 #slot-14 #slots-list #card #card-bar #card-pin #card-name #card-rule #links-list #link #link-red #link-gold #link-star #link-pencil #link-weak #link-cut #remark #remark-face #remark-art #remark-bubble #remark-text #plate-0 #plate-0-t #plate-0-lbl #plate-0-no #plate-0-stats #plate-0-dmgl #plate-0-dmg #plate-0-r1 #plate-0-cards #plate-0-cards-l #plate-0-r2 #plate-0-solid-l #plate-0-solid #plate-0-soph-l #plate-0-soph #plate-0-empty #plate-1 #plate-1-t #plate-1-lbl #plate-1-no #plate-1-stats #plate-1-dmgl #plate-1-dmg #plate-1-r1 #plate-1-cards #plate-1-cards-l #plate-1-r2 #plate-1-solid-l #plate-1-solid #plate-1-soph-l #plate-1-soph #plate-1-empty #plate-2 #plate-2-t #plate-2-lbl #plate-2-no #plate-2-stats #plate-2-dmgl #plate-2-dmg #plate-2-r1 #plate-2-cards #plate-2-cards-l #plate-2-r2 #plate-2-solid-l #plate-2-solid #plate-2-soph-l #plate-2-soph #plate-2-empty #detail #detail-bar #detail-grade #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #detail-body #sel-name #sel-tags #sel-rule #sel-desc #reason-kicker #reason-none #reason-fixed #reason-1 #reason-1-radio #reason-1-t #reason-2 #reason-2-radio #reason-2-t #reason-3 #reason-3-radio #reason-3-t #btn-appraise"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-b00406 used by 2 node(s)",
+      "message": "shared class .s-12e6e5 used by 5 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-12e6e5",
+        "nodes": "5"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-12e6e5"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-b00406 used by 10 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -841,7 +1060,7 @@
       "ui": "",
       "detail": {
         "class": ".s-b00406",
-        "nodes": "2"
+        "nodes": "10"
       },
       "fix": {
         "kind": "editor",
@@ -883,6 +1102,31 @@
     {
       "code": "dedup.shared",
       "severity": "info",
+      "message": "shared class .s-e1040c used by 3 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-e1040c",
+        "nodes": "3"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-e1040c"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
       "message": "shared class .s-e68292 used by 2 node(s)",
       "element": "",
       "source": "",
@@ -900,6 +1144,156 @@
           "op": "repair.dedup",
           "args": {
             "class": ".s-e68292"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-8ecb27 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-8ecb27",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-8ecb27"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-66a9df used by 5 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-66a9df",
+        "nodes": "5"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-66a9df"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-398118 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-398118",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-398118"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-15baa9 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-15baa9",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-15baa9"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-1813e6 used by 3 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-1813e6",
+        "nodes": "3"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-1813e6"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-97552f used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-97552f",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-97552f"
           }
         }
       },

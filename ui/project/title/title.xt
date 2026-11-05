@@ -13,7 +13,7 @@
     <div id="title">
       <div id="kicker" class="kicker">@UI_TITLE_KICKER</div>
       <div id="lang-toggle" tabindex="0" on:click="emit(lang_toggle)">
-        <div id="lang-label" class="kicker">@UI_TITLE_LANG</div>
+        <div id="lang-label" class="kicker s-12e6e5">@UI_TITLE_LANG</div>
         <div id="lang-switch">
           <div id="lang-zh" class="lang-opt active" bind:class.active="lang_en | not">@UI_TITLE_LANG_ZH</div>
           <div id="lang-en" class="lang-opt" bind:class.active="lang_en">@UI_TITLE_LANG_EN</div>

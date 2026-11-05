@@ -1,0 +1,13 @@
+version: 1
+id: e02139ad-fd45-4b40-9607-4fd33274cd7c
+type: image
+title: ui_cork
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ui_cork.jpg
+content: sha256:63b655e507ae14e6119a778a554b4263d5d71e3f2763cd6f515eae77ecc44ddb
+measured:
+  w: 256
+  h: 256
+  alpha: false

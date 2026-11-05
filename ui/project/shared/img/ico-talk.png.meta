@@ -1,0 +1,13 @@
+version: 1
+id: cadd27a4-2b9f-4b93-9589-d9af7f354084
+type: image
+title: ico-talk
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_talk.png
+content: sha256:cfa0a98b4cc103e923925da0e833536e24b041796d6a490b7495ca5467080989
+measured:
+  w: 44
+  h: 44
+  alpha: true

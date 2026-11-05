@@ -3,49 +3,49 @@ version: 1
 assets:
   - id: bg-barge-deck
     type: image
-    file: shared/img/bg-barge-deck.png
+    file: shared/img/bg-barge-deck.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-boiler-room
     type: image
-    file: shared/img/bg-boiler-room.png
+    file: shared/img/bg-boiler-room.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-clockshop
     type: image
-    file: shared/img/bg-clockshop.png
+    file: shared/img/bg-clockshop.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-debate
     type: image
-    file: shared/img/bg-debate.png
+    file: shared/img/bg-debate.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-dock-fog
     type: image
-    file: shared/img/bg-dock-fog.png
+    file: shared/img/bg-dock-fog.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-kitchen-morning
     type: image
-    file: shared/img/bg-kitchen-morning.png
+    file: shared/img/bg-kitchen-morning.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-office-day
     type: image
-    file: shared/img/bg-office-day.png
+    file: shared/img/bg-office-day.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
   - id: bg-office-night
     type: image
-    file: shared/img/bg-office-night.png
+    file: shared/img/bg-office-night.jpg
     source: import:claude-design
     status: draft
     measured: { w: 1280, h: 720, alpha: false }
@@ -91,12 +91,78 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 440, h: 660, alpha: true }
+  - id: dcard-pin
+    type: image
+    file: shared/img/dcard-pin.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-device
+    type: image
+    file: shared/img/ico-device.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-done
+    type: image
+    file: shared/img/ico-done.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-item
+    type: image
+    file: shared/img/ico-item.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-look
+    type: image
+    file: shared/img/ico-look.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-seal
+    type: image
+    file: shared/img/ico-seal.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: ico-talk
+    type: image
+    file: shared/img/ico-talk.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: lg-bad-ico
+    type: image
+    file: shared/img/lg-bad-ico.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: link-star
+    type: image
+    file: shared/img/link-star.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
+  - id: link-weak
+    type: image
+    file: shared/img/link-weak.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 44, h: 44, alpha: true }
   - id: masthead-art
     type: image
     file: shared/img/masthead-art.png
     source: import:claude-design
     status: draft
     measured: { w: 2172, h: 724, alpha: true }
+  - id: ui-cork
+    type: image
+    file: shared/img/ui-cork.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 256, h: 256, alpha: false }
   - id: ui-ruled
     type: image
     file: shared/img/ui-ruled.png

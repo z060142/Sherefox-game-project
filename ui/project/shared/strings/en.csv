@@ -21,3 +21,34 @@ UI_PAPER_ADS,Advertisements
 UI_PAPER_EXTRA,Extra
 UI_PAPER_STAMP_CLOSED,Case Closed
 UI_PAPER_STAMP_FIX,Correction
+UI_INV_TICKS_FREE,Ticks: Unlimited
+UI_POINT_LOOK,Examine
+UI_POINT_TALK,Testimony
+UI_GRADE_NORMAL,Common Evidence
+UI_GRADE_KEY,Key Evidence
+UI_GRADE_PLOT,Story Evidence
+UI_GRADE_GOLDEN,Golden Clue
+UI_GRADE_SUB,Substitute Evidence
+BTN_MENU_EVIDENCE,Evidence Book
+BTN_INV_END,End Search
+BTN_CLOSE,Close
+UI_EVBOOK_TAB_PLOT,Private Collection
+UI_BOARD_TITLE,Clue Board
+UI_BOARD_DRAWER,Evidence Drawer
+UI_BOARD_REASON,Rationale: This evidence proves…
+UI_BOARD_REASON_FIXED,Rationale fixed
+UI_BOARD_REASON_NONE,Rationale not set
+UI_BOARD_CHAIN_EMPTY,No Reasoning Chain yet
+UI_BOARD_LINK_SOLID,Solid Link
+UI_BOARD_LINK_SOPH,Sophistry Link (leaves a Weak Point)
+BTN_APPRAISE,Hand to Arthur
+BTN_TO_DEBATE,Enter Debate
+UI_INV_KICKER,Evidence Search
+UI_INV_APPR,Appraisals
+UI_BOARD_OPPONENT,Opponent
+UI_BOARD_CHAIN_NO,Chain
+UI_BOARD_CARDS,cards
+UI_BOARD_SOLID,Solid
+UI_BOARD_SOPH,Sophistry
+UI_BOARD_DMG,Est. dmg
+UI_BOARD_LINK_INVALID,Invalid Link (card bounces back)

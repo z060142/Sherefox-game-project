@@ -1,0 +1,13 @@
+version: 1
+id: 775f65d8-9e3d-449c-ba1c-30703cee0e38
+type: image
+title: ico-device
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_device.png
+content: sha256:a6eb51d9dbecb7baccf24ed5b807a65c0eb34cedd84bb16eee0876dd5070711f
+measured:
+  w: 44
+  h: 44
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: 04885914-1328-469d-bac2-542fb74ad4d3
+type: image
+title: ico-seal
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_seal.png
+content: sha256:afc10c118789485f9a5ee0eae44da74866e5047b905030c3c48d1b10a5c38454
+measured:
+  w: 44
+  h: 44
+  alpha: true

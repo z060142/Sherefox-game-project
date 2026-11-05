@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 145 element(s) is written to their <layout> #id rules (#board, #sheet, #hdr-left, #board-kicker, #opp-row, ...)",
+      "element": "",
+      "source": "Board.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "board",
+      "detail": {
+        "elements": "145",
+        "ids": "#board #sheet #hdr-left #board-kicker #opp-row #opp-label #opp-name #threshold #appr #appr-box #appr-count #btn-debate #hdr-rule #drawer #drawer-kicker #drawer-scroll #drawer-list #dcard #dcard-bar #dcard-name #dcard-q #dcard-reason #dcard-pin #legend #lg-solid #lg-solid-line #lg-solid-t #lg-soph #lg-soph-line #lg-soph-t #lg-bad #lg-bad-ico #lg-bad-t #cork #row-1 #row-2 #row-3 #slot-0 #slot-1 #slot-2 #slot-3 #slot-4 #slot-5 #slot-6 #slot-7 #slot-8 #slot-9 #slot-10 #slot-11 #slot-12 #slot-13 #slot-14 #slots-list #card #card-bar #card-pin #card-name #card-rule #links-list #link #link-red #link-gold #link-star #link-pencil #link-weak #link-cut #remark #remark-face #remark-art #remark-bubble #remark-text #plate-0 #plate-0-t #plate-0-lbl #plate-0-no #plate-0-stats #plate-0-dmgl #plate-0-dmg #plate-0-r1 #plate-0-cards #plate-0-cards-l #plate-0-r2 #plate-0-solid-l #plate-0-solid #plate-0-soph-l #plate-0-soph #plate-0-empty #plate-1 #plate-1-t #plate-1-lbl #plate-1-no #plate-1-stats #plate-1-dmgl #plate-1-dmg #plate-1-r1 #plate-1-cards #plate-1-cards-l #plate-1-r2 #plate-1-solid-l #plate-1-solid #plate-1-soph-l #plate-1-soph #plate-1-empty #plate-2 #plate-2-t #plate-2-lbl #plate-2-no #plate-2-stats #plate-2-dmgl #plate-2-dmg #plate-2-r1 #plate-2-cards #plate-2-cards-l #plate-2-r2 #plate-2-solid-l #plate-2-solid #plate-2-soph-l #plate-2-soph #plate-2-empty #detail #detail-bar #detail-grade #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #detail-body #sel-name #sel-tags #sel-rule #sel-desc #reason-kicker #reason-none #reason-fixed #reason-1 #reason-1-radio #reason-1-t #reason-2 #reason-2-radio #reason-2-t #reason-3 #reason-3-radio #reason-3-t #btn-appraise"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

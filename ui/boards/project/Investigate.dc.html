@@ -1,0 +1,296 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Investigate</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #f3eedf }
+  .bg-art { position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; object-fit: cover; }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .badge { width: 18px; height: 22px; flex-shrink: 0; border: 2px solid var(--ink);
+           border-radius: 0px 0px 9px 9px; background-color: var(--paper) }
+  .badge.on { background-color: var(--copper); border-color: var(--ink-deep) }
+
+  /* Hotspots: an invisible hit box; the pencil ring, brass glow, type chip and name appear on hover. */
+  .ring { opacity: 0; border: 2px solid #2e2f2dd9; border-radius: 50%;
+          box-shadow: 0px 0px 22px 4px #e0a050a6; transition: opacity 140ms ease-out }
+  .ring2 { opacity: 0; border: 1px solid #2e2f2d99; border-radius: 50%; transform: rotate(-4deg);
+           transition: opacity 140ms ease-out }
+  .spot:hover .ring2 { opacity: 1 }
+  .spot.done .ring2 { opacity: 0.35; border-color: #e3d9c299 }
+  .chip { width: 40px; height: 40px; flex-shrink: 0; opacity: 0; border-radius: 20px;
+          background-color: #f3eedfeb; border: 2px solid var(--copper); transition: opacity 140ms ease-out }
+  .spot-name { width: 220px; height: 26px; flex-shrink: 0; opacity: 0; text-align: center; white-space: nowrap;
+               font-family: var(--font-body); font-size: 14px; line-height: 26px; color: var(--paper);
+               background-color: #092e28d9; transition: opacity 140ms ease-out }
+  .spot:hover .ring { opacity: 1 }
+  .spot:hover .chip { opacity: 1 }
+  .spot:hover .spot-name { opacity: 1 }
+  .spot.done .ring { opacity: 0.45; border-color: #e3d9c299; box-shadow: 0px 0px 0px 0px #e0a05000 }
+  .spot.done .chip { opacity: 0.85; border-color: #5b6662; background-color: #e3d9c2d9; filter: saturate(0) }
+  .spot.done .ico-done { display: block }
+  .spot.done:hover .ring { opacity: 0.8 }
+  .spot.locked .chip { opacity: 1; border-color: var(--vermilion) }
+  .ico { position: absolute; left: 7px; top: 7px; width: 22px; height: 22px; object-fit: contain }
+  .ico-done { display: none; position: absolute; left: 20px; top: 20px; width: 20px; height: 20px; object-fit: contain;
+              background-color: var(--paper); border-radius: 10px }
+
+  .hud-card { background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+              box-shadow: 3px 3px 0px 0px #092e2859 }
+  .watch-red { display: none }
+  .watch.limited.low .watch-red { display: block }
+  .watch.limited.low .watch-ink { display: none }
+  .watch.limited.low .tick-num { color: var(--vermilion) }
+  .tick-num { font-family: var(--font-body); font-size: 30px; line-height: 40px; color: var(--ink); font-weight: 700;
+              font-variant-numeric: tabular-nums }
+  .tick-max { font-family: var(--font-body); font-size: 16px; line-height: 40px; color: var(--ink); font-variant-numeric: tabular-nums }
+
+  .nav { width: 40px; height: 40px; flex-shrink: 0; text-align: center; line-height: 38px; font-size: 18px; color: var(--paper);
+         background-color: var(--ink); border: 1px solid var(--ink-deep); transition: background-color 120ms linear }
+  .nav:hover { background-color: var(--copper) }
+  .nav.off { background-color: #123a3166; color: #f3eedf66 }
+
+  .btn { width: 156px; height: 44px; flex-shrink: 0; text-align: center; line-height: 42px;
+         font-family: var(--font-body); font-size: 16px; letter-spacing: 2px; color: var(--paper);
+         background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { background-color: var(--copper) }
+  .btn:active { background-color: var(--ink-deep) }
+  .btn.paper { color: var(--ink); background-color: var(--paper); border-color: var(--ink) }
+  .btn.paper:hover { color: var(--paper); background-color: var(--ink) }
+  .btn.off { color: #f3eedf8c; background-color: #5b6662; border-color: #5b6662 }
+  .btn.off:hover { background-color: #5b6662 }
+
+  .bubble { background-color: var(--paper); border: 1px solid var(--ink); border-left: 3px solid var(--copper);
+            box-shadow: 3px 3px 0px 0px #092e2859 }
+  .hint-text { font-family: var(--font-body); font-size: 17px; line-height: 26px; color: var(--ink) }
+
+  /* Popups: an information note, or an evidence clipping framed by its grade colour. */
+  .pop-kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px; color: var(--copper) }
+  .pop-title { font-family: var(--font-display); font-size: 26px; line-height: 34px; font-weight: 700; color: var(--ink-deep) }
+  .pop-body { font-family: var(--font-body); font-size: 17px; line-height: 28px; color: var(--ink) }
+  .clip { background-color: var(--paper); border: 4px solid var(--copper); box-shadow: 6px 6px 0px 0px #092e2880 }
+  .clip.g1 { border-color: #9ea7aa }
+  .clip.g2 { background-color: var(--paper-old); border-color: var(--ink-deep) }
+  .clip.g3 { border-color: var(--lamp-gold); box-shadow: 0px 0px 24px 4px #e0a050b3 }
+  .clip.g4 { background-color: var(--paper-old); border-style: dashed; border-color: var(--copper) }
+  .clip-band { background-color: var(--copper) }
+  .clip.g1 .clip-band { background-color: #9ea7aa }
+  .clip.g2 .clip-band { background-color: var(--ink-deep) }
+  .clip.g3 .clip-band { background-color: var(--lamp-gold) }
+  .clip.g4 .clip-band { background-color: #a6543299 }
+  .grade-lbl { display: none }
+  .clip.g0 .gl-0 { display: block }
+  .clip.g1 .gl-1 { display: block }
+  .clip.g2 .gl-2 { display: block }
+  .clip.g3 .gl-3 { display: block }
+  .clip.g4 .gl-4 { display: block }
+  .clip.talk .grade-lbl { display: none }
+  .clip.talk .gl-talk { display: block }
+  .plot-stamp { display: none }
+  .clip.g2 .plot-stamp { display: block }
+</style></helmet>
+<div id="investigate" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='bg:string in = "kitchen_morning"; area_name:string in = "事務所廚房　早晨"; nav_prev:bool in = false; nav_next:bool in = false; spots:list&lt;struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}&gt; in = [{"id":"H01_02","name":"桌上的甜點盤","x":316,"y":318,"w":124,"h":62,"type":1,"state":1},{"id":"H01_01","name":"黃銅冰箱","x":816,"y":112,"w":230,"h":350,"type":1,"state":0},{"id":"H01_04","name":"冰箱前的地板","x":540,"y":474,"w":320,"h":92,"type":1,"state":0},{"id":"H01_05","name":"亞瑟的房門","x":1086,"y":40,"w":176,"h":430,"type":3,"state":0},{"id":"H01_06","name":"沙發上的外套","x":24,"y":300,"w":196,"h":200,"type":1,"state":0},{"id":"H01_03","name":"水槽邊的毛巾","x":500,"y":258,"w":92,"h":80,"type":0,"state":0}]; ticks:number in = 0; ticks_max:number in = 0; appraise_left:number in = 2; trust:number in = -1; book_new:number in = 1; can_end:bool in = false; hint:string in = "「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」"; hint_seq:number in = 0; popup_kind:number in = 0; popup_title:string in = "空空的布丁盤"; popup_body:string in = "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"; popup_grade:number in = 0; popup_seq:number in = 0; spot:string out = ""; nav:number out = 0; dismiss:event out; book:event out; ask_hint:event out; end:event out'
+     data-xt-trigger="key(Escape):if port(popup_kind) gt 0 emit(dismiss); key(Enter):if port(popup_kind) gt 0 emit(dismiss); key(Space):if port(popup_kind) gt 0 emit(dismiss); key(Q):if port(nav_prev) eq true set(nav, -1); key(E):if port(nav_next) eq true set(nav, 1); key(Tab):emit(book); key(F):if port(can_end) eq true emit(end)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background-color: var(--ink-deep); font-family: var(--font-body); color: var(--ink);">
+
+  <!-- The scene and its hotspots share one 1280x720 box so the spot rectangles stay on the painting at any aspect
+       (no full bleed: a wider window shows the ink margin). -->
+  <div id="scene" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px; overflow: hidden;">
+  <!-- Scene: one painted image per known background id (same ids as vn); unknown or empty shows the newsprint colour. -->
+  <div id="bg" data-xt-trigger="port(bg):play(bg-in)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: var(--paper);">
+    <div id="bg-art" data-xt-timeline="bg-in: 0 opacity 0.35, 360ms ease-out opacity 1"
+         style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;">
+      <img id="bg-office-night" class="bg-art" src="/_blob/bg_office_night.jpg" data-xt-bind="display=bg | eq('office_night')">
+      <img id="bg-office-day" class="bg-art" src="/_blob/bg_office_day.jpg" data-xt-bind="display=bg | eq('office_day')">
+      <img id="bg-kitchen-morning" class="bg-art" src="/_blob/bg_kitchen_morning.jpg" data-xt-bind="display=bg | eq('kitchen_morning')">
+      <img id="bg-clockshop" class="bg-art" src="/_blob/bg_clockshop.jpg" data-xt-bind="display=bg | eq('clockshop')">
+      <img id="bg-dock-fog" class="bg-art" src="/_blob/bg_dock_fog.jpg" data-xt-bind="display=bg | eq('dock_fog')">
+      <img id="bg-barge-deck" class="bg-art" src="/_blob/bg_barge_deck.jpg" data-xt-bind="display=bg | eq('barge_deck')">
+      <img id="bg-boiler-room" class="bg-art" src="/_blob/bg_boiler_room.jpg" data-xt-bind="display=bg | eq('boiler_room')">
+      <img id="bg-debate" class="bg-art" src="/_blob/bg_debate.jpg" data-xt-bind="display=bg | eq('debate')">
+    </div>
+  </div>
+  <div id="shade-top" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 150px;
+       background: linear-gradient(180deg, #092e2873 0%, #092e2800 100%);"></div>
+  <div id="shade-bottom" style="position: absolute; left: 0px; top: 560px; width: 1280px; height: 160px;
+       background: linear-gradient(180deg, #092e2800 0%, #092e2866 100%);"></div>
+
+  <!-- Hotspots: one entry per spot, placed by its screen rectangle (1280x720 board px). -->
+  <div id="spots-layer" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+    <div id="spots-list" data-xt-repeat="spots" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+      <div id="spot" class="spot"
+           data-xt-bind="translate-x=item(x); translate-y=item(y); width=item(w) | range(0, 1280, 0px, 1280px); height=item(h) | range(0, 720, 0px, 720px); class.done=item(state) | eq(1); class.locked=item(state) | eq(2)"
+           data-xt-trigger="click(left):if port(popup_kind) eq 0 set(spot, item(id))"
+           style="position: absolute; left: 0px; top: 0px; width: 124px; height: 62px;
+                  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+        <div id="spot-ring" class="ring" style="position: absolute; left: -6px; top: -6px; right: -6px; bottom: -6px;"></div>
+        <div id="spot-ring2" class="ring2" style="position: absolute; left: -2px; top: -9px; right: -10px; bottom: -3px;"></div>
+        <div id="spot-chip" class="chip" style="position: relative;">
+          <img id="ico-look" class="ico" src="/_blob/ico_look.png" data-xt-bind="display=item(type) | eq(0)">
+          <img id="ico-item" class="ico" src="/_blob/ico_item.png" data-xt-bind="display=item(type) | eq(1)">
+          <img id="ico-talk" class="ico" src="/_blob/ico_talk.png" data-xt-bind="display=item(type) | eq(2)">
+          <img id="ico-device" class="ico" src="/_blob/ico_device.png" data-xt-bind="display=item(type) | eq(3)">
+          <img id="ico-seal" class="ico" src="/_blob/ico_seal.png" data-xt-bind="display=item(type) | eq(4)">
+          <img id="ico-done" class="ico-done" src="/_blob/ico_check.png">
+        </div>
+        <div id="spot-name" class="spot-name" data-xt-bind="text=item(name)">桌上的甜點盤</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Top left: kicker, the steam pocket watch (ticks left / total; red at 3 or less) and the appraisal box. -->
+  <div id="hud-tl" class="hud-card" style="position: absolute; left: 24px; top: 16px; width: 268px; height: 128px;
+       display: flex; flex-direction: column; padding: 8px 14px 8px 14px; gap: 4px;">
+    <div id="inv-kicker" class="kicker" data-xt-key="UI_INV_KICKER" style="width: 240px; height: 20px; flex-shrink: 0;">蒐證</div>
+    <div id="watch" class="watch" data-xt-bind="class.limited=ticks_max | gt(0); class.low=ticks | le(3)"
+         style="width: 240px; height: 52px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 10px;">
+      <div id="watch-dial" style="position: relative; width: 48px; height: 52px; flex-shrink: 0;">
+        <svg id="watch-ink" class="watch-ink" viewBox="0 0 48 52" style="position: absolute; left: 0px; top: 0px; width: 48px; height: 52px;">
+          <rect id="Crown" x="20" y="0" width="8" height="5" fill="#a65432"/>
+          <circle id="Bail" cx="24" cy="6" r="3" fill="none" stroke="#a65432" stroke-width="1.6"/>
+          <circle id="Case" cx="24" cy="29" r="21" fill="#f3eedf" stroke="#a65432" stroke-width="3"/>
+          <circle id="Rim" cx="24" cy="29" r="17" fill="none" stroke="#123a31" stroke-width="1"/>
+          <path id="Marks" d="M24 13 V16 M24 42 V45 M8 29 H11 M37 29 H40 M35.3 17.7 L33.2 19.8 M12.7 17.7 L14.8 19.8 M35.3 40.3 L33.2 38.2 M12.7 40.3 L14.8 38.2" fill="none" stroke="#123a31" stroke-width="1.6"/>
+        </svg>
+        <svg id="watch-red" class="watch-red" viewBox="0 0 48 52" style="position: absolute; left: 0px; top: 0px; width: 48px; height: 52px;">
+          <rect id="Crown" x="20" y="0" width="8" height="5" fill="#b8322a"/>
+          <circle id="Bail" cx="24" cy="6" r="3" fill="none" stroke="#b8322a" stroke-width="1.6"/>
+          <circle id="Case" cx="24" cy="29" r="21" fill="#f3eedf" stroke="#b8322a" stroke-width="3"/>
+          <circle id="Rim" cx="24" cy="29" r="17" fill="none" stroke="#b8322a" stroke-width="1"/>
+          <path id="Marks" d="M24 13 V16 M24 42 V45 M8 29 H11 M37 29 H40 M35.3 17.7 L33.2 19.8 M12.7 17.7 L14.8 19.8 M35.3 40.3 L33.2 38.2 M12.7 40.3 L14.8 38.2" fill="none" stroke="#b8322a" stroke-width="1.6"/>
+        </svg>
+        <!-- The hand points at the share of ticks left (a full turn = all ticks); idle when unlimited. -->
+        <div id="watch-hand" data-xt-bind="display=ticks_max | gt(0); rotate=ticks | range(0, ticks_max, 0, 360)"
+             style="position: absolute; left: 23px; top: 15px; width: 2px; height: 14px; transform-origin: 50% 100%;
+                    background-color: var(--ink-deep);"></div>
+        <div id="watch-hub" style="position: absolute; left: 21px; top: 26px; width: 6px; height: 6px; border-radius: 3px;
+             background-color: var(--ink-deep);"></div>
+      </div>
+      <div id="ticks-limited" data-xt-bind="display=ticks_max | gt(0)"
+           style="width: 170px; height: 40px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 2px;">
+        <div id="ticks-left" class="tick-num" data-xt-bind="text=ticks" style="width: 44px; height: 40px; flex-shrink: 0; text-align: right;">7</div>
+        <div id="ticks-total" class="tick-max" data-xt-bind="text=format('／{0}', ticks_max)" style="width: 80px; height: 40px; flex-shrink: 0;">／10</div>
+      </div>
+      <div id="ticks-free" data-xt-key="UI_INV_TICKS_FREE" data-xt-bind="display=ticks_max | eq(0)"
+           style="width: 170px; height: 40px; flex-shrink: 0; font-size: 17px; line-height: 40px; color: var(--ink); white-space: nowrap;">刻度　不限</div>
+    </div>
+    <div id="appraise" data-xt-bind="display=appraise_left | ge(0)"
+         style="width: 240px; height: 30px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 10px;">
+      <svg id="appraise-box" viewBox="0 0 48 28" style="width: 48px; height: 28px; flex-shrink: 0;">
+        <path id="Handle" d="M17 8 V4 H31 V8" fill="none" stroke="#a65432" stroke-width="2.4"/>
+        <rect id="Box" x="4" y="8" width="40" height="18" fill="#a65432"/>
+        <rect id="Lid" x="4" y="13" width="40" height="2" fill="#f3eedf"/>
+        <rect id="Latch" x="21" y="11" width="6" height="7" fill="#e0a050"/>
+      </svg>
+      <div id="appraise-label" data-xt-key="UI_INV_APPR" style="width: 110px; height: 28px; flex-shrink: 0; font-size: 15px; line-height: 28px; color: var(--ink); white-space: nowrap;">鑑定</div>
+      <div id="appraise-count" data-xt-bind="text=format('×{0}', appraise_left)"
+           style="width: 60px; height: 28px; flex-shrink: 0; font-size: 20px; line-height: 28px; font-weight: 700; color: var(--copper); text-align: right; font-variant-numeric: tabular-nums;">×2</div>
+    </div>
+  </div>
+
+  <!-- Top centre: area name with the area arrows (Q / E). -->
+  <div id="area" style="position: absolute; left: 400px; top: 16px; width: 480px; height: 44px;
+       display: flex; flex-direction: row; align-items: center; gap: 0px;">
+    <div id="nav-prev" class="nav" data-xt-bind="class.off=nav_prev | not" data-xt-trigger="click(left):if port(nav_prev) eq true set(nav, -1)">◀</div>
+    <div id="area-plate" class="hud-card" style="width: 400px; height: 44px; flex-shrink: 0; border-top-width: 1px;">
+      <div id="area-name" data-xt-bind="text=area_name"
+           style="position: absolute; left: 0px; top: 0px; width: 400px; height: 42px; text-align: center; white-space: nowrap;
+                  font-family: var(--font-display); font-size: 19px; line-height: 42px; font-weight: 700; color: var(--ink-deep);">事務所廚房　早晨</div>
+    </div>
+    <div id="nav-next" class="nav" data-xt-bind="class.off=nav_next | not" data-xt-trigger="click(left):if port(nav_next) eq true set(nav, 1)">▶</div>
+  </div>
+
+  <!-- Top right: the inspector's trust badges (hidden while trust is -1). -->
+  <div id="trust" class="hud-card" data-xt-bind="display=trust | ge(0)"
+       style="position: absolute; right: 24px; top: 16px; width: 148px; height: 40px; display: flex; flex-direction: row;
+              align-items: center; justify-content: center; gap: 6px;">
+    <div id="badge-1" class="badge" data-xt-bind="class.on=trust | ge(1)"></div>
+    <div id="badge-2" class="badge" data-xt-bind="class.on=trust | ge(2)"></div>
+    <div id="badge-3" class="badge" data-xt-bind="class.on=trust | ge(3)"></div>
+    <div id="badge-4" class="badge" data-xt-bind="class.on=trust | ge(4)"></div>
+    <div id="badge-5" class="badge" data-xt-bind="class.on=trust | ge(5)"></div>
+  </div>
+
+  <!-- Bottom left: Arthur's portrait (click for a hint) and the hint bubble, anchored to the bottom edge. -->
+  <div id="hint-dock" data-xt-anchor="bottom-left"
+       style="position: absolute; left: 24px; bottom: 20px; width: 640px; height: 120px; pointer-events: none;">
+    <div id="avatar" data-xt-trigger="click(left):emit(ask_hint)"
+         style="position: absolute; left: 0px; bottom: 0px; width: 88px; height: 88px; overflow: hidden; pointer-events: auto;
+                border-radius: 44px; border: 3px solid var(--copper); background-color: var(--paper-old);">
+      <img id="avatar-art" src="/_blob/char_arthur.png"
+           style="position: absolute; left: -164px; top: -6px; width: 440px; height: 660px; object-fit: contain;">
+    </div>
+    <div id="hint-bubble" class="bubble" data-xt-bind="display=hint | ne('')" data-xt-trigger="port(hint_seq):play(hint-in)"
+         data-xt-timeline="hint-in: 0 opacity 0, 0 transform translateX(-8px), 240ms ease-out opacity 1, 240ms ease-out transform translateX(0px)"
+         style="position: absolute; left: 104px; bottom: 6px; width: 520px; padding: 10px 16px 10px 16px; pointer-events: auto;">
+      <div id="hint-text" class="hint-text" data-xt-bind="text=hint" style="width: 484px;">「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」</div>
+    </div>
+  </div>
+
+  <!-- Bottom right: evidence book (red dot = newly obtained) and End Search (grey until the required evidence is in). -->
+  <div id="actions" style="position: absolute; right: 24px; bottom: 20px; width: 332px; height: 52px;">
+    <div id="btn-book" class="btn paper" data-xt-key="BTN_MENU_EVIDENCE" data-xt-trigger="click(left):emit(book)"
+         style="position: absolute; left: 0px; top: 4px;">證物冊</div>
+    <div id="book-dot" data-xt-bind="display=book_new | gt(0); text=book_new"
+         style="position: absolute; left: 140px; top: -6px; width: 24px; height: 24px; border-radius: 12px; pointer-events: none;
+                background-color: var(--vermilion); color: var(--paper); font-size: 13px; line-height: 24px; text-align: center; font-weight: 700;">1</div>
+    <div id="btn-end" class="btn" data-xt-key="BTN_INV_END" data-xt-bind="class.off=can_end | not"
+         data-xt-trigger="click(left):if port(can_end) eq true emit(end)"
+         style="position: absolute; left: 176px; top: 4px;">結束蒐證</div>
+  </div>
+
+  <!-- Popups (popup_kind 1 information, 2 evidence card, 3 testimony card). The backdrop takes every click. -->
+  <div id="pop" data-xt-bind="display=popup_kind | gt(0)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
+    <div id="pop-shade-info" data-xt-bind="display=popup_kind | eq(1)" data-xt-trigger="click(left):emit(dismiss)"
+         style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: #092e288c;"></div>
+    <div id="pop-shade-card" data-xt-bind="display=popup_kind | ge(2)" data-xt-trigger="click(left):play(fly) then emit(dismiss)"
+         style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: #092e288c;"></div>
+
+    <div id="pop-info" class="hud-card" data-xt-bind="display=popup_kind | eq(1)" data-xt-trigger="port(popup_seq):play(pop-in)"
+         data-xt-timeline="pop-in: 0 opacity 0, 0 transform translate(0px, 16px) scale(1) rotate(0deg), 220ms ease-out opacity 1, 220ms ease-out transform translate(0px, 0px) scale(1) rotate(0deg)"
+         style="position: absolute; left: 360px; top: 210px; width: 560px; pointer-events: none;
+                display: flex; flex-direction: column; gap: 8px; padding: 18px 28px 22px 28px;">
+      <div id="info-kicker" class="pop-kicker" data-xt-key="UI_POINT_LOOK" style="width: 504px; height: 20px; flex-shrink: 0;">檢視</div>
+      <div id="info-title" class="pop-title" data-xt-bind="text=popup_title" style="width: 504px; flex-shrink: 0;">空空的布丁盤</div>
+      <div id="info-rule" style="width: 504px; height: 1px; flex-shrink: 0; background-color: var(--ink);"></div>
+      <div id="info-body" class="pop-body" data-xt-bind="text=popup_body" style="width: 504px; flex-shrink: 0;">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+      <div id="info-close" data-xt-key="BTN_CLOSE" style="width: 504px; height: 22px; flex-shrink: 0; text-align: right; font-size: 13px; line-height: 22px; letter-spacing: 2px; color: var(--copper);">關閉</div>
+    </div>
+
+    <div id="pop-card" class="clip"
+         data-xt-bind="display=popup_kind | ge(2); class.g0=popup_grade | eq(0); class.g1=popup_grade | eq(1); class.g2=popup_grade | eq(2); class.g3=popup_grade | eq(3); class.g4=popup_grade | eq(4); class.talk=popup_kind | eq(3)"
+         data-xt-trigger="port(popup_seq):play(pop-in)"
+         data-xt-timeline="pop-in: 0 opacity 0, 0 transform translate(0px, 16px) scale(1) rotate(0deg), 220ms ease-out opacity 1, 220ms ease-out transform translate(0px, 0px) scale(1) rotate(0deg); fly: 0 opacity 1, 0 transform translate(0px, 0px) scale(1) rotate(0deg), 420ms ease-in opacity 0.3, 420ms ease-in transform translate(380px, 300px) scale(0.16) rotate(-8deg)"
+         style="position: absolute; left: 380px; top: 170px; width: 520px; pointer-events: none;
+                display: flex; flex-direction: column; gap: 8px; padding: 22px 28px 20px 28px;">
+      <div id="clip-band" class="clip-band" style="position: absolute; left: 0px; top: 0px; width: 512px; height: 8px;"></div>
+      <div id="clip-kicker" style="width: 464px; height: 20px; flex-shrink: 0; position: relative;">
+        <div id="gl-0" class="pop-kicker grade-lbl gl-0" data-xt-key="UI_GRADE_NORMAL" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">一般證物</div>
+        <div id="gl-1" class="pop-kicker grade-lbl gl-1" data-xt-key="UI_GRADE_KEY" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">關鍵證物</div>
+        <div id="gl-2" class="pop-kicker grade-lbl gl-2" data-xt-key="UI_GRADE_PLOT" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">劇情證物</div>
+        <div id="gl-3" class="pop-kicker grade-lbl gl-3" data-xt-key="UI_GRADE_GOLDEN" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">黃金線索</div>
+        <div id="gl-4" class="pop-kicker grade-lbl gl-4" data-xt-key="UI_GRADE_SUB" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">次級替代證物</div>
+        <div id="gl-talk" class="pop-kicker grade-lbl gl-talk" data-xt-key="UI_POINT_TALK" style="position: absolute; left: 0px; top: 0px; width: 300px; height: 20px;">證詞</div>
+      </div>
+      <div id="card-title" class="pop-title" data-xt-bind="text=popup_title" style="width: 464px; flex-shrink: 0;">空空的布丁盤</div>
+      <div id="card-rule" style="width: 464px; height: 3px; flex-shrink: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);"></div>
+      <div id="card-body" class="pop-body" data-xt-bind="text=popup_body" style="width: 464px; flex-shrink: 0;">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+      <div id="card-foot" style="width: 464px; height: 24px; flex-shrink: 0; display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
+        <div id="card-close" data-xt-key="BTN_CLOSE" style="width: 120px; height: 22px; flex-shrink: 0; text-align: right; font-size: 13px; line-height: 22px; letter-spacing: 2px; color: var(--copper);">關閉</div>
+      </div>
+      <div id="plot-stamp" class="plot-stamp" data-xt-key="UI_EVBOOK_TAB_PLOT"
+           style="position: absolute; right: 22px; top: 22px; width: 132px; height: 36px; transform: rotate(-9deg);
+                  border: 2px solid var(--vermilion); color: var(--vermilion); font-size: 16px; line-height: 30px; text-align: center; letter-spacing: 2px;">私人收藏</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

@@ -1,0 +1,13 @@
+version: 1
+id: e73ed9b5-bec2-4909-9970-e96c0ddbf699
+type: image
+title: ico-look
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_look.png
+content: sha256:d77d25f0776ae7bd35e2e3ba4205c93b528bdc4e99426378ec8c46946e5c166d
+measured:
+  w: 44
+  h: 44
+  alpha: true

@@ -1,0 +1,824 @@
+<xt version="2">
+  <head>
+    <title>Investigate</title>
+  </head>
+
+  <ports>
+    bg: string in = "kitchen_morning"
+    area_name: string in = "事務所廚房　早晨"
+    nav_prev: bool in = false
+    nav_next: bool in = false
+    spots: list<struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}> in = [{"id":"H01_02","name":"桌上的甜點盤","x":316,"y":318,"w":124,"h":62,"type":1,"state":1},{"id":"H01_01","name":"黃銅冰箱","x":816,"y":112,"w":230,"h":350,"type":1,"state":0},{"id":"H01_04","name":"冰箱前的地板","x":540,"y":474,"w":320,"h":92,"type":1,"state":0},{"id":"H01_05","name":"亞瑟的房門","x":1086,"y":40,"w":176,"h":430,"type":3,"state":0},{"id":"H01_06","name":"沙發上的外套","x":24,"y":300,"w":196,"h":200,"type":1,"state":0},{"id":"H01_03","name":"水槽邊的毛巾","x":500,"y":258,"w":92,"h":80,"type":0,"state":0}]
+    ticks: number in = 0
+    ticks_max: number in = 0
+    appraise_left: number in = 2
+    trust: number in = -1
+    book_new: number in = 1
+    can_end: bool in = false
+    hint: string in = "「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」"
+    hint_seq: number in = 0
+    popup_kind: number in = 0
+    popup_title: string in = "空空的布丁盤"
+    popup_body: string in = "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"
+    popup_grade: number in = 0
+    popup_seq: number in = 0
+    spot: string out = ""
+    nav: number out = 0
+    dismiss: event out
+    book: event out
+    ask_hint: event out
+    end: event out
+  </ports>
+
+  <body key-activation="none">
+    <div id="investigate" tabindex="0" autofocus="" on:key(Escape)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Enter)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Space)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Q)="if port(nav_prev) eq true set(nav, -1)" on:key(E)="if port(nav_next) eq true set(nav, 1)" on:key(Tab)="emit(book)" on:key(F)="if port(can_end) eq true emit(end)">
+      <div id="scene">
+        <div id="bg" on:port(bg)="play(bg-in)">
+          <div id="bg-art">
+            <img id="bg-office-night" class="bg-art" src="../shared/img/bg-office-night.jpg" bind:display="bg | eq('office_night')"/>
+            <img id="bg-office-day" class="bg-art" src="../shared/img/bg-office-day.jpg" bind:display="bg | eq('office_day')"/>
+            <img id="bg-kitchen-morning" class="bg-art" src="../shared/img/bg-kitchen-morning.jpg" bind:display="bg | eq('kitchen_morning')"/>
+            <img id="bg-clockshop" class="bg-art" src="../shared/img/bg-clockshop.jpg" bind:display="bg | eq('clockshop')"/>
+            <img id="bg-dock-fog" class="bg-art" src="../shared/img/bg-dock-fog.jpg" bind:display="bg | eq('dock_fog')"/>
+            <img id="bg-barge-deck" class="bg-art" src="../shared/img/bg-barge-deck.jpg" bind:display="bg | eq('barge_deck')"/>
+            <img id="bg-boiler-room" class="bg-art" src="../shared/img/bg-boiler-room.jpg" bind:display="bg | eq('boiler_room')"/>
+            <img id="bg-debate" class="bg-art" src="../shared/img/bg-debate.jpg" bind:display="bg | eq('debate')"/>
+          </div>
+        </div>
+        <div id="shade-top"/>
+        <div id="shade-bottom"/>
+        <div id="spots-layer">
+          <repeat id="spots-list" port="spots">
+            <div id="spot" class="spot" on:click(left)="if port(popup_kind) eq 0 set(spot, item(id))" bind:translate-x="item(x)" bind:translate-y="item(y)" bind:width="item(w) | range(0, 1280, 0px, 1280px)" bind:height="item(h) | range(0, 720, 0px, 720px)" bind:class.done="item(state) | eq(1)" bind:class.locked="item(state) | eq(2)">
+              <div id="spot-ring" class="ring"/>
+              <div id="spot-ring2" class="ring2"/>
+              <div id="spot-chip" class="chip">
+                <img id="ico-look" class="ico" src="../shared/img/ico-look.png" bind:display="item(type) | eq(0)"/>
+                <img id="ico-item" class="ico" src="../shared/img/ico-item.png" bind:display="item(type) | eq(1)"/>
+                <img id="ico-talk" class="ico" src="../shared/img/ico-talk.png" bind:display="item(type) | eq(2)"/>
+                <img id="ico-device" class="ico" src="../shared/img/ico-device.png" bind:display="item(type) | eq(3)"/>
+                <img id="ico-seal" class="ico" src="../shared/img/ico-seal.png" bind:display="item(type) | eq(4)"/>
+                <img id="ico-done" class="ico-done" src="../shared/img/ico-done.png"/>
+              </div>
+              <div id="spot-name" class="spot-name" bind:text="item(name)">桌上的甜點盤</div>
+            </div>
+          </repeat>
+        </div>
+      </div>
+      <div id="hud-tl" class="hud-card">
+        <div id="inv-kicker" class="kicker">@UI_INV_KICKER</div>
+        <div id="watch" class="watch" bind:class.limited="ticks_max | gt(0)" bind:class.low="ticks | le(3)">
+          <div id="watch-dial">
+            <svg id="watch-ink" class="watch-ink" viewBox="0 0 48 52">
+              <rect id="Crown" x="20" y="0" width="8" height="5" fill="#a65432"/>
+              <circle id="Bail" cx="24" cy="6" r="3" fill="none" stroke="#a65432" stroke-width="1.6"/>
+              <circle id="Case" cx="24" cy="29" r="21" fill="#f3eedf" stroke="#a65432" stroke-width="3"/>
+              <circle id="Rim" cx="24" cy="29" r="17" fill="none" stroke="#123a31" stroke-width="1"/>
+              <path id="Marks" d="M24 13 V16 M24 42 V45 M8 29 H11 M37 29 H40 M35.3 17.7 L33.2 19.8 M12.7 17.7 L14.8 19.8 M35.3 40.3 L33.2 38.2 M12.7 40.3 L14.8 38.2" fill="none" stroke="#123a31" stroke-width="1.6"/>
+            </svg>
+            <svg id="watch-red" class="watch-red" viewBox="0 0 48 52">
+              <rect id="Crown" x="20" y="0" width="8" height="5" fill="#b8322a"/>
+              <circle id="Bail" cx="24" cy="6" r="3" fill="none" stroke="#b8322a" stroke-width="1.6"/>
+              <circle id="Case" cx="24" cy="29" r="21" fill="#f3eedf" stroke="#b8322a" stroke-width="3"/>
+              <circle id="Rim" cx="24" cy="29" r="17" fill="none" stroke="#b8322a" stroke-width="1"/>
+              <path id="Marks" d="M24 13 V16 M24 42 V45 M8 29 H11 M37 29 H40 M35.3 17.7 L33.2 19.8 M12.7 17.7 L14.8 19.8 M35.3 40.3 L33.2 38.2 M12.7 40.3 L14.8 38.2" fill="none" stroke="#b8322a" stroke-width="1.6"/>
+            </svg>
+            <div id="watch-hand" bind:display="ticks_max | gt(0)" bind:rotate="ticks | range(0, ticks_max, 0, 360)"/>
+            <div id="watch-hub"/>
+          </div>
+          <div id="ticks-limited" bind:display="ticks_max | gt(0)">
+            <div id="ticks-left" class="tick-num s-12e6e5" bind:text="ticks">7</div>
+            <div id="ticks-total" class="tick-max" bind:text="format('／{0}', ticks_max)">／10</div>
+          </div>
+          <div id="ticks-free" bind:display="ticks_max | eq(0)">@UI_INV_TICKS_FREE</div>
+        </div>
+        <div id="appraise" bind:display="appraise_left | ge(0)">
+          <svg id="appraise-box" viewBox="0 0 48 28">
+            <path id="Handle" d="M17 8 V4 H31 V8" fill="none" stroke="#a65432" stroke-width="2.4"/>
+            <rect id="Box" x="4" y="8" width="40" height="18" fill="#a65432"/>
+            <rect id="Lid" x="4" y="13" width="40" height="2" fill="#f3eedf"/>
+            <rect id="Latch" x="21" y="11" width="6" height="7" fill="#e0a050"/>
+          </svg>
+          <div id="appraise-label">@UI_INV_APPR</div>
+          <div id="appraise-count" bind:text="format('×{0}', appraise_left)">×2</div>
+        </div>
+      </div>
+      <div id="area">
+        <div id="nav-prev" class="nav" on:click(left)="if port(nav_prev) eq true set(nav, -1)" bind:class.off="nav_prev | not">◀</div>
+        <div id="area-plate" class="hud-card">
+          <div id="area-name" bind:text="area_name">事務所廚房　早晨</div>
+        </div>
+        <div id="nav-next" class="nav" on:click(left)="if port(nav_next) eq true set(nav, 1)" bind:class.off="nav_next | not">▶</div>
+      </div>
+      <div id="trust" class="hud-card" bind:display="trust | ge(0)">
+        <div id="badge-1" class="badge" bind:class.on="trust | ge(1)"/>
+        <div id="badge-2" class="badge" bind:class.on="trust | ge(2)"/>
+        <div id="badge-3" class="badge" bind:class.on="trust | ge(3)"/>
+        <div id="badge-4" class="badge" bind:class.on="trust | ge(4)"/>
+        <div id="badge-5" class="badge" bind:class.on="trust | ge(5)"/>
+      </div>
+      <div id="hint-dock">
+        <div id="avatar" on:click(left)="emit(ask_hint)">
+          <img id="avatar-art" class="s-b00406" src="../shared/img/ch-c-arthur.png"/>
+        </div>
+        <div id="hint-bubble" class="bubble s-e1040c" on:port(hint_seq)="play(hint-in)" bind:display="hint | ne('')">
+          <div id="hint-text" class="hint-text" bind:text="hint">「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」</div>
+        </div>
+      </div>
+      <div id="actions">
+        <div id="btn-book" class="btn paper" on:click(left)="emit(book)">@BTN_MENU_EVIDENCE</div>
+        <div id="book-dot" bind:display="book_new | gt(0)" bind:text="book_new">1</div>
+        <div id="btn-end" class="btn" on:click(left)="if port(can_end) eq true emit(end)" bind:class.off="can_end | not">@BTN_INV_END</div>
+      </div>
+      <div id="pop" bind:display="popup_kind | gt(0)">
+        <div id="pop-shade-info" class="s-8ecb27" on:click(left)="emit(dismiss)" bind:display="popup_kind | eq(1)"/>
+        <div id="pop-shade-card" class="s-8ecb27" on:click(left)="play(fly) then emit(dismiss)" bind:display="popup_kind | ge(2)"/>
+        <div id="pop-info" class="hud-card s-66a9df" on:port(popup_seq)="play(pop-in)" bind:display="popup_kind | eq(1)">
+          <div id="info-kicker" class="pop-kicker">@UI_POINT_LOOK</div>
+          <div id="info-title" class="pop-title" bind:text="popup_title">空空的布丁盤</div>
+          <div id="info-rule"/>
+          <div id="info-body" class="pop-body" bind:text="popup_body">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+          <div id="info-close" class="s-398118">@BTN_CLOSE</div>
+        </div>
+        <div id="pop-card" class="clip s-66a9df" on:port(popup_seq)="play(pop-in)" bind:display="popup_kind | ge(2)" bind:class.g0="popup_grade | eq(0)" bind:class.g1="popup_grade | eq(1)" bind:class.g2="popup_grade | eq(2)" bind:class.g3="popup_grade | eq(3)" bind:class.g4="popup_grade | eq(4)" bind:class.talk="popup_kind | eq(3)">
+          <div id="clip-band" class="clip-band"/>
+          <div id="clip-kicker">
+            <div id="gl-0" class="pop-kicker grade-lbl gl-0">@UI_GRADE_NORMAL</div>
+            <div id="gl-1" class="pop-kicker grade-lbl gl-1">@UI_GRADE_KEY</div>
+            <div id="gl-2" class="pop-kicker grade-lbl gl-2">@UI_GRADE_PLOT</div>
+            <div id="gl-3" class="pop-kicker grade-lbl gl-3">@UI_GRADE_GOLDEN</div>
+            <div id="gl-4" class="pop-kicker grade-lbl gl-4">@UI_GRADE_SUB</div>
+            <div id="gl-talk" class="pop-kicker grade-lbl gl-talk">@UI_POINT_TALK</div>
+          </div>
+          <div id="card-title" class="pop-title" bind:text="popup_title">空空的布丁盤</div>
+          <div id="card-rule" class="s-15baa9"/>
+          <div id="card-body" class="pop-body" bind:text="popup_body">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+          <div id="card-foot">
+            <div id="card-close" class="s-398118">@BTN_CLOSE</div>
+          </div>
+          <div id="plot-stamp" class="plot-stamp">@UI_EVBOOK_TAB_PLOT</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Investigate.dc.html:1 */
+    #investigate {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Investigate.dc.html:1/0 */
+    #scene {
+      height: 720px;
+      left: calc(50% - 640px);
+      overflow: hidden;
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/0 */
+    #bg {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/0/0 */
+    #bg-art {
+      height: 100%;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+    }
+    /* import: Investigate.dc.html:1/0/1 */
+    #shade-top {
+      height: 150px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/2 */
+    #shade-bottom {
+      height: 160px;
+      left: 0px;
+      position: absolute;
+      top: 560px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/3 */
+    #spots-layer {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/3/0 */
+    #spots-list {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/0/3/0/0 */
+    #spot {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 62px;
+      justify-content: center;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 124px;
+    }
+    /* import: Investigate.dc.html:1/0/3/0/0/0 */
+    #spot-ring {
+      bottom: -6px;
+      left: -6px;
+      position: absolute;
+      right: -6px;
+      top: -6px;
+    }
+    /* import: Investigate.dc.html:1/0/3/0/0/1 */
+    #spot-ring2 {
+      bottom: -3px;
+      left: -2px;
+      position: absolute;
+      right: -10px;
+      top: -9px;
+    }
+    /* import: Investigate.dc.html:1/0/3/0/0/2 */
+    #spot-chip {
+      position: relative;
+    }
+    /* import: Investigate.dc.html:1/1 */
+    #hud-tl {
+      anchor: left top;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      offset: -8px -2px;
+      padding-bottom: 8px;
+      padding-left: 14px;
+      padding-right: 14px;
+      padding-top: 8px;
+      size: 268px 128px;
+    }
+    /* import: Investigate.dc.html:1/1/0 */
+    #inv-kicker {
+      flex-shrink: 0;
+      height: 20px;
+      width: 240px;
+    }
+    /* import: Investigate.dc.html:1/1/1 */
+    #watch {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 10px;
+      height: 52px;
+      width: 240px;
+    }
+    /* import: Investigate.dc.html:1/1/1/0 */
+    #watch-dial {
+      flex-shrink: 0;
+      height: 52px;
+      position: relative;
+      width: 48px;
+    }
+    /* import: Investigate.dc.html:1/1/1/0/0 */
+    #watch-ink {
+      height: 52px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 48px;
+    }
+    /* import: Investigate.dc.html:1/1/1/0/1 */
+    #watch-red {
+      height: 52px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 48px;
+    }
+    /* import: Investigate.dc.html:1/1/1/0/2 */
+    #watch-hand {
+      height: 14px;
+      left: 23px;
+      position: absolute;
+      top: 15px;
+      transform-origin: 50% 100%;
+      width: 2px;
+    }
+    /* import: Investigate.dc.html:1/1/1/0/3 */
+    #watch-hub {
+      height: 6px;
+      left: 21px;
+      position: absolute;
+      top: 26px;
+      width: 6px;
+    }
+    /* import: Investigate.dc.html:1/1/1/1 */
+    #ticks-limited {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 2px;
+      height: 40px;
+      width: 170px;
+    }
+    /* import: Investigate.dc.html:1/1/1/1/0 */
+    #ticks-left {
+      flex-shrink: 0;
+      height: 40px;
+      width: 44px;
+    }
+    /* import: Investigate.dc.html:1/1/1/1/1 */
+    #ticks-total {
+      flex-shrink: 0;
+      height: 40px;
+      width: 80px;
+    }
+    /* import: Investigate.dc.html:1/1/1/2 */
+    #ticks-free {
+      flex-shrink: 0;
+      height: 40px;
+      width: 170px;
+    }
+    /* import: Investigate.dc.html:1/1/2 */
+    #appraise {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 10px;
+      height: 30px;
+      width: 240px;
+    }
+    /* import: Investigate.dc.html:1/1/2/0 */
+    #appraise-box {
+      flex-shrink: 0;
+      height: 28px;
+      width: 48px;
+    }
+    /* import: Investigate.dc.html:1/1/2/1 */
+    #appraise-label {
+      flex-shrink: 0;
+      height: 28px;
+      width: 110px;
+    }
+    /* import: Investigate.dc.html:1/1/2/2 */
+    #appraise-count {
+      flex-shrink: 0;
+      height: 28px;
+      width: 60px;
+    }
+    /* import: Investigate.dc.html:1/2 */
+    #area {
+      align-items: center;
+      anchor: center top;
+      display: flex;
+      flex-direction: row;
+      gap: 0px;
+      offset: 0 -2px;
+      size: 480px 44px;
+    }
+    /* import: Investigate.dc.html:1/2/1 */
+    #area-plate {
+      flex-shrink: 0;
+      height: 44px;
+      width: 400px;
+    }
+    /* import: Investigate.dc.html:1/2/1/0 */
+    #area-name {
+      height: 42px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 400px;
+    }
+    /* import: Investigate.dc.html:1/3 */
+    #trust {
+      align-items: center;
+      anchor: right top;
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      justify-content: center;
+      offset: -8px -2px;
+      size: 148px 40px;
+    }
+    /* import: Investigate.dc.html:1/4 */
+    #hint-dock {
+      anchor: left bottom;
+      offset: -8px 2px;
+      size: 640px 120px;
+    }
+    /* import: Investigate.dc.html:1/4/0 */
+    #avatar {
+      bottom: 0px;
+      height: 88px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      width: 88px;
+    }
+    /* import: Investigate.dc.html:1/4/0/0 */
+    #avatar-art {
+      height: 660px;
+      left: -164px;
+      position: absolute;
+      top: -6px;
+      width: 440px;
+    }
+    /* import: Investigate.dc.html:1/4/1 */
+    #hint-bubble {
+      bottom: 6px;
+      left: 104px;
+      padding-bottom: 10px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 10px;
+      position: absolute;
+      width: 520px;
+    }
+    /* import: Investigate.dc.html:1/4/1/0 */
+    #hint-text {
+      width: 484px;
+    }
+    /* import: Investigate.dc.html:1/5 */
+    #actions {
+      anchor: right bottom;
+      offset: -8px 2px;
+      size: 332px 52px;
+    }
+    /* import: Investigate.dc.html:1/5/0 */
+    #btn-book {
+      left: 0px;
+      position: absolute;
+      top: 4px;
+    }
+    /* import: Investigate.dc.html:1/5/1 */
+    #book-dot {
+      height: 24px;
+      left: 140px;
+      position: absolute;
+      top: -6px;
+      width: 24px;
+    }
+    /* import: Investigate.dc.html:1/5/2 */
+    #btn-end {
+      left: 176px;
+      position: absolute;
+      top: 4px;
+    }
+    /* import: Investigate.dc.html:1/6 */
+    #pop {
+      anchor: stretch stretch screen;
+    }
+    /* import: Investigate.dc.html:1/6/0 */
+    #pop-shade-info {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/6/1 */
+    #pop-shade-card {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/6/2 */
+    #pop-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      left: 360px;
+      padding-bottom: 22px;
+      padding-left: 28px;
+      padding-right: 28px;
+      padding-top: 18px;
+      position: absolute;
+      top: 210px;
+      width: 560px;
+    }
+    /* import: Investigate.dc.html:1/6/2/0 */
+    #info-kicker {
+      flex-shrink: 0;
+      height: 20px;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/2/1 */
+    #info-title {
+      flex-shrink: 0;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/2/2 */
+    #info-rule {
+      flex-shrink: 0;
+      height: 1px;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/2/3 */
+    #info-body {
+      flex-shrink: 0;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/2/4 */
+    #info-close {
+      flex-shrink: 0;
+      height: 22px;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/3 */
+    #pop-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      left: 380px;
+      padding-bottom: 20px;
+      padding-left: 28px;
+      padding-right: 28px;
+      padding-top: 22px;
+      position: absolute;
+      top: 170px;
+      width: 520px;
+    }
+    /* import: Investigate.dc.html:1/6/3/0 */
+    #clip-band {
+      height: 8px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 512px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1 */
+    #clip-kicker {
+      flex-shrink: 0;
+      height: 20px;
+      position: relative;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/0 */
+    #gl-0 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/1 */
+    #gl-1 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/2 */
+    #gl-2 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/3 */
+    #gl-3 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/4 */
+    #gl-4 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/1/5 */
+    #gl-talk {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: Investigate.dc.html:1/6/3/2 */
+    #card-title {
+      flex-shrink: 0;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/3/3 */
+    #card-rule {
+      flex-shrink: 0;
+      height: 3px;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/3/4 */
+    #card-body {
+      flex-shrink: 0;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/3/5 */
+    #card-foot {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      height: 24px;
+      justify-content: flex-end;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/3/5/0 */
+    #card-close {
+      flex-shrink: 0;
+      height: 22px;
+      width: 120px;
+    }
+    /* import: Investigate.dc.html:1/6/3/6 */
+    #plot-stamp {
+      height: 36px;
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      transform: rotate(-9deg);
+      width: 132px;
+    }
+    .bg-art {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+    }
+    .badge {
+      width: 18px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .ring2 {
+      transform: rotate(-4deg);
+    }
+    .chip {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .spot-name {
+      width: 220px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .spot.done .ico-done {
+      display: block;
+    }
+    .ico {
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      width: 22px;
+      height: 22px;
+    }
+    .ico-done {
+      display: none;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+    }
+    .watch-red {
+      display: none;
+    }
+    .watch.limited.low .watch-red {
+      display: block;
+    }
+    .watch.limited.low .watch-ink {
+      display: none;
+    }
+    .nav {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .btn {
+      width: 156px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+    .grade-lbl {
+      display: none;
+    }
+    .clip.g0 .gl-0 {
+      display: block;
+    }
+    .clip.g1 .gl-1 {
+      display: block;
+    }
+    .clip.g2 .gl-2 {
+      display: block;
+    }
+    .clip.g3 .gl-3 {
+      display: block;
+    }
+    .clip.g4 .gl-4 {
+      display: block;
+    }
+    .clip.talk .grade-lbl {
+      display: none;
+    }
+    .clip.talk .gl-talk {
+      display: block;
+    }
+    .plot-stamp {
+      display: none;
+    }
+    .clip.g2 .plot-stamp {
+      display: block;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="investigate.xts"/>
+  <timelines>
+    @timeline bg-in {
+      #bg-art {
+        0ms {
+          opacity: 0.35;
+        }
+        360ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline fly {
+      #pop-card {
+        0ms {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1) rotate(0deg);
+        }
+        420ms ease-in {
+          opacity: 0.3;
+          transform: translate(380px, 300px) scale(0.16) rotate(-8deg);
+        }
+      }
+    }
+    @timeline hint-in {
+      #hint-bubble {
+        0ms {
+          opacity: 0;
+          transform: translateX(-8px);
+        }
+        240ms ease-out {
+          opacity: 1;
+          transform: translateX(0px);
+        }
+      }
+    }
+    @timeline pop-in {
+      #pop-info {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 16px) scale(1) rotate(0deg);
+        }
+        220ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1) rotate(0deg);
+        }
+      }
+      #pop-card {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 16px) scale(1) rotate(0deg);
+        }
+        220ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1) rotate(0deg);
+        }
+      }
+    }
+  </timelines>
+</xt>

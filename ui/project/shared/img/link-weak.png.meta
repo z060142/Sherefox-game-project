@@ -1,0 +1,13 @@
+version: 1
+id: 327e9ad9-0b8d-441f-9e27-7afadceb1da2
+type: image
+title: link-weak
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_weak.png
+content: sha256:c1fbd7d1eb9e75b3e29634874c299b54d0f7a8a653d2761e5190d6680c48b198
+measured:
+  w: 44
+  h: 44
+  alpha: true

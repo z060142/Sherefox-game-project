@@ -1,0 +1,13 @@
+version: 1
+id: 0b8169fb-a33b-4b58-991a-346d5e51b465
+type: image
+title: bg-barge-deck
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_barge_deck.jpg
+content: sha256:17717f5d839cdc4de554a055915b168a1e8f0d1dd0cb35b744ec721b9a8f527a
+measured:
+  w: 1280
+  h: 720
+  alpha: false

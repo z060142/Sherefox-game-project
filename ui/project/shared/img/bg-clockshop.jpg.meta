@@ -1,0 +1,13 @@
+version: 1
+id: d3c5cb38-27ad-4b61-ba87-e26185b6fd2a
+type: image
+title: bg-clockshop
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_clockshop.jpg
+content: sha256:e8d406bc0cd08b01860d42bd7ef4586aa04ec44f94c1ab1501197e58197d98d5
+measured:
+  w: 1280
+  h: 720
+  alpha: false

@@ -1,0 +1,1388 @@
+<xt version="2">
+  <head>
+    <title>Board</title>
+  </head>
+
+  <ports>
+    drawer: list<struct{id: string, name: string, grade: number, appraised: bool, reason_set: bool, placed: bool}> in = [{"id":"E02_01","name":"特製雙層發條齒輪","grade":1,"appraised":false,"reason_set":true,"placed":true},{"id":"E02_02","name":"報時鳥鐘","grade":0,"appraised":true,"reason_set":true,"placed":true},{"id":"E02_03","name":"鐘擺護蓋上的新刮痕","grade":0,"appraised":true,"reason_set":true,"placed":true},{"id":"E02_04","name":"報童小湯米的證詞","grade":0,"appraised":true,"reason_set":true,"placed":true},{"id":"E02_05","name":"寄修收據（店鐘 3:05 簽收）","grade":0,"appraised":true,"reason_set":true,"placed":true},{"id":"E02_06","name":"店內零件目錄","grade":0,"appraised":true,"reason_set":true,"placed":true},{"id":"E02_07","name":"費奇袖口的黃銅細屑","grade":0,"appraised":false,"reason_set":false,"placed":false}]
+    slots: list<struct{chain: number, pos: number, id: string, name: string, grade: number}> in = [{"chain":0,"pos":0,"id":"E02_03","name":"鐘擺護蓋上的新刮痕","grade":0},{"chain":0,"pos":1,"id":"E02_02","name":"報時鳥鐘","grade":0},{"chain":0,"pos":2,"id":"E02_04","name":"報童小湯米的證詞","grade":0},{"chain":0,"pos":3,"id":"E02_05","name":"寄修收據（店鐘 3:05 簽收）","grade":0},{"chain":0,"pos":4,"id":"","name":"","grade":0},{"chain":1,"pos":0,"id":"E02_06","name":"店內零件目錄","grade":0},{"chain":1,"pos":1,"id":"E02_01","name":"特製雙層發條齒輪","grade":1},{"chain":1,"pos":2,"id":"","name":"","grade":0},{"chain":1,"pos":3,"id":"","name":"","grade":0},{"chain":1,"pos":4,"id":"","name":"","grade":0},{"chain":2,"pos":0,"id":"","name":"","grade":0},{"chain":2,"pos":1,"id":"","name":"","grade":0},{"chain":2,"pos":2,"id":"","name":"","grade":0},{"chain":2,"pos":3,"id":"","name":"","grade":0},{"chain":2,"pos":4,"id":"","name":"","grade":0}]
+    links: list<struct{chain: number, pos: number, kind: number}> in = [{"chain":0,"pos":0,"kind":1},{"chain":0,"pos":1,"kind":1},{"chain":0,"pos":2,"kind":1},{"chain":0,"pos":3,"kind":0},{"chain":1,"pos":0,"kind":2},{"chain":1,"pos":1,"kind":0},{"chain":1,"pos":2,"kind":0},{"chain":1,"pos":3,"kind":0},{"chain":2,"pos":0,"kind":0},{"chain":2,"pos":1,"kind":0},{"chain":2,"pos":2,"kind":0},{"chain":2,"pos":3,"kind":0}]
+    chain_info: list<struct{chain: number, cards: number, solid: number, soph: number, dmg: number}> in = [{"chain":0,"cards":4,"solid":3,"soph":0,"dmg":35},{"chain":1,"cards":2,"solid":0,"soph":1,"dmg":25.2},{"chain":2,"cards":0,"solid":0,"soph":0,"dmg":0}]
+    sel_id: string in = "E02_01"
+    sel_name: string in = "特製雙層發條齒輪"
+    sel_desc: string in = "替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。"
+    sel_tags: string in = "物理：雙層發條・物理：黃銅・？・？"
+    sel_grade: number in = 1
+    sel_reason1: string in = "老闆私藏的稀有零件"
+    sel_reason2: string in = "這是最新的軍工黑市規格，不是古董，也不是本店庫存"
+    sel_reason3: string in = "富商自己早就換過"
+    sel_reason: number in = 1
+    sel_fixed: bool in = false
+    sel_can_appraise: bool in = true
+    appraise_left: number in = 2
+    opponent_name: string in = "費奇　犯人"
+    threshold_text: string in = "前期論破：對手動搖時，出示 1 件強攻證物，或 2 張以上的實證連鎖"
+    remark: string in = "「說得通，勉強說得通。但只要有人戳一下，這裡就會斷。」"
+    remark_seq: number in = 0
+    select: string out = ""
+    place: number out = 0
+    unplace: string out = ""
+    reason: number out = 0
+    appraise: event out
+    to_debate: event out
+  </ports>
+
+  <body key-activation="none">
+    <div id="board" tabindex="0" autofocus="" on:key(Enter)="emit(to_debate)" on:key(Delete)="if port(sel_id) ne '' set(unplace, port(sel_id))">
+      <div id="sheet">
+        <div id="hdr-left">
+          <div id="board-kicker" class="kicker">@UI_BOARD_TITLE</div>
+          <div id="opp-row">
+            <div id="opp-label">@UI_BOARD_OPPONENT</div>
+            <div id="opp-name" bind:text="opponent_name">費奇　犯人</div>
+          </div>
+        </div>
+        <div id="threshold" bind:text="threshold_text" bind:display="threshold_text | ne('')">前期論破：對手動搖時，出示 1 件強攻證物，或 2 張以上的實證連鎖</div>
+        <div id="appr">
+          <svg id="appr-box" viewBox="0 0 48 28">
+            <path id="Handle" d="M17 8 V4 H31 V8" fill="none" stroke="#a65432" stroke-width="2.4"/>
+            <rect id="Box" x="4" y="8" width="40" height="18" fill="#a65432"/>
+            <rect id="Lid" x="4" y="13" width="40" height="2" fill="#f3eedf"/>
+            <rect id="Latch" x="21" y="11" width="6" height="7" fill="#e0a050"/>
+          </svg>
+          <div id="appr-count" bind:text="format('×{0}', appraise_left)">×2</div>
+        </div>
+        <div id="btn-debate" class="btn" on:click(left)="emit(to_debate)">@BTN_TO_DEBATE</div>
+        <div id="hdr-rule"/>
+        <div id="drawer">
+          <div id="drawer-kicker" class="kicker">@UI_BOARD_DRAWER</div>
+          <div id="drawer-scroll">
+            <repeat id="drawer-list" port="drawer">
+              <div id="dcard" class="drow" on:click(left)="set(select, item(id))" bind:class.sel="item(id) | eq(sel_id)" bind:class.placed="item(placed)" bind:class.g1="item(grade) | eq(1)" bind:class.g3="item(grade) | eq(3)" bind:class.g4="item(grade) | eq(4)">
+                <div id="dcard-bar" class="gbar"/>
+                <div id="dcard-name" class="drow-name" bind:text="item(name)">特製雙層發條齒輪</div>
+                <div id="dcard-q" class="qmark" bind:display="item(appraised) | not">?</div>
+                <img id="dcard-reason" class="s-b00406" src="../shared/img/ico-done.png" bind:display="item(reason_set)"/>
+                <img id="dcard-pin" class="s-b00406" src="../shared/img/dcard-pin.png" bind:display="item(placed)"/>
+              </div>
+            </repeat>
+          </div>
+          <div id="legend">
+            <div id="lg-solid">
+              <div id="lg-solid-line" class="thread-red"/>
+              <div id="lg-solid-t" class="legend-t">@UI_BOARD_LINK_SOLID</div>
+            </div>
+            <div id="lg-soph">
+              <div id="lg-soph-line" class="thread-pencil"/>
+              <div id="lg-soph-t" class="legend-t">@UI_BOARD_LINK_SOPH</div>
+            </div>
+            <div id="lg-bad">
+              <img id="lg-bad-ico" class="s-b00406" src="../shared/img/lg-bad-ico.png"/>
+              <div id="lg-bad-t" class="legend-t">@UI_BOARD_LINK_INVALID</div>
+            </div>
+          </div>
+        </div>
+        <div id="cork" class="cork">
+          <div id="row-1" class="rowno">I</div>
+          <div id="row-2" class="rowno">II</div>
+          <div id="row-3" class="rowno">III</div>
+          <div id="slot-0" class="slot" on:click(left)="set(place, 0)"/>
+          <div id="slot-1" class="slot" on:click(left)="set(place, 1)"/>
+          <div id="slot-2" class="slot" on:click(left)="set(place, 2)"/>
+          <div id="slot-3" class="slot" on:click(left)="set(place, 3)"/>
+          <div id="slot-4" class="slot" on:click(left)="set(place, 4)"/>
+          <div id="slot-5" class="slot" on:click(left)="set(place, 5)"/>
+          <div id="slot-6" class="slot" on:click(left)="set(place, 6)"/>
+          <div id="slot-7" class="slot" on:click(left)="set(place, 7)"/>
+          <div id="slot-8" class="slot" on:click(left)="set(place, 8)"/>
+          <div id="slot-9" class="slot" on:click(left)="set(place, 9)"/>
+          <div id="slot-10" class="slot" on:click(left)="set(place, 10)"/>
+          <div id="slot-11" class="slot" on:click(left)="set(place, 11)"/>
+          <div id="slot-12" class="slot" on:click(left)="set(place, 12)"/>
+          <div id="slot-13" class="slot" on:click(left)="set(place, 13)"/>
+          <div id="slot-14" class="slot" on:click(left)="set(place, 14)"/>
+          <repeat id="slots-list" class="s-66a9df" port="slots">
+            <div id="card" class="clip s-e1040c" on:click(left)="set(select, item(id))" on:click(right)="set(unplace, item(id))" bind:display="item(id) | ne('')" bind:translate-x="item(pos) | scale(132) | offset(40)" bind:translate-y="item(chain) | scale(140) | offset(18)" bind:class.sel="item(id) | eq(sel_id)" bind:class.g1="item(grade) | eq(1)" bind:class.g3="item(grade) | eq(3)" bind:class.g4="item(grade) | eq(4)">
+              <div id="card-bar" class="gbar"/>
+              <div id="card-pin" class="pin"/>
+              <div id="card-name" class="clip-name" bind:text="item(name)">鐘擺護蓋上的新刮痕</div>
+              <div id="card-rule"/>
+            </div>
+          </repeat>
+          <repeat id="links-list" class="s-66a9df" port="links">
+            <div id="link" bind:translate-x="item(pos) | scale(132) | offset(94)" bind:translate-y="item(chain) | scale(140) | offset(-4)">
+              <div id="link-red" class="thread-red" bind:display="item(kind) | eq(1)"/>
+              <div id="link-gold" class="thread-gold" bind:display="item(kind) | eq(4)"/>
+              <img id="link-star" class="s-b00406" src="../shared/img/link-star.png" bind:display="item(kind) | eq(4)"/>
+              <div id="link-pencil" class="thread-pencil" bind:display="item(kind) | eq(2)"/>
+              <img id="link-weak" class="s-b00406" src="../shared/img/link-weak.png" bind:display="item(kind) | eq(2)"/>
+              <img id="link-cut" class="s-b00406" src="../shared/img/lg-bad-ico.png" bind:display="item(kind) | eq(3)"/>
+            </div>
+          </repeat>
+          <div id="remark" class="s-66a9df" on:port(remark_seq)="play(remark-in)" bind:display="remark | ne('')">
+            <div id="remark-face">
+              <img id="remark-art" class="s-b00406" src="../shared/img/ch-c-arthur.png"/>
+            </div>
+            <div id="remark-bubble" class="bubble">
+              <div id="remark-text" bind:text="remark">「說得通，勉強說得通。但只要有人戳一下，這裡就會斷。」</div>
+            </div>
+          </div>
+        </div>
+        <div id="plate-0" class="plate" bind:class.empty="chain_info | item(0) | item(cards) | lt(2)">
+          <div id="plate-0-t">
+            <div id="plate-0-lbl" class="plate-t s-1813e6">@UI_BOARD_CHAIN_NO</div>
+            <div id="plate-0-no" class="plate-t">I</div>
+          </div>
+          <div id="plate-0-stats" bind:display="chain_info | item(0) | item(cards) | ge(2)">
+            <div id="plate-0-dmgl" class="plate-s s-12e6e5">@UI_BOARD_DMG</div>
+            <div id="plate-0-dmg" class="plate-dmg" bind:text="chain_info | item(0) | item(dmg) | round(0)">35</div>
+            <div id="plate-0-r1">
+              <div id="plate-0-cards" class="plate-n" bind:text="chain_info | item(0) | item(cards)">4</div>
+              <div id="plate-0-cards-l" class="plate-s">@UI_BOARD_CARDS</div>
+            </div>
+            <div id="plate-0-r2">
+              <div id="plate-0-solid-l" class="plate-s">@UI_BOARD_SOLID</div>
+              <div id="plate-0-solid" class="plate-n" bind:text="chain_info | item(0) | item(solid)">3</div>
+              <div id="plate-0-soph-l" class="plate-s">@UI_BOARD_SOPH</div>
+              <div id="plate-0-soph" class="plate-n" bind:text="chain_info | item(0) | item(soph)">0</div>
+            </div>
+          </div>
+          <div id="plate-0-empty" class="plate-empty" bind:display="chain_info | item(0) | item(cards) | lt(2)">@UI_BOARD_CHAIN_EMPTY</div>
+        </div>
+        <div id="plate-1" class="plate" bind:class.empty="chain_info | item(1) | item(cards) | lt(2)">
+          <div id="plate-1-t">
+            <div id="plate-1-lbl" class="plate-t s-1813e6">@UI_BOARD_CHAIN_NO</div>
+            <div id="plate-1-no" class="plate-t">II</div>
+          </div>
+          <div id="plate-1-stats" bind:display="chain_info | item(1) | item(cards) | ge(2)">
+            <div id="plate-1-dmgl" class="plate-s s-12e6e5">@UI_BOARD_DMG</div>
+            <div id="plate-1-dmg" class="plate-dmg" bind:text="chain_info | item(1) | item(dmg) | round(0)">25</div>
+            <div id="plate-1-r1">
+              <div id="plate-1-cards" class="plate-n" bind:text="chain_info | item(1) | item(cards)">2</div>
+              <div id="plate-1-cards-l" class="plate-s">@UI_BOARD_CARDS</div>
+            </div>
+            <div id="plate-1-r2">
+              <div id="plate-1-solid-l" class="plate-s">@UI_BOARD_SOLID</div>
+              <div id="plate-1-solid" class="plate-n" bind:text="chain_info | item(1) | item(solid)">0</div>
+              <div id="plate-1-soph-l" class="plate-s">@UI_BOARD_SOPH</div>
+              <div id="plate-1-soph" class="plate-n" bind:text="chain_info | item(1) | item(soph)">1</div>
+            </div>
+          </div>
+          <div id="plate-1-empty" class="plate-empty" bind:display="chain_info | item(1) | item(cards) | lt(2)">@UI_BOARD_CHAIN_EMPTY</div>
+        </div>
+        <div id="plate-2" class="plate" bind:class.empty="chain_info | item(2) | item(cards) | lt(2)">
+          <div id="plate-2-t">
+            <div id="plate-2-lbl" class="plate-t s-1813e6">@UI_BOARD_CHAIN_NO</div>
+            <div id="plate-2-no" class="plate-t">III</div>
+          </div>
+          <div id="plate-2-stats" bind:display="chain_info | item(2) | item(cards) | ge(2)">
+            <div id="plate-2-dmgl" class="plate-s s-12e6e5">@UI_BOARD_DMG</div>
+            <div id="plate-2-dmg" class="plate-dmg" bind:text="chain_info | item(2) | item(dmg) | round(0)">0</div>
+            <div id="plate-2-r1">
+              <div id="plate-2-cards" class="plate-n" bind:text="chain_info | item(2) | item(cards)">0</div>
+              <div id="plate-2-cards-l" class="plate-s">@UI_BOARD_CARDS</div>
+            </div>
+            <div id="plate-2-r2">
+              <div id="plate-2-solid-l" class="plate-s">@UI_BOARD_SOLID</div>
+              <div id="plate-2-solid" class="plate-n" bind:text="chain_info | item(2) | item(solid)">0</div>
+              <div id="plate-2-soph-l" class="plate-s">@UI_BOARD_SOPH</div>
+              <div id="plate-2-soph" class="plate-n" bind:text="chain_info | item(2) | item(soph)">0</div>
+            </div>
+          </div>
+          <div id="plate-2-empty" class="plate-empty" bind:display="chain_info | item(2) | item(cards) | lt(2)">@UI_BOARD_CHAIN_EMPTY</div>
+        </div>
+        <div id="detail" class="panel" bind:display="sel_id | ne('')" bind:class.g0="sel_grade | eq(0)" bind:class.g1="sel_grade | eq(1)" bind:class.g2="sel_grade | eq(2)" bind:class.g3="sel_grade | eq(3)" bind:class.g4="sel_grade | eq(4)">
+          <div id="detail-bar" class="gbar"/>
+          <div id="detail-grade">
+            <div id="gl-0" class="kicker glbl gl-0">@UI_GRADE_NORMAL</div>
+            <div id="gl-1" class="kicker glbl gl-1">@UI_GRADE_KEY</div>
+            <div id="gl-2" class="kicker glbl gl-2">@UI_GRADE_PLOT</div>
+            <div id="gl-3" class="kicker glbl gl-3">@UI_GRADE_GOLDEN</div>
+            <div id="gl-4" class="kicker glbl gl-4">@UI_GRADE_SUB</div>
+          </div>
+          <div id="detail-body">
+            <div id="sel-name" bind:text="sel_name">特製雙層發條齒輪</div>
+            <div id="sel-tags" class="s-97552f" bind:text="sel_tags">物理：雙層發條・物理：黃銅・？・？</div>
+            <div id="sel-rule" class="s-15baa9"/>
+            <div id="sel-desc" bind:text="sel_desc">替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。</div>
+            <div id="reason-kicker" class="kicker">@UI_BOARD_REASON</div>
+            <div id="reason-none" bind:display="sel_reason | eq(0)">@UI_BOARD_REASON_NONE</div>
+            <div id="reason-fixed" class="s-97552f" bind:display="sel_fixed">@UI_BOARD_REASON_FIXED</div>
+            <div id="reason-1" class="reason" on:click(left)="if port(sel_fixed) eq false set(reason, 1)" bind:class.on="sel_reason | eq(1)" bind:class.fixed="sel_fixed" bind:display="sel_reason1 | ne('')">
+              <div id="reason-1-radio" class="radio"/>
+              <div id="reason-1-t" class="reason-t" bind:text="sel_reason1">老闆私藏的稀有零件</div>
+            </div>
+            <div id="reason-2" class="reason" on:click(left)="if port(sel_fixed) eq false set(reason, 2)" bind:class.on="sel_reason | eq(2)" bind:class.fixed="sel_fixed" bind:display="sel_reason2 | ne('')">
+              <div id="reason-2-radio" class="radio"/>
+              <div id="reason-2-t" class="reason-t" bind:text="sel_reason2">這是最新的軍工黑市規格，不是古董，也不是本店庫存</div>
+            </div>
+            <div id="reason-3" class="reason" on:click(left)="if port(sel_fixed) eq false set(reason, 3)" bind:class.on="sel_reason | eq(3)" bind:class.fixed="sel_fixed" bind:display="sel_reason3 | ne('')">
+              <div id="reason-3-radio" class="radio"/>
+              <div id="reason-3-t" class="reason-t" bind:text="sel_reason3">富商自己早就換過</div>
+            </div>
+          </div>
+          <div id="btn-appraise" class="btn" on:click(left)="if port(sel_can_appraise) eq true emit(appraise)" bind:class.off="sel_can_appraise | not">@BTN_APPRAISE</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Board.dc.html:1 */
+    #board {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Board.dc.html:1/0 */
+    #sheet {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: Board.dc.html:1/0/0 */
+    #hdr-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 52px;
+      left: 24px;
+      position: absolute;
+      top: 12px;
+      width: 300px;
+    }
+    /* import: Board.dc.html:1/0/0/0 */
+    #board-kicker {
+      flex-shrink: 0;
+      height: 20px;
+      width: 300px;
+    }
+    /* import: Board.dc.html:1/0/0/1 */
+    #opp-row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 10px;
+      height: 26px;
+      width: 300px;
+    }
+    /* import: Board.dc.html:1/0/0/1/0 */
+    #opp-label {
+      flex-shrink: 0;
+      height: 26px;
+      width: 80px;
+    }
+    /* import: Board.dc.html:1/0/0/1/1 */
+    #opp-name {
+      flex-shrink: 0;
+      height: 26px;
+      width: 210px;
+    }
+    /* import: Board.dc.html:1/0/1 */
+    #threshold {
+      height: 48px;
+      left: 340px;
+      padding-bottom: 4px;
+      padding-left: 14px;
+      padding-right: 14px;
+      padding-top: 4px;
+      position: absolute;
+      top: 14px;
+      width: 600px;
+    }
+    /* import: Board.dc.html:1/0/2 */
+    #appr {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 40px;
+      left: 960px;
+      position: absolute;
+      top: 18px;
+      width: 128px;
+    }
+    /* import: Board.dc.html:1/0/2/0 */
+    #appr-box {
+      flex-shrink: 0;
+      height: 28px;
+      width: 48px;
+    }
+    /* import: Board.dc.html:1/0/2/1 */
+    #appr-count {
+      flex-shrink: 0;
+      height: 28px;
+      width: 64px;
+    }
+    /* import: Board.dc.html:1/0/3 */
+    #btn-debate {
+      left: 1100px;
+      position: absolute;
+      top: 16px;
+    }
+    /* import: Board.dc.html:1/0/4 */
+    #hdr-rule {
+      height: 5px;
+      left: 24px;
+      position: absolute;
+      top: 70px;
+      width: 1232px;
+    }
+    /* import: Board.dc.html:1/0/5 */
+    #drawer {
+      height: 620px;
+      left: 24px;
+      position: absolute;
+      top: 84px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/0 */
+    #drawer-kicker {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/1 */
+    #drawer-scroll {
+      height: 476px;
+      left: 0px;
+      overflow-y: auto;
+      position: absolute;
+      top: 28px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0 */
+    #drawer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0 */
+    #dcard {
+      flex-shrink: 0;
+      height: 52px;
+      position: relative;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0/0 */
+    #dcard-bar {
+      height: 50px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 6px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0/1 */
+    #dcard-name {
+      height: 40px;
+      left: 14px;
+      position: absolute;
+      top: 5px;
+      width: 128px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0/2 */
+    #dcard-q {
+      height: 20px;
+      position: absolute;
+      right: 8px;
+      top: 5px;
+      width: 20px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0/3 */
+    #dcard-reason {
+      height: 18px;
+      position: absolute;
+      right: 9px;
+      top: 28px;
+      width: 18px;
+    }
+    /* import: Board.dc.html:1/0/5/1/0/0/4 */
+    #dcard-pin {
+      height: 22px;
+      position: absolute;
+      right: 32px;
+      top: 15px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/5/2 */
+    #legend {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      height: 108px;
+      left: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 6px;
+      position: absolute;
+      top: 512px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/2/0 */
+    #lg-solid {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 8px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/2/0/0 */
+    #lg-solid-line {
+      flex-shrink: 0;
+      height: 3px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/5/2/0/1 */
+    #lg-solid-t {
+      flex-shrink: 0;
+      width: 172px;
+    }
+    /* import: Board.dc.html:1/0/5/2/1 */
+    #lg-soph {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 8px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/2/1/0 */
+    #lg-soph-line {
+      flex-shrink: 0;
+      height: 2px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/5/2/1/1 */
+    #lg-soph-t {
+      flex-shrink: 0;
+      width: 172px;
+    }
+    /* import: Board.dc.html:1/0/5/2/2 */
+    #lg-bad {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 8px;
+      width: 208px;
+    }
+    /* import: Board.dc.html:1/0/5/2/2/0 */
+    #lg-bad-ico {
+      flex-shrink: 0;
+      height: 18px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/5/2/2/1 */
+    #lg-bad-t {
+      flex-shrink: 0;
+      width: 172px;
+    }
+    /* import: Board.dc.html:1/0/6 */
+    #cork {
+      height: 488px;
+      left: 244px;
+      position: absolute;
+      top: 84px;
+      width: 704px;
+    }
+    /* import: Board.dc.html:1/0/6/0 */
+    #row-1 {
+      height: 28px;
+      left: 8px;
+      position: absolute;
+      top: 64px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/6/1 */
+    #row-2 {
+      height: 28px;
+      left: 8px;
+      position: absolute;
+      top: 204px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/6/2 */
+    #row-3 {
+      height: 28px;
+      left: 8px;
+      position: absolute;
+      top: 344px;
+      width: 28px;
+    }
+    /* import: Board.dc.html:1/0/6/3 */
+    #slot-0 {
+      height: 120px;
+      left: 40px;
+      position: absolute;
+      top: 18px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/4 */
+    #slot-1 {
+      height: 120px;
+      left: 172px;
+      position: absolute;
+      top: 18px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/5 */
+    #slot-2 {
+      height: 120px;
+      left: 304px;
+      position: absolute;
+      top: 18px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/6 */
+    #slot-3 {
+      height: 120px;
+      left: 436px;
+      position: absolute;
+      top: 18px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/7 */
+    #slot-4 {
+      height: 120px;
+      left: 568px;
+      position: absolute;
+      top: 18px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/8 */
+    #slot-5 {
+      height: 120px;
+      left: 40px;
+      position: absolute;
+      top: 158px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/9 */
+    #slot-6 {
+      height: 120px;
+      left: 172px;
+      position: absolute;
+      top: 158px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/10 */
+    #slot-7 {
+      height: 120px;
+      left: 304px;
+      position: absolute;
+      top: 158px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/11 */
+    #slot-8 {
+      height: 120px;
+      left: 436px;
+      position: absolute;
+      top: 158px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/12 */
+    #slot-9 {
+      height: 120px;
+      left: 568px;
+      position: absolute;
+      top: 158px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/13 */
+    #slot-10 {
+      height: 120px;
+      left: 40px;
+      position: absolute;
+      top: 298px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/14 */
+    #slot-11 {
+      height: 120px;
+      left: 172px;
+      position: absolute;
+      top: 298px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/15 */
+    #slot-12 {
+      height: 120px;
+      left: 304px;
+      position: absolute;
+      top: 298px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/16 */
+    #slot-13 {
+      height: 120px;
+      left: 436px;
+      position: absolute;
+      top: 298px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/17 */
+    #slot-14 {
+      height: 120px;
+      left: 568px;
+      position: absolute;
+      top: 298px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/18 */
+    #slots-list {
+      height: 476px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 692px;
+    }
+    /* import: Board.dc.html:1/0/6/18/0 */
+    #card {
+      height: 120px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 108px;
+    }
+    /* import: Board.dc.html:1/0/6/18/0/0 */
+    #card-bar {
+      height: 5px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 106px;
+    }
+    /* import: Board.dc.html:1/0/6/18/0/1 */
+    #card-pin {
+      height: 14px;
+      left: 46px;
+      position: absolute;
+      top: -5px;
+      width: 14px;
+    }
+    /* import: Board.dc.html:1/0/6/18/0/2 */
+    #card-name {
+      height: 78px;
+      left: 8px;
+      position: absolute;
+      top: 16px;
+      width: 90px;
+    }
+    /* import: Board.dc.html:1/0/6/18/0/3 */
+    #card-rule {
+      height: 3px;
+      left: 8px;
+      position: absolute;
+      top: 100px;
+      width: 90px;
+    }
+    /* import: Board.dc.html:1/0/6/19 */
+    #links-list {
+      height: 476px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 692px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0 */
+    #link {
+      height: 48px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 132px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/0 */
+    #link-red {
+      height: 3px;
+      left: 0px;
+      position: absolute;
+      top: 22px;
+      width: 132px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/1 */
+    #link-gold {
+      height: 3px;
+      left: 0px;
+      position: absolute;
+      top: 22px;
+      width: 132px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/2 */
+    #link-star {
+      height: 26px;
+      left: 53px;
+      position: absolute;
+      top: 11px;
+      width: 26px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/3 */
+    #link-pencil {
+      height: 2px;
+      left: 0px;
+      position: absolute;
+      top: 23px;
+      width: 132px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/4 */
+    #link-weak {
+      height: 34px;
+      left: 49px;
+      position: absolute;
+      top: 7px;
+      width: 34px;
+    }
+    /* import: Board.dc.html:1/0/6/19/0/5 */
+    #link-cut {
+      height: 36px;
+      left: 48px;
+      position: absolute;
+      top: 6px;
+      width: 36px;
+    }
+    /* import: Board.dc.html:1/0/6/20 */
+    #remark {
+      height: 42px;
+      left: 40px;
+      position: absolute;
+      top: 428px;
+      width: 636px;
+    }
+    /* import: Board.dc.html:1/0/6/20/0 */
+    #remark-face {
+      height: 42px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      top: 0px;
+      width: 42px;
+    }
+    /* import: Board.dc.html:1/0/6/20/0/0 */
+    #remark-art {
+      height: 330px;
+      left: -82px;
+      position: absolute;
+      top: -3px;
+      width: 220px;
+    }
+    /* import: Board.dc.html:1/0/6/20/1 */
+    #remark-bubble {
+      height: 38px;
+      left: 52px;
+      position: absolute;
+      top: 2px;
+      width: 584px;
+    }
+    /* import: Board.dc.html:1/0/6/20/1/0 */
+    #remark-text {
+      height: 36px;
+      left: 12px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 2px;
+      position: absolute;
+      top: 0px;
+      width: 560px;
+    }
+    /* import: Board.dc.html:1/0/7 */
+    #plate-0 {
+      height: 112px;
+      left: 244px;
+      position: absolute;
+      top: 584px;
+      width: 224px;
+    }
+    /* import: Board.dc.html:1/0/7/0 */
+    #plate-0-t {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      height: 22px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 120px;
+    }
+    /* import: Board.dc.html:1/0/7/0/0 */
+    #plate-0-lbl {
+      flex-shrink: 0;
+      height: 22px;
+    }
+    /* import: Board.dc.html:1/0/7/0/1 */
+    #plate-0-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 32px;
+    }
+    /* import: Board.dc.html:1/0/7/1 */
+    #plate-0-stats {
+      height: 96px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/7/1/0 */
+    #plate-0-dmgl {
+      height: 20px;
+      left: 100px;
+      position: absolute;
+      top: 0px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/7/1/1 */
+    #plate-0-dmg {
+      height: 36px;
+      left: 100px;
+      position: absolute;
+      top: 20px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/7/1/2 */
+    #plate-0-r1 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 56px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/7/1/2/0 */
+    #plate-0-cards {
+      flex-shrink: 0;
+      height: 20px;
+      width: 18px;
+    }
+    /* import: Board.dc.html:1/0/7/1/2/1 */
+    #plate-0-cards-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 60px;
+    }
+    /* import: Board.dc.html:1/0/7/1/3 */
+    #plate-0-r2 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 76px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/7/1/3/0 */
+    #plate-0-solid-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 56px;
+    }
+    /* import: Board.dc.html:1/0/7/1/3/1 */
+    #plate-0-solid {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/7/1/3/2 */
+    #plate-0-soph-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 72px;
+    }
+    /* import: Board.dc.html:1/0/7/1/3/3 */
+    #plate-0-soph {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/7/2 */
+    #plate-0-empty {
+      height: 40px;
+      left: 12px;
+      position: absolute;
+      top: 44px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/8 */
+    #plate-1 {
+      height: 112px;
+      left: 484px;
+      position: absolute;
+      top: 584px;
+      width: 224px;
+    }
+    /* import: Board.dc.html:1/0/8/0 */
+    #plate-1-t {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      height: 22px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 120px;
+    }
+    /* import: Board.dc.html:1/0/8/0/0 */
+    #plate-1-lbl {
+      flex-shrink: 0;
+      height: 22px;
+    }
+    /* import: Board.dc.html:1/0/8/0/1 */
+    #plate-1-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 32px;
+    }
+    /* import: Board.dc.html:1/0/8/1 */
+    #plate-1-stats {
+      height: 96px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/8/1/0 */
+    #plate-1-dmgl {
+      height: 20px;
+      left: 100px;
+      position: absolute;
+      top: 0px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/8/1/1 */
+    #plate-1-dmg {
+      height: 36px;
+      left: 100px;
+      position: absolute;
+      top: 20px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/8/1/2 */
+    #plate-1-r1 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 56px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/8/1/2/0 */
+    #plate-1-cards {
+      flex-shrink: 0;
+      height: 20px;
+      width: 18px;
+    }
+    /* import: Board.dc.html:1/0/8/1/2/1 */
+    #plate-1-cards-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 60px;
+    }
+    /* import: Board.dc.html:1/0/8/1/3 */
+    #plate-1-r2 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 76px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/8/1/3/0 */
+    #plate-1-solid-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 56px;
+    }
+    /* import: Board.dc.html:1/0/8/1/3/1 */
+    #plate-1-solid {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/8/1/3/2 */
+    #plate-1-soph-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 72px;
+    }
+    /* import: Board.dc.html:1/0/8/1/3/3 */
+    #plate-1-soph {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/8/2 */
+    #plate-1-empty {
+      height: 40px;
+      left: 12px;
+      position: absolute;
+      top: 44px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/9 */
+    #plate-2 {
+      height: 112px;
+      left: 724px;
+      position: absolute;
+      top: 584px;
+      width: 224px;
+    }
+    /* import: Board.dc.html:1/0/9/0 */
+    #plate-2-t {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      height: 22px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 120px;
+    }
+    /* import: Board.dc.html:1/0/9/0/0 */
+    #plate-2-lbl {
+      flex-shrink: 0;
+      height: 22px;
+    }
+    /* import: Board.dc.html:1/0/9/0/1 */
+    #plate-2-no {
+      flex-shrink: 0;
+      height: 22px;
+      width: 32px;
+    }
+    /* import: Board.dc.html:1/0/9/1 */
+    #plate-2-stats {
+      height: 96px;
+      left: 12px;
+      position: absolute;
+      top: 8px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/9/1/0 */
+    #plate-2-dmgl {
+      height: 20px;
+      left: 100px;
+      position: absolute;
+      top: 0px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/9/1/1 */
+    #plate-2-dmg {
+      height: 36px;
+      left: 100px;
+      position: absolute;
+      top: 20px;
+      width: 100px;
+    }
+    /* import: Board.dc.html:1/0/9/1/2 */
+    #plate-2-r1 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 56px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/9/1/2/0 */
+    #plate-2-cards {
+      flex-shrink: 0;
+      height: 20px;
+      width: 18px;
+    }
+    /* import: Board.dc.html:1/0/9/1/2/1 */
+    #plate-2-cards-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 60px;
+    }
+    /* import: Board.dc.html:1/0/9/1/3 */
+    #plate-2-r2 {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 76px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/9/1/3/0 */
+    #plate-2-solid-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 56px;
+    }
+    /* import: Board.dc.html:1/0/9/1/3/1 */
+    #plate-2-solid {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/9/1/3/2 */
+    #plate-2-soph-l {
+      flex-shrink: 0;
+      height: 20px;
+      width: 72px;
+    }
+    /* import: Board.dc.html:1/0/9/1/3/3 */
+    #plate-2-soph {
+      flex-shrink: 0;
+      height: 20px;
+      width: 22px;
+    }
+    /* import: Board.dc.html:1/0/9/2 */
+    #plate-2-empty {
+      height: 40px;
+      left: 12px;
+      position: absolute;
+      top: 44px;
+      width: 200px;
+    }
+    /* import: Board.dc.html:1/0/10 */
+    #detail {
+      height: 620px;
+      left: 960px;
+      position: absolute;
+      top: 84px;
+      width: 296px;
+    }
+    /* import: Board.dc.html:1/0/10/0 */
+    #detail-bar {
+      height: 5px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 296px;
+    }
+    /* import: Board.dc.html:1/0/10/1 */
+    #detail-grade {
+      height: 20px;
+      left: 16px;
+      position: absolute;
+      top: 14px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/1/0 */
+    #gl-0 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/1/1 */
+    #gl-1 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/1/2 */
+    #gl-2 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/1/3 */
+    #gl-3 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/1/4 */
+    #gl-4 {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2 */
+    #detail-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 516px;
+      left: 16px;
+      position: absolute;
+      top: 38px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/0 */
+    #sel-name {
+      flex-shrink: 0;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/1 */
+    #sel-tags {
+      flex-shrink: 0;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/2 */
+    #sel-rule {
+      flex-shrink: 0;
+      height: 3px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/3 */
+    #sel-desc {
+      flex-shrink: 0;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/4 */
+    #reason-kicker {
+      flex-shrink: 0;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/5 */
+    #reason-none {
+      flex-shrink: 0;
+      height: 20px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/6 */
+    #reason-fixed {
+      flex-shrink: 0;
+      height: 20px;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/7 */
+    #reason-1 {
+      flex-shrink: 0;
+      padding-bottom: 8px;
+      padding-left: 36px;
+      padding-right: 10px;
+      padding-top: 8px;
+      position: relative;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/7/0 */
+    #reason-1-radio {
+      height: 16px;
+      left: 10px;
+      position: absolute;
+      top: 10px;
+      width: 16px;
+    }
+    /* import: Board.dc.html:1/0/10/2/7/1 */
+    #reason-1-t {
+      width: 218px;
+    }
+    /* import: Board.dc.html:1/0/10/2/8 */
+    #reason-2 {
+      flex-shrink: 0;
+      padding-bottom: 8px;
+      padding-left: 36px;
+      padding-right: 10px;
+      padding-top: 8px;
+      position: relative;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/8/0 */
+    #reason-2-radio {
+      height: 16px;
+      left: 10px;
+      position: absolute;
+      top: 10px;
+      width: 16px;
+    }
+    /* import: Board.dc.html:1/0/10/2/8/1 */
+    #reason-2-t {
+      width: 218px;
+    }
+    /* import: Board.dc.html:1/0/10/2/9 */
+    #reason-3 {
+      flex-shrink: 0;
+      padding-bottom: 8px;
+      padding-left: 36px;
+      padding-right: 10px;
+      padding-top: 8px;
+      position: relative;
+      width: 264px;
+    }
+    /* import: Board.dc.html:1/0/10/2/9/0 */
+    #reason-3-radio {
+      height: 16px;
+      left: 10px;
+      position: absolute;
+      top: 10px;
+      width: 16px;
+    }
+    /* import: Board.dc.html:1/0/10/2/9/1 */
+    #reason-3-t {
+      width: 218px;
+    }
+    /* import: Board.dc.html:1/0/10/3 */
+    #btn-appraise {
+      left: 16px;
+      position: absolute;
+      top: 560px;
+      width: 264px;
+    }
+    .btn {
+      width: 156px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+    .glbl {
+      display: none;
+    }
+    .panel.g0 .gl-0 {
+      display: block;
+    }
+    .panel.g1 .gl-1 {
+      display: block;
+    }
+    .panel.g2 .gl-2 {
+      display: block;
+    }
+    .panel.g3 .gl-3 {
+      display: block;
+    }
+    .panel.g4 .gl-4 {
+      display: block;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="board.xts"/>
+  <timelines>
+    @timeline remark-in {
+      #remark {
+        0ms {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        240ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

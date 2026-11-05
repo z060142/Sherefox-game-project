@@ -47,6 +47,16 @@
         "ui": "paper",
         "width": 1280,
         "height": 720
+      },
+      {
+        "ui": "investigate",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "ui": "board",
+        "width": 1280,
+        "height": 720
       }
     ]
   }

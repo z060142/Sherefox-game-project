@@ -1,0 +1,13 @@
+version: 1
+id: 67b56558-0296-412c-a2c2-c2332c0afc27
+type: image
+title: bg-boiler-room
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_boiler_room.jpg
+content: sha256:b2b4c7b5b60d6e5fdd6b2b15d40e6a820fbc943b9478311105324cd6f7853035
+measured:
+  w: 1280
+  h: 720
+  alpha: false

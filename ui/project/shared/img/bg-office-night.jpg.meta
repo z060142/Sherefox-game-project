@@ -1,0 +1,13 @@
+version: 1
+id: 35b3700a-1e03-41d0-b1a2-bb42599ea007
+type: image
+title: bg-office-night
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_office_night.jpg
+content: sha256:42c8b7b94d6c4123e345ca0fbed65dd15a81d9d1b55ad18448b9c104b2d93178
+measured:
+  w: 1280
+  h: 720
+  alpha: false

@@ -1,0 +1,13 @@
+version: 1
+id: b8e35cb8-8985-469a-9d74-990274965466
+type: image
+title: bg-kitchen-morning
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_kitchen_morning.jpg
+content: sha256:bd25d3f608473d2a2d84cf9d97b641c95996da53385be80d0865ec1001961488
+measured:
+  w: 1280
+  h: 720
+  alpha: false

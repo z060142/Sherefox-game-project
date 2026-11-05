@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hint-dock left: 24px; bottom: 20px -> anchor: left bottom; offset: -8px 2px; size: 640px 120px",
+      "element": "hint-dock",
+      "source": "Investigate.dc.html",
+      "line": 219,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 24px; bottom: 20px",
+        "to": "anchor: left bottom; offset: -8px 2px; size: 640px 120px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hud-tl left: 24px; top: 16px -> anchor: left top; offset: -8px -2px; size: 268px 128px",
+      "element": "hud-tl",
+      "source": "Investigate.dc.html",
+      "line": 146,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 24px; top: 16px",
+        "to": "anchor: left top; offset: -8px -2px; size: 268px 128px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #area left: 400px; top: 16px -> anchor: center top; offset: 0 -2px; size: 480px 44px",
+      "element": "area",
+      "source": "Investigate.dc.html",
+      "line": 196,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 400px; top: 16px",
+        "to": "anchor: center top; offset: 0 -2px; size: 480px 44px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #trust right: 24px; top: 16px -> anchor: right top; offset: -8px -2px; size: 148px 40px",
+      "element": "trust",
+      "source": "Investigate.dc.html",
+      "line": 208,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 24px; top: 16px",
+        "to": "anchor: right top; offset: -8px -2px; size: 148px 40px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #actions right: 24px; bottom: 20px -> anchor: right bottom; offset: -8px 2px; size: 332px 52px",
+      "element": "actions",
+      "source": "Investigate.dc.html",
+      "line": 235,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 24px; bottom: 20px",
+        "to": "anchor: right bottom; offset: -8px 2px; size: 332px 52px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "pop",
+      "source": "Investigate.dc.html",
+      "line": 247,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#investigate, #scene, #bg, #bg-art, #shade-top, ...)",
+      "element": "",
+      "source": "Investigate.dc.html",
+      "line": 92,
+      "col": 0,
+      "ui": "investigate",
+      "detail": {
+        "elements": "65",
+        "ids": "#investigate #scene #bg #bg-art #shade-top #shade-bottom #spots-layer #spots-list #spot #spot-ring #spot-ring2 #spot-chip #hud-tl #inv-kicker #watch #watch-dial #watch-ink #watch-red #watch-hand #watch-hub #ticks-limited #ticks-left #ticks-total #ticks-free #appraise #appraise-box #appraise-label #appraise-count #area #area-plate #area-name #trust #hint-dock #avatar #avatar-art #hint-bubble #hint-text #actions #btn-book #book-dot #btn-end #pop #pop-shade-info #pop-shade-card #pop-info #info-kicker #info-title #info-rule #info-body #info-close #pop-card #clip-band #clip-kicker #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #gl-talk #card-title #card-rule #card-body #card-foot #card-close #plot-stamp"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

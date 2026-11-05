@@ -35,14 +35,14 @@
     <div id="vn" tabindex="0" autofocus="" on:key(Enter)="if port(choice_count) eq 0 emit(advance)" on:key(Space)="if port(choice_count) eq 0 emit(advance)" on:key(A)="emit(auto)" on:key(Backspace)="emit(log)" on:key(1)="if port(choice_count) ge 1 set(choose, 1)" on:key(2)="if port(choice_count) ge 2 set(choose, 2)" on:key(3)="if port(choice_count) ge 3 set(choose, 3)" on:key(4)="if port(choice_count) ge 4 set(choose, 4)">
       <div id="bg" on:port(bg)="play(bg-in)">
         <div id="bg-art">
-          <img id="bg-office-night" class="bg-art" src="../shared/img/bg-office-night.png" bind:display="bg | eq('office_night')"/>
-          <img id="bg-office-day" class="bg-art" src="../shared/img/bg-office-day.png" bind:display="bg | eq('office_day')"/>
-          <img id="bg-kitchen-morning" class="bg-art" src="../shared/img/bg-kitchen-morning.png" bind:display="bg | eq('kitchen_morning')"/>
-          <img id="bg-clockshop" class="bg-art" src="../shared/img/bg-clockshop.png" bind:display="bg | eq('clockshop')"/>
-          <img id="bg-dock-fog" class="bg-art" src="../shared/img/bg-dock-fog.png" bind:display="bg | eq('dock_fog')"/>
-          <img id="bg-barge-deck" class="bg-art" src="../shared/img/bg-barge-deck.png" bind:display="bg | eq('barge_deck')"/>
-          <img id="bg-boiler-room" class="bg-art" src="../shared/img/bg-boiler-room.png" bind:display="bg | eq('boiler_room')"/>
-          <img id="bg-debate" class="bg-art" src="../shared/img/bg-debate.png" bind:display="bg | eq('debate')"/>
+          <img id="bg-office-night" class="bg-art" src="../shared/img/bg-office-night.jpg" bind:display="bg | eq('office_night')"/>
+          <img id="bg-office-day" class="bg-art" src="../shared/img/bg-office-day.jpg" bind:display="bg | eq('office_day')"/>
+          <img id="bg-kitchen-morning" class="bg-art" src="../shared/img/bg-kitchen-morning.jpg" bind:display="bg | eq('kitchen_morning')"/>
+          <img id="bg-clockshop" class="bg-art" src="../shared/img/bg-clockshop.jpg" bind:display="bg | eq('clockshop')"/>
+          <img id="bg-dock-fog" class="bg-art" src="../shared/img/bg-dock-fog.jpg" bind:display="bg | eq('dock_fog')"/>
+          <img id="bg-barge-deck" class="bg-art" src="../shared/img/bg-barge-deck.jpg" bind:display="bg | eq('barge_deck')"/>
+          <img id="bg-boiler-room" class="bg-art" src="../shared/img/bg-boiler-room.jpg" bind:display="bg | eq('boiler_room')"/>
+          <img id="bg-debate" class="bg-art" src="../shared/img/bg-debate.jpg" bind:display="bg | eq('debate')"/>
         </div>
       </div>
       <div id="slot-c" class="fig" bind:class.dim="focus | ne(2)" bind:class.narr="focus | eq(0)">
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div id="dlg-dock">
-        <div id="dlg" class="dlg" bind:class.note="style | eq(1)" bind:class.sys="style | eq(2)">
+        <div id="dlg" class="dlg s-e1040c" bind:class.note="style | eq(1)" bind:class.sys="style | eq(2)">
           <div id="dlg-rule" class="dlg-rule"/>
           <div id="dlg-body" on:click(left)="if port(choice_count) eq 0 emit(advance)">
             <div id="nameplate" bind:display="speaker | ne('')">

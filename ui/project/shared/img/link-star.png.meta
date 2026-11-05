@@ -1,0 +1,13 @@
+version: 1
+id: ec8419c2-1aa2-45ef-9edd-0118fc3a8d95
+type: image
+title: link-star
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_star.png
+content: sha256:cc6afdbf9b6154a2cb1acbbdd8b3373f13c2519a66d2fac4859922ed9df89401
+measured:
+  w: 44
+  h: 44
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: de01be67-7b0e-40b2-a967-9f71397a3635
+type: image
+title: dcard-pin
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_pin_placed.png
+content: sha256:ac153c89b7c9ecd5a7216672d992cfedda70dbd0e850eddc2f22f2b34661239e
+measured:
+  w: 44
+  h: 44
+  alpha: true

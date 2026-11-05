@@ -1,0 +1,13 @@
+version: 1
+id: 439e58f3-c38d-4305-9cf9-56de99f33e5a
+type: image
+title: lg-bad-ico
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_scissors.png
+content: sha256:761016ef74081ec9f160932d05aa46e8599384c60e031e274c4e89b3a2d4053b
+measured:
+  w: 44
+  h: 44
+  alpha: true

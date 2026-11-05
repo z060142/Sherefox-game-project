@@ -52,6 +52,22 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "investigate",
+      "doc": "investigate/investigate.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "board",
+      "doc": "board/board.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

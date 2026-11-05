@@ -1,0 +1,13 @@
+version: 1
+id: 64c7e641-e0ed-4ddf-a7d0-d76b2453a8e3
+type: image
+title: ico-item
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_item.png
+content: sha256:1555debb5d96c4bc3c14e1de9bbec6e907cb00713552aa734dc58ea2882086b6
+measured:
+  w: 44
+  h: 44
+  alpha: true

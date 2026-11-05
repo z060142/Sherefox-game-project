@@ -45,11 +45,6 @@
   pointer-events: none;
 }
 
-/* import: Vn.dc.html:1/7/0 */
-#dlg {
-  pointer-events: auto;
-}
-
 /* import: Vn.dc.html:1/7/0/1/0/1 */
 #speaker-rule {
   background-color: var(--copper);

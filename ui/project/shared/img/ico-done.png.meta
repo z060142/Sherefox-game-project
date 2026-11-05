@@ -1,0 +1,13 @@
+version: 1
+id: fa44f218-4830-41a7-a6b9-b79c9c37cefb
+type: image
+title: ico-done
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ico_check.png
+content: sha256:fecab29a8d6c398ee0a9060f0b3e426de78ce5121168d2a2c58a12f74c39ff8f
+measured:
+  w: 44
+  h: 44
+  alpha: true

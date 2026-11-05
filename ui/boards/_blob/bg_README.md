@@ -2,21 +2,35 @@
 
 Placeholder art generated for the prototype; not final.
 
-Generator: Image Summon (Codex CLI gpt-image), no reference images, 1 attempt per id. Files were generated at 1672x941 and are now 1280x720 PNG.
+Generator: Image Summon (Codex CLI gpt-image), no reference images, 1 attempt per id. Files were generated at 1672x941 and are now 1280x720 JPEG (quality 88, 4:2:0, metadata stripped; converted from the 1280x720 PNGs with ImageMagick `magick bg_<id>.png -resize 1280x720! -strip -quality 88 -sampling-factor 4:2:0 bg_<id>.jpg`). XTFrame decodes PNG and JPEG (stb_image).
 
-The files live flat in `_blob/` as `bg_<id>.png`: xtframe-import reads a blob id as one file name (`/_blob/<file>`), never a sub-path.
+The files live flat in `_blob/` as `bg_<id>.jpg`: xtframe-import reads a blob id as one file name (`/_blob/<file>`), never a sub-path.
 
 Common prompt prefix: "Visual novel background illustration, wide 16:9 landscape, warm painterly thick-paint (impasto digital oil) style, fantasy steampunk Victorian London 1887." Common suffix: "Composition: clear open middle ground where character sprites will stand; the lower third of the image is calm, simple floor with low detail. No people, no characters, no text, no letters, no logos, no watermark, no frame. Clean game background art." Palette hints used: lamp gold #e0a050, copper #a65432, ink green #123a31, fog-night blue #1f2c3d.
 
-| id | file | size | scene prompt (between prefix and suffix) |
+| id | file | generated size | scene prompt (between prefix and suffix) |
 | --- | --- | --- | --- |
-| office_night | office_night.png | 1672x941 | Interior of a detective agency living room at night, Baker Street. Green banker's lamp and gas wall lamps, wood paneling, brass fittings. Steam radiator with brass pipes and pressure gauge, brass speaking tube, mechanic's workbench corner with prosthetic arm parts and tools, two leather armchairs, tall bookshelves, large window with foggy blue London night and gas lamp halos. |
-| office_day | office_day.png | 1672x941 | Same living room by grey overcast morning daylight: soft cool grey light through the large window with misty street, a few still-glowing brass lamps; same props (radiator, speaking tube, workbench with prosthetic parts, armchairs, bookshelves). |
-| kitchen_morning | kitchen_morning.png | 1672x941 | Small detective agency kitchen-cum-living-room corner in the morning, soft warm sunlight and gas lamp glow. Victorian wooden icebox with brass fittings and small brass dial, wooden table with one empty dessert plate, polished wooden floor, closed bedroom door at the side, copper pots. |
-| clockshop | clockshop.png | 1672x941 | Interior of the Time Bird clock shop. Large ornate cuckoo-style bird clock with brass pendulum cover and carved bird, wooden counters, parts cabinets with many small drawers, shelves of clocks and gears, small corner coffee table with two chairs, warm gas lamp glow. |
-| dock_fog | dock_fog.png | 1672x941 | Thames river dock in dense fog at night near dawn. Wet dark planks, mooring ropes and bollards, moored steam barge with brass funnel in the fog, gas lamps with golden halos, faint police lantern glow, cold fog-night blue dominant. |
-| barge_deck | barge_deck.png | 1672x941 | Deck of a steam barge on the Thames in fog at night. Brass pressure valve wheel on a pipe, coiled ropes, wooden lectern-style logbook stand with a closed book, coal dust on wet deck planks, funnel and cabin wall, hanging lantern, cold blue mist. |
-| boiler_room | boiler_room.png | 1672x941 | Cramped boiler room inside a steam barge. Riveted iron boiler with brass fittings, pressure release valve and gauges, heavy riveted iron door with a steam-driven latch bolt, stacked cargo crates, wisps of steam, dim red-orange furnace glow, copper pipes. |
-| debate | debate.png | 1672x941 | Abstract stylized debate backdrop, low detail: Victorian newspaper-print / engraved steel-plate look, cream newsprint (#f3eedf, #e3d9c2) with halftone dots and column lines in ink green, copper pipes along the edges, large faint pressure-gauge dial motif in the centre-back, soft lamp-gold glow, vignette. (Suffix differs: no legible text.) |
+| office_night | bg_office_night.jpg | 1672x941 | Interior of a detective agency living room at night, Baker Street. Green banker's lamp and gas wall lamps, wood paneling, brass fittings. Steam radiator with brass pipes and pressure gauge, brass speaking tube, mechanic's workbench corner with prosthetic arm parts and tools, two leather armchairs, tall bookshelves, large window with foggy blue London night and gas lamp halos. |
+| office_day | bg_office_day.jpg | 1672x941 | Same living room by grey overcast morning daylight: soft cool grey light through the large window with misty street, a few still-glowing brass lamps; same props (radiator, speaking tube, workbench with prosthetic parts, armchairs, bookshelves). |
+| kitchen_morning | bg_kitchen_morning.jpg | 1672x941 | Small detective agency kitchen-cum-living-room corner in the morning, soft warm sunlight and gas lamp glow. Victorian wooden icebox with brass fittings and small brass dial, wooden table with one empty dessert plate, polished wooden floor, closed bedroom door at the side, copper pots. |
+| clockshop | bg_clockshop.jpg | 1672x941 | Interior of the Time Bird clock shop. Large ornate cuckoo-style bird clock with brass pendulum cover and carved bird, wooden counters, parts cabinets with many small drawers, shelves of clocks and gears, small corner coffee table with two chairs, warm gas lamp glow. |
+| dock_fog | bg_dock_fog.jpg | 1672x941 | Thames river dock in dense fog at night near dawn. Wet dark planks, mooring ropes and bollards, moored steam barge with brass funnel in the fog, gas lamps with golden halos, faint police lantern glow, cold fog-night blue dominant. |
+| barge_deck | bg_barge_deck.jpg | 1672x941 | Deck of a steam barge on the Thames in fog at night. Brass pressure valve wheel on a pipe, coiled ropes, wooden lectern-style logbook stand with a closed book, coal dust on wet deck planks, funnel and cabin wall, hanging lantern, cold blue mist. |
+| boiler_room | bg_boiler_room.jpg | 1672x941 | Cramped boiler room inside a steam barge. Riveted iron boiler with brass fittings, pressure release valve and gauges, heavy riveted iron door with a steam-driven latch bolt, stacked cargo crates, wisps of steam, dim red-orange furnace glow, copper pipes. |
+| debate | bg_debate.jpg | 1672x941 | Abstract stylized debate backdrop, low detail: Victorian newspaper-print / engraved steel-plate look, cream newsprint (#f3eedf, #e3d9c2) with halftone dots and column lines in ink green, copper pipes along the edges, large faint pressure-gauge dial motif in the centre-back, soft lamp-gold glow, vignette. (Suffix differs: no legible text.) |
 
-Notes: the generator chooses the output size (cannot be set); native 1672x941 is 16:9 and larger than 1280x720, so scale down in the pipeline if needed. The debate backdrop contains small engraving vignettes (dome, steamship, train, chimneys) in the four corner/side areas and lamps at the top corners.
+Notes: the generator chooses the output size (cannot be set); native 1672x941 is 16:9; the files here are already scaled to 1280x720. The debate backdrop contains small engraving vignettes (dome, steamship, train, chimneys) in the four corner/side areas and lamps at the top corners.
+
+# UI textures and icons (investigate, board)
+
+Not generated by Image Summon; made locally, deterministic, flat in `_blob/`:
+
+| file | size | made with | used by |
+| --- | --- | --- | --- |
+| ui_cork.jpg | 256x256 tile | ImageMagick: `xc:#9a6e43`, Gaussian noise (seed 11), dark speckles from thresholded random noise (seed 5), multiply, `-modulate 82,70`, quality 85 | board: cork board background (`background-repeat: repeat`) |
+| ico_look.png, ico_item.png, ico_talk.png, ico_device.png, ico_seal.png | 44x44 RGBA | hand-written SVG (magnifier, gear, speech bubble, key, seal) rasterized with `magick -background none` | investigate: hotspot type chips |
+| ico_check.png | 44x44 RGBA | SVG check mark | investigate: done spot; board: rationale chosen (drawer) |
+| ico_pin_placed.png | 44x44 RGBA | SVG map pin | board: card is on the board (drawer) |
+| ico_weak.png, ico_scissors.png, ico_star.png | 44x44 RGBA | SVG cracked gear, scissors, star | board: sophistry weak mark, invalid link, Golden Clue link |
+
+Why PNG instead of inline `<svg>`: inline SVG inside a `<repeat>` template is not drawn by XTFrame 0.15.0 (images are), and every one of these icons sits in a list entry.
