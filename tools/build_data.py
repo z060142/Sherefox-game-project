@@ -15,6 +15,7 @@ Usage (from the project root):
 Inputs (all inside the project):
     source/localization/   localization package (strings.json, *.csv)
     source/tags/tags_ch01-03.csv   per-card / per-node tag values (category, value, slug, grazing, hidden)
+    source/staging/staging_ch01-03.csv   per-line VN staging (bg, standees, focus, style); merged into the script table
     docs/design/*.md       design snapshots (01-systems, 02-numbers, 10-cases)
     docs/rulings.md        design rulings not yet in the snapshots (applied as constants below, cited by id)
 
@@ -37,6 +38,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 LOC = ROOT / "source" / "localization"
 TAG_FILE = ROOT / "source" / "tags" / "tags_ch01-03.csv"
+STAGING_FILE = ROOT / "source" / "staging" / "staging_ch01-03.csv"
 DESIGN = ROOT / "docs" / "design"
 DATA_OUT = ROOT / "data"
 STRINGS_OUT = ROOT / "strings"
@@ -127,6 +129,15 @@ GOLDEN_OUT = {"E02_01": "G-01"}
 TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one).
 WARMUP = {3: {"refuters": ["E03_05", "E03_02"], "hand": ["E03_05", "E03_02"]}}
+
+# VN staging vocabularies (docs/ui-contracts.md, vn section). Characters without a standee yet use a slug of
+# their English name so the UI can add the standee later.
+STAGING_BGS = {"", "office_night", "office_day", "kitchen_morning", "clockshop", "dock_fog", "barge_deck",
+               "boiler_room", "debate"}
+STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner"}
+STAGING_PLACEHOLDER_CHARS = {"holloway", "gresham", "tommy", "old_tom"}
+STAGING_COLUMNS = ["id", "bg", "slot_l", "slot_c", "slot_r", "focus", "style", "note"]
+STAGING_STYLES = (0, 1, 2)
 
 # ---------------------------------------------------------------- helpers
 
@@ -441,6 +452,54 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
     return out, info
 
 
+def merge_staging(script: list[dict]) -> None:
+    """Add bg / slot_l / slot_c / slot_r / focus / style to every script row from the staging file."""
+    if not STAGING_FILE.exists():
+        err(f"staging: {STAGING_FILE.relative_to(ROOT)} not found")
+        return
+    rows = read_csv(STAGING_FILE)
+    if rows and list(rows[0].keys()) != STAGING_COLUMNS:
+        err(f"staging: header must be {','.join(STAGING_COLUMNS)}, got {','.join(rows[0].keys())}")
+        return
+    by_id: dict[str, dict] = {}
+    for r in rows:
+        if r["id"] in by_id:
+            err(f"staging: duplicate row for {r['id']}")
+        by_id[r["id"]] = r
+    script_ids = {s["id"] for s in script}
+    for sid in sorted(by_id.keys() - script_ids):
+        err(f"staging: {sid} is not a script id")
+    chars = STAGING_CHARS | STAGING_PLACEHOLDER_CHARS
+    for line in script:
+        r = by_id.get(line["id"])
+        if r is None:
+            err(f"staging: no row for script line {line['id']}")
+            line.update({"bg": "", "slot_l": "", "slot_c": "", "slot_r": "", "focus": 0, "style": 0})
+            continue
+        slots = [r["slot_l"], r["slot_c"], r["slot_r"]]
+        if r["bg"] not in STAGING_BGS:
+            err(f"staging {r['id']}: unknown bg {r['bg']!r}")
+        for name, cid in zip(("slot_l", "slot_c", "slot_r"), slots):
+            if cid and cid not in chars:
+                err(f"staging {r['id']}: unknown character id {cid!r} in {name}")
+        shown = [c for c in slots if c]
+        if len(shown) != len(set(shown)):
+            err(f"staging {r['id']}: the same character stands in two slots")
+        try:
+            focus, style = int(r["focus"]), int(r["style"])
+        except ValueError:
+            err(f"staging {r['id']}: focus and style must be integers")
+            focus, style = 0, 0
+        if focus not in (0, 1, 2, 3):
+            err(f"staging {r['id']}: focus {focus} not in 0..3")
+        elif focus and not slots[focus - 1]:
+            err(f"staging {r['id']}: focus {focus} points at an empty slot")
+        if style not in STAGING_STYLES:
+            err(f"staging {r['id']}: style {style} not in 0..2")
+        line.update({"bg": r["bg"], "slot_l": slots[0], "slot_c": slots[1], "slot_r": slots[2],
+                     "focus": focus, "style": style})
+
+
 def build_tells(loc: dict, script_rows: list[dict]) -> tuple[list[dict], dict]:
     by_id = {r["ID"]: r for r in loc["script"]}
     tells, gesture_en = [], {}
@@ -566,6 +625,7 @@ def main() -> int:
             banners[("大字" if m.group(1) == "CUT" else "印", r["zh-TW"])] = r["ID"]
 
     script, sinfo = build_script(loc, banners)
+    merge_staging(script)
     tells, gesture_en = build_tells(loc, script)
 
     # Tail node text: first endgame line of the chapter library; warm-up node text: the 誤判 line.

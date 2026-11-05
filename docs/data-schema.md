@@ -20,6 +20,7 @@
 | 來源 | 內容 |
 |---|---|
 | `source/localization/` | 在地化包（2026-11-06 版）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
+| `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
 | `source/tags/tags_ch01-03.csv` | 每張證物卡與每個主張節點的標籤（§0.4）；目前是**佔位檔** |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
 | `docs/design/02-numbers.md` | §一（前期欄，解析）、§四（類型權重，解析）、§五（各案主導權／節點上限／主張傷害，解析） |
@@ -65,7 +66,7 @@
 
 ### 0.5 驗證（建置時執行）
 
-錯誤（建置失敗）：表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應。
+錯誤（建置失敗）：表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）。
 
 警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物）；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；節點無標籤；在地化與 10-cases 證物表的等級／鑑定／類別不同；佔位標籤檔。
 
@@ -139,8 +140,24 @@
 | appraisal | bool | 此行是鑑定台詞（在地化備註含 `appraisal`） |
 | banner | string | 演出行中的書法大字／印章：`【大字：X】`→ `CUT_*`、`【印：X】`→ `STAMP_*`（以 ui_strings 中 zh-TW 文字對應；`破竹×n` 取 `STAMP_HACHIKU`），多值依出現順序 |
 | inactive | bool | 在地化備註寫「Not triggered in this chapter」或「not yet unlocked」（本章不會觸發，保留供重玩） |
+| bg | string | 這行的背景 id（`vn.bg`）：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`，空字串＝新聞紙底。來自演出檔（§3.1） |
+| slot_l、slot_c、slot_r | string | 左／中／右立繪的角色 id（`vn.slot_*`），空字串＝無人。來自演出檔 |
+| focus | number | 說話位置：0 無（旁白、系統、報紙）、1 左、2 中、3 右；指向的位置一定有人。來自演出檔 |
+| style | number | 文字樣式（`vn.style`）：0 對白、1 亞瑟筆記旁白、2 系統／報紙／證物描述等非人物文字。來自演出檔 |
 
-不產生 `expr`（立繪表情）、`bg`、`cmd`、`next`：劇本沒有寫明，不自行設計。
+不產生 `expr`（立繪表情）、`cmd`、`next`：劇本沒有寫明，不自行設計。`bg`、立繪與焦點、樣式由演出檔（§3.1）補上，劇本行文字與數量不因此改變。
+
+### 3.1 演出檔 `source/staging/staging_ch01-03.csv`
+
+UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 `script.id` 恰好一列（含場景標題 L001 與論戰台詞庫 S90）；`note` 只供人讀，不進資料表。建置時逐欄併入 `script`，缺列、多列、重複、未知 id 都是錯誤。
+
+驗證（錯誤）：`bg` 必須在背景集合內；`slot_*` 必須是角色 id 或空字串，同一列不得重複；`focus` 0～3 且不為 0 時對應的位置必須有人；`style` 0～2。允許的角色 id：`sherefox`、`arthur`、`baskerville`、`victor`、`wolfhart`、`valet`（Ch.2 費奇）、`partner`（Ch.3 皮爾斯），以及尚無立繪的佔位 id（英文名的小寫 slug，之後 UI 補立繪）：`holloway`、`gresham`、`tommy`、`old_tom`。新增背景或角色要同時改 `docs/ui-contracts.md`（vn 一節）與 `build_data.py` 的 `STAGING_*` 常數。
+
+撰寫規則：
+- 背景依場景標題與 10-cases 的場景表；場景換地點時，在劇本寫明的那一行換。報紙場景與純筆記場景用空字串。論戰場景（含熱身）用 `debate`；論戰結束後回到現實對話的行換回原地點（備註註明）。蒐證場景 Ch.3 S05 依調查點所在地（§5.1）逐行換背景。
+- 站位：Sherefox 在她出場的場景一律站左；場景的主要對手站右；第三人站中。角色在自己第一句台詞（或舞台指示寫明出場／被點名在場）時上場，留到場景結束或劇本寫明離開；場景內位置不跳動。同場超過三人時，沉默最久的人下場讓位（備註註明）。論戰場景從第一列起雙方都在場。
+- `focus`＝該行說話者的位置；旁白、系統、報紙、證物描述、演出行、分支標記為 0。場景標題與論戰台詞庫（S90）不會當作對白播放：背景取所屬場景、三個位置空、`focus` 0、`style` 2。
+- `style`：說話者是人物 0；`旁白（亞瑟筆記）` 1；其餘（系統、報紙、證物描述、演出、備註、分支、場景標題）2。
 
 ## 4. `evidence`：證物卡（依 id；G-01、S-01 在最後）
 
