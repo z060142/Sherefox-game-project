@@ -66,7 +66,7 @@
 
 ### 0.5 驗證（建置時執行）
 
-錯誤（建置失敗）：表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）。
+錯誤（建置失敗）：表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點取得、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
 
 警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物）；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；節點無標籤；在地化與 10-cases 證物表的等級／鑑定／類別不同；佔位標籤檔。
 
@@ -103,8 +103,8 @@
 | tailPenalty | number | 尾聲答錯扣血 | 02-numbers §一 |
 | tailRounds | number | 尾聲回合數 | 02-numbers §一 |
 | debate | string | 主論戰對手 id（`opponents.id`） | — |
-| openPaper | string | 開場報紙群組（`papers.group`） | — |
-| endPaper | string | 章末轉場報紙群組（`papers.group`） | — |
+| openPaper | string | 章首報紙群組（`papers.group`）；即章節交界的合併報紙（§9） | 裁決 D5 |
+| endPaper | string | 章末報紙群組（`papers.group`）；只有最後一章（Ch.3）有值，Ch.1～2 為空白（章節交界只有一份報紙，在下一章開頭，見 §9） | 裁決 D5 |
 | next | number | 下一章章號 | — |
 
 ## 2. `steps`：章節步驟（依章號、idx）
@@ -115,11 +115,19 @@
 | chapter | number | 章號 |
 | idx | number | 章內順序，0 起 |
 | kind | string | `paper`／`vn`／`warmup`／`investigate`／`board`／`debate`／`result` |
-| sub | string | `paper`：`open`（開場頭版）或 `transition`（轉場報紙）；`vn`：`daily`／`event`／`notes`（結案筆記）；其他空白 |
-| scene | string | 該步驟對應的劇本場景（`script.scene`，例 `S02`）；`board` 與轉場報紙空白 |
+| sub | string | `paper`：`open`（章首合併報紙）或 `transition`（Ch.3 之後的最終報紙）；`vn`：`daily`／`event`／`notes`（結案筆記）；其他空白 |
+| scene | string | 該步驟對應的劇本場景（`script.scene`，例 `S02`）；章首報紙為 `S01`；`board` 與最終報紙（`CH03_END`）空白 |
 | arg | string | `paper` → `papers.group`；`warmup`／`debate` → `opponents.id`；`investigate`／`board` → 章 key（`CH0n`，查 `hotspots.chapter`、`evidence.usable`）；其他空白 |
 
-推導：依劇本每個場景的標題（`L001`）判定種類——含「報紙頭版」→ paper/open、「熱身小論戰」→ warmup、「主論戰」→ debate、「蒐證」→ investigate、「結算」→ result、「結案筆記」→ vn/notes、「日常」→ vn/daily、「事件」→ vn/event（依此順序比對）。`investigate` 之後插入 `board`（線索板沒有劇本場景，01-systems §4.1）。每章最後加轉場報紙（01-systems §3.3）；Ch.1 最前面加 `NEWS_00_OPEN`（§3.3「Ch.1 開場」）。論戰台詞庫 `S90` 不是步驟。
+推導：依劇本每個場景的標題（`L001`）判定種類——含「報紙頭版」→ paper/open、「熱身小論戰」→ warmup、「主論戰」→ debate、「蒐證」→ investigate、「結算」→ result、「結案筆記」→ vn/notes、「日常」→ vn/daily、「事件」→ vn/event（依此順序比對）。`investigate` 之後插入 `board`（線索板沒有劇本場景，01-systems §4.1）。裁決 D5：每章開頭只有**一個** paper 步驟（`sub=open`、`scene=S01`、`arg=CH0n_OPEN`），它是章節交界的合併報紙，不再有獨立的 S01 vn 步驟，章末也不再有轉場報紙步驟；只有最後一章（Ch.3）末尾保留一個 paper 步驟（`sub=transition`、`arg=CH03_END`，原本會開啟 Ch.4 的報紙，Ch.4 開場不在範圍內）。裁決 D6：`result` 步驟播放劇本的結算台詞；`NEWS_*` 結果頭條只出現在下一份報紙的側欄（§9），不在結算步驟播放。論戰台詞庫 `S90` 不是步驟。
+
+每章步驟序列（Ch.1～3）：
+
+| 章 | 序列 |
+|---|---|
+| Ch.1 | paper(S01) → vn daily(S02) → vn event(S03) → investigate(S04) → board → debate(S05) → result(S06) → vn notes(S07) |
+| Ch.2 | paper(S01) → vn daily(S02) → vn event(S03) → investigate(S04) → board → debate(S05) → result(S06) → vn notes(S07) |
+| Ch.3 | paper(S01) → vn daily(S02) → vn event(S03) → warmup(S04) → investigate(S05) → board → debate(S06) → result(S07) → vn notes(S08) → paper transition(`CH03_END`) |
 
 ## 3. `script`：劇本行（每行一列，依章、場景號、行號）
 
@@ -183,8 +191,8 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | scandal | bool | 醜聞旗標＝帶醜聞類標籤 | 01-systems §2.8 |
 | motive | bool | 動機 | 設計未指定任何一張 → 全部 false |
 | offChain | bool | 鏈外事實 | 01-systems §2.8（黃金線索都帶）；裁決 C2 |
-| required | bool | 必需證物 | 設計未指定 → 全部 false（待確認 Q5） |
-| obtainable | bool | 對手可取得（漏撿時進對手手牌） | 01-systems §1.8 預設可取得；只有一般與關鍵才可能進手牌；Ch.1 由 `chapters.missToHand=false` 關掉 |
+| required | bool | 必需證物 | 裁決 D2：Ch.1 E01_03；Ch.2 E02_02、E02_06；Ch.3 E03_02、E03_07；其餘 false（建置常數 `REQUIRED`） |
+| obtainable | bool | 對手可取得（漏撿時進對手手牌） | 裁決 D3：一般與關鍵可取得；劇情、黃金線索（G-*）、替代證物（S-*）不可；再套用 D2：必需證物一律不可取得。Ch.1 另由 `chapters.missToHand=false` 關掉 |
 | refutes | string | 這張卡能破解的節點，多值 | `nodes.refutedBy` 反查 |
 | golden | string | 推理正確時產出的黃金線索 id | 10-cases Ch.2 結算（E02_01 → G-01） |
 | obtain | string | 取得方式：`hotspot`／`afterDebate`／`golden` | E02_08：劇本「（論戰後取得）」；G-01：E02_01 理由正確 |
@@ -310,22 +318,33 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 推導：在地化備註第一段決定 category 與（若有）action，例 `Tell line: Assert (gesture: …)`、`Action line: Onslaught`、`Arthur Tell-hint line | action: Reinforce`；`Sherefox action line | Solid Chain` 這類只在一組的第一行寫子類，同章同 category 之後沒寫子類的行沿用上一個子類（來源的寫法如此）。標籤對照見 `LIBRARY_LABELS`；遇到不認得的備註，建置失敗。
 
-## 9. `papers`：報紙（依章；同章的開場在轉場之前）
+## 9. `papers`：報紙（章節交界的合併報紙；依章）
+
+裁決 D5：章節交界只有**一份**報紙，放在下一章開頭。主頭條與導言（`headlineKey`、`subKey`、`bodyKey`）是該章劇本 S01 開場（`HEAD_CH0n`、`HEAD_CH0n_SUB`、`SCR_CH0n_S01_L003`）；側欄刊上一案的結果，提供勝利／惡名／敗北三個版本，由流圖在執行時依「頭條判定順序」（01-systems §3.3）選一個。共 4 列：`CH01_OPEN`、`CH02_OPEN`、`CH03_OPEN`，以及 Ch.3 之後的最終報紙 `CH03_END`。
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
-| id | string | 開場：`CH0n_OPEN`；轉場：頭條 id（`NEWS_01_END`、`NEWS_02_WIN`…） |
-| chapter | number | 所屬章（轉場報紙＝結束的那一章；`NEWS_00_OPEN` 記在 Ch.1） |
-| kind | string | `open`（章首頭版，劇本 S01）／`transition`（轉場報紙，01-systems §3.3） |
-| group | string | 一份報紙的群組（`CH0n_OPEN`、`CH0n_END`、`CH00_END`）；`steps.arg` 與 `chapters.*Paper` 指向群組 |
-| variant | string | 頭條版本：`win`／`notorious`／`lose`；只有一個版本時空白。選擇順序依 01-systems §3.3「頭條判定順序」，由流圖決定 |
-| mastKey | string | 刊頭 `UI_PAPER_MAST`（全部是倫敦版） |
-| headlineKey | string | 頭條：開場 `HEAD_CH0n`；轉場 `NEWS_*` |
-| subKey | string | 副標：`HEAD_CH0n_SUB`／`NEWS_*_SUB`（zh 文字以「第二版」開頭者改放 `page2Key`） |
-| bodyKey | string | 頭版內文：開場報紙＝劇本 `SCR_CH0n_S01_L003` |
-| page2Key | string | 第二版：`NEWS_0n_NEXT`（下一案引子），或以「第二版」開頭的 `_SUB` |
-| page2SubKey | string | 第二版副標 `NEWS_0n_NEXT_SUB` |
-| sideKey | string | 側欄 `NEWS_SIDE_0n` |
+| id | string | 章首報紙：`CH0n_OPEN`；Ch.3 之後的最終報紙：`CH03_END` |
+| chapter | number | 所屬章（章首報紙＝它開啟的那一章；`CH03_END` 記在 Ch.3） |
+| kind | string | `open`（章首合併報紙）／`transition`（最終報紙：Ch.4 開場不在範圍內，主頭條改用 `NEWS_03_NEXT`） |
+| group | string | 報紙群組（`CH0n_OPEN`、`CH03_END`）；`steps.arg` 與 `chapters.openPaper`／`endPaper` 指向群組 |
+| resultChapter | number | 側欄結果所屬的案件章號；`0`＝沒有上一案（Ch.1，側欄是開場城市新聞 `NEWS_00_OPEN`） |
+| mastKey | string | 刊頭 `UI_PAPER_MAST` |
+| headlineKey | string | 主頭條：`HEAD_CH0n`（`CH03_END` 為 `NEWS_03_NEXT`） |
+| subKey | string | 主頭條副標：`HEAD_CH0n_SUB`（`CH03_END` 為 `NEWS_03_NEXT_SUB`） |
+| bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`；`CH03_END` 空白 |
+| page2Key | string | 第二版：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，開場廣告）；其餘空白 |
+| page2SubKey | string | 第二版副標；目前全空白 |
+| sideKey | string | 側欄的社會短訊 `NEWS_SIDE_0n`（n＝`resultChapter`；`resultChapter=0` 時空白） |
+| sideWinKey／sideWinSubKey | string | 側欄結果：勝利版的標題與副標（`NEWS_0n_WIN`、`NEWS_0n_WIN_SUB`） |
+| sideNotoKey／sideNotoSubKey | string | 側欄結果：惡名版（`NEWS_0n_NOTO`、`_SUB`） |
+| sideLoseKey／sideLoseSubKey | string | 側欄結果：敗北版（`NEWS_0n_LOSE`、`_SUB`） |
+
+- 只有一個版本的結果（`NEWS_00_OPEN`、`NEWS_01_END`）：三組欄位填同一個鍵，流圖不需特判。
+- 副標欄：zh 文字以「第二版」開頭的 `_SUB` 是下一案引子，不是副標，不寫進表（引子即下一章的 S01 主頭條）：`NEWS_01_END_SUB` 因此不使用；`NEWS_00_OPEN_SUB` 是第二版廣告，放 `CH01_OPEN.page2Key`。`NEWS_02_NEXT` 也不使用（內容即 `HEAD_CH03`）。
+- `CH03_END` 的側欄是 Ch.3 的結果（`NEWS_03_WIN`／`NOTO`／`LOSE`）。
+- 流圖選版：敗北 → `sideLoseKey`；勝利且惡名 ≥ 3 → `sideNotoKey`；否則 `sideWinKey`（01-systems §3.3 頭條判定順序）。
+- 結算場景（裁決 D6）：劇本結算台詞在 `result` 步驟播放；`NEWS_*` 結果頭條只在這張表的側欄出現。
 
 「據稱過程頗有爭議」（`UI_PAPER_DISPUTE`）、「偵探手法亦遭質疑」（`UI_PAPER_NOTO_LOSE`）、「另有民間人士協助」（`UI_PAPER_CREDIT`）屬於 §3.3 的組版規則，不寫進表，由流圖依惡名值附加。
 
@@ -395,21 +414,17 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 ## 待確認
 
-每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3 已套用；C4 已改成可替換的標籤檔）。
+每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3、D2、D3、D5、D6 已套用；C4 已改成可替換的標籤檔；原 Q3、Q4、Q5、Q11 因此刪除，其餘編號不變）。
 
 | # | 問題 | 來源 | 目前的選擇 |
 |---|---|---|---|
 | Q1 | 標籤值（`類別：值`）尚未設計；值的顯示文字也沒有字串鍵 | 裁決 C4；01-systems §2.4、§2.8 | 佔位標籤檔只有類別、無擦邊；節點標籤暫抄破解證物類別。標籤值表來了之後要另加顯示鍵（例 `TAG_<category>_<slug>`），需要在地化提供 en |
 | Q2 | 章名沒有在地化鍵 | ui_strings `UI_CHAPTER_CARD` 用 `{chapterTitle}`；10-cases 章標題 | 從結案筆記行的「案件名稱」擷取成 `CHAP_0n_TITLE`；請在地化正式提供 |
-| Q3 | 每章開頭連續兩份報紙：前一章的轉場報紙（§3.3，第二版已是下一案引子）之後，劇本 S01 又是一份開場頭版；Ch.1 則是 `NEWS_00_OPEN` 加 S01 | 01-systems §3.3、§4.1；10-cases 開場頭條；20-script 各章場景 1 | 兩份都列為步驟（轉場在前、開場在後） |
-| Q4 | 結算場景（劇本 S06／S07）的報紙行與 01-systems §3.3 的轉場頭條是兩套不同的文字（例 Ch.2 勝利「報時鳥揭穿掉包案！」vs `NEWS_02_WIN`） | 10-cases 結算；20-script；01-systems §3.3 | 劇本的報紙行留在 result 步驟當對白播放；轉場報紙用 §3.3 的 `NEWS_*` |
-| Q5 | 各案的「必需證物」沒有指定（1.7 說每案 2～3 張） | 01-systems §1.7；10-cases | 全部 `required=false`；結束蒐證按鈕與亞瑟補撿因此不會作用。候選（論破／尾聲用到的非關鍵證物）需設計決定 |
 | Q6 | 調查點與證物的對應未定；設計清單裡沒有 E01_03、E02_01、E02_04、E02_07、E03_06 的調查點；E03_09 劇本寫「死者桌上」，對應到市政公告欄 | 10-cases 場景表；20-script 蒐證場景 | 見 §5.1；缺的補「額外」調查點；E03_07 依「死者懷中」併入屍體（同點最多 2 張） |
 | Q7 | 調查點數遠少於 §1.3（Ch.1 7／10、Ch.2 9／12、Ch.3 11／22）；刻度÷調查點 Ch.2 1.11、Ch.3 1.45（設計要 0.65～0.75）；純情報點 0%／22%／27%（設計約 40%）；檢視點沒有情報文字 | 01-systems §1.2、§1.3；10-cases | 不補設計沒有的點；檢視點 `lines` 空白 |
 | Q8 | 證物數與 §1.3 不符：Ch.1 關鍵 1（E01_03）vs 0；Ch.2 劇情 1（E02_08）vs 0；Ch.3 一般 7 vs 9 | 01-systems §1.3；10-cases 證物表 | 照 10-cases 與在地化的實際證物 |
 | Q9 | Ch.1 亞瑟的性格權重未給（只說「補強居多、不用猛攻與設陷」） | 10-cases Ch.1 對手行為表；02-numbers §四 | 庇護者型 25／5／50／20 去掉猛攻與設陷 → 25／0／50／0 |
 | Q10 | 「每漏 1 件 → 手牌 +1、主導權 +10」只出現在 10-cases 的暫定數值卡（Ch.2、Ch.3）；01-systems A-1 只對 Ch.4／Ch.5 寫明節點 +1 | 10-cases 數值卡；01-systems A-1；02-numbers §五 | `handPerMissed=1`、`hpPerMissed=10`（Ch.2、Ch.3） |
-| Q11 | 對手可取得：設計沒逐件指定 | 01-systems §1.8 | 依預設：一般與關鍵全部 `obtainable=true`；劇情、黃金、替代 false |
 | Q12 | 鑑定揭露哪些標籤只到類別層級；E03_02 兩個標籤都要機械鑑定、E03_01 兩個都要醫療鑑定。§3.1 又說驗屍報告帶【時間】【物理特性】，但 E03_01 的類別是時間・人物 | 01-systems §1.5、§3.1；10-cases Ch.3 | 依 §1.5 推導 `hiddenTags`；標籤檔可逐筆以 `hidden` 覆寫 |
 | Q13 | 熱身手牌 E03_05、E03_02 依 A-13 要在熱身前持有（事件中自動取得），10-cases 又把門閂列為鍋爐室調查點；E03_02 需機械鑑定，劇本熱身中有「（鑑定後）」 | 01-systems A-13；10-cases Ch.3 熱身／場景表；20-script Ch.3 S04 | 熱身開始時把 `hand` 加入持有；調查點照列（已持有則不重複）。熱身中的鑑定是否扣次數未定 |
 | Q14 | 驗屍報告（E03_01）在信任度 ≥ 3 時由熱身獎勵自動給予（已鑑定），否則要在屍體調查點取得並醫療鑑定 | 10-cases Ch.3 熱身；01-systems §3.1 | 表中 E03_01 `obtain=hotspot`；信任度分支由流圖處理 |

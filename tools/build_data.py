@@ -123,6 +123,8 @@ OBTAIN_OVERRIDE = {"E02_08": "afterDebate"}  # script Ch.2 S04: 「（論戰後�
 
 # Ruling C1 / C2 (docs/rulings.md) and explicit 強攻 marks in 10-cases.
 STRONG = {"E01_03", "E02_01", "E03_04", "G-01"}
+# Ruling D2: required evidence per case. Required cards are never opponent-obtainable (ruling D3).
+REQUIRED = {"E01_03", "E02_02", "E02_06", "E03_02", "E03_07"}
 # Golden output of key evidence (10-cases 結算・黃金線索).
 GOLDEN_OUT = {"E02_01": "G-01"}
 # Ruling C3: endgame second-claim refuters.
@@ -770,8 +772,9 @@ def main() -> int:
             "reason0Key": keys[0], "reason1Key": keys[1], "reason2Key": keys[2], "correct": correct,
             "onBoard": grade != "story",
             "strong": eid in STRONG, "scandal": "scandal" in b["cats"], "motive": False,
-            "offChain": grade == "golden", "required": False,
-            "obtainable": grade in ("common", "key"),
+            "offChain": grade == "golden", "required": eid in REQUIRED,
+            # Ruling D3: common and key cards are obtainable; story / golden / substitute are not. D2 overrides.
+            "obtainable": grade in ("common", "key") and eid not in REQUIRED,
             "refutes": ",".join(refutes_of.get(eid, [])), "golden": GOLDEN_OUT.get(eid, ""),
             "obtain": obtain, "hotspot": yielded.get(eid, ""),
             "lines": ",".join(sinfo["evidence_lines"].get(eid, [])),
@@ -829,39 +832,52 @@ def main() -> int:
                 "mistakeLimit": 3, "hand": ",".join(WARMUP[c]["hand"]), "handPerMissed": 0, "hpPerMissed": 0,
             })
 
-    # ---- papers
+    # ---- papers (ruling D5): one paper per chapter boundary. Main headline and lead are the next chapter's
+    # script S01; the sidebar carries the previous case's result (win / notorious / lose).
     papers = []
     side = {c: f"NEWS_SIDE_{c:02d}" for c in CHAPTERS}
 
-    def paper(pid, c, kind, group, variant, head, sub_key, body="", page2="", page2sub="", side_key=""):
-        sub, p2 = sub_key, page2
-        # A _SUB whose zh text starts with 第二版 is page-two content, not a sub-headline.
-        if sub and strings.get(sub, {}).get("zh-TW", "").startswith("第二版"):
-            sub, p2 = "", sub if not page2 else page2
-        papers.append({"id": pid, "chapter": c, "kind": kind, "group": group, "variant": variant,
-                       "mastKey": "UI_PAPER_MAST", "headlineKey": head, "subKey": sub, "bodyKey": body,
-                       "page2Key": p2, "page2SubKey": page2sub, "sideKey": side_key})
+    def page_sub(key):
+        # A _SUB whose zh text starts with 第二版 is a page-two teaser, not a sub-headline: dropped here (the
+        # teaser of the next case is that chapter's S01, now the main headline).
+        if key in strings and not strings[key]["zh-TW"].startswith("第二版"):
+            return key
+        return ""
 
-    paper("NEWS_00_OPEN", 1, "transition", "CH00_END", "", "NEWS_00_OPEN", "NEWS_00_OPEN_SUB")
+    def result_keys(c):
+        # (headline, sub) for win / notorious / lose of the case that ended in chapter c.
+        if f"NEWS_{c:02d}_WIN" in strings:
+            return [(f"NEWS_{c:02d}_{x}", page_sub(f"NEWS_{c:02d}_{x}_SUB")) for x in ("WIN", "NOTO", "LOSE")]
+        k = f"NEWS_{c:02d}_END"  # a single version fills all three slots
+        return [(k, page_sub(f"{k}_SUB"))] * 3
+
+    def paper(pid, c, kind, group, result_ch, head, sub, body, page2, res):
+        row = {"id": pid, "chapter": c, "kind": kind, "group": group, "resultChapter": result_ch,
+               "mastKey": "UI_PAPER_MAST", "headlineKey": head, "subKey": sub, "bodyKey": body,
+               "page2Key": page2, "page2SubKey": "", "sideKey": side.get(result_ch, "")}
+        for name, (hk, sk) in zip(("Win", "Noto", "Lose"), res):
+            row[f"side{name}Key"] = hk
+            row[f"side{name}SubKey"] = sk
+        papers.append(row)
+
     for c in CHAPTERS:
         body = next((s["id"] for s in script if s["chapter"] == c and s["scene"] == "S01" and s["seq"] == 3), "")
-        paper(f"{ch_key(c)}_OPEN", c, "open", f"{ch_key(c)}_OPEN", "", f"HEAD_{ch_key(c)}", f"HEAD_{ch_key(c)}_SUB", body)
-        nxt = f"NEWS_{c:02d}_NEXT"
-        if f"NEWS_{c:02d}_WIN" in strings:
-            for variant, suffix in (("win", "WIN"), ("notorious", "NOTO"), ("lose", "LOSE")):
-                k = f"NEWS_{c:02d}_{suffix}"
-                paper(k, c, "transition", f"{ch_key(c)}_END", variant, k, f"{k}_SUB", "",
-                      nxt if nxt in strings else "", f"{nxt}_SUB" if f"{nxt}_SUB" in strings else "", side[c])
+        if c == 1:
+            # No previous case: the sidebar is the opening city news NEWS_00_OPEN (01-systems 3.3); its ad is page two.
+            res, page2 = [("NEWS_00_OPEN", "")] * 3, "NEWS_00_OPEN_SUB"
         else:
-            k = f"NEWS_{c:02d}_END"
-            paper(k, c, "transition", f"{ch_key(c)}_END", "", k, f"{k}_SUB", "", "", "", side[c])
+            res, page2 = result_keys(c - 1), ""
+        paper(f"{ch_key(c)}_OPEN", c, "open", f"{ch_key(c)}_OPEN", c - 1, f"HEAD_{ch_key(c)}",
+              f"HEAD_{ch_key(c)}_SUB", body, page2, res)
+    # Ch.4's opening is out of scope: the paper that would open it is a final step headed by NEWS_03_NEXT.
+    last = CHAPTERS[-1]
+    paper(f"{ch_key(last)}_END", last, "transition", f"{ch_key(last)}_END", last, f"NEWS_{last:02d}_NEXT",
+          page_sub(f"NEWS_{last:02d}_NEXT_SUB"), "", "", result_keys(last))
 
     # ---- steps
     steps = []
     for c in CHAPTERS:
         seq = []
-        if c == 1:
-            seq.append(("paper", "", "CH00_END", "transition"))
         for (sc, scene), meta in sorted(sinfo["scenes"].items()):
             if sc != c or meta["kind"] == "library":
                 continue
@@ -871,7 +887,8 @@ def main() -> int:
             seq.append((k, scene, arg, meta["sub"]))
             if k == "investigate":
                 seq.append(("board", "", ch_key(c), ""))
-        seq.append(("paper", "", f"{ch_key(c)}_END", "transition"))
+        if c == CHAPTERS[-1]:
+            seq.append(("paper", "", f"{ch_key(c)}_END", "transition"))
         for i, (k, scene, arg, sub) in enumerate(seq):
             steps.append({"id": f"{ch_key(c)}_{i:02d}", "chapter": c, "idx": i, "kind": k, "sub": sub,
                           "scene": scene, "arg": arg})
@@ -901,7 +918,8 @@ def main() -> int:
             "police": c >= 3, "warmup": c in WARMUP, "missToHand": c >= 2,
             "playerHp": early["playerHp"], "breakPct": early["breakPct"], "breakLine": early["breakLine"],
             "breakStrong": 1, "breakChain": 2, "tailPenalty": early["tailPenalty"], "tailRounds": early["tailRounds"],
-            "debate": f"{ch_key(c)}_MAIN", "openPaper": f"{ch_key(c)}_OPEN", "endPaper": f"{ch_key(c)}_END",
+            "debate": f"{ch_key(c)}_MAIN", "openPaper": f"{ch_key(c)}_OPEN",
+            "endPaper": f"{ch_key(c)}_END" if c == CHAPTERS[-1] else "",
             "next": c + 1,
         })
 
@@ -967,7 +985,8 @@ def main() -> int:
 KEY_COLUMNS = {
     "chapters": ["titleKey"], "script": ["text", "speaker"], "evidence": ["nameKey", "descKey", "tagsKey", "appraisalKey", "reason0Key", "reason1Key", "reason2Key"],
     "nodes": ["textKey"], "opponents": ["speaker", "gestureAssert", "gestureRush", "gestureReinforce", "gestureTrap"],
-    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2Key", "page2SubKey", "sideKey"],
+    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2Key", "page2SubKey", "sideKey",
+               "sideWinKey", "sideWinSubKey", "sideNotoKey", "sideNotoSubKey", "sideLoseKey", "sideLoseSubKey"],
     "difficulty": ["nameKey", "descKey"],
 }
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
@@ -1049,6 +1068,22 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
     for row in tables["opponents"]:
         if row["tailNode"] and row["tailNode"] not in node_ids:
             err(f"opponents {row['id']}: unknown tail node")
+    # Rulings D2 / D3: required cards exist, are common or key, come from a hotspot, and are never obtainable.
+    ev_by_id = {r["id"]: r for r in tables["evidence"]}
+    for e in sorted(REQUIRED):
+        r = ev_by_id.get(e)
+        if r is None:
+            err(f"required evidence {e}: not in the evidence table")
+            continue
+        if not r["required"] or r["obtainable"]:
+            err(f"evidence {e}: must be required=true and obtainable=false (rulings D2, D3)")
+        if r["grade"] not in ("common", "key") or r["obtain"] != "hotspot":
+            err(f"evidence {e}: a required card must be common/key and obtained from a hotspot")
+    for r in tables["evidence"]:
+        if r["required"] and r["id"] not in REQUIRED:
+            err(f"evidence {r['id']}: required but not in REQUIRED (ruling D2)")
+        if r["obtainable"] and r["grade"] not in ("common", "key"):
+            err(f"evidence {r['id']}: only common and key cards may be obtainable (ruling D3)")
     opp_ids = {r["id"] for r in tables["opponents"]}
     paper_groups = {r["group"] for r in tables["papers"]}
     for row in tables["steps"]:
@@ -1056,6 +1091,18 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
             err(f"steps {row['id']}: unknown opponent {row['arg']!r}")
         if row["kind"] == "paper" and row["arg"] not in paper_groups:
             err(f"steps {row['id']}: unknown paper group {row['arg']!r}")
+    # Ruling D5: each chapter starts with exactly one paper step (the S01 front page) and has no other paper
+    # step, except the final transition after the last chapter.
+    for c in CHAPTERS:
+        cs = [r for r in tables["steps"] if r["chapter"] == c]
+        n_paper = sum(r["kind"] == "paper" for r in cs)
+        if n_paper != (2 if c == CHAPTERS[-1] else 1) or cs[0]["kind"] != "paper" or cs[0]["scene"] != "S01":
+            err(f"steps: Ch.{c} must start with exactly one S01 paper step (ruling D5)")
+        if any(r["scene"] == "S01" and r["kind"] != "paper" for r in cs):
+            err(f"steps: Ch.{c} has a non-paper S01 step (ruling D5)")
+    for r in tables["papers"]:
+        if r["kind"] == "open" and not r["bodyKey"]:
+            err(f"papers {r['id']}: an opening paper needs the S01 lead as bodyKey (ruling D5)")
     for key, v in strings.items():
         for lang in LANGS:
             if lang not in v or not isinstance(v[lang], str):

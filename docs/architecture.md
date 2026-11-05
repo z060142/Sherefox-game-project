@@ -60,7 +60,7 @@
 | `opponents` | 一場論戰的對手 | case, type, hp, nodeCap, base, w_claim, w_rush, w_reinforce, w_trap, clear, fuzzy, disguise, rules |
 | `tells` | 對手的一種行動 | case, action, gestureKey, lines（字串鍵，以 `|` 分隔） |
 | `scripted` | 劇本覆蓋的回合 | case, round, action, node, clarity, lineKey |
-| `papers` | 一份報紙 | id, mastKey, dateKey, headlineKey, subKey, bodyKey, page2Key, sideKey |
+| `papers` | 一份報紙（每個章節交界一份） | 欄位見 `docs/data-schema.md` §9 |
 | `difficulty` | 一個難度（系統規格 6.1） | id, instinct, assist, tailRounds, …；原型只用 `standard`，但流圖一律從此表讀，日後開故事模式／名偵探不改流圖 |
 
 標籤以 `類別:值` 字串存（例 `place:boiler_room`），多值以 `,` 分隔；「共享非擦邊已揭露標籤」由集合 `intersects` 計算（先 `addAll` 再求交集）。
