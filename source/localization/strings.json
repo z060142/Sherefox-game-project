@@ -2411,10 +2411,6 @@
   "zh-TW": "「店主拒絕受訪，櫥窗報時鳥停擺。」",
   "en": "\"The owner declined to be interviewed; the cuckoo in the shop window has stopped.\""
  },
- "NEWS_02_NEXT": {
-  "zh-TW": "泰晤士河濃霧再起　市政廳官員陳屍駁船鍋爐室",
-  "en": "Thames Fog Returns: Municipal Official Found Dead in Barge Boiler Room"
- },
  "NEWS_03_WIN": {
   "zh-TW": "巴斯克維爾警督神速破案　駁船命案元凶落網",
   "en": "Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested"
@@ -2438,14 +2434,6 @@
  "NEWS_03_LOSE_SUB": {
   "zh-TW": "「合夥人表示將接手死者在市政廳的業務。」",
   "en": "\"The partner says he will take over the deceased's business at the Municipal Hall.\""
- },
- "NEWS_03_NEXT": {
-  "zh-TW": "皇家歌劇院升降梯斷裂　首席女高音重傷",
-  "en": "Royal Opera House Lift Cable Snaps: Prima Donna Gravely Injured"
- },
- "NEWS_03_NEXT_SUB": {
-  "zh-TW": "「名偵探維多・克勞已受劇院委託。」",
-  "en": "\"Famed detective Victor Crowe has been engaged by the theatre.\""
  },
  "NEWS_SIDE_01": {
   "zh-TW": "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。",
@@ -3812,8 +3800,8 @@
   "en": "Post-Mortem Findings on Moss"
  },
  "E03_01_TAGS": {
-  "zh-TW": "時間・人物",
-  "en": "Time · Person"
+  "zh-TW": "時間・人物・物理",
+  "en": "Time · Person · Physical"
  },
  "E03_01_DESC": {
   "zh-TW": "死者的皮膚有大片蒸汽燙傷，喉頭水腫，指甲裡卡著門板的木屑。",
@@ -3860,8 +3848,8 @@
   "en": "The Pressure Valve Turned on the Deck"
  },
  "E03_03_TAGS": {
-  "zh-TW": "地點・物理",
-  "en": "Place · Physical"
+  "zh-TW": "地點・物理・人物",
+  "en": "Place · Physical · Person"
  },
  "E03_03_DESC": {
   "zh-TW": "閥柄上有一枚煤灰指印，指紋又寬又長，比老湯姆粗短的手指大了一圈。",
@@ -5096,16 +5084,16 @@
   "en": "Cut-In! N1 removed, counter 30. Fitch's Dominance: 70."
  },
  "SCR_CH02_S05_L013": {
-  "zh-TW": "（第 2 回合・預兆）費奇又拉了拉袖口，眼角瞄向角落。亮起節點：N2。可能行動：主張／設陷（無標記）。",
-  "en": "(Round 2 · Tell) Fitch tugs his cuff again, his eyes flicking toward the corner. Lit node: N2. Possible moves: Assert / Set a Trap (no star)."
+  "zh-TW": "（第 2 回合・預兆）費奇又拉了拉袖口，手帕掏到一半又塞了回去。亮起節點：N2。可能行動：補強（較可能・規則 1）／主張。",
+  "en": "(Round 2 · Tell) Fitch tugs his cuff again, pulls his handkerchief halfway out, then stuffs it back. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Assert."
  },
  "SCR_CH02_S05_L014": {
   "zh-TW": "（預兆）小人只是一介隨從，只說自己看到的事。",
   "en": "(Tell) I'm only a servant. I only say what I saw."
  },
  "SCR_CH02_S05_L015": {
-  "zh-TW": "（提示）N2 是真話，反駁一定空過。他瞄了角落……也許在等妳亂拉線。",
-  "en": "(Hint) N2 is true, so a Rebut would be bound to whiff. He glanced at the corner... maybe he's waiting for you to draw a careless link."
+  "zh-TW": "（提示）N1 剛被拔掉，照規則他多半要補強；可是 N2 是真話，反駁一定空過。補強還是開口都不虧的，只有觀察。",
+  "en": "(Hint) N1 has just been pulled, so by the rules he'll most likely Reinforce. But N2 is true, so a Rebut would be bound to whiff. Whether he shores up or speaks, the only move that loses nothing is Observe."
  },
  "SCR_CH02_S05_L016": {
   "zh-TW": "（觀察）……繼續。你的袖口在說話，我在聽。",
@@ -5408,8 +5396,8 @@
   "en": "(After appraisal) Inspector, this bolt isn't a manual one. It's connected to a steam pipe, and pressure pushes it up and down."
  },
  "SCR_CH03_S04_L005": {
-  "zh-TW": "（出示 E03_05＋E03_02）老湯姆的鑰匙只能開艙門外鎖，碰都碰不到這道蒸汽閂。能讓門從裡面閂上的，是甲板上的壓力閥。",
-  "en": "(Presenting E03_05 + E03_02) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck."
+  "zh-TW": "（出示 E03_05）老湯姆的鑰匙只能開艙門外鎖，碰都碰不到這道蒸汽閂。能讓門從裡面閂上的，是甲板上的壓力閥。",
+  "en": "(Presenting E03_05) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck."
  },
  "SCR_CH03_S04_L006": {
   "zh-TW": "……蒸、蒸汽閂？本警督當然知道！本警督只是在測試妳！",
@@ -5816,16 +5804,16 @@
   "en": "Cut-In! N1 removed, counter 30. Pierce's Dominance: 70."
  },
  "SCR_CH03_S06_L011": {
-  "zh-TW": "（第 2 回合・預兆）皮爾斯摸了摸懷錶鏈，又瞥了亞瑟一眼。亮起節點：N3。可能行動：主張／設陷（無標記）。",
-  "en": "(Round 2 · Tell) Pierce fingers his watch chain, then glances at Arthur. Lit node: N3. Possible moves: Assert / Set a Trap (no star)."
+  "zh-TW": "（第 2 回合・預兆）皮爾斯摸了摸懷錶鏈，另一隻手按住了帳本。亮起節點：N3。可能行動：補強（較可能・規則 1）／主張。",
+  "en": "(Round 2 · Tell) Pierce fingers his watch chain, his other hand pressed flat on the ledger. Lit node: N3. Possible moves: Reinforce (likelier · Rule 1) / Assert."
  },
  "SCR_CH03_S06_L012": {
   "zh-TW": "（預兆）作為合夥人，我有義務說清楚。",
   "en": "(Tell) As a partner, I'm obliged to set things out clearly."
  },
  "SCR_CH03_S06_L013": {
-  "zh-TW": "（提示）他瞥了我一眼……可能在等妳拉虛線。",
-  "en": "(Hint) He glanced at me... he may be waiting for you to draw a dashed line."
+  "zh-TW": "（提示）N1 剛被拔掉，他多半要翻帳本補洞……可他也在摸錶鏈。兩邊都不虧的，是先聽。",
+  "en": "(Hint) N1 has just been pulled, so he'll probably open the ledger to patch the hole... but he's fingering his chain as well. The move that's safe either way is to listen first."
  },
  "SCR_CH03_S06_L014": {
   "zh-TW": "（觀察）請繼續，羅蘭先生。你說得越多，霧就越薄。",
@@ -5888,16 +5876,16 @@
   "en": "(Shaken) Th-that's just an accounting error! The Municipal Hall's books are always a mess!"
  },
  "SCR_CH03_S06_L029": {
-  "zh-TW": "（第 4 回合・預兆）皮爾斯扯鬆領巾，往前踏了一步。亮起節點：N2。可能行動：主張／猛攻。",
-  "en": "(Round 4 · Tell) Pierce loosens his cravat and steps forward. Lit node: N2. Possible moves: Assert / Onslaught."
+  "zh-TW": "（第 4 回合・預兆）皮爾斯扯鬆領巾，往前踏了一步，手卻還按著帳本。亮起節點：N2。可能行動：補強（較可能・規則 1）／猛攻。",
+  "en": "(Round 4 · Tell) Pierce loosens his cravat and steps forward, yet his hand still rests on the ledger. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Onslaught."
  },
  "SCR_CH03_S06_L030": {
   "zh-TW": "（預兆）你這小姑娘懂什麼！",
   "en": "(Tell) What would a slip of a girl like you know!"
  },
  "SCR_CH03_S06_L031": {
-  "zh-TW": "（提示）領巾扯鬆了——他要衝了。他還在動搖，就是這一手。",
-  "en": "(Hint) His cravat's loosened: he's about to charge. He's still Shaken, so this is the moment."
+  "zh-TW": "（提示）照規則他該補帳本，可是領巾扯鬆了、腳也踏出來了——我賭他要衝。他還在動搖，就是這一手。",
+  "en": "(Hint) By the rules he ought to patch his ledger, but the cravat's loosened and he's stepped forward. I'd bet he's about to charge. He's still Shaken, so this is the moment."
  },
  "SCR_CH03_S06_L032": {
   "zh-TW": "（猛攻）鍋爐室的門從裡面鎖上，這就是意外！你們沒有一件證據能——",
@@ -6050,5 +6038,585 @@
  "SCR_CH03_S08_L002": {
   "zh-TW": "案件名稱：霧鎖泰晤士河的蒸汽駁船命案。犯人：羅蘭・皮爾斯。手法：以壓力閥遠端落閂，再用黑市零件卡死洩壓閥。附記：那顆零件的批號，與鐘錶店的齒輪出自同一份清單。兩起案子隔著一條河，卻被同一條線縫在一起。Sherefox 在筆記本上把兩個批號圈起來，在旁邊寫了一個字母：W.。",
   "en": "Case name: The Steam Barge Murder in the Fog on the Thames. Culprit: Roland Pierce. Method: bolting the door remotely via the pressure valve, then jamming the relief valve with a black-market part. Note: that part's batch number comes from the same list as the clock shop's gear. Two cases on either side of one river, stitched together by a single thread. Sherefox circled the two batch numbers in her notebook and wrote a single letter beside them: W."
+ },
+ "TAG_PHYSICAL_CARAMEL_PUDDING": {
+  "zh-TW": "發條焦糖布丁",
+  "en": "Clockwork Caramel Pudding"
+ },
+ "TAG_PHYSICAL_SLID_OFF_WHOLE": {
+  "zh-TW": "整顆滑落",
+  "en": "Slid Off Whole"
+ },
+ "TAG_PHYSICAL_CARAMEL": {
+  "zh-TW": "焦糖",
+  "en": "Caramel"
+ },
+ "TAG_TIME_LATE_NIGHT": {
+  "zh-TW": "深夜",
+  "en": "Late Night"
+ },
+ "TAG_PHYSICAL_BRASS_BALANCE_WHEEL": {
+  "zh-TW": "黃銅擺輪",
+  "en": "Brass Balance Wheel"
+ },
+ "TAG_PLACE_FRIDGE": {
+  "zh-TW": "冰箱",
+  "en": "Fridge"
+ },
+ "TAG_PHYSICAL_CLOTH": {
+  "zh-TW": "布料",
+  "en": "Cloth"
+ },
+ "TAG_PERSON_ARTHUR": {
+  "zh-TW": "亞瑟",
+  "en": "Arthur"
+ },
+ "TAG_PLACE_KITCHEN_FLOOR": {
+  "zh-TW": "廚房地板",
+  "en": "Kitchen Floor"
+ },
+ "TAG_TIME_EARLY_MORNING": {
+  "zh-TW": "清晨",
+  "en": "Early Morning"
+ },
+ "TAG_PLACE_ARTHURS_ROOM": {
+  "zh-TW": "亞瑟房間",
+  "en": "Arthur's Room"
+ },
+ "TAG_TIME_0530": {
+  "zh-TW": "05:30",
+  "en": "05:30"
+ },
+ "TAG_PHYSICAL_PAPER_SLIP": {
+  "zh-TW": "紙片",
+  "en": "Slip of Paper"
+ },
+ "TAG_PERSON_NAMELESS_VISITOR": {
+  "zh-TW": "不留名的訪客",
+  "en": "Nameless Visitor"
+ },
+ "TAG_PLACE_DOOR_GAP": {
+  "zh-TW": "大門門縫",
+  "en": "Gap Under the Front Door"
+ },
+ "TAG_PHYSICAL_DOUBLE_MAINSPRING": {
+  "zh-TW": "雙層發條",
+  "en": "Double-Layer Mainspring"
+ },
+ "TAG_PHYSICAL_SWAPPED_MOVEMENT_BRASS": {
+  "zh-TW": "替換機芯黃銅",
+  "en": "Brass from the Swapped Movement"
+ },
+ "TAG_SCANDAL_MILITARY_BLACK_MARKET": {
+  "zh-TW": "軍工黑市",
+  "en": "Military Black Market"
+ },
+ "TAG_PHYSICAL_BRASS": {
+  "zh-TW": "黃銅",
+  "en": "Brass"
+ },
+ "TAG_PLACE_CUCKOO_CLOCK": {
+  "zh-TW": "報時鳥鐘",
+  "en": "Cuckoo Clock"
+ },
+ "TAG_TIME_1500": {
+  "zh-TW": "15:00",
+  "en": "15:00"
+ },
+ "TAG_TIME_SHOP_CLOCK_SLOW": {
+  "zh-TW": "店鐘慢 3 分鐘",
+  "en": "Shop Clock 3 Minutes Slow"
+ },
+ "TAG_PHYSICAL_SCREWDRIVER_MARKS": {
+  "zh-TW": "小起子撬痕",
+  "en": "Small Screwdriver Marks"
+ },
+ "TAG_PERSON_FITCH": {
+  "zh-TW": "費奇",
+  "en": "Fitch"
+ },
+ "TAG_PERSON_HOLLOWAY": {
+  "zh-TW": "霍洛威",
+  "en": "Holloway"
+ },
+ "TAG_PHYSICAL_SHOP_PAPERWORK": {
+  "zh-TW": "店內文件",
+  "en": "Shop Paperwork"
+ },
+ "TAG_PLACE_CLOCK_SHOP": {
+  "zh-TW": "報時鳥鐘錶店",
+  "en": "The Cuckoo Clockworks"
+ },
+ "TAG_PERSON_WOMAN_IN_BLACK": {
+  "zh-TW": "黑衣女子",
+  "en": "Woman in Black"
+ },
+ "TAG_PLACE_CORNER_TABLE": {
+  "zh-TW": "角落咖啡座",
+  "en": "Corner Coffee Table"
+ },
+ "TAG_PHYSICAL_MILITARY_BATCH_NO": {
+  "zh-TW": "軍工批號",
+  "en": "Military Batch Number"
+ },
+ "TAG_TIME_2200_2230": {
+  "zh-TW": "22:00～22:30",
+  "en": "22:00–22:30"
+ },
+ "TAG_PERSON_MOSS": {
+  "zh-TW": "莫斯",
+  "en": "Moss"
+ },
+ "TAG_PHYSICAL_STEAM_SUFFOCATION": {
+  "zh-TW": "蒸汽窒息",
+  "en": "Steam Suffocation"
+ },
+ "TAG_PLACE_BOILER_ROOM": {
+  "zh-TW": "鍋爐室",
+  "en": "Boiler Room"
+ },
+ "TAG_PHYSICAL_BOILER_PRESSURE": {
+  "zh-TW": "鍋爐蒸汽壓力",
+  "en": "Boiler Steam Pressure"
+ },
+ "TAG_PLACE_DECK": {
+  "zh-TW": "甲板",
+  "en": "Deck"
+ },
+ "TAG_PHYSICAL_VALVE_SOOT": {
+  "zh-TW": "閥門煤灰",
+  "en": "Soot from the Valve"
+ },
+ "TAG_PERSON_OLD_TOM": {
+  "zh-TW": "老湯姆",
+  "en": "Old Tom"
+ },
+ "TAG_PERSON_PIERCE": {
+  "zh-TW": "皮爾斯",
+  "en": "Pierce"
+ },
+ "TAG_SCANDAL_EMBEZZLED_PROCUREMENT": {
+  "zh-TW": "私吞採購",
+  "en": "Embezzled Procurement"
+ },
+ "TAG_TIME_2210": {
+  "zh-TW": "22:10",
+  "en": "22:10"
+ },
+ "TAG_PERSON_W": {
+  "zh-TW": "W.",
+  "en": "W."
+ },
+ "TAG_SCANDAL_PROCUREMENT_AUDIT": {
+  "zh-TW": "採購審計",
+  "en": "Procurement Audit"
+ },
+ "TAG_PERSON_CAT": {
+  "zh-TW": "貓",
+  "en": "The Cat"
+ },
+ "TAG_PHYSICAL_REPAIR_TOOLS": {
+  "zh-TW": "修錶工具",
+  "en": "Watchmaker's Tools"
+ },
+ "TAG_TIME_2130": {
+  "zh-TW": "21:30",
+  "en": "21:30"
+ },
+ "HS_CH01_01_NAME": {
+  "zh-TW": "冰箱",
+  "en": "Fridge"
+ },
+ "HS_CH01_02_NAME": {
+  "zh-TW": "空布丁盤",
+  "en": "Empty Pudding Plate"
+ },
+ "HS_CH01_03_NAME": {
+  "zh-TW": "廚房地板",
+  "en": "Kitchen Floor"
+ },
+ "HS_CH01_04_NAME": {
+  "zh-TW": "亞瑟房門",
+  "en": "Arthur's Door"
+ },
+ "HS_CH01_05_NAME": {
+  "zh-TW": "亞瑟的外套口袋",
+  "en": "Arthur's Coat Pocket"
+ },
+ "HS_CH01_06_NAME": {
+  "zh-TW": "大門門縫",
+  "en": "Gap Under the Front Door"
+ },
+ "HS_CH01_07_NAME": {
+  "zh-TW": "亞瑟（袖口）",
+  "en": "Arthur (Cuffs)"
+ },
+ "HS_CH01_08_NAME": {
+  "zh-TW": "窗台",
+  "en": "Windowsill"
+ },
+ "HS_CH01_08_NOTE": {
+  "zh-TW": "窗戶從裡面扣著，窗台的灰上沒有半個腳印。就算倫敦的貓會開冰箱，也得先進得來。",
+  "en": "The window is latched from the inside, and the dust on the sill holds not a single paw print. Even if London's cats could open a fridge, they'd have to get in first."
+ },
+ "HS_CH01_08_HINT": {
+  "zh-TW": "「貓吃掉的」這個說法，從窗台就開始站不住了。",
+  "en": "\"The cat ate it\" starts falling apart right here at the windowsill."
+ },
+ "HS_CH01_09_NAME": {
+  "zh-TW": "流理台上的茶杯",
+  "en": "Teacups on the Counter"
+ },
+ "HS_CH01_09_NOTE": {
+  "zh-TW": "兩只茶杯，一只洗過，一只沒洗，杯底還剩一圈很濃的茶漬。有人昨晚泡了一壺提神的濃茶。",
+  "en": "Two teacups: one washed, one not, with a dark ring of very strong tea in the bottom. Someone brewed a pot strong enough to keep themselves awake last night."
+ },
+ "HS_CH01_10_NAME": {
+  "zh-TW": "壁爐架上的相框",
+  "en": "Photograph on the Mantelpiece"
+ },
+ "HS_CH01_10_NOTE": {
+  "zh-TW": "Sherefox 和一位戴獵鹿帽的老紳士的合照，相框擦得發亮。旁邊平常放懷錶的位置，今天是空的。",
+  "en": "A photograph of Sherefox with an old gentleman in a deerstalker, its frame polished to a shine. The spot beside it where the pocket watch usually sits is empty today."
+ },
+ "HS_CH01_10_HINT": {
+  "zh-TW": "懷錶不在老位置上……昨晚有人拿走了它？",
+  "en": "The pocket watch isn't in its usual place... did someone take it last night?"
+ },
+ "HS_CH02_01_NAME": {
+  "zh-TW": "櫃台上的懷錶",
+  "en": "Pocket Watch on the Counter"
+ },
+ "HS_CH02_02_NAME": {
+  "zh-TW": "報時鳥鐘",
+  "en": "Cuckoo Clock"
+ },
+ "HS_CH02_03_NAME": {
+  "zh-TW": "鐘擺護蓋",
+  "en": "Pendulum Cover"
+ },
+ "HS_CH02_04_NAME": {
+  "zh-TW": "報童小湯米",
+  "en": "Tommy the Newsboy"
+ },
+ "HS_CH02_05_NAME": {
+  "zh-TW": "寄修收據簿",
+  "en": "Repair Receipt Book"
+ },
+ "HS_CH02_06_NAME": {
+  "zh-TW": "零件櫃與目錄",
+  "en": "Parts Cabinet and Catalogue"
+ },
+ "HS_CH02_07_NAME": {
+  "zh-TW": "費奇",
+  "en": "Fitch"
+ },
+ "HS_CH02_08_NAME": {
+  "zh-TW": "角落咖啡座（論戰後）",
+  "en": "Corner Coffee Table (After the Debate)"
+ },
+ "HS_CH02_09_NAME": {
+  "zh-TW": "工作台",
+  "en": "Workbench"
+ },
+ "HS_CH02_09_NOTE": {
+  "zh-TW": "老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？",
+  "en": "The owner's tools are laid out in perfect order, every one polished bright. Would a man who treats his tools like this leave a scratch on his own clock?"
+ },
+ "HS_CH02_10_NAME": {
+  "zh-TW": "櫃台旁的糖果罐",
+  "en": "Sweet Jar by the Counter"
+ },
+ "HS_CH02_10_NOTE": {
+  "zh-TW": "玻璃罐裝滿薄荷糖，標籤寫著「給街坊的孩子」。四十年下來，霍洛威爺爺大概送掉了一座糖果山。",
+  "en": "A glass jar full of peppermints, labelled \"For the neighbourhood children\". Over forty years, Grandpa Holloway must have given away a mountain of sweets."
+ },
+ "HS_CH02_11_NAME": {
+  "zh-TW": "格雷沙姆先生",
+  "en": "Mr. Gresham"
+ },
+ "HS_CH02_11_NOTE": {
+  "zh-TW": "格雷沙姆先生一直在看自己的懷錶，又一直催律師。比起那只錶，他好像更在意這場官司。",
+  "en": "Mr. Gresham keeps checking his own pocket watch and pressing his solicitor. He seems to care more about the lawsuit than about the watch itself."
+ },
+ "HS_CH02_11_HINT": {
+  "zh-TW": "富商在意的是官司……可是機芯是誰換的，他並不知道。",
+  "en": "The merchant cares about the lawsuit... but he has no idea who swapped the movement."
+ },
+ "HS_CH02_12_NAME": {
+  "zh-TW": "牆上的掛鐘群",
+  "en": "Wall of Clocks"
+ },
+ "HS_CH02_12_NOTE": {
+  "zh-TW": "十幾座鐘一起滴答作響，像一屋子的心跳。霍洛威說，每天早上他都會一座一座對過大笨鐘。",
+  "en": "A dozen clocks tick together like a room full of heartbeats. Holloway says he sets every one of them against Big Ben each morning."
+ },
+ "HS_CH02_12_HINT": {
+  "zh-TW": "每天早上都對過大笨鐘……那今天下午慢了的那一座呢？",
+  "en": "Set against Big Ben every morning... so what about the one that was slow this afternoon?"
+ },
+ "HS_CH03_01_NAME": {
+  "zh-TW": "遺體",
+  "en": "The Body"
+ },
+ "HS_CH03_02_NAME": {
+  "zh-TW": "死者的外套內袋",
+  "en": "The Victim's Inner Coat Pocket"
+ },
+ "HS_CH03_03_NAME": {
+  "zh-TW": "從內側落下的門閂",
+  "en": "The Bolt Dropped from the Inside"
+ },
+ "HS_CH03_04_NAME": {
+  "zh-TW": "洩壓閥",
+  "en": "Relief Valve"
+ },
+ "HS_CH03_05_NAME": {
+  "zh-TW": "甲板上的壓力閥門",
+  "en": "Pressure Valve on the Deck"
+ },
+ "HS_CH03_06_NAME": {
+  "zh-TW": "航行日誌",
+  "en": "Logbook"
+ },
+ "HS_CH03_07_NAME": {
+  "zh-TW": "警方臨時拘留處（老湯姆）",
+  "en": "Police Holding Area (Old Tom)"
+ },
+ "HS_CH03_08_NAME": {
+  "zh-TW": "皮爾斯先生",
+  "en": "Mr. Pierce"
+ },
+ "HS_CH03_09_NAME": {
+  "zh-TW": "市政公告欄",
+  "en": "Municipal Notice Board"
+ },
+ "HS_CH03_10_NAME": {
+  "zh-TW": "貨箱",
+  "en": "Cargo Crates"
+ },
+ "HS_CH03_10_NOTE": {
+  "zh-TW": "貨箱上印著「市政廳・路燈零件」。撬開的那一箱裡只有稻草——帳上的貨，船上沒有。",
+  "en": "The crates are stencilled \"Municipal Hall: Street-Lamp Parts\". The one that has been prised open holds nothing but straw. The goods on paper are not on board."
+ },
+ "HS_CH03_10_HINT": {
+  "zh-TW": "帳上有、船上沒有的貨，去了哪裡？",
+  "en": "Goods that are on the books but not on the barge: where did they go?"
+ },
+ "HS_CH03_11_NAME": {
+  "zh-TW": "鍋爐本體",
+  "en": "The Boiler"
+ },
+ "HS_CH03_11_NOTE": {
+  "zh-TW": "鍋爐已經冷了，爐門上的壓力錶指針卡在紅線外。昨晚這裡熱得像地獄的廚房。",
+  "en": "The boiler has gone cold, but the needle on the firebox gauge is stuck past the red line. Last night this room was as hot as hell's own kitchen."
+ },
+ "HS_CH03_12_NAME": {
+  "zh-TW": "牆上的水痕",
+  "en": "Streaks on the Wall"
+ },
+ "HS_CH03_12_NOTE": {
+  "zh-TW": "牆上的煤灰被蒸汽沖出一道道水痕，一路流到門邊。整個房間被灌滿了，不只是漏了一點。",
+  "en": "Steam has washed streaks through the soot on the walls, running all the way to the door. The room was flooded with it, not merely touched by a leak."
+ },
+ "HS_CH03_13_NAME": {
+  "zh-TW": "死者的懷錶",
+  "en": "The Victim's Pocket Watch"
+ },
+ "HS_CH03_13_NOTE": {
+  "zh-TW": "莫斯的懷錶停在 10 點 17 分。蒸汽灌進錶殼，讓它跟主人一起停了下來。",
+  "en": "Moss's pocket watch stopped at 10:17. Steam got into the case, and it stopped along with its owner."
+ },
+ "HS_CH03_13_HINT": {
+  "zh-TW": "錶停的時間，和驗屍的推定時間對得上嗎？",
+  "en": "Does the time the watch stopped agree with the post-mortem estimate?"
+ },
+ "HS_CH03_14_NAME": {
+  "zh-TW": "纜繩",
+  "en": "Mooring Lines"
+ },
+ "HS_CH03_14_NOTE": {
+  "zh-TW": "纜繩打的是水手結，又緊又整齊，是老湯姆的手藝。這艘船昨晚沒有離開過碼頭。",
+  "en": "The lines are tied in sailor's knots, tight and neat: Old Tom's handiwork. The barge never left the wharf last night."
+ },
+ "HS_CH03_15_NAME": {
+  "zh-TW": "欄杆邊的空酒瓶",
+  "en": "Empty Bottle by the Rail"
+ },
+ "HS_CH03_15_NOTE": {
+  "zh-TW": "欄杆邊滾著一個空酒瓶。老湯姆說他從不在船上喝酒——那昨晚是誰喝的？",
+  "en": "An empty bottle has rolled up against the rail. Old Tom says he never drinks aboard, so who was drinking here last night?"
+ },
+ "HS_CH03_15_HINT": {
+  "zh-TW": "酒瓶能說明有人喝過酒，說明不了誰鎖了門。",
+  "en": "A bottle shows someone was drinking. It says nothing about who bolted the door."
+ },
+ "HS_CH03_16_NAME": {
+  "zh-TW": "舵輪",
+  "en": "Ship's Wheel"
+ },
+ "HS_CH03_16_NOTE": {
+  "zh-TW": "舵輪上了鎖鏈，鏈上的鏽沒有新的刮痕。",
+  "en": "The wheel is chained, and the rust on the chain shows no fresh scratches."
+ },
+ "HS_CH03_17_NAME": {
+  "zh-TW": "通往鍋爐室的小窗",
+  "en": "Small Window into the Boiler Room"
+ },
+ "HS_CH03_17_NOTE": {
+  "zh-TW": "小窗被一塊木板釘死，釘子都鏽透了，是很久以前的事。除了那扇門，沒有別的路進出鍋爐室。",
+  "en": "The little window has been boarded over, its nails rusted through long ago. Apart from that door, there is no other way into or out of the boiler room."
+ },
+ "HS_CH03_18_NAME": {
+  "zh-TW": "碼頭上的煤灰腳印",
+  "en": "Soot Footprints on the Wharf"
+ },
+ "HS_CH03_18_NOTE": {
+  "zh-TW": "木板上有一串煤灰腳印，一路走向煤棧。煤棧的工人一天要來回幾十趟，誰的鞋底都是黑的。",
+  "en": "A trail of sooty footprints runs along the boards toward the coal yard. The coal-yard men go back and forth dozens of times a day; everyone's soles are black."
+ },
+ "HS_CH03_18_HINT": {
+  "zh-TW": "煤灰到處都有。要比的，是哪裡的煤灰。",
+  "en": "Soot is everywhere. What matters is whose soot, and from where."
+ },
+ "HS_CH03_19_NAME": {
+  "zh-TW": "煤棧",
+  "en": "Coal Yard"
+ },
+ "HS_CH03_19_NOTE": {
+  "zh-TW": "煤棧的工人說，昨晚十點以後就收工了，沒有人再來搬煤。",
+  "en": "The coal-yard men say they knocked off after ten last night, and nobody came for coal after that."
+ },
+ "HS_CH03_20_NAME": {
+  "zh-TW": "「錨與燈」酒館",
+  "en": "The Anchor and Lamp"
+ },
+ "HS_CH03_20_NOTE": {
+  "zh-TW": "老闆擦著杯子說：「皮爾斯先生？常客。昨晚？客人太多，我記不清他幾點走的。」",
+  "en": "The landlord polishes a glass. \"Mr. Pierce? A regular. Last night? Too many customers, I couldn't tell you when he left.\""
+ },
+ "HS_CH03_20_HINT": {
+  "zh-TW": "「酒館老闆可以作證」——老闆自己倒是不太確定。",
+  "en": "\"The landlord will vouch for me\". The landlord himself isn't so sure."
+ },
+ "HS_CH03_21_NAME": {
+  "zh-TW": "巴斯克維爾警督",
+  "en": "Inspector Baskerville"
+ },
+ "HS_CH03_21_NOTE": {
+  "zh-TW": "警督正在對記者說「本案今晚結束」，同一句話已經講了第三遍。",
+  "en": "The Inspector is telling the reporters \"this case will be closed tonight\", for the third time."
+ },
+ "HS_CH03_22_NAME": {
+  "zh-TW": "霧中的河面",
+  "en": "The River in the Fog"
+ },
+ "HS_CH03_22_NOTE": {
+  "zh-TW": "霧把河面蓋得看不見水，只聽得見駁船互相碰撞的悶響。",
+  "en": "The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another."
+ },
+ "HS_CH03_23_NAME": {
+  "zh-TW": "鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）",
+  "en": "New Spot in the Boiler-Room Corner (only without G-01)"
+ },
+ "CLM_CH03_W1": {
+  "zh-TW": "鑰匙在船夫身上，門又從裡面鎖著，所以就是他！",
+  "en": "The key was on the bargeman and the door was bolted from within. Ergo, it was him!"
+ },
+ "CLM_CH02_T1": {
+  "zh-TW": "鐘是我調的！可那是老頭叫我調的！",
+  "en": "Yes, I set the clock! But the old man told me to!"
+ },
+ "CLM_CH03_T1": {
+  "zh-TW": "轉閥門的是那個老船夫！",
+  "en": "It was that old bargeman who turned the valve!"
+ },
+ "ART_OPEN_CH01": {
+  "zh-TW": "「廚房就這麼大。冰箱、盤子、地板，一樣一樣看——我保證我什麼都沒碰過。」",
+  "en": "\"It's only a small kitchen. Fridge, plate, floor, one thing at a time. I promise I haven't touched a thing.\""
+ },
+ "ART_OPEN_CH02": {
+  "zh-TW": "「滿屋子的鐘都在走。先聽聽它們，再去問人。」",
+  "en": "\"Every clock in the place is ticking. Let's listen to them first, then ask the people.\""
+ },
+ "ART_OPEN_CH03": {
+  "zh-TW": "「鍋爐冷了，霧倒是沒散。從遺體開始，一路往外看——別讓警督的『今晚結束』催著妳走。」",
+  "en": "\"The boiler's gone cold; the fog hasn't. We start with the body and work outward. And don't let the Inspector's 'closed tonight' hurry you.\""
+ },
+ "CHAP_01_TITLE": {
+  "zh-TW": "消失的發條焦糖布丁",
+  "en": "The Vanishing Clockwork Caramel Pudding"
+ },
+ "CHAP_02_TITLE": {
+  "zh-TW": "慢了三分鐘的報時鳥",
+  "en": "The Cuckoo Three Minutes Slow"
+ },
+ "CHAP_03_TITLE": {
+  "zh-TW": "霧鎖泰晤士河的蒸汽駁船命案",
+  "en": "The Steam Barge Murder in the Fog on the Thames"
+ },
+ "GESTURE_ARTHUR_ASSERT": {
+  "zh-TW": "挺胸、兩手叉腰",
+  "en": "Puffs out his chest, hands on his hips"
+ },
+ "GESTURE_ARTHUR_REINFORCE": {
+  "zh-TW": "把袖子往下拉、想遮住袖口",
+  "en": "Tugs his sleeves down, trying to hide his cuffs"
+ },
+ "GESTURE_FITCH_ASSERT": {
+  "zh-TW": "拉袖口、鞠躬",
+  "en": "Tugs at his cuff and bows"
+ },
+ "GESTURE_FITCH_ONSLAUGHT": {
+  "zh-TW": "拍櫃台、聲音拔高",
+  "en": "Slaps the counter, his voice climbing"
+ },
+ "GESTURE_FITCH_REINFORCE": {
+  "zh-TW": "掏手帕擦汗",
+  "en": "Pulls out a handkerchief and mops his brow"
+ },
+ "GESTURE_FITCH_TRAP": {
+  "zh-TW": "瞄向角落、嘴角抽一下",
+  "en": "Glances toward the corner, the edge of his mouth twitching"
+ },
+ "GESTURE_PIERCE_ASSERT": {
+  "zh-TW": "摸懷錶鏈",
+  "en": "Fingers his watch chain"
+ },
+ "GESTURE_PIERCE_ONSLAUGHT": {
+  "zh-TW": "扯鬆領巾、往前踏一步",
+  "en": "Loosens his cravat and takes a step forward"
+ },
+ "GESTURE_PIERCE_REINFORCE": {
+  "zh-TW": "翻開帳本",
+  "en": "Opens his ledger"
+ },
+ "GESTURE_PIERCE_TRAP": {
+  "zh-TW": "瞥向亞瑟、手指敲帳本封面",
+  "en": "Glances at Arthur, fingers drumming on the ledger's cover"
+ },
+ "UI_TO_BE_CONTINUED": {
+  "zh-TW": "待續",
+  "en": "To Be Continued"
+ },
+ "SCR_CH04_S01_L001": {
+  "zh-TW": "場景 1：報紙頭版（開場）",
+  "en": "Scene 1: Newspaper Front Page (Opening)"
+ },
+ "SCR_CH04_S01_L002": {
+  "zh-TW": "【倫敦提燈報・1887 年 11 月】歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台",
+  "en": "【The London Lantern · November 1887】Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria"
+ },
+ "SCR_CH04_S01_L003": {
+  "zh-TW": "本報訊，皇家歌劇院昨晚演出《發條夜鶯》第三幕時，女高音伊莎貝拉・瓦倫小姐所站的舞台升降梯突然斷裂，瓦倫小姐自三公尺高處墜落，目前仍在醫院昏迷。學院派名偵探維多・克勞先生恰在觀眾席中，第一時間封鎖現場。克勞先生表示：「這不是意外。真相，明早公布。」",
+  "en": "Our correspondent reports: During the third act of \"The Clockwork Nightingale\" at the Royal Opera House last night, the stage lift on which the soprano Miss Isabella Valen stood suddenly gave way, and Miss Valen fell some ten feet. She remains unconscious in hospital. The celebrated academic detective Mr. Victor Crowe happened to be in the audience and sealed off the scene at once. Mr. Crowe stated: \"This was no accident. The truth will be made known tomorrow morning.\""
+ },
+ "HEAD_CH04": {
+  "zh-TW": "歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台",
+  "en": "Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria"
+ },
+ "HEAD_CH04_SUB": {
+  "zh-TW": "學院派名偵探維多・克勞已封鎖現場：「真相明早公布。」",
+  "en": "Celebrated academic detective Victor Crowe has sealed off the scene: \"The truth will be made known tomorrow morning.\""
  }
 }

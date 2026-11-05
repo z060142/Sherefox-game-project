@@ -1,85 +1,115 @@
-owner,category,value,slug,grazing,hidden,note
-E01_01,物理,,,,auto,PLACEHOLDER category only
-E01_01,時間,,,,auto,PLACEHOLDER category only
-E01_02,物理,,,,auto,PLACEHOLDER category only
-E01_02,地點,,,,auto,PLACEHOLDER category only
-E01_03,人物,,,,auto,PLACEHOLDER category only
-E01_03,物理,,,,auto,PLACEHOLDER category only
-E01_04,地點,,,,auto,PLACEHOLDER category only
-E01_04,時間,,,,auto,PLACEHOLDER category only
-E01_05,地點,,,,auto,PLACEHOLDER category only
-E01_05,人物,,,,auto,PLACEHOLDER category only
-E01_06,時間,,,,auto,PLACEHOLDER category only
-E01_06,人物,,,,auto,PLACEHOLDER category only
-E01_07,人物,,,,auto,PLACEHOLDER category only
-E01_07,地點,,,,auto,PLACEHOLDER category only
-E02_01,物理,,,,auto,PLACEHOLDER category only
-E02_01,醜聞,,,,auto,PLACEHOLDER category only
-E02_02,時間,,,,auto,PLACEHOLDER category only
-E02_02,地點,,,,auto,PLACEHOLDER category only
-E02_03,物理,,,,auto,PLACEHOLDER category only
-E02_03,地點,,,,auto,PLACEHOLDER category only
-E02_04,時間,,,,auto,PLACEHOLDER category only
-E02_04,人物,,,,auto,PLACEHOLDER category only
-E02_05,時間,,,,auto,PLACEHOLDER category only
-E02_05,人物,,,,auto,PLACEHOLDER category only
-E02_06,物理,,,,auto,PLACEHOLDER category only
-E02_06,地點,,,,auto,PLACEHOLDER category only
-E02_07,人物,,,,auto,PLACEHOLDER category only
-E02_07,物理,,,,auto,PLACEHOLDER category only
-E02_08,人物,,,,auto,PLACEHOLDER category only
-E02_08,地點,,,,auto,PLACEHOLDER category only
-E03_01,時間,,,,auto,PLACEHOLDER category only
-E03_01,人物,,,,auto,PLACEHOLDER category only
-E03_02,地點,,,,auto,PLACEHOLDER category only
-E03_02,物理,,,,auto,PLACEHOLDER category only
-E03_03,地點,,,,auto,PLACEHOLDER category only
-E03_03,物理,,,,auto,PLACEHOLDER category only
-E03_04,物理,,,,auto,PLACEHOLDER category only
-E03_04,醜聞,,,,auto,PLACEHOLDER category only
-E03_05,人物,,,,auto,PLACEHOLDER category only
-E03_05,地點,,,,auto,PLACEHOLDER category only
-E03_06,人物,,,,auto,PLACEHOLDER category only
-E03_06,物理,,,,auto,PLACEHOLDER category only
-E03_07,醜聞,,,,auto,PLACEHOLDER category only
-E03_07,人物,,,,auto,PLACEHOLDER category only
-E03_08,時間,,,,auto,PLACEHOLDER category only
-E03_08,地點,,,,auto,PLACEHOLDER category only
-E03_09,人物,,,,auto,PLACEHOLDER category only
-E03_09,醜聞,,,,auto,PLACEHOLDER category only
-G-01,物理,,,,auto,PLACEHOLDER category only
-G-01,醜聞,,,,auto,PLACEHOLDER category only
-S-01,物理,,,,auto,PLACEHOLDER category only
-S-01,醜聞,,,,auto,PLACEHOLDER category only
-CH01_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N2,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N2,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N2,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N3,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH01_N3,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N3,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N3,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_N3,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N1,時間,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N2,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N2,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N3,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_N3,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_T1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_T1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH02_T1,醜聞,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_T1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_T1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_T1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_W1,人物,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_W1,地點,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
-CH03_W1,物理,,,,no,PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands
+owner,category,value,slug,grazing,hidden,police,note
+E01_01,物理特性,發條焦糖布丁,caramel_pudding,,no,,
+E01_01,物理特性,整顆滑落,slid_off_whole,,no,,
+E01_01,物理特性,焦糖,caramel,,no,,
+E01_01,時間,深夜,late_night,,no,,
+E01_02,物理特性,黃銅擺輪,brass_balance_wheel,,no,,
+E01_02,地點,冰箱,fridge,,no,,
+E01_02,物理特性,布料,cloth,擦邊,no,,decoy with E01_05 (10-cases Ch.1 標籤值)
+E01_03,人物,亞瑟,arthur,,no,,
+E01_03,物理特性,焦糖,caramel,,no,,
+E01_03,物理特性,黃銅擺輪,brass_balance_wheel,,no,,
+E01_04,地點,廚房地板,kitchen_floor,,no,,
+E01_04,時間,深夜,late_night,,no,,
+E01_04,時間,清晨,early_morning,擦邊,no,,decoy with E01_06 (the floor was wiped late at night)
+E01_05,地點,亞瑟房間,arthurs_room,,no,,
+E01_05,地點,廚房地板,kitchen_floor,,no,,
+E01_05,人物,亞瑟,arthur,,no,,
+E01_05,物理特性,布料,cloth,擦邊,no,,decoy with E01_02
+E01_06,時間,05:30,0530,,no,,
+E01_06,時間,清晨,early_morning,,no,,
+E01_06,人物,亞瑟,arthur,,no,,
+E01_06,物理特性,紙片,paper_slip,擦邊,no,,decoy with E01_07
+E01_07,人物,不留名的訪客,nameless_visitor,,no,,
+E01_07,地點,大門門縫,door_gap,,no,,
+E01_07,時間,深夜,late_night,擦邊,no,,decoy with E01_01 / E01_04
+E01_07,物理特性,紙片,paper_slip,擦邊,no,,decoy with E01_06
+E02_01,物理特性,雙層發條,double_mainspring,,no,,
+E02_01,物理特性,替換機芯黃銅,swapped_movement_brass,,mech,,
+E02_01,醜聞,軍工黑市,military_black_market,,mech,,
+E02_01,物理特性,黃銅,brass,擦邊,no,,decoy with E02_03 / E02_07
+E02_02,地點,報時鳥鐘,cuckoo_clock,,no,,
+E02_02,時間,15:00,1500,,no,,
+E02_02,時間,店鐘慢 3 分鐘,shop_clock_slow,,mech,,
+E02_03,地點,報時鳥鐘,cuckoo_clock,,no,,
+E02_03,物理特性,小起子撬痕,screwdriver_marks,,no,,
+E02_03,物理特性,黃銅,brass,擦邊,no,,decoy with E02_01 / E02_07
+E02_04,時間,15:00,1500,,no,,
+E02_04,人物,費奇,fitch,,no,,
+E02_04,人物,霍洛威,holloway,,no,,
+E02_05,時間,店鐘慢 3 分鐘,shop_clock_slow,,no,,
+E02_05,人物,霍洛威,holloway,,no,,
+E02_05,物理特性,店內文件,shop_paperwork,擦邊,no,,decoy with E02_06
+E02_06,物理特性,雙層發條,double_mainspring,,no,,
+E02_06,地點,報時鳥鐘錶店,clock_shop,,no,,
+E02_06,物理特性,店內文件,shop_paperwork,擦邊,no,,decoy with E02_05
+E02_07,人物,費奇,fitch,,no,,
+E02_07,物理特性,替換機芯黃銅,swapped_movement_brass,,mech,,
+E02_07,物理特性,黃銅,brass,擦邊,no,,decoy with E02_03 / E02_01
+E02_08,人物,黑衣女子,woman_in_black,,no,,
+E02_08,地點,角落咖啡座,corner_table,,no,,
+E02_08,人物,費奇,fitch,擦邊,no,,decoy with E02_04 / E02_07
+G-01,物理特性,軍工批號,military_batch_no,,no,,
+G-01,物理特性,雙層發條,double_mainspring,,no,,
+G-01,醜聞,軍工黑市,military_black_market,,no,,
+S-01,物理特性,軍工批號,military_batch_no,擦邊,no,,"ruling D11: G-01 values, all grazing"
+S-01,物理特性,雙層發條,double_mainspring,擦邊,no,,"ruling D11: G-01 values, all grazing"
+S-01,醜聞,軍工黑市,military_black_market,擦邊,no,,"ruling D11: G-01 values, all grazing"
+E03_01,時間,22:00～22:30,2200_2230,,medical,yes,revealed by the police post-mortem report at trust >= 3 (01-systems 3.1)
+E03_01,人物,莫斯,moss,,no,,
+E03_01,物理特性,蒸汽窒息,steam_suffocation,,medical,yes,revealed by the police post-mortem report at trust >= 3 (01-systems 3.1)
+E03_02,地點,鍋爐室,boiler_room,,no,,
+E03_02,物理特性,鍋爐蒸汽壓力,boiler_pressure,,mech,,
+E03_03,地點,甲板,deck,,no,,
+E03_03,物理特性,鍋爐蒸汽壓力,boiler_pressure,,no,,
+E03_03,物理特性,閥門煤灰,valve_soot,,no,,
+E03_03,人物,老湯姆,old_tom,,no,,
+E03_04,物理特性,軍工批號,military_batch_no,,mech,,
+E03_04,物理特性,鍋爐蒸汽壓力,boiler_pressure,,no,,
+E03_04,醜聞,軍工黑市,military_black_market,,mech,,
+E03_05,人物,老湯姆,old_tom,,no,,
+E03_05,地點,鍋爐室,boiler_room,,no,,
+E03_06,人物,皮爾斯,pierce,,no,,
+E03_06,物理特性,閥門煤灰,valve_soot,,no,,
+E03_07,醜聞,私吞採購,embezzled_procurement,,no,,
+E03_07,人物,莫斯,moss,,no,,
+E03_07,人物,皮爾斯,pierce,,no,,
+E03_07,醜聞,軍工黑市,military_black_market,擦邊,no,,decoy with E03_04 / G-01
+E03_08,時間,22:10,2210,,no,,
+E03_08,地點,甲板,deck,,no,,
+E03_08,人物,老湯姆,old_tom,擦邊,no,,decoy with E03_05
+E03_09,人物,W.,w,,no,,
+E03_09,人物,莫斯,moss,,no,,
+E03_09,醜聞,採購審計,procurement_audit,,no,,
+E03_09,醜聞,軍工黑市,military_black_market,擦邊,no,,decoy with G-01
+CH01_N1,人物,亞瑟,arthur,,no,,
+CH01_N1,地點,亞瑟房間,arthurs_room,,no,,
+CH01_N1,時間,深夜,late_night,,no,,
+CH01_N2,物理特性,發條焦糖布丁,caramel_pudding,,no,,
+CH01_N2,人物,貓,cat,,no,,
+CH01_N2,地點,廚房地板,kitchen_floor,,no,,
+CH01_N3,人物,亞瑟,arthur,,no,,
+CH01_N3,物理特性,發條焦糖布丁,caramel_pudding,,no,,
+CH02_N1,人物,費奇,fitch,,no,,
+CH02_N1,地點,報時鳥鐘,cuckoo_clock,,no,,
+CH02_N1,時間,15:00,1500,,no,,
+CH02_N2,人物,霍洛威,holloway,,no,,
+CH02_N2,物理特性,修錶工具,repair_tools,,no,,
+CH02_N3,物理特性,雙層發條,double_mainspring,,no,,
+CH02_N3,地點,報時鳥鐘錶店,clock_shop,,no,,
+CH02_T1,人物,費奇,fitch,,no,,
+CH02_T1,人物,霍洛威,holloway,,no,,
+CH02_T1,物理特性,替換機芯黃銅,swapped_movement_brass,,no,,
+CH03_W1,人物,老湯姆,old_tom,,no,,
+CH03_W1,地點,鍋爐室,boiler_room,,no,,
+CH03_N1,人物,皮爾斯,pierce,,no,,
+CH03_N1,時間,21:30,2130,,no,,
+CH03_N1,地點,甲板,deck,,no,,
+CH03_N2,地點,鍋爐室,boiler_room,,no,,
+CH03_N2,物理特性,鍋爐蒸汽壓力,boiler_pressure,,no,,
+CH03_N3,人物,皮爾斯,pierce,,no,,
+CH03_N3,人物,莫斯,moss,,no,,
+CH03_N3,醜聞,私吞採購,embezzled_procurement,,no,,
+CH03_T1,人物,老湯姆,old_tom,,no,,
+CH03_T1,地點,甲板,deck,,no,,
+CH03_T1,物理特性,閥門煤灰,valve_soot,,no,,

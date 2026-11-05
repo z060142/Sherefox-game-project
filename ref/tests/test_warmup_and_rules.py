@@ -166,3 +166,71 @@ def test_assist_wasted_without_trap():
     assert s.assist_left == 0 and of(ev, E.AssistSpent)[0].wasted
     # sophistry beats reinforce at full damage: 14 x (1 + 0.5 + 0.8) = 32.2
     assert [x.amount for x in of(ev, E.DamageToOpponent)] == pytest.approx([32.2])
+
+
+# ---------------------------------------------------------------------- rule text 2026-11-06 (B8-B10, 數值總表 四)
+
+
+def test_player_damage_order():
+    """base -> 動搖 x1.5 -> 破竹 -> 交鋒/補強 x0.5 -> 脆弱 +10."""
+    d, steps = chain_damage_breakdown(1, 0, True, 2, True, True)
+    assert [s[0] for s in steps] == ["base", "shaken_x1.5", "hachiku_x2", "matchup_x0.5", "fragile_+10"]
+    assert d == pytest.approx(14 * 1.5 * 1.5 * 1.2 / 2 + 10)
+
+
+def test_opponent_damage_order():
+    """B10: base -> 猛攻 x1.25 -> 困獸 x1.25 -> +5 聽眾不耐 -> 觀察 x0.5."""
+    d, steps = claim_damage(ch2_case(), 3, True, True, 15, True)
+    assert [s[0] for s in steps] == ["claim", "rush_x1.25", "konju_x1.25", "impatience_+5", "observe_x0.5"]
+    assert d == pytest.approx((38 * 1.25 * 1.25 + 5) / 2)
+
+
+def test_break_round_locks_at_1_attack_resolves_then_tail():
+    """B8: chain alone takes the opponent below 0 in the break round -> locked at 1; the opponent's
+    claim still hits the player; then the tail starts."""
+    from helpers import solid
+
+    s0 = initial_state(ch2_case(), ch2_board())
+    s = replace(s0, shaken="armed", opp_hp=5.0)
+    s2, ev = step(s, solid("E02_06", "E02_01", target="N3"), opp(OA.CLAIM, "N3"))
+    assert of(ev, E.BreakResult)[0].success
+    assert s2.opp_hp == 1.0 and s2.in_tail and not s2.over
+    assert [x.amount for x in of(ev, E.DamageToPlayer)] == pytest.approx([38.0])
+
+
+def test_rule3_threshold_is_at_most_half():
+    """B9: the first time the opponent is at <= 50% (exactly 50 counts)."""
+    from helpers import parry
+
+    s0 = replace(initial_state(ch2_case(), ch2_board()), opp_hp=80.0)
+    s1, _ = step(s0, parry("E02_02"), opp(OA.CLAIM, "N1"))
+    assert s1.opp_hp == 50.0 and s1.rule3_fired and s1.rule3_pending
+
+
+def test_deleted_rule_action_counts_as_not_applying():
+    """數值總表 四: a rule whose action is deleted (不能補強 / rule 5) does not apply, so the next tendency
+    rule wins its ★; with no other rule, no ★."""
+    from sherefox_ref.policy import possible_tells
+
+    base = initial_state(ch2_case(), ch2_board())
+    s = replace(base, last_node_removed=True, last_reinforce_success=True, no_reinforce_next=True)
+    fuzzy = [t for t in possible_tells(s) if t[0] == Clarity.FUZZY]
+    assert fuzzy and all(t[2] == OA.CLAIM for t in fuzzy)  # rule 4 ★, rule 1 dropped
+    assert all(t[4] != OA.REINFORCE for t in possible_tells(s))
+    s = replace(base, last_node_removed=True, no_reinforce_next=True)
+    fuzzy = [t for t in possible_tells(s) if t[0] == Clarity.FUZZY]
+    assert fuzzy and all(t[2] is None for t in fuzzy)
+    # rule 5 deleting reinforce (two reinforces in a row) also cancels rule 1
+    s = replace(base, last_node_removed=True, opp_history=(OA.REINFORCE, OA.REINFORCE))
+    fuzzy = [t for t in possible_tells(s) if t[0] == Clarity.FUZZY]
+    assert fuzzy and all(t[2] is None for t in fuzzy)
+
+
+def test_fuzzy_star_pair_shows_rule_target_and_actual():
+    """A fuzzy tell with ★ shows the rule's action and the true action (when they differ)."""
+    from sherefox_ref.policy import possible_tells
+
+    s = replace(initial_state(ch2_case(), ch2_board()), last_node_removed=True)
+    for clarity, shown, star, _basis, actual in possible_tells(s):
+        if clarity == Clarity.FUZZY:
+            assert star == OA.REINFORCE and len(shown) == 2 and {star, actual} <= shown

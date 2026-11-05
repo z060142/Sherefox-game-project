@@ -114,14 +114,11 @@ def test_route_tell_round1_reachable():
     assert can_tell(start(), Clarity.FUZZY, {OA.CLAIM, OA.RUSH}, None, None, OA.CLAIM)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Ch.3 R2 tell 「主張或設陷，無標記」: R1 removed N1, so rule 1 applies and A-3 puts "
-    "補強★1 among the fuzzy candidates.",
-)
 def test_route_tell_round2_reachable():
+    """Ruling A2: 模糊「補強★1／主張」."""
     states, _ = run(MOVES[:1])
-    assert can_tell(states[1], Clarity.FUZZY, {OA.CLAIM, OA.TRAP}, None, None, OA.CLAIM)
+    assert can_tell(states[1], Clarity.FUZZY, {OA.REINFORCE, OA.CLAIM}, OA.REINFORCE, None, OA.CLAIM)
+    assert not can_tell(states[1], Clarity.FUZZY, {OA.CLAIM, OA.TRAP}, None, None, OA.CLAIM)
 
 
 def test_route_tell_round3_reachable():
@@ -129,14 +126,11 @@ def test_route_tell_round3_reachable():
     assert can_tell(states[2], Clarity.CLEAR, {OA.REINFORCE}, None, "observe", OA.REINFORCE)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Ch.3 R4 tell 「模糊（主張或猛攻）」 without ★: R3 removed N3 (rule 1), so A-3 requires "
-    "補強★1 as one candidate.",
-)
 def test_route_tell_round4_reachable():
+    """Ruling A3: 模糊「補強★1／猛攻」."""
     states, _ = run(MOVES[:3])
-    assert can_tell(states[3], Clarity.FUZZY, {OA.CLAIM, OA.RUSH}, None, None, OA.RUSH)
+    assert can_tell(states[3], Clarity.FUZZY, {OA.REINFORCE, OA.RUSH}, OA.REINFORCE, None, OA.RUSH)
+    assert not can_tell(states[3], Clarity.FUZZY, {OA.CLAIM, OA.RUSH}, None, None, OA.RUSH)
 
 
 # ---------------------------------------------------------------------- 常見失誤回合

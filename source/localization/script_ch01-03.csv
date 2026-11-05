@@ -256,9 +256,9 @@ SCR_CH02_S05_L009,Sherefox,Sherefox,你記得的是一只慢了三分鐘的鳥�
 SCR_CH02_S05_L010,（演出）,(Staging),【印：截】,【印：截】,
 SCR_CH02_S05_L011,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
 SCR_CH02_S05_L012,系統,System,截斷！移除 N1，反擊 30。費奇主導權 70。,"Cut-In! N1 removed, counter 30. Fitch's Dominance: 70.",
-SCR_CH02_S05_L013,系統,System,（第 2 回合・預兆）費奇又拉了拉袖口，眼角瞄向角落。亮起節點：N2。可能行動：主張／設陷（無標記）。,"(Round 2 · Tell) Fitch tugs his cuff again, his eyes flicking toward the corner. Lit node: N2. Possible moves: Assert / Set a Trap (no star).",
+SCR_CH02_S05_L013,系統,System,（第 2 回合・預兆）費奇又拉了拉袖口，手帕掏到一半又塞了回去。亮起節點：N2。可能行動：補強（較可能・規則 1）／主張。,"(Round 2 · Tell) Fitch tugs his cuff again, pulls his handkerchief halfway out, then stuffs it back. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Assert.",
 SCR_CH02_S05_L014,費奇,Fitch,（預兆）小人只是一介隨從，只說自己看到的事。,(Tell) I'm only a servant. I only say what I saw.,
-SCR_CH02_S05_L015,亞瑟,Arthur,（提示）N2 是真話，反駁一定空過。他瞄了角落……也許在等妳亂拉線。,"(Hint) N2 is true, so a Rebut would be bound to whiff. He glanced at the corner... maybe he's waiting for you to draw a careless link.",
+SCR_CH02_S05_L015,亞瑟,Arthur,（提示）N1 剛被拔掉，照規則他多半要補強；可是 N2 是真話，反駁一定空過。補強還是開口都不虧的，只有觀察。,"(Hint) N1 has just been pulled, so by the rules he'll most likely Reinforce. But N2 is true, so a Rebut would be bound to whiff. Whether he shores up or speaks, the only move that loses nothing is Observe.",
 SCR_CH02_S05_L016,Sherefox,Sherefox,（觀察）……繼續。你的袖口在說話，我在聽。,"(Observe) ...Go on. Your cuff is talking, and I'm listening.",
 SCR_CH02_S05_L017,費奇,Fitch,（主張）能碰到錶芯的，只有拿著工具的老闆。,"(Assert) The only one who could touch the movement was the owner, with his tools in hand.",
 SCR_CH02_S05_L018,系統,System,讀錯了——他出的是主張。觀察使傷害減半，我方受 19。我方主導權 81。N2 留在場上。,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N2 stays on the table.",
@@ -334,7 +334,7 @@ SCR_CH03_S04_L001,（場景標題）,(Scene heading),場景 4：熱身小論戰�
 SCR_CH03_S04_L002,系統,System,熱身小論戰。對手：巴斯克維爾警督。不扣血。,Warm-up Debate. Opponent: Inspector Baskerville. No Dominance loss.,
 SCR_CH03_S04_L003,巴斯克維爾,Inspector Baskerville,（誤判）鑰匙在船夫身上，門又從裡面鎖著，所以兇手就是他！本警督的推理天衣無縫！,"(Misjudgement) The key was on the bargeman, and the door was locked from the inside, so he is the killer! This Inspector's reasoning is flawless!",
 SCR_CH03_S04_L004,亞瑟,Arthur,（鑑定後）警督，這道門閂不是手動的。它接著一根蒸汽管，靠壓力推上推下。,"(After appraisal) Inspector, this bolt isn't a manual one. It's connected to a steam pipe, and pressure pushes it up and down.",
-SCR_CH03_S04_L005,Sherefox,Sherefox,（出示 E03_05＋E03_02）老湯姆的鑰匙只能開艙門外鎖，碰都碰不到這道蒸汽閂。能讓門從裡面閂上的，是甲板上的壓力閥。,(Presenting E03_05 + E03_02) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.,
+SCR_CH03_S04_L005,Sherefox,Sherefox,（出示 E03_05）老湯姆的鑰匙只能開艙門外鎖，碰都碰不到這道蒸汽閂。能讓門從裡面閂上的，是甲板上的壓力閥。,(Presenting E03_05) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.,warm-up is single-card (E03_05 or E03_02)
 SCR_CH03_S04_L006,巴斯克維爾,Inspector Baskerville,……蒸、蒸汽閂？本警督當然知道！本警督只是在測試妳！,...A st-steam bolt? Of course this Inspector knew! This Inspector was merely testing you!,
 SCR_CH03_S04_L007,Sherefox,Sherefox,那你及格了，測試出你不知道。,Then the test was a success. It proves you didn't know.,
 SCR_CH03_S04_L008,巴斯克維爾,Inspector Baskerville,咳！總之，船夫先暫時羈押。驗屍報告給妳，甲板也讓妳上去。但妳要是查不出別人，他明天就移送！,"Ahem! At any rate, the bargeman stays in custody for now. This Inspector shall give you the post-mortem report and let you up on deck. But if you fail to find another suspect, he is sent on to trial tomorrow!",
@@ -436,9 +436,9 @@ SCR_CH03_S06_L007,Sherefox,Sherefox,（反駁 N1，出示 E03_08）等一下！�
 SCR_CH03_S06_L008,（演出）,(Staging),【印：截】,【印：截】,
 SCR_CH03_S06_L009,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
 SCR_CH03_S06_L010,系統,System,截斷！移除 N1，反擊 30。皮爾斯主導權 70。,"Cut-In! N1 removed, counter 30. Pierce's Dominance: 70.",
-SCR_CH03_S06_L011,系統,System,（第 2 回合・預兆）皮爾斯摸了摸懷錶鏈，又瞥了亞瑟一眼。亮起節點：N3。可能行動：主張／設陷（無標記）。,"(Round 2 · Tell) Pierce fingers his watch chain, then glances at Arthur. Lit node: N3. Possible moves: Assert / Set a Trap (no star).",
+SCR_CH03_S06_L011,系統,System,（第 2 回合・預兆）皮爾斯摸了摸懷錶鏈，另一隻手按住了帳本。亮起節點：N3。可能行動：補強（較可能・規則 1）／主張。,"(Round 2 · Tell) Pierce fingers his watch chain, his other hand pressed flat on the ledger. Lit node: N3. Possible moves: Reinforce (likelier · Rule 1) / Assert.",
 SCR_CH03_S06_L012,皮爾斯,Pierce,（預兆）作為合夥人，我有義務說清楚。,"(Tell) As a partner, I'm obliged to set things out clearly.",
-SCR_CH03_S06_L013,亞瑟,Arthur,（提示）他瞥了我一眼……可能在等妳拉虛線。,(Hint) He glanced at me... he may be waiting for you to draw a dashed line.,
+SCR_CH03_S06_L013,亞瑟,Arthur,（提示）N1 剛被拔掉，他多半要翻帳本補洞……可他也在摸錶鏈。兩邊都不虧的，是先聽。,"(Hint) N1 has just been pulled, so he'll probably open the ledger to patch the hole... but he's fingering his chain as well. The move that's safe either way is to listen first.",
 SCR_CH03_S06_L014,Sherefox,Sherefox,（觀察）請繼續，羅蘭先生。你說得越多，霧就越薄。,"(Observe) Please, go on, Mr. Roland. The more you say, the thinner the fog gets.",
 SCR_CH03_S06_L015,皮爾斯,Pierce,（主張）我們運的是政府的合法貨物，有單據為證。,"(Assert) We were carrying lawful government cargo, with paperwork to prove it.",
 SCR_CH03_S06_L016,系統,System,讀錯了——他出的是主張。觀察使傷害減半，我方受 19。我方主導權 81。N3 留在場上。,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N3 stays on the table.",
@@ -454,9 +454,9 @@ SCR_CH03_S06_L025,（演出）,(Staging),【大字：動搖】,【大字：動�
 SCR_CH03_S06_L026,（演出）,(Staging),【印：破竹×1】,【印：破竹×1】,
 SCR_CH03_S06_L027,系統,System,鏈傷害 21，補強減半為 10.5。醜聞類證物命中！移除 N3，補強被打中、不回復；皮爾斯陷入「動搖」。主導權 59.5。,"Chain damage 21, halved by the Reinforce to 10.5. Scandal evidence hits! N3 removed; the Reinforce was hit, so there is no recovery; Pierce is Shaken. Dominance: 59.5.",
 SCR_CH03_S06_L028,皮爾斯,Pierce,（動搖）那、那是帳目誤差！市政廳的帳一向亂七八糟！,(Shaken) Th-that's just an accounting error! The Municipal Hall's books are always a mess!,
-SCR_CH03_S06_L029,系統,System,（第 4 回合・預兆）皮爾斯扯鬆領巾，往前踏了一步。亮起節點：N2。可能行動：主張／猛攻。,(Round 4 · Tell) Pierce loosens his cravat and steps forward. Lit node: N2. Possible moves: Assert / Onslaught.,
+SCR_CH03_S06_L029,系統,System,（第 4 回合・預兆）皮爾斯扯鬆領巾，往前踏了一步，手卻還按著帳本。亮起節點：N2。可能行動：補強（較可能・規則 1）／猛攻。,"(Round 4 · Tell) Pierce loosens his cravat and steps forward, yet his hand still rests on the ledger. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Onslaught.",
 SCR_CH03_S06_L030,皮爾斯,Pierce,（預兆）你這小姑娘懂什麼！,(Tell) What would a slip of a girl like you know!,
-SCR_CH03_S06_L031,亞瑟,Arthur,（提示）領巾扯鬆了——他要衝了。他還在動搖，就是這一手。,"(Hint) His cravat's loosened: he's about to charge. He's still Shaken, so this is the moment.",
+SCR_CH03_S06_L031,亞瑟,Arthur,（提示）照規則他該補帳本，可是領巾扯鬆了、腳也踏出來了——我賭他要衝。他還在動搖，就是這一手。,"(Hint) By the rules he ought to patch his ledger, but the cravat's loosened and he's stepped forward. I'd bet he's about to charge. He's still Shaken, so this is the moment.",
 SCR_CH03_S06_L032,皮爾斯,Pierce,（猛攻）鍋爐室的門從裡面鎖上，這就是意外！你們沒有一件證據能——,(Onslaught) The boiler-room door was bolted from the inside; that makes it an accident! You haven't one piece of evidence that—,
 SCR_CH03_S06_L033,Sherefox,Sherefox,等一下，我已經徹底解開了！,Hold on—I've completely cracked it!,
 SCR_CH03_S06_L034,Sherefox,Sherefox,（反駁論破，對準 N2，出示 E03_02＋E03_04＋G-01）門閂是蒸汽推動的，人在甲板上就能從裡面鎖上。而卡死洩壓閥的這顆零件，批號跟鐘錶店那顆黑市齒輪出自同一份黑市清單！你和莫斯私吞的是軍工零件。莫斯想向審計自首，所以你用你們自己偷的貨，把他關進了蒸汽裡！,"(Rebut-Break, aimed at N2, presenting E03_02 + E03_04 + G-01) The bolt is steam-driven; a man standing on deck could bolt it from the inside. And the part jamming the relief valve carries a batch number from the very same black-market list as the gear in the clock shop! What you and Moss were skimming was military parts. Moss wanted to confess to the audit, so you used the very goods you'd stolen together to shut him in with the steam!",
@@ -495,3 +495,6 @@ SCR_CH03_S07_L020,旁白（亞瑟筆記）,Narration (Arthur's Notes),那顆卡�
 SCR_CH03_S07_L021,系統,System,警督信任度 −1。,Inspector's Trust −1.,
 SCR_CH03_S08_L001,（場景標題）,(Scene heading),場景 8：亞瑟的結案筆記,Scene 8: Arthur's Case-Closed Notes,scene heading
 SCR_CH03_S08_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：霧鎖泰晤士河的蒸汽駁船命案。犯人：羅蘭・皮爾斯。手法：以壓力閥遠端落閂，再用黑市零件卡死洩壓閥。附記：那顆零件的批號，與鐘錶店的齒輪出自同一份清單。兩起案子隔著一條河，卻被同一條線縫在一起。Sherefox 在筆記本上把兩個批號圈起來，在旁邊寫了一個字母：W.。,"Case name: The Steam Barge Murder in the Fog on the Thames. Culprit: Roland Pierce. Method: bolting the door remotely via the pressure valve, then jamming the relief valve with a black-market part. Note: that part's batch number comes from the same list as the clock shop's gear. Two cases on either side of one river, stitched together by a single thread. Sherefox circled the two batch numbers in her notebook and wrote a single letter beside them: W.",
+SCR_CH04_S01_L001,（場景標題）,(Scene heading),場景 1：報紙頭版（開場）,Scene 1: Newspaper Front Page (Opening),scene heading | prototype ending teaser (Ch.4 opening paper only)
+SCR_CH04_S01_L002,報紙,Newspaper,【倫敦提燈報・1887 年 11 月】歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台,【The London Lantern · November 1887】Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria,prototype ending teaser; headline = HEAD_CH04
+SCR_CH04_S01_L003,報紙,Newspaper,本報訊，皇家歌劇院昨晚演出《發條夜鶯》第三幕時，女高音伊莎貝拉・瓦倫小姐所站的舞台升降梯突然斷裂，瓦倫小姐自三公尺高處墜落，目前仍在醫院昏迷。學院派名偵探維多・克勞先生恰在觀眾席中，第一時間封鎖現場。克勞先生表示：「這不是意外。真相，明早公布。」,"Our correspondent reports: During the third act of ""The Clockwork Nightingale"" at the Royal Opera House last night, the stage lift on which the soprano Miss Isabella Valen stood suddenly gave way, and Miss Valen fell some ten feet. She remains unconscious in hospital. The celebrated academic detective Mr. Victor Crowe happened to be in the audience and sealed off the scene at once. Mr. Crowe stated: ""This was no accident. The truth will be made known tomorrow morning.""","prototype ending teaser | 三公尺 rendered as ""some ten feet"" (period imperial units)"

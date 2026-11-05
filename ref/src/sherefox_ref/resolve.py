@@ -17,13 +17,14 @@ from .model import (
     BREAKER,
     OA,
     PA,
-    TAG_PERSON,
-    TAG_SCANDAL,
+    CAT_PERSON,
+    CAT_SCANDAL,
     BoardNode,
     DebateState,
     OpponentAction,
     PlayerAction,
     RoundLog,
+    tag_category,
 )
 from .rules import (
     IllegalAction,
@@ -60,8 +61,7 @@ def _visible_nodes(state: DebateState) -> tuple[str, ...]:
 def _recover_one(state_nodes, removed, case, cause, ev):
     """A-2 回復來源: hand (missed evidence; not modelled for Ch.1-3 fixtures, which
     assume full collection) -> removed script nodes. 'Last stand' when nothing else.
-    SPEC-QUESTION: the order among several removed script nodes is unspecified;
-    implemented as node-pool order."""
+    Several removed script nodes come back in node-pool order (ruling B19)."""
     normal = [n for n in state_nodes if n.kind != "fragile"]
     if len(normal) >= case.node_cap:
         return state_nodes, removed
@@ -149,9 +149,8 @@ def _validate(state: DebateState, pa: PlayerAction, oa: OpponentAction, break_ro
     links = []
     if pa.kind in (PA.SOLID, PA.SOPHISTRY):
         if pa.kind == PA.SOPHISTRY and not case.sophistry_unlocked:
-            # SPEC-QUESTION: 詭辯 "Ch.4 才解鎖/才教". Whether the action is usable at all in
-            # Ch.2-3 is not stated (Ch.2 settlement still counts 被拆穿詭辯數). The model lets
-            # it resolve; only the 破竹 read-right table treats it as locked.
+            # Ruling B20: 詭辯 is usable in Ch.2-3; only the 破竹 read-right table treats it
+            # as locked before Ch.4.
             pass
         links = segment_links(state, pa.segment)
         s, p = count_links(links)
@@ -177,6 +176,11 @@ def _validate(state: DebateState, pa: PlayerAction, oa: OpponentAction, break_ro
             links = segment_links(state, pa.segment)
         elif pa.card is None or pa.card not in state.board.all_cards():
             raise IllegalAction("parry needs a card")
+        # A-5 / 4.x parry picker: only appraised cards are listed (數值總表 五:
+        # 「R1 反駁需要已鑑定的 E02_02」).
+        for cid in pa.segment or (pa.card,):
+            if not case.card(cid).fully_revealed:
+                raise IllegalAction(f"UI_DEB_NOPARRY_NOCARD: {cid} is not appraised")
         if not _parry_refutes(state, pa, oa.lit):
             raise IllegalAction("UI_DEB_NOPARRY_NOCARD: no refuter of the lit node")
     return links
@@ -251,10 +255,7 @@ def resolve_round(
     if hit:
         fr = [n for n in nodes if n.kind == "fragile"]
         if fr:
-            # SPEC-QUESTION: 數值總表 says the fragile node is consumed by "the next attack
-            # that hits" (automatic); A-2 says the hit must share a tag with it and A-2 also
-            # requires choosing one target. Implemented per 數值總表 (higher precedence):
-            # any hitting attack consumes one fragile node (+10).
+            # Ruling B6: the next attack that hits consumes one fragile node (+10).
             nodes, removed = _remove_node(nodes, removed, fr[0].id, "fragile_hit", ev, track=False)
             fragile_consumed = True
     if pa.kind == PA.SOLID and not break_ok:
@@ -312,9 +313,8 @@ def resolve_round(
     opp_zero = False
     if is_attack and not trapped:
         half = o_atk or (pa.kind == PA.SOLID and oa.kind == OA.REINFORCE and not break_ok)
-        # SPEC-QUESTION: A-8 exempts a solid-chain break only from the 補強 halving; the clash
-        # x0.5 against an attack is therefore still applied (Ch.2 mistake variant: 15.75, not
-        # 31.5; both lock the opponent at 1, so the route tables cannot tell them apart).
+        # Ruling B7: a solid-chain break is exempt from the 補強 halving only; the clash x0.5
+        # against an attack still applies (Ch.2 mistake variant: 15.75).
         dmg, steps = chain_damage_breakdown(
             s_links, p_links, break_round, stacks, half, fragile_consumed
         )
@@ -336,9 +336,8 @@ def resolve_round(
         seg = pa.segment or ((pa.card,) if pa.card else ())
         golden = tuple(c for c in seg if case.card(c).is_golden)
         if case.golden_primary:
-            # SPEC-QUESTION: 數值總表 Ch.3 「主要論破需 G-01；漏拿 G-01 時可用 E03_02→E03_03」 —
-            # whether the secondary route is allowed while G-01 is held is unstated. The model
-            # accepts any break meeting the generic early threshold and only labels it.
+            # Ruling B17: the secondary route (E03_02 -> E03_03) is allowed while G-01 is held;
+            # any break meeting the early threshold is accepted and only labelled.
             label = "primary" if case.golden_primary <= set(seg) else "alternative"
             gu = golden if label == "primary" else ()
         else:
@@ -350,10 +349,9 @@ def resolve_round(
         if hp_model:
             before = ohp
             amount = case.opp_max_hp * case.break_pct / 100
-            # SPEC-QUESTION: if the chain/counter alone already took the opponent to <= 0 in
-            # the break round, A-1 step 2 says the debate ends at once, while 數值總表 says
-            # "先算鏈傷害或反擊，再扣論破比例 ... 低於 1 則鎖在 1". Implemented per 數值總表:
-            # the result after both deductions is floored at 1.
+            # Ruling B8: in the break round the result after the chain/counter and the break
+            # deduction is floored at 1 even when the chain alone reached <= 0; the
+            # opponent's attack still resolves (step 3), then the tail starts.
             ohp = max(1.0, ohp - amount)
             ev.append(E.DamageToOpponent(amount, "break", before, ohp, (("break_pct", case.break_pct),)))
     elif hp_model and ohp is not None and ohp <= 0:
@@ -430,9 +428,10 @@ def resolve_round(
     scandal_trigger = False
     if not over:
         if case.contradiction_target is not None:
-            # SPEC-QUESTION: Ch.1 shaken comes only from the 2nd contradiction (A-13); the
-            # generic A-8 triggers are not applied to the tutorial debate.
-            if contradictions >= case.contradiction_target > state.contradictions:
+            # Ch.1 shaken comes only from contradictions (A-13): the 2nd one, and after a
+            # missed break round every later one (ruling B21). The generic A-8 triggers are
+            # not applied to the tutorial debate.
+            if contradictions > state.contradictions and contradictions >= case.contradiction_target:
                 shaken_trigger = True
         else:
             if intercept and oa.kind == OA.RUSH:
@@ -440,7 +439,7 @@ def resolve_round(
             if pa.kind == PA.SOLID and hit and target and not target.startswith("F"):
                 tdef = case.node_def(target)
                 if any(case.card(c).is_scandal for c in pa.segment) and (
-                    set(tdef.tags) & {TAG_PERSON, TAG_SCANDAL}
+                    {tag_category(t) for t in tdef.tags} & {CAT_PERSON, CAT_SCANDAL}
                 ):
                     shaken_trigger = True
                     scandal_trigger = True
@@ -550,14 +549,12 @@ def resolve_round(
     rule3_fired, rule3_pending = state.rule3_fired, state.rule3_pending
     if not oa.scripted:
         last_node_removed = bool(removed_claim_nodes) or (break_ok and bool(state.nodes))
-        # SPEC-QUESTION: whether a fragile-node removal counts for rule 1 is unspecified;
-        # implemented: only claim nodes count.
+        # Ruling B14: removing a fragile node does not trigger rule 1.
         last_reinforce_success = reinforce_success
         no_reinforce_next = pa.kind == PA.SOLID and oa.kind == OA.TRAP
         must_attack_next = pa.kind == PA.OBSERVE and oa.kind == OA.TRAP
-        if hp_model and not rule3_fired and ohp is not None and ohp < case.opp_max_hp / 2:
-            # SPEC-QUESTION: 數值總表 says 「低於 50%」 (strict); A-3 says 「50% 以下」 and the
-            # Ch.2 table 「≤ 50%」. Implemented strict per 數值總表.
+        if hp_model and not rule3_fired and ohp is not None and ohp <= case.opp_max_hp / 2:
+            # Ruling B9 / 數值總表 四: the first time <= 50%.
             rule3_fired = True
             rule3_pending = True
             # SPEC-QUESTION: when this first happens in a break round, the forced rush is
@@ -570,21 +567,16 @@ def resolve_round(
         must_attack_next = state.must_attack_next
     next_clear = "observe" if (pa.kind == PA.OBSERVE and o_atk) else None
 
-    # Ch.1: end conditions
-    # SPEC-QUESTION: 數值總表 Ch.1 「3 回合破解 3 個節點」 vs A-13 「3 回合內指出 2 個矛盾即勝利」
-    # vs 各章設計 「3 回合內指出 2 個矛盾，再完成一次論破」/「讀錯 1 次仍可在時限內完成」.
-    # Default `ch1_deadline_rule="numbers"` (highest precedence): the break must land by
-    # round 3. `"a13"`: 2 contradictions by round 3, the break may follow later. Neither
-    # source says what happens after a missed Ch.1 break round (no re-trigger is modelled).
+    # Ch.1 end conditions (rulings A4, B21, D15): 2 contradictions by the end of round 3,
+    # then the break; a missed break round can be re-entered after the next contradiction;
+    # no break by the end of round 6 -> 未達成. There is no loss.
     if case.contradiction_target is not None and not over:
         if break_ok:
             over, outcome, end_reason = True, "win", "break"
-        elif r >= case.contradiction_deadline:
-            if case.ch1_deadline_rule == "numbers":
-                # 數值總表: "3 回合破解 3 個節點" read as: the break must land by round 3.
-                over, outcome, end_reason = True, "loss", "deadline"
-            elif contradictions < case.contradiction_target:
-                over, outcome, end_reason = True, "loss", "deadline"
+        elif r >= case.contradiction_deadline and contradictions < case.contradiction_target:
+            over, outcome, end_reason = True, "unachieved", "contradiction_deadline"
+        elif case.round_cap is not None and r >= case.round_cap:
+            over, outcome, end_reason = True, "unachieved", "round_cap"
 
     # tail start (A-9)
     if break_ok and case.tail is not None and not over:

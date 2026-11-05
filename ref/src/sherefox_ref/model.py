@@ -49,23 +49,42 @@ EXTRINSIC = "extrinsic"  # 鏈外事實 (all golden clues)
 BREAKER = "breaker"  # 破防 golden clue (A-8 trigger 3)
 SUBSTITUTE = "substitute"  # 次級替代證物
 
-TAG_PERSON = "人物"
-TAG_SCANDAL = "醜聞"
+# Tag category ids (tags are "category:slug", ruling C4; data-schema 0.4).
+CAT_PERSON = "person"
+CAT_SCANDAL = "scandal"
+
+
+def tag_category(tag: str) -> str:
+    return tag.split(":", 1)[0]
 
 
 @dataclass(frozen=True)
 class Card:
     id: str
-    tags: tuple[str, ...]
+    tags: tuple[str, ...]  # "category:slug" (data/evidence.json `tags`)
     grade: str = "normal"  # normal | key | story | golden | substitute
     flags: frozenset[str] = frozenset()
     reason_correct: bool = True
     grazing: frozenset[str] = frozenset()  # tags marked 擦邊
+    hidden: frozenset[str] = frozenset()  # tags that need appraisal (not yet revealed by a police report)
+    appraised: bool = False
+
+    @property
+    def revealed(self) -> tuple[str, ...]:
+        """Tags that take part in link judging (01-systems 1.5: 未鑑定的標籤不參與連結判定)."""
+        if self.appraised:
+            return self.tags
+        return tuple(t for t in self.tags if t not in self.hidden)
+
+    @property
+    def fully_revealed(self) -> bool:
+        """「已鑑定卡」 for the parry picker: nothing left to appraise."""
+        return self.appraised or not self.hidden
 
     @property
     def is_scandal(self) -> bool:
         # 2.8: 「醜聞」旗標等同【醜聞】標籤
-        return SCANDAL in self.flags or TAG_SCANDAL in self.tags
+        return SCANDAL in self.flags or any(tag_category(t) == CAT_SCANDAL for t in self.revealed)
 
     @property
     def is_golden(self) -> bool:
@@ -78,9 +97,6 @@ class ClaimNodeDef:
     tags: frozenset[str]
     refuters: frozenset[str]  # card ids (the 破解證物 column)
     truth: str = "false"
-    # SPEC-QUESTION: Ch.1-3 node tables give no node tags. Fixtures derive node tags
-    # as the union of the refuting cards' tags; `tags_inferred` marks that.
-    tags_inferred: bool = True
 
 
 @dataclass(frozen=True)
@@ -148,8 +164,9 @@ class CaseConfig:
     break_rule: str = "early_generic"  # early_generic | ch1_e0103
     ch1_card: str | None = None  # Ch.1: the break card (E01_03)
     contradiction_target: int | None = None  # Ch.1: 2
-    contradiction_deadline: int | None = None  # Ch.1: 3 rounds
-    ch1_deadline_rule: str = "numbers"  # "numbers" (break by R3) | "a13" (2 contradictions by R3)
+    contradiction_deadline: int | None = None  # Ch.1: 2 contradictions by the end of round 3 (ruling D15)
+    round_cap: int | None = None  # Ch.1: no break by the end of round 6 -> 未達成 (ruling D15)
+    appraisals: int = 0  # appraisal charges of the case (data/chapters.json)
     golden_primary: frozenset[str] = frozenset()  # Ch.3: {"E03_04", "G-01"}
 
     def card(self, cid: str) -> Card:
@@ -232,7 +249,7 @@ class DebateState:
     rule3_pending: bool = False
     next_clear_basis: str | None = None  # "observe"
     contradictions: int = 0
-    outcome: str | None = None  # "win" | "loss"
+    outcome: str | None = None  # "win" | "loss" | "unachieved" (Ch.1 未達成, ruling A4 / D15)
     over: bool = False
     golden_used: tuple[str, ...] = ()
     break_label: str | None = None
@@ -242,9 +259,7 @@ class DebateState:
         return tuple(n.id for n in self.nodes)
 
     def normal_node_count(self) -> int:
-        """Nodes that count for claim damage (fragile excluded, 數值總表 五 / A-1).
-        SPEC-QUESTION: A-6 says fragile nodes 「計入主張傷害的節點數」; 數值總表 and A-1 say
-        they do not. 數值總表 wins."""
+        """Nodes that count for claim damage (fragile excluded: ruling B5, 數值總表 五 / A-1)."""
         return sum(1 for n in self.nodes if n.kind != "fragile")
 
 

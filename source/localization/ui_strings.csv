@@ -602,15 +602,12 @@ NEWS_02_NOTO,Transition Newspaper (3.3),鐘錶店糾紛越吵越烈　樓上偵�
 NEWS_02_NOTO_SUB,Transition Newspaper (3.3),「富商：『這是對紳士的羞辱。』」,"Merchant: ""This is an insult to a gentleman.""",ctx: Ch.2 勝利・惡名 | second line / subhead; derived ID (_SUB)
 NEWS_02_LOSE,Transition Newspaper (3.3),百年老店蒙塵？鐘錶匠遭判賠償,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages,ctx: Ch.2 敗北
 NEWS_02_LOSE_SUB,Transition Newspaper (3.3),「店主拒絕受訪，櫥窗報時鳥停擺。」,"""The owner declined to be interviewed; the cuckoo in the shop window has stopped.""",ctx: Ch.2 敗北 | second line / subhead; derived ID (_SUB)
-NEWS_02_NEXT,Transition Newspaper (3.3),泰晤士河濃霧再起　市政廳官員陳屍駁船鍋爐室,Thames Fog Returns: Municipal Official Found Dead in Barge Boiler Room,ctx: Ch.2 → Ch.3 第二版
 NEWS_03_WIN,Transition Newspaper (3.3),巴斯克維爾警督神速破案　駁船命案元凶落網,Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested,ctx: Ch.3 勝利
 NEWS_03_WIN_SUB,Transition Newspaper (3.3),「警督：『蘇格蘭場從不讓霧遮住真相。』」,"Inspector: ""Scotland Yard never lets fog hide the truth.""",ctx: Ch.3 勝利 | second line / subhead; derived ID (_SUB)
 NEWS_03_NOTO,Transition Newspaper (3.3),駁船命案破了　但狐耳偵探「靠胡攪蠻纏逼供」遭議,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bullying a Confession Out of Him""",ctx: Ch.3 勝利・惡名
 NEWS_03_NOTO_SUB,Transition Newspaper (3.3),「警督拒絕評論協助者的手法。」,"""The Inspector declined to comment on the methods of his helper.""",ctx: Ch.3 勝利・惡名 | second line / subhead; derived ID (_SUB)
 NEWS_03_LOSE,Transition Newspaper (3.3),駁船命案以船夫認罪結案　家屬當庭喊冤,Barge Murder Closed on Bargeman's Confession: Family Cries Foul in Court,ctx: Ch.3 敗北
 NEWS_03_LOSE_SUB,Transition Newspaper (3.3),「合夥人表示將接手死者在市政廳的業務。」,"""The partner says he will take over the deceased's business at the Municipal Hall.""",ctx: Ch.3 敗北 | second line / subhead; derived ID (_SUB)
-NEWS_03_NEXT,Transition Newspaper (3.3),皇家歌劇院升降梯斷裂　首席女高音重傷,Royal Opera House Lift Cable Snaps: Prima Donna Gravely Injured,ctx: Ch.3 → Ch.4 第二版
-NEWS_03_NEXT_SUB,Transition Newspaper (3.3),「名偵探維多・克勞已受劇院委託。」,"""Famed detective Victor Crowe has been engaged by the theatre.""",ctx: Ch.3 → Ch.4 第二版 | second line / subhead; derived ID (_SUB)
 NEWS_SIDE_01,Transition Newspaper (3.3),鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship.",ctx: Ch.1 → Ch.2 | sidebar brief; hides a Wolfhart trace
 NEWS_SIDE_02,Transition Newspaper (3.3),市政廳擴編港務稽查，顧問 W 小姐表示「透明是效率的前提」。,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency.""",ctx: Ch.2 → Ch.3 | sidebar brief; hides a Wolfhart trace
 NEWS_SIDE_03,Transition Newspaper (3.3),匿名人士捐贈皇家歌劇院一批新式升降機零件。,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.,ctx: Ch.3 → Ch.4 | sidebar brief; hides a Wolfhart trace
@@ -665,3 +662,66 @@ STAMP_CLASH_SUB,Brush Banner (4.7),,CLASH,"subtitle gloss shown under the banner
 STAMP_SEEN_SUB,Brush Banner (4.7),,SEEN THROUGH,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
 STAMP_ASSIST_SUB,Brush Banner (4.7),,COVERED,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
 STAMP_HACHIKU_LOST_SUB,Brush Banner (4.7),,BROKEN,"subtitle gloss shown under the banner in non-zh builds only (setting UI_SET_CUTIN_SUB); zh-TW shows none, hence empty zh-TW"
+TAG_PHYSICAL_CARAMEL_PUDDING,Evidence Tags,發條焦糖布丁,Clockwork Caramel Pudding,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：發條焦糖布丁】 | Ch.1
+TAG_PHYSICAL_SLID_OFF_WHOLE,Evidence Tags,整顆滑落,Slid Off Whole,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：整顆滑落】 | Ch.1
+TAG_PHYSICAL_CARAMEL,Evidence Tags,焦糖,Caramel,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：焦糖】 | Ch.1
+TAG_TIME_LATE_NIGHT,Evidence Tags,深夜,Late Night,ctx: 標籤值，類別 時間（Time）；顯示為【時間：深夜】 | Ch.1
+TAG_PHYSICAL_BRASS_BALANCE_WHEEL,Evidence Tags,黃銅擺輪,Brass Balance Wheel,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：黃銅擺輪】 | Ch.1
+TAG_PLACE_FRIDGE,Evidence Tags,冰箱,Fridge,ctx: 標籤值，類別 地點（Place）；顯示為【地點：冰箱】 | Ch.1
+TAG_PHYSICAL_CLOTH,Evidence Tags,布料,Cloth,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：布料】 | Ch.1; always a graze (※) tag
+TAG_PERSON_ARTHUR,Evidence Tags,亞瑟,Arthur,ctx: 標籤值，類別 人物（Person）；顯示為【人物：亞瑟】 | Ch.1
+TAG_PLACE_KITCHEN_FLOOR,Evidence Tags,廚房地板,Kitchen Floor,ctx: 標籤值，類別 地點（Place）；顯示為【地點：廚房地板】 | Ch.1
+TAG_TIME_EARLY_MORNING,Evidence Tags,清晨,Early Morning,ctx: 標籤值，類別 時間（Time）；顯示為【時間：清晨】 | Ch.1; graze (※) on E01_04
+TAG_PLACE_ARTHURS_ROOM,Evidence Tags,亞瑟房間,Arthur's Room,ctx: 標籤值，類別 地點（Place）；顯示為【地點：亞瑟房間】 | Ch.1
+TAG_TIME_0530,Evidence Tags,05:30,05:30,ctx: 標籤值，類別 時間（Time）；顯示為【時間：05:30】 | Ch.1
+TAG_PHYSICAL_PAPER_SLIP,Evidence Tags,紙片,Slip of Paper,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：紙片】 | Ch.1; always a graze (※) tag
+TAG_PERSON_NAMELESS_VISITOR,Evidence Tags,不留名的訪客,Nameless Visitor,"ctx: 標籤值，類別 人物（Person）；顯示為【人物：不留名的訪客】 | Ch.1 (E01_07, story card)"
+TAG_PLACE_DOOR_GAP,Evidence Tags,大門門縫,Gap Under the Front Door,"ctx: 標籤值，類別 地點（Place）；顯示為【地點：大門門縫】 | Ch.1 (E01_07, story card)"
+TAG_PHYSICAL_DOUBLE_MAINSPRING,Evidence Tags,雙層發條,Double-Layer Mainspring,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：雙層發條】 | Ch.2-3
+TAG_PHYSICAL_SWAPPED_MOVEMENT_BRASS,Evidence Tags,替換機芯黃銅,Brass from the Swapped Movement,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：替換機芯黃銅】 | Ch.2; revealed by mechanical appraisal
+TAG_SCANDAL_MILITARY_BLACK_MARKET,Evidence Tags,軍工黑市,Military Black Market,ctx: 標籤值，類別 醜聞（Scandal）；顯示為【醜聞：軍工黑市】 | Ch.2-3
+TAG_PHYSICAL_BRASS,Evidence Tags,黃銅,Brass,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：黃銅】 | Ch.2; always a graze (※) tag
+TAG_PLACE_CUCKOO_CLOCK,Evidence Tags,報時鳥鐘,Cuckoo Clock,ctx: 標籤值，類別 地點（Place）；顯示為【地點：報時鳥鐘】 | Ch.2
+TAG_TIME_1500,Evidence Tags,15:00,15:00,ctx: 標籤值，類別 時間（Time）；顯示為【時間：15:00】 | Ch.2 (when Big Ben struck three)
+TAG_TIME_SHOP_CLOCK_SLOW,Evidence Tags,店鐘慢 3 分鐘,Shop Clock 3 Minutes Slow,ctx: 標籤值，類別 時間（Time）；顯示為【時間：店鐘慢 3 分鐘】 | Ch.2
+TAG_PHYSICAL_SCREWDRIVER_MARKS,Evidence Tags,小起子撬痕,Small Screwdriver Marks,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：小起子撬痕】 | Ch.2
+TAG_PERSON_FITCH,Evidence Tags,費奇,Fitch,ctx: 標籤值，類別 人物（Person）；顯示為【人物：費奇】 | Ch.2
+TAG_PERSON_HOLLOWAY,Evidence Tags,霍洛威,Holloway,ctx: 標籤值，類別 人物（Person）；顯示為【人物：霍洛威】 | Ch.2
+TAG_PHYSICAL_SHOP_PAPERWORK,Evidence Tags,店內文件,Shop Paperwork,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：店內文件】 | Ch.2; always a graze (※) tag
+TAG_PLACE_CLOCK_SHOP,Evidence Tags,報時鳥鐘錶店,The Cuckoo Clockworks,ctx: 標籤值，類別 地點（Place）；顯示為【地點：報時鳥鐘錶店】 | Ch.2
+TAG_PERSON_WOMAN_IN_BLACK,Evidence Tags,黑衣女子,Woman in Black,"ctx: 標籤值，類別 人物（Person）；顯示為【人物：黑衣女子】 | Ch.2 (E02_08, story card)"
+TAG_PLACE_CORNER_TABLE,Evidence Tags,角落咖啡座,Corner Coffee Table,"ctx: 標籤值，類別 地點（Place）；顯示為【地點：角落咖啡座】 | Ch.2 (E02_08, story card)"
+TAG_PHYSICAL_MILITARY_BATCH_NO,Evidence Tags,軍工批號,Military Batch Number,"ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：軍工批號】 | Ch.3 (G-01, S-01, E03_04)"
+TAG_TIME_2200_2230,Evidence Tags,22:00～22:30,22:00–22:30,ctx: 標籤值，類別 時間（Time）；顯示為【時間：22:00～22:30】 | Ch.3
+TAG_PERSON_MOSS,Evidence Tags,莫斯,Moss,ctx: 標籤值，類別 人物（Person）；顯示為【人物：莫斯】 | Ch.3
+TAG_PHYSICAL_STEAM_SUFFOCATION,Evidence Tags,蒸汽窒息,Steam Suffocation,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：蒸汽窒息】 | Ch.3
+TAG_PLACE_BOILER_ROOM,Evidence Tags,鍋爐室,Boiler Room,ctx: 標籤值，類別 地點（Place）；顯示為【地點：鍋爐室】 | Ch.3
+TAG_PHYSICAL_BOILER_PRESSURE,Evidence Tags,鍋爐蒸汽壓力,Boiler Steam Pressure,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：鍋爐蒸汽壓力】 | Ch.3
+TAG_PLACE_DECK,Evidence Tags,甲板,Deck,ctx: 標籤值，類別 地點（Place）；顯示為【地點：甲板】 | Ch.3
+TAG_PHYSICAL_VALVE_SOOT,Evidence Tags,閥門煤灰,Soot from the Valve,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：閥門煤灰】 | Ch.3
+TAG_PERSON_OLD_TOM,Evidence Tags,老湯姆,Old Tom,ctx: 標籤值，類別 人物（Person）；顯示為【人物：老湯姆】 | Ch.3
+TAG_PERSON_PIERCE,Evidence Tags,皮爾斯,Pierce,ctx: 標籤值，類別 人物（Person）；顯示為【人物：皮爾斯】 | Ch.3
+TAG_SCANDAL_EMBEZZLED_PROCUREMENT,Evidence Tags,私吞採購,Embezzled Procurement,ctx: 標籤值，類別 醜聞（Scandal）；顯示為【醜聞：私吞採購】 | Ch.3
+TAG_TIME_2210,Evidence Tags,22:10,22:10,ctx: 標籤值，類別 時間（Time）；顯示為【時間：22:10】 | Ch.3
+TAG_PERSON_W,Evidence Tags,W.,W.,"ctx: 標籤值，類別 人物（Person）；顯示為【人物：W.】 | Ch.3 (E03_09, story card); keep the bare initial"
+TAG_SCANDAL_PROCUREMENT_AUDIT,Evidence Tags,採購審計,Procurement Audit,"ctx: 標籤值，類別 醜聞（Scandal）；顯示為【醜聞：採購審計】 | Ch.3 (E03_09, story card)"
+TAG_PERSON_CAT,Evidence Tags,貓,The Cat,ctx: 標籤值，類別 人物（Person）；顯示為【人物：貓】 | Ch.1 (claim node N2 only)
+TAG_PHYSICAL_REPAIR_TOOLS,Evidence Tags,修錶工具,Watchmaker's Tools,ctx: 標籤值，類別 物理特性（Physical）；顯示為【物理特性：修錶工具】 | Ch.2 (claim node N2 only)
+TAG_TIME_2130,Evidence Tags,21:30,21:30,ctx: 標籤值，類別 時間（Time）；顯示為【時間：21:30】 | Ch.3 (claim node N1 only)
+ART_OPEN_CH01,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「廚房就這麼大。冰箱、盤子、地板，一樣一樣看——我保證我什麼都沒碰過。」,"""It's only a small kitchen. Fridge, plate, floor, one thing at a time. I promise I haven't touched a thing.""",ctx: 1.4 Ch.1 蒐證開場（亞瑟此時還是嫌疑人，台詞本身就是個小謊）
+ART_OPEN_CH02,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「滿屋子的鐘都在走。先聽聽它們，再去問人。」,"""Every clock in the place is ticking. Let's listen to them first, then ask the people.""",ctx: 1.4 Ch.2 蒐證開場
+ART_OPEN_CH03,"Arthur / Sherefox Hint Lines (1.11, 2.4)",「鍋爐冷了，霧倒是沒散。從遺體開始，一路往外看——別讓警督的『今晚結束』催著妳走。」,"""The boiler's gone cold; the fog hasn't. We start with the body and work outward. And don't let the Inspector's 'closed tonight' hurry you.""",ctx: 1.4 Ch.3 蒐證開場
+CHAP_01_TITLE,Chapter Titles,消失的發條焦糖布丁,The Vanishing Clockwork Caramel Pudding,ctx: Ch.1 章節標題（與結案筆記的案件名稱一致）
+CHAP_02_TITLE,Chapter Titles,慢了三分鐘的報時鳥,The Cuckoo Three Minutes Slow,ctx: Ch.2 章節標題
+CHAP_03_TITLE,Chapter Titles,霧鎖泰晤士河的蒸汽駁船命案,The Steam Barge Murder in the Fog on the Thames,ctx: Ch.3 章節標題
+GESTURE_ARTHUR_ASSERT,Opponent Gestures,挺胸、兩手叉腰,"Puffs out his chest, hands on his hips",ctx: Ch.1 對手行為表；亞瑟・主張
+GESTURE_ARTHUR_REINFORCE,Opponent Gestures,把袖子往下拉、想遮住袖口,"Tugs his sleeves down, trying to hide his cuffs",ctx: Ch.1 對手行為表；亞瑟・補強
+GESTURE_FITCH_ASSERT,Opponent Gestures,拉袖口、鞠躬,Tugs at his cuff and bows,ctx: Ch.2 對手行為表；費奇・主張
+GESTURE_FITCH_ONSLAUGHT,Opponent Gestures,拍櫃台、聲音拔高,"Slaps the counter, his voice climbing",ctx: Ch.2 對手行為表；費奇・猛攻
+GESTURE_FITCH_REINFORCE,Opponent Gestures,掏手帕擦汗,Pulls out a handkerchief and mops his brow,ctx: Ch.2 對手行為表；費奇・補強
+GESTURE_FITCH_TRAP,Opponent Gestures,瞄向角落、嘴角抽一下,"Glances toward the corner, the edge of his mouth twitching",ctx: Ch.2 對手行為表；費奇・設陷
+GESTURE_PIERCE_ASSERT,Opponent Gestures,摸懷錶鏈,Fingers his watch chain,ctx: Ch.3 對手行為表；皮爾斯・主張
+GESTURE_PIERCE_ONSLAUGHT,Opponent Gestures,扯鬆領巾、往前踏一步,Loosens his cravat and takes a step forward,ctx: Ch.3 對手行為表；皮爾斯・猛攻
+GESTURE_PIERCE_REINFORCE,Opponent Gestures,翻開帳本,Opens his ledger,ctx: Ch.3 對手行為表；皮爾斯・補強
+GESTURE_PIERCE_TRAP,Opponent Gestures,瞥向亞瑟、手指敲帳本封面,"Glances at Arthur, fingers drumming on the ledger's cover",ctx: Ch.3 對手行為表；皮爾斯・設陷
+UI_TO_BE_CONTINUED,Prototype Ending,待續,To Be Continued,ctx: 原型版結尾卡；Ch.3 結算後的合併轉場報紙（頭版＝Ch.4 開場 HEAD_CH04，側欄＝Ch.3 結果 NEWS_03_*）之後顯示

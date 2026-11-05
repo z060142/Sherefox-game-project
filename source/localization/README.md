@@ -6,12 +6,12 @@ All files are UTF-8 (CSV files have a BOM). Build this table with the glossary f
 
 | File | Rows | Content |
 | :--- | ---: | :--- |
-| glossary.csv | 164 | term_zh, term_en, part_of_speech, note (names, places, game terms) |
-| ui_strings.csv | 666 | ID, category, zh-TW, en, note. 615 text strings (systems.md section 8 + Arthur/Sherefox hint lines + Ch.1-3 transition newspaper) plus 51 brush-banner rows (4.7 / 8.14) |
+| glossary.csv | 166 | term_zh, term_en, part_of_speech, note (names, places, game terms) |
+| ui_strings.csv | 726 | ID, category, zh-TW, en, note. 612 text strings (systems.md section 8 + Arthur/Sherefox hint lines + Ch.1-3 transition newspaper) plus 51 brush-banner rows (4.7 / 8.14), 46 evidence-tag value rows (TAG_*), 3 per-chapter investigation openers (ART_OPEN_CH0x), 3 chapter titles (CHAP_0x_TITLE), 10 opponent gestures (GESTURE_*) and the prototype's 「待續」 card (UI_TO_BE_CONTINUED) |
 | tutorial.csv | 190 | ID, chapter, zh-TW, en, note. 95 tutorials (all of section 7, Ch.1-12), two rows each (_TITLE, _BODY) |
-| evidence_ch01-03.csv | 161 | ID, zh-TW, en, note. 24 evidence items (NAME, TAGS, DESC, REASON_A/B/C), 3 opening headlines (+ sub), 9 claim nodes, G-01 and its substitute |
-| script_ch01-03.csv | 496 | ID, speaker_zh, speaker_en, zh-TW, en, note. Ch.1 = 139, Ch.2 = 171, Ch.3 = 186 |
-| strings.json | 1513 | `{"<ID>": {"zh-TW": "...", "en": "..."}}`, merge of ui + tutorial + evidence + script (glossary excluded) |
+| evidence_ch01-03.csv | 240 | ID, zh-TW, en, note. 24 evidence items (NAME, TAGS, DESC, REASON_A/B/C), 4 opening headlines (+ sub; HEAD_CH04 is the prototype-ending teaser), 12 claim nodes (9 main + the Ch.3 warm-up claim + 2 tail second claims), G-01 and its substitute (G-01_SUB = Case tab S-01), 45 hotspots (HS_*: 45 names, 20 case-note lines, 9 hints) |
+| script_ch01-03.csv | 499 | ID, speaker_zh, speaker_en, zh-TW, en, note. Ch.1 = 139, Ch.2 = 171, Ch.3 = 186, plus Ch.4 S01 = 3 (the opening paper only, used as the prototype-ending teaser) |
+| strings.json | 1655 | `{"<ID>": {"zh-TW": "...", "en": "..."}}`, merge of ui + tutorial + evidence + script (glossary excluded) |
 
 ## ID scheme
 
@@ -20,6 +20,10 @@ All files are UTF-8 (CSV files have a BOM). Build this table with the glossary f
   - Derived IDs: `<CUT/STAMP id>_SUB` (English subtitle shown under a banner; zh-TW is empty because zh-TW shows no subtitle), `<CUT/STAMP id>_LOG` (backlog line, e.g. 【論破】), `STAMP_HACHIKU_LOST` (only listed in 8.14), `NEWS_xx_yy_SUB` (second line of a transition newspaper).
 - Tutorials: `TUT_<ch>_<nn>_TITLE` / `_BODY`; trigger text is in the note.
 - Evidence: `E<ch>_<nn>_NAME|TAGS|DESC|REASON_A|REASON_B|REASON_C` (A = correct rationale, B/C = wrong); `HEAD_CH0x` / `HEAD_CH0x_SUB`; `CLM_CH0x_Nn` (claim node text); `G-01`, `G-01_SUB`.
+- Evidence tags: `TAG_<TIME|PLACE|PERSON|PHYSICAL|SCANDAL>_<ASCII slug>`, one row per distinct tag value used in Ch.1-3 (value only; the category label comes from `UI_TAG_<category>`, displayed as 【類別：值】 / [Category: value]). Which cards carry which value, the graze (※) flags and the appraisal flags live in the Case tab 「標籤值」 tables, not here.
+- Hotspots: `HS_CH0x_nn_NAME` for every hotspot; inspect-only hotspots also have `_NOTE` (the Case Notes line) and some have `_HINT`. HS_CH03_23 is the conditional S-01 hotspot (only when G-01 is missing). Mirrors the Case tab 「調查點」 tables.
+- Claims: `CLM_CH03_W1` = Ch.3 warm-up claim; `CLM_CH0x_T1` = tail second claim (Ch.2, Ch.3).
+- `ART_OPEN_CH0x` = Arthur's investigation opening line per chapter (systems.md 1.4); `CHAP_0x_TITLE` = chapter title; `GESTURE_<OPPONENT>_<ACTION>` = opponent gesture text from the Case tab behaviour tables (ACTION = ASSERT, ONSLAUGHT, REINFORCE, TRAP).
 - Script: `SCR_CH<ch>_S<scene>_L<line>` (line is 3-digit, per scene, in source order; L001 of each scene is the scene heading). Scene `S90` = the "Debate Line Library" (opponent tell/action lines, Sherefox/Arthur state lines) that sits between scenes 4/5 and the main debate in the source; its `note` column says which category and gesture each line belongs to.
 
 ## Conventions
@@ -30,6 +34,7 @@ All files are UTF-8 (CSV files have a BOM). Build this table with the glossary f
 - Script rows: outer 「」 around whole-line quotes were removed (the speaker column carries who is speaking); stage directions in （） become ( ). Arthur's Tell-hint lines had a trailing action tag （主張）etc.; that tag moved to the note (`action: Assert`).
 - British spelling. Voices: Sherefox playful with adapted puns, Arthur dry straight man, Baskerville pompous ("this Inspector", "Miss Fox"), Wolfhart formal with long subordinate clauses and passive voice. Sherefox's catchphrase 「等一下，我快解開了！」 = "Hold on—I've almost cracked it!"; 「等一下，我已經徹底解開了！」 = "Hold on—I've completely cracked it!".
 - Adapted puns (noted in the note column): 「閥」網恢恢 -> "valve-id reasoning"; 駁 (barge / rebut) -> sinking-barge image; 布丁綁架 -> "puddingnapping".
+- Transition newspapers are merged (systems.md 3.3): the front page is the next chapter's S01 opening paper and the previous case's NEWS_xx_WIN/NOTO/LOSE goes in the sidebar. The old second-page teasers `NEWS_xx_NEXT` (and `NEWS_03_NEXT_SUB`) were retired in favour of each chapter's S01 lines and removed from ui_strings.csv and strings.json. The prototype ends on Ch.4's opening paper (SCR_CH04_S01_*, HEAD_CH04/_SUB, with Ch.3's result in the sidebar), then UI_TO_BE_CONTINUED.
 - Newspaper: 《倫敦提燈報》 = The London Lantern everywhere (canon fix). The Script tab still prints 【倫敦晨報…】 as its masthead in the Chinese text; the English column uses The London Lantern. Regional editions: 約克郡晨報 = The Yorkshire Morning Post, 高地週刊 = The Highland Weekly.
 
 ## Source problems noticed (translated by intended meaning; flagged in notes)

@@ -24,5 +24,6 @@
 {"id":"CH03_06","chapter":3,"idx":6,"kind":"debate","sub":"","scene":"S06","arg":"CH03_MAIN"},
 {"id":"CH03_07","chapter":3,"idx":7,"kind":"result","sub":"","scene":"S07","arg":""},
 {"id":"CH03_08","chapter":3,"idx":8,"kind":"vn","sub":"notes","scene":"S08","arg":""},
-{"id":"CH03_09","chapter":3,"idx":9,"kind":"paper","sub":"transition","scene":"","arg":"CH03_END"}
+{"id":"CH03_09","chapter":3,"idx":9,"kind":"paper","sub":"transition","scene":"","arg":"CH04_OPEN"},
+{"id":"CH03_10","chapter":3,"idx":10,"kind":"end","sub":"","scene":"","arg":"UI_TO_BE_CONTINUED"}
 ]

@@ -21,6 +21,9 @@ ART_NEGO_FAIL,"""...He's not buying it. Show him something else."""
 ART_NEGO_LOCK,"""No luck. The only way in now is something less than respectable."""
 ART_NO_REPORT,"""The Inspector won't hand over the post-mortem report this time. It looks like I'll have to do it myself."""
 ART_OPEN_BODY,"""Let me take a look at him first. The dead don't lie, but they don't volunteer anything either."""
+ART_OPEN_CH01,"""It's only a small kitchen. Fridge, plate, floor, one thing at a time. I promise I haven't touched a thing."""
+ART_OPEN_CH02,"""Every clock in the place is ticking. Let's listen to them first, then ask the people."""
+ART_OPEN_CH03,"""The boiler's gone cold; the fog hasn't. We start with the body and work outward. And don't let the Inspector's 'closed tonight' hurry you."""
 ART_OPEN_FIELD,"""There's no Inspector to back us up here. We'll have to find our own way in."""
 ART_OPEN_GEN,"""Don't jump to conclusions. Start at the door and take things one at a time."""
 ART_REMAIN_FEW,"""That's probably enough. Although... I think we've missed a thing or two."""
@@ -117,9 +120,12 @@ CLM_CH01_N3,I have nothing whatsoever to do with the pudding
 CLM_CH02_N1,I left the moment the cuckoo struck three
 CLM_CH02_N2,The owner had both the tools and the time to swap it
 CLM_CH02_N3,The new movement is one of this shop's parts
+CLM_CH02_T1,"Yes, I set the clock! But the old man told me to!"
 CLM_CH03_N1,I got off the barge at 21:30
 CLM_CH03_N2,The door locked from the inside; it was an accident
 CLM_CH03_N3,Moss and I were just legitimate business partners
+CLM_CH03_T1,It was that old bargeman who turned the valve!
+CLM_CH03_W1,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!"
 CUT_BRINK,絕境
 CUT_BRINK_LOG,【絕境】
 CUT_BRINK_SUB,AT THE BRINK
@@ -242,7 +248,7 @@ E03_01_NAME,Post-Mortem Findings on Moss
 E03_01_REASON_A,"Died of steam asphyxiation between 22:00 and 22:30, not of a blunt blow."
 E03_01_REASON_B,Fell while drunk
 E03_01_REASON_C,Heart attack
-E03_01_TAGS,Time · Person
+E03_01_TAGS,Time · Person · Physical
 E03_02_DESC,"A heavy brass bolt, one end connected to a thin steam pipe, with limescale still on the pipe mouth."
 E03_02_NAME,The Bolt Dropped from the Inside
 E03_02_REASON_A,The bolt is driven by steam pressure and can be operated at a distance from the deck.
@@ -254,7 +260,7 @@ E03_03_NAME,The Pressure Valve Turned on the Deck
 E03_03_REASON_A,"The soot fingerprint on the handle is fresh, and it isn't the bargeman's size."
 E03_03_REASON_B,The bargeman's routine operation
 E03_03_REASON_C,The waves rocking the barge turned it
-E03_03_TAGS,Place · Physical
+E03_03_TAGS,Place · Physical · Person
 E03_04_DESC,"Jammed in the relief valve's outlet is a brass part that shouldn't be there, a string of tiny batch numbers engraved on its surface."
 E03_04_NAME,The Brass Part Jamming the Relief Valve
 E03_04_REASON_A,Its batch number matches the military black-market transcript: it's from the same stolen batch the deceased had skimmed.
@@ -293,22 +299,98 @@ E03_09_REASON_C,Unrelated to the case
 E03_09_TAGS,Person · Scandal
 G-01,Military Black-Market Batch-Number Transcript
 G-01_SUB,Gear Rubbing
-GST_CH01_ASSERT,"chest out, hands on hips"
-GST_CH01_REINFORCE,tugging sleeve down
-GST_CH02_ASSERT,"tugging cuff, bowing"
-GST_CH02_REINFORCE,pulling out handkerchief to mop sweat
-GST_CH02_RUSH,"slapping the counter, voice rising"
-GST_CH02_TRAP,"glancing at the corner, mouth twitching"
-GST_CH03_ASSERT,fingering watch chain
-GST_CH03_REINFORCE,opening ledger
-GST_CH03_RUSH,"loosening cravat, stepping forward"
-GST_CH03_TRAP,"glancing at Arthur, tapping ledger cover"
+GESTURE_ARTHUR_ASSERT,"Puffs out his chest, hands on his hips"
+GESTURE_ARTHUR_REINFORCE,"Tugs his sleeves down, trying to hide his cuffs"
+GESTURE_FITCH_ASSERT,Tugs at his cuff and bows
+GESTURE_FITCH_ONSLAUGHT,"Slaps the counter, his voice climbing"
+GESTURE_FITCH_REINFORCE,Pulls out a handkerchief and mops his brow
+GESTURE_FITCH_TRAP,"Glances toward the corner, the edge of his mouth twitching"
+GESTURE_PIERCE_ASSERT,Fingers his watch chain
+GESTURE_PIERCE_ONSLAUGHT,Loosens his cravat and takes a step forward
+GESTURE_PIERCE_REINFORCE,Opens his ledger
+GESTURE_PIERCE_TRAP,"Glances at Arthur, fingers drumming on the ledger's cover"
 HEAD_CH01,"Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street"
 HEAD_CH01_SUB,"From the paper's classified column: ""Fox-Eared Detective Agency seeks a flatmate. Those who can cook preferred."""
 HEAD_CH02,Century-Old Antique Pocket Watch Swapped! Wealthy Merchant Sues Baker Street's Veteran Clockmaker
 HEAD_CH02_SUB,"Mr. Gresham: ""My watch was in perfect condition when it went into the shop."""
 HEAD_CH03,"Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted from Inside, Police Arrest Bargeman"
 HEAD_CH03_SUB,"Inspector Baskerville: ""The killer is on that barge. This case ends tonight."""
+HEAD_CH04,Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria
+HEAD_CH04_SUB,"Celebrated academic detective Victor Crowe has sealed off the scene: ""The truth will be made known tomorrow morning."""
+HS_CH01_01_NAME,Fridge
+HS_CH01_02_NAME,Empty Pudding Plate
+HS_CH01_03_NAME,Kitchen Floor
+HS_CH01_04_NAME,Arthur's Door
+HS_CH01_05_NAME,Arthur's Coat Pocket
+HS_CH01_06_NAME,Gap Under the Front Door
+HS_CH01_07_NAME,Arthur (Cuffs)
+HS_CH01_08_HINT,"""The cat ate it"" starts falling apart right here at the windowsill."
+HS_CH01_08_NAME,Windowsill
+HS_CH01_08_NOTE,"The window is latched from the inside, and the dust on the sill holds not a single paw print. Even if London's cats could open a fridge, they'd have to get in first."
+HS_CH01_09_NAME,Teacups on the Counter
+HS_CH01_09_NOTE,"Two teacups: one washed, one not, with a dark ring of very strong tea in the bottom. Someone brewed a pot strong enough to keep themselves awake last night."
+HS_CH01_10_HINT,The pocket watch isn't in its usual place... did someone take it last night?
+HS_CH01_10_NAME,Photograph on the Mantelpiece
+HS_CH01_10_NOTE,"A photograph of Sherefox with an old gentleman in a deerstalker, its frame polished to a shine. The spot beside it where the pocket watch usually sits is empty today."
+HS_CH02_01_NAME,Pocket Watch on the Counter
+HS_CH02_02_NAME,Cuckoo Clock
+HS_CH02_03_NAME,Pendulum Cover
+HS_CH02_04_NAME,Tommy the Newsboy
+HS_CH02_05_NAME,Repair Receipt Book
+HS_CH02_06_NAME,Parts Cabinet and Catalogue
+HS_CH02_07_NAME,Fitch
+HS_CH02_08_NAME,Corner Coffee Table (After the Debate)
+HS_CH02_09_NAME,Workbench
+HS_CH02_09_NOTE,"The owner's tools are laid out in perfect order, every one polished bright. Would a man who treats his tools like this leave a scratch on his own clock?"
+HS_CH02_10_NAME,Sweet Jar by the Counter
+HS_CH02_10_NOTE,"A glass jar full of peppermints, labelled ""For the neighbourhood children"". Over forty years, Grandpa Holloway must have given away a mountain of sweets."
+HS_CH02_11_HINT,The merchant cares about the lawsuit... but he has no idea who swapped the movement.
+HS_CH02_11_NAME,Mr. Gresham
+HS_CH02_11_NOTE,Mr. Gresham keeps checking his own pocket watch and pressing his solicitor. He seems to care more about the lawsuit than about the watch itself.
+HS_CH02_12_HINT,Set against Big Ben every morning... so what about the one that was slow this afternoon?
+HS_CH02_12_NAME,Wall of Clocks
+HS_CH02_12_NOTE,A dozen clocks tick together like a room full of heartbeats. Holloway says he sets every one of them against Big Ben each morning.
+HS_CH03_01_NAME,The Body
+HS_CH03_02_NAME,The Victim's Inner Coat Pocket
+HS_CH03_03_NAME,The Bolt Dropped from the Inside
+HS_CH03_04_NAME,Relief Valve
+HS_CH03_05_NAME,Pressure Valve on the Deck
+HS_CH03_06_NAME,Logbook
+HS_CH03_07_NAME,Police Holding Area (Old Tom)
+HS_CH03_08_NAME,Mr. Pierce
+HS_CH03_09_NAME,Municipal Notice Board
+HS_CH03_10_HINT,Goods that are on the books but not on the barge: where did they go?
+HS_CH03_10_NAME,Cargo Crates
+HS_CH03_10_NOTE,"The crates are stencilled ""Municipal Hall: Street-Lamp Parts"". The one that has been prised open holds nothing but straw. The goods on paper are not on board."
+HS_CH03_11_NAME,The Boiler
+HS_CH03_11_NOTE,"The boiler has gone cold, but the needle on the firebox gauge is stuck past the red line. Last night this room was as hot as hell's own kitchen."
+HS_CH03_12_NAME,Streaks on the Wall
+HS_CH03_12_NOTE,"Steam has washed streaks through the soot on the walls, running all the way to the door. The room was flooded with it, not merely touched by a leak."
+HS_CH03_13_HINT,Does the time the watch stopped agree with the post-mortem estimate?
+HS_CH03_13_NAME,The Victim's Pocket Watch
+HS_CH03_13_NOTE,"Moss's pocket watch stopped at 10:17. Steam got into the case, and it stopped along with its owner."
+HS_CH03_14_NAME,Mooring Lines
+HS_CH03_14_NOTE,"The lines are tied in sailor's knots, tight and neat: Old Tom's handiwork. The barge never left the wharf last night."
+HS_CH03_15_HINT,A bottle shows someone was drinking. It says nothing about who bolted the door.
+HS_CH03_15_NAME,Empty Bottle by the Rail
+HS_CH03_15_NOTE,"An empty bottle has rolled up against the rail. Old Tom says he never drinks aboard, so who was drinking here last night?"
+HS_CH03_16_NAME,Ship's Wheel
+HS_CH03_16_NOTE,"The wheel is chained, and the rust on the chain shows no fresh scratches."
+HS_CH03_17_NAME,Small Window into the Boiler Room
+HS_CH03_17_NOTE,"The little window has been boarded over, its nails rusted through long ago. Apart from that door, there is no other way into or out of the boiler room."
+HS_CH03_18_HINT,"Soot is everywhere. What matters is whose soot, and from where."
+HS_CH03_18_NAME,Soot Footprints on the Wharf
+HS_CH03_18_NOTE,A trail of sooty footprints runs along the boards toward the coal yard. The coal-yard men go back and forth dozens of times a day; everyone's soles are black.
+HS_CH03_19_NAME,Coal Yard
+HS_CH03_19_NOTE,"The coal-yard men say they knocked off after ten last night, and nobody came for coal after that."
+HS_CH03_20_HINT,"""The landlord will vouch for me"". The landlord himself isn't so sure."
+HS_CH03_20_NAME,The Anchor and Lamp
+HS_CH03_20_NOTE,"The landlord polishes a glass. ""Mr. Pierce? A regular. Last night? Too many customers, I couldn't tell you when he left."""
+HS_CH03_21_NAME,Inspector Baskerville
+HS_CH03_21_NOTE,"The Inspector is telling the reporters ""this case will be closed tonight"", for the third time."
+HS_CH03_22_NAME,The River in the Fog
+HS_CH03_22_NOTE,The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another.
+HS_CH03_23_NAME,New Spot in the Boiler-Room Corner (only without G-01)
 MSG_APPR_DONE,Appraisal complete: new tags revealed.
 MSG_APPR_EMPTY,No appraisals left for this case.
 MSG_APPR_LOCKED,You can't appraise during a debate.
@@ -450,15 +532,12 @@ NEWS_01_END,City Council Mulls Soot Tax: Factory Owners Sign Joint Protest
 NEWS_01_END_SUB,"Page Two: ""Antiques collector accuses the Cuckoo Clockworks of swapping a movement; the shop cries innocence."""
 NEWS_02_LOSE,Venerable Shop Tarnished? Clockmaker Ordered to Pay Damages
 NEWS_02_LOSE_SUB,"""The owner declined to be interviewed; the cuckoo in the shop window has stopped."""
-NEWS_02_NEXT,Thames Fog Returns: Municipal Official Found Dead in Barge Boiler Room
 NEWS_02_NOTO,Clock Shop Dispute Grows Ever Fiercer: Upstairs Detective Makes a Public Nuisance of Herself
 NEWS_02_NOTO_SUB,"Merchant: ""This is an insult to a gentleman."""
 NEWS_02_WIN,Cuckoo Clockworks Swap Scandal Closes: Attendant Slowed the Clock to Fake an Alibi
 NEWS_02_WIN_SUB,"Body: ""Reportedly exposed on the spot by a young detective from upstairs."""
 NEWS_03_LOSE,Barge Murder Closed on Bargeman's Confession: Family Cries Foul in Court
 NEWS_03_LOSE_SUB,"""The partner says he will take over the deceased's business at the Municipal Hall."""
-NEWS_03_NEXT,Royal Opera House Lift Cable Snaps: Prima Donna Gravely Injured
-NEWS_03_NEXT_SUB,"""Famed detective Victor Crowe has been engaged by the theatre."""
 NEWS_03_NOTO,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bullying a Confession Out of Him"""
 NEWS_03_NOTO_SUB,"""The Inspector declined to comment on the methods of his helper."""
 NEWS_03_WIN,Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested
@@ -654,9 +733,9 @@ SCR_CH02_S05_L009,What you remember is a cuckoo three minutes slow.
 SCR_CH02_S05_L010,【印：截】
 SCR_CH02_S05_L011,【印：破竹×1】
 SCR_CH02_S05_L012,"Cut-In! N1 removed, counter 30. Fitch's Dominance: 70."
-SCR_CH02_S05_L013,"(Round 2 · Tell) Fitch tugs his cuff again, his eyes flicking toward the corner. Lit node: N2. Possible moves: Assert / Set a Trap (no star)."
+SCR_CH02_S05_L013,"(Round 2 · Tell) Fitch tugs his cuff again, pulls his handkerchief halfway out, then stuffs it back. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Assert."
 SCR_CH02_S05_L014,(Tell) I'm only a servant. I only say what I saw.
-SCR_CH02_S05_L015,"(Hint) N2 is true, so a Rebut would be bound to whiff. He glanced at the corner... maybe he's waiting for you to draw a careless link."
+SCR_CH02_S05_L015,"(Hint) N1 has just been pulled, so by the rules he'll most likely Reinforce. But N2 is true, so a Rebut would be bound to whiff. Whether he shores up or speaks, the only move that loses nothing is Observe."
 SCR_CH02_S05_L016,"(Observe) ...Go on. Your cuff is talking, and I'm listening."
 SCR_CH02_S05_L017,"(Assert) The only one who could touch the movement was the owner, with his tools in hand."
 SCR_CH02_S05_L018,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N2 stays on the table."
@@ -801,7 +880,7 @@ SCR_CH03_S04_L001,Scene 4: Warm-up Debate (No Dominance Loss)
 SCR_CH03_S04_L002,Warm-up Debate. Opponent: Inspector Baskerville. No Dominance loss.
 SCR_CH03_S04_L003,"(Misjudgement) The key was on the bargeman, and the door was locked from the inside, so he is the killer! This Inspector's reasoning is flawless!"
 SCR_CH03_S04_L004,"(After appraisal) Inspector, this bolt isn't a manual one. It's connected to a steam pipe, and pressure pushes it up and down."
-SCR_CH03_S04_L005,(Presenting E03_05 + E03_02) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.
+SCR_CH03_S04_L005,(Presenting E03_05) Old Tom's key opens only the outer lock of the hatch; it can't even touch this steam latch. What could bolt that door from the inside is the pressure valve on the deck.
 SCR_CH03_S04_L006,...A st-steam bolt? Of course this Inspector knew! This Inspector was merely testing you!
 SCR_CH03_S04_L007,Then the test was a success. It proves you didn't know.
 SCR_CH03_S04_L008,"Ahem! At any rate, the bargeman stays in custody for now. This Inspector shall give you the post-mortem report and let you up on deck. But if you fail to find another suspect, he is sent on to trial tomorrow!"
@@ -835,9 +914,9 @@ SCR_CH03_S06_L007,"(Rebut N1, presenting E03_08) Hold on! The logbook's last pag
 SCR_CH03_S06_L008,【印：截】
 SCR_CH03_S06_L009,【印：破竹×1】
 SCR_CH03_S06_L010,"Cut-In! N1 removed, counter 30. Pierce's Dominance: 70."
-SCR_CH03_S06_L011,"(Round 2 · Tell) Pierce fingers his watch chain, then glances at Arthur. Lit node: N3. Possible moves: Assert / Set a Trap (no star)."
+SCR_CH03_S06_L011,"(Round 2 · Tell) Pierce fingers his watch chain, his other hand pressed flat on the ledger. Lit node: N3. Possible moves: Reinforce (likelier · Rule 1) / Assert."
 SCR_CH03_S06_L012,"(Tell) As a partner, I'm obliged to set things out clearly."
-SCR_CH03_S06_L013,(Hint) He glanced at me... he may be waiting for you to draw a dashed line.
+SCR_CH03_S06_L013,"(Hint) N1 has just been pulled, so he'll probably open the ledger to patch the hole... but he's fingering his chain as well. The move that's safe either way is to listen first."
 SCR_CH03_S06_L014,"(Observe) Please, go on, Mr. Roland. The more you say, the thinner the fog gets."
 SCR_CH03_S06_L015,"(Assert) We were carrying lawful government cargo, with paperwork to prove it."
 SCR_CH03_S06_L016,"Misread: he played Assert. Observe halves the damage, so you take 19. Your Dominance: 81. N3 stays on the table."
@@ -853,9 +932,9 @@ SCR_CH03_S06_L025,【大字：動搖】
 SCR_CH03_S06_L026,【印：破竹×1】
 SCR_CH03_S06_L027,"Chain damage 21, halved by the Reinforce to 10.5. Scandal evidence hits! N3 removed; the Reinforce was hit, so there is no recovery; Pierce is Shaken. Dominance: 59.5."
 SCR_CH03_S06_L028,(Shaken) Th-that's just an accounting error! The Municipal Hall's books are always a mess!
-SCR_CH03_S06_L029,(Round 4 · Tell) Pierce loosens his cravat and steps forward. Lit node: N2. Possible moves: Assert / Onslaught.
+SCR_CH03_S06_L029,"(Round 4 · Tell) Pierce loosens his cravat and steps forward, yet his hand still rests on the ledger. Lit node: N2. Possible moves: Reinforce (likelier · Rule 1) / Onslaught."
 SCR_CH03_S06_L030,(Tell) What would a slip of a girl like you know!
-SCR_CH03_S06_L031,"(Hint) His cravat's loosened: he's about to charge. He's still Shaken, so this is the moment."
+SCR_CH03_S06_L031,"(Hint) By the rules he ought to patch his ledger, but the cravat's loosened and he's stepped forward. I'd bet he's about to charge. He's still Shaken, so this is the moment."
 SCR_CH03_S06_L032,(Onslaught) The boiler-room door was bolted from the inside; that makes it an accident! You haven't one piece of evidence that—
 SCR_CH03_S06_L033,Hold on—I've completely cracked it!
 SCR_CH03_S06_L034,"(Rebut-Break, aimed at N2, presenting E03_02 + E03_04 + G-01) The bolt is steam-driven; a man standing on deck could bolt it from the inside. And the part jamming the relief valve carries a batch number from the very same black-market list as the gear in the clock shop! What you and Moss were skimming was military parts. Moss wanted to confess to the audit, so you used the very goods you'd stolen together to shut him in with the steam!"
@@ -962,6 +1041,9 @@ SCR_CH03_S90_L065,"He's pacing the deck. His next move will be an attack, and a 
 SCR_CH03_S90_L066,"Don't clash head-on; wait for him to speak, then cut in."
 SCR_CH03_S90_L067,Steady. Don't Rebut this round.
 SCR_CH03_S90_L068,Hold on with solid evidence. The fog will lift.
+SCR_CH04_S01_L001,Scene 1: Newspaper Front Page (Opening)
+SCR_CH04_S01_L002,【The London Lantern · November 1887】Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria
+SCR_CH04_S01_L003,"Our correspondent reports: During the third act of ""The Clockwork Nightingale"" at the Royal Opera House last night, the stage lift on which the soprano Miss Isabella Valen stood suddenly gave way, and Miss Valen fell some ten feet. She remains unconscious in hospital. The celebrated academic detective Mr. Victor Crowe happened to be in the audience and sealed off the scene at once. Mr. Crowe stated: ""This was no accident. The truth will be made known tomorrow morning."""
 SHF_C1_IDLE,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces."""
 SHF_C1_REMAIN,"""Hold on, there's still something I haven't looked at. My ears are itching."""
 SPK_ARTHUR,Arthur
@@ -1000,6 +1082,52 @@ STAMP_TRAP_SUB,TRAPPED
 STAMP_WHIFF,落空
 STAMP_WHIFF_LOG,【落空】
 STAMP_WHIFF_SUB,WHIFF
+TAG_PERSON_ARTHUR,Arthur
+TAG_PERSON_CAT,The Cat
+TAG_PERSON_FITCH,Fitch
+TAG_PERSON_HOLLOWAY,Holloway
+TAG_PERSON_MOSS,Moss
+TAG_PERSON_NAMELESS_VISITOR,Nameless Visitor
+TAG_PERSON_OLD_TOM,Old Tom
+TAG_PERSON_PIERCE,Pierce
+TAG_PERSON_W,W.
+TAG_PERSON_WOMAN_IN_BLACK,Woman in Black
+TAG_PHYSICAL_BOILER_PRESSURE,Boiler Steam Pressure
+TAG_PHYSICAL_BRASS,Brass
+TAG_PHYSICAL_BRASS_BALANCE_WHEEL,Brass Balance Wheel
+TAG_PHYSICAL_CARAMEL,Caramel
+TAG_PHYSICAL_CARAMEL_PUDDING,Clockwork Caramel Pudding
+TAG_PHYSICAL_CLOTH,Cloth
+TAG_PHYSICAL_DOUBLE_MAINSPRING,Double-Layer Mainspring
+TAG_PHYSICAL_MILITARY_BATCH_NO,Military Batch Number
+TAG_PHYSICAL_PAPER_SLIP,Slip of Paper
+TAG_PHYSICAL_REPAIR_TOOLS,Watchmaker's Tools
+TAG_PHYSICAL_SCREWDRIVER_MARKS,Small Screwdriver Marks
+TAG_PHYSICAL_SHOP_PAPERWORK,Shop Paperwork
+TAG_PHYSICAL_SLID_OFF_WHOLE,Slid Off Whole
+TAG_PHYSICAL_STEAM_SUFFOCATION,Steam Suffocation
+TAG_PHYSICAL_SWAPPED_MOVEMENT_BRASS,Brass from the Swapped Movement
+TAG_PHYSICAL_VALVE_SOOT,Soot from the Valve
+TAG_PLACE_ARTHURS_ROOM,Arthur's Room
+TAG_PLACE_BOILER_ROOM,Boiler Room
+TAG_PLACE_CLOCK_SHOP,The Cuckoo Clockworks
+TAG_PLACE_CORNER_TABLE,Corner Coffee Table
+TAG_PLACE_CUCKOO_CLOCK,Cuckoo Clock
+TAG_PLACE_DECK,Deck
+TAG_PLACE_DOOR_GAP,Gap Under the Front Door
+TAG_PLACE_FRIDGE,Fridge
+TAG_PLACE_KITCHEN_FLOOR,Kitchen Floor
+TAG_SCANDAL_EMBEZZLED_PROCUREMENT,Embezzled Procurement
+TAG_SCANDAL_MILITARY_BLACK_MARKET,Military Black Market
+TAG_SCANDAL_PROCUREMENT_AUDIT,Procurement Audit
+TAG_TIME_0530,05:30
+TAG_TIME_1500,15:00
+TAG_TIME_2130,21:30
+TAG_TIME_2200_2230,22:00–22:30
+TAG_TIME_2210,22:10
+TAG_TIME_EARLY_MORNING,Early Morning
+TAG_TIME_LATE_NIGHT,Late Night
+TAG_TIME_SHOP_CLOCK_SLOW,Shop Clock 3 Minutes Slow
 TUT_01_01_BODY,"Clues can hide in every corner of a scene. Move the cursor; anything that glows as you approach is an Investigation Point, and one click investigates it. There are five types: Examine, Evidence, Testimony, Mechanism, and Locked Area."
 TUT_01_01_TITLE,Evidence Search
 TUT_01_02_BODY,"What you find becomes an Evidence Card and goes into your Evidence Book. Each card carries five kinds of Tag: Time, Place, Person, Physical, and Scandal. When you reason later, the game uses these Tags to decide whether two pieces of evidence fit together."
@@ -1498,6 +1626,7 @@ UI_TAIL,Endgame
 UI_TITLE_LOGO,Sherefox
 UI_TITLE_PRESS,Press any key to start
 UI_TITLE_SUB,Sherefox: The Fox Detective of the Fog City
+UI_TO_BE_CONTINUED,To Be Continued
 UI_TYPE_CRIMINAL,Culprit
 UI_TYPE_CRIMINAL_DESC,"He is lying, so his claims must hide a contradiction with the facts. Mostly attacks, and goes on the Onslaught when pushed: Rebut him as he speaks up for the best effect."
 UI_TYPE_MIXED,Hybrid

@@ -107,15 +107,12 @@ def test_route_tell_round1_reachable():
     assert can_tell(s0, Clarity.FUZZY, {OA.CLAIM, OA.RUSH}, None, None, OA.CLAIM)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Ch.2 R2 tell 「主張或設陷，無標記」: R1 removed N1, so rule 1 (傾向補強) applies and A-3 "
-    "requires 補強★1 to be one of the fuzzy candidates. Also contradicts A-3's example that "
-    "Fitch's decoys stay within 主張/猛攻 or 補強/設陷.",
-)
 def test_route_tell_round2_reachable():
+    """Ruling A1: 模糊「補強★1／主張」 (rule 1 applies after R1 removed N1)."""
     states, _ = route_until(1)
-    assert can_tell(states[1], Clarity.FUZZY, {OA.CLAIM, OA.TRAP}, None, None, OA.CLAIM)
+    assert can_tell(states[1], Clarity.FUZZY, {OA.REINFORCE, OA.CLAIM}, OA.REINFORCE, None, OA.CLAIM)
+    # the old 「主張或設陷，無標記」 tell is no longer producible
+    assert not can_tell(states[1], Clarity.FUZZY, {OA.CLAIM, OA.TRAP}, None, None, OA.CLAIM)
 
 
 def test_route_tell_round3_reachable():

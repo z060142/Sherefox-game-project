@@ -1,8 +1,6 @@
-"""Ch.1 亞瑟布丁論戰 — 推薦路線 and 常見失誤回合 (各章設計 Ch.1, A-13)."""
+"""Ch.1 亞瑟布丁論戰 — 推薦路線 and 常見失誤回合 (各章設計 Ch.1, A-13, rulings A4 / B21 / D15)."""
 
-import pytest
-
-from helpers import OA, Clarity, E, can_tell, of, opp, parry, played_full, removed_ids, solid, step
+from helpers import OA, Clarity, E, can_tell, observe, of, opp, parry, played_full, removed_ids, solid, step
 from sherefox_ref.fixtures import ch1_board, ch1_case
 from sherefox_ref.model import initial_state
 from sherefox_ref.rules import validate_board
@@ -14,8 +12,8 @@ MOVES = [
 ]
 
 
-def run(moves, rule="numbers"):
-    case = ch1_case(rule)
+def run(moves):
+    case = ch1_case()
     validate_board(case, ch1_board())
     states, evs = [initial_state(case, ch1_board())], [None]
     for pa, oa in moves:
@@ -79,31 +77,47 @@ def test_mistake_round2_parry_whiff():
 
 
 def test_mistake_path_contradictions_by_round3():
-    states, _ = run(MISTAKE[:3], rule="a13")
+    states, _ = run(MISTAKE[:3])
     assert states[3].contradictions == 2 and states[3].shaken == "armed" and not states[3].over
 
 
-def test_mistake_path_wins_under_a13_reading():
-    states, _ = run(MISTAKE, rule="a13")
-    assert states[-1].outcome == "win"
+def test_mistake_path_wins():
+    """各章設計 Ch.1 「讀錯 1 次仍可在時限內完成」: the break may land after R3 (ruling D15)."""
+    states, _ = run(MISTAKE)
+    assert states[-1].outcome == "win" and states[-1].round == 5
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="數值總表 Ch.1 「3 回合破解 3 個節點」 (implemented as: break by round 3) makes the "
-    "documented one-mistake path a loss, while 各章設計 Ch.1 「讀錯 1 次仍可在時限內完成」 and A-13 "
-    "「3 回合內指出 2 個矛盾即勝利」 make it a win.",
-)
-def test_mistake_path_wins_under_numbers_reading():
-    states, _ = run(MISTAKE, rule="numbers")
-    assert states[-1].outcome == "win"
-
-
-def test_two_misreads_lose():
+def test_two_misreads_unachieved():
+    """A4 / D15: fewer than 2 contradictions at the end of R3 -> 未達成 (there is no loss)."""
     moves = [
         (parry("E01_06"), opp(OA.REINFORCE, "N1")),
         (parry("E01_06"), opp(OA.REINFORCE, "N1")),
         (parry("E01_06"), opp(OA.CLAIM, "N1")),
     ]
-    states, _ = run(moves, rule="a13")
-    assert states[-1].over and states[-1].outcome == "loss"
+    states, evs = run(moves)
+    assert states[-1].over and states[-1].outcome == "unachieved"
+    assert of(evs[3], E.DebateEnded)[0].reason == "contradiction_deadline"
+    assert all(s.outcome != "loss" for s in states)
+
+
+def test_missed_break_round_reenters_after_next_contradiction():
+    """B21: a missed break round can be re-entered after the next contradiction."""
+    moves = MOVES[:2] + [
+        (observe(), opp(OA.CLAIM, "N3")),  # break round missed
+        (parry("E01_06"), opp(OA.CLAIM, "N1")),  # 3rd contradiction -> shaken again
+        (parry(segment=("E01_03",)), opp(OA.CLAIM, "N3")),
+    ]
+    states, evs = run(moves)
+    assert states[3].shaken == "none" and not states[3].over
+    assert states[4].contradictions == 3 and states[4].shaken == "armed"
+    assert "CUT_SHAKEN" in played_full(evs[4])
+    assert states[5].over and states[5].outcome == "win"
+
+
+def test_round6_cap_unachieved():
+    """D15: no break by the end of round 6 -> 未達成 (R6 is the last round)."""
+    moves = MOVES[:2] + [(observe(), opp(OA.CLAIM, "N3"))] * 4
+    states, evs = run(moves)
+    assert [s.over for s in states[1:6]] == [False] * 5
+    assert states[6].over and states[6].outcome == "unachieved"
+    assert of(evs[6], E.DebateEnded)[0].reason == "round_cap"

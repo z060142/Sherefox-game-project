@@ -162,5 +162,5 @@ class CutIn(Event):
 
 @dataclass(frozen=True)
 class DebateEnded(Event):
-    result: str  # "win" | "loss"
+    result: str  # "win" | "loss" | "unachieved" (Ch.1 未達成)
     reason: str

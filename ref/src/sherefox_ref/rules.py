@@ -26,9 +26,15 @@ class IllegalAction(ValueError):
 
 
 def link_kind(a: Card, b: Card) -> str | None:
-    """系統規格 2.4 / A-2. Tags are compared by category (SPEC-QUESTION: Ch.1-3 tables
-    list tag categories only, no 類別：值 values)."""
-    shared = set(a.tags) & set(b.tags)
+    """系統規格 2.4 / A-2, ruling C4. Tags are "category:value"; only revealed tags count
+    (not hidden, or the card is appraised / police-revealed).
+
+    solid     = the cards share >= 1 identical revealed non-grazing category:value and both
+                reasons are correct (and neither is a substitute card);
+    sophistry = they share only grazing values (a value either card marks 擦邊 is grazing),
+                or a reason is wrong, or a substitute card is involved;
+    None      = no shared revealed category:value (invalid link)."""
+    shared = set(a.revealed) & set(b.revealed)
     if not shared:
         return None
     firm = shared - set(a.grazing) - set(b.grazing)
@@ -100,9 +106,10 @@ def count_links(links) -> tuple[int, int]:
 
 
 def segment_tags(case: CaseConfig, segment) -> set[str]:
+    """Revealed tags of a segment (an attack must share one with its target, MSG_DEB_NOTAG)."""
     out: set[str] = set()
     for cid in segment:
-        out |= set(case.card(cid).tags)
+        out |= set(case.card(cid).revealed)
     return out
 
 
@@ -152,8 +159,8 @@ def claim_damage(
     round_no: int,
     observe_half: bool,
 ) -> tuple[float, tuple]:
-    """Opponent claim = base + 4n (n at round start, fragile excluded); rush x1.25;
-    困獸 x1.25; from round 15 +5; observe halves the result."""
+    """Opponent claim = base + 4n (n at round start, fragile excluded, B5); then, in this
+    order (ruling B10): 猛攻 x1.25 -> 困獸 x1.25 -> +5 聽眾不耐 (round 15+) -> 觀察 x0.5."""
     steps = []
     d = case.claim_base + 4 * n_nodes
     steps.append(("claim", d))
@@ -161,14 +168,9 @@ def claim_damage(
         d = d * 5 / 4
         steps.append(("rush_x1.25", d))
     if konju:
-        # SPEC-QUESTION: A-15 says 困獸 x1.25 on claim/rush but not where it sits relative
-        # to rush and the round-15 +5. Applied right after rush.
         d = d * 5 / 4
         steps.append(("konju_x1.25", d))
     if round_no >= 15:
-        # SPEC-QUESTION: 數值總表 says flat "+5 from round 15"; A-1 says "每回合 +5 ... 加在
-        # x1.5 之後" (x1.5 looks like the old rush multiplier). Implemented: flat +5 after
-        # rush/konju multipliers, before observe halving.
         d = d + 5
         steps.append(("impatience_+5", d))
     if observe_half:
@@ -194,10 +196,8 @@ def break_threshold_met(state: DebateState, segment: tuple[str, ...], links) -> 
     need_chain = max(1, 2 + extra - reduce)
     if all_solid and len(segment) >= need_chain:
         return True
-    # strong-card path
-    # SPEC-QUESTION: how "論破條件張數 +1" (after a voided break) applies to the
-    # "1 件強攻證物" path is not written. Implemented: segment must hold a strong card
-    # with the correct reason and have >= 1 + voids - (破竹3) cards (min 1), solid only.
+    # strong-card path (ruling B18): a strong card with the correct reason plus
+    # (voids - 破竹3) or more solid cards, solid links only.
     need_strong = max(1, 1 + extra - reduce)
     has_strong = any(
         STRONG in case.card(c).flags and case.card(c).reason_correct for c in segment

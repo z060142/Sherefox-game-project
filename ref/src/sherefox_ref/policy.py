@@ -150,18 +150,15 @@ def decide_next(state: DebateState, chooser) -> tuple[DebateState, OpponentActio
             cand.append((2, OA.TRAP))
         if 4 in prof.rules and state.last_reinforce_success:
             cand.append((4, OA.CLAIM))
+        # A rule whose action is deleted (rule 5 / 不能補強) counts as not applying, so the
+        # next applicable tendency rule may win (數值總表 四 / A-3, A-14).
+        cand = [(no, tgt) for no, tgt in cand if tgt in allowed]
         if cand:
-            no, tgt = cand[0]
-            # SPEC-QUESTION: when the winning tendency rule points at a banned action
-            # (A-14: 「不能補強」與規則 1 衝突 → 改依性格傾向) the model drops tendencies
-            # entirely rather than falling through to the next rule.
-            if tgt in allowed:
-                rule_target, rule_no = tgt, no
+            rule_no, rule_target = cand[0]
         if rule_target is not None and chooser.percent(FOLLOW_PCT):
             act = rule_target
         else:
-            # SPEC-QUESTION: 「其餘依性格傾向」— the 20% personality draw includes the
-            # rule's own action (effective follow rate 80% + 20%·w). Not stated either way.
+            # Ruling B11: the 20% personality draw includes the rule's own action.
             act = chooser.weighted(_weights(state, allowed))
 
     # ---- clarity (A-3 table) ----------------------------------------------------------
@@ -185,13 +182,11 @@ def decide_next(state: DebateState, chooser) -> tuple[DebateState, OpponentActio
     shown: tuple
     star = None
     if clarity == Clarity.FUZZY:
-        # SPEC-QUESTION: A-3 says ★ also appears when a 「強制刪去規則」 (rule 5 / 不能補強)
-        # applies, but a deletion rule points at no action. Implemented: ★ only for the
-        # tendency rules 1/2/4. A-3's example that Fitch's decoys stay within 主張/猛攻 or
-        # 補強/設陷 is not in 各章設計 Ch.2 (and its R2 route tell breaks it): not modelled.
+        # Ruling B12 / 數值總表 四: ★ only for the tendency rules 1/2/4; rule 5 and 不能補強
+        # only delete candidates. (A-3's Fitch decoy example was deleted, ruling A3.)
         if rule_target is not None:
             star = rule_target
-            other = act if act != rule_target else None
+            other = rule_target if act != rule_target else None  # the ★ candidate is the decoy
         else:
             other = None
         if other is None:
@@ -214,8 +209,7 @@ def decide_next(state: DebateState, chooser) -> tuple[DebateState, OpponentActio
         shown = (act,)
 
     lit_pool = [n.id for n in new_state.nodes if n.kind in ("normal", "last_stand", "second_claim")]
-    # SPEC-QUESTION: how the lit node is chosen is not specified (route tables script it).
-    # Implemented: uniform over visible non-fragile nodes.
+    # Ruling B13: uniform over visible non-fragile nodes (seeded).
     lit = chooser.uniform(lit_pool) if lit_pool else None
 
     tell = Tell(

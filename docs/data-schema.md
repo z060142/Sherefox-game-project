@@ -11,7 +11,6 @@
 | `uv run tools/build_data.py` | 重新產生全部表格與字串表，並執行驗證（錯誤 → 結束碼 1，不寫檔） |
 | `uv run tools/build_data.py --check` | 只驗證，不寫檔 |
 | `uv run tools/build_data.py --import-localization <dir>` | 先把新的在地化包複製進 `source/localization/`，再建置 |
-| `uv run tools/build_data.py --make-tag-placeholder [--force]` | 重寫「只有類別」的佔位標籤檔（見 §0.4） |
 
 只用標準函式庫；腳本帶 PEP 723 標頭，`tools/pyproject.toml` 供 `cd tools && uv run build_data.py` 使用。
 
@@ -19,11 +18,11 @@
 
 | 來源 | 內容 |
 |---|---|
-| `source/localization/` | 在地化包（2026-11-06 版）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
+| `source/localization/` | 在地化包（2026-11-06 第三批，含 Ch.4 開場報紙）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
 | `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
-| `source/tags/tags_ch01-03.csv` | 每張證物卡與每個主張節點的標籤（§0.4）；目前是**佔位檔** |
+| `source/tags/tags_ch01-03.csv` | 每張證物卡與每個節點的「類別：值」標籤（§0.4），抄自 10-cases 各章「標籤值」表 |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
-| `docs/design/02-numbers.md` | §一（前期欄，解析）、§四（類型權重，解析）、§五（各案主導權／節點上限／主張傷害，解析） |
+| `docs/design/02-numbers.md` | §一（前期欄，解析）、§四（類型權重，解析）、§五（各案主導權／節點上限／主張傷害，解析；說明文字中的「Ch.n 鑑定 k 次」覆寫 01-systems §1.3 的鑑定次數） |
 | `docs/design/10-cases-ch01-04.md` | 各章「場景與登場人物」「證物表」「對手行為表」（解析）；其餘條目以常數寫在腳本內並註明出處 |
 | `docs/rulings.md` | 設計裁決 B15、B16、B20、A4、C1～C4，以常數寫在腳本內（以裁決編號註記） |
 
@@ -36,9 +35,9 @@
 - 文字格只放**字串鍵**，不放顯示文字。多值格以 `,` 分隔、無空白（適用 `atrium.table.has` 與 `atrium.coll.addAll`）。
 - 字串表：`strings/zh-TW.csv`、`strings/en.csv`，RFC 4180 兩欄 `key,text`、首列為標頭 `key,text`，依鍵的字元序排序。兩檔的鍵集合完全相同。
 
-### 0.4 標籤（裁決 C4）
+### 0.4 標籤（裁決 C4、D8、D11、D13）
 
-機器形式：`<類別>:<值>`；設計沒給值時只寫 `<類別>`。類別 id：
+機器形式：`<類別>:<slug>`（例 `place:boiler_room`）。類別 id：
 
 | 設計用語 | id |
 |---|---|
@@ -48,27 +47,28 @@
 | 物理、物理特性 | `phys` |
 | 醜聞 | `scandal` |
 
-標籤來源是 `source/tags/tags_ch01-03.csv`（UTF-8，標頭列 `owner,category,value,slug,grazing,hidden,note`），一列一個標籤：
+標籤來源是 `source/tags/tags_ch01-03.csv`（UTF-8，標頭列 `owner,category,value,slug,grazing,hidden,police,note`），一列一個標籤，內容抄自 10-cases 各章「標籤值」表（證物表與節點表）：
 
 | 欄 | 意義 |
 |---|---|
 | owner | 證物 id（`E01_01`、`G-01`、`S-01`）或節點 id（`CH01_N1`、`CH02_T1`、`CH03_W1`） |
 | category | 類別的設計用語（上表左欄） |
-| value | 值的設計用語（例：鍋爐室）；空白＝只有類別 |
-| slug | 值的機器形式，`[a-z0-9_]+`（例：`boiler_room`）。value 有值時必填；機器標籤為 `category:slug` |
-| grazing | `擦邊`／`1`／`true`／`yes` → 此標籤列入 `grazingTags`（只能接成詭辯連結，01-systems §2.4） |
-| hidden | `auto`（預設）：依 01-systems §1.5 推導——證物的鑑定類型會揭露此類別時，此標籤要鑑定後才揭露；`yes`／`no` 強制指定 |
-| note | 備註；含 `PLACEHOLDER` 時建置會提出警告 |
+| value | 值的設計用語（例：鍋爐室），必填 |
+| slug | 值的機器形式，`[a-z0-9_]+`，必填；＝在地化包 `TAG_<類別>_<SLUG>` 鍵的 slug 小寫（例 `boiler_room`、`0530`、`2200_2230`）。同一個 `category:slug` 在所有列必須是同一個 value |
+| grazing | `擦邊`（表中 ※）→ 此標籤列入 `grazingTags`；空白＝非擦邊 |
+| hidden | 表中「需鑑定」欄：`medical`（醫療）／`mech`（機械）／`no`（—，一開始就揭露）。只有證物可隱藏，且證物的鑑定類型必須能揭露它（醫療 → medical／dual，機械 → mechanical／dual） |
+| police | `yes`：信任度 ≥ 3 時警方驗屍報告直接揭露此隱藏標籤（01-systems §3.1；目前只有 E03_01 的時間與蒸汽窒息）；必須是 hidden 標籤 |
+| note | 備註（不進資料） |
 
-**目前內容是佔位**：證物列取自在地化包 `E<ch>_<nn>_TAGS` 的類別（G-01 依裁決 C2 為物理・醜聞，S-01 暫同 G-01）；節點列暫時抄自它的破解證物的類別聯集，`hidden=no`。各章設計分頁的「標籤值」表完成後，**只要換掉這一個檔案**（填入 value、slug、grazing），重新建置即可；表格欄位不變。建置會警告：節點沒有標籤、證物標籤類別與設計證物表不同、檔案仍是佔位。
+S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」欄覆寫 01-systems §1.5 的類別預設（裁決 D8），所以建置不再依類別推導隱藏標籤。
 
-標籤值本身的顯示文字目前沒有字串鍵（見待確認 Q1）。
+標籤顯示鍵（裁決 D13）：`TAG_<TIME|PLACE|PERSON|PHYSICAL|SCANDAL>_<slug 大寫>`（類別名與 `UI_TAG_<類別>` 相同），例 `TAG_PLACE_BOILER_ROOM`、`TAG_PHYSICAL_BOILER_PRESSURE`；slug 與在地化包的鍵一致。表 `tags`（§13）列出每個標籤與它的鍵；46 個鍵都由在地化包提供（2026-11-06 第二批）。在地化包缺某個鍵時，建置以 zh-TW＝表中的值、en 暫同 zh-TW 補上，並以一則警告列出。
 
 ### 0.5 驗證（建置時執行）
 
-錯誤（建置失敗）：表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點取得、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
+錯誤（建置失敗）：標籤檔標頭不符、標籤缺 value 或 slug、同一 slug 對應兩個值、`hidden` 不是 medical／mech／no 或與證物的鑑定類型不符、非證物標籤被隱藏、`police=yes` 但標籤沒隱藏、`policeTags` 不是 `hiddenTags` 的子集、沒有鑑定類型的證物有隱藏標籤、節點或證物沒有標籤；表名／欄名不合法；值為 null 或巢狀；同欄型別混用；id 重複；任何表引用的字串鍵不在兩份字串表中（含多值的 `lines`）；引用不存在的證物（`hotspots.yields`、`nodes.refutedBy`、`opponents.hand`、`script.evidence`、`evidence.golden`）、節點（`evidence.refutes`、`script.node`、`opponents.tailNode`）、調查點、對手、報紙群組；標籤類別未知、slug 不合法、`hiddenTags`／`grazingTags` 不是 `tags` 的子集；在地化備註或劇本行無法分類；10-cases 的調查點沒有對應；演出檔的驗證項（§3.1）；必需證物（`REQUIRED`）不在證物表、不是一般／關鍵、不由調查點取得、`required` 與 `obtainable` 不符，或非一般／關鍵證物 `obtainable=true`（裁決 D2、D3）；章節步驟不符裁決 D5（每章必須以恰好一個 S01 paper 步驟開頭，除 Ch.3 末尾的最終報紙外沒有其他 paper 步驟，S01 不得是非 paper 步驟）；章首報紙沒有導言 `bodyKey`。
 
-警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物）；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；節點無標籤；在地化與 10-cases 證物表的等級／鑑定／類別不同；佔位標籤檔。
+警告（照常輸出）：各章數量與 01-systems §1.3 不符（場景、調查點、一般／關鍵／劇情證物）；刻度÷調查點不在 0.65～0.75；純情報調查點比例偏離 40% 超過 10 個百分點；主張節點少於節點上限；在地化與 10-cases 證物表的等級／鑑定／類別不同；證物的非擦邊標籤類別與 10-cases 證物表的類別不同（擦邊值可以落在類別欄以外；全為擦邊的 S-01 比對全部標籤）；`TAG_` 顯示鍵不在在地化包（en 暫用 zh-TW）；對手小動作的在地化 zh 與 10-cases 對手行為表不同。
 
 ## 1. `chapters`：章節（每章一列，依章號）
 
@@ -76,13 +76,13 @@
 |---|---|---|---|
 | id | number | 章號 1～3 | — |
 | key | string | `CH01`… | — |
-| titleKey | string | 章名字串鍵 `CHAP_0n_TITLE` | 由結案筆記行（`SCR_CH0n_S0x_L002`）的「案件名稱：…。」／"Case name: …." 擷取（待確認 Q2） |
+| titleKey | string | 章名字串鍵 `CHAP_0n_TITLE` | 在地化包；缺鍵時才由結案筆記行（`SCR_CH0n_S0x_L002`）的「案件名稱：…。」擷取 |
 | phase | string | `early`（前期） | 02-numbers §一 |
 | scenes | number | 設計的場景數 | 01-systems §1.3（解析） |
 | hotspotsDesign | number | 設計的調查點數 | 同上 |
 | commonDesign／keyDesign／storyDesign | number | 設計的一般／關鍵／劇情證物數 | 同上 |
 | ticks | number | 懷錶刻度；`-1`＝不限 | 同上（Ch.1「不限（教學）」） |
-| appraisals | number | 鑑定次數 | 同上 |
+| appraisals | number | 鑑定次數 | 同上；02-numbers §五「Ch.2 鑑定 3 次」覆寫（Ch.2＝3） |
 | appraisalUnlocked | bool | 可鑑定（Ch.2 起） | 01-systems §1.5 |
 | assistUnlocked | bool | 援護可用（Ch.2 起） | 10-cases Ch.1 結算、TUT_01_19 |
 | sophistry | bool | 論戰可出詭辯 | Ch.1：劇本「本章教學尚未解鎖」；Ch.2～3：裁決 B20 |
@@ -104,7 +104,7 @@
 | tailRounds | number | 尾聲回合數 | 02-numbers §一 |
 | debate | string | 主論戰對手 id（`opponents.id`） | — |
 | openPaper | string | 章首報紙群組（`papers.group`）；即章節交界的合併報紙（§9） | 裁決 D5 |
-| endPaper | string | 章末報紙群組（`papers.group`）；只有最後一章（Ch.3）有值，Ch.1～2 為空白（章節交界只有一份報紙，在下一章開頭，見 §9） | 裁決 D5 |
+| endPaper | string | 章末報紙群組（`papers.group`）；只有最後一章（Ch.3）有值＝`CH04_OPEN`（原型結尾，裁決 E1），Ch.1～2 為空白（章節交界只有一份報紙，在下一章開頭，見 §9） | 裁決 D5、E1 |
 | next | number | 下一章章號 | — |
 
 ## 2. `steps`：章節步驟（依章號、idx）
@@ -114,12 +114,12 @@
 | id | string | `CH0n_ii` |
 | chapter | number | 章號 |
 | idx | number | 章內順序，0 起 |
-| kind | string | `paper`／`vn`／`warmup`／`investigate`／`board`／`debate`／`result` |
-| sub | string | `paper`：`open`（章首合併報紙）或 `transition`（Ch.3 之後的最終報紙）；`vn`：`daily`／`event`／`notes`（結案筆記）；其他空白 |
-| scene | string | 該步驟對應的劇本場景（`script.scene`，例 `S02`）；章首報紙為 `S01`；`board` 與最終報紙（`CH03_END`）空白 |
-| arg | string | `paper` → `papers.group`；`warmup`／`debate` → `opponents.id`；`investigate`／`board` → 章 key（`CH0n`，查 `hotspots.chapter`、`evidence.usable`）；其他空白 |
+| kind | string | `paper`／`vn`／`warmup`／`investigate`／`board`／`debate`／`result`／`end`（原型結尾「待續」卡，只出現在最後一步，裁決 E1） |
+| sub | string | `paper`：`open`（章首合併報紙）或 `transition`（Ch.3 之後的最終報紙 `CH04_OPEN`）；`vn`：`daily`／`event`／`notes`（結案筆記）；其他空白 |
+| scene | string | 該步驟對應的劇本場景（`script.scene`，例 `S02`）；章首報紙為 `S01`；`board`、最終報紙與 `end` 空白 |
+| arg | string | `paper` → `papers.group`；`warmup`／`debate` → `opponents.id`；`investigate`／`board` → 章 key（`CH0n`，查 `hotspots.chapter`、`evidence.usable`）；`end` → 卡片文字的字串鍵 `UI_TO_BE_CONTINUED`；其他空白 |
 
-推導：依劇本每個場景的標題（`L001`）判定種類——含「報紙頭版」→ paper/open、「熱身小論戰」→ warmup、「主論戰」→ debate、「蒐證」→ investigate、「結算」→ result、「結案筆記」→ vn/notes、「日常」→ vn/daily、「事件」→ vn/event（依此順序比對）。`investigate` 之後插入 `board`（線索板沒有劇本場景，01-systems §4.1）。裁決 D5：每章開頭只有**一個** paper 步驟（`sub=open`、`scene=S01`、`arg=CH0n_OPEN`），它是章節交界的合併報紙，不再有獨立的 S01 vn 步驟，章末也不再有轉場報紙步驟；只有最後一章（Ch.3）末尾保留一個 paper 步驟（`sub=transition`、`arg=CH03_END`，原本會開啟 Ch.4 的報紙，Ch.4 開場不在範圍內）。裁決 D6：`result` 步驟播放劇本的結算台詞；`NEWS_*` 結果頭條只出現在下一份報紙的側欄（§9），不在結算步驟播放。論戰台詞庫 `S90` 不是步驟。
+推導：依劇本每個場景的標題（`L001`）判定種類——含「報紙頭版」→ paper/open、「熱身小論戰」→ warmup、「主論戰」→ debate、「蒐證」→ investigate、「結算」→ result、「結案筆記」→ vn/notes、「日常」→ vn/daily、「事件」→ vn/event（依此順序比對）。`investigate` 之後插入 `board`（線索板沒有劇本場景，01-systems §4.1）。裁決 D5：每章開頭只有**一個** paper 步驟（`sub=open`、`scene=S01`、`arg=CH0n_OPEN`），它是章節交界的合併報紙，不再有獨立的 S01 vn 步驟，章末也不再有轉場報紙步驟；只有最後一章（Ch.3）末尾保留一個 paper 步驟（`sub=transition`、`arg=CH04_OPEN`：Ch.4 的開場合併報紙，側欄刊 Ch.3 結果），之後是 `end` 步驟（「待續」卡，`arg=UI_TO_BE_CONTINUED`）；Ch.4 本身不在範圍內（裁決 E1）。裁決 D6：`result` 步驟播放劇本的結算台詞；`NEWS_*` 結果頭條只出現在下一份報紙的側欄（§9），不在結算步驟播放。論戰台詞庫 `S90` 不是步驟。
 
 每章步驟序列（Ch.1～3）：
 
@@ -127,7 +127,7 @@
 |---|---|
 | Ch.1 | paper(S01) → vn daily(S02) → vn event(S03) → investigate(S04) → board → debate(S05) → result(S06) → vn notes(S07) |
 | Ch.2 | paper(S01) → vn daily(S02) → vn event(S03) → investigate(S04) → board → debate(S05) → result(S06) → vn notes(S07) |
-| Ch.3 | paper(S01) → vn daily(S02) → vn event(S03) → warmup(S04) → investigate(S05) → board → debate(S06) → result(S07) → vn notes(S08) → paper transition(`CH03_END`) |
+| Ch.3 | paper(S01) → vn daily(S02) → vn event(S03) → warmup(S04) → investigate(S05) → board → debate(S06) → result(S07) → vn notes(S08) → paper transition(`CH04_OPEN`) → end(`UI_TO_BE_CONTINUED`) |
 
 ## 3. `script`：劇本行（每行一列，依章、場景號、行號）
 
@@ -179,8 +179,9 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | descKey | string | 說明文字 | `E.._DESC`（黃金／替代沒有） |
 | tagsKey | string | 標籤類別的顯示字串（例「物理・時間」） | `E.._TAGS` |
 | tags | string | 機器標籤，多值 | §0.4 |
-| hiddenTags | string | 要鑑定後才揭露的標籤（`tags` 的子集） | §0.4：依 01-systems §1.5，醫療揭露 time/person/phys、機械揭露 phys/place、雙重兩者 |
-| grazingTags | string | 擦邊標籤（`tags` 的子集） | §0.4；目前全空 |
+| hiddenTags | string | 要鑑定後才揭露的標籤（`tags` 的子集）；用 `appraise` 的鑑定揭露 | §0.4：標籤檔 `hidden`（10-cases 標籤值「需鑑定」欄，裁決 D8） |
+| grazingTags | string | 擦邊標籤（`tags` 的子集） | §0.4：標籤檔 `grazing` |
+| policeTags | string | 信任度 ≥ 3 時由警方驗屍報告直接揭露的隱藏標籤（`hiddenTags` 的子集；只有 E03_01） | §0.4：標籤檔 `police`；01-systems §3.1；10-cases Ch.3 標籤值 |
 | appraise | string | `none`／`medical`／`mechanical`／`dual` | 在地化 `_NAME` 備註 appraisal |
 | appraiseCost | number | 鑑定消耗次數 0／1／1／2 | 01-systems §1.5 |
 | appraisalKey | string | 鑑定後亞瑟的說明行（§2.8 appraisalText） | 劇本中備註含 `appraisal` 的行 |
@@ -260,8 +261,8 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | case | string | 所屬論戰 `opponents.id` | — |
 | kind | string | `claim`／`tail`／`warmup` | — |
 | idx | number | 節點池順序（1 起；裁決 B19：回復依節點池順序） | 10-cases 主張節點表 |
-| textKey | string | 主張文字 | 主張：`CLM_CH0n_Nk`；尾聲：該章台詞庫第一句 `Endgame line`（Ch.2 `SCR_CH02_S90_L026`、Ch.3 `SCR_CH03_S90_L026`）；熱身：警督誤判行 `SCR_CH03_S04_L003` |
-| tags | string | 節點自己的標籤（§0.4；裁決 C4）。目前為佔位 | `tags_ch01-03.csv` |
+| textKey | string | 主張文字 | 主張：`CLM_CH0n_Nk`；尾聲：`CLM_CH0n_T1`；熱身：`CLM_CH03_W1`（在地化包，裁決 D12） |
+| tags | string | 節點自己的標籤（§0.4；裁決 C4） | `tags_ch01-03.csv`（10-cases 標籤值的節點表） |
 | grazingTags | string | 節點的擦邊標籤 | 同上 |
 | truth | bool | 主張為真 | `CLM` 備註 truth（真／假） |
 | refutable | bool | 有破解證物（Ch.2 N2 為 false：反駁必定空過） | — |
@@ -288,12 +289,13 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | rules | string | 適用的行為規則編號，多值 | 10-cases 對手行為表「適用行為規則」（解析） |
 | ruleBias | number | 傾向規則照做機率（%） | 02-numbers §四（約 80%） |
 | mirror | bool | 鏡像（維多）；Ch.1～3 皆 false | — |
-| gestureAssert／gestureRush／gestureReinforce／gestureTrap | string | 各行動固定小動作的字串鍵 `GST_CH0n_<ACTION>`；不使用的行動空白 | zh：10-cases 對手行為表「小動作預兆」；en：在地化台詞庫備註 `(gesture: …)` |
+| gestureAssert／gestureRush／gestureReinforce／gestureTrap | string | 各行動固定小動作的字串鍵 `GESTURE_<ARTHUR\|FITCH\|PIERCE>_<ASSERT\|ONSLAUGHT\|REINFORCE\|TRAP>`；不使用的行動空白 | 在地化包；哪些行動有小動作依 10-cases 對手行為表「小動作預兆」（zh 不同時警告） |
 | playerActions | string | 玩家可用行動，多值：`solid`、`sophistry`、`rebut`、`observe` | Ch.1：劇本「詭辯本章未解鎖」；Ch.2～3：裁決 B20；熱身：A-13 只開放反駁 |
 | tail | string | 尾聲反撲類型：`scorched`（玉石俱焚）；無尾聲空白 | 10-cases 論破與尾聲 |
 | tailNode | string | 尾聲第二說詞節點 `nodes.id` | 01-systems A-9 |
-| roundLimit | number | 回合上限（Ch.1：3）；0＝無 | 10-cases Ch.1、裁決 A4 |
+| roundLimit | number | 回合上限（Ch.1：6，第 6 回合結束仍未論破＝未達成）；0＝無 | 裁決 A4、D15 |
 | contraTarget | number | 需指出的矛盾數（Ch.1：2）；0＝不適用 | 同上 |
+| contraDeadline | number | 必須在此回合結束前指出 `contraTarget` 個矛盾，否則未達成（Ch.1：3）；之後論破回合不限，錯過可在下一個矛盾後再來（裁決 B21）；0＝不適用 | 裁決 D15 |
 | mistakeLimit | number | 失誤上限：熱身錯誤出示 3 次 → 對手不耐；0＝無（Ch.1 依裁決 A4 沒有失敗狀態） | 01-systems A-13、裁決 A4 |
 | hand | string | 熱身開始時的手牌（自動持有的證物），多值 | 10-cases Ch.3 熱身 |
 | handPerMissed | number | 每漏 1 件證物對手手牌 +n | 10-cases Ch.2／Ch.3 數值卡（暫定） |
@@ -320,19 +322,19 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 ## 9. `papers`：報紙（章節交界的合併報紙；依章）
 
-裁決 D5：章節交界只有**一份**報紙，放在下一章開頭。主頭條與導言（`headlineKey`、`subKey`、`bodyKey`）是該章劇本 S01 開場（`HEAD_CH0n`、`HEAD_CH0n_SUB`、`SCR_CH0n_S01_L003`）；側欄刊上一案的結果，提供勝利／惡名／敗北三個版本，由流圖在執行時依「頭條判定順序」（01-systems §3.3）選一個。共 4 列：`CH01_OPEN`、`CH02_OPEN`、`CH03_OPEN`，以及 Ch.3 之後的最終報紙 `CH03_END`。
+裁決 D5：章節交界只有**一份**報紙，放在下一章開頭。主頭條與導言（`headlineKey`、`subKey`、`bodyKey`）是該章劇本 S01 開場（`HEAD_CH0n`、`HEAD_CH0n_SUB`、`SCR_CH0n_S01_L003`）；側欄刊上一案的結果，提供勝利／惡名／敗北三個版本，由流圖在執行時依「頭條判定順序」（01-systems §3.3）選一個。共 4 列：`CH01_OPEN`、`CH02_OPEN`、`CH03_OPEN`，以及 Ch.3 之後的最終報紙 `CH04_OPEN`（原型結尾：Ch.4 的開場合併報紙，裁決 E1）。
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
-| id | string | 章首報紙：`CH0n_OPEN`；Ch.3 之後的最終報紙：`CH03_END` |
-| chapter | number | 所屬章（章首報紙＝它開啟的那一章；`CH03_END` 記在 Ch.3） |
-| kind | string | `open`（章首合併報紙）／`transition`（最終報紙：Ch.4 開場不在範圍內，主頭條改用 `NEWS_03_NEXT`） |
-| group | string | 報紙群組（`CH0n_OPEN`、`CH03_END`）；`steps.arg` 與 `chapters.openPaper`／`endPaper` 指向群組 |
+| id | string | 章首報紙 `CH0n_OPEN`（n＝1～4；`CH04_OPEN` 是原型結尾的最終報紙） |
+| chapter | number | 它開啟的那一章（`CH04_OPEN` 為 4；這一步記在 Ch.3 的步驟序列末尾） |
+| kind | string | `open`（章首合併報紙，含 `CH04_OPEN`） |
+| group | string | 報紙群組（＝id）；`steps.arg` 與 `chapters.openPaper`／`endPaper` 指向群組 |
 | resultChapter | number | 側欄結果所屬的案件章號；`0`＝沒有上一案（Ch.1，側欄是開場城市新聞 `NEWS_00_OPEN`） |
 | mastKey | string | 刊頭 `UI_PAPER_MAST` |
-| headlineKey | string | 主頭條：`HEAD_CH0n`（`CH03_END` 為 `NEWS_03_NEXT`） |
-| subKey | string | 主頭條副標：`HEAD_CH0n_SUB`（`CH03_END` 為 `NEWS_03_NEXT_SUB`） |
-| bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`；`CH03_END` 空白 |
+| headlineKey | string | 主頭條：`HEAD_CH0n` |
+| subKey | string | 主頭條副標：`HEAD_CH0n_SUB` |
+| bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`（`CH04_OPEN` 用 `SCR_CH04_S01_L003`；Ch.4 的劇本行不進 `script` 表，只當這份報紙的導言） |
 | page2Key | string | 第二版：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，開場廣告）；其餘空白 |
 | page2SubKey | string | 第二版副標；目前全空白 |
 | sideKey | string | 側欄的社會短訊 `NEWS_SIDE_0n`（n＝`resultChapter`；`resultChapter=0` 時空白） |
@@ -341,8 +343,8 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | sideLoseKey／sideLoseSubKey | string | 側欄結果：敗北版（`NEWS_0n_LOSE`、`_SUB`） |
 
 - 只有一個版本的結果（`NEWS_00_OPEN`、`NEWS_01_END`）：三組欄位填同一個鍵，流圖不需特判。
-- 副標欄：zh 文字以「第二版」開頭的 `_SUB` 是下一案引子，不是副標，不寫進表（引子即下一章的 S01 主頭條）：`NEWS_01_END_SUB` 因此不使用；`NEWS_00_OPEN_SUB` 是第二版廣告，放 `CH01_OPEN.page2Key`。`NEWS_02_NEXT` 也不使用（內容即 `HEAD_CH03`）。
-- `CH03_END` 的側欄是 Ch.3 的結果（`NEWS_03_WIN`／`NOTO`／`LOSE`）。
+- 副標欄：zh 文字以「第二版」開頭的 `_SUB` 是下一案引子，不是副標，不寫進表（引子即下一章的 S01 主頭條）：`NEWS_01_END_SUB` 因此不使用；`NEWS_00_OPEN_SUB` 是第二版廣告，放 `CH01_OPEN.page2Key`。`NEWS_xx_NEXT` 鍵已廢除（裁決 E1）。
+- `CH04_OPEN` 的側欄是 Ch.3 的結果（`NEWS_03_WIN`／`NOTO`／`LOSE` 與 `_SUB`）。
 - 流圖選版：敗北 → `sideLoseKey`；勝利且惡名 ≥ 3 → `sideNotoKey`；否則 `sideWinKey`（01-systems §3.3 頭條判定順序）。
 - 結算場景（裁決 D6）：劇本結算台詞在 `result` 步驟播放；`NEWS_*` 結果頭條只在這張表的側欄出現。
 
@@ -388,12 +390,11 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 
 ## 11. 字串表
 
-- `strings.json` 的全部 1513 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
-- 新增（共 25 個）：
+- `strings.json` 的全部 1655 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
+- 新增（共 12 個）：
   - `SPK_*`（12 個）：劇本說話者欄的名稱，鍵＝`SPK_`＋英文說話者名稱大寫、非英數字元換成 `_`（例 `SPK_INSPECTOR_BASKERVILLE`、`SPK_NARRATION_ARTHURS_NOTES`）。演出、證物描述、分支、備註、場景標題這些偽說話者沒有鍵。
-  - `GST_CH0n_<ACTION>`（10 個）：對手小動作，zh 取自 10-cases 對手行為表，en 取自在地化台詞庫備註。
-  - `CHAP_0n_TITLE`（3 個）：章名，取自結案筆記行。
-- 合計 1538 鍵。
+- 標籤值（`TAG_*`）、小動作（`GESTURE_*`）、章名（`CHAP_0n_TITLE`）、尾聲與熱身主張（`CLM_CH0n_T1`、`CLM_CH03_W1`）都由在地化包提供，不再由建置產生。
+- 合計 1667 鍵。
 
 ## 12. `game.json` 的 tables 區塊
 
@@ -403,6 +404,7 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
   "steps": "data/steps.json",
   "script": "data/script.json",
   "evidence": "data/evidence.json",
+  "tags": "data/tags.json",
   "hotspots": "data/hotspots.json",
   "nodes": "data/nodes.json",
   "opponents": "data/opponents.json",
@@ -412,28 +414,32 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 }
 ```
 
+## 13. `tags`：標籤（每個不同的 `category:slug` 一列，依 id 的字元序）
+
+| 欄 | 型別 | 意義 | 來源 |
+|---|---|---|---|
+| id | string | 機器標籤 `category:slug`（`evidence.tags`／`nodes.tags` 中出現的值） | §0.4 |
+| category | string | 類別 id（`time`／`place`／`person`／`phys`／`scandal`） | §0.4 |
+| slug | string | 值的機器形式 | 標籤檔 `slug` |
+| nameKey | string | 顯示鍵 `TAG_<CATEGORY>_<SLUG>`（裁決 D13） | §0.4 |
+
 ## 待確認
 
-每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3、D2、D3、D5、D6 已套用；C4 已改成可替換的標籤檔；原 Q3、Q4、Q5、Q11 因此刪除，其餘編號不變）。
+每一項：問題、來源、目前的選擇。裁決紀錄（`docs/rulings.md`）已回答的不再列（B15、B16、B20、A4、C1～C3、D2、D3、D5、D6 已套用；C4、D8、D11、D13 已依 10-cases 標籤值套用；D12、D13 的鍵已由在地化包第二批提供，原 Q1、Q2、Q18、Q19、Q20 刪除；原 Q3、Q4、Q5、Q11 因此刪除，其餘編號不變）。
 
 | # | 問題 | 來源 | 目前的選擇 |
 |---|---|---|---|
-| Q1 | 標籤值（`類別：值`）尚未設計；值的顯示文字也沒有字串鍵 | 裁決 C4；01-systems §2.4、§2.8 | 佔位標籤檔只有類別、無擦邊；節點標籤暫抄破解證物類別。標籤值表來了之後要另加顯示鍵（例 `TAG_<category>_<slug>`），需要在地化提供 en |
-| Q2 | 章名沒有在地化鍵 | ui_strings `UI_CHAPTER_CARD` 用 `{chapterTitle}`；10-cases 章標題 | 從結案筆記行的「案件名稱」擷取成 `CHAP_0n_TITLE`；請在地化正式提供 |
 | Q6 | 調查點與證物的對應未定；設計清單裡沒有 E01_03、E02_01、E02_04、E02_07、E03_06 的調查點；E03_09 劇本寫「死者桌上」，對應到市政公告欄 | 10-cases 場景表；20-script 蒐證場景 | 見 §5.1；缺的補「額外」調查點；E03_07 依「死者懷中」併入屍體（同點最多 2 張） |
 | Q7 | 調查點數遠少於 §1.3（Ch.1 7／10、Ch.2 9／12、Ch.3 11／22）；刻度÷調查點 Ch.2 1.11、Ch.3 1.45（設計要 0.65～0.75）；純情報點 0%／22%／27%（設計約 40%）；檢視點沒有情報文字 | 01-systems §1.2、§1.3；10-cases | 不補設計沒有的點；檢視點 `lines` 空白 |
 | Q8 | 證物數與 §1.3 不符：Ch.1 關鍵 1（E01_03）vs 0；Ch.2 劇情 1（E02_08）vs 0；Ch.3 一般 7 vs 9 | 01-systems §1.3；10-cases 證物表 | 照 10-cases 與在地化的實際證物 |
 | Q9 | Ch.1 亞瑟的性格權重未給（只說「補強居多、不用猛攻與設陷」） | 10-cases Ch.1 對手行為表；02-numbers §四 | 庇護者型 25／5／50／20 去掉猛攻與設陷 → 25／0／50／0 |
 | Q10 | 「每漏 1 件 → 手牌 +1、主導權 +10」只出現在 10-cases 的暫定數值卡（Ch.2、Ch.3）；01-systems A-1 只對 Ch.4／Ch.5 寫明節點 +1 | 10-cases 數值卡；01-systems A-1；02-numbers §五 | `handPerMissed=1`、`hpPerMissed=10`（Ch.2、Ch.3） |
-| Q12 | 鑑定揭露哪些標籤只到類別層級；E03_02 兩個標籤都要機械鑑定、E03_01 兩個都要醫療鑑定。§3.1 又說驗屍報告帶【時間】【物理特性】，但 E03_01 的類別是時間・人物 | 01-systems §1.5、§3.1；10-cases Ch.3 | 依 §1.5 推導 `hiddenTags`；標籤檔可逐筆以 `hidden` 覆寫 |
+| Q12 | 在地化包的 E03_01_TAGS（時間・人物）、E03_03_TAGS（地點・物理）比 10-cases 證物表（時間・人物・物理、地點・物理・人物）少一類 | 10-cases Ch.3 證物表；在地化 evidence | 機器標籤照 10-cases 標籤值；顯示字串 `tagsKey` 待在地化更新（建置警告） |
 | Q13 | 熱身手牌 E03_05、E03_02 依 A-13 要在熱身前持有（事件中自動取得），10-cases 又把門閂列為鍋爐室調查點；E03_02 需機械鑑定，劇本熱身中有「（鑑定後）」 | 01-systems A-13；10-cases Ch.3 熱身／場景表；20-script Ch.3 S04 | 熱身開始時把 `hand` 加入持有；調查點照列（已持有則不重複）。熱身中的鑑定是否扣次數未定 |
 | Q14 | 驗屍報告（E03_01）在信任度 ≥ 3 時由熱身獎勵自動給予（已鑑定），否則要在屍體調查點取得並醫療鑑定 | 10-cases Ch.3 熱身；01-systems §3.1 | 表中 E03_01 `obtain=hotspot`；信任度分支由流圖處理 |
 | Q15 | Ch.3 甲板權限：10-cases 說熱身後不論信任度都給甲板權限；§3.1 信任度 3 有「1 個區域需許可」 | 10-cases Ch.3 熱身；01-systems §3.1 | 不產生 `locked` 調查點；三個場景都開放 |
 | Q16 | 場景與區域：§1.3 說 Ch.3 有 3 個場景，§1.2 的例子把鍋爐室／甲板列為同一場景的區域 | 01-systems §1.2、§1.3；10-cases Ch.3 | 依 10-cases 的「場景」列：3 個場景、各 1 個區域（`area=0`） |
-| Q17 | 次級替代證物 S-01（齒輪拓印）：標籤、出現的場景都沒給；10-cases Ch.3 的替代路線又是 E03_02→E03_03，不用拓印 | 01-systems §1.9；10-cases Ch.2 敗北、Ch.3 論破 | S-01 標籤暫同 G-01；調查點放在鍋爐室，`requires=missing:G-01` |
-| Q18 | 尾聲第二說詞節點的文字沒有專用鍵 | 01-systems A-9；10-cases 論破與尾聲 | 用該章台詞庫的第一句尾聲台詞 |
-| Q19 | 熱身的錯誤說法沒有 `CLM_` 鍵；熱身對手的小動作未給 | 10-cases Ch.3 熱身 | 節點文字用劇本誤判行；小動作空白 |
-| Q20 | 小動作 zh：10-cases（「把袖子往下拉、想遮住袖口」）比劇本台詞庫標題（「把袖子往下拉」）多半句，en 是依劇本翻的 | 10-cases Ch.1；20-script Ch.1 台詞庫 | zh 依 10-cases（優先序），en 用在地化備註；需在地化補齊 |
+| Q17 | 10-cases Ch.3 的替代路線是 E03_02→E03_03，不用拓印 S-01 | 01-systems §1.9；10-cases Ch.2 敗北、Ch.3 論破與標籤值 | S-01 標籤依裁決 D11（G-01 的值、全擦邊，只能接成詭辯）；調查點放在鍋爐室，`requires=missing:G-01` |
 | Q21 | E02_01 的 `refutes` 同時含 N3 與尾聲 T1；E03_04（強攻）不在任何節點的破解清單，論破時靠 N2 的 E03_02 | 10-cases 主張節點表；裁決 C3 | 照列 |
 | Q22 | 動機旗標：Ch.1 對手是庇護者但沒有尾聲；Ch.1～3 都沒有指定動機證物 | 01-systems §2.8；10-cases | 全部 false |
 | Q23 | 進入蒐證場景時亞瑟的開場觀察台詞（§1.4「每章 1 句」）沒有指定是哪一句；Ch.1 亞瑟還不是助手 | 01-systems §1.4、§1.11 | 不寫入表，由流圖決定（ART_OPEN_GEN／ART_OPEN_BODY） |

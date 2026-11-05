@@ -109,7 +109,7 @@ def main(argv=None) -> int:
     out.mkdir(parents=True, exist_ok=True)
     for name in ROUTES:
         p = out / f"{name}.json"
-        p.write_text(json.dumps(run_route(name), ensure_ascii=False, indent=1), encoding="utf-8")
+        p.write_text(json.dumps(run_route(name), ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
         print(f"wrote {p}")
     return 0
 

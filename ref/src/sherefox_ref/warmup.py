@@ -5,10 +5,9 @@ parries with ONE card; a card in the claim's refute list corrects it. A wrong ca
 mistake. 3 mistakes -> remaining claims auto-corrected, reward cancelled, effective trust
 -1. Zero mistakes -> effective trust +1.
 
-SPEC-QUESTION: Ch.3 (各章設計 and its 數值卡) says the player must show the chain
-E03_05 + E03_02 (solid link: 地點); A-13 (higher precedence) says a single card from the
-refute list. Implemented per A-13 with refute list {E03_05, E03_02}; a two-card
-presentation is accepted only if every card is in the list (`allow_chain=True`).
+Ruling B16 / 各章設計 Ch.3: a single card, E03_05 or E03_02 (refute list of data node
+CH03_W1). A two-card presentation is accepted only with `allow_chain=True` and only if every
+card is in the list.
 """
 
 from __future__ import annotations

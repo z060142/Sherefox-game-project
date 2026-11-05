@@ -96,7 +96,7 @@ E02_08_REASON_A,有人刻意擋下了擲向 Sherefox 的配重,Someone deliberat
 E02_08_REASON_B,杯子本來就有裂痕,The cup was already cracked,Rationale option: wrong
 E02_08_REASON_C,被熱咖啡燙裂,It cracked from the hot coffee,Rationale option: wrong
 E03_01_NAME,莫斯的驗屍結果,Post-Mortem Findings on Moss,grade: 一般 (Common) | appraisal: 醫療
-E03_01_TAGS,時間・人物,Time · Person,"tag categories, see glossary"
+E03_01_TAGS,時間・人物・物理,Time · Person · Physical,"tag categories, see glossary"
 E03_01_DESC,死者的皮膚有大片蒸汽燙傷，喉頭水腫，指甲裡卡著門板的木屑。,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails.","flavour text from the Script tab (scene ""Evidence Search"")"
 E03_01_REASON_A,死於 22:00～22:30 的蒸汽窒息，不是鈍器,"Died of steam asphyxiation between 22:00 and 22:30, not of a blunt blow.",Rationale option: CORRECT
 E03_01_REASON_B,醉酒失足,Fell while drunk,Rationale option: wrong
@@ -108,7 +108,7 @@ E03_02_REASON_A,門閂由蒸汽壓力推動，可從甲板遠端操作,The bolt 
 E03_02_REASON_B,死者自己鎖門,The deceased locked the door himself,Rationale option: wrong
 E03_02_REASON_C,門閂老舊自己滑落,The old bolt slid down on its own,Rationale option: wrong
 E03_03_NAME,甲板上被轉過的壓力閥,The Pressure Valve Turned on the Deck,grade: 一般 (Common) | appraisal: 無
-E03_03_TAGS,地點・物理,Place · Physical,"tag categories, see glossary"
+E03_03_TAGS,地點・物理・人物,Place · Physical · Person,"tag categories, see glossary"
 E03_03_DESC,閥柄上有一枚煤灰指印，指紋又寬又長，比老湯姆粗短的手指大了一圈。,"On the valve handle is a soot fingerprint, wide and long, a size larger than Old Tom's short, stubby fingers.","flavour text from the Script tab (scene ""Evidence Search"")"
 E03_03_REASON_A,閥柄上的煤灰指印是新的，不是船夫的大小,"The soot fingerprint on the handle is fresh, and it isn't the bargeman's size.",Rationale option: CORRECT
 E03_03_REASON_B,船夫例行操作,The bargeman's routine operation,Rationale option: wrong
@@ -159,4 +159,83 @@ CLM_CH03_N1,我 21:30 就下船了,I got off the barge at 21:30,claim node N1; t
 CLM_CH03_N2,門從內側鎖上，是意外,The door locked from the inside; it was an accident,claim node N2; truth: 假; refuted by: E03_02、E03_03
 CLM_CH03_N3,莫斯和我只是正當的生意夥伴,Moss and I were just legitimate business partners,claim node N3; truth: 假; refuted by: E03_07（醜聞類，命中即動搖）
 G-01,軍工黑市批號抄本,Military Black-Market Batch-Number Transcript,Golden Clue obtained from E02_01 (Ch.2); zh name given in Case tab as 【軍工黑市批號抄本】
-G-01_SUB,齒輪拓印,Gear Rubbing,Substitute Evidence replacing G-01 if Ch.2 is lost; zh name given in Case tab as 【齒輪拓印】
+G-01_SUB,齒輪拓印,Gear Rubbing,"Substitute Evidence replacing G-01 if Ch.2 is lost; zh name given in Case tab as 【齒輪拓印】; Case tab ID S-01 (all tag values are graze/※, sophistry only)"
+HS_CH01_01_NAME,冰箱,Fridge,hotspot name | area: 廚房 / Kitchen | evidence E01_02
+HS_CH01_02_NAME,空布丁盤,Empty Pudding Plate,hotspot name | area: 廚房 / Kitchen | evidence E01_01
+HS_CH01_03_NAME,廚房地板,Kitchen Floor,hotspot name | area: 廚房 / Kitchen | evidence E01_04
+HS_CH01_04_NAME,亞瑟房門,Arthur's Door,hotspot name | area: 客廳 / Sitting Room | evidence E01_05
+HS_CH01_05_NAME,亞瑟的外套口袋,Arthur's Coat Pocket,hotspot name | area: 客廳 / Sitting Room | evidence E01_06
+HS_CH01_06_NAME,大門門縫,Gap Under the Front Door,hotspot name | area: 客廳 / Sitting Room | evidence E01_07
+HS_CH01_07_NAME,亞瑟（袖口）,Arthur (Cuffs),hotspot name | area: 客廳 / Sitting Room | evidence E01_03
+HS_CH01_08_NAME,窗台,Windowsill,hotspot name | area: 廚房 / Kitchen | inspect-only
+HS_CH01_08_NOTE,窗戶從裡面扣著，窗台的灰上沒有半個腳印。就算倫敦的貓會開冰箱，也得先進得來。,"The window is latched from the inside, and the dust on the sill holds not a single paw print. Even if London's cats could open a fridge, they'd have to get in first.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH01_08_HINT,「貓吃掉的」這個說法，從窗台就開始站不住了。,"""The cat ate it"" starts falling apart right here at the windowsill.",optional hint line
+HS_CH01_09_NAME,流理台上的茶杯,Teacups on the Counter,hotspot name | area: 廚房 / Kitchen | inspect-only
+HS_CH01_09_NOTE,兩只茶杯，一只洗過，一只沒洗，杯底還剩一圈很濃的茶漬。有人昨晚泡了一壺提神的濃茶。,"Two teacups: one washed, one not, with a dark ring of very strong tea in the bottom. Someone brewed a pot strong enough to keep themselves awake last night.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH01_10_NAME,壁爐架上的相框,Photograph on the Mantelpiece,hotspot name | area: 客廳 / Sitting Room | inspect-only
+HS_CH01_10_NOTE,Sherefox 和一位戴獵鹿帽的老紳士的合照，相框擦得發亮。旁邊平常放懷錶的位置，今天是空的。,"A photograph of Sherefox with an old gentleman in a deerstalker, its frame polished to a shine. The spot beside it where the pocket watch usually sits is empty today.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH01_10_HINT,懷錶不在老位置上……昨晚有人拿走了它？,The pocket watch isn't in its usual place... did someone take it last night?,optional hint line
+HS_CH02_01_NAME,櫃台上的懷錶,Pocket Watch on the Counter,hotspot name | area: 櫃台 / Counter | evidence E02_01
+HS_CH02_02_NAME,報時鳥鐘,Cuckoo Clock,hotspot name | area: 店面 / Shop Floor | evidence E02_02
+HS_CH02_03_NAME,鐘擺護蓋,Pendulum Cover,hotspot name | area: 店面 / Shop Floor | evidence E02_03
+HS_CH02_04_NAME,報童小湯米,Tommy the Newsboy,hotspot name | area: 店門外 / Outside the Shop | evidence E02_04
+HS_CH02_05_NAME,寄修收據簿,Repair Receipt Book,hotspot name | area: 櫃台 / Counter | evidence E02_05
+HS_CH02_06_NAME,零件櫃與目錄,Parts Cabinet and Catalogue,hotspot name | area: 後室門口 / Back-Room Door | evidence E02_06
+HS_CH02_07_NAME,費奇,Fitch,hotspot name | area: 店面 / Shop Floor | evidence E02_07
+HS_CH02_08_NAME,角落咖啡座（論戰後）,Corner Coffee Table (After the Debate),hotspot name | area: 角落 / Corner | evidence E02_08
+HS_CH02_09_NAME,工作台,Workbench,hotspot name | area: 櫃台後 / Behind the Counter | inspect-only
+HS_CH02_09_NOTE,老闆的工具排得整整齊齊，每一支都擦得發亮。這麼愛惜工具的人，會在自己的鐘上留下一道刮痕嗎？,"The owner's tools are laid out in perfect order, every one polished bright. Would a man who treats his tools like this leave a scratch on his own clock?",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH02_10_NAME,櫃台旁的糖果罐,Sweet Jar by the Counter,hotspot name | area: 櫃台 / Counter | inspect-only
+HS_CH02_10_NOTE,玻璃罐裝滿薄荷糖，標籤寫著「給街坊的孩子」。四十年下來，霍洛威爺爺大概送掉了一座糖果山。,"A glass jar full of peppermints, labelled ""For the neighbourhood children"". Over forty years, Grandpa Holloway must have given away a mountain of sweets.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH02_11_NAME,格雷沙姆先生,Mr. Gresham,hotspot name | area: 店面 / Shop Floor | inspect-only
+HS_CH02_11_NOTE,格雷沙姆先生一直在看自己的懷錶，又一直催律師。比起那只錶，他好像更在意這場官司。,Mr. Gresham keeps checking his own pocket watch and pressing his solicitor. He seems to care more about the lawsuit than about the watch itself.,hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH02_11_HINT,富商在意的是官司……可是機芯是誰換的，他並不知道。,The merchant cares about the lawsuit... but he has no idea who swapped the movement.,optional hint line
+HS_CH02_12_NAME,牆上的掛鐘群,Wall of Clocks,hotspot name | area: 店面 / Shop Floor | inspect-only
+HS_CH02_12_NOTE,十幾座鐘一起滴答作響，像一屋子的心跳。霍洛威說，每天早上他都會一座一座對過大笨鐘。,A dozen clocks tick together like a room full of heartbeats. Holloway says he sets every one of them against Big Ben each morning.,hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH02_12_HINT,每天早上都對過大笨鐘……那今天下午慢了的那一座呢？,Set against Big Ben every morning... so what about the one that was slow this afternoon?,optional hint line
+HS_CH03_01_NAME,遺體,The Body,hotspot name | area: 鍋爐室 / Boiler Room | evidence E03_01
+HS_CH03_02_NAME,死者的外套內袋,The Victim's Inner Coat Pocket,hotspot name | area: 鍋爐室 / Boiler Room | evidence E03_07
+HS_CH03_03_NAME,從內側落下的門閂,The Bolt Dropped from the Inside,hotspot name | area: 鍋爐室 / Boiler Room | evidence E03_02
+HS_CH03_04_NAME,洩壓閥,Relief Valve,hotspot name | area: 鍋爐室 / Boiler Room | evidence E03_04
+HS_CH03_05_NAME,甲板上的壓力閥門,Pressure Valve on the Deck,hotspot name | area: 甲板 / Deck | evidence E03_03
+HS_CH03_06_NAME,航行日誌,Logbook,hotspot name | area: 甲板 / Deck | evidence E03_08
+HS_CH03_07_NAME,警方臨時拘留處（老湯姆）,Police Holding Area (Old Tom),hotspot name | area: 碼頭 / Wharf | evidence E03_05
+HS_CH03_08_NAME,皮爾斯先生,Mr. Pierce,hotspot name | area: 碼頭 / Wharf | evidence E03_06
+HS_CH03_09_NAME,市政公告欄,Municipal Notice Board,hotspot name | area: 碼頭 / Wharf | evidence E03_09
+HS_CH03_10_NAME,貨箱,Cargo Crates,hotspot name | area: 鍋爐室 / Boiler Room | inspect-only
+HS_CH03_10_NOTE,貨箱上印著「市政廳・路燈零件」。撬開的那一箱裡只有稻草——帳上的貨，船上沒有。,"The crates are stencilled ""Municipal Hall: Street-Lamp Parts"". The one that has been prised open holds nothing but straw. The goods on paper are not on board.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_10_HINT,帳上有、船上沒有的貨，去了哪裡？,Goods that are on the books but not on the barge: where did they go?,optional hint line
+HS_CH03_11_NAME,鍋爐本體,The Boiler,hotspot name | area: 鍋爐室 / Boiler Room | inspect-only
+HS_CH03_11_NOTE,鍋爐已經冷了，爐門上的壓力錶指針卡在紅線外。昨晚這裡熱得像地獄的廚房。,"The boiler has gone cold, but the needle on the firebox gauge is stuck past the red line. Last night this room was as hot as hell's own kitchen.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_12_NAME,牆上的水痕,Streaks on the Wall,hotspot name | area: 鍋爐室 / Boiler Room | inspect-only
+HS_CH03_12_NOTE,牆上的煤灰被蒸汽沖出一道道水痕，一路流到門邊。整個房間被灌滿了，不只是漏了一點。,"Steam has washed streaks through the soot on the walls, running all the way to the door. The room was flooded with it, not merely touched by a leak.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_13_NAME,死者的懷錶,The Victim's Pocket Watch,hotspot name | area: 鍋爐室 / Boiler Room | inspect-only
+HS_CH03_13_NOTE,莫斯的懷錶停在 10 點 17 分。蒸汽灌進錶殼，讓它跟主人一起停了下來。,"Moss's pocket watch stopped at 10:17. Steam got into the case, and it stopped along with its owner.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_13_HINT,錶停的時間，和驗屍的推定時間對得上嗎？,Does the time the watch stopped agree with the post-mortem estimate?,optional hint line
+HS_CH03_14_NAME,纜繩,Mooring Lines,hotspot name | area: 甲板 / Deck | inspect-only
+HS_CH03_14_NOTE,纜繩打的是水手結，又緊又整齊，是老湯姆的手藝。這艘船昨晚沒有離開過碼頭。,"The lines are tied in sailor's knots, tight and neat: Old Tom's handiwork. The barge never left the wharf last night.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_15_NAME,欄杆邊的空酒瓶,Empty Bottle by the Rail,hotspot name | area: 甲板 / Deck | inspect-only
+HS_CH03_15_NOTE,欄杆邊滾著一個空酒瓶。老湯姆說他從不在船上喝酒——那昨晚是誰喝的？,"An empty bottle has rolled up against the rail. Old Tom says he never drinks aboard, so who was drinking here last night?",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_15_HINT,酒瓶能說明有人喝過酒，說明不了誰鎖了門。,A bottle shows someone was drinking. It says nothing about who bolted the door.,optional hint line
+HS_CH03_16_NAME,舵輪,Ship's Wheel,hotspot name | area: 甲板 / Deck | inspect-only
+HS_CH03_16_NOTE,舵輪上了鎖鏈，鏈上的鏽沒有新的刮痕。,"The wheel is chained, and the rust on the chain shows no fresh scratches.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_17_NAME,通往鍋爐室的小窗,Small Window into the Boiler Room,hotspot name | area: 甲板 / Deck | inspect-only
+HS_CH03_17_NOTE,小窗被一塊木板釘死，釘子都鏽透了，是很久以前的事。除了那扇門，沒有別的路進出鍋爐室。,"The little window has been boarded over, its nails rusted through long ago. Apart from that door, there is no other way into or out of the boiler room.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_18_NAME,碼頭上的煤灰腳印,Soot Footprints on the Wharf,hotspot name | area: 碼頭 / Wharf | inspect-only
+HS_CH03_18_NOTE,木板上有一串煤灰腳印，一路走向煤棧。煤棧的工人一天要來回幾十趟，誰的鞋底都是黑的。,A trail of sooty footprints runs along the boards toward the coal yard. The coal-yard men go back and forth dozens of times a day; everyone's soles are black.,hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_18_HINT,煤灰到處都有。要比的，是哪裡的煤灰。,"Soot is everywhere. What matters is whose soot, and from where.",optional hint line
+HS_CH03_19_NAME,煤棧,Coal Yard,hotspot name | area: 碼頭 / Wharf | inspect-only
+HS_CH03_19_NOTE,煤棧的工人說，昨晚十點以後就收工了，沒有人再來搬煤。,"The coal-yard men say they knocked off after ten last night, and nobody came for coal after that.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_20_NAME,「錨與燈」酒館,The Anchor and Lamp,hotspot name | area: 碼頭 / Wharf | inspect-only
+HS_CH03_20_NOTE,老闆擦著杯子說：「皮爾斯先生？常客。昨晚？客人太多，我記不清他幾點走的。」,"The landlord polishes a glass. ""Mr. Pierce? A regular. Last night? Too many customers, I couldn't tell you when he left.""",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_20_HINT,「酒館老闆可以作證」——老闆自己倒是不太確定。,"""The landlord will vouch for me"". The landlord himself isn't so sure.",optional hint line
+HS_CH03_21_NAME,巴斯克維爾警督,Inspector Baskerville,hotspot name | area: 碼頭 / Wharf | inspect-only
+HS_CH03_21_NOTE,警督正在對記者說「本案今晚結束」，同一句話已經講了第三遍。,"The Inspector is telling the reporters ""this case will be closed tonight"", for the third time.",hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_22_NAME,霧中的河面,The River in the Fog,hotspot name | area: 碼頭 / Wharf | inspect-only
+HS_CH03_22_NOTE,霧把河面蓋得看不見水，只聽得見駁船互相碰撞的悶響。,The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another.,hotspot case-note line (inspect-only; written into the Case Notes)
+HS_CH03_23_NAME,鍋爐室角落的新調查點（只在缺少 G-01 時出現，不計入 22 個）,New Spot in the Boiler-Room Corner (only without G-01),"hotspot name | area: 鍋爐室 / Boiler Room | evidence S-01; conditional (only when G-01 is missing, 1.9), not counted in the 22"
+CLM_CH03_W1,鑰匙在船夫身上，門又從裡面鎖著，所以就是他！,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!",warm-up claim (Baskerville); refuted by: E03_05 或 E03_02（單張）
+CLM_CH02_T1,鐘是我調的！可那是老頭叫我調的！,"Yes, I set the clock! But the old man told me to!","tail second claim (Fitch, 玉石俱焚); refuted by: E02_07 (+E02_01, 2 solid cards)"
+CLM_CH03_T1,轉閥門的是那個老船夫！,It was that old bargeman who turned the valve!,"tail second claim (Pierce, 玉石俱焚); refuted by: E03_03 + E03_05 (2 solid cards)"
+HEAD_CH04,歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台,Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria,opening headline (Case tab); prototype ending teaser
+HEAD_CH04_SUB,學院派名偵探維多・克勞已封鎖現場：「真相明早公布。」,"Celebrated academic detective Victor Crowe has sealed off the scene: ""The truth will be made known tomorrow morning.""",opening sub-headline (Case tab); prototype ending teaser

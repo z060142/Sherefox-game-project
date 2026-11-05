@@ -9,12 +9,10 @@ Usage (from the project root):
     uv run tools/build_data.py --check              build in memory and validate only (writes nothing)
     uv run tools/build_data.py --import-localization <dir>
                                                     copy a new localization package into source/localization/ first
-    uv run tools/build_data.py --make-tag-placeholder [--force]
-                                                    (re)write the category-only placeholder tag file
 
 Inputs (all inside the project):
     source/localization/   localization package (strings.json, *.csv)
-    source/tags/tags_ch01-03.csv   per-card / per-node tag values (category, value, slug, grazing, hidden)
+    source/tags/tags_ch01-03.csv   per-card / per-node tag values (category, value, slug, grazing, hidden, police)
     source/staging/staging_ch01-03.csv   per-line VN staging (bg, standees, focus, style); merged into the script table
     docs/design/*.md       design snapshots (01-systems, 02-numbers, 10-cases)
     docs/rulings.md        design rulings not yet in the snapshots (applied as constants below, cited by id)
@@ -55,6 +53,10 @@ CATEGORY_IDS = ("time", "place", "person", "phys", "scandal")
 GRADES = {"一般": "common", "關鍵": "key", "劇情": "story", "黃金": "golden", "替代": "substitute"}
 APPRAISAL = {"無": "none", "醫療": "medical", "機械": "mechanical", "雙重": "dual"}
 APPRAISAL_COST = {"none": 0, "medical": 1, "mechanical": 1, "dual": 2}  # 01-systems 1.5
+# Tag file `hidden` column (10-cases 標籤值 需鑑定 column, ruling D8) -> the card appraisals that reveal the tag.
+HIDDEN_KINDS = {"no": (), "medical": ("medical", "dual"), "mech": ("mechanical", "dual"),
+                "mechanical": ("mechanical", "dual")}
+TAG_COLUMNS = ["owner", "category", "value", "slug", "grazing", "hidden", "police", "note"]
 
 # Opponent actions (glossary): design wording -> machine id.
 ACTIONS = {"主張": "assert", "猛攻": "rush", "補強": "reinforce", "設陷": "trap"}
@@ -127,6 +129,8 @@ STRONG = {"E01_03", "E02_01", "E03_04", "G-01"}
 REQUIRED = {"E01_03", "E02_02", "E02_06", "E03_02", "E03_07"}
 # Golden output of key evidence (10-cases 結算・黃金線索).
 GOLDEN_OUT = {"E02_01": "G-01"}
+# Ruling E1: the 「待續」 card after the final paper.
+END_CARD_KEY = "UI_TO_BE_CONTINUED"
 # Ruling C3: endgame second-claim refuters.
 TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one).
@@ -254,7 +258,10 @@ def parse_numbers() -> dict:
             base = re.match(r"(\d+) \+ 4n", row[4])
             cases[c] = {"hp": leading_int(row[2], 0), "nodeCap": leading_int(row[3]),
                         "base": int(base.group(1)) if base else 0}
-    return {"early": early, "weights": weights, "cases": cases}
+    # 02-numbers 五 prose overrides of the 01-systems 1.3 appraisal counts, e.g. 「Ch.2 鑑定 3 次」
+    # (數值總表 has precedence over 系統規格).
+    appraisals = {int(c): int(n) for c, n in re.findall(r"Ch\.(\d+) 鑑定 (\d+) 次", md_section(text, r"^## 五、"))}
+    return {"early": early, "weights": weights, "cases": cases, "appraisals": appraisals}
 
 
 def parse_cases() -> dict:
@@ -306,9 +313,12 @@ def load_localization() -> dict:
 
 def load_tags() -> list[dict]:
     if not TAG_FILE.exists():
-        raise SystemExit(f"missing {TAG_FILE.relative_to(ROOT)}; run with --make-tag-placeholder")
+        raise SystemExit(f"missing {TAG_FILE.relative_to(ROOT)}")
     rows = []
-    for i, r in enumerate(read_csv(TAG_FILE), start=2):
+    raw = read_csv(TAG_FILE)
+    if raw and list(raw[0].keys()) != TAG_COLUMNS:
+        err(f"{TAG_FILE.name}: header must be {','.join(TAG_COLUMNS)}, got {','.join(raw[0].keys())}")
+    for i, r in enumerate(raw, start=2):
         if not r.get("owner", "").strip() or r["owner"].lstrip().startswith("#"):
             continue
         rows.append({k: (v or "").strip() for k, v in r.items()} | {"_line": i})
@@ -317,9 +327,11 @@ def load_tags() -> list[dict]:
 
 # ---------------------------------------------------------------- builders
 
-def build_tags(tag_rows: list[dict], reveal: dict, appraisal_of: dict) -> dict:
-    """owner -> {"tags": [...], "grazing": [...], "hidden": [...]} in file order."""
+def build_tags(tag_rows: list[dict], appraisal_of: dict) -> tuple[dict, dict]:
+    """owner -> {"tags", "grazing", "hidden", "police"} (lists in file order), and
+    tag id -> design value text (for the TAG_ display keys, ruling D13)."""
     out: dict[str, dict] = {}
+    values: dict[str, str] = {}
     for r in tag_rows:
         where = f"{TAG_FILE.name}:{r['_line']}"
         cat = TAG_CATEGORIES.get(r.get("category", ""))
@@ -327,29 +339,63 @@ def build_tags(tag_rows: list[dict], reveal: dict, appraisal_of: dict) -> dict:
             err(f"{where}: unknown tag category {r.get('category')!r}")
             continue
         value, slug = r.get("value", ""), r.get("slug", "")
-        if value and not slug:
-            err(f"{where}: tag value {value!r} needs an ASCII slug")
+        if not value or not slug:
+            err(f"{where}: every tag needs a value and an ASCII slug (ruling C4)")
             continue
-        if slug and not re.fullmatch(r"[a-z0-9_]+", slug):
+        if not re.fullmatch(r"[a-z0-9_]+", slug):
             err(f"{where}: slug {slug!r} must match [a-z0-9_]+")
             continue
-        tag = f"{cat}:{slug}" if slug else cat
-        entry = out.setdefault(r["owner"], {"tags": [], "grazing": [], "hidden": []})
+        tag = f"{cat}:{slug}"
+        if values.setdefault(tag, value) != value:
+            err(f"{where}: slug {tag} is used for both {values[tag]!r} and {value!r}")
+        entry = out.setdefault(r["owner"], {"tags": [], "grazing": [], "hidden": [], "police": []})
         if tag in entry["tags"]:
             err(f"{where}: duplicate tag {tag} on {r['owner']}")
             continue
         entry["tags"].append(tag)
-        if r.get("grazing", "").lower() in ("擦邊", "1", "true", "yes", "y"):
+        grazing = r.get("grazing", "").lower()
+        if grazing in ("擦邊", "1", "true", "yes", "y"):
             entry["grazing"].append(tag)
-        hidden = r.get("hidden", "").lower()
-        if hidden in ("yes", "1", "true"):
+        elif grazing:
+            err(f"{where}: grazing must be 擦邊 or empty, got {grazing!r}")
+        hidden = r.get("hidden", "").lower() or "no"
+        if hidden not in HIDDEN_KINDS:
+            err(f"{where}: hidden must be medical/mech/no, got {hidden!r}")
+            continue
+        if hidden != "no":
+            if r["owner"] not in appraisal_of:
+                err(f"{where}: only evidence tags can be hidden")
+            elif appraisal_of[r["owner"]] not in HIDDEN_KINDS[hidden]:
+                err(f"{where}: {hidden} tag on a card whose appraisal is {appraisal_of[r['owner']]}")
             entry["hidden"].append(tag)
-        elif hidden in ("", "auto"):
-            if cat in reveal.get(appraisal_of.get(r["owner"], "none"), []):
-                entry["hidden"].append(tag)
-        elif hidden not in ("no", "0", "false"):
-            err(f"{where}: hidden must be auto/yes/no, got {hidden!r}")
-    return out
+        police = r.get("police", "").lower()
+        if police in ("yes", "1", "true"):
+            if hidden == "no":
+                err(f"{where}: police=yes needs a hidden tag")
+            entry["police"].append(tag)
+        elif police not in ("", "no"):
+            err(f"{where}: police must be yes or empty, got {police!r}")
+    return out, values
+
+
+# Display-key category names (localization README: TAG_<TIME|PLACE|PERSON|PHYSICAL|SCANDAL>_<slug>,
+# the same names as UI_TAG_<category>).
+TAG_KEY_CATEGORY = {"time": "TIME", "place": "PLACE", "person": "PERSON", "phys": "PHYSICAL", "scandal": "SCANDAL"}
+
+
+def tag_key(tag: str) -> str:
+    """Ruling D13: display key TAG_<CATEGORY>_<SLUG>, e.g. TAG_PLACE_BOILER_ROOM."""
+    cat, slug = tag.split(":", 1)
+    return f"TAG_{TAG_KEY_CATEGORY[cat]}_{slug.upper()}"
+
+
+# Opponent gesture keys (localization README: GESTURE_<OPPONENT>_<ASSERT|ONSLAUGHT|REINFORCE|TRAP>).
+GESTURE_OPPONENT = {1: "ARTHUR", 2: "FITCH", 3: "PIERCE"}
+GESTURE_ACTION = {"assert": "ASSERT", "rush": "ONSLAUGHT", "reinforce": "REINFORCE", "trap": "TRAP"}
+
+
+def gesture_key(c: int, action: str) -> str:
+    return f"GESTURE_{GESTURE_OPPONENT[c]}_{GESTURE_ACTION[action]}"
 
 
 def reason_order(eid: str) -> tuple[list[str], int]:
@@ -369,6 +415,9 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
             err(f"script: bad id {r['ID']}")
             continue
         c, s, l = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if c not in CHAPTERS:
+            # Ruling E1: the Ch.4 S01 lines are only the lead of the final paper (CH04_OPEN), not script rows.
+            continue
         rows.append((c, s, l, r))
     rows.sort(key=lambda t: (t[0], t[1], t[2]))
     out = []
@@ -546,7 +595,7 @@ def build_tells(loc: dict, script_rows: list[dict]) -> tuple[list[dict], dict]:
         group = f"{case}:{category}:{action}"
         n = counters.get(group, 0)
         counters[group] = n + 1
-        gesture = f"GST_{ch_key(row['chapter'])}_{action.upper()}" if category == "tell" else ""
+        gesture = gesture_key(row["chapter"], action) if category == "tell" else ""
         tells.append({"id": row["id"], "chapter": row["chapter"], "case": case, "category": category,
                       "action": action, "speaker": row["speaker"], "text": row["id"], "gesture": gesture,
                       "inactive": row["inactive"], "group": group, "n": n})
@@ -559,8 +608,6 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true", help="validate only, write nothing")
     ap.add_argument("--import-localization", metavar="DIR", help="copy a localization package into source/localization/")
-    ap.add_argument("--make-tag-placeholder", action="store_true", help="write the category-only placeholder tag file")
-    ap.add_argument("--force", action="store_true", help="with --make-tag-placeholder: overwrite an existing file")
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -616,7 +663,7 @@ def main() -> int:
             node_rows_src.append((int(m.group(1)), "claim", int(m.group(2)), k, truth_m and truth_m.group(1) == "真", refs))
     node_rows_src.sort(key=lambda t: (t[0], t[2]))
 
-    tag_rows = load_tags() if not args.make_tag_placeholder else []
+    tag_rows = load_tags()
     script_rows_tmp = []  # filled below
 
     # ---- banners (CUT_ = 大字, STAMP_ = 印)
@@ -628,53 +675,39 @@ def main() -> int:
 
     script, sinfo = build_script(loc, banners)
     merge_staging(script)
-    tells, gesture_en = build_tells(loc, script)
+    tells, _gesture_en = build_tells(loc, script)
 
-    # Tail node text: first endgame line of the chapter library; warm-up node text: the 誤判 line.
+    # Tail and warm-up node text: CLM_CH0n_T1 / CLM_CH0n_W1 (localization package).
     for c in CHAPTERS:
         if c in TAIL_REFUTERS:
-            line = next((t["id"] for t in tells if t["chapter"] == c and t["category"] == "endgame"), "")
-            node_rows_src.append((c, "tail", 1, line, False, TAIL_REFUTERS[c]))
+            node_rows_src.append((c, "tail", 1, f"CLM_{ch_key(c)}_T1", False, TAIL_REFUTERS[c]))
         if c in WARMUP:
-            line = next((s["id"] for s in script if s["chapter"] == c and s["act"] == "misjudge"), "")
-            node_rows_src.append((c, "warmup", 1, line, False, WARMUP[c]["refuters"]))
+            node_rows_src.append((c, "warmup", 1, f"CLM_{ch_key(c)}_W1", False, WARMUP[c]["refuters"]))
 
     def node_id(c, kind, idx):
         return f"{ch_key(c)}_{ {'claim': 'N', 'tail': 'T', 'warmup': 'W'}[kind] }{idx}"
 
-    # ---- placeholder tag file
-    if args.make_tag_placeholder:
-        if TAG_FILE.exists() and not args.force:
-            print(f"{TAG_FILE.relative_to(ROOT)} exists; use --force to overwrite")
-            return 1
-        zh_cat = {"time": "時間", "place": "地點", "person": "人物", "phys": "物理", "scandal": "醜聞"}
-        buf = io.StringIO()
-        w = csv.writer(buf, lineterminator="\n")
-        w.writerow(["owner", "category", "value", "slug", "grazing", "hidden", "note"])
-        for eid in list(ev_ids) + ["G-01", "S-01"]:
-            for cat in base[eid]["cats"]:
-                w.writerow([eid, zh_cat[cat], "", "", "", "auto", "PLACEHOLDER category only"])
-        for c, kind, idx, _k, _t, refs in node_rows_src:
-            cats = []
-            for e in refs:
-                for cat in base.get(e, {}).get("cats", []):
-                    if cat not in cats:
-                        cats.append(cat)
-            for cat in cats:
-                w.writerow([node_id(c, kind, idx), zh_cat[cat], "", "", "", "no",
-                            "PLACEHOLDER category only; copied from refuting evidence until the 標籤值 table lands"])
-        TAG_FILE.parent.mkdir(parents=True, exist_ok=True)
-        TAG_FILE.write_text(buf.getvalue(), encoding="utf-8", newline="\n")
-        print(f"wrote {TAG_FILE.relative_to(ROOT)}")
-        return 0
-
     appraisal_of = {e: b["appraisal"] for e, b in base.items()}
-    tags = build_tags(tag_rows, systems["reveal"], appraisal_of)
+    tags, tag_values = build_tags(tag_rows, appraisal_of)
     for owner in tags:
         known = owner in base or any(owner == node_id(c, k, i) for c, k, i, *_ in node_rows_src)
         if not known:
             err(f"{TAG_FILE.name}: unknown owner {owner}")
-    placeholder_tags = any("PLACEHOLDER" in r.get("note", "") for r in tag_rows)
+
+    # ---- tag display names (ruling D13): TAG_<category>_<slug>. Keys the localization package does not
+    # have yet get the design value as zh-TW and, until translated, the same text as en (warning).
+    tag_table = []
+    untranslated = []
+    for tag in sorted(tag_values):
+        key = tag_key(tag)
+        if key not in strings:
+            strings[key] = {"zh-TW": tag_values[tag], "en": tag_values[tag]}
+            untranslated.append(key)
+        cat, slug = tag.split(":", 1)
+        tag_table.append({"id": tag, "category": cat, "slug": slug, "nameKey": key})
+    if untranslated:
+        warn(f"{len(untranslated)} TAG_ display keys are not in the localization package; en = zh-TW text "
+             f"until translated (ruling D13): {','.join(untranslated)}")
 
     # ---- nodes table
     nodes = []
@@ -684,7 +717,7 @@ def main() -> int:
         case = f"{ch_key(c)}_{'WARMUP' if kind == 'warmup' else 'MAIN'}"
         t = tags.get(nid, {"tags": [], "grazing": []})
         if not t["tags"]:
-            warn(f"node {nid}: no tags (attacks cannot target it until tags are given)")
+            err(f"node {nid}: no tags in {TAG_FILE.name}")
         nodes.append({"id": nid, "chapter": c, "case": case, "kind": kind, "idx": idx, "textKey": text_key,
                       "tags": ",".join(t["tags"]), "grazingTags": ",".join(t["grazing"]),
                       "truth": bool(truth), "refutable": bool(refs), "refutedBy": ",".join(refs)})
@@ -739,12 +772,17 @@ def main() -> int:
     evidence = []
     for eid in list(ev_ids) + ["G-01", "S-01"]:
         b = base[eid]
-        t = tags.get(eid, {"tags": [], "grazing": [], "hidden": []})
+        t = tags.get(eid, {"tags": [], "grazing": [], "hidden": [], "police": []})
         if not t["tags"]:
             err(f"evidence {eid}: no tags in {TAG_FILE.name}")
-        got_cats = sorted({x.split(":")[0] for x in t["tags"]})
-        if got_cats != sorted(set(b["cats"])):
-            warn(f"evidence {eid}: tag categories {got_cats} differ from the design categories {sorted(set(b['cats']))}")
+        # Grazing values may sit outside the card's category column (10-cases 標籤值), so compare the
+        # non-grazing categories (all categories when every value is grazing, e.g. S-01) with the design.
+        firm = [x for x in t["tags"] if x not in t["grazing"]] or t["tags"]
+        got_cats = sorted({x.split(":")[0] for x in firm})
+        d = cases.get(b["chapter"], {}).get("evidence", {}).get(eid)
+        want = sorted({TAG_CATEGORIES.get(x) for x in d["tags"].split("・")} if d else set(b["cats"]))
+        if got_cats != want:
+            warn(f"evidence {eid}: non-grazing tag categories {got_cats} differ from the design categories {want}")
         is_card = b["grade"] in ("common", "key", "story")
         if is_card:
             keys, correct = reason_order(eid)
@@ -767,6 +805,7 @@ def main() -> int:
             "nameKey": name_key, "descKey": f"{eid}_DESC" if is_card else "",
             "tagsKey": f"{eid}_TAGS" if is_card else "",
             "tags": ",".join(t["tags"]), "hiddenTags": ",".join(t["hidden"]), "grazingTags": ",".join(t["grazing"]),
+            "policeTags": ",".join(t["police"]),
             "appraise": b["appraisal"], "appraiseCost": APPRAISAL_COST[b["appraisal"]],
             "appraisalKey": sinfo["appraisal_line"].get(eid, ""),
             "reason0Key": keys[0], "reason1Key": keys[1], "reason2Key": keys[2], "correct": correct,
@@ -805,22 +844,23 @@ def main() -> int:
             "rushMul": 1.25, "w_claim": w[0], "w_rush": w[1], "w_reinforce": w[2], "w_trap": w[3],
             "clear": clarity[0], "fuzzy": clarity[1], "disguise": clarity[2],
             "rules": parse_rules(beh.get("適用行為規則", "")), "ruleBias": 80, "mirror": False,
-            "gestureAssert": f"GST_{ch_key(c)}_ASSERT" if "assert" in gest else "",
-            "gestureRush": f"GST_{ch_key(c)}_RUSH" if "rush" in gest else "",
-            "gestureReinforce": f"GST_{ch_key(c)}_REINFORCE" if "reinforce" in gest else "",
-            "gestureTrap": f"GST_{ch_key(c)}_TRAP" if "trap" in gest else "",
+            "gestureAssert": gesture_key(c, "assert") if "assert" in gest else "",
+            "gestureRush": gesture_key(c, "rush") if "rush" in gest else "",
+            "gestureReinforce": gesture_key(c, "reinforce") if "reinforce" in gest else "",
+            "gestureTrap": gesture_key(c, "trap") if "trap" in gest else "",
             "playerActions": "solid,rebut,observe" if c == 1 else "solid,sophistry,rebut,observe",
             "tail": "" if c == 1 else "scorched", "tailNode": "" if c == 1 else node_id(c, "tail", 1),
-            "roundLimit": 3 if c == 1 else 0, "contraTarget": 2 if c == 1 else 0, "mistakeLimit": 0,
+            # Ruling D15: Ch.1 needs 2 contradictions by the end of round 3 and the break by the end of round 6.
+            "roundLimit": 6 if c == 1 else 0, "contraTarget": 2 if c == 1 else 0,
+            "contraDeadline": 3 if c == 1 else 0, "mistakeLimit": 0,
             "hand": "", "handPerMissed": 0 if c == 1 else 1, "hpPerMissed": 0 if c == 1 else 10,
         })
         for act, zh in gest.items():
-            key = f"GST_{ch_key(c)}_{act.upper()}"
-            en = gesture_en.get((c, act))
-            if not en:
-                err(f"gesture {key}: no English gesture in the S90 tell notes")
-                en = ""
-            strings[key] = {"zh-TW": zh, "en": en}
+            key = gesture_key(c, act)
+            if key not in strings:
+                err(f"gesture {key}: not in the localization package")
+            elif strings[key]["zh-TW"] != zh:
+                warn(f"gesture {key}: localization zh {strings[key]['zh-TW']!r} differs from 10-cases {zh!r}")
         if c in WARMUP:
             opponents.append({
                 "id": f"{ch_key(c)}_WARMUP", "chapter": c, "kind": "warmup", "speaker": "SPK_INSPECTOR_BASKERVILLE",
@@ -829,7 +869,7 @@ def main() -> int:
                 "clear": 100, "fuzzy": 0, "disguise": 0, "rules": "", "ruleBias": 80, "mirror": False,
                 "gestureAssert": "", "gestureRush": "", "gestureReinforce": "", "gestureTrap": "",
                 "playerActions": "rebut", "tail": "", "tailNode": "", "roundLimit": 0, "contraTarget": 0,
-                "mistakeLimit": 3, "hand": ",".join(WARMUP[c]["hand"]), "handPerMissed": 0, "hpPerMissed": 0,
+                "contraDeadline": 0, "mistakeLimit": 3, "hand": ",".join(WARMUP[c]["hand"]), "handPerMissed": 0, "hpPerMissed": 0,
             })
 
     # ---- papers (ruling D5): one paper per chapter boundary. Main headline and lead are the next chapter's
@@ -869,10 +909,12 @@ def main() -> int:
             res, page2 = result_keys(c - 1), ""
         paper(f"{ch_key(c)}_OPEN", c, "open", f"{ch_key(c)}_OPEN", c - 1, f"HEAD_{ch_key(c)}",
               f"HEAD_{ch_key(c)}_SUB", body, page2, res)
-    # Ch.4's opening is out of scope: the paper that would open it is a final step headed by NEWS_03_NEXT.
+    # Ruling E1: the prototype ends with the Ch.4 opening merged paper (HEAD_CH04 / _SUB and the Ch.4 S01 lead,
+    # Ch.3's result in the sidebar), then a 「待續」 card. Ch.4 itself is out of scope.
     last = CHAPTERS[-1]
-    paper(f"{ch_key(last)}_END", last, "transition", f"{ch_key(last)}_END", last, f"NEWS_{last:02d}_NEXT",
-          page_sub(f"NEWS_{last:02d}_NEXT_SUB"), "", "", result_keys(last))
+    nxt = ch_key(last + 1)
+    paper(f"{nxt}_OPEN", last + 1, "open", f"{nxt}_OPEN", last, f"HEAD_{nxt}", f"HEAD_{nxt}_SUB",
+          f"SCR_{nxt}_S01_L003", "", result_keys(last))
 
     # ---- steps
     steps = []
@@ -888,13 +930,17 @@ def main() -> int:
             if k == "investigate":
                 seq.append(("board", "", ch_key(c), ""))
         if c == CHAPTERS[-1]:
-            seq.append(("paper", "", f"{ch_key(c)}_END", "transition"))
+            seq.append(("paper", "", f"{ch_key(c + 1)}_OPEN", "transition"))  # ruling E1
+            seq.append(("end", "", END_CARD_KEY, ""))
         for i, (k, scene, arg, sub) in enumerate(seq):
             steps.append({"id": f"{ch_key(c)}_{i:02d}", "chapter": c, "idx": i, "kind": k, "sub": sub,
                           "scene": scene, "arg": arg})
 
-    # ---- chapter titles (from the closing-notes line 「案件名稱：…。」 / "Case name: ….")
+    # ---- chapter titles: CHAP_0n_TITLE from the localization package; fallback: the closing-notes line
+    # 「案件名稱：…。」 / "Case name: …."
     for c in CHAPTERS:
+        if f"CHAP_{c:02d}_TITLE" in strings:
+            continue
         notes_scene = next((sc for (cc, sc), m in sinfo["scenes"].items() if cc == c and m["sub"] == "notes"), None)
         line = f"SCR_{ch_key(c)}_{notes_scene}_L002" if notes_scene else ""
         zh = re.match(r"案件名稱：(.+?)。", strings.get(line, {}).get("zh-TW", ""))
@@ -911,7 +957,8 @@ def main() -> int:
         chapters.append({
             "id": c, "key": ch_key(c), "titleKey": f"CHAP_{c:02d}_TITLE", "phase": "early",
             "scenes": sc["scenes"], "hotspotsDesign": sc["hotspots"], "commonDesign": sc["common"],
-            "keyDesign": sc["key"], "storyDesign": sc["story"], "ticks": sc["ticks"], "appraisals": sc["appraisals"],
+            "keyDesign": sc["key"], "storyDesign": sc["story"], "ticks": sc["ticks"],
+            "appraisals": numbers["appraisals"].get(c, sc["appraisals"]),
             "appraisalUnlocked": c >= 2, "assistUnlocked": c >= 2, "sophistry": c >= 2, "sophistryReads": False,
             "states": {1: "", 2: "hachiku"}.get(c, "hachiku,konju,shisshu"),
             "trustShown": c >= 3, "trustDebate": c >= 3, "trustNotoriety": True, "trustDeferred": c == 2,
@@ -919,7 +966,7 @@ def main() -> int:
             "playerHp": early["playerHp"], "breakPct": early["breakPct"], "breakLine": early["breakLine"],
             "breakStrong": 1, "breakChain": 2, "tailPenalty": early["tailPenalty"], "tailRounds": early["tailRounds"],
             "debate": f"{ch_key(c)}_MAIN", "openPaper": f"{ch_key(c)}_OPEN",
-            "endPaper": f"{ch_key(c)}_END" if c == CHAPTERS[-1] else "",
+            "endPaper": f"{ch_key(c + 1)}_OPEN" if c == CHAPTERS[-1] else "",
             "next": c + 1,
         })
 
@@ -953,10 +1000,11 @@ def main() -> int:
     for key, (zh, en) in sinfo["speakers"].items():
         strings[key] = {"zh-TW": zh, "en": en}
 
-    tables = {"chapters": chapters, "steps": steps, "script": script, "evidence": evidence, "hotspots": hotspots,
+    tables = {"chapters": chapters, "steps": steps, "script": script, "evidence": evidence, "tags": tag_table,
+              "hotspots": hotspots,
               "nodes": nodes, "opponents": opponents, "tells": tells, "papers": papers, "difficulty": difficulty}
 
-    validate(tables, strings, systems, base, placeholder_tags)
+    validate(tables, strings, systems, base)
 
     for w in warnings:
         print("warning:", w)
@@ -987,13 +1035,13 @@ KEY_COLUMNS = {
     "nodes": ["textKey"], "opponents": ["speaker", "gestureAssert", "gestureRush", "gestureReinforce", "gestureTrap"],
     "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2Key", "page2SubKey", "sideKey",
                "sideWinKey", "sideWinSubKey", "sideNotoKey", "sideNotoSubKey", "sideLoseKey", "sideLoseSubKey"],
-    "difficulty": ["nameKey", "descKey"],
+    "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"],
 }
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
 
 
-def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder_tags: bool) -> None:
+def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
     for name, rows in tables.items():
         if not re.fullmatch(r"[a-z][A-Za-z0-9]*", name):
             err(f"table name {name!r} is not [a-z][A-Za-z0-9]*")
@@ -1050,7 +1098,7 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
             err(f"evidence.golden: unknown evidence {row['golden']!r}")
         if row["hotspot"] and row["hotspot"] not in {h["id"] for h in tables["hotspots"]}:
             err(f"evidence.hotspot: unknown hotspot {row['hotspot']!r}")
-        for col in ("tags", "hiddenTags", "grazingTags"):
+        for col in ("tags", "hiddenTags", "grazingTags", "policeTags"):
             for t in filter(None, row[col].split(",")):
                 if t.split(":")[0] not in CATEGORY_IDS:
                     err(f"evidence {row['id']}.{col}: unknown tag category in {t!r}")
@@ -1058,6 +1106,10 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
         for col in ("hiddenTags", "grazingTags"):
             if not set(filter(None, row[col].split(","))) <= all_tags:
                 err(f"evidence {row['id']}.{col}: not a subset of tags")
+        if not set(filter(None, row["policeTags"].split(","))) <= set(filter(None, row["hiddenTags"].split(","))):
+            err(f"evidence {row['id']}.policeTags: not a subset of hiddenTags")
+        if row["hiddenTags"] and row["appraise"] == "none":
+            err(f"evidence {row['id']}: hidden tags on a card that cannot be appraised")
     for row in tables["nodes"]:
         for t in filter(None, row["tags"].split(",")):
             if t.split(":")[0] not in CATEGORY_IDS:
@@ -1091,6 +1143,8 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
             err(f"steps {row['id']}: unknown opponent {row['arg']!r}")
         if row["kind"] == "paper" and row["arg"] not in paper_groups:
             err(f"steps {row['id']}: unknown paper group {row['arg']!r}")
+        if row["kind"] == "end" and (row["arg"] not in strings or row is not tables["steps"][-1]):
+            err(f"steps {row['id']}: the end card must be the last step and name a string key (ruling E1)")
     # Ruling D5: each chapter starts with exactly one paper step (the S01 front page) and has no other paper
     # step, except the final transition after the last chapter.
     for c in CHAPTERS:
@@ -1133,8 +1187,6 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict, placeholder
         cap = next(o["nodeCap"] for o in tables["opponents"] if o["id"] == f"{ch_key(c)}_MAIN")
         if len(nodes) < cap:
             warn(f"Ch.{c}: {len(nodes)} claim nodes < node cap {cap}")
-    if placeholder_tags:
-        warn(f"{TAG_FILE.name} is still the category-only PLACEHOLDER (ruling C4: real 類別：值 tags pending)")
 
 
 # ---------------------------------------------------------------- writers

@@ -96,3 +96,62 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 - 已知落差：美術風格 §五「章節開場」要求鋼版畫主圖，合約沒有圖片 port；Ch.1 開場內文（`SCR_CH01_S01_L003`，約 170 字）只填滿五欄中的一欄多。「收入剪報簿」提示（系統規格 §4.2）沒有對應 port，未做。
 
 字串鍵：`UI_PAPER_MAST`、`UI_PAPER_PAGE1`、`UI_PAPER_PAGE2`、`UI_PAPER_SIDE`、`UI_PAPER_ADS`、`UI_PAPER_EXTRA`、`UI_PAPER_STAMP_CLOSED`、`UI_PAPER_STAMP_FIX`。
+
+## investigate（蒐證，1280×720）
+
+依據：系統規格 §1、§4.2「SCR_INV」、美術風格 §五「蒐證」。調查點清單由流圖以 `atrium.ui.list` 寫入（XTAtrium 08 §8.4：來源為集合 `spotsHere`〔map：調查點 id → 狀態〕，join `hotspots` 表）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `bg` | string | in | 目前區域的背景 id（同 vn）。 |
+| `area_name` | string | in | 區域／場景名稱（已在地化）。 |
+| `nav_prev`、`nav_next` | bool | in | 左右箭頭是否可用（Ch.3 的三個場景以此切換）。 |
+| `spots` | list<struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}> | in | 本區調查點。`type`：0 檢視、1 證物、2 證詞、3 機關、4 鎖定；`state`：0 未調查、1 已調查（灰色）、2 不可用（鎖定）。座標為 1280×720 畫面上的矩形。 |
+| `ticks`、`ticks_max` | number | in | 懷錶刻度（剩餘／總數）；`ticks_max` 0 表示不限（Ch.1）。剩 3 格以下時懷錶轉紅（UI 自行判斷）。 |
+| `appraise_left` | number | in | 鑑定剩餘次數；−1 隱藏鑑定箱（Ch.1）。 |
+| `trust` | number | in | 警徽信任度 0～5；−1 隱藏。 |
+| `book_new` | number | in | 證物冊新取得數（紅點）；0 不顯示。 |
+| `can_end` | bool | in | 「結束蒐證」可按（必需證物已齊）。 |
+| `hint` | string | in | 亞瑟（Ch.1 為 Sherefox 自言自語）的提示氣泡文字；空字串隱藏。 |
+| `hint_seq` | number | in | 每換一則提示 +1，重播氣泡。 |
+| `popup_kind` | number | in | 0 無、1 情報文字、2 取得證物卡、3 取得證詞卡。 |
+| `popup_title`、`popup_body` | string | in | 彈窗標題（卡名）與內文（情報或證物說明）。 |
+| `popup_grade` | number | in | 取得卡片時的等級框：0 一般、1 關鍵、2 劇情、3 黃金、4 替代。 |
+| `popup_seq` | number | in | 每開一次彈窗 +1。 |
+| `spot` | string | out | 玩家點了哪個調查點（id）；彈窗開著時不送出。 |
+| `nav` | number | out | −1 往左、+1 往右切換區域。 |
+| `dismiss` | event | out | 關閉彈窗。 |
+| `book` | event | out | 開證物冊。 |
+| `ask_hint` | event | out | 點亞瑟頭像要一句提示。 |
+| `end` | event | out | 結束蒐證（只在 `can_end` 為 true 時送出）。 |
+
+## board（線索板，1280×720）
+
+依據：系統規格 §2、§4.2「SCR_BOARD」、美術風格 §五「線索板」。
+
+**原型簡化**：推理鏈本來就是一直線、最多 5 張、最多 3 條、板上最多 15 張，所以板面直接做成「3 條鏈 × 5 格」的軟木板：卡片放進某條鏈的某一格，與同鏈左右相鄰的卡自動相連，連結的類型（實證／詭辯／無效）由流圖判定後寫回。不做自由擺放與任意拉線；規則與設計文件相同。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `drawer` | list<struct{id: string, name: string, grade: number, appraised: bool, reason_set: bool, placed: bool}> | in | 證物抽屜：本案可參戰的卡（含本章可用的黃金線索、替代證物）。 |
+| `slots` | list<struct{chain: number, pos: number, id: string, name: string, grade: number}> | in | 板面 15 格（chain 0～2、pos 0～4）；`id` 空字串＝空格。 |
+| `links` | list<struct{chain: number, pos: number, kind: number}> | in | 每條鏈第 pos 與 pos+1 格之間的連結：0 無、1 實證、2 詭辯、3 無效（紅色火花，該卡會被彈回）、4 含黃金線索的實證。 |
+| `chain_info` | list<struct{chain: number, cards: number, solid: number, soph: number, dmg: number}> | in | 推理鏈列表的銅牌：張數、實證數、詭辯數、預估傷害。 |
+| `sel_id` | string | in | 詳情面板顯示的卡；空字串隱藏面板。 |
+| `sel_name`、`sel_desc` | string | in | 卡名、說明（已在地化）。 |
+| `sel_tags` | string | in | 已揭露標籤的顯示文字（以「・」連接）；未鑑定的顯示「？」。 |
+| `sel_grade` | number | in | 等級（同 investigate）。 |
+| `sel_reason1`～`sel_reason3` | string | in | 三個歸類理由（已在地化）；黃金線索時只有 1。 |
+| `sel_reason` | number | in | 已選的理由 0（未定）～3。 |
+| `sel_fixed` | bool | in | 理由已固定（黃金線索）。 |
+| `sel_can_appraise` | bool | in | 「交給亞瑟」可按。 |
+| `appraise_left` | number | in | 鑑定剩餘次數。 |
+| `opponent_name`、`threshold_text` | string | in | 左上對手與類型、上方論破門檻提示（已在地化）。 |
+| `remark` | string | in | 亞瑟的一句話（拉出詭辯時皺眉、首次實證、無效連結等）；空字串隱藏。 |
+| `remark_seq` | number | in | 每換一句 +1。 |
+| `select` | string | out | 點了抽屜或板上的某張卡（id）。 |
+| `place` | number | out | 把選中的卡放進格子：值 = chain × 5 + pos（0～14）。 |
+| `unplace` | string | out | 把板上的卡收回抽屜（id）。 |
+| `reason` | number | out | 為選中的卡選理由 1～3。 |
+| `appraise` | event | out | 把選中的卡交給亞瑟鑑定。 |
+| `to_debate` | event | out | 進入論戰（確認流程由流圖以 vn 系統訊息或彈窗處理）。 |
