@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Title</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #f3eedf }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+  .rule-copper { background-color: var(--copper); }
+  .lang-opt { width: 76px; height: 26px; flex-shrink: 0; line-height: 26px; text-align: center;
+              font-family: var(--font-body); font-size: 13px; letter-spacing: 1px;
+              color: var(--ink); background-color: var(--paper) }
+  .lang-opt.active { color: var(--paper); background-color: var(--ink) }
+  .entry { width: 408px; height: 108px; padding: 12px 16px 12px 16px; text-align: left;
+           font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 400;
+           color: var(--ink); background-color: var(--paper);
+           border: 0px solid var(--ink); border-bottom: 1px dashed var(--ink);
+           transition: background-color 150ms linear, color 150ms linear }
+  .entry:hover { color: var(--paper); background-color: var(--ink) }
+  .entry:active { color: var(--ink); background-color: var(--paper-old) }
+  .entry:focus { outline: 2px solid var(--copper); outline-offset: -4px }
+</style></helmet>
+<div id="title" data-xt-uiscale="fit"
+     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false"
+     data-xt-trigger="show:play(intro)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
+
+  <!-- Top line: agency kicker (left), language toggle (right). -->
+  <div id="kicker" class="kicker" data-xt-key="UI_TITLE_KICKER"
+       style="position: absolute; left: 48px; top: 16px; width: 520px; height: 20px;">狐耳偵探事務所</div>
+
+  <div id="lang-toggle" data-xt-trigger="click:emit(lang_toggle)" tabindex="0"
+       style="position: absolute; right: 48px; top: 10px; width: 260px; height: 30px;
+              display: flex; flex-direction: row; align-items: center; gap: 8px;">
+    <div id="lang-label" class="kicker" data-xt-key="UI_TITLE_LANG"
+         style="width: 88px; height: 20px; flex-shrink: 0; text-align: right;">語言</div>
+    <div id="lang-switch" style="width: 156px; height: 30px; flex-shrink: 0; display: flex; flex-direction: row;
+         gap: 0px; padding: 1px; border: 1px solid var(--ink); background-color: var(--paper);">
+      <div id="lang-zh" class="lang-opt active" data-xt-key="UI_TITLE_LANG_ZH"
+           data-xt-bind="class.active=lang_en | not">中文</div>
+      <div id="lang-en" class="lang-opt" data-xt-key="UI_TITLE_LANG_EN"
+           data-xt-bind="class.active=lang_en">English</div>
+    </div>
+  </div>
+
+  <div id="rule-top" class="rule-copper"
+       style="position: absolute; left: 48px; top: 46px; width: 1184px; height: 1px;"></div>
+
+  <!-- Masthead: the paper's art, ink-faded in on show, with Sherefox's vermilion tick over it. -->
+  <!-- A dock keeps the masthead and its tick together, centred on the page. -->
+  <div id="mast-dock" style="position: absolute; left: 240px; top: 52px; width: 800px; height: 172px;">
+    <div id="masthead" data-xt-timeline="intro: 0 opacity 0, 400ms ease-out opacity 1"
+         style="position: absolute; left: 20px; top: 0px; width: 760px; height: 172px; overflow: hidden;">
+      <img id="masthead-art" src="/_blob/art_masthead.png"
+           style="position: absolute; left: 0px; top: -34px; width: 760px; height: 253px; object-fit: contain;">
+    </div>
+    <svg id="mast-tick" viewBox="0 0 96 64"
+         style="position: absolute; left: 744px; top: 22px; width: 96px; height: 64px;">
+      <path id="Stroke" d="M6 34 C14 38 22 46 30 56 C44 34 62 16 90 6" fill="none" stroke="#b8322a"
+            stroke-width="6" stroke-linecap="round" stroke-linejoin="round" path-trim="0 1"
+            data-xt-timeline="intro: 0 path-trim-end 0, 300ms path-trim-end 0, 700ms ease-out path-trim-end 1"/>
+    </svg>
+  </div>
+
+  <!-- Masthead rules and the paper's name line. -->
+  <div id="rule-mast-thick" class="rule-thick"
+       style="position: absolute; left: 48px; top: 230px; width: 1184px; height: 3px;"></div>
+  <div id="rule-mast-thin" class="rule-thin"
+       style="position: absolute; left: 48px; top: 236px; width: 1184px; height: 1px;"></div>
+  <div id="paper-name" data-xt-key="UI_PAPER_MAST"
+       style="position: absolute; left: 340px; top: 242px; width: 600px; height: 28px;
+              text-align: center; font-family: var(--font-body); font-size: 16px; line-height: 28px;
+              letter-spacing: 4px; color: var(--ink);">倫敦提燈報</div>
+  <div id="rule-name" class="rule-thin"
+       style="position: absolute; left: 48px; top: 274px; width: 1184px; height: 1px;"></div>
+
+  <!-- Lead story: the game's title as the front-page headline. -->
+  <div id="lead" data-xt-timeline="intro: 0 opacity 0, 150ms opacity 0, 450ms ease-out opacity 1"
+       style="position: absolute; left: 48px; top: 300px; width: 712px; height: 380px;
+              display: flex; flex-direction: column; gap: 12px;">
+    <div id="lead-kicker" class="kicker" data-xt-key="UI_TITLE_LEAD"
+         style="width: 712px; height: 20px; flex-shrink: 0;">本日頭條</div>
+    <h1 id="lead-headline" data-xt-key="UI_TITLE_LOGO"
+        style="margin: 0px; width: 712px; height: 168px; flex-shrink: 0; font-family: var(--font-display);
+               font-size: 140px; line-height: 168px; font-weight: 700; letter-spacing: 6px; color: var(--ink-deep);">狐耳摩斯</h1>
+    <div id="lead-rule" class="rule-thin" style="width: 712px; height: 1px; flex-shrink: 0;"></div>
+    <p id="lead-deck" data-xt-key="UI_TITLE_SUB"
+       style="margin: 0px; width: 712px; height: 40px; flex-shrink: 0; font-family: var(--font-body);
+              font-size: 28px; line-height: 40px; color: var(--ink);">Sherefox：霧都的狐狸偵探</p>
+  </div>
+
+  <div id="rule-column" class="rule-thin"
+       style="position: absolute; left: 792px; top: 300px; width: 1px; height: 372px;"></div>
+
+  <!-- Contents column: one entry per chapter. -->
+  <div id="contents" data-xt-timeline="intro: 0 opacity 0, 250ms opacity 0, 550ms ease-out opacity 1"
+       style="position: absolute; left: 824px; top: 300px; width: 408px; height: 372px;
+              display: flex; flex-direction: column; gap: 0px;">
+    <div id="contents-heading" class="kicker" data-xt-key="UI_TITLE_CONTENTS"
+         style="width: 408px; height: 28px; flex-shrink: 0; border-bottom: 3px solid var(--ink);">本期目錄</div>
+    <button id="btn-ch1" class="entry" data-xt-key="UI_TITLE_CH1"
+            data-xt-trigger="click:set(chapter, 1)" style="flex-shrink: 0;">Ch.1 室友事件：消失的發條焦糖布丁</button>
+    <button id="btn-ch2" class="entry" data-xt-key="UI_TITLE_CH2"
+            data-xt-trigger="click:set(chapter, 2)" style="flex-shrink: 0;">Ch.2 鐘錶店事件：慢了三分鐘的報時鳥</button>
+    <button id="btn-ch3" class="entry" data-xt-key="UI_TITLE_CH3"
+            data-xt-trigger="click:set(chapter, 3)" style="flex-shrink: 0;">Ch.3 霧鎖泰晤士河的蒸汽駁船命案</button>
+  </div>
+
+  <div id="rule-foot" class="rule-copper"
+       style="position: absolute; left: 48px; top: 692px; width: 1184px; height: 1px;"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

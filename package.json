@@ -1,0 +1,19 @@
+{
+  "name": "sherefox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@xtframe/converter-win32-x64": "file:../../coding3/CryengineXTUI/XTFrame skills/workshop/dist/0.15.0/xtframe-converter-win32-x64-0.15.0.tgz"
+  }
+}

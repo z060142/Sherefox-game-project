@@ -1,0 +1,464 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #kicker left: 48px; top: 16px -> anchor: left top; offset: 16px -2px; size: 520px 20px",
+      "element": "kicker",
+      "source": "Title.dc.html",
+      "line": 31,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 48px; top: 16px",
+        "to": "anchor: left top; offset: 16px -2px; size: 520px 20px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 260px 30px",
+      "element": "lang-toggle",
+      "source": "Title.dc.html",
+      "line": 34,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 48px; top: 10px",
+        "to": "anchor: right top; offset: 16px -8px; size: 260px 30px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-top left: 48px; top: 46px -> anchor: left top; offset: 16px 28px; size: 1184px 1px",
+      "element": "rule-top",
+      "source": "Title.dc.html",
+      "line": 48,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 48px; top: 46px",
+        "to": "anchor: left top; offset: 16px 28px; size: 1184px 1px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #mast-dock left: 240px; top: 52px -> anchor: left top; offset: 208px 34px; size: 800px 172px",
+      "element": "mast-dock",
+      "source": "Title.dc.html",
+      "line": 53,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 240px; top: 52px",
+        "to": "anchor: left top; offset: 208px 34px; size: 800px 172px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-mast-thick left 48px -> calc(1safe-left + 16px)",
+      "element": "rule-mast-thick",
+      "source": "Title.dc.html",
+      "line": 68,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "48px",
+        "to": "calc(1safe-left + 16px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-mast-thick top 230px -> calc(32.08% - 0.96px)",
+      "element": "rule-mast-thick",
+      "source": "Title.dc.html",
+      "line": 68,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "230px",
+        "to": "calc(32.08% - 0.96px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-mast-thin left 48px -> calc(1safe-left + 16px)",
+      "element": "rule-mast-thin",
+      "source": "Title.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "48px",
+        "to": "calc(1safe-left + 16px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-mast-thin top 236px -> calc(32.82% - 0.33px)",
+      "element": "rule-mast-thin",
+      "source": "Title.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "236px",
+        "to": "calc(32.82% - 0.33px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #paper-name left 340px -> calc(50% - 300px)",
+      "element": "paper-name",
+      "source": "Title.dc.html",
+      "line": 72,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "340px",
+        "to": "calc(50% - 300px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #paper-name top 242px -> calc(34.97% - 9.79px)",
+      "element": "paper-name",
+      "source": "Title.dc.html",
+      "line": 72,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "242px",
+        "to": "calc(34.97% - 9.79px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-name left 48px -> calc(1safe-left + 16px)",
+      "element": "rule-name",
+      "source": "Title.dc.html",
+      "line": 76,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "48px",
+        "to": "calc(1safe-left + 16px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-name top 274px -> calc(38.11% - 0.38px)",
+      "element": "rule-name",
+      "source": "Title.dc.html",
+      "line": 76,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "274px",
+        "to": "calc(38.11% - 0.38px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #lead left: 48px; bottom: auto; top: 300px -> anchor: left bottom; offset: 16px 22px; size: 712px 380px",
+      "element": "lead",
+      "source": "Title.dc.html",
+      "line": 80,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 48px; bottom: auto; top: 300px",
+        "to": "anchor: left bottom; offset: 16px 22px; size: 712px 380px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-column left 792px -> calc(61.92% - 0.62px)",
+      "element": "rule-column",
+      "source": "Title.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "792px",
+        "to": "calc(61.92% - 0.62px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-column bottom auto -> calc(1safe-bottom + 30px)",
+      "element": "rule-column",
+      "source": "Title.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "bottom",
+        "from": "auto",
+        "to": "calc(1safe-bottom + 30px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-column top 300px -> (removed)",
+      "element": "rule-column",
+      "source": "Title.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "300px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #contents right: auto; left: 824px; bottom: auto; top: 300px -> anchor: right bottom; offset: 16px 30px; size: 408px 372px",
+      "element": "contents",
+      "source": "Title.dc.html",
+      "line": 98,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 824px; bottom: auto; top: 300px",
+        "to": "anchor: right bottom; offset: 16px 30px; size: 408px 372px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #rule-foot left: 48px; bottom: auto; top: 692px -> anchor: left bottom; offset: 16px 9px; size: 1184px 1px",
+      "element": "rule-foot",
+      "source": "Title.dc.html",
+      "line": 111,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 48px; bottom: auto; top: 692px",
+        "to": "anchor: left bottom; offset: 16px 9px; size: 1184px 1px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 26 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
+      "element": "",
+      "source": "Title.dc.html",
+      "line": 24,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "elements": "26",
+        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #rule-column #contents #contents-heading #btn-ch1 #btn-ch2 #btn-ch3 #rule-foot"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

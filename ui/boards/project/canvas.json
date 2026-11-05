@@ -1,0 +1,9 @@
+{
+  "name": "sherefox",
+  "boards": {
+    "Title.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 720, "title": "Title", "page": "main" }
+  },
+  "order": ["Title.dc.html"],
+  "pages": ["main"],
+  "designSystems": ["project"]
+}

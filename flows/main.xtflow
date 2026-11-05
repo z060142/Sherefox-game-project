@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "nodes": [
+    { "id": "langEn", "type": "toggle", "params": { "initial": false } }
+  ],
+  "edges": [
+    { "from": "ui#title.chapter", "to": "world.chapter" },
+    { "from": "ui#title.lang_toggle", "to": "langEn.toggle" },
+    { "from": "langEn.value", "to": "ui#title.lang_en" }
+  ]
+}

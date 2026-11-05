@@ -1,0 +1,545 @@
+{
+ "route": "ch2_route",
+ "start": {
+  "round": 1,
+  "player_hp": 100.0,
+  "opp_hp": 100.0,
+  "nodes": [
+   [
+    "N1",
+    "normal"
+   ],
+   [
+    "N2",
+    "normal"
+   ],
+   [
+    "N3",
+    "normal"
+   ]
+  ],
+  "shaken": "none",
+  "in_tail": false,
+  "hachiku": 0,
+  "konju_left": 0,
+  "shissu_left": 0,
+  "parry_count": 0,
+  "contradictions": 0,
+  "infamy": 0,
+  "assist_left": 1,
+  "over": false,
+  "outcome": null
+ },
+ "rounds": [
+  {
+   "player_action": {
+    "kind": "parry",
+    "segment": [],
+    "target": null,
+    "card": "E02_02",
+    "assist": false
+   },
+   "opponent_action": {
+    "kind": "claim",
+    "lit": "N1",
+    "scripted": false
+   },
+   "events": [
+    {
+     "kind": "Reveal",
+     "round": 1,
+     "player_action": "parry",
+     "opponent_action": "claim",
+     "staging": "defense_vs_attack"
+    },
+    {
+     "kind": "NodeRemoved",
+     "node_id": "N1",
+     "cause": "parry"
+    },
+    {
+     "kind": "CutIn",
+     "id": "STAMP_PARRY",
+     "level": "stamp",
+     "priority": null,
+     "side": "player",
+     "played_full": false,
+     "demoted": false
+    },
+    {
+     "kind": "DamageToOpponent",
+     "amount": 30.0,
+     "source": "counter",
+     "hp_before": 100.0,
+     "hp_after": 70.0,
+     "breakdown": [
+      [
+       "counter",
+       30.0
+      ]
+     ]
+    },
+    {
+     "kind": "HachikuChanged",
+     "before": 0,
+     "after": 1,
+     "preview": false
+    },
+    {
+     "kind": "CutIn",
+     "id": "STAMP_HACHIKU1",
+     "level": "stamp",
+     "priority": null,
+     "side": "player",
+     "played_full": false,
+     "demoted": false
+    },
+    {
+     "kind": "NodeAdded",
+     "node_id": "N1",
+     "node_kind": "normal",
+     "cause": "restate"
+    }
+   ],
+   "after": {
+    "round": 2,
+    "player_hp": 100.0,
+    "opp_hp": 70.0,
+    "nodes": [
+     [
+      "N2",
+      "normal"
+     ],
+     [
+      "N3",
+      "normal"
+     ],
+     [
+      "N1",
+      "normal"
+     ]
+    ],
+    "shaken": "none",
+    "in_tail": false,
+    "hachiku": 1,
+    "konju_left": 0,
+    "shissu_left": 0,
+    "parry_count": 1,
+    "contradictions": 0,
+    "infamy": 0,
+    "assist_left": 1,
+    "over": false,
+    "outcome": null
+   }
+  },
+  {
+   "player_action": {
+    "kind": "observe",
+    "segment": [],
+    "target": null,
+    "card": null,
+    "assist": false
+   },
+   "opponent_action": {
+    "kind": "claim",
+    "lit": "N2",
+    "scripted": false
+   },
+   "events": [
+    {
+     "kind": "Reveal",
+     "round": 2,
+     "player_action": "observe",
+     "opponent_action": "claim",
+     "staging": "defense_vs_attack"
+    },
+    {
+     "kind": "DamageToPlayer",
+     "amount": 19.0,
+     "source": "claim",
+     "hp_before": 100.0,
+     "hp_after": 81.0,
+     "breakdown": [
+      [
+       "claim",
+       38.0
+      ],
+      [
+       "observe_x0.5",
+       19.0
+      ]
+     ]
+    },
+    {
+     "kind": "HachikuChanged",
+     "before": 1,
+     "after": 0,
+     "preview": false
+    },
+    {
+     "kind": "CutIn",
+     "id": "STAMP_HACHIKU_LOST",
+     "level": "stamp",
+     "priority": null,
+     "side": "player",
+     "played_full": false,
+     "demoted": false
+    }
+   ],
+   "after": {
+    "round": 3,
+    "player_hp": 81.0,
+    "opp_hp": 70.0,
+    "nodes": [
+     [
+      "N2",
+      "normal"
+     ],
+     [
+      "N3",
+      "normal"
+     ],
+     [
+      "N1",
+      "normal"
+     ]
+    ],
+    "shaken": "none",
+    "in_tail": false,
+    "hachiku": 0,
+    "konju_left": 0,
+    "shissu_left": 0,
+    "parry_count": 1,
+    "contradictions": 0,
+    "infamy": 0,
+    "assist_left": 1,
+    "over": false,
+    "outcome": null
+   }
+  },
+  {
+   "player_action": {
+    "kind": "solid_chain",
+    "segment": [
+     "E02_03",
+     "E02_02",
+     "E02_04",
+     "E02_05"
+    ],
+    "target": "N1",
+    "card": null,
+    "assist": false
+   },
+   "opponent_action": {
+    "kind": "reinforce",
+    "lit": "N1",
+    "scripted": false
+   },
+   "events": [
+    {
+     "kind": "Reveal",
+     "round": 3,
+     "player_action": "solid_chain",
+     "opponent_action": "reinforce",
+     "staging": "player_attack_vs_defense"
+    },
+    {
+     "kind": "NodeRemoved",
+     "node_id": "N1",
+     "cause": "chain"
+    },
+    {
+     "kind": "NodeAdded",
+     "node_id": "N1",
+     "node_kind": "normal",
+     "cause": "reinforce"
+    },
+    {
+     "kind": "DamageToOpponent",
+     "amount": 17.5,
+     "source": "chain",
+     "hp_before": 70.0,
+     "hp_after": 52.5,
+     "breakdown": [
+      [
+       "base",
+       35.0
+      ],
+      [
+       "matchup_x0.5",
+       17.5
+      ]
+     ]
+    },
+    {
+     "kind": "StatusGained",
+     "status": "shaken",
+     "side": "opponent",
+     "rounds": 2
+    },
+    {
+     "kind": "CutIn",
+     "id": "CUT_SHAKEN",
+     "level": "full",
+     "priority": 6,
+     "side": "opponent",
+     "played_full": true,
+     "demoted": false
+    },
+    {
+     "kind": "HachikuChanged",
+     "before": 0,
+     "after": 0,
+     "preview": false
+    }
+   ],
+   "after": {
+    "round": 4,
+    "player_hp": 81.0,
+    "opp_hp": 52.5,
+    "nodes": [
+     [
+      "N2",
+      "normal"
+     ],
+     [
+      "N3",
+      "normal"
+     ],
+     [
+      "N1",
+      "normal"
+     ]
+    ],
+    "shaken": "armed",
+    "in_tail": false,
+    "hachiku": 0,
+    "konju_left": 0,
+    "shissu_left": 0,
+    "parry_count": 1,
+    "contradictions": 0,
+    "infamy": 0,
+    "assist_left": 1,
+    "over": false,
+    "outcome": null
+   }
+  },
+  {
+   "player_action": {
+    "kind": "parry",
+    "segment": [
+     "E02_06",
+     "E02_01"
+    ],
+    "target": null,
+    "card": null,
+    "assist": false
+   },
+   "opponent_action": {
+    "kind": "rush",
+    "lit": "N3",
+    "scripted": false
+   },
+   "events": [
+    {
+     "kind": "Reveal",
+     "round": 4,
+     "player_action": "parry",
+     "opponent_action": "rush",
+     "staging": "defense_vs_attack"
+    },
+    {
+     "kind": "CutIn",
+     "id": "STAMP_PARRY",
+     "level": "stamp",
+     "priority": null,
+     "side": "player",
+     "played_full": false,
+     "demoted": false
+    },
+    {
+     "kind": "DamageToOpponent",
+     "amount": 30.0,
+     "source": "counter",
+     "hp_before": 52.5,
+     "hp_after": 22.5,
+     "breakdown": [
+      [
+       "counter",
+       30.0
+      ]
+     ]
+    },
+    {
+     "kind": "NodeRemoved",
+     "node_id": "N2",
+     "cause": "break"
+    },
+    {
+     "kind": "NodeRemoved",
+     "node_id": "N3",
+     "cause": "break"
+    },
+    {
+     "kind": "NodeRemoved",
+     "node_id": "N1",
+     "cause": "break"
+    },
+    {
+     "kind": "BreakResult",
+     "success": true,
+     "via": "parry",
+     "label": null,
+     "golden_used": []
+    },
+    {
+     "kind": "CutIn",
+     "id": "CUT_RONPA",
+     "level": "full",
+     "priority": 3,
+     "side": "player",
+     "played_full": true,
+     "demoted": false
+    },
+    {
+     "kind": "DamageToOpponent",
+     "amount": 70.0,
+     "source": "break",
+     "hp_before": 22.5,
+     "hp_after": 1.0,
+     "breakdown": [
+      [
+       "break_pct",
+       70
+      ]
+     ]
+    },
+    {
+     "kind": "HachikuChanged",
+     "before": 0,
+     "after": 1,
+     "preview": false
+    },
+    {
+     "kind": "CutIn",
+     "id": "STAMP_HACHIKU1",
+     "level": "stamp",
+     "priority": null,
+     "side": "player",
+     "played_full": false,
+     "demoted": false
+    },
+    {
+     "kind": "TailStarted",
+     "rounds": 1,
+     "second_claim": "T2"
+    },
+    {
+     "kind": "NodeAdded",
+     "node_id": "T2",
+     "node_kind": "second_claim",
+     "cause": "tail_start"
+    },
+    {
+     "kind": "StatusGained",
+     "status": "tail",
+     "side": "opponent",
+     "rounds": 1
+    }
+   ],
+   "after": {
+    "round": 5,
+    "player_hp": 81.0,
+    "opp_hp": 1.0,
+    "nodes": [
+     [
+      "T2",
+      "second_claim"
+     ]
+    ],
+    "shaken": "held",
+    "in_tail": true,
+    "hachiku": 1,
+    "konju_left": 0,
+    "shissu_left": 0,
+    "parry_count": 2,
+    "contradictions": 0,
+    "infamy": 0,
+    "assist_left": 1,
+    "over": false,
+    "outcome": null
+   }
+  },
+  {
+   "player_action": {
+    "kind": "parry",
+    "segment": [
+     "E02_07",
+     "E02_01"
+    ],
+    "target": null,
+    "card": null,
+    "assist": false
+   },
+   "opponent_action": {
+    "kind": "all_in",
+    "lit": "T2",
+    "scripted": true
+   },
+   "events": [
+    {
+     "kind": "Reveal",
+     "round": 5,
+     "player_action": "parry",
+     "opponent_action": "all_in",
+     "staging": "defense_vs_attack"
+    },
+    {
+     "kind": "TailResult",
+     "correct": true
+    },
+    {
+     "kind": "DamageToOpponent",
+     "amount": 1.0,
+     "source": "tail_finish",
+     "hp_before": 1.0,
+     "hp_after": 0.0,
+     "breakdown": []
+    },
+    {
+     "kind": "HachikuChanged",
+     "before": 1,
+     "after": 1,
+     "preview": false
+    },
+    {
+     "kind": "DebateEnded",
+     "result": "win",
+     "reason": "tail_finish"
+    }
+   ],
+   "after": {
+    "round": 6,
+    "player_hp": 81.0,
+    "opp_hp": 0.0,
+    "nodes": [
+     [
+      "T2",
+      "second_claim"
+     ]
+    ],
+    "shaken": "held",
+    "in_tail": true,
+    "hachiku": 1,
+    "konju_left": 0,
+    "shissu_left": 0,
+    "parry_count": 2,
+    "contradictions": 0,
+    "infamy": 0,
+    "assist_left": 1,
+    "over": true,
+    "outcome": "win"
+   }
+  }
+ ]
+}

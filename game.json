@@ -1,0 +1,18 @@
+{
+  "game": 1,
+  "xtatrium": "0.4",
+  "name": "sherefox",
+  "stepSeconds": 0.016666666666666666,
+  "gravity": [0, 0],
+  "collisionCategories": [],
+  "signals": {
+    "chapter": { "type": "number", "initial": 0 }
+  },
+  "input": { "actions": {}, "axes": [] },
+  "flows": ["flows/main.xtflow"],
+  "ui": {
+    "bundle": "ui/bundle",
+    "flowRuntime": "atrium",
+    "surfaces": [{ "ui": "title", "width": 1280, "height": 720 }]
+  }
+}

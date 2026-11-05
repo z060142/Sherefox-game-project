@@ -1,0 +1,13 @@
+version: 1
+id: d39a2056-7f92-4055-8b41-dea2ba186cf4
+type: image
+title: masthead-art
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/art_masthead.png
+content: sha256:23d336aebe932a052ae2c08967cdac23de3210831169a6717bb20ce27faea2dc
+measured:
+  w: 2172
+  h: 724
+  alpha: true
