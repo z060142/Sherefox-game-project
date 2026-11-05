@@ -1,11 +1,82 @@
 {
   "version": 1,
   "nodes": [
-    { "id": "langEn", "type": "toggle", "params": { "initial": false } }
+    {
+      "id": "lang",
+      "type": "state",
+      "params": {
+        "initial": "zh",
+        "states": [
+          "zh",
+          "en"
+        ],
+        "transitions": [
+          {
+            "from": "zh",
+            "on": "toggle",
+            "to": "en"
+          },
+          {
+            "from": "en",
+            "on": "toggle",
+            "to": "zh"
+          }
+        ]
+      }
+    },
+    {
+      "id": "enTag",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "isEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langTag",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "zh-TW",
+          "en"
+        ]
+      }
+    }
   ],
   "edges": [
-    { "from": "ui#title.chapter", "to": "world.chapter" },
-    { "from": "ui#title.lang_toggle", "to": "langEn.toggle" },
-    { "from": "langEn.value", "to": "ui#title.lang_en" }
+    {
+      "from": "ui#title.chapter",
+      "to": "world.chapter"
+    },
+    {
+      "from": "ui#title.lang_toggle",
+      "to": "lang.toggle"
+    },
+    {
+      "from": "lang.index",
+      "to": "langTag.index"
+    },
+    {
+      "from": "langTag.out",
+      "to": "world.language"
+    },
+    {
+      "from": "world.language",
+      "to": "isEn.a"
+    },
+    {
+      "from": "enTag.out",
+      "to": "isEn.b"
+    },
+    {
+      "from": "isEn.out",
+      "to": "ui#title.lang_en"
+    }
   ]
 }

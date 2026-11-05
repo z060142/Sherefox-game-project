@@ -2,21 +2,52 @@
   "game": 1,
   "xtatrium": "0.4",
   "name": "sherefox",
+  "localization": {
+    "languages": [
+      "zh-TW",
+      "en"
+    ],
+    "default": "zh-TW",
+    "strings": "strings"
+  },
   "stepSeconds": 0.016666666666666666,
-  "gravity": [0, 0],
+  "gravity": [
+    0,
+    0
+  ],
   "collisionCategories": [],
   "signals": {
-    "chapter": { "type": "number", "initial": 0 }
+    "chapter": {
+      "type": "number",
+      "initial": 0
+    }
   },
-  "input": { "actions": {}, "axes": [] },
-  "flows": ["flows/main.xtflow"],
+  "input": {
+    "actions": {},
+    "axes": []
+  },
+  "flows": [
+    "flows/main.xtflow"
+  ],
   "ui": {
     "bundle": "ui/bundle",
     "flowRuntime": "atrium",
     "surfaces": [
-      { "ui": "title", "width": 1280, "height": 720 },
-      { "ui": "vn", "width": 1280, "height": 720 },
-      { "ui": "paper", "width": 1280, "height": 720 }
+      {
+        "ui": "title",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "ui": "vn",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "ui": "paper",
+        "width": 1280,
+        "height": 720
+      }
     ]
   }
 }
