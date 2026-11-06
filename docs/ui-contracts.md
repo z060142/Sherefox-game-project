@@ -449,3 +449,12 @@ UI 側實作（板子 `ui/boards/project/Notes.dc.html`）：
 | `pick_lang` | number | out | 選了語言 0／1。 |
 | `toggle_sub` | event | out | 切換大字譯名。 |
 | `close` | event | out | 關閉設定。 |
+
+### title 追加（AT-052 後）
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `open_settings` | event | out | 目錄欄的「設定」（UI_TITLE_SETTINGS 或既有 UI_SET_* 標題鍵）。 |
+| `quit` | event | out | 目錄欄的「離開遊戲」；流圖接 `atrium.app.quit`。 |
+
+Esc 不再結束程式（AT-052）：遊戲中 Esc＝關閉目前的覆蓋層（證物冊、對手筆記、設定）；沒有覆蓋層時開啟設定。
