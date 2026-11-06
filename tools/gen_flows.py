@@ -489,7 +489,7 @@ SIGNALS = {
     "notesOpen": {"type": "pulse"},                     # debate_ui -> main: show the opponent notes overlay
     "notesShown": {"type": "bool", "initial": False},   # main: the opponent notes overlay is open
     "settingsShown": {"type": "bool", "initial": False},  # main: the settings overlay is open (the debate pauses)
-    # music hooks (rulings H1-H3; no playback yet): the moment and its BGM id (docs/flows.md §4.10)
+    # music (rulings H1-H3): the moment and its BGM id; the `music` flow plays it (docs/flows.md §4.10)
     "bgmMoment": {"type": "string", "initial": "title"},
     "bgm": {"type": "string", "initial": "BGM01"},
     # settings (ui-contracts settings; 01-systems §4.6, §4.7 在地化): 大字譯名, on by default (shown only outside zh-TW)
@@ -544,6 +544,40 @@ COLLECTIONS = {
     "setRes": {"kind": "list", "type": "string", "capacity": 1 + 5, "unique": True},
     "setResOn": {"kind": "list", "type": "string", "capacity": 1},
 }
+# ---------------------------------------------------------------- audio (game.json audio; audio/README.md)
+
+AUDIO_RATE = 44100   # every delivered BGM is 44.1 kHz: loop points are PCM frames at that rate
+# BGM id -> (loopStart, loopEnd) in seconds (audio/README.md: loopEnd = the start of the trailing silence, ffmpeg
+# silencedetect at -50 dB / 0.3 s, rounded down to 0.05 s). Only delivered files: an id of flowBgm without a track
+# here (BGM10) leaves the current music playing (docs/flows.md §4.10).
+MUSIC = {
+    "BGM01": (0.0, 115.30), "BGM02": (0.0, 118.60), "BGM03": (0.0, 119.80), "BGM04": (0.0, 88.70),
+    "BGM05": (0.0, 179.80), "BGM06": (0.0, 118.95), "BGM07": (0.0, 104.65), "BGM08": (0.0, 105.10),
+    "BGM09": (0.30, 87.40), "BGM11": (0.0, 66.65), "BGM12": (0.0, 85.55),
+}
+MUSIC_FADE = 1.0     # crossfade seconds between tracks (and the first track's fade-in)
+SFX = ["SFX_DEB_WIN", "SFX_DEB_LOSE"]   # one-shot cues (docs/audio-requests.md §3), audio/sfx/<id>.mp3
+
+
+def audio_decl() -> dict:
+    """game.json `audio` (XTAtrium 03 §3.8.1, §3.9): one cue per SFX, one looping music cue per BGM track, the bgm
+    channel. A declared file that is missing fails the load, so every file must exist."""
+    music, cues = {}, {}
+    for bid, (start, end) in MUSIC.items():
+        decl: dict = {"file": f"audio/bgm/{bid}.mp3", "loop": True}
+        if start:
+            decl["loopStart"] = round(start * AUDIO_RATE)
+        decl["loopEnd"] = round(end * AUDIO_RATE)
+        decl["category"] = "bgm"
+        music[bid] = decl
+    for cid in SFX:
+        cues[cid] = {"file": f"audio/sfx/{cid}.mp3", "category": "se"}
+    for decl in [*music.values(), *cues.values()]:
+        if not (ROOT / decl["file"]).is_file():
+            raise FileNotFoundError(f"audio: {decl['file']} is declared but missing")
+    return {"cues": cues, "music": music, "channels": ["bgm"]}
+
+
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
 FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
@@ -569,6 +603,7 @@ def game_json_text(tables: dict) -> str:
         game["tables"][name] = rel
     game["tables"][gen_debate.SCRIPT_TABLE] = gen_debate.script_table("data/debScript.json")   # tools/build_data.py
     game["flows"] = [f"flows/{f}.xtflow" for f in FLOW_ORDER]
+    game["audio"] = audio_decl()
     return json.dumps(game, ensure_ascii=False, indent=2) + "\n"
 
 
@@ -1976,9 +2011,15 @@ import gen_debate  # noqa: E402  (the engine's interface: signals, collections, 
 # ---------------------------------------------------------------- music
 
 def gen_music() -> Graph:
-    """Music hooks (rulings H1-H3, docs/audio-requests.md): world.bgmMoment = the moment the game is in (the step
-    kind; a debate / warmup step: debate_ui's world.bgmDeb), world.bgm = its BGM id (flowBgm). The framework has no
-    music playback yet: playing it later is one node on world.bgm (docs/flows.md §4.10)."""
+    """Music (rulings H1-H3, docs/audio-requests.md, docs/flows.md §4.10): world.bgmMoment = the moment the game is in
+    (the step kind; a debate / warmup step: debate_ui's world.bgmDeb), world.bgm = its BGM id (flowBgm), played on
+    the bgm channel with a MUSIC_FADE crossfade.
+
+    Playback: a change of the id (filter deadband; the value may pass through other ids while the selects and the
+    debate moment settle) starts a 1 ms timer whose tick samples the settled id when flowBgm.play says it has a
+    track; a second deadband passes it on only when it differs from the last track played, so an id without a track
+    (BGM10) keeps the current music and coming back to that track does not restart it. bgmPlays counts the plays and
+    bgmNow is the channel's target cue (atrium.music.playing), both for the headless check (tests/check_music.py)."""
     g = Graph()
     cur = g.k("title")   # no step, the end card
     for kind, mom in (("result", "result"), ("board", "board"), ("investigate", "investigate"), ("vn", "daily"),
@@ -1989,7 +2030,27 @@ def gen_music() -> Graph:
     g.x("isDebK", "isDebN || isWarmN")
     mom = g.sel("moment", "isDebK_t", "world.bgmDeb", cur)
     g.edge(mom, "world.bgmMoment")
-    g.edge(g.tget("bgmId", "flowBgm", "bgm", g.tfind("bgmRow", "flowBgm", "moment", mom)), "world.bgm")
+    row = g.tfind("bgmRow", "flowBgm", "moment", mom)
+    bid = g.tget("bgmId", "flowBgm", "bgm", row)
+    g.edge(bid, "world.bgm")
+    g.tget("bgmHas", "flowBgm", "play", row, "number")
+    g.x("bgmHasX", "bgmHas")
+    g.node("bgmChg", "filter", op="deadband", threshold=0)
+    g.edge(bid, "bgmChg.in")
+    # the settled id: sampled on a 1 ms timer (step 4 of the next tick, after every query and the other flows'
+    # world writes; several changes in a tick start it once); autostart plays the title's track
+    g.node("bgmSettle", "timer", interval=0.001, autostart=True, repeat=False)
+    g.edge("bgmChg.passed", "bgmSettle.start")
+    track = g.latch("bgmTrk", bid, g.when("bgmOk", "bgmSettle.tick", "bgmHasX_t"))
+    g.node("bgmNew", "filter", op="deadband", threshold=0)
+    g.edge(track, "bgmNew.in")
+    g.node("bgmPlay", "atrium.music.play", channel="bgm")
+    g.edge("bgmNew.out", "bgmPlay.cue")
+    g.edge(g.k(MUSIC_FADE), "bgmPlay.fadeIn")
+    g.edge("bgmNew.passed", "bgmPlay.trigger")
+    g.counter("bgmPlays", initial=0)
+    g.edge("bgmNew.passed", "bgmPlays.increment")
+    g.node("bgmNow", "atrium.music.playing", channel="bgm")
     return g
 
 

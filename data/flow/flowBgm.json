@@ -1,14 +1,14 @@
 [
-  {"moment": "title", "bgm": "BGM01"},
-  {"moment": "daily", "bgm": "BGM02"},
-  {"moment": "investigate", "bgm": "BGM05"},
-  {"moment": "board", "bgm": "BGM06"},
-  {"moment": "debate", "bgm": "BGM07"},
-  {"moment": "debate2", "bgm": "BGM08"},
-  {"moment": "pudding", "bgm": "BGM12"},
-  {"moment": "warmup", "bgm": "BGM07"},
-  {"moment": "break", "bgm": "BGM09"},
-  {"moment": "reverse", "bgm": "BGM10"},
-  {"moment": "brink", "bgm": "BGM10"},
-  {"moment": "result", "bgm": "BGM11"}
+  {"moment": "title", "bgm": "BGM01", "play": 1},
+  {"moment": "daily", "bgm": "BGM02", "play": 1},
+  {"moment": "investigate", "bgm": "BGM05", "play": 1},
+  {"moment": "board", "bgm": "BGM06", "play": 1},
+  {"moment": "debate", "bgm": "BGM07", "play": 1},
+  {"moment": "debate2", "bgm": "BGM08", "play": 1},
+  {"moment": "pudding", "bgm": "BGM12", "play": 1},
+  {"moment": "warmup", "bgm": "BGM07", "play": 1},
+  {"moment": "break", "bgm": "BGM09", "play": 1},
+  {"moment": "reverse", "bgm": "BGM10", "play": 0},
+  {"moment": "brink", "bgm": "BGM10", "play": 0},
+  {"moment": "result", "bgm": "BGM11", "play": 1}
 ]

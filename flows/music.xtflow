@@ -182,6 +182,86 @@
         "column": "bgm",
         "type": "string"
       }
+    },
+    {
+      "id": "bgmHas",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowBgm",
+        "column": "play",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bgmHasX",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "bgmHas"
+      }
+    },
+    {
+      "id": "bgmChg",
+      "type": "filter",
+      "params": {
+        "op": "deadband",
+        "threshold": 0
+      }
+    },
+    {
+      "id": "bgmOk",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bgmTrk",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bgmNew",
+      "type": "filter",
+      "params": {
+        "op": "deadband",
+        "threshold": 0
+      }
+    },
+    {
+      "id": "bgmPlay",
+      "type": "atrium.music.play",
+      "params": {
+        "channel": "bgm"
+      }
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": 1.0
+      }
+    },
+    {
+      "id": "bgmPlays",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "bgmNow",
+      "type": "atrium.music.playing",
+      "params": {
+        "channel": "bgm"
+      }
+    },
+    {
+      "id": "bgmSettle",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": true,
+        "repeat": false
+      }
     }
   ],
   "edges": [
@@ -360,6 +440,58 @@
     {
       "from": "bgmId.value",
       "to": "world.bgm"
+    },
+    {
+      "from": "bgmRow.row",
+      "to": "bgmHas.row"
+    },
+    {
+      "from": "bgmHas.value",
+      "to": "bgmHasX.bgmHas"
+    },
+    {
+      "from": "bgmId.value",
+      "to": "bgmChg.in"
+    },
+    {
+      "from": "bgmChg.passed",
+      "to": "bgmSettle.start"
+    },
+    {
+      "from": "bgmHasX.value",
+      "to": "bgmOk.cond"
+    },
+    {
+      "from": "bgmSettle.tick",
+      "to": "bgmOk.trigger"
+    },
+    {
+      "from": "bgmId.value",
+      "to": "bgmTrk.in"
+    },
+    {
+      "from": "bgmOk.pass",
+      "to": "bgmTrk.trigger"
+    },
+    {
+      "from": "bgmTrk.out",
+      "to": "bgmNew.in"
+    },
+    {
+      "from": "bgmNew.out",
+      "to": "bgmPlay.cue"
+    },
+    {
+      "from": "K11.out",
+      "to": "bgmPlay.fadeIn"
+    },
+    {
+      "from": "bgmNew.passed",
+      "to": "bgmPlay.trigger"
+    },
+    {
+      "from": "bgmNew.passed",
+      "to": "bgmPlays.increment"
     }
   ]
 }

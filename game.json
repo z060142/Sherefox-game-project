@@ -902,5 +902,89 @@
       "type": "string",
       "capacity": 1
     }
+  },
+  "audio": {
+    "cues": {
+      "SFX_DEB_WIN": {
+        "file": "audio/sfx/SFX_DEB_WIN.mp3",
+        "category": "se"
+      },
+      "SFX_DEB_LOSE": {
+        "file": "audio/sfx/SFX_DEB_LOSE.mp3",
+        "category": "se"
+      }
+    },
+    "music": {
+      "BGM01": {
+        "file": "audio/bgm/BGM01.mp3",
+        "loop": true,
+        "loopEnd": 5084730,
+        "category": "bgm"
+      },
+      "BGM02": {
+        "file": "audio/bgm/BGM02.mp3",
+        "loop": true,
+        "loopEnd": 5230260,
+        "category": "bgm"
+      },
+      "BGM03": {
+        "file": "audio/bgm/BGM03.mp3",
+        "loop": true,
+        "loopEnd": 5283180,
+        "category": "bgm"
+      },
+      "BGM04": {
+        "file": "audio/bgm/BGM04.mp3",
+        "loop": true,
+        "loopEnd": 3911670,
+        "category": "bgm"
+      },
+      "BGM05": {
+        "file": "audio/bgm/BGM05.mp3",
+        "loop": true,
+        "loopEnd": 7929180,
+        "category": "bgm"
+      },
+      "BGM06": {
+        "file": "audio/bgm/BGM06.mp3",
+        "loop": true,
+        "loopEnd": 5245695,
+        "category": "bgm"
+      },
+      "BGM07": {
+        "file": "audio/bgm/BGM07.mp3",
+        "loop": true,
+        "loopEnd": 4615065,
+        "category": "bgm"
+      },
+      "BGM08": {
+        "file": "audio/bgm/BGM08.mp3",
+        "loop": true,
+        "loopEnd": 4634910,
+        "category": "bgm"
+      },
+      "BGM09": {
+        "file": "audio/bgm/BGM09.mp3",
+        "loop": true,
+        "loopStart": 13230,
+        "loopEnd": 3854340,
+        "category": "bgm"
+      },
+      "BGM11": {
+        "file": "audio/bgm/BGM11.mp3",
+        "loop": true,
+        "loopEnd": 2939265,
+        "category": "bgm"
+      },
+      "BGM12": {
+        "file": "audio/bgm/BGM12.mp3",
+        "loop": true,
+        "loopEnd": 3772755,
+        "category": "bgm"
+      }
+    },
+    "channels": [
+      "bgm"
+    ]
   }
 }

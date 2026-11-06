@@ -84,6 +84,21 @@ opens it and a click on the dimmed screen closes it (the paper stays on page 1);
 On while it is on sends nothing); every `res_options` write is the selected auto option only (`display.native*` are 0
 headless). It also checks the game.json `display` block and that the settings surface is modal, right below cutin.
 
+## Music and the debate jingles
+
+```
+uv run tests/check_music.py
+```
+
+It checks the game.json `audio` block against the files under `audio/` and `tools/gen_flows.py` `MUSIC` (loop
+points), `flowBgm.play`, the music flow's single `atrium.music.play` and the jingle `sound` nodes, then replays
+`tests/ch1_debate.atrec` and `tests/ch2_lose.atrec` with `--trace` (into a temporary directory that is deleted). The
+music commands do not reach the trace, so it reads the music flow's own values (located with `compile --emit ir`):
+`world.bgm` follows `flowBgm` on every tick, `bgmPlays` grows once per change of the played track, and `bgmNow`
+(`atrium.music.playing`) reaches the new track within two ticks. Ch.1: BGM01 -> BGM02 -> BGM05 -> BGM06 -> BGM12 ->
+BGM11 -> BGM02 and one `SFX_DEB_WIN`; Ch.2 lost twice: one `SFX_DEB_LOSE` per defeat. It takes a few minutes (the
+traces are large).
+
 ## Investigation and clue board
 
 ```

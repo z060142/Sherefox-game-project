@@ -79,7 +79,8 @@ SIGNALS = {
     "debRetry": {"type": "pulse"},                       # result -> main: back to the debate step (A-14 retry)
     "bgmDeb": {"type": "string", "initial": ""},         # debate_ui -> music: the debate's music moment (H1-H3)
 }
-# Ruling H1-H3 / docs/audio-requests.md: the BGM of each music moment (flowBgm; the `music` flow writes world.bgm)
+# Ruling H1-H3 / docs/audio-requests.md: the BGM of each music moment (flowBgm; the `music` flow writes world.bgm and
+# plays it; flowBgm.play = the id has a delivered track, gen_flows.MUSIC)
 BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board", "BGM06"), ("debate", "BGM07"),
        ("debate2", "BGM08"), ("pudding", "BGM12"), ("warmup", "BGM07"), ("break", "BGM09"), ("reverse", "BGM10"),
        ("brink", "BGM10"), ("result", "BGM11")]
@@ -232,7 +233,8 @@ def tables() -> dict[str, list[dict]]:
         cut.append({"key": f"STAMP_HACHIKU{n}|0", "big": "", "stamp": "STAMP_HACHIKU", "n": n,
                     "sub": "STAMP_HACHIKU_SUB", "dwell": 1})
     return {"flowDebCase": case_rows, "flowWord": word, "flowNodeView": node_view, "flowEvLine": ev_rows,
-            "flowCut": cut, "flowBgm": [{"moment": m, "bgm": b} for m, b in BGM]}
+            "flowCut": cut,
+            "flowBgm": [{"moment": m, "bgm": b, "play": int(b in F.MUSIC)} for m, b in BGM]}
 
 
 # ---------------------------------------------------------------------------------------------- helpers
@@ -1204,6 +1206,12 @@ def gen_debui() -> Graph:
     over = g.when("overG", cont, "overN_t")
     setn(g.when("notOverG", cont, T("notOver", "!overN")), "rsAt", "now")
     setn(over, "ph", g.k(3))
+    # the end jingle (docs/audio-requests.md §3.5, before the result): a main debate won / lost, once, as the debate
+    # is over (phase 3); the warmup (no result screen) and Ch.1's unachieved have none (docs/flows.md §4.8)
+    for nm, word, cue in (("Win", "win", "SFX_DEB_WIN"), ("Lose", "loss", "SFX_DEB_LOSE")):
+        g.n(f"sfx{nm}N", g.cmp(f"sfx{nm}C", "world.debOutcome", g.k(word)))
+        g.node(f"sfx{nm}", "sound", cue=cue)
+        g.edge(g.when(f"sfx{nm}G", over, T(f"sfx{nm}On", f"isDebN && sfx{nm}N")), f"sfx{nm}.trigger")
     setn(over, "fin", g.k(1))
     setn(over, "finAt", g.x("finAtN", f"now + {FINISH}"))
     setn(g.when("nextFin", nextP, T("nextFinN", "activeN && d_ph == 3 && d_fin == 1")), "finAt", "now")
@@ -1272,10 +1280,16 @@ def gen_debui() -> Graph:
     g.edge(nb, g.ui_list("logList", "ui.notes.log", "uiLog",
                          {"text": "value", "mark": "map:uiLogMis", "note": "map:uiLogNote"}, localize=["note"]))
 
-    # ---- music (rulings H1-H3): the debate's moment for the `music` flow
+    # ---- music (rulings H1-H3): the debate's moment for the `music` flow. The step's `pre` lines come before
+    # `begin` (the case latch, the dbui clear), so the mode is read from the step's own case (world.stepArg) and the
+    # previous debate's m8-m10 are cleared when a debate / warmup step begins.
+    stepB = g.when("bmStepG", "world.stepBegin", "activeN_t")
+    for k in ("m8", "m9", "m10"):
+        setn(stepB, k, g.k(0))
+    g.tget("bm_mode", "flowDebCase", "mode", g.tfind("bmRow", "flowDebCase", "id", "world.stepArg"), "number")
     mom = ssel(g, "bgmMom", [(g.b("bmOff", g.x("bmOffN", "!activeN")), g.k("")),
                              (g.b("bmWarm", "isWarmN"), g.k("warmup")),
-                             (g.b("bmPud", g.x("bmPudN", "dc_mode == 2")), g.k("pudding")),
+                             (g.b("bmPud", g.x("bmPudN", "bm_mode == 2")), g.k("pudding")),
                              (g.b("bmRev", g.x("bmRevN", "d_m10 == 1")), g.k("reverse")),
                              (g.b("bmBrink", g.x("bmBrinkN", "d_m10 == 2")), g.k("brink")),
                              (g.b("bmBrk", "d_m9"), g.k("break")),

@@ -11096,6 +11096,78 @@
       }
     },
     {
+      "id": "K147",
+      "type": "constant",
+      "params": {
+        "value": "win"
+      }
+    },
+    {
+      "id": "sfxWinC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "sfxWinN",
+      "type": "select"
+    },
+    {
+      "id": "sfxWin",
+      "type": "sound",
+      "params": {
+        "cue": "SFX_DEB_WIN"
+      }
+    },
+    {
+      "id": "sfxWinOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebN && sfxWinN"
+      }
+    },
+    {
+      "id": "sfxWinG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K148",
+      "type": "constant",
+      "params": {
+        "value": "loss"
+      }
+    },
+    {
+      "id": "sfxLoseC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "sfxLoseN",
+      "type": "select"
+    },
+    {
+      "id": "sfxLose",
+      "type": "sound",
+      "params": {
+        "cue": "SFX_DEB_LOSE"
+      }
+    },
+    {
+      "id": "sfxLoseOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebN && sfxLoseN"
+      }
+    },
+    {
+      "id": "sfxLoseG",
+      "type": "atrium.gate"
+    },
+    {
       "id": "dbui_fin_95",
       "type": "atrium.map.set",
       "params": {
@@ -11146,13 +11218,6 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K147",
-      "type": "constant",
-      "params": {
-        "value": "loss"
-      }
-    },
-    {
       "id": "lossC",
       "type": "compare",
       "params": {
@@ -11189,7 +11254,7 @@
       }
     },
     {
-      "id": "K148",
+      "id": "K149",
       "type": "constant",
       "params": {
         "value": true
@@ -11259,13 +11324,6 @@
       "type": "atrium.map.set",
       "params": {
         "name": "caseMod"
-      }
-    },
-    {
-      "id": "K149",
-      "type": "constant",
-      "params": {
-        "value": "win"
       }
     },
     {
@@ -12002,6 +12060,48 @@
       }
     },
     {
+      "id": "bmStepG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "dbui_m8_101",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "dbui_m9_102",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "dbui_m10_103",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "bmRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowDebCase",
+        "column": "id"
+      }
+    },
+    {
+      "id": "bm_mode",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowDebCase",
+        "column": "mode",
+        "type": "number"
+      }
+    },
+    {
       "id": "bmOffN",
       "type": "atrium.expr",
       "params": {
@@ -12019,7 +12119,7 @@
       "id": "bmPudN",
       "type": "atrium.expr",
       "params": {
-        "expr": "dc_mode == 2"
+        "expr": "bm_mode == 2"
       }
     },
     {
@@ -24477,6 +24577,86 @@
       "to": "dbui_ph_94.trigger"
     },
     {
+      "from": "world.debOutcome",
+      "to": "sfxWinC.a"
+    },
+    {
+      "from": "K147.out",
+      "to": "sfxWinC.b"
+    },
+    {
+      "from": "sfxWinC.out",
+      "to": "sfxWinN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "sfxWinN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "sfxWinN.b"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "sfxWinOn.isDebN"
+    },
+    {
+      "from": "sfxWinN.out",
+      "to": "sfxWinOn.sfxWinN"
+    },
+    {
+      "from": "sfxWinOn.value",
+      "to": "sfxWinG.cond"
+    },
+    {
+      "from": "overG.pass",
+      "to": "sfxWinG.trigger"
+    },
+    {
+      "from": "sfxWinG.pass",
+      "to": "sfxWin.trigger"
+    },
+    {
+      "from": "world.debOutcome",
+      "to": "sfxLoseC.a"
+    },
+    {
+      "from": "K148.out",
+      "to": "sfxLoseC.b"
+    },
+    {
+      "from": "sfxLoseC.out",
+      "to": "sfxLoseN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "sfxLoseN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "sfxLoseN.b"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "sfxLoseOn.isDebN"
+    },
+    {
+      "from": "sfxLoseN.out",
+      "to": "sfxLoseOn.sfxLoseN"
+    },
+    {
+      "from": "sfxLoseOn.value",
+      "to": "sfxLoseG.cond"
+    },
+    {
+      "from": "overG.pass",
+      "to": "sfxLoseG.trigger"
+    },
+    {
+      "from": "sfxLoseG.pass",
+      "to": "sfxLose.trigger"
+    },
+    {
       "from": "K18.out",
       "to": "dbui_fin_95.key"
     },
@@ -24561,7 +24741,7 @@
       "to": "lossC.a"
     },
     {
-      "from": "K147.out",
+      "from": "K148.out",
       "to": "lossC.b"
     },
     {
@@ -24613,7 +24793,7 @@
       "to": "notesShownC.a"
     },
     {
-      "from": "K148.out",
+      "from": "K149.out",
       "to": "notesShownC.b"
     },
     {
@@ -24693,7 +24873,7 @@
       "to": "outWinC.a"
     },
     {
-      "from": "K149.out",
+      "from": "K147.out",
       "to": "outWinC.b"
     },
     {
@@ -25358,6 +25538,58 @@
     },
     {
       "from": "activeN.value",
+      "to": "bmStepG.cond"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "bmStepG.trigger"
+    },
+    {
+      "from": "K29.out",
+      "to": "dbui_m8_101.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "dbui_m8_101.value"
+    },
+    {
+      "from": "bmStepG.pass",
+      "to": "dbui_m8_101.trigger"
+    },
+    {
+      "from": "K30.out",
+      "to": "dbui_m9_102.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "dbui_m9_102.value"
+    },
+    {
+      "from": "bmStepG.pass",
+      "to": "dbui_m9_102.trigger"
+    },
+    {
+      "from": "K31.out",
+      "to": "dbui_m10_103.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "dbui_m10_103.value"
+    },
+    {
+      "from": "bmStepG.pass",
+      "to": "dbui_m10_103.trigger"
+    },
+    {
+      "from": "world.stepArg",
+      "to": "bmRow.value"
+    },
+    {
+      "from": "bmRow.row",
+      "to": "bm_mode.row"
+    },
+    {
+      "from": "activeN.value",
       "to": "bmOffN.activeN"
     },
     {
@@ -25369,8 +25601,8 @@
       "to": "bmWarm.b"
     },
     {
-      "from": "dc_mode.value",
-      "to": "bmPudN.dc_mode"
+      "from": "bm_mode.value",
+      "to": "bmPudN.bm_mode"
     },
     {
       "from": "d_m10.value",
