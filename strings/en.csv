@@ -398,10 +398,6 @@ MSG_AUTOSAVE,Autosaving… Do not close the game.
 MSG_BOARD_FULL,The board is full.
 MSG_BOARD_NOCHAIN,Form at least one Reasoning Chain before entering the Debate.
 MSG_CH1_CONTRA,Contradiction {n}!
-MSG_CH1_CONTRA__1,Contradiction 1!
-MSG_CH1_CONTRA__2,Contradiction 2!
-MSG_CH1_CONTRA__3,Contradiction 3!
-MSG_CH1_CONTRA__4,Contradiction 4!
 MSG_CHAIN_BRANCH,A Reasoning Chain must run in a straight line.
 MSG_CHAIN_MAX,"A Reasoning Chain holds at most 5 cards, and the board holds at most 3 chains."
 MSG_CMP_FOUND,Something has changed here.
@@ -440,17 +436,9 @@ MSG_DEB_PARRY_BREAK_MISS,"They didn't speak up, and the chance to Break has pass
 MSG_DEB_PARRY_NOREF,"Blocked, but that claim is too sturdy: only a Golden Clue can overturn it."
 MSG_DEB_PARRY_OFFSET,They're pushing a different claim!
 MSG_DEB_PARRY_WHIFF,"They didn't speak up, so your Rebut whiffed."
-MSG_DEB_PARRY__30,Hold on! (Counter 30)
-MSG_DEB_PARRY__33,Hold on! (Counter 33)
-MSG_DEB_PARRY__36,Hold on! (Counter 36)
-MSG_DEB_PARRY__39,Hold on! (Counter 39)
 MSG_DEB_REINFORCE,{name} reinforced the story.
 MSG_DEB_REINFORCE_HALF,Half of it was blocked.
 MSG_DEB_REINFORCE_HEAL,{name} steadied up. (Dominance +{n})
-MSG_DEB_REINFORCE__SPK_ARTHUR,Arthur reinforced the story.
-MSG_DEB_REINFORCE__SPK_FITCH,Fitch reinforced the story.
-MSG_DEB_REINFORCE__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville reinforced the story.
-MSG_DEB_REINFORCE__SPK_PIERCE,Pierce reinforced the story.
 MSG_DEB_REVEAL,Cards up!
 MSG_DEB_REVEAL_HIDDEN,{name} finally said it out loud.
 MSG_DEB_RULE_NEW,"Arthur jotted a line in his notes: ""{rule}"""
@@ -461,35 +449,15 @@ MSG_DEB_SELECT_PARRY,Choose the evidence to cut in with.
 MSG_DEB_SELECT_TARGET,Choose the claim to attack (the lit one by default).
 MSG_DEB_SHAKEN,{name} is Shaken!
 MSG_DEB_SHAKEN_END,{name} has regained their composure.
-MSG_DEB_SHAKEN_END__SPK_ARTHUR,Arthur has regained their composure.
-MSG_DEB_SHAKEN_END__SPK_FITCH,Fitch has regained their composure.
-MSG_DEB_SHAKEN_END__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville has regained their composure.
-MSG_DEB_SHAKEN_END__SPK_PIERCE,Pierce has regained their composure.
 MSG_DEB_SHAKEN_RUSH,"The Onslaught was cut off, and {name} loses their footing!"
-MSG_DEB_SHAKEN__SPK_ARTHUR,Arthur is Shaken!
-MSG_DEB_SHAKEN__SPK_FITCH,Fitch is Shaken!
-MSG_DEB_SHAKEN__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville is Shaken!
-MSG_DEB_SHAKEN__SPK_PIERCE,Pierce is Shaken!
 MSG_DEB_SHAKE_LINE,They're still holding firm.
 MSG_DEB_SLIP,{name} let something slip!
-MSG_DEB_SLIP__SPK_ARTHUR,Arthur let something slip!
-MSG_DEB_SLIP__SPK_FITCH,Fitch let something slip!
-MSG_DEB_SLIP__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville let something slip!
-MSG_DEB_SLIP__SPK_PIERCE,Pierce let something slip!
 MSG_DEB_SMASH,Claim overturned!
 MSG_DEB_STANDOFF,Standoff: neither side made a move.
 MSG_DEB_STURDY,"That claim is too sturdy. Hit it with a Solid Chain, or cut in with a Golden Clue as they speak."
 MSG_DEB_TRAP_EXPOSED,You saw through the trap. {name} will definitely strike next round.
-MSG_DEB_TRAP_EXPOSED__SPK_ARTHUR,You saw through the trap. Arthur will definitely strike next round.
-MSG_DEB_TRAP_EXPOSED__SPK_FITCH,You saw through the trap. Fitch will definitely strike next round.
-MSG_DEB_TRAP_EXPOSED__SPK_INSPECTOR_BASKERVILLE,You saw through the trap. Inspector Baskerville will definitely strike next round.
-MSG_DEB_TRAP_EXPOSED__SPK_PIERCE,You saw through the trap. Pierce will definitely strike next round.
 MSG_DEB_TRAP_HIT,It's a trap!
 MSG_DEB_TRAP_MISS,The trap whiffs! {name} can't Reinforce next round.
-MSG_DEB_TRAP_MISS__SPK_ARTHUR,The trap whiffs! Arthur can't Reinforce next round.
-MSG_DEB_TRAP_MISS__SPK_FITCH,The trap whiffs! Fitch can't Reinforce next round.
-MSG_DEB_TRAP_MISS__SPK_INSPECTOR_BASKERVILLE,The trap whiffs! Inspector Baskerville can't Reinforce next round.
-MSG_DEB_TRAP_MISS__SPK_PIERCE,The trap whiffs! Pierce can't Reinforce next round.
 MSG_DEB_WEAK_HIT,Your Weak Point was seen through!
 MSG_DEVICE_FAIL,Nothing happens. Try again.
 MSG_DEVICE_NEED,You need something to open this.
@@ -550,29 +518,12 @@ MSG_TAIL_PROTECTOR,"{name}: ""Exposing the truth will only ruin everything. Can 
 MSG_TAIL_REFLECT,"Cold, hard evidence doesn't move them."
 MSG_TAIL_RIVAL,{name} plays their hole card.
 MSG_TAIL_SECOND,{name} switches to a different story.
-MSG_TAIL_SECOND__SPK_ARTHUR,Arthur switches to a different story.
-MSG_TAIL_SECOND__SPK_FITCH,Fitch switches to a different story.
-MSG_TAIL_SECOND__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville switches to a different story.
-MSG_TAIL_SECOND__SPK_PIERCE,Pierce switches to a different story.
 MSG_TAIL_START,"{name} is driven to the brink, but hasn't given up yet."
-MSG_TAIL_START__SPK_ARTHUR,"Arthur is driven to the brink, but hasn't given up yet."
-MSG_TAIL_START__SPK_FITCH,"Fitch is driven to the brink, but hasn't given up yet."
-MSG_TAIL_START__SPK_INSPECTOR_BASKERVILLE,"Inspector Baskerville is driven to the brink, but hasn't given up yet."
-MSG_TAIL_START__SPK_PIERCE,"Pierce is driven to the brink, but hasn't given up yet."
 MSG_TAIL_THRESHOLD_UP,This debate's Break requirement has gone up: one more piece of evidence is needed.
 MSG_TAIL_TIMEOUT,{name} weathered the storm. The Break is void!
-MSG_TAIL_TIMEOUT__SPK_ARTHUR,Arthur weathered the storm. The Break is void!
-MSG_TAIL_TIMEOUT__SPK_FITCH,Fitch weathered the storm. The Break is void!
-MSG_TAIL_TIMEOUT__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville weathered the storm. The Break is void!
-MSG_TAIL_TIMEOUT__SPK_PIERCE,Pierce weathered the storm. The Break is void!
 MSG_TAIL_WRONG,Their counterattack hits you! (Dominance −{n})
-MSG_TAIL_WRONG__30,Their counterattack hits you! (Dominance −30)
 MSG_TALK_LIMIT,{name} doesn't want to talk any more.
 MSG_WARMUP_FAIL,{name} waves a hand impatiently.
-MSG_WARMUP_FAIL__SPK_ARTHUR,Arthur waves a hand impatiently.
-MSG_WARMUP_FAIL__SPK_FITCH,Fitch waves a hand impatiently.
-MSG_WARMUP_FAIL__SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville waves a hand impatiently.
-MSG_WARMUP_FAIL__SPK_PIERCE,Pierce waves a hand impatiently.
 MSG_WARMUP_PERFECT,You convinced him in one go.
 MSG_WARMUP_WRONG,That doesn't prove him wrong.
 NEWS_00_OPEN,Steam Tram's East End Extension Opens Today: Whitechapel Just Fifteen Minutes Away
@@ -1119,9 +1070,6 @@ STAMP_HACHIKU_LOST,斷
 STAMP_HACHIKU_LOST_LOG,【斷】
 STAMP_HACHIKU_LOST_SUB,BROKEN
 STAMP_HACHIKU_SUB,UNSTOPPABLE ×{n}
-STAMP_HACHIKU_SUB__1,UNSTOPPABLE ×1
-STAMP_HACHIKU_SUB__2,UNSTOPPABLE ×2
-STAMP_HACHIKU_SUB__3,UNSTOPPABLE ×3
 STAMP_PARRY,截
 STAMP_PARRY_LOG,【截】
 STAMP_PARRY_SUB,CUT IN
@@ -1415,41 +1363,6 @@ UI_BREAK_LINE,Hold on—I've completely cracked it!
 UI_BREAK_LINE_PARRY,Hold on—what you just said is the answer.
 UI_CASE_CARD_9,"Chapter 9, Case {n}: {caseTitle}"
 UI_CH1_CONTRA,Contradictions {n}/2 · {r} rounds left
-UI_CH1_CONTRA__0_0,Contradictions 0/2 · 0 rounds left
-UI_CH1_CONTRA__0_1,Contradictions 0/2 · 1 rounds left
-UI_CH1_CONTRA__0_2,Contradictions 0/2 · 2 rounds left
-UI_CH1_CONTRA__0_3,Contradictions 0/2 · 3 rounds left
-UI_CH1_CONTRA__0_4,Contradictions 0/2 · 4 rounds left
-UI_CH1_CONTRA__0_5,Contradictions 0/2 · 5 rounds left
-UI_CH1_CONTRA__0_6,Contradictions 0/2 · 6 rounds left
-UI_CH1_CONTRA__1_0,Contradictions 1/2 · 0 rounds left
-UI_CH1_CONTRA__1_1,Contradictions 1/2 · 1 rounds left
-UI_CH1_CONTRA__1_2,Contradictions 1/2 · 2 rounds left
-UI_CH1_CONTRA__1_3,Contradictions 1/2 · 3 rounds left
-UI_CH1_CONTRA__1_4,Contradictions 1/2 · 4 rounds left
-UI_CH1_CONTRA__1_5,Contradictions 1/2 · 5 rounds left
-UI_CH1_CONTRA__1_6,Contradictions 1/2 · 6 rounds left
-UI_CH1_CONTRA__2_0,Contradictions 2/2 · 0 rounds left
-UI_CH1_CONTRA__2_1,Contradictions 2/2 · 1 rounds left
-UI_CH1_CONTRA__2_2,Contradictions 2/2 · 2 rounds left
-UI_CH1_CONTRA__2_3,Contradictions 2/2 · 3 rounds left
-UI_CH1_CONTRA__2_4,Contradictions 2/2 · 4 rounds left
-UI_CH1_CONTRA__2_5,Contradictions 2/2 · 5 rounds left
-UI_CH1_CONTRA__2_6,Contradictions 2/2 · 6 rounds left
-UI_CH1_CONTRA__3_0,Contradictions 3/2 · 0 rounds left
-UI_CH1_CONTRA__3_1,Contradictions 3/2 · 1 rounds left
-UI_CH1_CONTRA__3_2,Contradictions 3/2 · 2 rounds left
-UI_CH1_CONTRA__3_3,Contradictions 3/2 · 3 rounds left
-UI_CH1_CONTRA__3_4,Contradictions 3/2 · 4 rounds left
-UI_CH1_CONTRA__3_5,Contradictions 3/2 · 5 rounds left
-UI_CH1_CONTRA__3_6,Contradictions 3/2 · 6 rounds left
-UI_CH1_CONTRA__4_0,Contradictions 4/2 · 0 rounds left
-UI_CH1_CONTRA__4_1,Contradictions 4/2 · 1 rounds left
-UI_CH1_CONTRA__4_2,Contradictions 4/2 · 2 rounds left
-UI_CH1_CONTRA__4_3,Contradictions 4/2 · 3 rounds left
-UI_CH1_CONTRA__4_4,Contradictions 4/2 · 4 rounds left
-UI_CH1_CONTRA__4_5,Contradictions 4/2 · 5 rounds left
-UI_CH1_CONTRA__4_6,Contradictions 4/2 · 6 rounds left
 UI_CHAPTER_CARD,Chapter {n}: {chapterTitle}
 UI_CHAP_NO,Ch.{n}
 UI_CHOICE_KEY,【{plotItem}】
@@ -1460,14 +1373,6 @@ UI_DEB_ASSIST_ARMED,"Cover ready: if a trap catches you this round, Arthur block
 UI_DEB_BEST,Recommended
 UI_DEB_COUNTER_PREVIEW,Assert {base}+4×{n}={dmg}
 UI_DEB_COUNTER_PREVIEW_RUSH,Onslaught ({base}+4×{n})×1.25={dmg}
-UI_DEB_COUNTER_PREVIEW_RUSH__26_0,Onslaught (26+4×0)×1.25=32.5
-UI_DEB_COUNTER_PREVIEW_RUSH__26_1,Onslaught (26+4×1)×1.25=37.5
-UI_DEB_COUNTER_PREVIEW_RUSH__26_2,Onslaught (26+4×2)×1.25=42.5
-UI_DEB_COUNTER_PREVIEW_RUSH__26_3,Onslaught (26+4×3)×1.25=47.5
-UI_DEB_COUNTER_PREVIEW__26_0,Assert 26+4×0=26
-UI_DEB_COUNTER_PREVIEW__26_1,Assert 26+4×1=30
-UI_DEB_COUNTER_PREVIEW__26_2,Assert 26+4×2=34
-UI_DEB_COUNTER_PREVIEW__26_3,Assert 26+4×3=38
 UI_DEB_DISGUISER,"This opponent's Tells may be Disguised: when their words and gestures disagree, trust the gesture."
 UI_DEB_GESTURE_KNOWN,{gesture} = {action}
 UI_DEB_GOSSIP,Word on the Street
@@ -1490,36 +1395,6 @@ UI_DEB_PREVIEW_SHAKEN,Shaken ×1.5
 UI_DEB_PREVIEW_SMASH,Will smash claims ×{n}
 UI_DEB_PREVIEW_VS,If {action}: {result}
 UI_DEB_ROUND,Round {n}
-UI_DEB_ROUND__1,Round 1
-UI_DEB_ROUND__10,Round 10
-UI_DEB_ROUND__11,Round 11
-UI_DEB_ROUND__12,Round 12
-UI_DEB_ROUND__13,Round 13
-UI_DEB_ROUND__14,Round 14
-UI_DEB_ROUND__15,Round 15
-UI_DEB_ROUND__16,Round 16
-UI_DEB_ROUND__17,Round 17
-UI_DEB_ROUND__18,Round 18
-UI_DEB_ROUND__19,Round 19
-UI_DEB_ROUND__2,Round 2
-UI_DEB_ROUND__20,Round 20
-UI_DEB_ROUND__21,Round 21
-UI_DEB_ROUND__22,Round 22
-UI_DEB_ROUND__23,Round 23
-UI_DEB_ROUND__24,Round 24
-UI_DEB_ROUND__25,Round 25
-UI_DEB_ROUND__26,Round 26
-UI_DEB_ROUND__27,Round 27
-UI_DEB_ROUND__28,Round 28
-UI_DEB_ROUND__29,Round 29
-UI_DEB_ROUND__3,Round 3
-UI_DEB_ROUND__30,Round 30
-UI_DEB_ROUND__4,Round 4
-UI_DEB_ROUND__5,Round 5
-UI_DEB_ROUND__6,Round 6
-UI_DEB_ROUND__7,Round 7
-UI_DEB_ROUND__8,Round 8
-UI_DEB_ROUND__9,Round 9
 UI_DEB_SEGMENT,Part {n}: {name}
 UI_DEB_STATUS_BREAK_TURN,Break Round
 UI_DEB_STATUS_LABEL,Status
@@ -1532,19 +1407,11 @@ UI_DEB_TELL_BASIS_INSTINCT,Fox-Ear Instinct
 UI_DEB_TELL_BASIS_KONJU,Cornered
 UI_DEB_TELL_BASIS_OBSERVE,Observe
 UI_DEB_TELL_BASIS_RULE,Rule {n}
-UI_DEB_TELL_BASIS_RULE__1,Rule 1
-UI_DEB_TELL_BASIS_RULE__2,Rule 2
-UI_DEB_TELL_BASIS_RULE__3,Rule 3
-UI_DEB_TELL_BASIS_RULE__4,Rule 4
-UI_DEB_TELL_BASIS_RULE__5,Rule 5
 UI_DEB_TELL_BASIS_TUTORIAL,Tutorial
 UI_DEB_TELL_CANDIDATES,Candidates: {a}/{b}
 UI_DEB_TELL_CLEAR,Clear
 UI_DEB_TELL_FUZZY,Vague
 UI_DEB_TELL_LIKELY,Likelier (Rule {n})
-UI_DEB_TELL_LIKELY__1,Likelier (Rule 1)
-UI_DEB_TELL_LIKELY__2,Likelier (Rule 2)
-UI_DEB_TELL_LIKELY__4,Likelier (Rule 4)
 UI_DEB_TELL_SCRIPT,Round of Fate
 UI_DEB_TELL_SEEN,Seen Through
 UI_DIFF_MASTER,Master Detective
@@ -1661,8 +1528,6 @@ UI_RES_BREAKS,Breaks
 UI_RES_COST,The Cost of This Case
 UI_RES_COST_OPP,The opponent walked away with the upper hand
 UI_RES_COST_SEIZE,"Evidence ""{name}"" was seized"
-UI_RES_COST_SEIZE__E02_01,"Evidence ""Custom Double-Mainspring Gear"" was seized"
-UI_RES_COST_SEIZE__E03_04,"Evidence ""The Brass Part Jamming the Relief Valve"" was seized"
 UI_RES_COST_TRUST,The Inspector's Trust drops
 UI_RES_DELEGATE,Victory by Delegation
 UI_RES_HP,Dominance remaining
@@ -1799,10 +1664,6 @@ UI_TYPE_PROTECTOR_DESC,"He is shielding someone, deflecting and playing on emoti
 UI_TYPE_RIVAL,Rival Detective
 UI_TYPE_RIVAL_DESC,"He has evidence of his own, including what you missed. He predicts you will repeat your last move and counters it, and his Tells may be Disguised. Change things up, and mind your Weak Points."
 UI_WARMUP_MISS,Mistakes {n}/3
-UI_WARMUP_MISS__0,Mistakes 0/3
-UI_WARMUP_MISS__1,Mistakes 1/3
-UI_WARMUP_MISS__2,Mistakes 2/3
-UI_WARMUP_MISS__3,Mistakes 3/3
 UI_WARMUP_TITLE,Warm-up: Correct the Misjudgement
 WARN_BOARD_LOCK,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?"
 WARN_BOARD_NOREASON,{n} cards have no Rationale and can't join the fight. Enter the Debate anyway?

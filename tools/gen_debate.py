@@ -234,6 +234,13 @@ COLLECTIONS: dict[str, dict] = {
 }
 TABLES = {name: f"data/debate/{name}.json" for name in ("debCase", "debCard", "debNode", "debCode", "debLine")}
 SCRIPT_TABLE = "debScript"  # supplied by the game (or the harness): one row per scripted round
+SCRIPT_COLUMNS = ["key", "action", "lit", "scripted", "clarity", "shown1", "shown2", "star", "starRule", "basis",
+                  "lineKey"]  # docs/debate-engine.md §2.4; declared, so a script without rows still has its columns
+
+
+def script_table(rel: str) -> dict:
+    """The game.json declaration of the script table at `rel` (08 §8.2.1 object form)."""
+    return {"file": rel, "columns": SCRIPT_COLUMNS}
 
 # debState keys (docs/debate-engine.md §3.2): name -> meaning. All default to 0 after map.clear except the inits.
 STATE_KEYS = {
@@ -280,6 +287,7 @@ class Graph:
         self._ids: set[str] = set()
         self.v: dict[str, str] = {}
         self._consts: dict[str, str] = {}
+        self._exprs: set[str] = set()
 
     def node(self, node_id: str, node_type: str, **params) -> str:
         if node_id in self._ids:
@@ -309,6 +317,7 @@ class Graph:
     def x(self, name: str, expr: str) -> str:
         """atrium.expr `name` = expr; every identifier must be a value name."""
         self.node(name, "atrium.expr", expr=expr)
+        self._exprs.add(name)
         seen = set()
         for ident in IDENT.findall(expr):
             if ident in FUNCS or ident in seen:
@@ -321,11 +330,18 @@ class Graph:
         return self.v[name]
 
     def truth(self, name: str, num: str) -> str:
-        """bool `name` = (number value != 0), for guards and select conditions."""
+        """bool `name` = (number value != 0), for guards and select conditions: an expression's own truth output
+        (08 §8.5a), else a compare node."""
+        src = self.src(num)
+        if src.endswith(".value") and self._is_expr(src[: -len(".value")]):
+            return src[: -len(".value")] + ".truth"
         self.node(name, "compare", op="ne")
         self.edge(self.src(num), f"{name}.a")
         self.edge(self.const(0), f"{name}.b")
         return f"{name}.out"
+
+    def _is_expr(self, node_id: str) -> bool:
+        return node_id in self._exprs
 
     def sel(self, name: str, cond_num: str, a: str, b: str) -> str:
         """select `name` = cond_num != 0 ? a : b (a, b: ports or value names of the same type)."""
@@ -374,6 +390,12 @@ class Graph:
         self.v[name] = f"{name}.row"
         return self.v[name]
 
+    def cond_gate(self, node_id: str, cond_num: str) -> tuple[str, str]:
+        """A pulse gate on a number (atrium.gate, 08 §8.5a: passes while it is non-zero); returns (input, output)."""
+        self.node(node_id, "atrium.gate")
+        self.edge(self.src(cond_num), f"{node_id}.cond")
+        return f"{node_id}.trigger", f"{node_id}.pass"
+
     def gate(self, node_id: str, guard: str) -> tuple[str, str]:
         """A pulse gate (state a<->b on `go`, guard = bool port); returns (input, output)."""
         self.node(node_id, "state", states=["a", "b"], initial="a",
@@ -403,7 +425,7 @@ class Cascade:
                 continue
             self.n += 1
             gid = f"{self.prefix}{self.n}"
-            go, out = g.gate(gid, g.truth(gid + "_g", cond))
+            go, out = g.cond_gate(gid, cond)
             g.edge(source, go)
             for t in triggers:
                 g.edge(out, t)
@@ -1404,7 +1426,7 @@ def build_harness(out_dir: Path, h_in: list[dict], script: list[dict]) -> int:
     (out_dir / "data" / "debScript.json").write_bytes(write_json(Path(), script).encode("utf-8"))
     tables = {name: f"data/{name}.json" for name in TABLES}
     tables["hIn"] = "data/hIn.json"
-    tables[SCRIPT_TABLE] = "data/debScript.json"
+    tables[SCRIPT_TABLE] = script_table("data/debScript.json")
     game = {
         "game": 1, "xtatrium": "0.4", "name": "sherefox-debate-harness",
         "stepSeconds": 0.016666666666666666, "gravity": [0, 0], "collisionCategories": [],

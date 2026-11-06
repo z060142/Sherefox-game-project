@@ -376,27 +376,37 @@
     "tells": "data/tells.json",
     "papers": "data/papers.json",
     "difficulty": "data/difficulty.json",
-    "flowCard": "data/flow/flowCard.json",
-    "flowSpot": "data/flow/flowSpot.json",
-    "flowScene": "data/flow/flowScene.json",
-    "flowCase": "data/flow/flowCase.json",
-    "flowDrawer": "data/flow/flowDrawer.json",
-    "flowBook": "data/flow/flowBook.json",
-    "flowSlot": "data/flow/flowSlot.json",
-    "flowLink": "data/flow/flowLink.json",
-    "flowChain": "data/flow/flowChain.json",
-    "flowDebCase": "data/flow/flowDebCase.json",
-    "flowWord": "data/flow/flowWord.json",
-    "flowNodeView": "data/flow/flowNodeView.json",
-    "flowChainView": "data/flow/flowChainView.json",
-    "flowEvLine": "data/flow/flowEvLine.json",
-    "flowCut": "data/flow/flowCut.json",
     "debCase": "data/debate/debCase.json",
     "debCard": "data/debate/debCard.json",
     "debNode": "data/debate/debNode.json",
     "debCode": "data/debate/debCode.json",
     "debLine": "data/debate/debLine.json",
-    "debScript": "data/debScript.json"
+    "debScript": {
+      "file": "data/debScript.json",
+      "columns": [
+        "key",
+        "action",
+        "lit",
+        "scripted",
+        "clarity",
+        "shown1",
+        "shown2",
+        "star",
+        "starRule",
+        "basis",
+        "lineKey"
+      ]
+    },
+    "flowCard": "data/flow/flowCard.json",
+    "flowSpot": "data/flow/flowSpot.json",
+    "flowScene": "data/flow/flowScene.json",
+    "flowCase": "data/flow/flowCase.json",
+    "flowLink": "data/flow/flowLink.json",
+    "flowDebCase": "data/flow/flowDebCase.json",
+    "flowWord": "data/flow/flowWord.json",
+    "flowNodeView": "data/flow/flowNodeView.json",
+    "flowEvLine": "data/flow/flowEvLine.json",
+    "flowCut": "data/flow/flowCut.json"
   },
   "collections": {
     "held": {
@@ -473,8 +483,8 @@
       "capacity": 16
     },
     "bookList": {
-      "kind": "list",
-      "type": "string",
+      "kind": "map",
+      "type": "bool",
       "capacity": 32
     },
     "row0": {
@@ -513,8 +523,8 @@
       "unique": true
     },
     "slotList": {
-      "kind": "list",
-      "type": "string",
+      "kind": "map",
+      "type": "number",
       "capacity": 15
     },
     "linkMap": {
@@ -528,8 +538,8 @@
       "capacity": 3
     },
     "drawerList": {
-      "kind": "list",
-      "type": "string",
+      "kind": "map",
+      "type": "bool",
       "capacity": 16
     },
     "debBoard": {
@@ -624,13 +634,13 @@
       "unique": true
     },
     "uiNodes": {
-      "kind": "list",
-      "type": "string",
+      "kind": "map",
+      "type": "number",
       "capacity": 16
     },
     "uiChains": {
-      "kind": "list",
-      "type": "string",
+      "kind": "map",
+      "type": "number",
       "capacity": 15
     },
     "uiCands": {
@@ -678,6 +688,51 @@
       "kind": "list",
       "type": "string",
       "capacity": 8
+    },
+    "slotPos": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 15
+    },
+    "chainCards": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 3
+    },
+    "chainSolid": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 3
+    },
+    "chainSoph": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 3
+    },
+    "drawRset": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 16
+    },
+    "drawPlaced": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 16
+    },
+    "uiChPos": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 15
+    },
+    "uiChLink": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 15
+    },
+    "uiChSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 15
     }
   }
 }

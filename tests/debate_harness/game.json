@@ -250,7 +250,22 @@
   "debCode": "data/debCode.json",
   "debLine": "data/debLine.json",
   "hIn": "data/hIn.json",
-  "debScript": "data/debScript.json"
+  "debScript": {
+   "file": "data/debScript.json",
+   "columns": [
+    "key",
+    "action",
+    "lit",
+    "scripted",
+    "clarity",
+    "shown1",
+    "shown2",
+    "star",
+    "starRule",
+    "basis",
+    "lineKey"
+   ]
+  }
  },
  "collections": {
   "debState": {

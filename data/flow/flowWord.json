@@ -14,7 +14,7 @@
   {"key": "st:standoff", "code": 3, "text": ""},
   {"key": "basis:tutorial", "code": 0, "text": "UI_DEB_TELL_BASIS_TUTORIAL"},
   {"key": "basis:observe", "code": 0, "text": "UI_DEB_TELL_BASIS_OBSERVE"},
-  {"key": "basis:rule3", "code": 0, "text": "UI_DEB_TELL_BASIS_RULE__3"},
+  {"key": "basis:rule3", "code": 3, "text": "UI_DEB_TELL_BASIS_RULE"},
   {"key": "basis:konju", "code": 0, "text": "UI_DEB_TELL_BASIS_KONJU"},
   {"key": "basis:fox", "code": 0, "text": "UI_DEB_TELL_BASIS_INSTINCT"}
 ]

@@ -684,20 +684,6 @@
    }
   },
   {
-   "id": "segTail_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
-   "id": "k6",
-   "type": "constant",
-   "params": {
-    "value": 0
-   }
-  },
-  {
    "id": "segTail",
    "type": "select"
   },
@@ -713,13 +699,6 @@
    "type": "atrium.expr",
    "params": {
     "expr": "L >= 2"
-   }
-  },
-  {
-   "id": "presented_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -769,7 +748,7 @@
    }
   },
   {
-   "id": "k7",
+   "id": "k6",
    "type": "constant",
    "params": {
     "value": ""
@@ -787,10 +766,17 @@
    "type": "select"
   },
   {
-   "id": "k8",
+   "id": "k7",
    "type": "constant",
    "params": {
     "value": 1
+   }
+  },
+  {
+   "id": "k8",
+   "type": "constant",
+   "params": {
+    "value": 0
    }
   },
   {
@@ -1237,274 +1223,40 @@
    }
   },
   {
-   "id": "lg1_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "lg1",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg2_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg2",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg3_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg3",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg4_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg4",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg5_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg5",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg6_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg6",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg7_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg7",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg8_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg8",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg9_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg9",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "trustOut",
@@ -1891,15 +1643,7 @@
    "to": "seg1.a"
   },
   {
-   "from": "segLen3.value",
-   "to": "segTail_c.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "segTail_c.b"
-  },
-  {
-   "from": "segTail_c.out",
+   "from": "segLen3.truth",
    "to": "segTail.cond"
   },
   {
@@ -1923,15 +1667,7 @@
    "to": "multi.L"
   },
   {
-   "from": "multi.value",
-   "to": "presented_c.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "presented_c.b"
-  },
-  {
-   "from": "presented_c.out",
+   "from": "multi.truth",
    "to": "presented.cond"
   },
   {
@@ -1971,7 +1707,7 @@
    "to": "hasCard_c.a"
   },
   {
-   "from": "k7.out",
+   "from": "k6.out",
    "to": "hasCard_c.b"
   },
   {
@@ -1979,11 +1715,11 @@
    "to": "hasCard.cond"
   },
   {
-   "from": "k8.out",
+   "from": "k7.out",
    "to": "hasCard.a"
   },
   {
-   "from": "k6.out",
+   "from": "k8.out",
    "to": "hasCard.b"
   },
   {
@@ -2159,11 +1895,11 @@
    "to": "isWarm.cond"
   },
   {
-   "from": "k8.out",
+   "from": "k7.out",
    "to": "isWarm.a"
   },
   {
-   "from": "k6.out",
+   "from": "k8.out",
    "to": "isWarm.b"
   },
   {
@@ -2179,7 +1915,7 @@
    "to": "i_r.key"
   },
   {
-   "from": "k8.out",
+   "from": "k7.out",
    "to": "i_r.value"
   },
   {
@@ -2424,202 +2160,130 @@
   },
   {
    "from": "live.value",
-   "to": "lg1_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg1_g.b"
-  },
-  {
-   "from": "lg1_g.out",
-   "to": "lg1.guard"
+   "to": "lg1.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg1.go"
+   "to": "lg1.trigger"
   },
   {
-   "from": "lg1.changed",
+   "from": "lg1.pass",
    "to": "lkClrEv.trigger"
   },
   {
    "from": "live.value",
-   "to": "lg2_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg2_g.b"
-  },
-  {
-   "from": "lg2_g.out",
-   "to": "lg2.guard"
+   "to": "lg2.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg2.go"
+   "to": "lg2.trigger"
   },
   {
-   "from": "lg2.changed",
+   "from": "lg2.pass",
    "to": "eReveal_add.trigger"
   },
   {
    "from": "eOkC.value",
-   "to": "lg3_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg3_g.b"
-  },
-  {
-   "from": "lg3_g.out",
-   "to": "lg3.guard"
+   "to": "lg3.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg3.go"
+   "to": "lg3.trigger"
   },
   {
-   "from": "lg3.changed",
+   "from": "lg3.pass",
    "to": "eOk_add.trigger"
   },
   {
    "from": "eMisC.value",
-   "to": "lg4_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg4_g.b"
-  },
-  {
-   "from": "lg4_g.out",
-   "to": "lg4.guard"
+   "to": "lg4.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg4.go"
+   "to": "lg4.trigger"
   },
   {
-   "from": "lg4.changed",
+   "from": "lg4.pass",
    "to": "eMis_add.trigger"
   },
   {
    "from": "autoC1.value",
-   "to": "lg5_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg5_g.b"
-  },
-  {
-   "from": "lg5_g.out",
-   "to": "lg5.guard"
+   "to": "lg5.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg5.go"
+   "to": "lg5.trigger"
   },
   {
-   "from": "lg5.changed",
+   "from": "lg5.pass",
    "to": "eAuto1_add.trigger"
   },
   {
    "from": "autoC2.value",
-   "to": "lg6_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg6_g.b"
-  },
-  {
-   "from": "lg6_g.out",
-   "to": "lg6.guard"
+   "to": "lg6.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg6.go"
+   "to": "lg6.trigger"
   },
   {
-   "from": "lg6.changed",
+   "from": "lg6.pass",
    "to": "eAuto2_add.trigger"
   },
   {
    "from": "autoC3.value",
-   "to": "lg7_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg7_g.b"
-  },
-  {
-   "from": "lg7_g.out",
-   "to": "lg7.guard"
+   "to": "lg7.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg7.go"
+   "to": "lg7.trigger"
   },
   {
-   "from": "lg7.changed",
+   "from": "lg7.pass",
    "to": "eAuto3_add.trigger"
   },
   {
    "from": "eEndC.value",
-   "to": "lg8_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg8_g.b"
-  },
-  {
-   "from": "lg8_g.out",
-   "to": "lg8.guard"
+   "to": "lg8.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg8.go"
+   "to": "lg8.trigger"
   },
   {
-   "from": "lg8.changed",
+   "from": "lg8.pass",
    "to": "eEnd_add.trigger"
   },
   {
    "from": "live.value",
-   "to": "lg9_g.a"
-  },
-  {
-   "from": "k6.out",
-   "to": "lg9_g.b"
-  },
-  {
-   "from": "lg9_g.out",
-   "to": "lg9.guard"
+   "to": "lg9.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg9.go"
+   "to": "lg9.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_act.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_r.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_idx.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_mis.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_over.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "w_auto.trigger"
   },
   {

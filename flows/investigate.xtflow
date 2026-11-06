@@ -708,8 +708,7 @@
       "params": {
         "port": "ui.investigate.spots",
         "source": "spotsHere",
-        "fields": "{\"id\": \"key\", \"name\": \"nameKey\", \"x\": \"x\", \"y\": \"y\", \"w\": \"w\", \"h\": \"h\", \"type\": \"type\", \"state\": \"value\"}",
-        "join": "{\"table\": \"flowSpot\", \"column\": \"id\"}",
+        "fields": "{\"id\": \"key\", \"name\": \"table:flowSpot[id].nameKey\", \"x\": \"table:flowSpot[id].x\", \"y\": \"table:flowSpot[id].y\", \"w\": \"table:flowSpot[id].w\", \"h\": \"table:flowSpot[id].h\", \"type\": \"table:flowSpot[id].type\", \"state\": \"value\"}",
         "localize": [
           "name"
         ]
@@ -2740,7 +2739,7 @@
     },
     {
       "id": "clrBook",
-      "type": "atrium.coll.clear",
+      "type": "atrium.map.clear",
       "params": {
         "name": "bookList"
       }
@@ -2961,24 +2960,6 @@
       }
     },
     {
-      "id": "bi0_newC",
-      "type": "atrium.coll.contains",
-      "params": {
-        "name": "newCards"
-      }
-    },
-    {
-      "id": "bi0_new",
-      "type": "select"
-    },
-    {
-      "id": "bi0_key",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}|{c}"
-      }
-    },
-    {
       "id": "bi0_n",
       "type": "atrium.expr",
       "params": {
@@ -2991,7 +2972,7 @@
     },
     {
       "id": "bi0_add",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "bookList"
       }
@@ -3212,24 +3193,6 @@
       }
     },
     {
-      "id": "bi1_newC",
-      "type": "atrium.coll.contains",
-      "params": {
-        "name": "newCards"
-      }
-    },
-    {
-      "id": "bi1_new",
-      "type": "select"
-    },
-    {
-      "id": "bi1_key",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}|{c}"
-      }
-    },
-    {
       "id": "bi1_n",
       "type": "atrium.expr",
       "params": {
@@ -3242,7 +3205,7 @@
     },
     {
       "id": "bi1_add",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "bookList"
       }
@@ -3463,24 +3426,6 @@
       }
     },
     {
-      "id": "bi2_newC",
-      "type": "atrium.coll.contains",
-      "params": {
-        "name": "newCards"
-      }
-    },
-    {
-      "id": "bi2_new",
-      "type": "select"
-    },
-    {
-      "id": "bi2_key",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}|{c}"
-      }
-    },
-    {
       "id": "bi2_n",
       "type": "atrium.expr",
       "params": {
@@ -3493,7 +3438,7 @@
     },
     {
       "id": "bi2_add",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "bookList"
       }
@@ -3504,8 +3449,7 @@
       "params": {
         "port": "ui.evbook.cards",
         "source": "bookList",
-        "fields": "{\"id\": \"id\", \"name\": \"nameKey\", \"grade\": \"grade\", \"appraised\": \"appraised\", \"isnew\": \"isnew\"}",
-        "join": "{\"table\": \"flowBook\", \"column\": \"key\"}",
+        "fields": "{\"id\": \"key\", \"name\": \"table:flowCard[id].nameKey\", \"grade\": \"table:flowCard[id].grade\", \"appraised\": \"value\", \"isnew\": \"coll:newCards.contains\"}",
         "localize": [
           "name"
         ]
@@ -6380,34 +6324,6 @@
       "to": "bi0_full.bi0_policeFull"
     },
     {
-      "from": "bi0Each.item",
-      "to": "bi0_newC.value"
-    },
-    {
-      "from": "bi0_newC.has",
-      "to": "bi0_new.cond"
-    },
-    {
-      "from": "K8.out",
-      "to": "bi0_new.a"
-    },
-    {
-      "from": "K7.out",
-      "to": "bi0_new.b"
-    },
-    {
-      "from": "bi0Each.item",
-      "to": "bi0_key.a"
-    },
-    {
-      "from": "bi0_full.value",
-      "to": "bi0_key.b"
-    },
-    {
-      "from": "bi0_new.out",
-      "to": "bi0_key.c"
-    },
-    {
       "from": "bi0_story.value",
       "to": "bi0_n.bi0_story"
     },
@@ -6420,7 +6336,11 @@
       "to": "bi0_g.trigger"
     },
     {
-      "from": "bi0_key.out",
+      "from": "bi0Each.item",
+      "to": "bi0_add.key"
+    },
+    {
+      "from": "bi0_full.truth",
       "to": "bi0_add.value"
     },
     {
@@ -6556,34 +6476,6 @@
       "to": "bi1_full.bi1_policeFull"
     },
     {
-      "from": "bi1Each.item",
-      "to": "bi1_newC.value"
-    },
-    {
-      "from": "bi1_newC.has",
-      "to": "bi1_new.cond"
-    },
-    {
-      "from": "K8.out",
-      "to": "bi1_new.a"
-    },
-    {
-      "from": "K7.out",
-      "to": "bi1_new.b"
-    },
-    {
-      "from": "bi1Each.item",
-      "to": "bi1_key.a"
-    },
-    {
-      "from": "bi1_full.value",
-      "to": "bi1_key.b"
-    },
-    {
-      "from": "bi1_new.out",
-      "to": "bi1_key.c"
-    },
-    {
       "from": "bi1_n.value",
       "to": "bi1_g.cond"
     },
@@ -6592,7 +6484,11 @@
       "to": "bi1_g.trigger"
     },
     {
-      "from": "bi1_key.out",
+      "from": "bi1Each.item",
+      "to": "bi1_add.key"
+    },
+    {
+      "from": "bi1_full.truth",
       "to": "bi1_add.value"
     },
     {
@@ -6728,34 +6624,6 @@
       "to": "bi2_full.bi2_policeFull"
     },
     {
-      "from": "bi2Each.item",
-      "to": "bi2_newC.value"
-    },
-    {
-      "from": "bi2_newC.has",
-      "to": "bi2_new.cond"
-    },
-    {
-      "from": "K8.out",
-      "to": "bi2_new.a"
-    },
-    {
-      "from": "K7.out",
-      "to": "bi2_new.b"
-    },
-    {
-      "from": "bi2Each.item",
-      "to": "bi2_key.a"
-    },
-    {
-      "from": "bi2_full.value",
-      "to": "bi2_key.b"
-    },
-    {
-      "from": "bi2_new.out",
-      "to": "bi2_key.c"
-    },
-    {
       "from": "bi2_story.value",
       "to": "bi2_n.bi2_story"
     },
@@ -6768,7 +6636,11 @@
       "to": "bi2_g.trigger"
     },
     {
-      "from": "bi2_key.out",
+      "from": "bi2Each.item",
+      "to": "bi2_add.key"
+    },
+    {
+      "from": "bi2_full.truth",
       "to": "bi2_add.value"
     },
     {

@@ -1081,7 +1081,7 @@ def main() -> int:
               "nodes": nodes, "opponents": opponents, "tells": tells, "papers": papers, "difficulty": difficulty,
               "debScript": deb_script}
 
-    expand_templates(strings, opponents, evidence)
+    validate_templates(strings)
     validate(tables, strings, systems, base)
 
     for w in warnings:
@@ -1122,64 +1122,33 @@ LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
 
 
-# Strings with named placeholders ({n}, {name}, ...) that the debate and result flows show: Atrium Script's `format`
-# only takes a static pattern with {a}..{d}, so it cannot fill a localized template (docs/flows.md §7, framework
-# request: atrium.textf). Until then the pipeline writes every value the flows need as its own key,
-# `<KEY>__<v1>_<v2>` (the template with its placeholders filled, per language); the flows pick the key with format.
-# The domains are small and come from the data (rounds, counts, opponents, the cost cards).
-TEMPLATE_SPK = ("MSG_DEB_TRAP_MISS", "MSG_DEB_SLIP", "MSG_DEB_TRAP_EXPOSED", "MSG_DEB_SHAKEN", "MSG_DEB_SHAKEN_END",
-                "MSG_DEB_REINFORCE", "MSG_TAIL_START", "MSG_TAIL_SECOND", "MSG_TAIL_TIMEOUT", "MSG_WARMUP_FAIL")
-COST_SEIZED = ("E02_01", "E03_04")  # 10-cases Ch.2 / Ch.3 敗北: E02_01 taken by the client, E03_04 seized
+# Strings with named placeholders that the flows fill with atrium.textf (XTAtrium 08 §8.1.4) -> the placeholder names
+# they fill (tools/gen_flows.py, tools/gen_debui.py). A placeholder the flow does not fill would show as nothing, so
+# each language's text may use only these. The debate's result line (flowEvLine) fills {name} (the opponent) and {n}.
+TEXTF_SPK = ("MSG_DEB_TRAP_MISS", "MSG_DEB_SLIP", "MSG_DEB_TRAP_EXPOSED", "MSG_DEB_SHAKEN", "MSG_DEB_REINFORCE",
+             "MSG_TAIL_START", "MSG_TAIL_SECOND", "MSG_TAIL_TIMEOUT", "MSG_WARMUP_FAIL")
+TEXTF_KEYS = {
+    "UI_DEB_ROUND": {"n"}, "UI_CH1_CONTRA": {"n", "r"}, "UI_WARMUP_MISS": {"n"}, "UI_DEB_TELL_LIKELY": {"n"},
+    "UI_DEB_TELL_BASIS_RULE": {"n"}, "STAMP_HACHIKU_SUB": {"n"}, "UI_DEB_COUNTER_PREVIEW": {"base", "n", "dmg"},
+    "UI_DEB_COUNTER_PREVIEW_RUSH": {"base", "n", "dmg"}, "UI_DEB_LOCK_SUMMARY_ATK": {"action", "node", "cards"},
+    "UI_DEB_LOCK_SUMMARY_PARRY": {"node", "card"}, "MSG_CH1_CONTRA": {"name", "n"}, "MSG_DEB_PARRY": {"name", "n"},
+    "MSG_TAIL_WRONG": {"name", "n"}, **{k: {"name", "n"} for k in TEXTF_SPK},
+    "UI_RES_COST_SEIZE": {"name"}, "WARN_BOARD_NOREASON": {"n"}, "WARN_BOARD_UNAPPR": {"n", "left"},
+}
+# The M4c pipeline wrote these templates filled in as `<KEY>__<values>` keys; the UI project's tables still hold them.
+STALE_EXPANDED = set(TEXTF_KEYS) | {"MSG_DEB_SHAKEN_END"}
+PLACEHOLDER = re.compile(r"\{([A-Za-z_][A-Za-z0-9_]*)(?::\d+)?\}")
 
 
-def expand_templates(strings: dict, opponents: list[dict], evidence: list[dict]) -> None:
-    def put(key: str, suffix: list, values: dict) -> None:
+def validate_templates(strings: dict) -> None:
+    for key, names in TEXTF_KEYS.items():
         if key not in strings:
             err(f"template {key} is missing from the string tables")
-            return
-        out = {}
-        for lang, text in strings[key].items():
-            for name, v in values.items():
-                v = v[lang] if isinstance(v, dict) else ("%g" % v if isinstance(v, float) else str(v))
-                text = text.replace("{" + name + "}", v)
-            if "{" in text:
-                err(f"template {key}: unfilled placeholder in {text!r} ({lang})")
-            out[lang] = text
-        strings[key + "__" + "_".join(str(s) for s in suffix)] = out
-
-    for n in range(1, 31):
-        put("UI_DEB_ROUND", [n], {"n": n})
-    for n in range(0, 5):
-        for r in range(0, 7):
-            put("UI_CH1_CONTRA", [n, r], {"n": n, "r": r})
-    for n in range(0, 4):
-        put("UI_WARMUP_MISS", [n], {"n": n})
-    for n in (1, 2, 4):
-        put("UI_DEB_TELL_LIKELY", [n], {"n": n})
-    for n in range(1, 6):
-        put("UI_DEB_TELL_BASIS_RULE", [n], {"n": n})
-    for n in range(1, 4):
-        put("STAMP_HACHIKU_SUB", [n], {"n": n})
-    for n in range(1, 5):
-        put("MSG_CH1_CONTRA", [n], {"n": n})
-    for n in (30, 33, 36, 39):  # 反擊 30 x (10 + 破竹) / 10
-        put("MSG_DEB_PARRY", [n], {"n": n})
-    for o in opponents:
-        if o["noDamage"]:
             continue
-        base, per = o["damageBase"], o["damagePerNode"]
-        for n in range(0, o["nodeCap"] + 1):
-            put("UI_DEB_COUNTER_PREVIEW", [base, n], {"base": base, "n": n, "dmg": float(base + per * n)})
-            put("UI_DEB_COUNTER_PREVIEW_RUSH", [base, n],
-                {"base": base, "n": n, "dmg": float((base + per * n) * o["rushMul"])})
-    for n in (30,):  # tail penalty, chapters.tailPenalty (Ch.1-3: 30)
-        put("MSG_TAIL_WRONG", [n], {"n": n})
-    for spk in sorted({o["speaker"] for o in opponents}):
-        for key in TEMPLATE_SPK:
-            put(key, [spk], {"name": strings[spk]})
-    names = {e["id"]: e["nameKey"] for e in evidence}
-    for card in COST_SEIZED:
-        put("UI_RES_COST_SEIZE", [card], {"name": strings[names[card]]})
+        for lang, text in strings[key].items():
+            extra = set(PLACEHOLDER.findall(text.replace("{{", "").replace("}}", ""))) - names
+            if extra:
+                err(f"template {key}: placeholder(s) {sorted(extra)} in {text!r} ({lang}) are not filled by the flows")
 
 
 def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
@@ -1388,6 +1357,8 @@ def sync_ui_strings(strings: dict) -> None:
         rows = list(csv.reader(io.StringIO(f.read_text(encoding="utf-8-sig"))))
         for row in rows[1:] if rows and rows[0][:2] == ["key", "text"] else rows:
             if len(row) >= 2 and row[0] and row[0] not in strings:
+                if row[0].split("__")[0] in STALE_EXPANDED and "__" in row[0]:
+                    continue   # an expanded template key of M4c (atrium.textf fills the canonical key now)
                 merged.setdefault(row[0], {l: "" for l in LANGS})[lang] = row[1]
                 ui_only.add(row[0])
     for lang in LANGS:

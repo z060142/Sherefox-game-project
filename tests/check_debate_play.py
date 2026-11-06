@@ -32,6 +32,14 @@ for lang in ("zh-TW", "en"):
     with open(ROOT / "strings" / f"{lang}.csv", encoding="utf-8-sig", newline="") as f:
         S[lang] = {r[0]: r[1] for r in list(csv.reader(f))[1:]}
 ZH = S["zh-TW"]
+
+
+def zf(key: str, **values) -> str:
+    """The zh-TW template `key` with its {name} placeholders filled (what atrium.textf shows)."""
+    text = ZH[key]
+    for name, v in values.items():
+        text = text.replace("{" + name + "}", str(v))
+    return text
 PA_CODE = {"solid": 1, "sophistry": 2, "rebut": 3, "observe": 4}
 OA_CODE = {"assert": 0, "rush": 1, "reinforce": 2, "trap": 3, "scorched": 4}
 
@@ -196,7 +204,7 @@ def main() -> int:
     common(fail, "ch1_debate", err)
     check_route(fail, "ch1_debate", play, "ch1_route")
     fail.check([p["debate.counter_text"] for _, p, _ in play.rounds[:2]] ==
-               [ZH["UI_CH1_CONTRA__1_2"], ZH["UI_CH1_CONTRA__2_4"]], "ch1_debate: contradiction counter")
+               [zf("UI_CH1_CONTRA", n=1, r=2), zf("UI_CH1_CONTRA", n=2, r=4)], "ch1_debate: contradiction counter")
     check_result(fail, "ch1_debate", play, 0, 1, "ART_RES_CLEAN", "SCR_CH01_S05_L028")
     want = scene_lines(1, "S06", "win") + scene_lines(1, "S07", "")
     fail.check(play.lines[-len(want):] == want, "ch1_debate: the result scene's win lines and the notes")
@@ -222,9 +230,9 @@ def main() -> int:
     for k in (0, 1):
         check_result(fail, f"ch2_lose[{k}]", play, k, 0, "ART_RES_LOSE", "")
     costs = play.list_write("result document.costs")
-    fail.check(costs[-1:] == [[{"text": ZH["UI_RES_COST_SEIZE__E02_01"]}]], f"ch2_lose: costs {costs[-1:]}")
+    fail.check(costs[-1:] == [[{"text": zf("UI_RES_COST_SEIZE", name=ZH["E02_01_NAME"])}]], f"ch2_lose: costs {costs[-1:]}")
     rounds1 = [p.get("debate.round_text") for _, p, _ in play.rounds]
-    fail.check(rounds1.count(ZH["UI_DEB_ROUND__2"]) >= 2, "ch2_lose: the retried debate starts at round 1 again")
+    fail.check(rounds1.count(zf("UI_DEB_ROUND", n=2)) >= 2, "ch2_lose: the retried debate starts at round 1 again")
     for k, res in enumerate(play.results[:2]):
         fail.check(res.get("debate.hp_me") == 0, f"ch2_lose[{k}]: lost at {res.get('debate.hp_me')}")
     want = scene_lines(2, "S06", "lose") + scene_lines(2, "S07", "")

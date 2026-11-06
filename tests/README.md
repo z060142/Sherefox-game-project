@@ -6,8 +6,10 @@ Headless playthrough checks for the flows (`docs/flows.md`). They replay recorde
 
 ## Prerequisites
 
-- An XTAtrium checkout with a Release build of the CLI:
-  `dotnet build src\XTAtrium.Headless -c Release` (run inside the XTAtrium checkout).
+- The XTAtrium CLI at framework commit 5aad137 or later (AT-046: `atrium.ui.list` field references and
+  `atrium.textf`; AT-047: `bare` value arrays; the flows do not compile on older builds): the SDK built with
+  `pwsh <XTAtrium>\tools\install-sdk.ps1 -Out E:\coding4\xtatrium-sdk`, or a Release build of an XTAtrium checkout
+  (`dotnet build src\XTAtrium.Headless -c Release`).
 - The packed UI bundle: `xtatrium pack --game E:\coding4\Sherefox` (after any change under `ui/`).
 - [uv](https://docs.astral.sh/uv/) (`winget install astral-sh.uv` or `pip install uv`); the scripts use the standard
   library only.
@@ -106,6 +108,9 @@ may not leave the game directory — do not edit it), replays them with `--ports
 | `ch1_debate` (game) | `ch1_case`'s board; R1 rebut E01_06, R2 solid E01_01 -> E01_04, R3 rebut E01_03 against the G2 script rows | the reveal pairs, the nodes and statuses shown after each round equal the ref route `ch1_route`; the cut-in sequence equals the ref records (full-screen played -> `big`, stamps, demoted 破竹 3 -> the 破竹 stamp); the contradiction counter; result win, `ART_RES_CLEAN`, Arthur's line; the result scene's win lines and the notes; the Ch.2 paper strip |
 | `ch2_debate` (`play_harness`) | every evidence spot, three appraisals, the ref board `ch2_board`, the five rounds of `ch2_route` | per round: HP of both sides, nodes, 破竹, 動搖, 尾聲 equal the ref; cut-ins; result win / comment / Fitch's line; win lines; the Ch.3 paper shows `NEWS_02_WIN`; E02_08 in `held` (F3), G-01 kept, no costs |
 | `ch2_lose` (game, seeded AI) | `ch2_case`'s first chain; observe every round until the debate is lost; retry; lost again; continue | two defeat screens (win 0, `ART_RES_LOSE`, retry offered), the cost line (E02_01 seized), the retried debate starts again, the lose lines, the Ch.3 paper shows `NEWS_02_LOSE`, G-01 removed, no E02_08, the missed card's hand |
+
+Texts the flows fill with `atrium.textf` (the counters, the round, the cost line) are compared with the zh-TW
+template filled the same way (`zf()`), not with a pre-expanded key.
 
 The story playthroughs (`check_playthrough.py`) now go through every warmup, debate and result step the shortest
 sure way (`gen_debate_play.minimal`: the warmup's first card, observe until the debate ends, continue, the lose

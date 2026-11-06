@@ -469,6 +469,42 @@
       }
     },
     {
+      "id": "ec_per",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "debCase",
+        "column": "per",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ec_rushN",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "debCase",
+        "column": "rushN",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ec_rushD",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "debCase",
+        "column": "rushD",
+        "type": "number"
+      }
+    },
+    {
+      "id": "ec_tw",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "debCase",
+        "column": "tw",
+        "type": "number"
+      }
+    },
+    {
       "id": "ec_fox",
       "type": "atrium.table.get",
       "params": {
@@ -3261,16 +3297,25 @@
     },
     {
       "id": "sumAtk",
-      "type": "format",
+      "type": "atrium.textf",
       "params": {
-        "format": "{a}　{b}　{c}"
+        "key": "UI_DEB_LOCK_SUMMARY_ATK",
+        "args": [
+          "action",
+          "node",
+          "cards"
+        ]
       }
     },
     {
       "id": "sumParry",
-      "type": "format",
+      "type": "atrium.textf",
       "params": {
-        "format": "{a}　{b}　{c}"
+        "key": "UI_DEB_LOCK_SUMMARY_PARRY",
+        "args": [
+          "node",
+          "card"
+        ]
       }
     },
     {
@@ -3565,10 +3610,13 @@
       }
     },
     {
-      "id": "roundKey",
-      "type": "format",
+      "id": "roundF",
+      "type": "atrium.textf",
       "params": {
-        "format": "UI_DEB_ROUND__{a}"
+        "key": "UI_DEB_ROUND",
+        "args": [
+          "n"
+        ]
       }
     },
     {
@@ -3579,12 +3627,8 @@
       }
     },
     {
-      "id": "roundKeyOn",
-      "type": "select"
-    },
-    {
       "id": "roundT",
-      "type": "atrium.text"
+      "type": "select"
     },
     {
       "id": "rLeft",
@@ -3609,16 +3653,23 @@
     },
     {
       "id": "ctrCh1",
-      "type": "format",
+      "type": "atrium.textf",
       "params": {
-        "format": "UI_CH1_CONTRA__{a}_{b}"
+        "key": "UI_CH1_CONTRA",
+        "args": [
+          "n",
+          "r"
+        ]
       }
     },
     {
       "id": "ctrWarm",
-      "type": "format",
+      "type": "atrium.textf",
       "params": {
-        "format": "UI_WARMUP_MISS__{a}"
+        "key": "UI_WARMUP_MISS",
+        "args": [
+          "n"
+        ]
       }
     },
     {
@@ -3636,16 +3687,12 @@
       }
     },
     {
-      "id": "ctrKey_1",
+      "id": "ctrT_1",
       "type": "select"
     },
     {
-      "id": "ctrKey_0",
+      "id": "ctrT_0",
       "type": "select"
-    },
-    {
-      "id": "ctrT",
-      "type": "atrium.text"
     },
     {
       "id": "ts1K",
@@ -3815,14 +3862,35 @@
       "type": "atrium.text"
     },
     {
+      "id": "basisN",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowWord",
+        "column": "code",
+        "type": "number"
+      }
+    },
+    {
+      "id": "basisF",
+      "type": "atrium.textf",
+      "params": {
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
       "id": "basisOut",
       "type": "select"
     },
     {
-      "id": "starK",
-      "type": "format",
+      "id": "starF",
+      "type": "atrium.textf",
       "params": {
-        "format": "UI_DEB_TELL_LIKELY__{a}"
+        "key": "UI_DEB_TELL_LIKELY",
+        "args": [
+          "n"
+        ]
       }
     },
     {
@@ -3833,12 +3901,8 @@
       }
     },
     {
-      "id": "starKOn",
-      "type": "select"
-    },
-    {
       "id": "starT",
-      "type": "atrium.text"
+      "type": "select"
     },
     {
       "id": "tellLineT",
@@ -3922,17 +3986,41 @@
       "type": "select"
     },
     {
-      "id": "cpA",
-      "type": "format",
+      "id": "cpDmgA",
+      "type": "atrium.expr",
       "params": {
-        "format": "UI_DEB_COUNTER_PREVIEW__{a}_{b}"
+        "expr": "ec_base + ec_per * claimN"
+      }
+    },
+    {
+      "id": "cpDmgR",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "(ec_base + ec_per * claimN) * ec_rushN / ec_rushD"
+      }
+    },
+    {
+      "id": "cpA",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_DEB_COUNTER_PREVIEW",
+        "args": [
+          "base",
+          "n",
+          "dmg"
+        ]
       }
     },
     {
       "id": "cpR",
-      "type": "format",
+      "type": "atrium.textf",
       "params": {
-        "format": "UI_DEB_COUNTER_PREVIEW_RUSH__{a}_{b}"
+        "key": "UI_DEB_COUNTER_PREVIEW_RUSH",
+        "args": [
+          "base",
+          "n",
+          "dmg"
+        ]
       }
     },
     {
@@ -3957,20 +4045,16 @@
       }
     },
     {
-      "id": "cpKey_2",
+      "id": "cpT_2",
       "type": "select"
     },
     {
-      "id": "cpKey_1",
+      "id": "cpT_1",
       "type": "select"
     },
     {
-      "id": "cpKey_0",
+      "id": "cpT_0",
       "type": "select"
-    },
-    {
-      "id": "cpT",
-      "type": "atrium.text"
     },
     {
       "id": "instOk",
@@ -4019,6 +4103,30 @@
       "type": "atrium.text"
     },
     {
+      "id": "K71",
+      "type": "constant",
+      "params": {
+        "value": "rln"
+      }
+    },
+    {
+      "id": "d_rln",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "rlF",
+      "type": "atrium.textf",
+      "params": {
+        "args": [
+          "name",
+          "n"
+        ]
+      }
+    },
+    {
       "id": "clock",
       "type": "clock"
     },
@@ -4031,7 +4139,7 @@
       }
     },
     {
-      "id": "K71",
+      "id": "K72",
       "type": "constant",
       "params": {
         "value": "rsAt"
@@ -4045,7 +4153,7 @@
       }
     },
     {
-      "id": "K72",
+      "id": "K73",
       "type": "constant",
       "params": {
         "value": "r2"
@@ -4059,7 +4167,7 @@
       }
     },
     {
-      "id": "K73",
+      "id": "K74",
       "type": "constant",
       "params": {
         "value": "r3"
@@ -4073,7 +4181,7 @@
       }
     },
     {
-      "id": "K74",
+      "id": "K75",
       "type": "constant",
       "params": {
         "value": "sel"
@@ -4087,7 +4195,7 @@
       }
     },
     {
-      "id": "K75",
+      "id": "K76",
       "type": "constant",
       "params": {
         "value": "instAt"
@@ -4101,7 +4209,7 @@
       }
     },
     {
-      "id": "K76",
+      "id": "K77",
       "type": "constant",
       "params": {
         "value": "lockAt"
@@ -4115,7 +4223,7 @@
       }
     },
     {
-      "id": "K77",
+      "id": "K78",
       "type": "constant",
       "params": {
         "value": "pb"
@@ -4129,7 +4237,7 @@
       }
     },
     {
-      "id": "K78",
+      "id": "K79",
       "type": "constant",
       "params": {
         "value": "pbAt"
@@ -4143,7 +4251,7 @@
       }
     },
     {
-      "id": "K79",
+      "id": "K80",
       "type": "constant",
       "params": {
         "value": "holdAt"
@@ -4157,7 +4265,7 @@
       }
     },
     {
-      "id": "K80",
+      "id": "K81",
       "type": "constant",
       "params": {
         "value": "finAt"
@@ -4344,7 +4452,7 @@
       }
     },
     {
-      "id": "K81",
+      "id": "K82",
       "type": "constant",
       "params": {
         "value": "-"
@@ -4616,7 +4724,7 @@
     },
     {
       "id": "nvClr",
-      "type": "atrium.coll.clear",
+      "type": "atrium.map.clear",
       "params": {
         "name": "uiNodes"
       }
@@ -4684,15 +4792,8 @@
       }
     },
     {
-      "id": "nvKey",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
-      }
-    },
-    {
       "id": "nvAdd",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "uiNodes"
       }
@@ -4703,8 +4804,7 @@
       "params": {
         "port": "ui.debate.nodes",
         "source": "uiNodes",
-        "fields": "{\"id\": \"id\", \"text\": \"textKey\", \"state\": \"state\", \"src\": \"src\"}",
-        "join": "{\"table\": \"flowNodeView\", \"column\": \"key\"}",
+        "fields": "{\"id\": \"key\", \"text\": \"table:flowNodeView[id].textKey\", \"state\": \"value\", \"src\": \"table:flowNodeView[id].src\"}",
         "localize": [
           "text"
         ]
@@ -4715,10 +4815,31 @@
       "type": "merge"
     },
     {
-      "id": "cvClr",
-      "type": "atrium.coll.clear",
+      "id": "cvClr_uiChains",
+      "type": "atrium.map.clear",
       "params": {
         "name": "uiChains"
+      }
+    },
+    {
+      "id": "cvClr_uiChPos",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "uiChPos"
+      }
+    },
+    {
+      "id": "cvClr_uiChLink",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "uiChLink"
+      }
+    },
+    {
+      "id": "cvClr_uiChSel",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "uiChSel"
       }
     },
     {
@@ -4824,10 +4945,17 @@
       }
     },
     {
-      "id": "cvKey",
-      "type": "format",
+      "id": "cvChain",
+      "type": "atrium.expr",
       "params": {
-        "format": "{a}|{b}|{c}|{d}"
+        "expr": "floor(ci / 5)"
+      }
+    },
+    {
+      "id": "cvPos",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ci - 5 * floor(ci / 5)"
       }
     },
     {
@@ -4835,10 +4963,31 @@
       "type": "atrium.gate"
     },
     {
-      "id": "cvAdd",
-      "type": "atrium.coll.add",
+      "id": "cvAdd_uiChains",
+      "type": "atrium.map.set",
       "params": {
         "name": "uiChains"
+      }
+    },
+    {
+      "id": "cvAdd_uiChPos",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "uiChPos"
+      }
+    },
+    {
+      "id": "cvAdd_uiChLink",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "uiChLink"
+      }
+    },
+    {
+      "id": "cvAdd_uiChSel",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "uiChSel"
       }
     },
     {
@@ -4874,8 +5023,7 @@
       "params": {
         "port": "ui.debate.chains",
         "source": "uiChains",
-        "fields": "{\"chain\": \"chain\", \"pos\": \"pos\", \"id\": \"id\", \"name\": \"nameKey\", \"link\": \"link\", \"sel\": \"sel\"}",
-        "join": "{\"table\": \"flowChainView\", \"column\": \"key\"}",
+        "fields": "{\"chain\": \"value\", \"pos\": \"map:uiChPos\", \"id\": \"key\", \"name\": \"table:flowCard[id].nameKey\", \"link\": \"map:uiChLink\", \"sel\": \"map:uiChSel\"}",
         "localize": [
           "name"
         ]
@@ -5041,6 +5189,115 @@
       }
     },
     {
+      "id": "actOut",
+      "type": "merge"
+    },
+    {
+      "id": "actClr_uiActOn",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "uiActOn"
+      }
+    },
+    {
+      "id": "actClr_uiActWhy",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "uiActWhy"
+      }
+    },
+    {
+      "id": "actOn1",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActOn"
+      }
+    },
+    {
+      "id": "actOn2",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActOn"
+      }
+    },
+    {
+      "id": "actOn3",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActOn"
+      }
+    },
+    {
+      "id": "actOn4",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActOn"
+      }
+    },
+    {
+      "id": "why1d",
+      "type": "select"
+    },
+    {
+      "id": "why2d",
+      "type": "select"
+    },
+    {
+      "id": "why3d",
+      "type": "select"
+    },
+    {
+      "id": "actWhy1",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActWhy"
+      }
+    },
+    {
+      "id": "actWhy2",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActWhy"
+      }
+    },
+    {
+      "id": "actWhy3",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActWhy"
+      }
+    },
+    {
+      "id": "actWhy4",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "uiActWhy"
+      }
+    },
+    {
+      "id": "actOnList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.debate.act_enabled",
+        "source": "uiActOn",
+        "fields": "{\"v\": \"item\"}",
+        "bare": true
+      }
+    },
+    {
+      "id": "actWhyList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.debate.act_reason",
+        "source": "uiActWhy",
+        "fields": "{\"v\": \"item\"}",
+        "localize": [
+          "v"
+        ],
+        "bare": true
+      }
+    },
+    {
       "id": "picker",
       "type": "merge"
     },
@@ -5097,8 +5354,7 @@
       "params": {
         "port": "ui.debate.parry_cards",
         "source": "uiParry",
-        "fields": "{\"id\": \"item\", \"name\": \"nameKey\"}",
-        "join": "{\"table\": \"flowCard\", \"column\": \"id\"}",
+        "fields": "{\"id\": \"item\", \"name\": \"table:flowCard[id].nameKey\"}",
         "localize": [
           "name"
         ]
@@ -5609,13 +5865,6 @@
       }
     },
     {
-      "id": "cmdKindL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
-    },
-    {
       "id": "cmdFrom",
       "type": "atrium.expr",
       "params": {
@@ -5630,20 +5879,6 @@
       }
     },
     {
-      "id": "cmdFromL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
-    },
-    {
-      "id": "cmdToL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
-    },
-    {
       "id": "useCardN",
       "type": "atrium.expr",
       "params": {
@@ -5653,13 +5888,6 @@
     {
       "id": "cmdCard",
       "type": "select"
-    },
-    {
-      "id": "cmdCardL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
     },
     {
       "id": "atkN",
@@ -5673,24 +5901,10 @@
       "type": "select"
     },
     {
-      "id": "cmdTgtL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
-      }
-    },
-    {
       "id": "cmdAs",
       "type": "atrium.expr",
       "params": {
         "expr": "isDebN && d_armed"
-      }
-    },
-    {
-      "id": "cmdAsL",
-      "type": "filter",
-      "params": {
-        "op": "sample"
       }
     },
     {
@@ -5975,7 +6189,7 @@
       }
     },
     {
-      "id": "K82",
+      "id": "K83",
       "type": "constant",
       "params": {
         "value": "reveal"
@@ -5993,7 +6207,7 @@
       "type": "select"
     },
     {
-      "id": "K83",
+      "id": "K84",
       "type": "constant",
       "params": {
         "value": "wReveal"
@@ -6011,7 +6225,7 @@
       "type": "select"
     },
     {
-      "id": "K84",
+      "id": "K85",
       "type": "constant",
       "params": {
         "value": "cutin"
@@ -6029,7 +6243,7 @@
       "type": "select"
     },
     {
-      "id": "K85",
+      "id": "K86",
       "type": "constant",
       "params": {
         "value": "dmgOpp"
@@ -6047,7 +6261,7 @@
       "type": "select"
     },
     {
-      "id": "K86",
+      "id": "K87",
       "type": "constant",
       "params": {
         "value": "dmgPlayer"
@@ -6065,7 +6279,7 @@
       "type": "select"
     },
     {
-      "id": "K87",
+      "id": "K88",
       "type": "constant",
       "params": {
         "value": "heal"
@@ -6083,7 +6297,7 @@
       "type": "select"
     },
     {
-      "id": "K88",
+      "id": "K89",
       "type": "constant",
       "params": {
         "value": "nodeRemoved"
@@ -6101,7 +6315,7 @@
       "type": "select"
     },
     {
-      "id": "K89",
+      "id": "K90",
       "type": "constant",
       "params": {
         "value": "nodeAdded"
@@ -6119,7 +6333,7 @@
       "type": "select"
     },
     {
-      "id": "K90",
+      "id": "K91",
       "type": "constant",
       "params": {
         "value": "counter"
@@ -6144,7 +6358,7 @@
       }
     },
     {
-      "id": "K91",
+      "id": "K92",
       "type": "constant",
       "params": {
         "value": "linkSnapped"
@@ -6158,7 +6372,7 @@
       }
     },
     {
-      "id": "K92",
+      "id": "K93",
       "type": "constant",
       "params": {
         "value": "infamy"
@@ -6172,7 +6386,7 @@
       }
     },
     {
-      "id": "K93",
+      "id": "K94",
       "type": "constant",
       "params": {
         "value": "breakVoided"
@@ -6234,13 +6448,6 @@
       }
     },
     {
-      "id": "ctrLine",
-      "type": "format",
-      "params": {
-        "format": "MSG_DEB_PARRY__{a}"
-      }
-    },
-    {
       "id": "lnCtrN",
       "type": "atrium.expr",
       "params": {
@@ -6248,8 +6455,40 @@
       }
     },
     {
+      "id": "K95",
+      "type": "constant",
+      "params": {
+        "value": "MSG_DEB_PARRY"
+      }
+    },
+    {
       "id": "evLine",
       "type": "select"
+    },
+    {
+      "id": "K96",
+      "type": "constant",
+      "params": {
+        "value": "contradiction"
+      }
+    },
+    {
+      "id": "isConC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isConN",
+      "type": "select"
+    },
+    {
+      "id": "lineN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lnCtrN ? n2 : isConN ? n1 : ec_tw"
+      }
     },
     {
       "id": "hasLineC",
@@ -6315,6 +6554,13 @@
       "type": "atrium.map.set",
       "params": {
         "name": "dbuiS"
+      }
+    },
+    {
+      "id": "dbui_rln_51",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
       }
     },
     {
@@ -6425,7 +6671,7 @@
       }
     },
     {
-      "id": "K94",
+      "id": "K97",
       "type": "constant",
       "params": {
         "value": "scorched"
@@ -6439,7 +6685,7 @@
       }
     },
     {
-      "id": "K95",
+      "id": "K98",
       "type": "constant",
       "params": {
         "value": "cornered:"
@@ -6467,14 +6713,14 @@
       }
     },
     {
-      "id": "K96",
+      "id": "K99",
       "type": "constant",
       "params": {
         "value": "reaction:clash"
       }
     },
     {
-      "id": "K97",
+      "id": "K100",
       "type": "constant",
       "params": {
         "value": "reaction:standoff"
@@ -6649,7 +6895,7 @@
       }
     },
     {
-      "id": "dbui_hpO_51",
+      "id": "dbui_hpO_52",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -6663,7 +6909,7 @@
       }
     },
     {
-      "id": "dbui_maxd_52",
+      "id": "dbui_maxd_53",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -6707,14 +6953,14 @@
       }
     },
     {
-      "id": "dbui_hpM_53",
+      "id": "dbui_hpM_54",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K98",
+      "id": "K101",
       "type": "constant",
       "params": {
         "value": "break"
@@ -6750,7 +6996,7 @@
       }
     },
     {
-      "id": "dbui_brks_54",
+      "id": "dbui_brks_55",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -6794,7 +7040,7 @@
       }
     },
     {
-      "id": "dbui_hpO_55",
+      "id": "dbui_hpO_56",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -6861,7 +7107,7 @@
       }
     },
     {
-      "id": "K99",
+      "id": "K102",
       "type": "constant",
       "params": {
         "value": "full"
@@ -6946,47 +7192,11 @@
       }
     },
     {
-      "id": "K100",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_HACHIKU"
-      }
-    },
-    {
-      "id": "hkStampC",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
-      "id": "hkStampN",
-      "type": "select"
-    },
-    {
-      "id": "hkSub",
-      "type": "format",
-      "params": {
-        "format": "STAMP_HACHIKU_SUB__{a}"
-      }
-    },
-    {
       "id": "cutNOut",
       "type": "atrium.expr",
       "params": {
         "expr": "cutN > 0 ? cutN : world_hk"
       }
-    },
-    {
-      "id": "hkSubOnN",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "hkStampN && cutN == 0"
-      }
-    },
-    {
-      "id": "cutSubKey",
-      "type": "select"
     },
     {
       "id": "cutHasBC",
@@ -7068,7 +7278,7 @@
       }
     },
     {
-      "id": "K101",
+      "id": "K103",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN"
@@ -7171,6 +7381,13 @@
       }
     },
     {
+      "id": "csub1_n",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
       "id": "csub2_key",
       "type": "filter",
       "params": {
@@ -7178,7 +7395,14 @@
       }
     },
     {
-      "id": "K102",
+      "id": "csub2_n",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "K104",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN_SUB"
@@ -7186,6 +7410,13 @@
     },
     {
       "id": "csub3_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "csub3_n",
       "type": "filter",
       "params": {
         "op": "sample"
@@ -7259,6 +7490,48 @@
       "type": "atrium.text"
     },
     {
+      "id": "csub_n_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "csub_n_1",
+      "type": "select"
+    },
+    {
+      "id": "csub_n_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "csub_n_2",
+      "type": "select"
+    },
+    {
+      "id": "csub_n_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "csub_n_3",
+      "type": "select"
+    },
+    {
+      "id": "csubF",
+      "type": "atrium.textf",
+      "params": {
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
       "id": "csubOut",
       "type": "select"
     },
@@ -7290,42 +7563,42 @@
       }
     },
     {
-      "id": "dbui_pbAt_56",
+      "id": "dbui_pbAt_57",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_ph_57",
+      "id": "dbui_ph_58",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hold_58",
+      "id": "dbui_hold_59",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hpO_59",
+      "id": "dbui_hpO_60",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hpM_60",
+      "id": "dbui_hpM_61",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_r2_61",
+      "id": "dbui_r2_62",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7339,7 +7612,7 @@
       }
     },
     {
-      "id": "dbui_holdAt_62",
+      "id": "dbui_holdAt_63",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7379,7 +7652,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_holdAt_63",
+      "id": "dbui_holdAt_64",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7397,7 +7670,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_hold_64",
+      "id": "dbui_hold_65",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7426,21 +7699,21 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_rsAt_65",
+      "id": "dbui_rsAt_66",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_ph_66",
+      "id": "dbui_ph_67",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_fin_67",
+      "id": "dbui_fin_68",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7454,7 +7727,7 @@
       }
     },
     {
-      "id": "dbui_finAt_68",
+      "id": "dbui_finAt_69",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7472,7 +7745,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_finAt_69",
+      "id": "dbui_finAt_70",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7490,7 +7763,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_fin_70",
+      "id": "dbui_fin_71",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -7795,6 +8068,22 @@
     {
       "from": "ecRow.row",
       "to": "ec_base.row"
+    },
+    {
+      "from": "ecRow.row",
+      "to": "ec_per.row"
+    },
+    {
+      "from": "ecRow.row",
+      "to": "ec_rushN.row"
+    },
+    {
+      "from": "ecRow.row",
+      "to": "ec_rushD.row"
+    },
+    {
+      "from": "ecRow.row",
+      "to": "ec_tw.row"
     },
     {
       "from": "ecRow.row",
@@ -10630,27 +10919,23 @@
     },
     {
       "from": "actBtnT.text",
-      "to": "sumAtk.a"
+      "to": "sumAtk.action"
     },
     {
       "from": "tgtT.text",
-      "to": "sumAtk.b"
+      "to": "sumAtk.node"
     },
     {
       "from": "segText.out",
-      "to": "sumAtk.c"
-    },
-    {
-      "from": "actBtnT.text",
-      "to": "sumParry.a"
+      "to": "sumAtk.cards"
     },
     {
       "from": "litT.text",
-      "to": "sumParry.b"
+      "to": "sumParry.node"
     },
     {
       "from": "showT.out",
-      "to": "sumParry.c"
+      "to": "sumParry.card"
     },
     {
       "from": "K60.out",
@@ -10777,7 +11062,7 @@
       "to": "sumBody_2.cond"
     },
     {
-      "from": "sumAtk.out",
+      "from": "sumAtk.text",
       "to": "sumBody_2.a"
     },
     {
@@ -10789,7 +11074,7 @@
       "to": "sumBody_1.cond"
     },
     {
-      "from": "sumParry.out",
+      "from": "sumParry.text",
       "to": "sumBody_1.a"
     },
     {
@@ -11062,7 +11347,7 @@
     },
     {
       "from": "roundN.value",
-      "to": "roundKey.a"
+      "to": "roundF.n"
     },
     {
       "from": "roundN.value",
@@ -11070,22 +11355,18 @@
     },
     {
       "from": "roundOnN.truth",
-      "to": "roundKeyOn.cond"
+      "to": "roundT.cond"
     },
     {
-      "from": "roundKey.out",
-      "to": "roundKeyOn.a"
+      "from": "roundF.text",
+      "to": "roundT.a"
     },
     {
       "from": "K8.out",
-      "to": "roundKeyOn.b"
+      "to": "roundT.b"
     },
     {
-      "from": "roundKeyOn.out",
-      "to": "roundT.key"
-    },
-    {
-      "from": "roundT.text",
+      "from": "roundT.out",
       "to": "ui#debate.round_text"
     },
     {
@@ -11118,15 +11399,15 @@
     },
     {
       "from": "contraN.value",
-      "to": "ctrCh1.a"
+      "to": "ctrCh1.n"
     },
     {
       "from": "rLeft.value",
-      "to": "ctrCh1.b"
+      "to": "ctrCh1.r"
     },
     {
       "from": "missN.value",
-      "to": "ctrWarm.a"
+      "to": "ctrWarm.n"
     },
     {
       "from": "dc_mode.value",
@@ -11146,34 +11427,30 @@
     },
     {
       "from": "ctrIs1N.truth",
-      "to": "ctrKey_1.cond"
+      "to": "ctrT_1.cond"
     },
     {
-      "from": "ctrWarm.out",
-      "to": "ctrKey_1.a"
+      "from": "ctrWarm.text",
+      "to": "ctrT_1.a"
     },
     {
       "from": "K8.out",
-      "to": "ctrKey_1.b"
+      "to": "ctrT_1.b"
     },
     {
       "from": "ctrIs2N.truth",
-      "to": "ctrKey_0.cond"
+      "to": "ctrT_0.cond"
     },
     {
-      "from": "ctrCh1.out",
-      "to": "ctrKey_0.a"
+      "from": "ctrCh1.text",
+      "to": "ctrT_0.a"
     },
     {
-      "from": "ctrKey_1.out",
-      "to": "ctrKey_0.b"
+      "from": "ctrT_1.out",
+      "to": "ctrT_0.b"
     },
     {
-      "from": "ctrKey_0.out",
-      "to": "ctrT.key"
-    },
-    {
-      "from": "ctrT.text",
+      "from": "ctrT_0.out",
       "to": "ui#debate.counter_text"
     },
     {
@@ -11329,6 +11606,18 @@
       "to": "basisT.key"
     },
     {
+      "from": "basisR.row",
+      "to": "basisN.row"
+    },
+    {
+      "from": "basisT.text",
+      "to": "basisF.pattern"
+    },
+    {
+      "from": "basisN.value",
+      "to": "basisF.n"
+    },
+    {
       "from": "isWarmC.out",
       "to": "basisOut.cond"
     },
@@ -11337,7 +11626,7 @@
       "to": "basisOut.a"
     },
     {
-      "from": "basisT.text",
+      "from": "basisF.text",
       "to": "basisOut.b"
     },
     {
@@ -11346,7 +11635,7 @@
     },
     {
       "from": "L_TellStarRule.out",
-      "to": "starK.a"
+      "to": "starF.n"
     },
     {
       "from": "L_TellStarRule.out",
@@ -11358,22 +11647,18 @@
     },
     {
       "from": "starOnN.truth",
-      "to": "starKOn.cond"
+      "to": "starT.cond"
     },
     {
-      "from": "starK.out",
-      "to": "starKOn.a"
+      "from": "starF.text",
+      "to": "starT.a"
     },
     {
       "from": "K8.out",
-      "to": "starKOn.b"
+      "to": "starT.b"
     },
     {
-      "from": "starKOn.out",
-      "to": "starT.key"
-    },
-    {
-      "from": "starT.text",
+      "from": "starT.out",
       "to": "ui#debate.tell_star_text"
     },
     {
@@ -11510,19 +11795,59 @@
     },
     {
       "from": "ec_base.value",
-      "to": "cpA.a"
+      "to": "cpDmgA.ec_base"
+    },
+    {
+      "from": "ec_per.value",
+      "to": "cpDmgA.ec_per"
     },
     {
       "from": "claimN.value",
-      "to": "cpA.b"
+      "to": "cpDmgA.claimN"
     },
     {
       "from": "ec_base.value",
-      "to": "cpR.a"
+      "to": "cpDmgR.ec_base"
+    },
+    {
+      "from": "ec_per.value",
+      "to": "cpDmgR.ec_per"
     },
     {
       "from": "claimN.value",
-      "to": "cpR.b"
+      "to": "cpDmgR.claimN"
+    },
+    {
+      "from": "ec_rushN.value",
+      "to": "cpDmgR.ec_rushN"
+    },
+    {
+      "from": "ec_rushD.value",
+      "to": "cpDmgR.ec_rushD"
+    },
+    {
+      "from": "ec_base.value",
+      "to": "cpA.base"
+    },
+    {
+      "from": "claimN.value",
+      "to": "cpA.n"
+    },
+    {
+      "from": "cpDmgA.value",
+      "to": "cpA.dmg"
+    },
+    {
+      "from": "ec_base.value",
+      "to": "cpR.base"
+    },
+    {
+      "from": "claimN.value",
+      "to": "cpR.n"
+    },
+    {
+      "from": "cpDmgR.value",
+      "to": "cpR.dmg"
     },
     {
       "from": "dc_mode.value",
@@ -11558,46 +11883,42 @@
     },
     {
       "from": "cpAsrtN.truth",
-      "to": "cpKey_2.cond"
+      "to": "cpT_2.cond"
     },
     {
-      "from": "cpA.out",
-      "to": "cpKey_2.a"
+      "from": "cpA.text",
+      "to": "cpT_2.a"
     },
     {
       "from": "K8.out",
-      "to": "cpKey_2.b"
+      "to": "cpT_2.b"
     },
     {
       "from": "cpRushN.truth",
-      "to": "cpKey_1.cond"
+      "to": "cpT_1.cond"
     },
     {
-      "from": "cpR.out",
-      "to": "cpKey_1.a"
+      "from": "cpR.text",
+      "to": "cpT_1.a"
     },
     {
-      "from": "cpKey_2.out",
-      "to": "cpKey_1.b"
+      "from": "cpT_2.out",
+      "to": "cpT_1.b"
     },
     {
       "from": "cpOffN.truth",
-      "to": "cpKey_0.cond"
+      "to": "cpT_0.cond"
     },
     {
       "from": "K8.out",
-      "to": "cpKey_0.a"
+      "to": "cpT_0.a"
     },
     {
-      "from": "cpKey_1.out",
-      "to": "cpKey_0.b"
+      "from": "cpT_1.out",
+      "to": "cpT_0.b"
     },
     {
-      "from": "cpKey_0.out",
-      "to": "cpT.key"
-    },
-    {
-      "from": "cpT.text",
+      "from": "cpT_0.out",
       "to": "ui#debate.claim_preview"
     },
     {
@@ -11721,7 +12042,23 @@
       "to": "rlT.key"
     },
     {
+      "from": "K71.out",
+      "to": "d_rln.key"
+    },
+    {
       "from": "rlT.text",
+      "to": "rlF.pattern"
+    },
+    {
+      "from": "oppName.text",
+      "to": "rlF.name"
+    },
+    {
+      "from": "d_rln.value",
+      "to": "rlF.n"
+    },
+    {
+      "from": "rlF.text",
       "to": "ui#debate.result_line"
     },
     {
@@ -11729,43 +12066,43 @@
       "to": "beat.in"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "d_rsAt.key"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "d_r2.key"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "d_r3.key"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "d_sel.key"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "d_instAt.key"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "d_lockAt.key"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "d_pb.key"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "d_pbAt.key"
     },
     {
-      "from": "K79.out",
+      "from": "K80.out",
       "to": "d_holdAt.key"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "d_finAt.key"
     },
     {
@@ -11785,7 +12122,7 @@
       "to": "rsG.trigger"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "dbui_rsAt_1.key"
     },
     {
@@ -11809,7 +12146,7 @@
       "to": "r2G.trigger"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "dbui_r2_2.key"
     },
     {
@@ -11833,7 +12170,7 @@
       "to": "r3G.trigger"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "dbui_r3_3.key"
     },
     {
@@ -11857,7 +12194,7 @@
       "to": "selG.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_sel_4.key"
     },
     {
@@ -11885,7 +12222,7 @@
       "to": "instG2.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_instAt_5.key"
     },
     {
@@ -11913,7 +12250,7 @@
       "to": "lockG2.trigger"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "dbui_lockAt_6.key"
     },
     {
@@ -11969,7 +12306,7 @@
       "to": "candOk.a"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "candOk.b"
     },
     {
@@ -12009,7 +12346,7 @@
       "to": "world.debStart"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "dbui_rsAt_8.key"
     },
     {
@@ -12229,7 +12566,7 @@
       "to": "nodesReset.in"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "dbui_r2_19.key"
     },
     {
@@ -12370,14 +12707,10 @@
     },
     {
       "from": "nvEach.item",
-      "to": "nvKey.a"
+      "to": "nvAdd.key"
     },
     {
       "from": "nvSt.value",
-      "to": "nvKey.b"
-    },
-    {
-      "from": "nvKey.out",
       "to": "nvAdd.value"
     },
     {
@@ -12398,7 +12731,19 @@
     },
     {
       "from": "chainsList.out",
-      "to": "cvClr.trigger"
+      "to": "cvClr_uiChains.trigger"
+    },
+    {
+      "from": "chainsList.out",
+      "to": "cvClr_uiChPos.trigger"
+    },
+    {
+      "from": "chainsList.out",
+      "to": "cvClr_uiChLink.trigger"
+    },
+    {
+      "from": "chainsList.out",
+      "to": "cvClr_uiChSel.trigger"
     },
     {
       "from": "isDebC.out",
@@ -12461,7 +12806,7 @@
       "to": "cvCardC.a"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "cvCardC.b"
     },
     {
@@ -12522,19 +12867,11 @@
     },
     {
       "from": "cvEach.index",
-      "to": "cvKey.a"
+      "to": "cvChain.ci"
     },
     {
-      "from": "cvEach.item",
-      "to": "cvKey.b"
-    },
-    {
-      "from": "cvLink.value",
-      "to": "cvKey.c"
-    },
-    {
-      "from": "cvSel.value",
-      "to": "cvKey.d"
+      "from": "cvEach.index",
+      "to": "cvPos.ci"
     },
     {
       "from": "cvOn.value",
@@ -12545,12 +12882,52 @@
       "to": "cvG.trigger"
     },
     {
-      "from": "cvKey.out",
-      "to": "cvAdd.value"
+      "from": "cvEach.item",
+      "to": "cvAdd_uiChains.key"
+    },
+    {
+      "from": "cvChain.value",
+      "to": "cvAdd_uiChains.value"
     },
     {
       "from": "cvG.pass",
-      "to": "cvAdd.trigger"
+      "to": "cvAdd_uiChains.trigger"
+    },
+    {
+      "from": "cvEach.item",
+      "to": "cvAdd_uiChPos.key"
+    },
+    {
+      "from": "cvPos.value",
+      "to": "cvAdd_uiChPos.value"
+    },
+    {
+      "from": "cvG.pass",
+      "to": "cvAdd_uiChPos.trigger"
+    },
+    {
+      "from": "cvEach.item",
+      "to": "cvAdd_uiChLink.key"
+    },
+    {
+      "from": "cvLink.value",
+      "to": "cvAdd_uiChLink.value"
+    },
+    {
+      "from": "cvG.pass",
+      "to": "cvAdd_uiChLink.trigger"
+    },
+    {
+      "from": "cvEach.item",
+      "to": "cvAdd_uiChSel.key"
+    },
+    {
+      "from": "cvSel.truth",
+      "to": "cvAdd_uiChSel.value"
+    },
+    {
+      "from": "cvG.pass",
+      "to": "cvAdd_uiChSel.trigger"
     },
     {
       "from": "isWarmC.out",
@@ -12717,7 +13094,7 @@
       "to": "paAdd.trigger"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "dbui_r3_20.key"
     },
     {
@@ -12727,6 +13104,134 @@
     {
       "from": "r2G.pass",
       "to": "dbui_r3_20.trigger"
+    },
+    {
+      "from": "r3G.pass",
+      "to": "actOut.in"
+    },
+    {
+      "from": "langEnC.true",
+      "to": "actOut.in"
+    },
+    {
+      "from": "langEnC.false",
+      "to": "actOut.in"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actClr_uiActOn.trigger"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actClr_uiActWhy.trigger"
+    },
+    {
+      "from": "en1.truth",
+      "to": "actOn1.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actOn1.trigger"
+    },
+    {
+      "from": "en2.truth",
+      "to": "actOn2.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actOn2.trigger"
+    },
+    {
+      "from": "en3.truth",
+      "to": "actOn3.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actOn3.trigger"
+    },
+    {
+      "from": "en4.truth",
+      "to": "actOn4.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actOn4.trigger"
+    },
+    {
+      "from": "isDebC.out",
+      "to": "why1d.cond"
+    },
+    {
+      "from": "why1.out",
+      "to": "why1d.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "why1d.b"
+    },
+    {
+      "from": "isDebC.out",
+      "to": "why2d.cond"
+    },
+    {
+      "from": "why2.out",
+      "to": "why2d.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "why2d.b"
+    },
+    {
+      "from": "en3.truth",
+      "to": "why3d.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "why3d.a"
+    },
+    {
+      "from": "msg3.out",
+      "to": "why3d.b"
+    },
+    {
+      "from": "why1d.out",
+      "to": "actWhy1.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actWhy1.trigger"
+    },
+    {
+      "from": "why2d.out",
+      "to": "actWhy2.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actWhy2.trigger"
+    },
+    {
+      "from": "why3d.out",
+      "to": "actWhy3.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actWhy3.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "actWhy4.value"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actWhy4.trigger"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actOnList.trigger"
+    },
+    {
+      "from": "actOut.out",
+      "to": "actWhyList.trigger"
     },
     {
       "from": "r3G.pass",
@@ -12905,7 +13410,7 @@
       "to": "obsClrSa.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_sel_22.key"
     },
     {
@@ -13025,7 +13530,7 @@
       "to": "segCardC.a"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "segCardC.b"
     },
     {
@@ -13233,7 +13738,7 @@
       "to": "dbuiS_msg_12.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_sel_28.key"
     },
     {
@@ -13377,7 +13882,7 @@
       "to": "dbui_segPh_31.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_sel_32.key"
     },
     {
@@ -13509,7 +14014,7 @@
       "to": "dbuiS_msg_18.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_sel_37.key"
     },
     {
@@ -13569,7 +14074,7 @@
       "to": "world.debInstinct"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_instAt_39.key"
     },
     {
@@ -13650,14 +14155,6 @@
     },
     {
       "from": "cmdKind.out",
-      "to": "cmdKindL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdKindL.trigger"
-    },
-    {
-      "from": "cmdKindL.out",
       "to": "world.debCmdKind"
     },
     {
@@ -13694,26 +14191,10 @@
     },
     {
       "from": "cmdFrom.value",
-      "to": "cmdFromL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdFromL.trigger"
-    },
-    {
-      "from": "cmdFromL.out",
       "to": "world.debCmdFrom"
     },
     {
       "from": "cmdTo.value",
-      "to": "cmdToL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdToL.trigger"
-    },
-    {
-      "from": "cmdToL.out",
       "to": "world.debCmdTo"
     },
     {
@@ -13742,14 +14223,6 @@
     },
     {
       "from": "cmdCard.out",
-      "to": "cmdCardL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdCardL.trigger"
-    },
-    {
-      "from": "cmdCardL.out",
       "to": "world.debCmdCard"
     },
     {
@@ -13770,14 +14243,6 @@
     },
     {
       "from": "cmdTgt.out",
-      "to": "cmdTgtL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdTgtL.trigger"
-    },
-    {
-      "from": "cmdTgtL.out",
       "to": "world.debCmdTarget"
     },
     {
@@ -13790,14 +14255,6 @@
     },
     {
       "from": "cmdAs.value",
-      "to": "cmdAsL.in"
-    },
-    {
-      "from": "lockG.pass",
-      "to": "cmdAsL.trigger"
-    },
-    {
-      "from": "cmdAsL.out",
       "to": "world.debCmdAssist"
     },
     {
@@ -13841,7 +14298,7 @@
       "to": "dbui_maxc_41.trigger"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "dbui_lockAt_42.key"
     },
     {
@@ -13865,7 +14322,7 @@
       "to": "dbui_ev_43.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_pb_44.key"
     },
     {
@@ -13949,7 +14406,7 @@
       "to": "dbui_ev_45.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_pb_46.key"
     },
     {
@@ -13973,7 +14430,7 @@
       "to": "evDone.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_pb_47.key"
     },
     {
@@ -13997,7 +14454,7 @@
       "to": "parseG.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_pb_48.key"
     },
     {
@@ -14029,7 +14486,7 @@
       "to": "waitG.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_pb_49.key"
     },
     {
@@ -14101,7 +14558,7 @@
       "to": "isRev.a"
     },
     {
-      "from": "K82.out",
+      "from": "K83.out",
       "to": "isRev.b"
     },
     {
@@ -14121,7 +14578,7 @@
       "to": "isWRev.a"
     },
     {
-      "from": "K83.out",
+      "from": "K84.out",
       "to": "isWRev.b"
     },
     {
@@ -14141,7 +14598,7 @@
       "to": "isCut.a"
     },
     {
-      "from": "K84.out",
+      "from": "K85.out",
       "to": "isCut.b"
     },
     {
@@ -14161,7 +14618,7 @@
       "to": "isDO.a"
     },
     {
-      "from": "K85.out",
+      "from": "K86.out",
       "to": "isDO.b"
     },
     {
@@ -14181,7 +14638,7 @@
       "to": "isDP.a"
     },
     {
-      "from": "K86.out",
+      "from": "K87.out",
       "to": "isDP.b"
     },
     {
@@ -14201,7 +14658,7 @@
       "to": "isHeal.a"
     },
     {
-      "from": "K87.out",
+      "from": "K88.out",
       "to": "isHeal.b"
     },
     {
@@ -14221,7 +14678,7 @@
       "to": "isNR.a"
     },
     {
-      "from": "K88.out",
+      "from": "K89.out",
       "to": "isNR.b"
     },
     {
@@ -14241,7 +14698,7 @@
       "to": "isNA.a"
     },
     {
-      "from": "K89.out",
+      "from": "K90.out",
       "to": "isNA.b"
     },
     {
@@ -14261,7 +14718,7 @@
       "to": "isCtrC.a"
     },
     {
-      "from": "K90.out",
+      "from": "K91.out",
       "to": "isCtrC.b"
     },
     {
@@ -14289,7 +14746,7 @@
       "to": "islinkSnapped.a"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "islinkSnapped.b"
     },
     {
@@ -14297,7 +14754,7 @@
       "to": "isinfamy.a"
     },
     {
-      "from": "K92.out",
+      "from": "K93.out",
       "to": "isinfamy.b"
     },
     {
@@ -14305,7 +14762,7 @@
       "to": "isbreakVoided.a"
     },
     {
-      "from": "K93.out",
+      "from": "K94.out",
       "to": "isbreakVoided.b"
     },
     {
@@ -14401,10 +14858,6 @@
       "to": "evLine0.row"
     },
     {
-      "from": "n2.value",
-      "to": "ctrLine.a"
-    },
-    {
       "from": "isDON.out",
       "to": "lnCtrN.isDON"
     },
@@ -14417,12 +14870,52 @@
       "to": "evLine.cond"
     },
     {
-      "from": "ctrLine.out",
+      "from": "K95.out",
       "to": "evLine.a"
     },
     {
       "from": "evLine0.value",
       "to": "evLine.b"
+    },
+    {
+      "from": "f0.value",
+      "to": "isConC.a"
+    },
+    {
+      "from": "K96.out",
+      "to": "isConC.b"
+    },
+    {
+      "from": "isConC.out",
+      "to": "isConN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "isConN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isConN.b"
+    },
+    {
+      "from": "lnCtrN.value",
+      "to": "lineN.lnCtrN"
+    },
+    {
+      "from": "n2.value",
+      "to": "lineN.n2"
+    },
+    {
+      "from": "isConN.out",
+      "to": "lineN.isConN"
+    },
+    {
+      "from": "n1.value",
+      "to": "lineN.n1"
+    },
+    {
+      "from": "ec_tw.value",
+      "to": "lineN.ec_tw"
     },
     {
       "from": "evLine.out",
@@ -14497,6 +14990,18 @@
       "to": "dbuiS_rl_19.trigger"
     },
     {
+      "from": "K71.out",
+      "to": "dbui_rln_51.key"
+    },
+    {
+      "from": "lineN.value",
+      "to": "dbui_rln_51.value"
+    },
+    {
+      "from": "lineG.changed",
+      "to": "dbui_rln_51.trigger"
+    },
+    {
       "from": "f2.value",
       "to": "rvPK.a"
     },
@@ -14569,7 +15074,7 @@
       "to": "rgTail.a"
     },
     {
-      "from": "K94.out",
+      "from": "K97.out",
       "to": "rgTail.b"
     },
     {
@@ -14589,11 +15094,11 @@
       "to": "rg_3.cond"
     },
     {
-      "from": "K96.out",
+      "from": "K99.out",
       "to": "rg_3.a"
     },
     {
-      "from": "K97.out",
+      "from": "K100.out",
       "to": "rg_3.b"
     },
     {
@@ -14625,7 +15130,7 @@
       "to": "rg_0.cond"
     },
     {
-      "from": "K95.out",
+      "from": "K98.out",
       "to": "rg_0.a"
     },
     {
@@ -14786,15 +15291,15 @@
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_51.key"
+      "to": "dbui_hpO_52.key"
     },
     {
       "from": "n4.value",
-      "to": "dbui_hpO_51.value"
+      "to": "dbui_hpO_52.value"
     },
     {
       "from": "doG.changed",
-      "to": "dbui_hpO_51.trigger"
+      "to": "dbui_hpO_52.trigger"
     },
     {
       "from": "d_maxd.value",
@@ -14806,15 +15311,15 @@
     },
     {
       "from": "K19.out",
-      "to": "dbui_maxd_52.key"
+      "to": "dbui_maxd_53.key"
     },
     {
       "from": "maxdN.value",
-      "to": "dbui_maxd_52.value"
+      "to": "dbui_maxd_53.value"
     },
     {
       "from": "doG.changed",
-      "to": "dbui_maxd_52.trigger"
+      "to": "dbui_maxd_53.trigger"
     },
     {
       "from": "isDP.out",
@@ -14842,22 +15347,22 @@
     },
     {
       "from": "K23.out",
-      "to": "dbui_hpM_53.key"
+      "to": "dbui_hpM_54.key"
     },
     {
       "from": "n4.value",
-      "to": "dbui_hpM_53.value"
+      "to": "dbui_hpM_54.value"
     },
     {
       "from": "dpG.changed",
-      "to": "dbui_hpM_53.trigger"
+      "to": "dbui_hpM_54.trigger"
     },
     {
       "from": "f0.value",
       "to": "isBrkC.a"
     },
     {
-      "from": "K98.out",
+      "from": "K101.out",
       "to": "isBrkC.b"
     },
     {
@@ -14894,15 +15399,15 @@
     },
     {
       "from": "K21.out",
-      "to": "dbui_brks_54.key"
+      "to": "dbui_brks_55.key"
     },
     {
       "from": "brksN.value",
-      "to": "dbui_brks_54.value"
+      "to": "dbui_brks_55.value"
     },
     {
       "from": "brkG.pass",
-      "to": "dbui_brks_54.trigger"
+      "to": "dbui_brks_55.trigger"
     },
     {
       "from": "isHeal.out",
@@ -14930,15 +15435,15 @@
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_55.key"
+      "to": "dbui_hpO_56.key"
     },
     {
       "from": "n3.value",
-      "to": "dbui_hpO_55.value"
+      "to": "dbui_hpO_56.value"
     },
     {
       "from": "hlG.changed",
-      "to": "dbui_hpO_55.trigger"
+      "to": "dbui_hpO_56.trigger"
     },
     {
       "from": "isNR.out",
@@ -14985,7 +15490,7 @@
       "to": "cutFullC.a"
     },
     {
-      "from": "K99.out",
+      "from": "K102.out",
       "to": "cutFullC.b"
     },
     {
@@ -15041,56 +15546,12 @@
       "to": "cutDw.row"
     },
     {
-      "from": "cutS.value",
-      "to": "hkStampC.a"
-    },
-    {
-      "from": "K100.out",
-      "to": "hkStampC.b"
-    },
-    {
-      "from": "hkStampC.out",
-      "to": "hkStampN.cond"
-    },
-    {
-      "from": "K4.out",
-      "to": "hkStampN.a"
-    },
-    {
-      "from": "K5.out",
-      "to": "hkStampN.b"
-    },
-    {
-      "from": "world.debHachiku",
-      "to": "hkSub.a"
-    },
-    {
       "from": "cutN.value",
       "to": "cutNOut.cutN"
     },
     {
       "from": "world.debHachiku",
       "to": "cutNOut.world_hk"
-    },
-    {
-      "from": "hkStampN.out",
-      "to": "hkSubOnN.hkStampN"
-    },
-    {
-      "from": "cutN.value",
-      "to": "hkSubOnN.cutN"
-    },
-    {
-      "from": "hkSubOnN.truth",
-      "to": "cutSubKey.cond"
-    },
-    {
-      "from": "hkSub.out",
-      "to": "cutSubKey.a"
-    },
-    {
-      "from": "cutSub.value",
-      "to": "cutSubKey.b"
     },
     {
       "from": "cutB.value",
@@ -15217,7 +15678,7 @@
       "to": "stampSeq.increment"
     },
     {
-      "from": "K101.out",
+      "from": "K103.out",
       "to": "stamp2_id.in"
     },
     {
@@ -15333,12 +15794,20 @@
       "to": "ui#cutin.stamp_seq"
     },
     {
-      "from": "cutSubKey.out",
+      "from": "cutSub.value",
       "to": "csub1_key.in"
     },
     {
       "from": "bigG.pass",
       "to": "csub1_key.trigger"
+    },
+    {
+      "from": "cutNOut.value",
+      "to": "csub1_n.in"
+    },
+    {
+      "from": "bigG.pass",
+      "to": "csub1_n.trigger"
     },
     {
       "from": "bigG.pass",
@@ -15349,12 +15818,20 @@
       "to": "csubSeq.increment"
     },
     {
-      "from": "cutSubKey.out",
+      "from": "cutSub.value",
       "to": "csub2_key.in"
     },
     {
       "from": "stG.pass",
       "to": "csub2_key.trigger"
+    },
+    {
+      "from": "cutNOut.value",
+      "to": "csub2_n.in"
+    },
+    {
+      "from": "stG.pass",
+      "to": "csub2_n.trigger"
     },
     {
       "from": "stG.pass",
@@ -15365,12 +15842,20 @@
       "to": "csubSeq.increment"
     },
     {
-      "from": "K102.out",
+      "from": "K104.out",
       "to": "csub3_key.in"
     },
     {
       "from": "instG.pass",
       "to": "csub3_key.trigger"
+    },
+    {
+      "from": "K5.out",
+      "to": "csub3_n.in"
+    },
+    {
+      "from": "instG.pass",
+      "to": "csub3_n.trigger"
     },
     {
       "from": "instG.pass",
@@ -15445,11 +15930,79 @@
       "to": "csubT.key"
     },
     {
+      "from": "csubSrc.index",
+      "to": "csub_n_is1.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "csub_n_is1.b"
+    },
+    {
+      "from": "csub_n_is1.out",
+      "to": "csub_n_1.cond"
+    },
+    {
+      "from": "csub1_n.out",
+      "to": "csub_n_1.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "csub_n_1.b"
+    },
+    {
+      "from": "csubSrc.index",
+      "to": "csub_n_is2.a"
+    },
+    {
+      "from": "K32.out",
+      "to": "csub_n_is2.b"
+    },
+    {
+      "from": "csub_n_is2.out",
+      "to": "csub_n_2.cond"
+    },
+    {
+      "from": "csub2_n.out",
+      "to": "csub_n_2.a"
+    },
+    {
+      "from": "csub_n_1.out",
+      "to": "csub_n_2.b"
+    },
+    {
+      "from": "csubSrc.index",
+      "to": "csub_n_is3.a"
+    },
+    {
+      "from": "K34.out",
+      "to": "csub_n_is3.b"
+    },
+    {
+      "from": "csub_n_is3.out",
+      "to": "csub_n_3.cond"
+    },
+    {
+      "from": "csub3_n.out",
+      "to": "csub_n_3.a"
+    },
+    {
+      "from": "csub_n_2.out",
+      "to": "csub_n_3.b"
+    },
+    {
+      "from": "csubT.text",
+      "to": "csubF.pattern"
+    },
+    {
+      "from": "csub_n_3.out",
+      "to": "csubF.n"
+    },
+    {
       "from": "langEnC.out",
       "to": "csubOut.cond"
     },
     {
-      "from": "csubT.text",
+      "from": "csubF.text",
       "to": "csubOut.a"
     },
     {
@@ -15505,96 +16058,96 @@
       "to": "pbAtN.dwellS"
     },
     {
-      "from": "K78.out",
-      "to": "dbui_pbAt_56.key"
+      "from": "K79.out",
+      "to": "dbui_pbAt_57.key"
     },
     {
       "from": "pbAtN.value",
-      "to": "dbui_pbAt_56.value"
+      "to": "dbui_pbAt_57.value"
     },
     {
       "from": "parseG.pass",
-      "to": "dbui_pbAt_56.trigger"
+      "to": "dbui_pbAt_57.trigger"
     },
     {
       "from": "K9.out",
-      "to": "dbui_ph_57.key"
+      "to": "dbui_ph_58.key"
     },
     {
       "from": "K32.out",
-      "to": "dbui_ph_57.value"
+      "to": "dbui_ph_58.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_ph_57.trigger"
+      "to": "dbui_ph_58.trigger"
     },
     {
       "from": "K17.out",
-      "to": "dbui_hold_58.key"
+      "to": "dbui_hold_59.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_hold_58.value"
+      "to": "dbui_hold_59.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hold_58.trigger"
+      "to": "dbui_hold_59.trigger"
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_59.key"
+      "to": "dbui_hpO_60.key"
     },
     {
       "from": "world.debOppHp",
-      "to": "dbui_hpO_59.value"
+      "to": "dbui_hpO_60.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hpO_59.trigger"
+      "to": "dbui_hpO_60.trigger"
     },
     {
       "from": "K23.out",
-      "to": "dbui_hpM_60.key"
+      "to": "dbui_hpM_61.key"
     },
     {
       "from": "world.debPlayerHp",
-      "to": "dbui_hpM_60.value"
+      "to": "dbui_hpM_61.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hpM_60.trigger"
+      "to": "dbui_hpM_61.trigger"
     },
     {
       "from": "evDone.pass",
       "to": "nodesReset.in"
     },
     {
-      "from": "K72.out",
-      "to": "dbui_r2_61.key"
+      "from": "K73.out",
+      "to": "dbui_r2_62.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_r2_61.value"
+      "to": "dbui_r2_62.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_r2_61.trigger"
+      "to": "dbui_r2_62.trigger"
     },
     {
       "from": "clock.seconds",
       "to": "holdAtN.now"
     },
     {
-      "from": "K79.out",
-      "to": "dbui_holdAt_62.key"
+      "from": "K80.out",
+      "to": "dbui_holdAt_63.key"
     },
     {
       "from": "holdAtN.value",
-      "to": "dbui_holdAt_62.value"
+      "to": "dbui_holdAt_63.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_holdAt_62.trigger"
+      "to": "dbui_holdAt_63.trigger"
     },
     {
       "from": "ui#debate.skip",
@@ -15657,16 +16210,16 @@
       "to": "nextHold.trigger"
     },
     {
-      "from": "K79.out",
-      "to": "dbui_holdAt_63.key"
+      "from": "K80.out",
+      "to": "dbui_holdAt_64.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_holdAt_63.value"
+      "to": "dbui_holdAt_64.value"
     },
     {
       "from": "nextHold.pass",
-      "to": "dbui_holdAt_63.trigger"
+      "to": "dbui_holdAt_64.trigger"
     },
     {
       "from": "d_hold.value",
@@ -15690,15 +16243,15 @@
     },
     {
       "from": "K17.out",
-      "to": "dbui_hold_64.key"
+      "to": "dbui_hold_65.key"
     },
     {
       "from": "K5.out",
-      "to": "dbui_hold_64.value"
+      "to": "dbui_hold_65.value"
     },
     {
       "from": "contG.pass",
-      "to": "dbui_hold_64.trigger"
+      "to": "dbui_hold_65.trigger"
     },
     {
       "from": "isWarmN.out",
@@ -15733,56 +16286,56 @@
       "to": "notOverG.trigger"
     },
     {
-      "from": "K71.out",
-      "to": "dbui_rsAt_65.key"
+      "from": "K72.out",
+      "to": "dbui_rsAt_66.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_rsAt_65.value"
+      "to": "dbui_rsAt_66.value"
     },
     {
       "from": "notOverG.pass",
-      "to": "dbui_rsAt_65.trigger"
+      "to": "dbui_rsAt_66.trigger"
     },
     {
       "from": "K9.out",
-      "to": "dbui_ph_66.key"
+      "to": "dbui_ph_67.key"
     },
     {
       "from": "K34.out",
-      "to": "dbui_ph_66.value"
+      "to": "dbui_ph_67.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_ph_66.trigger"
+      "to": "dbui_ph_67.trigger"
     },
     {
       "from": "K18.out",
-      "to": "dbui_fin_67.key"
+      "to": "dbui_fin_68.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_fin_67.value"
+      "to": "dbui_fin_68.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_fin_67.trigger"
+      "to": "dbui_fin_68.trigger"
     },
     {
       "from": "clock.seconds",
       "to": "finAtN.now"
     },
     {
-      "from": "K80.out",
-      "to": "dbui_finAt_68.key"
+      "from": "K81.out",
+      "to": "dbui_finAt_69.key"
     },
     {
       "from": "finAtN.value",
-      "to": "dbui_finAt_68.value"
+      "to": "dbui_finAt_69.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_finAt_68.trigger"
+      "to": "dbui_finAt_69.trigger"
     },
     {
       "from": "activeN.value",
@@ -15805,16 +16358,16 @@
       "to": "nextFin.trigger"
     },
     {
-      "from": "K80.out",
-      "to": "dbui_finAt_69.key"
+      "from": "K81.out",
+      "to": "dbui_finAt_70.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_finAt_69.value"
+      "to": "dbui_finAt_70.value"
     },
     {
       "from": "nextFin.pass",
-      "to": "dbui_finAt_69.trigger"
+      "to": "dbui_finAt_70.trigger"
     },
     {
       "from": "d_fin.value",
@@ -15838,15 +16391,15 @@
     },
     {
       "from": "K18.out",
-      "to": "dbui_fin_70.key"
+      "to": "dbui_fin_71.key"
     },
     {
       "from": "K5.out",
-      "to": "dbui_fin_70.value"
+      "to": "dbui_fin_71.value"
     },
     {
       "from": "finG.pass",
-      "to": "dbui_fin_70.trigger"
+      "to": "dbui_fin_71.trigger"
     },
     {
       "from": "isWarmC.out",

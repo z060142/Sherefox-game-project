@@ -2507,44 +2507,16 @@
    }
   },
   {
-   "id": "aiLit3_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "aiLit3",
    "type": "select"
-  },
-  {
-   "id": "aiLit23_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "aiLit23",
    "type": "select"
   },
   {
-   "id": "aiLit_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "aiLit",
    "type": "select"
-  },
-  {
-   "id": "actA_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "actA",
@@ -2567,13 +2539,6 @@
   {
    "id": "actStr",
    "type": "select"
-  },
-  {
-   "id": "litA_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "litA",
@@ -3530,13 +3495,6 @@
    "type": "atrium.expr",
    "params": {
     "expr": "brOk && (c_gpN == 0 || lblN1 == 1)"
-   }
-  },
-  {
-   "id": "gu_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -4772,13 +4730,6 @@
    }
   },
   {
-   "id": "conNode_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "conNode",
    "type": "select"
   },
@@ -4884,22 +4835,8 @@
    }
   },
   {
-   "id": "cp01_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "cp01",
    "type": "select"
-  },
-  {
-   "id": "cp23_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "cp23",
@@ -4910,13 +4847,6 @@
    "type": "atrium.expr",
    "params": {
     "expr": "cj <= 1"
-   }
-  },
-  {
-   "id": "caughtPair_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -5149,154 +5079,24 @@
    }
   },
   {
-   "id": "sg1_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "sg1",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "sg2_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "sg2",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "sg3_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "sg3",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "sg4_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "sg4",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "sg5_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "sg5",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "aiClar",
@@ -5306,13 +5106,6 @@
      "clear",
      "fuzzy"
     ]
-   }
-  },
-  {
-   "id": "baseClar_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -5394,124 +5187,20 @@
    }
   },
   {
-   "id": "fg1_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "fg1",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "fg2_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "fg2",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "fg3_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "fg3",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "fg4_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "fg4",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "live",
@@ -7160,2284 +6849,308 @@
    }
   },
   {
-   "id": "lg1_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "lg1",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg2_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg2",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg3_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg3",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg4_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg4",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg5_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg5",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg6_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg6",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg7_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg7",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg8_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg8",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg9_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg9",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg10_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg10",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg11_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg11",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg12_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg12",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg13_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg13",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg14_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg14",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg15_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg15",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg16_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg16",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg17_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg17",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg18_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg18",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg19_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg19",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg20_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg20",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg21_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg21",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg22_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg22",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg23_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg23",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg24_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg24",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg25_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg25",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg26_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg26",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg27_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg27",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg28_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg28",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg29_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg29",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg30_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg30",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg31_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg31",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg32_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg32",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg33_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg33",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg34_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg34",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg35_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg35",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg36_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg36",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg37_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg37",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg38_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg38",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg39_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg39",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg40_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg40",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg41_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg41",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg42_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg42",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg43_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg43",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg44_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg44",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg45_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg45",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg46_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg46",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg47_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg47",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg48_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg48",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg49_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg49",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg50_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg50",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg51_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg51",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg52_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg52",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg53_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg53",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg54_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg54",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg55_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg55",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg56_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg56",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg57_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg57",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg58_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg58",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg59_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg59",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg60_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg60",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg61_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg61",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg62_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg62",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg63_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg63",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg64_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg64",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg65_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg65",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg66_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg66",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg67_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg67",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg68_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg68",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg69_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg69",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg70_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg70",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg71_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg71",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg72_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg72",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg73_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg73",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg74_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg74",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg75_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg75",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "lg76_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "lg76",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "rd_da",
@@ -9510,64 +7223,12 @@
    }
   },
   {
-   "id": "rg1_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "rg1",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
-  },
-  {
-   "id": "rg2_g",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "rg2",
-   "type": "state",
-   "params": {
-    "states": [
-     "a",
-     "b"
-    ],
-    "initial": "a",
-    "transitions": [
-     {
-      "from": "a",
-      "on": "go",
-      "to": "b"
-     },
-     {
-      "from": "b",
-      "on": "go",
-      "to": "a"
-     }
-    ]
-   }
+   "type": "atrium.gate"
   },
   {
    "id": "phaseCode",
@@ -9687,44 +7348,16 @@
    }
   },
   {
-   "id": "bSh1_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "bSh1",
    "type": "select"
-  },
-  {
-   "id": "bSh2_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "bSh2",
    "type": "select"
   },
   {
-   "id": "bStar_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "bStar",
    "type": "select"
-  },
-  {
-   "id": "bBasis_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "bBasis",
@@ -9738,55 +7371,20 @@
    }
   },
   {
-   "id": "tClar_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "tClar",
    "type": "select"
-  },
-  {
-   "id": "tSh1_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "tSh1",
    "type": "select"
   },
   {
-   "id": "tSh2_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "tSh2",
    "type": "select"
   },
   {
-   "id": "tStar_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "tStar",
    "type": "select"
-  },
-  {
-   "id": "tBasisA_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
   },
   {
    "id": "tBasisA",
@@ -9848,13 +7446,6 @@
    }
   },
   {
-   "id": "tLine_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "tLine",
    "type": "select"
   },
@@ -9873,13 +7464,6 @@
    }
   },
   {
-   "id": "gst01_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "gst01",
    "type": "select"
   },
@@ -9888,13 +7472,6 @@
    "type": "atrium.expr",
    "params": {
     "expr": "gIdx == 2"
-   }
-  },
-  {
-   "id": "gst23_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -9909,13 +7486,6 @@
    }
   },
   {
-   "id": "gstA_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
-   }
-  },
-  {
    "id": "gstA",
    "type": "select"
   },
@@ -9924,13 +7494,6 @@
    "type": "atrium.expr",
    "params": {
     "expr": "gIdx == 4"
-   }
-  },
-  {
-   "id": "gesture_c",
-   "type": "compare",
-   "params": {
-    "op": "ne"
    }
   },
   {
@@ -11424,15 +8987,7 @@
    "to": "aiLitN3.s_dlit"
   },
   {
-   "from": "aiLitN3.value",
-   "to": "aiLit3_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "aiLit3_c.b"
-  },
-  {
-   "from": "aiLit3_c.out",
+   "from": "aiLitN3.truth",
    "to": "aiLit3.cond"
   },
   {
@@ -11444,15 +8999,7 @@
    "to": "aiLit3.b"
   },
   {
-   "from": "aiLitN2.value",
-   "to": "aiLit23_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "aiLit23_c.b"
-  },
-  {
-   "from": "aiLit23_c.out",
+   "from": "aiLitN2.truth",
    "to": "aiLit23.cond"
   },
   {
@@ -11464,15 +9011,7 @@
    "to": "aiLit23.b"
   },
   {
-   "from": "aiLitN1.value",
-   "to": "aiLit_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "aiLit_c.b"
-  },
-  {
-   "from": "aiLit_c.out",
+   "from": "aiLitN1.truth",
    "to": "aiLit.cond"
   },
   {
@@ -11484,15 +9023,7 @@
    "to": "aiLit.b"
   },
   {
-   "from": "found.value",
-   "to": "actA_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "actA_c.b"
-  },
-  {
-   "from": "actA_c.out",
+   "from": "found.truth",
    "to": "actA.cond"
   },
   {
@@ -11524,15 +9055,7 @@
    "to": "actStr.b"
   },
   {
-   "from": "found.value",
-   "to": "litA_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "litA_c.b"
-  },
-  {
-   "from": "litA_c.out",
+   "from": "found.truth",
    "to": "litA.cond"
   },
   {
@@ -13280,15 +10803,7 @@
    "to": "guOn.lblN1"
   },
   {
-   "from": "guOn.value",
-   "to": "gu_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "gu_c.b"
-  },
-  {
-   "from": "gu_c.out",
+   "from": "guOn.truth",
    "to": "gu.cond"
   },
   {
@@ -15200,15 +12715,7 @@
    "to": "recSId.row"
   },
   {
-   "from": "remT.value",
-   "to": "conNode_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "conNode_c.b"
-  },
-  {
-   "from": "conNode_c.out",
+   "from": "remT.truth",
    "to": "conNode.cond"
   },
   {
@@ -15264,15 +12771,7 @@
    "to": "isCj3.cj"
   },
   {
-   "from": "isCj0.value",
-   "to": "cp01_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "cp01_c.b"
-  },
-  {
-   "from": "cp01_c.out",
+   "from": "isCj0.truth",
    "to": "cp01.cond"
   },
   {
@@ -15284,15 +12783,7 @@
    "to": "cp01.b"
   },
   {
-   "from": "isCj2.value",
-   "to": "cp23_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "cp23_c.b"
-  },
-  {
-   "from": "cp23_c.out",
+   "from": "isCj2.truth",
    "to": "cp23.cond"
   },
   {
@@ -15308,15 +12799,7 @@
    "to": "cjLow.cj"
   },
   {
-   "from": "cjLow.value",
-   "to": "caughtPair_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "caughtPair_c.b"
-  },
-  {
-   "from": "caughtPair_c.out",
+   "from": "cjLow.truth",
    "to": "caughtPair.cond"
   },
   {
@@ -15577,142 +13060,102 @@
   },
   {
    "from": "stAdd1.value",
-   "to": "sg1_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "sg1_g.b"
-  },
-  {
-   "from": "sg1_g.out",
-   "to": "sg1.guard"
+   "to": "sg1.cond"
   },
   {
    "from": "world.debStart",
-   "to": "sg1.go"
+   "to": "sg1.trigger"
   },
   {
-   "from": "sg1.changed",
+   "from": "sg1.pass",
    "to": "stOn1.trigger"
   },
   {
    "from": "stAdd2.value",
-   "to": "sg2_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "sg2_g.b"
-  },
-  {
-   "from": "sg2_g.out",
-   "to": "sg2.guard"
+   "to": "sg2.cond"
   },
   {
    "from": "world.debStart",
-   "to": "sg2.go"
+   "to": "sg2.trigger"
   },
   {
-   "from": "sg2.changed",
+   "from": "sg2.pass",
    "to": "stOn2.trigger"
   },
   {
    "from": "stAdd3.value",
-   "to": "sg3_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "sg3_g.b"
-  },
-  {
-   "from": "sg3_g.out",
-   "to": "sg3.guard"
+   "to": "sg3.cond"
   },
   {
    "from": "world.debStart",
-   "to": "sg3.go"
+   "to": "sg3.trigger"
   },
   {
-   "from": "sg3.changed",
+   "from": "sg3.pass",
    "to": "stOn3.trigger"
   },
   {
    "from": "isMain.out",
-   "to": "sg4_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "sg4_g.b"
-  },
-  {
-   "from": "sg4_g.out",
-   "to": "sg4.guard"
+   "to": "sg4.cond"
   },
   {
    "from": "world.debStart",
-   "to": "sg4.go"
+   "to": "sg4.trigger"
   },
   {
-   "from": "sg4.changed",
+   "from": "sg4.pass",
    "to": "dMode.toStart"
   },
   {
-   "from": "sg4.changed",
+   "from": "sg4.pass",
    "to": "dDraw.in"
   },
   {
    "from": "isMain.out",
-   "to": "sg5_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "sg5_g.b"
-  },
-  {
-   "from": "sg5_g.out",
-   "to": "sg5.guard"
+   "to": "sg5.cond"
   },
   {
    "from": "world.debStart",
-   "to": "sg5.go"
+   "to": "sg5.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_da.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dlit.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dcl.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_ds1.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_ds2.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dst.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dsr.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_db.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dru.trigger"
   },
   {
-   "from": "sg5.changed",
+   "from": "sg5.pass",
    "to": "sd_dln.trigger"
   },
   {
@@ -15720,15 +13163,7 @@
    "to": "aiClar.index"
   },
   {
-   "from": "found.value",
-   "to": "baseClar_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "baseClar_c.b"
-  },
-  {
-   "from": "baseClar_c.out",
+   "from": "found.truth",
    "to": "baseClar.cond"
   },
   {
@@ -15809,82 +13244,50 @@
   },
   {
    "from": "foxOk.value",
-   "to": "fg1_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "fg1_g.b"
-  },
-  {
-   "from": "fg1_g.out",
-   "to": "fg1.guard"
+   "to": "fg1.cond"
   },
   {
    "from": "world.debInstinct",
-   "to": "fg1.go"
+   "to": "fg1.trigger"
   },
   {
-   "from": "fg1.changed",
+   "from": "fg1.pass",
    "to": "fxClrEv.trigger"
   },
   {
    "from": "foxOk.value",
-   "to": "fg2_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "fg2_g.b"
-  },
-  {
-   "from": "fg2_g.out",
-   "to": "fg2.guard"
+   "to": "fg2.cond"
   },
   {
    "from": "world.debInstinct",
-   "to": "fg2.go"
+   "to": "fg2.trigger"
   },
   {
-   "from": "fg2.changed",
+   "from": "fg2.pass",
    "to": "eSeen_add.trigger"
   },
   {
    "from": "foxOk.value",
-   "to": "fg3_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "fg3_g.b"
-  },
-  {
-   "from": "fg3_g.out",
-   "to": "fg3.guard"
+   "to": "fg3.cond"
   },
   {
    "from": "world.debInstinct",
-   "to": "fg3.go"
+   "to": "fg3.trigger"
   },
   {
-   "from": "fg3.changed",
+   "from": "fg3.pass",
    "to": "f_fox.trigger"
   },
   {
    "from": "foxOk.value",
-   "to": "fg4_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "fg4_g.b"
-  },
-  {
-   "from": "fg4_g.out",
-   "to": "fg4.guard"
+   "to": "fg4.cond"
   },
   {
    "from": "world.debInstinct",
-   "to": "fg4.go"
+   "to": "fg4.trigger"
   },
   {
-   "from": "fg4.changed",
+   "from": "fg4.pass",
    "to": "f_foxr.trigger"
   },
   {
@@ -17261,1722 +14664,1114 @@
   },
   {
    "from": "live.value",
-   "to": "lg1_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg1_g.b"
-  },
-  {
-   "from": "lg1_g.out",
-   "to": "lg1.guard"
+   "to": "lg1.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg1.go"
+   "to": "lg1.trigger"
   },
   {
-   "from": "lg1.changed",
+   "from": "lg1.pass",
    "to": "lkClrEv.trigger"
   },
   {
    "from": "live.value",
-   "to": "lg2_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg2_g.b"
-  },
-  {
-   "from": "lg2_g.out",
-   "to": "lg2.guard"
+   "to": "lg2.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg2.go"
+   "to": "lg2.trigger"
   },
   {
-   "from": "lg2.changed",
+   "from": "lg2.pass",
    "to": "eReveal_add.trigger"
   },
   {
    "from": "tObs.value",
-   "to": "lg3_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg3_g.b"
-  },
-  {
-   "from": "lg3_g.out",
-   "to": "lg3.guard"
+   "to": "lg3.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg3.go"
+   "to": "lg3.trigger"
   },
   {
-   "from": "lg3.changed",
+   "from": "lg3.pass",
    "to": "eTObs_add.trigger"
   },
   {
    "from": "tailR.value",
-   "to": "lg4_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg4_g.b"
-  },
-  {
-   "from": "lg4_g.out",
-   "to": "lg4.guard"
+   "to": "lg4.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg4.go"
+   "to": "lg4.trigger"
   },
   {
-   "from": "lg4.changed",
+   "from": "lg4.pass",
    "to": "eTRes_add.trigger"
   },
   {
    "from": "tFin.value",
-   "to": "lg5_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg5_g.b"
-  },
-  {
-   "from": "lg5_g.out",
-   "to": "lg5.guard"
+   "to": "lg5.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg5.go"
+   "to": "lg5.trigger"
   },
   {
-   "from": "lg5.changed",
+   "from": "lg5.pass",
    "to": "eTFin_add.trigger"
   },
   {
    "from": "tWrong.value",
-   "to": "lg6_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg6_g.b"
-  },
-  {
-   "from": "lg6_g.out",
-   "to": "lg6.guard"
+   "to": "lg6.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg6.go"
+   "to": "lg6.trigger"
   },
   {
-   "from": "lg6.changed",
+   "from": "lg6.pass",
    "to": "eTWrong_add.trigger"
   },
   {
    "from": "tailR.value",
-   "to": "lg7_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg7_g.b"
-  },
-  {
-   "from": "lg7_g.out",
-   "to": "lg7.guard"
+   "to": "lg7.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg7.go"
+   "to": "lg7.trigger"
   },
   {
-   "from": "lg7.changed",
+   "from": "lg7.pass",
    "to": "eTHk_add.trigger"
   },
   {
    "from": "eFragC.value",
-   "to": "lg8_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg8_g.b"
-  },
-  {
-   "from": "lg8_g.out",
-   "to": "lg8.guard"
+   "to": "lg8.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg8.go"
+   "to": "lg8.trigger"
   },
   {
-   "from": "lg8.changed",
+   "from": "lg8.pass",
    "to": "lFragC.trigger"
   },
   {
    "from": "eFragC.value",
-   "to": "lg9_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg9_g.b"
-  },
-  {
-   "from": "lg9_g.out",
-   "to": "lg9.guard"
+   "to": "lg9.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg9.go"
+   "to": "lg9.trigger"
   },
   {
-   "from": "lg9.changed",
+   "from": "lg9.pass",
    "to": "eFrag_add.trigger"
   },
   {
    "from": "eRemT.value",
-   "to": "lg10_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg10_g.b"
-  },
-  {
-   "from": "lg10_g.out",
-   "to": "lg10.guard"
+   "to": "lg10.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg10.go"
+   "to": "lg10.trigger"
   },
   {
-   "from": "lg10.changed",
+   "from": "lg10.pass",
    "to": "lRemT.trigger"
   },
   {
    "from": "eRemT.value",
-   "to": "lg11_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg11_g.b"
-  },
-  {
-   "from": "lg11_g.out",
-   "to": "lg11.guard"
+   "to": "lg11.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg11.go"
+   "to": "lg11.trigger"
   },
   {
-   "from": "lg11.changed",
+   "from": "lg11.pass",
    "to": "eRemTe_add.trigger"
   },
   {
    "from": "eSec.value",
-   "to": "lg12_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg12_g.b"
-  },
-  {
-   "from": "lg12_g.out",
-   "to": "lg12.guard"
+   "to": "lg12.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg12.go"
+   "to": "lg12.trigger"
   },
   {
-   "from": "lg12.changed",
+   "from": "lg12.pass",
    "to": "lSec.trigger"
   },
   {
    "from": "eSec.value",
-   "to": "lg13_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg13_g.b"
-  },
-  {
-   "from": "lg13_g.out",
-   "to": "lg13.guard"
+   "to": "lg13.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg13.go"
+   "to": "lg13.trigger"
   },
   {
-   "from": "lg13.changed",
+   "from": "lg13.pass",
    "to": "eSece_add.trigger"
   },
   {
    "from": "eRemP.value",
-   "to": "lg14_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg14_g.b"
-  },
-  {
-   "from": "lg14_g.out",
-   "to": "lg14.guard"
+   "to": "lg14.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg14.go"
+   "to": "lg14.trigger"
   },
   {
-   "from": "lg14.changed",
+   "from": "lg14.pass",
    "to": "lRemP.trigger"
   },
   {
    "from": "eRemP.value",
-   "to": "lg15_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg15_g.b"
-  },
-  {
-   "from": "lg15_g.out",
-   "to": "lg15.guard"
+   "to": "lg15.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg15.go"
+   "to": "lg15.trigger"
   },
   {
-   "from": "lg15.changed",
+   "from": "lg15.pass",
    "to": "eRemPe_add.trigger"
   },
   {
    "from": "eObsF.value",
-   "to": "lg16_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg16_g.b"
-  },
-  {
-   "from": "lg16_g.out",
-   "to": "lg16.guard"
+   "to": "lg16.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg16.go"
+   "to": "lg16.trigger"
   },
   {
-   "from": "lg16.changed",
+   "from": "lg16.pass",
    "to": "lObsF.trigger"
   },
   {
    "from": "eObsF.value",
-   "to": "lg17_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg17_g.b"
-  },
-  {
-   "from": "lg17_g.out",
-   "to": "lg17.guard"
+   "to": "lg17.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg17.go"
+   "to": "lg17.trigger"
   },
   {
-   "from": "lg17.changed",
+   "from": "lg17.pass",
    "to": "eObsFe_add.trigger"
   },
   {
    "from": "eRecR.value",
-   "to": "lg18_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg18_g.b"
-  },
-  {
-   "from": "lg18_g.out",
-   "to": "lg18.guard"
+   "to": "lg18.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg18.go"
+   "to": "lg18.trigger"
   },
   {
-   "from": "lg18.changed",
+   "from": "lg18.pass",
    "to": "lRecR.trigger"
   },
   {
    "from": "eRecR.value",
-   "to": "lg19_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg19_g.b"
-  },
-  {
-   "from": "lg19_g.out",
-   "to": "lg19.guard"
+   "to": "lg19.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg19.go"
+   "to": "lg19.trigger"
   },
   {
-   "from": "lg19.changed",
+   "from": "lg19.pass",
    "to": "eRecRe_add.trigger"
   },
   {
    "from": "eConC.value",
-   "to": "lg20_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg20_g.b"
-  },
-  {
-   "from": "lg20_g.out",
-   "to": "lg20.guard"
+   "to": "lg20.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg20.go"
+   "to": "lg20.trigger"
   },
   {
-   "from": "lg20.changed",
+   "from": "lg20.pass",
    "to": "eCon_add.trigger"
   },
   {
    "from": "eClashC.value",
-   "to": "lg21_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg21_g.b"
-  },
-  {
-   "from": "lg21_g.out",
-   "to": "lg21.guard"
+   "to": "lg21.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg21.go"
+   "to": "lg21.trigger"
   },
   {
-   "from": "lg21.changed",
+   "from": "lg21.pass",
    "to": "eClash_add.trigger"
   },
   {
    "from": "eParryC.value",
-   "to": "lg22_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg22_g.b"
-  },
-  {
-   "from": "lg22_g.out",
-   "to": "lg22.guard"
+   "to": "lg22.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg22.go"
+   "to": "lg22.trigger"
   },
   {
-   "from": "lg22.changed",
+   "from": "lg22.pass",
    "to": "eParry_add.trigger"
   },
   {
    "from": "eWhiffPC.value",
-   "to": "lg23_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg23_g.b"
-  },
-  {
-   "from": "lg23_g.out",
-   "to": "lg23.guard"
+   "to": "lg23.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg23.go"
+   "to": "lg23.trigger"
   },
   {
-   "from": "lg23.changed",
+   "from": "lg23.pass",
    "to": "eWhiffP_add.trigger"
   },
   {
    "from": "eWhiffOC.value",
-   "to": "lg24_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg24_g.b"
-  },
-  {
-   "from": "lg24_g.out",
-   "to": "lg24.guard"
+   "to": "lg24.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg24.go"
+   "to": "lg24.trigger"
   },
   {
-   "from": "lg24.changed",
+   "from": "lg24.pass",
    "to": "eWhiffO_add.trigger"
   },
   {
    "from": "eDmgCC.value",
-   "to": "lg25_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg25_g.b"
-  },
-  {
-   "from": "lg25_g.out",
-   "to": "lg25.guard"
+   "to": "lg25.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg25.go"
+   "to": "lg25.trigger"
   },
   {
-   "from": "lg25.changed",
+   "from": "lg25.pass",
    "to": "eDmgC_add.trigger"
   },
   {
    "from": "eDmgKC.value",
-   "to": "lg26_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg26_g.b"
-  },
-  {
-   "from": "lg26_g.out",
-   "to": "lg26.guard"
+   "to": "lg26.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg26.go"
+   "to": "lg26.trigger"
   },
   {
-   "from": "lg26.changed",
+   "from": "lg26.pass",
    "to": "eDmgK_add.trigger"
   },
   {
    "from": "eBr.value",
-   "to": "lg27_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg27_g.b"
-  },
-  {
-   "from": "lg27_g.out",
-   "to": "lg27.guard"
+   "to": "lg27.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg27.go"
+   "to": "lg27.trigger"
   },
   {
-   "from": "lg27.changed",
+   "from": "lg27.pass",
    "to": "brEach.trigger"
   },
   {
    "from": "eBr.value",
-   "to": "lg28_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg28_g.b"
-  },
-  {
-   "from": "lg28_g.out",
-   "to": "lg28.guard"
+   "to": "lg28.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg28.go"
+   "to": "lg28.trigger"
   },
   {
-   "from": "lg28.changed",
+   "from": "lg28.pass",
    "to": "lBrClr.trigger"
   },
   {
    "from": "eBr.value",
-   "to": "lg29_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg29_g.b"
-  },
-  {
-   "from": "lg29_g.out",
-   "to": "lg29.guard"
+   "to": "lg29.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg29.go"
+   "to": "lg29.trigger"
   },
   {
-   "from": "lg29.changed",
+   "from": "lg29.pass",
    "to": "eBrRes_add.trigger"
   },
   {
    "from": "eBr.value",
-   "to": "lg30_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg30_g.b"
-  },
-  {
-   "from": "lg30_g.out",
-   "to": "lg30.guard"
+   "to": "lg30.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg30.go"
+   "to": "lg30.trigger"
   },
   {
-   "from": "lg30.changed",
+   "from": "lg30.pass",
    "to": "eRonpa_add.trigger"
   },
   {
    "from": "eBrDmgC.value",
-   "to": "lg31_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg31_g.b"
-  },
-  {
-   "from": "lg31_g.out",
-   "to": "lg31.guard"
+   "to": "lg31.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg31.go"
+   "to": "lg31.trigger"
   },
   {
-   "from": "lg31.changed",
+   "from": "lg31.pass",
    "to": "eBrDmg_add.trigger"
   },
   {
    "from": "eMissPB.value",
-   "to": "lg32_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg32_g.b"
-  },
-  {
-   "from": "lg32_g.out",
-   "to": "lg32.guard"
+   "to": "lg32.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg32.go"
+   "to": "lg32.trigger"
   },
   {
-   "from": "lg32.changed",
+   "from": "lg32.pass",
    "to": "eMissPB1_add.trigger"
   },
   {
    "from": "eMissPB.value",
-   "to": "lg33_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg33_g.b"
-  },
-  {
-   "from": "lg33_g.out",
-   "to": "lg33.guard"
+   "to": "lg33.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg33.go"
+   "to": "lg33.trigger"
   },
   {
-   "from": "lg33.changed",
+   "from": "lg33.pass",
    "to": "eMissPB2_add.trigger"
   },
   {
    "from": "eDmgPC.value",
-   "to": "lg34_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg34_g.b"
-  },
-  {
-   "from": "lg34_g.out",
-   "to": "lg34.guard"
+   "to": "lg34.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg34.go"
+   "to": "lg34.trigger"
   },
   {
-   "from": "lg34.changed",
+   "from": "lg34.pass",
    "to": "eDmgP_add.trigger"
   },
   {
    "from": "eTrapC.value",
-   "to": "lg35_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg35_g.b"
-  },
-  {
-   "from": "lg35_g.out",
-   "to": "lg35.guard"
+   "to": "lg35.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg35.go"
+   "to": "lg35.trigger"
   },
   {
-   "from": "lg35.changed",
+   "from": "lg35.pass",
    "to": "eTrap_add.trigger"
   },
   {
    "from": "eAsB.value",
-   "to": "lg36_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg36_g.b"
-  },
-  {
-   "from": "lg36_g.out",
-   "to": "lg36.guard"
+   "to": "lg36.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg36.go"
+   "to": "lg36.trigger"
   },
   {
-   "from": "lg36.changed",
+   "from": "lg36.pass",
    "to": "eAsB1_add.trigger"
   },
   {
    "from": "eAsB.value",
-   "to": "lg37_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg37_g.b"
-  },
-  {
-   "from": "lg37_g.out",
-   "to": "lg37.guard"
+   "to": "lg37.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg37.go"
+   "to": "lg37.trigger"
   },
   {
-   "from": "lg37.changed",
+   "from": "lg37.pass",
    "to": "eAsB2_add.trigger"
   },
   {
    "from": "eAsB.value",
-   "to": "lg38_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg38_g.b"
-  },
-  {
-   "from": "lg38_g.out",
-   "to": "lg38.guard"
+   "to": "lg38.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg38.go"
+   "to": "lg38.trigger"
   },
   {
-   "from": "lg38.changed",
+   "from": "lg38.pass",
    "to": "lAsMark.trigger"
   },
   {
    "from": "eCritDC.value",
-   "to": "lg39_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg39_g.b"
-  },
-  {
-   "from": "lg39_g.out",
-   "to": "lg39.guard"
+   "to": "lg39.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg39.go"
+   "to": "lg39.trigger"
   },
   {
-   "from": "lg39.changed",
+   "from": "lg39.pass",
    "to": "eCritD_add.trigger"
   },
   {
    "from": "eCrit.value",
-   "to": "lg40_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg40_g.b"
-  },
-  {
-   "from": "lg40_g.out",
-   "to": "lg40.guard"
+   "to": "lg40.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg40.go"
+   "to": "lg40.trigger"
   },
   {
-   "from": "lg40.changed",
+   "from": "lg40.pass",
    "to": "eSnap_add.trigger"
   },
   {
    "from": "eCrit.value",
-   "to": "lg41_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg41_g.b"
-  },
-  {
-   "from": "lg41_g.out",
-   "to": "lg41.guard"
+   "to": "lg41.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg41.go"
+   "to": "lg41.trigger"
   },
   {
-   "from": "lg41.changed",
+   "from": "lg41.pass",
    "to": "lSnap.trigger"
   },
   {
    "from": "eCrit.value",
-   "to": "lg42_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg42_g.b"
-  },
-  {
-   "from": "lg42_g.out",
-   "to": "lg42.guard"
+   "to": "lg42.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg42.go"
+   "to": "lg42.trigger"
   },
   {
-   "from": "lg42.changed",
+   "from": "lg42.pass",
    "to": "eInf_add.trigger"
   },
   {
    "from": "eAsWC.value",
-   "to": "lg43_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg43_g.b"
-  },
-  {
-   "from": "lg43_g.out",
-   "to": "lg43.guard"
+   "to": "lg43.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg43.go"
+   "to": "lg43.trigger"
   },
   {
-   "from": "lg43.changed",
+   "from": "lg43.pass",
    "to": "eAsW_add.trigger"
   },
   {
    "from": "eAsSC.value",
-   "to": "lg44_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg44_g.b"
-  },
-  {
-   "from": "lg44_g.out",
-   "to": "lg44.guard"
+   "to": "lg44.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg44.go"
+   "to": "lg44.trigger"
   },
   {
-   "from": "lg44.changed",
+   "from": "lg44.pass",
    "to": "eAsS_add.trigger"
   },
   {
    "from": "eHealC.value",
-   "to": "lg45_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg45_g.b"
-  },
-  {
-   "from": "lg45_g.out",
-   "to": "lg45.guard"
+   "to": "lg45.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg45.go"
+   "to": "lg45.trigger"
   },
   {
-   "from": "lg45.changed",
+   "from": "lg45.pass",
    "to": "eHeal_add.trigger"
   },
   {
    "from": "eShLC.value",
-   "to": "lg46_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg46_g.b"
-  },
-  {
-   "from": "lg46_g.out",
-   "to": "lg46.guard"
+   "to": "lg46.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg46.go"
+   "to": "lg46.trigger"
   },
   {
-   "from": "lg46.changed",
+   "from": "lg46.pass",
    "to": "eShL_add.trigger"
   },
   {
    "from": "eShG.value",
-   "to": "lg47_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg47_g.b"
-  },
-  {
-   "from": "lg47_g.out",
-   "to": "lg47.guard"
+   "to": "lg47.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg47.go"
+   "to": "lg47.trigger"
   },
   {
-   "from": "lg47.changed",
+   "from": "lg47.pass",
    "to": "eShGe_add.trigger"
   },
   {
    "from": "eShG.value",
-   "to": "lg48_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg48_g.b"
-  },
-  {
-   "from": "lg48_g.out",
-   "to": "lg48.guard"
+   "to": "lg48.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg48.go"
+   "to": "lg48.trigger"
   },
   {
-   "from": "lg48.changed",
+   "from": "lg48.pass",
    "to": "eShCut_add.trigger"
   },
   {
    "from": "eSsLBC.value",
-   "to": "lg49_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg49_g.b"
-  },
-  {
-   "from": "lg49_g.out",
-   "to": "lg49.guard"
+   "to": "lg49.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg49.go"
+   "to": "lg49.trigger"
   },
   {
-   "from": "lg49.changed",
+   "from": "lg49.pass",
    "to": "eSsLB_add.trigger"
   },
   {
    "from": "eSsG.value",
-   "to": "lg50_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg50_g.b"
-  },
-  {
-   "from": "lg50_g.out",
-   "to": "lg50.guard"
+   "to": "lg50.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg50.go"
+   "to": "lg50.trigger"
   },
   {
-   "from": "lg50.changed",
+   "from": "lg50.pass",
    "to": "eSsGe_add.trigger"
   },
   {
    "from": "eSsG.value",
-   "to": "lg51_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg51_g.b"
-  },
-  {
-   "from": "lg51_g.out",
-   "to": "lg51.guard"
+   "to": "lg51.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg51.go"
+   "to": "lg51.trigger"
   },
   {
-   "from": "lg51.changed",
+   "from": "lg51.pass",
    "to": "eSsCut_add.trigger"
   },
   {
    "from": "eSsLEC.value",
-   "to": "lg52_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg52_g.b"
-  },
-  {
-   "from": "lg52_g.out",
-   "to": "lg52.guard"
+   "to": "lg52.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg52.go"
+   "to": "lg52.trigger"
   },
   {
-   "from": "lg52.changed",
+   "from": "lg52.pass",
    "to": "eSsLE_add.trigger"
   },
   {
    "from": "eHkC.value",
-   "to": "lg53_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg53_g.b"
-  },
-  {
-   "from": "lg53_g.out",
-   "to": "lg53.guard"
+   "to": "lg53.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg53.go"
+   "to": "lg53.trigger"
   },
   {
-   "from": "lg53.changed",
+   "from": "lg53.pass",
    "to": "eHk_add.trigger"
   },
   {
    "from": "eHk3C.value",
-   "to": "lg54_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg54_g.b"
-  },
-  {
-   "from": "lg54_g.out",
-   "to": "lg54.guard"
+   "to": "lg54.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg54.go"
+   "to": "lg54.trigger"
   },
   {
-   "from": "lg54.changed",
+   "from": "lg54.pass",
    "to": "eHk3_add.trigger"
   },
   {
    "from": "eHkUpC.value",
-   "to": "lg55_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg55_g.b"
-  },
-  {
-   "from": "lg55_g.out",
-   "to": "lg55.guard"
+   "to": "lg55.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg55.go"
+   "to": "lg55.trigger"
   },
   {
-   "from": "lg55.changed",
+   "from": "lg55.pass",
    "to": "eHkUp_add.trigger"
   },
   {
    "from": "eHkLostC.value",
-   "to": "lg56_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg56_g.b"
-  },
-  {
-   "from": "lg56_g.out",
-   "to": "lg56.guard"
+   "to": "lg56.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg56.go"
+   "to": "lg56.trigger"
   },
   {
-   "from": "lg56.changed",
+   "from": "lg56.pass",
    "to": "eHkLost_add.trigger"
   },
   {
    "from": "eKjLBC.value",
-   "to": "lg57_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg57_g.b"
-  },
-  {
-   "from": "lg57_g.out",
-   "to": "lg57.guard"
+   "to": "lg57.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg57.go"
+   "to": "lg57.trigger"
   },
   {
-   "from": "lg57.changed",
+   "from": "lg57.pass",
    "to": "eKjLB_add.trigger"
   },
   {
    "from": "eKjLEC.value",
-   "to": "lg58_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg58_g.b"
-  },
-  {
-   "from": "lg58_g.out",
-   "to": "lg58.guard"
+   "to": "lg58.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg58.go"
+   "to": "lg58.trigger"
   },
   {
-   "from": "lg58.changed",
+   "from": "lg58.pass",
    "to": "eKjLE_add.trigger"
   },
   {
    "from": "eKjG.value",
-   "to": "lg59_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg59_g.b"
-  },
-  {
-   "from": "lg59_g.out",
-   "to": "lg59.guard"
+   "to": "lg59.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg59.go"
+   "to": "lg59.trigger"
   },
   {
-   "from": "lg59.changed",
+   "from": "lg59.pass",
    "to": "eKjGe_add.trigger"
   },
   {
    "from": "eKjG.value",
-   "to": "lg60_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg60_g.b"
-  },
-  {
-   "from": "lg60_g.out",
-   "to": "lg60.guard"
+   "to": "lg60.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg60.go"
+   "to": "lg60.trigger"
   },
   {
-   "from": "lg60.changed",
+   "from": "lg60.pass",
    "to": "eKjCut_add.trigger"
   },
   {
    "from": "eEndC.value",
-   "to": "lg61_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg61_g.b"
-  },
-  {
-   "from": "lg61_g.out",
-   "to": "lg61.guard"
+   "to": "lg61.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg61.go"
+   "to": "lg61.trigger"
   },
   {
-   "from": "lg61.changed",
+   "from": "lg61.pass",
    "to": "eEnd_add.trigger"
   },
   {
    "from": "eTS.value",
-   "to": "lg62_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg62_g.b"
-  },
-  {
-   "from": "lg62_g.out",
-   "to": "lg62.guard"
+   "to": "lg62.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg62.go"
+   "to": "lg62.trigger"
   },
   {
-   "from": "lg62.changed",
+   "from": "lg62.pass",
    "to": "lTS.trigger"
   },
   {
    "from": "eTS.value",
-   "to": "lg63_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg63_g.b"
-  },
-  {
-   "from": "lg63_g.out",
-   "to": "lg63.guard"
+   "to": "lg63.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg63.go"
+   "to": "lg63.trigger"
   },
   {
-   "from": "lg63.changed",
+   "from": "lg63.pass",
    "to": "eTS1_add.trigger"
   },
   {
    "from": "eTS.value",
-   "to": "lg64_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg64_g.b"
-  },
-  {
-   "from": "lg64_g.out",
-   "to": "lg64.guard"
+   "to": "lg64.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg64.go"
+   "to": "lg64.trigger"
   },
   {
-   "from": "lg64.changed",
+   "from": "lg64.pass",
    "to": "eTS2_add.trigger"
   },
   {
    "from": "eTS.value",
-   "to": "lg65_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg65_g.b"
-  },
-  {
-   "from": "lg65_g.out",
-   "to": "lg65.guard"
+   "to": "lg65.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg65.go"
+   "to": "lg65.trigger"
   },
   {
-   "from": "lg65.changed",
+   "from": "lg65.pass",
    "to": "eTS3_add.trigger"
   },
   {
    "from": "eRecS.value",
-   "to": "lg66_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg66_g.b"
-  },
-  {
-   "from": "lg66_g.out",
-   "to": "lg66.guard"
+   "to": "lg66.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg66.go"
+   "to": "lg66.trigger"
   },
   {
-   "from": "lg66.changed",
+   "from": "lg66.pass",
    "to": "lRecS.trigger"
   },
   {
    "from": "eRecS.value",
-   "to": "lg67_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg67_g.b"
-  },
-  {
-   "from": "lg67_g.out",
-   "to": "lg67.guard"
+   "to": "lg67.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg67.go"
+   "to": "lg67.trigger"
   },
   {
-   "from": "lg67.changed",
+   "from": "lg67.pass",
    "to": "eRecSe_add.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg68_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg68_g.b"
-  },
-  {
-   "from": "lg68_g.out",
-   "to": "lg68.guard"
+   "to": "lg68.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg68.go"
+   "to": "lg68.trigger"
   },
   {
-   "from": "lg68.changed",
+   "from": "lg68.pass",
    "to": "eVoid1_add.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg69_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg69_g.b"
-  },
-  {
-   "from": "lg69_g.out",
-   "to": "lg69.guard"
+   "to": "lg69.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg69.go"
+   "to": "lg69.trigger"
   },
   {
-   "from": "lg69.changed",
+   "from": "lg69.pass",
    "to": "eVoid2_add.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg70_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg70_g.b"
-  },
-  {
-   "from": "lg70_g.out",
-   "to": "lg70.guard"
+   "to": "lg70.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg70.go"
+   "to": "lg70.trigger"
   },
   {
-   "from": "lg70.changed",
+   "from": "lg70.pass",
    "to": "eVoid3_add.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg71_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg71_g.b"
-  },
-  {
-   "from": "lg71_g.out",
-   "to": "lg71.guard"
+   "to": "lg71.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg71.go"
+   "to": "lg71.trigger"
   },
   {
-   "from": "lg71.changed",
+   "from": "lg71.pass",
    "to": "lVoidT.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg72_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg72_g.b"
-  },
-  {
-   "from": "lg72_g.out",
-   "to": "lg72.guard"
+   "to": "lg72.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg72.go"
+   "to": "lg72.trigger"
   },
   {
-   "from": "lg72.changed",
+   "from": "lg72.pass",
    "to": "eVoid4_add.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg73_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg73_g.b"
-  },
-  {
-   "from": "lg73_g.out",
-   "to": "lg73.guard"
+   "to": "lg73.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg73.go"
+   "to": "lg73.trigger"
   },
   {
-   "from": "lg73.changed",
+   "from": "lg73.pass",
    "to": "lVoidN.trigger"
   },
   {
    "from": "eVoid.value",
-   "to": "lg74_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg74_g.b"
-  },
-  {
-   "from": "lg74_g.out",
-   "to": "lg74.guard"
+   "to": "lg74.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg74.go"
+   "to": "lg74.trigger"
   },
   {
-   "from": "lg74.changed",
+   "from": "lg74.pass",
    "to": "eVoid5_add.trigger"
   },
   {
    "from": "live.value",
-   "to": "lg75_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg75_g.b"
-  },
-  {
-   "from": "lg75_g.out",
-   "to": "lg75.guard"
+   "to": "lg75.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg75.go"
+   "to": "lg75.trigger"
   },
   {
-   "from": "lg75.changed",
+   "from": "lg75.pass",
    "to": "dMode.toLock"
   },
   {
-   "from": "lg75.changed",
+   "from": "lg75.pass",
    "to": "dDraw.in"
   },
   {
    "from": "live.value",
-   "to": "lg76_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "lg76_g.b"
-  },
-  {
-   "from": "lg76_g.out",
-   "to": "lg76.guard"
+   "to": "lg76.cond"
   },
   {
    "from": "world.debLock",
-   "to": "lg76.go"
+   "to": "lg76.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_act.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_r.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_php.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_ohp.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_g1.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_g2.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_g3.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_flo.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_fseq.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_sh.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_tail.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_tl.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_voids.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_hk.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_kj.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_kjp.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_kjh.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_par.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_ss.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_as.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_fox.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_foxr.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_inf.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_con.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_over.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_out.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_lbl.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_gold.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_lnr.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_lrs.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_nrn.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_man.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_r3f.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_r3p.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_nco.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_h1.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_h2.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_lpa.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_soph.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_pln.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_da.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dlit.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dcl.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_ds1.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_ds2.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dst.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dsr.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_db.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dru.trigger"
   },
   {
-   "from": "lg76.changed",
+   "from": "lg76.pass",
    "to": "w_dln.trigger"
   },
   {
@@ -19061,82 +15856,66 @@
   },
   {
    "from": "live.value",
-   "to": "rg1_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "rg1_g.b"
-  },
-  {
-   "from": "rg1_g.out",
-   "to": "rg1.guard"
+   "to": "rg1.cond"
   },
   {
    "from": "world.debRedecide",
-   "to": "rg1.go"
+   "to": "rg1.trigger"
   },
   {
-   "from": "rg1.changed",
+   "from": "rg1.pass",
    "to": "dMode.toRe"
   },
   {
-   "from": "rg1.changed",
+   "from": "rg1.pass",
    "to": "dDraw.in"
   },
   {
    "from": "live.value",
-   "to": "rg2_g.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "rg2_g.b"
-  },
-  {
-   "from": "rg2_g.out",
-   "to": "rg2.guard"
+   "to": "rg2.cond"
   },
   {
    "from": "world.debRedecide",
-   "to": "rg2.go"
+   "to": "rg2.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_da.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dlit.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dcl.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_ds1.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_ds2.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dst.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dsr.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_db.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dru.trigger"
   },
   {
-   "from": "rg2.changed",
+   "from": "rg2.pass",
    "to": "rd_dln.trigger"
   },
   {
@@ -19304,15 +16083,7 @@
    "to": "aiBasis.index"
   },
   {
-   "from": "found.value",
-   "to": "bSh1_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "bSh1_c.b"
-  },
-  {
-   "from": "bSh1_c.out",
+   "from": "found.truth",
    "to": "bSh1.cond"
   },
   {
@@ -19324,15 +16095,7 @@
    "to": "bSh1.b"
   },
   {
-   "from": "found.value",
-   "to": "bSh2_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "bSh2_c.b"
-  },
-  {
-   "from": "bSh2_c.out",
+   "from": "found.truth",
    "to": "bSh2.cond"
   },
   {
@@ -19344,15 +16107,7 @@
    "to": "bSh2.b"
   },
   {
-   "from": "found.value",
-   "to": "bStar_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "bStar_c.b"
-  },
-  {
-   "from": "bStar_c.out",
+   "from": "found.truth",
    "to": "bStar.cond"
   },
   {
@@ -19364,15 +16119,7 @@
    "to": "bStar.b"
   },
   {
-   "from": "found.value",
-   "to": "bBasis_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "bBasis_c.b"
-  },
-  {
-   "from": "bBasis_c.out",
+   "from": "found.truth",
    "to": "bBasis.cond"
   },
   {
@@ -19384,15 +16131,7 @@
    "to": "bBasis.b"
   },
   {
-   "from": "plainTell.value",
-   "to": "tClar_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tClar_c.b"
-  },
-  {
-   "from": "tClar_c.out",
+   "from": "plainTell.truth",
    "to": "tClar.cond"
   },
   {
@@ -19404,15 +16143,7 @@
    "to": "tClar.b"
   },
   {
-   "from": "plainTell.value",
-   "to": "tSh1_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tSh1_c.b"
-  },
-  {
-   "from": "tSh1_c.out",
+   "from": "plainTell.truth",
    "to": "tSh1.cond"
   },
   {
@@ -19424,15 +16155,7 @@
    "to": "tSh1.b"
   },
   {
-   "from": "plainTell.value",
-   "to": "tSh2_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tSh2_c.b"
-  },
-  {
-   "from": "tSh2_c.out",
+   "from": "plainTell.truth",
    "to": "tSh2.cond"
   },
   {
@@ -19444,15 +16167,7 @@
    "to": "tSh2.b"
   },
   {
-   "from": "plainTell.value",
-   "to": "tStar_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tStar_c.b"
-  },
-  {
-   "from": "tStar_c.out",
+   "from": "plainTell.truth",
    "to": "tStar.cond"
   },
   {
@@ -19464,15 +16179,7 @@
    "to": "tStar.b"
   },
   {
-   "from": "foxNow.value",
-   "to": "tBasisA_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tBasisA_c.b"
-  },
-  {
-   "from": "tBasisA_c.out",
+   "from": "foxNow.truth",
    "to": "tBasisA.cond"
   },
   {
@@ -19544,15 +16251,7 @@
    "to": "lineFromRow.s_tail"
   },
   {
-   "from": "lineFromRow.value",
-   "to": "tLine_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "tLine_c.b"
-  },
-  {
-   "from": "tLine_c.out",
+   "from": "lineFromRow.truth",
    "to": "tLine.cond"
   },
   {
@@ -19572,15 +16271,7 @@
    "to": "gIs0.gIdx"
   },
   {
-   "from": "gIs0.value",
-   "to": "gst01_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "gst01_c.b"
-  },
-  {
-   "from": "gst01_c.out",
+   "from": "gIs0.truth",
    "to": "gst01.cond"
   },
   {
@@ -19596,15 +16287,7 @@
    "to": "gIs2.gIdx"
   },
   {
-   "from": "gIs2.value",
-   "to": "gst23_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "gst23_c.b"
-  },
-  {
-   "from": "gst23_c.out",
+   "from": "gIs2.truth",
    "to": "gst23.cond"
   },
   {
@@ -19620,15 +16303,7 @@
    "to": "gLow.gIdx"
   },
   {
-   "from": "gLow.value",
-   "to": "gstA_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "gstA_c.b"
-  },
-  {
-   "from": "gstA_c.out",
+   "from": "gLow.truth",
    "to": "gstA.cond"
   },
   {
@@ -19644,15 +16319,7 @@
    "to": "gNone.gIdx"
   },
   {
-   "from": "gNone.value",
-   "to": "gesture_c.a"
-  },
-  {
-   "from": "k52.out",
-   "to": "gesture_c.b"
-  },
-  {
-   "from": "gesture_c.out",
+   "from": "gNone.truth",
    "to": "gesture.cond"
   },
   {

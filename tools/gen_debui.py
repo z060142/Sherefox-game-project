@@ -15,21 +15,22 @@ import json
 from collections import Counter
 
 import gen_flows as F
-from gen_flows import Graph, Mux, load, split
+from gen_flows import Graph, Mux, load, split, tref
 
 PA = ["solid", "sophistry", "rebut", "observe"]          # debCmdKind words (opponents.playerActions), act 1..4
 OA = ["assert", "rush", "reinforce", "trap", "scorched"]  # engine action words; reveal_opp 0..4
 STAGING = ["player_attack_vs_defense", "defense_vs_attack", "clash", "standoff"]   # reveal_combo 0..3
 BASIS_KEY = {"tutorial": "UI_DEB_TELL_BASIS_TUTORIAL", "observe": "UI_DEB_TELL_BASIS_OBSERVE",
-             "rule3": "UI_DEB_TELL_BASIS_RULE__3", "konju": "UI_DEB_TELL_BASIS_KONJU",
+             "rule3": "UI_DEB_TELL_BASIS_RULE", "konju": "UI_DEB_TELL_BASIS_KONJU",
              "fox": "UI_DEB_TELL_BASIS_INSTINCT"}   # "script" (the tail) and "" show no badge
+BASIS_N = {"rule3": 3}   # the badge's {n} (flowWord code of the basis rows)
 TYPE_KEY = {"culprit": "UI_TYPE_CRIMINAL", "protector": "UI_TYPE_PROTECTOR", "rival": "UI_TYPE_RIVAL",
             "nemesis": "UI_TYPE_NEMESIS", "mixed": "UI_TYPE_MIXED", "": ""}
 # Playback timing (01-systems §4.4 揭示演出: a round 3-6 s, cards fly in and flip in 0.5 s; §4.7: a full-screen
 # cut-in about 1.5 s, 論破 about 4 s, a stamp 0.5 s). Dwell after a record: 0 next tick, 1 a number / stamp / line,
 # 2 the reveal (cards and the statement), 3 a full-screen cut-in, 4 論破.
 DWELL = [0.001, 0.6, 1.4, 1.6, 4.0]
-START_DELAY = 0.1   # debStart / debLock / debInstinct -> the engine's outputs are on the bus (pulses cross graphs a tick late)
+START_DELAY = 0.1   # debStart / debLock / debInstinct -> the engine's outputs (written after this flow runs) are read
 HOLD = 1.5          # the settled numbers stay before the next round (or `next`)
 FINISH = 1.2        # phase 3 (debate over) before the step ends (or `next`)
 FRAGILE_MAX = 12    # F1..F12 (the engine numbers fragile nodes F<n>)
@@ -43,11 +44,16 @@ COLLECTIONS = {
     "progress": {"kind": "map", "type": "number", "capacity": 8},    # across chapters: trust (offset from 3)
     "uiNodeIds": {"kind": "list", "type": "string", "capacity": 16},
     "uiShat": {"kind": "list", "type": "string", "capacity": 16, "unique": True},
-    "uiNodes": {"kind": "list", "type": "string", "capacity": 16},
-    "uiChains": {"kind": "list", "type": "string", "capacity": SLOTS},
+    "uiNodes": {"kind": "map", "type": "number", "capacity": 16},          # debate.nodes: node -> state
+    "uiChains": {"kind": "map", "type": "number", "capacity": SLOTS},      # debate.chains: card -> chain
+    "uiChPos": {"kind": "map", "type": "number", "capacity": SLOTS},       # card -> pos
+    "uiChLink": {"kind": "map", "type": "number", "capacity": SLOTS},      # card -> link
+    "uiChSel": {"kind": "map", "type": "bool", "capacity": SLOTS},         # card -> in the chosen segment
     "uiCands": {"kind": "list", "type": "string", "capacity": 24, "unique": True},
     "uiParryAll": {"kind": "list", "type": "string", "capacity": 24},
     "uiParry": {"kind": "list", "type": "string", "capacity": 24},
+    "uiActOn": {"kind": "list", "type": "bool", "capacity": 4},           # debate.act_enabled (bare)
+    "uiActWhy": {"kind": "list", "type": "string", "capacity": 4},        # debate.act_reason: string keys (bare)
     "evF": {"kind": "list", "type": "string", "capacity": 8},
     "evN": {"kind": "list", "type": "number", "capacity": 8},
     "resStats": {"kind": "map", "type": "string", "capacity": 12},
@@ -90,9 +96,9 @@ def result_line(case: str, chapter: int, scene: str, speaker: str) -> str:
 
 
 # Defeat costs (10-cases): Ch.2 E02_01 leaves with the client and G-01 becomes S-01; Ch.3 E03_04 is seized and the
-# trust drops (the trust row is added by the flow when the trust falls). The seized-card lines are the expanded
-# UI_RES_COST_SEIZE keys (tools/build_data.py expand_templates).
-LOSE_COSTS = {2: (["UI_RES_COST_SEIZE__E02_01"], "G-01"), 3: (["UI_RES_COST_SEIZE__E03_04"], "")}
+# trust drops (the trust row is added by the flow when the trust falls). The seized card's line is UI_RES_COST_SEIZE
+# with its name (atrium.textf).
+LOSE_COSTS = {2: ("E02_01", "G-01"), 3: ("E03_04", "")}
 
 
 def tables() -> dict[str, list[dict]]:
@@ -106,37 +112,27 @@ def tables() -> dict[str, list[dict]]:
         mode = 2 if o["kind"] == "pudding" else 1 if o["kind"] == "warmup" else 0
         st = next((s for s in steps if s["arg"] == o["id"]), None)
         line = result_line(o["id"], o["chapter"], st["scene"], o["speaker"]) if st and mode != 1 else ""
-        costs, ungold = LOSE_COSTS.get(o["chapter"], ([], "")) if mode == 0 else ([], "")
+        seize, ungold = LOSE_COSTS.get(o["chapter"], ("", "")) if mode == 0 else ("", "")
         after = [e["id"] for e in ev if e["chapter"] == o["chapter"] and e["obtain"] == "afterDebate"] if mode != 1 else []
         case_rows.append({"id": o["id"], "chapter": o["chapter"], "mode": mode, "char": chars.get(o["speaker"], ""),
                           "nameKey": o["speaker"], "typeKey": TYPE_KEY[o["type"]], "handPer": o["handPerMissed"],
                           "hpPer": o["hpPerMissed"], "hand": o["hand"] if mode == 1 else "",
                           "soph": int("sophistry" in split(o["playerActions"])),
-                          "winLine": line, "costs": ",".join(costs), "ungold": ungold, "after": ",".join(after)})
+                          "winLine": line, "seize": seize, "ungold": ungold, "after": ",".join(after)})
 
     word = ([{"key": f"pa:{w}", "code": i, "text": ""} for i, w in enumerate(PA)]
             + [{"key": f"oa:{w}", "code": i, "text": ""} for i, w in enumerate(OA)]
             + [{"key": f"st:{w}", "code": i, "text": ""} for i, w in enumerate(STAGING)]
-            + [{"key": f"basis:{k}", "code": 0, "text": v} for k, v in BASIS_KEY.items()])
+            + [{"key": f"basis:{k}", "code": BASIS_N.get(k, 0), "text": v} for k, v in BASIS_KEY.items()])
 
-    # nodes list rows: "id|state" (state 0 normal, 1 lit, 2 fragile, 3 second claim, 4 shattering)
+    # debate.nodes: a node's text and source (src: always empty, docs/flows.md §7.1) for every node the list can
+    # show, the fragile nodes F1.. included (no text)
     ids = [(n["id"], n["textKey"]) for n in nodes] + [(f"F{i}", "") for i in range(1, FRAGILE_MAX + 1)]
-    node_view = [{"key": f"{i}|{s}", "id": i, "textKey": t, "state": s, "src": ""} for i, t in ids for s in range(5)]
-
-    # chains list rows: "slot|card|link|sel" (link 0 none, 1 solid, 2 sophistry, 5 assisted, 6 cut this round)
-    cards = [e for e in ev if e["onBoard"]]
-    chain_view = []
-    for s in range(SLOTS):
-        links = (0, 1, 2, 5, 6) if s % 5 < 4 else (0,)
-        for e in cards:
-            for lk in links:
-                for sel in (0, 1):
-                    chain_view.append({"key": f"{s}|{e['id']}|{lk}|{sel}", "chain": s // 5, "pos": s % 5,
-                                       "id": e["id"], "nameKey": e["nameKey"], "link": lk, "sel": bool(sel)})
+    node_view = [{"id": i, "textKey": t, "src": ""} for i, t in ids]
 
     # result line per event record (01-systems §8.6, §8.7): key "case|kind|sub" (sub: reveal "player/opponent",
-    # nodeRemoved the reason, nodeAdded the reason, otherwise the first field). Speaker-dependent lines use the
-    # expanded keys <KEY>__<speaker>.
+    # nodeRemoved the reason, nodeAdded the reason, otherwise the first field). The flow fills the lines' {name}
+    # (the opponent) and {n} (the counter's damage, the contradiction count, the tail penalty) with atrium.textf.
     ev_rows = []
     for o in opps:
         cid, spk = o["id"], o["speaker"]
@@ -149,26 +145,26 @@ def tables() -> dict[str, list[dict]]:
                 if p in ("solid", "sophistry"):
                     line = ("MSG_DEB_CLASH" if a in ("assert", "rush") else
                             ("MSG_DEB_REINFORCE_HALF" if p == "solid" else "MSG_DEB_HIT") if a == "reinforce" else
-                            f"MSG_DEB_TRAP_MISS__{spk}" if p == "solid" else "MSG_DEB_TRAP_HIT")
+                            "MSG_DEB_TRAP_MISS" if p == "solid" else "MSG_DEB_TRAP_HIT")
                 elif p == "rebut":
-                    line = "" if a in ("assert", "rush") else "MSG_DEB_PARRY_WHIFF"   # a hit: MSG_DEB_PARRY__<n>
+                    line = "" if a in ("assert", "rush") else "MSG_DEB_PARRY_WHIFF"   # a hit: MSG_DEB_PARRY
                 else:
                     line = ("MSG_DEB_OBSERVE_HALF" if a in ("assert", "rush") else
-                            f"MSG_DEB_SLIP__{spk}" if a == "reinforce" else f"MSG_DEB_TRAP_EXPOSED__{spk}")
+                            "MSG_DEB_SLIP" if a == "reinforce" else "MSG_DEB_TRAP_EXPOSED")
                 put("reveal", f"{p}/{a}", line)
         for reason in ("chain", "parry"):
             put("nodeRemoved", reason, "MSG_DEB_SMASH")
         put("nodeRemoved", "fragile_hit", "MSG_DEB_FRAGILE_HIT")
-        put("nodeAdded", "reinforce", f"MSG_DEB_REINFORCE__{spk}")
-        put("nodeAdded", "observe", f"MSG_DEB_SLIP__{spk}")
-        put("nodeAdded", "tail_start", f"MSG_TAIL_SECOND__{spk}")
-        put("statusGained", "shaken", f"MSG_DEB_SHAKEN__{spk}")
-        put("statusGained", "tail", f"MSG_TAIL_START__{spk}")
+        put("nodeAdded", "reinforce", "MSG_DEB_REINFORCE")
+        put("nodeAdded", "observe", "MSG_DEB_SLIP")
+        put("nodeAdded", "tail_start", "MSG_TAIL_SECOND")
+        put("statusGained", "shaken", "MSG_DEB_SHAKEN")
+        put("statusGained", "tail", "MSG_TAIL_START")
         put("break", "1", "UI_BREAK_LINE")
-        put("breakVoided", "", f"MSG_TAIL_TIMEOUT__{spk}")
-        put("tailResult", "0", "MSG_TAIL_WRONG__30")
+        put("breakVoided", "", "MSG_TAIL_TIMEOUT")
+        put("tailResult", "0", "MSG_TAIL_WRONG")
         for n in range(1, 5):
-            put("contradiction", n, f"MSG_CH1_CONTRA__{n}")
+            put("contradiction", n, "MSG_CH1_CONTRA")
         put("linkSnapped", "", "MSG_DEB_LINK_CUT")
         put("infamy", "", "MSG_DEB_WEAK_HIT")
         put("msg", "MSG_DEB_PARRY_BREAK_MISS", "MSG_DEB_PARRY_BREAK_MISS")
@@ -177,7 +173,7 @@ def tables() -> dict[str, list[dict]]:
         put("wCorrected", "CH03_W1", "MSG_DEB_SMASH")
         for n in range(1, 4):
             put("wMistake", n, "MSG_WARMUP_WRONG")
-        put("wAutoCorrected", "CH03_W1", f"MSG_WARMUP_FAIL__{spk}")
+        put("wAutoCorrected", "CH03_W1", "MSG_WARMUP_FAIL")
         put("wEnded", "1", "MSG_WARMUP_PERFECT")
     # (linkSnapped / infamy / breakVoided go by kind only: the flow looks them up with an empty sub field)
 
@@ -190,17 +186,17 @@ def tables() -> dict[str, list[dict]]:
                     "dwell": 4 if cid == "CUT_RONPA" else 3})
         cut.append({"key": f"{cid}|0", "big": "", "stamp": "STAMP_HACHIKU" if cid == "CUT_HACHIKU3" else "",
                     "n": 3 if cid == "CUT_HACHIKU3" else 0,
-                    "sub": "STAMP_HACHIKU_SUB__3" if cid == "CUT_HACHIKU3" else "",
+                    "sub": "STAMP_HACHIKU_SUB" if cid == "CUT_HACHIKU3" else "",
                     "dwell": 1 if cid == "CUT_HACHIKU3" else 0})
     for sid in ("STAMP_PARRY", "STAMP_TRAP", "STAMP_WHIFF", "STAMP_CLASH", "STAMP_SEEN", "STAMP_ASSIST",
                 "STAMP_HACHIKU", "STAMP_HACHIKU_LOST"):
-        cut.append({"key": f"{sid}|0", "big": "", "stamp": sid, "n": 0,
-                    "sub": "" if sid == "STAMP_HACHIKU" else sid + "_SUB", "dwell": 1})
+        cut.append({"key": f"{sid}|0", "big": "", "stamp": sid, "n": 0,   # STAMP_HACHIKU: n = the engine's 破竹
+                    "sub": sid + "_SUB", "dwell": 1})
     for n in (1, 2, 3):   # the engine's (ref's) 破竹 stamps per layer -> the 破竹 stamp ×n
         cut.append({"key": f"STAMP_HACHIKU{n}|0", "big": "", "stamp": "STAMP_HACHIKU", "n": n,
-                    "sub": f"STAMP_HACHIKU_SUB__{n}", "dwell": 1})
-    return {"flowDebCase": case_rows, "flowWord": word, "flowNodeView": node_view, "flowChainView": chain_view,
-            "flowEvLine": ev_rows, "flowCut": cut}
+                    "sub": "STAMP_HACHIKU_SUB", "dwell": 1})
+    return {"flowDebCase": case_rows, "flowWord": word, "flowNodeView": node_view, "flowEvLine": ev_rows,
+            "flowCut": cut}
 
 
 # ---------------------------------------------------------------------------------------------- helpers
@@ -296,7 +292,8 @@ def gen_debui() -> Graph:
     for c in ("char", "nameKey", "typeKey", "hand"):
         g.tget("dc_" + c, "flowDebCase", c, crow)
     erow = g.tfind("ecRow", "debCase", "id", case)
-    for c in ("ssOn", "brChain", "ch1", "conD", "conT", "rcap", "base", "fox", "assists", "cap"):
+    for c in ("ssOn", "brChain", "ch1", "conD", "conT", "rcap", "base", "per", "rushN", "rushD", "tw", "fox",
+              "assists", "cap"):
         g.tget("ec_" + c, "debCase", c, erow, "number")
     g.tget("ec_t", "debCase", "t", erow)
     # missed cards (01-systems §1.8, ruling D4): hand +handPerMissed and HP +hpPerMissed each, from debStart on
@@ -402,8 +399,7 @@ def gen_debui() -> Graph:
     g.x("canLock", "d_ph == 0 && activeN && (d_act == 1 ? ok1 : d_act == 2 ? ok2 : d_act == 3 ? ok3 : d_act == 4)")
     g.edge("canLock.truth", "ui#debate.can_lock")
 
-    # ---- summary (confirmation line) and preview. The templates have named placeholders (framework request:
-    # atrium.textf), so the line is the localized pieces joined by spaces (as the board's tag line).
+    # ---- summary (confirmation line, UI_DEB_LOCK_SUMMARY_*) and preview
     act_btn = g.lookup("actBtn", ["", "BTN_DEB_SOLID", "BTN_DEB_SOPH", "BTN_DEB_PARRY", "BTN_DEB_OBSERVE"], "d_act")
     g.text("actBtnT", act_btn)
     g.tget("tgtKey", "nodes", "textKey", "tRow")
@@ -420,8 +416,8 @@ def gen_debui() -> Graph:
     g.fmt("segArrow", "{a} → {b}", "nmaT", "nmbT")
     segText = g.sel("segText", g.b("segMultiC", g.x("segMulti", "segL > 1")), "segArrow", "nmaT")
     showT = g.sel("showT", hasCard, "nmcT", segText)
-    g.fmt("sumAtk", "{a}　{b}　{c}", "actBtnT", "tgtT", segText)
-    g.fmt("sumParry", "{a}　{b}　{c}", "actBtnT", "litT", showT)
+    g.textf("sumAtk", key="UI_DEB_LOCK_SUMMARY_ATK", action="actBtnT.text", node="tgtT.text", cards=segText)
+    g.textf("sumParry", key="UI_DEB_LOCK_SUMMARY_PARRY", node="litT.text", card=showT)
     g.text("sumObs", g.k("UI_DEB_LOCK_SUMMARY_OBSERVE"))
     # a hint while it cannot be locked
     hint = ssel(g, "hint", [
@@ -465,19 +461,17 @@ def gen_debui() -> Graph:
     g.edge(g.x("hpOShow", "max(0, d_hpO)"), "ui#debate.hp_opp")
     g.edge("L_OppMax", "ui#debate.hp_opp_max")
     g.x("roundN", "isWarmN ? L_dwRound : L_Round")
-    g.fmt("roundKey", "UI_DEB_ROUND__{a}", "roundN")
-    g.text("roundT", g.sel("roundKeyOn", g.b("roundOn", g.x("roundOnN", "roundN > 0")), "roundKey", g.k("")))
-    g.edge("roundT.text", "ui#debate.round_text")
+    g.textf("roundF", key="UI_DEB_ROUND", n="roundN")
+    g.edge(g.sel("roundT", g.b("roundOn", g.x("roundOnN", "roundN > 0")), "roundF", g.k("")), "ui#debate.round_text")
     g.x("rLeft", "max(0, L_Contra < ec_conT ? ec_conD - L_Round + 1 : ec_rcap - L_Round + 1)")
     # (a latch that passes 0 first pushes nothing into a format: numbers go through an expression)
     g.x("contraN", "L_Contra + 0")
     g.x("missN", "L_dwMistakes + 0")
-    g.fmt("ctrCh1", "UI_CH1_CONTRA__{a}_{b}", "contraN", "rLeft")
-    g.fmt("ctrWarm", "UI_WARMUP_MISS__{a}", "missN")
-    ctr = ssel(g, "ctrKey", [(g.b("ctrIs2", g.x("ctrIs2N", "dc_mode == 2 && roundN > 0")), "ctrCh1"),
-                             (g.b("ctrIs1", g.x("ctrIs1N", "dc_mode == 1 && roundN > 0")), "ctrWarm")], g.k(""))
-    g.text("ctrT", ctr)
-    g.edge("ctrT.text", "ui#debate.counter_text")
+    g.textf("ctrCh1", key="UI_CH1_CONTRA", n="contraN", r="rLeft")
+    g.textf("ctrWarm", key="UI_WARMUP_MISS", n="missN")
+    ctr = ssel(g, "ctrT", [(g.b("ctrIs2", g.x("ctrIs2N", "dc_mode == 2 && roundN > 0")), "ctrCh1"),
+                           (g.b("ctrIs1", g.x("ctrIs1N", "dc_mode == 1 && roundN > 0")), "ctrWarm")], g.k(""))
+    g.edge(ctr, "ui#debate.counter_text")
     # tell (§4.4 預兆顯示)
     for nm, sig in (("ts1", "L_TellShown1"), ("ts2", "L_TellShown2"), ("tst", "L_TellStar")):
         g.fmt(nm + "K", "oa:{a}", sig)
@@ -494,12 +488,13 @@ def gen_debui() -> Graph:
     g.x("tellClar", "isWarmN ? 0 : fuzzyN")
     g.edge("tellClar", "ui#debate.tell_clarity")
     g.fmt("basisK", "basis:{a}", "L_TellBasis")
-    g.text("basisT", g.tget("basisKey", "flowWord", "text", g.tfind("basisR", "flowWord", "key", "basisK")))
-    g.edge(g.sel("basisOut", "isWarmC.out", g.k(""), "basisT.text"), "ui#debate.tell_basis")
-    g.fmt("starK", "UI_DEB_TELL_LIKELY__{a}", "L_TellStarRule")
-    g.text("starT", g.sel("starKOn", g.b("starOn", g.x("starOnN", "L_TellStarRule > 0 && !isWarmN")), "starK",
-                          g.k("")))
-    g.edge("starT.text", "ui#debate.tell_star_text")
+    g.tfind("basisR", "flowWord", "key", "basisK")
+    g.text("basisT", g.tget("basisKey", "flowWord", "text", "basisR"))
+    g.textf("basisF", pattern="basisT.text", n=g.tget("basisN", "flowWord", "code", "basisR", "number"))
+    g.edge(g.sel("basisOut", "isWarmC.out", g.k(""), "basisF"), "ui#debate.tell_basis")
+    g.textf("starF", key="UI_DEB_TELL_LIKELY", n="L_TellStarRule")
+    g.edge(g.sel("starT", g.b("starOn", g.x("starOnN", "L_TellStarRule > 0 && !isWarmN")), "starF", g.k("")),
+           "ui#debate.tell_star_text")
     g.text("tellLineT", "L_TellLine")
     g.edge(g.sel("tellLineOut", "isWarmC.out", g.k(""), "tellLineT.text"), "ui#debate.tell_line")
     g.text("gestT", "L_TellGesture")
@@ -509,13 +504,15 @@ def gen_debui() -> Graph:
     g.n("asrtN", g.cmp("asrtC", "L_TellShown1", g.k("assert")))
     g.n("asrt2N", g.cmp("asrt2C", "L_TellShown2", g.k("assert")))
     g.n("rush2N", g.cmp("rush2C", "L_TellShown2", g.k("rush")))
-    g.fmt("cpA", "UI_DEB_COUNTER_PREVIEW__{a}_{b}", "ec_base", "claimN")
-    g.fmt("cpR", "UI_DEB_COUNTER_PREVIEW_RUSH__{a}_{b}", "ec_base", "claimN")
-    cp = ssel(g, "cpKey", [(g.b("cpOff", g.x("cpOffN", "dc_mode != 0 || tailN")), g.k("")),
-                           (g.b("cpRush", g.x("cpRushN", "rushN && !fuzzyN")), "cpR"),
-                           (g.b("cpAsrt", g.x("cpAsrtN", "asrtN || asrt2N || rush2N || rushN")), "cpA")], g.k(""))
-    g.text("cpT", cp)
-    g.edge("cpT.text", "ui#debate.claim_preview")
+    # the claim's damage as the engine computes it (docs/debate-engine.md §3.1: 26 + 4n, onslaught x5/4)
+    g.x("cpDmgA", "ec_base + ec_per * claimN")
+    g.x("cpDmgR", "(ec_base + ec_per * claimN) * ec_rushN / ec_rushD")
+    g.textf("cpA", key="UI_DEB_COUNTER_PREVIEW", base="ec_base", n="claimN", dmg="cpDmgA")
+    g.textf("cpR", key="UI_DEB_COUNTER_PREVIEW_RUSH", base="ec_base", n="claimN", dmg="cpDmgR")
+    cp = ssel(g, "cpT", [(g.b("cpOff", g.x("cpOffN", "dc_mode != 0 || tailN")), g.k("")),
+                         (g.b("cpRush", g.x("cpRushN", "rushN && !fuzzyN")), "cpR"),
+                         (g.b("cpAsrt", g.x("cpAsrtN", "asrtN || asrt2N || rush2N || rushN")), "cpA")], g.k(""))
+    g.edge(cp, "ui#debate.claim_preview")
     g.edge("handN", "ui#debate.hand")
     g.edge("d_act", "ui#debate.sel_act")
     g.edge("L_InstinctLeft", "ui#debate.instinct_left")
@@ -538,7 +535,8 @@ def gen_debui() -> Graph:
     g.edge("s_fo", "ui#debate.float_opp")
     g.edge("s_fm", "ui#debate.float_me")
     g.text("rlT", "s_rl")
-    g.edge("rlT.text", "ui#debate.result_line")
+    g.mget("d_rln", "dbui", g.k("rln"))
+    g.edge(g.textf("rlF", pattern="rlT.text", name="oppName.text", n="d_rln"), "ui#debate.result_line")
 
     # ---- the stages run on a beat (every tick: the clock changes) and are chosen by the map dbui: a pulse path
     # from a stage back into its own condition would be a cycle (the flow is a DAG over pulse edges too), so a
@@ -592,7 +590,8 @@ def gen_debui() -> Graph:
     setn(rs, "r2", g.k(1))
 
     # nodes: uiNodeIds = the board's nodes when the round is shown (engine debOn; the warmup's claim); during the
-    # playback removed nodes shatter (uiShat) and added ones join; uiNodes = "id|state" rows of flowNodeView
+    # playback removed nodes shatter (uiShat) and added ones join; uiNodes = node -> state (0 normal, 1 lit,
+    # 2 fragile, 3 second claim, 4 shattering)
     def reset_ids(pulse: str, pre: str) -> None:
         g.edge(pulse, g.eff(pre + "IdClr", "atrium.coll.clear", "uiNodeIds"))
         g.edge(pulse, g.eff(pre + "ShClr", "atrium.coll.clear", "uiShat"))
@@ -603,7 +602,7 @@ def gen_debui() -> Graph:
                g.eff(pre + "IdW", "atrium.coll.add", "uiNodeIds", value="world.dwClaim"))
     reset_ids("nodesReset.out", "nr")
     nodes_list = g.merge("nodesList", rs2T)
-    g.edge(nodes_list, g.eff("nvClr", "atrium.coll.clear", "uiNodes"))
+    g.edge(nodes_list, g.eff("nvClr", "atrium.map.clear", "uiNodes"))
     g.node("nvEach", "atrium.coll.forEach", name="uiNodeIds")
     g.edge(nodes_list, "nvEach.trigger")
     nv = g.put("nv", "nvEach.item")
@@ -613,15 +612,16 @@ def gen_debui() -> Graph:
     g.tfind("nvRow", "debNode", "id", nv)
     g.x("nvReal", "nvRow >= 0")
     g.x("nvSt", "nvShat ? 4 : nvTail ? 3 : nvLit ? 1 : !nvReal ? 2 : 0")
-    g.fmt("nvKey", "{a}|{b}", nv, "nvSt")
-    g.edge("nvEach.each", g.eff("nvAdd", "atrium.coll.add", "uiNodes", value="nvKey"))
+    g.edge("nvEach.each", g.eff("nvAdd", "atrium.map.set", "uiNodes", key=nv, value="nvSt"))
     g.edge("nvEach.done", g.ui_list("nvList", "ui.debate.nodes", "uiNodes",
-                                    {"id": "id", "text": "textKey", "state": "state", "src": "src"},
-                                    join={"table": "flowNodeView", "column": "key"}, localize=["text"]))
+                                    {"id": "key", "text": tref("flowNodeView", "id", "textKey"), "state": "value",
+                                     "src": tref("flowNodeView", "id", "src")}, localize=["text"]))
 
-    # chains: uiChains = "slot|card|link|sel" of the chain slots (flowChainView)
+    # chains: the chain slots' cards in slot order, uiChains = card -> chain with uiChPos, uiChLink (0 none,
+    # 1 solid, 2 sophistry, 5 assisted, 6 cut this round), uiChSel
     chains_list = g.merge("chainsList", rs2T, selT)
-    g.edge(chains_list, g.eff("cvClr", "atrium.coll.clear", "uiChains"))
+    for coll in ("uiChains", "uiChPos", "uiChLink", "uiChSel"):
+        g.edge(chains_list, g.eff(f"cvClr_{coll}", "atrium.map.clear", coll))
     g.node("cvEach", "atrium.coll.forEach", name="debBoard")
     g.edge(g.when("cvDeb", chains_list, "isDebC.out"), "cvEach.trigger")
     ci, cc = g.put("ci", "cvEach.index"), g.put("cc", "cvEach.item")
@@ -634,12 +634,16 @@ def gen_debui() -> Graph:
     g.x("cvLink", "cvBase == 0 ? 0 : (cvHasSnap && cvSnap >= L_Round) ? 6 : cvAs ? 5 : cvBase")
     g.x("cvSel", "d_sa > 0 && ci >= segLo && ci <= segHi")
     g.x("cvOn", f"ci < {SLOTS} && cvCard")
-    g.fmt("cvKey", "{a}|{b}|{c}|{d}", ci, cc, "cvLink", "cvSel")
-    g.edge(g.when("cvG", "cvEach.each", "cvOn_t"), g.eff("cvAdd", "atrium.coll.add", "uiChains", value="cvKey"))
+    g.x("cvChain", "floor(ci / 5)")
+    g.x("cvPos", "ci - 5 * floor(ci / 5)")
+    cvG = g.when("cvG", "cvEach.each", "cvOn_t")
+    for coll, val in (("uiChains", "cvChain"), ("uiChPos", "cvPos"), ("uiChLink", "cvLink"), ("uiChSel", "cvSel_t")):
+        g.edge(cvG, g.eff(f"cvAdd_{coll}", "atrium.map.set", coll, key=cc, value=val))
     chains_out = g.merge("chainsOut", "cvEach.done", g.when("cvWarm", chains_list, "isWarmC.out"))
     g.edge(chains_out, g.ui_list("cvList", "ui.debate.chains", "uiChains",
-                                 {"chain": "chain", "pos": "pos", "id": "id", "name": "nameKey", "link": "link",
-                                  "sel": "sel"}, join={"table": "flowChainView", "column": "key"}, localize=["name"]))
+                                 {"chain": "value", "pos": "map:uiChPos", "id": "key",
+                                  "name": tref("flowCard", "id", "nameKey"), "link": "map:uiChLink",
+                                  "sel": "map:uiChSel"}, localize=["name"]))
 
     # rebut candidates that refute the lit node (A-5: appraised; the warmup takes its event cards as they are)
     g.edge(rs2T, g.eff("paClr", "atrium.coll.clear", "uiParryAll"))
@@ -651,17 +655,29 @@ def gen_debui() -> Graph:
     g.x("paOk", "hasLitN && pa_ref && (pa_full || isWarmN)")
     g.edge(g.when("paG", "paEach.each", "paOk_t"), g.eff("paAdd", "atrium.coll.add", "uiParryAll", value=pa))
     setn(rs2T, "r3", g.k(1))
-    # act_enabled (list<bool>) / act_reason (list<string>) are not written: atrium.ui.list writes an array of
-    # objects, which a list<bool> port rejects and a list<string> port shows as nothing (docs/flows.md §7.2).
-    # The flow still refuses a disabled action and says why on the confirmation line (msg).
+    # act_enabled (list<bool>) / act_reason (list<string>, localized keys): the four actions in button order, as
+    # value arrays (ui.list bare, AT-047), when a round's buttons are set (rs3) and when the language changes. The
+    # reason is the one the confirmation line gives when the disabled action is pressed (msgV below).
+    act_out = g.merge("actOut", rs3T, "langEnC.true", "langEnC.false")
+    for coll in ("uiActOn", "uiActWhy"):
+        g.edge(act_out, g.eff(f"actClr_{coll}", "atrium.coll.clear", coll))
+    for i in range(1, 5):
+        g.edge(act_out, g.eff(f"actOn{i}", "atrium.coll.add", "uiActOn", value=f"en{i}_t"))
+    why = {1: g.sel("why1d", "isDebC.out", why1, g.k("")), 2: g.sel("why2d", "isDebC.out", why2, g.k("")),
+           3: g.sel("why3d", "en3_t", g.k(""), msg3), 4: g.k("")}
+    for i in range(1, 5):
+        g.edge(act_out, g.eff(f"actWhy{i}", "atrium.coll.add", "uiActWhy", value=why[i]))
+    g.edge(act_out, g.ui_list("actOnList", "ui.debate.act_enabled", "uiActOn", {"v": "item"}, bare=True))
+    g.edge(act_out, g.ui_list("actWhyList", "ui.debate.act_reason", "uiActWhy", {"v": "item"}, localize=["v"],
+                              bare=True))
     picker = g.merge("picker", rs3T, selT)
     g.edge(picker, g.eff("ppClr", "atrium.coll.clear", "uiParry"))
     g.node("ppEach", "atrium.coll.forEach", name="uiParryAll")
     g.edge(g.when("ppG", picker, T("ppOn", "d_act == 3")), "ppEach.trigger")
     g.edge("ppEach.each", g.eff("ppAdd", "atrium.coll.add", "uiParry", value="ppEach.item"))
     pp_out = g.merge("ppOut", "ppEach.done", g.when("ppOff", picker, T("ppOffN", "d_act != 3")))
-    g.edge(pp_out, g.ui_list("ppList", "ui.debate.parry_cards", "uiParry", {"id": "item", "name": "nameKey"},
-                             join={"table": "flowCard", "column": "id"}, localize=["name"]))
+    g.edge(pp_out, g.ui_list("ppList", "ui.debate.parry_cards", "uiParry",
+                             {"id": "item", "name": tref("flowCard", "id", "nameKey")}, localize=["name"]))
 
     # ---- the player's choices (phase 0; docs/flows.md §3: value ports through .emitted)
     g.x("inOk", "activeN && d_ph == 0")
@@ -734,7 +750,8 @@ def gen_debui() -> Graph:
     g.edge(inP, "world.debInstinct")
     setn(inP, "instAt", "soon")
 
-    # lock: the command (held until the next lock: the engine reads it a tick after the pulse, §7.6), the pulse
+    # lock: the command values (on the bus before the pulse; the engine runs later in the tick and gets both in this
+    # tick, 05 §5.4), then the pulse
     lP = g.when("lockG", "ui#debate.lock", "canLock_t")
     # a single card that is a break by itself in the break round (Ch.1: E01_03 with the right reason; a strong card
     # when one strong card is the threshold, A-8) is shown as a one-card segment: the engine breaks on segments only
@@ -744,16 +761,16 @@ def gen_debui() -> Graph:
                    "(ec_ch1 ? pc_brk : pc_strong && 1 >= max(1, 1 + L_Voids - thrRed))")
     g.x("useSeg", "d_act == 1 || d_act == 2 || (d_act == 3 && !hasCardN)")
     kind = g.lookup("cmdKind", [""] + PA, "d_act")
-    g.edge(g.latch("cmdKindL", kind, lP), "world.debCmdKind")
+    g.edge(kind, "world.debCmdKind")
     g.x("cmdFrom", "pcBreak ? pcSlot : useSeg ? segA : -1")
     g.x("cmdTo", "pcBreak ? pcSlot : useSeg ? segB : -1")
-    g.edge(g.latch("cmdFromL", "cmdFrom", lP), "world.debCmdFrom")
-    g.edge(g.latch("cmdToL", "cmdTo", lP), "world.debCmdTo")
-    g.edge(g.latch("cmdCardL", g.sel("cmdCard", g.b("useCard", g.x("useCardN", "d_act == 3 && hasCardN && !pcBreak")),
-                                     "s_card", g.k("")), lP), "world.debCmdCard")
-    g.edge(g.latch("cmdTgtL", g.sel("cmdTgt", g.b("atkC", g.x("atkN", "d_act == 1 || d_act == 2")), "s_target",
-                                    g.k("")), lP), "world.debCmdTarget")
-    g.edge(g.latch("cmdAsL", g.x("cmdAs", "isDebN && d_armed"), lP), "world.debCmdAssist")
+    g.edge("cmdFrom", "world.debCmdFrom")
+    g.edge("cmdTo", "world.debCmdTo")
+    g.edge(g.sel("cmdCard", g.b("useCard", g.x("useCardN", "d_act == 3 && hasCardN && !pcBreak")), "s_card", g.k("")),
+           "world.debCmdCard")
+    g.edge(g.sel("cmdTgt", g.b("atkC", g.x("atkN", "d_act == 1 || d_act == 2")), "s_target", g.k("")),
+           "world.debCmdTarget")
+    g.edge(g.x("cmdAs", "isDebN && d_armed"), "world.debCmdAssist")
     g.edge(lP, "world.debLock")
     setn(lP, "ph", g.k(1))
     setn(lP, "maxc", g.x("maxcN", "max(d_maxc, useSeg ? segL : 1)"))
@@ -793,12 +810,16 @@ def gen_debui() -> Graph:
     g.fmt("evKey", "{a}|{b}|{c}", case, "f0", sub)
     erow2 = g.tfind("evRow", "flowEvLine", "key", "evKey")
     g.tget("evLine0", "flowEvLine", "line", erow2)
-    g.fmt("ctrLine", "MSG_DEB_PARRY__{a}", "n2")
-    line = g.sel("evLine", g.b("lnCtr", g.x("lnCtrN", "isDON && isCtrN")), "ctrLine", "evLine0")
+    line = g.sel("evLine", g.b("lnCtr", g.x("lnCtrN", "isDON && isCtrN")), g.k("MSG_DEB_PARRY"), "evLine0")
+    # the line's {n}: the counter's damage, the contradiction count, else the tail penalty (MSG_TAIL_WRONG)
+    g.n("isConN", g.cmp("isConC", "f0", g.k("contradiction")))
+    g.x("lineN", "lnCtrN ? n2 : isConN ? n1 : ec_tw")
     g.n("hasLineN", g.cmp("hasLineC", line, g.k(""), "ne"))
     g.x("isRevAny", "isRevN || isWRevN")
     setn(g.when("phTwo", parse, T("phTwoN", "!isRevAny")), "ph", g.k(2))
-    sets(g.when("lineG", parse, "hasLineC.out"), "rl", line)
+    lineP = g.when("lineG", parse, "hasLineC.out")
+    sets(lineP, "rl", line)
+    setn(lineP, "rln", "lineN")
     # reveal: the cards (reveal_me 1..4, reveal_opp 0..4, reveal_combo) and the statement (tells: the opponent's
     # action line when he attacks into a defence, Sherefox's when she attacks, the clash / standoff reactions;
     # the tail's 玉石俱焚 takes the cornered lines, ruling G3)
@@ -865,11 +886,8 @@ def gen_debui() -> Graph:
     g.tget("cutN", "flowCut", "n", crow2, "number")
     g.tget("cutSub", "flowCut", "sub", crow2)
     g.tget("cutDw", "flowCut", "dwell", crow2, "number")
-    g.n("hkStampN", g.cmp("hkStampC", "cutS", g.k("STAMP_HACHIKU")))
-    g.fmt("hkSub", "STAMP_HACHIKU_SUB__{a}", "world.debHachiku")
     g.put("world_hk", "world.debHachiku")
-    g.x("cutNOut", "cutN > 0 ? cutN : world_hk")
-    cutSubKey = g.sel("cutSubKey", g.b("hkSubOn", g.x("hkSubOnN", "hkStampN && cutN == 0")), "hkSub", "cutSub")
+    g.x("cutNOut", "cutN > 0 ? cutN : world_hk")   # the 破竹 stamp's layers (STAMP_HACHIKU_SUB {n})
     g.n("cutHasB", g.cmp("cutHasBC", "cutB", g.k(""), "ne"))
     g.n("cutHasS", g.cmp("cutHasSC", "cutS", g.k(""), "ne"))
     bigP = g.when("bigG", parse, T("bigOn", "isCutN && cutHasB && !d_fast"))
@@ -884,13 +902,14 @@ def gen_debui() -> Graph:
     g.edge(stamp.out("id", g.k("")), "ui#cutin.stamp")
     g.edge(stamp.out("n", g.k(0)), "ui#cutin.stamp_n")
     g.edge(stamp.seq, "ui#cutin.stamp_seq")
-    csub = Mux(g, "csub", ["key"])
-    csub.add(bigP, {"key": "cutSubKey"})
-    csub.add(stP, {"key": "cutSubKey"})
-    csub.add(inP, {"key": g.k("STAMP_SEEN_SUB")})
+    csub = Mux(g, "csub", ["key", "n"])
+    csub.add(bigP, {"key": "cutSub", "n": "cutNOut"})
+    csub.add(stP, {"key": "cutSub", "n": "cutNOut"})
+    csub.add(inP, {"key": g.k("STAMP_SEEN_SUB"), "n": g.k(0)})
     g.text("csubT", csub.out("key", g.k("")))
+    g.textf("csubF", pattern="csubT.text", n=csub.out("n", g.k(0)))
     # 大字譯名 (§4.6: on by default outside zh-TW; there is no settings screen): the subtitle in English
-    g.edge(g.sel("csubOut", "langEn", "csubT.text", g.k("")), "ui#cutin.subtitle")
+    g.edge(g.sel("csubOut", "langEn", "csubF", g.k("")), "ui#cutin.subtitle")
     # the dwell before the next record (skip / next set `fast`: every record next tick, no cut-ins)
     g.x("dwell", "d_fast ? 0 : isRevAny ? 2 : isCutN ? cutDw : (isDON || isDPN || isHealN || hasLineN) ? 1 : 0")
     g.lookup("dwellS", DWELL, "dwell")
@@ -940,7 +959,7 @@ def gen_result() -> Graph:
     crow = g.tfind("dcRow", "flowDebCase", "id", case)
     for c in ("mode",):
         g.tget("dc_" + c, "flowDebCase", c, crow, "number")
-    for c in ("winLine", "costs", "ungold", "after"):
+    for c in ("winLine", "seize", "ungold", "after"):
         g.tget("dc_" + c, "flowDebCase", c, crow)
     erow = g.tfind("ecRow", "debCase", "id", case)
     for c in ("fox", "assists", "hp"):
@@ -993,12 +1012,16 @@ def gen_result() -> Graph:
         g.edge(p, g.eff(f"stSet{i}", "atrium.map.set", "resStats", key=g.k(key), value=f"stS{i}"))
     g.edge(begin, g.ui_list("statsList", "ui.result.stats", "resStats", {"label": "key", "value": "value"},
                             localize=["label"]))
-    # costs on a defeat (§4.2, 10-cases)
+    # costs on a defeat (§4.2, 10-cases): the lines' text (UI_RES_COST_SEIZE names the card)
     g.edge(begin, g.eff("clrCosts", "atrium.coll.clear", "resCosts"))
     g.edge(g.when("costTrust", begin, T("costTrustN", "lossN && delta < 0")),
-           g.eff("costTrustAdd", "atrium.coll.add", "resCosts", value=g.k("UI_RES_COST_TRUST")))
-    g.edge(g.when("costG", begin, "lossC.out"), add_all(g, "costAdd", "resCosts", "dc_costs"))
-    g.edge(begin, g.ui_list("costList", "ui.result.costs", "resCosts", {"text": "item"}, localize=["text"]))
+           g.eff("costTrustAdd", "atrium.coll.add", "resCosts", value=g.text("costTrustT", g.k("UI_RES_COST_TRUST"))))
+    g.tget("seizeKey", "flowCard", "nameKey", g.tfind("seizeRow", "flowCard", "id", "dc_seize"))
+    g.textf("seizeT", key="UI_RES_COST_SEIZE", name=g.text("seizeName", "seizeKey"))
+    g.n("hasSeizeN", g.cmp("hasSeizeC", "dc_seize", g.k(""), "ne"))
+    g.edge(g.when("costG", begin, T("costSeizeN", "lossN && hasSeizeN")),
+           g.eff("costAdd", "atrium.coll.add", "resCosts", value="seizeT"))
+    g.edge(begin, g.ui_list("costList", "ui.result.costs", "resCosts", {"text": "item"}))
     g.edge(begin, g.eff("resOpen", "atrium.map.set", "dbui", key=g.k("res"), value=g.k(1)))
     g.mget("resOn", "dbui", g.k("res"))
 

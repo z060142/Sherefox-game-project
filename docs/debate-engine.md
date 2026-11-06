@@ -1,6 +1,6 @@
 # 論戰引擎（M4a：回合結算；M4b：對手 AI）
 
-狀態：M4b 草案 2026-11-06。依據：系統規格附錄 A（A-1 結算順序、A-2、A-4 對決表、A-5～A-15）、數值總表、`docs/rulings.md`（A*、B*、C*、D15）、參考模型 `ref/`（本里程碑的唯一判準：設計文字與 `ref/`＋裁決不一致時以後者為準）；XTAtrium docs 04、05 §5.4、08 §8.2、§8.3、§8.5。
+狀態：M4b 草案 2026-11-06；M5a（XTAtrium 5aad137：AT-043 派送內的值序修正、AT-041 `atrium.gate`／`expr.truth` 用於條件效果與 select，§3.1；`debScript` 以 `columns` 宣告，§2.4；§7 第 6 點的限制取消）。依據：系統規格附錄 A（A-1 結算順序、A-2、A-4 對決表、A-5～A-15）、數值總表、`docs/rulings.md`（A*、B*、C*、D15）、參考模型 `ref/`（本里程碑的唯一判準：設計文字與 `ref/`＋裁決不一致時以後者為準）；XTAtrium docs 04、05 §5.4、08 §8.2、§8.3、§8.5。
 
 本文件說明論戰引擎的介面（給之後的 debate UI 流圖）、內部做法、資料、驗證與已知限制。引擎有回合結算、熱身與對手 AI（M4b：A-3 的行動選擇與預兆，§3.4）；劇本列（A-11）與尾聲仍覆蓋 AI。尚未接 UI、不接主遊戲的步驟序列（`debate`／`warmup` 步驟仍是 `stubs`）。
 
@@ -21,10 +21,10 @@
 
 | 圖 | 節點／邊 |
 |---|---|
-| `debate_engine` | 1180／2441（M4c：`debOppBonus` +1 節點）；M4b 為 1179／2438（expr 375、table.get 141、compare 123、state 88、map.set 81、coll.add 69、map.get 54、format 53；M4a 為 966／1954，AI 約 +213） |
-| `debate_warmup` | 179／289 |
-| harness `driver`（`check_debate`） | 164／285 |
-| harness `driver`（`check_policy`） | 106／158 |
+| `debate_engine` | 1068／2217（M5a：87 個 `state`＋`compare` 脈衝閘換成 `atrium.gate`、25 個 select 條件改接運算式的 `truth`，−112；剩 `state` 1〔`dMode`〕、`compare` 11）；M4c 1180／2441（`debOppBonus` +1 節點）；M4b 為 1179／2438（expr 375、table.get 141、compare 123、state 88、map.set 81、coll.add 69、map.get 54、format 53；M4a 為 966／1954，AI 約 +213） |
+| `debate_warmup` | 169／270（M5a；M4c 180／292） |
+| harness `driver`（`check_debate`） | 156／269 |
+| harness `driver`（`check_policy`） | 97／140 |
 
 ## 2. 介面
 
@@ -46,7 +46,7 @@
 | `debCmdAssist` | number | 1＝本回合預先啟動援護（鎖定前下注，A-7） |
 | `debOppBonus` | number | 對手主導權起始值與最大值的加成（漏證，01-systems §1.8、裁決 D4：漏證數 × `opponents.hpPerMissed`）；只在有主導權的論戰生效（`c_oMax`＝`debCase.oMax`＋此值），由 debate UI 在 `debStart` 前寫好並保持到論戰結束（M4c） |
 | `debInstinct` | pulse | 鎖定前使用狐耳直覺（A-3）：模糊預兆改為明示真正行動，次數 −1，發 `STAMP_SEEN` |
-| `debLock` | pulse | 鎖定：結算本回合（A-1 第 2～5 步）、重述下一回合（第 1 步）並抽下一回合的對手決定（第 6 步，§3.4）。指令值要在 lock 之前寫好，而且保持到引擎處理該脈衝的 tick（§7 第 6 點） |
+| `debLock` | pulse | 鎖定：結算本回合（A-1 第 2～5 步）、重述下一回合（第 1 步）並抽下一回合的對手決定（第 6 步，§3.4）。指令值要在 lock 之前寫好（同 tick 先執行的圖、或更早；§7 第 6 點） |
 | `debRedecide` | pulse | 只給測試用（`check_policy.py`）：以目前儲存的狀態重抽本回合的對手決定，只寫決定鍵（§3.4）。遊戲不送 |
 
 輸出（引擎寫入；下一 tick 起可讀）：
@@ -111,7 +111,7 @@
 
 ### 2.4 劇本表 `debScript`（由遊戲或 harness 提供）
 
-一列一個劇本回合（A-11）。`key`＝`<劇本 id>:<回合>`；`action`（`assert`／`rush`／`reinforce`／`trap`／`scorched`）、`lit`（亮起節點 id）、`scripted`（1＝劇本覆蓋：不更新行為規則記憶）、`clarity`／`shown1`／`shown2`／`star`／`starRule`（number）／`basis`／`lineKey`（預兆）。
+一列一個劇本回合（A-11）。`game.json` 以物件形式宣告（XTAtrium 08 §8.2.1：`{"file", "columns"}`，欄名 `tools/gen_debate.py` 的 `SCRIPT_COLUMNS`），所以沒有任何列的劇本表也有欄；遊戲與三個 harness 都這樣宣告。`key`＝`<劇本 id>:<回合>`；`action`（`assert`／`rush`／`reinforce`／`trap`／`scorched`）、`lit`（亮起節點 id）、`scripted`（1＝劇本覆蓋：不更新行為規則記憶）、`clarity`／`shown1`／`shown2`／`star`／`starRule`（number）／`basis`／`lineKey`（預兆）。
 
 - 優先序：尾聲 > 劇本列 > 對手 AI。尾聲回合不查表：一律玉石俱焚、亮起第二說詞、明示、依據 `script`（同 ref `policy.decide_next`）；台詞從該案 `tells` 的 `endgame:scorched` 組抽（§3.4）。
 - 有列的回合整個預兆與行動都照列（AI 仍會抽，但不用；規則 3 的待執行旗標不被消耗，§3.4）。`scripted` 為 0 的列（harness 路線用）照樣更新行為規則記憶。
@@ -126,7 +126,7 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 
 - 狀態全部放在數字 map `debState`（一變數一鍵）。集合查詢節點讀到的是**本 tick 開始時**的內容（08 §8.3.2：效果在下一次求值才看得到），所以一整個回合（A-1 第 1～5 步加下一回合的重述）可以寫成一張無環的純函式圖：輸入＝狀態（`map.get`，含上一次抽好的對手決定）、本回合指令（`debCmd*`）、劇本列；輸出＝每個狀態變數的下一個值（`n_<鍵>`，`atrium.expr`），以及由下一狀態與 7 個亂數算出的下一回合對手決定（§3.4）。`atrium.rng` 是事件型節點：觸發時立即推值，後面的 `map.set` 脈衝送出前已結算，所以同一次 lock 內就能寫入。
 - `debLock` 依邊的檔案順序執行效果（05 §5.4：脈衝逐事件、同步深度優先）：清空 `debEvents` → 依 ref 的順序逐筆附加事件紀錄、同時對 `debOn` 做移除／加入（論破時以 `coll.forEach` 逐一記 `nodeRemoved` 後清空）→ 最後對每個鍵 `map.set` 下一個值。沒有任何效果在同一 tick 再讀 `debState`，因此結果與執行順序無關、可重現。
-- 有條件的效果走「脈衝閘」（`state` 兩狀態互轉，`guard`＝條件）；條件是 `atrium.expr` 算出的 0／1，再經 `compare ne 0` 轉成布林（Flow 的邊不做數字／布林轉換）。
+- 有條件的效果走 `atrium.gate`（`cond`＝`atrium.expr` 算出的 0／1 或其他數值，非 0 才通過，XTAtrium 08 §8.5a）；`select` 的條件是運算式時直接接它的 `truth` 輸出，其他數值才經 `compare ne 0` 轉成布林（Flow 的邊不做數字／布林轉換）。M4b 的寫法是 `state` 兩狀態互轉的「脈衝閘」（`guard`＝`compare ne 0`），M5a 換掉，結果逐位元相同（§6）。
 - 數值與 ref 位元相同：每個倍率照 `ref/rules.py` 的「整數分子／分母、依序」寫成同形的 `atrium.expr`（例：`cd0 = 14 * (10 + 5 * sL + 8 * pL) / 10`、破竹 `x * (10 + stacks) / 10`、猛攻 `x * 5 / 4`）。
 
 修正順序（裁決 B10 與 A-1／A-15）：我方 基礎 → 動搖 ×3/2 → 破竹 ×(10+層)/10 → 交鋒／補強 ×1/2 → 脆弱 +10；對手 基礎 26 + 4n（n＝回合開始時的非脆弱節點，B5）→ 猛攻 ×5/4 → 困獸 ×5/4 → 第 15 回合起 +5 → 觀察 ×1/2；截斷反擊 30 ×(10+層)/10。
@@ -228,7 +228,7 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 - harness 的 driver 每 4 tick 處理 `hIn` 的一列（`start`／`set`／`instinct`／`round`）：第 0 tick 寫指令值、第 1 tick 發脈衝、第 3 tick 把引擎輸出抄進 `hNum`／`hStr`（`<列>:<訊號>`）並把 `debEvents` 抄進 `hEv`；`set` 列直接寫 `debState`，重現 ref 測試以 `replace()` 改過的起始狀態（B8、B9、Ch.3 大字優先序）。
 - 比對欄：回合、主導權兩邊、場上節點（含順序）、動搖、尾聲、尾聲回合、失效、破竹、困獸、失守、截斷、矛盾、惡名、援護、結束、結果、論破標記、黃金線索、脆弱節點數，以及**每回合完整的事件紀錄**（逐筆相等）；熱身比回合、索引、失誤、結束、自動、信任度、獎勵與紀錄；狐耳直覺比次數、預兆與 `STAMP_SEEN`。
 
-結果（2026-11-06）：30／30 路線 PASS，case 參數 PASS；harness 115 列、468 tick，載入＋編譯＋執行約 0.7 秒。
+結果（2026-11-06）：30／30 路線 PASS，case 參數 PASS；harness 115 列、468 tick，載入＋編譯＋執行約 0.7 秒。M5a（新 SDK、`atrium.gate` 版引擎）：30／30 PASS，輸出與換掉前相同；`check_policy.py` 的全部頻率逐格相同（同種子、同抽數）。
 
 | 章 | 路線（ref 測試） |
 |---|---|
@@ -284,7 +284,7 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 3. 每段鏈最多一張黃金線索（`golden` 以字串串接；Ch.1～3 只有 G-01）。
 4. 破防 golden（A-8 觸發 3）、手牌回復（漏證）、動機旗標、破防線（中後期）沒有 Ch.1～3 的資料，未實作（ref 亦同）。
 5. AI 沒有偽裝（維多、Wolfhart）與鏡像（維多）：Ch.1～3 沒有，ref 也沒有；`opponents.disguise` > 0 的主論戰會讓產生器停下。
-6. `debLock` 之前的指令值必須已在匯流排上（寫入者同 tick 先執行或更早），而且要**保持到引擎處理脈衝的那個 tick**：實測（`check_policy.py` 的 driver 與一個兩張圖的探針）載入順序在前的圖送出的 world 脈衝，後面的圖晚一個 tick 才收到，值則同 tick 可見，所以同 tick 寫值＋送脈衝、下一 tick 又改值的寫法會讓引擎讀到新值。UI 流圖由 `UiSystem` 執行時同樣要比 lock 早寫值並保持一 tick。
+6. `debLock` 之前的指令值必須已在匯流排上（寫入者同 tick 先執行或更早）。M4 實測到的「載入順序在前的圖送出的 world 脈衝，後面的圖晚一個 tick 才收到」是 XTAtrium 派送內重算節點的髒標記錯誤（AT-043 修正，05 §5.4「跨圖可見性」）：值與脈衝都在同一 tick 送達，所以「保持到下一 tick」的限制取消，debate UI 的 `debCmd*` 不再在鎖定脈衝上鎖住（`docs/flows.md` §4.8）。M5a 以兩張圖的探針確認（前一張圖在第 n 拍送出的脈衝，後一張圖在同一拍收到）。`check_policy.py` 的 driver 仍保留它的 `LAG`（harness 內部的排程，結果不受影響）。
 7. 引擎的亂數序列與 ref 的 SplitMix64 不同（§3.4），同一個種子不會得到 ref 的同一手；驗證只比分布（§6.2）。抽法固定為每次決定 7 次，與用不用得到無關，所以抽數不會因分支而變。
 8. `debRedecide` 只為測試存在（從儲存的狀態重抽）；遊戲送它會改掉玩家已看到的預兆。
 

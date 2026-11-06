@@ -250,8 +250,23 @@
   "debLine": "data/debLine.json",
   "pIn": "data/pIn.json",
   "pT": "data/pT.json",
-  "debScript": "data/debScript.json",
-  "pVoc": "data/pVoc.json"
+  "pVoc": "data/pVoc.json",
+  "debScript": {
+   "file": "data/debScript.json",
+   "columns": [
+    "key",
+    "action",
+    "lit",
+    "scripted",
+    "clarity",
+    "shown1",
+    "shown2",
+    "star",
+    "starRule",
+    "basis",
+    "lineKey"
+   ]
+  }
  },
  "collections": {
   "debState": {

@@ -83,11 +83,11 @@
       }
     },
     {
-      "id": "dc_costs",
+      "id": "dc_seize",
       "type": "atrium.table.get",
       "params": {
         "table": "flowDebCase",
-        "column": "costs",
+        "column": "seize",
         "type": "string"
       }
     },
@@ -690,6 +690,10 @@
       }
     },
     {
+      "id": "costTrustT",
+      "type": "atrium.text"
+    },
+    {
       "id": "costTrustAdd",
       "type": "atrium.coll.add",
       "params": {
@@ -697,34 +701,63 @@
       }
     },
     {
-      "id": "costG",
-      "type": "state",
+      "id": "seizeRow",
+      "type": "atrium.table.find",
       "params": {
-        "states": [
-          "a",
-          "b"
-        ],
-        "initial": "a",
-        "transitions": [
-          {
-            "from": "a",
-            "on": "go",
-            "to": "b"
-          },
-          {
-            "from": "b",
-            "on": "go",
-            "to": "a"
-          }
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "seizeKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "seizeName",
+      "type": "atrium.text"
+    },
+    {
+      "id": "seizeT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_RES_COST_SEIZE",
+        "args": [
+          "name"
         ]
       }
     },
     {
-      "id": "costAdd",
-      "type": "atrium.coll.addAll",
+      "id": "hasSeizeC",
+      "type": "compare",
       "params": {
-        "name": "resCosts",
-        "separator": ","
+        "op": "ne"
+      }
+    },
+    {
+      "id": "hasSeizeN",
+      "type": "select"
+    },
+    {
+      "id": "costSeizeN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lossN && hasSeizeN"
+      }
+    },
+    {
+      "id": "costG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "costAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "resCosts"
       }
     },
     {
@@ -733,10 +766,7 @@
       "params": {
         "port": "ui.result.costs",
         "source": "resCosts",
-        "fields": "{\"text\": \"item\"}",
-        "localize": [
-          "text"
-        ]
+        "fields": "{\"text\": \"item\"}"
       }
     },
     {
@@ -958,7 +988,7 @@
     },
     {
       "from": "dcRow.row",
-      "to": "dc_costs.row"
+      "to": "dc_seize.row"
     },
     {
       "from": "dcRow.row",
@@ -1446,6 +1476,10 @@
     },
     {
       "from": "K19.out",
+      "to": "costTrustT.key"
+    },
+    {
+      "from": "costTrustT.text",
       "to": "costTrustAdd.value"
     },
     {
@@ -1453,19 +1487,63 @@
       "to": "costTrustAdd.trigger"
     },
     {
-      "from": "lossC.out",
-      "to": "costG.guard"
+      "from": "dc_seize.value",
+      "to": "seizeRow.value"
+    },
+    {
+      "from": "seizeRow.row",
+      "to": "seizeKey.row"
+    },
+    {
+      "from": "seizeKey.value",
+      "to": "seizeName.key"
+    },
+    {
+      "from": "seizeName.text",
+      "to": "seizeT.name"
+    },
+    {
+      "from": "dc_seize.value",
+      "to": "hasSeizeC.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "hasSeizeC.b"
+    },
+    {
+      "from": "hasSeizeC.out",
+      "to": "hasSeizeN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "hasSeizeN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "hasSeizeN.b"
+    },
+    {
+      "from": "lossN.out",
+      "to": "costSeizeN.lossN"
+    },
+    {
+      "from": "hasSeizeN.out",
+      "to": "costSeizeN.hasSeizeN"
+    },
+    {
+      "from": "costSeizeN.value",
+      "to": "costG.cond"
     },
     {
       "from": "beginG.changed",
-      "to": "costG.go"
+      "to": "costG.trigger"
     },
     {
-      "from": "dc_costs.value",
-      "to": "costAdd.text"
+      "from": "seizeT.text",
+      "to": "costAdd.value"
     },
     {
-      "from": "costG.changed",
+      "from": "costG.pass",
       "to": "costAdd.trigger"
     },
     {

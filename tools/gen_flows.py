@@ -178,6 +178,20 @@ class Graph:
         self.edge(key, f"{name}.key")
         return self.put(name, f"{name}.text")
 
+    def textf(self, node_id: str, /, key: str | None = None, pattern: str | None = None, **args: str) -> str:
+        """atrium.textf (08 §8.1.4): the localized template `key` (or the template text on port `pattern`) with its
+        {name} placeholders filled from the keyword ports (placeholder name = keyword); returns the text port."""
+        params: dict = {}
+        if key:
+            params["key"] = key
+        params["args"] = list(args)
+        self.node(node_id, "atrium.textf", **params)
+        if pattern is not None:
+            self.edge(pattern, f"{node_id}.pattern")
+        for arg, src in args.items():
+            self.edge(src, f"{node_id}.{arg}")
+        return self.put(node_id, f"{node_id}.text")
+
     def latch(self, name: str, value: str, trigger: str) -> str:
         """filter(sample): the value of `value` when `trigger` fires (passed values are always sent on)."""
         self.node(name, "filter", op="sample")
@@ -278,13 +292,16 @@ class Graph:
             self.edge(src, f"{name}.{port}")
         return f"{name}.trigger"
 
-    def ui_list(self, name: str, port: str, source: str, fields: dict, join: dict | None = None,
-                localize: list | None = None) -> str:
+    def ui_list(self, name: str, port: str, source: str, fields: dict, localize: list | None = None,
+                bare: bool = False) -> str:
+        """atrium.ui.list (08 §8.4): `fields` maps a struct field to a source column of the collection (item / index;
+        key / value / index) or a reference keyed by the row key (tref(), "coll:<n>.contains", "map:<n>"). `bare`:
+        one field, written as a value array for a list<bool|number|string> port (AT-047)."""
         params = {"port": port, "source": source, "fields": json.dumps(fields, ensure_ascii=False)}
-        if join:
-            params["join"] = json.dumps(join, ensure_ascii=False)
         if localize:
             params["localize"] = localize
+        if bare:
+            params["bare"] = True
         self.node(name, "atrium.ui.list", **params)
         return f"{name}.trigger"
 
@@ -294,6 +311,11 @@ class Graph:
 
     def stats(self) -> tuple[int, int]:
         return len(self.nodes) + len(self.late), len(self.edges)
+
+
+def tref(table: str, key_col: str, col: str) -> str:
+    """A ui.list field reference: column `col` of the first row of `table` whose `key_col` is the row key."""
+    return f"table:{table}[{key_col}].{col}"
 
 
 class Mux:
@@ -398,23 +420,9 @@ def flow_tables() -> dict[str, list[dict]]:
                      "policeCards": ",".join(e["id"] for e in ev if e["chapter"] == c and e["policeTags"]),
                      "cards": ",".join(e["id"] for e in cards)})
 
-    # Composite-key rows for list ports with more than one changing field per row (atrium.ui.list takes one join
-    # and one collection value per row; docs/flows.md §7). Key = card id and the changing fields, "|"-separated.
-    by_id = {r["id"]: r for r in card}
-    order = [r["id"] for r in card]
-    board_ids = sorted({e["id"] for c in chapters for e in case_cards(c)}, key=order.index)
-    drawer = [{"key": f"{i}|{a}|{r}|{p}", "id": i, "nameKey": by_id[i]["nameKey"], "grade": by_id[i]["grade"],
-               "appraised": bool(a), "reason_set": bool(r), "placed": bool(p)}
-              for i in board_ids for a in (0, 1) for r in (0, 1) for p in (0, 1)]
-    book = [{"key": f"{r['id']}|{a}|{n}", "id": r["id"], "nameKey": r["nameKey"], "grade": r["grade"],
-             "appraised": bool(a), "isnew": bool(n)} for r in card for a in (0, 1) for n in (0, 1)]
-    slot = [{"key": f"{s}|{i}", "chain": s // 5, "pos": s % 5, "id": i, "nameKey": by_id[i]["nameKey"],
-             "grade": by_id[i]["grade"]} for s in range(SLOTS) for i in board_ids]
+    # board.links: a link slot -> its chain and position (the list's row key is the slot)
     link = [{"key": str(s), "chain": s // 5, "pos": s % 5} for s in range(SLOTS) if s % 5 < 4]
-    chain = [{"key": f"{c}|{n}|{s}|{p}", "chain": c, "cards": n, "solid": s, "soph": p}
-             for c in range(3) for n in range(6) for s in range(6) for p in range(6) if s + p <= max(n - 1, 0)]
-    return {"flowCard": card, "flowSpot": spot, "flowScene": scene, "flowCase": case, "flowDrawer": drawer,
-            "flowBook": book, "flowSlot": slot, "flowLink": link, "flowChain": chain}
+    return {"flowCard": card, "flowSpot": spot, "flowScene": scene, "flowCase": case, "flowLink": link}
 
 
 def table_text(rows: list[dict]) -> str:
@@ -446,7 +454,7 @@ COLLECTIONS = {
     "newCards": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
     "caseSpots": {"kind": "list", "type": "string", "capacity": 64},
     "sceneSpots": {"kind": "list", "type": "string", "capacity": 16},
-    "bookList": {"kind": "list", "type": "string", "capacity": 32},
+    "bookList": {"kind": "map", "type": "bool", "capacity": 32},      # evbook.cards: id -> revealed
     # board
     "row0": {"kind": "list", "type": "string", "capacity": 5, "unique": True},
     "row1": {"kind": "list", "type": "string", "capacity": 5, "unique": True},
@@ -454,10 +462,17 @@ COLLECTIONS = {
     "reason": {"kind": "map", "type": "number", "capacity": 32},
     "caseCards": {"kind": "list", "type": "string", "capacity": 16, "unique": True},
     "boardCards": {"kind": "list", "type": "string", "capacity": 16, "unique": True},
-    "slotList": {"kind": "list", "type": "string", "capacity": SLOTS},
-    "linkMap": {"kind": "map", "type": "number", "capacity": 16},
-    "chainMap": {"kind": "map", "type": "number", "capacity": 3},
-    "drawerList": {"kind": "list", "type": "string", "capacity": 16},
+    # the list ports' sources (§5.2): board.slots, board.links, board.chain_info, board.drawer
+    "slotList": {"kind": "map", "type": "number", "capacity": SLOTS},    # card -> chain
+    "slotPos": {"kind": "map", "type": "number", "capacity": SLOTS},     # card -> pos
+    "linkMap": {"kind": "map", "type": "number", "capacity": 16},        # slot -> link kind
+    "chainMap": {"kind": "map", "type": "number", "capacity": 3},        # chain -> damage
+    "chainCards": {"kind": "map", "type": "number", "capacity": 3},
+    "chainSolid": {"kind": "map", "type": "number", "capacity": 3},
+    "chainSoph": {"kind": "map", "type": "number", "capacity": 3},
+    "drawerList": {"kind": "map", "type": "bool", "capacity": 16},       # card -> revealed
+    "drawRset": {"kind": "map", "type": "bool", "capacity": 16},         # card -> reason chosen (or fixed)
+    "drawPlaced": {"kind": "map", "type": "bool", "capacity": 16},       # card -> on the board
     # the debate engine's board input (docs/debate-engine.md §2.2; same declaration as tools/gen_debate.py)
     "debBoard": {"kind": "list", "type": "string", "capacity": SLOTS + LOOSE},
     "debBoardOk": {"kind": "list", "type": "number", "capacity": SLOTS + LOOSE},
@@ -482,11 +497,13 @@ def game_json_text(tables: dict) -> str:
     colls.update(COLLECTIONS)
     colls.update(gen_debui.COLLECTIONS)
     game["collections"] = colls
+    for name in [n for n in game["tables"] if n.startswith("flow")]:   # the flow tables are all regenerated
+        del game["tables"][name]
     for name in tables:
         game["tables"][name] = f"data/flow/{name}.json"
     for name, rel in gen_debate.TABLES.items():
         game["tables"][name] = rel
-    game["tables"][gen_debate.SCRIPT_TABLE] = "data/debScript.json"   # tools/build_data.py (ruling G2)
+    game["tables"][gen_debate.SCRIPT_TABLE] = gen_debate.script_table("data/debScript.json")   # tools/build_data.py
     game["flows"] = [f"flows/{f}.xtflow" for f in FLOW_ORDER]
     return json.dumps(game, ensure_ascii=False, indent=2) + "\n"
 
@@ -1010,8 +1027,9 @@ def gen_investigate() -> Graph:
     g.edge(g.cmp("navNext", "sc", "lastScene", "lt"), "ui#investigate.nav_next")
     g.edge(g.k(""), "ui#investigate.area_name")   # no scene-name keys yet (docs/flows.md §7)
     spots_list = g.ui_list("spotsList", "ui.investigate.spots", "spotsHere",
-                           {"id": "key", "name": "nameKey", "x": "x", "y": "y", "w": "w", "h": "h", "type": "type",
-                            "state": "value"}, join={"table": "flowSpot", "column": "id"}, localize=["name"])
+                           {"id": "key", "name": tref("flowSpot", "id", "nameKey"),
+                            **{c: tref("flowSpot", "id", c) for c in ("x", "y", "w", "h", "type")},
+                            "state": "value"}, localize=["name"])
     rebuild = g.merge("rebuild")
     g.edge(rebuild, g.eff("clrHere", "atrium.map.clear", "spotsHere"))
     g.edge(rebuild, g.eff("clrScene", "atrium.coll.clear", "sceneSpots"))
@@ -1150,9 +1168,9 @@ def gen_investigate() -> Graph:
     line, said = appraisal(g, "ba", "bsel", g.when("bookAppr", "ui#evbook.appraise", isInv))
     hint.add(said, {"key": line})
     g.edge(said, bookStart)
-    # Cards of the current tab as "id|appraised|new" keys (flowBook): 0 case evidence (held, not story),
-    # 1 golden clues, 2 private collection (held story cards).
-    g.edge(bookTick, g.eff("clrBook", "atrium.coll.clear", "bookList"))
+    # Cards of the current tab (bookList: id -> revealed): 0 case evidence (held, not story), 1 golden clues,
+    # 2 private collection (held story cards).
+    g.edge(bookTick, g.eff("clrBook", "atrium.map.clear", "bookList"))
     for t, (coll, want) in enumerate((("held", "!bi0_story"), ("golden", "1"), ("held", "bi2_story"))):
         pre = f"bi{t}"
         g.node(pre + "Each", "atrium.coll.forEach", name=coll)
@@ -1160,14 +1178,13 @@ def gen_investigate() -> Graph:
         g.edge(g.when(pre + "Tab", bookTick, pre + "TabN_t"), pre + "Each.trigger")
         item = g.put(pre, pre + "Each.item")
         card_values(g, pre, item)
-        g.n(pre + "_new", g.contains(pre + "_newC", "newCards", item))
-        key = g.fmt(pre + "_key", "{a}|{b}|{c}", item, pre + "_full", pre + "_new")
         g.x(pre + "_n", want)
         g.edge(g.when(pre + "_g", pre + "Each.each", pre + "_n_t"),
-               g.eff(pre + "_add", "atrium.coll.add", "bookList", value=key))
+               g.eff(pre + "_add", "atrium.map.set", "bookList", key=item, value=pre + "_full_t"))
     g.edge(bookTick, g.ui_list("cardsList", "ui.evbook.cards", "bookList",
-                               {"id": "id", "name": "nameKey", "grade": "grade", "appraised": "appraised",
-                                "isnew": "isnew"}, join={"table": "flowBook", "column": "key"}, localize=["name"]))
+                               {"id": "key", "name": tref("flowCard", "id", "nameKey"),
+                                "grade": tref("flowCard", "id", "grade"), "appraised": "value",
+                                "isnew": "coll:newCards.contains"}, localize=["name"]))
     g.edge(bookTick, g.ui_list("notesList", "ui.evbook.notes", "notes", {"text": "item"}, localize=["text"]))
 
     # ---- ports
@@ -1346,29 +1363,38 @@ def gen_board() -> Graph:
     g.edge(g.when("plSolidG", said, "plSolid_t"), g.eff("bs3_solidSaid", "atrium.map.set", "boardState", key=g.k("solidSaid"), value=g.k(1)))
     g.edge(ref, g.eff("bs4_placeMode", "atrium.map.set", "boardState", key=g.k("placeMode"), value=g.k(0)))
     lists = g.merge("lists", ref, list2Tick)
-    # Lists. slots: "slot|id" keys (flowSlot); links: slot -> kind (flowLink); chain plates: "chain|cards|solid|soph"
-    # -> damage (flowChain, in chain order); drawer: "id|appraised|reason set|placed" keys (flowDrawer).
-    g.edge(lists, g.eff("clrSlots", "atrium.coll.clear", "slotList"))
+    # Lists (08 §8.4 field references, keyed by the row key). slots: card -> chain (slotList) and pos (slotPos), in
+    # slot order; links: slot -> kind (linkMap; chain and pos from flowLink); chain plates: chain -> damage
+    # (chainMap, inserted in chain order, so index = chain) with chainCards / chainSolid / chainSoph; drawer: card ->
+    # revealed (drawerList) with drawRset / drawPlaced.
+    g.edge(lists, g.eff("clrSlots", "atrium.map.clear", "slotList"))
+    g.edge(lists, g.eff("clrSlotPos", "atrium.map.clear", "slotPos"))
     for s in range(SLOTS):
-        g.fmt(f"sk{s}", "{a}|{b}", g.k(s), f"id{s}")
-        g.edge(g.when(f"sk{s}G", lists, f"id{s}_ok"), g.eff(f"sk{s}A", "atrium.coll.add", "slotList", value=f"sk{s}"))
+        sk = g.when(f"sk{s}G", lists, f"id{s}_ok")
+        g.edge(sk, g.eff(f"sk{s}A", "atrium.map.set", "slotList", key=f"id{s}", value=g.k(s // 5)))
+        g.edge(sk, g.eff(f"sk{s}P", "atrium.map.set", "slotPos", key=f"id{s}", value=g.k(s % 5)))
     g.edge(lists, g.ui_list("slotsList", "ui.board.slots", "slotList",
-                          {"chain": "chain", "pos": "pos", "id": "id", "name": "nameKey", "grade": "grade"},
-                          join={"table": "flowSlot", "column": "key"}, localize=["name"]))
+                          {"chain": "value", "pos": "map:slotPos", "id": "key",
+                           "name": tref("flowCard", "id", "nameKey"), "grade": tref("flowCard", "id", "grade")},
+                          localize=["name"]))
     g.edge(lists, g.eff("clrLinks", "atrium.map.clear", "linkMap"))
     for s in links:
         g.edge(g.when(f"lk{s}G", lists, f"k{s}_t"),
                g.eff(f"lk{s}S", "atrium.map.set", "linkMap", key=g.k(str(s)), value=f"k{s}"))
-    g.edge(lists, g.ui_list("linksList", "ui.board.links", "linkMap", {"chain": "chain", "pos": "pos", "kind": "value"},
-                          join={"table": "flowLink", "column": "key"}))
-    g.edge(lists, g.eff("clrChains", "atrium.map.clear", "chainMap"))
+    g.edge(lists, g.ui_list("linksList", "ui.board.links", "linkMap",
+                          {"chain": tref("flowLink", "key", "chain"), "pos": tref("flowLink", "key", "pos"),
+                           "kind": "value"}))
+    for coll in ("chainMap", "chainCards", "chainSolid", "chainSoph"):
+        g.edge(lists, g.eff(f"lc_{coll}", "atrium.map.clear", coll))
     for r in range(3):
-        g.fmt(f"ck{r}", "{a}|{b}|{c}|{d}", g.k(r), f"cnt{r}", f"solid{r}", f"soph{r}")
-        g.edge(lists, g.eff(f"ck{r}S", "atrium.map.set", "chainMap", key=f"ck{r}", value=f"dmg{r}"))
+        for coll, val in (("chainMap", f"dmg{r}"), ("chainCards", f"cnt{r}"), ("chainSolid", f"solid{r}"),
+                          ("chainSoph", f"soph{r}")):
+            g.edge(lists, g.eff(f"ck{r}_{coll}", "atrium.map.set", coll, key=g.k(str(r)), value=val))
     g.edge(lists, g.ui_list("chainList", "ui.board.chain_info", "chainMap",
-                          {"chain": "chain", "cards": "cards", "solid": "solid", "soph": "soph", "dmg": "value"},
-                          join={"table": "flowChain", "column": "key"}))
-    g.edge(lists, g.eff("clrDrawer", "atrium.coll.clear", "drawerList"))
+                          {"chain": "index", "cards": "map:chainCards", "solid": "map:chainSolid",
+                           "soph": "map:chainSoph", "dmg": "value"}))
+    for coll in ("drawerList", "drawRset", "drawPlaced"):
+        g.edge(lists, g.eff(f"lc_{coll}", "atrium.map.clear", coll))
     g.edge(lists, "unappr.reset")
     g.node("drawEach", "atrium.coll.forEach", name="boardCards")
     g.edge(lists, "drawEach.trigger")
@@ -1378,14 +1404,14 @@ def gen_board() -> Graph:
     for r in range(3):
         g.n(f"di_in{r}", g.contains(f"di_inC{r}", f"row{r}", di))
     g.x("di_placed", "di_in0 || di_in1 || di_in2")
-    g.fmt("di_key", "{a}|{b}|{c}|{d}", di, "di_full", "di_rset", "di_placed")
-    g.edge("drawEach.each", g.eff("di_add", "atrium.coll.add", "drawerList", value="di_key"))
+    for coll, val in (("drawerList", "di_full_t"), ("drawRset", "di_rset_t"), ("drawPlaced", "di_placed_t")):
+        g.edge("drawEach.each", g.eff(f"di_{coll}", "atrium.map.set", coll, key=di, value=val))
     g.x("di_unN", "unlockedN && di_cost > 0 && !di_full")
     g.edge(g.when("di_unG", "drawEach.each", "di_unN_t"), "unappr.increment")
     g.edge(lists, g.ui_list("drawerUi", "ui.board.drawer", "drawerList",
-                          {"id": "id", "name": "nameKey", "grade": "grade", "appraised": "appraised",
-                           "reason_set": "reason_set", "placed": "placed"},
-                          join={"table": "flowDrawer", "column": "key"}, localize=["name"]))
+                          {"id": "key", "name": tref("flowCard", "id", "nameKey"),
+                           "grade": tref("flowCard", "id", "grade"), "appraised": "value",
+                           "reason_set": "map:drawRset", "placed": "map:drawPlaced"}, localize=["name"]))
     g.edge(lang, refStart)
     # The invalid card leaves the board after the spark, then the board refreshes.
     for r in range(3):
@@ -1459,7 +1485,8 @@ def gen_board() -> Graph:
     g.edge(said_a, refStart)
 
     # ---- to the debate (§2.7): no chain -> MSG_BOARD_NOCHAIN; unchosen reasons (placed cards) or cards still to
-    # appraise with charges left -> the warning as a remark, a second press goes on; then lock.
+    # appraise with charges left -> the warning as a remark (WARN_BOARD_*, atrium.textf), a second press goes on;
+    # then lock.
     g.x("tdIdx", "chains == 0 ? 1 : (!armedN && (noReason > 0 || (unappr > 0 && apprLeft > 0))) ? 2 : 3")
     td = g.when("tdAct", g.when("tdInv", "ui#board.to_debate", isBoard), "activeN_t")
     g.latch("tdD", "tdIdx", td)
@@ -1469,6 +1496,11 @@ def gen_board() -> Graph:
     g.x("warnN", "tdD == 2")
     warn = g.when("warnG", tdm, "warnN_t")
     g.sel("warnKey", "noReason_t", g.k("WARN_BOARD_NOREASON"), g.k("WARN_BOARD_UNAPPR"))
+    # the warning's {n} (cards without a reason, or cards still to appraise) and {left} (charges), latched before
+    # the remark's key changes
+    g.x("warnCount", "noReason > 0 ? noReason : unappr")
+    g.latch("warnNL", "warnCount", warn)
+    g.latch("warnLeftL", "apprLeft", warn)
     remark.add(warn, {"key": "warnKey"})
     g.edge(warn, g.eff("bs11_armed", "atrium.map.set", "boardState", key=g.k("armed"), value=g.k(1)))
     g.x("commitN", "tdD == 3")
@@ -1543,7 +1575,8 @@ def gen_board() -> Graph:
     g.sel("condKey0", g.cmp("phaseMid", "phase", g.k("mid")), g.k("UI_BOARD_COND_MID"), g.k("UI_BOARD_COND_EARLY"))
     g.sel("condKey", g.cmp("phaseLate", "phase", g.k("late")), g.k("UI_BOARD_COND_LATE"), "condKey0")
     g.edge(g.text("condText", "condKey"), "ui#board.threshold_text")
-    g.edge(g.text("remarkText", remark.out("key", g.k(""))), "ui#board.remark")
+    g.text("remarkText", remark.out("key", g.k("")))
+    g.edge(g.textf("remarkF", pattern="remarkText.text", n="warnNL", left="warnLeftL"), "ui#board.remark")
     g.edge(remark.seq, "ui#board.remark_seq")
     return g
 
@@ -1573,7 +1606,8 @@ def outputs() -> dict[Path, str]:
 def main() -> int:
     check = "--check" in sys.argv[1:]
     stale = []
-    for path, text in outputs().items():
+    out = outputs()
+    for path, text in out.items():
         if check:
             if not path.exists() or path.read_text(encoding="utf-8") != text:
                 stale.append(path.relative_to(ROOT).as_posix())
@@ -1581,6 +1615,14 @@ def main() -> int:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(text.encode("utf-8"))
             print(f"wrote {path.relative_to(ROOT).as_posix()}")
+    # data/flow/ holds only generated tables: one that is no longer generated is stale (deleted when writing)
+    for path in sorted(FLOW_DATA.glob("*.json")):
+        if path not in out:
+            if check:
+                stale.append(path.relative_to(ROOT).as_posix())
+            else:
+                path.unlink()
+                print(f"deleted {path.relative_to(ROOT).as_posix()}")
     if "--stats" in sys.argv[1:]:
         for name, fn in graphs().items():
             n, e = fn().stats()

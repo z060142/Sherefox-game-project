@@ -398,7 +398,7 @@
     },
     {
       "id": "clr_slotList",
-      "type": "atrium.coll.clear",
+      "type": "atrium.map.clear",
       "params": {
         "name": "slotList"
       }
@@ -419,7 +419,7 @@
     },
     {
       "id": "clr_drawerList",
-      "type": "atrium.coll.clear",
+      "type": "atrium.map.clear",
       "params": {
         "name": "drawerList"
       }
@@ -9072,16 +9072,16 @@
     },
     {
       "id": "clrSlots",
-      "type": "atrium.coll.clear",
+      "type": "atrium.map.clear",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "sk0",
-      "type": "format",
+      "id": "clrSlotPos",
+      "type": "atrium.map.clear",
       "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9109,16 +9109,16 @@
     },
     {
       "id": "sk0A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "sk1",
-      "type": "format",
+      "id": "sk0P",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9146,16 +9146,16 @@
     },
     {
       "id": "sk1A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "sk2",
-      "type": "format",
+      "id": "sk1P",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9183,16 +9183,16 @@
     },
     {
       "id": "sk2A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "sk3",
-      "type": "format",
+      "id": "sk2P",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9220,16 +9220,16 @@
     },
     {
       "id": "sk3A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "sk4",
-      "type": "format",
+      "id": "sk3P",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9257,23 +9257,16 @@
     },
     {
       "id": "sk4A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K17",
-      "type": "constant",
+      "id": "sk4P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 5
-      }
-    },
-    {
-      "id": "sk5",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9301,23 +9294,16 @@
     },
     {
       "id": "sk5A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K18",
-      "type": "constant",
+      "id": "sk5P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 6
-      }
-    },
-    {
-      "id": "sk6",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9345,23 +9331,16 @@
     },
     {
       "id": "sk6A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K19",
-      "type": "constant",
+      "id": "sk6P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 7
-      }
-    },
-    {
-      "id": "sk7",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9389,23 +9368,16 @@
     },
     {
       "id": "sk7A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K20",
-      "type": "constant",
+      "id": "sk7P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 8
-      }
-    },
-    {
-      "id": "sk8",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9433,23 +9405,16 @@
     },
     {
       "id": "sk8A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K21",
-      "type": "constant",
+      "id": "sk8P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 9
-      }
-    },
-    {
-      "id": "sk9",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9477,23 +9442,16 @@
     },
     {
       "id": "sk9A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K22",
-      "type": "constant",
+      "id": "sk9P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 10
-      }
-    },
-    {
-      "id": "sk10",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9521,23 +9479,16 @@
     },
     {
       "id": "sk10A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K23",
-      "type": "constant",
+      "id": "sk10P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 11
-      }
-    },
-    {
-      "id": "sk11",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9565,23 +9516,16 @@
     },
     {
       "id": "sk11A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K24",
-      "type": "constant",
+      "id": "sk11P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 12
-      }
-    },
-    {
-      "id": "sk12",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9609,23 +9553,16 @@
     },
     {
       "id": "sk12A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K25",
-      "type": "constant",
+      "id": "sk12P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 13
-      }
-    },
-    {
-      "id": "sk13",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9653,23 +9590,16 @@
     },
     {
       "id": "sk13A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
       }
     },
     {
-      "id": "K26",
-      "type": "constant",
+      "id": "sk13P",
+      "type": "atrium.map.set",
       "params": {
-        "value": 14
-      }
-    },
-    {
-      "id": "sk14",
-      "type": "format",
-      "params": {
-        "format": "{a}|{b}"
+        "name": "slotPos"
       }
     },
     {
@@ -9697,9 +9627,16 @@
     },
     {
       "id": "sk14A",
-      "type": "atrium.coll.add",
+      "type": "atrium.map.set",
       "params": {
         "name": "slotList"
+      }
+    },
+    {
+      "id": "sk14P",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "slotPos"
       }
     },
     {
@@ -9708,8 +9645,7 @@
       "params": {
         "port": "ui.board.slots",
         "source": "slotList",
-        "fields": "{\"chain\": \"chain\", \"pos\": \"pos\", \"id\": \"id\", \"name\": \"nameKey\", \"grade\": \"grade\"}",
-        "join": "{\"table\": \"flowSlot\", \"column\": \"key\"}",
+        "fields": "{\"chain\": \"value\", \"pos\": \"map:slotPos\", \"id\": \"key\", \"name\": \"table:flowCard[id].nameKey\", \"grade\": \"table:flowCard[id].grade\"}",
         "localize": [
           "name"
         ]
@@ -9727,7 +9663,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K27",
+      "id": "K17",
       "type": "constant",
       "params": {
         "value": "0"
@@ -9745,7 +9681,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K28",
+      "id": "K18",
       "type": "constant",
       "params": {
         "value": "1"
@@ -9763,7 +9699,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K29",
+      "id": "K19",
       "type": "constant",
       "params": {
         "value": "2"
@@ -9781,7 +9717,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K30",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": "3"
@@ -9799,7 +9735,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K31",
+      "id": "K21",
       "type": "constant",
       "params": {
         "value": "5"
@@ -9817,7 +9753,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K32",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": "6"
@@ -9835,7 +9771,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K33",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": "7"
@@ -9853,7 +9789,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K34",
+      "id": "K24",
       "type": "constant",
       "params": {
         "value": "8"
@@ -9871,7 +9807,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K35",
+      "id": "K25",
       "type": "constant",
       "params": {
         "value": "10"
@@ -9889,7 +9825,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K36",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": "11"
@@ -9907,7 +9843,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K37",
+      "id": "K27",
       "type": "constant",
       "params": {
         "value": "12"
@@ -9925,7 +9861,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K38",
+      "id": "K28",
       "type": "constant",
       "params": {
         "value": "13"
@@ -9944,57 +9880,119 @@
       "params": {
         "port": "ui.board.links",
         "source": "linkMap",
-        "fields": "{\"chain\": \"chain\", \"pos\": \"pos\", \"kind\": \"value\"}",
-        "join": "{\"table\": \"flowLink\", \"column\": \"key\"}"
+        "fields": "{\"chain\": \"table:flowLink[key].chain\", \"pos\": \"table:flowLink[key].pos\", \"kind\": \"value\"}"
       }
     },
     {
-      "id": "clrChains",
+      "id": "lc_chainMap",
       "type": "atrium.map.clear",
       "params": {
         "name": "chainMap"
       }
     },
     {
-      "id": "ck0",
-      "type": "format",
+      "id": "lc_chainCards",
+      "type": "atrium.map.clear",
       "params": {
-        "format": "{a}|{b}|{c}|{d}"
+        "name": "chainCards"
       }
     },
     {
-      "id": "ck0S",
+      "id": "lc_chainSolid",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "chainSolid"
+      }
+    },
+    {
+      "id": "lc_chainSoph",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "chainSoph"
+      }
+    },
+    {
+      "id": "ck0_chainMap",
       "type": "atrium.map.set",
       "params": {
         "name": "chainMap"
       }
     },
     {
-      "id": "ck1",
-      "type": "format",
+      "id": "ck0_chainCards",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}|{c}|{d}"
+        "name": "chainCards"
       }
     },
     {
-      "id": "ck1S",
+      "id": "ck0_chainSolid",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSolid"
+      }
+    },
+    {
+      "id": "ck0_chainSoph",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSoph"
+      }
+    },
+    {
+      "id": "ck1_chainMap",
       "type": "atrium.map.set",
       "params": {
         "name": "chainMap"
       }
     },
     {
-      "id": "ck2",
-      "type": "format",
+      "id": "ck1_chainCards",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}|{c}|{d}"
+        "name": "chainCards"
       }
     },
     {
-      "id": "ck2S",
+      "id": "ck1_chainSolid",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSolid"
+      }
+    },
+    {
+      "id": "ck1_chainSoph",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSoph"
+      }
+    },
+    {
+      "id": "ck2_chainMap",
       "type": "atrium.map.set",
       "params": {
         "name": "chainMap"
+      }
+    },
+    {
+      "id": "ck2_chainCards",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainCards"
+      }
+    },
+    {
+      "id": "ck2_chainSolid",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSolid"
+      }
+    },
+    {
+      "id": "ck2_chainSoph",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "chainSoph"
       }
     },
     {
@@ -10003,15 +10001,28 @@
       "params": {
         "port": "ui.board.chain_info",
         "source": "chainMap",
-        "fields": "{\"chain\": \"chain\", \"cards\": \"cards\", \"solid\": \"solid\", \"soph\": \"soph\", \"dmg\": \"value\"}",
-        "join": "{\"table\": \"flowChain\", \"column\": \"key\"}"
+        "fields": "{\"chain\": \"index\", \"cards\": \"map:chainCards\", \"solid\": \"map:chainSolid\", \"soph\": \"map:chainSoph\", \"dmg\": \"value\"}"
       }
     },
     {
-      "id": "clrDrawer",
-      "type": "atrium.coll.clear",
+      "id": "lc_drawerList",
+      "type": "atrium.map.clear",
       "params": {
         "name": "drawerList"
+      }
+    },
+    {
+      "id": "lc_drawRset",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "drawRset"
+      }
+    },
+    {
+      "id": "lc_drawPlaced",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "drawPlaced"
       }
     },
     {
@@ -10280,17 +10291,24 @@
       }
     },
     {
-      "id": "di_key",
-      "type": "format",
+      "id": "di_drawerList",
+      "type": "atrium.map.set",
       "params": {
-        "format": "{a}|{b}|{c}|{d}"
+        "name": "drawerList"
       }
     },
     {
-      "id": "di_add",
-      "type": "atrium.coll.add",
+      "id": "di_drawRset",
+      "type": "atrium.map.set",
       "params": {
-        "name": "drawerList"
+        "name": "drawRset"
+      }
+    },
+    {
+      "id": "di_drawPlaced",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "drawPlaced"
       }
     },
     {
@@ -10310,8 +10328,7 @@
       "params": {
         "port": "ui.board.drawer",
         "source": "drawerList",
-        "fields": "{\"id\": \"id\", \"name\": \"nameKey\", \"grade\": \"grade\", \"appraised\": \"appraised\", \"reason_set\": \"reason_set\", \"placed\": \"placed\"}",
-        "join": "{\"table\": \"flowDrawer\", \"column\": \"key\"}",
+        "fields": "{\"id\": \"key\", \"name\": \"table:flowCard[id].nameKey\", \"grade\": \"table:flowCard[id].grade\", \"appraised\": \"value\", \"reason_set\": \"map:drawRset\", \"placed\": \"map:drawPlaced\"}",
         "localize": [
           "name"
         ]
@@ -10827,7 +10844,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K39",
+      "id": "K29",
       "type": "constant",
       "params": {
         "value": "MSG_CHAIN_MAX"
@@ -11547,7 +11564,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K40",
+      "id": "K30",
       "type": "constant",
       "params": {
         "value": "MSG_BOARD_NOCHAIN"
@@ -11572,14 +11589,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K41",
+      "id": "K31",
       "type": "constant",
       "params": {
         "value": "WARN_BOARD_NOREASON"
       }
     },
     {
-      "id": "K42",
+      "id": "K32",
       "type": "constant",
       "params": {
         "value": "WARN_BOARD_UNAPPR"
@@ -11588,6 +11605,27 @@
     {
       "id": "warnKey",
       "type": "select"
+    },
+    {
+      "id": "warnCount",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "noReason > 0 ? noReason : unappr"
+      }
+    },
+    {
+      "id": "warnNL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "warnLeftL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
     },
     {
       "id": "remark7_key",
@@ -11643,7 +11681,7 @@
       }
     },
     {
-      "id": "K43",
+      "id": "K33",
       "type": "constant",
       "params": {
         "value": "-"
@@ -13157,7 +13195,7 @@
       }
     },
     {
-      "id": "K44",
+      "id": "K34",
       "type": "constant",
       "params": {
         "value": "UI_TAG_HIDDEN"
@@ -13462,7 +13500,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K45",
+      "id": "K35",
       "type": "constant",
       "params": {
         "value": "mid"
@@ -13476,14 +13514,14 @@
       }
     },
     {
-      "id": "K46",
+      "id": "K36",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_MID"
       }
     },
     {
-      "id": "K47",
+      "id": "K37",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_EARLY"
@@ -13494,7 +13532,7 @@
       "type": "select"
     },
     {
-      "id": "K48",
+      "id": "K38",
       "type": "constant",
       "params": {
         "value": "late"
@@ -13508,7 +13546,7 @@
       }
     },
     {
-      "id": "K49",
+      "id": "K39",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_LATE"
@@ -13621,6 +13659,13 @@
       "type": "select"
     },
     {
+      "id": "K40",
+      "type": "constant",
+      "params": {
+        "value": 5
+      }
+    },
+    {
       "id": "remark_key_is5",
       "type": "compare",
       "params": {
@@ -13632,6 +13677,13 @@
       "type": "select"
     },
     {
+      "id": "K41",
+      "type": "constant",
+      "params": {
+        "value": 6
+      }
+    },
+    {
       "id": "remark_key_is6",
       "type": "compare",
       "params": {
@@ -13641,6 +13693,13 @@
     {
       "id": "remark_key_6",
       "type": "select"
+    },
+    {
+      "id": "K42",
+      "type": "constant",
+      "params": {
+        "value": 7
+      }
     },
     {
       "id": "remark_key_is7",
@@ -13656,6 +13715,16 @@
     {
       "id": "remarkText",
       "type": "atrium.text"
+    },
+    {
+      "id": "remarkF",
+      "type": "atrium.textf",
+      "params": {
+        "args": [
+          "n",
+          "left"
+        ]
+      }
     },
     {
       "id": "initTimer",
@@ -25408,12 +25477,8 @@
       "to": "clrSlots.trigger"
     },
     {
-      "from": "K12.out",
-      "to": "sk0.a"
-    },
-    {
-      "from": "id0.value",
-      "to": "sk0.b"
+      "from": "lists.out",
+      "to": "clrSlotPos.trigger"
     },
     {
       "from": "id0.valid",
@@ -25424,7 +25489,11 @@
       "to": "sk0G.go"
     },
     {
-      "from": "sk0.out",
+      "from": "id0.value",
+      "to": "sk0A.key"
+    },
+    {
+      "from": "K12.out",
       "to": "sk0A.value"
     },
     {
@@ -25432,12 +25501,16 @@
       "to": "sk0A.trigger"
     },
     {
-      "from": "K11.out",
-      "to": "sk1.a"
+      "from": "id0.value",
+      "to": "sk0P.key"
     },
     {
-      "from": "id1.value",
-      "to": "sk1.b"
+      "from": "K12.out",
+      "to": "sk0P.value"
+    },
+    {
+      "from": "sk0G.changed",
+      "to": "sk0P.trigger"
     },
     {
       "from": "id1.valid",
@@ -25448,7 +25521,11 @@
       "to": "sk1G.go"
     },
     {
-      "from": "sk1.out",
+      "from": "id1.value",
+      "to": "sk1A.key"
+    },
+    {
+      "from": "K12.out",
       "to": "sk1A.value"
     },
     {
@@ -25456,12 +25533,16 @@
       "to": "sk1A.trigger"
     },
     {
-      "from": "K13.out",
-      "to": "sk2.a"
+      "from": "id1.value",
+      "to": "sk1P.key"
     },
     {
-      "from": "id2.value",
-      "to": "sk2.b"
+      "from": "K11.out",
+      "to": "sk1P.value"
+    },
+    {
+      "from": "sk1G.changed",
+      "to": "sk1P.trigger"
     },
     {
       "from": "id2.valid",
@@ -25472,7 +25553,11 @@
       "to": "sk2G.go"
     },
     {
-      "from": "sk2.out",
+      "from": "id2.value",
+      "to": "sk2A.key"
+    },
+    {
+      "from": "K12.out",
       "to": "sk2A.value"
     },
     {
@@ -25480,12 +25565,16 @@
       "to": "sk2A.trigger"
     },
     {
-      "from": "K14.out",
-      "to": "sk3.a"
+      "from": "id2.value",
+      "to": "sk2P.key"
     },
     {
-      "from": "id3.value",
-      "to": "sk3.b"
+      "from": "K13.out",
+      "to": "sk2P.value"
+    },
+    {
+      "from": "sk2G.changed",
+      "to": "sk2P.trigger"
     },
     {
       "from": "id3.valid",
@@ -25496,7 +25585,11 @@
       "to": "sk3G.go"
     },
     {
-      "from": "sk3.out",
+      "from": "id3.value",
+      "to": "sk3A.key"
+    },
+    {
+      "from": "K12.out",
       "to": "sk3A.value"
     },
     {
@@ -25504,12 +25597,16 @@
       "to": "sk3A.trigger"
     },
     {
-      "from": "K15.out",
-      "to": "sk4.a"
+      "from": "id3.value",
+      "to": "sk3P.key"
     },
     {
-      "from": "id4.value",
-      "to": "sk4.b"
+      "from": "K14.out",
+      "to": "sk3P.value"
+    },
+    {
+      "from": "sk3G.changed",
+      "to": "sk3P.trigger"
     },
     {
       "from": "id4.valid",
@@ -25520,7 +25617,11 @@
       "to": "sk4G.go"
     },
     {
-      "from": "sk4.out",
+      "from": "id4.value",
+      "to": "sk4A.key"
+    },
+    {
+      "from": "K12.out",
       "to": "sk4A.value"
     },
     {
@@ -25528,12 +25629,16 @@
       "to": "sk4A.trigger"
     },
     {
-      "from": "K17.out",
-      "to": "sk5.a"
+      "from": "id4.value",
+      "to": "sk4P.key"
     },
     {
-      "from": "id5.value",
-      "to": "sk5.b"
+      "from": "K15.out",
+      "to": "sk4P.value"
+    },
+    {
+      "from": "sk4G.changed",
+      "to": "sk4P.trigger"
     },
     {
       "from": "id5.valid",
@@ -25544,7 +25649,11 @@
       "to": "sk5G.go"
     },
     {
-      "from": "sk5.out",
+      "from": "id5.value",
+      "to": "sk5A.key"
+    },
+    {
+      "from": "K11.out",
       "to": "sk5A.value"
     },
     {
@@ -25552,12 +25661,16 @@
       "to": "sk5A.trigger"
     },
     {
-      "from": "K18.out",
-      "to": "sk6.a"
+      "from": "id5.value",
+      "to": "sk5P.key"
     },
     {
-      "from": "id6.value",
-      "to": "sk6.b"
+      "from": "K12.out",
+      "to": "sk5P.value"
+    },
+    {
+      "from": "sk5G.changed",
+      "to": "sk5P.trigger"
     },
     {
       "from": "id6.valid",
@@ -25568,7 +25681,11 @@
       "to": "sk6G.go"
     },
     {
-      "from": "sk6.out",
+      "from": "id6.value",
+      "to": "sk6A.key"
+    },
+    {
+      "from": "K11.out",
       "to": "sk6A.value"
     },
     {
@@ -25576,12 +25693,16 @@
       "to": "sk6A.trigger"
     },
     {
-      "from": "K19.out",
-      "to": "sk7.a"
+      "from": "id6.value",
+      "to": "sk6P.key"
     },
     {
-      "from": "id7.value",
-      "to": "sk7.b"
+      "from": "K11.out",
+      "to": "sk6P.value"
+    },
+    {
+      "from": "sk6G.changed",
+      "to": "sk6P.trigger"
     },
     {
       "from": "id7.valid",
@@ -25592,7 +25713,11 @@
       "to": "sk7G.go"
     },
     {
-      "from": "sk7.out",
+      "from": "id7.value",
+      "to": "sk7A.key"
+    },
+    {
+      "from": "K11.out",
       "to": "sk7A.value"
     },
     {
@@ -25600,12 +25725,16 @@
       "to": "sk7A.trigger"
     },
     {
-      "from": "K20.out",
-      "to": "sk8.a"
+      "from": "id7.value",
+      "to": "sk7P.key"
     },
     {
-      "from": "id8.value",
-      "to": "sk8.b"
+      "from": "K13.out",
+      "to": "sk7P.value"
+    },
+    {
+      "from": "sk7G.changed",
+      "to": "sk7P.trigger"
     },
     {
       "from": "id8.valid",
@@ -25616,7 +25745,11 @@
       "to": "sk8G.go"
     },
     {
-      "from": "sk8.out",
+      "from": "id8.value",
+      "to": "sk8A.key"
+    },
+    {
+      "from": "K11.out",
       "to": "sk8A.value"
     },
     {
@@ -25624,12 +25757,16 @@
       "to": "sk8A.trigger"
     },
     {
-      "from": "K21.out",
-      "to": "sk9.a"
+      "from": "id8.value",
+      "to": "sk8P.key"
     },
     {
-      "from": "id9.value",
-      "to": "sk9.b"
+      "from": "K14.out",
+      "to": "sk8P.value"
+    },
+    {
+      "from": "sk8G.changed",
+      "to": "sk8P.trigger"
     },
     {
       "from": "id9.valid",
@@ -25640,7 +25777,11 @@
       "to": "sk9G.go"
     },
     {
-      "from": "sk9.out",
+      "from": "id9.value",
+      "to": "sk9A.key"
+    },
+    {
+      "from": "K11.out",
       "to": "sk9A.value"
     },
     {
@@ -25648,12 +25789,16 @@
       "to": "sk9A.trigger"
     },
     {
-      "from": "K22.out",
-      "to": "sk10.a"
+      "from": "id9.value",
+      "to": "sk9P.key"
     },
     {
-      "from": "id10.value",
-      "to": "sk10.b"
+      "from": "K15.out",
+      "to": "sk9P.value"
+    },
+    {
+      "from": "sk9G.changed",
+      "to": "sk9P.trigger"
     },
     {
       "from": "id10.valid",
@@ -25664,7 +25809,11 @@
       "to": "sk10G.go"
     },
     {
-      "from": "sk10.out",
+      "from": "id10.value",
+      "to": "sk10A.key"
+    },
+    {
+      "from": "K13.out",
       "to": "sk10A.value"
     },
     {
@@ -25672,12 +25821,16 @@
       "to": "sk10A.trigger"
     },
     {
-      "from": "K23.out",
-      "to": "sk11.a"
+      "from": "id10.value",
+      "to": "sk10P.key"
     },
     {
-      "from": "id11.value",
-      "to": "sk11.b"
+      "from": "K12.out",
+      "to": "sk10P.value"
+    },
+    {
+      "from": "sk10G.changed",
+      "to": "sk10P.trigger"
     },
     {
       "from": "id11.valid",
@@ -25688,7 +25841,11 @@
       "to": "sk11G.go"
     },
     {
-      "from": "sk11.out",
+      "from": "id11.value",
+      "to": "sk11A.key"
+    },
+    {
+      "from": "K13.out",
       "to": "sk11A.value"
     },
     {
@@ -25696,12 +25853,16 @@
       "to": "sk11A.trigger"
     },
     {
-      "from": "K24.out",
-      "to": "sk12.a"
+      "from": "id11.value",
+      "to": "sk11P.key"
     },
     {
-      "from": "id12.value",
-      "to": "sk12.b"
+      "from": "K11.out",
+      "to": "sk11P.value"
+    },
+    {
+      "from": "sk11G.changed",
+      "to": "sk11P.trigger"
     },
     {
       "from": "id12.valid",
@@ -25712,7 +25873,11 @@
       "to": "sk12G.go"
     },
     {
-      "from": "sk12.out",
+      "from": "id12.value",
+      "to": "sk12A.key"
+    },
+    {
+      "from": "K13.out",
       "to": "sk12A.value"
     },
     {
@@ -25720,12 +25885,16 @@
       "to": "sk12A.trigger"
     },
     {
-      "from": "K25.out",
-      "to": "sk13.a"
+      "from": "id12.value",
+      "to": "sk12P.key"
     },
     {
-      "from": "id13.value",
-      "to": "sk13.b"
+      "from": "K13.out",
+      "to": "sk12P.value"
+    },
+    {
+      "from": "sk12G.changed",
+      "to": "sk12P.trigger"
     },
     {
       "from": "id13.valid",
@@ -25736,7 +25905,11 @@
       "to": "sk13G.go"
     },
     {
-      "from": "sk13.out",
+      "from": "id13.value",
+      "to": "sk13A.key"
+    },
+    {
+      "from": "K13.out",
       "to": "sk13A.value"
     },
     {
@@ -25744,12 +25917,16 @@
       "to": "sk13A.trigger"
     },
     {
-      "from": "K26.out",
-      "to": "sk14.a"
+      "from": "id13.value",
+      "to": "sk13P.key"
     },
     {
-      "from": "id14.value",
-      "to": "sk14.b"
+      "from": "K14.out",
+      "to": "sk13P.value"
+    },
+    {
+      "from": "sk13G.changed",
+      "to": "sk13P.trigger"
     },
     {
       "from": "id14.valid",
@@ -25760,12 +25937,28 @@
       "to": "sk14G.go"
     },
     {
-      "from": "sk14.out",
+      "from": "id14.value",
+      "to": "sk14A.key"
+    },
+    {
+      "from": "K13.out",
       "to": "sk14A.value"
     },
     {
       "from": "sk14G.changed",
       "to": "sk14A.trigger"
+    },
+    {
+      "from": "id14.value",
+      "to": "sk14P.key"
+    },
+    {
+      "from": "K15.out",
+      "to": "sk14P.value"
+    },
+    {
+      "from": "sk14G.changed",
+      "to": "sk14P.trigger"
     },
     {
       "from": "lists.out",
@@ -25784,7 +25977,7 @@
       "to": "lk0G.trigger"
     },
     {
-      "from": "K27.out",
+      "from": "K17.out",
       "to": "lk0S.key"
     },
     {
@@ -25804,7 +25997,7 @@
       "to": "lk1G.trigger"
     },
     {
-      "from": "K28.out",
+      "from": "K18.out",
       "to": "lk1S.key"
     },
     {
@@ -25824,7 +26017,7 @@
       "to": "lk2G.trigger"
     },
     {
-      "from": "K29.out",
+      "from": "K19.out",
       "to": "lk2S.key"
     },
     {
@@ -25844,7 +26037,7 @@
       "to": "lk3G.trigger"
     },
     {
-      "from": "K30.out",
+      "from": "K20.out",
       "to": "lk3S.key"
     },
     {
@@ -25864,7 +26057,7 @@
       "to": "lk5G.trigger"
     },
     {
-      "from": "K31.out",
+      "from": "K21.out",
       "to": "lk5S.key"
     },
     {
@@ -25884,7 +26077,7 @@
       "to": "lk6G.trigger"
     },
     {
-      "from": "K32.out",
+      "from": "K22.out",
       "to": "lk6S.key"
     },
     {
@@ -25904,7 +26097,7 @@
       "to": "lk7G.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K23.out",
       "to": "lk7S.key"
     },
     {
@@ -25924,7 +26117,7 @@
       "to": "lk8G.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K24.out",
       "to": "lk8S.key"
     },
     {
@@ -25944,7 +26137,7 @@
       "to": "lk10G.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K25.out",
       "to": "lk10S.key"
     },
     {
@@ -25964,7 +26157,7 @@
       "to": "lk11G.trigger"
     },
     {
-      "from": "K36.out",
+      "from": "K26.out",
       "to": "lk11S.key"
     },
     {
@@ -25984,7 +26177,7 @@
       "to": "lk12G.trigger"
     },
     {
-      "from": "K37.out",
+      "from": "K27.out",
       "to": "lk12S.key"
     },
     {
@@ -26004,7 +26197,7 @@
       "to": "lk13G.trigger"
     },
     {
-      "from": "K38.out",
+      "from": "K28.out",
       "to": "lk13S.key"
     },
     {
@@ -26021,91 +26214,163 @@
     },
     {
       "from": "lists.out",
-      "to": "clrChains.trigger"
+      "to": "lc_chainMap.trigger"
     },
     {
-      "from": "K12.out",
-      "to": "ck0.a"
+      "from": "lists.out",
+      "to": "lc_chainCards.trigger"
     },
     {
-      "from": "cnt0.value",
-      "to": "ck0.b"
+      "from": "lists.out",
+      "to": "lc_chainSolid.trigger"
     },
     {
-      "from": "solid0.value",
-      "to": "ck0.c"
+      "from": "lists.out",
+      "to": "lc_chainSoph.trigger"
     },
     {
-      "from": "soph0.value",
-      "to": "ck0.d"
-    },
-    {
-      "from": "ck0.out",
-      "to": "ck0S.key"
+      "from": "K17.out",
+      "to": "ck0_chainMap.key"
     },
     {
       "from": "dmg0.value",
-      "to": "ck0S.value"
+      "to": "ck0_chainMap.value"
     },
     {
       "from": "lists.out",
-      "to": "ck0S.trigger"
+      "to": "ck0_chainMap.trigger"
     },
     {
-      "from": "K11.out",
-      "to": "ck1.a"
+      "from": "K17.out",
+      "to": "ck0_chainCards.key"
     },
     {
-      "from": "cnt1.value",
-      "to": "ck1.b"
+      "from": "cnt0.value",
+      "to": "ck0_chainCards.value"
     },
     {
-      "from": "solid1.value",
-      "to": "ck1.c"
+      "from": "lists.out",
+      "to": "ck0_chainCards.trigger"
     },
     {
-      "from": "soph1.value",
-      "to": "ck1.d"
+      "from": "K17.out",
+      "to": "ck0_chainSolid.key"
     },
     {
-      "from": "ck1.out",
-      "to": "ck1S.key"
+      "from": "solid0.value",
+      "to": "ck0_chainSolid.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck0_chainSolid.trigger"
+    },
+    {
+      "from": "K17.out",
+      "to": "ck0_chainSoph.key"
+    },
+    {
+      "from": "soph0.value",
+      "to": "ck0_chainSoph.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck0_chainSoph.trigger"
+    },
+    {
+      "from": "K18.out",
+      "to": "ck1_chainMap.key"
     },
     {
       "from": "dmg1.value",
-      "to": "ck1S.value"
+      "to": "ck1_chainMap.value"
     },
     {
       "from": "lists.out",
-      "to": "ck1S.trigger"
+      "to": "ck1_chainMap.trigger"
     },
     {
-      "from": "K13.out",
-      "to": "ck2.a"
+      "from": "K18.out",
+      "to": "ck1_chainCards.key"
     },
     {
-      "from": "cnt2.value",
-      "to": "ck2.b"
+      "from": "cnt1.value",
+      "to": "ck1_chainCards.value"
     },
     {
-      "from": "solid2.value",
-      "to": "ck2.c"
+      "from": "lists.out",
+      "to": "ck1_chainCards.trigger"
     },
     {
-      "from": "soph2.value",
-      "to": "ck2.d"
+      "from": "K18.out",
+      "to": "ck1_chainSolid.key"
     },
     {
-      "from": "ck2.out",
-      "to": "ck2S.key"
+      "from": "solid1.value",
+      "to": "ck1_chainSolid.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck1_chainSolid.trigger"
+    },
+    {
+      "from": "K18.out",
+      "to": "ck1_chainSoph.key"
+    },
+    {
+      "from": "soph1.value",
+      "to": "ck1_chainSoph.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck1_chainSoph.trigger"
+    },
+    {
+      "from": "K19.out",
+      "to": "ck2_chainMap.key"
     },
     {
       "from": "dmg2.value",
-      "to": "ck2S.value"
+      "to": "ck2_chainMap.value"
     },
     {
       "from": "lists.out",
-      "to": "ck2S.trigger"
+      "to": "ck2_chainMap.trigger"
+    },
+    {
+      "from": "K19.out",
+      "to": "ck2_chainCards.key"
+    },
+    {
+      "from": "cnt2.value",
+      "to": "ck2_chainCards.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck2_chainCards.trigger"
+    },
+    {
+      "from": "K19.out",
+      "to": "ck2_chainSolid.key"
+    },
+    {
+      "from": "solid2.value",
+      "to": "ck2_chainSolid.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck2_chainSolid.trigger"
+    },
+    {
+      "from": "K19.out",
+      "to": "ck2_chainSoph.key"
+    },
+    {
+      "from": "soph2.value",
+      "to": "ck2_chainSoph.value"
+    },
+    {
+      "from": "lists.out",
+      "to": "ck2_chainSoph.trigger"
     },
     {
       "from": "lists.out",
@@ -26113,7 +26378,15 @@
     },
     {
       "from": "lists.out",
-      "to": "clrDrawer.trigger"
+      "to": "lc_drawerList.trigger"
+    },
+    {
+      "from": "lists.out",
+      "to": "lc_drawRset.trigger"
+    },
+    {
+      "from": "lists.out",
+      "to": "lc_drawPlaced.trigger"
     },
     {
       "from": "lists.out",
@@ -26321,27 +26594,39 @@
     },
     {
       "from": "drawEach.item",
-      "to": "di_key.a"
+      "to": "di_drawerList.key"
     },
     {
-      "from": "di_full.value",
-      "to": "di_key.b"
-    },
-    {
-      "from": "di_rset.value",
-      "to": "di_key.c"
-    },
-    {
-      "from": "di_placed.value",
-      "to": "di_key.d"
-    },
-    {
-      "from": "di_key.out",
-      "to": "di_add.value"
+      "from": "di_full.truth",
+      "to": "di_drawerList.value"
     },
     {
       "from": "drawEach.each",
-      "to": "di_add.trigger"
+      "to": "di_drawerList.trigger"
+    },
+    {
+      "from": "drawEach.item",
+      "to": "di_drawRset.key"
+    },
+    {
+      "from": "di_rset.truth",
+      "to": "di_drawRset.value"
+    },
+    {
+      "from": "drawEach.each",
+      "to": "di_drawRset.trigger"
+    },
+    {
+      "from": "drawEach.item",
+      "to": "di_drawPlaced.key"
+    },
+    {
+      "from": "di_placed.truth",
+      "to": "di_drawPlaced.value"
+    },
+    {
+      "from": "drawEach.each",
+      "to": "di_drawPlaced.trigger"
     },
     {
       "from": "unlockedN.value",
@@ -26800,7 +27085,7 @@
       "to": "fullG.trigger"
     },
     {
-      "from": "K39.out",
+      "from": "K29.out",
       "to": "remark4_key.in"
     },
     {
@@ -27472,7 +27757,7 @@
       "to": "noChainG.trigger"
     },
     {
-      "from": "K40.out",
+      "from": "K30.out",
       "to": "remark6_key.in"
     },
     {
@@ -27504,12 +27789,36 @@
       "to": "warnKey.cond"
     },
     {
-      "from": "K41.out",
+      "from": "K31.out",
       "to": "warnKey.a"
     },
     {
-      "from": "K42.out",
+      "from": "K32.out",
       "to": "warnKey.b"
+    },
+    {
+      "from": "noReason.value",
+      "to": "warnCount.noReason"
+    },
+    {
+      "from": "unappr.value",
+      "to": "warnCount.unappr"
+    },
+    {
+      "from": "warnCount.value",
+      "to": "warnNL.in"
+    },
+    {
+      "from": "warnG.pass",
+      "to": "warnNL.trigger"
+    },
+    {
+      "from": "apprLeft.value",
+      "to": "warnLeftL.in"
+    },
+    {
+      "from": "warnG.pass",
+      "to": "warnLeftL.trigger"
     },
     {
       "from": "warnKey.out",
@@ -27580,7 +27889,7 @@
       "to": "cmId0.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId0.b"
     },
     {
@@ -27632,7 +27941,7 @@
       "to": "cmId1.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId1.b"
     },
     {
@@ -27684,7 +27993,7 @@
       "to": "cmId2.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId2.b"
     },
     {
@@ -27736,7 +28045,7 @@
       "to": "cmId3.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId3.b"
     },
     {
@@ -27788,7 +28097,7 @@
       "to": "cmId4.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId4.b"
     },
     {
@@ -27840,7 +28149,7 @@
       "to": "cmId5.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId5.b"
     },
     {
@@ -27892,7 +28201,7 @@
       "to": "cmId6.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId6.b"
     },
     {
@@ -27944,7 +28253,7 @@
       "to": "cmId7.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId7.b"
     },
     {
@@ -27996,7 +28305,7 @@
       "to": "cmId8.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId8.b"
     },
     {
@@ -28048,7 +28357,7 @@
       "to": "cmId9.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId9.b"
     },
     {
@@ -28100,7 +28409,7 @@
       "to": "cmId10.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId10.b"
     },
     {
@@ -28152,7 +28461,7 @@
       "to": "cmId11.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId11.b"
     },
     {
@@ -28204,7 +28513,7 @@
       "to": "cmId12.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId12.b"
     },
     {
@@ -28256,7 +28565,7 @@
       "to": "cmId13.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId13.b"
     },
     {
@@ -28308,7 +28617,7 @@
       "to": "cmId14.a"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "cmId14.b"
     },
     {
@@ -28600,7 +28909,7 @@
       "to": "pad0G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad0B.value"
     },
     {
@@ -28636,7 +28945,7 @@
       "to": "pad1G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad1B.value"
     },
     {
@@ -28672,7 +28981,7 @@
       "to": "pad2G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad2B.value"
     },
     {
@@ -28708,7 +29017,7 @@
       "to": "pad3G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad3B.value"
     },
     {
@@ -28744,7 +29053,7 @@
       "to": "pad4G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad4B.value"
     },
     {
@@ -28780,7 +29089,7 @@
       "to": "pad5G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad5B.value"
     },
     {
@@ -28816,7 +29125,7 @@
       "to": "pad6G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad6B.value"
     },
     {
@@ -28852,7 +29161,7 @@
       "to": "pad7G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad7B.value"
     },
     {
@@ -28888,7 +29197,7 @@
       "to": "pad8G.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K33.out",
       "to": "pad8B.value"
     },
     {
@@ -29232,7 +29541,7 @@
       "to": "sc_key0.a"
     },
     {
-      "from": "K44.out",
+      "from": "K34.out",
       "to": "sc_key0.b"
     },
     {
@@ -29308,7 +29617,7 @@
       "to": "sc_key1.a"
     },
     {
-      "from": "K44.out",
+      "from": "K34.out",
       "to": "sc_key1.b"
     },
     {
@@ -29400,7 +29709,7 @@
       "to": "sc_key2.a"
     },
     {
-      "from": "K44.out",
+      "from": "K34.out",
       "to": "sc_key2.b"
     },
     {
@@ -29492,7 +29801,7 @@
       "to": "sc_key3.a"
     },
     {
-      "from": "K44.out",
+      "from": "K34.out",
       "to": "sc_key3.b"
     },
     {
@@ -29648,7 +29957,7 @@
       "to": "phaseMid.a"
     },
     {
-      "from": "K45.out",
+      "from": "K35.out",
       "to": "phaseMid.b"
     },
     {
@@ -29656,11 +29965,11 @@
       "to": "condKey0.cond"
     },
     {
-      "from": "K46.out",
+      "from": "K36.out",
       "to": "condKey0.a"
     },
     {
-      "from": "K47.out",
+      "from": "K37.out",
       "to": "condKey0.b"
     },
     {
@@ -29668,7 +29977,7 @@
       "to": "phaseLate.a"
     },
     {
-      "from": "K48.out",
+      "from": "K38.out",
       "to": "phaseLate.b"
     },
     {
@@ -29676,7 +29985,7 @@
       "to": "condKey.cond"
     },
     {
-      "from": "K49.out",
+      "from": "K39.out",
       "to": "condKey.a"
     },
     {
@@ -29776,7 +30085,7 @@
       "to": "remark_key_is5.a"
     },
     {
-      "from": "K17.out",
+      "from": "K40.out",
       "to": "remark_key_is5.b"
     },
     {
@@ -29796,7 +30105,7 @@
       "to": "remark_key_is6.a"
     },
     {
-      "from": "K18.out",
+      "from": "K41.out",
       "to": "remark_key_is6.b"
     },
     {
@@ -29816,7 +30125,7 @@
       "to": "remark_key_is7.a"
     },
     {
-      "from": "K19.out",
+      "from": "K42.out",
       "to": "remark_key_is7.b"
     },
     {
@@ -29837,6 +30146,18 @@
     },
     {
       "from": "remarkText.text",
+      "to": "remarkF.pattern"
+    },
+    {
+      "from": "warnNL.out",
+      "to": "remarkF.n"
+    },
+    {
+      "from": "warnLeftL.out",
+      "to": "remarkF.left"
+    },
+    {
+      "from": "remarkF.text",
       "to": "ui#board.remark"
     },
     {

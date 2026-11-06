@@ -490,7 +490,8 @@ def write_harness(sc: Schedule) -> int:
         (HARNESS / "data" / f"{name}.json").write_text(
             "[\n" + ",\n".join(json.dumps(r, ensure_ascii=False, separators=(",", ":")) for r in rows) + "\n]\n",
             encoding="utf-8", newline="\n")
-    tables = {name: f"data/{name}.json" for name in list(G.TABLES) + ["pIn", "pT", G.SCRIPT_TABLE, "pVoc"]}
+    tables = {name: f"data/{name}.json" for name in list(G.TABLES) + ["pIn", "pT", "pVoc"]}
+    tables[G.SCRIPT_TABLE] = G.script_table(f"data/{G.SCRIPT_TABLE}.json")
     colls = {**G.COLLECTIONS,
              "pRecM": {"kind": "list", "type": "number", "capacity": 65536},
              "pRecS": {"kind": "list", "type": "number", "capacity": 65536}}
