@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_debate.jpg
-content: sha256:0d34a4c3afd19533f1123c23d78e55faefd4ef58ffa521cae3dbac82bfa84d66
+content: sha256:40fc0351b2b39de11a2da432f1e26648d0434c3c66f8cbc4d4b623cd1e34c40a
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/stamp_seen.png
-content: sha256:a7dadf9421a12a282b07927fc1640fea33fb580cb0a6f2e2ee05e0b0b4c3db94
+content: sha256:82d3f5f5f9f6124fca1e4066c4c1c665e3119e6798b679adca4975f60f8a2220
 measured:
-  w: 300
-  h: 282
+  w: 640
+  h: 603
   alpha: true

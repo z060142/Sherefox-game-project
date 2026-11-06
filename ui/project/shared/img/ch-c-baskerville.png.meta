@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_baskerville.png
-content: sha256:9a830d7d993ad41200a0d16adac11a01b022edb77190dfac3787a987c0f32889
+content: sha256:23b3888075c9e22179ef84231172a62064dc038f5d7865922edcce3a73958203
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

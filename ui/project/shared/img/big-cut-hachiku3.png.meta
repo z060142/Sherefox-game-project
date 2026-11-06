@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/cut_hachiku.png
-content: sha256:50dbc3a907523b16df21276959a1d7f49225efc852d39a9695967c04550cb8d3
+content: sha256:ec23f4af3dcd824a6e2f334246c4197fc0c2d692eaafa8f9ed839655050d79de
 measured:
-  w: 1100
-  h: 619
+  w: 1672
+  h: 941
   alpha: true

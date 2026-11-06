@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_barge_deck.jpg
-content: sha256:17717f5d839cdc4de554a055915b168a1e8f0d1dd0cb35b744ec721b9a8f527a
+content: sha256:f01a8efd7a79df88ae120c9842b77aee2bbcc945e23df4a1be7a42a736386803
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

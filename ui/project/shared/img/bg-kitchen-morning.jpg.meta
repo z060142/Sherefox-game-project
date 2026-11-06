@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_kitchen_morning.jpg
-content: sha256:bd25d3f608473d2a2d84cf9d97b641c95996da53385be80d0865ec1001961488
+content: sha256:d8cfbfe521d8ac94d5efa231119f13af7d8e369fffc2a754bf40670120769d6e
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/stamp_parry.png
-content: sha256:a736b7ee98817e9076c258012fced0817f4567acf91ae0f164203c87546e8ded
+content: sha256:8fa72a6f6e1805232ae776cc7bfe80fde982365f1ecfc0fbc13dcc2fde8ed736
 measured:
-  w: 300
-  h: 299
+  w: 640
+  h: 638
   alpha: true

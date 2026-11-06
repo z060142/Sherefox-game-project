@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_clockshop.jpg
-content: sha256:e8d406bc0cd08b01860d42bd7ef4586aa04ec44f94c1ab1501197e58197d98d5
+content: sha256:72b662c3ac5ce6c5f006e16accf3b16072ff8a7e691f11bcabe0b26b2826c6fd
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

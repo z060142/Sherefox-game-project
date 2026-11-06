@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_office_night.jpg
-content: sha256:42c8b7b94d6c4123e345ca0fbed65dd15a81d9d1b55ad18448b9c104b2d93178
+content: sha256:31e8c08b811c3942b304b701dfc592285f6b7386ddbf80e5b025cd86db694aba
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

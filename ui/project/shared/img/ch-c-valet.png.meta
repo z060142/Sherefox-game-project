@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_valet.png
-content: sha256:2ea723c548d73614a6eb453710c92ac84b9c06bf6985e783278d9f662410fd5a
+content: sha256:4e26c222a2bba7ccab14b4ecace318134ebb165805ebd121a5155af5624c3249
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_partner.png
-content: sha256:8c83138c86cdf554b5ba80dd3805716cb517e7ef8af46ffb6054a746c1a97f0c
+content: sha256:bb49d86ba5c8bc73f27de68bd21578658ace8c38b094ea3c98c4d169ae0de214
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

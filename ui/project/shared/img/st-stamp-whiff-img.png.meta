@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/stamp_whiff.png
-content: sha256:3c7a543ca3eda39f1a2a95418b4cb34d24d221138ae0344f256199fa939da2d1
+content: sha256:45628757f46b6623834347e0968678068c1be58ebe869c79526402da3ac5de08
 measured:
-  w: 296
-  h: 300
+  w: 631
+  h: 640
   alpha: true

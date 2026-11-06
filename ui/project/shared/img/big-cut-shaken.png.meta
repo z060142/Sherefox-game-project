@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/cut_shaken.png
-content: sha256:64a2f974167e9c653c7aac7c0e70a0e78d405b925bb8c6a9c7f5527dcd5518c4
+content: sha256:74a476a9d22d2ac9f1ae7c4076cb381b616de01f8a4e1340b67ef082992e4f83
 measured:
-  w: 1100
-  h: 533
+  w: 1730
+  h: 838
   alpha: true

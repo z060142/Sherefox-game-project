@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_wolfhart.png
-content: sha256:09881bfba6348a3eecabc0e6c35220c5ab0765987b0026dc944ef9c80d2f771a
+content: sha256:6b3bf7f0b5090175ee95ca896676f6810dfc39363245eb6919d65fd2f8a1b8aa
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

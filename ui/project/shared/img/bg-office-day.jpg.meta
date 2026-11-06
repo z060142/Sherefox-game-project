@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_office_day.jpg
-content: sha256:6ec756c1529dd52bc3019b6d2dc9cb0f8c3b598d610a02ccffcc522f2c3e9dd1
+content: sha256:e66324dfb9e2e280a88bf3a45c577b92db9c3f5d853976b4809a3c9d0a61af9a
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

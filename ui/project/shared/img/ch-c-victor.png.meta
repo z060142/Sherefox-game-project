@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_victor.png
-content: sha256:e82cdcff7d2b0dfd579ae7a0644cb9a37a8c654189b67fb0d989935248312066
+content: sha256:44c828d8e1c704e89a30c3fb6ac1fe794d9695a9af6c6b2b11ab0be357bb1dea
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

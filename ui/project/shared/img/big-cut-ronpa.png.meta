@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/cut_ronpa.png
-content: sha256:b94c508613378f8690d48feab94334c53f91c1a3fb0cbe5ed3ca94a7a1ab140f
+content: sha256:e6049fb816eb84161fe033c2cf5f860cb72f7f65a41aed91e93fd81890f4fcd3
 measured:
-  w: 1100
-  h: 563
+  w: 1752
+  h: 897
   alpha: true

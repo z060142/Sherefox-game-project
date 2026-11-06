@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_arthur.png
-content: sha256:e867c0c9b022b4f14bf7b74eb52373972930c6058a7b2dea783be092f91d67a6
+content: sha256:f68bd10d5a5b1f3ea5f2f8e7aa46494c7accab7eaa17e2a46d86569d82296d56
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

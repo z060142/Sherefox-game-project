@@ -6,121 +6,121 @@ assets:
     file: shared/img/bg-barge-deck.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-boiler-room
     type: image
     file: shared/img/bg-boiler-room.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-clockshop
     type: image
     file: shared/img/bg-clockshop.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-debate
     type: image
     file: shared/img/bg-debate.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-dock-fog
     type: image
     file: shared/img/bg-dock-fog.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-kitchen-morning
     type: image
     file: shared/img/bg-kitchen-morning.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-office-day
     type: image
     file: shared/img/bg-office-day.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-office-night
     type: image
     file: shared/img/bg-office-night.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 1280, h: 720, alpha: false }
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: big-cut-hachiku3
     type: image
     file: shared/img/big-cut-hachiku3.png
     source: import:claude-design
     status: draft
-    measured: { w: 1100, h: 619, alpha: true }
+    measured: { w: 1672, h: 941, alpha: true }
   - id: big-cut-konju
     type: image
     file: shared/img/big-cut-konju.png
     source: import:claude-design
     status: draft
-    measured: { w: 1100, h: 550, alpha: true }
+    measured: { w: 1774, h: 887, alpha: true }
   - id: big-cut-ronpa
     type: image
     file: shared/img/big-cut-ronpa.png
     source: import:claude-design
     status: draft
-    measured: { w: 1100, h: 563, alpha: true }
+    measured: { w: 1752, h: 897, alpha: true }
   - id: big-cut-shaken
     type: image
     file: shared/img/big-cut-shaken.png
     source: import:claude-design
     status: draft
-    measured: { w: 1100, h: 533, alpha: true }
+    measured: { w: 1730, h: 838, alpha: true }
   - id: big-cut-shisshu
     type: image
     file: shared/img/big-cut-shisshu.png
     source: import:claude-design
     status: draft
-    measured: { w: 1100, h: 550, alpha: true }
+    measured: { w: 1774, h: 887, alpha: true }
   - id: ch-c-arthur
     type: image
     file: shared/img/ch-c-arthur.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-baskerville
     type: image
     file: shared/img/ch-c-baskerville.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-partner
     type: image
     file: shared/img/ch-c-partner.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-sherefox
     type: image
     file: shared/img/ch-c-sherefox.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-valet
     type: image
     file: shared/img/ch-c-valet.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-victor
     type: image
     file: shared/img/ch-c-victor.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-wolfhart
     type: image
     file: shared/img/ch-c-wolfhart.png
     source: import:claude-design
     status: draft
-    measured: { w: 440, h: 660, alpha: true }
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: dcard-pin
     type: image
     file: shared/img/dcard-pin.png
@@ -192,67 +192,67 @@ assets:
     file: shared/img/pic-ch01.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 960, h: 640, alpha: false }
+    measured: { w: 1536, h: 1024, alpha: false }
   - id: pic-ch02
     type: image
     file: shared/img/pic-ch02.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 960, h: 640, alpha: false }
+    measured: { w: 1536, h: 1024, alpha: false }
   - id: pic-ch03
     type: image
     file: shared/img/pic-ch03.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 960, h: 640, alpha: false }
+    measured: { w: 1536, h: 1024, alpha: false }
   - id: pic-ch04
     type: image
     file: shared/img/pic-ch04.jpg
     source: import:claude-design
     status: draft
-    measured: { w: 960, h: 640, alpha: false }
+    measured: { w: 1536, h: 1024, alpha: false }
   - id: st-stamp-assist-img
     type: image
     file: shared/img/st-stamp-assist-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 300, h: 295, alpha: true }
+    measured: { w: 640, h: 630, alpha: true }
   - id: st-stamp-clash-img
     type: image
     file: shared/img/st-stamp-clash-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 300, h: 291, alpha: true }
+    measured: { w: 640, h: 622, alpha: true }
   - id: st-stamp-hachiku-lost-img
     type: image
     file: shared/img/st-stamp-hachiku-lost-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 300, h: 298, alpha: true }
+    measured: { w: 640, h: 636, alpha: true }
   - id: st-stamp-parry-img
     type: image
     file: shared/img/st-stamp-parry-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 300, h: 299, alpha: true }
+    measured: { w: 640, h: 638, alpha: true }
   - id: st-stamp-seen-img
     type: image
     file: shared/img/st-stamp-seen-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 300, h: 282, alpha: true }
+    measured: { w: 640, h: 603, alpha: true }
   - id: st-stamp-trap-img
     type: image
     file: shared/img/st-stamp-trap-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 288, h: 300, alpha: true }
+    measured: { w: 615, h: 640, alpha: true }
   - id: st-stamp-whiff-img
     type: image
     file: shared/img/st-stamp-whiff-img.png
     source: import:claude-design
     status: draft
-    measured: { w: 296, h: 300, alpha: true }
+    measured: { w: 631, h: 640, alpha: true }
   - id: ui-cork
     type: image
     file: shared/img/ui-cork.jpg

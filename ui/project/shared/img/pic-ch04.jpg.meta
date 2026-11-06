@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/paper_ch04.jpg
-content: sha256:d074d585abb527de0f70a1325515a7158ba626612066dab0be5276edbe7c88b9
+content: sha256:13c346f4142a732a9a41a43056ea3a49b0bf85cfca8244778d74b8c95ba4a857
 measured:
-  w: 960
-  h: 640
+  w: 1536
+  h: 1024
   alpha: false

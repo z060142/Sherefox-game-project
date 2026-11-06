@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/cut_konju.png
-content: sha256:3c1fa7016fd97d28cc803ae4a9a1bb1078cd56c9e6c466cdac2230f28dc666a0
+content: sha256:9ac0f019c08ef3dc505ff5a6f711b1266854497340ece0f8f7c706fd86303795
 measured:
-  w: 1100
-  h: 550
+  w: 1774
+  h: 887
   alpha: true

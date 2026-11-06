@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/bg_dock_fog.jpg
-content: sha256:2e6935a034dfc9d483b0212e5ce06ddded14321cde90079625b3bde146c3eeef
+content: sha256:6c74fa894fdad7da260e99da3dbf5fa11af6411dc6e99c7d4def9c1e93bc1948
 measured:
-  w: 1280
-  h: 720
+  w: 2560
+  h: 1440
   alpha: false

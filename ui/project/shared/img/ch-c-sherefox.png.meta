@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/char_sherefox.png
-content: sha256:4047e4f58dff066a9f1bfae888bbee7b1aa71bb56e7d38c94d2b0d7bbd44176e
+content: sha256:7b40e08de5fdf113f2a65846336423254606ee354a6c13bcaded2049e5a5acd1
 measured:
-  w: 440
-  h: 660
+  w: 1024
+  h: 1536
   alpha: true

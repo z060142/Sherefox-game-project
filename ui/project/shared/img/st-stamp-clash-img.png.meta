@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/stamp_clash.png
-content: sha256:efcbbb4b3efff1df9669e981435acab8dfd69e394640a20a9d5e65ffba0a9503
+content: sha256:a602cb8b92ff87ee93725850ae42d6c49d546c17af740c2a3866a656ec18dca6
 measured:
-  w: 300
-  h: 291
+  w: 640
+  h: 622
   alpha: true

@@ -6,8 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/stamp_trap.png
-content: sha256:d2309474348fba45f85c4aba9719f5dda32904eafe12e56438ec1865e48704cd
+content: sha256:f2e011e8bd4c2ebd6a3b76007fcfb7cd4c8fb40f6b6aeb45b53f630166b2978c
 measured:
-  w: 288
-  h: 300
+  w: 615
+  h: 640
   alpha: true
