@@ -6722,5 +6722,65 @@
  "UI_RES_TRUST_LABEL": {
   "zh-TW": "警督信任度",
   "en": "Inspector's Trust"
+ },
+ "SCENE_CH01_KITCHEN": {
+  "zh-TW": "事務所廚房兼客廳",
+  "en": "The Agency Kitchen and Parlour"
+ },
+ "SCENE_CH02_CLOCKSHOP": {
+  "zh-TW": "報時鳥鐘錶店",
+  "en": "The Cuckoo Clockworks"
+ },
+ "SCENE_CH03_BOILER": {
+  "zh-TW": "駁船鍋爐室",
+  "en": "The Barge Boiler Room"
+ },
+ "SCENE_CH03_DECK": {
+  "zh-TW": "駁船甲板",
+  "en": "The Barge Deck"
+ },
+ "SCENE_CH03_DOCK": {
+  "zh-TW": "碼頭",
+  "en": "The Wharf"
+ },
+ "HS_CH03_01_NOTE_REPORT": {
+  "zh-TW": "驗屍報告已經在手上了；遺體的狀況和報告一致，燙傷和指甲裡的木屑都對得上。",
+  "en": "The autopsy report is already in hand; the body matches it, scalds and the wood splinters under the nails alike."
+ },
+ "G-01_DESC": {
+  "zh-TW": "從替換機芯的批號一路追查抄來的清單：一串軍工黑市專用的編號，字跡潦草，像是有人急著記下又急著藏起來。",
+  "en": "A list traced and copied from the replacement movement's batch number: a string of serials used only on the military black market, scrawled as if someone wrote it down in a hurry and hid it in a hurry."
+ },
+ "G-01_REASON": {
+  "zh-TW": "這批軍工零件流進了倫敦的黑市，經手的人不只一個",
+  "en": "This batch of military parts found its way into London's black market, and more than one pair of hands passed it along."
+ },
+ "S-01_DESC": {
+  "zh-TW": "用鉛筆在紙上拓下的齒輪齒形。形狀對得上，但沒有批號，只能說明「很像」，證明不了「就是」。",
+  "en": "The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say \"very like\", never \"the same\"."
+ },
+ "UI_TAG_SEP": {
+  "zh-TW": "・",
+  "en": ", "
+ },
+ "UI_STAGE_EARLY": {
+  "zh-TW": "前期",
+  "en": "Early-game"
+ },
+ "UI_STAGE_MID": {
+  "zh-TW": "中期",
+  "en": "Mid-game"
+ },
+ "UI_STAGE_LATE": {
+  "zh-TW": "後期",
+  "en": "Late-game"
+ },
+ "UI_DEB_NOSOPH_REASON": {
+  "zh-TW": "這段推理沒有虛線",
+  "en": "No dashed link in this chain"
+ },
+ "UI_DEB_PREVIEW_HACHIKU": {
+  "zh-TW": "破竹 +{pct}%",
+  "en": "Unstoppable +{pct}%"
  }
 }

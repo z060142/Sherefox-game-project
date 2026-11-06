@@ -101,12 +101,12 @@
   text-align: center;
 }
 
-/* import: Investigate.dc.html:1/6/2/2 */
+/* import: Investigate.dc.html:1/6/3/2 */
 #info-rule {
   background-color: var(--ink);
 }
 
-/* import: Investigate.dc.html:1/6/3/6 */
+/* import: Investigate.dc.html:1/6/4/7 */
 #plot-stamp {
   border: 2px #b8322a;
   color: var(--vermilion);
@@ -114,6 +114,15 @@
   letter-spacing: 2px;
   line-height: 30px;
   text-align: center;
+}
+
+/* import: Investigate.dc.html:1/6/5/4 */
+#msg-close {
+  color: #a65432;
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 22px;
+  text-align: right;
 }
 
 .bg-art {
@@ -401,6 +410,37 @@
 
 .clip.g4 .clip-band {
   background-color: #a6543299;
+}
+
+.pop-line {
+  background-color: var(--paper-old);
+  border-left-width: 3px;
+  border-left-color: #a65432;
+}
+
+.pop-spk {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--copper);
+}
+
+.pop-line-text {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--ink-deep);
+}
+
+.msg-body {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  text-align: center;
 }
 
 :root {

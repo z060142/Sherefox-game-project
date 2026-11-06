@@ -88,9 +88,17 @@
   .clip.talk .gl-talk { display: block }
   .plot-stamp { display: none }
   .clip.g2 .plot-stamp { display: block }
+  /* The spot's reaction line under the popup body (popup_speaker / popup_line), and the end-of-investigation
+     message slip (popup_kind 4). */
+  .pop-line { background-color: var(--paper-old); border-left: 3px solid var(--copper) }
+  .pop-spk { font-family: var(--font-body); font-size: 13px; line-height: 18px; letter-spacing: 2px; font-weight: 700;
+             color: var(--copper) }
+  .pop-line-text { font-family: var(--font-body); font-size: 17px; line-height: 26px; color: var(--ink-deep) }
+  .msg-body { font-family: var(--font-display); font-size: 24px; line-height: 34px; font-weight: 700; color: var(--ink-deep);
+              text-align: center }
 </style></helmet>
 <div id="investigate" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
-     data-xt-port='bg:string in = "kitchen_morning"; area_name:string in = "事務所廚房　早晨"; nav_prev:bool in = false; nav_next:bool in = false; spots:list&lt;struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}&gt; in = [{"id":"H01_02","name":"桌上的甜點盤","x":316,"y":318,"w":124,"h":62,"type":1,"state":1},{"id":"H01_01","name":"黃銅冰箱","x":816,"y":112,"w":230,"h":350,"type":1,"state":0},{"id":"H01_04","name":"冰箱前的地板","x":540,"y":474,"w":320,"h":92,"type":1,"state":0},{"id":"H01_05","name":"亞瑟的房門","x":1086,"y":40,"w":176,"h":430,"type":3,"state":0},{"id":"H01_06","name":"沙發上的外套","x":24,"y":300,"w":196,"h":200,"type":1,"state":0},{"id":"H01_03","name":"水槽邊的毛巾","x":500,"y":258,"w":92,"h":80,"type":0,"state":0}]; ticks:number in = 0; ticks_max:number in = 0; appraise_left:number in = 2; trust:number in = -1; book_new:number in = 1; can_end:bool in = false; hint:string in = "「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」"; hint_seq:number in = 0; popup_kind:number in = 0; popup_title:string in = "空空的布丁盤"; popup_body:string in = "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"; popup_grade:number in = 0; popup_seq:number in = 0; spot:string out = ""; nav:number out = 0; dismiss:event out; book:event out; ask_hint:event out; end:event out'
+     data-xt-port='bg:string in = "kitchen_morning"; area_name:string in = "事務所廚房　早晨"; nav_prev:bool in = false; nav_next:bool in = false; spots:list&lt;struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}&gt; in = [{"id":"H01_02","name":"桌上的甜點盤","x":316,"y":318,"w":124,"h":62,"type":1,"state":1},{"id":"H01_01","name":"黃銅冰箱","x":816,"y":112,"w":230,"h":350,"type":1,"state":0},{"id":"H01_04","name":"冰箱前的地板","x":540,"y":474,"w":320,"h":92,"type":1,"state":0},{"id":"H01_05","name":"亞瑟的房門","x":1086,"y":40,"w":176,"h":430,"type":3,"state":0},{"id":"H01_06","name":"沙發上的外套","x":24,"y":300,"w":196,"h":200,"type":1,"state":0},{"id":"H01_03","name":"水槽邊的毛巾","x":500,"y":258,"w":92,"h":80,"type":0,"state":0}]; ticks:number in = 0; ticks_max:number in = 0; appraise_left:number in = 2; trust:number in = -1; book_new:number in = 1; can_end:bool in = false; hint:string in = "「有人動過我的東西，而且動得很小心。小心的人，最會留下小心的痕跡。」"; hint_seq:number in = 0; popup_kind:number in = 0; popup_title:string in = "空空的布丁盤"; popup_body:string in = "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"; popup_grade:number in = 0; popup_seq:number in = 0; popup_speaker:string in = "亞瑟"; popup_line:string in = "貓、貓舔得很乾淨吧？"; popup_line_seq:number in = 0; popup_more:bool in = false; spot:string out = ""; nav:number out = 0; dismiss:event out; book:event out; ask_hint:event out; end:event out'
      data-xt-trigger="key(Escape):if port(popup_kind) gt 0 emit(dismiss); key(Enter):if port(popup_kind) gt 0 emit(dismiss); key(Space):if port(popup_kind) gt 0 emit(dismiss); key(Q):if port(nav_prev) eq true set(nav, -1); key(E):if port(nav_next) eq true set(nav, 1); key(Tab):emit(book); key(F):if port(can_end) eq true emit(end)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: var(--ink-deep); font-family: var(--font-body); color: var(--ink);">
@@ -243,15 +251,21 @@
          style="position: absolute; left: 176px; top: 4px;">結束蒐證</div>
   </div>
 
-  <!-- Popups (popup_kind 1 information, 2 evidence card, 3 testimony card). The backdrop takes every click. -->
+  <!-- Popups (popup_kind 1 information, 2 evidence card, 3 testimony card, 4 message). The backdrop takes every
+       click; a card flies to the evidence book only on the click that closes it (popup_more false). pop-in also
+       plays when popup_kind changes: the flow opens the popup a tick after popup_seq moves, and the card must not
+       keep the end of the previous card's fly. -->
   <div id="pop" data-xt-bind="display=popup_kind | gt(0)"
        style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;">
     <div id="pop-shade-info" data-xt-bind="display=popup_kind | eq(1)" data-xt-trigger="click(left):emit(dismiss)"
          style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: #092e288c;"></div>
-    <div id="pop-shade-card" data-xt-bind="display=popup_kind | ge(2)" data-xt-trigger="click(left):play(fly) then emit(dismiss)"
+    <div id="pop-shade-card" data-xt-bind="display=popup_kind | between(2, 3)"
+         data-xt-trigger="click(left):if port(popup_more) eq true emit(dismiss); click(left):if port(popup_more) eq false play(fly) then emit(dismiss)"
+         style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: #092e288c;"></div>
+    <div id="pop-shade-msg" data-xt-bind="display=popup_kind | eq(4)" data-xt-trigger="click(left):emit(dismiss)"
          style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; background-color: #092e288c;"></div>
 
-    <div id="pop-info" class="hud-card" data-xt-bind="display=popup_kind | eq(1)" data-xt-trigger="port(popup_seq):play(pop-in)"
+    <div id="pop-info" class="hud-card" data-xt-bind="display=popup_kind | eq(1)" data-xt-trigger="port(popup_seq):play(pop-in); port(popup_kind):play(pop-in)"
          data-xt-timeline="pop-in: 0 opacity 0, 0 transform translate(0px, 16px) scale(1) rotate(0deg), 220ms ease-out opacity 1, 220ms ease-out transform translate(0px, 0px) scale(1) rotate(0deg)"
          style="position: absolute; left: 360px; top: 210px; width: 560px; pointer-events: none;
                 display: flex; flex-direction: column; gap: 8px; padding: 18px 28px 22px 28px;">
@@ -259,12 +273,19 @@
       <div id="info-title" class="pop-title" data-xt-bind="text=popup_title" style="width: 504px; flex-shrink: 0;">空空的布丁盤</div>
       <div id="info-rule" style="width: 504px; height: 1px; flex-shrink: 0; background-color: var(--ink);"></div>
       <div id="info-body" class="pop-body" data-xt-bind="text=popup_body" style="width: 504px; flex-shrink: 0;">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+      <div id="info-line" class="pop-line" data-xt-bind="display=popup_line | ne('')"
+           data-xt-trigger="port(popup_line_seq):play(info-line-in)"
+           data-xt-timeline="info-line-in: 0 opacity 0, 0 transform translate(0px, 6px), 260ms ease-out opacity 1, 260ms ease-out transform translate(0px, 0px)"
+           style="width: 504px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 8px 12px;">
+        <div id="info-spk" class="pop-spk" data-xt-bind="text=popup_speaker; display=popup_speaker | ne('')" style="width: 480px; flex-shrink: 0;">亞瑟</div>
+        <div id="info-line-text" class="pop-line-text" data-xt-bind="text=popup_line" style="width: 480px; flex-shrink: 0;">貓、貓舔得很乾淨吧？</div>
+      </div>
       <div id="info-close" data-xt-key="BTN_CLOSE" style="width: 504px; height: 22px; flex-shrink: 0; text-align: right; font-size: 13px; line-height: 22px; letter-spacing: 2px; color: var(--copper);">關閉</div>
     </div>
 
     <div id="pop-card" class="clip"
-         data-xt-bind="display=popup_kind | ge(2); class.g0=popup_grade | eq(0); class.g1=popup_grade | eq(1); class.g2=popup_grade | eq(2); class.g3=popup_grade | eq(3); class.g4=popup_grade | eq(4); class.talk=popup_kind | eq(3)"
-         data-xt-trigger="port(popup_seq):play(pop-in)"
+         data-xt-bind="display=popup_kind | between(2, 3); class.g0=popup_grade | eq(0); class.g1=popup_grade | eq(1); class.g2=popup_grade | eq(2); class.g3=popup_grade | eq(3); class.g4=popup_grade | eq(4); class.talk=popup_kind | eq(3)"
+         data-xt-trigger="port(popup_seq):stop(fly); play(pop-in); port(popup_kind):stop(fly); play(pop-in)"
          data-xt-timeline="pop-in: 0 opacity 0, 0 transform translate(0px, 16px) scale(1) rotate(0deg), 220ms ease-out opacity 1, 220ms ease-out transform translate(0px, 0px) scale(1) rotate(0deg); fly: 0 opacity 1, 0 transform translate(0px, 0px) scale(1) rotate(0deg), 420ms ease-in opacity 0.3, 420ms ease-in transform translate(380px, 300px) scale(0.16) rotate(-8deg)"
          style="position: absolute; left: 380px; top: 170px; width: 520px; pointer-events: none;
                 display: flex; flex-direction: column; gap: 8px; padding: 22px 28px 20px 28px;">
@@ -280,12 +301,36 @@
       <div id="card-title" class="pop-title" data-xt-bind="text=popup_title" style="width: 464px; flex-shrink: 0;">空空的布丁盤</div>
       <div id="card-rule" style="width: 464px; height: 3px; flex-shrink: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);"></div>
       <div id="card-body" class="pop-body" data-xt-bind="text=popup_body" style="width: 464px; flex-shrink: 0;">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+      <div id="card-line" class="pop-line" data-xt-bind="display=popup_line | ne('')"
+           data-xt-trigger="port(popup_line_seq):play(card-line-in)"
+           data-xt-timeline="card-line-in: 0 opacity 0, 0 transform translate(0px, 6px), 260ms ease-out opacity 1, 260ms ease-out transform translate(0px, 0px)"
+           style="width: 464px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 8px 12px;">
+        <div id="card-spk" class="pop-spk" data-xt-bind="text=popup_speaker; display=popup_speaker | ne('')" style="width: 440px; flex-shrink: 0;">亞瑟</div>
+        <div id="card-line-text" class="pop-line-text" data-xt-bind="text=popup_line" style="width: 440px; flex-shrink: 0;">貓、貓舔得很乾淨吧？</div>
+      </div>
       <div id="card-foot" style="width: 464px; height: 24px; flex-shrink: 0; display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
         <div id="card-close" data-xt-key="BTN_CLOSE" style="width: 120px; height: 22px; flex-shrink: 0; text-align: right; font-size: 13px; line-height: 22px; letter-spacing: 2px; color: var(--copper);">關閉</div>
       </div>
       <div id="plot-stamp" class="plot-stamp" data-xt-key="UI_EVBOOK_TAB_PLOT"
            style="position: absolute; right: 22px; top: 22px; width: 132px; height: 36px; transform: rotate(-9deg);
                   border: 2px solid var(--vermilion); color: var(--vermilion); font-size: 16px; line-height: 30px; text-align: center; letter-spacing: 2px;">私人收藏</div>
+    </div>
+
+    <div id="pop-msg" class="hud-card" data-xt-bind="display=popup_kind | eq(4)" data-xt-trigger="port(popup_seq):play(msg-in); port(popup_kind):play(msg-in)"
+         data-xt-timeline="msg-in: 0 opacity 0, 0 transform translate(0px, 16px) scale(1) rotate(0deg), 220ms ease-out opacity 1, 220ms ease-out transform translate(0px, 0px) scale(1) rotate(0deg)"
+         style="position: absolute; left: 340px; top: 236px; width: 600px; pointer-events: none;
+                display: flex; flex-direction: column; gap: 12px; padding: 24px 32px 20px 32px;">
+      <div id="msg-rule-top" style="width: 536px; height: 3px; flex-shrink: 0; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+      <div id="msg-body" class="msg-body" data-xt-bind="text=popup_body" style="width: 536px; flex-shrink: 0;">有 2 件證物落入對手手中。</div>
+      <div id="msg-rule-bottom" style="width: 536px; height: 3px; flex-shrink: 0; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+      <div id="msg-line" class="pop-line" data-xt-bind="display=popup_line | ne('')"
+           data-xt-trigger="port(popup_line_seq):play(msg-line-in)"
+           data-xt-timeline="msg-line-in: 0 opacity 0, 0 transform translate(0px, 6px), 260ms ease-out opacity 1, 260ms ease-out transform translate(0px, 0px)"
+           style="width: 536px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 8px 12px;">
+        <div id="msg-spk" class="pop-spk" data-xt-bind="text=popup_speaker; display=popup_speaker | ne('')" style="width: 512px; flex-shrink: 0;">亞瑟</div>
+        <div id="msg-line-text" class="pop-line-text" data-xt-bind="text=popup_line" style="width: 512px; flex-shrink: 0;">貓、貓舔得很乾淨吧？</div>
+      </div>
+      <div id="msg-close" data-xt-key="BTN_CLOSE" style="width: 536px; height: 22px; flex-shrink: 0; text-align: right; font-size: 13px; line-height: 22px; letter-spacing: 2px; color: #a65432;">關閉</div>
     </div>
   </div>
 

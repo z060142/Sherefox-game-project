@@ -188,12 +188,18 @@ def expected_lines(chapter: int, lang: str):
     out = []
     import gen_debate_play   # the result steps play their scene's lines of the minimal outcome's branch
     for step in load("steps"):
-        if step["chapter"] != chapter or step["kind"] not in ("vn", "result"):
+        if step["chapter"] != chapter or step["kind"] not in ("vn", "result", "warmup", "debate"):
             continue
         branch = gen_debate_play.MINIMAL_BRANCH if step["kind"] == "result" else ""
-        for r in script:
-            if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"] and r["branch"] == branch:
-                out.append((r["id"], s[r["text"]], s[r["speaker"]] if r["focus"] != 0 else ""))
+        rows = [r for r in script if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"]]
+        if step["kind"] in ("warmup", "debate"):
+            # script.cue: the opening lines, then (the minimal play loses every debate) the warmup's wrap-up
+            cues = ["pre", "post"] if step["kind"] == "warmup" else ["pre", "postLose"]
+            rows = [r for c in cues for r in rows if r["cue"] == c]
+        else:
+            rows = [r for r in rows if r["branch"] == branch]
+        for r in rows:
+            out.append((r["id"], s[r["text"]], s[r["speaker"]] if r["focus"] != 0 else ""))
     return out
 
 

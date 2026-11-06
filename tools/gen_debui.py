@@ -107,6 +107,7 @@ def tables() -> dict[str, list[dict]]:
     steps = load("steps")
     ev = load("evidence")
     chars = speaker_chars()
+    post_win = {r["text"] for r in load("script") if r["cue"] == "postWin"}
     case_rows = []
     for o in opps:
         mode = 2 if o["kind"] == "pudding" else 1 if o["kind"] == "warmup" else 0
@@ -118,7 +119,8 @@ def tables() -> dict[str, list[dict]]:
                           "nameKey": o["speaker"], "typeKey": TYPE_KEY[o["type"]], "handPer": o["handPerMissed"],
                           "hpPer": o["hpPerMissed"], "hand": o["hand"] if mode == 1 else "",
                           "soph": int("sophistry" in split(o["playerActions"])),
-                          "winLine": line, "seize": seize, "ungold": ungold, "after": ",".join(after)})
+                          "winLine": line, "winPlayed": int(line in post_win), "seize": seize, "ungold": ungold,
+                          "after": ",".join(after)})
 
     word = ([{"key": f"pa:{w}", "code": i, "text": ""} for i, w in enumerate(PA)]
             + [{"key": f"oa:{w}", "code": i, "text": ""} for i, w in enumerate(OA)]
@@ -276,7 +278,8 @@ def gen_debui() -> Graph:
     g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
     g.n("isPaperN", g.cmp("isPaperC", "world.stepKind", g.k("paper")))
     g.x("activeN", "isDebN || isWarmN")
-    begin = g.when("beginG", "world.stepBegin", "activeN_t")
+    # the debate starts after the scene's `pre` lines (dialogue: world.debGo, at once when there are none)
+    begin = g.when("beginG", "world.debGo", "activeN_t")
     setn, sets = setter(g, "dbui"), setter(g, "dbuiS")
 
     # A chapter begins with its paper: the case modifiers (warmup trust) start again.
@@ -388,7 +391,9 @@ def gen_debui() -> Graph:
     g.x("en3", "hasLitN && !shiss && (parryCnt > 0 || (isDebN && (breakR || tailN)))")
     g.x("en4", "isDebN")
     why1 = g.sel("why1", "en1_t", g.k(""), g.k("MSG_DEB_NO_TARGET"))
-    why2 = g.sel("why2", g.b("w2c", g.x("w2n", "dc_soph && !en2")), g.k("MSG_DEB_NOSOPH"), g.k(""))
+    # the greyed button's reason (act_reason) and the confirmation line when it is pressed anyway (summary)
+    why2 = g.sel("why2", g.b("w2c", g.x("w2n", "dc_soph && !en2")), g.k("UI_DEB_NOSOPH_REASON"), g.k(""))
+    why2m = g.sel("why2m", "w2c", g.k("MSG_DEB_NOSOPH"), g.k(""))
     msg3 = g.sel("msg3", "shiss_t", g.k("MSG_DEB_NOPARRY_SHISSHU"), g.k("MSG_DEB_NOPARRY_NOCARD"))
 
     # ---- can it be locked
@@ -439,10 +444,20 @@ def gen_debui() -> Graph:
     g.x("segSolid", "segL - 1 - segSoph")
     g.x("pvDmg", "14 * (10 + 5 * segSolid + 8 * segSoph) / 10 * (breakR ? 3 / 2 : 1) * "
                  "(L_HachikuMode == 2 ? (10 + L_Hachiku) / 10 : 1)")
-    pvExtra = ssel(g, "pvExtra", [(g.b("pvBr", g.x("pvBrN", "d_act == 1 && breakR && thr")), g.k("UI_DEB_PREVIEW_BREAK")),
-                                  (g.b("pvSh", g.x("pvShN", "breakR")), g.k("UI_DEB_PREVIEW_SHAKEN"))], g.k(""))
-    g.text("pvExtraT", pvExtra)
-    g.fmt("pvAtk", "{a}　{b}", "pvDmg", "pvExtraT")
+    # UI_DEB_PREVIEW (ruling G4): {mult} = the chain multiplier 1 + 0.5 solid + 0.8 sophistry (before 動搖 / 破竹 /
+    # the matchup), {shaken} = 動搖 ×1.5 when it applies; 破竹 is its own token (UI_DEB_PREVIEW_HACHIKU, +10% a
+    # stack), then 可以論破
+    g.x("pvMult", "(10 + 5 * segSolid + 8 * segSoph) / 10")
+    g.text("pvShakenT", g.sel("pvShakenK", g.b("pvSh", "breakR"), g.k("UI_DEB_PREVIEW_SHAKEN"), g.k("")))
+    g.textf("pvMain", key="UI_DEB_PREVIEW", dmg="pvDmg", mult="pvMult", shaken="pvShakenT.text")
+    g.x("pvPct", "L_HachikuMode == 2 ? 10 * L_Hachiku : 0")
+    g.textf("pvHkF", key="UI_DEB_PREVIEW_HACHIKU", pct="pvPct")
+    g.fmt("pvHkS", "　{a}", "pvHkF")
+    pvHk = g.sel("pvHk", g.b("pvHkOn", "pvPct"), "pvHkS", g.k(""))
+    g.text("pvBrT", g.k("UI_DEB_PREVIEW_BREAK"))
+    g.fmt("pvBrS", "　{a}", "pvBrT.text")
+    pvBr = g.sel("pvBr", g.b("pvBrC", g.x("pvBrN", "d_act == 1 && breakR && thr")), "pvBrS", g.k(""))
+    g.fmt("pvAtk", "{a}{b}{c}", "pvMain", pvHk, pvBr)
     g.text("pvParry", g.k("UI_DEB_PREVIEW_PARRY"))
     preview = ssel(g, "preview", [(g.b("pv12", g.x("pv12n", "(d_act == 1 || d_act == 2) && segL > 0")), "pvAtk"),
                                   (g.b("pv3", g.x("pv3n", "d_act == 3 && isDebN")), "pvParry.text")], g.k(""))
@@ -694,7 +709,7 @@ def gen_debui() -> Graph:
     setn(okA, "sel", g.k(1))
     badA = g.when("actBad", aP, T("enVNo", "!enV"))
     msgV = ssel(g, "msgV", [(g.b("mv1", g.x("mv1n", "actV == 1 && isDebN")), why1),
-                            (g.b("mv2", g.x("mv2n", "actV == 2 && isDebN")), why2),
+                            (g.b("mv2", g.x("mv2n", "actV == 2 && isDebN")), why2m),
                             (g.b("mv3", g.x("mv3n", "actV == 3")), msg3)], g.k(""))
     sets(badA, "msg", msgV)
     # seg: first click = start, second = end when the path between is linked (one chain, no cut link)
@@ -942,7 +957,11 @@ def gen_debui() -> Graph:
     # the warmup's trust for this case (A-13, §3.1: not written back to the permanent trust)
     g.edge(g.when("warmTrust", fin, "isWarmC.out"),
            g.eff("caseTrust", "atrium.map.set", "caseMod", key=g.k("trust"), value="world.dwTrustDelta"))
-    g.edge(fin, "world.stepDone")
+    # the lines after the debate (dialogue, script.cue): post (the warmup) / postWin / postLose, then the step ends
+    g.n("outWinN", g.cmp("outWinC", "world.debOutcome", g.k("win")))
+    g.x("cueIdx", "isWarmN ? 0 : outWinN ? 1 : 2")
+    g.edge(g.latch("cueL", g.lookup("cueWord", ["post", "postWin", "postLose"], "cueIdx"), fin), "world.debCue")
+    g.edge(fin, "world.debEnd")
     return g
 
 
@@ -957,7 +976,7 @@ def gen_result() -> Graph:
     begin = g.when("beginG", "world.stepBegin", isRes)
     case = g.put("case", "world.debCase")
     crow = g.tfind("dcRow", "flowDebCase", "id", case)
-    for c in ("mode",):
+    for c in ("mode", "winPlayed"):
         g.tget("dc_" + c, "flowDebCase", c, crow, "number")
     for c in ("winLine", "seize", "ungold", "after"):
         g.tget("dc_" + c, "flowDebCase", c, crow)
@@ -990,7 +1009,9 @@ def gen_result() -> Graph:
                                      "ART_RES_LOSE_NOTO"], "cmIdx"))
     g.edge("cmT.text", "ui#result.comment")
     # the opponent's closing line (a win or Ch.1's unachieved: he confesses anyway, A-13)
-    g.text("oppT", g.sel("oppKey", g.b("oppOn", g.x("oppOnN", "winN || unN")), "dc_winLine", g.k("")))
+    # on a win, not when the line was already played after the debate (script.cue postWin: Ch.1 L028)
+    g.text("oppT", g.sel("oppKey", g.b("oppOn", g.x("oppOnN", "(winN && !dc_winPlayed) || unN")), "dc_winLine",
+                         g.k("")))
     g.edge("oppT.text", "ui#result.opp_line")
     g.edge(g.b("retryB", "lossN"), "ui#result.can_retry")
     # stats (§4.2): the engine's counters and the UI's (dbui maxd / maxc)

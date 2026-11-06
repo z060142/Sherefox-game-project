@@ -80,10 +80,53 @@
       "type": "select"
     },
     {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "debate"
+      }
+    },
+    {
+      "id": "isDebC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isDebN",
+      "type": "select"
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": "warmup"
+      }
+    },
+    {
+      "id": "isWarmC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isWarmN",
+      "type": "select"
+    },
+    {
+      "id": "isDebK",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebN || isWarmN"
+      }
+    },
+    {
       "id": "vnOrRes",
       "type": "atrium.expr",
       "params": {
-        "expr": "isVnN || isResN"
+        "expr": "isVnN || isResN || isDebK"
       }
     },
     {
@@ -102,7 +145,7 @@
       }
     },
     {
-      "id": "K3",
+      "id": "K5",
       "type": "constant",
       "params": {
         "value": ""
@@ -123,7 +166,7 @@
       }
     },
     {
-      "id": "K4",
+      "id": "K6",
       "type": "constant",
       "params": {
         "value": "row"
@@ -154,11 +197,57 @@
       }
     },
     {
+      "id": "postMode",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "pre"
+      }
+    },
+    {
+      "id": "cueVal",
+      "type": "select"
+    },
+    {
+      "id": "dfirst",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "sceneKey",
+        "filterColumn": "cue",
+        "filters": "{\"playable\": \"true\"}"
+      }
+    },
+    {
+      "id": "dnext",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "sceneKey",
+        "filterColumn": "cue",
+        "filters": "{\"playable\": \"true\"}"
+      }
+    },
+    {
       "id": "atBegin",
       "type": "toggle",
       "params": {
         "initial": false
       }
+    },
+    {
+      "id": "pickV",
+      "type": "select"
+    },
+    {
+      "id": "pickD",
+      "type": "select"
     },
     {
       "id": "pick",
@@ -225,6 +314,14 @@
       }
     },
     {
+      "id": "debBeginG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "postBeginG",
+      "type": "atrium.gate"
+    },
+    {
       "id": "advGate",
       "type": "state",
       "params": {
@@ -248,6 +345,21 @@
       }
     },
     {
+      "id": "dfirstOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "dfirst >= 0"
+      }
+    },
+    {
+      "id": "postShowM",
+      "type": "merge"
+    },
+    {
+      "id": "postShowG",
+      "type": "atrium.gate"
+    },
+    {
       "id": "show",
       "type": "merge"
     },
@@ -257,6 +369,32 @@
     },
     {
       "id": "overGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "postModeN",
+      "type": "select"
+    },
+    {
+      "id": "overDone",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!isDebK || postModeN"
+      }
+    },
+    {
+      "id": "overGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebK && !postModeN"
+      }
+    },
+    {
+      "id": "overDoneG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "overGoG",
       "type": "atrium.gate"
     },
     {
@@ -395,6 +533,15 @@
     {
       "id": "chTitle",
       "type": "atrium.text"
+    },
+    {
+      "id": "postTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
     }
   ],
   "edges": [
@@ -431,12 +578,64 @@
       "to": "isResN.b"
     },
     {
+      "from": "world.stepKind",
+      "to": "isDebC.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "isDebC.b"
+    },
+    {
+      "from": "isDebC.out",
+      "to": "isDebN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isDebN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isDebN.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isWarmC.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "isWarmC.b"
+    },
+    {
+      "from": "isWarmC.out",
+      "to": "isWarmN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isWarmN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isWarmN.b"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "isDebK.isDebN"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "isDebK.isWarmN"
+    },
+    {
       "from": "isVnN.out",
       "to": "vnOrRes.isVnN"
     },
     {
       "from": "isResN.out",
       "to": "vnOrRes.isResN"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "vnOrRes.isDebK"
     },
     {
       "from": "world.stepKind",
@@ -479,7 +678,7 @@
       "to": "branch.a"
     },
     {
-      "from": "K3.out",
+      "from": "K5.out",
       "to": "branch.b"
     },
     {
@@ -491,7 +690,7 @@
       "to": "first.filterValue"
     },
     {
-      "from": "K4.out",
+      "from": "K6.out",
       "to": "cur.key"
     },
     {
@@ -511,15 +710,71 @@
       "to": "next.from"
     },
     {
+      "from": "postMode.value",
+      "to": "cueVal.cond"
+    },
+    {
+      "from": "world.debCue",
+      "to": "cueVal.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "cueVal.b"
+    },
+    {
+      "from": "sceneKey.out",
+      "to": "dfirst.value"
+    },
+    {
+      "from": "cueVal.out",
+      "to": "dfirst.filterValue"
+    },
+    {
+      "from": "sceneKey.out",
+      "to": "dnext.value"
+    },
+    {
+      "from": "cueVal.out",
+      "to": "dnext.filterValue"
+    },
+    {
+      "from": "from.value",
+      "to": "dnext.from"
+    },
+    {
       "from": "atBegin.value",
-      "to": "pick.cond"
+      "to": "pickV.cond"
     },
     {
       "from": "first.row",
-      "to": "pick.a"
+      "to": "pickV.a"
     },
     {
       "from": "next.row",
+      "to": "pickV.b"
+    },
+    {
+      "from": "atBegin.value",
+      "to": "pickD.cond"
+    },
+    {
+      "from": "dfirst.row",
+      "to": "pickD.a"
+    },
+    {
+      "from": "dnext.row",
+      "to": "pickD.b"
+    },
+    {
+      "from": "isDebK.truth",
+      "to": "pick.cond"
+    },
+    {
+      "from": "pickD.out",
+      "to": "pick.a"
+    },
+    {
+      "from": "pickV.out",
       "to": "pick.b"
     },
     {
@@ -547,6 +802,22 @@
       "to": "resBeginG.go"
     },
     {
+      "from": "isDebK.value",
+      "to": "debBeginG.cond"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "debBeginG.trigger"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "postBeginG.cond"
+    },
+    {
+      "from": "world.debEnd",
+      "to": "postBeginG.trigger"
+    },
+    {
       "from": "vnOrRes.truth",
       "to": "advGate.guard"
     },
@@ -555,11 +826,51 @@
       "to": "advGate.go"
     },
     {
+      "from": "debBeginG.pass",
+      "to": "postMode.setFalse"
+    },
+    {
+      "from": "postBeginG.pass",
+      "to": "postMode.setTrue"
+    },
+    {
       "from": "beginGate.changed",
       "to": "atBegin.setTrue"
     },
     {
       "from": "resBeginG.changed",
+      "to": "atBegin.setTrue"
+    },
+    {
+      "from": "debBeginG.pass",
+      "to": "atBegin.setTrue"
+    },
+    {
+      "from": "dfirst.row",
+      "to": "dfirstOk.dfirst"
+    },
+    {
+      "from": "postBeginG.pass",
+      "to": "postShowM.in"
+    },
+    {
+      "from": "dfirstOk.value",
+      "to": "postShowG.cond"
+    },
+    {
+      "from": "postShowM.out",
+      "to": "postShowG.trigger"
+    },
+    {
+      "from": "postShowG.pass",
+      "to": "world.vnShow"
+    },
+    {
+      "from": "postBeginG.pass",
+      "to": "postTimer.start"
+    },
+    {
+      "from": "postTimer.tick",
       "to": "atBegin.setTrue"
     },
     {
@@ -572,6 +883,14 @@
     },
     {
       "from": "resBeginG.changed",
+      "to": "show.in"
+    },
+    {
+      "from": "debBeginG.pass",
+      "to": "show.in"
+    },
+    {
+      "from": "postTimer.tick",
       "to": "show.in"
     },
     {
@@ -595,8 +914,56 @@
       "to": "overGate.trigger"
     },
     {
+      "from": "postMode.value",
+      "to": "postModeN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "postModeN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "postModeN.b"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "overDone.isDebK"
+    },
+    {
+      "from": "postModeN.out",
+      "to": "overDone.postModeN"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "overGo.isDebK"
+    },
+    {
+      "from": "postModeN.out",
+      "to": "overGo.postModeN"
+    },
+    {
+      "from": "overDone.value",
+      "to": "overDoneG.cond"
+    },
+    {
       "from": "overGate.pass",
+      "to": "overDoneG.trigger"
+    },
+    {
+      "from": "overDoneG.pass",
       "to": "world.stepDone"
+    },
+    {
+      "from": "overGo.value",
+      "to": "overGoG.cond"
+    },
+    {
+      "from": "overGate.pass",
+      "to": "overGoG.trigger"
+    },
+    {
+      "from": "overGoG.pass",
+      "to": "world.debGo"
     },
     {
       "from": "pick.out",
@@ -607,7 +974,7 @@
       "to": "disp.trigger"
     },
     {
-      "from": "K4.out",
+      "from": "K6.out",
       "to": "setRow.key"
     },
     {

@@ -298,6 +298,8 @@ E03_09_REASON_B,Routine business
 E03_09_REASON_C,Unrelated to the case
 E03_09_TAGS,Person · Scandal
 G-01,Military Black-Market Batch-Number Transcript
+G-01_DESC,"A list traced and copied from the replacement movement's batch number: a string of serials used only on the military black market, scrawled as if someone wrote it down in a hurry and hid it in a hurry."
+G-01_REASON,"This batch of military parts found its way into London's black market, and more than one pair of hands passed it along."
 G-01_SUB,Gear Rubbing
 GESTURE_ARTHUR_ASSERT,"Puffs out his chest, hands on his hips"
 GESTURE_ARTHUR_REINFORCE,"Tugs his sleeves down, trying to hide his cuffs"
@@ -351,6 +353,7 @@ HS_CH02_12_HINT,Set against Big Ben every morning... so what about the one that 
 HS_CH02_12_NAME,Wall of Clocks
 HS_CH02_12_NOTE,A dozen clocks tick together like a room full of heartbeats. Holloway says he sets every one of them against Big Ben each morning.
 HS_CH03_01_NAME,The Body
+HS_CH03_01_NOTE_REPORT,"The autopsy report is already in hand; the body matches it, scalds and the wood splinters under the nails alike."
 HS_CH03_02_NAME,The Victim's Inner Coat Pocket
 HS_CH03_03_NAME,The Bolt Dropped from the Inside
 HS_CH03_04_NAME,Relief Valve
@@ -545,6 +548,12 @@ NEWS_03_WIN_SUB,"Inspector: ""Scotland Yard never lets fog hide the truth."""
 NEWS_SIDE_01,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship."
 NEWS_SIDE_02,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency."""
 NEWS_SIDE_03,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.
+S-01_DESC,"The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say ""very like"", never ""the same""."
+SCENE_CH01_KITCHEN,The Agency Kitchen and Parlour
+SCENE_CH02_CLOCKSHOP,The Cuckoo Clockworks
+SCENE_CH03_BOILER,The Barge Boiler Room
+SCENE_CH03_DECK,The Barge Deck
+SCENE_CH03_DOCK,The Wharf
 SCR_CH01_S01_L001,Scene 1: Newspaper Front Page (Opening)
 SCR_CH01_S01_L002,"【The London Lantern · October 1887】Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street"
 SCR_CH01_S01_L003,"Our correspondent reports: Laurel Pastry Shop on Baker Street yesterday launched its new ""Clockwork Caramel Pudding"", famed for its caramel topping shaped like a brass clockwork spring. Limited to forty a day, they sold out within an hour of opening. Among the queue were many ladies and gentlemen who had come specially, including one fox-eared girl whose tail was reportedly ""never still from start to finish"". Also, this paper's classified column carries a notice: ""Fox-Eared Detective Agency seeks a flatmate. Cooks preferred; those afraid of fox fur need not apply."""
@@ -1384,9 +1393,11 @@ UI_DEB_LOCK_SUMMARY_OBSERVE,Observe · No card this round
 UI_DEB_LOCK_SUMMARY_PARRY,Rebut · Aim: {node} · Present: {card}
 UI_DEB_NOPARRY_NOCARD,No evidence that can overturn this claim
 UI_DEB_NOPARRY_SHISSHU,Breached: can't Rebut this round
+UI_DEB_NOSOPH_REASON,No dashed link in this chain
 UI_DEB_PHASE,Phase {n} of {total}
 UI_DEB_PREVIEW,Damage {dmg} · Multiplier ×{mult} · {shaken}
 UI_DEB_PREVIEW_BREAK,Can Break
+UI_DEB_PREVIEW_HACHIKU,Unstoppable +{pct}%
 UI_DEB_PREVIEW_LABEL,Forecast
 UI_DEB_PREVIEW_PARRY,"Cut-In: counter 30, smash the claim"
 UI_DEB_PREVIEW_PARRY_NOREF,Cut-In: counter 30 (this claim is too sturdy and will stay)
@@ -1612,6 +1623,9 @@ UI_SLOT_AUTO,Auto Save
 UI_SLOT_EMPTY,Empty
 UI_SLOT_INFO,{chapter} · {step}   {playtime}   {difficulty}   Playthrough {n}
 UI_SLOT_QUICK,Quick Save
+UI_STAGE_EARLY,Early-game
+UI_STAGE_LATE,Late-game
+UI_STAGE_MID,Mid-game
 UI_STATE_HACHIKU,Unstoppable ×{n}
 UI_STATE_HACHIKU_MAX,Break requirement −1 card
 UI_STATE_HACHIKU_TIP,"Unstoppable: chain damage +{dmg}%, counter +{ctr}%. At 3 stacks, a Break needs 1 fewer piece of evidence. One misread move resets it to zero."
@@ -1641,6 +1655,7 @@ UI_TAG_PERSON,Person
 UI_TAG_PHYSICAL,Physical
 UI_TAG_PLACE,Place
 UI_TAG_SCANDAL,Scandal
+UI_TAG_SEP,", "
 UI_TAG_TIME,Time
 UI_TAIL,Endgame
 UI_TITLE_CONTENTS,In This Issue

@@ -803,7 +803,7 @@
       "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
       "element": "sheet",
       "source": "Paper.dc.html",
-      "line": 102,
+      "line": 103,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -827,7 +827,7 @@
       "message": "anchor: #hint-dock left: 24px; bottom: 20px -> anchor: left bottom; offset: -8px 2px; size: 640px 120px",
       "element": "hint-dock",
       "source": "Investigate.dc.html",
-      "line": 219,
+      "line": 227,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -851,7 +851,7 @@
       "message": "anchor: #hud-tl left: 24px; top: 16px -> anchor: left top; offset: -8px -2px; size: 268px 128px",
       "element": "hud-tl",
       "source": "Investigate.dc.html",
-      "line": 146,
+      "line": 154,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -875,7 +875,7 @@
       "message": "anchor: #area left: 400px; top: 16px -> anchor: center top; offset: 0 -2px; size: 480px 44px",
       "element": "area",
       "source": "Investigate.dc.html",
-      "line": 196,
+      "line": 204,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -899,7 +899,7 @@
       "message": "anchor: #trust right: 24px; top: 16px -> anchor: right top; offset: -8px -2px; size: 148px 40px",
       "element": "trust",
       "source": "Investigate.dc.html",
-      "line": 208,
+      "line": 216,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -923,7 +923,7 @@
       "message": "anchor: #actions right: 24px; bottom: 20px -> anchor: right bottom; offset: -8px 2px; size: 332px 52px",
       "element": "actions",
       "source": "Investigate.dc.html",
-      "line": 235,
+      "line": 243,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -947,7 +947,7 @@
       "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "pop",
       "source": "Investigate.dc.html",
-      "line": 247,
+      "line": 258,
       "col": 0,
       "ui": "investigate",
       "detail": {
@@ -971,7 +971,7 @@
       "message": "anchor: #bg-art right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "bg-art",
       "source": "Debate.dc.html",
-      "line": 248,
+      "line": 250,
       "col": 0,
       "ui": "debate",
       "detail": {
@@ -995,7 +995,7 @@
       "message": "anchor: #roller right: auto; width: 2600px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "roller",
       "source": "Debate.dc.html",
-      "line": 894,
+      "line": 896,
       "col": 0,
       "ui": "debate",
       "detail": {
@@ -1213,7 +1213,7 @@
       "message": "the board's inline geometry of 91 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
       "element": "",
       "source": "Paper.dc.html",
-      "line": 94,
+      "line": 95,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -1235,15 +1235,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 65 element(s) is written to their <layout> #id rules (#investigate, #scene, #bg, #bg-art, #shade-top, ...)",
+      "message": "the board's inline geometry of 80 element(s) is written to their <layout> #id rules (#investigate, #scene, #bg, #bg-art, #shade-top, ...)",
       "element": "",
       "source": "Investigate.dc.html",
-      "line": 92,
+      "line": 100,
       "col": 0,
       "ui": "investigate",
       "detail": {
-        "elements": "65",
-        "ids": "#investigate #scene #bg #bg-art #shade-top #shade-bottom #spots-layer #spots-list #spot #spot-ring #spot-ring2 #spot-chip #hud-tl #inv-kicker #watch #watch-dial #watch-ink #watch-red #watch-hand #watch-hub #ticks-limited #ticks-left #ticks-total #ticks-free #appraise #appraise-box #appraise-label #appraise-count #area #area-plate #area-name #trust #hint-dock #avatar #avatar-art #hint-bubble #hint-text #actions #btn-book #book-dot #btn-end #pop #pop-shade-info #pop-shade-card #pop-info #info-kicker #info-title #info-rule #info-body #info-close #pop-card #clip-band #clip-kicker #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #gl-talk #card-title #card-rule #card-body #card-foot #card-close #plot-stamp"
+        "elements": "80",
+        "ids": "#investigate #scene #bg #bg-art #shade-top #shade-bottom #spots-layer #spots-list #spot #spot-ring #spot-ring2 #spot-chip #hud-tl #inv-kicker #watch #watch-dial #watch-ink #watch-red #watch-hand #watch-hub #ticks-limited #ticks-left #ticks-total #ticks-free #appraise #appraise-box #appraise-label #appraise-count #area #area-plate #area-name #trust #hint-dock #avatar #avatar-art #hint-bubble #hint-text #actions #btn-book #book-dot #btn-end #pop #pop-shade-info #pop-shade-card #pop-shade-msg #pop-info #info-kicker #info-title #info-rule #info-body #info-line #info-spk #info-line-text #info-close #pop-card #clip-band #clip-kicker #gl-0 #gl-1 #gl-2 #gl-3 #gl-4 #gl-talk #card-title #card-rule #card-body #card-line #card-spk #card-line-text #card-foot #card-close #plot-stamp #pop-msg #msg-rule-top #msg-body #msg-rule-bottom #msg-line #msg-spk #msg-line-text #msg-close"
       },
       "fix": {
         "kind": "editor",
@@ -1288,7 +1288,7 @@
       "message": "the board's inline geometry of 393 element(s) is written to their <layout> #id rules (#debate, #bg-art, #sheet, #opp-fig, #opp-ink, ...)",
       "element": "",
       "source": "Debate.dc.html",
-      "line": 241,
+      "line": 243,
       "col": 0,
       "ui": "debate",
       "detail": {
@@ -1535,7 +1535,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-8ecb27 used by 2 node(s)",
+      "message": "shared class .s-8ecb27 used by 3 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1543,7 +1543,7 @@
       "ui": "",
       "detail": {
         "class": ".s-8ecb27",
-        "nodes": "2"
+        "nodes": "3"
       },
       "fix": {
         "kind": "editor",
@@ -1560,7 +1560,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-66a9df used by 8 node(s)",
+      "message": "shared class .s-66a9df used by 9 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1568,7 +1568,7 @@
       "ui": "",
       "detail": {
         "class": ".s-66a9df",
-        "nodes": "8"
+        "nodes": "9"
       },
       "fix": {
         "kind": "editor",
@@ -1610,7 +1610,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-15baa9 used by 5 node(s)",
+      "message": "shared class .s-15baa9 used by 7 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1618,7 +1618,7 @@
       "ui": "",
       "detail": {
         "class": ".s-15baa9",
-        "nodes": "5"
+        "nodes": "7"
       },
       "fix": {
         "kind": "editor",

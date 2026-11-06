@@ -22,6 +22,10 @@
     popup_body: string in = "盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。"
     popup_grade: number in = 0
     popup_seq: number in = 0
+    popup_speaker: string in = "亞瑟"
+    popup_line: string in = "貓、貓舔得很乾淨吧？"
+    popup_line_seq: number in = 0
+    popup_more: bool in = false
     spot: string out = ""
     nav: number out = 0
     dismiss: event out
@@ -132,15 +136,20 @@
       </div>
       <div id="pop" bind:display="popup_kind | gt(0)">
         <div id="pop-shade-info" class="s-8ecb27" on:click(left)="emit(dismiss)" bind:display="popup_kind | eq(1)"/>
-        <div id="pop-shade-card" class="s-8ecb27" on:click(left)="play(fly) then emit(dismiss)" bind:display="popup_kind | ge(2)"/>
-        <div id="pop-info" class="hud-card s-66a9df" on:port(popup_seq)="play(pop-in)" bind:display="popup_kind | eq(1)">
+        <div id="pop-shade-card" class="s-8ecb27" on:click(left)="if port(popup_more) eq true emit(dismiss); if port(popup_more) eq false play(fly) then emit(dismiss)" bind:display="popup_kind | between(2, 3)"/>
+        <div id="pop-shade-msg" class="s-8ecb27" on:click(left)="emit(dismiss)" bind:display="popup_kind | eq(4)"/>
+        <div id="pop-info" class="hud-card s-66a9df" on:port(popup_seq)="play(pop-in)" on:port(popup_kind)="play(pop-in)" bind:display="popup_kind | eq(1)">
           <div id="info-kicker" class="pop-kicker">@UI_POINT_LOOK</div>
           <div id="info-title" class="pop-title" bind:text="popup_title">空空的布丁盤</div>
           <div id="info-rule"/>
           <div id="info-body" class="pop-body" bind:text="popup_body">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+          <div id="info-line" class="pop-line" on:port(popup_line_seq)="play(info-line-in)" bind:display="popup_line | ne('')">
+            <div id="info-spk" class="pop-spk" bind:text="popup_speaker" bind:display="popup_speaker | ne('')">亞瑟</div>
+            <div id="info-line-text" class="pop-line-text" bind:text="popup_line">貓、貓舔得很乾淨吧？</div>
+          </div>
           <div id="info-close" class="s-398118">@BTN_CLOSE</div>
         </div>
-        <div id="pop-card" class="clip s-66a9df" on:port(popup_seq)="play(pop-in)" bind:display="popup_kind | ge(2)" bind:class.g0="popup_grade | eq(0)" bind:class.g1="popup_grade | eq(1)" bind:class.g2="popup_grade | eq(2)" bind:class.g3="popup_grade | eq(3)" bind:class.g4="popup_grade | eq(4)" bind:class.talk="popup_kind | eq(3)">
+        <div id="pop-card" class="clip s-66a9df" on:port(popup_seq)="stop(fly); play(pop-in)" on:port(popup_kind)="stop(fly); play(pop-in)" bind:display="popup_kind | between(2, 3)" bind:class.g0="popup_grade | eq(0)" bind:class.g1="popup_grade | eq(1)" bind:class.g2="popup_grade | eq(2)" bind:class.g3="popup_grade | eq(3)" bind:class.g4="popup_grade | eq(4)" bind:class.talk="popup_kind | eq(3)">
           <div id="clip-band" class="clip-band"/>
           <div id="clip-kicker">
             <div id="gl-0" class="pop-kicker grade-lbl gl-0">@UI_GRADE_NORMAL</div>
@@ -153,10 +162,24 @@
           <div id="card-title" class="pop-title" bind:text="popup_title">空空的布丁盤</div>
           <div id="card-rule" class="s-15baa9"/>
           <div id="card-body" class="pop-body" bind:text="popup_body">盤子乾乾淨淨，只留下一圈完美的焦糖圓痕。沒有湯匙刮過的痕跡。</div>
+          <div id="card-line" class="pop-line" on:port(popup_line_seq)="play(card-line-in)" bind:display="popup_line | ne('')">
+            <div id="card-spk" class="pop-spk" bind:text="popup_speaker" bind:display="popup_speaker | ne('')">亞瑟</div>
+            <div id="card-line-text" class="pop-line-text" bind:text="popup_line">貓、貓舔得很乾淨吧？</div>
+          </div>
           <div id="card-foot">
             <div id="card-close" class="s-398118">@BTN_CLOSE</div>
           </div>
           <div id="plot-stamp" class="plot-stamp">@UI_EVBOOK_TAB_PLOT</div>
+        </div>
+        <div id="pop-msg" class="hud-card s-66a9df" on:port(popup_seq)="play(msg-in)" on:port(popup_kind)="play(msg-in)" bind:display="popup_kind | eq(4)">
+          <div id="msg-rule-top" class="s-15baa9"/>
+          <div id="msg-body" class="msg-body" bind:text="popup_body">有 2 件證物落入對手手中。</div>
+          <div id="msg-rule-bottom" class="s-15baa9"/>
+          <div id="msg-line" class="pop-line" on:port(popup_line_seq)="play(msg-line-in)" bind:display="popup_line | ne('')">
+            <div id="msg-spk" class="pop-spk" bind:text="popup_speaker" bind:display="popup_speaker | ne('')">亞瑟</div>
+            <div id="msg-line-text" class="pop-line-text" bind:text="popup_line">貓、貓舔得很乾淨吧？</div>
+          </div>
+          <div id="msg-close">@BTN_CLOSE</div>
         </div>
       </div>
     </div>
@@ -509,6 +532,14 @@
       width: 1280px;
     }
     /* import: Investigate.dc.html:1/6/2 */
+    #pop-shade-msg {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: Investigate.dc.html:1/6/3 */
     #pop-info {
       display: flex;
       flex-direction: column;
@@ -522,35 +553,57 @@
       top: 210px;
       width: 560px;
     }
-    /* import: Investigate.dc.html:1/6/2/0 */
+    /* import: Investigate.dc.html:1/6/3/0 */
     #info-kicker {
       flex-shrink: 0;
       height: 20px;
       width: 504px;
     }
-    /* import: Investigate.dc.html:1/6/2/1 */
+    /* import: Investigate.dc.html:1/6/3/1 */
     #info-title {
       flex-shrink: 0;
       width: 504px;
     }
-    /* import: Investigate.dc.html:1/6/2/2 */
+    /* import: Investigate.dc.html:1/6/3/2 */
     #info-rule {
       flex-shrink: 0;
       height: 1px;
       width: 504px;
     }
-    /* import: Investigate.dc.html:1/6/2/3 */
+    /* import: Investigate.dc.html:1/6/3/3 */
     #info-body {
       flex-shrink: 0;
       width: 504px;
     }
-    /* import: Investigate.dc.html:1/6/2/4 */
+    /* import: Investigate.dc.html:1/6/3/4 */
+    #info-line {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 2px;
+      padding-bottom: 8px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 8px;
+      width: 504px;
+    }
+    /* import: Investigate.dc.html:1/6/3/4/0 */
+    #info-spk {
+      flex-shrink: 0;
+      width: 480px;
+    }
+    /* import: Investigate.dc.html:1/6/3/4/1 */
+    #info-line-text {
+      flex-shrink: 0;
+      width: 480px;
+    }
+    /* import: Investigate.dc.html:1/6/3/5 */
     #info-close {
       flex-shrink: 0;
       height: 22px;
       width: 504px;
     }
-    /* import: Investigate.dc.html:1/6/3 */
+    /* import: Investigate.dc.html:1/6/4 */
     #pop-card {
       display: flex;
       flex-direction: column;
@@ -564,7 +617,7 @@
       top: 170px;
       width: 520px;
     }
-    /* import: Investigate.dc.html:1/6/3/0 */
+    /* import: Investigate.dc.html:1/6/4/0 */
     #clip-band {
       height: 8px;
       left: 0px;
@@ -572,14 +625,14 @@
       top: 0px;
       width: 512px;
     }
-    /* import: Investigate.dc.html:1/6/3/1 */
+    /* import: Investigate.dc.html:1/6/4/1 */
     #clip-kicker {
       flex-shrink: 0;
       height: 20px;
       position: relative;
       width: 464px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/0 */
+    /* import: Investigate.dc.html:1/6/4/1/0 */
     #gl-0 {
       height: 20px;
       left: 0px;
@@ -587,7 +640,7 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/1 */
+    /* import: Investigate.dc.html:1/6/4/1/1 */
     #gl-1 {
       height: 20px;
       left: 0px;
@@ -595,7 +648,7 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/2 */
+    /* import: Investigate.dc.html:1/6/4/1/2 */
     #gl-2 {
       height: 20px;
       left: 0px;
@@ -603,7 +656,7 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/3 */
+    /* import: Investigate.dc.html:1/6/4/1/3 */
     #gl-3 {
       height: 20px;
       left: 0px;
@@ -611,7 +664,7 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/4 */
+    /* import: Investigate.dc.html:1/6/4/1/4 */
     #gl-4 {
       height: 20px;
       left: 0px;
@@ -619,7 +672,7 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/1/5 */
+    /* import: Investigate.dc.html:1/6/4/1/5 */
     #gl-talk {
       height: 20px;
       left: 0px;
@@ -627,23 +680,45 @@
       top: 0px;
       width: 300px;
     }
-    /* import: Investigate.dc.html:1/6/3/2 */
+    /* import: Investigate.dc.html:1/6/4/2 */
     #card-title {
       flex-shrink: 0;
       width: 464px;
     }
-    /* import: Investigate.dc.html:1/6/3/3 */
+    /* import: Investigate.dc.html:1/6/4/3 */
     #card-rule {
       flex-shrink: 0;
       height: 3px;
       width: 464px;
     }
-    /* import: Investigate.dc.html:1/6/3/4 */
+    /* import: Investigate.dc.html:1/6/4/4 */
     #card-body {
       flex-shrink: 0;
       width: 464px;
     }
-    /* import: Investigate.dc.html:1/6/3/5 */
+    /* import: Investigate.dc.html:1/6/4/5 */
+    #card-line {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 2px;
+      padding-bottom: 8px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 8px;
+      width: 464px;
+    }
+    /* import: Investigate.dc.html:1/6/4/5/0 */
+    #card-spk {
+      flex-shrink: 0;
+      width: 440px;
+    }
+    /* import: Investigate.dc.html:1/6/4/5/1 */
+    #card-line-text {
+      flex-shrink: 0;
+      width: 440px;
+    }
+    /* import: Investigate.dc.html:1/6/4/6 */
     #card-foot {
       align-items: center;
       display: flex;
@@ -653,13 +728,13 @@
       justify-content: flex-end;
       width: 464px;
     }
-    /* import: Investigate.dc.html:1/6/3/5/0 */
+    /* import: Investigate.dc.html:1/6/4/6/0 */
     #card-close {
       flex-shrink: 0;
       height: 22px;
       width: 120px;
     }
-    /* import: Investigate.dc.html:1/6/3/6 */
+    /* import: Investigate.dc.html:1/6/4/7 */
     #plot-stamp {
       height: 36px;
       position: absolute;
@@ -667,6 +742,65 @@
       top: 22px;
       transform: rotate(-9deg);
       width: 132px;
+    }
+    /* import: Investigate.dc.html:1/6/5 */
+    #pop-msg {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      left: 340px;
+      padding-bottom: 20px;
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-top: 24px;
+      position: absolute;
+      top: 236px;
+      width: 600px;
+    }
+    /* import: Investigate.dc.html:1/6/5/0 */
+    #msg-rule-top {
+      flex-shrink: 0;
+      height: 3px;
+      width: 536px;
+    }
+    /* import: Investigate.dc.html:1/6/5/1 */
+    #msg-body {
+      flex-shrink: 0;
+      width: 536px;
+    }
+    /* import: Investigate.dc.html:1/6/5/2 */
+    #msg-rule-bottom {
+      flex-shrink: 0;
+      height: 3px;
+      width: 536px;
+    }
+    /* import: Investigate.dc.html:1/6/5/3 */
+    #msg-line {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 2px;
+      padding-bottom: 8px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 8px;
+      width: 536px;
+    }
+    /* import: Investigate.dc.html:1/6/5/3/0 */
+    #msg-spk {
+      flex-shrink: 0;
+      width: 512px;
+    }
+    /* import: Investigate.dc.html:1/6/5/3/1 */
+    #msg-line-text {
+      flex-shrink: 0;
+      width: 512px;
+    }
+    /* import: Investigate.dc.html:1/6/5/4 */
+    #msg-close {
+      flex-shrink: 0;
+      height: 22px;
+      width: 536px;
     }
     .bg-art {
       position: absolute;
@@ -774,6 +908,18 @@
         }
       }
     }
+    @timeline card-line-in {
+      #card-line {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 6px);
+        }
+        260ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px);
+        }
+      }
+    }
     @timeline fly {
       #pop-card {
         0ms {
@@ -795,6 +941,42 @@
         240ms ease-out {
           opacity: 1;
           transform: translateX(0px);
+        }
+      }
+    }
+    @timeline info-line-in {
+      #info-line {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 6px);
+        }
+        260ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px);
+        }
+      }
+    }
+    @timeline msg-in {
+      #pop-msg {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 16px) scale(1) rotate(0deg);
+        }
+        220ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px) scale(1) rotate(0deg);
+        }
+      }
+    }
+    @timeline msg-line-in {
+      #msg-line {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 6px);
+        }
+        260ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px);
         }
       }
     }

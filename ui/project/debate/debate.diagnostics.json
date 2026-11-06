@@ -9,7 +9,7 @@
       "message": "anchor: #bg-art right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "bg-art",
       "source": "Debate.dc.html",
-      "line": 248,
+      "line": 250,
       "col": 0,
       "ui": "debate",
       "detail": {
@@ -33,7 +33,7 @@
       "message": "anchor: #roller right: auto; width: 2600px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "roller",
       "source": "Debate.dc.html",
-      "line": 894,
+      "line": 896,
       "col": 0,
       "ui": "debate",
       "detail": {
@@ -57,7 +57,7 @@
       "message": "the board's inline geometry of 393 element(s) is written to their <layout> #id rules (#debate, #bg-art, #sheet, #opp-fig, #opp-ink, ...)",
       "element": "",
       "source": "Debate.dc.html",
-      "line": 241,
+      "line": 243,
       "col": 0,
       "ui": "debate",
       "detail": {

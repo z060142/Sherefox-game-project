@@ -3092,7 +3092,7 @@
       "id": "K57",
       "type": "constant",
       "params": {
-        "value": "MSG_DEB_NOSOPH"
+        "value": "UI_DEB_NOSOPH_REASON"
       }
     },
     {
@@ -3103,11 +3103,22 @@
       "id": "K58",
       "type": "constant",
       "params": {
+        "value": "MSG_DEB_NOSOPH"
+      }
+    },
+    {
+      "id": "why2m",
+      "type": "select"
+    },
+    {
+      "id": "K59",
+      "type": "constant",
+      "params": {
         "value": "MSG_DEB_NOPARRY_SHISSHU"
       }
     },
     {
-      "id": "K59",
+      "id": "K60",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOPARRY_NOCARD"
@@ -3319,7 +3330,7 @@
       }
     },
     {
-      "id": "K60",
+      "id": "K61",
       "type": "constant",
       "params": {
         "value": "UI_DEB_LOCK_SUMMARY_OBSERVE"
@@ -3337,7 +3348,7 @@
       }
     },
     {
-      "id": "K61",
+      "id": "K62",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_SELECT_CHAIN"
@@ -3351,7 +3362,7 @@
       }
     },
     {
-      "id": "K62",
+      "id": "K63",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOSOLID"
@@ -3372,7 +3383,7 @@
       }
     },
     {
-      "id": "K63",
+      "id": "K64",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOTAG"
@@ -3386,7 +3397,7 @@
       }
     },
     {
-      "id": "K64",
+      "id": "K65",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_SELECT_PARRY"
@@ -3501,24 +3512,10 @@
       }
     },
     {
-      "id": "pvBrN",
+      "id": "pvMult",
       "type": "atrium.expr",
       "params": {
-        "expr": "d_act == 1 && breakR && thr"
-      }
-    },
-    {
-      "id": "K65",
-      "type": "constant",
-      "params": {
-        "value": "UI_DEB_PREVIEW_BREAK"
-      }
-    },
-    {
-      "id": "pvShN",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "breakR"
+        "expr": "(10 + 5 * segSolid + 8 * segSoph) / 10"
       }
     },
     {
@@ -3529,26 +3526,91 @@
       }
     },
     {
-      "id": "pvExtra_1",
+      "id": "pvShakenK",
       "type": "select"
     },
     {
-      "id": "pvExtra_0",
-      "type": "select"
-    },
-    {
-      "id": "pvExtraT",
+      "id": "pvShakenT",
       "type": "atrium.text"
+    },
+    {
+      "id": "pvMain",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_DEB_PREVIEW",
+        "args": [
+          "dmg",
+          "mult",
+          "shaken"
+        ]
+      }
+    },
+    {
+      "id": "pvPct",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "L_HachikuMode == 2 ? 10 * L_Hachiku : 0"
+      }
+    },
+    {
+      "id": "pvHkF",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_DEB_PREVIEW_HACHIKU",
+        "args": [
+          "pct"
+        ]
+      }
+    },
+    {
+      "id": "pvHkS",
+      "type": "format",
+      "params": {
+        "format": "　{a}"
+      }
+    },
+    {
+      "id": "pvHk",
+      "type": "select"
+    },
+    {
+      "id": "K67",
+      "type": "constant",
+      "params": {
+        "value": "UI_DEB_PREVIEW_BREAK"
+      }
+    },
+    {
+      "id": "pvBrT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pvBrS",
+      "type": "format",
+      "params": {
+        "format": "　{a}"
+      }
+    },
+    {
+      "id": "pvBrN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_act == 1 && breakR && thr"
+      }
+    },
+    {
+      "id": "pvBr",
+      "type": "select"
     },
     {
       "id": "pvAtk",
       "type": "format",
       "params": {
-        "format": "{a}　{b}"
+        "format": "{a}{b}{c}"
       }
     },
     {
-      "id": "K67",
+      "id": "K68",
       "type": "constant",
       "params": {
         "value": "UI_DEB_PREVIEW_PARRY"
@@ -3809,7 +3871,7 @@
       }
     },
     {
-      "id": "K68",
+      "id": "K69",
       "type": "constant",
       "params": {
         "value": "fuzzy"
@@ -3928,7 +3990,7 @@
       }
     },
     {
-      "id": "K69",
+      "id": "K70",
       "type": "constant",
       "params": {
         "value": "rush"
@@ -3946,7 +4008,7 @@
       "type": "select"
     },
     {
-      "id": "K70",
+      "id": "K71",
       "type": "constant",
       "params": {
         "value": "assert"
@@ -4103,7 +4165,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K71",
+      "id": "K72",
       "type": "constant",
       "params": {
         "value": "rln"
@@ -4139,7 +4201,7 @@
       }
     },
     {
-      "id": "K72",
+      "id": "K73",
       "type": "constant",
       "params": {
         "value": "rsAt"
@@ -4153,7 +4215,7 @@
       }
     },
     {
-      "id": "K73",
+      "id": "K74",
       "type": "constant",
       "params": {
         "value": "r2"
@@ -4167,7 +4229,7 @@
       }
     },
     {
-      "id": "K74",
+      "id": "K75",
       "type": "constant",
       "params": {
         "value": "r3"
@@ -4181,7 +4243,7 @@
       }
     },
     {
-      "id": "K75",
+      "id": "K76",
       "type": "constant",
       "params": {
         "value": "sel"
@@ -4195,7 +4257,7 @@
       }
     },
     {
-      "id": "K76",
+      "id": "K77",
       "type": "constant",
       "params": {
         "value": "instAt"
@@ -4209,7 +4271,7 @@
       }
     },
     {
-      "id": "K77",
+      "id": "K78",
       "type": "constant",
       "params": {
         "value": "lockAt"
@@ -4223,7 +4285,7 @@
       }
     },
     {
-      "id": "K78",
+      "id": "K79",
       "type": "constant",
       "params": {
         "value": "pb"
@@ -4237,7 +4299,7 @@
       }
     },
     {
-      "id": "K79",
+      "id": "K80",
       "type": "constant",
       "params": {
         "value": "pbAt"
@@ -4251,7 +4313,7 @@
       }
     },
     {
-      "id": "K80",
+      "id": "K81",
       "type": "constant",
       "params": {
         "value": "holdAt"
@@ -4265,7 +4327,7 @@
       }
     },
     {
-      "id": "K81",
+      "id": "K82",
       "type": "constant",
       "params": {
         "value": "finAt"
@@ -4452,7 +4514,7 @@
       }
     },
     {
-      "id": "K82",
+      "id": "K83",
       "type": "constant",
       "params": {
         "value": "-"
@@ -6189,7 +6251,7 @@
       }
     },
     {
-      "id": "K83",
+      "id": "K84",
       "type": "constant",
       "params": {
         "value": "reveal"
@@ -6207,7 +6269,7 @@
       "type": "select"
     },
     {
-      "id": "K84",
+      "id": "K85",
       "type": "constant",
       "params": {
         "value": "wReveal"
@@ -6225,7 +6287,7 @@
       "type": "select"
     },
     {
-      "id": "K85",
+      "id": "K86",
       "type": "constant",
       "params": {
         "value": "cutin"
@@ -6243,7 +6305,7 @@
       "type": "select"
     },
     {
-      "id": "K86",
+      "id": "K87",
       "type": "constant",
       "params": {
         "value": "dmgOpp"
@@ -6261,7 +6323,7 @@
       "type": "select"
     },
     {
-      "id": "K87",
+      "id": "K88",
       "type": "constant",
       "params": {
         "value": "dmgPlayer"
@@ -6279,7 +6341,7 @@
       "type": "select"
     },
     {
-      "id": "K88",
+      "id": "K89",
       "type": "constant",
       "params": {
         "value": "heal"
@@ -6297,7 +6359,7 @@
       "type": "select"
     },
     {
-      "id": "K89",
+      "id": "K90",
       "type": "constant",
       "params": {
         "value": "nodeRemoved"
@@ -6315,7 +6377,7 @@
       "type": "select"
     },
     {
-      "id": "K90",
+      "id": "K91",
       "type": "constant",
       "params": {
         "value": "nodeAdded"
@@ -6333,7 +6395,7 @@
       "type": "select"
     },
     {
-      "id": "K91",
+      "id": "K92",
       "type": "constant",
       "params": {
         "value": "counter"
@@ -6358,7 +6420,7 @@
       }
     },
     {
-      "id": "K92",
+      "id": "K93",
       "type": "constant",
       "params": {
         "value": "linkSnapped"
@@ -6372,7 +6434,7 @@
       }
     },
     {
-      "id": "K93",
+      "id": "K94",
       "type": "constant",
       "params": {
         "value": "infamy"
@@ -6386,7 +6448,7 @@
       }
     },
     {
-      "id": "K94",
+      "id": "K95",
       "type": "constant",
       "params": {
         "value": "breakVoided"
@@ -6455,7 +6517,7 @@
       }
     },
     {
-      "id": "K95",
+      "id": "K96",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_PARRY"
@@ -6466,7 +6528,7 @@
       "type": "select"
     },
     {
-      "id": "K96",
+      "id": "K97",
       "type": "constant",
       "params": {
         "value": "contradiction"
@@ -6671,7 +6733,7 @@
       }
     },
     {
-      "id": "K97",
+      "id": "K98",
       "type": "constant",
       "params": {
         "value": "scorched"
@@ -6685,7 +6747,7 @@
       }
     },
     {
-      "id": "K98",
+      "id": "K99",
       "type": "constant",
       "params": {
         "value": "cornered:"
@@ -6713,14 +6775,14 @@
       }
     },
     {
-      "id": "K99",
+      "id": "K100",
       "type": "constant",
       "params": {
         "value": "reaction:clash"
       }
     },
     {
-      "id": "K100",
+      "id": "K101",
       "type": "constant",
       "params": {
         "value": "reaction:standoff"
@@ -6960,7 +7022,7 @@
       }
     },
     {
-      "id": "K101",
+      "id": "K102",
       "type": "constant",
       "params": {
         "value": "break"
@@ -7107,7 +7169,7 @@
       }
     },
     {
-      "id": "K102",
+      "id": "K103",
       "type": "constant",
       "params": {
         "value": "full"
@@ -7278,7 +7340,7 @@
       }
     },
     {
-      "id": "K103",
+      "id": "K104",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN"
@@ -7402,7 +7464,7 @@
       }
     },
     {
-      "id": "K104",
+      "id": "K105",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN_SUB"
@@ -7798,6 +7860,49 @@
       "params": {
         "name": "caseMod"
       }
+    },
+    {
+      "id": "K106",
+      "type": "constant",
+      "params": {
+        "value": "win"
+      }
+    },
+    {
+      "id": "outWinC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "outWinN",
+      "type": "select"
+    },
+    {
+      "id": "cueIdx",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isWarmN ? 0 : outWinN ? 1 : 2"
+      }
+    },
+    {
+      "id": "cueWord",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "post",
+          "postWin",
+          "postLose"
+        ]
+      }
+    },
+    {
+      "id": "cueL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
     }
   ],
   "edges": [
@@ -7970,7 +8075,7 @@
       "to": "beginG.cond"
     },
     {
-      "from": "world.stepBegin",
+      "from": "world.debGo",
       "to": "beginG.trigger"
     },
     {
@@ -10690,15 +10795,27 @@
       "to": "why2.b"
     },
     {
+      "from": "w2n.truth",
+      "to": "why2m.cond"
+    },
+    {
+      "from": "K58.out",
+      "to": "why2m.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "why2m.b"
+    },
+    {
       "from": "shiss.truth",
       "to": "msg3.cond"
     },
     {
-      "from": "K58.out",
+      "from": "K59.out",
       "to": "msg3.a"
     },
     {
-      "from": "K59.out",
+      "from": "K60.out",
       "to": "msg3.b"
     },
     {
@@ -10938,7 +11055,7 @@
       "to": "sumParry.card"
     },
     {
-      "from": "K60.out",
+      "from": "K61.out",
       "to": "sumObs.key"
     },
     {
@@ -10982,7 +11099,7 @@
       "to": "hint_4.cond"
     },
     {
-      "from": "K64.out",
+      "from": "K65.out",
       "to": "hint_4.a"
     },
     {
@@ -10994,7 +11111,7 @@
       "to": "hint_3.cond"
     },
     {
-      "from": "K63.out",
+      "from": "K64.out",
       "to": "hint_3.a"
     },
     {
@@ -11006,7 +11123,7 @@
       "to": "hint_2.cond"
     },
     {
-      "from": "K57.out",
+      "from": "K58.out",
       "to": "hint_2.a"
     },
     {
@@ -11018,7 +11135,7 @@
       "to": "hint_1.cond"
     },
     {
-      "from": "K62.out",
+      "from": "K63.out",
       "to": "hint_1.a"
     },
     {
@@ -11030,7 +11147,7 @@
       "to": "hint_0.cond"
     },
     {
-      "from": "K61.out",
+      "from": "K62.out",
       "to": "hint_0.a"
     },
     {
@@ -11182,6 +11299,78 @@
       "to": "pvDmg.L_Hachiku"
     },
     {
+      "from": "segSolid.value",
+      "to": "pvMult.segSolid"
+    },
+    {
+      "from": "segSoph.value",
+      "to": "pvMult.segSoph"
+    },
+    {
+      "from": "breakR.truth",
+      "to": "pvShakenK.cond"
+    },
+    {
+      "from": "K66.out",
+      "to": "pvShakenK.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "pvShakenK.b"
+    },
+    {
+      "from": "pvShakenK.out",
+      "to": "pvShakenT.key"
+    },
+    {
+      "from": "pvDmg.value",
+      "to": "pvMain.dmg"
+    },
+    {
+      "from": "pvMult.value",
+      "to": "pvMain.mult"
+    },
+    {
+      "from": "pvShakenT.text",
+      "to": "pvMain.shaken"
+    },
+    {
+      "from": "L_HachikuMode.out",
+      "to": "pvPct.L_HachikuMode"
+    },
+    {
+      "from": "L_Hachiku.out",
+      "to": "pvPct.L_Hachiku"
+    },
+    {
+      "from": "pvPct.value",
+      "to": "pvHkF.pct"
+    },
+    {
+      "from": "pvHkF.text",
+      "to": "pvHkS.a"
+    },
+    {
+      "from": "pvPct.truth",
+      "to": "pvHk.cond"
+    },
+    {
+      "from": "pvHkS.out",
+      "to": "pvHk.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "pvHk.b"
+    },
+    {
+      "from": "K67.out",
+      "to": "pvBrT.key"
+    },
+    {
+      "from": "pvBrT.text",
+      "to": "pvBrS.a"
+    },
+    {
       "from": "d_act.value",
       "to": "pvBrN.d_act"
     },
@@ -11194,47 +11383,31 @@
       "to": "pvBrN.thr"
     },
     {
-      "from": "breakR.value",
-      "to": "pvShN.breakR"
+      "from": "pvBrN.truth",
+      "to": "pvBr.cond"
     },
     {
-      "from": "pvShN.truth",
-      "to": "pvExtra_1.cond"
-    },
-    {
-      "from": "K66.out",
-      "to": "pvExtra_1.a"
+      "from": "pvBrS.out",
+      "to": "pvBr.a"
     },
     {
       "from": "K8.out",
-      "to": "pvExtra_1.b"
+      "to": "pvBr.b"
     },
     {
-      "from": "pvBrN.truth",
-      "to": "pvExtra_0.cond"
-    },
-    {
-      "from": "K65.out",
-      "to": "pvExtra_0.a"
-    },
-    {
-      "from": "pvExtra_1.out",
-      "to": "pvExtra_0.b"
-    },
-    {
-      "from": "pvExtra_0.out",
-      "to": "pvExtraT.key"
-    },
-    {
-      "from": "pvDmg.value",
+      "from": "pvMain.text",
       "to": "pvAtk.a"
     },
     {
-      "from": "pvExtraT.text",
+      "from": "pvHk.out",
       "to": "pvAtk.b"
     },
     {
-      "from": "K67.out",
+      "from": "pvBr.out",
+      "to": "pvAtk.c"
+    },
+    {
+      "from": "K68.out",
       "to": "pvParry.key"
     },
     {
@@ -11562,7 +11735,7 @@
       "to": "fuzzyC.a"
     },
     {
-      "from": "K68.out",
+      "from": "K69.out",
       "to": "fuzzyC.b"
     },
     {
@@ -11718,7 +11891,7 @@
       "to": "rushC.a"
     },
     {
-      "from": "K69.out",
+      "from": "K70.out",
       "to": "rushC.b"
     },
     {
@@ -11738,7 +11911,7 @@
       "to": "asrtC.a"
     },
     {
-      "from": "K70.out",
+      "from": "K71.out",
       "to": "asrtC.b"
     },
     {
@@ -11758,7 +11931,7 @@
       "to": "asrt2C.a"
     },
     {
-      "from": "K70.out",
+      "from": "K71.out",
       "to": "asrt2C.b"
     },
     {
@@ -11778,7 +11951,7 @@
       "to": "rush2C.a"
     },
     {
-      "from": "K69.out",
+      "from": "K70.out",
       "to": "rush2C.b"
     },
     {
@@ -12042,7 +12215,7 @@
       "to": "rlT.key"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "d_rln.key"
     },
     {
@@ -12066,43 +12239,43 @@
       "to": "beat.in"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "d_rsAt.key"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "d_r2.key"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "d_r3.key"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "d_sel.key"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "d_instAt.key"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "d_lockAt.key"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "d_pb.key"
     },
     {
-      "from": "K79.out",
+      "from": "K80.out",
       "to": "d_pbAt.key"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "d_holdAt.key"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "d_finAt.key"
     },
     {
@@ -12122,7 +12295,7 @@
       "to": "rsG.trigger"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "dbui_rsAt_1.key"
     },
     {
@@ -12146,7 +12319,7 @@
       "to": "r2G.trigger"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "dbui_r2_2.key"
     },
     {
@@ -12170,7 +12343,7 @@
       "to": "r3G.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_r3_3.key"
     },
     {
@@ -12194,7 +12367,7 @@
       "to": "selG.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_sel_4.key"
     },
     {
@@ -12222,7 +12395,7 @@
       "to": "instG2.trigger"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "dbui_instAt_5.key"
     },
     {
@@ -12250,7 +12423,7 @@
       "to": "lockG2.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_lockAt_6.key"
     },
     {
@@ -12306,7 +12479,7 @@
       "to": "candOk.a"
     },
     {
-      "from": "K82.out",
+      "from": "K83.out",
       "to": "candOk.b"
     },
     {
@@ -12346,7 +12519,7 @@
       "to": "world.debStart"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "dbui_rsAt_8.key"
     },
     {
@@ -12566,7 +12739,7 @@
       "to": "nodesReset.in"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "dbui_r2_19.key"
     },
     {
@@ -12806,7 +12979,7 @@
       "to": "cvCardC.a"
     },
     {
-      "from": "K82.out",
+      "from": "K83.out",
       "to": "cvCardC.b"
     },
     {
@@ -13094,7 +13267,7 @@
       "to": "paAdd.trigger"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "dbui_r3_20.key"
     },
     {
@@ -13410,7 +13583,7 @@
       "to": "obsClrSa.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_sel_22.key"
     },
     {
@@ -13470,7 +13643,7 @@
       "to": "msgV_1.cond"
     },
     {
-      "from": "why2.out",
+      "from": "why2m.out",
       "to": "msgV_1.a"
     },
     {
@@ -13530,7 +13703,7 @@
       "to": "segCardC.a"
     },
     {
-      "from": "K82.out",
+      "from": "K83.out",
       "to": "segCardC.b"
     },
     {
@@ -13738,7 +13911,7 @@
       "to": "dbuiS_msg_12.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_sel_28.key"
     },
     {
@@ -13882,7 +14055,7 @@
       "to": "dbui_segPh_31.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_sel_32.key"
     },
     {
@@ -14014,7 +14187,7 @@
       "to": "dbuiS_msg_18.trigger"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "dbui_sel_37.key"
     },
     {
@@ -14074,7 +14247,7 @@
       "to": "world.debInstinct"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "dbui_instAt_39.key"
     },
     {
@@ -14298,7 +14471,7 @@
       "to": "dbui_maxc_41.trigger"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "dbui_lockAt_42.key"
     },
     {
@@ -14322,7 +14495,7 @@
       "to": "dbui_ev_43.trigger"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "dbui_pb_44.key"
     },
     {
@@ -14406,7 +14579,7 @@
       "to": "dbui_ev_45.trigger"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "dbui_pb_46.key"
     },
     {
@@ -14430,7 +14603,7 @@
       "to": "evDone.trigger"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "dbui_pb_47.key"
     },
     {
@@ -14454,7 +14627,7 @@
       "to": "parseG.trigger"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "dbui_pb_48.key"
     },
     {
@@ -14486,7 +14659,7 @@
       "to": "waitG.trigger"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "dbui_pb_49.key"
     },
     {
@@ -14558,7 +14731,7 @@
       "to": "isRev.a"
     },
     {
-      "from": "K83.out",
+      "from": "K84.out",
       "to": "isRev.b"
     },
     {
@@ -14578,7 +14751,7 @@
       "to": "isWRev.a"
     },
     {
-      "from": "K84.out",
+      "from": "K85.out",
       "to": "isWRev.b"
     },
     {
@@ -14598,7 +14771,7 @@
       "to": "isCut.a"
     },
     {
-      "from": "K85.out",
+      "from": "K86.out",
       "to": "isCut.b"
     },
     {
@@ -14618,7 +14791,7 @@
       "to": "isDO.a"
     },
     {
-      "from": "K86.out",
+      "from": "K87.out",
       "to": "isDO.b"
     },
     {
@@ -14638,7 +14811,7 @@
       "to": "isDP.a"
     },
     {
-      "from": "K87.out",
+      "from": "K88.out",
       "to": "isDP.b"
     },
     {
@@ -14658,7 +14831,7 @@
       "to": "isHeal.a"
     },
     {
-      "from": "K88.out",
+      "from": "K89.out",
       "to": "isHeal.b"
     },
     {
@@ -14678,7 +14851,7 @@
       "to": "isNR.a"
     },
     {
-      "from": "K89.out",
+      "from": "K90.out",
       "to": "isNR.b"
     },
     {
@@ -14698,7 +14871,7 @@
       "to": "isNA.a"
     },
     {
-      "from": "K90.out",
+      "from": "K91.out",
       "to": "isNA.b"
     },
     {
@@ -14718,7 +14891,7 @@
       "to": "isCtrC.a"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "isCtrC.b"
     },
     {
@@ -14746,7 +14919,7 @@
       "to": "islinkSnapped.a"
     },
     {
-      "from": "K92.out",
+      "from": "K93.out",
       "to": "islinkSnapped.b"
     },
     {
@@ -14754,7 +14927,7 @@
       "to": "isinfamy.a"
     },
     {
-      "from": "K93.out",
+      "from": "K94.out",
       "to": "isinfamy.b"
     },
     {
@@ -14762,7 +14935,7 @@
       "to": "isbreakVoided.a"
     },
     {
-      "from": "K94.out",
+      "from": "K95.out",
       "to": "isbreakVoided.b"
     },
     {
@@ -14870,7 +15043,7 @@
       "to": "evLine.cond"
     },
     {
-      "from": "K95.out",
+      "from": "K96.out",
       "to": "evLine.a"
     },
     {
@@ -14882,7 +15055,7 @@
       "to": "isConC.a"
     },
     {
-      "from": "K96.out",
+      "from": "K97.out",
       "to": "isConC.b"
     },
     {
@@ -14990,7 +15163,7 @@
       "to": "dbuiS_rl_19.trigger"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "dbui_rln_51.key"
     },
     {
@@ -15074,7 +15247,7 @@
       "to": "rgTail.a"
     },
     {
-      "from": "K97.out",
+      "from": "K98.out",
       "to": "rgTail.b"
     },
     {
@@ -15094,11 +15267,11 @@
       "to": "rg_3.cond"
     },
     {
-      "from": "K99.out",
+      "from": "K100.out",
       "to": "rg_3.a"
     },
     {
-      "from": "K100.out",
+      "from": "K101.out",
       "to": "rg_3.b"
     },
     {
@@ -15130,7 +15303,7 @@
       "to": "rg_0.cond"
     },
     {
-      "from": "K98.out",
+      "from": "K99.out",
       "to": "rg_0.a"
     },
     {
@@ -15362,7 +15535,7 @@
       "to": "isBrkC.a"
     },
     {
-      "from": "K101.out",
+      "from": "K102.out",
       "to": "isBrkC.b"
     },
     {
@@ -15490,7 +15663,7 @@
       "to": "cutFullC.a"
     },
     {
-      "from": "K102.out",
+      "from": "K103.out",
       "to": "cutFullC.b"
     },
     {
@@ -15678,7 +15851,7 @@
       "to": "stampSeq.increment"
     },
     {
-      "from": "K103.out",
+      "from": "K104.out",
       "to": "stamp2_id.in"
     },
     {
@@ -15842,7 +16015,7 @@
       "to": "csubSeq.increment"
     },
     {
-      "from": "K104.out",
+      "from": "K105.out",
       "to": "csub3_key.in"
     },
     {
@@ -16058,7 +16231,7 @@
       "to": "pbAtN.dwellS"
     },
     {
-      "from": "K79.out",
+      "from": "K80.out",
       "to": "dbui_pbAt_57.key"
     },
     {
@@ -16122,7 +16295,7 @@
       "to": "nodesReset.in"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "dbui_r2_62.key"
     },
     {
@@ -16138,7 +16311,7 @@
       "to": "holdAtN.now"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "dbui_holdAt_63.key"
     },
     {
@@ -16210,7 +16383,7 @@
       "to": "nextHold.trigger"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "dbui_holdAt_64.key"
     },
     {
@@ -16286,7 +16459,7 @@
       "to": "notOverG.trigger"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "dbui_rsAt_66.key"
     },
     {
@@ -16326,7 +16499,7 @@
       "to": "finAtN.now"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "dbui_finAt_69.key"
     },
     {
@@ -16358,7 +16531,7 @@
       "to": "nextFin.trigger"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "dbui_finAt_70.key"
     },
     {
@@ -16422,8 +16595,52 @@
       "to": "caseTrust.trigger"
     },
     {
+      "from": "world.debOutcome",
+      "to": "outWinC.a"
+    },
+    {
+      "from": "K106.out",
+      "to": "outWinC.b"
+    },
+    {
+      "from": "outWinC.out",
+      "to": "outWinN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "outWinN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "outWinN.b"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "cueIdx.isWarmN"
+    },
+    {
+      "from": "outWinN.out",
+      "to": "cueIdx.outWinN"
+    },
+    {
+      "from": "cueIdx.value",
+      "to": "cueWord.index"
+    },
+    {
+      "from": "cueWord.out",
+      "to": "cueL.in"
+    },
+    {
       "from": "finG.pass",
-      "to": "world.stepDone"
+      "to": "cueL.trigger"
+    },
+    {
+      "from": "cueL.out",
+      "to": "world.debCue"
+    },
+    {
+      "from": "finG.pass",
+      "to": "world.debEnd"
     }
   ]
 }

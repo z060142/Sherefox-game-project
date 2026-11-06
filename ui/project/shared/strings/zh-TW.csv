@@ -298,6 +298,8 @@ E03_09_REASON_B,例行公事
 E03_09_REASON_C,與案件無關
 E03_09_TAGS,人物・醜聞
 G-01,軍工黑市批號抄本
+G-01_DESC,從替換機芯的批號一路追查抄來的清單：一串軍工黑市專用的編號，字跡潦草，像是有人急著記下又急著藏起來。
+G-01_REASON,這批軍工零件流進了倫敦的黑市，經手的人不只一個
 G-01_SUB,齒輪拓印
 GESTURE_ARTHUR_ASSERT,挺胸、兩手叉腰
 GESTURE_ARTHUR_REINFORCE,把袖子往下拉、想遮住袖口
@@ -351,6 +353,7 @@ HS_CH02_12_HINT,每天早上都對過大笨鐘……那今天下午慢了的那�
 HS_CH02_12_NAME,牆上的掛鐘群
 HS_CH02_12_NOTE,十幾座鐘一起滴答作響，像一屋子的心跳。霍洛威說，每天早上他都會一座一座對過大笨鐘。
 HS_CH03_01_NAME,遺體
+HS_CH03_01_NOTE_REPORT,驗屍報告已經在手上了；遺體的狀況和報告一致，燙傷和指甲裡的木屑都對得上。
 HS_CH03_02_NAME,死者的外套內袋
 HS_CH03_03_NAME,從內側落下的門閂
 HS_CH03_04_NAME,洩壓閥
@@ -545,6 +548,12 @@ NEWS_03_WIN_SUB,「警督：『蘇格蘭場從不讓霧遮住真相。』」
 NEWS_SIDE_01,鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。
 NEWS_SIDE_02,市政廳擴編港務稽查，顧問 W 小姐表示「透明是效率的前提」。
 NEWS_SIDE_03,匿名人士捐贈皇家歌劇院一批新式升降機零件。
+S-01_DESC,用鉛筆在紙上拓下的齒輪齒形。形狀對得上，但沒有批號，只能說明「很像」，證明不了「就是」。
+SCENE_CH01_KITCHEN,事務所廚房兼客廳
+SCENE_CH02_CLOCKSHOP,報時鳥鐘錶店
+SCENE_CH03_BOILER,駁船鍋爐室
+SCENE_CH03_DECK,駁船甲板
+SCENE_CH03_DOCK,碼頭
 SCR_CH01_S01_L001,場景 1：報紙頭版（開場）
 SCR_CH01_S01_L002,【倫敦提燈報・1887 年 10 月】月桂糕點鋪限量「發條焦糖布丁」開賣首日，排隊人龍繞過貝克街兩圈
 SCR_CH01_S01_L003,本報訊，貝克街月桂糕點鋪昨日推出新品「發條焦糖布丁」，以黃銅發條造型的焦糖頂飾聞名，每日限量四十顆，開店一小時即售罄。排隊人群中不乏專程前來的紳士淑女，其中一位狐耳少女據稱「尾巴從頭到尾都沒有停過」。另，本報小廣告欄刊有啟事一則：「狐耳偵探事務所誠徵室友，會做飯者優先，不接受怕狐狸毛的人。」
@@ -1384,9 +1393,11 @@ UI_DEB_LOCK_SUMMARY_OBSERVE,觀察　這回合不出牌
 UI_DEB_LOCK_SUMMARY_PARRY,反駁　對準：{node}　出示：{card}
 UI_DEB_NOPARRY_NOCARD,沒有能推翻這個主張的證物
 UI_DEB_NOPARRY_SHISSHU,失守：這一回合不能反駁
+UI_DEB_NOSOPH_REASON,這段推理沒有虛線
 UI_DEB_PHASE,第 {n} 階段／共 {total} 階段
 UI_DEB_PREVIEW,傷害 {dmg}　倍率 ×{mult}　{shaken}
 UI_DEB_PREVIEW_BREAK,可以論破
+UI_DEB_PREVIEW_HACHIKU,破竹 +{pct}%
 UI_DEB_PREVIEW_LABEL,預估
 UI_DEB_PREVIEW_PARRY,截斷：反擊 30、粉碎主張
 UI_DEB_PREVIEW_PARRY_NOREF,截斷：反擊 30（這個說法太堅固，主張會留著）
@@ -1612,6 +1623,9 @@ UI_SLOT_AUTO,自動存檔
 UI_SLOT_EMPTY,空白
 UI_SLOT_INFO,{chapter}・{step}　{playtime}　{difficulty}　第 {n} 週目
 UI_SLOT_QUICK,快速存檔
+UI_STAGE_EARLY,前期
+UI_STAGE_LATE,後期
+UI_STAGE_MID,中期
 UI_STATE_HACHIKU,破竹 ×{n}
 UI_STATE_HACHIKU_MAX,論破條件 −1 張
 UI_STATE_HACHIKU_TIP,勢如破竹：推理鏈傷害 +{dmg}%、反擊 +{ctr}%。滿 3 層時，論破少需 1 張證物。讀錯一手就會歸零。
@@ -1641,6 +1655,7 @@ UI_TAG_PERSON,人物
 UI_TAG_PHYSICAL,物理特性
 UI_TAG_PLACE,地點
 UI_TAG_SCANDAL,醜聞
+UI_TAG_SEP,・
 UI_TAG_TIME,時間
 UI_TAIL,尾聲
 UI_TITLE_CONTENTS,本期目錄

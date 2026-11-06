@@ -128,6 +128,15 @@ GOLDEN_OUT = {"E02_01": "G-01"}
 END_CARD_KEY = "UI_TO_BE_CONTINUED"
 # Ruling C3: endgame second-claim refuters.
 TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
+# Debate and warm-up scenes: lines played on the vn around the debate screen (script.cue, data-schema §3). The
+# leading lines up to round 1 or the player's first move are `pre` (derived); the lines after the outcome are
+# listed here from 20-script: Ch.1 S05 the confession after 論破 (L027-L035, the win route only: the S06 lose
+# branch narrates the other ending); Ch.2 S05 Wolfhart's cup in the tail (L041-L042, only when the tail is
+# parried, i.e. a win: a wrong card in the tail is L047's graze); Ch.3 S04 the inspector's wrap-up (L006-L009,
+# either outcome: after three misses Sherefox corrects him herself, A-13). Every other line of these scenes is the
+# recommended route's transcript (cue empty, not played).
+DEBATE_POST = {"CH01_S05": ("postWin", 27, 35), "CH02_S05": ("postWin", 41, 42), "CH03_S04": ("post", 6, 9)}
+PLAYER_MOVES = {"present", "rebut", "rebutBreak", "solid", "solidBreak", "sophistry", "observe"}
 # Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one).
 WARMUP = {3: {"refuters": ["E03_05", "E03_02"], "hand": ["E03_05", "E03_02"]}}
 
@@ -510,8 +519,37 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
             # Shown by a dialogue runner: a spoken / narrated line (kind line, incl. system and newspaper lines),
             # not marked inactive, and not in the S90 tell library (data-schema §3).
             "playable": kind == "line" and not inactive and s != 90,
+            "cue": "",
         })
+    script_cues(out, info)
     return out, info
+
+
+def script_cues(rows: list[dict], info: dict) -> None:
+    """script.cue of the debate / warm-up scenes (DEBATE_POST; data-schema §3)."""
+    for (c, scene), sc in info["scenes"].items():
+        if sc["kind"] not in ("debate", "warmup"):
+            continue
+        skey = f"{ch_key(c)}_{scene}"
+        rs = [r for r in rows if r["sceneKey"] == skey and r["playable"]]
+        for r in rs:
+            if r["round"] > 0 or r["act"] in PLAYER_MOVES:
+                break
+            r["cue"] = "pre"
+        post = DEBATE_POST.get(skey)
+        if not post:
+            continue
+        cue, lo, hi = post
+        got = [r for r in rs if lo <= r["seq"] <= hi]
+        if len(got) != hi - lo + 1:
+            err(f"script: DEBATE_POST {skey} L{lo:03d}-L{hi:03d} are not all playable rows")
+        for r in got:
+            if r["cue"]:
+                err(f"script: {r['id']} is both pre and {cue}")
+            r["cue"] = cue
+    for skey in DEBATE_POST:
+        if not any(r["sceneKey"] == skey and r["cue"] for r in rows):
+            err(f"script: DEBATE_POST names {skey}, which is not a debate or warm-up scene")
 
 
 def merge_staging(script: list[dict]) -> None:
@@ -860,9 +898,12 @@ def main() -> int:
             err(f"evidence {eid}: no hotspot yields it and no other source is defined")
         usable = "3,12" if eid == "G-01" else str(b["chapter"])
         name_key = {"G-01": "G-01", "S-01": "G-01_SUB"}.get(eid, f"{eid}_NAME")
+        if eid == "G-01":
+            keys = ["G-01_REASON", "", ""]     # the golden clue's one fixed reason (correct stays -1)
         evidence.append({
             "id": eid, "chapter": b["chapter"], "usable": usable, "grade": grade,
-            "nameKey": name_key, "descKey": f"{eid}_DESC" if is_card else "",
+            # G-01_DESC / S-01_DESC (S-01's name stays G-01_SUB)
+            "nameKey": name_key, "descKey": f"{eid}_DESC" if is_card or eid in ("G-01", "S-01") else "",
             "tagsKey": f"{eid}_TAGS" if is_card else "",
             "tags": ",".join(t["tags"]), "hiddenTags": ",".join(t["hidden"]), "grazingTags": ",".join(t["grazing"]),
             "policeTags": ",".join(t["police"]),
@@ -1134,6 +1175,9 @@ TEXTF_KEYS = {
     "UI_DEB_LOCK_SUMMARY_PARRY": {"node", "card"}, "MSG_CH1_CONTRA": {"name", "n"}, "MSG_DEB_PARRY": {"name", "n"},
     "MSG_TAIL_WRONG": {"name", "n"}, **{k: {"name", "n"} for k in TEXTF_SPK},
     "UI_RES_COST_SEIZE": {"name"}, "WARN_BOARD_NOREASON": {"n"}, "WARN_BOARD_UNAPPR": {"n", "left"},
+    "MSG_INV_MISSED": {"n"}, "MSG_INV_RESCUE": {"name"}, "WARN_INV_END": {"left"},
+    "UI_BOARD_THRESHOLD": {"stage", "condition"}, "UI_DEB_PREVIEW": {"dmg", "mult", "shaken"},
+    "UI_DEB_PREVIEW_HACHIKU": {"pct"},
 }
 # The M4c pipeline wrote these templates filled in as `<KEY>__<values>` keys; the UI project's tables still hold them.
 STALE_EXPANDED = set(TEXTF_KEYS) | {"MSG_DEB_SHAKEN_END"}

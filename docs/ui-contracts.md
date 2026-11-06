@@ -104,7 +104,7 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 - **無圖（`picture` 空字串）**：`subhead` 置中橫跨全頁（兩行），其下內文五欄。
 - **多欄內文的做法**：每欄各放一份同樣綁 `body` 的文字，欄寬相同所以斷行相同；第 k 欄把文字往上位移 (k−1) × 欄高，外層 `overflow: hidden`，看起來就是同一段文字逐欄接下去。欄寬 216 px（約 14 個中文字），欄高在有「上一案結果」條時 198 px（9 行）、沒有時 264 px（12 行）。有圖時只有兩欄（中文約 250 字），無圖時五欄。英文的有圖導言用較小的內文字（設計 session 2026-11-06 核准）：`:lang(en) #lead-col-1-text`／`#lead-col-2-text` 13 px、行高 16.5 px（198 px＝12 行、264 px＝16 行，位移量不變），Ch.1～4 開場內文（473～677 字元）都排得下；中文維持 15／22 px。超出的部分被截掉。第二版內文三欄同法（250 px 寬、462 px 高）。
 - **側欄・上一案結果（`result_head`、`result_sub`）**：頁尾線上方一條舊紙底、上粗下細框線的橫條：左端深墨底標籤 `UI_PAPER_PREV_CASE`（UI-only 鍵「上一案結果」），右側 `result_head`（粗體一行）與 `result_sub`（斜體一行，空字串隱藏；兩行在條內垂直置中）。`result_head` 空字串時整條隱藏，同時 `#p1` 帶上 `class.tall`（`bind:class.tall="result_head | eq('')"`）：鋼版畫框與各欄改用較高的尺寸，位移量跟著換（`<helmet>` 的 `.tall #…` 規則，進 `<layout>`），頁面一直排到頁尾。
-- **mast**：0 平常版（左耳「倫敦提燈報」、右耳「頭版」）；1 號外（兩耳改為銅底「號外」）；2 滲透版（報頭粗線改狼影紫 `#3b2a4a`；token 表尚無此色）。
+- **mast**：0 平常版（左耳「倫敦提燈報」、右耳「頭版」；英文的耳框字 `:lang(en) .ear-text` 改 17 px、字距 1 px、不換行，「The London Lantern」排成一行）；1 號外（兩耳改為銅底「號外」）；2 滲透版（報頭粗線改狼影紫 `#3b2a4a`；token 表尚無此色）。
 - **第二版**：頁眉（左「第二版」、中報名、右 `dateline`）；`page2_head` 非空時是標題與三欄 `page2_body`，右側欄「城市短訊」（`side`）與「廣告」雙框（`ad`）。`page2_head` 空字串時（原型的轉場報紙都沒有第二版文章：`papers.page2HeadKey` 全空白）`#p2` 帶上 `class.wide`：文章區隱藏，城市短訊（左 680 px，頭條字體 30 px 粗體）與廣告（右 456 px，28 px）展開占滿整頁，中間一道直線。
 - **stamp**：1 結案、2 更正；朱紅印章（雙框、旋轉 −9°）疊在畫面左下（有圖時蓋在鋼版畫上），兩頁都顯示；變更時播 `stamp-in`（180 ms 蓋印）。
 - **輸入**：左鍵（畫面任一處）、Enter、Space、→、PageDown → `next`；←、PageUp → `prev`。鍵盤同 vn，根元素持有焦點。
@@ -115,12 +115,12 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 
 ## investigate（蒐證，1280×720）
 
-依據：系統規格 §1、§4.2「SCR_INV」、美術風格 §五「蒐證」。調查點清單由流圖以 `atrium.ui.list` 寫入（XTAtrium 08 §8.4：來源為集合 `spotsHere`〔map：調查點 id → 狀態〕，join `hotspots` 表）。
+依據：系統規格 §1、§4.2「SCR_INV」、美術風格 §五「蒐證」。調查點清單由流圖以 `atrium.ui.list` 寫入（XTAtrium 08 §8.4：來源為集合 `spotsHere`〔map：調查點 id → 狀態〕，其他欄位以欄位參照 `table:flowSpot[id].*` 取得，AT-046；`docs/flows.md` §5.2）。
 
 | port | 型別 | 方向 | 意義 |
 |---|---|---|---|
 | `bg` | string | in | 目前區域的背景 id（同 vn）。 |
-| `area_name` | string | in | 區域／場景名稱（已在地化）。 |
+| `area_name` | string | in | 區域／場景名稱（已在地化；`SCENE_CH0x_*`）。 |
 | `nav_prev`、`nav_next` | bool | in | 左右箭頭是否可用（Ch.3 的三個場景以此切換）。 |
 | `spots` | list<struct{id: string, name: string, x: number, y: number, w: number, h: number, type: number, state: number}> | in | 本區調查點。`type`：0 檢視、1 證物、2 證詞、3 機關、4 鎖定；`state`：0 未調查、1 已調查（灰色）、2 不可用（鎖定）。座標為 1280×720 畫面上的矩形。 |
 | `ticks`、`ticks_max` | number | in | 懷錶刻度（剩餘／總數）；`ticks_max` 0 表示不限（Ch.1）。剩 3 格以下時懷錶轉紅（UI 自行判斷）。 |
@@ -130,16 +130,19 @@ UI 側實作（板子 `ui/boards/project/Paper.dc.html`）：
 | `can_end` | bool | in | 「結束蒐證」可按（必需證物已齊）。 |
 | `hint` | string | in | 亞瑟（Ch.1 為 Sherefox 自言自語）的提示氣泡文字；空字串隱藏。 |
 | `hint_seq` | number | in | 每換一則提示 +1，重播氣泡。 |
-| `popup_kind` | number | in | 0 無、1 情報文字、2 取得證物卡、3 取得證詞卡。 |
-| `popup_title`、`popup_body` | string | in | 彈窗標題（卡名）與內文（情報或證物說明）。 |
+| `popup_kind` | number | in | 0 無、1 情報文字、2 取得證物卡、3 取得證詞卡、4 訊息（結束蒐證時的漏證張數、亞瑟補撿；只有內文）。 |
+| `popup_title`、`popup_body` | string | in | 彈窗標題（卡名）與內文（情報、證物說明或訊息）。 |
+| `popup_speaker`、`popup_line` | string | in | 內文下方的一句台詞（調查點的反應台詞、補撿時亞瑟的 `ART_RESCUE`）與說話者名牌（已在地化）；`popup_line` 空字串時隱藏台詞列，`popup_speaker` 空字串時（旁白）隱藏名牌。 |
+| `popup_line_seq` | number | in | 每換一句台詞（含新彈窗的第一句）+1，重播台詞列的淡入。 |
+| `popup_more` | bool | in | 這一句之後還有台詞：點一下（`dismiss`）由流圖換下一句、彈窗不關；false 時那一下關閉彈窗（卡片先飛向證物冊）。 |
 | `popup_grade` | number | in | 取得卡片時的等級框：0 一般、1 關鍵、2 劇情、3 黃金、4 替代。 |
 | `popup_seq` | number | in | 每開一次彈窗 +1。 |
 | `spot` | string | out | 玩家點了哪個調查點（id）；彈窗開著時不送出。 |
 | `nav` | number | out | −1 往左、+1 往右切換區域。 |
-| `dismiss` | event | out | 關閉彈窗。 |
+| `dismiss` | event | out | 點彈窗：還有台詞時換下一句，否則關閉（流圖判斷）。 |
 | `book` | event | out | 開證物冊。 |
 | `ask_hint` | event | out | 點亞瑟頭像要一句提示。 |
-| `end` | event | out | 結束蒐證（只在 `can_end` 為 true 時送出）。 |
+| `end` | event | out | 結束蒐證（只在 `can_end` 為 true 時送出）。第一次按下時流圖只在 `hint` 顯示確認（`WARN_INV_END`），再按一次才結束（`docs/flows.md` §4.4）。 |
 
 UI 側實作（板子 `ui/boards/project/Investigate.dc.html`）：
 
@@ -151,7 +154,7 @@ UI 側實作（板子 `ui/boards/project/Investigate.dc.html`）：
 - **右上**：警徽列，同 vn（`trust` −1 隱藏）。
 - **左下**：亞瑟頭像（`char_arthur.png` 裁頭部）點擊 → `emit(ask_hint)`；提示氣泡 `hint` 空字串隱藏，`hint_seq` 變更時播 `hint-in`。
 - **右下**：`BTN_MENU_EVIDENCE`（`book_new` > 0 時右上角紅點顯示數字）→ `emit(book)`；`BTN_INV_END`，`can_end` 為 false 時灰色且點擊不送。
-- **彈窗**：`popup_kind` > 0 時全畫面墨色遮罩（吃掉所有點擊）。1：新聞紙情報卡（小標 `UI_POINT_LOOK`、`popup_title`、`popup_body`），點任一處 → `emit(dismiss)`。2／3：剪報卡，等級框色依 `popup_grade`（0 黃銅、1 銀、2 舊紙＋深墨框＋朱紅「私人收藏」印 `UI_EVBOOK_TAB_PLOT`、3 金框＋金光、4 破損黃銅＝虛線框舊紙），小標為等級名 `UI_GRADE_*`（3 證詞卡改 `UI_POINT_TALK`）；點任一處先播 `fly`（420 ms，卡片縮小飛向證物冊按鈕）再 `emit(dismiss)`。`popup_seq` 變更時兩種卡都播 `pop-in`。Esc／Enter／Space → `emit(dismiss)`（不播飛入）。
+- **彈窗**：`popup_kind` > 0 時全畫面墨色遮罩（吃掉所有點擊）。1：新聞紙情報卡（小標 `UI_POINT_LOOK`、`popup_title`、`popup_body`），點任一處 → `emit(dismiss)`。2／3（`popup_kind | between(2, 3)`）：剪報卡，等級框色依 `popup_grade`（0 黃銅、1 銀、2 舊紙＋深墨框＋朱紅「私人收藏」印 `UI_EVBOOK_TAB_PLOT`、3 金框＋金光、4 破損黃銅＝虛線框舊紙），小標為等級名 `UI_GRADE_*`（3 證詞卡改 `UI_POINT_TALK`）；點任一處：`popup_more` 為 true 時直接 `emit(dismiss)`（換下一句），false 時先播 `fly`（420 ms，卡片縮小飛向證物冊按鈕）再 `emit(dismiss)`。4：訊息紙條（上下雙線之間置中的粗體 `popup_body`），點任一處 → `emit(dismiss)`。三種卡的內文下方都有台詞列（舊紙底、銅色左線：銅色小字 `popup_speaker`＋`popup_line`；`popup_line` 空字串隱藏），`popup_line_seq` 變更時播 `*-line-in`（260 ms 淡入上移）。`popup_seq` 與 `popup_kind` 變更時各卡播 `pop-in`／`msg-in`（剪報卡先 `stop(fly)`：流圖在 `popup_seq` 之後一 tick 才開窗，卡片原本會停在上一張飛走的終點而看不見，M5b 修正）。Esc／Enter／Space → `emit(dismiss)`（不播飛入）。
 - **鍵盤**（根元素持有焦點，同 vn）：Q／E 切區域、Tab 證物冊、F 結束蒐證（`can_end` 時）、Esc／Enter／Space 關彈窗。
 - **預設值**（截圖用）：Ch.1 事務所廚房、6 個調查點（布丁盤已調查）、刻度不限、鑑定 2、證物冊紅點 1、Sherefox 自言自語 `SHF_C1_IDLE`；彈窗內容預設為「空空的布丁盤」，但 `popup_kind` 預設 0（不開窗）。
 - 未做（合約沒有對應 port）：區域箭頭的封條狀態圖示、「調查點常亮」輔助選項與 Shift 顯示全部調查點、案件筆記按鈕、外地章「無警方支援」灰色徽章（合約以 `trust` −1 隱藏）、亞瑟／Sherefox 頭像切換（Ch.1 提示是 Sherefox 自言自語，頭像仍是亞瑟）、場景平移、刻度剩 3 格的提示音。
@@ -172,14 +175,14 @@ UI 側實作（板子 `ui/boards/project/Investigate.dc.html`）：
 | `chain_info` | list<struct{chain: number, cards: number, solid: number, soph: number, dmg: number}> | in | 推理鏈列表的銅牌：張數、實證數、詭辯數、預估傷害。 |
 | `sel_id` | string | in | 詳情面板顯示的卡；空字串隱藏面板。 |
 | `sel_name`、`sel_desc` | string | in | 卡名、說明（已在地化）。 |
-| `sel_tags` | string | in | 已揭露標籤的顯示文字（以「・」連接）；未鑑定的顯示「？」。 |
+| `sel_tags` | string | in | 已揭露標籤的顯示文字（以 `UI_TAG_SEP` 連接：「・」／「, 」）；未鑑定的顯示「？」。 |
 | `sel_grade` | number | in | 等級（同 investigate）。 |
 | `sel_reason1`～`sel_reason3` | string | in | 三個歸類理由（已在地化）；黃金線索時只有 1。 |
 | `sel_reason` | number | in | 已選的理由 0（未定）～3。 |
 | `sel_fixed` | bool | in | 理由已固定（黃金線索）。 |
 | `sel_can_appraise` | bool | in | 「交給亞瑟」可按。 |
 | `appraise_left` | number | in | 鑑定剩餘次數。 |
-| `opponent_name`、`threshold_text` | string | in | 左上對手與類型、上方論破門檻提示（已在地化）。 |
+| `opponent_name`、`threshold_text` | string | in | 左上對手與類型、上方論破門檻提示（已在地化；`UI_BOARD_THRESHOLD`「{stage}論破：{condition}」）。 |
 | `remark` | string | in | 亞瑟的一句話（拉出詭辯時皺眉、首次實證、無效連結等）；空字串隱藏。 |
 | `remark_seq` | number | in | 每換一句 +1。 |
 | `select` | string | out | 點了抽屜或板上的某張卡（id）。 |
@@ -244,7 +247,7 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 | `sel_act` | number | in | 目前選的行動 0 無、1～4。 |
 | `parry_cards` | list<struct{id: string, name: string}> | in | 反駁時下方滑出的破解證物；空清單＝不顯示選擇器。 |
 | `summary` | string | in | 鎖定確認列文字（例「反駁　對準：…　出示：E02_04」）；空字串隱藏確認列。 |
-| `preview`、`preview_vs` | string | in | 預估列與依候選行動的小字。 |
+| `preview`、`preview_vs` | string | in | 預估列（攻擊：`UI_DEB_PREVIEW`「傷害 {dmg}　倍率 ×{mult}　{shaken}」＋破竹 `UI_DEB_PREVIEW_HACHIKU`＋「可以論破」；反駁：`UI_DEB_PREVIEW_PARRY`）與依候選行動的小字。 |
 | `can_lock` | bool | in | 「鎖定」可按。 |
 | `instinct_left`、`assist_left` | number | in | 狐耳直覺燈、援護燈（亮燈數）。 |
 | `instinct_ok` | bool | in | 狐耳直覺目前可用。 |
@@ -287,7 +290,7 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 UI 側實作（板子 `ui/boards/project/Debate.dc.html`）：
 
 - **整體**：背景 `_blob/bg_debate.jpg` 滿版；其餘全部放在一張 1280×720 的 `#sheet`（`calc(50% - 640px)` 置中），寬螢幕兩側露出背景。號外版型：左上報頭條（`UI_PAPER_MAST`＋朱紅「號外」`UI_PAPER_EXTRA`＋`round_text`），其下雙線；對手立繪在右（`opp_char` 用與 vn 相同的 `eq` 圖組，`char_<id>.png`，300×450），Sherefox 立繪固定在左。`show` 時播 `intro`（印刷滾筒由左往右刷過，600 ms，播完自隱）。立繪在 `phase` 0 時循環播 `fidget`（1.5 秒一輪的輕微起伏，代替小動作動畫），`phase` ≠ 0 時暫停；`opp_char` 變更時播 `ink-in`。
-- **對手主張鏈（`nodes`）**：上方五個**固定欄位**，第 k 欄讀 `nodes | item(k)`（`id` 空字串不顯示，所以清單照順序最多 5 筆），欄間以銅管相連。不用 `<repeat>`：清單範本裡的 `@key` 不會在地化，而節點的小標（`UI_NODE_NORMAL`／`UI_NODE_LIT`／`UI_NODE_FRAGILE`／`UI_NODE_SECOND`）與 `UI_NODE_STURDY_SRC` 都是固定文字。每欄是一塊頭條鉛字（頭條字體三行，英文四行）。`state` 1 亮起：朱紅外框＋燈火金光暈（呼吸）＋朱紅小標與 ▼；2 脆弱：右下裂紋、閃爍；3 第二說詞：狼影紫小標、淡紫底；4 粉碎中：朱筆一劃劃掉頭條（320 ms）後下墜淡出（900 ms，停在透明，等流圖移除）。`src` 非空時角落顯示 `UI_NODE_STURDY_SRC`（UI 不顯示 `src` 的內容）。點擊 → `set(target, nodes[k].id)`（`phase` 0 時）。`claim_preview` 在主張列右下（朱紅小字，空字串隱藏）。
+- **對手主張鏈（`nodes`）**：上方五個**固定欄位**，第 k 欄讀 `nodes | item(k)`（`id` 空字串不顯示，所以清單照順序最多 5 筆），欄間以銅管相連。不用 `<repeat>`：清單範本裡的 `@key` 不會在地化，而節點的小標（`UI_NODE_NORMAL`／`UI_NODE_LIT`／`UI_NODE_FRAGILE`／`UI_NODE_SECOND`）與 `UI_NODE_STURDY_SRC` 都是固定文字。每欄是一塊頭條鉛字（頭條字體三行，英文四行）。`state` 1 亮起：朱紅外框＋燈火金光暈（呼吸）＋朱紅小標與 ▼；2 脆弱：右下裂紋、閃爍；3 第二說詞：狼影紫小標、淡紫底；4 粉碎中：朱筆一劃劃掉頭條（320 ms）後下墜淡出（`.node.s4` 的透明與位移以 0.3 秒延遲、900 ms 的 transition 進入，停在透明，等流圖移除）。粉碎不是 `forwards` 的 animation：那樣欄位換成下一個節點（例如尾聲的第二說詞 T1 補進剛粉碎的欄位）時仍停在透明；transition 只屬於 `.s4`，所以欄位一拿到別的 state 就立刻回到不透明（M5b 修正）。`src` 非空時角落顯示 `UI_NODE_STURDY_SRC`（UI 不顯示 `src` 的內容）。點擊 → `set(target, nodes[k].id)`（`phase` 0 時）。`claim_preview` 在主張列右下（朱紅小字，空字串隱藏）。
 - **小道消息欄（預兆）**：欄頭 `UI_DEB_GOSSIP`（新增）＋右側狐耳直覺鈕（`BTN_DEB_INSTINCT`，兩顆燈依 `instinct_left`；`instinct_ok` 為 false 時灰且不送；點擊或 F → `emit(instinct)`，同時畫面邊緣暗下 0.5 秒）；台詞泡泡（`tell_line`，中文加「」、英文加“”，以 `:lang(en)` 切換；泡泡尾巴指向立繪；空字串隱藏）；小動作字幕（`tell_gesture`，手形小圖示）；黃銅眼睛（`tell_clarity` 0 全睜＋`UI_DEB_TELL_CLEAR`、1 半睜＋`UI_DEB_TELL_FUZZY`、2 鎖頭＋`UI_DEB_TELL_SCRIPT`）與依據小銅牌（`tell_basis`，空字串隱藏）；候選行動牌 A／B（圖示＋`UI_ACT_*`；`tell_b` −1 時只有一張；`tell_star` 0／1 的那張金框加星）；`tell_star_text` 在最下方。
 - **壓力錶**：兩個 SVG 圓錶（銅框、新聞紙錶面），指針 `rotate = hp | range(0, hp_max, -120, 120)`（右滿左零，240° 行程），錶環三段：50% 以上白、20～50% 琥珀、20% 以下鏽紅；中央數字 `format('{0}／{1}')`（數字以 %.6g 印出，52.5 不會多 0）。數字依區段變色，鏽紅區錶面抖動。對手錶在右上（`st_shaken` > 0：錶下掛 `UI_DEB_PREVIEW_SHAKEN`「動搖 ×1.5」銅牌與燈、洩壓閥冒汽；`st_break`：錶外一圈朱紅呼吸光環），我方錶在左下。`mode` ≠ 0 時兩錶都隱藏，右上改為報框顯示 `counter_text`。`float_opp`／`float_me` 變更時數字從錶旁彈出並淡出（1.4 秒），同時錶側噴一團白汽。
 - **對手名牌與手牌**：右側 `opp_name`＋`opp_type`；`hand` > 0 時顯示 1～3 張卡背剪影＋「×n」。
@@ -307,7 +310,7 @@ UI 側實作（板子 `ui/boards/project/Debate.dc.html`）：
 
 字串鍵：`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`UI_NODE_NORMAL`、`UI_NODE_LIT`、`UI_NODE_FRAGILE`、`UI_NODE_SECOND`、`UI_NODE_STURDY_SRC`、`UI_DEB_GOSSIP`（新增）、`BTN_DEB_INSTINCT`、`UI_DEB_TELL_CLEAR`、`UI_DEB_TELL_FUZZY`、`UI_DEB_TELL_SCRIPT`、`UI_ACT_CLAIM`、`UI_ACT_RUSH`、`UI_ACT_REINFORCE`、`UI_ACT_TRAP`、`UI_ACT_GROUP_ATK`、`UI_ACT_GROUP_DEF`、`MSG_DEB_SELECT_PARRY`、`UI_DEB_PREVIEW_LABEL`（新增）、`UI_DEB_PREVIEW_SHAKEN`、`UI_STATE_KONJU_TIP`、`UI_STATE_SHISSHU_TIP`、`BTN_BACK`、`BTN_DEB_LOCK`、`UI_DEB_LOCKED`、`UI_DEB_ASSIST_ARMED`、`BTN_DEB_SOLID`、`BTN_DEB_SOPH`、`BTN_DEB_PARRY`、`BTN_DEB_OBSERVE`、`BTN_DEB_ASSIST`、`UI_DEB_STATUS_LABEL`（新增）、`UI_DEB_STATUS_BREAK_TURN`、`UI_TAIL`、`BTN_DEB_NOTES`、`BTN_DEB_TABLE`、`UI_TABLE_TITLE`、`UI_TABLE_COL_*`、`UI_TABLE_*`、`SPK_SHEREFOX`、`MSG_DEB_CLASH`。新增的三個鍵只在 `ui/project/shared/strings/<lang>.csv`（`tools/build_data.py` 會保留並列為 UI-only），尚未進根目錄 `strings/`。
 
-流圖側（`flows/debate_ui.xtflow`，`docs/flows.md` §4.8，M4c）：除了 `act_enabled`／`act_reason`（`atrium.ui.list` 只寫物件陣列：`list<bool>` 被拒、`list<string>` 顯示不出字，`docs/flows.md` §7.2 第 3 項；按不可用的行動時改在 `summary` 顯示原因）、`preview_vs` 與 `st_flags`（空字串）以外的 port 全部寫入。`summary`、`preview` 的具名佔位樣板填不了，以在地化片段加空白組成；`round_text`、`counter_text`、`tell_star_text`、`claim_preview` 用 `tools/build_data.py` 展開的 `<KEY>__<值>` 鍵。`skip`／`next` 在揭示中都是快轉，結算數字停留時 `next` 進下一回合（或結束）。
+流圖側（`flows/debate_ui.xtflow`，`docs/flows.md` §4.8）：除了 `preview_vs` 與 `st_flags`（空字串）以外的 port 全部寫入。`act_enabled`／`act_reason` 以 `atrium.ui.list` 的 `bare` 寫成值陣列（AT-047；詭辯鈕的原因 `UI_DEB_NOSOPH_REASON`）；按了不可按的行動時確認列（`summary`）也顯示原因。`summary`、`preview`、`round_text`、`counter_text`、`tell_star_text`、`claim_preview` 以 `atrium.textf` 填具名佔位（AT-046）。`skip`／`next` 在揭示中都是快轉，結算數字停留時 `next` 進下一回合（或結束）。論戰畫面在場景的開場台詞（vn）之後才出現，收尾台詞在論戰結束後回到 vn 播放（`docs/flows.md` §4.1、§4.2）。
 
 ## cutin（書法大字與印章，覆蓋層，最上層，非 modal）
 

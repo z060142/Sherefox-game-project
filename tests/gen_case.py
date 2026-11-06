@@ -66,6 +66,12 @@ S = strings()
 S_EN = strings("en")
 
 
+SPOT_LINES = {r["id"]: r["nLines"] for r in json.loads((ROOT / "data" / "flow" / "flowSpot.json").read_text(
+    encoding="utf-8"))}
+MISS_TO_HAND = {c["id"]: c["missToHand"] for c in json.loads((ROOT / "data" / "chapters.json").read_text(
+    encoding="utf-8"))}
+
+
 def spot_xy(spot_id: str) -> tuple[int, int]:
     h = next(h for h in load("hotspots") if h["id"] == spot_id)
     return h["x"] + h["w"] // 2, h["y"] + h["h"] // 2
@@ -107,7 +113,8 @@ def reason_span(card: str, which: int, revealed: bool, S: dict) -> tuple[int, in
     """(top, bottom) of reason row `which` in the language of the string table S."""
     e = EV[card]
     hidden = set(e["hiddenTags"].split(",")) - {""}
-    tags = " ".join("？" if (t in hidden and not revealed) else S[TAGS[t]["nameKey"]] for t in e["tags"].split(","))
+    tags = S["UI_TAG_SEP"].join("？" if (t in hidden and not revealed) else S[TAGS[t]["nameKey"]]
+                                for t in e["tags"].split(","))
     y = 122
     y += min(2, lines(S[e["nameKey"]], 21, 264)) * 28 + 8
     y += lines(tags, 13, 264) * 20 + 8
@@ -140,9 +147,21 @@ def story(r: Rec, chapter: int) -> None:
 
 
 def investigate(r: Rec, spots: list[str]) -> None:
+    """Each spot, then one click per reaction line of its popup (the last one closes it; flowSpot.nLines)."""
     for i, sid in enumerate(spots):
         r.click("investigate", spot_xy(sid), gp.SETTLE if i == 0 else FLY_WAIT)
-        r.click("investigate", INV_DISMISS, POP_WAIT)
+        for _ in range(max(1, SPOT_LINES[sid])):
+            r.click("investigate", INV_DISMISS, POP_WAIT)
+
+
+def end(r: Rec, chapter: int, warned: bool, wait: int) -> None:
+    """結束蒐證: the first press only warns when `warned` (Ch.2-3 always; Ch.1 while cards remain), the second ends;
+    then the missed-cards message (chapters.missToHand) is closed with one click."""
+    r.click("investigate", INV_END, wait)
+    if warned:
+        r.click("investigate", INV_END, GAP)
+    if MISS_TO_HAND[chapter]:
+        r.click("investigate", INV_DISMISS, 20)
 
 
 class Board:
@@ -193,7 +212,7 @@ def ch1() -> int:
     spots = [f"HS_CH01_{i:02d}" for i in range(1, 11)]
     investigate(r, spots)
     r.click("investigate", INV_HINT, FLY_WAIT)
-    r.click("investigate", INV_END, 30)
+    end(r, 1, False, 30)                         # every card found: no warning
     b = Board(r, drawer_of(1, {e["id"] for e in EV.values() if e["chapter"] == 1}))
     for card, slot in (("E01_01", 0), ("E01_04", 1)):
         b.select(card)
@@ -218,7 +237,7 @@ def ch2() -> int:
     r.click("evbook", BOOK_APPRAISE, GAP)
     r.click("evbook", BOOK_CLOSE, 20)
     r.click("investigate", INV_HINT, 20)
-    r.click("investigate", INV_END, 30)
+    end(r, 2, True, 30)
     held = {e["id"] for e in EV.values() if e["chapter"] == 2} - {"E02_05", "E02_08"}
     b = Board(r, drawer_of(2, held), appraised={"E02_01"})
     for card in ("E02_02", "E02_07"):
@@ -266,7 +285,7 @@ def minimal(r: gp.Recording, kind: str, chapter: int) -> None:
     rr.__dict__ = r.__dict__   # share the recording's lines and clock
     if kind == "investigate":
         investigate(rr, spots)
-        rr.click("investigate", INV_END, FLY_WAIT)
+        end(rr, chapter, True, FLY_WAIT)          # cards remain in every chapter: the first press warns
         return
     held = {h["yields"] for h in load("hotspots") if h["id"] in spots}
     held |= {e["id"] for e in EV.values() if e["chapter"] == chapter and e["obtain"] == "event"}

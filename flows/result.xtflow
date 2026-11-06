@@ -74,6 +74,15 @@
       }
     },
     {
+      "id": "dc_winPlayed",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowDebCase",
+        "column": "winPlayed",
+        "type": "number"
+      }
+    },
+    {
       "id": "dc_winLine",
       "type": "atrium.table.get",
       "params": {
@@ -321,7 +330,7 @@
       "id": "oppOnN",
       "type": "atrium.expr",
       "params": {
-        "expr": "winN || unN"
+        "expr": "(winN && !dc_winPlayed) || unN"
       }
     },
     {
@@ -984,6 +993,10 @@
     },
     {
       "from": "dcRow.row",
+      "to": "dc_winPlayed.row"
+    },
+    {
+      "from": "dcRow.row",
       "to": "dc_winLine.row"
     },
     {
@@ -1193,6 +1206,10 @@
     {
       "from": "winN.out",
       "to": "oppOnN.winN"
+    },
+    {
+      "from": "dc_winPlayed.value",
+      "to": "oppOnN.dc_winPlayed"
     },
     {
       "from": "unN.out",

@@ -160,6 +160,12 @@
   color: var(--ink);
 }
 
+:lang(en) .ear-text {
+  font-size: 17px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
 .ear-extra {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 34px;

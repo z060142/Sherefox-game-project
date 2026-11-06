@@ -239,3 +239,12 @@ CLM_CH02_T1,鐘是我調的！可那是老頭叫我調的！,"Yes, I set the clo
 CLM_CH03_T1,轉閥門的是那個老船夫！,It was that old bargeman who turned the valve!,"tail second claim (Pierce, 玉石俱焚); refuted by: E03_03 + E03_05 (2 solid cards)"
 HEAD_CH04,歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台,Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria,opening headline (Case tab); prototype ending teaser
 HEAD_CH04_SUB,學院派名偵探維多・克勞已封鎖現場：「真相明早公布。」,"Celebrated academic detective Victor Crowe has sealed off the scene: ""The truth will be made known tomorrow morning.""",opening sub-headline (Case tab); prototype ending teaser
+SCENE_CH01_KITCHEN,事務所廚房兼客廳,The Agency Kitchen and Parlour,Ch.1 scene/area name (investigation header)
+SCENE_CH02_CLOCKSHOP,報時鳥鐘錶店,The Cuckoo Clockworks,Ch.2 scene/area name
+SCENE_CH03_BOILER,駁船鍋爐室,The Barge Boiler Room,Ch.3 scene/area name
+SCENE_CH03_DECK,駁船甲板,The Barge Deck,Ch.3 scene/area name
+SCENE_CH03_DOCK,碼頭,The Wharf,Ch.3 scene/area name
+HS_CH03_01_NOTE_REPORT,驗屍報告已經在手上了；遺體的狀況和報告一致，燙傷和指甲裡的木屑都對得上。,"The autopsy report is already in hand; the body matches it, scalds and the wood splinters under the nails alike.",HS_CH03_01 note at trust >=3 (police report already handed over; info only)
+G-01_DESC,從替換機芯的批號一路追查抄來的清單：一串軍工黑市專用的編號，字跡潦草，像是有人急著記下又急著藏起來。,"A list traced and copied from the replacement movement's batch number: a string of serials used only on the military black market, scrawled as if someone wrote it down in a hurry and hid it in a hurry.",golden clue G-01 description
+G-01_REASON,這批軍工零件流進了倫敦的黑市，經手的人不只一個,"This batch of military parts found its way into London's black market, and more than one pair of hands passed it along.",golden clue G-01 fixed rationale (golden clues have one fixed reason)
+S-01_DESC,用鉛筆在紙上拓下的齒輪齒形。形狀對得上，但沒有批號，只能說明「很像」，證明不了「就是」。,"The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say ""very like"", never ""the same"".",substitute S-01 description (appears only when G-01 is missing; sophistry-only)

@@ -751,3 +751,9 @@ UI_DEB_STATUS_LABEL,Debate,狀態,Status,heading of the status row (破竹/困�
 UI_PAPER_PREV_CASE,Newspaper,上一案結果,Last Case,label on the merged paper's result strip
 UI_RES_UNACHIEVED,Result,未達成,Not Achieved,Ch.1 verdict when the contradictions are not found in time (no defeat)
 UI_RES_TRUST_LABEL,Result,警督信任度,Inspector's Trust,static label beside the trust badge row; UI_RES_TRUST keeps {from}/{to} for the log
+UI_TAG_SEP,Common,・,", ",separator between tag values in a list (en is comma + space)
+UI_STAGE_EARLY,Debate,前期,Early-game,fills {stage} in UI_BOARD_THRESHOLD (Ch.1-4)
+UI_STAGE_MID,Debate,中期,Mid-game,fills {stage} in UI_BOARD_THRESHOLD (Ch.5-9)
+UI_STAGE_LATE,Debate,後期,Late-game,fills {stage} in UI_BOARD_THRESHOLD (Ch.10-12)
+UI_DEB_NOSOPH_REASON,Debate,這段推理沒有虛線,No dashed link in this chain,short reason under the greyed-out Sophistry button; MSG_DEB_NOSOPH stays for the improvised-link prompt
+UI_DEB_PREVIEW_HACHIKU,Debate,破竹 +{pct}%,Unstoppable +{pct}%,"separate 破竹 token in the debate preview line (ruling G4); ordinary UI text, so translated per glossary (the cut-in itself stays 破竹)"

@@ -32,7 +32,10 @@
   .node.s2 { border-top-color: var(--vermilion); animation: fragile 0.9s ease-in-out infinite alternate }
   .node.s3 { border-top-color: #3b2a4a; background-color: #efe8f0 }
   .node.s3 .nk-3 { color: #3b2a4a }
-  .node.s4 { animation: shatter 900ms ease-in 300ms forwards }
+  /* Shattering (state 4): a transition into the struck-out look, not a forwards animation, so the slot shows its
+     next node at once when the list gives it another one (the look follows the state; s0..s3 have no delay). */
+  .node.s4 { opacity: 0; transform: translateY(26px) rotate(5deg);
+             transition: opacity 900ms ease-in 300ms, transform 900ms ease-in 300ms }
   .crack { display: none }
   .node.s2 .crack { display: block }
   .strike { display: none; transform-origin: 0% 50% }
@@ -45,7 +48,6 @@
   @keyframes litpulse { from { box-shadow: 0px 0px 6px 1px #e0a05099 } to { box-shadow: 0px 0px 22px 6px #e0a050ff } }
   @keyframes fragile { from { opacity: 1 } to { opacity: 0.62 } }
   @keyframes strike { from { transform: scaleX(0) rotate(-5deg) } to { transform: scaleX(1) rotate(-5deg) } }
-  @keyframes shatter { from { opacity: 1; transform: translateY(0px) rotate(0deg) } to { opacity: 0; transform: translateY(26px) rotate(5deg) } }
 
   /* The gossip column (the tell). */
   :lang(en) .col-head { font-size: 12px; letter-spacing: 0px }

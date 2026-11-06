@@ -13150,6 +13150,17 @@
       "type": "atrium.text"
     },
     {
+      "id": "K34",
+      "type": "constant",
+      "params": {
+        "value": "UI_TAG_SEP"
+      }
+    },
+    {
+      "id": "sc_sep",
+      "type": "atrium.text"
+    },
+    {
       "id": "sc_t0",
       "type": "atrium.table.get",
       "params": {
@@ -13195,7 +13206,7 @@
       }
     },
     {
-      "id": "K34",
+      "id": "K35",
       "type": "constant",
       "params": {
         "value": "UI_TAG_HIDDEN"
@@ -13288,7 +13299,7 @@
       "id": "sc_sp1",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -13363,7 +13374,7 @@
       "id": "sc_sp2",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -13438,7 +13449,7 @@
       "id": "sc_sp3",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -13500,7 +13511,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K35",
+      "id": "K36",
       "type": "constant",
       "params": {
         "value": "mid"
@@ -13514,14 +13525,14 @@
       }
     },
     {
-      "id": "K36",
+      "id": "K37",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_MID"
       }
     },
     {
-      "id": "K37",
+      "id": "K38",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_EARLY"
@@ -13532,7 +13543,7 @@
       "type": "select"
     },
     {
-      "id": "K38",
+      "id": "K39",
       "type": "constant",
       "params": {
         "value": "late"
@@ -13546,7 +13557,7 @@
       }
     },
     {
-      "id": "K39",
+      "id": "K40",
       "type": "constant",
       "params": {
         "value": "UI_BOARD_COND_LATE"
@@ -13557,8 +13568,52 @@
       "type": "select"
     },
     {
-      "id": "condText",
+      "id": "K41",
+      "type": "constant",
+      "params": {
+        "value": "UI_STAGE_MID"
+      }
+    },
+    {
+      "id": "K42",
+      "type": "constant",
+      "params": {
+        "value": "UI_STAGE_EARLY"
+      }
+    },
+    {
+      "id": "stageKey0",
+      "type": "select"
+    },
+    {
+      "id": "K43",
+      "type": "constant",
+      "params": {
+        "value": "UI_STAGE_LATE"
+      }
+    },
+    {
+      "id": "stageKey",
+      "type": "select"
+    },
+    {
+      "id": "stageText",
       "type": "atrium.text"
+    },
+    {
+      "id": "condPart",
+      "type": "atrium.text"
+    },
+    {
+      "id": "condText",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_BOARD_THRESHOLD",
+        "args": [
+          "stage",
+          "condition"
+        ]
+      }
     },
     {
       "id": "remarkSrc",
@@ -13659,7 +13714,7 @@
       "type": "select"
     },
     {
-      "id": "K40",
+      "id": "K44",
       "type": "constant",
       "params": {
         "value": 5
@@ -13677,7 +13732,7 @@
       "type": "select"
     },
     {
-      "id": "K41",
+      "id": "K45",
       "type": "constant",
       "params": {
         "value": 6
@@ -13695,7 +13750,7 @@
       "type": "select"
     },
     {
-      "id": "K42",
+      "id": "K46",
       "type": "constant",
       "params": {
         "value": 7
@@ -29493,6 +29548,10 @@
       "to": "ui#board.sel_desc"
     },
     {
+      "from": "K34.out",
+      "to": "sc_sep.key"
+    },
+    {
       "from": "sc_row.row",
       "to": "sc_t0.row"
     },
@@ -29541,7 +29600,7 @@
       "to": "sc_key0.a"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "sc_key0.b"
     },
     {
@@ -29617,7 +29676,7 @@
       "to": "sc_key1.a"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "sc_key1.b"
     },
     {
@@ -29645,8 +29704,12 @@
       "to": "sc_tx1.key"
     },
     {
-      "from": "sc_tx1.text",
+      "from": "sc_sep.text",
       "to": "sc_sp1.a"
+    },
+    {
+      "from": "sc_tx1.text",
+      "to": "sc_sp1.b"
     },
     {
       "from": "sc_e1.out",
@@ -29709,7 +29772,7 @@
       "to": "sc_key2.a"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "sc_key2.b"
     },
     {
@@ -29737,8 +29800,12 @@
       "to": "sc_tx2.key"
     },
     {
-      "from": "sc_tx2.text",
+      "from": "sc_sep.text",
       "to": "sc_sp2.a"
+    },
+    {
+      "from": "sc_tx2.text",
+      "to": "sc_sp2.b"
     },
     {
       "from": "sc_e2.out",
@@ -29801,7 +29868,7 @@
       "to": "sc_key3.a"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "sc_key3.b"
     },
     {
@@ -29829,8 +29896,12 @@
       "to": "sc_tx3.key"
     },
     {
-      "from": "sc_tx3.text",
+      "from": "sc_sep.text",
       "to": "sc_sp3.a"
+    },
+    {
+      "from": "sc_tx3.text",
+      "to": "sc_sp3.b"
     },
     {
       "from": "sc_e3.out",
@@ -29957,7 +30028,7 @@
       "to": "phaseMid.a"
     },
     {
-      "from": "K35.out",
+      "from": "K36.out",
       "to": "phaseMid.b"
     },
     {
@@ -29965,11 +30036,11 @@
       "to": "condKey0.cond"
     },
     {
-      "from": "K36.out",
+      "from": "K37.out",
       "to": "condKey0.a"
     },
     {
-      "from": "K37.out",
+      "from": "K38.out",
       "to": "condKey0.b"
     },
     {
@@ -29977,7 +30048,7 @@
       "to": "phaseLate.a"
     },
     {
-      "from": "K38.out",
+      "from": "K39.out",
       "to": "phaseLate.b"
     },
     {
@@ -29985,7 +30056,7 @@
       "to": "condKey.cond"
     },
     {
-      "from": "K39.out",
+      "from": "K40.out",
       "to": "condKey.a"
     },
     {
@@ -29993,8 +30064,44 @@
       "to": "condKey.b"
     },
     {
+      "from": "phaseMid.out",
+      "to": "stageKey0.cond"
+    },
+    {
+      "from": "K41.out",
+      "to": "stageKey0.a"
+    },
+    {
+      "from": "K42.out",
+      "to": "stageKey0.b"
+    },
+    {
+      "from": "phaseLate.out",
+      "to": "stageKey.cond"
+    },
+    {
+      "from": "K43.out",
+      "to": "stageKey.a"
+    },
+    {
+      "from": "stageKey0.out",
+      "to": "stageKey.b"
+    },
+    {
+      "from": "stageKey.out",
+      "to": "stageText.key"
+    },
+    {
       "from": "condKey.out",
-      "to": "condText.key"
+      "to": "condPart.key"
+    },
+    {
+      "from": "stageText.text",
+      "to": "condText.stage"
+    },
+    {
+      "from": "condPart.text",
+      "to": "condText.condition"
     },
     {
       "from": "condText.text",
@@ -30085,7 +30192,7 @@
       "to": "remark_key_is5.a"
     },
     {
-      "from": "K40.out",
+      "from": "K44.out",
       "to": "remark_key_is5.b"
     },
     {
@@ -30105,7 +30212,7 @@
       "to": "remark_key_is6.a"
     },
     {
-      "from": "K41.out",
+      "from": "K45.out",
       "to": "remark_key_is6.b"
     },
     {
@@ -30125,7 +30232,7 @@
       "to": "remark_key_is7.a"
     },
     {
-      "from": "K42.out",
+      "from": "K46.out",
       "to": "remark_key_is7.b"
     },
     {

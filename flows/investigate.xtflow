@@ -299,6 +299,48 @@
       }
     },
     {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "pl"
+      }
+    },
+    {
+      "id": "pl",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": "msg"
+      }
+    },
+    {
+      "id": "msgSt",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "arm"
+      }
+    },
+    {
+      "id": "endArm",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
       "id": "bookNew",
       "type": "counter",
       "params": {
@@ -310,7 +352,7 @@
       "type": "select"
     },
     {
-      "id": "K8",
+      "id": "K11",
       "type": "constant",
       "params": {
         "value": 1
@@ -363,6 +405,13 @@
       "type": "counter",
       "params": {
         "initial": 0
+      }
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": ""
       }
     },
     {
@@ -436,6 +485,13 @@
       }
     },
     {
+      "id": "clr_visSpots",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "visSpots"
+      }
+    },
+    {
       "id": "addEvent",
       "type": "atrium.coll.addAll",
       "params": {
@@ -468,6 +524,13 @@
       }
     },
     {
+      "id": "clr_invStr",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "invStr"
+      }
+    },
+    {
       "id": "ticksSet",
       "type": "atrium.map.set",
       "params": {
@@ -496,7 +559,7 @@
       }
     },
     {
-      "id": "K9",
+      "id": "K13",
       "type": "constant",
       "params": {
         "value": "ART_NO_REPORT"
@@ -508,6 +571,13 @@
     },
     {
       "id": "hint1_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "hint1_left",
       "type": "filter",
       "params": {
         "op": "sample"
@@ -595,13 +665,6 @@
       }
     },
     {
-      "id": "K10",
-      "type": "constant",
-      "params": {
-        "value": ""
-      }
-    },
-    {
       "id": "si_noReqC",
       "type": "compare",
       "params": {
@@ -611,6 +674,24 @@
     {
       "id": "si_noReq",
       "type": "select"
+    },
+    {
+      "id": "si_vis",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "si_noReq || !si_gold"
+      }
+    },
+    {
+      "id": "si_visG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "si_visA",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "visSpots"
+      }
     },
     {
       "id": "si_find",
@@ -701,6 +782,19 @@
       "params": {
         "op": "lt"
       }
+    },
+    {
+      "id": "sceneName",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowScene",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "areaName",
+      "type": "atrium.text"
     },
     {
       "id": "spotsList",
@@ -892,6 +986,13 @@
       }
     },
     {
+      "id": "navArmS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
       "id": "c_row",
       "type": "atrium.table.find",
       "params": {
@@ -927,11 +1028,20 @@
       }
     },
     {
-      "id": "c_note",
+      "id": "c_note0",
       "type": "atrium.table.get",
       "params": {
         "table": "flowSpot",
         "column": "noteKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_report",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "reportNote",
         "type": "string"
       }
     },
@@ -1162,24 +1272,46 @@
       }
     },
     {
-      "id": "c_obtain",
-      "type": "atrium.expr",
+      "id": "c_hasRepC",
+      "type": "compare",
       "params": {
-        "expr": "c_type > 0 && !c_held"
+        "op": "ne"
       }
     },
     {
-      "id": "c_kind",
+      "id": "c_hasRep",
+      "type": "select"
+    },
+    {
+      "id": "c_rep",
       "type": "atrium.expr",
       "params": {
-        "expr": "c_type == 0 ? 1 : c_obtain ? (c_type == 2 ? 3 : 2) : 1"
+        "expr": "policeOn && c_hasRep"
+      }
+    },
+    {
+      "id": "c_note",
+      "type": "select"
+    },
+    {
+      "id": "c_obtain",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "c_type > 0 && !c_held && !c_rep"
       }
     },
     {
       "id": "c_inspect",
       "type": "atrium.expr",
       "params": {
-        "expr": "c_type == 0"
+        "expr": "c_type == 0 || c_rep"
+      }
+    },
+    {
+      "id": "c_kind",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "c_inspect ? 1 : c_obtain ? (c_type == 2 ? 3 : 2) : 1"
       }
     },
     {
@@ -1332,7 +1464,77 @@
       }
     },
     {
+      "id": "pop1_spot",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_msg",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_n",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_r0",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_r1",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop1_r2",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
       "id": "c_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "c_plS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": "spot"
+      }
+    },
+    {
+      "id": "c_spotS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invStr"
+      }
+    },
+    {
+      "id": "c_armS",
       "type": "atrium.map.set",
       "params": {
         "name": "invState"
@@ -1372,6 +1574,62 @@
       "type": "filter",
       "params": {
         "op": "sample"
+      }
+    },
+    {
+      "id": "hint2_left",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "s_spot",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invStr"
+      }
+    },
+    {
+      "id": "s_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "s_nLines",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "nLines",
+        "type": "number"
+      }
+    },
+    {
+      "id": "s_hasSpotC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "s_hasSpot",
+      "type": "select"
+    },
+    {
+      "id": "moreN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "s_hasSpot && msgSt == 0 && pl + 1 < s_nLines"
+      }
+    },
+    {
+      "id": "lastN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!moreN"
       }
     },
     {
@@ -1421,6 +1679,28 @@
       }
     },
     {
+      "id": "advGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "closeGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "plNext",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pl + 1"
+      }
+    },
+    {
+      "id": "a_plS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
       "id": "d_popS",
       "type": "atrium.map.set",
       "params": {
@@ -1428,10 +1708,24 @@
       }
     },
     {
+      "id": "d_plS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "d_spotS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invStr"
+      }
+    },
+    {
       "id": "rescueN",
       "type": "atrium.expr",
       "params": {
-        "expr": "outOfTime && neededN > 0"
+        "expr": "outOfTime && neededN > 0 && msgSt == 0"
       }
     },
     {
@@ -1439,214 +1733,38 @@
       "type": "atrium.gate"
     },
     {
-      "id": "rc",
+      "id": "rc0",
       "type": "atrium.coll.get",
       "params": {
         "name": "needed"
       }
     },
     {
-      "id": "rcv_row",
-      "type": "atrium.table.find",
+      "id": "rc1",
+      "type": "atrium.coll.get",
       "params": {
-        "table": "flowCard",
-        "column": "id"
+        "name": "needed"
       }
     },
     {
-      "id": "rcv_grade",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "grade",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_story",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "story",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_appraise",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "appraise",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_cost",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "cost",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_hidden",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "hidden",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_policeFull",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "policeFull",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_fixed",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "fixed",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_correct",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "correct",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_goldenCard",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "goldenCard",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_sub",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "sub",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_obtainable",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "obtainable",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_required",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "required",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_onBoard",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "onBoard",
-        "type": "number"
-      }
-    },
-    {
-      "id": "rcv_nameKey",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "nameKey",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_descKey",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "descKey",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_golden",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "golden",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_reason1",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "reason1",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_reason2",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "reason2",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_reason3",
-      "type": "atrium.table.get",
-      "params": {
-        "table": "flowCard",
-        "column": "reason3",
-        "type": "string"
-      }
-    },
-    {
-      "id": "rcv_apprC",
-      "type": "atrium.coll.contains",
-      "params": {
-        "name": "appraised"
-      }
-    },
-    {
-      "id": "rcv_apprHas",
-      "type": "select"
-    },
-    {
-      "id": "rcv_full",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "!rcv_hidden || rcv_apprHas || (policeOn && rcv_policeFull)"
-      }
-    },
-    {
-      "id": "K11",
+      "id": "K15",
       "type": "constant",
       "params": {
         "value": 2
+      }
+    },
+    {
+      "id": "rc2",
+      "type": "atrium.coll.get",
+      "params": {
+        "name": "needed"
+      }
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": 4
       }
     },
     {
@@ -1678,14 +1796,42 @@
       }
     },
     {
-      "id": "K12",
-      "type": "constant",
+      "id": "pop2_spot",
+      "type": "filter",
       "params": {
-        "value": "ART_RESCUE"
+        "op": "sample"
       }
     },
     {
-      "id": "hint3_key",
+      "id": "pop2_msg",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_n",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_r0",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_r1",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop2_r2",
       "type": "filter",
       "params": {
         "op": "sample"
@@ -1693,6 +1839,13 @@
     },
     {
       "id": "r_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "r_msgS",
       "type": "atrium.map.set",
       "params": {
         "name": "invState"
@@ -1741,7 +1894,7 @@
       "id": "timeoutN",
       "type": "atrium.expr",
       "params": {
-        "expr": "outOfTime && neededN == 0"
+        "expr": "outOfTime && neededN == 0 && msgSt < 2"
       }
     },
     {
@@ -1780,6 +1933,88 @@
     },
     {
       "id": "endGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "seenN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "spotSeen"
+      }
+    },
+    {
+      "id": "visN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "visSpots"
+      }
+    },
+    {
+      "id": "needWarn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ch == 1 ? toFindN > 0 : 1"
+      }
+    },
+    {
+      "id": "warnIdx",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ch == 1 ? 0 : seenN >= visN ? 1 : 2"
+      }
+    },
+    {
+      "id": "warnKey",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "SHF_C1_REMAIN",
+          "WARN_INV_END_ZERO",
+          "WARN_INV_END"
+        ]
+      }
+    },
+    {
+      "id": "warnN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "needWarn && !endArm"
+      }
+    },
+    {
+      "id": "goN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!needWarn || endArm"
+      }
+    },
+    {
+      "id": "warnGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "w_armS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "hint3_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "hint3_left",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "goGate",
       "type": "atrium.gate"
     },
     {
@@ -1827,6 +2062,137 @@
     {
       "id": "finishDone",
       "type": "merge"
+    },
+    {
+      "id": "withMsg",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "missToHand != 0"
+      }
+    },
+    {
+      "id": "noMissMsg",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "missToHand == 0"
+      }
+    },
+    {
+      "id": "finNow",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "finMsg",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "handN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "oppHand"
+      }
+    },
+    {
+      "id": "missMsg",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "handN > 0 ? 2 : 3"
+      }
+    },
+    {
+      "id": "pop3_kind",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_title",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_body",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_grade",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_spot",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_msg",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_n",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_r0",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_r1",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "pop3_r2",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "m_popS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "m_msgS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "msgDoneN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "msgSt == 2"
+      }
+    },
+    {
+      "id": "msgDone",
+      "type": "atrium.gate"
     },
     {
       "id": "askInv",
@@ -1884,6 +2250,13 @@
       }
     },
     {
+      "id": "hint4_left",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
       "id": "bookState",
       "type": "compare",
       "params": {
@@ -1891,7 +2264,7 @@
       }
     },
     {
-      "id": "K13",
+      "id": "K17",
       "type": "constant",
       "params": {
         "value": true
@@ -2133,6 +2506,17 @@
       "type": "atrium.text"
     },
     {
+      "id": "K18",
+      "type": "constant",
+      "params": {
+        "value": "UI_TAG_SEP"
+      }
+    },
+    {
+      "id": "bs_sep",
+      "type": "atrium.text"
+    },
+    {
       "id": "bs_t0",
       "type": "atrium.table.get",
       "params": {
@@ -2178,7 +2562,7 @@
       }
     },
     {
-      "id": "K14",
+      "id": "K19",
       "type": "constant",
       "params": {
         "value": "UI_TAG_HIDDEN"
@@ -2271,7 +2655,7 @@
       "id": "bs_sp1",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -2346,7 +2730,7 @@
       "id": "bs_sp2",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -2421,7 +2805,7 @@
       "id": "bs_sp3",
       "type": "format",
       "params": {
-        "format": " {a}"
+        "format": "{a}{b}"
       }
     },
     {
@@ -2732,6 +3116,13 @@
     },
     {
       "id": "hint5_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "hint5_left",
       "type": "filter",
       "params": {
         "op": "sample"
@@ -3483,7 +3874,7 @@
       }
     },
     {
-      "id": "K15",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": -1
@@ -3569,7 +3960,7 @@
       "type": "select"
     },
     {
-      "id": "K16",
+      "id": "K21",
       "type": "constant",
       "params": {
         "value": 3
@@ -3587,13 +3978,6 @@
       "type": "select"
     },
     {
-      "id": "K17",
-      "type": "constant",
-      "params": {
-        "value": 4
-      }
-    },
-    {
       "id": "hint_key_is4",
       "type": "compare",
       "params": {
@@ -3605,7 +3989,7 @@
       "type": "select"
     },
     {
-      "id": "K18",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": 5
@@ -3627,6 +4011,70 @@
       "type": "atrium.text"
     },
     {
+      "id": "hint_left_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_left_1",
+      "type": "select"
+    },
+    {
+      "id": "hint_left_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_left_2",
+      "type": "select"
+    },
+    {
+      "id": "hint_left_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_left_3",
+      "type": "select"
+    },
+    {
+      "id": "hint_left_is4",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_left_4",
+      "type": "select"
+    },
+    {
+      "id": "hint_left_is5",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "hint_left_5",
+      "type": "select"
+    },
+    {
+      "id": "hintF",
+      "type": "atrium.textf",
+      "params": {
+        "args": [
+          "left"
+        ]
+      }
+    },
+    {
       "id": "popSrc",
       "type": "state",
       "params": {
@@ -3634,7 +4082,8 @@
         "states": [
           "s0",
           "s1",
-          "s2"
+          "s2",
+          "s3"
         ],
         "transitions": [
           {
@@ -3646,6 +4095,11 @@
             "from": "*",
             "on": "e2",
             "to": "s2"
+          },
+          {
+            "from": "*",
+            "on": "e3",
+            "to": "s3"
           }
         ]
       }
@@ -3670,6 +4124,17 @@
     },
     {
       "id": "pop_kind_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_kind_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_kind_3",
       "type": "select"
     },
     {
@@ -3699,8 +4164,120 @@
       "type": "select"
     },
     {
+      "id": "pop_title_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_title_3",
+      "type": "select"
+    },
+    {
       "id": "popTitle",
       "type": "atrium.text"
+    },
+    {
+      "id": "pop_spot_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_spot_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_spot_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_spot_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_spot_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_spot_3",
+      "type": "select"
+    },
+    {
+      "id": "pop_msg_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_msg_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_msg_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_msg_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_msg_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_msg_3",
+      "type": "select"
+    },
+    {
+      "id": "p_row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "p_nLines",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "nLines",
+        "type": "number"
+      }
+    },
+    {
+      "id": "p_hasSpotC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "p_hasSpot",
+      "type": "select"
+    },
+    {
+      "id": "moreD",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "p_hasSpot && p_msg == 0 && pl + 1 < p_nLines"
+      }
     },
     {
       "id": "pop_body_is1",
@@ -3725,8 +4302,443 @@
       "type": "select"
     },
     {
-      "id": "popBody",
+      "id": "pop_body_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_body_3",
+      "type": "select"
+    },
+    {
+      "id": "popBodyK",
       "type": "atrium.text"
+    },
+    {
+      "id": "rsSep",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pop_r0_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r0_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_r0_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r0_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_r0_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r0_3",
+      "type": "select"
+    },
+    {
+      "id": "rsRow0",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "rsKey0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rsName0",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pop_r1_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r1_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_r1_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r1_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_r1_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r1_3",
+      "type": "select"
+    },
+    {
+      "id": "rsRow1",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "rsKey1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rsName1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "rsHas1",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "rsSp1",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}"
+      }
+    },
+    {
+      "id": "rsPart1",
+      "type": "select"
+    },
+    {
+      "id": "pop_r2_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r2_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_r2_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r2_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_r2_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_r2_3",
+      "type": "select"
+    },
+    {
+      "id": "rsRow2",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowCard",
+        "column": "id"
+      }
+    },
+    {
+      "id": "rsKey2",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "nameKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "rsName2",
+      "type": "atrium.text"
+    },
+    {
+      "id": "rsHas2",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "rsSp2",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}"
+      }
+    },
+    {
+      "id": "rsPart2",
+      "type": "select"
+    },
+    {
+      "id": "rsNames",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "rescueT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "MSG_INV_RESCUE",
+        "args": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "pop_n_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_n_1",
+      "type": "select"
+    },
+    {
+      "id": "pop_n_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_n_2",
+      "type": "select"
+    },
+    {
+      "id": "pop_n_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_n_3",
+      "type": "select"
+    },
+    {
+      "id": "missedT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "MSG_INV_MISSED",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "K23",
+      "type": "constant",
+      "params": {
+        "value": "MSG_INV_MISSED_NONE"
+      }
+    },
+    {
+      "id": "noneT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pmIs1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "p_msg == 1"
+      }
+    },
+    {
+      "id": "pmIs2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "p_msg == 2"
+      }
+    },
+    {
+      "id": "pmIs3",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "p_msg == 3"
+      }
+    },
+    {
+      "id": "popBody3",
+      "type": "select"
+    },
+    {
+      "id": "popBody2",
+      "type": "select"
+    },
+    {
+      "id": "popBody",
+      "type": "select"
+    },
+    {
+      "id": "p_line0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "line0",
+        "type": "string"
+      }
+    },
+    {
+      "id": "p_spk0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "spk0",
+        "type": "string"
+      }
+    },
+    {
+      "id": "p_at0",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "p_lk0",
+      "type": "select"
+    },
+    {
+      "id": "p_sk0",
+      "type": "select"
+    },
+    {
+      "id": "p_line1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "line1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "p_spk1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowSpot",
+        "column": "spk1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "p_at1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "p_lk1",
+      "type": "select"
+    },
+    {
+      "id": "p_sk1",
+      "type": "select"
+    },
+    {
+      "id": "K24",
+      "type": "constant",
+      "params": {
+        "value": "ART_RESCUE"
+      }
+    },
+    {
+      "id": "p_lk",
+      "type": "select"
+    },
+    {
+      "id": "p_lineKey",
+      "type": "select"
+    },
+    {
+      "id": "K25",
+      "type": "constant",
+      "params": {
+        "value": "SPK_ARTHUR"
+      }
+    },
+    {
+      "id": "p_sk",
+      "type": "select"
+    },
+    {
+      "id": "p_spkKey",
+      "type": "select"
+    },
+    {
+      "id": "popLine",
+      "type": "atrium.text"
+    },
+    {
+      "id": "popSpk",
+      "type": "atrium.text"
+    },
+    {
+      "id": "advN",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "plSeqV",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "popSeq + advN"
+      }
     },
     {
       "id": "pop_grade_is1",
@@ -3751,6 +4763,17 @@
       "type": "select"
     },
     {
+      "id": "pop_grade_is3",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "pop_grade_3",
+      "type": "select"
+    },
+    {
       "id": "initTimer",
       "type": "timer",
       "params": {
@@ -3770,6 +4793,24 @@
     },
     {
       "id": "navTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "advTimer",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "missTimer",
       "type": "timer",
       "params": {
         "interval": 0.001,
@@ -3924,11 +4965,23 @@
       "to": "popOpen.b"
     },
     {
+      "from": "K8.out",
+      "to": "pl.key"
+    },
+    {
+      "from": "K9.out",
+      "to": "msgSt.key"
+    },
+    {
+      "from": "K10.out",
+      "to": "endArm.key"
+    },
+    {
       "from": "world.bookOpen",
       "to": "bookOpenN.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bookOpenN.a"
     },
     {
@@ -3996,6 +5049,10 @@
       "to": "clr_caseSpots.trigger"
     },
     {
+      "from": "beginGate.changed",
+      "to": "clr_visSpots.trigger"
+    },
+    {
       "from": "caseEvent.value",
       "to": "addEvent.text"
     },
@@ -4030,6 +5087,10 @@
     {
       "from": "beginGate.changed",
       "to": "clr_invState.trigger"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "clr_invStr.trigger"
     },
     {
       "from": "K4.out",
@@ -4076,7 +5137,7 @@
       "to": "openLine.cond"
     },
     {
-      "from": "K9.out",
+      "from": "K13.out",
       "to": "openLine.a"
     },
     {
@@ -4090,6 +5151,14 @@
     {
       "from": "beginGate.changed",
       "to": "hint1_key.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "hint1_left.in"
+    },
+    {
+      "from": "beginGate.changed",
+      "to": "hint1_left.trigger"
     },
     {
       "from": "beginGate.changed",
@@ -4132,7 +5201,7 @@
       "to": "si_held.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "si_held.a"
     },
     {
@@ -4148,7 +5217,7 @@
       "to": "si_gold.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "si_gold.a"
     },
     {
@@ -4168,7 +5237,7 @@
       "to": "si_noReqC.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "si_noReqC.b"
     },
     {
@@ -4176,12 +5245,36 @@
       "to": "si_noReq.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "si_noReq.a"
     },
     {
       "from": "K7.out",
       "to": "si_noReq.b"
+    },
+    {
+      "from": "si_noReq.out",
+      "to": "si_vis.si_noReq"
+    },
+    {
+      "from": "si_gold.out",
+      "to": "si_vis.si_gold"
+    },
+    {
+      "from": "si_vis.value",
+      "to": "si_visG.cond"
+    },
+    {
+      "from": "spotEach.each",
+      "to": "si_visG.trigger"
+    },
+    {
+      "from": "spotEach.item",
+      "to": "si_visA.value"
+    },
+    {
+      "from": "si_visG.pass",
+      "to": "si_visA.trigger"
     },
     {
       "from": "si_type.value",
@@ -4292,7 +5385,15 @@
       "to": "ui#investigate.nav_next"
     },
     {
-      "from": "K10.out",
+      "from": "sceneRow.row",
+      "to": "sceneName.row"
+    },
+    {
+      "from": "sceneName.value",
+      "to": "areaName.key"
+    },
+    {
+      "from": "areaName.text",
       "to": "ui#investigate.area_name"
     },
     {
@@ -4332,7 +5433,7 @@
       "to": "ss_noReqC.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "ss_noReqC.b"
     },
     {
@@ -4340,7 +5441,7 @@
       "to": "ss_noReq.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "ss_noReq.a"
     },
     {
@@ -4356,7 +5457,7 @@
       "to": "ss_gold.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "ss_gold.a"
     },
     {
@@ -4372,7 +5473,7 @@
       "to": "ss_seen.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "ss_seen.a"
     },
     {
@@ -4500,6 +5601,18 @@
       "to": "navDecS.trigger"
     },
     {
+      "from": "K10.out",
+      "to": "navArmS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "navArmS.value"
+    },
+    {
+      "from": "navGate.pass",
+      "to": "navArmS.trigger"
+    },
+    {
       "from": "navGate.pass",
       "to": "navTimer.start"
     },
@@ -4525,7 +5638,11 @@
     },
     {
       "from": "c_row.row",
-      "to": "c_note.row"
+      "to": "c_note0.row"
+    },
+    {
+      "from": "c_row.row",
+      "to": "c_report.row"
     },
     {
       "from": "c_yield.value",
@@ -4616,7 +5733,7 @@
       "to": "cy_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "cy_apprHas.a"
     },
     {
@@ -4648,7 +5765,7 @@
       "to": "c_seen.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "c_seen.a"
     },
     {
@@ -4664,7 +5781,7 @@
       "to": "c_held.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "c_held.a"
     },
     {
@@ -4676,6 +5793,46 @@
       "to": "c_costs.c_seen"
     },
     {
+      "from": "c_report.value",
+      "to": "c_hasRepC.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "c_hasRepC.b"
+    },
+    {
+      "from": "c_hasRepC.out",
+      "to": "c_hasRep.cond"
+    },
+    {
+      "from": "K11.out",
+      "to": "c_hasRep.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_hasRep.b"
+    },
+    {
+      "from": "policeOn.value",
+      "to": "c_rep.policeOn"
+    },
+    {
+      "from": "c_hasRep.out",
+      "to": "c_rep.c_hasRep"
+    },
+    {
+      "from": "c_rep.truth",
+      "to": "c_note.cond"
+    },
+    {
+      "from": "c_report.value",
+      "to": "c_note.a"
+    },
+    {
+      "from": "c_note0.value",
+      "to": "c_note.b"
+    },
+    {
       "from": "c_type.value",
       "to": "c_obtain.c_type"
     },
@@ -4684,8 +5841,20 @@
       "to": "c_obtain.c_held"
     },
     {
+      "from": "c_rep.value",
+      "to": "c_obtain.c_rep"
+    },
+    {
       "from": "c_type.value",
-      "to": "c_kind.c_type"
+      "to": "c_inspect.c_type"
+    },
+    {
+      "from": "c_rep.value",
+      "to": "c_inspect.c_rep"
+    },
+    {
+      "from": "c_inspect.value",
+      "to": "c_kind.c_inspect"
     },
     {
       "from": "c_obtain.value",
@@ -4693,7 +5862,7 @@
     },
     {
       "from": "c_type.value",
-      "to": "c_inspect.c_type"
+      "to": "c_kind.c_type"
     },
     {
       "from": "c_inspect.truth",
@@ -4712,7 +5881,7 @@
       "to": "c_body.cond"
     },
     {
-      "from": "c_note.value",
+      "from": "c_note.out",
       "to": "c_body.a"
     },
     {
@@ -4756,7 +5925,7 @@
       "to": "c_seenSet.key"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "c_seenSet.value"
     },
     {
@@ -4768,7 +5937,7 @@
       "to": "c_hereSet.key"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "c_hereSet.value"
     },
     {
@@ -4852,7 +6021,7 @@
       "to": "c_noteG.trigger"
     },
     {
-      "from": "c_note.value",
+      "from": "c_note.out",
       "to": "c_noteAdd.value"
     },
     {
@@ -4892,6 +6061,54 @@
       "to": "pop1_grade.trigger"
     },
     {
+      "from": "ui#investigate.spot",
+      "to": "pop1_spot.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_spot.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop1_msg.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_msg.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop1_n.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_n.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop1_r0.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_r0.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop1_r1.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_r1.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop1_r2.in"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "pop1_r2.trigger"
+    },
+    {
       "from": "clickGate.pass",
       "to": "popSrc.e1"
     },
@@ -4904,12 +6121,48 @@
       "to": "c_popS.key"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "c_popS.value"
     },
     {
       "from": "clickGate.pass",
       "to": "c_popS.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "c_plS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_plS.value"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_plS.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "c_spotS.key"
+    },
+    {
+      "from": "ui#investigate.spot",
+      "to": "c_spotS.value"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_spotS.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "c_armS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "c_armS.value"
+    },
+    {
+      "from": "clickGate.pass",
+      "to": "c_armS.trigger"
     },
     {
       "from": "world.chapter",
@@ -4960,6 +6213,14 @@
       "to": "hint2_key.trigger"
     },
     {
+      "from": "K7.out",
+      "to": "hint2_left.in"
+    },
+    {
+      "from": "c_hintG.pass",
+      "to": "hint2_left.trigger"
+    },
+    {
       "from": "c_hintG.pass",
       "to": "hintSrc.e2"
     },
@@ -4970,6 +6231,58 @@
     {
       "from": "clickGate.pass",
       "to": "spotsList.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "s_spot.key"
+    },
+    {
+      "from": "s_spot.value",
+      "to": "s_row.value"
+    },
+    {
+      "from": "s_row.row",
+      "to": "s_nLines.row"
+    },
+    {
+      "from": "s_spot.value",
+      "to": "s_hasSpotC.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "s_hasSpotC.b"
+    },
+    {
+      "from": "s_hasSpotC.out",
+      "to": "s_hasSpot.cond"
+    },
+    {
+      "from": "K11.out",
+      "to": "s_hasSpot.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "s_hasSpot.b"
+    },
+    {
+      "from": "s_hasSpot.out",
+      "to": "moreN.s_hasSpot"
+    },
+    {
+      "from": "msgSt.value",
+      "to": "moreN.msgSt"
+    },
+    {
+      "from": "pl.value",
+      "to": "moreN.pl"
+    },
+    {
+      "from": "s_nLines.value",
+      "to": "moreN.s_nLines"
+    },
+    {
+      "from": "moreN.value",
+      "to": "lastN.moreN"
     },
     {
       "from": "isInv.out",
@@ -4988,6 +6301,42 @@
       "to": "dismissGate.go"
     },
     {
+      "from": "moreN.value",
+      "to": "advGate.cond"
+    },
+    {
+      "from": "dismissGate.changed",
+      "to": "advGate.trigger"
+    },
+    {
+      "from": "lastN.value",
+      "to": "closeGate.cond"
+    },
+    {
+      "from": "dismissGate.changed",
+      "to": "closeGate.trigger"
+    },
+    {
+      "from": "pl.value",
+      "to": "plNext.pl"
+    },
+    {
+      "from": "K8.out",
+      "to": "a_plS.key"
+    },
+    {
+      "from": "plNext.value",
+      "to": "a_plS.value"
+    },
+    {
+      "from": "advGate.pass",
+      "to": "a_plS.trigger"
+    },
+    {
+      "from": "advGate.pass",
+      "to": "advTimer.start"
+    },
+    {
       "from": "K6.out",
       "to": "d_popS.key"
     },
@@ -4996,8 +6345,32 @@
       "to": "d_popS.value"
     },
     {
-      "from": "dismissGate.changed",
+      "from": "closeGate.pass",
       "to": "d_popS.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "d_plS.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "d_plS.value"
+    },
+    {
+      "from": "closeGate.pass",
+      "to": "d_plS.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "d_spotS.key"
+    },
+    {
+      "from": "K12.out",
+      "to": "d_spotS.value"
+    },
+    {
+      "from": "closeGate.pass",
+      "to": "d_spotS.trigger"
     },
     {
       "from": "outOfTime.value",
@@ -5008,131 +6381,31 @@
       "to": "rescueN.neededN"
     },
     {
+      "from": "msgSt.value",
+      "to": "rescueN.msgSt"
+    },
+    {
       "from": "rescueN.value",
       "to": "rescueGate.cond"
     },
     {
-      "from": "dismissGate.changed",
+      "from": "closeGate.pass",
       "to": "rescueGate.trigger"
     },
     {
       "from": "K7.out",
-      "to": "rc.index"
-    },
-    {
-      "from": "rc.value",
-      "to": "rcv_row.value"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_grade.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_story.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_appraise.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_cost.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_hidden.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_policeFull.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_fixed.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_correct.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_goldenCard.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_sub.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_obtainable.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_required.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_onBoard.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_nameKey.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_descKey.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_golden.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_reason1.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_reason2.row"
-    },
-    {
-      "from": "rcv_row.row",
-      "to": "rcv_reason3.row"
-    },
-    {
-      "from": "rc.value",
-      "to": "rcv_apprC.value"
-    },
-    {
-      "from": "rcv_apprC.has",
-      "to": "rcv_apprHas.cond"
-    },
-    {
-      "from": "K8.out",
-      "to": "rcv_apprHas.a"
-    },
-    {
-      "from": "K7.out",
-      "to": "rcv_apprHas.b"
-    },
-    {
-      "from": "rcv_hidden.value",
-      "to": "rcv_full.rcv_hidden"
-    },
-    {
-      "from": "rcv_apprHas.out",
-      "to": "rcv_full.rcv_apprHas"
-    },
-    {
-      "from": "policeOn.value",
-      "to": "rcv_full.policeOn"
-    },
-    {
-      "from": "rcv_policeFull.value",
-      "to": "rcv_full.rcv_policeFull"
+      "to": "rc0.index"
     },
     {
       "from": "K11.out",
+      "to": "rc1.index"
+    },
+    {
+      "from": "K15.out",
+      "to": "rc2.index"
+    },
+    {
+      "from": "K16.out",
       "to": "pop2_kind.in"
     },
     {
@@ -5140,7 +6413,7 @@
       "to": "pop2_kind.trigger"
     },
     {
-      "from": "rcv_nameKey.value",
+      "from": "K12.out",
       "to": "pop2_title.in"
     },
     {
@@ -5148,7 +6421,7 @@
       "to": "pop2_title.trigger"
     },
     {
-      "from": "rcv_descKey.value",
+      "from": "K12.out",
       "to": "pop2_body.in"
     },
     {
@@ -5156,12 +6429,60 @@
       "to": "pop2_body.trigger"
     },
     {
-      "from": "rcv_grade.value",
+      "from": "K7.out",
       "to": "pop2_grade.in"
     },
     {
       "from": "rescueGate.pass",
       "to": "pop2_grade.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop2_spot.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_spot.trigger"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop2_msg.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_msg.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop2_n.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_n.trigger"
+    },
+    {
+      "from": "rc0.value",
+      "to": "pop2_r0.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_r0.trigger"
+    },
+    {
+      "from": "rc1.value",
+      "to": "pop2_r1.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_r1.trigger"
+    },
+    {
+      "from": "rc2.value",
+      "to": "pop2_r2.in"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "pop2_r2.trigger"
     },
     {
       "from": "rescueGate.pass",
@@ -5172,32 +6493,28 @@
       "to": "popSeq.increment"
     },
     {
-      "from": "K12.out",
-      "to": "hint3_key.in"
-    },
-    {
-      "from": "rescueGate.pass",
-      "to": "hint3_key.trigger"
-    },
-    {
-      "from": "rescueGate.pass",
-      "to": "hintSrc.e3"
-    },
-    {
-      "from": "rescueGate.pass",
-      "to": "hintSeq.increment"
-    },
-    {
       "from": "K6.out",
       "to": "r_popS.key"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "r_popS.value"
     },
     {
       "from": "rescueGate.pass",
       "to": "r_popS.trigger"
+    },
+    {
+      "from": "K9.out",
+      "to": "r_msgS.key"
+    },
+    {
+      "from": "K11.out",
+      "to": "r_msgS.value"
+    },
+    {
+      "from": "rescueGate.pass",
+      "to": "r_msgS.trigger"
     },
     {
       "from": "rescueGate.pass",
@@ -5244,11 +6561,15 @@
       "to": "timeoutN.neededN"
     },
     {
+      "from": "msgSt.value",
+      "to": "timeoutN.msgSt"
+    },
+    {
       "from": "timeoutN.value",
       "to": "timeoutEnd.cond"
     },
     {
-      "from": "dismissGate.changed",
+      "from": "closeGate.pass",
       "to": "timeoutEnd.trigger"
     },
     {
@@ -5280,7 +6601,99 @@
       "to": "endGate.trigger"
     },
     {
+      "from": "world.chapter",
+      "to": "needWarn.ch"
+    },
+    {
+      "from": "toFindN.count",
+      "to": "needWarn.toFindN"
+    },
+    {
+      "from": "world.chapter",
+      "to": "warnIdx.ch"
+    },
+    {
+      "from": "seenN.count",
+      "to": "warnIdx.seenN"
+    },
+    {
+      "from": "visN.count",
+      "to": "warnIdx.visN"
+    },
+    {
+      "from": "warnIdx.value",
+      "to": "warnKey.index"
+    },
+    {
+      "from": "needWarn.value",
+      "to": "warnN.needWarn"
+    },
+    {
+      "from": "endArm.value",
+      "to": "warnN.endArm"
+    },
+    {
+      "from": "needWarn.value",
+      "to": "goN.needWarn"
+    },
+    {
+      "from": "endArm.value",
+      "to": "goN.endArm"
+    },
+    {
+      "from": "warnN.value",
+      "to": "warnGate.cond"
+    },
+    {
       "from": "endGate.pass",
+      "to": "warnGate.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "w_armS.key"
+    },
+    {
+      "from": "K11.out",
+      "to": "w_armS.value"
+    },
+    {
+      "from": "warnGate.pass",
+      "to": "w_armS.trigger"
+    },
+    {
+      "from": "warnKey.out",
+      "to": "hint3_key.in"
+    },
+    {
+      "from": "warnGate.pass",
+      "to": "hint3_key.trigger"
+    },
+    {
+      "from": "ticks.value",
+      "to": "hint3_left.in"
+    },
+    {
+      "from": "warnGate.pass",
+      "to": "hint3_left.trigger"
+    },
+    {
+      "from": "warnGate.pass",
+      "to": "hintSrc.e3"
+    },
+    {
+      "from": "warnGate.pass",
+      "to": "hintSeq.increment"
+    },
+    {
+      "from": "goN.value",
+      "to": "goGate.cond"
+    },
+    {
+      "from": "endGate.pass",
+      "to": "goGate.trigger"
+    },
+    {
+      "from": "goGate.pass",
       "to": "finish.in"
     },
     {
@@ -5324,7 +6737,167 @@
       "to": "finishDone.in"
     },
     {
+      "from": "missToHand.value",
+      "to": "withMsg.missToHand"
+    },
+    {
+      "from": "missToHand.value",
+      "to": "noMissMsg.missToHand"
+    },
+    {
+      "from": "noMissMsg.value",
+      "to": "finNow.cond"
+    },
+    {
       "from": "finishDone.out",
+      "to": "finNow.trigger"
+    },
+    {
+      "from": "finNow.pass",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "withMsg.value",
+      "to": "finMsg.cond"
+    },
+    {
+      "from": "finishDone.out",
+      "to": "finMsg.trigger"
+    },
+    {
+      "from": "finMsg.pass",
+      "to": "missTimer.start"
+    },
+    {
+      "from": "handN.count",
+      "to": "missMsg.handN"
+    },
+    {
+      "from": "K16.out",
+      "to": "pop3_kind.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_kind.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_title.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_title.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_body.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_body.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop3_grade.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_grade.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_spot.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_spot.trigger"
+    },
+    {
+      "from": "missMsg.value",
+      "to": "pop3_msg.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_msg.trigger"
+    },
+    {
+      "from": "handN.count",
+      "to": "pop3_n.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_n.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_r0.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_r0.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_r1.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_r1.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop3_r2.in"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "pop3_r2.trigger"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "popSrc.e3"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "popSeq.increment"
+    },
+    {
+      "from": "K6.out",
+      "to": "m_popS.key"
+    },
+    {
+      "from": "K11.out",
+      "to": "m_popS.value"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "m_popS.trigger"
+    },
+    {
+      "from": "K9.out",
+      "to": "m_msgS.key"
+    },
+    {
+      "from": "K15.out",
+      "to": "m_msgS.value"
+    },
+    {
+      "from": "missTimer.tick",
+      "to": "m_msgS.trigger"
+    },
+    {
+      "from": "msgSt.value",
+      "to": "msgDoneN.msgSt"
+    },
+    {
+      "from": "msgDoneN.value",
+      "to": "msgDone.cond"
+    },
+    {
+      "from": "closeGate.pass",
+      "to": "msgDone.trigger"
+    },
+    {
+      "from": "msgDone.pass",
       "to": "world.stepDone"
     },
     {
@@ -5364,6 +6937,14 @@
       "to": "hint4_key.trigger"
     },
     {
+      "from": "K7.out",
+      "to": "hint4_left.in"
+    },
+    {
+      "from": "askGate.pass",
+      "to": "hint4_left.trigger"
+    },
+    {
       "from": "askGate.pass",
       "to": "hintSrc.e4"
     },
@@ -5376,7 +6957,7 @@
       "to": "bookState.a"
     },
     {
-      "from": "K13.out",
+      "from": "K17.out",
       "to": "bookState.b"
     },
     {
@@ -5508,7 +7089,7 @@
       "to": "bs_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bs_apprHas.a"
     },
     {
@@ -5552,6 +7133,10 @@
       "to": "ui#evbook.sel_desc"
     },
     {
+      "from": "K18.out",
+      "to": "bs_sep.key"
+    },
+    {
       "from": "bs_row.row",
       "to": "bs_t0.row"
     },
@@ -5568,7 +7153,7 @@
       "to": "bs_h0.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bs_h0.a"
     },
     {
@@ -5600,7 +7185,7 @@
       "to": "bs_key0.a"
     },
     {
-      "from": "K14.out",
+      "from": "K19.out",
       "to": "bs_key0.b"
     },
     {
@@ -5608,7 +7193,7 @@
       "to": "bs_e0.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_e0.b"
     },
     {
@@ -5620,7 +7205,7 @@
       "to": "bs_kk0.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_kk0.b"
     },
     {
@@ -5644,7 +7229,7 @@
       "to": "bs_h1.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bs_h1.a"
     },
     {
@@ -5676,7 +7261,7 @@
       "to": "bs_key1.a"
     },
     {
-      "from": "K14.out",
+      "from": "K19.out",
       "to": "bs_key1.b"
     },
     {
@@ -5684,7 +7269,7 @@
       "to": "bs_e1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_e1.b"
     },
     {
@@ -5696,7 +7281,7 @@
       "to": "bs_kk1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_kk1.b"
     },
     {
@@ -5704,8 +7289,12 @@
       "to": "bs_tx1.key"
     },
     {
-      "from": "bs_tx1.text",
+      "from": "bs_sep.text",
       "to": "bs_sp1.a"
+    },
+    {
+      "from": "bs_tx1.text",
+      "to": "bs_sp1.b"
     },
     {
       "from": "bs_e1.out",
@@ -5716,7 +7305,7 @@
       "to": "bs_p1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_p1.b"
     },
     {
@@ -5736,7 +7325,7 @@
       "to": "bs_h2.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bs_h2.a"
     },
     {
@@ -5768,7 +7357,7 @@
       "to": "bs_key2.a"
     },
     {
-      "from": "K14.out",
+      "from": "K19.out",
       "to": "bs_key2.b"
     },
     {
@@ -5776,7 +7365,7 @@
       "to": "bs_e2.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_e2.b"
     },
     {
@@ -5788,7 +7377,7 @@
       "to": "bs_kk2.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_kk2.b"
     },
     {
@@ -5796,8 +7385,12 @@
       "to": "bs_tx2.key"
     },
     {
-      "from": "bs_tx2.text",
+      "from": "bs_sep.text",
       "to": "bs_sp2.a"
+    },
+    {
+      "from": "bs_tx2.text",
+      "to": "bs_sp2.b"
     },
     {
       "from": "bs_e2.out",
@@ -5808,7 +7401,7 @@
       "to": "bs_p2.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_p2.b"
     },
     {
@@ -5828,7 +7421,7 @@
       "to": "bs_h3.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bs_h3.a"
     },
     {
@@ -5860,7 +7453,7 @@
       "to": "bs_key3.a"
     },
     {
-      "from": "K14.out",
+      "from": "K19.out",
       "to": "bs_key3.b"
     },
     {
@@ -5868,7 +7461,7 @@
       "to": "bs_e3.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_e3.b"
     },
     {
@@ -5880,7 +7473,7 @@
       "to": "bs_kk3.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_kk3.b"
     },
     {
@@ -5888,8 +7481,12 @@
       "to": "bs_tx3.key"
     },
     {
-      "from": "bs_tx3.text",
+      "from": "bs_sep.text",
       "to": "bs_sp3.a"
+    },
+    {
+      "from": "bs_tx3.text",
+      "to": "bs_sp3.b"
     },
     {
       "from": "bs_e3.out",
@@ -5900,7 +7497,7 @@
       "to": "bs_p3.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "bs_p3.b"
     },
     {
@@ -6052,7 +7649,7 @@
       "to": "ba_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "ba_apprHas.a"
     },
     {
@@ -6080,7 +7677,7 @@
       "to": "ba_hasC.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "ba_hasC.b"
     },
     {
@@ -6088,7 +7685,7 @@
       "to": "ba_has.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "ba_has.a"
     },
     {
@@ -6178,6 +7775,14 @@
     {
       "from": "ba_said.pass",
       "to": "hint5_key.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "hint5_left.in"
+    },
+    {
+      "from": "ba_said.pass",
+      "to": "hint5_left.trigger"
     },
     {
       "from": "ba_said.pass",
@@ -6300,7 +7905,7 @@
       "to": "bi0_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bi0_apprHas.a"
     },
     {
@@ -6452,7 +8057,7 @@
       "to": "bi1_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bi1_apprHas.a"
     },
     {
@@ -6600,7 +8205,7 @@
       "to": "bi2_apprHas.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "bi2_apprHas.a"
     },
     {
@@ -6704,7 +8309,7 @@
       "to": "apprPort.a"
     },
     {
-      "from": "K15.out",
+      "from": "K20.out",
       "to": "apprPort.b"
     },
     {
@@ -6728,7 +8333,7 @@
       "to": "trustPort.a"
     },
     {
-      "from": "K15.out",
+      "from": "K20.out",
       "to": "trustPort.b"
     },
     {
@@ -6748,7 +8353,7 @@
       "to": "hint_key_is1.a"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "hint_key_is1.b"
     },
     {
@@ -6760,7 +8365,7 @@
       "to": "hint_key_1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "hint_key_1.b"
     },
     {
@@ -6768,7 +8373,7 @@
       "to": "hint_key_is2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K15.out",
       "to": "hint_key_is2.b"
     },
     {
@@ -6788,7 +8393,7 @@
       "to": "hint_key_is3.a"
     },
     {
-      "from": "K16.out",
+      "from": "K21.out",
       "to": "hint_key_is3.b"
     },
     {
@@ -6808,7 +8413,7 @@
       "to": "hint_key_is4.a"
     },
     {
-      "from": "K17.out",
+      "from": "K16.out",
       "to": "hint_key_is4.b"
     },
     {
@@ -6828,7 +8433,7 @@
       "to": "hint_key_is5.a"
     },
     {
-      "from": "K18.out",
+      "from": "K22.out",
       "to": "hint_key_is5.b"
     },
     {
@@ -6848,7 +8453,115 @@
       "to": "hintText.key"
     },
     {
+      "from": "hintSrc.index",
+      "to": "hint_left_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "hint_left_is1.b"
+    },
+    {
+      "from": "hint_left_is1.out",
+      "to": "hint_left_1.cond"
+    },
+    {
+      "from": "hint1_left.out",
+      "to": "hint_left_1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "hint_left_1.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_left_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "hint_left_is2.b"
+    },
+    {
+      "from": "hint_left_is2.out",
+      "to": "hint_left_2.cond"
+    },
+    {
+      "from": "hint2_left.out",
+      "to": "hint_left_2.a"
+    },
+    {
+      "from": "hint_left_1.out",
+      "to": "hint_left_2.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_left_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "hint_left_is3.b"
+    },
+    {
+      "from": "hint_left_is3.out",
+      "to": "hint_left_3.cond"
+    },
+    {
+      "from": "hint3_left.out",
+      "to": "hint_left_3.a"
+    },
+    {
+      "from": "hint_left_2.out",
+      "to": "hint_left_3.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_left_is4.a"
+    },
+    {
+      "from": "K16.out",
+      "to": "hint_left_is4.b"
+    },
+    {
+      "from": "hint_left_is4.out",
+      "to": "hint_left_4.cond"
+    },
+    {
+      "from": "hint4_left.out",
+      "to": "hint_left_4.a"
+    },
+    {
+      "from": "hint_left_3.out",
+      "to": "hint_left_4.b"
+    },
+    {
+      "from": "hintSrc.index",
+      "to": "hint_left_is5.a"
+    },
+    {
+      "from": "K22.out",
+      "to": "hint_left_is5.b"
+    },
+    {
+      "from": "hint_left_is5.out",
+      "to": "hint_left_5.cond"
+    },
+    {
+      "from": "hint5_left.out",
+      "to": "hint_left_5.a"
+    },
+    {
+      "from": "hint_left_4.out",
+      "to": "hint_left_5.b"
+    },
+    {
       "from": "hintText.text",
+      "to": "hintF.pattern"
+    },
+    {
+      "from": "hint_left_5.out",
+      "to": "hintF.left"
+    },
+    {
+      "from": "hintF.text",
       "to": "ui#investigate.hint"
     },
     {
@@ -6860,7 +8573,7 @@
       "to": "pop_kind_is1.a"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "pop_kind_is1.b"
     },
     {
@@ -6880,7 +8593,7 @@
       "to": "pop_kind_is2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K15.out",
       "to": "pop_kind_is2.b"
     },
     {
@@ -6896,11 +8609,31 @@
       "to": "pop_kind_2.b"
     },
     {
+      "from": "popSrc.index",
+      "to": "pop_kind_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_kind_is3.b"
+    },
+    {
+      "from": "pop_kind_is3.out",
+      "to": "pop_kind_3.cond"
+    },
+    {
+      "from": "pop3_kind.out",
+      "to": "pop_kind_3.a"
+    },
+    {
+      "from": "pop_kind_2.out",
+      "to": "pop_kind_3.b"
+    },
+    {
       "from": "popOpen.out",
       "to": "popKind.cond"
     },
     {
-      "from": "pop_kind_2.out",
+      "from": "pop_kind_3.out",
       "to": "popKind.a"
     },
     {
@@ -6916,7 +8649,7 @@
       "to": "pop_title_is1.a"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "pop_title_is1.b"
     },
     {
@@ -6928,7 +8661,7 @@
       "to": "pop_title_1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "pop_title_1.b"
     },
     {
@@ -6936,7 +8669,7 @@
       "to": "pop_title_is2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K15.out",
       "to": "pop_title_is2.b"
     },
     {
@@ -6952,7 +8685,27 @@
       "to": "pop_title_2.b"
     },
     {
+      "from": "popSrc.index",
+      "to": "pop_title_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_title_is3.b"
+    },
+    {
+      "from": "pop_title_is3.out",
+      "to": "pop_title_3.cond"
+    },
+    {
+      "from": "pop3_title.out",
+      "to": "pop_title_3.a"
+    },
+    {
       "from": "pop_title_2.out",
+      "to": "pop_title_3.b"
+    },
+    {
+      "from": "pop_title_3.out",
       "to": "popTitle.key"
     },
     {
@@ -6961,10 +8714,174 @@
     },
     {
       "from": "popSrc.index",
+      "to": "pop_spot_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_spot_is1.b"
+    },
+    {
+      "from": "pop_spot_is1.out",
+      "to": "pop_spot_1.cond"
+    },
+    {
+      "from": "pop1_spot.out",
+      "to": "pop_spot_1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop_spot_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_spot_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_spot_is2.b"
+    },
+    {
+      "from": "pop_spot_is2.out",
+      "to": "pop_spot_2.cond"
+    },
+    {
+      "from": "pop2_spot.out",
+      "to": "pop_spot_2.a"
+    },
+    {
+      "from": "pop_spot_1.out",
+      "to": "pop_spot_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_spot_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_spot_is3.b"
+    },
+    {
+      "from": "pop_spot_is3.out",
+      "to": "pop_spot_3.cond"
+    },
+    {
+      "from": "pop3_spot.out",
+      "to": "pop_spot_3.a"
+    },
+    {
+      "from": "pop_spot_2.out",
+      "to": "pop_spot_3.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_msg_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_msg_is1.b"
+    },
+    {
+      "from": "pop_msg_is1.out",
+      "to": "pop_msg_1.cond"
+    },
+    {
+      "from": "pop1_msg.out",
+      "to": "pop_msg_1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_msg_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_msg_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_msg_is2.b"
+    },
+    {
+      "from": "pop_msg_is2.out",
+      "to": "pop_msg_2.cond"
+    },
+    {
+      "from": "pop2_msg.out",
+      "to": "pop_msg_2.a"
+    },
+    {
+      "from": "pop_msg_1.out",
+      "to": "pop_msg_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_msg_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_msg_is3.b"
+    },
+    {
+      "from": "pop_msg_is3.out",
+      "to": "pop_msg_3.cond"
+    },
+    {
+      "from": "pop3_msg.out",
+      "to": "pop_msg_3.a"
+    },
+    {
+      "from": "pop_msg_2.out",
+      "to": "pop_msg_3.b"
+    },
+    {
+      "from": "pop_spot_3.out",
+      "to": "p_row.value"
+    },
+    {
+      "from": "p_row.row",
+      "to": "p_nLines.row"
+    },
+    {
+      "from": "pop_spot_3.out",
+      "to": "p_hasSpotC.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "p_hasSpotC.b"
+    },
+    {
+      "from": "p_hasSpotC.out",
+      "to": "p_hasSpot.cond"
+    },
+    {
+      "from": "K11.out",
+      "to": "p_hasSpot.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "p_hasSpot.b"
+    },
+    {
+      "from": "p_hasSpot.out",
+      "to": "moreD.p_hasSpot"
+    },
+    {
+      "from": "pop_msg_3.out",
+      "to": "moreD.p_msg"
+    },
+    {
+      "from": "pl.value",
+      "to": "moreD.pl"
+    },
+    {
+      "from": "p_nLines.value",
+      "to": "moreD.p_nLines"
+    },
+    {
+      "from": "popSrc.index",
       "to": "pop_body_is1.a"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "pop_body_is1.b"
     },
     {
@@ -6976,7 +8893,7 @@
       "to": "pop_body_1.a"
     },
     {
-      "from": "K10.out",
+      "from": "K12.out",
       "to": "pop_body_1.b"
     },
     {
@@ -6984,7 +8901,7 @@
       "to": "pop_body_is2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K15.out",
       "to": "pop_body_is2.b"
     },
     {
@@ -7000,19 +8917,611 @@
       "to": "pop_body_2.b"
     },
     {
-      "from": "pop_body_2.out",
-      "to": "popBody.key"
+      "from": "popSrc.index",
+      "to": "pop_body_is3.a"
     },
     {
-      "from": "popBody.text",
+      "from": "K21.out",
+      "to": "pop_body_is3.b"
+    },
+    {
+      "from": "pop_body_is3.out",
+      "to": "pop_body_3.cond"
+    },
+    {
+      "from": "pop3_body.out",
+      "to": "pop_body_3.a"
+    },
+    {
+      "from": "pop_body_2.out",
+      "to": "pop_body_3.b"
+    },
+    {
+      "from": "pop_body_3.out",
+      "to": "popBodyK.key"
+    },
+    {
+      "from": "K18.out",
+      "to": "rsSep.key"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r0_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_r0_is1.b"
+    },
+    {
+      "from": "pop_r0_is1.out",
+      "to": "pop_r0_1.cond"
+    },
+    {
+      "from": "pop1_r0.out",
+      "to": "pop_r0_1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop_r0_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r0_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_r0_is2.b"
+    },
+    {
+      "from": "pop_r0_is2.out",
+      "to": "pop_r0_2.cond"
+    },
+    {
+      "from": "pop2_r0.out",
+      "to": "pop_r0_2.a"
+    },
+    {
+      "from": "pop_r0_1.out",
+      "to": "pop_r0_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r0_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_r0_is3.b"
+    },
+    {
+      "from": "pop_r0_is3.out",
+      "to": "pop_r0_3.cond"
+    },
+    {
+      "from": "pop3_r0.out",
+      "to": "pop_r0_3.a"
+    },
+    {
+      "from": "pop_r0_2.out",
+      "to": "pop_r0_3.b"
+    },
+    {
+      "from": "pop_r0_3.out",
+      "to": "rsRow0.value"
+    },
+    {
+      "from": "rsRow0.row",
+      "to": "rsKey0.row"
+    },
+    {
+      "from": "rsKey0.value",
+      "to": "rsName0.key"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r1_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_r1_is1.b"
+    },
+    {
+      "from": "pop_r1_is1.out",
+      "to": "pop_r1_1.cond"
+    },
+    {
+      "from": "pop1_r1.out",
+      "to": "pop_r1_1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop_r1_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r1_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_r1_is2.b"
+    },
+    {
+      "from": "pop_r1_is2.out",
+      "to": "pop_r1_2.cond"
+    },
+    {
+      "from": "pop2_r1.out",
+      "to": "pop_r1_2.a"
+    },
+    {
+      "from": "pop_r1_1.out",
+      "to": "pop_r1_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r1_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_r1_is3.b"
+    },
+    {
+      "from": "pop_r1_is3.out",
+      "to": "pop_r1_3.cond"
+    },
+    {
+      "from": "pop3_r1.out",
+      "to": "pop_r1_3.a"
+    },
+    {
+      "from": "pop_r1_2.out",
+      "to": "pop_r1_3.b"
+    },
+    {
+      "from": "pop_r1_3.out",
+      "to": "rsRow1.value"
+    },
+    {
+      "from": "rsRow1.row",
+      "to": "rsKey1.row"
+    },
+    {
+      "from": "rsKey1.value",
+      "to": "rsName1.key"
+    },
+    {
+      "from": "pop_r1_3.out",
+      "to": "rsHas1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "rsHas1.b"
+    },
+    {
+      "from": "rsSep.text",
+      "to": "rsSp1.a"
+    },
+    {
+      "from": "rsName1.text",
+      "to": "rsSp1.b"
+    },
+    {
+      "from": "rsHas1.out",
+      "to": "rsPart1.cond"
+    },
+    {
+      "from": "rsSp1.out",
+      "to": "rsPart1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "rsPart1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r2_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_r2_is1.b"
+    },
+    {
+      "from": "pop_r2_is1.out",
+      "to": "pop_r2_1.cond"
+    },
+    {
+      "from": "pop1_r2.out",
+      "to": "pop_r2_1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "pop_r2_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r2_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_r2_is2.b"
+    },
+    {
+      "from": "pop_r2_is2.out",
+      "to": "pop_r2_2.cond"
+    },
+    {
+      "from": "pop2_r2.out",
+      "to": "pop_r2_2.a"
+    },
+    {
+      "from": "pop_r2_1.out",
+      "to": "pop_r2_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_r2_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_r2_is3.b"
+    },
+    {
+      "from": "pop_r2_is3.out",
+      "to": "pop_r2_3.cond"
+    },
+    {
+      "from": "pop3_r2.out",
+      "to": "pop_r2_3.a"
+    },
+    {
+      "from": "pop_r2_2.out",
+      "to": "pop_r2_3.b"
+    },
+    {
+      "from": "pop_r2_3.out",
+      "to": "rsRow2.value"
+    },
+    {
+      "from": "rsRow2.row",
+      "to": "rsKey2.row"
+    },
+    {
+      "from": "rsKey2.value",
+      "to": "rsName2.key"
+    },
+    {
+      "from": "pop_r2_3.out",
+      "to": "rsHas2.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "rsHas2.b"
+    },
+    {
+      "from": "rsSep.text",
+      "to": "rsSp2.a"
+    },
+    {
+      "from": "rsName2.text",
+      "to": "rsSp2.b"
+    },
+    {
+      "from": "rsHas2.out",
+      "to": "rsPart2.cond"
+    },
+    {
+      "from": "rsSp2.out",
+      "to": "rsPart2.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "rsPart2.b"
+    },
+    {
+      "from": "rsName0.text",
+      "to": "rsNames.a"
+    },
+    {
+      "from": "rsPart1.out",
+      "to": "rsNames.b"
+    },
+    {
+      "from": "rsPart2.out",
+      "to": "rsNames.c"
+    },
+    {
+      "from": "rsNames.out",
+      "to": "rescueT.name"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_n_is1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "pop_n_is1.b"
+    },
+    {
+      "from": "pop_n_is1.out",
+      "to": "pop_n_1.cond"
+    },
+    {
+      "from": "pop1_n.out",
+      "to": "pop_n_1.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "pop_n_1.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_n_is2.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "pop_n_is2.b"
+    },
+    {
+      "from": "pop_n_is2.out",
+      "to": "pop_n_2.cond"
+    },
+    {
+      "from": "pop2_n.out",
+      "to": "pop_n_2.a"
+    },
+    {
+      "from": "pop_n_1.out",
+      "to": "pop_n_2.b"
+    },
+    {
+      "from": "popSrc.index",
+      "to": "pop_n_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_n_is3.b"
+    },
+    {
+      "from": "pop_n_is3.out",
+      "to": "pop_n_3.cond"
+    },
+    {
+      "from": "pop3_n.out",
+      "to": "pop_n_3.a"
+    },
+    {
+      "from": "pop_n_2.out",
+      "to": "pop_n_3.b"
+    },
+    {
+      "from": "pop_n_3.out",
+      "to": "missedT.n"
+    },
+    {
+      "from": "K23.out",
+      "to": "noneT.key"
+    },
+    {
+      "from": "pop_msg_3.out",
+      "to": "pmIs1.p_msg"
+    },
+    {
+      "from": "pop_msg_3.out",
+      "to": "pmIs2.p_msg"
+    },
+    {
+      "from": "pop_msg_3.out",
+      "to": "pmIs3.p_msg"
+    },
+    {
+      "from": "pmIs3.truth",
+      "to": "popBody3.cond"
+    },
+    {
+      "from": "noneT.text",
+      "to": "popBody3.a"
+    },
+    {
+      "from": "popBodyK.text",
+      "to": "popBody3.b"
+    },
+    {
+      "from": "pmIs2.truth",
+      "to": "popBody2.cond"
+    },
+    {
+      "from": "missedT.text",
+      "to": "popBody2.a"
+    },
+    {
+      "from": "popBody3.out",
+      "to": "popBody2.b"
+    },
+    {
+      "from": "pmIs1.truth",
+      "to": "popBody.cond"
+    },
+    {
+      "from": "rescueT.text",
+      "to": "popBody.a"
+    },
+    {
+      "from": "popBody2.out",
+      "to": "popBody.b"
+    },
+    {
+      "from": "popBody.out",
       "to": "ui#investigate.popup_body"
+    },
+    {
+      "from": "p_row.row",
+      "to": "p_line0.row"
+    },
+    {
+      "from": "p_row.row",
+      "to": "p_spk0.row"
+    },
+    {
+      "from": "pl.value",
+      "to": "p_at0.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "p_at0.b"
+    },
+    {
+      "from": "p_at0.out",
+      "to": "p_lk0.cond"
+    },
+    {
+      "from": "p_line0.value",
+      "to": "p_lk0.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "p_lk0.b"
+    },
+    {
+      "from": "p_at0.out",
+      "to": "p_sk0.cond"
+    },
+    {
+      "from": "p_spk0.value",
+      "to": "p_sk0.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "p_sk0.b"
+    },
+    {
+      "from": "p_row.row",
+      "to": "p_line1.row"
+    },
+    {
+      "from": "p_row.row",
+      "to": "p_spk1.row"
+    },
+    {
+      "from": "pl.value",
+      "to": "p_at1.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "p_at1.b"
+    },
+    {
+      "from": "p_at1.out",
+      "to": "p_lk1.cond"
+    },
+    {
+      "from": "p_line1.value",
+      "to": "p_lk1.a"
+    },
+    {
+      "from": "p_lk0.out",
+      "to": "p_lk1.b"
+    },
+    {
+      "from": "p_at1.out",
+      "to": "p_sk1.cond"
+    },
+    {
+      "from": "p_spk1.value",
+      "to": "p_sk1.a"
+    },
+    {
+      "from": "p_sk0.out",
+      "to": "p_sk1.b"
+    },
+    {
+      "from": "p_hasSpotC.out",
+      "to": "p_lk.cond"
+    },
+    {
+      "from": "p_lk1.out",
+      "to": "p_lk.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "p_lk.b"
+    },
+    {
+      "from": "pmIs1.truth",
+      "to": "p_lineKey.cond"
+    },
+    {
+      "from": "K24.out",
+      "to": "p_lineKey.a"
+    },
+    {
+      "from": "p_lk.out",
+      "to": "p_lineKey.b"
+    },
+    {
+      "from": "p_hasSpotC.out",
+      "to": "p_sk.cond"
+    },
+    {
+      "from": "p_sk1.out",
+      "to": "p_sk.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "p_sk.b"
+    },
+    {
+      "from": "pmIs1.truth",
+      "to": "p_spkKey.cond"
+    },
+    {
+      "from": "K25.out",
+      "to": "p_spkKey.a"
+    },
+    {
+      "from": "p_sk.out",
+      "to": "p_spkKey.b"
+    },
+    {
+      "from": "p_lineKey.out",
+      "to": "popLine.key"
+    },
+    {
+      "from": "popLine.text",
+      "to": "ui#investigate.popup_line"
+    },
+    {
+      "from": "p_spkKey.out",
+      "to": "popSpk.key"
+    },
+    {
+      "from": "popSpk.text",
+      "to": "ui#investigate.popup_speaker"
+    },
+    {
+      "from": "moreD.truth",
+      "to": "ui#investigate.popup_more"
+    },
+    {
+      "from": "advTimer.tick",
+      "to": "advN.increment"
+    },
+    {
+      "from": "popSeq.value",
+      "to": "plSeqV.popSeq"
+    },
+    {
+      "from": "advN.value",
+      "to": "plSeqV.advN"
+    },
+    {
+      "from": "plSeqV.value",
+      "to": "ui#investigate.popup_line_seq"
     },
     {
       "from": "popSrc.index",
       "to": "pop_grade_is1.a"
     },
     {
-      "from": "K8.out",
+      "from": "K11.out",
       "to": "pop_grade_is1.b"
     },
     {
@@ -7032,7 +9541,7 @@
       "to": "pop_grade_is2.a"
     },
     {
-      "from": "K11.out",
+      "from": "K15.out",
       "to": "pop_grade_is2.b"
     },
     {
@@ -7048,7 +9557,27 @@
       "to": "pop_grade_2.b"
     },
     {
+      "from": "popSrc.index",
+      "to": "pop_grade_is3.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pop_grade_is3.b"
+    },
+    {
+      "from": "pop_grade_is3.out",
+      "to": "pop_grade_3.cond"
+    },
+    {
+      "from": "pop3_grade.out",
+      "to": "pop_grade_3.a"
+    },
+    {
       "from": "pop_grade_2.out",
+      "to": "pop_grade_3.b"
+    },
+    {
+      "from": "pop_grade_3.out",
       "to": "ui#investigate.popup_grade"
     },
     {

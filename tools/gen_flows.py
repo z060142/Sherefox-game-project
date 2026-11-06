@@ -355,6 +355,9 @@ APPRAISE = {"none": 0, "medical": 1, "mechanical": 2, "dual": 3}
 # data-schema §5: hotspots.scene -> the vn background id of that scene (script.bg).
 SCENE_BG = {"kitchen": "kitchen_morning", "clock_shop": "clockshop", "boiler_room": "boiler_room",
             "deck": "barge_deck", "dock": "dock_fog"}
+# 10-cases 場景與登場人物 -> the scene's name key (investigate.area_name; SCENE_CH0x_*)
+SCENE_NAME = {(1, "kitchen"): "SCENE_CH01_KITCHEN", (2, "clock_shop"): "SCENE_CH02_CLOCKSHOP",
+              (3, "boiler_room"): "SCENE_CH03_BOILER", (3, "deck"): "SCENE_CH03_DECK", (3, "dock"): "SCENE_CH03_DOCK"}
 SLOTS = 15          # board: 3 chains x 5 slots (ui-contracts board)
 LOOSE = 9           # debBoard slots 15..23 (docs/debate-engine.md §2.2)
 
@@ -368,9 +371,35 @@ def case_cards(chapter: int) -> list[dict]:
     return [e for e in load("evidence") if str(chapter) in split(e["usable"]) and e["onBoard"]]
 
 
+def string_keys() -> set[str]:
+    import csv
+    with (ROOT / "strings" / "zh-TW.csv").open(encoding="utf-8", newline="") as f:
+        return {r["key"] for r in csv.DictReader(f)}
+
+
+def spot_lines(h: dict, script: dict) -> list[tuple[str, str]]:
+    """A hotspot's reaction lines (hotspots.lines): (text key, speaker key) of its playable script lines, in order.
+    The evidence description rows are the popup body already; appraisal lines belong to the appraisal (they read
+    the hidden tags). Narration (focus 0) has no name plate, as on the vn."""
+    out = []
+    for lid in split(h["lines"]):
+        r = script[lid]
+        if r["kind"] == "line" and r["playable"] and not r["appraisal"]:
+            out.append((r["text"], r["speaker"] if r["focus"] else ""))
+    return out
+
+
+def max_spot_lines() -> int:
+    script = {r["id"]: r for r in load("script")}
+    return max(len(spot_lines(h, script)) for h in load("hotspots"))
+
+
 def flow_tables() -> dict[str, list[dict]]:
     ev = load("evidence")
     hs = load("hotspots")
+    script = {r["id"]: r for r in load("script")}
+    keys = string_keys()
+    ml = max_spot_lines()
     chapters = [c["id"] for c in load("chapters")]
     mt = max_tags()
 
@@ -403,13 +432,23 @@ def flow_tables() -> dict[str, list[dict]]:
             req = h["requires"]
             if req and not req.startswith("missing:"):
                 raise ValueError(f"{h['id']}: unknown requires {req!r}")
-            spot.append({"id": h["id"], "nameKey": h["nameKey"], "noteKey": h["noteKey"], "x": h["x"], "y": h["y"],
-                         "w": h["w"], "h": h["h"], "type": SPOT_TYPE[h["type"]], "yield": ys[0] if ys else "",
-                         "reqMissing": req[len("missing:"):] if req else ""})
+            # the note when the police report has been handed over (trust >= 3, ruling F6): <noteKey>_REPORT
+            report = h["noteKey"] + "_REPORT" if h["noteKey"] and h["noteKey"] + "_REPORT" in keys else ""
+            lines = spot_lines(h, script)
+            row = {"id": h["id"], "nameKey": h["nameKey"], "noteKey": h["noteKey"], "reportNote": report,
+                   "x": h["x"], "y": h["y"], "w": h["w"], "h": h["h"], "type": SPOT_TYPE[h["type"]],
+                   "yield": ys[0] if ys else "", "reqMissing": req[len("missing:"):] if req else "",
+                   "nLines": len(lines)}
+            for i in range(ml):
+                row[f"line{i}"], row[f"spk{i}"] = lines[i] if i < len(lines) else ("", "")
+            spot.append(row)
             if h["scene"] not in scenes:
                 scenes.append(h["scene"])
         for i, s in enumerate(scenes):
-            scene.append({"key": f"{c}:{i}", "chapter": c, "idx": i, "bg": SCENE_BG[s],
+            name = SCENE_NAME.get((c, s), "")
+            if name not in keys:
+                raise ValueError(f"Ch.{c} scene {s}: no name key ({name or 'SCENE_NAME'})")
+            scene.append({"key": f"{c}:{i}", "chapter": c, "idx": i, "bg": SCENE_BG[s], "nameKey": name,
                           "spots": ",".join(h["id"] for h in rows if h["scene"] == s)})
         cards = case_cards(c)
         # A substitute only appears when its golden clue is missing (01-systems §1.9), so they never both count.
@@ -435,6 +474,11 @@ SIGNALS = {
     "trust": {"type": "number", "initial": 3},          # 01-systems §3.1: permanent trust, starts at 3
     "bookOpen": {"type": "bool", "initial": False},     # main: the evidence book overlay is open
     "caseOutcome": {"type": "string", "initial": ""},   # result: win / notorious / lose (the paper's sidebar)
+    # debate / warmup steps (docs/flows.md §4.2): the lines around the debate screen (script.cue)
+    "debGo": {"type": "pulse"},                         # dialogue -> main, debate_ui: the pre lines are over
+    "debEnd": {"type": "pulse"},                        # debate_ui -> dialogue: the debate is over
+    "debCue": {"type": "string", "initial": "post"},    # debate_ui: the cue of the lines after it (post / postWin / postLose)
+    "vnShow": {"type": "pulse"},                        # dialogue -> main: lines after the debate, show the vn
 }
 COLLECTIONS = {
     # case state (investigation -> board -> debate)
@@ -444,6 +488,7 @@ COLLECTIONS = {
     "oppHand": {"kind": "list", "type": "string", "capacity": 16, "unique": True},
     "caseNum": {"kind": "map", "type": "number", "capacity": 8},
     "invState": {"kind": "map", "type": "number", "capacity": 8},
+    "invStr": {"kind": "map", "type": "string", "capacity": 2},     # investigate: the popup's spot
     "boardState": {"kind": "map", "type": "number", "capacity": 16},
     # investigation
     "spotSeen": {"kind": "map", "type": "number", "capacity": 64},
@@ -453,6 +498,7 @@ COLLECTIONS = {
     "notes": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
     "newCards": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
     "caseSpots": {"kind": "list", "type": "string", "capacity": 64},
+    "visSpots": {"kind": "list", "type": "string", "capacity": 64},  # the case's spots shown (conditions met)
     "sceneSpots": {"kind": "list", "type": "string", "capacity": 16},
     "bookList": {"kind": "map", "type": "bool", "capacity": 32},      # evbook.cards: id -> revealed
     # board
@@ -587,8 +633,9 @@ def appraisal(g: Graph, pre: str, card: str, trigger: str) -> tuple[str, str]:
 
 def tag_line(g: Graph, pre: str) -> str:
     """The detail panel's tag text for a card with card_values: each tag's display name, or UI_TAG_HIDDEN while it
-    is not revealed, joined by a space (no separator key in the string table yet; docs/flows.md §7)."""
+    is not revealed, joined by UI_TAG_SEP."""
     pieces = []
+    sep = g.text(pre + "_sep", g.k("UI_TAG_SEP"))
     for i in range(max_tags()):
         t = g.tget(f"{pre}_t{i}", "flowCard", f"tag{i}", pre + "_row")
         g.n(f"{pre}_h{i}", g.thas(f"{pre}_hC{i}", "flowCard", "hiddenTags", pre + "_row", t))
@@ -601,7 +648,7 @@ def tag_line(g: Graph, pre: str) -> str:
         if i == 0:
             pieces.append(txt)
         else:
-            pieces.append(g.sel(f"{pre}_p{i}", has, g.fmt(f"{pre}_sp{i}", " {a}", txt), g.k("")))
+            pieces.append(g.sel(f"{pre}_p{i}", has, g.fmt(f"{pre}_sp{i}", "{a}{b}", sep, txt), g.k("")))
     out = g.fmt(pre + "_tags", "{a}{b}{c}{d}", *pieces[:4])
     if len(pieces) > 4:
         out = g.fmt(pre + "_tags2", "{a}{b}{c}{d}", out, *pieces[4:7])
@@ -690,15 +737,31 @@ def gen_main() -> Graph:
     screens = ["title", "paper", "vn", "investigate", "board", "debate", "result"]
     g.node("screen", "state", initial="title", states=screens,
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
+    # A debate / warmup step whose scene has `pre` lines (script.cue) starts on the vn; the debate screen comes with
+    # world.debGo (dialogue, after those lines). The lines after the debate show the vn again (world.vnShow).
+    g.fmt("sceneKey", "CH0{a}_{b}", "chapter.value", "scene.value")
+    g.tfind("preRow", "script", "sceneKey", "sceneKey", filters={"playable": "true", "cue": "pre"})
+    g.x("hasPre", "preRow >= 0")
+    g.x("noPre", "preRow < 0")
     for name, tag, scr in (("isEnd", "end", "title"), ("isPaper", "paper", "paper"), ("isVn", "vn", "vn"),
                            ("isInv", "investigate", "investigate"), ("isBoard", "board", "board"),
-                           ("isDeb", "debate", "debate"), ("isWarm", "warmup", "debate"), ("isRes", "result", "result")):
+                           ("isDeb", "debate", None), ("isWarm", "warmup", None), ("isRes", "result", "result")):
         g.const(name + "Tag", tag)
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
         g.edge(name + "Tag.out", name + ".b")
-        g.edge(name + ".true", f"screen.to_{scr}")
+        if scr:
+            g.edge(name + ".true", f"screen.to_{scr}")
+    # decided on the step's begin pulse (cur.value's last edge: the step's scene and chapter are settled by then)
+    g.n("isDebN", "isDeb.out")
+    g.n("isWarmN", "isWarm.out")
+    g.x("debPre", "(isDebN || isWarmN) && hasPre")
+    g.x("debNoPre", "(isDebN || isWarmN) && noPre")
+    g.edge("world.debGo", "screen.to_debate")
+    g.edge("world.vnShow", "screen.to_vn")
     g.edge("world.resultLines", "screen.to_vn")
+    g.edge(g.when("debPreG", "rebegin.out", "debPre_t"), "screen.to_vn")
+    g.edge(g.when("debNoPreG", "rebegin.out", "debNoPre_t"), "screen.to_debate")
 
     # End card: shown while the step is `end` until the title's end_dismiss. The step stays `end`, so the chapter
     # list (no longer covered) starts a new run; entering an end step shows the card again.
@@ -759,7 +822,10 @@ def gen_dialogue() -> Graph:
     g.cmp("isRes", "world.stepKind", g.k("result"))
     g.n("isVnN", "isVn.out")
     g.n("isResN", "isRes.out")
-    g.x("vnOrRes", "isVnN || isResN")
+    g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
+    g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
+    g.x("isDebK", "isDebN || isWarmN")
+    g.x("vnOrRes", "isVnN || isResN || isDebK")
     g.node("vnScene", "select")
     g.node("chText", "toString")
     g.node("sceneKey", "format", format="CH0{a}_{b}")   # script.sceneKey, e.g. CH01_S02 (chapters 1-9)
@@ -786,8 +852,21 @@ def gen_dialogue() -> Graph:
             g.mget("cur", "dlgState", g.k("row"))
             g.x("from", "cur + 1")
     g.edge("from", "next.from")
+    # A debate / warmup step (script.cue): the `pre` lines before the debate screen, the lines of world.debCue
+    # (post / postWin / postLose, written by debate_ui) after it.
+    g.toggle("postMode")
+    g.sel("cueVal", "postMode.value", "world.debCue", g.k("pre"))
+    for nm in ("dfirst", "dnext"):
+        g.node(nm, "atrium.table.find", table="script", column="sceneKey", filterColumn="cue",
+               filters=json.dumps(playable))
+        g.edge("sceneKey.out", f"{nm}.value")
+        g.edge("cueVal", f"{nm}.filterValue")
+        g.put(nm, f"{nm}.row")
+    g.edge("from", "dnext.from")
     g.toggle("atBegin")
-    g.sel("pick", "atBegin.value", "first", "next")
+    g.sel("pickV", "atBegin.value", "first", "next")
+    g.sel("pickD", "atBegin.value", "dfirst", "dnext")
+    g.sel("pick", "isDebK_t", "pickD", "pickV")
     g.x("pickOk", "pick >= 0")
     g.x("pickNo", "pick < 0")
 
@@ -797,19 +876,38 @@ def gen_dialogue() -> Graph:
     g.edge("isVn.out", "beginGate.guard")
     g.edge("world.stepBegin", "beginGate.go")
     resBegin = g.when("resBeginG", "world.resultLines", "isRes.out")
+    debBegin = g.when("debBeginG", "world.stepBegin", "isDebK_t")
+    postBegin = g.when("postBeginG", "world.debEnd", "isDebK_t")
     g.gate("advGate")
     g.edge("vnOrRes.truth", "advGate.guard")
     g.edge("ui#vn.advance", "advGate.go")
+    g.edge(debBegin, "postMode.setFalse")
+    g.edge(postBegin, "postMode.setTrue")
     g.edge("beginGate.changed", "atBegin.setTrue")
     g.edge(resBegin, "atBegin.setTrue")
+    g.edge(debBegin, "atBegin.setTrue")
+    # the lines after a debate: the vn comes back first (world.vnShow reaches main next tick), the first line is
+    # shown on a timer in that next tick, so it is never written while the debate screen is still up
+    g.x("dfirstOk", "dfirst >= 0")
+    g.edge(g.when("postShowG", g.merge("postShowM", postBegin), "dfirstOk_t"), "world.vnShow")
+    postStart, postTick = g.timer("postTimer")
+    g.edge(postBegin, postStart)
+    g.edge(postTick, "atBegin.setTrue")
     g.edge("advGate.changed", "atBegin.setFalse")
     g.node("show", "merge")
     g.edge("beginGate.changed", "show.in")
     g.edge(resBegin, "show.in")
+    g.edge(debBegin, "show.in")
+    g.edge(postTick, "show.in")
     g.edge("advGate.changed", "show.in")
     shown = g.when("showGate", "show.out", "pickOk_t")
     over = g.when("overGate", "show.out", "pickNo_t")
-    g.edge(over, "world.stepDone")
+    # no lines after the debate: the step ends (on the timer's tick)
+    g.n("postModeN", "postMode.value")
+    g.x("overDone", "!isDebK || postModeN")
+    g.x("overGo", "isDebK && !postModeN")
+    g.edge(g.when("overDoneG", over, "overDone_t"), "world.stepDone")
+    g.edge(g.when("overGoG", over, "overGo_t"), "world.debGo")
     g.node("disp", "filter", op="sample")
     g.edge("pick", "disp.in")
     g.edge(shown, "disp.trigger")
@@ -960,6 +1058,9 @@ def gen_investigate() -> Graph:
     g.mget("sc", "invState", g.k("sc"))                # scene index (Ch.3 has three scenes)
     g.mget("popOpenN", "invState", g.k("pop"))
     popOpen = g.b("popOpen", "popOpenN")
+    g.mget("pl", "invState", g.k("pl"))                # the popup's reaction line shown (0-based)
+    g.mget("msgSt", "invState", g.k("msg"))            # end messages: 1 the rescue shown, 2 the missed cards shown
+    g.mget("endArm", "invState", g.k("arm"))           # 結束蒐證 pressed once (the warning is up)
     bookNew = g.counter("bookNew", initial=0)
 
     def put_state(name: str, pulse: str, key: str, value: str) -> None:
@@ -971,15 +1072,18 @@ def gen_investigate() -> Graph:
     g.x("canEndN", "neededN == 0")
     g.x("inputOk", "!popOpenN && !bookOpenN")
 
-    hint = Mux(g, "hint", ["key"])
-    popup = Mux(g, "pop", ["kind", "title", "body", "grade"])
+    hint = Mux(g, "hint", ["key", "left"])
+    # spot: the clicked spot (its reaction lines); msg: 0 a spot, 1 the rescue, 2 the missed cards, 3 none missed;
+    # n: the missed cards; r0..: the rescued cards (names in MSG_INV_RESCUE)
+    popup = Mux(g, "pop", ["kind", "title", "body", "grade", "spot", "msg", "n", "r0", "r1", "r2"])
+    NO_MSG = {"spot": g.k(""), "msg": g.k(0), "n": g.k(0), "r0": g.k(""), "r1": g.k(""), "r2": g.k("")}
     initStart, initTick = g.timer("initTimer")
     bookStart, bookTick = g.timer("bookTimer")
 
     # ---- step begin: clear the case, cards obtained in the event scenes (evidence.obtain = event), the police
     # report (01-systems §3.1: trust >= 3 gives the autopsy card revealed), ticks, charges; the rest next tick.
     for coll in ("held", "appraised", "spotSeen", "toFind", "needed", "oppHand", "notes", "newCards", "spotsHere",
-                 "caseSpots"):
+                 "caseSpots", "visSpots"):
         typ = "atrium.map.clear" if COLLECTIONS[coll]["kind"] == "map" else "atrium.coll.clear"
         g.node(f"clr_{coll}", typ, name=coll)
         g.edge(begin, f"clr_{coll}.trigger")
@@ -988,6 +1092,7 @@ def gen_investigate() -> Graph:
                                                             text="casePolice"))
     g.edge(begin, g.eff("addSpots", "atrium.coll.addAll", "caseSpots", text="caseSpotsText"))
     g.edge(begin, g.eff("clr_invState", "atrium.map.clear", "invState"))
+    g.edge(begin, g.eff("clr_invStr", "atrium.map.clear", "invStr"))
     put_state("ticksSet", begin, "ticks", "ticksInit")
     g.edge(begin, g.eff("apprSet", "atrium.map.set", "caseNum", key=g.k("appr"), value="apprInit"))
     g.edge(begin, "bookNew.reset")
@@ -995,7 +1100,7 @@ def gen_investigate() -> Graph:
     g.fmt("openKey", "ART_OPEN_CH0{a}", "ch")
     g.x("noReport", "policeCh && !policeOn")
     g.sel("openLine", "noReport_t", g.k("ART_NO_REPORT"), "openKey")
-    hint.add(begin, {"key": "openLine"})
+    hint.add(begin, {"key": "openLine", "left": g.k(0)})
     g.edge(begin, initStart)
 
     # ---- next tick: what the spots can still give (toFind; required ones in `needed`), then the first scene.
@@ -1010,6 +1115,9 @@ def gen_investigate() -> Graph:
     g.n("si_gold", g.contains("si_goldC", "golden", "si_req"))
     g.tget("si_required", "flowCard", "required", g.tfind("si_crow", "flowCard", "id", "si_yield"), "number")
     g.n("si_noReq", g.cmp("si_noReqC", "si_req", g.k(""), "eq"))
+    g.x("si_vis", "si_noReq || !si_gold")
+    g.edge(g.when("si_visG", "spotEach.each", "si_vis_t"), g.eff("si_visA", "atrium.coll.add", "visSpots",
+                                                                 value="si"))
     g.x("si_find", "si_type > 0 && (si_noReq || !si_gold) && !si_held")
     g.x("si_need", "si_find && si_required")
     g.edge(g.when("si_findG", "spotEach.each", "si_find_t"), g.eff("si_add", "atrium.coll.add", "toFind",
@@ -1025,7 +1133,7 @@ def gen_investigate() -> Graph:
     g.edge(g.cmp("navPrev", "sc", g.k(0), "gt"), "ui#investigate.nav_prev")
     g.x("lastScene", "caseScenes - 1")
     g.edge(g.cmp("navNext", "sc", "lastScene", "lt"), "ui#investigate.nav_next")
-    g.edge(g.k(""), "ui#investigate.area_name")   # no scene-name keys yet (docs/flows.md §7)
+    g.edge(g.text("areaName", g.tget("sceneName", "flowScene", "nameKey", scrow)), "ui#investigate.area_name")
     spots_list = g.ui_list("spotsList", "ui.investigate.spots", "spotsHere",
                            {"id": "key", "name": tref("flowSpot", "id", "nameKey"),
                             **{c: tref("flowSpot", "id", c) for c in ("x", "y", "w", "h", "type")},
@@ -1057,6 +1165,7 @@ def gen_investigate() -> Graph:
     g.x("scDown", "sc - 1")
     put_state("navIncS", g.when("navInc", nav, "navIncN_t"), "sc", "scUp")
     put_state("navDecS", g.when("navDec", nav, "navDecN_t"), "sc", "scDown")
+    put_state("navArmS", nav, "arm", g.k(0))
     navStart, navTick = g.timer("navTimer")
     g.edge(nav, navStart)
     g.edge(navTick, "rebuild.in")
@@ -1068,16 +1177,21 @@ def gen_investigate() -> Graph:
     g.tget("c_type", "flowSpot", "type", crow, "number")
     g.tget("c_yield", "flowSpot", "yield", crow)
     g.tget("c_name", "flowSpot", "nameKey", crow)
-    g.tget("c_note", "flowSpot", "noteKey", crow)
+    g.tget("c_note0", "flowSpot", "noteKey", crow)
+    g.tget("c_report", "flowSpot", "reportNote", crow)
     card_values(g, "cy", "c_yield")
     g.n("c_seen", g.mhas("c_seenC", "spotSeen", "spot"))
     g.n("c_held", g.contains("c_heldC", "held", "c_yield"))
     g.x("c_costs", "!c_seen")
     # A card already held (event cards, the police report) is not obtained again: its spot shows the card as
     # information. Visited spots replay for free; the first visit of any spot costs one tick (F5, F6).
-    g.x("c_obtain", "c_type > 0 && !c_held")
-    g.x("c_kind", "c_type == 0 ? 1 : c_obtain ? (c_type == 2 ? 3 : 2) : 1")
-    g.x("c_inspect", "c_type == 0")
+    # With the police report (ruling F6, trust >= 3) a spot with a report note (HS_CH03_01) only shows that note.
+    g.n("c_hasRep", g.cmp("c_hasRepC", "c_report", g.k(""), "ne"))
+    g.x("c_rep", "policeOn && c_hasRep")
+    g.sel("c_note", "c_rep_t", "c_report", "c_note0")
+    g.x("c_obtain", "c_type > 0 && !c_held && !c_rep")
+    g.x("c_inspect", "c_type == 0 || c_rep")
+    g.x("c_kind", "c_inspect ? 1 : c_obtain ? (c_type == 2 ? 3 : 2) : 1")
     g.sel("c_title", "c_inspect_t", "c_name", "cy_nameKey")
     g.sel("c_body", "c_inspect_t", "c_note", "cy_descKey")
     g.x("clickOkN", "inputOk && !outOfTime")
@@ -1092,28 +1206,47 @@ def gen_investigate() -> Graph:
         g.edge(obtain, g.eff(f"c_do_{coll}", f"atrium.coll.{typ}", coll, value="c_yield"))
     g.edge(obtain, "bookNew.increment")
     g.edge(g.when("c_noteG", click, "c_inspect_t"), g.eff("c_noteAdd", "atrium.coll.add", "notes", value="c_note"))
-    popup.add(click, {"kind": "c_kind", "title": "c_title", "body": "c_body", "grade": "cy_grade"})
+    popup.add(click, {"kind": "c_kind", "title": "c_title", "body": "c_body", "grade": "cy_grade",
+                      **NO_MSG, "spot": "spot"})
     put_state("c_popS", click, "pop", g.k(1))
+    put_state("c_plS", click, "pl", g.k(0))
+    g.edge(click, g.eff("c_spotS", "atrium.map.set", "invStr", key=g.k("spot"), value="spot"))
+    put_state("c_armS", click, "arm", g.k(0))
     # Arthur's line after the click (ticks read before it: 1 = time out, 4 = 3 left) (§1.3 ART_TIME_LOW), a key /
     # story / substitute card obtained; none in Ch.1, where Arthur is not the assistant yet (§1.11).
     g.x("c_hint", "ch == 1 ? 0 : (lim && c_costs && ticks == 1) ? 1 : (lim && c_costs && ticks == 4) ? 2 : "
                   "c_obtain ? (cy_grade == 1 ? 3 : cy_grade == 2 ? 4 : cy_grade == 4 ? 5 : 0) : 0")
     g.lookup("c_hintKey", ["", "ART_TIME_OUT", "ART_TIME_LOW", "ART_FOUND_KEY", "ART_FOUND_PLOT", "ART_SUB_FOUND"],
              "c_hint")
-    hint.add(g.when("c_hintG", g.merge("c_hintM", click), "c_hint_t"), {"key": "c_hintKey"})
+    hint.add(g.when("c_hintG", g.merge("c_hintM", click), "c_hint_t"), {"key": "c_hintKey", "left": g.k(0)})
     g.edge(click, spots_list)
 
-    # ---- popup closed. Out of ticks: first the required-card rescue (§1.7 ART_RESCUE, shown as an obtained card),
-    # then the end of the investigation.
+    # ---- popup clicked: the spot's next reaction line (hotspots.lines, in order), or closed after the last one.
+    # (the popup's spot is kept in invStr too: the gates may not read the popup's own outputs, rule 2)
+    g.mget("s_spot", "invStr", g.k("spot"))
+    g.tget("s_nLines", "flowSpot", "nLines", g.tfind("s_row", "flowSpot", "id", "s_spot"), "number")
+    g.n("s_hasSpot", g.cmp("s_hasSpotC", "s_spot", g.k(""), "ne"))
+    g.x("moreN", "s_hasSpot && msgSt == 0 && pl + 1 < s_nLines")
+    g.x("lastN", "!moreN")
     dismiss = g.when("dismissGate", g.when("dismissInv", "ui#investigate.dismiss", isInv), popOpen)
-    put_state("d_popS", dismiss, "pop", g.k(0))
-    g.x("rescueN", "outOfTime && neededN > 0")
-    rescue = g.when("rescueGate", dismiss, "rescueN_t")
-    g.cget("rc", "needed", g.k(0))
-    card_values(g, "rcv", "rc")
-    popup.add(rescue, {"kind": g.k(2), "title": "rcv_nameKey", "body": "rcv_descKey", "grade": "rcv_grade"})
-    hint.add(rescue, {"key": g.k("ART_RESCUE")})
+    adv = g.when("advGate", dismiss, "moreN_t")
+    close = g.when("closeGate", dismiss, "lastN_t")
+    g.x("plNext", "pl + 1")
+    put_state("a_plS", adv, "pl", "plNext")
+    advStart, advTick = g.timer("advTimer")       # the next line is read back next tick, then line_seq moves
+    g.edge(adv, advStart)
+    put_state("d_popS", close, "pop", g.k(0))
+    put_state("d_plS", close, "pl", g.k(0))
+    g.edge(close, g.eff("d_spotS", "atrium.map.set", "invStr", key=g.k("spot"), value=g.k("")))
+    # Out of ticks: first the required-card rescue (§1.7: ART_RESCUE, MSG_INV_RESCUE with the cards), then the end
+    # of the investigation.
+    g.x("rescueN", "outOfTime && neededN > 0 && msgSt == 0")
+    rescue = g.when("rescueGate", close, "rescueN_t")
+    rc = [g.cget(f"rc{i}", "needed", g.k(i)) for i in range(3)]
+    popup.add(rescue, {"kind": g.k(4), "title": g.k(""), "body": g.k(""), "grade": g.k(0),
+                       **NO_MSG, "msg": g.k(1), "r0": rc[0], "r1": rc[1], "r2": rc[2]})
     put_state("r_popS", rescue, "pop", g.k(1))
+    put_state("r_msgS", rescue, "msg", g.k(1))
     g.node("rescueEach", "atrium.coll.forEach", name="needed")
     g.edge(rescue, "rescueEach.trigger")
     for coll, typ in (("held", "add"), ("toFind", "remove"), ("newCards", "add")):
@@ -1121,26 +1254,54 @@ def gen_investigate() -> Graph:
     g.edge("rescueEach.each", "bookNew.increment")
     g.edge(rescue, g.eff("r_clear", "atrium.coll.clear", "needed"))
     finish = g.merge("finish")
-    g.x("timeoutN", "outOfTime && neededN == 0")
-    g.edge(g.when("timeoutEnd", dismiss, "timeoutN_t"), "finish.in")
+    g.x("timeoutN", "outOfTime && neededN == 0 && msgSt < 2")
+    g.edge(g.when("timeoutEnd", close, "timeoutN_t"), "finish.in")
+    # 結束蒐證 (§1.7): the first press warns in the hint bubble (Ch.2-3 WARN_INV_END with the ticks left, or
+    # WARN_INV_END_ZERO when every spot has been looked at; Ch.1, §1.11: SHF_C1_REMAIN while cards remain, none
+    # left: no warning), a second press ends; a spot click or an area change asks again.
     g.x("endOkN", "inputOk && canEndN")
-    g.edge(g.when("endGate", g.when("endInv", "ui#investigate.end", isInv), "endOkN_t"), "finish.in")
+    endP = g.when("endGate", g.when("endInv", "ui#investigate.end", isInv), "endOkN_t")
+    g.count("seenN", "spotSeen")
+    g.count("visN", "visSpots")
+    g.x("needWarn", "ch == 1 ? toFindN > 0 : 1")
+    g.x("warnIdx", "ch == 1 ? 0 : seenN >= visN ? 1 : 2")
+    warnKey = g.lookup("warnKey", ["SHF_C1_REMAIN", "WARN_INV_END_ZERO", "WARN_INV_END"], "warnIdx")
+    g.x("warnN", "needWarn && !endArm")
+    g.x("goN", "!needWarn || endArm")
+    warnP = g.when("warnGate", endP, "warnN_t")
+    put_state("w_armS", warnP, "arm", g.k(1))
+    hint.add(warnP, {"key": warnKey, "left": "ticks"})
+    g.edge(g.when("goGate", endP, "goN_t"), "finish.in")
     # End (§1.8): every card the spots could still give that the opponent can obtain goes to his hand (D4: hand +1,
-    # HP +10 each; applied by the debate); not in Ch.1 (chapters.missToHand). Then the step is done.
+    # HP +10 each; applied by the debate); not in Ch.1 (chapters.missToHand). Then MSG_INV_MISSED with their
+    # count (MSG_INV_MISSED_NONE for none) in the popup, and the step is done when it is closed; Ch.1: done now.
     g.node("missEach", "atrium.coll.forEach", name="toFind")
     g.edge(finish, "missEach.trigger")
     g.put("mi", "missEach.item")
     g.tget("mi_obt", "flowCard", "obtainable", g.tfind("mi_row", "flowCard", "id", "mi"), "number")
     g.x("mi_n", "mi_obt && missToHand")
     g.edge(g.when("mi_g", "missEach.each", "mi_n_t"), g.eff("mi_add", "atrium.coll.add", "oppHand", value="mi"))
-    g.edge(g.merge("finishDone", finish), "world.stepDone")
+    fin = g.merge("finishDone", finish)
+    g.x("withMsg", "missToHand != 0")
+    g.x("noMissMsg", "missToHand == 0")
+    g.edge(g.when("finNow", fin, "noMissMsg_t"), "world.stepDone")
+    missStart, missTick = g.timer("missTimer")
+    g.edge(g.when("finMsg", fin, "withMsg_t"), missStart)
+    g.count("handN", "oppHand")
+    g.x("missMsg", "handN > 0 ? 2 : 3")
+    popup.add(missTick, {"kind": g.k(4), "title": g.k(""), "body": g.k(""), "grade": g.k(0),
+                         **NO_MSG, "msg": "missMsg", "n": "handN"})
+    put_state("m_popS", missTick, "pop", g.k(1))
+    put_state("m_msgS", missTick, "msg", g.k(2))
+    g.x("msgDoneN", "msgSt == 2")
+    g.edge(g.when("msgDone", close, "msgDoneN_t"), "world.stepDone")
 
     # ---- Arthur's hint (ask_hint): cards still to find (§1.11); Ch.1 is Sherefox's own line.
     ask = g.when("askGate", g.when("askInv", "ui#investigate.ask_hint", isInv), "inputOk_t")
     g.x("askIdx", "ch == 1 ? (toFindN > 0 ? 1 : 2) : toFindN >= 4 ? 3 : toFindN >= 1 ? 4 : 5")
     g.lookup("askKey", ["", "SHF_C1_REMAIN", "SHF_C1_IDLE", "ART_REMAIN_MANY", "ART_REMAIN_FEW", "ART_REMAIN_NONE"],
              "askIdx")
-    hint.add(ask, {"key": "askKey"})
+    hint.add(ask, {"key": "askKey", "left": g.k(0)})
 
     # ---- evidence book (ui-contracts evbook): tabs, cards, notes, details, appraisal.
     g.node("bookState", "compare", op="eq")
@@ -1166,7 +1327,7 @@ def gen_investigate() -> Graph:
     g.edge("tab", "ui#evbook.tab")
     g.edge("apprLeft", "ui#evbook.appraise_left")
     line, said = appraisal(g, "ba", "bsel", g.when("bookAppr", "ui#evbook.appraise", isInv))
-    hint.add(said, {"key": line})
+    hint.add(said, {"key": line, "left": g.k(0)})
     g.edge(said, bookStart)
     # Cards of the current tab (bookList: id -> revealed): 0 case evidence (held, not story), 1 golden clues,
     # 2 private collection (held story cards).
@@ -1198,12 +1359,57 @@ def gen_investigate() -> Graph:
     g.edge("trustPort", "ui#investigate.trust")
     g.edge(bookNew, "ui#investigate.book_new")
     g.edge("canEndN_t", "ui#investigate.can_end")
-    g.edge(g.text("hintText", hint.out("key", g.k(""))), "ui#investigate.hint")
+    g.text("hintText", hint.out("key", g.k("")))
+    g.edge(g.textf("hintF", pattern="hintText.text", left=hint.out("left", g.k(0))), "ui#investigate.hint")
     g.edge(hint.seq, "ui#investigate.hint_seq")
     g.sel("popKind", popOpen, popup.out("kind", g.k(0)), g.k(0))
     g.edge("popKind", "ui#investigate.popup_kind")
     g.edge(g.text("popTitle", popup.out("title", g.k(""))), "ui#investigate.popup_title")
-    g.edge(g.text("popBody", popup.out("body", g.k(""))), "ui#investigate.popup_body")
+    g.put("p_spot", popup.out("spot", g.k("")))
+    g.put("p_msg", popup.out("msg", g.k(0)))
+    prow = g.tfind("p_row", "flowSpot", "id", "p_spot")
+    g.tget("p_nLines", "flowSpot", "nLines", prow, "number")
+    g.n("p_hasSpot", g.cmp("p_hasSpotC", "p_spot", g.k(""), "ne"))
+    g.x("moreD", "p_hasSpot && p_msg == 0 && pl + 1 < p_nLines")
+    # the body: the spot's text, or the end message (MSG_INV_RESCUE names the rescued cards, joined by UI_TAG_SEP)
+    g.text("popBodyK", popup.out("body", g.k("")))
+    sep = g.text("rsSep", g.k("UI_TAG_SEP"))
+    names = []
+    for i in range(3):
+        rid = popup.out(f"r{i}", g.k(""))
+        g.text(f"rsName{i}", g.tget(f"rsKey{i}", "flowCard", "nameKey", g.tfind(f"rsRow{i}", "flowCard", "id", rid)))
+        if i == 0:
+            names.append(f"rsName{i}")
+        else:
+            has = g.cmp(f"rsHas{i}", rid, g.k(""), "ne")
+            names.append(g.sel(f"rsPart{i}", has, g.fmt(f"rsSp{i}", "{a}{b}", sep, f"rsName{i}"), g.k("")))
+    g.fmt("rsNames", "{a}{b}{c}", *names)
+    g.textf("rescueT", key="MSG_INV_RESCUE", name="rsNames")
+    g.textf("missedT", key="MSG_INV_MISSED", n=popup.out("n", g.k(0)))
+    g.text("noneT", g.k("MSG_INV_MISSED_NONE"))
+    g.x("pmIs1", "p_msg == 1")
+    g.x("pmIs2", "p_msg == 2")
+    g.x("pmIs3", "p_msg == 3")
+    body = g.sel("popBody3", "pmIs3_t", "noneT", "popBodyK")
+    body = g.sel("popBody2", "pmIs2_t", "missedT", body)
+    body = g.sel("popBody", "pmIs1_t", "rescueT", body)
+    g.edge(body, "ui#investigate.popup_body")
+    # the reaction line under the body (the rescue: Arthur's ART_RESCUE)
+    lk, sk = g.k(""), g.k("")
+    for i in range(max_spot_lines()):
+        g.tget(f"p_line{i}", "flowSpot", f"line{i}", prow)
+        g.tget(f"p_spk{i}", "flowSpot", f"spk{i}", prow)
+        at = g.cmp(f"p_at{i}", "pl", g.k(i))
+        lk = g.sel(f"p_lk{i}", at, f"p_line{i}", lk)
+        sk = g.sel(f"p_sk{i}", at, f"p_spk{i}", sk)
+    lk = g.sel("p_lineKey", "pmIs1_t", g.k("ART_RESCUE"), g.sel("p_lk", "p_hasSpotC", lk, g.k("")))
+    sk = g.sel("p_spkKey", "pmIs1_t", g.k("SPK_ARTHUR"), g.sel("p_sk", "p_hasSpotC", sk, g.k("")))
+    g.edge(g.text("popLine", lk), "ui#investigate.popup_line")
+    g.edge(g.text("popSpk", sk), "ui#investigate.popup_speaker")
+    g.edge("moreD_t", "ui#investigate.popup_more")
+    g.counter("advN", initial=0)                # each popup (its first line) and each next line
+    g.edge(advTick, "advN.increment")
+    g.edge(g.x("plSeqV", "popSeq + advN"), "ui#investigate.popup_line_seq")
     g.edge(popup.out("grade", g.k(0)), "ui#investigate.popup_grade")
     g.edge(popup.seq, "ui#investigate.popup_seq")
     return g
@@ -1574,7 +1780,12 @@ def gen_board() -> Graph:
     g.edge(g.text("oppName", "oppSpk"), "ui#board.opponent_name")
     g.sel("condKey0", g.cmp("phaseMid", "phase", g.k("mid")), g.k("UI_BOARD_COND_MID"), g.k("UI_BOARD_COND_EARLY"))
     g.sel("condKey", g.cmp("phaseLate", "phase", g.k("late")), g.k("UI_BOARD_COND_LATE"), "condKey0")
-    g.edge(g.text("condText", "condKey"), "ui#board.threshold_text")
+    # UI_BOARD_THRESHOLD「{stage}論破：{condition}」: the stage name (UI_STAGE_*) and its condition
+    g.sel("stageKey0", "phaseMid", g.k("UI_STAGE_MID"), g.k("UI_STAGE_EARLY"))
+    g.sel("stageKey", "phaseLate", g.k("UI_STAGE_LATE"), "stageKey0")
+    g.textf("condText", key="UI_BOARD_THRESHOLD", stage=g.text("stageText", "stageKey"),
+            condition=g.text("condPart", "condKey"))
+    g.edge("condText", "ui#board.threshold_text")
     g.text("remarkText", remark.out("key", g.k("")))
     g.edge(g.textf("remarkF", pattern="remarkText.text", n="warnNL", left="warnLeftL"), "ui#board.remark")
     g.edge(remark.seq, "ui#board.remark_seq")

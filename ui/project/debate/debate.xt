@@ -3852,6 +3852,9 @@
     .node.s1 .nk-1 {
       padding-left: 4px;
     }
+    .node.s4 {
+      transform: translateY(26px) rotate(5deg);
+    }
     .crack {
       display: none;
     }

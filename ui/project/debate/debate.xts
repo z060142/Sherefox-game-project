@@ -286,7 +286,8 @@
 }
 
 .node.s4 {
-  animation: shatter 900ms ease-in 300ms forwards;
+  opacity: 0;
+  transition: opacity 900ms ease-in 300ms, transform 900ms ease-in 300ms;
 }
 
 .node.s4 .strike {
@@ -335,17 +336,6 @@
   }
   to {
     transform: scaleX(1) rotate(-5deg);
-  }
-}
-
-@keyframes shatter {
-  from {
-    opacity: 1;
-    transform: translateY(0px) rotate(0deg);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(26px) rotate(5deg);
   }
 }
 

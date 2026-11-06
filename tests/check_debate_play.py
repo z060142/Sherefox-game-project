@@ -84,7 +84,8 @@ def items(colls, name):
 class Play:
     """The trace cut into debate rounds: per lock, the reveal and the state shown when the next round starts."""
 
-    def __init__(self, events) -> None:
+    def __init__(self, events, start: int = 0) -> None:
+        """`start`: only the ticks from then on (a recording that plays an earlier debate first)."""
         self.tr = cp.Trace(events)
         self.writes = [(t, rest) for t, kind, rest in events if kind == "write"]
         self.rounds = []      # (reveal (me, opp), ports when the next round is shown, nodes json then)
@@ -94,6 +95,9 @@ class Play:
         self.papers = []      # paper result_head when a paper step shows
         prev, reveal = {}, None
         for t, ports, vis, ch in self.tr.ticks:
+            if t < start:
+                prev = {"vis": vis}
+                continue
             if ch.get("cutin.big_seq", 0) > 0:
                 self.cuts.append(("big", ports.get("cutin.big")))
             if ch.get("cutin.stamp_seq", 0) > 0:
@@ -156,6 +160,17 @@ def scene_lines(chapter: int, scene: str, branch: str) -> list:
             and r["playable"] and r["branch"] == branch]
 
 
+def cue_lines(chapter: int, scene: str, cue: str) -> list:
+    """The debate scene's lines played on the vn around the debate (script.cue)."""
+    return [ZH[r["text"]] for r in gd.gc.load("script") if r["chapter"] == chapter and r["scene"] == scene
+            and r["playable"] and r["cue"] == cue]
+
+
+def in_order(seq: list, want: list) -> bool:
+    """`want` is a contiguous run of `seq`."""
+    return any(seq[i:i + len(want)] == want for i in range(len(seq) - len(want) + 1))
+
+
 def check_route(fail, label: str, play: Play, route_name: str) -> None:
     route = next(rt for rt in R.ROUTES if rt.name == route_name)
     _, _, (exp,) = R.build([route])
@@ -205,9 +220,13 @@ def main() -> int:
     check_route(fail, "ch1_debate", play, "ch1_route")
     fail.check([p["debate.counter_text"] for _, p, _ in play.rounds[:2]] ==
                [zf("UI_CH1_CONTRA", n=1, r=2), zf("UI_CH1_CONTRA", n=2, r=4)], "ch1_debate: contradiction counter")
-    check_result(fail, "ch1_debate", play, 0, 1, "ART_RES_CLEAN", "SCR_CH01_S05_L028")
-    want = scene_lines(1, "S06", "win") + scene_lines(1, "S07", "")
-    fail.check(play.lines[-len(want):] == want, "ch1_debate: the result scene's win lines and the notes")
+    # Arthur's confession (S05 L027-L035, script.cue postWin) plays on the vn before the result, so the result does
+    # not show his closing line again (flowDebCase.winPlayed)
+    check_result(fail, "ch1_debate", play, 0, 1, "ART_RES_CLEAN", "")
+    fail.check(in_order(play.lines, cue_lines(1, "S05", "pre")), "ch1_debate: the opening line before the debate")
+    want = cue_lines(1, "S05", "postWin") + scene_lines(1, "S06", "win") + scene_lines(1, "S07", "")
+    fail.check(len(want) > 12 and play.lines[-len(want):] == want,
+               "ch1_debate: the confession, the result scene's win lines and the notes")
     fail.check(play.papers[-1:] == [ZH["NEWS_01_END"]], f"ch1_debate: Ch.2 paper strip {play.papers[-1:]}")
 
     # Ch.2: the recommended route against the scripted opponent (tests/play_harness)
@@ -216,12 +235,40 @@ def main() -> int:
     common(fail, "ch2_debate", err)
     check_route(fail, "ch2_debate", play, "ch2_route")
     check_result(fail, "ch2_debate", play, 0, 1, "ART_RES_CLEAN", "SCR_CH02_S05_L046")
-    want = scene_lines(2, "S06", "win") + scene_lines(2, "S07", "")
-    fail.check(play.lines[-len(want):] == want, "ch2_debate: the result scene's win lines and the notes")
+    fail.check(in_order(play.lines, cue_lines(2, "S05", "pre")), "ch2_debate: the opening line before the debate")
+    want = cue_lines(2, "S05", "postWin") + scene_lines(2, "S06", "win") + scene_lines(2, "S07", "")
+    fail.check(len(want) > 2 and play.lines[-len(want):] == want,
+               "ch2_debate: Wolfhart's cup, the result scene's win lines and the notes")
     fail.check(play.papers[-1:] == [ZH["NEWS_02_WIN"]], f"ch2_debate: Ch.3 paper strip {play.papers[-1:]}")
     fail.check("E02_08" in items(colls, "held"), "ch2_debate: E02_08 not granted (ruling F3)")
     fail.check("G-01" in items(colls, "golden"), "ch2_debate: G-01 missing")
     fail.check(play.list_write("result document.costs")[-1:] == [[]], "ch2_debate: costs on a win")
+
+    # Ch.3: Ch.2 won first (G-01 earned), then the warmup, the three scenes, the ref board and ch3_route against the
+    # scripted opponent (tests/play_harness)
+    events, err, colls = run("ch3_debate", gd.HARNESS, ticks["ch3_debate"])
+    full = Play(events)
+    play = Play(events, start=ticks["ch3_debate_from"])
+    common(fail, "ch3_debate", err)
+    check_route(fail, "ch3_debate", play, "ch3_route")
+    check_result(fail, "ch3_debate", play, 0, 1, "ART_RES_CLEAN", "SCR_CH03_S06_L045", trust=(3, 4))
+    fail.check(in_order(full.lines, cue_lines(3, "S04", "pre")) and in_order(full.lines, cue_lines(3, "S04", "post")),
+               "ch3_debate: the warmup's opening and wrap-up lines")
+    fail.check(in_order(full.lines, cue_lines(3, "S06", "pre")), "ch3_debate: the opening line before the debate")
+    want = scene_lines(3, "S07", "win") + scene_lines(3, "S08", "")
+    fail.check(play.lines[-len(want):] == want, "ch3_debate: the result scene's win lines and the notes")
+    fail.check(play.papers[-1:] == [ZH["NEWS_03_WIN"]], f"ch3_debate: final paper strip {play.papers[-1:]}")
+    areas = []
+    for _, p, vis, ch in full.tr.ticks:
+        a = p.get("investigate.area_name")
+        if "investigate" in vis and a and (not areas or areas[-1] != a):
+            areas.append(a)
+    want_areas = [ZH[k] for k in ("SCENE_CH03_BOILER", "SCENE_CH03_DECK", "SCENE_CH03_DOCK")]
+    fail.check(areas[-3:] == want_areas, f"ch3_debate: scene names {areas}")
+    msgs = [p.get("investigate.popup_body") for _, p, _, ch in full.tr.ticks if ch.get("investigate.popup_kind") == 4]
+    fail.check(msgs == [ZH["MSG_INV_MISSED_NONE"]] * 2, f"ch3_debate: missed-cards messages {msgs}")
+    fail.check("G-01" in items(colls, "golden"), "ch3_debate: G-01 missing")
+    fail.check(items(colls, "oppHand") == [], f"ch3_debate: opponent hand {items(colls, 'oppHand')}")
 
     # Ch.2 lost (observe every round, the seeded AI), retried, lost again
     events, err, colls = run("ch2_lose", ROOT, ticks["ch2_lose"])

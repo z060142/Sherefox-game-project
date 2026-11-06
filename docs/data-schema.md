@@ -1,6 +1,6 @@
 # 資料表規格（Ch.1～3 原型）
 
-狀態：M2 草案 2026-11-06（`papers` 欄位重整、`script.sceneKey`／`playable`）。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
+狀態：M5b 2026-11-06（`script.cue`；G-01／S-01 的說明與 G-01 的固定理由）。M2 草案 2026-11-06（`papers` 欄位重整、`script.sceneKey`／`playable`）。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
 
 ## 0. 總則
 
@@ -18,7 +18,7 @@
 
 | 來源 | 內容 |
 |---|---|
-| `source/localization/` | 在地化包（2026-11-06 第五批：1681 個鍵，含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、`UI_PAPER_*`、標題畫面 `UI_TITLE_*`／`UI_CHAP_NO`；報紙 `_SUB` 文字已去掉「第二版：」「內文：」標籤）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
+| `source/localization/` | 在地化包（2026-11-06 第六批：1696 個鍵，加上場景名 `SCENE_CH0x_*`、`UI_TAG_SEP`、`UI_STAGE_*`、`HS_CH03_01_NOTE_REPORT`、`G-01_DESC`／`G-01_REASON`／`S-01_DESC`、`UI_DEB_NOSOPH_REASON`、`UI_DEB_PREVIEW_HACHIKU`；第五批起含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、`UI_PAPER_*`、標題畫面 `UI_TITLE_*`／`UI_CHAP_NO`；報紙 `_SUB` 文字已去掉「第二版：」「內文：」標籤）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
 | `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
 | `source/tags/tags_ch01-03.csv` | 每張證物卡與每個節點的「類別：值」標籤（§0.4），抄自 10-cases 各章「標籤值」表 |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
@@ -150,12 +150,15 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | banner | string | 演出行中的書法大字／印章：`【大字：X】`→ `CUT_*`、`【印：X】`→ `STAMP_*`（以 ui_strings 中 zh-TW 文字對應；`破竹×n` 取 `STAMP_HACHIKU`），多值依出現順序 |
 | inactive | bool | 在地化備註寫「Not triggered in this chapter」或「not yet unlocked」（本章不會觸發，保留供重玩） |
 | playable | bool | 對白播放器會顯示的行：`kind = line` 且 `inactive = false` 且不在 `S90`（論戰台詞庫由 `tells` 表供論戰使用，不逐行播放）。規則見下 |
+| cue | string | 論戰／熱身場景中在 vn 播放的時機（`docs/flows.md` §4.2）：`pre` 論戰畫面開啟之前；`post` 論戰結束後、結算之前（不論結果）；`postWin`／`postLose` 同上，只在勝利／其他結果（含 Ch.1 未達成）時；空白＝不在 vn 播放（推薦路線的逐字稿）。其他場景一律空白。規則見下 |
 | bg | string | 這行的背景 id（`vn.bg`）：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`，空字串＝新聞紙底。來自演出檔（§3.1） |
 | slot_l、slot_c、slot_r | string | 左／中／右立繪的角色 id（`vn.slot_*`），空字串＝無人。來自演出檔 |
 | focus | number | 說話位置：0 無（旁白、系統、報紙）、1 左、2 中、3 右；指向的位置一定有人。來自演出檔 |
 | style | number | 文字樣式（`vn.style`）：0 對白、1 亞瑟筆記旁白、2 系統／報紙／證物描述等非人物文字。來自演出檔 |
 
 `playable` 的規則只看 `kind`、`inactive` 與場景：`line`（含旁白、系統、報紙行；`style` 2 的非人物文字也照樣顯示，所以 `style` 不影響可播放）為 true；`heading`、`subheading`、`evidence`、`staging`、`branch`、`note` 為 false。分支行（`branch` 有值）仍是 true，由播放器依結果另行篩選；`S90` 一律 false（其中的 `inactive` 行都在 `S90`）。哪一種畫面播放某行由它所屬場景的步驟種類決定（`steps.kind`：vn、result、debate…），不由本欄決定。
+
+`cue` 的規則（`tools/build_data.py` `script_cues`）：論戰與熱身場景的可播放列，從場景開頭到第一列「回合數 ≥ 1 或玩家行動（`act` 為 present、rebut、rebutBreak、solid、solidBreak、sophistry、observe）」之前是 `pre`（Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002；Ch.3 S04 L002～L004：系統行、警督的誤判、亞瑟的鑑定後說明）。結束後的台詞依 20-script 以常數 `DEBATE_POST` 列出：Ch.1 S05 L027～L035 `postWin`（論破後亞瑟招認；敗北的另一支由 S06 的 lose 分支敘述）；Ch.2 S05 L041～L042 `postWin`（尾聲裡 Wolfhart 以咖啡杯擋下配重，只發生在尾聲反駁成功時；出錯牌是 L047 的另一句）；Ch.3 S04 L006～L009 `post`（警督收場；失誤 3 次時 Sherefox 會自己駁正，A-13，所以兩種結果都播）。常數指到的列必須全是可播放列、不能同時是 `pre`，否則是錯誤。
 
 不產生 `expr`（立繪表情）、`cmd`、`next`：劇本沒有寫明，不自行設計。`bg`、立繪與焦點、樣式由演出檔（§3.1）補上，劇本行文字與數量不因此改變。
 
@@ -180,7 +183,7 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | usable | string | 會出現在線索板／可參戰的章，多值 | 一般卡＝本章；G-01＝`3,12`（00-overview 黃金線索表） |
 | grade | string | `common`／`key`／`story`／`golden`／`substitute` | 在地化 `_NAME` 備註的 grade；與 10-cases 證物表交叉檢查 |
 | nameKey | string | 卡名 | `E.._NAME`；G-01 → `G-01`；S-01 → `G-01_SUB` |
-| descKey | string | 說明文字 | `E.._DESC`（黃金／替代沒有） |
+| descKey | string | 說明文字 | `E.._DESC`；黃金線索 `G-01_DESC`、替代證物 `S-01_DESC`（S-01 的名稱沿用 `G-01_SUB`） |
 | tagsKey | string | 標籤類別的顯示字串（例「物理・時間」） | `E.._TAGS` |
 | tags | string | 機器標籤，多值 | §0.4 |
 | hiddenTags | string | 要鑑定後才揭露的標籤（`tags` 的子集）；用 `appraise` 的鑑定揭露 | §0.4：標籤檔 `hidden`（10-cases 標籤值「需鑑定」欄，裁決 D8） |
@@ -189,7 +192,7 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | appraise | string | `none`／`medical`／`mechanical`／`dual` | 在地化 `_NAME` 備註 appraisal |
 | appraiseCost | number | 鑑定消耗次數 0／1／1／2 | 01-systems §1.5 |
 | appraisalKey | string | 鑑定後亞瑟的說明行（§2.8 appraisalText） | 劇本中備註含 `appraisal` 的行 |
-| reason0Key／reason1Key／reason2Key | string | 三個歸類理由的**顯示順序** | 見下 |
+| reason0Key／reason1Key／reason2Key | string | 三個歸類理由的**顯示順序** | 見下；G-01 只有 `reason0Key` ＝ `G-01_REASON`（固定理由，`correct` 仍是 −1）；S-01 沒有 |
 | correct | number | 正確理由在顯示順序中的位置 0～2；`-1`＝理由固定（黃金／替代，01-systems §2.3） | 見下 |
 | onBoard | bool | 會出現在線索板（劇情證物不會，§2.1） | grade |
 | strong | bool | 強攻 | 10-cases 明寫（E01_03 N3「強攻」、E03_04「強攻」）＋裁決 C1（E02_01）、C2（G-01） |
@@ -396,7 +399,7 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 
 ## 11. 字串表
 
-- `strings.json` 的全部 1681 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
+- `strings.json` 的全部 1696 個鍵原樣輸出（zh-TW 為空字串的 `*_SUB` 鍵照樣保留空字串）。
 - 新增（共 12 個）：
   - `SPK_*`（12 個）：劇本說話者欄的名稱，鍵＝`SPK_`＋英文說話者名稱大寫、非英數字元換成 `_`（例 `SPK_INSPECTOR_BASKERVILLE`、`SPK_NARRATION_ARTHURS_NOTES`）。演出、證物描述、分支、備註、場景標題這些偽說話者沒有鍵。
 - 標籤值（`TAG_*`）、小動作（`GESTURE_*`）、章名（`CHAP_0n_TITLE`）、尾聲與熱身主張（`CLM_CH0n_T1`、`CLM_CH03_W1`）都由在地化包提供，不再由建置產生。

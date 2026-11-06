@@ -121,6 +121,26 @@ def check_board_input(fail, label, colls, case, board) -> None:
                f"{label}: debBoardLink {items(colls, 'debBoardLink')} != {links}")
 
 
+def popup_lines(tr: cp.Trace) -> list:
+    """(speaker, line) of every reaction line shown under a popup (investigate.popup_line_seq), in order."""
+    return [(p.get("investigate.popup_speaker"), p.get("investigate.popup_line")) for _, p, _, ch in tr.ticks
+            if "investigate.popup_line_seq" in ch and p.get("investigate.popup_line")]
+
+
+def expected_popup_lines(spots: list[str], s: dict) -> list:
+    """The reaction lines of the spots in order (hotspots.lines: playable lines, no appraisal lines; narration has
+    no name plate)."""
+    script = {r["id"]: r for r in gen_case.load("script")}
+    hs = {h["id"]: h for h in gen_case.load("hotspots")}
+    out = []
+    for sid in spots:
+        for lid in [x for x in hs[sid]["lines"].split(",") if x]:
+            r = script[lid]
+            if r["kind"] == "line" and r["playable"] and not r["appraisal"]:
+                out.append((s[r["speaker"]] if r["focus"] else "", s[r["text"]]))
+    return out
+
+
 def remarks(tr: cp.Trace) -> list:
     """Board remarks in order (the first one, when the board step begins, is empty)."""
     return [ports.get("board.remark") for t, ports, vis, ch in tr.ticks if ch.get("board.remark_seq", 0) != 0]
@@ -146,6 +166,9 @@ def check_ch1(fail: cp.Failures, frames: Path | None) -> None:
                f"{label}: Ch.1 ticks / appraisals not hidden")
     hints = [p.get("investigate.hint") for _, p, _, ch in tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
     fail.check(hints == [s["ART_OPEN_CH01"], s["SHF_C1_IDLE"]], f"{label}: hints {hints}")
+    want_lines = expected_popup_lines([f"HS_CH01_{i:02d}" for i in range(1, 11)], s)
+    got_lines = popup_lines(tr)
+    fail.check(got_lines == want_lines, f"{label}: popup lines {got_lines} != {want_lines}")
     fail.check(sorted(items(colls, "held")) == [f"E01_0{i}" for i in range(1, 8)], f"{label}: held")
     fail.check(items(colls, "oppHand") == [], f"{label}: opponent hand {items(colls, 'oppHand')} (Ch.1: none)")
     drawer = lists(events, "board document.drawer")
@@ -163,7 +186,9 @@ def check_ch1(fail: cp.Failures, frames: Path | None) -> None:
     fail.check(remarks(tr)[-1:] == [s["ART_SOLID"]], f"{label}: remarks {remarks(tr)}")
     check_board_input(fail, label, colls, ch1_case(), ch1_board())
     fail.check(items(colls, "golden") == [], f"{label}: golden")
-    fail.check(cp.main_visible(tr.ticks[-1][2]) == {"debate"}, f"{label}: after the board: {tr.ticks[-1][2]}")
+    # the debate step opens with its scene's pre line on the vn (script.cue)
+    fail.check(cp.main_visible(tr.ticks[-1][2]) == {"vn"} and tr.last("vn.line") == s["SCR_CH01_S05_L002"],
+               f"{label}: after the board: {tr.ticks[-1][2]} {tr.last('vn.line')!r}")
     print(f"{label}: 10 spots, {len(kinds)} popups, chain E01_01-E01_04 solid, debBoard matches ref ch1_board"
           if not fail.items else f"{label}: done")
 
@@ -178,10 +203,20 @@ def check_ch2(fail: cp.Failures, frames: Path | None) -> None:
     tk = [ch["investigate.ticks"] for _, _, _, ch in tr.ticks if "investigate.ticks" in ch]
     fail.check(tk[-8:] == [8, 7, 6, 5, 4, 3, 2, 1], f"{label}: ticks {tk}")
     kinds = [ch["investigate.popup_kind"] for _, _, _, ch in tr.ticks if ch.get("investigate.popup_kind", 0) != 0]
-    fail.check(kinds == [2, 2, 2, 3, 2, 2, 1], f"{label}: popup kinds {kinds}")
+    fail.check(kinds == [2, 2, 2, 3, 2, 2, 1, 4], f"{label}: popup kinds {kinds}")
     hints = [p.get("investigate.hint") for _, p, _, ch in tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
-    want = [s["ART_OPEN_CH02"], s["ART_FOUND_KEY"], s["ART_TIME_LOW"], s["ART_APPR_MECH_DONE"], s["ART_REMAIN_FEW"]]
+    # the first press of 結束蒐證 warns with the ticks left (WARN_INV_END {left}), the second ends
+    want = [s["ART_OPEN_CH02"], s["ART_FOUND_KEY"], s["ART_TIME_LOW"], s["ART_APPR_MECH_DONE"], s["ART_REMAIN_FEW"],
+            s["WARN_INV_END"].replace("{left}", "1")]
     fail.check(hints == want, f"{label}: hints {hints}")
+    want_lines = expected_popup_lines(gen_case.CH2_SPOTS, s)
+    got_lines = popup_lines(tr)
+    fail.check(got_lines == want_lines, f"{label}: popup lines {got_lines} != {want_lines}")
+    # the missed-cards message (MSG_INV_MISSED {n}) in the popup before the board
+    msg = [p.get("investigate.popup_body") for _, p, _, ch in tr.ticks if ch.get("investigate.popup_kind") == 4]
+    fail.check(msg == [s["MSG_INV_MISSED"].replace("{n}", "1")], f"{label}: missed-cards message {msg}")
+    areas = {p.get("investigate.area_name") for _, p, v, _ in tr.ticks if "investigate" in v}
+    fail.check(s["SCENE_CH02_CLOCKSHOP"] in areas, f"{label}: area name {areas}")
     fail.check(any("evbook" in v for _, _, v, _ in tr.ticks), f"{label}: the evidence book was never shown")
     book = lists(events, "evbook document.cards")
     e01 = [c for _, rows in book for c in rows if c["id"] == "E02_01"]

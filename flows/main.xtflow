@@ -246,6 +246,36 @@
       }
     },
     {
+      "id": "sceneKey",
+      "type": "format",
+      "params": {
+        "format": "CH0{a}_{b}"
+      }
+    },
+    {
+      "id": "preRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "sceneKey",
+        "filters": "{\"playable\": \"true\", \"cue\": \"pre\"}"
+      }
+    },
+    {
+      "id": "hasPre",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "preRow >= 0"
+      }
+    },
+    {
+      "id": "noPre",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "preRow < 0"
+      }
+    },
+    {
       "id": "isEndTag",
       "type": "constant",
       "params": {
@@ -356,6 +386,50 @@
       "params": {
         "op": "eq"
       }
+    },
+    {
+      "id": "isDebN",
+      "type": "select"
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "isWarmN",
+      "type": "select"
+    },
+    {
+      "id": "debPre",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "(isDebN || isWarmN) && hasPre"
+      }
+    },
+    {
+      "id": "debNoPre",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "(isDebN || isWarmN) && noPre"
+      }
+    },
+    {
+      "id": "debPreG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "debNoPreG",
+      "type": "atrium.gate"
     },
     {
       "id": "card",
@@ -717,6 +791,26 @@
       "to": "world.stepBegin"
     },
     {
+      "from": "chapter.value",
+      "to": "sceneKey.a"
+    },
+    {
+      "from": "scene.value",
+      "to": "sceneKey.b"
+    },
+    {
+      "from": "sceneKey.out",
+      "to": "preRow.value"
+    },
+    {
+      "from": "preRow.row",
+      "to": "hasPre.preRow"
+    },
+    {
+      "from": "preRow.row",
+      "to": "noPre.preRow"
+    },
+    {
       "from": "kind.value",
       "to": "isEnd.a"
     },
@@ -785,20 +879,12 @@
       "to": "isDeb.b"
     },
     {
-      "from": "isDeb.true",
-      "to": "screen.to_debate"
-    },
-    {
       "from": "kind.value",
       "to": "isWarm.a"
     },
     {
       "from": "isWarmTag.out",
       "to": "isWarm.b"
-    },
-    {
-      "from": "isWarm.true",
-      "to": "screen.to_debate"
     },
     {
       "from": "kind.value",
@@ -813,8 +899,88 @@
       "to": "screen.to_result"
     },
     {
+      "from": "isDeb.out",
+      "to": "isDebN.cond"
+    },
+    {
+      "from": "K0.out",
+      "to": "isDebN.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "isDebN.b"
+    },
+    {
+      "from": "isWarm.out",
+      "to": "isWarmN.cond"
+    },
+    {
+      "from": "K0.out",
+      "to": "isWarmN.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "isWarmN.b"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "debPre.isDebN"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "debPre.isWarmN"
+    },
+    {
+      "from": "hasPre.value",
+      "to": "debPre.hasPre"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "debNoPre.isDebN"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "debNoPre.isWarmN"
+    },
+    {
+      "from": "noPre.value",
+      "to": "debNoPre.noPre"
+    },
+    {
+      "from": "world.debGo",
+      "to": "screen.to_debate"
+    },
+    {
+      "from": "world.vnShow",
+      "to": "screen.to_vn"
+    },
+    {
       "from": "world.resultLines",
       "to": "screen.to_vn"
+    },
+    {
+      "from": "debPre.value",
+      "to": "debPreG.cond"
+    },
+    {
+      "from": "rebegin.out",
+      "to": "debPreG.trigger"
+    },
+    {
+      "from": "debPreG.pass",
+      "to": "screen.to_vn"
+    },
+    {
+      "from": "debNoPre.value",
+      "to": "debNoPreG.cond"
+    },
+    {
+      "from": "rebegin.out",
+      "to": "debNoPreG.trigger"
+    },
+    {
+      "from": "debNoPreG.pass",
+      "to": "screen.to_debate"
     },
     {
       "from": "isEnd.true",

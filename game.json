@@ -288,6 +288,19 @@
     },
     "debRetry": {
       "type": "pulse"
+    },
+    "debGo": {
+      "type": "pulse"
+    },
+    "debEnd": {
+      "type": "pulse"
+    },
+    "debCue": {
+      "type": "string",
+      "initial": "post"
+    },
+    "vnShow": {
+      "type": "pulse"
     }
   },
   "input": {
@@ -733,6 +746,16 @@
       "kind": "map",
       "type": "bool",
       "capacity": 15
+    },
+    "visSpots": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "invStr": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 2
     }
   }
 }
