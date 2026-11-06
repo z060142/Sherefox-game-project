@@ -70,6 +70,20 @@ the harness copy); run from the repository root and pass `--game` with exactly t
 recording's game differs. The recordings carry no hash checkpoints (they are generated, not
 recorded), so give `--ticks` (printed by `uv run tests/gen_playthrough.py`).
 
+## Settings overlay
+
+```
+uv run tests/check_settings.py
+```
+
+It regenerates `tests/settings.atrec` (`tests/gen_playthrough.py` `settings`) and replays it with `--ports`: the
+title's Quit Game emits `title.quit` (a no-op headless; main feeds `atrium.app.quit` from it); the title's Settings
+opens the overlay, Esc closes it; on Ch.1's opening paper F1 opens it, Backspace closes it, Esc with no overlay open
+opens it and a click on the dimmed screen closes it (the paper stays on page 1); English / 繁體中文 flip the title's
+`lang_en` and `settings.lang_sel`, and `settings.current` follows the language; 大字譯名 goes off and on (a click on
+On while it is on sends nothing); every `res_options` write is the selected auto option only (`display.native*` are 0
+headless). It also checks the game.json `display` block and that the settings surface is modal, right below cutin.
+
 ## Investigation and clue board
 
 ```

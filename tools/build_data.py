@@ -1231,7 +1231,7 @@ TEXTF_KEYS = {
     "UI_BOARD_THRESHOLD": {"stage", "condition"}, "UI_DEB_PREVIEW": {"dmg", "mult", "shaken"},
     "UI_DEB_PREVIEW_HACHIKU": {"pct"}, "UI_DEB_PREVIEW_VS": {"action", "result"}, "UI_RES_READS": {"hit", "total"},
     "UI_NOTES_LOG_ROW": {"n", "tell", "mine", "theirs", "result"}, "UI_NOTES_RULE_COUNT": {"n"},
-    "UI_DEB_TELL_CANDIDATES": {"a", "b"},
+    "UI_DEB_TELL_CANDIDATES": {"a", "b"}, "UI_SET_RES_CURRENT": {"w", "h"},
 }
 # The M4c pipeline wrote these templates filled in as `<KEY>__<values>` keys; the UI project's tables still hold them.
 STALE_EXPANDED = set(TEXTF_KEYS) | {"MSG_DEB_SHAKEN_END"}

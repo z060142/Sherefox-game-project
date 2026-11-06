@@ -85,7 +85,7 @@
       "contentHash": "c9bd1334bb763015",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 45,
+      "line": 55,
       "outId": "kicker",
       "selfHash": "34ee05a2f36b589f",
       "sourceId": "Title.dc.html:1/0",
@@ -108,7 +108,7 @@
       "contentHash": "227ae75eeb864f11",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 51,
+      "line": 61,
       "outId": "lang-label",
       "selfHash": "655960d7639de8e6",
       "sourceId": "Title.dc.html:1/1/0",
@@ -128,7 +128,7 @@
       "contentHash": "6df6d8fe670e465c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 55,
+      "line": 65,
       "outId": "lang-zh",
       "selfHash": "4c10043df79e5244",
       "sourceId": "Title.dc.html:1/1/1/0",
@@ -148,7 +148,7 @@
       "contentHash": "3cabe25c3eeb841a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 57,
+      "line": 67,
       "outId": "lang-en",
       "selfHash": "cbd4b27fcea17e83",
       "sourceId": "Title.dc.html:1/1/1/1",
@@ -177,7 +177,7 @@
       "contentHash": "479f5f2495856cd8",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 53,
+      "line": 63,
       "outId": "lang-switch",
       "selfHash": "d574f8e0e8d12ce8",
       "sourceId": "Title.dc.html:1/1/1",
@@ -204,7 +204,7 @@
       "contentHash": "d08cca3bde564321",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 48,
+      "line": 58,
       "outId": "lang-toggle",
       "selfHash": "bce0e66262e162f1",
       "sourceId": "Title.dc.html:1/1",
@@ -226,7 +226,7 @@
       "contentHash": "9f8ae72ef13a4f78",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 62,
+      "line": 72,
       "outId": "rule-top",
       "selfHash": "74f353e1d4457593",
       "sourceId": "Title.dc.html:1/2",
@@ -251,7 +251,7 @@
       "contentHash": "d39477f38f9d66f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 70,
+      "line": 80,
       "outId": "masthead-art",
       "selfHash": "612390f61d339dbd",
       "sourceId": "Title.dc.html:1/3/0/0",
@@ -274,7 +274,7 @@
       "contentHash": "c0b20a76e06fdccd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 68,
+      "line": 78,
       "outId": "masthead",
       "selfHash": "7a94dd2856d2b8a1",
       "sourceId": "Title.dc.html:1/3/0",
@@ -298,7 +298,7 @@
       "contentHash": "26598414c8264761",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 73,
+      "line": 83,
       "outId": "mast-tick",
       "selfHash": "8112e663c7e1bc68",
       "sourceId": "Title.dc.html:1/3/1",
@@ -318,7 +318,7 @@
       "contentHash": "7052e1fd74148d7d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 67,
+      "line": 77,
       "outId": "mast-dock",
       "selfHash": "3d673906c470bc0a",
       "sourceId": "Title.dc.html:1/3",
@@ -342,7 +342,7 @@
       "contentHash": "9e9fc70be642bbe4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 82,
+      "line": 92,
       "outId": "rule-mast-thick",
       "selfHash": "4c775b55937b1764",
       "sourceId": "Title.dc.html:1/4",
@@ -366,7 +366,7 @@
       "contentHash": "0191409c641f5b6c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 84,
+      "line": 94,
       "outId": "rule-mast-thin",
       "selfHash": "ba2ed9e2ed01b1a9",
       "sourceId": "Title.dc.html:1/5",
@@ -395,7 +395,7 @@
       "contentHash": "a4730fd9b4bb56e3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 86,
+      "line": 96,
       "outId": "paper-name",
       "selfHash": "7bebc8cda4750ea5",
       "sourceId": "Title.dc.html:1/6",
@@ -419,7 +419,7 @@
       "contentHash": "92f1397661c102ee",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 90,
+      "line": 100,
       "outId": "rule-name",
       "selfHash": "530a8219c7de4986",
       "sourceId": "Title.dc.html:1/7",
@@ -442,7 +442,7 @@
       "contentHash": "feaac93aee4e7e80",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 97,
+      "line": 107,
       "outId": "lead-kicker",
       "selfHash": "49135128b83fafa1",
       "sourceId": "Title.dc.html:1/8/0",
@@ -473,7 +473,7 @@
       "contentHash": "b12acc56e4edb4dd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 99,
+      "line": 109,
       "outId": "lead-headline",
       "selfHash": "c2c91f544474b334",
       "sourceId": "Title.dc.html:1/8/1",
@@ -495,7 +495,7 @@
       "contentHash": "c13f55154d206bc7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 102,
+      "line": 112,
       "outId": "lead-rule",
       "selfHash": "3fd9c460f3f595e4",
       "sourceId": "Title.dc.html:1/8/2",
@@ -524,7 +524,7 @@
       "contentHash": "52b1c7201f0aeb26",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 103,
+      "line": 113,
       "outId": "lead-deck",
       "selfHash": "4bc899ed63aaaa42",
       "sourceId": "Title.dc.html:1/8/3",
@@ -547,7 +547,7 @@
       "contentHash": "c0e68cf51343fa54",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 94,
+      "line": 104,
       "outId": "lead",
       "selfHash": "8b0923b256c11e12",
       "sourceId": "Title.dc.html:1/8",
@@ -561,19 +561,19 @@
           "class": "rule-thin"
         },
         "decls": {
-          "bottom": "calc(1safe-bottom + 30px)",
-          "height": "372px",
+          "bottom": "calc(1safe-bottom + 18px)",
+          "height": "384px",
           "left": "calc(61.92% - 0.62px)",
           "position": "absolute",
           "width": "1px"
         }
       },
-      "contentHash": "60ebeea2ae037403",
+      "contentHash": "1211d91114382c2c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 108,
+      "line": 118,
       "outId": "rule-column",
-      "selfHash": "3b82e7804de7986b",
+      "selfHash": "e6cf287badf98534",
       "sourceId": "Title.dc.html:1/9",
       "sourceName": "rule-column",
       "ui": "title",
@@ -594,7 +594,7 @@
       "contentHash": "233dc16bea35b975",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 115,
+      "line": 125,
       "outId": "contents-heading",
       "selfHash": "05f293093193f70e",
       "sourceId": "Title.dc.html:1/10/0",
@@ -617,7 +617,7 @@
       "contentHash": "c698067b17c6612d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 118,
+      "line": 128,
       "outId": "btn-ch1-no",
       "selfHash": "87f1f901f1e2b97b",
       "sourceId": "Title.dc.html:1/10/1/0",
@@ -639,7 +639,7 @@
       "contentHash": "d98d8c4159ff2bfa",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 119,
+      "line": 129,
       "outId": "btn-ch1-title",
       "selfHash": "d0c88b33f74cd4cc",
       "sourceId": "Title.dc.html:1/10/1/1",
@@ -661,7 +661,7 @@
       "contentHash": "8c72ed8d0703e3bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 117,
+      "line": 127,
       "outId": "btn-ch1",
       "selfHash": "4c2b9a5d56ba7057",
       "sourceId": "Title.dc.html:1/10/1",
@@ -684,7 +684,7 @@
       "contentHash": "d6e4ac83cf46e3d4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 122,
+      "line": 132,
       "outId": "btn-ch2-no",
       "selfHash": "d1cfd98f26e0e3ab",
       "sourceId": "Title.dc.html:1/10/2/0",
@@ -706,7 +706,7 @@
       "contentHash": "49aed684c6122047",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 123,
+      "line": 133,
       "outId": "btn-ch2-title",
       "selfHash": "9bcc2c1bc3b67e50",
       "sourceId": "Title.dc.html:1/10/2/1",
@@ -728,7 +728,7 @@
       "contentHash": "179994c2c6917c8f",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 121,
+      "line": 131,
       "outId": "btn-ch2",
       "selfHash": "9d9e043d79fee23d",
       "sourceId": "Title.dc.html:1/10/2",
@@ -751,7 +751,7 @@
       "contentHash": "a04e87a29f64a96d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 126,
+      "line": 136,
       "outId": "btn-ch3-no",
       "selfHash": "bfd22da34df1d8cf",
       "sourceId": "Title.dc.html:1/10/3/0",
@@ -773,7 +773,7 @@
       "contentHash": "47be5e010027e1bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 127,
+      "line": 137,
       "outId": "btn-ch3-title",
       "selfHash": "cd1763d84d255400",
       "sourceId": "Title.dc.html:1/10/3/1",
@@ -795,11 +795,80 @@
       "contentHash": "7d7f7ece068a2e21",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 125,
+      "line": 135,
       "outId": "btn-ch3",
       "selfHash": "aa57c5b222728017",
       "sourceId": "Title.dc.html:1/10/3",
       "sourceName": "btn-ch3",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "entry-sm",
+          "on:click": "emit(open_settings)",
+          "tabindex": "0"
+        },
+        "decls": {},
+        "text": "@BTN_SETTINGS"
+      },
+      "contentHash": "288d57bd574181e7",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 141,
+      "outId": "btn-settings",
+      "selfHash": "39752d0adc7d8cac",
+      "sourceId": "Title.dc.html:1/10/4/0",
+      "sourceName": "btn-settings",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "entry-sm",
+          "on:click": "emit(quit)",
+          "tabindex": "0"
+        },
+        "decls": {},
+        "text": "@BTN_QUIT"
+      },
+      "contentHash": "b4f992e68ec7b7bd",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 142,
+      "outId": "btn-quit",
+      "selfHash": "055a7304fc7d830b",
+      "sourceId": "Title.dc.html:1/10/4/1",
+      "sourceName": "btn-quit",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "8px",
+          "height": "56px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "padding-right": "0px",
+          "padding-top": "12px",
+          "width": "408px"
+        }
+      },
+      "contentHash": "a898afd287eaa972",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 139,
+      "outId": "contents-foot",
+      "selfHash": "f6a12f5eb207b030",
+      "sourceId": "Title.dc.html:1/10/4",
+      "sourceName": "contents-foot",
       "ui": "title",
       "warnings": []
     },
@@ -811,16 +880,16 @@
           "display": "flex",
           "flex-direction": "column",
           "gap": "0px",
-          "offset": "16px 30px",
-          "size": "408px 372px"
+          "offset": "16px 18px",
+          "size": "408px 384px"
         }
       },
-      "contentHash": "6068f84ad877f066",
+      "contentHash": "47c52aecb61bef95",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 112,
+      "line": 122,
       "outId": "contents",
-      "selfHash": "e022461cbd3dcd7e",
+      "selfHash": "2a8b825ec8cb116f",
       "sourceId": "Title.dc.html:1/10",
       "sourceName": "contents",
       "ui": "title",
@@ -840,7 +909,7 @@
       "contentHash": "af23d1f1262aa2ef",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 131,
+      "line": 146,
       "outId": "rule-foot",
       "selfHash": "003a043cfa4db92f",
       "sourceId": "Title.dc.html:1/11",
@@ -865,7 +934,7 @@
       "contentHash": "9d9311710b97541a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 142,
+      "line": 157,
       "outId": "end-mast-art",
       "selfHash": "ad2d5f8afe181de8",
       "sourceId": "Title.dc.html:1/12/0/0/0",
@@ -888,7 +957,7 @@
       "contentHash": "ad6641bf74edd5f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 141,
+      "line": 156,
       "outId": "end-mast",
       "selfHash": "924c2ac15ba401a2",
       "sourceId": "Title.dc.html:1/12/0/0",
@@ -912,7 +981,7 @@
       "contentHash": "e56ea059a3df441b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 145,
+      "line": 160,
       "outId": "end-rule-a",
       "selfHash": "079b53f93c774f09",
       "sourceId": "Title.dc.html:1/12/0/1",
@@ -936,7 +1005,7 @@
       "contentHash": "e9a6b2070b728379",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 146,
+      "line": 161,
       "outId": "end-rule-b",
       "selfHash": "dbde0159673de502",
       "sourceId": "Title.dc.html:1/12/0/2",
@@ -961,7 +1030,7 @@
       "contentHash": "e9f02341ce2ad624",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 147,
+      "line": 162,
       "outId": "end-text",
       "selfHash": "dcb22d54c5ac6146",
       "sourceId": "Title.dc.html:1/12/0/3",
@@ -985,7 +1054,7 @@
       "contentHash": "5cd38174b78e8b4a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 150,
+      "line": 165,
       "outId": "end-rule-c",
       "selfHash": "887cf4238550165d",
       "sourceId": "Title.dc.html:1/12/0/4",
@@ -1009,7 +1078,7 @@
       "contentHash": "9786b658d0767466",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 151,
+      "line": 166,
       "outId": "end-rule-d",
       "selfHash": "39e60eba3b1187b6",
       "sourceId": "Title.dc.html:1/12/0/5",
@@ -1034,7 +1103,7 @@
       "contentHash": "f83a4f4f37e2dfa3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 152,
+      "line": 167,
       "outId": "end-name",
       "selfHash": "5d8ef2d558a3e80e",
       "sourceId": "Title.dc.html:1/12/0/6",
@@ -1056,7 +1125,7 @@
       "contentHash": "e23b3fd5293d3bff",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 140,
+      "line": 155,
       "outId": "end-dock",
       "selfHash": "23ef726b795eae1a",
       "sourceId": "Title.dc.html:1/12/0",
@@ -1080,7 +1149,7 @@
       "contentHash": "14519bafcd9ebd0b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 136,
+      "line": 151,
       "outId": "end-card",
       "selfHash": "31a9c4841798bfb5",
       "sourceId": "Title.dc.html:1/12",
@@ -1105,10 +1174,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "e0b8838c6dc1fee6",
+      "contentHash": "abc4412d960e004e",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 38,
+      "line": 48,
       "outId": "title",
       "selfHash": "aed19fb1d6d103ba",
       "sourceId": "Title.dc.html:1",
@@ -2785,6 +2854,8 @@
           "on:key(A)": "emit(auto)",
           "on:key(Backspace)": "emit(log)",
           "on:key(Enter)": "if port(choice_count) eq 0 emit(advance)",
+          "on:key(Escape)": "emit(settings)",
+          "on:key(F1)": "emit(settings)",
           "on:key(Space)": "if port(choice_count) eq 0 emit(advance)",
           "tabindex": "0"
         },
@@ -2802,12 +2873,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "7464a40fb121f195",
+      "contentHash": "a4e999215138814e",
       "fidelity": "High",
       "file": "Vn.dc.html",
       "line": 51,
       "outId": "vn",
-      "selfHash": "44d835f17aaccd29",
+      "selfHash": "ac1a047c37e2227f",
       "sourceId": "Vn.dc.html:1",
       "sourceName": "VN",
       "ui": "vn",
@@ -5162,6 +5233,8 @@
           "autofocus": "",
           "on:click(left)": "emit(next)",
           "on:key(Enter)": "emit(next)",
+          "on:key(Escape)": "emit(settings)",
+          "on:key(F1)": "emit(settings)",
           "on:key(Left)": "emit(prev)",
           "on:key(PageDown)": "emit(next)",
           "on:key(PageUp)": "emit(prev)",
@@ -5185,12 +5258,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "679e860121886e7d",
+      "contentHash": "e11820463c3c4156",
       "fidelity": "High",
       "file": "Paper.dc.html",
       "line": 95,
       "outId": "paper",
-      "selfHash": "20a5fe78b81ea096",
+      "selfHash": "461382c70267ec1c",
       "sourceId": "Paper.dc.html:1",
       "sourceName": "Paper",
       "ui": "paper",
@@ -7627,8 +7700,9 @@
           "autofocus": "",
           "on:key(E)": "if port(nav_next) eq true set(nav, 1)",
           "on:key(Enter)": "if port(popup_kind) gt 0 emit(dismiss)",
-          "on:key(Escape)": "if port(popup_kind) gt 0 emit(dismiss)",
+          "on:key(Escape)": "if port(popup_kind) gt 0 emit(dismiss) else emit(settings)",
           "on:key(F)": "if port(can_end) eq true emit(end)",
+          "on:key(F1)": "emit(settings)",
           "on:key(Q)": "if port(nav_prev) eq true set(nav, -1)",
           "on:key(Space)": "if port(popup_kind) gt 0 emit(dismiss)",
           "on:key(Tab)": "emit(book)",
@@ -7648,12 +7722,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "400ceaf21b10e10c",
+      "contentHash": "38d5ef366affd537",
       "fidelity": "High",
       "file": "Investigate.dc.html",
       "line": 100,
       "outId": "investigate",
-      "selfHash": "cea81fecf453b13f",
+      "selfHash": "4de82d482c5781c1",
       "sourceId": "Investigate.dc.html:1",
       "sourceName": "Investigate",
       "ui": "investigate",
@@ -11238,6 +11312,8 @@
           "autofocus": "",
           "on:key(Delete)": "if port(sel_id) ne '' set(unplace, port(sel_id))",
           "on:key(Enter)": "emit(to_debate)",
+          "on:key(Escape)": "emit(settings)",
+          "on:key(F1)": "emit(settings)",
           "tabindex": "0"
         },
         "decls": {
@@ -11254,12 +11330,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "71146b877493493f",
+      "contentHash": "00677d4d925e3de5",
       "fidelity": "High",
       "file": "Board.dc.html",
       "line": 94,
       "outId": "board",
-      "selfHash": "667bf51bd88351d7",
+      "selfHash": "a28079ae45cad1a1",
       "sourceId": "Board.dc.html:1",
       "sourceName": "Board",
       "ui": "board",
@@ -21123,7 +21199,9 @@
           "on:key(4)": "if port(phase) eq 0 set(act, 4)",
           "on:key(Backspace)": "if port(phase) eq 0 emit(back)",
           "on:key(Enter)": "if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)",
+          "on:key(Escape)": "emit(settings)",
           "on:key(F)": "if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct)",
+          "on:key(F1)": "emit(settings)",
           "on:key(N)": "emit(notes)",
           "on:key(Space)": "if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)",
           "on:key(T)": "state(Open, toggle, target=#table)",
@@ -21150,12 +21228,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "e3c8a2929f289f34",
+      "contentHash": "3062191146f6df3d",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 243,
       "outId": "debate",
-      "selfHash": "730c1437858754d4",
+      "selfHash": "83cd35c3677024f2",
       "sourceId": "Debate.dc.html:1",
       "sourceName": "Debate",
       "ui": "debate",
@@ -23552,6 +23630,8 @@
         "attrs": {
           "autofocus": "",
           "on:key(Enter)": "emit(continue)",
+          "on:key(Escape)": "emit(settings)",
+          "on:key(F1)": "emit(settings)",
           "on:key(R)": "if port(can_retry) eq true emit(retry)",
           "on:key(Space)": "emit(continue)",
           "on:port(trust_to)": "play(trust-in)",
@@ -23572,12 +23652,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "c509a2b84a42e603",
+      "contentHash": "56de5ff7cbd5f96f",
       "fidelity": "High",
       "file": "Result.dc.html",
       "line": 66,
       "outId": "result",
-      "selfHash": "f5bcf89a20821320",
+      "selfHash": "e0d8a54e7aaa96ba",
       "sourceId": "Result.dc.html:1",
       "sourceName": "Result",
       "ui": "result",
@@ -24971,6 +25051,7 @@
           "on:key(Backspace)": "emit(close)",
           "on:key(E)": "set(select_tab, port(tab) | offset(1) | clamp(0, 2))",
           "on:key(Escape)": "emit(close)",
+          "on:key(F1)": "emit(settings)",
           "on:key(Q)": "set(select_tab, port(tab) | offset(-1) | clamp(0, 2))",
           "on:key(Tab)": "emit(close)",
           "on:port(remark_seq)": "play(remark-in)",
@@ -24989,12 +25070,12 @@
           "width": "100vw"
         }
       },
-      "contentHash": "64fba1a316d24b18",
+      "contentHash": "7170b0151576a095",
       "fidelity": "High",
       "file": "Evbook.dc.html",
       "line": 82,
       "outId": "evbook",
-      "selfHash": "fa24cc946b591163",
+      "selfHash": "a5f6aefbeb19b4f9",
       "sourceId": "Evbook.dc.html:1",
       "sourceName": "Evbook",
       "ui": "evbook",
@@ -25983,6 +26064,7 @@
           "on:key(Backspace)": "emit(close)",
           "on:key(E)": "set(select_tab, port(tab) | offset(1) | clamp(0, 2))",
           "on:key(Escape)": "emit(close)",
+          "on:key(F1)": "emit(settings)",
           "on:key(N)": "emit(close)",
           "on:key(Q)": "set(select_tab, port(tab) | offset(-1) | clamp(0, 2))",
           "tabindex": "0"
@@ -26000,15 +26082,732 @@
           "width": "100vw"
         }
       },
-      "contentHash": "28f699d6430f14a7",
+      "contentHash": "5072c0eec094eba1",
       "fidelity": "High",
       "file": "Notes.dc.html",
       "line": 54,
       "outId": "notes",
-      "selfHash": "0c56d172b1bbb078",
+      "selfHash": "f915a73437eb7682",
       "sourceId": "Notes.dc.html:1",
       "sourceName": "Notes",
       "ui": "notes",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "scrim",
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "88c8fe1a7dc8c798",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 44,
+      "outId": "scrim",
+      "selfHash": "1127c84342dc708f",
+      "sourceId": "Settings.dc.html:1/0",
+      "sourceName": "scrim",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "f-disp"
+        },
+        "decls": {
+          "color": "#092e28",
+          "font-size": "24px",
+          "font-weight": "700",
+          "height": "40px",
+          "left": "28px",
+          "letter-spacing": "4px",
+          "line-height": "40px",
+          "position": "absolute",
+          "top": "14px",
+          "white-space": "nowrap",
+          "width": "400px"
+        },
+        "text": "@BTN_SETTINGS"
+      },
+      "contentHash": "3707d30670a3c15e",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 54,
+      "outId": "set-title",
+      "selfHash": "8bbf467ef0725421",
+      "sourceId": "Settings.dc.html:1/1/0/0",
+      "sourceName": "set-title",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn",
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "left": "604px",
+          "position": "absolute",
+          "top": "15px",
+          "width": "128px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "d10473003e74d5f2",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 57,
+      "outId": "btn-close",
+      "selfHash": "ae81f1efc8493834",
+      "sourceId": "Settings.dc.html:1/1/0/1",
+      "sourceName": "btn-close",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thick"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "64px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "fd1b84f189417450",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 59,
+      "outId": "set-rule-a",
+      "selfHash": "fe9570d8e729013d",
+      "sourceId": "Settings.dc.html:1/1/0/2",
+      "sourceName": "set-rule-a",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rule-thin"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "70px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "182419fd64819177",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 60,
+      "outId": "set-rule-b",
+      "selfHash": "8ebcd8fa755ec5f1",
+      "sourceId": "Settings.dc.html:1/1/0/3",
+      "sourceName": "set-rule-b",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-label"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "170px"
+        },
+        "text": "@UI_SET_RES"
+      },
+      "contentHash": "126c7045435802d6",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 65,
+      "outId": "res-label",
+      "selfHash": "7cf125ffc18030e5",
+      "sourceId": "Settings.dc.html:1/1/0/4/0",
+      "sourceName": "res-label",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "item(sel)",
+          "bind:text": "item(label)",
+          "class": "opt",
+          "on:click(left)": "set(pick_res, repeat.index)"
+        },
+        "decls": {},
+        "text": "自動（跟隨視窗）"
+      },
+      "contentHash": "e6e07f221bea8609",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 71,
+      "outId": "res-opt",
+      "selfHash": "d9a8199a63656464",
+      "sourceId": "Settings.dc.html:1/1/0/4/1/0/0",
+      "sourceName": "res-opt",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "res_options"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "flex-wrap": "wrap",
+          "gap": "8px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "cda64859859f7517",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 69,
+      "outId": "res-list",
+      "selfHash": "4b995987d67c5759",
+      "sourceId": "Settings.dc.html:1/1/0/4/1/0",
+      "sourceName": "res-list",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "current",
+          "class": "current"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "486px"
+        },
+        "text": "目前：1920 × 1080"
+      },
+      "contentHash": "e8efea765b2a0296",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 74,
+      "outId": "res-current",
+      "selfHash": "860a123bfe3c3754",
+      "sourceId": "Settings.dc.html:1/1/0/4/1/1",
+      "sourceName": "res-current",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "height": "104px",
+          "left": "210px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "6e732fe691dbda43",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 67,
+      "outId": "res-box",
+      "selfHash": "91f6ab1a3439b934",
+      "sourceId": "Settings.dc.html:1/1/0/4/1",
+      "sourceName": "res-box",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-rule"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "128px",
+          "width": "666px"
+        }
+      },
+      "contentHash": "b8b32d8c83058e99",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 77,
+      "outId": "res-rule",
+      "selfHash": "2006df3ad2ab7435",
+      "sourceId": "Settings.dc.html:1/1/0/4/2",
+      "sourceName": "res-rule",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-label"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "144px",
+          "width": "170px"
+        },
+        "text": "@UI_SET_WINDOW"
+      },
+      "contentHash": "692c6249d39c3af6",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 80,
+      "outId": "mode-label",
+      "selfHash": "e1a02f46c1291e36",
+      "sourceId": "Settings.dc.html:1/1/0/4/3",
+      "sourceName": "mode-label",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "mode_sel | eq(0)",
+          "class": "opt",
+          "on:click(left)": "set(pick_mode, 0)"
+        },
+        "decls": {},
+        "text": "@UI_SET_WINDOW_WIN"
+      },
+      "contentHash": "c8e6ed115187f379",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 84,
+      "outId": "mode-win",
+      "selfHash": "4a7b6385fd90a989",
+      "sourceId": "Settings.dc.html:1/1/0/4/4/0",
+      "sourceName": "mode-win",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "mode_sel | eq(1)",
+          "class": "opt",
+          "on:click(left)": "set(pick_mode, 1)"
+        },
+        "decls": {},
+        "text": "@UI_SET_WINDOW_BORDERLESS"
+      },
+      "contentHash": "2189f7e03f687c2e",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 86,
+      "outId": "mode-borderless",
+      "selfHash": "2f3f06c9aa566575",
+      "sourceId": "Settings.dc.html:1/1/0/4/4/1",
+      "sourceName": "mode-borderless",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "mode_sel | eq(2)",
+          "class": "opt",
+          "on:click(left)": "set(pick_mode, 2)"
+        },
+        "decls": {},
+        "text": "@UI_SET_WINDOW_FULL"
+      },
+      "contentHash": "4c142cf4a027539d",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 88,
+      "outId": "mode-full",
+      "selfHash": "07372f068d3e292b",
+      "sourceId": "Settings.dc.html:1/1/0/4/4/2",
+      "sourceName": "mode-full",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "34px",
+          "left": "210px",
+          "position": "absolute",
+          "top": "144px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "9f94063dc0ed4b08",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 82,
+      "outId": "mode-list",
+      "selfHash": "fa41d6170fd9e76e",
+      "sourceId": "Settings.dc.html:1/1/0/4/4",
+      "sourceName": "mode-list",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-rule"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "194px",
+          "width": "666px"
+        }
+      },
+      "contentHash": "8e0c86ee30d9fd3f",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 91,
+      "outId": "mode-rule",
+      "selfHash": "7d1ec4a8325b4c4b",
+      "sourceId": "Settings.dc.html:1/1/0/4/5",
+      "sourceName": "mode-rule",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-label"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "210px",
+          "width": "170px"
+        },
+        "text": "@UI_SET_LANG_TEXT"
+      },
+      "contentHash": "5a717b1dff86f1ae",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 94,
+      "outId": "lang-label",
+      "selfHash": "84749cc0c5fabe9b",
+      "sourceId": "Settings.dc.html:1/1/0/4/6",
+      "sourceName": "lang-label",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "lang_sel | eq(0)",
+          "class": "opt",
+          "on:click(left)": "set(pick_lang, 0)"
+        },
+        "decls": {},
+        "text": "@UI_TITLE_LANG_ZH"
+      },
+      "contentHash": "c0c6ccfe7d9f1364",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 98,
+      "outId": "lang-zh",
+      "selfHash": "e3998c1a1ea8aee4",
+      "sourceId": "Settings.dc.html:1/1/0/4/7/0",
+      "sourceName": "lang-zh",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "lang_sel | eq(1)",
+          "class": "opt",
+          "on:click(left)": "set(pick_lang, 1)"
+        },
+        "decls": {},
+        "text": "@UI_TITLE_LANG_EN"
+      },
+      "contentHash": "930a2d5b75a4f629",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 100,
+      "outId": "lang-en",
+      "selfHash": "96172fb166f2b170",
+      "sourceId": "Settings.dc.html:1/1/0/4/7/1",
+      "sourceName": "lang-en",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "34px",
+          "left": "210px",
+          "position": "absolute",
+          "top": "210px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "fd3e5a78304f68f4",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 96,
+      "outId": "lang-list",
+      "selfHash": "e3a1367c553dcbf1",
+      "sourceId": "Settings.dc.html:1/1/0/4/7",
+      "sourceName": "lang-list",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-rule"
+        },
+        "decls": {
+          "height": "1px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "260px",
+          "width": "666px"
+        }
+      },
+      "contentHash": "66674a032c6ebc58",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 103,
+      "outId": "lang-rule",
+      "selfHash": "ea9809dbf075ffe4",
+      "sourceId": "Settings.dc.html:1/1/0/4/8",
+      "sourceName": "lang-rule",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "row-label"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "276px",
+          "width": "170px"
+        },
+        "text": "@UI_SET_CUTIN_SUB"
+      },
+      "contentHash": "43c74cc76ce2d17f",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 106,
+      "outId": "sub-label",
+      "selfHash": "31845afb6977f191",
+      "sourceId": "Settings.dc.html:1/1/0/4/9",
+      "sourceName": "sub-label",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "sub_on",
+          "class": "opt",
+          "on:click(left)": "if port(sub_on) eq false emit(toggle_sub)"
+        },
+        "decls": {},
+        "text": "@UI_SET_ON"
+      },
+      "contentHash": "a0d6d02b6e8ad628",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 110,
+      "outId": "sub-on",
+      "selfHash": "67789e1231aef9d5",
+      "sourceId": "Settings.dc.html:1/1/0/4/10/0",
+      "sourceName": "sub-on",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "sub_on | not",
+          "class": "opt",
+          "on:click(left)": "if port(sub_on) eq true emit(toggle_sub)"
+        },
+        "decls": {},
+        "text": "@UI_SET_OFF"
+      },
+      "contentHash": "597488822fd6e501",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 112,
+      "outId": "sub-off",
+      "selfHash": "76d86b7f2bf2bb35",
+      "sourceId": "Settings.dc.html:1/1/0/4/10/1",
+      "sourceName": "sub-off",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "34px",
+          "left": "210px",
+          "position": "absolute",
+          "top": "276px",
+          "width": "486px"
+        }
+      },
+      "contentHash": "f0c85203dbceb34f",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 108,
+      "outId": "sub-list",
+      "selfHash": "11c0e644f90400fb",
+      "sourceId": "Settings.dc.html:1/1/0/4/10",
+      "sourceName": "sub-list",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "page"
+        },
+        "decls": {
+          "height": "340px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "80px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "30c2c6012fe2927d",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 62,
+      "outId": "page",
+      "selfHash": "c7183e4923c1700a",
+      "sourceId": "Settings.dc.html:1/1/0/4",
+      "sourceName": "page",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "book"
+        },
+        "decls": {
+          "height": "440px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "760px"
+        }
+      },
+      "contentHash": "e91618d92715cb07",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 49,
+      "outId": "sheet",
+      "selfHash": "87e2ab73b3e7d0ba",
+      "sourceId": "Settings.dc.html:1/1/0",
+      "sourceName": "sheet",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "440px",
+          "left": "calc(50% - 380px)",
+          "position": "absolute",
+          "top": "calc(50% - 220px)",
+          "width": "760px"
+        }
+      },
+      "contentHash": "02ea05f9add22f2f",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 48,
+      "outId": "set-dock",
+      "selfHash": "fb2d159cd5962932",
+      "sourceId": "Settings.dc.html:1/1",
+      "sourceName": "set-dock",
+      "ui": "settings",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Backspace)": "emit(close)",
+          "on:key(Escape)": "emit(close)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#092e28",
+          "color": "#123a31",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "757e02df6c5d426f",
+      "fidelity": "High",
+      "file": "Settings.dc.html",
+      "line": 38,
+      "outId": "settings",
+      "selfHash": "021db3ff3a0b06dd",
+      "sourceId": "Settings.dc.html:1",
+      "sourceName": "Settings",
+      "ui": "settings",
       "warnings": []
     }
   ],
@@ -26024,11 +26823,11 @@
   "totals": {
     "assets": 44,
     "dropped": 0,
-    "high": 1057,
+    "high": 1090,
     "inlineSvg": 56,
     "low": 0,
     "medium": 0,
-    "nodes": 1057,
+    "nodes": 1090,
     "rasterized": 0,
     "vectors": 0
   },
@@ -26173,6 +26972,19 @@
         "--paper": "#f3eedf",
         "--paper-old": "#e3d9c2",
         "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "settings/settings.xt",
+      "flow": "",
+      "id": "settings",
+      "name": "Settings",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2"
       }
     }
   ]

@@ -1122,8 +1122,12 @@ def gen_debui() -> Graph:
     csub.add(inP, {"key": g.k("STAMP_SEEN_SUB"), "n": g.k(0)})
     g.text("csubT", csub.out("key", g.k("")))
     g.textf("csubF", pattern="csubT.text", n=csub.out("n", g.k(0)))
-    # 大字譯名 (§4.6: on by default outside zh-TW; there is no settings screen): the subtitle in English
-    g.edge(g.sel("csubOut", "langEn", "csubF", g.k("")), "ui#cutin.subtitle")
+    # 大字譯名 (§4.6: on by default outside zh-TW; the settings screen turns it off, world.cutinSub): the subtitle in
+    # English while it is on
+    g.n("csubLangN", "langEn")
+    g.n("csubOnN", "world.cutinSub")
+    g.x("csubOn", "csubLangN && csubOnN")
+    g.edge(g.sel("csubOut", "csubOn_t", "csubF", g.k("")), "ui#cutin.subtitle")
     # ---- the opponent notes (01-systems §4.4 亞瑟的對手筆記), recorded as the reveal plays: a gesture is learned when
     # the opponent first shows that action; a behaviour rule when it is first seen to fire (rules 1-4: the AI's rule
     # of the round, debTellRule, and the action it points at; rule 5: the action changes after the same one twice),

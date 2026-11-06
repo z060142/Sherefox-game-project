@@ -10213,6 +10213,21 @@
       }
     },
     {
+      "id": "csubLangN",
+      "type": "select"
+    },
+    {
+      "id": "csubOnN",
+      "type": "select"
+    },
+    {
+      "id": "csubOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "csubLangN && csubOnN"
+      }
+    },
+    {
       "id": "csubOut",
       "type": "select"
     },
@@ -23323,6 +23338,38 @@
     },
     {
       "from": "langEnC.out",
+      "to": "csubLangN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "csubLangN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "csubLangN.b"
+    },
+    {
+      "from": "world.cutinSub",
+      "to": "csubOnN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "csubOnN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "csubOnN.b"
+    },
+    {
+      "from": "csubLangN.out",
+      "to": "csubOn.csubLangN"
+    },
+    {
+      "from": "csubOnN.out",
+      "to": "csubOn.csubOnN"
+    },
+    {
+      "from": "csubOn.truth",
       "to": "csubOut.cond"
     },
     {

@@ -1604,6 +1604,8 @@ UI_SET_POINTS,Always Highlight Investigation Points
 UI_SET_REDUCE_SHAKE,Reduce Shaking
 UI_SET_REDUCE_SHAKE_DESC,"Screen shake during banners and Breaks becomes a gentle zoom, and controller rumble is weakened too."
 UI_SET_RES,Resolution
+UI_SET_RES_AUTO,Auto (match window)
+UI_SET_RES_CURRENT,Current: {w} × {h}
 UI_SET_RUMBLE,Controller Rumble
 UI_SET_SHAKE,Screen Shake
 UI_SET_SHAKE_DUP2,Screen Shake Intensity

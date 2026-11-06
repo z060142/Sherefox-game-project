@@ -9,6 +9,8 @@
     lang_en: bool in = false
     ended: bool in = false
     end_dismiss: event out
+    open_settings: event out
+    quit: event out
   </ports>
 
   <body on:show="play(intro)">
@@ -54,6 +56,10 @@
         <div id="btn-ch3" class="entry" tabindex="0" on:click="set(chapter, 3)">
           <div id="btn-ch3-no" class="entry-no">Ch.3</div>
           <div id="btn-ch3-title" class="entry-title">@CHAP_03_TITLE</div>
+        </div>
+        <div id="contents-foot">
+          <div id="btn-settings" class="entry-sm" tabindex="0" on:click="emit(open_settings)">@BTN_SETTINGS</div>
+          <div id="btn-quit" class="entry-sm" tabindex="0" on:click="emit(quit)">@BTN_QUIT</div>
         </div>
       </div>
       <div id="rule-foot" class="rule-copper"/>
@@ -232,8 +238,8 @@
     }
     /* import: Title.dc.html:1/9 */
     #rule-column {
-      bottom: calc(1safe-bottom + 30px);
-      height: 372px;
+      bottom: calc(1safe-bottom + 18px);
+      height: 384px;
       left: calc(61.92% - 0.62px);
       position: absolute;
       width: 1px;
@@ -244,8 +250,8 @@
       display: flex;
       flex-direction: column;
       gap: 0px;
-      offset: 16px 30px;
-      size: 408px 372px;
+      offset: 16px 18px;
+      size: 408px 384px;
     }
     /* import: Title.dc.html:1/10/0 */
     #contents-heading {
@@ -297,6 +303,19 @@
     #btn-ch3-title {
       flex-shrink: 0;
       width: 376px;
+    }
+    /* import: Title.dc.html:1/10/4 */
+    #contents-foot {
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 8px;
+      height: 56px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 12px;
+      width: 408px;
     }
     /* import: Title.dc.html:1/11 */
     #rule-foot {
@@ -388,15 +407,20 @@
     }
     .entry {
       width: 408px;
-      height: 108px;
-      padding-top: 14px;
+      height: 100px;
+      padding-top: 9px;
       padding-right: 16px;
-      padding-bottom: 14px;
+      padding-bottom: 9px;
       padding-left: 16px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 2px;
+    }
+    .entry-sm {
+      width: 200px;
+      height: 44px;
+      flex-shrink: 0;
     }
   </layout>
   <style src="../shared/base.xts"/>

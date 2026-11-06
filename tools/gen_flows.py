@@ -491,6 +491,8 @@ SIGNALS = {
     # music hooks (rulings H1-H3; no playback yet): the moment and its BGM id (docs/flows.md §4.10)
     "bgmMoment": {"type": "string", "initial": "title"},
     "bgm": {"type": "string", "initial": "BGM01"},
+    # settings (ui-contracts settings; 01-systems §4.6, §4.7 在地化): 大字譯名, on by default (shown only outside zh-TW)
+    "cutinSub": {"type": "bool", "initial": True},
 }
 COLLECTIONS = {
     # case state (investigation -> board -> debate)
@@ -537,10 +539,13 @@ COLLECTIONS = {
     "debBoardLink": {"kind": "list", "type": "number", "capacity": SLOTS + LOOSE},
     # dialogue cursor
     "dlgState": {"kind": "map", "type": "number", "capacity": 2},
+    # settings: settings.res_options (the option labels) and the selected one's label (its `sel`)
+    "setRes": {"kind": "list", "type": "string", "capacity": 1 + 5, "unique": True},
+    "setResOn": {"kind": "list", "type": "string", "capacity": 1},
 }
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
-FLOW_ORDER = ["main", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
+FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
               "result", "music"]
 
 
@@ -678,10 +683,12 @@ def gen_main() -> Graph:
     """App state machine: title, the step runner over the steps table, surface visibility, language."""
     g = Graph()
 
-    # Language toggle (M0 behaviour). The state follows world.language when something else writes it (--lang,
-    # a later settings screen); the title's toggle flips the state, which writes world.language.
+    # Language toggle (M0 behaviour). The state follows world.language when something else writes it (--lang);
+    # the title's toggle flips the state and the settings screen's text language sets it (to_zh / to_en), which
+    # writes world.language: one switch for both screens.
     g.node("lang", "state", initial="zh", states=["zh", "en"],
-           transitions=[{"from": "zh", "on": "toggle", "to": "en"}, {"from": "en", "on": "toggle", "to": "zh"}])
+           transitions=[{"from": "zh", "on": "toggle", "to": "en"}, {"from": "en", "on": "toggle", "to": "zh"},
+                        {"from": "*", "on": "to_zh", "to": "zh"}, {"from": "*", "on": "to_en", "to": "en"}])
     g.node("langTag", "lookup", values=["zh-TW", "en"])
     g.const("enTag", "en")
     g.node("langIsEn", "compare", op="eq")
@@ -702,6 +709,13 @@ def gen_main() -> Graph:
     g.edge("lang.index", "isEnUi.a")
     g.edge("one.out", "isEnUi.b")
     g.edge("isEnUi.out", "ui#title.lang_en")
+    # settings: pick_lang 0 / 1 (ui-contracts settings); lang_sel = the state's index (0 zh, 1 en)
+    g.put("pickLang", "ui#settings.pick_lang")
+    g.x("pickZhN", "pickLang == 0")
+    g.x("pickEnN", "pickLang == 1")
+    g.edge(g.when("pickZh", "ui#settings.pick_lang.emitted", "pickZhN_t"), "lang.to_zh")
+    g.edge(g.when("pickEn", "ui#settings.pick_lang.emitted", "pickEnN_t"), "lang.to_en")
+    g.edge("lang.index", "ui#settings.lang_sel")
 
     # Step runner. cur = row of the steps table (-1 = none). Choosing a chapter jumps to that chapter's idx-0 row:
     # the row is latched on every emit of title.chapter (AT-040 `.emitted`), so choosing the same chapter again
@@ -839,6 +853,95 @@ def gen_main() -> Graph:
     g.edge("notes.index", "notesVis.index")
     g.edge("notesVis.out", "ui#notes.visible")
     g.edge("notesVis.out", "world.notesShown")
+
+    # Settings overlay (modal, ui-contracts settings): the title's 設定 entry; in the game Esc (when no overlay is
+    # open: a visible modal overlay takes the keys) or F1 on the main screens, F1 on the evidence book and the
+    # opponent notes. Its close (Esc, Backspace, the button, the dimmed screen) closes it; a step begin does not.
+    g.node("settings", "state", initial="closed", states=["closed", "open"],
+           transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
+    g.edge("ui#title.open_settings", "settings.open")
+    for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes"):
+        g.edge(f"ui#{ui}.settings", "settings.open")
+    g.edge("ui#settings.close", "settings.close")
+    g.node("settingsVis", "lookup", values=[False, True])
+    g.edge("settings.index", "settingsVis.index")
+    g.edge("settingsVis.out", "ui#settings.visible")
+
+    # The title's 離開遊戲 (ui-contracts title, XTAtrium 09 §9.6): the host closes after this tick (headless: no-op).
+    g.node("quit", "atrium.app.quit")
+    g.edge("ui#title.quit", "quit.trigger")
+    return g
+
+
+# ---------------------------------------------------------------- settings
+
+# ui-contracts settings: the resolution presets, listed up to the display's native size. Both sides grow, so the
+# presets that fit are always a prefix: option i (0 = auto) is RES_PRESETS[i - 1].
+RES_PRESETS = [(1280, 720), (1600, 900), (1920, 1080), (2560, 1440), (3840, 2160)]
+WINDOW_MODES = ["windowed", "borderless", "fullscreen"]   # settings.mode_sel / pick_mode 0..2 (XTAtrium 09 §9.2)
+
+
+def gen_settings() -> Graph:
+    """The settings overlay's content (ui-contracts settings; XTAtrium 09): resolution and window mode through
+    atrium.display.set (read back from display.*), 大字譯名 (world.cutinSub). Its visibility and text language are
+    main's (the language state there is the title's too)."""
+    g = Graph()
+    # the actual render size (display.* change -> the text follows; headless 0 x 0)
+    g.edge(g.textf("current", key="UI_SET_RES_CURRENT", w="display.width", h="display.height"),
+           "ui#settings.current")
+
+    # window mode: display.mode -> 0 / 1 / 2; a pick applies it at once, with the resolution chosen last
+    g.n("modeB", g.cmp("modeBC", "display.mode", g.k("borderless")))
+    g.n("modeF", g.cmp("modeFC", "display.mode", g.k("fullscreen")))
+    g.edge(g.x("modeSel", "modeB + 2 * modeF"), "ui#settings.mode_sel")
+
+    # resolution: the chosen option (0 = auto: the game.json default), applied at once (auto = 0 x 0)
+    ws = [0] + [w for w, _ in RES_PRESETS]
+    hs = [0] + [h for _, h in RES_PRESETS]
+    labels = [f"{w} × {h}" for w, h in RES_PRESETS]   # bare numbers: the same in every language
+    g.put("pickRes", "ui#settings.pick_res")
+    res_idx = g.latch("resIdx", "pickRes", "ui#settings.pick_res.emitted")
+    g.node("resSet", "atrium.display.set")
+    g.edge(g.lookup("pickW", ws, "pickRes"), "resSet.width")
+    g.edge(g.lookup("pickH", hs, "pickRes"), "resSet.height")
+    g.edge("ui#settings.pick_res.emitted", "resSet.trigger")
+    g.node("modeSet", "atrium.display.set")
+    g.edge(g.lookup("selW", ws, res_idx), "modeSet.width")
+    g.edge(g.lookup("selH", hs, res_idx), "modeSet.height")
+    g.edge(g.lookup("pickMode", WINDOW_MODES, "ui#settings.pick_mode"), "modeSet.mode")
+    g.edge("ui#settings.pick_mode.emitted", "modeSet.trigger")
+
+    # res_options: auto (UI_SET_RES_AUTO, this language) and the presets up to display.nativeWidth/Height (none
+    # when they are 0: headless); `sel` = the chosen option. Rewritten at start, on a pick, on display.changed and
+    # on a language change, one tick later (a timer), when the label texts and the chosen option are settled.
+    auto = g.text("autoT", g.k("UI_SET_RES_AUTO"))
+    g.put("nW", "display.nativeWidth")
+    g.put("nH", "display.nativeHeight")
+    g.put("resIdxV", res_idx)
+    g.x("resAuto", "resIdxV == 0")
+    sel = g.sel("selLabel", "resAuto_t", auto, g.lookup("selPreset", [""] + labels, res_idx))
+    lang = lang_changed(g)
+    start, tick = g.timer("resT")
+    g.node("resInit", "timer", interval=0.001, autostart=True, repeat=False)
+    for src in ("resInit.tick", "ui#settings.pick_res.emitted", "display.changed", lang):
+        g.edge(src, start)
+    g.edge(tick, g.eff("resClr", "atrium.coll.clear", "setRes"))
+    g.edge(tick, g.eff("resAddA", "atrium.coll.add", "setRes", value=auto))
+    for i, (w, h) in enumerate(RES_PRESETS, start=1):
+        g.x(f"fit{i}", f"nW >= {w} && nH >= {h}")
+        g.edge(g.when(f"fitG{i}", tick, f"fit{i}_t"),
+               g.eff(f"resAdd{i}", "atrium.coll.add", "setRes", value=g.k(labels[i - 1])))
+    g.edge(tick, g.eff("selClr", "atrium.coll.clear", "setResOn"))
+    g.edge(tick, g.eff("selAdd", "atrium.coll.add", "setResOn", value=sel))
+    g.edge(tick, g.ui_list("resList", "ui.settings.res_options", "setRes",
+                           {"label": "item", "sel": "coll:setResOn.contains"}))
+
+    # 大字譯名 (01-systems §4.6, §4.7 在地化): on by default; debate_ui shows the cut-in subtitle when it is on and
+    # the language is not zh-TW
+    g.node("subOn", "toggle", initial=True)
+    g.edge("ui#settings.toggle_sub", "subOn.toggle")
+    g.edge("subOn.value", "ui#settings.sub_on")
+    g.edge("subOn.value", "world.cutinSub")
     return g
 
 
@@ -1889,7 +1992,7 @@ def gen_music() -> Graph:
 
 def graphs() -> dict:
     import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
-    return {"main": gen_main, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
+    return {"main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
             "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music}
 
 

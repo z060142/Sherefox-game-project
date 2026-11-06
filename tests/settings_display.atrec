@@ -1,0 +1,4 @@
+{"atrec": 1, "step": 0.016666666666666666, "seed": 1, "game": "."}
+{"t": 5, "w": [["display.nativeWidth", 1920], ["display.nativeHeight", 1080], ["display.width", 1600], ["display.height", 900], ["display.windowWidth", 1600], ["display.windowHeight", 900], ["display.mode", "borderless"], ["display.changed", "p"]]}
+{"t": 30, "u": [["title", "pd", 924, 662, 0, 1], ["title", "pu", 924, 662, 0]]}
+{"t": 54, "u": [["settings", "pd", 732, 255, 0, 1], ["settings", "pu", 732, 255, 0]]}

@@ -1604,6 +1604,8 @@ UI_SET_POINTS,調查點常亮
 UI_SET_REDUCE_SHAKE,減少震動
 UI_SET_REDUCE_SHAKE_DESC,大字與論破時的畫面震動改為輕微的縮放，手把震動也會減弱。
 UI_SET_RES,解析度
+UI_SET_RES_AUTO,自動（跟隨視窗）
+UI_SET_RES_CURRENT,目前：{w} × {h}
 UI_SET_RUMBLE,手把震動
 UI_SET_SHAKE,畫面震動
 UI_SET_SHAKE_DUP2,畫面震動強度

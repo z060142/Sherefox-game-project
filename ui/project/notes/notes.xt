@@ -14,10 +14,11 @@
     review: bool in = true
     select_tab: number out = 0
     close: event out
+    settings: event out
   </ports>
 
   <body on:show="play(open)" key-activation="none">
-    <div id="notes" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(N)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
+    <div id="notes" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(N)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))" on:key(F1)="emit(settings)">
       <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
       <div id="notes-dock">
         <div id="book" class="book">

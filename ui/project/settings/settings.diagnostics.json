@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #scrim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "scrim",
+      "source": "Settings.dc.html",
+      "line": 44,
+      "col": 0,
+      "ui": "settings",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 22 element(s) is written to their <layout> #id rules (#settings, #scrim, #set-dock, #sheet, #set-title, ...)",
+      "element": "",
+      "source": "Settings.dc.html",
+      "line": 38,
+      "col": 0,
+      "ui": "settings",
+      "detail": {
+        "elements": "22",
+        "ids": "#settings #scrim #set-dock #sheet #set-title #btn-close #set-rule-a #set-rule-b #page #res-label #res-box #res-list #res-current #res-rule #mode-label #mode-list #mode-rule #lang-label #lang-list #lang-rule #sub-label #sub-list"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

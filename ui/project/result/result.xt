@@ -14,10 +14,11 @@
     can_retry: bool in = false
     continue: event out
     retry: event out
+    settings: event out
   </ports>
 
   <body on:show="play(verdict-in); play(trust-in)" key-activation="none">
-    <div id="result" tabindex="0" autofocus="" on:port(win)="play(verdict-in)" on:port(trust_to)="play(trust-in)" on:key(Enter)="emit(continue)" on:key(Space)="emit(continue)" on:key(R)="if port(can_retry) eq true emit(retry)">
+    <div id="result" tabindex="0" autofocus="" on:port(win)="play(verdict-in)" on:port(trust_to)="play(trust-in)" on:key(Enter)="emit(continue)" on:key(Space)="emit(continue)" on:key(R)="if port(can_retry) eq true emit(retry)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <div id="sheet">
         <div id="clip" class="clip">
           <div id="tape-l" class="tape"/>

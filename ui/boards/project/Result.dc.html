@@ -64,8 +64,8 @@
   .btn.alt:hover { color: var(--paper); background-color: var(--copper) }
 </style></helmet>
 <div id="result" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
-     data-xt-port='win:number in = 1; opp_line:string in = "（跪倒）我……我只是想還債……"; stats:list&lt;struct{label: string, value: string}&gt; in = [{"label":"回合數","value":"6"},{"label":"讀對預兆","value":"4／6"},{"label":"截斷次數","value":"2"},{"label":"最大單次傷害","value":"38"},{"label":"最長連鎖","value":"4"},{"label":"論破次數","value":"1"},{"label":"援護使用","value":"1"},{"label":"狐耳直覺使用","value":"1"},{"label":"剩餘主導權","value":"64"}]; trust_from:number in = -1; trust_to:number in = -1; comment:string in = "「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」"; costs:list&lt;struct{text: string}&gt; in = []; can_retry:bool in = false; continue:event out; retry:event out'
-     data-xt-trigger="show:play(verdict-in); play(trust-in); port(win):play(verdict-in); port(trust_to):play(trust-in); key(Enter):emit(continue); key(Space):emit(continue); key(R):if port(can_retry) eq true emit(retry)"
+     data-xt-port='win:number in = 1; opp_line:string in = "（跪倒）我……我只是想還債……"; stats:list&lt;struct{label: string, value: string}&gt; in = [{"label":"回合數","value":"6"},{"label":"讀對預兆","value":"4／6"},{"label":"截斷次數","value":"2"},{"label":"最大單次傷害","value":"38"},{"label":"最長連鎖","value":"4"},{"label":"論破次數","value":"1"},{"label":"援護使用","value":"1"},{"label":"狐耳直覺使用","value":"1"},{"label":"剩餘主導權","value":"64"}]; trust_from:number in = -1; trust_to:number in = -1; comment:string in = "「乾淨俐落。我都不知道該在紀錄裡吐槽什麼了。」"; costs:list&lt;struct{text: string}&gt; in = []; can_retry:bool in = false; continue:event out; retry:event out; settings:event out'
+     data-xt-trigger="show:play(verdict-in); play(trust-in); port(win):play(verdict-in); port(trust_to):play(trust-in); key(Enter):emit(continue); key(Space):emit(continue); key(R):if port(can_retry) eq true emit(retry); key(Escape):emit(settings); key(F1):emit(settings)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background: radial-gradient(ellipse at 50% 40%, #e3d9c2 55%, #cbbd9c 100%); color: #123a31;">
 

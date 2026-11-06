@@ -20,6 +20,16 @@
             "from": "en",
             "on": "toggle",
             "to": "zh"
+          },
+          {
+            "from": "*",
+            "on": "to_zh",
+            "to": "zh"
+          },
+          {
+            "from": "*",
+            "on": "to_en",
+            "to": "en"
           }
         ]
       }
@@ -79,6 +89,28 @@
       "params": {
         "op": "eq"
       }
+    },
+    {
+      "id": "pickZhN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pickLang == 0"
+      }
+    },
+    {
+      "id": "pickEnN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pickLang == 1"
+      }
+    },
+    {
+      "id": "pickZh",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "pickEn",
+      "type": "atrium.gate"
     },
     {
       "id": "chText",
@@ -683,6 +715,43 @@
           true
         ]
       }
+    },
+    {
+      "id": "settings",
+      "type": "state",
+      "params": {
+        "initial": "closed",
+        "states": [
+          "closed",
+          "open"
+        ],
+        "transitions": [
+          {
+            "from": "closed",
+            "on": "open",
+            "to": "open"
+          },
+          {
+            "from": "*",
+            "on": "close",
+            "to": "closed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "settingsVis",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "quit",
+      "type": "atrium.app.quit"
     }
   ],
   "edges": [
@@ -733,6 +802,42 @@
     {
       "from": "isEnUi.out",
       "to": "ui#title.lang_en"
+    },
+    {
+      "from": "ui#settings.pick_lang",
+      "to": "pickZhN.pickLang"
+    },
+    {
+      "from": "ui#settings.pick_lang",
+      "to": "pickEnN.pickLang"
+    },
+    {
+      "from": "pickZhN.value",
+      "to": "pickZh.cond"
+    },
+    {
+      "from": "ui#settings.pick_lang.emitted",
+      "to": "pickZh.trigger"
+    },
+    {
+      "from": "pickZh.pass",
+      "to": "lang.to_zh"
+    },
+    {
+      "from": "pickEnN.value",
+      "to": "pickEn.cond"
+    },
+    {
+      "from": "ui#settings.pick_lang.emitted",
+      "to": "pickEn.trigger"
+    },
+    {
+      "from": "pickEn.pass",
+      "to": "lang.to_en"
+    },
+    {
+      "from": "lang.index",
+      "to": "ui#settings.lang_sel"
     },
     {
       "from": "ui#title.chapter",
@@ -1209,6 +1314,58 @@
     {
       "from": "notesVis.out",
       "to": "world.notesShown"
+    },
+    {
+      "from": "ui#title.open_settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#vn.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#paper.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#investigate.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#board.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#debate.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#result.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#evbook.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#notes.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#settings.close",
+      "to": "settings.close"
+    },
+    {
+      "from": "settings.index",
+      "to": "settingsVis.index"
+    },
+    {
+      "from": "settingsVis.out",
+      "to": "ui#settings.visible"
+    },
+    {
+      "from": "ui#title.quit",
+      "to": "quit.trigger"
     }
   ]
 }

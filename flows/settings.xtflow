@@ -1,0 +1,734 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "current",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_SET_RES_CURRENT",
+        "args": [
+          "w",
+          "h"
+        ]
+      }
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "borderless"
+      }
+    },
+    {
+      "id": "modeBC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "modeB",
+      "type": "select"
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "fullscreen"
+      }
+    },
+    {
+      "id": "modeFC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "modeF",
+      "type": "select"
+    },
+    {
+      "id": "modeSel",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "modeB + 2 * modeF"
+      }
+    },
+    {
+      "id": "resIdx",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "resSet",
+      "type": "atrium.display.set"
+    },
+    {
+      "id": "pickW",
+      "type": "lookup",
+      "params": {
+        "values": [
+          0,
+          1280,
+          1600,
+          1920,
+          2560,
+          3840
+        ]
+      }
+    },
+    {
+      "id": "pickH",
+      "type": "lookup",
+      "params": {
+        "values": [
+          0,
+          720,
+          900,
+          1080,
+          1440,
+          2160
+        ]
+      }
+    },
+    {
+      "id": "modeSet",
+      "type": "atrium.display.set"
+    },
+    {
+      "id": "selW",
+      "type": "lookup",
+      "params": {
+        "values": [
+          0,
+          1280,
+          1600,
+          1920,
+          2560,
+          3840
+        ]
+      }
+    },
+    {
+      "id": "selH",
+      "type": "lookup",
+      "params": {
+        "values": [
+          0,
+          720,
+          900,
+          1080,
+          1440,
+          2160
+        ]
+      }
+    },
+    {
+      "id": "pickMode",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "windowed",
+          "borderless",
+          "fullscreen"
+        ]
+      }
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": "UI_SET_RES_AUTO"
+      }
+    },
+    {
+      "id": "autoT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "resAuto",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "resIdxV == 0"
+      }
+    },
+    {
+      "id": "selPreset",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "",
+          "1280 × 720",
+          "1600 × 900",
+          "1920 × 1080",
+          "2560 × 1440",
+          "3840 × 2160"
+        ]
+      }
+    },
+    {
+      "id": "selLabel",
+      "type": "select"
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "langEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langChanged",
+      "type": "merge"
+    },
+    {
+      "id": "resClr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "resAddA",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "fit1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nW >= 1280 && nH >= 720"
+      }
+    },
+    {
+      "id": "fitG1",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": "1280 × 720"
+      }
+    },
+    {
+      "id": "resAdd1",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "fit2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nW >= 1600 && nH >= 900"
+      }
+    },
+    {
+      "id": "fitG2",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "1600 × 900"
+      }
+    },
+    {
+      "id": "resAdd2",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "fit3",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nW >= 1920 && nH >= 1080"
+      }
+    },
+    {
+      "id": "fitG3",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "1920 × 1080"
+      }
+    },
+    {
+      "id": "resAdd3",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "fit4",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nW >= 2560 && nH >= 1440"
+      }
+    },
+    {
+      "id": "fitG4",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": "2560 × 1440"
+      }
+    },
+    {
+      "id": "resAdd4",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "fit5",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nW >= 3840 && nH >= 2160"
+      }
+    },
+    {
+      "id": "fitG5",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "3840 × 2160"
+      }
+    },
+    {
+      "id": "resAdd5",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setRes"
+      }
+    },
+    {
+      "id": "selClr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "setResOn"
+      }
+    },
+    {
+      "id": "selAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "setResOn"
+      }
+    },
+    {
+      "id": "resList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.settings.res_options",
+        "source": "setRes",
+        "fields": "{\"label\": \"item\", \"sel\": \"coll:setResOn.contains\"}"
+      }
+    },
+    {
+      "id": "subOn",
+      "type": "toggle",
+      "params": {
+        "initial": true
+      }
+    },
+    {
+      "id": "resT",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "resInit",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": true,
+        "repeat": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "display.width",
+      "to": "current.w"
+    },
+    {
+      "from": "display.height",
+      "to": "current.h"
+    },
+    {
+      "from": "current.text",
+      "to": "ui#settings.current"
+    },
+    {
+      "from": "display.mode",
+      "to": "modeBC.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "modeBC.b"
+    },
+    {
+      "from": "modeBC.out",
+      "to": "modeB.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "modeB.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "modeB.b"
+    },
+    {
+      "from": "display.mode",
+      "to": "modeFC.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "modeFC.b"
+    },
+    {
+      "from": "modeFC.out",
+      "to": "modeF.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "modeF.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "modeF.b"
+    },
+    {
+      "from": "modeB.out",
+      "to": "modeSel.modeB"
+    },
+    {
+      "from": "modeF.out",
+      "to": "modeSel.modeF"
+    },
+    {
+      "from": "modeSel.value",
+      "to": "ui#settings.mode_sel"
+    },
+    {
+      "from": "ui#settings.pick_res",
+      "to": "resIdx.in"
+    },
+    {
+      "from": "ui#settings.pick_res.emitted",
+      "to": "resIdx.trigger"
+    },
+    {
+      "from": "ui#settings.pick_res",
+      "to": "pickW.index"
+    },
+    {
+      "from": "pickW.out",
+      "to": "resSet.width"
+    },
+    {
+      "from": "ui#settings.pick_res",
+      "to": "pickH.index"
+    },
+    {
+      "from": "pickH.out",
+      "to": "resSet.height"
+    },
+    {
+      "from": "ui#settings.pick_res.emitted",
+      "to": "resSet.trigger"
+    },
+    {
+      "from": "resIdx.out",
+      "to": "selW.index"
+    },
+    {
+      "from": "selW.out",
+      "to": "modeSet.width"
+    },
+    {
+      "from": "resIdx.out",
+      "to": "selH.index"
+    },
+    {
+      "from": "selH.out",
+      "to": "modeSet.height"
+    },
+    {
+      "from": "ui#settings.pick_mode",
+      "to": "pickMode.index"
+    },
+    {
+      "from": "pickMode.out",
+      "to": "modeSet.mode"
+    },
+    {
+      "from": "ui#settings.pick_mode.emitted",
+      "to": "modeSet.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "autoT.key"
+    },
+    {
+      "from": "resIdx.out",
+      "to": "resAuto.resIdxV"
+    },
+    {
+      "from": "resIdx.out",
+      "to": "selPreset.index"
+    },
+    {
+      "from": "resAuto.truth",
+      "to": "selLabel.cond"
+    },
+    {
+      "from": "autoT.text",
+      "to": "selLabel.a"
+    },
+    {
+      "from": "selPreset.out",
+      "to": "selLabel.b"
+    },
+    {
+      "from": "world.language",
+      "to": "langEn.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "langEn.b"
+    },
+    {
+      "from": "langEn.true",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "langEn.false",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "resInit.tick",
+      "to": "resT.start"
+    },
+    {
+      "from": "ui#settings.pick_res.emitted",
+      "to": "resT.start"
+    },
+    {
+      "from": "display.changed",
+      "to": "resT.start"
+    },
+    {
+      "from": "langChanged.out",
+      "to": "resT.start"
+    },
+    {
+      "from": "resT.tick",
+      "to": "resClr.trigger"
+    },
+    {
+      "from": "autoT.text",
+      "to": "resAddA.value"
+    },
+    {
+      "from": "resT.tick",
+      "to": "resAddA.trigger"
+    },
+    {
+      "from": "display.nativeWidth",
+      "to": "fit1.nW"
+    },
+    {
+      "from": "display.nativeHeight",
+      "to": "fit1.nH"
+    },
+    {
+      "from": "fit1.value",
+      "to": "fitG1.cond"
+    },
+    {
+      "from": "resT.tick",
+      "to": "fitG1.trigger"
+    },
+    {
+      "from": "K6.out",
+      "to": "resAdd1.value"
+    },
+    {
+      "from": "fitG1.pass",
+      "to": "resAdd1.trigger"
+    },
+    {
+      "from": "display.nativeWidth",
+      "to": "fit2.nW"
+    },
+    {
+      "from": "display.nativeHeight",
+      "to": "fit2.nH"
+    },
+    {
+      "from": "fit2.value",
+      "to": "fitG2.cond"
+    },
+    {
+      "from": "resT.tick",
+      "to": "fitG2.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "resAdd2.value"
+    },
+    {
+      "from": "fitG2.pass",
+      "to": "resAdd2.trigger"
+    },
+    {
+      "from": "display.nativeWidth",
+      "to": "fit3.nW"
+    },
+    {
+      "from": "display.nativeHeight",
+      "to": "fit3.nH"
+    },
+    {
+      "from": "fit3.value",
+      "to": "fitG3.cond"
+    },
+    {
+      "from": "resT.tick",
+      "to": "fitG3.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "resAdd3.value"
+    },
+    {
+      "from": "fitG3.pass",
+      "to": "resAdd3.trigger"
+    },
+    {
+      "from": "display.nativeWidth",
+      "to": "fit4.nW"
+    },
+    {
+      "from": "display.nativeHeight",
+      "to": "fit4.nH"
+    },
+    {
+      "from": "fit4.value",
+      "to": "fitG4.cond"
+    },
+    {
+      "from": "resT.tick",
+      "to": "fitG4.trigger"
+    },
+    {
+      "from": "K9.out",
+      "to": "resAdd4.value"
+    },
+    {
+      "from": "fitG4.pass",
+      "to": "resAdd4.trigger"
+    },
+    {
+      "from": "display.nativeWidth",
+      "to": "fit5.nW"
+    },
+    {
+      "from": "display.nativeHeight",
+      "to": "fit5.nH"
+    },
+    {
+      "from": "fit5.value",
+      "to": "fitG5.cond"
+    },
+    {
+      "from": "resT.tick",
+      "to": "fitG5.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "resAdd5.value"
+    },
+    {
+      "from": "fitG5.pass",
+      "to": "resAdd5.trigger"
+    },
+    {
+      "from": "resT.tick",
+      "to": "selClr.trigger"
+    },
+    {
+      "from": "selLabel.out",
+      "to": "selAdd.value"
+    },
+    {
+      "from": "resT.tick",
+      "to": "selAdd.trigger"
+    },
+    {
+      "from": "resT.tick",
+      "to": "resList.trigger"
+    },
+    {
+      "from": "ui#settings.toggle_sub",
+      "to": "subOn.toggle"
+    },
+    {
+      "from": "subOn.value",
+      "to": "ui#settings.sub_on"
+    },
+    {
+      "from": "subOn.value",
+      "to": "world.cutinSub"
+    }
+  ]
+}

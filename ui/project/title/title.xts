@@ -134,6 +134,38 @@
   color: var(--ink);
 }
 
+.entry-sm {
+  text-align: center;
+  line-height: 42px;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px #123a31;
+  white-space: nowrap;
+  transition: background-color 150ms linear;
+}
+
+:lang(en) .entry-sm {
+  letter-spacing: 1px;
+}
+
+.entry-sm:hover {
+  color: var(--paper);
+  background-color: var(--ink);
+}
+
+.entry-sm:active {
+  color: var(--ink);
+  background-color: var(--paper-old);
+}
+
+.entry-sm:focus {
+  outline: 2px solid #a65432;
+  outline-offset: -4px;
+}
+
 .end-card {
   background-gradient: radial-gradient(70.7107% 77.7817% at 50% 45%, #f3eedf 60%, #e3d9c2 100%);
 }

@@ -6830,5 +6830,13 @@
  "SCR_CH03_S04_W002": {
   "zh-TW": "對，門是本警督的人撞開的。所以門從裡面閂著。狐狸小姐，妳這是在替本警督作證嗎？",
   "en": "Yes, this Inspector's men broke that hatch in. So it was bolted from inside. Miss Fox, are you testifying on this Inspector's behalf?"
+ },
+ "UI_SET_RES_AUTO": {
+  "zh-TW": "自動（跟隨視窗）",
+  "en": "Auto (match window)"
+ },
+ "UI_SET_RES_CURRENT": {
+  "zh-TW": "目前：{w} × {h}",
+  "en": "Current: {w} × {h}"
  }
 }

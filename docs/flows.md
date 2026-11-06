@@ -12,16 +12,17 @@
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
-| `main` | 70／131 | 應用狀態機：語言切換、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊與對手筆記覆蓋層、結尾卡、重新論戰旗標 |
+| `main` | 77／153 | 應用狀態機：語言切換（標題與設定共用）、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊、對手筆記與設定覆蓋層、結尾卡、重新論戰旗標、離開遊戲 |
+| `settings` | 54／84 | 設定覆蓋層的內容（§4.11）：解析度與視窗模式（`atrium.display.set`、`display.*`）、大字譯名 |
 | `dialogue` | 86／174 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞與熱身中的反駁（§4.2）；結算步驟的場景台詞（§4.9） |
 | `paper` | 44／71 | `paper` 步驟：依 `papers` 表填 `ui#paper`，兩頁翻完即結束 |
 | `investigate` | 699／1253 | `investigate` 步驟（01-systems §1）與證物冊 `ui#evbook` |
 | `board` | 1915／4124 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
-| `debate_ui` | 1719／3332 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧 |
+| `debate_ui` | 1722／3340 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧 |
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
 | `music` | 29／44 | 音樂掛鉤（§4.10）：`world.bgmMoment`、`world.bgm` |
 
@@ -55,6 +56,7 @@
 | `world.debRetrying` | bool | `main` | `main`、`dialogue`、`debate_ui` | 目前的論戰步驟是由重新論戰進入的（`debRetry` 時 true，下一次 `stepDone` 時 false；在步驟開始的脈衝之前寫好）：不播開場台詞（§4.2），板面還原為鎖定時的樣子（§4.8）。 |
 | `world.notesOpen`、`world.notesShown` | pulse、bool | `debate_ui`、`main` | `main`、`debate_ui` | 打開對手筆記覆蓋層（`ui#notes`）；覆蓋層開著（論戰暫停，§4.8）。 |
 | `world.bgmDeb` | string | `debate_ui` | `music` | 論戰中的音樂時機（§4.10）。 |
+| `world.cutinSub` | bool | `settings` | `debate_ui` | 大字譯名（01-systems §4.6、§4.7 在地化）：預設開；英文時且開著才寫 `cutin.subtitle`（§4.8、§4.11）。 |
 | `world.bgmMoment`、`world.bgm` | string | `music` | （日後的音樂播放） | 目前的音樂時機與它的 BGM id（§4.10）。 |
 | `world.debGo` | pulse | `dialogue` | `main`、`debate_ui` | 論戰／熱身步驟的開場台詞（`script.cue` = `pre`）播完（沒有時在步驟開始的同一 tick）：論戰畫面出現、論戰開始（§4.2、§4.8）。 |
 | `world.debEnd`、`world.debCue` | pulse、string | `debate_ui` | `dialogue` | 論戰結束（原本的 `stepDone`）；`debCue` ＝ 收尾台詞的 `script.cue`：論戰勝利或熱身通過 `postWin`、其他（含熱身失敗：本案信任度 −1）`postLose`。 |
@@ -98,6 +100,7 @@
 | `uiActOn`、`uiActWhy` | list bool／string（4） | `debate_ui` | `debate.act_enabled`／`act_reason` 的值陣列（`bare`，§4.8） |
 | `uiNodes`；`uiChains`／`uiChPos`／`uiChLink`／`uiChSel` | map | `debate_ui` | `debate.nodes`（節點 → state）與 `debate.chains`（卡 → 鏈、位置、link、sel）的來源（§4.8） |
 | `resStats`、`resCosts` | map string／list | `result` | 統計（已在地化的標籤 → 值）與代價兩個清單 port 的來源 |
+| `setRes`、`setResOn` | list string（6、1） | `settings` | `settings.res_options` 的來源：選項文字；選中那一項的文字（`sel` ＝ `coll:setResOn.contains`） |
 | 引擎的集合 | | 引擎 | `debState`、`dwState`、`debOn`、`debEvents`、`debSnap`、`debAssisted`（`docs/debate-engine.md` §2.2） |
 
 ## 3. 步驟合約
@@ -120,6 +123,8 @@
 - **畫面**：`screen` 狀態 `title`／`paper`／`vn`／`investigate`／`board`／`debate`／`result`，由 `kind` 的 `compare.true` 切換；`world.resultLines` → vn（結算場景的台詞）。`warmup` 與 `debate` 在步驟開始的脈衝（`rebegin`，`cur.value` 的最後一條邊，場景與章已結算）上決定：該場景有 `script.cue` = `pre` 的可播放列 → vn，否則 → debate；`world.debGo` → debate、`world.vnShow` → vn（§4.2）。
 - **重新論戰**：`world.debRetry` → toggle `retrying` 設 true（寫 `world.debRetrying`）→ `cur.decrement`（結算步驟的前一列就是論戰步驟），步驟重新開始；這時有開場台詞也直接換到論戰畫面（`debPre` 要求 `!retrying`）。`world.stepDone` 把它設回 false。
 - **對手筆記**（M5c，01-systems §4.4）：`notes` 狀態（closed／open）：`world.notesOpen` → open；`ui#notes.close` → closed；每次步驟開始 → closed。寫 `ui#notes.visible` 與 `world.notesShown`。modal 覆蓋層（`game.json` 的 `ui.surfaces` 在 cutin 之前；surfaces 不是流圖擁有的條目，手寫）。
+- **設定**（ui-contracts settings）：`settings` 狀態（closed／open）：`ui#title.open_settings`、各畫面與證物冊、對手筆記的 `ui#<surface>.settings`（Esc／F1，ui-contracts「開啟設定」）→ open；`ui#settings.close` → closed；步驟開始不關。寫 `ui#settings.visible`。modal 覆蓋層，在 cutin 之前、證物冊與對手筆記之後。文字語言：`ui#settings.pick_lang.emitted` 依值送 `lang.to_zh`／`lang.to_en`（與標題的切換同一個 `lang` 狀態），`lang.index` → `ui#settings.lang_sel`。
+- **離開遊戲**：`ui#title.quit` → `atrium.app.quit`（XTAtrium 09 §9.6；headless 無作用）。
 - **證物冊**：`book` 狀態（closed／open）：蒐證中 `ui#investigate.book` → open；`ui#evbook.close` → closed；每次步驟開始 → closed。寫 `ui#evbook.visible` 與 `world.bookOpen`。證物冊是 modal 覆蓋層，開著時下層收不到輸入。
 
 ### 4.2 `dialogue`
@@ -237,7 +242,7 @@
 | 紀錄 | 演出 | 停留 |
 |---|---|---|
 | `reveal`、`wReveal` | `reveal_me`／`reveal_opp`／`reveal_combo`／`reveal_seq`；`reveal_line`：我攻對手守＝Sherefox 的 `sfAction` 台詞、我守對手攻＝對手的 `action` 台詞、交鋒／僵持＝`reaction`，玉石俱焚＝`cornered`（G3，回合數輪流）；熱身＝警督的說法 | 1.4 秒 |
-| `cutin` | 播放全幕者 → `cutin.big`＋`big_seq`；印章與降級的破竹 3 → `stamp`＋`stamp_seq`（`stamp_n` 層數）；英文時 `subtitle` ＝ `<id>_SUB`（大字譯名預設開，沒有設定畫面；破竹印章 `STAMP_HACHIKU_SUB` 以 `atrium.textf` 填層數 `{n}`） | 1.6／4.0（論破）／0.6 秒 |
+| `cutin` | 播放全幕者 → `cutin.big`＋`big_seq`；印章與降級的破竹 3 → `stamp`＋`stamp_seq`（`stamp_n` 層數）；英文且 `world.cutinSub`（大字譯名，預設開，設定畫面可關，§4.11）時 `subtitle` ＝ `<id>_SUB`（破竹印章 `STAMP_HACHIKU_SUB` 以 `atrium.textf` 填層數 `{n}`） | 1.6／4.0（論破）／0.6 秒 |
 | `dmgOpp`、`dmgPlayer`、`heal` | `float_*` 「−n」「+n」；壓力錶跟著紀錄的「後」值 | 0.6 秒 |
 | `nodeRemoved`、`nodeAdded` | 節點粉碎（state 4）／加入，清單重寫 | 有台詞時 0.6 秒 |
 | 其他 | `flowEvLine`（`case|種類|欄`）有台詞的寫進 `result_line`（截斷：`MSG_DEB_PARRY`；尾聲出錯牌 `tailResult|0`：Ch.2 `SCR_CH02_S05_L047`、Ch.3 `SCR_CH03_S06_L046`〔設計確認，`tools/gen_debui.py` `TAIL_WRONG`；行首的作者註記已由在地化移除，裁決 G6〕，其他 `MSG_TAIL_WRONG`）；台詞以 `atrium.textf` 填 `{name}`（對手）與 `{n}`（反擊量、矛盾數、尾聲反撲 `debCase.tw`），鍵與 `{n}` 存在 `dbuiS.rl`／`dbui.rln` | 0.6 秒或 0 |
@@ -274,6 +279,14 @@
 - `world.bgmMoment` ＝ 依步驟種類：沒有步驟／`end` `title`、`paper`／`vn` `daily`、`investigate`、`board`、`result`；`debate`／`warmup` 步驟＝`debate_ui` 的 `world.bgmDeb`（§4.8；含開場與收尾台詞的 vn）。
 - `world.bgm` ＝ `flowBgm`（時機 → BGM id；`tools/gen_debui.py` `BGM`）：title BGM01、daily BGM02、investigate BGM05、board BGM06、debate BGM07、debate2 BGM08、pudding BGM12、warmup BGM07、break BGM09、reverse／brink BGM10、result BGM11。
 - 接上播放（音檔到位後）：`game.json` 加 `audio.music`（每個 BGM id 一個條目，`loop` true）與 `audio.channels`，`music` 圖加一個 `atrium.music.play`（channel `bgm`，cue ＝ `world.bgm`，fadeIn 約 1 秒），由 `world.bgm` 的變化觸發（例：`filter` deadband 或 `compare` 的變化脈衝）。每個時機就是一列 `flowBgm`，換曲只改表。
+
+### 4.11 `settings`（設定覆蓋層的內容；ui-contracts settings；XTAtrium 09）
+
+- `current` ＝ `atrium.textf`（`UI_SET_RES_CURRENT`，`{w}` ＝ `display.width`、`{h}` ＝ `display.height`）；值邊，`display.*` 或語言改變時跟著變。headless 為「目前：0 × 0」。
+- `mode_sel` ＝ `display.mode`（`windowed` 0、`borderless` 1、`fullscreen` 2）。`pick_mode.emitted` → `atrium.display.set`（`mode` ＝ 所選，寬高 ＝ 目前選的解析度，自動為 0 × 0）。
+- 解析度：選項 0 ＝ 自動，1～5 ＝ 1280×720、1600×900、1920×1080、2560×1440、3840×2160；只列不超過 `display.nativeWidth/Height` 的（兩邊都遞增，所以列出的一定是前綴，第 i 項就是第 i 個預設值）。`pick_res.emitted` → `atrium.display.set`（寬高查表，自動 0 × 0）並記下選項（`filter(sample)`，初始 0 ＝ 自動，同 `game.json` 的 `display.resolution`）。`res_options` 在開始時、選了解析度、`display.changed`、語言改變時重寫（一個 1 ms 計時器之後，讓文字與選項先結算）：清空 `setRes` → 加 `UI_SET_RES_AUTO` 的文字 → 合乎原生解析度的預設值（不分語言的數字）→ `setResOn` 只放選中那一項 → `atrium.ui.list`。headless 只有「自動」。
+- 大字譯名：`toggle`（初始開）；`ui#settings.toggle_sub` 翻轉，寫 `ui#settings.sub_on` 與 `world.cutinSub`。
+- 限制：選中的解析度只是「上次選的」：用 `play --width/--height` 以固定解析度啟動時，畫面上仍標「自動」（沒有讀回目前解析度設定的訊號）。設定開著時論戰不暫停（設計沒有規定；對手筆記才暫停）。
 
 ## 5. 輔助表 `data/flow/`
 
@@ -314,6 +327,8 @@
 
 - `uv run tests/check_playthrough.py`：story 流程（M2 的檢查），蒐證與線索板以最短路線通過（`tests/gen_case.py` 的 `MINIMAL`，第一次按「進入論戰」只顯示警告、第二次進入）；結尾卡關掉後連點同一章（值不變，經 `.emitted`）也會重新開始。
 - `uv run tests/check_case.py [--frames DIR]`：Ch.1 調查全部 10 點、不鑑定、組推薦鏈 E01_01→E01_04 並選對全部理由；Ch.2 用 3 次鑑定（1 次在證物冊）、漏 E02_05、一條詭辯（E02_04 理由錯）、一次無效彈回、兩條鏈。比對刻度、彈窗種類、提示與亞瑟台詞序列、清單 port 的 JSON（點、抽屜、格、連結、銅牌）、`oppHand`、`appraised`、`golden`，以及 `debBoard*` 與 ref 對同一路線的板面（`fixtures.ch1_board`；Ch.2 為 `ch2_case` 改 E02_04 理由錯、兩條鏈）逐格相等。
+
+- `uv run tests/check_settings.py`：設定覆蓋層（`tests/settings.atrec`）：標題的離開遊戲與設定、遊戲中 F1／Esc 開啟、Esc／Backspace／遮罩關閉、文字語言與標題共用、大字譯名、headless 時 `res_options` 只有「自動」。
 
 - `uv run tests/check_debate_play.py`：Ch.1／Ch.2 的推薦路線、Ch.2 敗北與重來，以及 Ch.3 的推薦路線（先打贏 Ch.2 取得 G-01，再經熱身、三個場景的蒐證、ref 的 `ch3_board`，對 `ch3_route` 逐回合比對；`tests/play_harness` 的 `debScript` 照 ref 出招）；Ch.3 熱身失誤 3 次（OBS_CH03_01、OBS_CH03_02、OBS_CH03_01：每次的反駁、F001～F004、信任度 2）與失誤 1 次（OBS_CH03_02 後 E03_05：L006～L009、信任度不加），裁決 G5；論戰前後的台詞（`script.cue`）、蒐證的反應台詞、漏證訊息與場景名也在這裡與 `check_case.py` 檢查。
 

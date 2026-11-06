@@ -20,10 +20,11 @@
     close: event out
     remark: string in = "雙層發條，齒距 0.3 釐，這是去年才出現的軍用規格。正規店家買不到，只有黑市才有。"
     remark_seq: number in = 0
+    settings: event out
   </ports>
 
   <body on:show="play(open)" key-activation="none">
-    <div id="evbook" tabindex="0" autofocus="" on:port(remark_seq)="play(remark-in)" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
+    <div id="evbook" tabindex="0" autofocus="" on:port(remark_seq)="play(remark-in)" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))" on:key(F1)="emit(settings)">
       <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
       <div id="book-dock">
         <div id="book" class="book">

@@ -32,6 +32,7 @@
 | `result` | 結算 | 勝敗、統計、信任度、亞瑟評語 |
 | `evbook` | 證物冊（覆蓋層） | 本案證物、黃金線索、私人收藏 |
 | `notes` | 亞瑟的對手筆記（覆蓋層，M5c） | 這位對手（類型、傾向、小動作）、行為規則、回合紀錄（敗北回顧） |
+| `settings` | 設定（覆蓋層） | 解析度、顯示模式、文字語言、大字譯名 |
 | `cutin` | 書法大字與印章（最上層） | 全幕大書、角落印章、譯名小字 |
 
 各 surface 的 port 合約（名稱、型別、方向）寫在 `docs/ui-contracts.md`，UI 與流圖兩邊照它做；改合約先改文件。
@@ -45,7 +46,7 @@
 | `investigate` | 調查點、刻度、鑑定、權限、必需證物保底、漏證結算 |
 | `board` | 放卡、理由、拉線判定（實證／詭辯／無效）、推理鏈組成、進入論戰前檢查 |
 | `debate` | 回合流程（附錄 A-1）、對決表與傷害、節點、狀態、論破與尾聲、對手 AI 與預兆、熱身與布丁論戰的變體 |
-| `settings` | 語言（寫 `world.language`）、文字速度等 |
+| `settings` | 設定覆蓋層：解析度與顯示模式（`atrium.display.set`）、大字譯名（`world.cutinSub`）；文字語言由 `main` 的語言狀態處理 |
 
 流圖之間的介面：`world.*` 訊號（值與 pulse），在 `game.json` 的 `signals` 宣告。例：`world.step.done`（pulse）、`world.debate.start`（pulse）、`world.debate.case`（string）、`world.debate.won`（bool）。
 
@@ -92,5 +93,5 @@
 ## 8. 畫面切換（XTAtrium AT-039）
 
 - 每個 surface 有匯流排訊號 `ui.<id>.visible`（bool）；`main` 流圖以一個 `state` 節點寫入各 surface 的 `ui#<id>.visible`。宿主把變化轉成 request_show／request_hide，intro／outro 照播，`ui#<id>.shown`／`hidden` 照常發。
-- `game.json` 的 `ui.surfaces[]`：`title` 可見，其餘 `"visible": false`；覆蓋層（`evbook`、`notes`、`cutin`）放在陣列最後，需要擋住下層輸入的設 `"modal": true`。繪製順序＝陣列順序，後者在上。
+- `game.json` 的 `ui.surfaces[]`：`title` 可見，其餘 `"visible": false`；覆蓋層（`evbook`、`notes`、`settings`、`cutin`）放在陣列最後，需要擋住下層輸入的設 `"modal": true`。繪製順序＝陣列順序，後者在上。
 - 隱藏的 surface 不更新、不繪製、不收輸入；輸入由上而下只經可見 surface，遇到第一個可見的 modal 即停。

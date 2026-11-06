@@ -493,6 +493,8 @@ UI_SET_VOL_VOICE,Settings,語音,Voice,ctx: 設定項目
 UI_SET_VOL_ENV,Settings,環境音,Ambience,ctx: 設定項目
 UI_SET_VOICE_CHAR,Settings,角色語音,Character Voices,ctx: 設定項目
 UI_SET_RES,Settings,解析度,Resolution,ctx: 設定項目
+UI_SET_RES_AUTO,Settings,自動（跟隨視窗）,Auto (match window),ctx: 設定選項（解析度預設：跟隨視窗大小）
+UI_SET_RES_CURRENT,Settings,目前：{w} × {h},Current: {w} × {h},ctx: 解析度項目下的說明；{w} {h} = 實際渲染解析度（像素）
 UI_SET_WINDOW,Settings,顯示模式,Display Mode,ctx: 設定項目
 UI_SET_WINDOW_FULL,Settings,全螢幕,Fullscreen,ctx: 設定選項
 UI_SET_WINDOW_WIN,Settings,視窗,Windowed,ctx: 設定選項

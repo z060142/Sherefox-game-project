@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Settings</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #092e28 }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+
+  /* A newspaper sheet on a dimmed screen (as the evidence book and the opponent notes). */
+  .scrim { background-color: #092e28b8 }
+  .book { background-color: var(--paper-old); border: 2px solid var(--ink-deep); box-shadow: 8px 8px 0px 0px #00000059 }
+  .page { background-color: var(--paper); border-left: 3px solid var(--copper) }
+  :lang(en) #set-title { font-size: 22px; letter-spacing: 1px }
+
+  .btn { height: 40px; flex-shrink: 0; text-align: center; line-height: 38px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 2px; color: var(--ink);
+         background-color: var(--paper); border: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { color: var(--paper); background-color: var(--copper) }
+
+  /* One row a setting: the item name on the left, its options on the right. */
+  .row-label { font-family: var(--font-body); font-size: 16px; line-height: 34px; font-weight: 700;
+               letter-spacing: 2px; color: var(--ink-deep); white-space: nowrap }
+  :lang(en) .row-label { letter-spacing: 0px }
+  .row-rule { border-bottom: 1px dashed #123a3166 }
+  .opt { width: 156px; height: 34px; flex-shrink: 0; text-align: center; line-height: 32px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 1px; color: var(--ink);
+         background-color: var(--paper-old); border: 1px solid var(--ink); white-space: nowrap;
+         transition: background-color 120ms linear }
+  :lang(en) .opt { font-size: 14px; letter-spacing: 0px }
+  .opt:hover { background-color: #fbf8ef }
+  .opt.on { color: var(--paper); background-color: var(--ink); border-color: var(--ink-deep) }
+  .current { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 1px;
+             color: var(--copper); white-space: nowrap; font-variant-numeric: tabular-nums }
+</style></helmet>
+<div id="settings" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='res_options:list&lt;struct{label: string, sel: bool}&gt; in = [{"label":"自動（跟隨視窗）","sel":true},{"label":"1280 × 720","sel":false},{"label":"1600 × 900","sel":false},{"label":"1920 × 1080","sel":false}]; mode_sel:number in = 0; lang_sel:number in = 0; sub_on:bool in = true; current:string in = "目前：1920 × 1080"; pick_res:number out = 0; pick_mode:number out = 0; pick_lang:number out = 0; toggle_sub:event out; close:event out'
+     data-xt-trigger="show:play(open); key(Escape):emit(close); key(Backspace):emit(close)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; color: #123a31;">
+
+  <!-- Dimmed screen: a click outside the sheet closes it. -->
+  <div id="scrim" class="scrim" data-xt-trigger="click(left):emit(close)"
+       data-xt-timeline="open: 0 opacity 0, 200ms ease-out opacity 1"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+
+  <div id="set-dock" style="position: absolute; left: calc(50% - 380px); top: calc(50% - 220px); width: 760px; height: 440px;">
+  <div id="sheet" class="book"
+       data-xt-timeline="open: 0 opacity 0, 0 transform translateY(16px), 240ms ease-out opacity 1, 240ms ease-out transform translateY(0px)"
+       style="position: absolute; left: 0px; top: 0px; width: 760px; height: 440px;">
+
+    <!-- Header: title, close. -->
+    <div id="set-title" class="f-disp" data-xt-key="BTN_SETTINGS"
+         style="position: absolute; left: 28px; top: 14px; width: 400px; height: 40px; font-size: 24px; line-height: 40px;
+                font-weight: 700; letter-spacing: 4px; color: #092e28; white-space: nowrap;">設定</div>
+    <div id="btn-close" class="btn" data-xt-key="BTN_CLOSE" data-xt-trigger="click(left):emit(close)"
+         style="position: absolute; left: 604px; top: 15px; width: 128px;">關閉</div>
+    <div id="set-rule-a" class="rule-thick" style="position: absolute; left: 20px; top: 64px; width: 716px; height: 3px;"></div>
+    <div id="set-rule-b" class="rule-thin" style="position: absolute; left: 20px; top: 70px; width: 716px; height: 1px;"></div>
+
+    <div id="page" class="page" style="position: absolute; left: 20px; top: 80px; width: 716px; height: 340px;">
+
+      <!-- Resolution: the options the flow lists (auto and the presets up to the native size), the actual size. -->
+      <div id="res-label" class="row-label" data-xt-key="UI_SET_RES"
+           style="position: absolute; left: 28px; top: 16px; width: 170px; height: 34px;">解析度</div>
+      <div id="res-box" style="position: absolute; left: 210px; top: 16px; width: 486px; height: 104px;
+           display: flex; flex-direction: column; gap: 8px;">
+        <div id="res-list" data-xt-repeat="res_options"
+             style="width: 486px; flex-shrink: 0; display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px;">
+          <div id="res-opt" class="opt" data-xt-bind="text=item(label); class.on=item(sel)"
+               data-xt-trigger="click(left):set(pick_res, repeat.index)">自動（跟隨視窗）</div>
+        </div>
+        <div id="res-current" class="current" data-xt-bind="text=current"
+             style="width: 486px; height: 20px; flex-shrink: 0;">目前：1920 × 1080</div>
+      </div>
+      <div id="res-rule" class="row-rule" style="position: absolute; left: 28px; top: 128px; width: 666px; height: 1px;"></div>
+
+      <!-- Window mode: 0 windowed, 1 borderless, 2 fullscreen. -->
+      <div id="mode-label" class="row-label" data-xt-key="UI_SET_WINDOW"
+           style="position: absolute; left: 28px; top: 144px; width: 170px; height: 34px;">顯示模式</div>
+      <div id="mode-list" style="position: absolute; left: 210px; top: 144px; width: 486px; height: 34px;
+           display: flex; flex-direction: row; gap: 8px;">
+        <div id="mode-win" class="opt" data-xt-key="UI_SET_WINDOW_WIN" data-xt-bind="class.on=mode_sel | eq(0)"
+             data-xt-trigger="click(left):set(pick_mode, 0)">視窗</div>
+        <div id="mode-borderless" class="opt" data-xt-key="UI_SET_WINDOW_BORDERLESS" data-xt-bind="class.on=mode_sel | eq(1)"
+             data-xt-trigger="click(left):set(pick_mode, 1)">無邊框</div>
+        <div id="mode-full" class="opt" data-xt-key="UI_SET_WINDOW_FULL" data-xt-bind="class.on=mode_sel | eq(2)"
+             data-xt-trigger="click(left):set(pick_mode, 2)">全螢幕</div>
+      </div>
+      <div id="mode-rule" class="row-rule" style="position: absolute; left: 28px; top: 194px; width: 666px; height: 1px;"></div>
+
+      <!-- Text language: 0 繁體中文, 1 English. -->
+      <div id="lang-label" class="row-label" data-xt-key="UI_SET_LANG_TEXT"
+           style="position: absolute; left: 28px; top: 210px; width: 170px; height: 34px;">文字語言</div>
+      <div id="lang-list" style="position: absolute; left: 210px; top: 210px; width: 486px; height: 34px;
+           display: flex; flex-direction: row; gap: 8px;">
+        <div id="lang-zh" class="opt" data-xt-key="UI_TITLE_LANG_ZH" data-xt-bind="class.on=lang_sel | eq(0)"
+             data-xt-trigger="click(left):set(pick_lang, 0)">繁體中文</div>
+        <div id="lang-en" class="opt" data-xt-key="UI_TITLE_LANG_EN" data-xt-bind="class.on=lang_sel | eq(1)"
+             data-xt-trigger="click(left):set(pick_lang, 1)">English</div>
+      </div>
+      <div id="lang-rule" class="row-rule" style="position: absolute; left: 28px; top: 260px; width: 666px; height: 1px;"></div>
+
+      <!-- Calligraphy subtitles (大字譯名): on / off; the option that is not on sends toggle_sub. -->
+      <div id="sub-label" class="row-label" data-xt-key="UI_SET_CUTIN_SUB"
+           style="position: absolute; left: 28px; top: 276px; width: 170px; height: 34px;">大字譯名</div>
+      <div id="sub-list" style="position: absolute; left: 210px; top: 276px; width: 486px; height: 34px;
+           display: flex; flex-direction: row; gap: 8px;">
+        <div id="sub-on" class="opt" data-xt-key="UI_SET_ON" data-xt-bind="class.on=sub_on"
+             data-xt-trigger="click(left):if port(sub_on) eq false emit(toggle_sub)">開</div>
+        <div id="sub-off" class="opt" data-xt-key="UI_SET_OFF" data-xt-bind="class.on=sub_on | not"
+             data-xt-trigger="click(left):if port(sub_on) eq true emit(toggle_sub)">關</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

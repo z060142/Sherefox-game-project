@@ -29,10 +29,11 @@
     auto: event out
     skip: event out
     log: event out
+    settings: event out
   </ports>
 
   <body on:show="play(reveal)" key-activation="none">
-    <div id="vn" tabindex="0" autofocus="" on:key(Enter)="if port(choice_count) eq 0 emit(advance)" on:key(Space)="if port(choice_count) eq 0 emit(advance)" on:key(A)="emit(auto)" on:key(Backspace)="emit(log)" on:key(1)="if port(choice_count) ge 1 set(choose, 1)" on:key(2)="if port(choice_count) ge 2 set(choose, 2)" on:key(3)="if port(choice_count) ge 3 set(choose, 3)" on:key(4)="if port(choice_count) ge 4 set(choose, 4)">
+    <div id="vn" tabindex="0" autofocus="" on:key(Enter)="if port(choice_count) eq 0 emit(advance)" on:key(Space)="if port(choice_count) eq 0 emit(advance)" on:key(A)="emit(auto)" on:key(Backspace)="emit(log)" on:key(1)="if port(choice_count) ge 1 set(choose, 1)" on:key(2)="if port(choice_count) ge 2 set(choose, 2)" on:key(3)="if port(choice_count) ge 3 set(choose, 3)" on:key(4)="if port(choice_count) ge 4 set(choose, 4)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <div id="bg" on:port(bg)="play(bg-in)">
         <div id="bg-art">
           <img id="bg-office-night" class="bg-art" src="../shared/img/bg-office-night.jpg" bind:display="bg | eq('office_night')"/>

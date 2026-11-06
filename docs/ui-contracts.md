@@ -458,3 +458,31 @@ UI 側實作（板子 `ui/boards/project/Notes.dc.html`）：
 | `quit` | event | out | 目錄欄的「離開遊戲」；流圖接 `atrium.app.quit`。 |
 
 Esc 不再結束程式（AT-052）：遊戲中 Esc＝關閉目前的覆蓋層（證物冊、對手筆記、設定）；沒有覆蓋層時開啟設定。
+
+### 開啟設定（各畫面追加，實作時加的 port）
+
+「遊戲中 Esc／F1」沒有遊戲層的按鍵訊號可用（SDL 宿主的鍵位表不含 Esc／F1，按鍵只送到 UI），所以由各畫面的根元素（持有焦點）送出：
+
+| surface | port | 型別 | 方向 | 鍵 |
+|---|---|---|---|---|
+| `vn`、`paper`、`board`、`debate`、`result` | `settings` | event | out | Esc、F1 → `emit(settings)` |
+| `investigate` | `settings` | event | out | F1；Esc 在彈窗開著時仍是 `dismiss`，否則 `settings` |
+| `evbook`、`notes` | `settings` | event | out | F1（Esc 照舊關閉自己） |
+
+覆蓋層是 modal，開著時下層畫面收不到按鍵，所以「沒有覆蓋層時 Esc 開設定」不需要流圖判斷；設定畫在證物冊與對手筆記之上（`game.json` 的 `ui.surfaces` 在 cutin 之前），Esc 永遠先關最上層。
+
+UI 側實作（板子 `ui/boards/project/Settings.dc.html`）：
+
+- **整體**：同證物冊的做法：全畫面深墨半透明遮罩（點一下 → `emit(close)`），中央一張新聞紙（760×440，以 `calc` 置中的 dock）：標題 `BTN_SETTINGS`、`BTN_CLOSE`、粗細雙線；其下一頁新聞紙（銅色左邊線），四列設定，列與列之間虛線。顯示時播 `open`。
+- **解析度**（`res_options`、`current`、`pick_res`）：`<repeat port="res_options">` 換行排列的選項（156×34，每列 3 個），`item(sel)` 深墨底；點擊 → `set(pick_res, repeat.index)`。選項下方 `current`（銅色小字）。
+- **顯示模式**（`mode_sel`、`pick_mode`）：`UI_SET_WINDOW_WIN`／`UI_SET_WINDOW_BORDERLESS`／`UI_SET_WINDOW_FULL`，`mode_sel | eq(n)` 深墨底；點擊 → `set(pick_mode, n)`。
+- **文字語言**（`lang_sel`、`pick_lang`）：`UI_TITLE_LANG_ZH`／`UI_TITLE_LANG_EN`；點擊 → `set(pick_lang, 0／1)`。
+- **大字譯名**（`sub_on`、`toggle_sub`）：`UI_SET_ON`／`UI_SET_OFF`；點不是目前狀態的那一個 → `emit(toggle_sub)`（點目前狀態的不送）。
+- **鍵盤**（根元素持有焦點）：Esc、Backspace → `close`。方向鍵與 Enter 不做（滑鼠操作）。
+- **預設值**（截圖用）：自動＋三個預設解析度、視窗、繁體中文、譯名開。
+
+流圖側：`main` 決定可見性（`settings` 狀態）並處理 `pick_lang`（與標題的語言切換共用 `lang` 狀態）；`flows/settings.xtflow` 寫其餘的 port（`docs/flows.md` §4.1、§4.11）。`res_options` 的「自動」是 `UI_SET_RES_AUTO`，預設解析度是不分語言的數字「1920 × 1080」；`current` 是代入 `{w}`、`{h}` 的 `UI_SET_RES_CURRENT`。
+
+title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小按鈕（`BTN_SETTINGS`、`BTN_QUIT`，各 200×44）；章節項目因此改為 100 px 高。
+
+字串鍵：`BTN_SETTINGS`、`BTN_CLOSE`、`BTN_QUIT`、`UI_SET_RES`、`UI_SET_RES_AUTO`、`UI_SET_RES_CURRENT`、`UI_SET_WINDOW`、`UI_SET_WINDOW_WIN`、`UI_SET_WINDOW_BORDERLESS`、`UI_SET_WINDOW_FULL`、`UI_SET_LANG_TEXT`、`UI_TITLE_LANG_ZH`、`UI_TITLE_LANG_EN`、`UI_SET_CUTIN_SUB`、`UI_SET_ON`、`UI_SET_OFF`。

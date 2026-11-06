@@ -1,0 +1,281 @@
+<xt version="2">
+  <head>
+    <title>Settings</title>
+  </head>
+
+  <ports>
+    res_options: list<struct{label: string, sel: bool}> in = [{"label":"自動（跟隨視窗）","sel":true},{"label":"1280 × 720","sel":false},{"label":"1600 × 900","sel":false},{"label":"1920 × 1080","sel":false}]
+    mode_sel: number in = 0
+    lang_sel: number in = 0
+    sub_on: bool in = true
+    current: string in = "目前：1920 × 1080"
+    pick_res: number out = 0
+    pick_mode: number out = 0
+    pick_lang: number out = 0
+    toggle_sub: event out
+    close: event out
+  </ports>
+
+  <body on:show="play(open)" key-activation="none">
+    <div id="settings" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(Backspace)="emit(close)">
+      <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
+      <div id="set-dock">
+        <div id="sheet" class="book">
+          <div id="set-title" class="f-disp">@BTN_SETTINGS</div>
+          <div id="btn-close" class="btn" on:click(left)="emit(close)">@BTN_CLOSE</div>
+          <div id="set-rule-a" class="rule-thick"/>
+          <div id="set-rule-b" class="rule-thin"/>
+          <div id="page" class="page">
+            <div id="res-label" class="row-label">@UI_SET_RES</div>
+            <div id="res-box">
+              <repeat id="res-list" port="res_options">
+                <div id="res-opt" class="opt" on:click(left)="set(pick_res, repeat.index)" bind:text="item(label)" bind:class.on="item(sel)">自動（跟隨視窗）</div>
+              </repeat>
+              <div id="res-current" class="current" bind:text="current">目前：1920 × 1080</div>
+            </div>
+            <div id="res-rule" class="row-rule"/>
+            <div id="mode-label" class="row-label">@UI_SET_WINDOW</div>
+            <div id="mode-list">
+              <div id="mode-win" class="opt" on:click(left)="set(pick_mode, 0)" bind:class.on="mode_sel | eq(0)">@UI_SET_WINDOW_WIN</div>
+              <div id="mode-borderless" class="opt" on:click(left)="set(pick_mode, 1)" bind:class.on="mode_sel | eq(1)">@UI_SET_WINDOW_BORDERLESS</div>
+              <div id="mode-full" class="opt" on:click(left)="set(pick_mode, 2)" bind:class.on="mode_sel | eq(2)">@UI_SET_WINDOW_FULL</div>
+            </div>
+            <div id="mode-rule" class="row-rule"/>
+            <div id="lang-label" class="row-label">@UI_SET_LANG_TEXT</div>
+            <div id="lang-list">
+              <div id="lang-zh" class="opt" on:click(left)="set(pick_lang, 0)" bind:class.on="lang_sel | eq(0)">@UI_TITLE_LANG_ZH</div>
+              <div id="lang-en" class="opt" on:click(left)="set(pick_lang, 1)" bind:class.on="lang_sel | eq(1)">@UI_TITLE_LANG_EN</div>
+            </div>
+            <div id="lang-rule" class="row-rule"/>
+            <div id="sub-label" class="row-label">@UI_SET_CUTIN_SUB</div>
+            <div id="sub-list">
+              <div id="sub-on" class="opt" on:click(left)="if port(sub_on) eq false emit(toggle_sub)" bind:class.on="sub_on">@UI_SET_ON</div>
+              <div id="sub-off" class="opt" on:click(left)="if port(sub_on) eq true emit(toggle_sub)" bind:class.on="sub_on | not">@UI_SET_OFF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Settings.dc.html:1 */
+    #settings {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Settings.dc.html:1/0 */
+    #scrim {
+      anchor: stretch stretch screen;
+    }
+    /* import: Settings.dc.html:1/1 */
+    #set-dock {
+      height: 440px;
+      left: calc(50% - 380px);
+      position: absolute;
+      top: calc(50% - 220px);
+      width: 760px;
+    }
+    /* import: Settings.dc.html:1/1/0 */
+    #sheet {
+      height: 440px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 760px;
+    }
+    /* import: Settings.dc.html:1/1/0/0 */
+    #set-title {
+      height: 40px;
+      left: 28px;
+      position: absolute;
+      top: 14px;
+      width: 400px;
+    }
+    /* import: Settings.dc.html:1/1/0/1 */
+    #btn-close {
+      left: 604px;
+      position: absolute;
+      top: 15px;
+      width: 128px;
+    }
+    /* import: Settings.dc.html:1/1/0/2 */
+    #set-rule-a {
+      height: 3px;
+      left: 20px;
+      position: absolute;
+      top: 64px;
+      width: 716px;
+    }
+    /* import: Settings.dc.html:1/1/0/3 */
+    #set-rule-b {
+      height: 1px;
+      left: 20px;
+      position: absolute;
+      top: 70px;
+      width: 716px;
+    }
+    /* import: Settings.dc.html:1/1/0/4 */
+    #page {
+      height: 340px;
+      left: 20px;
+      position: absolute;
+      top: 80px;
+      width: 716px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/0 */
+    #res-label {
+      height: 34px;
+      left: 28px;
+      position: absolute;
+      top: 16px;
+      width: 170px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/1 */
+    #res-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 104px;
+      left: 210px;
+      position: absolute;
+      top: 16px;
+      width: 486px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/1/0 */
+    #res-list {
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 486px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/1/1 */
+    #res-current {
+      flex-shrink: 0;
+      height: 20px;
+      width: 486px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/2 */
+    #res-rule {
+      height: 1px;
+      left: 28px;
+      position: absolute;
+      top: 128px;
+      width: 666px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/3 */
+    #mode-label {
+      height: 34px;
+      left: 28px;
+      position: absolute;
+      top: 144px;
+      width: 170px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/4 */
+    #mode-list {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 34px;
+      left: 210px;
+      position: absolute;
+      top: 144px;
+      width: 486px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/5 */
+    #mode-rule {
+      height: 1px;
+      left: 28px;
+      position: absolute;
+      top: 194px;
+      width: 666px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/6 */
+    #lang-label {
+      height: 34px;
+      left: 28px;
+      position: absolute;
+      top: 210px;
+      width: 170px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/7 */
+    #lang-list {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 34px;
+      left: 210px;
+      position: absolute;
+      top: 210px;
+      width: 486px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/8 */
+    #lang-rule {
+      height: 1px;
+      left: 28px;
+      position: absolute;
+      top: 260px;
+      width: 666px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/9 */
+    #sub-label {
+      height: 34px;
+      left: 28px;
+      position: absolute;
+      top: 276px;
+      width: 170px;
+    }
+    /* import: Settings.dc.html:1/1/0/4/10 */
+    #sub-list {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 34px;
+      left: 210px;
+      position: absolute;
+      top: 276px;
+      width: 486px;
+    }
+    .btn {
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .opt {
+      width: 156px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="settings.xts"/>
+  <timelines>
+    @timeline open {
+      #scrim {
+        0ms {
+          opacity: 0;
+        }
+        200ms ease-out {
+          opacity: 1;
+        }
+      }
+      #sheet {
+        0ms {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        240ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

@@ -20,10 +20,11 @@
     result_sub: string in = ""
     next: event out
     prev: event out
+    settings: event out
   </ports>
 
   <body on:show="play(intro)" key-activation="none">
-    <div id="paper" tabindex="0" autofocus="" on:click(left)="emit(next)" on:key(Enter)="emit(next)" on:key(Space)="emit(next)" on:key(Right)="emit(next)" on:key(PageDown)="emit(next)" on:key(Left)="emit(prev)" on:key(PageUp)="emit(prev)" on:port(page)="play(flip)">
+    <div id="paper" tabindex="0" autofocus="" on:click(left)="emit(next)" on:key(Enter)="emit(next)" on:key(Space)="emit(next)" on:key(Right)="emit(next)" on:key(PageDown)="emit(next)" on:key(Left)="emit(prev)" on:key(PageUp)="emit(prev)" on:port(page)="play(flip)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <div id="sheet">
         <div id="p1" bind:display="page | eq(1)" bind:class.tall="result_head | eq('')">
           <div id="ear-l" class="ear" bind:class.extra="mast | eq(1)">

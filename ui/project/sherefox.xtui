@@ -108,6 +108,14 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "settings",
+      "doc": "settings/settings.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

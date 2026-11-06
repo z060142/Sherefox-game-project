@@ -30,10 +30,11 @@
     reason: number out = 0
     appraise: event out
     to_debate: event out
+    settings: event out
   </ports>
 
   <body key-activation="none">
-    <div id="board" tabindex="0" autofocus="" on:key(Enter)="emit(to_debate)" on:key(Delete)="if port(sel_id) ne '' set(unplace, port(sel_id))">
+    <div id="board" tabindex="0" autofocus="" on:key(Enter)="emit(to_debate)" on:key(Delete)="if port(sel_id) ne '' set(unplace, port(sel_id))" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <div id="sheet">
         <div id="hdr-left">
           <div id="board-kicker" class="kicker">@UI_BOARD_TITLE</div>

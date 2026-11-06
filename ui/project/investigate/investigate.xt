@@ -32,10 +32,11 @@
     book: event out
     ask_hint: event out
     end: event out
+    settings: event out
   </ports>
 
   <body key-activation="none">
-    <div id="investigate" tabindex="0" autofocus="" on:key(Escape)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Enter)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Space)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Q)="if port(nav_prev) eq true set(nav, -1)" on:key(E)="if port(nav_next) eq true set(nav, 1)" on:key(Tab)="emit(book)" on:key(F)="if port(can_end) eq true emit(end)">
+    <div id="investigate" tabindex="0" autofocus="" on:key(Escape)="if port(popup_kind) gt 0 emit(dismiss) else emit(settings)" on:key(Enter)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Space)="if port(popup_kind) gt 0 emit(dismiss)" on:key(Q)="if port(nav_prev) eq true set(nav, -1)" on:key(E)="if port(nav_next) eq true set(nav, 1)" on:key(Tab)="emit(book)" on:key(F)="if port(can_end) eq true emit(end)" on:key(F1)="emit(settings)">
       <div id="scene">
         <div id="bg" on:port(bg)="play(bg-in)">
           <div id="bg-art">

@@ -69,10 +69,11 @@
     improv: event out
     improv_ok: bool in = false
     picker_title: string in = ""
+    settings: event out
   </ports>
 
   <body on:show="play(intro); play(fidget, loop)" key-activation="none">
-    <div id="debate" tabindex="0" autofocus="" on:port(phase)="if port(phase) eq 0 play(fidget, loop) else pause(fidget)" on:port(opp_char)="play(ink-in)" on:port(parry_cards)="play(picker-in)" on:port(reveal_seq)="play(reveal)" on:port(float_opp)="play(float-opp)" on:port(float_me)="play(float-me)" on:key(1)="if port(phase) eq 0 set(act, 1)" on:key(2)="if port(phase) eq 0 set(act, 2)" on:key(3)="if port(phase) eq 0 set(act, 3)" on:key(4)="if port(phase) eq 0 set(act, 4)" on:key(F)="if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct)" on:key(V)="if port(phase) eq 0 emit(assist)" on:key(T)="state(Open, toggle, target=#table)" on:key(Enter)="if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Space)="if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Backspace)="if port(phase) eq 0 emit(back)" on:key(N)="emit(notes)" on:click(right)="if port(phase) eq 0 emit(back)">
+    <div id="debate" tabindex="0" autofocus="" on:port(phase)="if port(phase) eq 0 play(fidget, loop) else pause(fidget)" on:port(opp_char)="play(ink-in)" on:port(parry_cards)="play(picker-in)" on:port(reveal_seq)="play(reveal)" on:port(float_opp)="play(float-opp)" on:port(float_me)="play(float-me)" on:key(1)="if port(phase) eq 0 set(act, 1)" on:key(2)="if port(phase) eq 0 set(act, 2)" on:key(3)="if port(phase) eq 0 set(act, 3)" on:key(4)="if port(phase) eq 0 set(act, 4)" on:key(F)="if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct)" on:key(V)="if port(phase) eq 0 emit(assist)" on:key(T)="state(Open, toggle, target=#table)" on:key(Enter)="if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Space)="if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Backspace)="if port(phase) eq 0 emit(back)" on:key(N)="emit(notes)" on:click(right)="if port(phase) eq 0 emit(back)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <img id="bg-art" src="../shared/img/bg-debate.jpg"/>
       <div id="sheet">
         <div id="opp-fig">

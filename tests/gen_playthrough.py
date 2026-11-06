@@ -12,6 +12,12 @@
   every click, AT-040 `.emitted`), up to its opening paper.
 - tests/lang_toggle.atrec: press the title's language toggle three times (zh -> en -> zh -> en), choose Ch.1, turn
   both pages of the opening paper, so the first vn line is shown in English.
+- tests/settings.atrec: the title's 離開遊戲 (headless: no-op), then its 設定: English, 大字譯名 off, Esc closes it;
+  Ch.1, and on its opening paper F1 opens the settings: 繁體中文, 大字譯名 on (and a click on 開 again, which sends
+  nothing), Backspace closes it; Esc on the paper (no overlay open) opens it, a click on the dimmed screen closes it
+  (tests/check_settings.py).
+- tests/settings_display.atrec: the host's display.* as a window would write them (native 1920x1080, rendering
+  1600x900, borderless; recorded like input, XTAtrium 09 §9.3), then 設定 and the 1280 x 720 option.
 
 The click count per step comes from the data tables (steps, script), so the recording follows the data:
 paper = 2 clicks (page 1 -> page 2 -> done), vn = one click per playable line (script.playable; the first line
@@ -43,10 +49,20 @@ HOLD = {           # extra wait (ticks) before a click, so a frame can be inspec
 END_WAIT = 90      # ticks to keep running after the last click (the Ch.2 paper settles)
 
 # Pointer positions (1280x720 surface coordinates).
-TITLE_CH = {1: (1000, 382), 2: (1000, 490), 3: (1000, 598)}   # entries btn-ch1..3: y 328-436, 436-544, 544-652
+TITLE_CH = {1: (1000, 382), 2: (1000, 490), 3: (1000, 598)}   # entries btn-ch1..3: y 328-428, 428-528, 528-628
+TITLE_SETTINGS = (924, 662)   # btn-settings: x 824-1024, y 640-684
+TITLE_QUIT = (1132, 662)      # btn-quit: x 1032-1232
 END_CARD = (640, 360)
 KEY_ENTER = 40     # XtKey.Enter
+KEY_ESC = 41       # XtKey.Escape
+KEY_BACKSPACE = 42
+KEY_F1 = 83
 TITLE_LANG = (1150, 25)
+# The settings sheet (dock 760x440 centred: 260,140; its page at 280,220): option rows of 152x34 chips from x 490.
+SET_LANG = {0: (566, 447), 1: (726, 447)}      # lang-zh / lang-en: x 490-642 / 650-802, y 430-464
+SET_SUB = {True: (566, 513), False: (726, 513)}  # sub-on / sub-off: y 496-530
+SET_SCRIM = (120, 120)                          # the dimmed screen outside the sheet
+SET_RES = [(568, 255), (732, 255)]              # res_options 0 / 1: x 490-646 / 654-810, y 236-270
 PAPER_CLICK = (640, 400)
 VN_CLICK = (640, 620)
 
@@ -79,6 +95,10 @@ def click(ui: str, xy):
     return [[ui, "pd", x, y, 0, 1], [ui, "pu", x, y, 0]]
 
 
+def key(ui: str, code: int):
+    return [[ui, "kd", code, 0], [ui, "ku", code, 0]]
+
+
 class Recording:
     def __init__(self) -> None:
         self.lines = [json.dumps({"atrec": 1, "step": STEP, "seed": 1, "game": GAME})]
@@ -87,6 +107,11 @@ class Recording:
     def at(self, dt: int, events) -> None:
         self.t += dt
         self.lines.append(json.dumps({"t": self.t, "u": events}, ensure_ascii=False))
+
+    def signals(self, dt: int, writes) -> None:
+        """Host signal writes of a tick (`w`: input.* and display.*, XTAtrium 02 §2.5, 09 §9.3)."""
+        self.t += dt
+        self.lines.append(json.dumps({"t": self.t, "w": writes}, ensure_ascii=False))
 
     def write(self, name: str, tail: int) -> int:
         ticks = self.t + tail + 1
@@ -162,7 +187,38 @@ def lang_toggle() -> int:
     return r.write("lang_toggle", 60)
 
 
-RECORDINGS = {"ch1_playthrough": ch1_playthrough, "full_run": full_run, "lang_toggle": lang_toggle}
+def settings() -> int:
+    r = Recording()
+    r.at(30, click("title", TITLE_QUIT))              # 離開遊戲: atrium.app.quit, a no-op headless
+    r.at(GAP, click("title", TITLE_SETTINGS))         # 設定
+    r.at(SETTLE, click("settings", SET_LANG[1]))      # English
+    r.at(GAP, click("settings", SET_SUB[False]))      # 大字譯名 off
+    r.at(GAP, key("settings", KEY_ESC))               # Esc closes it
+    r.at(SETTLE, click("title", TITLE_CH[1]))         # Ch.1: its opening paper
+    r.at(SETTLE, key("paper", KEY_F1))                # F1 in the game opens it
+    r.at(SETTLE, click("settings", SET_LANG[0]))      # 繁體中文
+    r.at(GAP, click("settings", SET_SUB[True]))       # 大字譯名 on
+    r.at(GAP, click("settings", SET_SUB[True]))       # 開 again: already on, sends nothing
+    r.at(GAP, key("settings", KEY_BACKSPACE))         # Backspace closes it
+    r.at(SETTLE, key("paper", KEY_ESC))               # Esc with no overlay open opens it
+    r.at(SETTLE, click("settings", SET_SCRIM))        # a click on the dimmed screen closes it
+    return r.write("settings", 30)
+
+
+DISPLAY = {"nativeWidth": 1920, "nativeHeight": 1080, "width": 1600, "height": 900, "windowWidth": 1600,
+           "windowHeight": 900, "mode": "borderless"}
+
+
+def settings_display() -> int:
+    r = Recording()
+    r.signals(5, [[f"display.{k}", v] for k, v in DISPLAY.items()] + [["display.changed", "p"]])
+    r.at(25, click("title", TITLE_SETTINGS))
+    r.at(SETTLE, click("settings", SET_RES[1]))       # 1280 x 720
+    return r.write("settings_display", 30)
+
+
+RECORDINGS = {"ch1_playthrough": ch1_playthrough, "full_run": full_run, "lang_toggle": lang_toggle,
+              "settings": settings, "settings_display": settings_display}
 
 
 def main() -> int:
