@@ -96,21 +96,23 @@
     {
       "base": {
         "attrs": {
-          "class": "kicker s-12e6e5"
+          "class": "kicker"
         },
         "decls": {
           "flex-shrink": "0",
           "height": "20px",
-          "width": "88px"
+          "text-align": "right",
+          "white-space": "nowrap",
+          "width": "156px"
         },
         "text": "@UI_TITLE_LANG"
       },
-      "contentHash": "227ae75eeb864f11",
+      "contentHash": "52373fe4ec62526b",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 61,
       "outId": "lang-label",
-      "selfHash": "655960d7639de8e6",
+      "selfHash": "612af15ca1f61466",
       "sourceId": "Title.dc.html:1/1/0",
       "sourceName": "lang-label",
       "ui": "title",
@@ -198,15 +200,15 @@
           "flex-direction": "row",
           "gap": "8px",
           "offset": "16px -8px",
-          "size": "260px 30px"
+          "size": "320px 30px"
         }
       },
-      "contentHash": "d08cca3bde564321",
+      "contentHash": "2c4024de5df0c684",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 58,
       "outId": "lang-toggle",
-      "selfHash": "bce0e66262e162f1",
+      "selfHash": "8f37f13d8d1698ae",
       "sourceId": "Title.dc.html:1/1",
       "sourceName": "lang-toggle",
       "ui": "title",
@@ -1174,7 +1176,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "abc4412d960e004e",
+      "contentHash": "1dd19eb890c849d6",
       "fidelity": "High",
       "file": "Title.dc.html",
       "line": 48,

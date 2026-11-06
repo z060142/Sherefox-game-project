@@ -17,7 +17,7 @@
     <div id="title">
       <div id="kicker" class="kicker">@UI_TITLE_KICKER</div>
       <div id="lang-toggle" tabindex="0" on:click="emit(lang_toggle)">
-        <div id="lang-label" class="kicker s-12e6e5">@UI_TITLE_LANG</div>
+        <div id="lang-label" class="kicker">@UI_TITLE_LANG</div>
         <div id="lang-switch">
           <div id="lang-zh" class="lang-opt active" bind:class.active="lang_en | not">@UI_TITLE_LANG_ZH</div>
           <div id="lang-en" class="lang-opt" bind:class.active="lang_en">@UI_TITLE_LANG_EN</div>
@@ -105,13 +105,13 @@
       flex-direction: row;
       gap: 8px;
       offset: 16px -8px;
-      size: 260px 30px;
+      size: 320px 30px;
     }
     /* import: Title.dc.html:1/1/0 */
     #lang-label {
       flex-shrink: 0;
       height: 20px;
-      width: 88px;
+      width: 156px;
     }
     /* import: Title.dc.html:1/1/1 */
     #lang-switch {

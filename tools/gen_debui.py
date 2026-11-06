@@ -665,10 +665,11 @@ def gen_debui() -> Graph:
     g.put("now", "clock.seconds")
     g.node("beat", "filter", op="deadband", threshold=0)
     g.edge("clock.seconds", "beat.in")
-    # the debate is paused while the opponent notes are open (§4.4 翻閱時畫面暫停) or a warm-up retort is on the vn
-    # (ruling G5, dbui.aside): no stage runs
+    # the debate is paused while the opponent notes are open (§4.4 翻閱時畫面暫停), the settings overlay is open or a
+    # warm-up retort is on the vn (ruling G5, dbui.aside): no stage runs
     g.n("notesOnN", "world.notesShown")
-    beat = g.when("beatOn", "beat.passed", T("beatOk", "!notesOnN && !d_aside"))
+    g.n("settingsOnN", "world.settingsShown")
+    beat = g.when("beatOn", "beat.passed", T("beatOk", "!notesOnN && !settingsOnN && !d_aside"))
     for k in ("rsAt", "r2", "r3", "sel", "instAt", "lockAt", "pb", "pbAt", "holdAt", "finAt"):
         g.mget("d_" + k, "dbui", g.k(k))
 

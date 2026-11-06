@@ -488,6 +488,7 @@ SIGNALS = {
     "debRetrying": {"type": "bool", "initial": False},  # main: the debate step was entered by a retry (no pre lines)
     "notesOpen": {"type": "pulse"},                     # debate_ui -> main: show the opponent notes overlay
     "notesShown": {"type": "bool", "initial": False},   # main: the opponent notes overlay is open
+    "settingsShown": {"type": "bool", "initial": False},  # main: the settings overlay is open (the debate pauses)
     # music hooks (rulings H1-H3; no playback yet): the moment and its BGM id (docs/flows.md §4.10)
     "bgmMoment": {"type": "string", "initial": "title"},
     "bgm": {"type": "string", "initial": "BGM01"},
@@ -857,6 +858,7 @@ def gen_main() -> Graph:
     # Settings overlay (modal, ui-contracts settings): the title's 設定 entry; in the game Esc (when no overlay is
     # open: a visible modal overlay takes the keys) or F1 on the main screens, F1 on the evidence book and the
     # opponent notes. Its close (Esc, Backspace, the button, the dimmed screen) closes it; a step begin does not.
+    # world.settingsShown tells debate_ui (the debate is paused while it is open, as with the notes).
     g.node("settings", "state", initial="closed", states=["closed", "open"],
            transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
     g.edge("ui#title.open_settings", "settings.open")
@@ -866,6 +868,7 @@ def gen_main() -> Graph:
     g.node("settingsVis", "lookup", values=[False, True])
     g.edge("settings.index", "settingsVis.index")
     g.edge("settingsVis.out", "ui#settings.visible")
+    g.edge("settingsVis.out", "world.settingsShown")
 
     # The title's 離開遊戲 (ui-contracts title, XTAtrium 09 §9.6): the host closes after this tick (headless: no-op).
     g.node("quit", "atrium.app.quit")

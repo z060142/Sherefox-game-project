@@ -30,7 +30,7 @@
     {
       "code": "anchor.rewritten",
       "severity": "info",
-      "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 260px 30px",
+      "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 320px 30px",
       "element": "lang-toggle",
       "source": "Title.dc.html",
       "line": 58,
@@ -39,7 +39,7 @@
       "detail": {
         "property": "anchor",
         "from": "right: 48px; top: 10px",
-        "to": "anchor: right top; offset: 16px -8px; size: 260px 30px"
+        "to": "anchor: right top; offset: 16px -8px; size: 320px 30px"
       },
       "fix": {
         "kind": "editor",

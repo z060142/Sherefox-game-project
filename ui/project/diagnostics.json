@@ -124,7 +124,7 @@
     {
       "code": "anchor.rewritten",
       "severity": "info",
-      "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 260px 30px",
+      "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 320px 30px",
       "element": "lang-toggle",
       "source": "Title.dc.html",
       "line": 58,
@@ -133,7 +133,7 @@
       "detail": {
         "property": "anchor",
         "from": "right: 48px; top: 10px",
-        "to": "anchor: right top; offset: 16px -8px; size: 260px 30px"
+        "to": "anchor: right top; offset: 16px -8px; size: 320px 30px"
       },
       "fix": {
         "kind": "editor",
@@ -1503,31 +1503,6 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-12e6e5 used by 6 node(s)",
-      "element": "",
-      "source": "",
-      "line": 0,
-      "col": 0,
-      "ui": "",
-      "detail": {
-        "class": ".s-12e6e5",
-        "nodes": "6"
-      },
-      "fix": {
-        "kind": "editor",
-        "applicability": "maybe",
-        "editor": {
-          "op": "repair.dedup",
-          "args": {
-            "class": ".s-12e6e5"
-          }
-        }
-      },
-      "accepted": false
-    },
-    {
-      "code": "dedup.shared",
-      "severity": "info",
       "message": "shared class .s-b00406 used by 27 node(s)",
       "element": "",
       "source": "",
@@ -1645,6 +1620,31 @@
           "op": "repair.dedup",
           "args": {
             "class": ".s-eb9710"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-12e6e5 used by 5 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-12e6e5",
+        "nodes": "5"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-12e6e5"
           }
         }
       },

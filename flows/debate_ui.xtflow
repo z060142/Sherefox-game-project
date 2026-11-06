@@ -5334,10 +5334,14 @@
       "type": "select"
     },
     {
+      "id": "settingsOnN",
+      "type": "select"
+    },
+    {
       "id": "beatOk",
       "type": "atrium.expr",
       "params": {
-        "expr": "!notesOnN && !d_aside"
+        "expr": "!notesOnN && !settingsOnN && !d_aside"
       }
     },
     {
@@ -17685,8 +17689,24 @@
       "to": "notesOnN.b"
     },
     {
+      "from": "world.settingsShown",
+      "to": "settingsOnN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "settingsOnN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "settingsOnN.b"
+    },
+    {
       "from": "notesOnN.out",
       "to": "beatOk.notesOnN"
+    },
+    {
+      "from": "settingsOnN.out",
+      "to": "beatOk.settingsOnN"
     },
     {
       "from": "d_aside.value",

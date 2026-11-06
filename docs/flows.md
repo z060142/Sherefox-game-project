@@ -16,13 +16,13 @@
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
-| `main` | 77／153 | 應用狀態機：語言切換（標題與設定共用）、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊、對手筆記與設定覆蓋層、結尾卡、重新論戰旗標、離開遊戲 |
+| `main` | 77／154 | 應用狀態機：語言切換（標題與設定共用）、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊、對手筆記與設定覆蓋層、結尾卡、重新論戰旗標、離開遊戲 |
 | `settings` | 54／84 | 設定覆蓋層的內容（§4.11）：解析度與視窗模式（`atrium.display.set`、`display.*`）、大字譯名 |
 | `dialogue` | 86／174 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞與熱身中的反駁（§4.2）；結算步驟的場景台詞（§4.9） |
 | `paper` | 44／71 | `paper` 步驟：依 `papers` 表填 `ui#paper`，兩頁翻完即結束 |
 | `investigate` | 699／1253 | `investigate` 步驟（01-systems §1）與證物冊 `ui#evbook` |
 | `board` | 1915／4124 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
-| `debate_ui` | 1722／3340 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧 |
+| `debate_ui` | 1723／3344 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧 |
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
 | `music` | 29／44 | 音樂掛鉤（§4.10）：`world.bgmMoment`、`world.bgm` |
 
@@ -55,6 +55,7 @@
 | `world.debRetry` | pulse | `result` | `main` | 重新論戰（A-14）：步驟回到論戰（`cur.decrement`）。 |
 | `world.debRetrying` | bool | `main` | `main`、`dialogue`、`debate_ui` | 目前的論戰步驟是由重新論戰進入的（`debRetry` 時 true，下一次 `stepDone` 時 false；在步驟開始的脈衝之前寫好）：不播開場台詞（§4.2），板面還原為鎖定時的樣子（§4.8）。 |
 | `world.notesOpen`、`world.notesShown` | pulse、bool | `debate_ui`、`main` | `main`、`debate_ui` | 打開對手筆記覆蓋層（`ui#notes`）；覆蓋層開著（論戰暫停，§4.8）。 |
+| `world.settingsShown` | bool | `main` | `debate_ui` | 設定覆蓋層開著（論戰暫停，同對手筆記，§4.8、§4.11）。 |
 | `world.bgmDeb` | string | `debate_ui` | `music` | 論戰中的音樂時機（§4.10）。 |
 | `world.cutinSub` | bool | `settings` | `debate_ui` | 大字譯名（01-systems §4.6、§4.7 在地化）：預設開；英文時且開著才寫 `cutin.subtitle`（§4.8、§4.11）。 |
 | `world.bgmMoment`、`world.bgm` | string | `music` | （日後的音樂播放） | 目前的音樂時機與它的 BGM id（§4.10）。 |
@@ -123,7 +124,7 @@
 - **畫面**：`screen` 狀態 `title`／`paper`／`vn`／`investigate`／`board`／`debate`／`result`，由 `kind` 的 `compare.true` 切換；`world.resultLines` → vn（結算場景的台詞）。`warmup` 與 `debate` 在步驟開始的脈衝（`rebegin`，`cur.value` 的最後一條邊，場景與章已結算）上決定：該場景有 `script.cue` = `pre` 的可播放列 → vn，否則 → debate；`world.debGo` → debate、`world.vnShow` → vn（§4.2）。
 - **重新論戰**：`world.debRetry` → toggle `retrying` 設 true（寫 `world.debRetrying`）→ `cur.decrement`（結算步驟的前一列就是論戰步驟），步驟重新開始；這時有開場台詞也直接換到論戰畫面（`debPre` 要求 `!retrying`）。`world.stepDone` 把它設回 false。
 - **對手筆記**（M5c，01-systems §4.4）：`notes` 狀態（closed／open）：`world.notesOpen` → open；`ui#notes.close` → closed；每次步驟開始 → closed。寫 `ui#notes.visible` 與 `world.notesShown`。modal 覆蓋層（`game.json` 的 `ui.surfaces` 在 cutin 之前；surfaces 不是流圖擁有的條目，手寫）。
-- **設定**（ui-contracts settings）：`settings` 狀態（closed／open）：`ui#title.open_settings`、各畫面與證物冊、對手筆記的 `ui#<surface>.settings`（Esc／F1，ui-contracts「開啟設定」）→ open；`ui#settings.close` → closed；步驟開始不關。寫 `ui#settings.visible`。modal 覆蓋層，在 cutin 之前、證物冊與對手筆記之後。文字語言：`ui#settings.pick_lang.emitted` 依值送 `lang.to_zh`／`lang.to_en`（與標題的切換同一個 `lang` 狀態），`lang.index` → `ui#settings.lang_sel`。
+- **設定**（ui-contracts settings）：`settings` 狀態（closed／open）：`ui#title.open_settings`、各畫面與證物冊、對手筆記的 `ui#<surface>.settings`（Esc／F1，ui-contracts「開啟設定」）→ open；`ui#settings.close` → closed；步驟開始不關。寫 `ui#settings.visible` 與 `world.settingsShown`（開著時論戰暫停，同對手筆記，§4.8）。modal 覆蓋層，在 cutin 之前、證物冊與對手筆記之後。文字語言：`ui#settings.pick_lang.emitted` 依值送 `lang.to_zh`／`lang.to_en`（與標題的切換同一個 `lang` 狀態），`lang.index` → `ui#settings.lang_sel`。
 - **離開遊戲**：`ui#title.quit` → `atrium.app.quit`（XTAtrium 09 §9.6；headless 無作用）。
 - **證物冊**：`book` 狀態（closed／open）：蒐證中 `ui#investigate.book` → open；`ui#evbook.close` → closed；每次步驟開始 → closed。寫 `ui#evbook.visible` 與 `world.bookOpen`。證物冊是 modal 覆蓋層，開著時下層收不到輸入。
 
@@ -286,7 +287,7 @@
 - `mode_sel` ＝ `display.mode`（`windowed` 0、`borderless` 1、`fullscreen` 2）。`pick_mode.emitted` → `atrium.display.set`（`mode` ＝ 所選，寬高 ＝ 目前選的解析度，自動為 0 × 0）。
 - 解析度：選項 0 ＝ 自動，1～5 ＝ 1280×720、1600×900、1920×1080、2560×1440、3840×2160；只列不超過 `display.nativeWidth/Height` 的（兩邊都遞增，所以列出的一定是前綴，第 i 項就是第 i 個預設值）。`pick_res.emitted` → `atrium.display.set`（寬高查表，自動 0 × 0）並記下選項（`filter(sample)`，初始 0 ＝ 自動，同 `game.json` 的 `display.resolution`）。`res_options` 在開始時、選了解析度、`display.changed`、語言改變時重寫（一個 1 ms 計時器之後，讓文字與選項先結算）：清空 `setRes` → 加 `UI_SET_RES_AUTO` 的文字 → 合乎原生解析度的預設值（不分語言的數字）→ `setResOn` 只放選中那一項 → `atrium.ui.list`。headless 只有「自動」。
 - 大字譯名：`toggle`（初始開）；`ui#settings.toggle_sub` 翻轉，寫 `ui#settings.sub_on` 與 `world.cutinSub`。
-- 限制：選中的解析度只是「上次選的」：用 `play --width/--height` 以固定解析度啟動時，畫面上仍標「自動」（沒有讀回目前解析度設定的訊號）。設定開著時論戰不暫停（設計沒有規定；對手筆記才暫停）。
+- 限制：選中的解析度只是「上次選的」：用 `play --width/--height` 以固定解析度啟動時，畫面上仍標「自動」（沒有讀回目前解析度設定的訊號）。
 
 ## 5. 輔助表 `data/flow/`
 

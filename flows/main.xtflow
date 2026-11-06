@@ -1364,6 +1364,10 @@
       "to": "ui#settings.visible"
     },
     {
+      "from": "settingsVis.out",
+      "to": "world.settingsShown"
+    },
+    {
       "from": "ui#title.quit",
       "to": "quit.trigger"
     }

@@ -16,7 +16,8 @@ It regenerates tests/settings.atrec (tests/gen_playthrough.py settings) and repl
    dimmed screen closes it. The paper stays on page 1 throughout (the keys go to the overlay or open it).
 3. Text language: picking English / 繁體中文 flips title.lang_en (the title's switch, one state) and
    settings.lang_sel, and settings.current follows the language (UI_SET_RES_CURRENT, {w} x {h} = 0 x 0 headless).
-4. 大字譯名: sub_on goes false, then true; a click on 開 while it is on sends nothing. debate_ui reads world.cutinSub.
+4. 大字譯名: sub_on goes false, then true; a click on 開 while it is on sends nothing. debate_ui reads world.cutinSub,
+   and its beat gate reads world.settingsShown (the debate pauses while settings is open, as with the notes).
 5. res_options: every write is the auto option only (UI_SET_RES_AUTO in the language of the moment, selected):
    display.nativeWidth/Height are 0 headless, so no preset fits.
 6. settings_display: with display.* as a window writes them (native 1920x1080, rendering 1600x900, borderless):
@@ -61,6 +62,15 @@ def check_static(fail: cp.Failures) -> None:
                "main: ui#title.quit does not reach an atrium.app.quit node")
     deb = json.loads((ROOT / "flows" / "debate_ui.xtflow").read_text(encoding="utf-8"))
     fail.check(any(e["from"] == "world.cutinSub" for e in deb["edges"]), "debate_ui does not read world.cutinSub")
+    # the debate pauses while settings is open, as with the notes: main writes world.settingsShown, and it reaches
+    # the expression that gates debate_ui's beat
+    fail.check(any(e["from"] == "settingsVis.out" and e["to"] == "world.settingsShown" for e in main["edges"]),
+               "main does not write world.settingsShown")
+    beat = next((n for n in deb["nodes"] if n["id"] == "beatOk"), {})
+    fed = {e["to"].split(".")[0] for e in deb["edges"] if e["from"] == "world.settingsShown"}
+    reach = {e["to"].split(".")[0] for e in deb["edges"] if e["from"].split(".")[0] in fed}
+    fail.check("settingsOnN" in beat.get("params", {}).get("expr", "") and "beatOk" in reach,
+               "debate_ui: the beat gate does not read world.settingsShown")
 
 
 def check_display(fail: cp.Failures, zh: dict) -> None:

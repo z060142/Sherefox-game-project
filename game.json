@@ -350,6 +350,10 @@
     "cutinSub": {
       "type": "bool",
       "initial": true
+    },
+    "settingsShown": {
+      "type": "bool",
+      "initial": false
     }
   },
   "input": {
