@@ -432,3 +432,20 @@ UI 側實作（板子 `ui/boards/project/Notes.dc.html`）：
 - **預設值**（截圖用）：Ch.2 費奇的回合紀錄分頁、敗北回顧（三回合，兩回合讀錯）。
 
 字串鍵：`UI_NOTES_TITLE_DUP2`、`UI_NOTES_TAB_OPP`、`UI_NOTES_TAB_RULES`、`UI_NOTES_TAB_LOG`、`UI_NOTES_GESTURE_EMPTY`、`UI_NOTES_LOG_MISREAD`、`BTN_CLOSE`。
+
+## settings（設定，覆蓋層，modal）
+
+依據：系統規格 §4.6、§8.12（UI_SET_*）；XTAtrium docs 09（AT-052 顯示設定）。原型只做：解析度、視窗模式、文字語言、大字譯名。從標題的「設定」入口與遊戲中按 F1（或快捷列的齒輪）開啟。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `res_options` | list<struct{label: string, sel: bool}> | in | 解析度選項（流圖依 `display.nativeWidth/Height` 產生：自動、1280×720、1600×900、1920×1080、2560×1440、3840×2160，不超過原生解析度）；`label` 已組好（例「1920 × 1080」「自動（跟隨視窗）」）。 |
+| `mode_sel` | number | in | 視窗模式：0 視窗、1 無邊框全螢幕、2 全螢幕。 |
+| `lang_sel` | number | in | 文字語言：0 繁體中文、1 English。 |
+| `sub_on` | bool | in | 大字譯名（英文模式下書法大字下方的譯名小字）。 |
+| `current` | string | in | 目前實際的渲染解析度文字（例「目前：1920 × 1080」），`display.changed` 時更新。 |
+| `pick_res` | number | out | 選了第幾個解析度選項（0 起）。 |
+| `pick_mode` | number | out | 選了視窗模式 0～2。 |
+| `pick_lang` | number | out | 選了語言 0／1。 |
+| `toggle_sub` | event | out | 切換大字譯名。 |
+| `close` | event | out | 關閉設定。 |
