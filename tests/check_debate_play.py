@@ -264,14 +264,11 @@ def check_reads(fail, label: str, play: Play, k: int, hit: int, total: int) -> N
 
 
 def bgm_sequence(trace: list) -> list:
-    """The BGM ids the music flow wrote, in order (world.bgm: the flowBgm id in the music flow's trace values)."""
-    out = []
-    for line in trace:
-        seg = line.split("flows/music.xtflow:")[-1]
-        ids = [x for x in seg.split() if x.startswith("BGM")]
-        if ids and (not out or out[-1] != ids[-1]):
-            out.append(ids[-1])
-    return out
+    """The BGM ids the music flow wrote, in order (world.bgm, the music flow's bgmId; "" = silence), located in the
+    trace values through tests/check_music.py."""
+    import check_music as cm
+    idx = cm.value_index()
+    return cm.bgm_sequence([(0, v) for line in trace if (v := cm.music_values(line, idx)) is not None])
 
 
 def main() -> int:
@@ -400,7 +397,9 @@ def main() -> int:
         fail.check((hints[:1] == [ZH["ART_NO_REPORT"]]) == (trust < 0), f"{name}: investigation opens with {hints[:1]}")
         fail.check(("E03_01" in held) == (trust >= 0), f"{name}: the police report (E03_01) and held {held}")
         bgm = bgm_sequence(trace)
-        fail.check(bgm == ["BGM01", "BGM02", "BGM07", "BGM05"], f"{name}: music {bgm}")
+        # the scene cues (bgmCues): the paper BGM11, S02 BGM02, S03 BGM03 then BGM04 (L003), the warm-up BGM07
+        # (its retorts and wrap-up keep it), the investigation BGM05
+        fail.check(bgm == ["BGM01", "BGM11", "BGM02", "BGM03", "BGM04", "BGM07", "BGM05"], f"{name}: music {bgm}")
 
     # Ch.2 lost (observe every round, the seeded AI), retried, lost again
     events, err, colls = run("ch2_lose", ROOT, ticks["ch2_lose"])

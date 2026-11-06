@@ -1,6 +1,6 @@
 # 資料表規格（Ch.1～3 原型）
 
-狀態：M5b 2026-11-06（`script.cue`；G-01／S-01 的說明與 G-01 的固定理由）。M2 草案 2026-11-06（`papers` 欄位重整、`script.sceneKey`／`playable`）。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
+狀態：場景 BGM 2026-11-07（`bgmCues`，§14；`--import-staging`，§0.1）。M5b 2026-11-06（`script.cue`；G-01／S-01 的說明與 G-01 的固定理由）。M2 草案 2026-11-06（`papers` 欄位重整、`script.sceneKey`／`playable`）。產生器：`tools/build_data.py`（`uv run tools/build_data.py`）。本文件說明 `data/*.json` 與 `strings/*.csv` 的每一張表、每一欄的型別與意義，以及從哪一份來源、哪一節推導而來。遊戲規則以設計文件為準；本文只描述資料。
 
 ## 0. 總則
 
@@ -11,6 +11,7 @@
 | `uv run tools/build_data.py` | 重新產生全部表格與字串表，並執行驗證（錯誤 → 結束碼 1，不寫檔） |
 | `uv run tools/build_data.py --check` | 只驗證，不寫檔 |
 | `uv run tools/build_data.py --import-localization <dir>` | 先把新的在地化包複製進 `source/localization/`，再建置 |
+| `uv run tools/build_data.py --import-staging <dir>` | 先把設計 repo 的 `staging/`（`<dir>`）中的 cue 表 `bgm_cues_ch01-03.csv` 複製進 `source/staging/`，再建置（§14） |
 
 只用標準函式庫；腳本帶 PEP 723 標頭，`tools/pyproject.toml` 供 `cd tools && uv run build_data.py` 使用。
 
@@ -20,6 +21,7 @@
 |---|---|
 | `source/localization/` | 在地化包（2026-11-06 第六批：1696 個鍵，加上場景名 `SCENE_CH0x_*`、`UI_TAG_SEP`、`UI_STAGE_*`、`HS_CH03_01_NOTE_REPORT`、`G-01_DESC`／`G-01_REASON`／`S-01_DESC`、`UI_DEB_NOSOPH_REASON`、`UI_DEB_PREVIEW_HACHIKU`；第五批起含 Ch.4 開場報紙、45 個調查點名稱 `HS_*`、`UI_PAPER_*`、標題畫面 `UI_TITLE_*`／`UI_CHAP_NO`；報紙 `_SUB` 文字已去掉「第二版：」「內文：」標籤）原樣複製：`strings.json`、`ui_strings.csv`、`tutorial.csv`、`evidence_ch01-03.csv`、`script_ch01-03.csv`、`glossary.csv`、`README.md` |
 | `source/staging/staging_ch01-03.csv` | 每一行劇本的 VN 演出（背景、立繪站位、說話焦點、文字樣式）；見 §3.1 |
+| `source/staging/bgm_cues_ch01-03.csv` | 設計的逐場景 BGM cue 表（設計 repo `staging/`，設計總覽 §十一；原樣複製，`--import-staging`）；見 §14 |
 | `source/tags/tags_ch01-03.csv` | 每張證物卡與每個節點的「類別：值」標籤（§0.4），抄自 10-cases 各章「標籤值」表 |
 | `docs/design/01-systems.md` | §1.2、§1.3（以程式解析表格）、§1.5（解析鑑定揭露的類別）、§1.8、§2.8、§3.1、§3.3、§6.1、附錄 A |
 | `docs/design/02-numbers.md` | §一（前期欄，解析）、§四（類型權重，解析）、§五（各案主導權／節點上限／主張傷害，解析；說明文字中的「Ch.n 鑑定 k 次」覆寫 01-systems §1.3 的鑑定次數） |
@@ -421,7 +423,8 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
   "opponents": "data/opponents.json",
   "tells": "data/tells.json",
   "papers": "data/papers.json",
-  "difficulty": "data/difficulty.json"
+  "difficulty": "data/difficulty.json",
+  "bgmCues": "data/bgmCues.json"
 }
 ```
 
@@ -433,6 +436,31 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | category | string | 類別 id（`time`／`place`／`person`／`phys`／`scandal`） | §0.4 |
 | slug | string | 值的機器形式 | 標籤檔 `slug` |
 | nameKey | string | 顯示鍵 `TAG_<CATEGORY>_<SLUG>`（裁決 D13） | §0.4 |
+
+## 14. `bgmCues`：場景 BGM（每個會顯示的劇本行一列，依章、場景號、行號；Ch.4 預告報紙的導言在最後）
+
+來源：`source/staging/bgm_cues_ch01-03.csv`（設計 repo `staging/`，規則見其 README 與設計總覽 §十一）。UTF-8（有 BOM），標頭 `cue_id,chapter,start_id,bgm,fallback,fade,note`；一列一個 cue，`start_id` 是劇本行 id，cue 在該行顯示之前生效，持續到下一個 cue；`note` 只供人讀。
+
+| 欄 | 型別 | 意義 |
+|---|---|---|
+| line | string | 劇本行 id（`script.id`；Ch.4 預告報紙的導言 `SCR_CH04_S01_L003` 不是 `script` 的列，裁決 E1）。流圖以 `world.vnLine` 或報紙的 `papers.bodyKey` 查這一欄 |
+| cue | string | 在這一行生效的 cue（`cue_id`） |
+| scene | string | 這一行的場景 `CH0n_Sss`（＝`script.sceneKey`）；流圖以它排除上一步驟殘留的行（`docs/flows.md` §4.10） |
+| bgm | string | 要播的曲子：cue 的 `bgm` 有音檔（`tools/gen_flows.py` `MUSIC`）就用它，否則用 `fallback`；空字串＝靜音（`NONE`） |
+| fade | string | `cross`（交叉淡化）、`cut`（舊曲淡出後新曲全音量）、`out`（淡出到靜音） |
+| secs | number | 淡化秒數：cross 1.5、cut 0.2、out 2.0（`tools/gen_flows.py` `FADE_SECONDS`，設計表 README） |
+
+哪些行有列：`script.playable` 的列（不含 `S90`），但論戰與熱身場景只有 `cue` ＝ `pre` 的開場台詞（設計表規則 4：場景的 cue 只定開場的曲子，之後由論戰的音樂規則接手，所以收尾台詞、反駁、F 列沒有列）；加上每一份報紙的導言 `papers.bodyKey`。每一列的 cue ＝ 同場景中位置在它之前（含它自己）最近的 cue；位在分支（`script.branch`）上的 cue 只算進同一分支的列（規則 3：例 Ch.1 S06 L006「敗北」的 cue 只在 lose 分支的 L007、L008 生效），分支之前的 cue 兩支都算。cue 掛在不顯示的行（場景標題 L001、分支標記、小標）時，從其後第一個顯示的行開始生效。
+
+驗證（錯誤，建置失敗）：
+- 標頭不符；`cue_id` 不是 `BGM_CHnn_nn` 或重複；`chapter` 與 `start_id` 的章不同。
+- `start_id` 不是劇本行 id（在地化包 `script_ch01-03.csv` 中沒有）；同一行有兩個 cue。
+- `bgm` 不是 `BGM01`～`BGM20` 或 `NONE`；`fallback` 不是空白、`BGM01`～`BGM20` 或 `NONE`；`fade` 不是 cross／cut／out。
+- `bgm` 沒有音檔，而 `fallback` 是空白或也沒有音檔；`fade` 為 `out`（淡出到靜音）而解析後的曲子不是靜音。
+- Ch.1～3 有場景的 L001 沒有 cue（規則 1：每個場景都以 cue 開頭）；某個 cue 管不到任何會顯示的行（例如掛在論戰中途或 `S90`）。
+- `tools/gen_flows.py` 另檢查蒐證場景的 cue 等於蒐證時機的曲子（BGM05）：蒐證畫面沒有台詞，場景 cue 不會生效（`docs/flows.md` §4.10）。
+
+目前（設計 repo 11c3a61，32 個 cue）：131 列。BGM18（Wolfhart 主題）未交付，兩個 cue 用 fallback：`BGM_CH02_07`（Ch.2 S06 L009）靜音、`BGM_CH03_09`（Ch.3 S07 L009 起）BGM03。
 
 ## 待確認
 

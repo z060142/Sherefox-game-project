@@ -8,4 +8,4 @@
 | 轉換器暫存外洩 | 升級轉換器時 | `xtframe-import dc` 每次在 `%TEMP%` 留一個 `xt-import-dc-*` 資料夾不清（2026-11-06 清掉 3315 個、167 MB）；向 XTFrame 回報，升級後確認不再累積 |
 | publish 改為 include 清單 | AT-047 | 落地後重新 publish，用 `publish --list` 確認只含執行期檔案；不再手動刪 node_modules／tests 等 |
 | 接上其餘音效、音量設定 | 使用者交付更多 `audio/` 素材；設定畫面加「聲音」列 | BGM 與 SFX_DEB_WIN／LOSE 已接（2026-11-06）。新音效：`tools/gen_flows.py` `SFX` 加 ID（`game.json` `audio.cues` 由它產生），依 docs/audio-requests.md 的觸發時機接 `sound` 節點；新 BGM：`MUSIC` 加一列（循環點依 `audio/README.md` 量測）。音量：`atrium.audio.volume`（master／bgm／se），設計 01-systems 的「聲音」項 |
-| BGM03／BGM04 的場景對應 | 設計定出逐場景的 BGM | 兩首已宣告但沒有時機用到（docs/audio-requests.md §6）；定案後在劇本資料加場景 BGM，經 `world.bgmMoment` 優先於 `daily` |
+| BGM18（Wolfhart 主題） | 使用者交付 `audio/bgm/BGM18.*` | 設計的 cue 表已用到（Ch.2 S06 L009、Ch.3 S07 L009 起），目前走 fallback（靜音、BGM03）。交付後：量循環點、`tools/gen_flows.py` `MUSIC` 加一列，重跑 `tools/build_data.py`（`bgmCues` 自動改用 BGM18）與 `tools/gen_flows.py`；`tests/check_music.py` 的 `ch2_lose` 不經過勝利分支，不受影響 |

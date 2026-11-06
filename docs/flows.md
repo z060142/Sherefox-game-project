@@ -1,6 +1,6 @@
 # 流圖（M4c：Ch.1～3 全程可玩：劇情、蒐證、線索板、熱身、論戰、結算）
 
-狀態：音樂 2026-11-06（第一批音檔：背景音樂播放與論戰結束音效，§4.8、§4.10，`tests/check_music.py`，§6）。G5／G6 2026-11-06（熱身手牌 4 張、觀察卡 OBS_CH03_01／02，選擇器列出整手；出示觀察卡＝失誤，`MSG_WARMUP_WRONG` 之後在 vn 播放警督的反駁 W001／W002，§4.2、§4.8；熱身失敗與一次失誤以主遊戲測試，§6）。M5c 2026-11-06（XTAtrium 4352f29 起的 SDK：AT-036 `xtatrium compile --game` 在每個跑主遊戲的檢查之前執行，§6；熱身失敗的收尾台詞 S04 F001～F004 與熱身的 `postWin`／`postLose`，§4.2、§4.8；尾聲出錯牌的結算台詞，§4.8；重新論戰不重播開場台詞，§4.1、§4.2；「全部調查完畢」自動跳出結束確認，§4.4；鑑定台詞 `evidence.appraisalKey`，§4.6；論戰的對手筆記覆蓋層、預估列候選比較 `preview_vs`、狀態列旗標 `st_flags`、臨場硬接、敗北回顧，§4.8；結算的讀對預兆，§4.9；音樂掛鉤，§4.10）。M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
+狀態：場景 BGM 2026-11-07（設計的逐場景 BGM 表 `source/staging/bgm_cues_ch01-03.csv` → `data/bgmCues.json`：台詞與報紙顯示時以場景的 cue 優先於時機預設，淡化分 cross／cut／out，結尾卡淡出靜音，§2.1、§4.1、§4.2、§4.10；`tests/check_music.py` 加 Ch.3 熱身重播，§6）。音樂 2026-11-06（第一批音檔：背景音樂播放與論戰結束音效，§4.8、§4.10，`tests/check_music.py`，§6）。G5／G6 2026-11-06（熱身手牌 4 張、觀察卡 OBS_CH03_01／02，選擇器列出整手；出示觀察卡＝失誤，`MSG_WARMUP_WRONG` 之後在 vn 播放警督的反駁 W001／W002，§4.2、§4.8；熱身失敗與一次失誤以主遊戲測試，§6）。M5c 2026-11-06（XTAtrium 4352f29 起的 SDK：AT-036 `xtatrium compile --game` 在每個跑主遊戲的檢查之前執行，§6；熱身失敗的收尾台詞 S04 F001～F004 與熱身的 `postWin`／`postLose`，§4.2、§4.8；尾聲出錯牌的結算台詞，§4.8；重新論戰不重播開場台詞，§4.1、§4.2；「全部調查完畢」自動跳出結束確認，§4.4；鑑定台詞 `evidence.appraisalKey`，§4.6；論戰的對手筆記覆蓋層、預估列候選比較 `preview_vs`、狀態列旗標 `st_flags`、臨場硬接、敗北回顧，§4.8；結算的讀對預兆，§4.9；音樂掛鉤，§4.10）。M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
 
 本文件說明 `flows/*.xtflow` 每一張圖做什麼、圖與圖之間經哪些 `world.*` 訊號與集合溝通、「步驟」的介面合約，以及已知限制。M3 範圍：標題 → 選章 → 開場報紙 → 逐行播放 vn 場景 → 蒐證（調查點、刻度、鑑定、提示、證物冊、保底、漏證）→ 線索板（放卡、理由、拉線判定、推理鏈、鑑定、進入論戰前檢查、交給論戰引擎的板面）→ 熱身（Ch.3）→ 論戰（布丁論戰、Ch.2、Ch.3）→ 結算（後果、重新論戰、結算場景台詞）→ 下一章。語言可即時切換。
 
@@ -16,15 +16,15 @@
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
-| `main` | 77／154 | 應用狀態機：語言切換（標題與設定共用）、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊、對手筆記與設定覆蓋層、結尾卡、重新論戰旗標、離開遊戲 |
+| `main` | 77／155 | 應用狀態機：語言切換（標題與設定共用）、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊、對手筆記與設定覆蓋層、結尾卡、重新論戰旗標、離開遊戲 |
 | `settings` | 54／84 | 設定覆蓋層的內容（§4.11）：解析度與視窗模式（`atrium.display.set`、`display.*`）、大字譯名 |
-| `dialogue` | 86／174 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞與熱身中的反駁（§4.2）；結算步驟的場景台詞（§4.9） |
+| `dialogue` | 87／176 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞與熱身中的反駁（§4.2）；結算步驟的場景台詞（§4.9） |
 | `paper` | 44／71 | `paper` 步驟：依 `papers` 表填 `ui#paper`，兩頁翻完即結束 |
 | `investigate` | 699／1253 | `investigate` 步驟（01-systems §1）與證物冊 `ui#evbook` |
 | `board` | 1915／4124 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
 | `debate_ui` | 1739／3377 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧、論戰結束音效 |
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
-| `music` | 40／57 | 背景音樂（§4.10）：`world.bgmMoment`、`world.bgm`、`atrium.music.play`（bgm 通道，1 秒交叉淡化） |
+| `music` | 89／161 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
 
 ### 1.1 寫法上的三條規則
 
@@ -58,7 +58,9 @@
 | `world.settingsShown` | bool | `main` | `debate_ui` | 設定覆蓋層開著（論戰暫停，同對手筆記，§4.8、§4.11）。 |
 | `world.bgmDeb` | string | `debate_ui` | `music` | 論戰中的音樂時機（§4.10）。 |
 | `world.cutinSub` | bool | `settings` | `debate_ui` | 大字譯名（01-systems §4.6、§4.7 在地化）：預設開；英文時且開著才寫 `cutin.subtitle`（§4.8、§4.11）。 |
-| `world.bgmMoment`、`world.bgm` | string | `music` | `music`（播放） | 目前的音樂時機與它的 BGM id（§4.10）。 |
+| `world.bgmMoment`、`world.bgm` | string | `music` | `music`（播放） | 目前的音樂時機，與要播的 BGM id：場景 cue 生效時是 cue 的曲子，否則是時機的曲子；空字串＝靜音（§4.10）。 |
+| `world.vnLine` | string | `dialogue` | `music` | vn 目前顯示的劇本行 id（`script.id`；每次顯示一行時寫入，換步驟不清除，§4.10 以場景比對排除上一步驟的行）。 |
+| `world.endCard` | bool | `main` | `music` | 結尾卡（`UI_TO_BE_CONTINUED`）正顯示（＝`ui#title.ended`）：音樂淡出（§4.10）。 |
 | `world.debGo` | pulse | `dialogue` | `main`、`debate_ui` | 論戰／熱身步驟的開場台詞（`script.cue` = `pre`）播完（沒有時在步驟開始的同一 tick）：論戰畫面出現、論戰開始（§4.2、§4.8）。 |
 | `world.debEnd`、`world.debCue` | pulse、string | `debate_ui` | `dialogue` | 論戰結束（原本的 `stepDone`）；`debCue` ＝ 收尾台詞的 `script.cue`：論戰勝利或熱身通過 `postWin`、其他（含熱身失敗：本案信任度 −1）`postLose`。 |
 | `world.vnShow` | pulse | `dialogue` | `main` | 有收尾台詞（或熱身的反駁）：畫面換回 vn。 |
@@ -118,7 +120,7 @@
 
 ### 4.1 `main`
 
-- **語言**、**結尾卡**：同 M2。
+- **語言**、**結尾卡**：同 M2；結尾卡顯示中（`ended`）同時寫 `world.endCard`（音樂淡出，§4.10）。
 - **選章**：`ui#title.chapter` → `find(steps, chapter, idx = "0")`；每次 `ui#title.chapter.emitted` 以 `filter(sample)` 把列號送進計數器 `cur`。若所選的列就是 `cur`（例如結尾卡關掉後連點同一章時值不變），另由一個以「相等」為 guard 的閘直接發 `world.stepBegin`。
 - **步驟前進**：`world.stepDone` → `cur.increment`（同 M2）。
 - **畫面**：`screen` 狀態 `title`／`paper`／`vn`／`investigate`／`board`／`debate`／`result`，由 `kind` 的 `compare.true` 切換；`world.resultLines` → vn（結算場景的台詞）。`warmup` 與 `debate` 在步驟開始的脈衝（`rebegin`，`cur.value` 的最後一條邊，場景與章已結算）上決定：該場景有 `script.cue` = `pre` 的可播放列 → vn，否則 → debate；`world.debGo` → debate、`world.vnShow` → vn（§4.2）。
@@ -133,7 +135,7 @@
 - `sceneKey` ＝ `format("CH0{a}_{b}", world.chapter, 場景)`（＝`script.sceneKey`）。
 - 游標放在 `dlgState["row"]`。`first` ＝ `find(script, sceneKey, filters {"playable": "true"})`；`next` ＝ 同一個 find 加 `from = row + 1`（AT-040），所以場景中不可播放的列會被跳過，不再假設可播放列連續、也不假設標題在第一列。
 - 步驟開始顯示 `first`；每個 `ui#vn.advance` 顯示 `next`；`next` 為 −1（場景結束）時發 `world.stepDone`。`atBegin` toggle 選 first／next，經 `merge` 結算後由 `atrium.gate`（`pick >= 0`／`pick < 0`）分流。顯示列以 `filter(sample)` 鎖住並寫回 `dlgState`；`line_seq` 在文字之後 +1。
-- 顯示列 → `ui#vn` 各 port、章名、選項、`trust` 同 M2。
+- 顯示列 → `ui#vn` 各 port、章名、選項、`trust` 同 M2；顯示列的 `script.id` 寫 `world.vnLine`（場景 BGM cue，§4.10）。
 - **結算步驟的台詞**（D6）：`result` 步驟裡 `world.resultLines` 是第二個入口；兩個 find 多一個條件 `branch` ＝（結算步驟時）`world.resultBranch`、（vn 步驟時）空字串（vn 場景沒有 branch 列）。播完發 `world.stepDone`。
 
 - **論戰與熱身步驟的台詞**（`script.cue`，`docs/data-schema.md` §3）：`first`／`next` 之外另有一對 find（`dfirst`／`dnext`），以 `cue` 為篩選欄。步驟開始（種類 debate／warmup）時找 `pre`：有就逐行播放，播完（或一開始就沒有）發 `world.debGo`。`world.debEnd` 時改找 `world.debCue`（`postWin`／`postLose`）：有就發 `world.vnShow` 並逐行播放，播完（或沒有）發 `world.stepDone`。重新論戰（A-14，`world.debRetrying`）時不播開場台詞：找的 cue 換成沒有任何列的 `-`，所以步驟開始的同一 tick 就發 `world.debGo`（M5c；M5b 會重播）。分類：Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002、Ch.3 S04 L002～L004 是 `pre`；Ch.1 S05 L027～L035（論破後亞瑟招認）、Ch.2 S05 L041～L042（尾聲 Wolfhart 擋下配重）與 Ch.3 S04 L006～L009（熱身通過時警督收場）是 `postWin`；Ch.3 S04 F001～F004（熱身失敗：失誤 3 次、本案信任度 2，取代 L006～L009；在地化包 2026-11-06）是 `postLose`。其餘是推薦路線的逐字稿，不播放（Ch.2 S05 L047、Ch.3 S06 L046 是尾聲出錯牌時的結算台詞，§4.8）。
@@ -275,14 +277,23 @@
 - **繼續**：寫 `progress.trustAdj`、`world.caseOutcome`（§3.3：敗北 `lose`、勝利且惡名 ≥3 `notorious`、否則 `win`）；勝利時加入本章 `obtain = afterDebate` 的卡（F3：E02_08 進私人收藏 `held`）；Ch.2 敗北移除 G-01（10-cases：Ch.3 改由 S-01 取代）；`world.resultBranch`（win／lose）後發 `world.resultLines`，`dialogue` 播放結算場景的那一支，播完結束步驟。
 - **重新論戰**（A-14）：發 `world.debRetry`。所有後果都在「繼續」時才套用，所以重來時沒有東西要還原；板面（`debBoard*`）不變，引擎由 `debStart` 重設。
 
-### 4.10 `music`（背景音樂；裁決 H1～H3、`docs/audio-requests.md`、XTAtrium 03 §3.9）
+### 4.10 `music`（背景音樂；裁決 H1～H3、設計的逐場景 BGM 表、`docs/audio-requests.md`、XTAtrium 03 §3.9）
 
-- `world.bgmMoment` ＝ 依步驟種類：沒有步驟／`end` `title`、`paper`／`vn` `daily`、`investigate`、`board`、`result`；`debate`／`warmup` 步驟＝`debate_ui` 的 `world.bgmDeb`（§4.8；含開場與收尾台詞的 vn）。
-- `world.bgm` ＝ `flowBgm`（時機 → BGM id；`tools/gen_debui.py` `BGM`）：title BGM01、daily BGM02、investigate BGM05、board BGM06、debate BGM07、debate2 BGM08、pudding BGM12、warmup BGM07、break BGM09、reverse／brink BGM10、result BGM11。`flowBgm.play` ＝ 這個 id 有音檔（`tools/gen_flows.py` `MUSIC`）。
-- 宣告：`game.json` 的 `audio`（`tools/gen_flows.py` `audio_decl` 產生）：`music.<BGM id>` ＝ `audio/bgm/<id>.mp3`、`loop` true、`loopStart`／`loopEnd`（44.1 kHz 樣本數，跳過結尾靜音，`audio/README.md`）、分類 `bgm`；`channels` ＝ `["bgm"]`；`cues` 見 §4.8 的論戰結束音效。只宣告已交付的檔案（缺檔載入就失敗，產生器也會先檢查）。BGM03、BGM04 已宣告但沒有時機用到（設計沒有逐場景的 BGM，docs/audio-requests.md §6）。
-- 播放：`world.bgm` 改變（`filter` deadband）→ 1 ms 計時器（下一 tick 的第 4 步，選擇鏈與 `debate_ui` 的寫入都已結算；一個 tick 內改變多次只觸發一次；`autostart` 讓開機時播出標題曲）→ `flowBgm.play` 為 1 時取樣當下的 id → 第二個 deadband 只在與上次播的曲子不同時送出 → `atrium.music.play`（channel `bgm`，cue ＝ 該 id，`fadeIn` 1 秒：新曲淡入、舊曲同時淡出的交叉淡化）。因此沒有音檔的 id（BGM10）維持目前的曲子、不報警告；同一首不會重啟（框架對同一 cue 也是 no-op）；從 BGM10 回到原曲也不重啟。
-- 觀測（給 `tests/check_music.py`）：`bgmPlays`（`counter`，每次播放 +1）與 `bgmNow`（`atrium.music.playing` 的 `cue`：通道的目標曲）。音樂指令不進 `--trace` 的效果紀錄，所以檢查讀這兩個值。
-- 每個時機就是一列 `flowBgm`，換曲只改表；新曲加進 `MUSIC`。
+- **時機** `world.bgmMoment` ＝ 依步驟種類：沒有步驟 `title`、`paper`／`vn` `daily`、`investigate`、`board`、`result`；`end` 步驟在結尾卡顯示中（`world.endCard`）`end`，卡關掉之後 `title`；`debate`／`warmup` 步驟＝`debate_ui` 的 `world.bgmDeb`（§4.8）。
+- **時機的曲子** `flowBgm`（`tools/gen_debui.py` `BGM`）：title BGM01、daily BGM02、investigate BGM05、board BGM06、debate BGM07、debate2 BGM08、pudding BGM12、warmup BGM07、break BGM09、reverse／brink BGM10、result BGM11、end 靜音（空字串；設計表 Ch.4 預告報紙列的備註「UI_TO_BE_CONTINUED 時淡出」）。`flowBgm.play` ＝ 這個 id 有音檔（`tools/gen_flows.py` `MUSIC`）或是靜音；`fade`／`secs` ＝ end `out`（2 秒），其餘 `cross`（1.5 秒）。
+- **場景 cue**（`data/bgmCues.json`，`tools/build_data.py` 由設計表產生，`docs/data-schema.md` §14）：每一個可顯示的劇本行一列，記它當下生效的 cue（場景中位置在它之前、最近的一個 cue；分支行上的 cue 只在該分支生效）與解析後的曲子、淡化。生效條件（`cueOk`）：找得到列，而且
+  - `paper` 步驟：查該報紙的導言 `papers.bodyKey`（`world.stepArg` 的那一份；Ch.4 預告報紙也是）；
+  - 其他步驟：查 `world.vnLine`，且該列的 `scene` ＝ 目前步驟的場景（`CH0{章}_{steps.scene}`；上一步驟殘留的行因此不算），且步驟是 `vn`、`result`（結算畫面之後的場景台詞；結算畫面本身沒有台詞，用時機 result）或 `debate`／`warmup` 而論戰畫面尚未接手（`world.debGo` 之前，toggle `debOn`，每次步驟開始清掉）。論戰與熱身場景的表列只有開場台詞（`pre`），所以收尾台詞、熱身的反駁與 F001～F004 都回到論戰時機（設計表規則 4：cue 只定開場的曲子，之後由 H1～H3 接手；Ch.3 熱身全程 BGM07）。
+  - 沒有台詞的畫面（蒐證、線索板、論戰畫面、結算畫面、標題、結尾卡）用時機的曲子（規則 5）；回到有台詞的場景時，顯示中那一行的列就是「該場景最近的 cue」，所以 cue 自動重新生效。蒐證場景的 cue 永遠不會生效，`tools/gen_flows.py` 在產生時檢查它等於 investigate 的曲子（BGM05）。
+- **要播的曲子** `world.bgm` ＝ `cueOk` 時 cue 的曲子，否則時機的曲子；淡化同理（cue 的 `fade`／`secs`，否則時機的）。
+- **播放**：`world.bgm` 改變（`filter` deadband）→ 1 ms 計時器（下一 tick 的第 4 步，選擇鏈與其他圖的寫入都已結算；一個 tick 內改變多次只觸發一次；`autostart` 讓開機時播出標題曲）→ cue 生效或 `flowBgm.play` 為 1 時取樣當下的淡化與 id → 第二個 deadband 只在 id 與上次不同時送出（同一首不重啟，規則 2；沒有音檔的 id（BGM10）維持目前的曲子；從 BGM10 回到原曲也不重啟）→ 鎖住這次的淡化，經 `merge` 結算後分流：
+  - 靜音（空字串）：`atrium.music.stop`，`fadeOut` ＝ 淡化秒數（cross 1.5、cut 0.2、out 2.0）；
+  - `cut`：`atrium.music.stop`（`fadeOut` 0.2）並啟動 0.2 秒計時器，到時 `atrium.music.play`（`fadeIn` 0：新曲以全音量開始；框架在 `fadeIn` 0 時直接釋放已淡出的前任）。計時器在第二次 cut 時重來；期間若改成靜音或交叉淡化的曲子，到時不播（條件在觸發時才讀）；
+  - 其他（`cross`）：`atrium.music.play`（`fadeIn` 1.5：新曲淡入、舊曲同時以同樣秒數淡出）。
+- 淡化秒數：`tools/gen_flows.py` `FADE_SECONDS`（設計表 README：cross 1.5 秒交叉淡化、cut 0.2 秒淡出後新曲全音量、out 2.0 秒淡出到靜音）；時機之間的切換也用 cross（原本 1 秒，2026-11-07 改成設計的 1.5 秒）。
+- 宣告：`game.json` 的 `audio`（`tools/gen_flows.py` `audio_decl` 產生）：`music.<BGM id>` ＝ `audio/bgm/<id>.mp3`、`loop` true、`loopStart`／`loopEnd`（44.1 kHz 樣本數，跳過結尾靜音，`audio/README.md`）、分類 `bgm`；`channels` ＝ `["bgm"]`；`cues` 見 §4.8 的論戰結束音效。只宣告已交付的檔案（缺檔載入就失敗，產生器也會先檢查）。
+- 觀測（給 `tests/check_music.py`）：`bgmPlays`／`bgmStops`（`counter`，每次 play／stop 指令 +1）、`bgmFadeA`／`bgmSecsA`（上一次換曲的淡化）、`cueOk`／`cueBgm`／`momBgm`，與 `bgmNow`（`atrium.music.playing` 的 `cue`：通道的目標曲，停止後為空字串）。音樂指令不進 `--trace` 的效果紀錄，所以檢查讀這些值。
+- 換曲只改表：時機改 `flowBgm`（`tools/gen_debui.py` `BGM`），場景改設計表（`--import-staging`）；新曲加進 `MUSIC`，之後重跑 `tools/build_data.py`（設計表中未交付的曲子改用 fallback，交付後自動改用原曲）。
 
 ### 4.11 `settings`（設定覆蓋層的內容；ui-contracts settings；XTAtrium 09）
 
@@ -332,7 +343,7 @@
 - `uv run tests/check_playthrough.py`：story 流程（M2 的檢查），蒐證與線索板以最短路線通過（`tests/gen_case.py` 的 `MINIMAL`，第一次按「進入論戰」只顯示警告、第二次進入）；結尾卡關掉後連點同一章（值不變，經 `.emitted`）也會重新開始。
 - `uv run tests/check_case.py [--frames DIR]`：Ch.1 調查全部 10 點、不鑑定、組推薦鏈 E01_01→E01_04 並選對全部理由；Ch.2 用 3 次鑑定（1 次在證物冊）、漏 E02_05、一條詭辯（E02_04 理由錯）、一次無效彈回、兩條鏈。比對刻度、彈窗種類、提示與亞瑟台詞序列、清單 port 的 JSON（點、抽屜、格、連結、銅牌）、`oppHand`、`appraised`、`golden`，以及 `debBoard*` 與 ref 對同一路線的板面（`fixtures.ch1_board`；Ch.2 為 `ch2_case` 改 E02_04 理由錯、兩條鏈）逐格相等。
 
-- `uv run tests/check_music.py`：`game.json` 的 `audio` 與 `audio/` 的檔案、循環點一致；重播 `ch1_debate`（勝）與 `ch2_lose`（敗兩次），`world.bgm` 的順序、每次換曲只觸發一次播放、`atrium.music.playing` 跟上、論戰結束音效各播一次（§4.8、§4.10）。
+- `uv run tests/check_music.py`：`game.json` 的 `audio` 與 `audio/` 的檔案、循環點一致；`bgmCues` 對設計表（每個 cue 都到得了顯示的行、曲子經 fallback 解析、淡化；重播到不了的 Ch.3 cue 在這裡檢查）；重播 `ch1_debate`（勝）、`ch2_lose`（敗兩次）與 `ch3_warmfail`（Ch.3 到蒐證），由路線與 `bgmCues`／`flowBgm` 推出預期的（曲子、淡化）順序並印出，比對 `world.bgm` 的順序、每次換曲的指令（cross 一次 play、cut 一次 stop 後 0.2 秒一次 play、靜音一次 stop）、`atrium.music.playing` 跟上、論戰結束音效各播一次（§4.8、§4.10）。
 - `uv run tests/check_settings.py`：設定覆蓋層（`tests/settings.atrec`）：標題的離開遊戲與設定、遊戲中 F1／Esc 開啟、Esc／Backspace／遮罩關閉、文字語言與標題共用、大字譯名、headless 時 `res_options` 只有「自動」。
 
 - `uv run tests/check_debate_play.py`：Ch.1／Ch.2 的推薦路線、Ch.2 敗北與重來，以及 Ch.3 的推薦路線（先打贏 Ch.2 取得 G-01，再經熱身、三個場景的蒐證、ref 的 `ch3_board`，對 `ch3_route` 逐回合比對；`tests/play_harness` 的 `debScript` 照 ref 出招）；Ch.3 熱身失誤 3 次（OBS_CH03_01、OBS_CH03_02、OBS_CH03_01：每次的反駁、F001～F004、信任度 2）與失誤 1 次（OBS_CH03_02 後 E03_05：L006～L009、信任度不加），裁決 G5；論戰前後的台詞（`script.cue`）、蒐證的反應台詞、漏證訊息與場景名也在這裡與 `check_case.py` 檢查。

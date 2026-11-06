@@ -1,0 +1,33 @@
+﻿cue_id,chapter,start_id,bgm,fallback,fade,note
+BGM_CH01_01,1,SCR_CH01_S01_L001,BGM11,,cross,開場報紙
+BGM_CH01_02,1,SCR_CH01_S02_L001,BGM02,,cross,事務所客廳・前一晚
+BGM_CH01_03,1,SCR_CH01_S03_L001,BGM02,,cross,廚房早晨，日常延續（同曲不重播）
+BGM_CH01_04,1,SCR_CH01_S03_L004,BGM04,,cut,「我的布丁不見了」：發現異樣
+BGM_CH01_05,1,SCR_CH01_S04_L001,BGM05,,cross,蒐證（時段預設）
+BGM_CH01_06,1,SCR_CH01_S05_L001,BGM12,,cross,布丁論戰全程 BGM12（論戰規則）
+BGM_CH01_07,1,SCR_CH01_S06_L001,BGM11,,cross,結算報紙
+BGM_CH01_08,1,SCR_CH01_S06_L006,BGM12,,cross,敗北分支：亞瑟自己招認，保持溫馨
+BGM_CH01_09,1,SCR_CH01_S07_L001,BGM12,,cross,亞瑟的結案筆記
+BGM_CH02_01,2,SCR_CH02_S01_L001,BGM11,,cross,開場報紙（與 Ch.1 結果合併的換章報紙）
+BGM_CH02_02,2,SCR_CH02_S02_L001,BGM02,,cross,事務所客廳
+BGM_CH02_03,2,SCR_CH02_S03_L001,BGM04,,cut,鐘錶店：格雷沙姆當眾指控霍洛威
+BGM_CH02_04,2,SCR_CH02_S04_L001,BGM05,,cross,蒐證（時段預設）
+BGM_CH02_05,2,SCR_CH02_S05_L001,BGM07,,cross,主論戰：之後依論戰切換規則（BGM08／09／10）；配重擲出發生在尾聲，維持 BGM09
+BGM_CH02_06,2,SCR_CH02_S06_L001,BGM11,,cross,結算報紙
+BGM_CH02_07,2,SCR_CH02_S06_L009,BGM18,NONE,cross,Wolfhart 在門口停步；BGM18 未交付前改為淡出靜音
+BGM_CH02_08,2,SCR_CH02_S06_L013,BGM11,,cross,敗北分支報紙
+BGM_CH02_09,2,SCR_CH02_S06_L016,NONE,,out,敗北：鐘錶店拉下鐵門，淡出靜音
+BGM_CH02_10,2,SCR_CH02_S07_L001,BGM02,,cross,亞瑟的結案筆記
+BGM_CH03_01,3,SCR_CH03_S01_L001,BGM11,,cross,開場報紙
+BGM_CH03_02,3,SCR_CH03_S02_L001,BGM02,,cross,事務所客廳：警督來慶功
+BGM_CH03_03,3,SCR_CH03_S03_L001,BGM03,,cross,泰晤士河碼頭：濃霧
+BGM_CH03_04,3,SCR_CH03_S03_L003,BGM04,,cut,老湯姆被銬著喊冤：遭遇事件
+BGM_CH03_05,3,SCR_CH03_S04_L001,BGM07,,cross,熱身小論戰全程 BGM07（論戰規則；失敗分支 F001-F004 同曲）
+BGM_CH03_06,3,SCR_CH03_S05_L001,BGM05,,cross,蒐證（時段預設）
+BGM_CH03_07,3,SCR_CH03_S06_L001,BGM07,,cross,主論戰：之後依論戰切換規則
+BGM_CH03_08,3,SCR_CH03_S07_L001,BGM11,,cross,結算報紙
+BGM_CH03_09,3,SCR_CH03_S07_L009,BGM18,BGM03,cross,尾聲：碼頭霧中的 Wolfhart；BGM18 未交付前用 BGM03
+BGM_CH03_10,3,SCR_CH03_S07_L017,BGM11,,cross,敗北分支報紙
+BGM_CH03_11,3,SCR_CH03_S07_L020,NONE,,out,敗北：零件被扣押，淡出靜音
+BGM_CH03_12,3,SCR_CH03_S08_L001,BGM02,,cross,亞瑟的結案筆記
+BGM_CH04_01,4,SCR_CH04_S01_L001,BGM11,,cross,Ch.4 預告報紙（原型結尾）；UI_TO_BE_CONTINUED 時淡出

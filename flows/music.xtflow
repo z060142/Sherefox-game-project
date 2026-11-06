@@ -109,18 +109,18 @@
       "id": "K7",
       "type": "constant",
       "params": {
-        "value": "debate"
+        "value": "end"
       }
     },
     {
-      "id": "isDebC",
+      "id": "is_end",
       "type": "compare",
       "params": {
         "op": "eq"
       }
     },
     {
-      "id": "isDebN",
+      "id": "isEndN",
       "type": "select"
     },
     {
@@ -138,7 +138,40 @@
       }
     },
     {
+      "id": "cardN",
+      "type": "select"
+    },
+    {
+      "id": "endOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isEndN && cardN"
+      }
+    },
+    {
+      "id": "m_end",
+      "type": "select"
+    },
+    {
       "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "debate"
+      }
+    },
+    {
+      "id": "isDebC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isDebN",
+      "type": "select"
+    },
+    {
+      "id": "K11",
       "type": "constant",
       "params": {
         "value": "warmup"
@@ -167,7 +200,7 @@
       "type": "select"
     },
     {
-      "id": "bgmRow",
+      "id": "momRow",
       "type": "atrium.table.find",
       "params": {
         "table": "flowBgm",
@@ -175,7 +208,7 @@
       }
     },
     {
-      "id": "bgmId",
+      "id": "momBgm",
       "type": "atrium.table.get",
       "params": {
         "table": "flowBgm",
@@ -184,7 +217,7 @@
       }
     },
     {
-      "id": "bgmHas",
+      "id": "momHas",
       "type": "atrium.table.get",
       "params": {
         "table": "flowBgm",
@@ -193,10 +226,153 @@
       }
     },
     {
+      "id": "momFade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowBgm",
+        "column": "fade",
+        "type": "string"
+      }
+    },
+    {
+      "id": "momSecs",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowBgm",
+        "column": "secs",
+        "type": "number"
+      }
+    },
+    {
+      "id": "cuePaper",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "papers",
+        "column": "group"
+      }
+    },
+    {
+      "id": "cueBody",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "bodyKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cueKey",
+      "type": "select"
+    },
+    {
+      "id": "cueRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "bgmCues",
+        "column": "line"
+      }
+    },
+    {
+      "id": "cueScene",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "bgmCues",
+        "column": "scene",
+        "type": "string"
+      }
+    },
+    {
+      "id": "stepScene",
+      "type": "format",
+      "params": {
+        "format": "CH0{a}_{b}"
+      }
+    },
+    {
+      "id": "cueHere",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "debOn",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
+      "id": "isPaperN",
+      "type": "select"
+    },
+    {
+      "id": "isVnN",
+      "type": "select"
+    },
+    {
+      "id": "isResN",
+      "type": "select"
+    },
+    {
+      "id": "cueHereN",
+      "type": "select"
+    },
+    {
+      "id": "debOnN",
+      "type": "select"
+    },
+    {
+      "id": "cueOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "cueRow >= 0 && (isPaperN || cueHereN && (isVnN || isResN || isDebK && !debOnN))"
+      }
+    },
+    {
+      "id": "cueBgm",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "bgmCues",
+        "column": "bgm",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cueFade",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "bgmCues",
+        "column": "fade",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cueSecs",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "bgmCues",
+        "column": "secs",
+        "type": "number"
+      }
+    },
+    {
+      "id": "bgmId",
+      "type": "select"
+    },
+    {
+      "id": "bgmFade",
+      "type": "select"
+    },
+    {
+      "id": "bgmSecs",
+      "type": "select"
+    },
+    {
       "id": "bgmHasX",
       "type": "atrium.expr",
       "params": {
-        "expr": "bgmHas"
+        "expr": "cueOk || momHas"
       }
     },
     {
@@ -210,6 +386,20 @@
     {
       "id": "bgmOk",
       "type": "atrium.gate"
+    },
+    {
+      "id": "bgmFadeL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bgmSecsL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
     },
     {
       "id": "bgmTrk",
@@ -227,6 +417,92 @@
       }
     },
     {
+      "id": "bgmFadeA",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bgmSecsA",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "bgmGo",
+      "type": "merge"
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "trkNone",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "noneN",
+      "type": "select"
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "cut"
+      }
+    },
+    {
+      "id": "fadeCut",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "cutN",
+      "type": "select"
+    },
+    {
+      "id": "doStop",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "noneN || cutN"
+      }
+    },
+    {
+      "id": "doPlay",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!noneN && !cutN"
+      }
+    },
+    {
+      "id": "doCut",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!noneN && cutN"
+      }
+    },
+    {
+      "id": "bgmStop",
+      "type": "atrium.music.stop",
+      "params": {
+        "channel": "bgm"
+      }
+    },
+    {
+      "id": "bgmStopG",
+      "type": "atrium.gate"
+    },
+    {
       "id": "bgmPlay",
       "type": "atrium.music.play",
       "params": {
@@ -234,14 +510,33 @@
       }
     },
     {
-      "id": "K11",
-      "type": "constant",
+      "id": "bgmPlayG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bgmCutG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "bgmCutPlay",
+      "type": "atrium.music.play",
       "params": {
-        "value": 1.0
+        "channel": "bgm"
       }
     },
     {
+      "id": "bgmCutOk",
+      "type": "atrium.gate"
+    },
+    {
       "id": "bgmPlays",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "bgmStops",
       "type": "counter",
       "params": {
         "initial": 0
@@ -252,6 +547,15 @@
       "type": "atrium.music.playing",
       "params": {
         "channel": "bgm"
+      }
+    },
+    {
+      "id": "bgmCut",
+      "type": "timer",
+      "params": {
+        "interval": 0.2,
+        "autostart": false,
+        "repeat": false
       }
     },
     {
@@ -367,10 +671,62 @@
     },
     {
       "from": "world.stepKind",
-      "to": "isDebC.a"
+      "to": "is_end.a"
     },
     {
       "from": "K7.out",
+      "to": "is_end.b"
+    },
+    {
+      "from": "is_end.out",
+      "to": "isEndN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isEndN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isEndN.b"
+    },
+    {
+      "from": "world.endCard",
+      "to": "cardN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "cardN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "cardN.b"
+    },
+    {
+      "from": "isEndN.out",
+      "to": "endOn.isEndN"
+    },
+    {
+      "from": "cardN.out",
+      "to": "endOn.cardN"
+    },
+    {
+      "from": "endOn.truth",
+      "to": "m_end.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "m_end.a"
+    },
+    {
+      "from": "m_paper.out",
+      "to": "m_end.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isDebC.a"
+    },
+    {
+      "from": "K10.out",
       "to": "isDebC.b"
     },
     {
@@ -390,7 +746,7 @@
       "to": "isWarmC.a"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "isWarmC.b"
     },
     {
@@ -422,7 +778,7 @@
       "to": "moment.a"
     },
     {
-      "from": "m_paper.out",
+      "from": "m_end.out",
       "to": "moment.b"
     },
     {
@@ -431,26 +787,226 @@
     },
     {
       "from": "moment.out",
-      "to": "bgmRow.value"
+      "to": "momRow.value"
     },
     {
-      "from": "bgmRow.row",
-      "to": "bgmId.row"
+      "from": "momRow.row",
+      "to": "momBgm.row"
     },
     {
-      "from": "bgmId.value",
+      "from": "momRow.row",
+      "to": "momHas.row"
+    },
+    {
+      "from": "momRow.row",
+      "to": "momFade.row"
+    },
+    {
+      "from": "momRow.row",
+      "to": "momSecs.row"
+    },
+    {
+      "from": "world.stepArg",
+      "to": "cuePaper.value"
+    },
+    {
+      "from": "cuePaper.row",
+      "to": "cueBody.row"
+    },
+    {
+      "from": "is_paper.out",
+      "to": "cueKey.cond"
+    },
+    {
+      "from": "cueBody.value",
+      "to": "cueKey.a"
+    },
+    {
+      "from": "world.vnLine",
+      "to": "cueKey.b"
+    },
+    {
+      "from": "cueKey.out",
+      "to": "cueRow.value"
+    },
+    {
+      "from": "cueRow.row",
+      "to": "cueScene.row"
+    },
+    {
+      "from": "world.chapter",
+      "to": "stepScene.a"
+    },
+    {
+      "from": "world.stepScene",
+      "to": "stepScene.b"
+    },
+    {
+      "from": "cueScene.value",
+      "to": "cueHere.a"
+    },
+    {
+      "from": "stepScene.out",
+      "to": "cueHere.b"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "debOn.setFalse"
+    },
+    {
+      "from": "world.debGo",
+      "to": "debOn.setTrue"
+    },
+    {
+      "from": "is_paper.out",
+      "to": "isPaperN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isPaperN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isPaperN.b"
+    },
+    {
+      "from": "is_vn.out",
+      "to": "isVnN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isVnN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isVnN.b"
+    },
+    {
+      "from": "is_result.out",
+      "to": "isResN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isResN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isResN.b"
+    },
+    {
+      "from": "cueHere.out",
+      "to": "cueHereN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "cueHereN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "cueHereN.b"
+    },
+    {
+      "from": "debOn.value",
+      "to": "debOnN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "debOnN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "debOnN.b"
+    },
+    {
+      "from": "cueRow.row",
+      "to": "cueOk.cueRow"
+    },
+    {
+      "from": "isPaperN.out",
+      "to": "cueOk.isPaperN"
+    },
+    {
+      "from": "cueHereN.out",
+      "to": "cueOk.cueHereN"
+    },
+    {
+      "from": "isVnN.out",
+      "to": "cueOk.isVnN"
+    },
+    {
+      "from": "isResN.out",
+      "to": "cueOk.isResN"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "cueOk.isDebK"
+    },
+    {
+      "from": "debOnN.out",
+      "to": "cueOk.debOnN"
+    },
+    {
+      "from": "cueRow.row",
+      "to": "cueBgm.row"
+    },
+    {
+      "from": "cueRow.row",
+      "to": "cueFade.row"
+    },
+    {
+      "from": "cueRow.row",
+      "to": "cueSecs.row"
+    },
+    {
+      "from": "cueOk.truth",
+      "to": "bgmId.cond"
+    },
+    {
+      "from": "cueBgm.value",
+      "to": "bgmId.a"
+    },
+    {
+      "from": "momBgm.value",
+      "to": "bgmId.b"
+    },
+    {
+      "from": "bgmId.out",
       "to": "world.bgm"
     },
     {
-      "from": "bgmRow.row",
-      "to": "bgmHas.row"
+      "from": "cueOk.truth",
+      "to": "bgmFade.cond"
     },
     {
-      "from": "bgmHas.value",
-      "to": "bgmHasX.bgmHas"
+      "from": "cueFade.value",
+      "to": "bgmFade.a"
     },
     {
-      "from": "bgmId.value",
+      "from": "momFade.value",
+      "to": "bgmFade.b"
+    },
+    {
+      "from": "cueOk.truth",
+      "to": "bgmSecs.cond"
+    },
+    {
+      "from": "cueSecs.value",
+      "to": "bgmSecs.a"
+    },
+    {
+      "from": "momSecs.value",
+      "to": "bgmSecs.b"
+    },
+    {
+      "from": "cueOk.value",
+      "to": "bgmHasX.cueOk"
+    },
+    {
+      "from": "momHas.value",
+      "to": "bgmHasX.momHas"
+    },
+    {
+      "from": "bgmId.out",
       "to": "bgmChg.in"
     },
     {
@@ -466,7 +1022,23 @@
       "to": "bgmOk.trigger"
     },
     {
-      "from": "bgmId.value",
+      "from": "bgmFade.out",
+      "to": "bgmFadeL.in"
+    },
+    {
+      "from": "bgmOk.pass",
+      "to": "bgmFadeL.trigger"
+    },
+    {
+      "from": "bgmSecs.out",
+      "to": "bgmSecsL.in"
+    },
+    {
+      "from": "bgmOk.pass",
+      "to": "bgmSecsL.trigger"
+    },
+    {
+      "from": "bgmId.out",
       "to": "bgmTrk.in"
     },
     {
@@ -478,20 +1050,168 @@
       "to": "bgmNew.in"
     },
     {
+      "from": "bgmFadeL.out",
+      "to": "bgmFadeA.in"
+    },
+    {
+      "from": "bgmNew.passed",
+      "to": "bgmFadeA.trigger"
+    },
+    {
+      "from": "bgmSecsL.out",
+      "to": "bgmSecsA.in"
+    },
+    {
+      "from": "bgmNew.passed",
+      "to": "bgmSecsA.trigger"
+    },
+    {
+      "from": "bgmNew.passed",
+      "to": "bgmGo.in"
+    },
+    {
+      "from": "bgmNew.out",
+      "to": "trkNone.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "trkNone.b"
+    },
+    {
+      "from": "trkNone.out",
+      "to": "noneN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "noneN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "noneN.b"
+    },
+    {
+      "from": "bgmFadeA.out",
+      "to": "fadeCut.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "fadeCut.b"
+    },
+    {
+      "from": "fadeCut.out",
+      "to": "cutN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "cutN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "cutN.b"
+    },
+    {
+      "from": "noneN.out",
+      "to": "doStop.noneN"
+    },
+    {
+      "from": "cutN.out",
+      "to": "doStop.cutN"
+    },
+    {
+      "from": "noneN.out",
+      "to": "doPlay.noneN"
+    },
+    {
+      "from": "cutN.out",
+      "to": "doPlay.cutN"
+    },
+    {
+      "from": "noneN.out",
+      "to": "doCut.noneN"
+    },
+    {
+      "from": "cutN.out",
+      "to": "doCut.cutN"
+    },
+    {
+      "from": "bgmSecsA.out",
+      "to": "bgmStop.fadeOut"
+    },
+    {
+      "from": "doStop.value",
+      "to": "bgmStopG.cond"
+    },
+    {
+      "from": "bgmGo.out",
+      "to": "bgmStopG.trigger"
+    },
+    {
+      "from": "bgmStopG.pass",
+      "to": "bgmStop.trigger"
+    },
+    {
       "from": "bgmNew.out",
       "to": "bgmPlay.cue"
     },
     {
-      "from": "K11.out",
+      "from": "bgmSecsA.out",
       "to": "bgmPlay.fadeIn"
     },
     {
-      "from": "bgmNew.passed",
+      "from": "doPlay.value",
+      "to": "bgmPlayG.cond"
+    },
+    {
+      "from": "bgmGo.out",
+      "to": "bgmPlayG.trigger"
+    },
+    {
+      "from": "bgmPlayG.pass",
       "to": "bgmPlay.trigger"
     },
     {
-      "from": "bgmNew.passed",
+      "from": "doCut.value",
+      "to": "bgmCutG.cond"
+    },
+    {
+      "from": "bgmGo.out",
+      "to": "bgmCutG.trigger"
+    },
+    {
+      "from": "bgmCutG.pass",
+      "to": "bgmCut.start"
+    },
+    {
+      "from": "bgmNew.out",
+      "to": "bgmCutPlay.cue"
+    },
+    {
+      "from": "K9.out",
+      "to": "bgmCutPlay.fadeIn"
+    },
+    {
+      "from": "doCut.value",
+      "to": "bgmCutOk.cond"
+    },
+    {
+      "from": "bgmCut.tick",
+      "to": "bgmCutOk.trigger"
+    },
+    {
+      "from": "bgmCutOk.pass",
+      "to": "bgmCutPlay.trigger"
+    },
+    {
+      "from": "bgmPlayG.pass",
       "to": "bgmPlays.increment"
+    },
+    {
+      "from": "bgmCutOk.pass",
+      "to": "bgmPlays.increment"
+    },
+    {
+      "from": "bgmStopG.pass",
+      "to": "bgmStops.increment"
     }
   ]
 }

@@ -79,11 +79,13 @@ SIGNALS = {
     "debRetry": {"type": "pulse"},                       # result -> main: back to the debate step (A-14 retry)
     "bgmDeb": {"type": "string", "initial": ""},         # debate_ui -> music: the debate's music moment (H1-H3)
 }
-# Ruling H1-H3 / docs/audio-requests.md: the BGM of each music moment (flowBgm; the `music` flow writes world.bgm and
-# plays it; flowBgm.play = the id has a delivered track, gen_flows.MUSIC)
+# Ruling H1-H3 / docs/audio-requests.md: the BGM of each music moment (flowBgm; the `music` flow plays it when no
+# scene cue is in effect, docs/flows.md §4.10; flowBgm.play = the id has a delivered track (gen_flows.MUSIC) or is
+# silence). "" = silence: the end card (UI_TO_BE_CONTINUED) fades out (design staging cue table, the Ch.4 teaser row).
 BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board", "BGM06"), ("debate", "BGM07"),
        ("debate2", "BGM08"), ("pudding", "BGM12"), ("warmup", "BGM07"), ("break", "BGM09"), ("reverse", "BGM10"),
-       ("brink", "BGM10"), ("result", "BGM11")]
+       ("brink", "BGM10"), ("result", "BGM11"), ("end", "")]
+BGM_FADE = {"end": "out"}   # every other moment change is a crossfade
 # The tail answered wrong (−30): the debate scene's wrong-card system line is the round's result line
 # (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046; ruling G6: no author note); other cases keep MSG_TAIL_WRONG.
 TAIL_WRONG = {"CH02_MAIN": "SCR_CH02_S05_L047", "CH03_MAIN": "SCR_CH03_S06_L046"}
@@ -234,7 +236,8 @@ def tables() -> dict[str, list[dict]]:
                     "sub": "STAMP_HACHIKU_SUB", "dwell": 1})
     return {"flowDebCase": case_rows, "flowWord": word, "flowNodeView": node_view, "flowEvLine": ev_rows,
             "flowCut": cut,
-            "flowBgm": [{"moment": m, "bgm": b, "play": int(b in F.MUSIC)} for m, b in BGM]}
+            "flowBgm": [{"moment": m, "bgm": b, "play": int(b in F.MUSIC or b == ""), "fade": BGM_FADE.get(m, "cross"),
+                         "secs": F.FADE_SECONDS[BGM_FADE.get(m, "cross")]} for m, b in BGM]}
 
 
 # ---------------------------------------------------------------------------------------------- helpers

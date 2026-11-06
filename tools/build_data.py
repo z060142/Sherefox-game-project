@@ -9,11 +9,14 @@ Usage (from the project root):
     uv run tools/build_data.py --check              build in memory and validate only (writes nothing)
     uv run tools/build_data.py --import-localization <dir>
                                                     copy a new localization package into source/localization/ first
+    uv run tools/build_data.py --import-staging <dir>
+                                                    copy the design repo's staging/ cue tables into source/staging/ first
 
 Inputs (all inside the project):
     source/localization/   localization package (strings.json, *.csv)
     source/tags/tags_ch01-03.csv   per-card / per-node tag values (category, value, slug, grazing, hidden, police)
     source/staging/staging_ch01-03.csv   per-line VN staging (bg, standees, focus, style); merged into the script table
+    source/staging/bgm_cues_ch01-03.csv   the design's per-scene BGM cues (design repo staging/); -> data/bgmCues.json
     docs/design/*.md       design snapshots (01-systems, 02-numbers, 10-cases)
     docs/rulings.md        design rulings not yet in the snapshots (applied as constants below, cited by id)
 
@@ -33,10 +36,15 @@ import shutil
 import sys
 from pathlib import Path
 
+import gen_flows  # the delivered BGM tracks (MUSIC) and the fade lengths (FADE_SECONDS); no data is read on import
+
 ROOT = Path(__file__).resolve().parent.parent
 LOC = ROOT / "source" / "localization"
 TAG_FILE = ROOT / "source" / "tags" / "tags_ch01-03.csv"
 STAGING_FILE = ROOT / "source" / "staging" / "staging_ch01-03.csv"
+# The design repo's per-scene BGM cue table (its staging/ folder; --import-staging copies it here)
+CUE_FILE = ROOT / "source" / "staging" / "bgm_cues_ch01-03.csv"
+STAGING_IMPORT = ("bgm_cues_ch01-03.csv",)
 DESIGN = ROOT / "docs" / "design"
 DATA_OUT = ROOT / "data"
 STRINGS_OUT = ROOT / "strings"
@@ -155,6 +163,10 @@ STAGING_BGS = {"", "office_night", "office_day", "kitchen_morning", "clockshop",
 STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner"}
 STAGING_PLACEHOLDER_CHARS = {"holloway", "gresham", "tommy", "old_tom"}
 STAGING_COLUMNS = ["id", "bg", "slot_l", "slot_c", "slot_r", "focus", "style", "note"]
+# BGM cue table (design staging README; 設計總覽 §十一): columns, the design's track ids (BGM01-BGM20) and silence
+CUE_COLUMNS = ["cue_id", "chapter", "start_id", "bgm", "fallback", "fade", "note"]
+CUE_TRACK = r"BGM(0[1-9]|1[0-9]|20)"
+CUE_NONE = "NONE"
 STAGING_STYLES = (0, 1, 2)
 
 # ---------------------------------------------------------------- helpers
@@ -624,6 +636,102 @@ def merge_staging(script: list[dict]) -> None:
                      "focus": focus, "style": style})
 
 
+def load_bgm_cues(loc: dict) -> list[dict]:
+    """The design's per-scene BGM cue table (source/staging/bgm_cues_ch01-03.csv), validated row by row: unique
+    cue ids, start_id a script line ID (the localization's script, Ch.4 S01 included), one cue per line, bgm / fallback
+    a design track id (BGM01-BGM20) or NONE, fade cross / cut / out, and the track that plays resolved: bgm when it
+    is delivered (tools/gen_flows.py MUSIC) or NONE, else the fallback (which must itself be delivered or NONE).
+    `out` fades to silence, so it needs a resolved NONE."""
+    if not CUE_FILE.exists():
+        err(f"bgm cues: {CUE_FILE.relative_to(ROOT)} not found")
+        return []
+    rows = read_csv(CUE_FILE)
+    if rows and list(rows[0].keys()) != CUE_COLUMNS:
+        err(f"bgm cues: header must be {','.join(CUE_COLUMNS)}, got {','.join(rows[0].keys())}")
+        return []
+    script_ids = {r["ID"] for r in loc["script"]}
+    seen_ids, seen_lines, out = set(), set(), []
+    for r in rows:
+        cid, sid, bgm, fb, fade = r["cue_id"], r["start_id"], r["bgm"], r["fallback"], r["fade"]
+        where = f"bgm cue {cid or '?'}"
+        if not re.fullmatch(r"BGM_CH\d\d_\d\d", cid):
+            err(f"{where}: bad cue_id {cid!r}")
+        if cid in seen_ids:
+            err(f"{where}: duplicate cue_id")
+        seen_ids.add(cid)
+        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_[LFW]\d{3}", sid)
+        if sid not in script_ids or not m:
+            err(f"{where}: start_id {sid!r} is not a script line ID")
+            continue
+        if r["chapter"] != str(int(m.group(1))):
+            err(f"{where}: chapter {r['chapter']!r} differs from its start_id {sid}")
+        if sid in seen_lines:
+            err(f"{where}: a second cue on {sid}")
+        seen_lines.add(sid)
+        if bgm != CUE_NONE and not re.fullmatch(CUE_TRACK, bgm):
+            err(f"{where}: bgm {bgm!r} is not a track id (BGM01-BGM20) or {CUE_NONE}")
+        if fb and fb != CUE_NONE and not re.fullmatch(CUE_TRACK, fb):
+            err(f"{where}: fallback {fb!r} is not a track id (BGM01-BGM20) or {CUE_NONE}")
+        if fade not in gen_flows.FADE_SECONDS:
+            err(f"{where}: fade {fade!r} is not one of {', '.join(gen_flows.FADE_SECONDS)}")
+            continue
+        if bgm == CUE_NONE or bgm in gen_flows.MUSIC:
+            track = bgm
+        elif fb == CUE_NONE or fb in gen_flows.MUSIC:
+            track = fb
+        else:
+            err(f"{where}: {bgm} is not delivered (tools/gen_flows.py MUSIC) and has no delivered fallback ({fb!r})")
+            continue
+        if fade == "out" and track != CUE_NONE:
+            err(f"{where}: fade out fades to silence, but the cue plays {track}")
+        out.append({"cue": cid, "start": sid, "bgm": "" if track == CUE_NONE else track, "fade": fade})
+    return out
+
+
+def build_bgm_cues(loc: dict, script: list[dict], sinfo: dict, papers: list[dict]) -> list[dict]:
+    """bgmCues (data-schema §14): per script line a dialogue or paper can show, the cue in effect there (staging
+    README rules 1, 3, 4): the latest cue at or before the line in its scene, a cue on a branch line counting only on
+    that branch. Shown lines: the playable rows (a debate / warm-up scene: only its `pre` opening lines, after which
+    the debate's own music rules take over) and the papers' leads (papers.bodyKey; Ch.4's is not a script row,
+    ruling E1). Every scene of Ch.1-3 must start with a cue (rule 1) and every cue must reach a shown line."""
+    cues = load_bgm_cues(loc)
+    at = {c["start"]: c for c in cues}
+    bodies = {p["bodyKey"] for p in papers}
+    lines: list[tuple[int, str, str, str, bool]] = []   # (chapter, scene, id, branch, shown) in play order
+    for r in script:
+        if r["scene"] == "S90":
+            continue
+        kind = sinfo["scenes"].get((r["chapter"], r["scene"]), {}).get("kind", "")
+        shown = r["cue"] == "pre" if kind in ("debate", "warmup") else r["playable"]
+        lines.append((r["chapter"], r["scene"], r["id"], r["branch"], shown))
+    for r in sorted(loc["script"], key=lambda r: r["ID"]):   # chapters past the prototype: only their paper lead
+        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_L\d{3}", r["ID"])
+        if m and int(m.group(1)) not in CHAPTERS:
+            lines.append((int(m.group(1)), f"S{m.group(2)}", r["ID"], "", r["ID"] in bodies))
+    for (c, scene), sc in sorted(sinfo["scenes"].items()):
+        if sc["kind"] != "library" and sc["heading"] not in at:
+            err(f"bgm cues: Ch.{c} {scene} does not start with a cue (no cue on {sc['heading']})")
+    rows, used = [], set()
+    key, common, branch_cue = None, None, {}
+    for c, scene, lid, branch, shown in lines:
+        if (c, scene) != key:
+            key, common, branch_cue = (c, scene), None, {}
+        cue = at.get(lid)
+        if cue and branch:
+            branch_cue[branch] = cue
+        elif cue:
+            common = cue
+        eff = (branch_cue.get(branch) or common) if branch else common
+        if shown and eff:
+            used.add(eff["cue"])
+            rows.append({"line": lid, "cue": eff["cue"], "scene": f"{ch_key(c)}_{scene}", "bgm": eff["bgm"],
+                         "fade": eff["fade"], "secs": gen_flows.FADE_SECONDS[eff["fade"]]})
+    for cue in cues:
+        if cue["cue"] not in used:
+            err(f"bgm cue {cue['cue']}: {cue['start']} governs no line a dialogue or paper shows")
+    return rows
+
+
 def build_tells(loc: dict, script_rows: list[dict]) -> tuple[list[dict], dict]:
     by_id = {r["ID"]: r for r in loc["script"]}
     tells, gesture_en = [], {}
@@ -681,6 +789,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true", help="validate only, write nothing")
     ap.add_argument("--import-localization", metavar="DIR", help="copy a localization package into source/localization/")
+    ap.add_argument("--import-staging", metavar="DIR",
+                    help="copy the design repo's staging/ cue tables (bgm_cues_ch01-03.csv) into source/staging/")
     args = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -691,6 +801,12 @@ def main() -> int:
                      "evidence_ch01-03.csv", "script_ch01-03.csv", "glossary.csv"):
             shutil.copyfile(src / name, LOC / name)
         print(f"imported localization from {src}")
+    if args.import_staging:
+        src = Path(args.import_staging)
+        CUE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        for name in STAGING_IMPORT:
+            shutil.copyfile(src / name, CUE_FILE.parent / name)
+        print(f"imported staging cue tables from {src}")
 
     systems = parse_systems()
     numbers = parse_numbers()
@@ -1068,6 +1184,9 @@ def main() -> int:
     paper(f"{nxt}_OPEN", last + 1, "open", f"{nxt}_OPEN", last, f"HEAD_{nxt}", f"HEAD_{nxt}_SUB",
           f"SCR_{nxt}_S01_L003", side[last], "", result_keys(last))
 
+    # ---- BGM cues (design staging table; data-schema §14)
+    bgm_cues = build_bgm_cues(loc, script, sinfo, papers)
+
     # ---- steps
     steps = []
     for c in CHAPTERS:
@@ -1172,7 +1291,7 @@ def main() -> int:
     tables = {"chapters": chapters, "steps": steps, "script": script, "evidence": evidence, "tags": tag_table,
               "hotspots": hotspots,
               "nodes": nodes, "opponents": opponents, "tells": tells, "papers": papers, "difficulty": difficulty,
-              "debScript": deb_script}
+              "debScript": deb_script, "bgmCues": bgm_cues}
 
     validate_templates(strings)
     validate(tables, strings, systems, base)

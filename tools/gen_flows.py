@@ -489,9 +489,12 @@ SIGNALS = {
     "notesOpen": {"type": "pulse"},                     # debate_ui -> main: show the opponent notes overlay
     "notesShown": {"type": "bool", "initial": False},   # main: the opponent notes overlay is open
     "settingsShown": {"type": "bool", "initial": False},  # main: the settings overlay is open (the debate pauses)
-    # music (rulings H1-H3): the moment and its BGM id; the `music` flow plays it (docs/flows.md §4.10)
+    # music (rulings H1-H3, the design's BGM cue table): the moment and the BGM id the `music` flow plays (the scene
+    # cue's track while one is in effect, else the moment's; "" = silence) (docs/flows.md §4.10)
     "bgmMoment": {"type": "string", "initial": "title"},
     "bgm": {"type": "string", "initial": "BGM01"},
+    "vnLine": {"type": "string", "initial": ""},        # dialogue -> music: the script line the vn shows (bgmCues.line)
+    "endCard": {"type": "bool", "initial": False},      # main -> music: the end card (UI_TO_BE_CONTINUED) is up
     # settings (ui-contracts settings; 01-systems §4.6, §4.7 在地化): 大字譯名, on by default (shown only outside zh-TW)
     "cutinSub": {"type": "bool", "initial": True},
 }
@@ -555,7 +558,10 @@ MUSIC = {
     "BGM05": (0.0, 179.80), "BGM06": (0.0, 118.95), "BGM07": (0.0, 104.65), "BGM08": (0.0, 105.10),
     "BGM09": (0.30, 87.40), "BGM11": (0.0, 66.65), "BGM12": (0.0, 85.55),
 }
-MUSIC_FADE = 1.0     # crossfade seconds between tracks (and the first track's fade-in)
+# The fade kinds of the design's BGM cue table (source/staging/bgm_cues_ch01-03.csv, design staging README) -> seconds:
+# cross = crossfade (new in, old out together); cut = the old track fades out, then the new one starts at full volume;
+# out = fade to silence. A change of the moment default (flowBgm) is a cross; the end card is an out.
+FADE_SECONDS = {"cross": 1.5, "cut": 0.2, "out": 2.0}
 SFX = ["SFX_DEB_WIN", "SFX_DEB_LOSE"]   # one-shot cues (docs/audio-requests.md §3), audio/sfx/<id>.mp3
 
 
@@ -856,6 +862,7 @@ def gen_main() -> Graph:
     g.edge("cardOpen.out", "ended.a")
     g.edge("no.out", "ended.b")
     g.edge("ended.out", "ui#title.ended")
+    g.edge("ended.out", "world.endCard")   # the music fades out under the card (docs/flows.md §4.10)
     for i, ui in enumerate(screens):
         nid = "vis" + ui.capitalize()
         g.node(nid, "lookup", values=[j == i for j in range(len(screens))])
@@ -1121,6 +1128,8 @@ def gen_dialogue() -> Graph:
     for nid, col, typ in cols:
         g.node(nid, "atrium.table.get", table="script", column=col, type=typ)
         g.edge("disp.out", nid + ".row")
+    # the shown line for the music's scene cue (bgmCues, docs/flows.md §4.10)
+    g.edge(g.tget("lineId", "script", "id", "disp.out"), "world.vnLine")
     g.node("hasSpeaker", "compare", op="ne")
     g.node("spkKey", "select")
     g.node("spkText", "atrium.text")
@@ -2011,45 +2020,123 @@ import gen_debate  # noqa: E402  (the engine's interface: signals, collections, 
 # ---------------------------------------------------------------- music
 
 def gen_music() -> Graph:
-    """Music (rulings H1-H3, docs/audio-requests.md, docs/flows.md §4.10): world.bgmMoment = the moment the game is in
-    (the step kind; a debate / warmup step: debate_ui's world.bgmDeb), world.bgm = its BGM id (flowBgm), played on
-    the bgm channel with a MUSIC_FADE crossfade.
+    """Music (rulings H1-H3, the design's BGM cue table, docs/audio-requests.md, docs/flows.md §4.10).
+
+    world.bgmMoment = the moment the game is in (the step kind; a debate / warmup step: debate_ui's world.bgmDeb; the
+    end step while its card is up: `end`). The scene cue (bgmCues, tools/build_data.py) is in effect while a script
+    line of the current step's scene shows: a paper step (its lead, papers.bodyKey), a vn step's line, a result step's
+    lines (after the result screen) and a debate / warmup step's opening lines (before world.debGo; after that the
+    debate's moments rule, H1-H3). world.bgm = the cue's track while one is in effect, else flowBgm's id of the moment
+    ("" = silence); the fade is the cue's (cross / cut / out) or the moment's (cross; the end card: out).
 
     Playback: a change of the id (filter deadband; the value may pass through other ids while the selects and the
-    debate moment settle) starts a 1 ms timer whose tick samples the settled id when flowBgm.play says it has a
-    track; a second deadband passes it on only when it differs from the last track played, so an id without a track
-    (BGM10) keeps the current music and coming back to that track does not restart it. bgmPlays counts the plays and
-    bgmNow is the channel's target cue (atrium.music.playing), both for the headless check (tests/check_music.py)."""
+    other flows settle) starts a 1 ms timer whose tick samples the settled id and fade when there is something to play
+    (a cue, or flowBgm.play: an id without a track, BGM10, keeps the current music); a second deadband passes the id
+    on only when it differs from the last one, so the same track never restarts. Then: silence -> atrium.music.stop
+    with the fade's seconds; cut -> stop over FADE_SECONDS["cut"], and a timer of that length plays the new track
+    with no fade-in (full volume) unless another change came first; otherwise atrium.music.play with fadeIn = the
+    fade's seconds (the old track fades out over the same time). bgmPlays / bgmStops count the commands and bgmNow is
+    the channel's target cue (atrium.music.playing), for the headless check (tests/check_music.py)."""
+    import gen_debui
+    # a cue on an investigate scene is never in effect (the screen shows no script line): it must equal the default
+    inv = dict(gen_debui.BGM)["investigate"]
+    cues = load("bgmCues")
+    for s in load("steps"):
+        sk = f"CH{s['chapter']:02d}_{s['scene']}"
+        bad = [r["cue"] for r in cues if s["kind"] == "investigate" and r["scene"] == sk and r["bgm"] != inv]
+        if bad:
+            raise ValueError(f"bgmCues {sorted(set(bad))}: an investigate scene keeps its moment's {inv}")
     g = Graph()
-    cur = g.k("title")   # no step, the end card
+    # ---- the moment
+    cur = g.k("title")   # no step, or the end step once its card is dismissed
     for kind, mom in (("result", "result"), ("board", "board"), ("investigate", "investigate"), ("vn", "daily"),
                       ("paper", "daily")):
         cur = g.sel(f"m_{kind}", g.cmp(f"is_{kind}", "world.stepKind", g.k(kind)), g.k(mom), cur)
+    g.n("isEndN", g.cmp("is_end", "world.stepKind", g.k("end")))
+    g.n("cardN", "world.endCard")
+    g.x("endOn", "isEndN && cardN")
+    cur = g.sel("m_end", "endOn_t", g.k("end"), cur)
     g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
     g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
     g.x("isDebK", "isDebN || isWarmN")
     mom = g.sel("moment", "isDebK_t", "world.bgmDeb", cur)
     g.edge(mom, "world.bgmMoment")
-    row = g.tfind("bgmRow", "flowBgm", "moment", mom)
-    bid = g.tget("bgmId", "flowBgm", "bgm", row)
+    mrow = g.tfind("momRow", "flowBgm", "moment", mom)
+    g.tget("momBgm", "flowBgm", "bgm", mrow)
+    g.tget("momHas", "flowBgm", "play", mrow, "number")
+    g.tget("momFade", "flowBgm", "fade", mrow)
+    g.tget("momSecs", "flowBgm", "secs", mrow, "number")
+
+    # ---- the scene cue: the shown line (a paper step: its lead) when it belongs to the step's scene
+    body = g.tget("cueBody", "papers", "bodyKey", g.tfind("cuePaper", "papers", "group", "world.stepArg"))
+    key = g.sel("cueKey", "is_paper", body, "world.vnLine")
+    crow = g.tfind("cueRow", "bgmCues", "line", key)
+    g.cmp("cueHere", g.tget("cueScene", "bgmCues", "scene", crow),
+          g.fmt("stepScene", "CH0{a}_{b}", "world.chapter", "world.stepScene"))
+    g.toggle("debOn")   # the debate screen has taken over from the step's opening lines
+    g.edge("world.stepBegin", "debOn.setFalse")
+    g.edge("world.debGo", "debOn.setTrue")
+    for nm, flag in (("isPaperN", "is_paper"), ("isVnN", "is_vn"), ("isResN", "is_result"), ("cueHereN", "cueHere"),
+                     ("debOnN", "debOn")):
+        g.n(nm, flag)
+    g.x("cueOk", "cueRow >= 0 && (isPaperN || cueHereN && (isVnN || isResN || isDebK && !debOnN))")
+    g.tget("cueBgm", "bgmCues", "bgm", crow)
+    g.tget("cueFade", "bgmCues", "fade", crow)
+    g.tget("cueSecs", "bgmCues", "secs", crow, "number")
+
+    # ---- what to play
+    bid = g.sel("bgmId", "cueOk_t", "cueBgm", "momBgm")
     g.edge(bid, "world.bgm")
-    g.tget("bgmHas", "flowBgm", "play", row, "number")
-    g.x("bgmHasX", "bgmHas")
+    fade = g.sel("bgmFade", "cueOk_t", "cueFade", "momFade")
+    secs = g.sel("bgmSecs", "cueOk_t", "cueSecs", "momSecs")
+    g.x("bgmHasX", "cueOk || momHas")
     g.node("bgmChg", "filter", op="deadband", threshold=0)
     g.edge(bid, "bgmChg.in")
     # the settled id: sampled on a 1 ms timer (step 4 of the next tick, after every query and the other flows'
-    # world writes; several changes in a tick start it once); autostart plays the title's track
+    # world writes; several changes in a tick start it once); autostart plays the title's track. The fade is sampled
+    # first (its trigger edges come before the id's).
+    # the cut's timer is declared before the settle timer: timers advance in declaration order (05 §5.4 step 4), so
+    # one started from the settle tick has already advanced in that tick and counts its 0.2 s from the next one
+    g.node("bgmCut", "timer", interval=FADE_SECONDS["cut"], autostart=False, repeat=False)
     g.node("bgmSettle", "timer", interval=0.001, autostart=True, repeat=False)
     g.edge("bgmChg.passed", "bgmSettle.start")
-    track = g.latch("bgmTrk", bid, g.when("bgmOk", "bgmSettle.tick", "bgmHasX_t"))
+    ok = g.when("bgmOk", "bgmSettle.tick", "bgmHasX_t")
+    fade_l = g.latch("bgmFadeL", fade, ok)
+    secs_l = g.latch("bgmSecsL", secs, ok)
+    track = g.latch("bgmTrk", bid, ok)
     g.node("bgmNew", "filter", op="deadband", threshold=0)
     g.edge(track, "bgmNew.in")
+    # the fade of the id that passed (a fade sampled with an unchanged id is not used); the merge settles it
+    g.latch("bgmFadeA", fade_l, "bgmNew.passed")
+    g.latch("bgmSecsA", secs_l, "bgmNew.passed")
+    go = g.merge("bgmGo", "bgmNew.passed")
+    g.n("noneN", g.cmp("trkNone", "bgmNew.out", g.k("")))
+    g.n("cutN", g.cmp("fadeCut", "bgmFadeA", g.k("cut")))
+    g.x("doStop", "noneN || cutN")
+    g.x("doPlay", "!noneN && !cutN")
+    g.x("doCut", "!noneN && cutN")
+    g.node("bgmStop", "atrium.music.stop", channel="bgm")
+    g.edge("bgmSecsA", "bgmStop.fadeOut")
+    stop = g.when("bgmStopG", go, "doStop_t")
+    g.edge(stop, "bgmStop.trigger")
     g.node("bgmPlay", "atrium.music.play", channel="bgm")
     g.edge("bgmNew.out", "bgmPlay.cue")
-    g.edge(g.k(MUSIC_FADE), "bgmPlay.fadeIn")
-    g.edge("bgmNew.passed", "bgmPlay.trigger")
+    g.edge("bgmSecsA", "bgmPlay.fadeIn")
+    play = g.when("bgmPlayG", go, "doPlay_t")
+    g.edge(play, "bgmPlay.trigger")
+    # cut: the old track's fade-out (above), then the new one at full volume; the timer restarts on a second cut,
+    # and a change to silence or to a crossfaded track in between cancels it (doCut is read when it fires)
+    g.edge(g.when("bgmCutG", go, "doCut_t"), "bgmCut.start")
+    g.node("bgmCutPlay", "atrium.music.play", channel="bgm")
+    g.edge("bgmNew.out", "bgmCutPlay.cue")
+    g.edge(g.k(0), "bgmCutPlay.fadeIn")
+    cut_play = g.when("bgmCutOk", "bgmCut.tick", "doCut_t")
+    g.edge(cut_play, "bgmCutPlay.trigger")
     g.counter("bgmPlays", initial=0)
-    g.edge("bgmNew.passed", "bgmPlays.increment")
+    g.edge(play, "bgmPlays.increment")
+    g.edge(cut_play, "bgmPlays.increment")
+    g.counter("bgmStops", initial=0)
+    g.edge(stop, "bgmStops.increment")
     g.node("bgmNow", "atrium.music.playing", channel="bgm")
     return g
 

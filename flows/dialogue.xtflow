@@ -540,6 +540,15 @@
       }
     },
     {
+      "id": "lineId",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "id",
+        "type": "string"
+      }
+    },
+    {
       "id": "hasSpeaker",
       "type": "compare",
       "params": {
@@ -1169,6 +1178,14 @@
     {
       "from": "disp.out",
       "to": "style.row"
+    },
+    {
+      "from": "disp.out",
+      "to": "lineId.row"
+    },
+    {
+      "from": "lineId.value",
+      "to": "world.vnLine"
     },
     {
       "from": "focus.value",

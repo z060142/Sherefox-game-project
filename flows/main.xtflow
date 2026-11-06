@@ -1204,6 +1204,10 @@
       "to": "ui#title.ended"
     },
     {
+      "from": "ended.out",
+      "to": "world.endCard"
+    },
+    {
       "from": "screen.index",
       "to": "visTitle.index"
     },

@@ -354,6 +354,14 @@
     "settingsShown": {
       "type": "bool",
       "initial": false
+    },
+    "vnLine": {
+      "type": "string",
+      "initial": ""
+    },
+    "endCard": {
+      "type": "bool",
+      "initial": false
     }
   },
   "input": {
@@ -462,6 +470,7 @@
     "tells": "data/tells.json",
     "papers": "data/papers.json",
     "difficulty": "data/difficulty.json",
+    "bgmCues": "data/bgmCues.json",
     "debCase": "data/debate/debCase.json",
     "debCard": "data/debate/debCard.json",
     "debNode": "data/debate/debNode.json",
