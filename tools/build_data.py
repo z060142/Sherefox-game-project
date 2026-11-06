@@ -137,11 +137,16 @@ TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # mistakes (`postLose`; the localization note: "plays instead of L006-L009"). Every other line of these scenes is the
 # recommended route's transcript (cue empty, not played). Ranges are seq (an F line's seq is VARIANT_SEQ + n).
 VARIANT_SEQ = 1000
+# Ruling G5: the warm-up's wrong-card retorts (SCR_CH0n_Sss_Wnnn; the localization note names the observation card:
+# "plays after MSG_WARMUP_WRONG when OBS_CH03_01 is presented"). seq = RETORT_SEQ + n (after the F lines); cue
+# `wrong:<card>` (data-schema §3), played on the vn by debate_ui / dialogue in the middle of the warm-up.
+RETORT_SEQ = 2000
 DEBATE_POST = {"CH01_S05": [("postWin", 27, 35)], "CH02_S05": [("postWin", 41, 42)],
                "CH03_S04": [("postWin", 6, 9), ("postLose", VARIANT_SEQ + 1, VARIANT_SEQ + 4)]}
 PLAYER_MOVES = {"present", "rebut", "rebutBreak", "solid", "solidBreak", "sophistry", "observe"}
-# Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one).
-WARMUP = {3: {"refuters": ["E03_05", "E03_02"], "hand": ["E03_05", "E03_02"]}}
+# Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one). Ruling G5: the hand is the two refuters and the
+# chapter's warm-up observation cards (OBS_CH0n_nn in the localization package, grade `observation`), in that order.
+WARMUP = {3: {"refuters": ["E03_05", "E03_02"]}}
 
 # VN staging vocabularies (docs/ui-contracts.md, vn section). Characters without a standee yet use a slug of
 # their English name so the UI can add the standee later.
@@ -427,16 +432,17 @@ def reason_order(eid: str) -> tuple[list[str], int]:
 
 def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
     rows = []
-    info = {"scenes": {}, "speakers": {}, "evidence_lines": {}, "appraisal_line": {}}
+    info = {"scenes": {}, "speakers": {}, "evidence_lines": {}, "appraisal_line": {}, "retorts": {}}
     for r in loc["script"]:
         # L = the scene's lines; F = a variant played instead of some L lines (Ch.3 S04 F001-F004, the warm-up
-        # failure): it sorts after the scene's L lines, seq = VARIANT_SEQ + n
-        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_([LF])(\d{3})", r["ID"])
+        # failure): it sorts after the scene's L lines, seq = VARIANT_SEQ + n; W = a warm-up retort to a wrong card
+        # (ruling G5, Ch.3 S04 W001-W002), seq = RETORT_SEQ + n
+        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_([LFW])(\d{3})", r["ID"])
         if not m:
             err(f"script: bad id {r['ID']}")
             continue
         c, s = int(m.group(1)), int(m.group(2))
-        l = int(m.group(4)) + (VARIANT_SEQ if m.group(3) == "F" else 0)
+        l = int(m.group(4)) + {"L": 0, "F": VARIANT_SEQ, "W": RETORT_SEQ}[m.group(3)]
         if c not in CHAPTERS:
             # Ruling E1: the Ch.4 S01 lines are only the lead of the final paper (CH04_OPEN), not script rows.
             continue
@@ -514,6 +520,14 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
                     banner.append(key)
                 else:
                     err(f"script: {r['ID']} banner 【{tier}：{word}】 has no CUT_/STAMP_ key")
+        if re.fullmatch(r"SCR_CH\d\d_S\d\d_W\d{3}", r["ID"]):
+            om = re.search(r"when (OBS_CH\d\d_\d\d) is presented", note)
+            if not om or kind != "line" or scene_kind != "warmup":
+                err(f"script: {r['ID']} is a retort line but not a warm-up line naming its card (when OBS_... is presented)")
+            elif om.group(1) in info["retorts"]:
+                err(f"script: {om.group(1)} has two retort lines")
+            else:
+                info["retorts"][om.group(1)] = r["ID"]
         inactive = any(seg.strip().startswith("Not triggered") or "not yet unlocked" in seg for seg in note.split("|"))
         out.append({
             "id": r["ID"], "chapter": c, "scene": scene, "sceneKey": f"{ch_key(c)}_{scene}", "seq": l, "kind": kind,
@@ -553,6 +567,13 @@ def script_cues(rows: list[dict], info: dict) -> None:
     for skey in DEBATE_POST:
         if not any(r["sceneKey"] == skey and r["cue"] for r in rows):
             err(f"script: DEBATE_POST names {skey}, which is not a debate or warm-up scene")
+    # ruling G5: a retort is played when its card is presented in the warm-up (cue wrong:<card>)
+    by_id = {r["id"]: r for r in rows}
+    for card, lid in info["retorts"].items():
+        r = by_id[lid]
+        if not r["playable"] or r["cue"]:
+            err(f"script: retort {lid} must be a playable line without another cue")
+        r["cue"] = f"wrong:{card}"
 
 
 def merge_staging(script: list[dict]) -> None:
@@ -702,6 +723,20 @@ def main() -> int:
                 warn(f"evidence {eid}: localization grade/appraisal/tags differ from 10-cases")
     base["G-01"] = {"chapter": 2, "grade": "golden", "appraisal": "none", "cats": ["phys", "scandal"]}  # ruling C2
     base["S-01"] = {"chapter": 3, "grade": "substitute", "appraisal": "none", "cats": ["phys", "scandal"]}
+    # Ruling G5: the warm-up's observation cards (OBS_CH0n_nn: NAME / TAGS / DESC). Held only during the warm-up and
+    # refuting nothing; the TAGS row gives tag categories only (no tag values: they never reach the board).
+    obs_ids = sorted({m.group(1) for k in ev_loc if (m := re.fullmatch(r"(OBS_CH\d\d_\d\d)_NAME", k))})
+    for oid in obs_ids:
+        c = int(oid[6:8])
+        note = ev_loc[f"{oid}_NAME"]["note"]
+        if c not in WARMUP or "warm-up" not in note or "does NOT refute" not in note:
+            err(f"evidence {oid}: not a warm-up observation card of a chapter with a warm-up (note {note!r})")
+        cats = [TAG_CATEGORIES.get(x) for x in ev_loc.get(f"{oid}_TAGS", {}).get("zh-TW", "").split("・")]
+        if None in cats:
+            err(f"evidence {oid}: unknown tag category in {oid}_TAGS")
+        base[oid] = {"chapter": c, "grade": "observation", "appraisal": "none", "cats": cats}
+    for c, w in WARMUP.items():
+        w["hand"] = w["refuters"] + [o for o in obs_ids if base[o]["chapter"] == c]
 
     # ---- nodes (claim nodes from the CLM_ notes; tail and warm-up nodes from rulings C3 / B16)
     node_rows_src = []
@@ -868,8 +903,22 @@ def main() -> int:
 
     # ---- evidence table
     evidence = []
-    for eid in list(ev_ids) + ["G-01", "S-01"]:
+    for eid in list(ev_ids) + ["G-01", "S-01"] + obs_ids:
         b = base[eid]
+        if b["grade"] == "observation":
+            # ruling G5: warm-up only (obtain=warmup, in opponents.hand); machine tags = the TAGS row's categories
+            evidence.append({
+                "id": eid, "chapter": b["chapter"], "usable": "", "grade": "observation",
+                "nameKey": f"{eid}_NAME", "descKey": f"{eid}_DESC", "tagsKey": f"{eid}_TAGS",
+                "tags": ",".join(b["cats"]), "hiddenTags": "", "grazingTags": "", "policeTags": "",
+                "appraise": "none", "appraiseCost": 0, "appraisalKey": "",
+                "reason0Key": "", "reason1Key": "", "reason2Key": "", "correct": -1,
+                "onBoard": False, "strong": False, "scandal": "scandal" in b["cats"], "motive": False,
+                "offChain": False, "required": False, "obtainable": False,
+                "refutes": ",".join(refutes_of.get(eid, [])), "golden": "", "obtain": "warmup", "hotspot": "",
+                "lines": "",
+            })
+            continue
         t = tags.get(eid, {"tags": [], "grazing": [], "hidden": [], "police": []})
         if not t["tags"]:
             err(f"evidence {eid}: no tags in {TAG_FILE.name}")
@@ -1186,6 +1235,9 @@ TEXTF_KEYS = {
 }
 # The M4c pipeline wrote these templates filled in as `<KEY>__<values>` keys; the UI project's tables still hold them.
 STALE_EXPANDED = set(TEXTF_KEYS) | {"MSG_DEB_SHAKEN_END"}
+# Keys an earlier build generated that the localization no longer produces; the UI project's tables drop them.
+# SPK_BASKERVILLE: the M5c speaker of S04 F001/F002 (speaker_en "Baskerville"; ruling G6: now Inspector Baskerville).
+STALE_KEYS = {"SPK_BASKERVILLE"}
 PLACEHOLDER = re.compile(r"\{([A-Za-z_][A-Za-z0-9_]*)(?::\d+)?\}")
 
 
@@ -1290,6 +1342,20 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
             err(f"evidence {e}: must be required=true and obtainable=false (rulings D2, D3)")
         if r["grade"] not in ("common", "key") or r["obtain"] not in ("hotspot", "event"):
             err(f"evidence {e}: a required card must be common/key and obtained from a hotspot or the event")
+    # Ruling G5: an observation card exists only in a warm-up: in that warm-up's hand, on no board, refuting
+    # nothing, with its retort line (cue wrong:<card>).
+    hands = {e for o in tables["opponents"] if o["kind"] == "warmup" for e in o["hand"].split(",") if e}
+    for r in tables["evidence"]:
+        if r["grade"] != "observation":
+            if r["obtain"] == "warmup":
+                err(f"evidence {r['id']}: obtain=warmup is for observation cards only")
+            continue
+        if r["usable"] or r["onBoard"] or r["refutes"] or r["obtain"] != "warmup" or r["id"] not in hands:
+            err(f"evidence {r['id']}: an observation card must be usable nowhere, off the board, refute nothing, "
+                f"obtain=warmup and be in a warm-up hand (ruling G5)")
+        retort = next((s for s in tables["script"] if s["cue"] == f"wrong:{r['id']}"), None)
+        if retort is None:
+            err(f"evidence {r['id']}: no retort line (script cue wrong:{r['id']}, ruling G5)")
     for r in tables["evidence"]:
         if r["required"] and r["id"] not in REQUIRED:
             err(f"evidence {r['id']}: required but not in REQUIRED (ruling D2)")
@@ -1408,6 +1474,8 @@ def sync_ui_strings(strings: dict) -> None:
             if len(row) >= 2 and row[0] and row[0] not in strings:
                 if row[0].split("__")[0] in STALE_EXPANDED and "__" in row[0]:
                     continue   # an expanded template key of M4c (atrium.textf fills the canonical key now)
+                if row[0] in STALE_KEYS:
+                    continue
                 merged.setdefault(row[0], {l: "" for l in LANGS})[lang] = row[1]
                 ui_only.add(row[0])
     for lang in LANGS:

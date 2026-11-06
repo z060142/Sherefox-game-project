@@ -1035,6 +1035,10 @@
       "to": "screen.to_vn"
     },
     {
+      "from": "world.debBack",
+      "to": "screen.to_debate"
+    },
+    {
       "from": "world.resultLines",
       "to": "screen.to_vn"
     },

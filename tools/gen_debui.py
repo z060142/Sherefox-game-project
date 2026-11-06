@@ -83,8 +83,8 @@ SIGNALS = {
 BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board", "BGM06"), ("debate", "BGM07"),
        ("debate2", "BGM08"), ("pudding", "BGM12"), ("warmup", "BGM07"), ("break", "BGM09"), ("reverse", "BGM10"),
        ("brink", "BGM10"), ("result", "BGM11")]
-# The tail answered wrong (−30): the debate scene's 「（若尾聲出錯牌）」 system line is the round's result line
-# (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046); other cases keep MSG_TAIL_WRONG.
+# The tail answered wrong (−30): the debate scene's wrong-card system line is the round's result line
+# (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046; ruling G6: no author note); other cases keep MSG_TAIL_WRONG.
 TAIL_WRONG = {"CH02_MAIN": "SCR_CH02_S05_L047", "CH03_MAIN": "SCR_CH03_S06_L046"}
 # Arthur's review line of a misread round (01-systems §4.4 敗北時 ..., §8.6 ART_REVIEW_*): (player code, opponent
 # code) -> key; player 0 solid / 1 sophistry / 2 rebut / 3 observe, opponent 0 assert / 1 rush / 2 reinforce /
@@ -344,9 +344,9 @@ def gen_debui() -> Graph:
 
     # ---- UI state (map dbui; slots are stored + 1, 0 = none)
     for k in ("ph", "act", "sa", "sb", "segPh", "armed", "fast", "ev", "hold", "fin", "maxd", "maxc", "brks", "hpO", "hpM",
-              "imp", "impR", "rev", "oh1", "oh2", "m8", "m9", "m10", "lrn1"):
+              "imp", "impR", "rev", "oh1", "oh2", "m8", "m9", "m10", "lrn1", "ret", "aside"):
         g.mget("d_" + k, "dbui", g.k(k))
-    for k in ("card", "target", "msg", "rl", "fo", "fm", "lr1"):
+    for k in ("card", "target", "msg", "rl", "fo", "fm", "lr1", "rc"):
         g.mget("s_" + k, "dbuiS", g.k(k))
 
     # ---- engine outputs, latched when a round is shown (snap) so the screen keeps the round's tell and state
@@ -451,7 +451,8 @@ def gen_debui() -> Graph:
     # ---- can it be locked
     g.x("ok1", "segL >= 1 && segSoph == 0 && tOk && segShare > 0")
     g.x("ok2", "segL >= 1 && segSoph > 0 && tOk && segShare > 0")
-    g.x("ok3", "hasLitN && !shiss && (hasCardN ? pc_ref && (pc_full || isWarmN) : "
+    # the warmup takes any card of its hand (ruling G5: a card that does not refute the claim is a mistake)
+    g.x("ok3", "hasLitN && !shiss && (hasCardN ? isWarmN || (pc_ref && pc_full) : "
                "segL >= 1 && (breakR || tailN) && segRef > 0 && segHidden == 0 && (tailN || thr))")
     g.x("canLock", "d_ph == 0 && activeN && (d_act == 1 ? ok1 : d_act == 2 ? ok2 : d_act == 3 ? ok3 : d_act == 4)")
     g.edge("canLock.truth", "ui#debate.can_lock")
@@ -664,9 +665,10 @@ def gen_debui() -> Graph:
     g.put("now", "clock.seconds")
     g.node("beat", "filter", op="deadband", threshold=0)
     g.edge("clock.seconds", "beat.in")
-    # the debate is paused while the opponent notes are open (§4.4 翻閱時畫面暫停): no stage runs
+    # the debate is paused while the opponent notes are open (§4.4 翻閱時畫面暫停) or a warm-up retort is on the vn
+    # (ruling G5, dbui.aside): no stage runs
     g.n("notesOnN", "world.notesShown")
-    beat = g.when("beatOn", "beat.passed", T("beatOk", "!notesOnN"))
+    beat = g.when("beatOn", "beat.passed", T("beatOk", "!notesOnN && !d_aside"))
     for k in ("rsAt", "r2", "r3", "sel", "instAt", "lockAt", "pb", "pbAt", "holdAt", "finAt"):
         g.mget("d_" + k, "dbui", g.k(k))
 
@@ -775,14 +777,14 @@ def gen_debui() -> Graph:
                                   "name": tref("flowCard", "id", "nameKey"), "link": "map:uiChLink",
                                   "sel": "map:uiChSel"}, localize=["name"]))
 
-    # rebut candidates that refute the lit node (A-5: appraised; the warmup takes its event cards as they are)
+    # rebut candidates that refute the lit node (A-5: appraised); the warmup lists its whole hand (ruling G5)
     g.edge(rs2T, g.eff("paClr", "atrium.coll.clear", "uiParryAll"))
     g.node("paEach", "atrium.coll.forEach", name="uiCands")
     g.edge(rs2T, "paEach.trigger")
     pa = g.put("pa", "paEach.item")
     slim_card(g, "pa", pa)
     refutes(g, "pa", pa, case)
-    g.x("paOk", "hasLitN && pa_ref && (pa_full || isWarmN)")
+    g.x("paOk", "hasLitN && (isWarmN || (pa_ref && pa_full))")
     g.edge(g.when("paG", "paEach.each", "paOk_t"), g.eff("paAdd", "atrium.coll.add", "uiParryAll", value=pa))
     setn(rs2T, "r3", g.k(1))
     # act_enabled (list<bool>) / act_reason (list<string>, localized keys): the four actions in button order, as
@@ -984,7 +986,8 @@ def gen_debui() -> Graph:
     setn(endT, "pb", g.k(0))
     parse = stage("parseG", "d_pb == 2")
     setn(parse, "pb", g.k(3))
-    setn(stage("waitG", "d_pb == 3 && now >= d_pbAt"), "pb", g.k(1))
+    waitP = stage("waitG", "d_pb == 3 && now >= d_pbAt")
+    setn(waitP, "pb", g.k(1))
     for k in range(7):
         g.cget(f"f{k}", "evF", g.k(k))
         g.cget(f"n{k}", "evN", g.k(k))
@@ -1049,6 +1052,23 @@ def gen_debui() -> Graph:
     g.edge("revComboL.out", "ui#debate.reveal_combo")
     g.edge("revSeq.value", "ui#debate.reveal_seq")
     g.edge("revLineT.text", "ui#debate.reveal_line")
+    # a warm-up mistake with an observation card (ruling G5): MSG_WARMUP_WRONG (the record's result line, its dwell),
+    # then the inspector's retort on the vn (script.cue wrong:<card>, dialogue), the playback paused (dbui.aside) until
+    # it is over (world.debBack)
+    g.latch("wCardL", "f3", g.when("wCardG", parse, kinds["WRev"]))
+    g.fmt("retCue", "wrong:{a}", "wCardL")
+    g.tfind("retRow", "script", "cue", "retCue")
+    g.x("hasRet", "retRow >= 0")
+    g.n("isWMisN", g.cmp("isWMisC", "f0", g.k("wMistake")))
+    retP = g.when("retG", parse, T("retOn", "isWarmN && isWMisN && hasRet"))
+    setn(retP, "ret", g.k(1))
+    sets(retP, "rc", "retCue")
+    asideP = g.when("asideG", waitP, T("asideOn", "d_ret == 1"))
+    setn(asideP, "ret", g.k(0))
+    setn(asideP, "aside", g.k(1))
+    g.edge("s_rc", "world.debAsideCue")
+    g.edge(asideP, "world.debAside")
+    setn(g.when("asideBackG", "world.debBack", "activeN_t"), "aside", g.k(0))
     # numbers: floats and the gauges follow the record ("after" fields)
     doP = g.when("doG", parse, kinds["DO"])
     sets(doP, "fo", g.fmt("foDmg", "−{a}", "n2"))

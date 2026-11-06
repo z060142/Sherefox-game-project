@@ -18,6 +18,9 @@
   lines, the notes, up to the final paper and the end card.
 - tests/ch2_lose.atrec (the game, its seeded AI): tests/ch2_case's route, then 「觀察」 every round until the debate is
   lost; the result's retry; the same again; continue, the lose lines, the notes, up to the Ch.3 paper.
+- tests/ch3_warmfail.atrec / tests/ch3_warmone.atrec (the game): Ch.3 from the title to its investigation, the warmup
+  with three mistakes (OBS_CH03_01, OBS_CH03_02, OBS_CH03_01: each retort on the vn, then F001-F004) / one mistake
+  (OBS_CH03_02, its retort, then E03_05: L006-L009) (ruling G5).
 
 Usage (from the project root):
     uv run tests/gen_debate_play.py
@@ -38,7 +41,6 @@ import gen_playthrough as gp  # noqa: E402
 import debate_routes as R  # noqa: E402
 
 HARNESS = TESTS / "play_harness"
-WARMFAIL = TESTS / "warmfail_harness"
 GAP = 8
 ROUND_WAIT = 720         # ticks after a lock: the reveal, the records, the hold (01-systems §4.4: 3-6 s; 論破 4 s)
 CYCLE_WAIT = 64          # observe cycles: lock -> skip -> next
@@ -46,6 +48,10 @@ KEY = {"1": 30, "2": 31, "3": 32, "4": 33, "Enter": 40, "R": 21, "E": 8, "Escape
 IMPROV_XY = (476, 353)   # ui/boards/project/Debate.dc.html #btn-improv (in #preview at 250, 340)
 NOTES_TAB_XY = {0: (497, 97), 1: (655, 97), 2: (813, 97)}   # Notes.dc.html #tabs at (420, 78), 150 + 8 apart
 SKIP_XY = (640, 400)     # ui/boards/project/Debate.dc.html #reveal-hit (phase 1 skip, phase >= 2 next)
+# The Ch.3 warmup hand in picker order (ruling G5, opponents.hand): E03_05, E03_02, OBS_CH03_01, OBS_CH03_02.
+WARM_HAND = next(o["hand"].split(",") for o in gc.load("opponents") if o["kind"] == "warmup")
+RETORT_WAIT = 180        # lock -> the reveal (1.4 s), MSG_WARMUP_WRONG (0.6 s), the retort on the vn
+RESUME_WAIT = 150        # the retort's click -> back to the debate, the hold (1.5 s), the next round
 
 
 def seg_xy(slot: int) -> tuple[int, int]:
@@ -137,10 +143,10 @@ def ch2_tailwrong() -> int:
     return r.write("ch2_tailwrong", 120)
 
 
-def ch3_warmfail() -> int:
-    """tests/warmfail_harness (the game with the warmup's mistake limit at 0, so the first card already fails it:
-    the shipped warmup cannot be failed, both hand cards refute the claim): Ch.3 from the title to the start of its
-    investigation; the warmup's failure wrap-up (S04 F001-F004, script.cue postLose) instead of L006-L009."""
+def ch3_warmup_cards(name: str, cards: list[str], cue: str) -> int:
+    """The game: Ch.3 from the title to the start of its investigation, the warmup presenting `cards` in order
+    (ruling G5): an observation card is a mistake, its retort on the vn (one click); the last card ends the warmup
+    (the right card, or the third mistake), then its wrap-up lines (`cue`)."""
     r = Rec()
     r.click("title", gp.TITLE_CH[3], 40)
     for s in [s for s in gc.load("steps") if s["chapter"] == 3]:
@@ -150,11 +156,33 @@ def ch3_warmfail() -> int:
         elif s["kind"] == "vn":
             r.vn_lines(3, s["scene"], "", gp.SETTLE)
         elif s["kind"] == "warmup":
-            minimal(r, "warmup", 3, cue="postLose")
+            r.cue_lines(3, "warmup", "pre", gp.SETTLE)
+            wait = 40
+            for k, card in enumerate(cards):
+                r.key("debate", "3", wait)
+                r.click("debate", pick_xy(WARM_HAND.index(card)))
+                r.key("debate", "Enter")
+                if card.startswith("OBS_"):
+                    r.click("vn", gp.VN_CLICK, RETORT_WAIT)     # the inspector's retort (script.cue wrong:<card>)
+                    wait = RESUME_WAIT
+                if k == len(cards) - 1:
+                    for _ in range(3):
+                        r.click("debate", SKIP_XY, CYCLE_WAIT)
+                    r.t += 60
+                    r.cue_lines(3, "warmup", cue, gp.SETTLE)
         elif s["kind"] == "investigate":
             break
-    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": WARMFAIL.as_posix()})
-    return r.write("ch3_warmfail", 120)
+    return r.write(name, 120)
+
+
+def ch3_warmfail() -> int:
+    """Three mistakes (OBS_CH03_01, OBS_CH03_02, OBS_CH03_01): the failure wrap-up S04 F001-F004 (postLose)."""
+    return ch3_warmup_cards("ch3_warmfail", ["OBS_CH03_01", "OBS_CH03_02", "OBS_CH03_01"], "postLose")
+
+
+def ch3_warmone() -> int:
+    """One mistake (OBS_CH03_02), then E03_05: passed, the wrap-up L006-L009 (postWin), no trust bonus (A-13)."""
+    return ch3_warmup_cards("ch3_warmone", ["OBS_CH03_02", "E03_05"], "postWin")
 
 
 def ch2_play(r: Rec, tail_wrong: bool = False) -> None:
@@ -379,22 +407,14 @@ def copy_game(out: Path) -> None:
 
 def build_harness() -> None:
     """tests/play_harness/: a copy of the game (game.json, flows, data, strings, the UI bundle) whose debScript
-    also plays the ch2_route opponent (game paths may not leave the game directory, so it is a copy).
-    tests/warmfail_harness/: a copy whose Ch.3 warmup has the mistake limit 0 (debCase CH03_WARMUP mis)."""
+    also plays the ch2_route opponent (game paths may not leave the game directory, so it is a copy)."""
     copy_game(HARNESS)
     (HARNESS / "data" / "debScript.json").write_text(
         "[\n" + ",\n".join(json.dumps(r, ensure_ascii=False) for r in harness_script()) + "\n]\n", encoding="utf-8")
-    copy_game(WARMFAIL)
-    path = WARMFAIL / "data" / "debate" / "debCase.json"
-    rows = json.loads(path.read_text(encoding="utf-8"))
-    for row in rows:
-        if row["id"] == "CH03_WARMUP":
-            row["mis"] = 0
-    path.write_text(json.dumps(rows, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
 RECORDINGS = {"ch1_debate": ch1, "ch2_debate": ch2_route, "ch3_debate": ch3_route, "ch2_lose": ch2_lose,
-              "ch2_tailwrong": ch2_tailwrong, "ch3_warmfail": ch3_warmfail}
+              "ch2_tailwrong": ch2_tailwrong, "ch3_warmfail": ch3_warmfail, "ch3_warmone": ch3_warmone}
 
 
 def main() -> int:

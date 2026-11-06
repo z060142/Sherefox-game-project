@@ -336,6 +336,16 @@
     "bgmDeb": {
       "type": "string",
       "initial": ""
+    },
+    "debAside": {
+      "type": "pulse"
+    },
+    "debAsideCue": {
+      "type": "string",
+      "initial": ""
+    },
+    "debBack": {
+      "type": "pulse"
     }
   },
   "input": {

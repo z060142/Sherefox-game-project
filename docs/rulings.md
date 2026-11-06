@@ -91,5 +91,5 @@
 
 | # | 問題 | 裁決 | 狀態 |
 |---|---|---|---|
-| G5 | 熱身失敗分支到不了 | 熱身手牌 4 張：E03_05、E03_02、OBS_CH03_01（老湯姆滿手的煤灰）、OBS_CH03_02（被撞開的艙門）；選擇器列出整手不過濾；出示 OBS 卡＝失誤 1 次，先顯示 MSG_WARMUP_WRONG 再播警督反駁 W001／W002；失誤 3 次走 F001～F004；OBS 卡只在熱身中持有，蒐證前移除，不進蒐證、線索板與主論戰（A-13 已補） | 待實作 |
-| G6 | 尾聲答錯台詞與名牌 | L047／L046 的作者註記已從在地化移除；F001／F002 的英文說話者改為 Inspector Baskerville | 待重新匯入 |
+| G5 | 熱身失敗分支到不了 | 熱身手牌 4 張：E03_05、E03_02、OBS_CH03_01（老湯姆滿手的煤灰）、OBS_CH03_02（被撞開的艙門）；選擇器列出整手不過濾；出示 OBS 卡＝失誤 1 次，先顯示 MSG_WARMUP_WRONG 再播警督反駁 W001／W002；失誤 3 次走 F001～F004；OBS 卡只在熱身中持有，蒐證前移除，不進蒐證、線索板與主論戰（A-13 已補） | 已套用（`evidence.grade=observation`、`opponents.hand`、`script.cue` `wrong:<卡>`；反駁在 vn 播放，`docs/flows.md` §4.2、§4.8；`tests/ch3_warmfail`、`ch3_warmone`） |
+| G6 | 尾聲答錯台詞與名牌 | L047／L046 的作者註記已從在地化移除；F001／F002 的英文說話者改為 Inspector Baskerville | 已套用（在地化 2026-11-06 重新匯入；F001／F002 的說話者為 `SPK_INSPECTOR_BASKERVILLE`，`SPK_BASKERVILLE` 已移除） |

@@ -149,6 +149,12 @@ E03_09_DESC,死者桌上的通知書，下週開始年度採購審計，提議�
 E03_09_REASON_A,審計由市政顧問「W.」提議，促使死者想自首,"The audit was proposed by municipal advisor ""W."", which pushed the deceased toward confessing.",Rationale option: CORRECT
 E03_09_REASON_B,例行公事,Routine business,Rationale option: wrong
 E03_09_REASON_C,與案件無關,Unrelated to the case,Rationale option: wrong
+OBS_CH03_01_NAME,老湯姆滿手的煤灰,Old Tom's Soot-Black Hands,"Ch.3 warm-up observation card (decoy): does NOT refute CLM_CH03_W1; held only during the warm-up, discarded before investigation; echoes E03_06 later"
+OBS_CH03_01_TAGS,人物・物理,Person · Physical,"tag categories, see glossary"
+OBS_CH03_01_DESC,老湯姆的指縫和袖口全是煤灰。他整晚都在鍋爐邊添煤。,Soot is ground into Old Tom's knuckles and cuffs. He spent the whole night stoking the boiler.,"Ch.3 warm-up observation card (decoy): does NOT refute CLM_CH03_W1; held only during the warm-up, discarded before investigation"
+OBS_CH03_02_NAME,被撞開的艙門,The Battered-In Hatch,"Ch.3 warm-up observation card (decoy): does NOT refute CLM_CH03_W1; held only during the warm-up, discarded before investigation; actually supports the Inspector's claim"
+OBS_CH03_02_TAGS,地點・物理,Place · Physical,"tag categories, see glossary"
+OBS_CH03_02_DESC,門板從中間裂開，鉸鏈歪向一邊。警員撞了三次才撞開，門確實從裡面閂著。,The door has split down the middle and its hinges hang askew. The constables needed three charges to break it in; it really was bolted from inside.,"Ch.3 warm-up observation card (decoy): does NOT refute CLM_CH03_W1; held only during the warm-up, discarded before investigation"
 CLM_CH01_N1,我一覺睡到天亮,I slept straight through until morning,claim node N1; truth: 假; refuted by: E01_06 號碼牌（或 E01_05 抹布）
 CLM_CH01_N2,布丁是貓吃掉的,The cat ate the pudding,claim node N2; truth: 假; refuted by: E01_01 布丁盤＋E01_04 地板
 CLM_CH01_N3,布丁的事跟我一點關係都沒有,I have nothing whatsoever to do with the pudding,claim node N3; truth: 假; refuted by: E01_03 袖口（強攻）

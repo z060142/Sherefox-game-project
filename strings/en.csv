@@ -548,6 +548,12 @@ NEWS_03_WIN_SUB,"Inspector: ""Scotland Yard never lets fog hide the truth."""
 NEWS_SIDE_01,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship."
 NEWS_SIDE_02,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency."""
 NEWS_SIDE_03,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.
+OBS_CH03_01_DESC,Soot is ground into Old Tom's knuckles and cuffs. He spent the whole night stoking the boiler.
+OBS_CH03_01_NAME,Old Tom's Soot-Black Hands
+OBS_CH03_01_TAGS,Person · Physical
+OBS_CH03_02_DESC,The door has split down the middle and its hinges hang askew. The constables needed three charges to break it in; it really was bolted from inside.
+OBS_CH03_02_NAME,The Battered-In Hatch
+OBS_CH03_02_TAGS,Place · Physical
 S-01_DESC,"The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say ""very like"", never ""the same""."
 SCENE_CH01_KITCHEN,The Agency Kitchen and Parlour
 SCENE_CH02_CLOCKSHOP,The Cuckoo Clockworks
@@ -776,7 +782,7 @@ SCR_CH02_S05_L043,"(Startled for a moment, then recovering; Rebut, presenting E0
 SCR_CH02_S05_L044,【印：截】
 SCR_CH02_S05_L045,Fitch's Dominance falls to zero. Debate won.
 SCR_CH02_S05_L046,(Collapsing to his knees) I... I only wanted to pay off my debt...
-SCR_CH02_S05_L047,(If the wrong card is played in the Endgame) The counterweight skims past your ear. Dominance −30.
+SCR_CH02_S05_L047,The counterweight skims past your ear. Dominance −30.
 SCR_CH02_S06_L001,Scene 6: Results
 SCR_CH02_S06_L002,Victory
 SCR_CH02_S06_L003,【The London Lantern】Cuckoo Clock Unmasks Swap Scandal! Attendant Fitch Confesses on the Spot
@@ -898,6 +904,8 @@ SCR_CH03_S04_L006,...A st-steam bolt? Of course this Inspector knew! This Inspec
 SCR_CH03_S04_L007,Then the test was a success. It proves you didn't know.
 SCR_CH03_S04_L008,"Ahem! At any rate, the bargeman stays in custody for now. This Inspector shall give you the post-mortem report and let you up on deck. But if you fail to find another suspect, he is sent on to trial tomorrow!"
 SCR_CH03_S04_L009,Inspector's Trust 3 or higher: obtain the post-mortem report (E03_01) and deck access.
+SCR_CH03_S04_W001,Soot? The man stokes boilers; it'd be odd if his hands weren't black! All that proves is he spent the night by the boiler. Even more suspicious!
+SCR_CH03_S04_W002,"Yes, this Inspector's men broke that hatch in. So it was bolted from inside. Miss Fox, are you testifying on this Inspector's behalf?"
 SCR_CH03_S05_L001,Scene 5: Evidence Search (Barge and Wharf)
 SCR_CH03_S05_L002,"The victim's skin bears extensive steam scalds, the throat is swollen, and splinters of door wood are lodged under the fingernails."
 SCR_CH03_S05_L003,"Cause of death is steam asphyxiation, not blunt force. Judging by lividity and body temperature, he died between ten and half past ten last night. He was clawing at the door until the end."
@@ -962,7 +970,7 @@ SCR_CH03_S06_L042,"(Rebut, presenting E03_05 + E03_03) Old Tom's key only opens 
 SCR_CH03_S06_L043,【印：截】
 SCR_CH03_S06_L044,Pierce's Dominance falls to zero. Debate won.
 SCR_CH03_S06_L045,(Slumping into a seat) If he'd only held out one more week... just one week...
-SCR_CH03_S06_L046,"(If the wrong card is played in the Endgame) Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30."
+SCR_CH03_S06_L046,"Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30."
 SCR_CH03_S07_L001,Scene 7: Results
 SCR_CH03_S07_L002,Victory
 SCR_CH03_S07_L003,【The London Lantern】Inspector Baskerville Solves Case at Lightning Speed! Mystery of the Barge Locked Room Revealed
@@ -1060,7 +1068,6 @@ SCR_CH04_S01_L003,"Our correspondent reports: During the third act of ""The Cloc
 SHF_C1_IDLE,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces."""
 SHF_C1_REMAIN,"""Hold on, there's still something I haven't looked at. My ears are itching."""
 SPK_ARTHUR,Arthur
-SPK_BASKERVILLE,Baskerville
 SPK_FITCH,Fitch
 SPK_GRESHAM,Gresham
 SPK_HOLLOWAY,Holloway

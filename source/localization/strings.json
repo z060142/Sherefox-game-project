@@ -5220,8 +5220,8 @@
   "en": "(Collapsing to his knees) I... I only wanted to pay off my debt..."
  },
  "SCR_CH02_S05_L047": {
-  "zh-TW": "（若尾聲出錯牌）配重擦過你的耳邊。主導權 −30。",
-  "en": "(If the wrong card is played in the Endgame) The counterweight skims past your ear. Dominance −30."
+  "zh-TW": "配重擦過你的耳邊。主導權 −30。",
+  "en": "The counterweight skims past your ear. Dominance −30."
  },
  "SCR_CH02_S06_L001": {
   "zh-TW": "場景 6：結算",
@@ -5944,8 +5944,8 @@
   "en": "(Slumping into a seat) If he'd only held out one more week... just one week..."
  },
  "SCR_CH03_S06_L046": {
-  "zh-TW": "（若尾聲出錯牌）老湯姆被推了一把，全場嘩然。主導權 −30。",
-  "en": "(If the wrong card is played in the Endgame) Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30."
+  "zh-TW": "老湯姆被推了一把，全場嘩然。主導權 −30。",
+  "en": "Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30."
  },
  "SCR_CH03_S07_L001": {
   "zh-TW": "場景 7：結算",
@@ -6798,5 +6798,37 @@
  "SCR_CH03_S04_F004": {
   "zh-TW": "警督信任度 2 以下：未取得驗屍報告；遺體（E03_01）需由亞瑟進行醫療鑑定。",
   "en": "Inspector's Trust 2 or lower: the post-mortem report is withheld; Arthur must perform a medical appraisal on the body (E03_01)."
+ },
+ "OBS_CH03_01_NAME": {
+  "zh-TW": "老湯姆滿手的煤灰",
+  "en": "Old Tom's Soot-Black Hands"
+ },
+ "OBS_CH03_01_TAGS": {
+  "zh-TW": "人物・物理",
+  "en": "Person · Physical"
+ },
+ "OBS_CH03_01_DESC": {
+  "zh-TW": "老湯姆的指縫和袖口全是煤灰。他整晚都在鍋爐邊添煤。",
+  "en": "Soot is ground into Old Tom's knuckles and cuffs. He spent the whole night stoking the boiler."
+ },
+ "OBS_CH03_02_NAME": {
+  "zh-TW": "被撞開的艙門",
+  "en": "The Battered-In Hatch"
+ },
+ "OBS_CH03_02_TAGS": {
+  "zh-TW": "地點・物理",
+  "en": "Place · Physical"
+ },
+ "OBS_CH03_02_DESC": {
+  "zh-TW": "門板從中間裂開，鉸鏈歪向一邊。警員撞了三次才撞開，門確實從裡面閂著。",
+  "en": "The door has split down the middle and its hinges hang askew. The constables needed three charges to break it in; it really was bolted from inside."
+ },
+ "SCR_CH03_S04_W001": {
+  "zh-TW": "煤灰？他是燒鍋爐的，手不黑才奇怪！這只證明他整晚都守在鍋爐邊。更可疑了！",
+  "en": "Soot? The man stokes boilers; it'd be odd if his hands weren't black! All that proves is he spent the night by the boiler. Even more suspicious!"
+ },
+ "SCR_CH03_S04_W002": {
+  "zh-TW": "對，門是本警督的人撞開的。所以門從裡面閂著。狐狸小姐，妳這是在替本警督作證嗎？",
+  "en": "Yes, this Inspector's men broke that hatch in. So it was bolted from inside. Miss Fox, are you testifying on this Inspector's behalf?"
  }
 }

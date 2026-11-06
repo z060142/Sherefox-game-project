@@ -133,11 +133,11 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
-| id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn`；`SCR_CH0n_Sss_Fnnn` 是取代該場景某些 L 列播放的另一支（目前只有 Ch.3 S04 F001～F004：熱身失敗的收尾，在地化包 2026-11-06），排在該場景的 L 列之後 |
+| id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn`；`SCR_CH0n_Sss_Fnnn` 是取代該場景某些 L 列播放的另一支（目前只有 Ch.3 S04 F001～F004：熱身失敗的收尾，在地化包 2026-11-06），排在該場景的 L 列之後；`SCR_CH0n_Sss_Wnnn` 是熱身出示錯卡時警督的反駁（裁決 G5：Ch.3 S04 W001＝OBS_CH03_01、W002＝OBS_CH03_02；在地化備註「when OBS_… is presented」指名對應的觀察卡），排在 F 列之後 |
 | chapter | number | 章號 |
 | scene | string | `S01`…；`S90`＝論戰台詞庫 |
 | sceneKey | string | 章與場景的複合鍵 `CH0n_Sss`（例 `CH01_S02`）；流圖以單欄 `atrium.table.find` 找場景（`scene` 只在章內唯一） |
-| seq | number | 場景內行號（`L` 的數字；`1` 是場景標題；`F` 列為 1000 ＋ 數字，`tools/build_data.py` `VARIANT_SEQ`） |
+| seq | number | 場景內行號（`L` 的數字；`1` 是場景標題；`F` 列為 1000 ＋ 數字，`tools/build_data.py` `VARIANT_SEQ`；`W` 列為 2000 ＋ 數字，`RETORT_SEQ`） |
 | kind | string | `heading`（場景標題，L001）、`subheading`（場景中的小標，例 Ch.3 S07 L009「（尾聲：碼頭）」）、`evidence`（證物描述）、`staging`（純演出行）、`branch`（分支標記）、`note`（備註，不播放）、`line`（有說話者的一般行；含旁白、系統、報紙） |
 | speaker | string | 說話者字串鍵 `SPK_*`；`line` 以外為空白 |
 | text | string | 顯示文字的字串鍵（＝id） |
@@ -150,7 +150,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | banner | string | 演出行中的書法大字／印章：`【大字：X】`→ `CUT_*`、`【印：X】`→ `STAMP_*`（以 ui_strings 中 zh-TW 文字對應；`破竹×n` 取 `STAMP_HACHIKU`），多值依出現順序 |
 | inactive | bool | 在地化備註寫「Not triggered in this chapter」或「not yet unlocked」（本章不會觸發，保留供重玩） |
 | playable | bool | 對白播放器會顯示的行：`kind = line` 且 `inactive = false` 且不在 `S90`（論戰台詞庫由 `tells` 表供論戰使用，不逐行播放）。規則見下 |
-| cue | string | 論戰／熱身場景中在 vn 播放的時機（`docs/flows.md` §4.2）：`pre` 論戰畫面開啟之前；`postWin`／`postLose` 論戰結束後、結算之前，只在勝利（熱身：通過）／其他結果（含 Ch.1 未達成；熱身：失敗）時（`post`〔不論結果〕目前沒有列使用）；空白＝不在 vn 播放（推薦路線的逐字稿）。其他場景一律空白。規則見下 |
+| cue | string | 論戰／熱身場景中在 vn 播放的時機（`docs/flows.md` §4.2）：`pre` 論戰畫面開啟之前；`wrong:<證物 id>` 熱身中出示該觀察卡、`MSG_WARMUP_WRONG` 之後（裁決 G5，只有 W 列）；`postWin`／`postLose` 論戰結束後、結算之前，只在勝利（熱身：通過）／其他結果（含 Ch.1 未達成；熱身：失敗）時（`post`〔不論結果〕目前沒有列使用）；空白＝不在 vn 播放（推薦路線的逐字稿）。其他場景一律空白。規則見下 |
 | bg | string | 這行的背景 id（`vn.bg`）：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`，空字串＝新聞紙底。來自演出檔（§3.1） |
 | slot_l、slot_c、slot_r | string | 左／中／右立繪的角色 id（`vn.slot_*`），空字串＝無人。來自演出檔 |
 | focus | number | 說話位置：0 無（旁白、系統、報紙）、1 左、2 中、3 右；指向的位置一定有人。來自演出檔 |
@@ -174,18 +174,18 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 - `focus`＝該行說話者的位置；旁白、系統、報紙、證物描述、演出行、分支標記為 0。場景標題與論戰台詞庫（S90）不會當作對白播放：背景取所屬場景、三個位置空、`focus` 0、`style` 2。
 - `style`：說話者是人物 0；`旁白（亞瑟筆記）` 1；其餘（系統、報紙、證物描述、演出、備註、分支、場景標題）2。
 
-## 4. `evidence`：證物卡（依 id；G-01、S-01 在最後）
+## 4. `evidence`：證物卡（依 id；G-01、S-01、熱身觀察卡在最後）
 
 | 欄 | 型別 | 意義 | 來源 |
 |---|---|---|---|
-| id | string | `E0n_nn`、`G-01`（黃金線索）、`S-01`（G-01 的次級替代證物） | 在地化包；S-01 命名依 01-systems §2.8 |
+| id | string | `E0n_nn`、`G-01`（黃金線索）、`S-01`（G-01 的次級替代證物）、`OBS_CH0n_nn`（熱身觀察卡，裁決 G5） | 在地化包；S-01 命名依 01-systems §2.8 |
 | chapter | number | 來源章 | id |
-| usable | string | 會出現在線索板／可參戰的章，多值 | 一般卡＝本章；G-01＝`3,12`（00-overview 黃金線索表） |
-| grade | string | `common`／`key`／`story`／`golden`／`substitute` | 在地化 `_NAME` 備註的 grade；與 10-cases 證物表交叉檢查 |
+| usable | string | 會出現在線索板／可參戰的章，多值 | 一般卡＝本章；G-01＝`3,12`（00-overview 黃金線索表）；觀察卡空白（不上線索板、不進主論戰的卡表 `debCard`） |
+| grade | string | `common`／`key`／`story`／`golden`／`substitute`／`observation`（熱身觀察卡：只在熱身中持有，見下） | 在地化 `_NAME` 備註的 grade；與 10-cases 證物表交叉檢查；觀察卡由 id 決定 |
 | nameKey | string | 卡名 | `E.._NAME`；G-01 → `G-01`；S-01 → `G-01_SUB` |
 | descKey | string | 說明文字 | `E.._DESC`；黃金線索 `G-01_DESC`、替代證物 `S-01_DESC`（S-01 的名稱沿用 `G-01_SUB`） |
 | tagsKey | string | 標籤類別的顯示字串（例「物理・時間」） | `E.._TAGS` |
-| tags | string | 機器標籤，多值 | §0.4 |
+| tags | string | 機器標籤，多值 | §0.4；觀察卡只有類別 id（`OBS_*_TAGS` 的類別經 `TAG_CATEGORIES`：OBS_CH03_01 `person,phys`〔人物・物理〕、OBS_CH03_02 `place,phys`〔地點・物理〕），沒有值：設計只給類別，而觀察卡不上線索板、不做標籤比對 |
 | hiddenTags | string | 要鑑定後才揭露的標籤（`tags` 的子集）；用 `appraise` 的鑑定揭露 | §0.4：標籤檔 `hidden`（10-cases 標籤值「需鑑定」欄，裁決 D8） |
 | grazingTags | string | 擦邊標籤（`tags` 的子集） | §0.4：標籤檔 `grazing` |
 | policeTags | string | 信任度 ≥ 3 時由警方驗屍報告直接揭露的隱藏標籤（`hiddenTags` 的子集；只有 E03_01） | §0.4：標籤檔 `police`；01-systems §3.1；10-cases Ch.3 標籤值 |
@@ -203,9 +203,11 @@ UTF-8，LF，有標頭：`id,bg,slot_l,slot_c,slot_r,focus,style,note`。每個 
 | obtainable | bool | 對手可取得（漏撿時進對手手牌） | 裁決 D3：一般與關鍵可取得；劇情、黃金線索（G-*）、替代證物（S-*）不可；再套用 D2：必需證物一律不可取得。Ch.1 另由 `chapters.missToHand=false` 關掉 |
 | refutes | string | 這張卡能破解的節點，多值 | `nodes.refutedBy` 反查 |
 | golden | string | 推理正確時產出的黃金線索 id | 10-cases Ch.2 結算（E02_01 → G-01） |
-| obtain | string | 取得方式：`hotspot`（蒐證時由調查點取得）／`event`（事件中已取得，調查點只供重看與鑑定：E03_02、E03_05）／`afterDebate`（論戰後的調查點 `phase=postDebate`：E02_08）／`golden` | 由產出它的調查點的 `phase`、`revisit` 推導；G-01：E02_01 理由正確 |
+| obtain | string | 取得方式：`hotspot`（蒐證時由調查點取得）／`event`（事件中已取得，調查點只供重看與鑑定：E03_02、E03_05）／`afterDebate`（論戰後的調查點 `phase=postDebate`：E02_08）／`golden`／`warmup`（熱身手牌 `opponents.hand`，只有觀察卡） | 由產出它的調查點的 `phase`、`revisit` 推導；G-01：E02_01 理由正確 |
 | hotspot | string | 產出它的調查點 id（`HS_CH0n_nn`；`golden` 為空白） | `hotspots.yields` 反查 |
 | lines | string | 調查時播放的劇本行（證物描述＋反應，不含鑑定行），多值 | 劇本蒐證場景，依在地化備註 `evidence Exx_nn` 分組 |
+
+觀察卡（裁決 G5；在地化 `OBS_CH0n_nn_NAME`／`_TAGS`／`_DESC`）：熱身的手牌裡不破解熱身說法的卡，出示＝失誤 1 次，接著播放它的反駁（`script.cue` ＝ `wrong:<id>`）。列在 S-01 之後；`usable` 空白、`onBoard` false、`refutes` 空白、`obtain=warmup`、`hotspot` 與 `lines` 空白、三個理由空白（`correct` −1）、不可鑑定、不可被對手取得。它們不進 `held`（流圖在熱身中直接用 `opponents.hand`，蒐證開始時 `held` 重設），所以蒐證、線索板、證物冊與主論戰都看不到。建置驗證：觀察卡必須在某個熱身的 `hand` 裡、不破解任何節點、有且只有一句反駁；`obtain=warmup` 只能是觀察卡。
 
 理由顯示順序（固定、可重現）：令 `h` 為 id 的 UTF-8 位元組做 SHA-256 後的第一個位元組，`correct = h mod 3`；`REASON_A`（在地化包中 A 恆為正確）放在 `correct` 位置，其餘兩格依序放 `REASON_B`、`REASON_C`。劇情證物也照此計算（雖然不上線索板）。
 
@@ -304,7 +306,7 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | contraTarget | number | 需指出的矛盾數（Ch.1：2）；0＝不適用 | 同上 |
 | contraDeadline | number | 必須在此回合結束前指出 `contraTarget` 個矛盾，否則未達成（Ch.1：3）；之後論破回合不限，錯過可在下一個矛盾後再來（裁決 B21）；0＝不適用 | 裁決 D15 |
 | mistakeLimit | number | 失誤上限：熱身錯誤出示 3 次 → 對手不耐；0＝無（Ch.1 依裁決 A4 沒有失敗狀態） | 01-systems A-13、裁決 A4 |
-| hand | string | 熱身開始時的手牌（自動持有的證物），多值 | 10-cases Ch.3 熱身 |
+| hand | string | 熱身的手牌（選擇器依此順序列出），多值 | 10-cases Ch.3 熱身；裁決 G5：破解卡（E03_05、E03_02）之後接該章的觀察卡（OBS_CH03_01、OBS_CH03_02） |
 | handPerMissed | number | 每漏 1 件證物對手手牌 +n | 10-cases Ch.2／Ch.3 數值卡（暫定） |
 | hpPerMissed | number | 每漏 1 件證物對手主導權 +n | 同上（待確認 Q10） |
 

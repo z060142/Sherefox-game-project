@@ -349,7 +349,8 @@ class Mux:
 
 # ---------------------------------------------------------------- support tables (data/flow)
 
-GRADE = {"common": 0, "key": 1, "story": 2, "golden": 3, "substitute": 4}   # ui-contracts: popup_grade, sel_grade
+# ui-contracts: popup_grade, sel_grade (observation: the warm-up's cards, ruling G5; never on those screens)
+GRADE = {"common": 0, "key": 1, "story": 2, "golden": 3, "substitute": 4, "observation": 5}
 SPOT_TYPE = {"inspect": 0, "evidence": 1, "testimony": 2}                   # ui-contracts investigate: spots.type
 APPRAISE = {"none": 0, "medical": 1, "mechanical": 2, "dual": 3}
 # data-schema §5: hotspots.scene -> the vn background id of that scene (script.bg).
@@ -480,6 +481,10 @@ SIGNALS = {
     "debEnd": {"type": "pulse"},                        # debate_ui -> dialogue: the debate is over
     "debCue": {"type": "string", "initial": "post"},    # debate_ui: the cue of the lines after it (post / postWin / postLose)
     "vnShow": {"type": "pulse"},                        # dialogue -> main: lines after the debate, show the vn
+    # ruling G5: a warm-up retort on the vn in the middle of the warm-up (script.cue wrong:<card>)
+    "debAside": {"type": "pulse"},                      # debate_ui -> dialogue: play the lines of debAsideCue now
+    "debAsideCue": {"type": "string", "initial": ""},   # debate_ui: their cue
+    "debBack": {"type": "pulse"},                       # dialogue -> main, debate_ui: they are over, back to the debate
     "debRetrying": {"type": "bool", "initial": False},  # main: the debate step was entered by a retry (no pre lines)
     "notesOpen": {"type": "pulse"},                     # debate_ui -> main: show the opponent notes overlay
     "notesShown": {"type": "bool", "initial": False},   # main: the opponent notes overlay is open
@@ -779,6 +784,7 @@ def gen_main() -> Graph:
     g.x("debNoPre", "(isDebN || isWarmN) && (noPre || retryN)")
     g.edge("world.debGo", "screen.to_debate")
     g.edge("world.vnShow", "screen.to_vn")
+    g.edge("world.debBack", "screen.to_debate")
     g.edge("world.resultLines", "screen.to_vn")
     g.edge(g.when("debPreG", "rebegin.out", "debPre_t"), "screen.to_vn")
     g.edge(g.when("debNoPreG", "rebegin.out", "debNoPre_t"), "screen.to_debate")
@@ -888,9 +894,13 @@ def gen_dialogue() -> Graph:
     # A debate / warmup step (script.cue): the `pre` lines before the debate screen, the lines of world.debCue
     # (post / postWin / postLose, written by debate_ui) after it.
     g.toggle("postMode")
+    # a warm-up retort (ruling G5, world.debAside): the lines of world.debAsideCue in the middle of the warm-up, then
+    # back to the debate (world.debBack) instead of ending the step
+    g.toggle("asideMode")
     # a retried debate (world.debRetrying, A-14) skips its opening lines: no row has the cue "-"
     g.sel("preCue", "world.debRetrying", g.k("-"), g.k("pre"))
-    g.sel("cueVal", "postMode.value", "world.debCue", "preCue")
+    g.sel("postCue", "postMode.value", "world.debCue", "preCue")
+    g.sel("cueVal", "asideMode.value", "world.debAsideCue", "postCue")
     for nm in ("dfirst", "dnext"):
         g.node(nm, "atrium.table.find", table="script", column="sceneKey", filterColumn="cue",
                filters=json.dumps(playable))
@@ -912,19 +922,26 @@ def gen_dialogue() -> Graph:
     g.edge("world.stepBegin", "beginGate.go")
     resBegin = g.when("resBeginG", "world.resultLines", "isRes.out")
     debBegin = g.when("debBeginG", "world.stepBegin", "isDebK_t")
-    postBegin = g.when("postBeginG", "world.debEnd", "isDebK_t")
+    postEnd = g.when("postBeginG", "world.debEnd", "isDebK_t")
+    asideBegin = g.when("asideBeginG", "world.debAside", "isDebK_t")
+    postBegin = g.merge("postAnyM", postEnd, asideBegin)
     g.gate("advGate")
     g.edge("vnOrRes.truth", "advGate.guard")
     g.edge("ui#vn.advance", "advGate.go")
     g.edge(debBegin, "postMode.setFalse")
     g.edge(postBegin, "postMode.setTrue")
+    g.edge(debBegin, "asideMode.setFalse")
+    g.edge(postEnd, "asideMode.setFalse")
+    g.edge(asideBegin, "asideMode.setTrue")
     g.edge("beginGate.changed", "atBegin.setTrue")
     g.edge(resBegin, "atBegin.setTrue")
     g.edge(debBegin, "atBegin.setTrue")
     # the lines after a debate: the vn comes back first (world.vnShow reaches main next tick), the first line is
     # shown on a timer in that next tick, so it is never written while the debate screen is still up
     g.x("dfirstOk", "dfirst >= 0")
-    g.edge(g.when("postShowG", g.merge("postShowM", postBegin), "dfirstOk_t"), "world.vnShow")
+    g.edge(g.when("postShowG", g.merge("postShowM", postEnd), "dfirstOk_t"), "world.vnShow")
+    # a retort always has its line (debate_ui asks only when the script has a row with that cue)
+    g.edge(asideBegin, "world.vnShow")
     postStart, postTick = g.timer("postTimer")
     g.edge(postBegin, postStart)
     g.edge(postTick, "atBegin.setTrue")
@@ -939,9 +956,12 @@ def gen_dialogue() -> Graph:
     over = g.when("overGate", "show.out", "pickNo_t")
     # no lines after the debate: the step ends (on the timer's tick)
     g.n("postModeN", "postMode.value")
-    g.x("overDone", "!isDebK || postModeN")
+    g.n("asideN", "asideMode.value")
+    g.x("overDone", "!isDebK || (postModeN && !asideN)")
+    g.x("overBack", "isDebK && postModeN && asideN")
     g.x("overGo", "isDebK && !postModeN")
     g.edge(g.when("overDoneG", over, "overDone_t"), "world.stepDone")
+    g.edge(g.when("overBackG", over, "overBack_t"), "world.debBack")
     g.edge(g.when("overGoG", over, "overGo_t"), "world.debGo")
     g.node("disp", "filter", op="sample")
     g.edge("pick", "disp.in")

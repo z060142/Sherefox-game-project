@@ -356,21 +356,51 @@ def main() -> int:
     fail.check(msgs == [ZH["MSG_INV_MISSED_NONE"]] * 2, f"ch3_debate: missed-cards messages {msgs}")
     fail.check("G-01" in items(colls, "golden"), "ch3_debate: G-01 missing")
     fail.check(items(colls, "oppHand") == [], f"ch3_debate: opponent hand {items(colls, 'oppHand')}")
+    leaks = [rest[:60] for t, rest in full.writes if "OBS_CH" in rest
+             and not (rest.startswith("debate document.parry_cards ") and t < ticks["ch3_debate_from"])]
+    fail.check(not leaks and not any(e.startswith("OBS_") for e in items(colls, "held")),
+               f"ch3_debate: observation cards outside the warmup {leaks[:3]}")
 
-    # Ch.3 warmup failed (tests/warmfail_harness: mistake limit 0): S04 F001-F004 instead of L006-L009, the case's
-    # trust 2 (no police report: ART_NO_REPORT), and the music moments up to the investigation (rulings H1-H3)
-    trace = []
-    events, err, colls = run("ch3_warmfail", gd.WARMFAIL, ticks["ch3_warmfail"], trace)
-    play = Play(events)
-    common(fail, "ch3_warmfail", err)
-    fail_lines = cue_lines(3, "S04", "postLose")
-    fail.check(len(fail_lines) == 4 and in_order(play.lines, cue_lines(3, "S04", "pre") + fail_lines),
-               f"ch3_warmfail: the failure wrap-up {play.lines[-6:]}")
-    fail.check(not any(x in play.lines for x in cue_lines(3, "S04", "postWin")), "ch3_warmfail: L006-L009 played")
-    hints = [p.get("investigate.hint") for _, p, _, ch in play.tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
-    fail.check(hints[:1] == [ZH["ART_NO_REPORT"]], f"ch3_warmfail: investigation opens with {hints[:1]}")
-    bgm = bgm_sequence(trace)
-    fail.check(bgm == ["BGM01", "BGM02", "BGM07", "BGM05"], f"ch3_warmfail: music {bgm}")
+    # Ch.3 warmup (ruling G5, the game): the picker lists the whole hand; an observation card is a mistake,
+    # MSG_WARMUP_WRONG then the inspector's retort on the vn (script.cue wrong:<card>), back to the debate. Three
+    # mistakes: S04 F001-F004 instead of L006-L009, the case's trust 2 (no police report: ART_NO_REPORT), the music
+    # moments up to the investigation (rulings H1-H3). One mistake: passed (L006-L009), no trust bonus (A-13: only
+    # zero mistakes give +1). The observation cards never leave the warmup.
+    hand_names = [{"id": e, "name": ZH[gd.gc.EV[e]["nameKey"]]} for e in gd.WARM_HAND]
+    retort = {e: ZH[r["text"]] for r in gd.gc.load("script") if r["cue"].startswith("wrong:")
+              for e in [r["cue"].split(":", 1)[1]]}
+    fail.check(sorted(retort) == ["OBS_CH03_01", "OBS_CH03_02"], f"warmup retorts {sorted(retort)}")
+    for name, cards, cue, n_wrong, trust in (
+            ("ch3_warmfail", ["OBS_CH03_01", "OBS_CH03_02", "OBS_CH03_01"], "postLose", 3, -1),
+            ("ch3_warmone", ["OBS_CH03_02", "E03_05"], "postWin", 1, 0)):
+        trace = []
+        events, err, colls = run(name, ROOT, ticks[name], trace)
+        play = Play(events)
+        common(fail, name, err)
+        picks = [x for x in play.list_write("debate document.parry_cards") if x]
+        fail.check(picks[:1] == [hand_names], f"{name}: the warmup picker {picks[:1]}")
+        fail.check([r[0] for r in play.rounds] == [(3, 0)] * len(cards), f"{name}: rounds {[r[0] for r in play.rounds]}")
+        want = (cue_lines(3, "S04", "pre") + [retort[c] for c in cards if c in retort] + cue_lines(3, "S04", cue))
+        fail.check(in_order(play.lines, want), f"{name}: lines {play.lines[-8:]}")
+        other = "postWin" if cue == "postLose" else "postLose"
+        fail.check(not any(x in play.lines for x in cue_lines(3, "S04", other)), f"{name}: {other} lines played")
+        rl = [v for t, rest in play.writes if rest.startswith("debate document.result_line ")
+              for v in [json.loads(rest.split(" ", 2)[2])]]
+        fail.check(rl.count(ZH["MSG_WARMUP_WRONG"]) == n_wrong, f"{name}: result lines {rl}")
+        fail.check(ZH["MSG_WARMUP_PERFECT"] not in rl, f"{name}: MSG_WARMUP_PERFECT after a mistake")
+        # each retort shows while the vn is the screen, between MSG_WARMUP_WRONG and the next round
+        shown = [p["vn.line"] for _, p, vis, ch in play.tr.ticks if "vn.line" in ch and "vn" in vis]
+        fail.check([x for x in shown if x in retort.values()] == [retort[c] for c in cards if c in retort],
+                   f"{name}: retorts on the vn {shown}")
+        mod = {e["key"]: e["value"] for e in colls.get("caseMod", {}).get("entries", [])}
+        fail.check(mod.get("trust") == trust, f"{name}: the case's trust modifier {mod}")
+        held = items(colls, "held")
+        fail.check(not any(e.startswith("OBS_") for e in held), f"{name}: observation cards held {held}")
+        hints = [p.get("investigate.hint") for _, p, _, ch in play.tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
+        fail.check((hints[:1] == [ZH["ART_NO_REPORT"]]) == (trust < 0), f"{name}: investigation opens with {hints[:1]}")
+        fail.check(("E03_01" in held) == (trust >= 0), f"{name}: the police report (E03_01) and held {held}")
+        bgm = bgm_sequence(trace)
+        fail.check(bgm == ["BGM01", "BGM02", "BGM07", "BGM05"], f"{name}: music {bgm}")
 
     # Ch.2 lost (observe every round, the seeded AI), retried, lost again
     events, err, colls = run("ch2_lose", ROOT, ticks["ch2_lose"])

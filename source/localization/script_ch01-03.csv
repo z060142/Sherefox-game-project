@@ -290,7 +290,7 @@ SCR_CH02_S05_L043,Sherefox,Sherefox,（愣了一下，回過神，反駁，出�
 SCR_CH02_S05_L044,（演出）,(Staging),【印：截】,【印：截】,
 SCR_CH02_S05_L045,系統,System,費奇的主導權歸零。論戰勝利。,Fitch's Dominance falls to zero. Debate won.,
 SCR_CH02_S05_L046,費奇,Fitch,（跪倒）我……我只是想還債……,(Collapsing to his knees) I... I only wanted to pay off my debt...,
-SCR_CH02_S05_L047,系統,System,（若尾聲出錯牌）配重擦過你的耳邊。主導權 −30。,(If the wrong card is played in the Endgame) The counterweight skims past your ear. Dominance −30.,
+SCR_CH02_S05_L047,系統,System,配重擦過你的耳邊。主導權 −30。,The counterweight skims past your ear. Dominance −30.,Endgame wrong-card variant: play only if the player presents the wrong card in the Endgame tail
 SCR_CH02_S06_L001,（場景標題）,(Scene heading),場景 6：結算,Scene 6: Results,scene heading
 SCR_CH02_S06_L002,（分支）,(Branch),勝利,Victory,
 SCR_CH02_S06_L003,報紙,Newspaper,【倫敦提燈報】報時鳥揭穿掉包案！隨從費奇當場認罪,【The London Lantern】Cuckoo Clock Unmasks Swap Scandal! Attendant Fitch Confesses on the Spot,
@@ -471,7 +471,7 @@ SCR_CH03_S06_L042,Sherefox,Sherefox,（反駁，出示 E03_05＋E03_03）老湯�
 SCR_CH03_S06_L043,（演出）,(Staging),【印：截】,【印：截】,
 SCR_CH03_S06_L044,系統,System,皮爾斯的主導權歸零。論戰勝利。,Pierce's Dominance falls to zero. Debate won.,
 SCR_CH03_S06_L045,皮爾斯,Pierce,（頹然坐下）他只要再忍一週……一週就好了……,(Slumping into a seat) If he'd only held out one more week... just one week...,
-SCR_CH03_S06_L046,系統,System,（若尾聲出錯牌）老湯姆被推了一把，全場嘩然。主導權 −30。,"(If the wrong card is played in the Endgame) Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30.",source typo: 全場嘩然 -> intended 全場嘩然; translated as intended
+SCR_CH03_S06_L046,系統,System,老湯姆被推了一把，全場嘩然。主導權 −30。,"Old Tom is shoved, and the whole deck erupts in an uproar. Dominance −30.",Endgame wrong-card variant: play only if the player presents the wrong card in the Endgame tail
 SCR_CH03_S07_L001,（場景標題）,(Scene heading),場景 7：結算,Scene 7: Results,scene heading
 SCR_CH03_S07_L002,（分支）,(Branch),勝利,Victory,
 SCR_CH03_S07_L003,報紙,Newspaper,【倫敦提燈報】巴斯克維爾警督神速破案！駁船密室之謎揭曉,【The London Lantern】Inspector Baskerville Solves Case at Lightning Speed! Mystery of the Barge Locked Room Revealed,
@@ -498,7 +498,9 @@ SCR_CH03_S08_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名�
 SCR_CH04_S01_L001,（場景標題）,(Scene heading),場景 1：報紙頭版（開場）,Scene 1: Newspaper Front Page (Opening),scene heading | prototype ending teaser (Ch.4 opening paper only)
 SCR_CH04_S01_L002,報紙,Newspaper,【倫敦提燈報・1887 年 11 月】歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台,【The London Lantern · November 1887】Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria,prototype ending teaser; headline = HEAD_CH04
 SCR_CH04_S01_L003,報紙,Newspaper,本報訊，皇家歌劇院昨晚演出《發條夜鶯》第三幕時，女高音伊莎貝拉・瓦倫小姐所站的舞台升降梯突然斷裂，瓦倫小姐自三公尺高處墜落，目前仍在醫院昏迷。學院派名偵探維多・克勞先生恰在觀眾席中，第一時間封鎖現場。克勞先生表示：「這不是意外。真相，明早公布。」,"Our correspondent reports: During the third act of ""The Clockwork Nightingale"" at the Royal Opera House last night, the stage lift on which the soprano Miss Isabella Valen stood suddenly gave way, and Miss Valen fell some ten feet. She remains unconscious in hospital. The celebrated academic detective Mr. Victor Crowe happened to be in the audience and sealed off the scene at once. Mr. Crowe stated: ""This was no accident. The truth will be made known tomorrow morning.""","prototype ending teaser | 三公尺 rendered as ""some ten feet"" (period imperial units)"
-SCR_CH03_S04_F001,巴斯克維爾,Baskerville,夠了，狐狸小姐！說錯三次，還想跟本警督要驗屍報告？門都沒有！,"Enough, Miss Fox! Three wrong guesses, and you still want this Inspector's post-mortem report? Not a chance!","Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
-SCR_CH03_S04_F002,巴斯克維爾,Baskerville,船夫照樣羈押。甲板妳要看就自己去看，別指望本警督再幫忙。,"The bargeman stays in custody. Look at the deck yourself if you must, but don't expect any more help from this Inspector.","Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
+SCR_CH03_S04_F001,巴斯克維爾,Inspector Baskerville,夠了，狐狸小姐！說錯三次，還想跟本警督要驗屍報告？門都沒有！,"Enough, Miss Fox! Three wrong guesses, and you still want this Inspector's post-mortem report? Not a chance!","Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
+SCR_CH03_S04_F002,巴斯克維爾,Inspector Baskerville,船夫照樣羈押。甲板妳要看就自己去看，別指望本警督再幫忙。,"The bargeman stays in custody. Look at the deck yourself if you must, but don't expect any more help from this Inspector.","Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
 SCR_CH03_S04_F003,亞瑟,Arthur,沒關係，報告我們自己寫。遺體交給我，這種傷我在野戰醫護站見過。,Never mind; we'll write the report ourselves. Leave the body to me. I've seen wounds like these at a field dressing station.,"Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
 SCR_CH03_S04_F004,系統,System,警督信任度 2 以下：未取得驗屍報告；遺體（E03_01）需由亞瑟進行醫療鑑定。,Inspector's Trust 2 or lower: the post-mortem report is withheld; Arthur must perform a medical appraisal on the body (E03_01).,"Ch.3 warm-up FAILURE variant (3 mistakes, effective trust 2): plays instead of L006-L009"
+SCR_CH03_S04_W001,巴斯克維爾,Inspector Baskerville,煤灰？他是燒鍋爐的，手不黑才奇怪！這只證明他整晚都守在鍋爐邊。更可疑了！,Soot? The man stokes boilers; it'd be odd if his hands weren't black! All that proves is he spent the night by the boiler. Even more suspicious!,Ch.3 warm-up wrong-card retort: plays after MSG_WARMUP_WRONG when OBS_CH03_01 is presented (counts as 1 mistake)
+SCR_CH03_S04_W002,巴斯克維爾,Inspector Baskerville,對，門是本警督的人撞開的。所以門從裡面閂著。狐狸小姐，妳這是在替本警督作證嗎？,"Yes, this Inspector's men broke that hatch in. So it was bolted from inside. Miss Fox, are you testifying on this Inspector's behalf?",Ch.3 warm-up wrong-card retort: plays after MSG_WARMUP_WRONG when OBS_CH03_02 is presented (counts as 1 mistake)

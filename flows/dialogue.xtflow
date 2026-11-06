@@ -204,6 +204,13 @@
       }
     },
     {
+      "id": "asideMode",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
       "id": "K7",
       "type": "constant",
       "params": {
@@ -219,6 +226,10 @@
     },
     {
       "id": "preCue",
+      "type": "select"
+    },
+    {
+      "id": "postCue",
       "type": "select"
     },
     {
@@ -333,6 +344,14 @@
       "type": "atrium.gate"
     },
     {
+      "id": "asideBeginG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "postAnyM",
+      "type": "merge"
+    },
+    {
       "id": "advGate",
       "type": "state",
       "params": {
@@ -387,10 +406,21 @@
       "type": "select"
     },
     {
+      "id": "asideN",
+      "type": "select"
+    },
+    {
       "id": "overDone",
       "type": "atrium.expr",
       "params": {
-        "expr": "!isDebK || postModeN"
+        "expr": "!isDebK || (postModeN && !asideN)"
+      }
+    },
+    {
+      "id": "overBack",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebK && postModeN && asideN"
       }
     },
     {
@@ -402,6 +432,10 @@
     },
     {
       "id": "overDoneG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "overBackG",
       "type": "atrium.gate"
     },
     {
@@ -734,14 +768,26 @@
     },
     {
       "from": "postMode.value",
-      "to": "cueVal.cond"
+      "to": "postCue.cond"
     },
     {
       "from": "world.debCue",
-      "to": "cueVal.a"
+      "to": "postCue.a"
     },
     {
       "from": "preCue.out",
+      "to": "postCue.b"
+    },
+    {
+      "from": "asideMode.value",
+      "to": "cueVal.cond"
+    },
+    {
+      "from": "world.debAsideCue",
+      "to": "cueVal.a"
+    },
+    {
+      "from": "postCue.out",
       "to": "cueVal.b"
     },
     {
@@ -841,6 +887,22 @@
       "to": "postBeginG.trigger"
     },
     {
+      "from": "isDebK.value",
+      "to": "asideBeginG.cond"
+    },
+    {
+      "from": "world.debAside",
+      "to": "asideBeginG.trigger"
+    },
+    {
+      "from": "postBeginG.pass",
+      "to": "postAnyM.in"
+    },
+    {
+      "from": "asideBeginG.pass",
+      "to": "postAnyM.in"
+    },
+    {
       "from": "vnOrRes.truth",
       "to": "advGate.guard"
     },
@@ -853,8 +915,20 @@
       "to": "postMode.setFalse"
     },
     {
-      "from": "postBeginG.pass",
+      "from": "postAnyM.out",
       "to": "postMode.setTrue"
+    },
+    {
+      "from": "debBeginG.pass",
+      "to": "asideMode.setFalse"
+    },
+    {
+      "from": "postBeginG.pass",
+      "to": "asideMode.setFalse"
+    },
+    {
+      "from": "asideBeginG.pass",
+      "to": "asideMode.setTrue"
     },
     {
       "from": "beginGate.changed",
@@ -889,7 +963,11 @@
       "to": "world.vnShow"
     },
     {
-      "from": "postBeginG.pass",
+      "from": "asideBeginG.pass",
+      "to": "world.vnShow"
+    },
+    {
+      "from": "postAnyM.out",
       "to": "postTimer.start"
     },
     {
@@ -949,12 +1027,40 @@
       "to": "postModeN.b"
     },
     {
+      "from": "asideMode.value",
+      "to": "asideN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "asideN.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "asideN.b"
+    },
+    {
       "from": "isDebK.value",
       "to": "overDone.isDebK"
     },
     {
       "from": "postModeN.out",
       "to": "overDone.postModeN"
+    },
+    {
+      "from": "asideN.out",
+      "to": "overDone.asideN"
+    },
+    {
+      "from": "isDebK.value",
+      "to": "overBack.isDebK"
+    },
+    {
+      "from": "postModeN.out",
+      "to": "overBack.postModeN"
+    },
+    {
+      "from": "asideN.out",
+      "to": "overBack.asideN"
     },
     {
       "from": "isDebK.value",
@@ -975,6 +1081,18 @@
     {
       "from": "overDoneG.pass",
       "to": "world.stepDone"
+    },
+    {
+      "from": "overBack.value",
+      "to": "overBackG.cond"
+    },
+    {
+      "from": "overGate.pass",
+      "to": "overBackG.trigger"
+    },
+    {
+      "from": "overBackG.pass",
+      "to": "world.debBack"
     },
     {
       "from": "overGo.value",

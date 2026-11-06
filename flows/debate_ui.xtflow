@@ -1063,6 +1063,34 @@
       "id": "K33",
       "type": "constant",
       "params": {
+        "value": "ret"
+      }
+    },
+    {
+      "id": "d_ret",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "K34",
+      "type": "constant",
+      "params": {
+        "value": "aside"
+      }
+    },
+    {
+      "id": "d_aside",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "K35",
+      "type": "constant",
+      "params": {
         "value": "card"
       }
     },
@@ -1074,7 +1102,7 @@
       }
     },
     {
-      "id": "K34",
+      "id": "K36",
       "type": "constant",
       "params": {
         "value": "target"
@@ -1088,7 +1116,7 @@
       }
     },
     {
-      "id": "K35",
+      "id": "K37",
       "type": "constant",
       "params": {
         "value": "msg"
@@ -1102,7 +1130,7 @@
       }
     },
     {
-      "id": "K36",
+      "id": "K38",
       "type": "constant",
       "params": {
         "value": "rl"
@@ -1116,7 +1144,7 @@
       }
     },
     {
-      "id": "K37",
+      "id": "K39",
       "type": "constant",
       "params": {
         "value": "fo"
@@ -1130,7 +1158,7 @@
       }
     },
     {
-      "id": "K38",
+      "id": "K40",
       "type": "constant",
       "params": {
         "value": "fm"
@@ -1144,7 +1172,7 @@
       }
     },
     {
-      "id": "K39",
+      "id": "K41",
       "type": "constant",
       "params": {
         "value": "lr1"
@@ -1152,6 +1180,20 @@
     },
     {
       "id": "s_lr1",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "dbuiS"
+      }
+    },
+    {
+      "id": "K42",
+      "type": "constant",
+      "params": {
+        "value": "rc"
+      }
+    },
+    {
+      "id": "s_rc",
       "type": "atrium.map.get",
       "params": {
         "name": "dbuiS"
@@ -1464,7 +1506,7 @@
       }
     },
     {
-      "id": "K40",
+      "id": "K43",
       "type": "constant",
       "params": {
         "value": "0"
@@ -1492,7 +1534,7 @@
       }
     },
     {
-      "id": "K41",
+      "id": "K44",
       "type": "constant",
       "params": {
         "value": "1"
@@ -1513,7 +1555,7 @@
       }
     },
     {
-      "id": "K42",
+      "id": "K45",
       "type": "constant",
       "params": {
         "value": 2
@@ -1527,7 +1569,7 @@
       }
     },
     {
-      "id": "K43",
+      "id": "K46",
       "type": "constant",
       "params": {
         "value": "2"
@@ -1548,7 +1590,7 @@
       }
     },
     {
-      "id": "K44",
+      "id": "K47",
       "type": "constant",
       "params": {
         "value": 3
@@ -1562,7 +1604,7 @@
       }
     },
     {
-      "id": "K45",
+      "id": "K48",
       "type": "constant",
       "params": {
         "value": "3"
@@ -1583,7 +1625,7 @@
       }
     },
     {
-      "id": "K46",
+      "id": "K49",
       "type": "constant",
       "params": {
         "value": 4
@@ -1597,7 +1639,7 @@
       }
     },
     {
-      "id": "K47",
+      "id": "K50",
       "type": "constant",
       "params": {
         "value": "4"
@@ -1618,7 +1660,7 @@
       }
     },
     {
-      "id": "K48",
+      "id": "K51",
       "type": "constant",
       "params": {
         "value": 5
@@ -1632,7 +1674,7 @@
       }
     },
     {
-      "id": "K49",
+      "id": "K52",
       "type": "constant",
       "params": {
         "value": "5"
@@ -1653,7 +1695,7 @@
       }
     },
     {
-      "id": "K50",
+      "id": "K53",
       "type": "constant",
       "params": {
         "value": 6
@@ -1667,7 +1709,7 @@
       }
     },
     {
-      "id": "K51",
+      "id": "K54",
       "type": "constant",
       "params": {
         "value": "6"
@@ -1688,7 +1730,7 @@
       }
     },
     {
-      "id": "K52",
+      "id": "K55",
       "type": "constant",
       "params": {
         "value": 7
@@ -1702,7 +1744,7 @@
       }
     },
     {
-      "id": "K53",
+      "id": "K56",
       "type": "constant",
       "params": {
         "value": "7"
@@ -1723,7 +1765,7 @@
       }
     },
     {
-      "id": "K54",
+      "id": "K57",
       "type": "constant",
       "params": {
         "value": 8
@@ -1737,7 +1779,7 @@
       }
     },
     {
-      "id": "K55",
+      "id": "K58",
       "type": "constant",
       "params": {
         "value": "8"
@@ -1758,7 +1800,7 @@
       }
     },
     {
-      "id": "K56",
+      "id": "K59",
       "type": "constant",
       "params": {
         "value": 9
@@ -1772,7 +1814,7 @@
       }
     },
     {
-      "id": "K57",
+      "id": "K60",
       "type": "constant",
       "params": {
         "value": "9"
@@ -1793,7 +1835,7 @@
       }
     },
     {
-      "id": "K58",
+      "id": "K61",
       "type": "constant",
       "params": {
         "value": 10
@@ -1807,7 +1849,7 @@
       }
     },
     {
-      "id": "K59",
+      "id": "K62",
       "type": "constant",
       "params": {
         "value": "10"
@@ -1828,7 +1870,7 @@
       }
     },
     {
-      "id": "K60",
+      "id": "K63",
       "type": "constant",
       "params": {
         "value": 11
@@ -1842,7 +1884,7 @@
       }
     },
     {
-      "id": "K61",
+      "id": "K64",
       "type": "constant",
       "params": {
         "value": "11"
@@ -1863,7 +1905,7 @@
       }
     },
     {
-      "id": "K62",
+      "id": "K65",
       "type": "constant",
       "params": {
         "value": 12
@@ -1877,7 +1919,7 @@
       }
     },
     {
-      "id": "K63",
+      "id": "K66",
       "type": "constant",
       "params": {
         "value": "12"
@@ -1898,7 +1940,7 @@
       }
     },
     {
-      "id": "K64",
+      "id": "K67",
       "type": "constant",
       "params": {
         "value": 13
@@ -1912,7 +1954,7 @@
       }
     },
     {
-      "id": "K65",
+      "id": "K68",
       "type": "constant",
       "params": {
         "value": "13"
@@ -3373,7 +3415,7 @@
       }
     },
     {
-      "id": "K66",
+      "id": "K69",
       "type": "constant",
       "params": {
         "value": 15
@@ -3387,7 +3429,7 @@
       }
     },
     {
-      "id": "K67",
+      "id": "K70",
       "type": "constant",
       "params": {
         "value": "-"
@@ -3405,7 +3447,7 @@
       "type": "select"
     },
     {
-      "id": "K68",
+      "id": "K71",
       "type": "constant",
       "params": {
         "value": 16
@@ -3430,7 +3472,7 @@
       "type": "select"
     },
     {
-      "id": "K69",
+      "id": "K72",
       "type": "constant",
       "params": {
         "value": 17
@@ -3455,7 +3497,7 @@
       "type": "select"
     },
     {
-      "id": "K70",
+      "id": "K73",
       "type": "constant",
       "params": {
         "value": 18
@@ -3480,7 +3522,7 @@
       "type": "select"
     },
     {
-      "id": "K71",
+      "id": "K74",
       "type": "constant",
       "params": {
         "value": 19
@@ -3505,7 +3547,7 @@
       "type": "select"
     },
     {
-      "id": "K72",
+      "id": "K75",
       "type": "constant",
       "params": {
         "value": 20
@@ -3530,7 +3572,7 @@
       "type": "select"
     },
     {
-      "id": "K73",
+      "id": "K76",
       "type": "constant",
       "params": {
         "value": 21
@@ -3555,7 +3597,7 @@
       "type": "select"
     },
     {
-      "id": "K74",
+      "id": "K77",
       "type": "constant",
       "params": {
         "value": 22
@@ -3580,7 +3622,7 @@
       "type": "select"
     },
     {
-      "id": "K75",
+      "id": "K78",
       "type": "constant",
       "params": {
         "value": 23
@@ -3679,7 +3721,7 @@
       }
     },
     {
-      "id": "K76",
+      "id": "K79",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NO_TARGET"
@@ -3697,7 +3739,7 @@
       }
     },
     {
-      "id": "K77",
+      "id": "K80",
       "type": "constant",
       "params": {
         "value": "UI_DEB_NOSOPH_REASON"
@@ -3708,7 +3750,7 @@
       "type": "select"
     },
     {
-      "id": "K78",
+      "id": "K81",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOSOPH"
@@ -3719,14 +3761,14 @@
       "type": "select"
     },
     {
-      "id": "K79",
+      "id": "K82",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOPARRY_SHISSHU"
       }
     },
     {
-      "id": "K80",
+      "id": "K83",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOPARRY_NOCARD"
@@ -3754,7 +3796,7 @@
       "id": "ok3",
       "type": "atrium.expr",
       "params": {
-        "expr": "hasLitN && !shiss && (hasCardN ? pc_ref && (pc_full || isWarmN) : segL >= 1 && (breakR || tailN) && segRef > 0 && segHidden == 0 && (tailN || thr))"
+        "expr": "hasLitN && !shiss && (hasCardN ? isWarmN || (pc_ref && pc_full) : segL >= 1 && (breakR || tailN) && segRef > 0 && segHidden == 0 && (tailN || thr))"
       }
     },
     {
@@ -3938,7 +3980,7 @@
       }
     },
     {
-      "id": "K81",
+      "id": "K84",
       "type": "constant",
       "params": {
         "value": "UI_DEB_LOCK_SUMMARY_OBSERVE"
@@ -3956,7 +3998,7 @@
       }
     },
     {
-      "id": "K82",
+      "id": "K85",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_SELECT_CHAIN"
@@ -3970,7 +4012,7 @@
       }
     },
     {
-      "id": "K83",
+      "id": "K86",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOSOLID"
@@ -3991,7 +4033,7 @@
       }
     },
     {
-      "id": "K84",
+      "id": "K87",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NOTAG"
@@ -4005,7 +4047,7 @@
       }
     },
     {
-      "id": "K85",
+      "id": "K88",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_SELECT_PARRY"
@@ -4127,7 +4169,7 @@
       }
     },
     {
-      "id": "K86",
+      "id": "K89",
       "type": "constant",
       "params": {
         "value": "UI_DEB_PREVIEW_SHAKEN"
@@ -4182,7 +4224,7 @@
       "type": "select"
     },
     {
-      "id": "K87",
+      "id": "K90",
       "type": "constant",
       "params": {
         "value": "UI_DEB_PREVIEW_BREAK"
@@ -4218,7 +4260,7 @@
       }
     },
     {
-      "id": "K88",
+      "id": "K91",
       "type": "constant",
       "params": {
         "value": "UI_DEB_PREVIEW_PARRY"
@@ -4479,7 +4521,7 @@
       }
     },
     {
-      "id": "K89",
+      "id": "K92",
       "type": "constant",
       "params": {
         "value": "fuzzy"
@@ -4598,7 +4640,7 @@
       }
     },
     {
-      "id": "K90",
+      "id": "K93",
       "type": "constant",
       "params": {
         "value": "rush"
@@ -4616,7 +4658,7 @@
       "type": "select"
     },
     {
-      "id": "K91",
+      "id": "K94",
       "type": "constant",
       "params": {
         "value": "assert"
@@ -4755,7 +4797,7 @@
       }
     },
     {
-      "id": "K92",
+      "id": "K95",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_CLASH"
@@ -4766,7 +4808,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K93",
+      "id": "K96",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_TRAP_HIT"
@@ -4777,7 +4819,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K94",
+      "id": "K97",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_PARRY_WHIFF"
@@ -5093,7 +5135,7 @@
       "type": "select"
     },
     {
-      "id": "K95",
+      "id": "K98",
       "type": "constant",
       "params": {
         "value": "UI_TAG_SEP"
@@ -5132,7 +5174,7 @@
       }
     },
     {
-      "id": "K96",
+      "id": "K99",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_NO_REINFORCE"
@@ -5143,7 +5185,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K97",
+      "id": "K100",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_MUST_ATTACK"
@@ -5154,7 +5196,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K98",
+      "id": "K101",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_IMPATIENT"
@@ -5252,7 +5294,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K99",
+      "id": "K102",
       "type": "constant",
       "params": {
         "value": "rln"
@@ -5295,7 +5337,7 @@
       "id": "beatOk",
       "type": "atrium.expr",
       "params": {
-        "expr": "!notesOnN"
+        "expr": "!notesOnN && !d_aside"
       }
     },
     {
@@ -5303,7 +5345,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K100",
+      "id": "K103",
       "type": "constant",
       "params": {
         "value": "rsAt"
@@ -5317,7 +5359,7 @@
       }
     },
     {
-      "id": "K101",
+      "id": "K104",
       "type": "constant",
       "params": {
         "value": "r2"
@@ -5331,7 +5373,7 @@
       }
     },
     {
-      "id": "K102",
+      "id": "K105",
       "type": "constant",
       "params": {
         "value": "r3"
@@ -5345,7 +5387,7 @@
       }
     },
     {
-      "id": "K103",
+      "id": "K106",
       "type": "constant",
       "params": {
         "value": "sel"
@@ -5359,7 +5401,7 @@
       }
     },
     {
-      "id": "K104",
+      "id": "K107",
       "type": "constant",
       "params": {
         "value": "instAt"
@@ -5373,7 +5415,7 @@
       }
     },
     {
-      "id": "K105",
+      "id": "K108",
       "type": "constant",
       "params": {
         "value": "lockAt"
@@ -5387,7 +5429,7 @@
       }
     },
     {
-      "id": "K106",
+      "id": "K109",
       "type": "constant",
       "params": {
         "value": "pb"
@@ -5401,7 +5443,7 @@
       }
     },
     {
-      "id": "K107",
+      "id": "K110",
       "type": "constant",
       "params": {
         "value": "pbAt"
@@ -5415,7 +5457,7 @@
       }
     },
     {
-      "id": "K108",
+      "id": "K111",
       "type": "constant",
       "params": {
         "value": "holdAt"
@@ -5429,7 +5471,7 @@
       }
     },
     {
-      "id": "K109",
+      "id": "K112",
       "type": "constant",
       "params": {
         "value": "finAt"
@@ -6527,7 +6569,7 @@
       "id": "paOk",
       "type": "atrium.expr",
       "params": {
-        "expr": "hasLitN && pa_ref && (pa_full || isWarmN)"
+        "expr": "hasLitN && (isWarmN || (pa_ref && pa_full))"
       }
     },
     {
@@ -8258,7 +8300,7 @@
       }
     },
     {
-      "id": "K110",
+      "id": "K113",
       "type": "constant",
       "params": {
         "value": "BTN_DEB_SOPH_NEW"
@@ -8649,7 +8691,7 @@
       }
     },
     {
-      "id": "K111",
+      "id": "K114",
       "type": "constant",
       "params": {
         "value": "reveal"
@@ -8667,7 +8709,7 @@
       "type": "select"
     },
     {
-      "id": "K112",
+      "id": "K115",
       "type": "constant",
       "params": {
         "value": "wReveal"
@@ -8685,7 +8727,7 @@
       "type": "select"
     },
     {
-      "id": "K113",
+      "id": "K116",
       "type": "constant",
       "params": {
         "value": "cutin"
@@ -8703,7 +8745,7 @@
       "type": "select"
     },
     {
-      "id": "K114",
+      "id": "K117",
       "type": "constant",
       "params": {
         "value": "dmgOpp"
@@ -8721,7 +8763,7 @@
       "type": "select"
     },
     {
-      "id": "K115",
+      "id": "K118",
       "type": "constant",
       "params": {
         "value": "dmgPlayer"
@@ -8739,7 +8781,7 @@
       "type": "select"
     },
     {
-      "id": "K116",
+      "id": "K119",
       "type": "constant",
       "params": {
         "value": "heal"
@@ -8757,7 +8799,7 @@
       "type": "select"
     },
     {
-      "id": "K117",
+      "id": "K120",
       "type": "constant",
       "params": {
         "value": "nodeRemoved"
@@ -8775,7 +8817,7 @@
       "type": "select"
     },
     {
-      "id": "K118",
+      "id": "K121",
       "type": "constant",
       "params": {
         "value": "nodeAdded"
@@ -8793,7 +8835,7 @@
       "type": "select"
     },
     {
-      "id": "K119",
+      "id": "K122",
       "type": "constant",
       "params": {
         "value": "counter"
@@ -8818,7 +8860,7 @@
       }
     },
     {
-      "id": "K120",
+      "id": "K123",
       "type": "constant",
       "params": {
         "value": "linkSnapped"
@@ -8832,7 +8874,7 @@
       }
     },
     {
-      "id": "K121",
+      "id": "K124",
       "type": "constant",
       "params": {
         "value": "infamy"
@@ -8846,7 +8888,7 @@
       }
     },
     {
-      "id": "K122",
+      "id": "K125",
       "type": "constant",
       "params": {
         "value": "breakVoided"
@@ -8915,7 +8957,7 @@
       }
     },
     {
-      "id": "K123",
+      "id": "K126",
       "type": "constant",
       "params": {
         "value": "MSG_DEB_PARRY"
@@ -8926,7 +8968,7 @@
       "type": "select"
     },
     {
-      "id": "K124",
+      "id": "K127",
       "type": "constant",
       "params": {
         "value": "contradiction"
@@ -9179,7 +9221,7 @@
       }
     },
     {
-      "id": "K125",
+      "id": "K128",
       "type": "constant",
       "params": {
         "value": "scorched"
@@ -9193,7 +9235,7 @@
       }
     },
     {
-      "id": "K126",
+      "id": "K129",
       "type": "constant",
       "params": {
         "value": "cornered:"
@@ -9221,14 +9263,14 @@
       }
     },
     {
-      "id": "K127",
+      "id": "K130",
       "type": "constant",
       "params": {
         "value": "reaction:clash"
       }
     },
     {
-      "id": "K128",
+      "id": "K131",
       "type": "constant",
       "params": {
         "value": "reaction:standoff"
@@ -9366,6 +9408,137 @@
       "type": "atrium.text"
     },
     {
+      "id": "wCardG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wCardL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "retCue",
+      "type": "format",
+      "params": {
+        "format": "wrong:{a}"
+      }
+    },
+    {
+      "id": "retRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "cue"
+      }
+    },
+    {
+      "id": "hasRet",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "retRow >= 0"
+      }
+    },
+    {
+      "id": "K132",
+      "type": "constant",
+      "params": {
+        "value": "wMistake"
+      }
+    },
+    {
+      "id": "isWMisC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isWMisN",
+      "type": "select"
+    },
+    {
+      "id": "retOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isWarmN && isWMisN && hasRet"
+      }
+    },
+    {
+      "id": "retG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "dbui_ret_63",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "dbuiS_rc_23",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbuiS"
+      }
+    },
+    {
+      "id": "asideOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_ret == 1"
+      }
+    },
+    {
+      "id": "asideG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "dbui_ret_64",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "dbui_aside_65",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
+      "id": "asideBackG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "dbui_aside_66",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "dbui"
+      }
+    },
+    {
       "id": "doG",
       "type": "state",
       "params": {
@@ -9396,14 +9569,14 @@
       }
     },
     {
-      "id": "dbuiS_fo_23",
+      "id": "dbuiS_fo_24",
       "type": "atrium.map.set",
       "params": {
         "name": "dbuiS"
       }
     },
     {
-      "id": "dbui_hpO_63",
+      "id": "dbui_hpO_67",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -9417,7 +9590,7 @@
       }
     },
     {
-      "id": "dbui_maxd_64",
+      "id": "dbui_maxd_68",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -9454,21 +9627,21 @@
       }
     },
     {
-      "id": "dbuiS_fm_24",
+      "id": "dbuiS_fm_25",
       "type": "atrium.map.set",
       "params": {
         "name": "dbuiS"
       }
     },
     {
-      "id": "dbui_hpM_65",
+      "id": "dbui_hpM_69",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K129",
+      "id": "K133",
       "type": "constant",
       "params": {
         "value": "break"
@@ -9504,7 +9677,7 @@
       }
     },
     {
-      "id": "dbui_brks_66",
+      "id": "dbui_brks_70",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -9541,14 +9714,14 @@
       }
     },
     {
-      "id": "dbuiS_fo_25",
+      "id": "dbuiS_fo_26",
       "type": "atrium.map.set",
       "params": {
         "name": "dbuiS"
       }
     },
     {
-      "id": "dbui_hpO_67",
+      "id": "dbui_hpO_71",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -9615,7 +9788,7 @@
       }
     },
     {
-      "id": "K130",
+      "id": "K134",
       "type": "constant",
       "params": {
         "value": "full"
@@ -9786,7 +9959,7 @@
       }
     },
     {
-      "id": "K131",
+      "id": "K135",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN"
@@ -9910,7 +10083,7 @@
       }
     },
     {
-      "id": "K132",
+      "id": "K136",
       "type": "constant",
       "params": {
         "value": "STAMP_SEEN_SUB"
@@ -10069,7 +10242,7 @@
       }
     },
     {
-      "id": "K133",
+      "id": "K137",
       "type": "constant",
       "params": {
         "value": "rc1"
@@ -10108,14 +10281,14 @@
       }
     },
     {
-      "id": "dbui_rc1_68",
+      "id": "dbui_rc1_72",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K134",
+      "id": "K138",
       "type": "constant",
       "params": {
         "value": "rc2"
@@ -10154,14 +10327,14 @@
       }
     },
     {
-      "id": "dbui_rc2_69",
+      "id": "dbui_rc2_73",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K135",
+      "id": "K139",
       "type": "constant",
       "params": {
         "value": "rc3"
@@ -10200,14 +10373,14 @@
       }
     },
     {
-      "id": "dbui_rc3_70",
+      "id": "dbui_rc3_74",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K136",
+      "id": "K140",
       "type": "constant",
       "params": {
         "value": "rc4"
@@ -10246,14 +10419,14 @@
       }
     },
     {
-      "id": "dbui_rc4_71",
+      "id": "dbui_rc4_75",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K137",
+      "id": "K141",
       "type": "constant",
       "params": {
         "value": "rc5"
@@ -10292,14 +10465,14 @@
       }
     },
     {
-      "id": "dbui_rc5_72",
+      "id": "dbui_rc5_76",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_oh2_73",
+      "id": "dbui_oh2_77",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10313,14 +10486,14 @@
       }
     },
     {
-      "id": "dbui_oh1_74",
+      "id": "dbui_oh1_78",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K138",
+      "id": "K142",
       "type": "constant",
       "params": {
         "value": "statusGained"
@@ -10338,7 +10511,7 @@
       "type": "select"
     },
     {
-      "id": "K139",
+      "id": "K143",
       "type": "constant",
       "params": {
         "value": "shaken"
@@ -10367,7 +10540,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_m8_75",
+      "id": "dbui_m8_79",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10385,14 +10558,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_m9_76",
+      "id": "dbui_m9_80",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K140",
+      "id": "K144",
       "type": "constant",
       "params": {
         "value": "CUT_REVERSE"
@@ -10421,14 +10594,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_m10_77",
+      "id": "dbui_m10_81",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K141",
+      "id": "K145",
       "type": "constant",
       "params": {
         "value": "CUT_BRINK"
@@ -10457,14 +10630,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_m10_78",
+      "id": "dbui_m10_82",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "K142",
+      "id": "K146",
       "type": "constant",
       "params": {
         "value": "CUT_COUNTER"
@@ -10493,7 +10666,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_m10_79",
+      "id": "dbui_m10_83",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10527,42 +10700,42 @@
       }
     },
     {
-      "id": "dbui_pbAt_80",
+      "id": "dbui_pbAt_84",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_ph_81",
+      "id": "dbui_ph_85",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hold_82",
+      "id": "dbui_hold_86",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hpO_83",
+      "id": "dbui_hpO_87",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_hpM_84",
+      "id": "dbui_hpM_88",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_r2_85",
+      "id": "dbui_r2_89",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10576,7 +10749,7 @@
       }
     },
     {
-      "id": "dbui_holdAt_86",
+      "id": "dbui_holdAt_90",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10843,7 +11016,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_holdAt_87",
+      "id": "dbui_holdAt_91",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10861,7 +11034,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_hold_88",
+      "id": "dbui_hold_92",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10890,21 +11063,21 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_rsAt_89",
+      "id": "dbui_rsAt_93",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_ph_90",
+      "id": "dbui_ph_94",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
       }
     },
     {
-      "id": "dbui_fin_91",
+      "id": "dbui_fin_95",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10918,7 +11091,7 @@
       }
     },
     {
-      "id": "dbui_finAt_92",
+      "id": "dbui_finAt_96",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10936,7 +11109,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_finAt_93",
+      "id": "dbui_finAt_97",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10954,7 +11127,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K143",
+      "id": "K147",
       "type": "constant",
       "params": {
         "value": "loss"
@@ -10983,7 +11156,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_rev_94",
+      "id": "dbui_rev_98",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -10997,7 +11170,7 @@
       }
     },
     {
-      "id": "K144",
+      "id": "K148",
       "type": "constant",
       "params": {
         "value": true
@@ -11015,7 +11188,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_rev_95",
+      "id": "dbui_rev_99",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -11033,7 +11206,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "dbui_fin_96",
+      "id": "dbui_fin_100",
       "type": "atrium.map.set",
       "params": {
         "name": "dbui"
@@ -11070,7 +11243,7 @@
       }
     },
     {
-      "id": "K145",
+      "id": "K149",
       "type": "constant",
       "params": {
         "value": "win"
@@ -11269,7 +11442,7 @@
       }
     },
     {
-      "id": "K146",
+      "id": "K150",
       "type": "constant",
       "params": {
         "value": "gl0"
@@ -11290,7 +11463,7 @@
       }
     },
     {
-      "id": "K147",
+      "id": "K151",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_GESTURE_EMPTY"
@@ -11312,7 +11485,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K148",
+      "id": "K152",
       "type": "constant",
       "params": {
         "value": "UI_ACT_CLAIM"
@@ -11326,7 +11499,7 @@
       }
     },
     {
-      "id": "K149",
+      "id": "K153",
       "type": "constant",
       "params": {
         "value": "gl1"
@@ -11362,7 +11535,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K150",
+      "id": "K154",
       "type": "constant",
       "params": {
         "value": "UI_ACT_RUSH"
@@ -11376,7 +11549,7 @@
       }
     },
     {
-      "id": "K151",
+      "id": "K155",
       "type": "constant",
       "params": {
         "value": "gl2"
@@ -11412,7 +11585,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K152",
+      "id": "K156",
       "type": "constant",
       "params": {
         "value": "UI_ACT_REINFORCE"
@@ -11426,7 +11599,7 @@
       }
     },
     {
-      "id": "K153",
+      "id": "K157",
       "type": "constant",
       "params": {
         "value": "gl3"
@@ -11462,7 +11635,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "K154",
+      "id": "K158",
       "type": "constant",
       "params": {
         "value": "UI_ACT_TRAP"
@@ -11540,7 +11713,7 @@
       }
     },
     {
-      "id": "K155",
+      "id": "K159",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_RULE_1"
@@ -11598,7 +11771,7 @@
       }
     },
     {
-      "id": "K156",
+      "id": "K160",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_RULE_2"
@@ -11656,7 +11829,7 @@
       }
     },
     {
-      "id": "K157",
+      "id": "K161",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_RULE_3"
@@ -11714,7 +11887,7 @@
       }
     },
     {
-      "id": "K158",
+      "id": "K162",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_RULE_4"
@@ -11772,7 +11945,7 @@
       }
     },
     {
-      "id": "K159",
+      "id": "K163",
       "type": "constant",
       "params": {
         "value": "UI_NOTES_RULE_5"
@@ -11831,7 +12004,7 @@
       }
     },
     {
-      "id": "K160",
+      "id": "K164",
       "type": "constant",
       "params": {
         "value": "pudding"
@@ -11845,7 +12018,7 @@
       }
     },
     {
-      "id": "K161",
+      "id": "K165",
       "type": "constant",
       "params": {
         "value": "reverse"
@@ -11859,7 +12032,7 @@
       }
     },
     {
-      "id": "K162",
+      "id": "K166",
       "type": "constant",
       "params": {
         "value": "brink"
@@ -11880,7 +12053,7 @@
       }
     },
     {
-      "id": "K163",
+      "id": "K167",
       "type": "constant",
       "params": {
         "value": "debate2"
@@ -12414,31 +12587,43 @@
     },
     {
       "from": "K33.out",
-      "to": "s_card.key"
+      "to": "d_ret.key"
     },
     {
       "from": "K34.out",
-      "to": "s_target.key"
+      "to": "d_aside.key"
     },
     {
       "from": "K35.out",
-      "to": "s_msg.key"
+      "to": "s_card.key"
     },
     {
       "from": "K36.out",
-      "to": "s_rl.key"
+      "to": "s_target.key"
     },
     {
       "from": "K37.out",
-      "to": "s_fo.key"
+      "to": "s_msg.key"
     },
     {
       "from": "K38.out",
-      "to": "s_fm.key"
+      "to": "s_rl.key"
     },
     {
       "from": "K39.out",
+      "to": "s_fo.key"
+    },
+    {
+      "from": "K40.out",
+      "to": "s_fm.key"
+    },
+    {
+      "from": "K41.out",
       "to": "s_lr1.key"
+    },
+    {
+      "from": "K42.out",
+      "to": "s_rc.key"
     },
     {
       "from": "world.debRound",
@@ -12781,7 +12966,7 @@
       "to": "bl0.index"
     },
     {
-      "from": "K40.out",
+      "from": "K43.out",
       "to": "snv0.key"
     },
     {
@@ -12801,7 +12986,7 @@
       "to": "bl1.index"
     },
     {
-      "from": "K41.out",
+      "from": "K44.out",
       "to": "snv1.key"
     },
     {
@@ -12817,11 +13002,11 @@
       "to": "brk1.L_Round"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "bl2.index"
     },
     {
-      "from": "K43.out",
+      "from": "K46.out",
       "to": "snv2.key"
     },
     {
@@ -12837,11 +13022,11 @@
       "to": "brk2.L_Round"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "bl3.index"
     },
     {
-      "from": "K45.out",
+      "from": "K48.out",
       "to": "snv3.key"
     },
     {
@@ -12857,11 +13042,11 @@
       "to": "brk3.L_Round"
     },
     {
-      "from": "K46.out",
+      "from": "K49.out",
       "to": "bl4.index"
     },
     {
-      "from": "K47.out",
+      "from": "K50.out",
       "to": "snv4.key"
     },
     {
@@ -12877,11 +13062,11 @@
       "to": "brk4.L_Round"
     },
     {
-      "from": "K48.out",
+      "from": "K51.out",
       "to": "bl5.index"
     },
     {
-      "from": "K49.out",
+      "from": "K52.out",
       "to": "snv5.key"
     },
     {
@@ -12897,11 +13082,11 @@
       "to": "brk5.L_Round"
     },
     {
-      "from": "K50.out",
+      "from": "K53.out",
       "to": "bl6.index"
     },
     {
-      "from": "K51.out",
+      "from": "K54.out",
       "to": "snv6.key"
     },
     {
@@ -12917,11 +13102,11 @@
       "to": "brk6.L_Round"
     },
     {
-      "from": "K52.out",
+      "from": "K55.out",
       "to": "bl7.index"
     },
     {
-      "from": "K53.out",
+      "from": "K56.out",
       "to": "snv7.key"
     },
     {
@@ -12937,11 +13122,11 @@
       "to": "brk7.L_Round"
     },
     {
-      "from": "K54.out",
+      "from": "K57.out",
       "to": "bl8.index"
     },
     {
-      "from": "K55.out",
+      "from": "K58.out",
       "to": "snv8.key"
     },
     {
@@ -12957,11 +13142,11 @@
       "to": "brk8.L_Round"
     },
     {
-      "from": "K56.out",
+      "from": "K59.out",
       "to": "bl9.index"
     },
     {
-      "from": "K57.out",
+      "from": "K60.out",
       "to": "snv9.key"
     },
     {
@@ -12977,11 +13162,11 @@
       "to": "brk9.L_Round"
     },
     {
-      "from": "K58.out",
+      "from": "K61.out",
       "to": "bl10.index"
     },
     {
-      "from": "K59.out",
+      "from": "K62.out",
       "to": "snv10.key"
     },
     {
@@ -12997,11 +13182,11 @@
       "to": "brk10.L_Round"
     },
     {
-      "from": "K60.out",
+      "from": "K63.out",
       "to": "bl11.index"
     },
     {
-      "from": "K61.out",
+      "from": "K64.out",
       "to": "snv11.key"
     },
     {
@@ -13017,11 +13202,11 @@
       "to": "brk11.L_Round"
     },
     {
-      "from": "K62.out",
+      "from": "K65.out",
       "to": "bl12.index"
     },
     {
-      "from": "K63.out",
+      "from": "K66.out",
       "to": "snv12.key"
     },
     {
@@ -13037,11 +13222,11 @@
       "to": "brk12.L_Round"
     },
     {
-      "from": "K64.out",
+      "from": "K67.out",
       "to": "bl13.index"
     },
     {
-      "from": "K65.out",
+      "from": "K68.out",
       "to": "snv13.key"
     },
     {
@@ -14869,7 +15054,7 @@
       "to": "pc_ref.pc_rT"
     },
     {
-      "from": "K66.out",
+      "from": "K69.out",
       "to": "lz15.index"
     },
     {
@@ -14877,7 +15062,7 @@
       "to": "lzC15.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC15.b"
     },
     {
@@ -14893,7 +15078,7 @@
       "to": "lzN15.b"
     },
     {
-      "from": "K68.out",
+      "from": "K71.out",
       "to": "lz16.index"
     },
     {
@@ -14901,7 +15086,7 @@
       "to": "lzC16.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC16.b"
     },
     {
@@ -14917,7 +15102,7 @@
       "to": "lzN16.b"
     },
     {
-      "from": "K69.out",
+      "from": "K72.out",
       "to": "lz17.index"
     },
     {
@@ -14925,7 +15110,7 @@
       "to": "lzC17.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC17.b"
     },
     {
@@ -14941,7 +15126,7 @@
       "to": "lzN17.b"
     },
     {
-      "from": "K70.out",
+      "from": "K73.out",
       "to": "lz18.index"
     },
     {
@@ -14949,7 +15134,7 @@
       "to": "lzC18.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC18.b"
     },
     {
@@ -14965,7 +15150,7 @@
       "to": "lzN18.b"
     },
     {
-      "from": "K71.out",
+      "from": "K74.out",
       "to": "lz19.index"
     },
     {
@@ -14973,7 +15158,7 @@
       "to": "lzC19.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC19.b"
     },
     {
@@ -14989,7 +15174,7 @@
       "to": "lzN19.b"
     },
     {
-      "from": "K72.out",
+      "from": "K75.out",
       "to": "lz20.index"
     },
     {
@@ -14997,7 +15182,7 @@
       "to": "lzC20.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC20.b"
     },
     {
@@ -15013,7 +15198,7 @@
       "to": "lzN20.b"
     },
     {
-      "from": "K73.out",
+      "from": "K76.out",
       "to": "lz21.index"
     },
     {
@@ -15021,7 +15206,7 @@
       "to": "lzC21.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC21.b"
     },
     {
@@ -15037,7 +15222,7 @@
       "to": "lzN21.b"
     },
     {
-      "from": "K74.out",
+      "from": "K77.out",
       "to": "lz22.index"
     },
     {
@@ -15045,7 +15230,7 @@
       "to": "lzC22.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC22.b"
     },
     {
@@ -15061,7 +15246,7 @@
       "to": "lzN22.b"
     },
     {
-      "from": "K75.out",
+      "from": "K78.out",
       "to": "lz23.index"
     },
     {
@@ -15069,7 +15254,7 @@
       "to": "lzC23.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "lzC23.b"
     },
     {
@@ -15153,7 +15338,7 @@
       "to": "segNextC.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "segNextC.b"
     },
     {
@@ -15269,7 +15454,7 @@
       "to": "why1.a"
     },
     {
-      "from": "K76.out",
+      "from": "K79.out",
       "to": "why1.b"
     },
     {
@@ -15285,7 +15470,7 @@
       "to": "why2.cond"
     },
     {
-      "from": "K77.out",
+      "from": "K80.out",
       "to": "why2.a"
     },
     {
@@ -15297,7 +15482,7 @@
       "to": "why2m.cond"
     },
     {
-      "from": "K78.out",
+      "from": "K81.out",
       "to": "why2m.a"
     },
     {
@@ -15309,11 +15494,11 @@
       "to": "msg3.cond"
     },
     {
-      "from": "K79.out",
+      "from": "K82.out",
       "to": "msg3.a"
     },
     {
-      "from": "K80.out",
+      "from": "K83.out",
       "to": "msg3.b"
     },
     {
@@ -15361,16 +15546,16 @@
       "to": "ok3.hasCardN"
     },
     {
+      "from": "isWarmN.out",
+      "to": "ok3.isWarmN"
+    },
+    {
       "from": "pc_ref.value",
       "to": "ok3.pc_ref"
     },
     {
       "from": "pc_full.value",
       "to": "ok3.pc_full"
-    },
-    {
-      "from": "isWarmN.out",
-      "to": "ok3.isWarmN"
     },
     {
       "from": "segL.value",
@@ -15553,7 +15738,7 @@
       "to": "sumParry.card"
     },
     {
-      "from": "K81.out",
+      "from": "K84.out",
       "to": "sumObs.key"
     },
     {
@@ -15597,7 +15782,7 @@
       "to": "hint_4.cond"
     },
     {
-      "from": "K85.out",
+      "from": "K88.out",
       "to": "hint_4.a"
     },
     {
@@ -15609,7 +15794,7 @@
       "to": "hint_3.cond"
     },
     {
-      "from": "K84.out",
+      "from": "K87.out",
       "to": "hint_3.a"
     },
     {
@@ -15621,7 +15806,7 @@
       "to": "hint_2.cond"
     },
     {
-      "from": "K78.out",
+      "from": "K81.out",
       "to": "hint_2.a"
     },
     {
@@ -15633,7 +15818,7 @@
       "to": "hint_1.cond"
     },
     {
-      "from": "K83.out",
+      "from": "K86.out",
       "to": "hint_1.a"
     },
     {
@@ -15645,7 +15830,7 @@
       "to": "hint_0.cond"
     },
     {
-      "from": "K82.out",
+      "from": "K85.out",
       "to": "hint_0.a"
     },
     {
@@ -15809,7 +15994,7 @@
       "to": "pvShakenK.cond"
     },
     {
-      "from": "K86.out",
+      "from": "K89.out",
       "to": "pvShakenK.a"
     },
     {
@@ -15861,7 +16046,7 @@
       "to": "pvHk.b"
     },
     {
-      "from": "K87.out",
+      "from": "K90.out",
       "to": "pvBrT.key"
     },
     {
@@ -15905,7 +16090,7 @@
       "to": "pvAtk.c"
     },
     {
-      "from": "K88.out",
+      "from": "K91.out",
       "to": "pvParry.key"
     },
     {
@@ -16229,7 +16414,7 @@
       "to": "fuzzyC.a"
     },
     {
-      "from": "K89.out",
+      "from": "K92.out",
       "to": "fuzzyC.b"
     },
     {
@@ -16385,7 +16570,7 @@
       "to": "rushC.a"
     },
     {
-      "from": "K90.out",
+      "from": "K93.out",
       "to": "rushC.b"
     },
     {
@@ -16405,7 +16590,7 @@
       "to": "asrtC.a"
     },
     {
-      "from": "K91.out",
+      "from": "K94.out",
       "to": "asrtC.b"
     },
     {
@@ -16425,7 +16610,7 @@
       "to": "asrt2C.a"
     },
     {
-      "from": "K91.out",
+      "from": "K94.out",
       "to": "asrt2C.b"
     },
     {
@@ -16445,7 +16630,7 @@
       "to": "rush2C.a"
     },
     {
-      "from": "K90.out",
+      "from": "K93.out",
       "to": "rush2C.b"
     },
     {
@@ -16621,15 +16806,15 @@
       "to": "vsBrk.thr"
     },
     {
-      "from": "K92.out",
+      "from": "K95.out",
       "to": "vsClashT.key"
     },
     {
-      "from": "K93.out",
+      "from": "K96.out",
       "to": "vsTrapT.key"
     },
     {
-      "from": "K94.out",
+      "from": "K97.out",
       "to": "vsWhiffT.key"
     },
     {
@@ -17185,7 +17370,7 @@
       "to": "ui#debate.preview_vs"
     },
     {
-      "from": "K95.out",
+      "from": "K98.out",
       "to": "flSep.key"
     },
     {
@@ -17229,15 +17414,15 @@
       "to": "flAB.flB"
     },
     {
-      "from": "K96.out",
+      "from": "K99.out",
       "to": "flAT.key"
     },
     {
-      "from": "K97.out",
+      "from": "K100.out",
       "to": "flBT.key"
     },
     {
-      "from": "K98.out",
+      "from": "K101.out",
       "to": "flCT.key"
     },
     {
@@ -17449,7 +17634,7 @@
       "to": "rlT.key"
     },
     {
-      "from": "K99.out",
+      "from": "K102.out",
       "to": "d_rln.key"
     },
     {
@@ -17489,6 +17674,10 @@
       "to": "beatOk.notesOnN"
     },
     {
+      "from": "d_aside.value",
+      "to": "beatOk.d_aside"
+    },
+    {
       "from": "beatOk.value",
       "to": "beatOn.cond"
     },
@@ -17497,43 +17686,43 @@
       "to": "beatOn.trigger"
     },
     {
-      "from": "K100.out",
+      "from": "K103.out",
       "to": "d_rsAt.key"
     },
     {
-      "from": "K101.out",
+      "from": "K104.out",
       "to": "d_r2.key"
     },
     {
-      "from": "K102.out",
+      "from": "K105.out",
       "to": "d_r3.key"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "d_sel.key"
     },
     {
-      "from": "K104.out",
+      "from": "K107.out",
       "to": "d_instAt.key"
     },
     {
-      "from": "K105.out",
+      "from": "K108.out",
       "to": "d_lockAt.key"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "d_pb.key"
     },
     {
-      "from": "K107.out",
+      "from": "K110.out",
       "to": "d_pbAt.key"
     },
     {
-      "from": "K108.out",
+      "from": "K111.out",
       "to": "d_holdAt.key"
     },
     {
-      "from": "K109.out",
+      "from": "K112.out",
       "to": "d_finAt.key"
     },
     {
@@ -17553,7 +17742,7 @@
       "to": "rsG.trigger"
     },
     {
-      "from": "K100.out",
+      "from": "K103.out",
       "to": "dbui_rsAt_1.key"
     },
     {
@@ -17577,7 +17766,7 @@
       "to": "r2G.trigger"
     },
     {
-      "from": "K101.out",
+      "from": "K104.out",
       "to": "dbui_r2_2.key"
     },
     {
@@ -17601,7 +17790,7 @@
       "to": "r3G.trigger"
     },
     {
-      "from": "K102.out",
+      "from": "K105.out",
       "to": "dbui_r3_3.key"
     },
     {
@@ -17625,7 +17814,7 @@
       "to": "selG.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_4.key"
     },
     {
@@ -17653,7 +17842,7 @@
       "to": "instG2.trigger"
     },
     {
-      "from": "K104.out",
+      "from": "K107.out",
       "to": "dbui_instAt_5.key"
     },
     {
@@ -17681,7 +17870,7 @@
       "to": "lockG2.trigger"
     },
     {
-      "from": "K105.out",
+      "from": "K108.out",
       "to": "dbui_lockAt_6.key"
     },
     {
@@ -17917,7 +18106,7 @@
       "to": "candOk.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "candOk.b"
     },
     {
@@ -17957,7 +18146,7 @@
       "to": "world.debStart"
     },
     {
-      "from": "K100.out",
+      "from": "K103.out",
       "to": "dbui_rsAt_8.key"
     },
     {
@@ -18069,7 +18258,7 @@
       "to": "dbui_hold_16.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K35.out",
       "to": "dbuiS_card_1.key"
     },
     {
@@ -18081,7 +18270,7 @@
       "to": "dbuiS_card_1.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K36.out",
       "to": "dbuiS_target_2.key"
     },
     {
@@ -18093,7 +18282,7 @@
       "to": "dbuiS_target_2.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_3.key"
     },
     {
@@ -18105,7 +18294,7 @@
       "to": "dbuiS_msg_3.trigger"
     },
     {
-      "from": "K37.out",
+      "from": "K39.out",
       "to": "dbuiS_fo_4.key"
     },
     {
@@ -18117,7 +18306,7 @@
       "to": "dbuiS_fo_4.trigger"
     },
     {
-      "from": "K38.out",
+      "from": "K40.out",
       "to": "dbuiS_fm_5.key"
     },
     {
@@ -18129,7 +18318,7 @@
       "to": "dbuiS_fm_5.trigger"
     },
     {
-      "from": "K36.out",
+      "from": "K38.out",
       "to": "dbuiS_rl_6.key"
     },
     {
@@ -18141,7 +18330,7 @@
       "to": "dbuiS_rl_6.trigger"
     },
     {
-      "from": "K39.out",
+      "from": "K41.out",
       "to": "dbuiS_lr1_7.key"
     },
     {
@@ -18189,7 +18378,7 @@
       "to": "nodesReset.in"
     },
     {
-      "from": "K101.out",
+      "from": "K104.out",
       "to": "dbui_r2_19.key"
     },
     {
@@ -18429,7 +18618,7 @@
       "to": "cvCardC.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "cvCardC.b"
     },
     {
@@ -18689,16 +18878,16 @@
       "to": "paOk.hasLitN"
     },
     {
+      "from": "isWarmN.out",
+      "to": "paOk.isWarmN"
+    },
+    {
       "from": "pa_ref.value",
       "to": "paOk.pa_ref"
     },
     {
       "from": "pa_full.value",
       "to": "paOk.pa_full"
-    },
-    {
-      "from": "isWarmN.out",
-      "to": "paOk.isWarmN"
     },
     {
       "from": "paOk.value",
@@ -18717,7 +18906,7 @@
       "to": "paAdd.trigger"
     },
     {
-      "from": "K102.out",
+      "from": "K105.out",
       "to": "dbui_r3_20.key"
     },
     {
@@ -18989,7 +19178,7 @@
       "to": "dbui_imp_22.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K35.out",
       "to": "dbuiS_card_8.key"
     },
     {
@@ -19001,7 +19190,7 @@
       "to": "dbuiS_card_8.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K36.out",
       "to": "dbuiS_target_9.key"
     },
     {
@@ -19013,7 +19202,7 @@
       "to": "dbuiS_target_9.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_10.key"
     },
     {
@@ -19049,7 +19238,7 @@
       "to": "obsClrSa.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_23.key"
     },
     {
@@ -19129,7 +19318,7 @@
       "to": "msgV_0.b"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_11.key"
     },
     {
@@ -19169,7 +19358,7 @@
       "to": "segCardC.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "segCardC.b"
     },
     {
@@ -19353,7 +19542,7 @@
       "to": "dbui_segPh_28.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K35.out",
       "to": "dbuiS_card_12.key"
     },
     {
@@ -19365,7 +19554,7 @@
       "to": "dbuiS_card_12.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_13.key"
     },
     {
@@ -19389,7 +19578,7 @@
       "to": "dbui_imp_29.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_30.key"
     },
     {
@@ -19445,7 +19634,7 @@
       "to": "tgtG.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K36.out",
       "to": "dbuiS_target_14.key"
     },
     {
@@ -19473,7 +19662,7 @@
       "to": "cardG.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K35.out",
       "to": "dbuiS_card_15.key"
     },
     {
@@ -19485,7 +19674,7 @@
       "to": "dbuiS_card_15.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_16.key"
     },
     {
@@ -19533,7 +19722,7 @@
       "to": "dbui_segPh_33.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_34.key"
     },
     {
@@ -19605,7 +19794,7 @@
       "to": "dbui_segPh_37.trigger"
     },
     {
-      "from": "K33.out",
+      "from": "K35.out",
       "to": "dbuiS_card_17.key"
     },
     {
@@ -19641,7 +19830,7 @@
       "to": "dbui_act_38.trigger"
     },
     {
-      "from": "K34.out",
+      "from": "K36.out",
       "to": "dbuiS_target_18.key"
     },
     {
@@ -19653,7 +19842,7 @@
       "to": "dbuiS_target_18.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_19.key"
     },
     {
@@ -19677,7 +19866,7 @@
       "to": "dbui_imp_39.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_40.key"
     },
     {
@@ -19737,7 +19926,7 @@
       "to": "world.debInstinct"
     },
     {
-      "from": "K104.out",
+      "from": "K107.out",
       "to": "dbui_instAt_42.key"
     },
     {
@@ -20673,7 +20862,7 @@
       "to": "ixCardC.a"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "ixCardC.b"
     },
     {
@@ -20865,7 +21054,7 @@
       "to": "iblIn.index"
     },
     {
-      "from": "K67.out",
+      "from": "K70.out",
       "to": "iblIn.value"
     },
     {
@@ -20961,7 +21150,7 @@
       "to": "dbui_segPh_48.trigger"
     },
     {
-      "from": "K35.out",
+      "from": "K37.out",
       "to": "dbuiS_msg_20.key"
     },
     {
@@ -20973,7 +21162,7 @@
       "to": "dbuiS_msg_20.trigger"
     },
     {
-      "from": "K103.out",
+      "from": "K106.out",
       "to": "dbui_sel_49.key"
     },
     {
@@ -20985,7 +21174,7 @@
       "to": "dbui_sel_49.trigger"
     },
     {
-      "from": "K110.out",
+      "from": "K113.out",
       "to": "pickTitleT.key"
     },
     {
@@ -21225,7 +21414,7 @@
       "to": "dbui_maxc_51.trigger"
     },
     {
-      "from": "K105.out",
+      "from": "K108.out",
       "to": "dbui_lockAt_52.key"
     },
     {
@@ -21249,7 +21438,7 @@
       "to": "dbui_ev_53.trigger"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "dbui_pb_54.key"
     },
     {
@@ -21333,11 +21522,11 @@
       "to": "dbui_ev_55.trigger"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "dbui_pb_56.key"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "dbui_pb_56.value"
     },
     {
@@ -21357,7 +21546,7 @@
       "to": "evDone.trigger"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "dbui_pb_57.key"
     },
     {
@@ -21381,11 +21570,11 @@
       "to": "parseG.trigger"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "dbui_pb_58.key"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "dbui_pb_58.value"
     },
     {
@@ -21413,7 +21602,7 @@
       "to": "waitG.trigger"
     },
     {
-      "from": "K106.out",
+      "from": "K109.out",
       "to": "dbui_pb_59.key"
     },
     {
@@ -21441,43 +21630,43 @@
       "to": "n1.index"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "f2.index"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "n2.index"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "f3.index"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "n3.index"
     },
     {
-      "from": "K46.out",
+      "from": "K49.out",
       "to": "f4.index"
     },
     {
-      "from": "K46.out",
+      "from": "K49.out",
       "to": "n4.index"
     },
     {
-      "from": "K48.out",
+      "from": "K51.out",
       "to": "f5.index"
     },
     {
-      "from": "K48.out",
+      "from": "K51.out",
       "to": "n5.index"
     },
     {
-      "from": "K50.out",
+      "from": "K53.out",
       "to": "f6.index"
     },
     {
-      "from": "K50.out",
+      "from": "K53.out",
       "to": "n6.index"
     },
     {
@@ -21485,7 +21674,7 @@
       "to": "isRev.a"
     },
     {
-      "from": "K111.out",
+      "from": "K114.out",
       "to": "isRev.b"
     },
     {
@@ -21505,7 +21694,7 @@
       "to": "isWRev.a"
     },
     {
-      "from": "K112.out",
+      "from": "K115.out",
       "to": "isWRev.b"
     },
     {
@@ -21525,7 +21714,7 @@
       "to": "isCut.a"
     },
     {
-      "from": "K113.out",
+      "from": "K116.out",
       "to": "isCut.b"
     },
     {
@@ -21545,7 +21734,7 @@
       "to": "isDO.a"
     },
     {
-      "from": "K114.out",
+      "from": "K117.out",
       "to": "isDO.b"
     },
     {
@@ -21565,7 +21754,7 @@
       "to": "isDP.a"
     },
     {
-      "from": "K115.out",
+      "from": "K118.out",
       "to": "isDP.b"
     },
     {
@@ -21585,7 +21774,7 @@
       "to": "isHeal.a"
     },
     {
-      "from": "K116.out",
+      "from": "K119.out",
       "to": "isHeal.b"
     },
     {
@@ -21605,7 +21794,7 @@
       "to": "isNR.a"
     },
     {
-      "from": "K117.out",
+      "from": "K120.out",
       "to": "isNR.b"
     },
     {
@@ -21625,7 +21814,7 @@
       "to": "isNA.a"
     },
     {
-      "from": "K118.out",
+      "from": "K121.out",
       "to": "isNA.b"
     },
     {
@@ -21645,7 +21834,7 @@
       "to": "isCtrC.a"
     },
     {
-      "from": "K119.out",
+      "from": "K122.out",
       "to": "isCtrC.b"
     },
     {
@@ -21673,7 +21862,7 @@
       "to": "islinkSnapped.a"
     },
     {
-      "from": "K120.out",
+      "from": "K123.out",
       "to": "islinkSnapped.b"
     },
     {
@@ -21681,7 +21870,7 @@
       "to": "isinfamy.a"
     },
     {
-      "from": "K121.out",
+      "from": "K124.out",
       "to": "isinfamy.b"
     },
     {
@@ -21689,7 +21878,7 @@
       "to": "isbreakVoided.a"
     },
     {
-      "from": "K122.out",
+      "from": "K125.out",
       "to": "isbreakVoided.b"
     },
     {
@@ -21797,7 +21986,7 @@
       "to": "evLine.cond"
     },
     {
-      "from": "K123.out",
+      "from": "K126.out",
       "to": "evLine.a"
     },
     {
@@ -21809,7 +21998,7 @@
       "to": "isConC.a"
     },
     {
-      "from": "K124.out",
+      "from": "K127.out",
       "to": "isConC.b"
     },
     {
@@ -21889,7 +22078,7 @@
       "to": "dbui_ph_60.key"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "dbui_ph_60.value"
     },
     {
@@ -21905,7 +22094,7 @@
       "to": "lineG.go"
     },
     {
-      "from": "K36.out",
+      "from": "K38.out",
       "to": "dbuiS_rl_21.key"
     },
     {
@@ -21917,7 +22106,7 @@
       "to": "dbuiS_rl_21.trigger"
     },
     {
-      "from": "K99.out",
+      "from": "K102.out",
       "to": "dbui_rln_61.key"
     },
     {
@@ -21957,7 +22146,7 @@
       "to": "lr1G.go"
     },
     {
-      "from": "K39.out",
+      "from": "K41.out",
       "to": "dbuiS_lr1_22.key"
     },
     {
@@ -22053,7 +22242,7 @@
       "to": "rgTail.a"
     },
     {
-      "from": "K125.out",
+      "from": "K128.out",
       "to": "rgTail.b"
     },
     {
@@ -22073,11 +22262,11 @@
       "to": "rg_3.cond"
     },
     {
-      "from": "K127.out",
+      "from": "K130.out",
       "to": "rg_3.a"
     },
     {
-      "from": "K128.out",
+      "from": "K131.out",
       "to": "rg_3.b"
     },
     {
@@ -22109,7 +22298,7 @@
       "to": "rg_0.cond"
     },
     {
-      "from": "K126.out",
+      "from": "K129.out",
       "to": "rg_0.a"
     },
     {
@@ -22245,6 +22434,162 @@
       "to": "ui#debate.reveal_line"
     },
     {
+      "from": "isWRev.out",
+      "to": "wCardG.guard"
+    },
+    {
+      "from": "parseG.pass",
+      "to": "wCardG.go"
+    },
+    {
+      "from": "f3.value",
+      "to": "wCardL.in"
+    },
+    {
+      "from": "wCardG.changed",
+      "to": "wCardL.trigger"
+    },
+    {
+      "from": "wCardL.out",
+      "to": "retCue.a"
+    },
+    {
+      "from": "retCue.out",
+      "to": "retRow.value"
+    },
+    {
+      "from": "retRow.row",
+      "to": "hasRet.retRow"
+    },
+    {
+      "from": "f0.value",
+      "to": "isWMisC.a"
+    },
+    {
+      "from": "K132.out",
+      "to": "isWMisC.b"
+    },
+    {
+      "from": "isWMisC.out",
+      "to": "isWMisN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "isWMisN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isWMisN.b"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "retOn.isWarmN"
+    },
+    {
+      "from": "isWMisN.out",
+      "to": "retOn.isWMisN"
+    },
+    {
+      "from": "hasRet.value",
+      "to": "retOn.hasRet"
+    },
+    {
+      "from": "retOn.value",
+      "to": "retG.cond"
+    },
+    {
+      "from": "parseG.pass",
+      "to": "retG.trigger"
+    },
+    {
+      "from": "K33.out",
+      "to": "dbui_ret_63.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "dbui_ret_63.value"
+    },
+    {
+      "from": "retG.pass",
+      "to": "dbui_ret_63.trigger"
+    },
+    {
+      "from": "K42.out",
+      "to": "dbuiS_rc_23.key"
+    },
+    {
+      "from": "retCue.out",
+      "to": "dbuiS_rc_23.value"
+    },
+    {
+      "from": "retG.pass",
+      "to": "dbuiS_rc_23.trigger"
+    },
+    {
+      "from": "d_ret.value",
+      "to": "asideOn.d_ret"
+    },
+    {
+      "from": "asideOn.value",
+      "to": "asideG.cond"
+    },
+    {
+      "from": "waitG.pass",
+      "to": "asideG.trigger"
+    },
+    {
+      "from": "K33.out",
+      "to": "dbui_ret_64.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "dbui_ret_64.value"
+    },
+    {
+      "from": "asideG.pass",
+      "to": "dbui_ret_64.trigger"
+    },
+    {
+      "from": "K34.out",
+      "to": "dbui_aside_65.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "dbui_aside_65.value"
+    },
+    {
+      "from": "asideG.pass",
+      "to": "dbui_aside_65.trigger"
+    },
+    {
+      "from": "s_rc.value",
+      "to": "world.debAsideCue"
+    },
+    {
+      "from": "asideG.pass",
+      "to": "world.debAside"
+    },
+    {
+      "from": "activeN.value",
+      "to": "asideBackG.cond"
+    },
+    {
+      "from": "world.debBack",
+      "to": "asideBackG.trigger"
+    },
+    {
+      "from": "K34.out",
+      "to": "dbui_aside_66.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "dbui_aside_66.value"
+    },
+    {
+      "from": "asideBackG.pass",
+      "to": "dbui_aside_66.trigger"
+    },
+    {
       "from": "isDO.out",
       "to": "doG.guard"
     },
@@ -22257,28 +22602,28 @@
       "to": "foDmg.a"
     },
     {
-      "from": "K37.out",
-      "to": "dbuiS_fo_23.key"
+      "from": "K39.out",
+      "to": "dbuiS_fo_24.key"
     },
     {
       "from": "foDmg.out",
-      "to": "dbuiS_fo_23.value"
+      "to": "dbuiS_fo_24.value"
     },
     {
       "from": "doG.changed",
-      "to": "dbuiS_fo_23.trigger"
+      "to": "dbuiS_fo_24.trigger"
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_63.key"
+      "to": "dbui_hpO_67.key"
     },
     {
       "from": "n4.value",
-      "to": "dbui_hpO_63.value"
+      "to": "dbui_hpO_67.value"
     },
     {
       "from": "doG.changed",
-      "to": "dbui_hpO_63.trigger"
+      "to": "dbui_hpO_67.trigger"
     },
     {
       "from": "d_maxd.value",
@@ -22290,15 +22635,15 @@
     },
     {
       "from": "K19.out",
-      "to": "dbui_maxd_64.key"
+      "to": "dbui_maxd_68.key"
     },
     {
       "from": "maxdN.value",
-      "to": "dbui_maxd_64.value"
+      "to": "dbui_maxd_68.value"
     },
     {
       "from": "doG.changed",
-      "to": "dbui_maxd_64.trigger"
+      "to": "dbui_maxd_68.trigger"
     },
     {
       "from": "isDP.out",
@@ -22313,35 +22658,35 @@
       "to": "fmDmg.a"
     },
     {
-      "from": "K38.out",
-      "to": "dbuiS_fm_24.key"
+      "from": "K40.out",
+      "to": "dbuiS_fm_25.key"
     },
     {
       "from": "fmDmg.out",
-      "to": "dbuiS_fm_24.value"
+      "to": "dbuiS_fm_25.value"
     },
     {
       "from": "dpG.changed",
-      "to": "dbuiS_fm_24.trigger"
+      "to": "dbuiS_fm_25.trigger"
     },
     {
       "from": "K23.out",
-      "to": "dbui_hpM_65.key"
+      "to": "dbui_hpM_69.key"
     },
     {
       "from": "n4.value",
-      "to": "dbui_hpM_65.value"
+      "to": "dbui_hpM_69.value"
     },
     {
       "from": "dpG.changed",
-      "to": "dbui_hpM_65.trigger"
+      "to": "dbui_hpM_69.trigger"
     },
     {
       "from": "f0.value",
       "to": "isBrkC.a"
     },
     {
-      "from": "K129.out",
+      "from": "K133.out",
       "to": "isBrkC.b"
     },
     {
@@ -22378,15 +22723,15 @@
     },
     {
       "from": "K21.out",
-      "to": "dbui_brks_66.key"
+      "to": "dbui_brks_70.key"
     },
     {
       "from": "brksN.value",
-      "to": "dbui_brks_66.value"
+      "to": "dbui_brks_70.value"
     },
     {
       "from": "brkG.pass",
-      "to": "dbui_brks_66.trigger"
+      "to": "dbui_brks_70.trigger"
     },
     {
       "from": "isHeal.out",
@@ -22401,28 +22746,28 @@
       "to": "foHeal.a"
     },
     {
-      "from": "K37.out",
-      "to": "dbuiS_fo_25.key"
+      "from": "K39.out",
+      "to": "dbuiS_fo_26.key"
     },
     {
       "from": "foHeal.out",
-      "to": "dbuiS_fo_25.value"
+      "to": "dbuiS_fo_26.value"
     },
     {
       "from": "hlG.changed",
-      "to": "dbuiS_fo_25.trigger"
+      "to": "dbuiS_fo_26.trigger"
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_67.key"
+      "to": "dbui_hpO_71.key"
     },
     {
       "from": "n3.value",
-      "to": "dbui_hpO_67.value"
+      "to": "dbui_hpO_71.value"
     },
     {
       "from": "hlG.changed",
-      "to": "dbui_hpO_67.trigger"
+      "to": "dbui_hpO_71.trigger"
     },
     {
       "from": "isNR.out",
@@ -22469,7 +22814,7 @@
       "to": "cutFullC.a"
     },
     {
-      "from": "K130.out",
+      "from": "K134.out",
       "to": "cutFullC.b"
     },
     {
@@ -22657,7 +23002,7 @@
       "to": "stampSeq.increment"
     },
     {
-      "from": "K131.out",
+      "from": "K135.out",
       "to": "stamp2_id.in"
     },
     {
@@ -22705,7 +23050,7 @@
       "to": "stamp_id_is2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "stamp_id_is2.b"
     },
     {
@@ -22749,7 +23094,7 @@
       "to": "stamp_n_is2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "stamp_n_is2.b"
     },
     {
@@ -22821,7 +23166,7 @@
       "to": "csubSeq.increment"
     },
     {
-      "from": "K132.out",
+      "from": "K136.out",
       "to": "csub3_key.in"
     },
     {
@@ -22869,7 +23214,7 @@
       "to": "csub_key_is2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "csub_key_is2.b"
     },
     {
@@ -22889,7 +23234,7 @@
       "to": "csub_key_is3.a"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "csub_key_is3.b"
     },
     {
@@ -22933,7 +23278,7 @@
       "to": "csub_n_is2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "csub_n_is2.b"
     },
     {
@@ -22953,7 +23298,7 @@
       "to": "csub_n_is3.a"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "csub_n_is3.b"
     },
     {
@@ -23025,7 +23370,7 @@
       "to": "glSet.trigger"
     },
     {
-      "from": "K133.out",
+      "from": "K137.out",
       "to": "d_rc1.key"
     },
     {
@@ -23045,7 +23390,7 @@
       "to": "ruleG1.trigger"
     },
     {
-      "from": "K41.out",
+      "from": "K44.out",
       "to": "ruleLearn1.key"
     },
     {
@@ -23061,19 +23406,19 @@
       "to": "rcN1.d_rc1"
     },
     {
-      "from": "K133.out",
-      "to": "dbui_rc1_68.key"
+      "from": "K137.out",
+      "to": "dbui_rc1_72.key"
     },
     {
       "from": "rcN1.value",
-      "to": "dbui_rc1_68.value"
+      "to": "dbui_rc1_72.value"
     },
     {
       "from": "ruleG1.pass",
-      "to": "dbui_rc1_68.trigger"
+      "to": "dbui_rc1_72.trigger"
     },
     {
-      "from": "K134.out",
+      "from": "K138.out",
       "to": "d_rc2.key"
     },
     {
@@ -23093,7 +23438,7 @@
       "to": "ruleG2.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K46.out",
       "to": "ruleLearn2.key"
     },
     {
@@ -23109,19 +23454,19 @@
       "to": "rcN2.d_rc2"
     },
     {
-      "from": "K134.out",
-      "to": "dbui_rc2_69.key"
+      "from": "K138.out",
+      "to": "dbui_rc2_73.key"
     },
     {
       "from": "rcN2.value",
-      "to": "dbui_rc2_69.value"
+      "to": "dbui_rc2_73.value"
     },
     {
       "from": "ruleG2.pass",
-      "to": "dbui_rc2_69.trigger"
+      "to": "dbui_rc2_73.trigger"
     },
     {
-      "from": "K135.out",
+      "from": "K139.out",
       "to": "d_rc3.key"
     },
     {
@@ -23141,7 +23486,7 @@
       "to": "ruleG3.trigger"
     },
     {
-      "from": "K45.out",
+      "from": "K48.out",
       "to": "ruleLearn3.key"
     },
     {
@@ -23157,19 +23502,19 @@
       "to": "rcN3.d_rc3"
     },
     {
-      "from": "K135.out",
-      "to": "dbui_rc3_70.key"
+      "from": "K139.out",
+      "to": "dbui_rc3_74.key"
     },
     {
       "from": "rcN3.value",
-      "to": "dbui_rc3_70.value"
+      "to": "dbui_rc3_74.value"
     },
     {
       "from": "ruleG3.pass",
-      "to": "dbui_rc3_70.trigger"
+      "to": "dbui_rc3_74.trigger"
     },
     {
-      "from": "K136.out",
+      "from": "K140.out",
       "to": "d_rc4.key"
     },
     {
@@ -23189,7 +23534,7 @@
       "to": "ruleG4.trigger"
     },
     {
-      "from": "K47.out",
+      "from": "K50.out",
       "to": "ruleLearn4.key"
     },
     {
@@ -23205,19 +23550,19 @@
       "to": "rcN4.d_rc4"
     },
     {
-      "from": "K136.out",
-      "to": "dbui_rc4_71.key"
+      "from": "K140.out",
+      "to": "dbui_rc4_75.key"
     },
     {
       "from": "rcN4.value",
-      "to": "dbui_rc4_71.value"
+      "to": "dbui_rc4_75.value"
     },
     {
       "from": "ruleG4.pass",
-      "to": "dbui_rc4_71.trigger"
+      "to": "dbui_rc4_75.trigger"
     },
     {
-      "from": "K137.out",
+      "from": "K141.out",
       "to": "d_rc5.key"
     },
     {
@@ -23245,7 +23590,7 @@
       "to": "ruleG5.trigger"
     },
     {
-      "from": "K49.out",
+      "from": "K52.out",
       "to": "ruleLearn5.key"
     },
     {
@@ -23261,28 +23606,28 @@
       "to": "rcN5.d_rc5"
     },
     {
-      "from": "K137.out",
-      "to": "dbui_rc5_72.key"
+      "from": "K141.out",
+      "to": "dbui_rc5_76.key"
     },
     {
       "from": "rcN5.value",
-      "to": "dbui_rc5_72.value"
+      "to": "dbui_rc5_76.value"
     },
     {
       "from": "ruleG5.pass",
-      "to": "dbui_rc5_72.trigger"
+      "to": "dbui_rc5_76.trigger"
     },
     {
       "from": "K28.out",
-      "to": "dbui_oh2_73.key"
+      "to": "dbui_oh2_77.key"
     },
     {
       "from": "d_oh1.value",
-      "to": "dbui_oh2_73.value"
+      "to": "dbui_oh2_77.value"
     },
     {
       "from": "revNoteG.pass",
-      "to": "dbui_oh2_73.trigger"
+      "to": "dbui_oh2_77.trigger"
     },
     {
       "from": "revOpp.value",
@@ -23290,22 +23635,22 @@
     },
     {
       "from": "K27.out",
-      "to": "dbui_oh1_74.key"
+      "to": "dbui_oh1_78.key"
     },
     {
       "from": "oh1N.value",
-      "to": "dbui_oh1_74.value"
+      "to": "dbui_oh1_78.value"
     },
     {
       "from": "revNoteG.pass",
-      "to": "dbui_oh1_74.trigger"
+      "to": "dbui_oh1_78.trigger"
     },
     {
       "from": "f0.value",
       "to": "isSGC.a"
     },
     {
-      "from": "K138.out",
+      "from": "K142.out",
       "to": "isSGC.b"
     },
     {
@@ -23325,7 +23670,7 @@
       "to": "isShkC.a"
     },
     {
-      "from": "K139.out",
+      "from": "K143.out",
       "to": "isShkC.b"
     },
     {
@@ -23378,15 +23723,15 @@
     },
     {
       "from": "K29.out",
-      "to": "dbui_m8_75.key"
+      "to": "dbui_m8_79.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_m8_75.value"
+      "to": "dbui_m8_79.value"
     },
     {
       "from": "m8G.pass",
-      "to": "dbui_m8_75.trigger"
+      "to": "dbui_m8_79.trigger"
     },
     {
       "from": "isDebN.out",
@@ -23410,22 +23755,22 @@
     },
     {
       "from": "K30.out",
-      "to": "dbui_m9_76.key"
+      "to": "dbui_m9_80.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_m9_76.value"
+      "to": "dbui_m9_80.value"
     },
     {
       "from": "m9G.pass",
-      "to": "dbui_m9_76.trigger"
+      "to": "dbui_m9_80.trigger"
     },
     {
       "from": "f1.value",
       "to": "mcRevC.a"
     },
     {
-      "from": "K140.out",
+      "from": "K144.out",
       "to": "mcRevC.b"
     },
     {
@@ -23458,22 +23803,22 @@
     },
     {
       "from": "K31.out",
-      "to": "dbui_m10_77.key"
+      "to": "dbui_m10_81.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_m10_77.value"
+      "to": "dbui_m10_81.value"
     },
     {
       "from": "m10RevG.pass",
-      "to": "dbui_m10_77.trigger"
+      "to": "dbui_m10_81.trigger"
     },
     {
       "from": "f1.value",
       "to": "mcBrkC.a"
     },
     {
-      "from": "K141.out",
+      "from": "K145.out",
       "to": "mcBrkC.b"
     },
     {
@@ -23506,22 +23851,22 @@
     },
     {
       "from": "K31.out",
-      "to": "dbui_m10_78.key"
+      "to": "dbui_m10_82.key"
     },
     {
-      "from": "K42.out",
-      "to": "dbui_m10_78.value"
+      "from": "K45.out",
+      "to": "dbui_m10_82.value"
     },
     {
       "from": "m10BrkG.pass",
-      "to": "dbui_m10_78.trigger"
+      "to": "dbui_m10_82.trigger"
     },
     {
       "from": "f1.value",
       "to": "mcCtrC.a"
     },
     {
-      "from": "K142.out",
+      "from": "K146.out",
       "to": "mcCtrC.b"
     },
     {
@@ -23554,15 +23899,15 @@
     },
     {
       "from": "K31.out",
-      "to": "dbui_m10_79.key"
+      "to": "dbui_m10_83.key"
     },
     {
       "from": "K5.out",
-      "to": "dbui_m10_79.value"
+      "to": "dbui_m10_83.value"
     },
     {
       "from": "m10CtrG.pass",
-      "to": "dbui_m10_79.trigger"
+      "to": "dbui_m10_83.trigger"
     },
     {
       "from": "d_fast.value",
@@ -23609,96 +23954,96 @@
       "to": "pbAtN.dwellS"
     },
     {
-      "from": "K107.out",
-      "to": "dbui_pbAt_80.key"
+      "from": "K110.out",
+      "to": "dbui_pbAt_84.key"
     },
     {
       "from": "pbAtN.value",
-      "to": "dbui_pbAt_80.value"
+      "to": "dbui_pbAt_84.value"
     },
     {
       "from": "parseG.pass",
-      "to": "dbui_pbAt_80.trigger"
+      "to": "dbui_pbAt_84.trigger"
     },
     {
       "from": "K9.out",
-      "to": "dbui_ph_81.key"
+      "to": "dbui_ph_85.key"
     },
     {
-      "from": "K42.out",
-      "to": "dbui_ph_81.value"
+      "from": "K45.out",
+      "to": "dbui_ph_85.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_ph_81.trigger"
+      "to": "dbui_ph_85.trigger"
     },
     {
       "from": "K17.out",
-      "to": "dbui_hold_82.key"
+      "to": "dbui_hold_86.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_hold_82.value"
+      "to": "dbui_hold_86.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hold_82.trigger"
+      "to": "dbui_hold_86.trigger"
     },
     {
       "from": "K22.out",
-      "to": "dbui_hpO_83.key"
+      "to": "dbui_hpO_87.key"
     },
     {
       "from": "world.debOppHp",
-      "to": "dbui_hpO_83.value"
+      "to": "dbui_hpO_87.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hpO_83.trigger"
+      "to": "dbui_hpO_87.trigger"
     },
     {
       "from": "K23.out",
-      "to": "dbui_hpM_84.key"
+      "to": "dbui_hpM_88.key"
     },
     {
       "from": "world.debPlayerHp",
-      "to": "dbui_hpM_84.value"
+      "to": "dbui_hpM_88.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_hpM_84.trigger"
+      "to": "dbui_hpM_88.trigger"
     },
     {
       "from": "evDone.pass",
       "to": "nodesReset.in"
     },
     {
-      "from": "K101.out",
-      "to": "dbui_r2_85.key"
+      "from": "K104.out",
+      "to": "dbui_r2_89.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_r2_85.value"
+      "to": "dbui_r2_89.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_r2_85.trigger"
+      "to": "dbui_r2_89.trigger"
     },
     {
       "from": "clock.seconds",
       "to": "holdAtN.now"
     },
     {
-      "from": "K108.out",
-      "to": "dbui_holdAt_86.key"
+      "from": "K111.out",
+      "to": "dbui_holdAt_90.key"
     },
     {
       "from": "holdAtN.value",
-      "to": "dbui_holdAt_86.value"
+      "to": "dbui_holdAt_90.value"
     },
     {
       "from": "evDone.pass",
-      "to": "dbui_holdAt_86.trigger"
+      "to": "dbui_holdAt_90.trigger"
     },
     {
       "from": "revMeL.out",
@@ -23965,16 +24310,16 @@
       "to": "nextHold.trigger"
     },
     {
-      "from": "K108.out",
-      "to": "dbui_holdAt_87.key"
+      "from": "K111.out",
+      "to": "dbui_holdAt_91.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_holdAt_87.value"
+      "to": "dbui_holdAt_91.value"
     },
     {
       "from": "nextHold.pass",
-      "to": "dbui_holdAt_87.trigger"
+      "to": "dbui_holdAt_91.trigger"
     },
     {
       "from": "d_hold.value",
@@ -23998,15 +24343,15 @@
     },
     {
       "from": "K17.out",
-      "to": "dbui_hold_88.key"
+      "to": "dbui_hold_92.key"
     },
     {
       "from": "K5.out",
-      "to": "dbui_hold_88.value"
+      "to": "dbui_hold_92.value"
     },
     {
       "from": "contG.pass",
-      "to": "dbui_hold_88.trigger"
+      "to": "dbui_hold_92.trigger"
     },
     {
       "from": "isWarmN.out",
@@ -24041,56 +24386,56 @@
       "to": "notOverG.trigger"
     },
     {
-      "from": "K100.out",
-      "to": "dbui_rsAt_89.key"
+      "from": "K103.out",
+      "to": "dbui_rsAt_93.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_rsAt_89.value"
+      "to": "dbui_rsAt_93.value"
     },
     {
       "from": "notOverG.pass",
-      "to": "dbui_rsAt_89.trigger"
+      "to": "dbui_rsAt_93.trigger"
     },
     {
       "from": "K9.out",
-      "to": "dbui_ph_90.key"
+      "to": "dbui_ph_94.key"
     },
     {
-      "from": "K44.out",
-      "to": "dbui_ph_90.value"
+      "from": "K47.out",
+      "to": "dbui_ph_94.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_ph_90.trigger"
+      "to": "dbui_ph_94.trigger"
     },
     {
       "from": "K18.out",
-      "to": "dbui_fin_91.key"
+      "to": "dbui_fin_95.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_fin_91.value"
+      "to": "dbui_fin_95.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_fin_91.trigger"
+      "to": "dbui_fin_95.trigger"
     },
     {
       "from": "clock.seconds",
       "to": "finAtN.now"
     },
     {
-      "from": "K109.out",
-      "to": "dbui_finAt_92.key"
+      "from": "K112.out",
+      "to": "dbui_finAt_96.key"
     },
     {
       "from": "finAtN.value",
-      "to": "dbui_finAt_92.value"
+      "to": "dbui_finAt_96.value"
     },
     {
       "from": "overG.pass",
-      "to": "dbui_finAt_92.trigger"
+      "to": "dbui_finAt_96.trigger"
     },
     {
       "from": "activeN.value",
@@ -24113,16 +24458,16 @@
       "to": "nextFin.trigger"
     },
     {
-      "from": "K109.out",
-      "to": "dbui_finAt_93.key"
+      "from": "K112.out",
+      "to": "dbui_finAt_97.key"
     },
     {
       "from": "clock.seconds",
-      "to": "dbui_finAt_93.value"
+      "to": "dbui_finAt_97.value"
     },
     {
       "from": "nextFin.pass",
-      "to": "dbui_finAt_93.trigger"
+      "to": "dbui_finAt_97.trigger"
     },
     {
       "from": "d_fin.value",
@@ -24149,7 +24494,7 @@
       "to": "lossC.a"
     },
     {
-      "from": "K143.out",
+      "from": "K147.out",
       "to": "lossC.b"
     },
     {
@@ -24186,22 +24531,22 @@
     },
     {
       "from": "K26.out",
-      "to": "dbui_rev_94.key"
+      "to": "dbui_rev_98.key"
     },
     {
       "from": "K4.out",
-      "to": "dbui_rev_94.value"
+      "to": "dbui_rev_98.value"
     },
     {
       "from": "revOpenG.pass",
-      "to": "dbui_rev_94.trigger"
+      "to": "dbui_rev_98.trigger"
     },
     {
       "from": "world.notesShown",
       "to": "notesShownC.a"
     },
     {
-      "from": "K144.out",
+      "from": "K148.out",
       "to": "notesShownC.b"
     },
     {
@@ -24218,15 +24563,15 @@
     },
     {
       "from": "K26.out",
-      "to": "dbui_rev_95.key"
+      "to": "dbui_rev_99.key"
     },
     {
-      "from": "K42.out",
-      "to": "dbui_rev_95.value"
+      "from": "K45.out",
+      "to": "dbui_rev_99.value"
     },
     {
       "from": "revDoneG.pass",
-      "to": "dbui_rev_95.trigger"
+      "to": "dbui_rev_99.trigger"
     },
     {
       "from": "needRev.value",
@@ -24246,15 +24591,15 @@
     },
     {
       "from": "K18.out",
-      "to": "dbui_fin_96.key"
+      "to": "dbui_fin_100.key"
     },
     {
       "from": "K5.out",
-      "to": "dbui_fin_96.value"
+      "to": "dbui_fin_100.value"
     },
     {
       "from": "finEndG.pass",
-      "to": "dbui_fin_96.trigger"
+      "to": "dbui_fin_100.trigger"
     },
     {
       "from": "isWarmC.out",
@@ -24281,7 +24626,7 @@
       "to": "outWinC.a"
     },
     {
-      "from": "K145.out",
+      "from": "K149.out",
       "to": "outWinC.b"
     },
     {
@@ -24397,7 +24742,7 @@
       "to": "ntabSeq.increment"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "ntab3_v.in"
     },
     {
@@ -24437,7 +24782,7 @@
       "to": "ntab_v_is2.a"
     },
     {
-      "from": "K42.out",
+      "from": "K45.out",
       "to": "ntab_v_is2.b"
     },
     {
@@ -24457,7 +24802,7 @@
       "to": "ntab_v_is3.a"
     },
     {
-      "from": "K44.out",
+      "from": "K47.out",
       "to": "ntab_v_is3.b"
     },
     {
@@ -24537,7 +24882,7 @@
       "to": "ngClr.trigger"
     },
     {
-      "from": "K146.out",
+      "from": "K150.out",
       "to": "d_gl0.key"
     },
     {
@@ -24557,7 +24902,7 @@
       "to": "ngV0.a"
     },
     {
-      "from": "K147.out",
+      "from": "K151.out",
       "to": "ngV0.b"
     },
     {
@@ -24573,7 +24918,7 @@
       "to": "ngG0.trigger"
     },
     {
-      "from": "K148.out",
+      "from": "K152.out",
       "to": "ngSet0.key"
     },
     {
@@ -24585,7 +24930,7 @@
       "to": "ngSet0.trigger"
     },
     {
-      "from": "K149.out",
+      "from": "K153.out",
       "to": "d_gl1.key"
     },
     {
@@ -24605,7 +24950,7 @@
       "to": "ngV1.a"
     },
     {
-      "from": "K147.out",
+      "from": "K151.out",
       "to": "ngV1.b"
     },
     {
@@ -24621,7 +24966,7 @@
       "to": "ngG1.trigger"
     },
     {
-      "from": "K150.out",
+      "from": "K154.out",
       "to": "ngSet1.key"
     },
     {
@@ -24633,7 +24978,7 @@
       "to": "ngSet1.trigger"
     },
     {
-      "from": "K151.out",
+      "from": "K155.out",
       "to": "d_gl2.key"
     },
     {
@@ -24653,7 +24998,7 @@
       "to": "ngV2.a"
     },
     {
-      "from": "K147.out",
+      "from": "K151.out",
       "to": "ngV2.b"
     },
     {
@@ -24669,7 +25014,7 @@
       "to": "ngG2.trigger"
     },
     {
-      "from": "K152.out",
+      "from": "K156.out",
       "to": "ngSet2.key"
     },
     {
@@ -24681,7 +25026,7 @@
       "to": "ngSet2.trigger"
     },
     {
-      "from": "K153.out",
+      "from": "K157.out",
       "to": "d_gl3.key"
     },
     {
@@ -24701,7 +25046,7 @@
       "to": "ngV3.a"
     },
     {
-      "from": "K147.out",
+      "from": "K151.out",
       "to": "ngV3.b"
     },
     {
@@ -24717,7 +25062,7 @@
       "to": "ngG3.trigger"
     },
     {
-      "from": "K154.out",
+      "from": "K158.out",
       "to": "ngSet3.key"
     },
     {
@@ -24737,7 +25082,7 @@
       "to": "nrClr.trigger"
     },
     {
-      "from": "K41.out",
+      "from": "K44.out",
       "to": "nrHasC1.key"
     },
     {
@@ -24765,7 +25110,7 @@
       "to": "nrG1.go"
     },
     {
-      "from": "K155.out",
+      "from": "K159.out",
       "to": "nrSet1.key"
     },
     {
@@ -24777,7 +25122,7 @@
       "to": "nrSet1.trigger"
     },
     {
-      "from": "K43.out",
+      "from": "K46.out",
       "to": "nrHasC2.key"
     },
     {
@@ -24805,7 +25150,7 @@
       "to": "nrG2.go"
     },
     {
-      "from": "K156.out",
+      "from": "K160.out",
       "to": "nrSet2.key"
     },
     {
@@ -24817,7 +25162,7 @@
       "to": "nrSet2.trigger"
     },
     {
-      "from": "K45.out",
+      "from": "K48.out",
       "to": "nrHasC3.key"
     },
     {
@@ -24845,7 +25190,7 @@
       "to": "nrG3.go"
     },
     {
-      "from": "K157.out",
+      "from": "K161.out",
       "to": "nrSet3.key"
     },
     {
@@ -24857,7 +25202,7 @@
       "to": "nrSet3.trigger"
     },
     {
-      "from": "K47.out",
+      "from": "K50.out",
       "to": "nrHasC4.key"
     },
     {
@@ -24885,7 +25230,7 @@
       "to": "nrG4.go"
     },
     {
-      "from": "K158.out",
+      "from": "K162.out",
       "to": "nrSet4.key"
     },
     {
@@ -24897,7 +25242,7 @@
       "to": "nrSet4.trigger"
     },
     {
-      "from": "K49.out",
+      "from": "K52.out",
       "to": "nrHasC5.key"
     },
     {
@@ -24925,7 +25270,7 @@
       "to": "nrG5.go"
     },
     {
-      "from": "K159.out",
+      "from": "K163.out",
       "to": "nrSet5.key"
     },
     {
@@ -24989,7 +25334,7 @@
       "to": "bgmMom_6.cond"
     },
     {
-      "from": "K163.out",
+      "from": "K167.out",
       "to": "bgmMom_6.a"
     },
     {
@@ -25001,7 +25346,7 @@
       "to": "bgmMom_5.cond"
     },
     {
-      "from": "K129.out",
+      "from": "K133.out",
       "to": "bgmMom_5.a"
     },
     {
@@ -25013,7 +25358,7 @@
       "to": "bgmMom_4.cond"
     },
     {
-      "from": "K162.out",
+      "from": "K166.out",
       "to": "bgmMom_4.a"
     },
     {
@@ -25025,7 +25370,7 @@
       "to": "bgmMom_3.cond"
     },
     {
-      "from": "K161.out",
+      "from": "K165.out",
       "to": "bgmMom_3.a"
     },
     {
@@ -25037,7 +25382,7 @@
       "to": "bgmMom_2.cond"
     },
     {
-      "from": "K160.out",
+      "from": "K164.out",
       "to": "bgmMom_2.a"
     },
     {

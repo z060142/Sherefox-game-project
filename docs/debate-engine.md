@@ -164,7 +164,7 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 
 ### 3.3 熱身（`debate_warmup`）
 
-與主引擎共用 `debCase`、指令訊號、`debStart`、`debLock`、`debBoard`、`debEvents`；各圖只在自己的種類（`debCase.kind` 是否為 `warmup`）下動作，`debStart` 時兩張圖都重設，另一張變為不作用。規則（A-13、B16、ref `warmup.py`）：只開放反駁（其他行動的 lock 被忽略）；出示**一張**在目前說法破解清單內的卡＝糾正，否則失誤（鏈段一律算失誤）；失誤達 `opponents.mistakeLimit`（3）時剩下的說法自動糾正、獎勵取消、信任度 −1；零失誤 +1。
+與主引擎共用 `debCase`、指令訊號、`debStart`、`debLock`、`debBoard`、`debEvents`；各圖只在自己的種類（`debCase.kind` 是否為 `warmup`）下動作，`debStart` 時兩張圖都重設，另一張變為不作用。規則（A-13、B16、ref `warmup.py`）：只開放反駁（其他行動的 lock 被忽略）；出示**一張**在目前說法破解清單內的卡＝糾正，否則失誤（鏈段一律算失誤）；失誤達 `opponents.mistakeLimit`（3）時剩下的說法自動糾正、獎勵取消、信任度 −1；零失誤 +1。熱身的觀察卡（裁決 G5，`evidence.grade=observation`）不在 `debCard`（`usable` 空白），查不到列時 r1～r3 為 0，所以出示即失誤；引擎不用改。
 
 ### 3.4 對手 AI（A-3、數值總表 四；ref `policy.decide_next`）
 
