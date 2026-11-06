@@ -213,6 +213,8 @@ def replay(name: str, idx: dict[str, int], tmp: Path) -> tuple[list[tuple[int, d
     ticks, sounds = [], {}
     with trace.open(encoding="utf-8") as f:
         for line in f:
+            if not line.startswith("t="):   # host effect lines (XTAtrium AT-056) repeat the sound cues
+                continue
             t = int(line[2:line.index(" ")])
             v = music_values(line, idx)
             if v is not None:
