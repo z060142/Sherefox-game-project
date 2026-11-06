@@ -14,3 +14,4 @@
 | 鑑定台詞 | M5c | `evidence.appraisalKey` 沒有地方播放 |
 | 對手筆記、預估列候選比較、狀態列旗標、臨場硬接、讀對預兆統計 | M5c | 論戰畫面尚未實作的設計項目（§4.4、§4.2） |
 | 背景音樂循環 | 音效素材到位後 | 框架目前只有單次音效；需向 XTAtrium 提出循環／淡入淡出／停止的需求 |
+| 接上背景音樂與音效 | 使用者交付 `audio/` 素材 | `game.json` 加 `audio.music`（OGG，loop／loopStart／loopEnd）與 `audio.cues`（WAV，category）；音樂掛鉤（M5c）接一個 `atrium.music.play`（頻道 bgm、淡入約 1 秒）；音效依 docs/audio-requests.md 的觸發時機接 `sound` 節點；缺檔會在載入時失敗，所以只宣告已到的檔案 |
