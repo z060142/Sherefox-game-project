@@ -73,7 +73,7 @@ def run(name: str, ticks: int, frames: Path | None):
         old_cp = ctypes.windll.kernel32.GetConsoleOutputCP()
         ctypes.windll.kernel32.SetConsoleOutputCP(65001)
     try:
-        p = subprocess.run(args, capture_output=True, env=env)
+        p = subprocess.run(args, capture_output=True, env=env, cwd=ROOT)
     finally:
         if old_cp:
             ctypes.windll.kernel32.SetConsoleOutputCP(old_cp)

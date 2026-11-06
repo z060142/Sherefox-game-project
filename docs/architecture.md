@@ -76,7 +76,7 @@
 
 | 編號 | 內容 | 完成條件 |
 |---|---|---|
-| M0 | 專案骨架 | `xtatrium play --game E:\coding4\Sherefox` 開出 title，語言可切換 |
+| M0 | 專案骨架 | `xtatrium play --game .`（在倉庫根目錄執行） 開出 title，語言可切換 |
 | M1 | 資料管線 | `tools/` 由在地化表與設計快照產生 `data/*.json` 與 `strings/*.csv`，載入無錯 |
 | M2 | Ch.1 劇情 | 開場報紙 → 日常 → 事件，可逐行推進、選項可選 |
 | M3 | Ch.1 蒐證與線索板 | 調查 6 處證物、選理由、拉線、組鏈、進入論戰 |

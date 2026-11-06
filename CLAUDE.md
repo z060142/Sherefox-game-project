@@ -14,8 +14,9 @@
 - Commit prefixes: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`.
 
 ## Running
-- XTAtrium SDK (self-contained, built from the framework repo with `tools/install-sdk.ps1 -Out E:\coding4\xtatrium-sdk`; rebuild after framework bumps): `E:\coding4\xtatrium-sdk\xtatrium.exe pack|run|play|publish --game E:\coding4\Sherefox`.
-- From the framework dev repo instead: `dotnet run --project E:\coding4\XTArtrium\src\XTAtrium.Headless -c Release -- <command> --game E:\coding4\Sherefox`.
+- Run from the repo root with the game given as `.`. Machine-specific locations are never written in this repo; they come from environment variables (on this machine see your local notes): `XTATRIUM_SDK` (installed SDK directory, built from the framework repo with `tools/install-sdk.ps1 -Out <dir>`; rebuild after framework bumps), `XTATRIUM` (framework checkout), `XTATRIUM_EXE` (the CLI itself), `XTATRIUM_XTFRAME_DIR` (XTFrame runtime). With none set, `xtatrium` on PATH is used. Details in `tests/README.md`.
+- SDK: `"$XTATRIUM_SDK/xtatrium" pack|run|play|publish --game .`.
+- From the framework dev repo instead: `dotnet run --project <XTATRIUM>/src/XTAtrium.Headless -c Release -- <command> --game .`.
 - Data: `uv run tools/build_data.py`; flows: `uv run tools/gen_flows.py`, `uv run tools/gen_debate.py`; checks: `uv run tests/check_playthrough.py`, `tests/check_debate.py`, `tests/check_policy.py`.
 
 ## Layout

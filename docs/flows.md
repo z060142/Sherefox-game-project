@@ -310,7 +310,7 @@
 
 ## 6. 驗證
 
-`tests/README.md`。跑主遊戲（或它的副本）的檢查（`check_case`、`check_playthrough`、`check_debate_play`）先執行 `xtatrium compile --game E:\coding4\Sherefox`（AT-036，`tests/xt_cli.py` `compile_game`），端點錯誤在重播之前就擋下。
+`tests/README.md`。跑主遊戲（或它的副本）的檢查（`check_case`、`check_playthrough`、`check_debate_play`）先執行 `xtatrium compile --game .`（在倉庫根目錄執行）（AT-036，`tests/xt_cli.py` `compile_game`），端點錯誤在重播之前就擋下。
 
 - `uv run tests/check_playthrough.py`：story 流程（M2 的檢查），蒐證與線索板以最短路線通過（`tests/gen_case.py` 的 `MINIMAL`，第一次按「進入論戰」只顯示警告、第二次進入）；結尾卡關掉後連點同一章（值不變，經 `.emitted`）也會重新開始。
 - `uv run tests/check_case.py [--frames DIR]`：Ch.1 調查全部 10 點、不鑑定、組推薦鏈 E01_01→E01_04 並選對全部理由；Ch.2 用 3 次鑑定（1 次在證物冊）、漏 E02_05、一條詭辯（E02_04 理由錯）、一次無效彈回、兩條鏈。比對刻度、彈窗種類、提示與亞瑟台詞序列、清單 port 的 JSON（點、抽屜、格、連結、銅牌）、`oppHand`、`appraised`、`golden`，以及 `debBoard*` 與 ref 對同一路線的板面（`fixtures.ch1_board`；Ch.2 為 `ch2_case` 改 E02_04 理由錯、兩條鏈）逐格相等。

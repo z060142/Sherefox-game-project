@@ -8,12 +8,12 @@ Usage (from the project root):
     uv run tests/check_playthrough.py [--frames DIR] [--keep-trace]
 
 Environment:
-    XTATRIUM_EXE          the xtatrium CLI to use (overrides the two below)
-    XTATRIUM_SDK          installed XTAtrium SDK (default E:/coding4/xtatrium-sdk), used when it exists and
-                          XTATRIUM is not set
-    XTATRIUM              XTAtrium checkout (default E:/coding4/XTArtrium); its Release build of
-                          src/XTAtrium.Headless is used (dotnet build src/XTAtrium.Headless -c Release)
+    XTATRIUM_EXE          the xtatrium CLI to use (overrides the rest)
+    XTATRIUM_SDK          installed XTAtrium SDK directory, used when it holds the CLI and XTATRIUM is not set
+    XTATRIUM              XTAtrium checkout; its Release build of src/XTAtrium.Headless is used
+                          (dotnet build src/XTAtrium.Headless -c Release)
     XTATRIUM_XTFRAME_DIR  XTFrame runtime directory (default: the SDK's xtframe/, or <XTATRIUM>/artifacts/xtframe)
+    With none of them set, `xtatrium` on PATH is used; when nothing is found the script stops with a message.
 
 Checks:
 1. Data assumptions of flows/dialogue.xtflow: every vn scene of Ch.1-3 has playable rows (script.playable; the
@@ -115,7 +115,7 @@ def run(recording: str, ticks: int, lang: str | None, frames: Path | None) -> tu
         old_cp = k32.GetConsoleOutputCP()
         k32.SetConsoleOutputCP(65001)
     try:
-        p = subprocess.run(args, capture_output=True, env=env)
+        p = subprocess.run(args, capture_output=True, env=env, cwd=ROOT)
     finally:
         if old_cp:
             ctypes.windll.kernel32.SetConsoleOutputCP(old_cp)

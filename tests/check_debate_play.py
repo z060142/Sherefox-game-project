@@ -47,7 +47,7 @@ OA_CODE = {"assert": 0, "rush": 1, "reinforce": 2, "trap": 3, "scorched": 4}
 def run(rec: str, game: Path, ticks: int, trace: list | None = None):
     """`trace`: a list that receives the run's --trace lines (per tick, every flow's node values)."""
     dump = Path(tempfile.mkdtemp()) / "dump.json"
-    args = [str(cp.EXE), "run", "--game", game.as_posix(), "--replay", str(TESTS / f"{rec}.atrec"),
+    args = [str(cp.EXE), "run", "--game", Path(os.path.relpath(game, ROOT)).as_posix(), "--replay", str(TESTS / f"{rec}.atrec"),
             "--ticks", str(ticks), "--ports", "--dump", str(dump)]
     if trace is not None:
         args += ["--trace", str(dump.parent / "trace.txt")]
@@ -58,7 +58,7 @@ def run(rec: str, game: Path, ticks: int, trace: list | None = None):
         old_cp = ctypes.windll.kernel32.GetConsoleOutputCP()
         ctypes.windll.kernel32.SetConsoleOutputCP(65001)
     try:
-        p = subprocess.run(args, capture_output=True, env=env)
+        p = subprocess.run(args, capture_output=True, env=env, cwd=ROOT)
     finally:
         if old_cp:
             ctypes.windll.kernel32.SetConsoleOutputCP(old_cp)

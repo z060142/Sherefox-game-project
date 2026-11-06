@@ -17,7 +17,7 @@ Usage (from the project root):
    and the round's event records (exact, in order); warmup routes: round, index, mistakes, over, auto, trust, reward
    and records. Prints PASS / FAIL per route with the first diverging round and field.
 
-Environment: the CLI of tests/xt_cli.py (XTATRIUM_EXE, else the installed SDK, else the XTATRIUM checkout) and
+Environment: the CLI of tests/xt_cli.py (XTATRIUM_EXE, else XTATRIUM_SDK, else the XTATRIUM checkout, else PATH) and
 XTATRIUM_XTFRAME_DIR. Exit code 0 when every route passes.
 """
 

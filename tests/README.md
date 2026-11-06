@@ -8,23 +8,32 @@ Headless playthrough checks for the flows (`docs/flows.md`). They replay recorde
 
 - The XTAtrium CLI at framework commit 5aad137 or later (AT-046: `atrium.ui.list` field references and
   `atrium.textf`; AT-047: `bare` value arrays; the flows do not compile on older builds): the SDK built with
-  `pwsh <XTAtrium>\tools\install-sdk.ps1 -Out E:\coding4\xtatrium-sdk`, or a Release build of an XTAtrium checkout
-  (`dotnet build src\XTAtrium.Headless -c Release`).
-- The packed UI bundle: `xtatrium pack --game E:\coding4\Sherefox` (after any change under `ui/`).
+  `pwsh <XTAtrium>\tools\install-sdk.ps1 -Out <sdk-dir>`, or a Release build of an XTAtrium checkout
+  (`dotnet build src\XTAtrium.Headless -c Release`). No location is assumed; see Environment below.
+- The packed UI bundle: `xtatrium pack --game .` (after any change under `ui/`).
 - AT-036 (`xtatrium compile --game`, framework 4352f29 or later): `check_case.py`, `check_playthrough.py` and
-  `check_debate_play.py` first run `xtatrium compile --game E:\coding4\Sherefox` (`tests/xt_cli.py` `compile_game`)
-  and stop when an endpoint does not resolve. By hand: `xtatrium compile --game E:\coding4\Sherefox`.
+  `check_debate_play.py` first run `xtatrium compile --game <repo root>` (`tests/xt_cli.py` `compile_game`)
+  and stop when an endpoint does not resolve. By hand: `xtatrium compile --game .`.
+- The XTFrame converter (`xtframe-import`), only needed to re-import `ui/boards`: the npm package
+  `@xtframe/converter-win32-x64` is not published, so install it from a local tarball of the XTFrame distribution:
+  `npm install --no-save <path-to-xtframe-converter-win32-x64-0.15.0.tgz>` (the binary is then
+  `node_modules\@xtframe\converter-win32-x64\bin\xtframe-import.exe`). It is deliberately not in `package.json`.
+- Run every command from the repository root; the game is always given as `.` (a relative path).
 - [uv](https://docs.astral.sh/uv/) (`winget install astral-sh.uv` or `pip install uv`); the scripts use the standard
   library only.
 
-Environment (both optional):
+Environment (no personal defaults; the checks stop with a message when no CLI is found):
 
-| Variable | Default |
+| Variable | Meaning |
 |---|---|
-| `XTATRIUM_EXE` | — (the CLI to use; overrides the rest) |
-| `XTATRIUM_SDK` | `E:/coding4/xtatrium-sdk` (used by `check_playthrough.py` and `check_case.py` when it exists and `XTATRIUM` is not set) |
-| `XTATRIUM` | `E:/coding4/XTArtrium` (the checkout whose `src/XTAtrium.Headless/bin/Release/net10.0/xtatrium.exe` is used) |
-| `XTATRIUM_XTFRAME_DIR` | the SDK's `xtframe/`, or `<XTATRIUM>/artifacts/xtframe` |
+| `XTATRIUM_EXE` | the CLI to use; overrides the rest |
+| `XTATRIUM_SDK` | the installed SDK directory (holds `xtatrium.exe` and `xtframe/`); used by every check when `XTATRIUM` is not set |
+| `XTATRIUM` | an XTAtrium checkout; its `src/XTAtrium.Headless/bin/Release/net10.0/xtatrium.exe` is used |
+| `XTATRIUM_XTFRAME_DIR` | the XTFrame runtime directory; default the SDK's `xtframe/`, `<XTATRIUM>/artifacts/xtframe`, or `xtframe/` next to the CLI |
+
+Order: `XTATRIUM_EXE`, then `XTATRIUM_SDK`, then `XTATRIUM`, then `xtatrium` on `PATH`. Localization packages are imported
+with `uv run tools/build_data.py --import-localization <dir>` (the design repo's `localization/`,
+github.com/z060142/research-prototype-2); the directory is always an argument.
 
 ## Run
 
@@ -52,12 +61,13 @@ deleted afterwards) and converts three of them to PNG.
 ## Replaying by hand
 
 ```
-xtatrium run --game E:/coding4/Sherefox --replay tests/ch1_playthrough.atrec --ticks 447 --ports
-xtatrium play --game E:/coding4/Sherefox --replay tests/ch1_playthrough.atrec
+xtatrium run --game . --replay tests/ch1_playthrough.atrec --ticks 447 --ports
+xtatrium play --game . --replay tests/ch1_playthrough.atrec
 ```
 
-The recordings name the game as `E:/coding4/Sherefox` in their header; pass `--game` with exactly that string, or
-the CLI warns that the recording's game differs. The recordings carry no hash checkpoints (they are generated, not
+The recordings name the game as `.` in their header (`tests/play_harness` for the debate recordings that run against
+the harness copy); run from the repository root and pass `--game` with exactly that string, or the CLI warns that the
+recording's game differs. The recordings carry no hash checkpoints (they are generated, not
 recorded), so give `--ticks` (printed by `uv run tests/gen_playthrough.py`).
 
 ## Investigation and clue board

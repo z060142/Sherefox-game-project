@@ -31,7 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TESTS = ROOT / "tests"
-GAME = ROOT.as_posix()   # the recording header names the game exactly as the check script passes it to --game
+GAME = "."   # the recording header names the game exactly as the check script passes it to --game (run from the repo root)
 
 STEP = 0.016666666666666666
 GAP = 8            # ticks between two clicks

@@ -131,7 +131,7 @@ CH2_ALL = ["HS_CH02_01", "HS_CH02_02", "HS_CH02_03", "HS_CH02_04", "HS_CH02_05",
 def ch2_route() -> int:
     r = Rec()
     ch2_play(r)
-    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.as_posix()})
+    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.relative_to(ROOT).as_posix()})
     return r.write("ch2_debate", 120)
 
 
@@ -139,7 +139,7 @@ def ch2_tailwrong() -> int:
     """tests/play_harness: ch2_route up to R4 (the break), then the tail answered wrong (M5c: the result line)."""
     r = Rec()
     ch2_play(r, tail_wrong=True)
-    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.as_posix()})
+    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.relative_to(ROOT).as_posix()})
     return r.write("ch2_tailwrong", 120)
 
 
@@ -282,7 +282,7 @@ def ch3_route() -> int:
         elif s["kind"] == "paper":
             r.click("paper", gp.PAPER_CLICK, gp.SETTLE)    # the final paper (CH04_OPEN), then the end card
             r.click("paper", gp.PAPER_CLICK, GAP)
-    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.as_posix()})
+    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.relative_to(ROOT).as_posix()})
     return r.write("ch3_debate", 120)
 
 
