@@ -16,6 +16,7 @@
 ## Running
 - Run from the repo root with the game given as `.`. Machine-specific locations are never written in this repo; they come from environment variables (on this machine see your local notes): `XTATRIUM_SDK` (installed SDK directory, built from the framework repo with `tools/install-sdk.ps1 -Out <dir>`; rebuild after framework bumps), `XTATRIUM` (framework checkout), `XTATRIUM_EXE` (the CLI itself), `XTATRIUM_XTFRAME_DIR` (XTFrame runtime). With none set, `xtatrium` on PATH is used. Details in `tests/README.md`.
 - SDK: `"$XTATRIUM_SDK/xtatrium" pack|run|play|publish --game .`.
+- Look things up with the CLI instead of reading framework docs, manifests or the node catalog: `xtatrium inspect --game . [--signals|--ports|--tables|--collections|--strings|--nodes] [--filter GLOB] [--json]` lists every signal, UI port (write as `ui#<ui>.<port>`), table with columns, collection, string coverage and node signature; `xtatrium schema game|prefab|scene|xtflow` is the field reference. Open the framework docs only for behaviour these don't answer.
 - From the framework dev repo instead: `dotnet run --project <XTATRIUM>/src/XTAtrium.Headless -c Release -- <command> --game .`.
 - Data: `uv run tools/build_data.py`; flows: `uv run tools/gen_flows.py`, `uv run tools/gen_debate.py`; checks: `uv run tests/check_playthrough.py`, `tests/check_debate.py`, `tests/check_policy.py`.
 
