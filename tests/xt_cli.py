@@ -23,3 +23,15 @@ else:
     EXE = XTATRIUM / "src" / "XTAtrium.Headless" / "bin" / "Release" / "net10.0" / _NAME
     _XTFRAME = XTATRIUM / "artifacts" / "xtframe"
 XTFRAME = os.environ.get("XTATRIUM_XTFRAME_DIR", str(_XTFRAME))
+
+
+def compile_game(game: Path = Path(__file__).resolve().parent.parent) -> None:
+    """`xtatrium compile --game` (AT-036): every flow of the game compiled with its endpoints resolved as `run`
+    resolves them; the checks that pack or run the game call it first, so an endpoint error stops them at once."""
+    import subprocess
+    env = dict(os.environ, XTATRIUM_XTFRAME_DIR=XTFRAME)
+    p = subprocess.run([str(EXE), "compile", "--game", str(game)], capture_output=True, text=True, encoding="utf-8",
+                       env=env)
+    if p.returncode != 0:
+        raise SystemExit(f"FAIL xtatrium compile --game {game} (exit {p.returncode})\n{p.stdout}{p.stderr}")
+    print(p.stdout.strip() or "compile: ok")

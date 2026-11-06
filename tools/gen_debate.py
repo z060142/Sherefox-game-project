@@ -208,6 +208,10 @@ SIGNALS: dict[str, dict] = {
     "debTellLine": {"type": "string", "initial": ""},
     "debTellStarRule": {"type": "number", "initial": 0},
     "debTellRule": {"type": "number", "initial": 0},
+    # M5c: for the debate UI (the opponent notes, the status line, the result's 讀對預兆)
+    "debReads": {"type": "number", "initial": 0},
+    "debNoReinf": {"type": "number", "initial": 0},
+    "debMustAtk": {"type": "number", "initial": 0},
     # outputs (warmup, A-13)
     "dwActive": {"type": "number", "initial": 0},
     "dwRound": {"type": "number", "initial": 0},
@@ -258,6 +262,7 @@ STATE_KEYS = {
     "nco": "next tell clear (observe)", "h1": "last opponent action + 1", "h2": "the one before + 1",
     "lpa": "last player action + 1", "soph": "sophistry counts as a 破竹 read vs reinforce",
     "pln": "tell line row (debLine) + 1 shown in the round just resolved (never-same-line rule)",
+    "rd": "reads: rounds answered favourably (A-15 破竹 definition, ref resolve `right`; a tail round: correct)",
 }
 # the opponent's decision for the coming round (A-3, ref policy.decide_next), drawn at debStart / debLock /
 # debRedecide (docs/debate-engine.md §3.4); read when the round has neither a tail nor a script row
@@ -928,6 +933,7 @@ def gen_engine() -> Graph:
     nxt("lpa", "kPA + 1", "kPA + 1")
     nxt("soph", "s_soph", "s_soph")
     nxt("pln", "curLine + 1", "curLine + 1")
+    nxt("rd", "s_rd + right", "s_rd + tCorrect")
     decide(g)
     x("overNow", "tailR ? tOver : overN1")
     x("endCode", "tailR ? (tCorrect ? 7 : tLoss ? 2 : 0) : endN")
@@ -1146,7 +1152,8 @@ def gen_engine() -> Graph:
                    ("debKonju", "s_kj"), ("debShisshu", "s_ss"), ("debParries", "s_par"), ("debContra", "s_con"),
                    ("debInfamy", "s_inf"), ("debAssist", "s_as"), ("debInstinctLeft", "s_fox"), ("debOver", "s_over"),
                    ("debGoldenUsed", "s_gold"), ("debHpModel", "c_hp"), ("debPlayerMax", "c_pMax"),
-                   ("debOppMax", "c_oMax"), ("debHachikuMode", "c_hk")):
+                   ("debOppMax", "c_oMax"), ("debHachikuMode", "c_hk"), ("debReads", "s_rd"),
+                   ("debNoReinf", "s_nrn"), ("debMustAtk", "s_man")):
         out(sig, k)
     g.lookup("outcome", ["", "win", "loss", "unachieved"], "s_out")
     out("debOutcome", "outcome")
@@ -1321,7 +1328,7 @@ HARNESS_COLLECTIONS = {
 H_PERIOD = 4  # ticks per driver row: 0 values, 1 action pulse, 3 snapshot
 SNAP_NUM = ["debRound", "debPlayerHp", "debOppHp", "debShaken", "debInTail", "debTailLeft", "debVoids",
             "debHachiku", "debKonju", "debShisshu", "debParries", "debContra", "debInfamy", "debAssist",
-            "debInstinctLeft", "debOver", "debGoldenUsed", "debFragile",
+            "debInstinctLeft", "debOver", "debGoldenUsed", "debFragile", "debReads", "debNoReinf", "debMustAtk",
             "dwActive", "dwRound", "dwIndex", "dwMistakes", "dwOver", "dwAuto", "dwTrustDelta", "dwReward"]
 SNAP_STR = ["debPhase", "debOutcome", "debBreakLabel", "dwClaim", "debTellClarity", "debTellBasis",
             "debTellLit", "debTellShown1"]

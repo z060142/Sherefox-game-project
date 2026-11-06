@@ -398,6 +398,24 @@
       }
     },
     {
+      "id": "stRounds",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "max(0, world_round - 1)"
+      }
+    },
+    {
+      "id": "stReadsL",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_RES_READS",
+        "args": [
+          "hit",
+          "total"
+        ]
+      }
+    },
+    {
       "id": "clrStats",
       "type": "atrium.map.clear",
       "params": {
@@ -426,7 +444,18 @@
       }
     },
     {
+      "id": "stL0",
+      "type": "atrium.text"
+    },
+    {
       "id": "stSet0",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "resStats"
+      }
+    },
+    {
+      "id": "stSetReads",
       "type": "atrium.map.set",
       "params": {
         "name": "resStats"
@@ -452,6 +481,10 @@
       "params": {
         "value": "UI_RES_PARRIES"
       }
+    },
+    {
+      "id": "stL1",
+      "type": "atrium.text"
     },
     {
       "id": "stSet1",
@@ -493,6 +526,10 @@
       }
     },
     {
+      "id": "stL2",
+      "type": "atrium.text"
+    },
+    {
       "id": "stSet2",
       "type": "atrium.map.set",
       "params": {
@@ -521,6 +558,10 @@
       }
     },
     {
+      "id": "stL3",
+      "type": "atrium.text"
+    },
+    {
       "id": "stSet3",
       "type": "atrium.map.set",
       "params": {
@@ -547,6 +588,10 @@
       "params": {
         "value": "UI_RES_BREAKS"
       }
+    },
+    {
+      "id": "stL4",
+      "type": "atrium.text"
     },
     {
       "id": "stSet4",
@@ -588,6 +633,10 @@
       }
     },
     {
+      "id": "stL5",
+      "type": "atrium.text"
+    },
+    {
       "id": "stSet5",
       "type": "atrium.map.set",
       "params": {
@@ -614,6 +663,10 @@
       "params": {
         "value": "UI_RES_INSTINCT"
       }
+    },
+    {
+      "id": "stL6",
+      "type": "atrium.text"
     },
     {
       "id": "stSet6",
@@ -655,6 +708,10 @@
       }
     },
     {
+      "id": "stL7",
+      "type": "atrium.text"
+    },
+    {
       "id": "stSet7",
       "type": "atrium.map.set",
       "params": {
@@ -667,10 +724,7 @@
       "params": {
         "port": "ui.result.stats",
         "source": "resStats",
-        "fields": "{\"label\": \"key\", \"value\": \"value\"}",
-        "localize": [
-          "label"
-        ]
+        "fields": "{\"label\": \"key\", \"value\": \"value\"}"
       }
     },
     {
@@ -1260,6 +1314,18 @@
       "to": "brkN.key"
     },
     {
+      "from": "world.debRound",
+      "to": "stRounds.world_round"
+    },
+    {
+      "from": "world.debReads",
+      "to": "stReadsL.hit"
+    },
+    {
+      "from": "stRounds.value",
+      "to": "stReadsL.total"
+    },
+    {
       "from": "beginG.changed",
       "to": "clrStats.trigger"
     },
@@ -1273,6 +1339,10 @@
     },
     {
       "from": "K11.out",
+      "to": "stL0.key"
+    },
+    {
+      "from": "stL0.text",
       "to": "stSet0.key"
     },
     {
@@ -1284,6 +1354,18 @@
       "to": "stSet0.trigger"
     },
     {
+      "from": "stReadsL.text",
+      "to": "stSetReads.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "stSetReads.value"
+    },
+    {
+      "from": "beginG.changed",
+      "to": "stSetReads.trigger"
+    },
+    {
       "from": "world.debParries",
       "to": "stV1.world_par"
     },
@@ -1293,6 +1375,10 @@
     },
     {
       "from": "K12.out",
+      "to": "stL1.key"
+    },
+    {
+      "from": "stL1.text",
       "to": "stSet1.key"
     },
     {
@@ -1325,6 +1411,10 @@
     },
     {
       "from": "K13.out",
+      "to": "stL2.key"
+    },
+    {
+      "from": "stL2.text",
       "to": "stSet2.key"
     },
     {
@@ -1345,6 +1435,10 @@
     },
     {
       "from": "K14.out",
+      "to": "stL3.key"
+    },
+    {
+      "from": "stL3.text",
       "to": "stSet3.key"
     },
     {
@@ -1365,6 +1459,10 @@
     },
     {
       "from": "K15.out",
+      "to": "stL4.key"
+    },
+    {
+      "from": "stL4.text",
       "to": "stSet4.key"
     },
     {
@@ -1401,6 +1499,10 @@
     },
     {
       "from": "K16.out",
+      "to": "stL5.key"
+    },
+    {
+      "from": "stL5.text",
       "to": "stSet5.key"
     },
     {
@@ -1425,6 +1527,10 @@
     },
     {
       "from": "K17.out",
+      "to": "stL6.key"
+    },
+    {
+      "from": "stL6.text",
       "to": "stSet6.key"
     },
     {
@@ -1457,6 +1563,10 @@
     },
     {
       "from": "K18.out",
+      "to": "stL7.key"
+    },
+    {
+      "from": "stL7.text",
       "to": "stSet7.key"
     },
     {

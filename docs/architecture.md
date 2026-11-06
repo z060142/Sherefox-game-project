@@ -31,6 +31,7 @@
 | `debate` | 熱身、布丁論戰、主論戰 | 對手主張鏈、預兆區、四個行動、鏈段與證物選擇、壓力錶、狀態圖示、對決表、對手筆記 |
 | `result` | 結算 | 勝敗、統計、信任度、亞瑟評語 |
 | `evbook` | 證物冊（覆蓋層） | 本案證物、黃金線索、私人收藏 |
+| `notes` | 亞瑟的對手筆記（覆蓋層，M5c） | 這位對手（類型、傾向、小動作）、行為規則、回合紀錄（敗北回顧） |
 | `cutin` | 書法大字與印章（最上層） | 全幕大書、角落印章、譯名小字 |
 
 各 surface 的 port 合約（名稱、型別、方向）寫在 `docs/ui-contracts.md`，UI 與流圖兩邊照它做；改合約先改文件。
@@ -91,5 +92,5 @@
 ## 8. 畫面切換（XTAtrium AT-039）
 
 - 每個 surface 有匯流排訊號 `ui.<id>.visible`（bool）；`main` 流圖以一個 `state` 節點寫入各 surface 的 `ui#<id>.visible`。宿主把變化轉成 request_show／request_hide，intro／outro 照播，`ui#<id>.shown`／`hidden` 照常發。
-- `game.json` 的 `ui.surfaces[]`：`title` 可見，其餘 `"visible": false`；覆蓋層（`evbook`、`cutin`）放在陣列最後，需要擋住下層輸入的設 `"modal": true`。繪製順序＝陣列順序，後者在上。
+- `game.json` 的 `ui.surfaces[]`：`title` 可見，其餘 `"visible": false`；覆蓋層（`evbook`、`notes`、`cutin`）放在陣列最後，需要擋住下層輸入的設 `"modal": true`。繪製順序＝陣列順序，後者在上。
 - 隱藏的 surface 不更新、不繪製、不收輸入；輸入由上而下只經可見 surface，遇到第一個可見的 modal 即停。

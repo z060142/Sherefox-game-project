@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "title"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "result"
+      }
+    },
+    {
+      "id": "is_result",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "m_result",
+      "type": "select"
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": "board"
+      }
+    },
+    {
+      "id": "is_board",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "m_board",
+      "type": "select"
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "investigate"
+      }
+    },
+    {
+      "id": "is_investigate",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "m_investigate",
+      "type": "select"
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": "vn"
+      }
+    },
+    {
+      "id": "is_vn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": "daily"
+      }
+    },
+    {
+      "id": "m_vn",
+      "type": "select"
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": "paper"
+      }
+    },
+    {
+      "id": "is_paper",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "m_paper",
+      "type": "select"
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "debate"
+      }
+    },
+    {
+      "id": "isDebC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isDebN",
+      "type": "select"
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "warmup"
+      }
+    },
+    {
+      "id": "isWarmC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isWarmN",
+      "type": "select"
+    },
+    {
+      "id": "isDebK",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isDebN || isWarmN"
+      }
+    },
+    {
+      "id": "moment",
+      "type": "select"
+    },
+    {
+      "id": "bgmRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowBgm",
+        "column": "moment"
+      }
+    },
+    {
+      "id": "bgmId",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowBgm",
+        "column": "bgm",
+        "type": "string"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.stepKind",
+      "to": "is_result.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "is_result.b"
+    },
+    {
+      "from": "is_result.out",
+      "to": "m_result.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "m_result.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "m_result.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "is_board.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "is_board.b"
+    },
+    {
+      "from": "is_board.out",
+      "to": "m_board.cond"
+    },
+    {
+      "from": "K2.out",
+      "to": "m_board.a"
+    },
+    {
+      "from": "m_result.out",
+      "to": "m_board.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "is_investigate.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "is_investigate.b"
+    },
+    {
+      "from": "is_investigate.out",
+      "to": "m_investigate.cond"
+    },
+    {
+      "from": "K3.out",
+      "to": "m_investigate.a"
+    },
+    {
+      "from": "m_board.out",
+      "to": "m_investigate.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "is_vn.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "is_vn.b"
+    },
+    {
+      "from": "is_vn.out",
+      "to": "m_vn.cond"
+    },
+    {
+      "from": "K5.out",
+      "to": "m_vn.a"
+    },
+    {
+      "from": "m_investigate.out",
+      "to": "m_vn.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "is_paper.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "is_paper.b"
+    },
+    {
+      "from": "is_paper.out",
+      "to": "m_paper.cond"
+    },
+    {
+      "from": "K5.out",
+      "to": "m_paper.a"
+    },
+    {
+      "from": "m_vn.out",
+      "to": "m_paper.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isDebC.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "isDebC.b"
+    },
+    {
+      "from": "isDebC.out",
+      "to": "isDebN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isDebN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isDebN.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isWarmC.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "isWarmC.b"
+    },
+    {
+      "from": "isWarmC.out",
+      "to": "isWarmN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isWarmN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isWarmN.b"
+    },
+    {
+      "from": "isDebN.out",
+      "to": "isDebK.isDebN"
+    },
+    {
+      "from": "isWarmN.out",
+      "to": "isDebK.isWarmN"
+    },
+    {
+      "from": "isDebK.truth",
+      "to": "moment.cond"
+    },
+    {
+      "from": "world.bgmDeb",
+      "to": "moment.a"
+    },
+    {
+      "from": "m_paper.out",
+      "to": "moment.b"
+    },
+    {
+      "from": "moment.out",
+      "to": "world.bgmMoment"
+    },
+    {
+      "from": "moment.out",
+      "to": "bgmRow.value"
+    },
+    {
+      "from": "bgmRow.row",
+      "to": "bgmId.row"
+    },
+    {
+      "from": "bgmId.value",
+      "to": "world.bgm"
+    }
+  ]
+}

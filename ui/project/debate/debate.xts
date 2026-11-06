@@ -71,7 +71,15 @@
   text-transform: none;
 }
 
-/* import: Debate.dc.html:1/1/8/1/0/0/1 */
+/* import: Debate.dc.html:1/1/8/1 */
+#picker-k2 {
+  color: #b8322a;
+  letter-spacing: 1px;
+  text-overflow: ellipsis;
+  text-transform: none;
+}
+
+/* import: Debate.dc.html:1/1/8/2/0/0/1 */
 #pick-t {
   line-clamp: 2;
 }
@@ -82,6 +90,11 @@
   border-left-width: 3px;
   border-top-color: #123a31;
   border-top-width: 3px;
+}
+
+/* import: Debate.dc.html:1/1/9/3/0 */
+#improv-t {
+  text-align: center;
 }
 
 /* import: Debate.dc.html:1/1/10/2 */

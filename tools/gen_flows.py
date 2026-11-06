@@ -416,7 +416,8 @@ def flow_tables() -> dict[str, list[dict]]:
                "reason1": e["reason0Key"], "reason2": e["reason1Key"], "reason3": e["reason2Key"],
                "golden": e["golden"], "goldenCard": int(e["grade"] == "golden"), "sub": int(e["grade"] == "substitute"),
                "obtainable": int(e["obtainable"]), "required": int(e["required"]),
-               "tags": e["tags"], "hiddenTags": e["hiddenTags"], "grazingTags": e["grazingTags"]}
+               "tags": e["tags"], "hiddenTags": e["hiddenTags"], "grazingTags": e["grazingTags"],
+               "apprLine": e["appraisalKey"]}
         for i in range(mt):
             row[f"tag{i}"] = tags[i] if i < len(tags) else ""
         card.append(row)
@@ -479,6 +480,12 @@ SIGNALS = {
     "debEnd": {"type": "pulse"},                        # debate_ui -> dialogue: the debate is over
     "debCue": {"type": "string", "initial": "post"},    # debate_ui: the cue of the lines after it (post / postWin / postLose)
     "vnShow": {"type": "pulse"},                        # dialogue -> main: lines after the debate, show the vn
+    "debRetrying": {"type": "bool", "initial": False},  # main: the debate step was entered by a retry (no pre lines)
+    "notesOpen": {"type": "pulse"},                     # debate_ui -> main: show the opponent notes overlay
+    "notesShown": {"type": "bool", "initial": False},   # main: the opponent notes overlay is open
+    # music hooks (rulings H1-H3; no playback yet): the moment and its BGM id (docs/flows.md §4.10)
+    "bgmMoment": {"type": "string", "initial": "title"},
+    "bgm": {"type": "string", "initial": "BGM01"},
 }
 COLLECTIONS = {
     # case state (investigation -> board -> debate)
@@ -529,7 +536,7 @@ COLLECTIONS = {
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
 FLOW_ORDER = ["main", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
-              "result"]
+              "result", "music"]
 
 
 def game_json_text(tables: dict) -> str:
@@ -615,14 +622,19 @@ def appraisal(g: Graph, pre: str, card: str, trigger: str) -> tuple[str, str]:
 
     Not unlocked or no card: nothing. Nothing to appraise (cost 0 or already revealed): ART_APPR_NONE. Not enough
     charges left: ART_APPR_EMPTY. Otherwise the card joins `appraised`, the charges drop by its cost and Arthur says
-    the done line of its kind. The decision is read before the effects (queries keep their value within the tick).
+    the card's appraisal line (evidence.appraisalKey, §1.5 step 3 「鑑定台詞」), or the done line of its kind when the
+    card has none. The decision is read before the effects (queries keep their value within the tick).
     """
     card_values(g, pre, card)
     g.n(pre + "_has", g.cmp(pre + "_hasC", card, g.k(""), "ne"))
     g.x(pre + "_idx", f"!({pre}_has && unlockedN) ? 0 : ({pre}_cost == 0 || {pre}_full) ? 1 : "
                       f"apprLeft < {pre}_cost ? 2 : 2 + {pre}_appraise")
-    line = g.lookup(pre + "_line", ["", "ART_APPR_NONE", "ART_APPR_EMPTY", "ART_APPR_MED_DONE", "ART_APPR_MECH_DONE",
-                                    "ART_APPR_DUAL"], pre + "_idx")
+    g.lookup(pre + "_line0", ["", "ART_APPR_NONE", "ART_APPR_EMPTY", "ART_APPR_MED_DONE", "ART_APPR_MECH_DONE",
+                              "ART_APPR_DUAL"], pre + "_idx")
+    g.tget(pre + "_apprLine", "flowCard", "apprLine", pre + "_row")
+    g.n(pre + "_hasAL", g.cmp(pre + "_hasALC", pre + "_apprLine", g.k(""), "ne"))
+    g.x(pre + "_useAL", f"{pre}_idx >= 3 && {pre}_hasAL")
+    line = g.sel(pre + "_line", pre + "_useAL_t", pre + "_apprLine", pre + "_line0")
     g.x(pre + "_newLeft", f"apprLeft - {pre}_cost")
     do = g.when(pre + "_do", trigger, g.b(pre + "_doC", g.x(pre + "_doN", f"{pre}_idx >= 3")))
     g.edge(do, g.eff(pre + "_add", "atrium.coll.add", "appraised", value=card))
@@ -714,6 +726,13 @@ def gen_main() -> Graph:
     g.edge("ui#title.chapter.emitted", "sameGate.go")
     g.edge("ui#title.chapter.emitted", "chPick.trigger")
     g.edge("chPick.out", "cur.set")
+    # A retried debate (A-14) starts without its opening lines (docs/flows.md §4.2): world.debRetrying is true from
+    # the retry until the step after it begins (written before the step begins: the toggle's edges come first)
+    g.toggle("retrying")
+    g.edge("world.debRetry", "retrying.setTrue")
+    g.edge("world.stepDone", "retrying.setFalse")
+    g.edge("ui#title.chapter.emitted", "retrying.setFalse")
+    g.edge("retrying.value", "world.debRetrying")
     g.edge("world.stepDone", "cur.increment")
     g.edge("world.debRetry", "cur.decrement")    # result -> the debate step again (A-14 retry)
     g.edge("cur.value", "kind.row")
@@ -755,8 +774,9 @@ def gen_main() -> Graph:
     # decided on the step's begin pulse (cur.value's last edge: the step's scene and chapter are settled by then)
     g.n("isDebN", "isDeb.out")
     g.n("isWarmN", "isWarm.out")
-    g.x("debPre", "(isDebN || isWarmN) && hasPre")
-    g.x("debNoPre", "(isDebN || isWarmN) && noPre")
+    g.n("retryN", "retrying.value")
+    g.x("debPre", "(isDebN || isWarmN) && hasPre && !retryN")
+    g.x("debNoPre", "(isDebN || isWarmN) && (noPre || retryN)")
     g.edge("world.debGo", "screen.to_debate")
     g.edge("world.vnShow", "screen.to_vn")
     g.edge("world.resultLines", "screen.to_vn")
@@ -800,6 +820,19 @@ def gen_main() -> Graph:
     g.edge("book.index", "bookVis.index")
     g.edge("bookVis.out", "ui#evbook.visible")
     g.edge("bookVis.out", "world.bookOpen")
+
+    # Opponent notes overlay (modal, 01-systems §4.4 亞瑟的對手筆記): debate_ui asks for it (world.notesOpen: the
+    # 對手筆記 button / N, or the defeat review), its close button closes it, every step begin closes it.
+    # world.notesShown tells debate_ui (the debate is paused while it is open).
+    g.node("notes", "state", initial="closed", states=["closed", "open"],
+           transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
+    g.edge("world.notesOpen", "notes.open")
+    g.edge("ui#notes.close", "notes.close")
+    g.edge("rebegin.out", "notes.close")
+    g.node("notesVis", "lookup", values=[False, True])
+    g.edge("notes.index", "notesVis.index")
+    g.edge("notesVis.out", "ui#notes.visible")
+    g.edge("notesVis.out", "world.notesShown")
     return g
 
 
@@ -855,7 +888,9 @@ def gen_dialogue() -> Graph:
     # A debate / warmup step (script.cue): the `pre` lines before the debate screen, the lines of world.debCue
     # (post / postWin / postLose, written by debate_ui) after it.
     g.toggle("postMode")
-    g.sel("cueVal", "postMode.value", "world.debCue", g.k("pre"))
+    # a retried debate (world.debRetrying, A-14) skips its opening lines: no row has the cue "-"
+    g.sel("preCue", "world.debRetrying", g.k("-"), g.k("pre"))
+    g.sel("cueVal", "postMode.value", "world.debCue", "preCue")
     for nm in ("dfirst", "dnext"):
         g.node(nm, "atrium.table.find", table="script", column="sceneKey", filterColumn="cue",
                filters=json.dumps(playable))
@@ -1061,6 +1096,7 @@ def gen_investigate() -> Graph:
     g.mget("pl", "invState", g.k("pl"))                # the popup's reaction line shown (0-based)
     g.mget("msgSt", "invState", g.k("msg"))            # end messages: 1 the rescue shown, 2 the missed cards shown
     g.mget("endArm", "invState", g.k("arm"))           # 結束蒐證 pressed once (the warning is up)
+    g.mget("autoDone", "invState", g.k("auto"))        # the 全部調查完畢 confirmation has been shown (§1.7)
     bookNew = g.counter("bookNew", initial=0)
 
     def put_state(name: str, pulse: str, key: str, value: str) -> None:
@@ -1272,6 +1308,14 @@ def gen_investigate() -> Graph:
     put_state("w_armS", warnP, "arm", g.k(1))
     hint.add(warnP, {"key": warnKey, "left": "ticks"})
     g.edge(g.when("goGate", endP, "goN_t"), "finish.in")
+    # 全部調查完畢 (§1.7): when the popup of the last spot not yet looked at closes, the end confirmation comes up by
+    # itself (WARN_INV_END_ZERO in the hint bubble, armed: one press of 結束蒐證 ends), once per investigation; it is
+    # not forced: a spot click or an area change disarms it as usual.
+    g.x("autoN", "!outOfTime && canEndN && visN > 0 && seenN >= visN && msgSt == 0 && !autoDone")
+    autoP = g.when("autoGate", close, "autoN_t")
+    put_state("au_armS", autoP, "arm", g.k(1))
+    put_state("au_doneS", autoP, "auto", g.k(1))
+    hint.add(autoP, {"key": g.k("WARN_INV_END_ZERO"), "left": "ticks"})
     # End (§1.8): every card the spots could still give that the opponent can obtain goes to his hand (D4: hand +1,
     # HP +10 each; applied by the debate); not in Ch.1 (chapters.missToHand). Then MSG_INV_MISSED with their
     # count (MSG_INV_MISSED_NONE for none) in the popup, and the step is done when it is closed; Ch.1: done now.
@@ -1327,7 +1371,13 @@ def gen_investigate() -> Graph:
     g.edge("tab", "ui#evbook.tab")
     g.edge("apprLeft", "ui#evbook.appraise_left")
     line, said = appraisal(g, "ba", "bsel", g.when("bookAppr", "ui#evbook.appraise", isInv))
-    hint.add(said, {"key": line, "left": g.k(0)})
+    # Arthur's line in the book itself (evbook.remark; the hint bubble is under the modal book)
+    # (cleared when the book opens)
+    brm = Mux(g, "bookRm", ["key"])
+    brm.add("bookState.true", {"key": g.k("")})
+    brm.add(said, {"key": line})
+    g.edge(g.text("bookRemark", brm.out("key", g.k(""))), "ui#evbook.remark")
+    g.edge(brm.seq, "ui#evbook.remark_seq")
     g.edge(said, bookStart)
     # Cards of the current tab (bookList: id -> revealed): 0 case evidence (held, not story), 1 golden clues,
     # 2 private collection (held story cards).
@@ -1797,10 +1847,30 @@ def gen_board() -> Graph:
 import gen_debate  # noqa: E402  (the engine's interface: signals, collections, tables)
 
 
+# ---------------------------------------------------------------- music
+
+def gen_music() -> Graph:
+    """Music hooks (rulings H1-H3, docs/audio-requests.md): world.bgmMoment = the moment the game is in (the step
+    kind; a debate / warmup step: debate_ui's world.bgmDeb), world.bgm = its BGM id (flowBgm). The framework has no
+    music playback yet: playing it later is one node on world.bgm (docs/flows.md §4.10)."""
+    g = Graph()
+    cur = g.k("title")   # no step, the end card
+    for kind, mom in (("result", "result"), ("board", "board"), ("investigate", "investigate"), ("vn", "daily"),
+                      ("paper", "daily")):
+        cur = g.sel(f"m_{kind}", g.cmp(f"is_{kind}", "world.stepKind", g.k(kind)), g.k(mom), cur)
+    g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
+    g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
+    g.x("isDebK", "isDebN || isWarmN")
+    mom = g.sel("moment", "isDebK_t", "world.bgmDeb", cur)
+    g.edge(mom, "world.bgmMoment")
+    g.edge(g.tget("bgmId", "flowBgm", "bgm", g.tfind("bgmRow", "flowBgm", "moment", mom)), "world.bgm")
+    return g
+
+
 def graphs() -> dict:
     import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
     return {"main": gen_main, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
-            "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result}
+            "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music}
 
 
 def outputs() -> dict[Path, str]:

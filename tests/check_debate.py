@@ -42,7 +42,7 @@ from xt_cli import EXE, XTFRAME  # noqa: E402  (tests/xt_cli.py: XTATRIUM_EXE, t
 HARNESS = ROOT / "tests" / "debate_harness"
 MAIN_FIELDS = ["debRound", "debPlayerHp", "debOppHp", "nodes", "debShaken", "debInTail", "debTailLeft", "debVoids",
                "debHachiku", "debKonju", "debShisshu", "debParries", "debContra", "debInfamy", "debAssist", "debOver",
-               "debOutcome", "debBreakLabel", "debGoldenUsed", "debFragile"]
+               "debOutcome", "debBreakLabel", "debGoldenUsed", "debFragile", "debReads", "debNoReinf", "debMustAtk"]
 WARM_FIELDS = ["dwRound", "dwIndex", "dwMistakes", "dwOver", "dwAuto", "dwTrustDelta", "dwReward"]
 
 

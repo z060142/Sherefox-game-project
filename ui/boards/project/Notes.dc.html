@@ -1,0 +1,144 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Notes</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #092e28 }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+
+  /* Arthur's notebook on a dimmed screen. */
+  .scrim { background-color: #092e28b8 }
+  .book { background-color: var(--paper-old); border: 2px solid var(--ink-deep); box-shadow: 8px 8px 0px 0px #00000059 }
+  .page { background-color: var(--paper); border-left: 3px solid var(--copper) }
+
+  /* Tabs and buttons (as in the evidence book). */
+  .tab { width: 150px; height: 34px; flex-shrink: 0; text-align: center; line-height: 32px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 2px; color: var(--ink);
+         background-color: var(--paper-old); border: 1px solid var(--ink); transition: background-color 120ms linear }
+  :lang(en) .tab { font-size: 13px; letter-spacing: 0px }
+  :lang(en) #notes-title { font-size: 20px; letter-spacing: 1px }
+  .tab:hover { background-color: var(--paper) }
+  .tab.on { color: var(--paper); background-color: var(--ink); border-color: var(--ink-deep) }
+  .btn { height: 40px; flex-shrink: 0; text-align: center; line-height: 38px;
+         font-family: var(--font-body); font-size: 15px; letter-spacing: 2px; color: var(--ink);
+         background-color: var(--paper); border: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { color: var(--paper); background-color: var(--copper) }
+
+  /* Tab 0: this opponent. */
+  .opp-name { font-family: var(--font-display); font-size: 30px; line-height: 38px; font-weight: 700; color: var(--ink-deep); white-space: nowrap }
+  .opp-desc { font-family: var(--font-body); font-size: 16px; line-height: 26px; color: var(--ink-deep); line-clamp: 4; transform: skewX(-6deg) }
+  .g-row { border-bottom: 1px dashed #123a3166 }
+  .g-act { font-family: var(--font-body); font-size: 15px; line-height: 34px; font-weight: 700; color: var(--copper); white-space: nowrap }
+  .g-text { font-family: var(--font-body); font-size: 15px; line-height: 34px; color: var(--ink-deep); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; transform: skewX(-6deg) }
+
+  /* Tab 1: behaviour rules. */
+  .r-row { background-color: var(--paper-old); border-left: 3px solid var(--copper) }
+  .r-text { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--ink-deep); line-clamp: 2; transform: skewX(-6deg) }
+  .r-count { font-family: var(--font-body); font-size: 12px; line-height: 18px; color: var(--copper); white-space: nowrap }
+  .empty { font-family: var(--font-body); font-size: 15px; line-height: 24px; font-style: italic; color: #5b6662 }
+
+  /* Tab 2: the round log; in the defeat review the misread rounds get a red frame and Arthur's line. */
+  .l-row { background-color: var(--paper); border-bottom: 1px solid #123a3140 }
+  .l-text { font-family: var(--font-body); font-size: 14px; line-height: 22px; color: var(--ink-deep); line-clamp: 2 }
+  :lang(en) .l-text { font-size: 13px; line-height: 20px }
+  .l-frame { border: 3px solid var(--vermilion) }
+  .l-note { font-family: var(--font-body); font-size: 13px; line-height: 19px; color: var(--vermilion); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; transform: skewX(-6deg) }
+  .legend-sw { border: 3px solid var(--vermilion); background-color: var(--paper) }
+  .legend-t { font-family: var(--font-body); font-size: 13px; line-height: 20px; color: var(--vermilion); white-space: nowrap }
+</style></helmet>
+<div id="notes" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='tab:number in = 2; opp_name:string in = "費奇"; opp_type:string in = "犯人"; opp_desc:string in = "他在說謊，主張裡一定藏著與事實衝突的矛盾。攻擊居多，被逼急就猛攻：等他開口時用反駁截斷最有效。"; gestures:list&lt;struct{act: string, text: string}&gt; in = [{"act":"主張","text":"拉袖口、鞠躬"},{"act":"猛攻","text":"（還沒看過他這樣做）"},{"act":"補強","text":"擦了擦額頭的汗"},{"act":"設陷","text":"（還沒看過他這樣做）"}]; rules:list&lt;struct{text: string, count: string}&gt; in = [{"text":"主張被推翻後，下一手傾向補強。","count":"本場已觸發 1 次"},{"text":"同一招連續出兩次後，第三次一定換招。","count":"本場已觸發 1 次"}]; log:list&lt;struct{text: string, mark: bool, note: string}&gt; in = [{"text":"第 1 回合　預兆：主張　你：反駁　對方：主張　等一下！（反擊 30）","mark":false,"note":""},{"text":"第 2 回合　預兆：候選：補強／主張　你：反駁　對方：補強　對方沒有開口，你的反駁落空了。","mark":true,"note":"「這一手，他是在護東西，不是要開口。」"},{"text":"第 3 回合　預兆：猛攻　你：實證連鎖　對方：猛攻　交鋒！","mark":true,"note":"「他要開口的時候，妳也搶著說話了。」"}]; review:bool in = true; select_tab:number out = 0; close:event out'
+     data-xt-trigger="show:play(open); key(Escape):emit(close); key(N):emit(close); key(Backspace):emit(close); key(1):set(select_tab, 0); key(2):set(select_tab, 1); key(3):set(select_tab, 2); key(Q):set(select_tab, port(tab) | offset(-1) | clamp(0, 2)); key(E):set(select_tab, port(tab) | offset(1) | clamp(0, 2))"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; color: #123a31;">
+
+  <!-- Dimmed screen: a click outside the notebook closes it. -->
+  <div id="scrim" class="scrim" data-xt-trigger="click(left):emit(close)"
+       data-xt-timeline="open: 0 opacity 0, 200ms ease-out opacity 1"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+
+  <div id="notes-dock" style="position: absolute; left: calc(50% - 520px); top: calc(50% - 300px); width: 1040px; height: 600px;">
+  <div id="book" class="book"
+       data-xt-timeline="open: 0 opacity 0, 0 transform translateY(16px), 240ms ease-out opacity 1, 240ms ease-out transform translateY(0px)"
+       style="position: absolute; left: 0px; top: 0px; width: 1040px; height: 600px;">
+
+    <!-- Header: title, tabs, close. -->
+    <div id="notes-title" class="f-disp" data-xt-key="UI_NOTES_TITLE_DUP2"
+         style="position: absolute; left: 28px; top: 14px; width: 260px; height: 40px; font-size: 24px; line-height: 40px;
+                font-weight: 700; letter-spacing: 2px; color: #092e28; white-space: nowrap;">亞瑟的對手筆記</div>
+    <div id="tabs" style="position: absolute; left: 300px; top: 18px; width: 470px; height: 34px;
+         display: flex; flex-direction: row; gap: 8px;">
+      <div id="tab-opp" class="tab" data-xt-key="UI_NOTES_TAB_OPP" data-xt-bind="class.on=tab | eq(0)"
+           data-xt-trigger="click(left):set(select_tab, 0)">這位對手</div>
+      <div id="tab-rules" class="tab" data-xt-key="UI_NOTES_TAB_RULES" data-xt-bind="class.on=tab | eq(1)"
+           data-xt-trigger="click(left):set(select_tab, 1)">行為規則</div>
+      <div id="tab-log" class="tab" data-xt-key="UI_NOTES_TAB_LOG" data-xt-bind="class.on=tab | eq(2)"
+           data-xt-trigger="click(left):set(select_tab, 2)">回合紀錄</div>
+    </div>
+    <div id="btn-close" class="btn" data-xt-key="BTN_CLOSE" data-xt-trigger="click(left):emit(close)"
+         style="position: absolute; left: 886px; top: 15px; width: 128px;">關閉</div>
+    <div id="book-rule-a" class="rule-thick" style="position: absolute; left: 20px; top: 64px; width: 996px; height: 3px;"></div>
+    <div id="book-rule-b" class="rule-thin" style="position: absolute; left: 20px; top: 70px; width: 996px; height: 1px;"></div>
+
+    <div id="page" class="page" style="position: absolute; left: 20px; top: 80px; width: 996px; height: 500px;">
+
+      <!-- Tab 0: this opponent (type and tendency; the gestures learned so far). -->
+      <div id="pg-opp" data-xt-bind="display=tab | eq(0)" style="position: absolute; left: 0px; top: 0px; width: 996px; height: 500px;">
+        <div id="opp-type" class="kicker" data-xt-bind="text=opp_type" style="position: absolute; left: 28px; top: 18px; width: 400px; height: 20px;">犯人</div>
+        <div id="opp-name" class="opp-name" data-xt-bind="text=opp_name" style="position: absolute; left: 28px; top: 40px; width: 600px; height: 38px;">費奇</div>
+        <div id="opp-desc" class="opp-desc" data-xt-bind="text=opp_desc" style="position: absolute; left: 28px; top: 90px; width: 920px; height: 104px;">他在說謊，主張裡一定藏著與事實衝突的矛盾。攻擊居多，被逼急就猛攻：等他開口時用反駁截斷最有效。</div>
+        <div id="g-rule" style="position: absolute; left: 28px; top: 210px; width: 920px; height: 3px; border-top: 1px solid #123a31; border-bottom: 1px solid #123a31;"></div>
+        <div id="g-list" data-xt-repeat="gestures" style="position: absolute; left: 28px; top: 226px; width: 920px; height: 260px; display: flex; flex-direction: column; gap: 4px;">
+          <div id="g-row" class="g-row" style="position: relative; width: 920px; height: 36px; flex-shrink: 0;">
+            <div id="g-act" class="g-act" data-xt-bind="text=item(act)" style="position: absolute; left: 0px; top: 0px; width: 160px; height: 34px;">主張</div>
+            <div id="g-text" class="g-text" data-xt-bind="text=item(text)" style="position: absolute; left: 170px; top: 0px; width: 740px; height: 34px;">拉袖口、鞠躬</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 1: behaviour rules (written when first seen to fire; this debate's count). -->
+      <div id="pg-rules" data-xt-bind="display=tab | eq(1)" style="position: absolute; left: 0px; top: 0px; width: 996px; height: 500px;">
+        <div id="r-empty" class="empty" data-xt-key="UI_NOTES_GESTURE_EMPTY" data-xt-bind="display=rules | item(0) | item(text) | eq('')"
+             style="position: absolute; left: 28px; top: 24px; width: 600px; height: 24px;">（還沒看過他這樣做）</div>
+        <div id="r-scroll" style="position: absolute; left: 28px; top: 20px; width: 940px; height: 464px; overflow-y: auto;">
+          <div id="r-list" data-xt-repeat="rules" style="width: 920px; display: flex; flex-direction: column; gap: 10px;">
+            <div id="r-row" class="r-row" style="position: relative; width: 920px; height: 64px; flex-shrink: 0;">
+              <div id="r-text" class="r-text" data-xt-bind="text=item(text)" style="position: absolute; left: 16px; top: 6px; width: 890px; height: 30px;">主張被推翻後，下一手傾向補強。</div>
+              <div id="r-count" class="r-count" data-xt-bind="text=item(count)" style="position: absolute; left: 16px; top: 38px; width: 600px; height: 18px;">本場已觸發 1 次</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: the round log (one row a round). In the defeat review the misread rounds are framed in red. -->
+      <div id="pg-log" data-xt-bind="display=tab | eq(2)" style="position: absolute; left: 0px; top: 0px; width: 996px; height: 500px;">
+        <div id="legend" data-xt-bind="display=review" style="position: absolute; left: 28px; top: 12px; width: 600px; height: 22px;">
+          <div id="legend-sw" class="legend-sw" style="position: absolute; left: 0px; top: 3px; width: 22px; height: 14px;"></div>
+          <div id="legend-t" class="legend-t" data-xt-key="UI_NOTES_LOG_MISREAD" style="position: absolute; left: 32px; top: 0px; width: 400px; height: 20px;">讀錯的一手</div>
+        </div>
+        <div id="l-scroll" style="position: absolute; left: 28px; top: 40px; width: 940px; height: 448px; overflow-y: auto;">
+          <div id="l-list" data-xt-repeat="log" style="width: 920px; display: flex; flex-direction: column; gap: 6px;">
+            <div id="l-row" class="l-row" style="position: relative; width: 920px; height: 72px; flex-shrink: 0;">
+              <div id="l-text" class="l-text" data-xt-bind="text=item(text)" style="position: absolute; left: 12px; top: 6px; width: 896px; height: 44px;">第 1 回合　預兆：主張　你：反駁　對方：主張　等一下！（反擊 30）</div>
+              <div id="l-rev" data-xt-bind="display=review" style="position: absolute; left: 0px; top: 0px; width: 920px; height: 72px; pointer-events: none;">
+                <div id="l-mark" data-xt-bind="display=item(mark)" style="position: absolute; left: 0px; top: 0px; width: 920px; height: 72px;">
+                  <div id="l-frame" class="l-frame" style="position: absolute; left: 0px; top: 0px; width: 920px; height: 72px;"></div>
+                  <div id="l-note" class="l-note" data-xt-bind="text=item(note)" style="position: absolute; left: 12px; top: 50px; width: 896px; height: 19px;">「這一手，他是在護東西，不是要開口。」</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

@@ -37,11 +37,16 @@
 #sel-desc {
   color: #123a31;
   font-size: 16px;
-  line-clamp: 9;
+  line-clamp: 6;
   line-height: 26px;
 }
 
-/* import: Evbook.dc.html:1/1/0/7/0/4 */
+/* import: Evbook.dc.html:1/1/0/7/0/4/0 */
+#remark-spk {
+  letter-spacing: 1px;
+}
+
+/* import: Evbook.dc.html:1/1/0/7/0/5 */
 #appr-row {
   border-top-color: #123a3180;
   border-top-style: dashed;
@@ -295,6 +300,20 @@
   border-top-color: #123a31;
   border-bottom-width: 1px;
   border-bottom-color: #123a31;
+}
+
+.remark-box {
+  background-color: var(--paper-old);
+  border-left-width: 3px;
+  border-left-color: #a65432;
+}
+
+.remark-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-deep);
+  line-clamp: 3;
 }
 
 .appr-n {

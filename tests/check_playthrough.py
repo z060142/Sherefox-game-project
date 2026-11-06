@@ -54,7 +54,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tests"))
 import gen_playthrough  # noqa: E402
 
-from xt_cli import EXE, XTFRAME  # noqa: E402  (the CLI and its XTFrame runtime, tests/xt_cli.py)
+from xt_cli import EXE, XTFRAME, compile_game  # noqa: E402  (the CLI and its XTFrame runtime, tests/xt_cli.py)
 MAIN_SCREENS = ("title", "paper", "vn", "investigate", "board", "debate", "result")
 
 
@@ -194,7 +194,7 @@ def expected_lines(chapter: int, lang: str):
         rows = [r for r in script if r["chapter"] == chapter and r["scene"] == step["scene"] and r["playable"]]
         if step["kind"] in ("warmup", "debate"):
             # script.cue: the opening lines, then (the minimal play loses every debate) the warmup's wrap-up
-            cues = ["pre", "post"] if step["kind"] == "warmup" else ["pre", "postLose"]
+            cues = ["pre", "postWin"] if step["kind"] == "warmup" else ["pre", "postLose"]
             rows = [r for c in cues for r in rows if r["cue"] == c]
         else:
             rows = [r for r in rows if r["branch"] == branch]
@@ -378,6 +378,7 @@ def main() -> int:
     if "--frames" in sys.argv:
         frames = Path(sys.argv[sys.argv.index("--frames") + 1]).resolve()
         frames.mkdir(parents=True, exist_ok=True)
+    compile_game()     # AT-036: the flows' endpoints resolve before anything runs
     fail = Failures()
     check_data(fail)
     print("data: every vn scene has playable rows; playable and sceneKey follow their rules"

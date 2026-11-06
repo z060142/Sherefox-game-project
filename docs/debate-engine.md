@@ -1,6 +1,6 @@
 # 論戰引擎（M4a：回合結算；M4b：對手 AI）
 
-狀態：M4b 草案 2026-11-06；M5a（XTAtrium 5aad137：AT-043 派送內的值序修正、AT-041 `atrium.gate`／`expr.truth` 用於條件效果與 select，§3.1；`debScript` 以 `columns` 宣告，§2.4；§7 第 6 點的限制取消）。依據：系統規格附錄 A（A-1 結算順序、A-2、A-4 對決表、A-5～A-15）、數值總表、`docs/rulings.md`（A*、B*、C*、D15）、參考模型 `ref/`（本里程碑的唯一判準：設計文字與 `ref/`＋裁決不一致時以後者為準）；XTAtrium docs 04、05 §5.4、08 §8.2、§8.3、§8.5。
+狀態：M4b 草案 2026-11-06；M5c（輸出 `debReads`、`debNoReinf`、`debMustAtk` 與狀態鍵 `rd`，§2.1、§3.2；路線 32 條，§6）；M5a（XTAtrium 5aad137：AT-043 派送內的值序修正、AT-041 `atrium.gate`／`expr.truth` 用於條件效果與 select，§3.1；`debScript` 以 `columns` 宣告，§2.4；§7 第 6 點的限制取消）。依據：系統規格附錄 A（A-1 結算順序、A-2、A-4 對決表、A-5～A-15）、數值總表、`docs/rulings.md`（A*、B*、C*、D15）、參考模型 `ref/`（本里程碑的唯一判準：設計文字與 `ref/`＋裁決不一致時以後者為準）；XTAtrium docs 04、05 §5.4、08 §8.2、§8.3、§8.5。
 
 本文件說明論戰引擎的介面（給之後的 debate UI 流圖）、內部做法、資料、驗證與已知限制。引擎有回合結算、熱身與對手 AI（M4b：A-3 的行動選擇與預兆，§3.4）；劇本列（A-11）與尾聲仍覆蓋 AI。尚未接 UI、不接主遊戲的步驟序列（`debate`／`warmup` 步驟仍是 `stubs`）。
 
@@ -21,7 +21,7 @@
 
 | 圖 | 節點／邊 |
 |---|---|
-| `debate_engine` | 1068／2217（M5a：87 個 `state`＋`compare` 脈衝閘換成 `atrium.gate`、25 個 select 條件改接運算式的 `truth`，−112；剩 `state` 1〔`dMode`〕、`compare` 11）；M4c 1180／2441（`debOppBonus` +1 節點）；M4b 為 1179／2438（expr 375、table.get 141、compare 123、state 88、map.set 81、coll.add 69、map.get 54、format 53；M4a 為 966／1954，AI 約 +213） |
+| `debate_engine` | 1072／2228（M5c：`rd` 與三個輸出 +4）；M5a 1068／2217（87 個 `state`＋`compare` 脈衝閘換成 `atrium.gate`、25 個 select 條件改接運算式的 `truth`，−112；剩 `state` 1〔`dMode`〕、`compare` 11）；M4c 1180／2441（`debOppBonus` +1 節點）；M4b 為 1179／2438（expr 375、table.get 141、compare 123、state 88、map.set 81、coll.add 69、map.get 54、format 53；M4a 為 966／1954，AI 約 +213） |
 | `debate_warmup` | 169／270（M5a；M4c 180／292） |
 | harness `driver`（`check_debate`） | 156／269 |
 | harness `driver`（`check_policy`） | 97／140 |
@@ -69,6 +69,8 @@
 | `debTellClarity`、`debTellShown1`、`debTellShown2`、`debTellStar`、`debTellBasis`、`debTellLit`、`debTellGesture`、`debTellLine` | string | 本回合（等待鎖定的那一手）的預兆。來源依序：尾聲＝明示＋`script`；用過狐耳直覺＝明示＋`fox`；有劇本列＝該列；否則＝對手 AI 的決定（§3.4）。`Shown1`／`Shown2`＝模糊的左右兩個候選（明示只有 `Shown1`）；`Star`＝標 ★ 的行動；`Basis`＝依據小銅牌 `tutorial`／`observe`／`rule3`／`konju`／`script`／`fox` 或空字串；`Gesture` 是**真正行動**的小動作鍵（A-3）；`Line`＝預兆台詞的字串鍵（`tells.id`） |
 | `debTellStarRule` | number | ★ 旁的規則編號（1／2／4；0＝沒有 ★） |
 | `debTellRule` | number | AI 這一手適用的行為規則（1～4；0＝無），給對手筆記；劇本列與尾聲為 0 |
+| `debReads` | number | 讀對的回合數（M5c，結算的「讀對預兆」與對手筆記的讀錯標記）：該回合玩家的行動是對手實際行動的有利應對（A-15 破竹的定義，ref `resolve` 的 `right`：截斷攻擊、失守中對攻擊觀察、對補強觀察〔`soph` 時詭辯也算〕、對設陷實證或觀察、醜聞動搖或論破成立）；尾聲回合＝答對。與破竹不同，最後一回合（論戰結束）也算 |
+| `debNoReinf`、`debMustAtk` | number | 下一回合（等待鎖定的那一手）對手不能補強（上回合陷阱落空）／必定攻擊（上回合陷阱被拆穿）＝狀態鍵 `nrn`／`man`（M5c，狀態列旗標） |
 | `dwActive`、`dwRound`、`dwIndex`、`dwClaim`、`dwMistakes`、`dwOver`、`dwAuto`、`dwTrustDelta`、`dwReward` | | 熱身：進行中、回合、已糾正（含自動）說法數、目前說法節點 id、失誤數、結束、失誤滿 3 自動解決、本案有效信任度增減（+1／0／−1）、獎勵是否保留 |
 
 ### 2.2 集合
@@ -147,7 +149,7 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 | `lbl`、`gold` | 論破標記、用過黃金線索 | `soph` | 詭辯對補強算破竹讀對（裁決 B20：Ch.4 起） |
 | `lnr`、`lrs`、`nrn`、`man` | 行為規則記憶：上回合移除了節點（規則 1）、補強成功（規則 4）、下回合不能補強、下回合必須攻擊 | `r3f`、`r3p` | 規則 3（≤50%，B9）已觸發／待執行 |
 | `nco` | 下一個預兆明示（觀察） | `h1`、`h2`、`lpa` | 對手最近兩手、玩家上一手（+1；0＝無） |
-| `pln` | 剛結算的回合顯示的預兆台詞（`debLine` 列 + 1；0＝無），「不連續兩回合同一句」用 | | |
+| `pln` | 剛結算的回合顯示的預兆台詞（`debLine` 列 + 1；0＝無），「不連續兩回合同一句」用 | `rd` | 讀對的回合數（`debReads`，M5c） |
 
 對手決定鍵（§3.4，`debStart`／`debLock`／`debRedecide` 寫入，描述本回合等待鎖定的那一手）：
 
@@ -227,6 +229,8 @@ Flow 不允許節點圖有環（Kahn 排序含所有節點邊），而且一張�
 
 - harness 的 driver 每 4 tick 處理 `hIn` 的一列（`start`／`set`／`instinct`／`round`）：第 0 tick 寫指令值、第 1 tick 發脈衝、第 3 tick 把引擎輸出抄進 `hNum`／`hStr`（`<列>:<訊號>`）並把 `debEvents` 抄進 `hEv`；`set` 列直接寫 `debState`，重現 ref 測試以 `replace()` 改過的起始狀態（B8、B9、Ch.3 大字優先序）。
 - 比對欄：回合、主導權兩邊、場上節點（含順序）、動搖、尾聲、尾聲回合、失效、破竹、困獸、失守、截斷、矛盾、惡名、援護、結束、結果、論破標記、黃金線索、脆弱節點數，以及**每回合完整的事件紀錄**（逐筆相等）；熱身比回合、索引、失誤、結束、自動、信任度、獎勵與紀錄；狐耳直覺比次數、預兆與 `STAMP_SEEN`。
+
+M5c：比對欄加 `debReads`（oracle：`tests/debate_routes.py` `round_read`，以 ref 的破竹紀錄判定，論戰結束的回合照 A-15 的表、尾聲看 `tailResult`）、`debNoReinf`、`debMustAtk`（ref `no_reinforce_next`／`must_attack_next`），另加兩條路線 `m5c_solid_vs_trap_no_reinforce`、`m5c_observe_vs_trap_must_attack`：32／32 PASS。
 
 結果（2026-11-06）：30／30 路線 PASS，case 參數 PASS；harness 115 列、468 tick，載入＋編譯＋執行約 0.7 秒。M5a（新 SDK、`atrium.gate` 版引擎）：30／30 PASS，輸出與換掉前相同；`check_policy.py` 的全部頻率逐格相同（同種子、同抽數）。
 

@@ -2,6 +2,11 @@
  "ch1_debate": 3661,
  "ch2_debate": 5021,
  "ch3_debate": 12173,
- "ch2_lose": 7843,
- "ch3_debate_from": 6180
+ "ch2_lose": 8875,
+ "ch2_tailwrong": 4757,
+ "ch3_warmfail": 749,
+ "ch3_debate_from": 6180,
+ "ch2_lose_prompt": 930,
+ "ch2_lose_picked": 970,
+ "ch2_lose_review": 5050
 }

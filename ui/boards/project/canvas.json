@@ -72,6 +72,14 @@
       "h": 720,
       "title": "Evbook",
       "page": "main"
+    },
+    "Notes.dc.html": {
+      "x": 0,
+      "y": 7200,
+      "w": 1280,
+      "h": 720,
+      "title": "Notes",
+      "page": "main"
     }
   },
   "order": [
@@ -83,7 +91,8 @@
     "Debate.dc.html",
     "Cutin.dc.html",
     "Result.dc.html",
-    "Evbook.dc.html"
+    "Evbook.dc.html",
+    "Notes.dc.html"
   ],
   "pages": [
     "main"

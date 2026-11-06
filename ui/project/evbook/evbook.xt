@@ -18,10 +18,12 @@
     select: string out = ""
     appraise: event out
     close: event out
+    remark: string in = "雙層發條，齒距 0.3 釐，這是去年才出現的軍用規格。正規店家買不到，只有黑市才有。"
+    remark_seq: number in = 0
   </ports>
 
   <body on:show="play(open)" key-activation="none">
-    <div id="evbook" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
+    <div id="evbook" tabindex="0" autofocus="" on:port(remark_seq)="play(remark-in)" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
       <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
       <div id="book-dock">
         <div id="book" class="book">
@@ -80,6 +82,10 @@
                 <div id="sel-tags" class="f-body" bind:text="sel_tags">物理：雙層發條・物理：黃銅・？・？</div>
                 <div id="sel-rule" class="s-15baa9"/>
                 <div id="sel-desc" class="f-body" bind:text="sel_desc">替換機芯裡的齒輪閃著冷硬的光，齒距細得不像話，不像古董，倒像兵工廠的產物。</div>
+              </div>
+              <div id="remark" class="remark-box" bind:display="remark | ne('')">
+                <div id="remark-spk" class="kicker">@SPK_ARTHUR</div>
+                <div id="remark-t" class="remark-t" bind:text="remark">雙層發條，齒距 0.3 釐，這是去年才出現的軍用規格。正規店家買不到，只有黑市才有。</div>
               </div>
               <div id="appr-row">
                 <svg id="appr-box" viewBox="0 0 48 28">
@@ -455,6 +461,30 @@
       width: 462px;
     }
     /* import: Evbook.dc.html:1/1/0/7/0/4 */
+    #remark {
+      height: 86px;
+      left: 18px;
+      position: absolute;
+      top: 352px;
+      width: 462px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/0 */
+    #remark-spk {
+      height: 20px;
+      left: 12px;
+      position: absolute;
+      top: 4px;
+      width: 200px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/4/1 */
+    #remark-t {
+      height: 60px;
+      left: 12px;
+      position: absolute;
+      top: 24px;
+      width: 440px;
+    }
+    /* import: Evbook.dc.html:1/1/0/7/0/5 */
     #appr-row {
       align-items: center;
       display: flex;
@@ -470,31 +500,31 @@
       top: 448px;
       width: 462px;
     }
-    /* import: Evbook.dc.html:1/1/0/7/0/4/0 */
+    /* import: Evbook.dc.html:1/1/0/7/0/5/0 */
     #appr-box {
       flex-shrink: 0;
       height: 26px;
       width: 44px;
     }
-    /* import: Evbook.dc.html:1/1/0/7/0/4/1 */
+    /* import: Evbook.dc.html:1/1/0/7/0/5/1 */
     #appr-label {
       flex-shrink: 0;
       height: 20px;
       min-width: 40px;
     }
-    /* import: Evbook.dc.html:1/1/0/7/0/4/2 */
+    /* import: Evbook.dc.html:1/1/0/7/0/5/2 */
     #appr-count {
       flex-shrink: 0;
       height: 28px;
       width: 60px;
     }
-    /* import: Evbook.dc.html:1/1/0/7/0/4/3 */
+    /* import: Evbook.dc.html:1/1/0/7/0/5/3 */
     #appr-gap {
       flex-grow: 1;
       height: 4px;
       min-width: 4px;
     }
-    /* import: Evbook.dc.html:1/1/0/7/0/4/4 */
+    /* import: Evbook.dc.html:1/1/0/7/0/5/4 */
     #btn-appraise {
       width: 180px;
     }
@@ -528,6 +558,9 @@
     .panel.g4 .gl-4 {
       display: block;
     }
+    .remark-t {
+      transform: skewX(-6deg);
+    }
   </layout>
   <style src="../shared/base.xts"/>
   <style src="evbook.xts"/>
@@ -547,6 +580,18 @@
           transform: translateY(16px);
         }
         240ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+    @timeline remark-in {
+      #remark {
+        0ms {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        260ms ease-out {
           opacity: 1;
           transform: translateY(0px);
         }

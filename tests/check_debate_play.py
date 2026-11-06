@@ -44,10 +44,13 @@ PA_CODE = {"solid": 1, "sophistry": 2, "rebut": 3, "observe": 4}
 OA_CODE = {"assert": 0, "rush": 1, "reinforce": 2, "trap": 3, "scorched": 4}
 
 
-def run(rec: str, game: Path, ticks: int):
+def run(rec: str, game: Path, ticks: int, trace: list | None = None):
+    """`trace`: a list that receives the run's --trace lines (per tick, every flow's node values)."""
     dump = Path(tempfile.mkdtemp()) / "dump.json"
     args = [str(cp.EXE), "run", "--game", game.as_posix(), "--replay", str(TESTS / f"{rec}.atrec"),
             "--ticks", str(ticks), "--ports", "--dump", str(dump)]
+    if trace is not None:
+        args += ["--trace", str(dump.parent / "trace.txt")]
     env = dict(os.environ, XTATRIUM_XTFRAME_DIR=cp.XTFRAME)
     old_cp = None
     if os.name == "nt":   # .NET writes redirected output in the console code page: UTF-8 for the child
@@ -72,6 +75,8 @@ def run(rec: str, game: Path, ticks: int):
             t, kind, rest = events[-1]
             events[-1] = (t, kind, rest + "\n" + raw)
     colls = json.loads(dump.read_text(encoding="utf-8"))["collections"]
+    if trace is not None:
+        trace.extend((dump.parent / "trace.txt").read_text(encoding="utf-8").splitlines())
     shutil.rmtree(dump.parent, ignore_errors=True)
     return events, err, colls
 
@@ -87,12 +92,16 @@ class Play:
     def __init__(self, events, start: int = 0) -> None:
         """`start`: only the ticks from then on (a recording that plays an earlier debate first)."""
         self.tr = cp.Trace(events)
+        self.start = start
         self.writes = [(t, rest) for t, kind, rest in events if kind == "write"]
         self.rounds = []      # (reveal (me, opp), ports when the next round is shown, nodes json then)
         self.cuts = []        # ("big" | "stamp", id) in order
         self.results = []     # ports when the result screen is shown
         self.lines = []       # vn lines shown
         self.papers = []      # paper result_head when a paper step shows
+        self.vs = []          # debate.preview_vs when each round's reveal starts (the locked choice's forecast)
+        self.reviews = []     # ticks the opponent notes are shown in the defeat review
+        self.result_ticks = []
         prev, reveal = {}, None
         for t, ports, vis, ch in self.tr.ticks:
             if t < start:
@@ -104,11 +113,15 @@ class Play:
                 self.cuts.append(("stamp", ports.get("cutin.stamp")))
             if ch.get("debate.reveal_seq", 0) > 0:
                 reveal = (ports.get("debate.reveal_me"), ports.get("debate.reveal_opp"))
+                self.vs.append(ports.get("debate.preview_vs"))
+            if "notes" in vis and ports.get("notes.review"):
+                self.reviews.append(t)
             if ch.get("debate.phase") in (0, 3) and reveal is not None:
                 self.rounds.append((reveal, dict(ports), self.nodes_before(t + 2)))
                 reveal = None
             if "result" in vis and "result" not in prev.get("vis", set()):
                 self.results.append(dict(ports))
+                self.result_ticks.append(t)
             if "vn.line" in ch and "vn" in vis:
                 self.lines.append(ports["vn.line"])
             if "paper" in vis and "paper" not in prev.get("vis", set()):
@@ -127,7 +140,7 @@ class Play:
     def list_write(self, port: str) -> list:
         out = []
         for t, rest in self.writes:
-            if rest.startswith(port + " "):
+            if t >= self.start and rest.startswith(port + " "):
                 out.append(json.loads(json.loads(rest[len(port) + 1:])))
         return out
 
@@ -208,8 +221,63 @@ def check_result(fail, label, play: Play, k: int, win: int, comment: str, opp_li
     fail.check(p.get("result.can_retry") == (win == 0), f"{label}: can_retry {p.get('result.can_retry')}")
 
 
+ACT_KEY = {"claim": "UI_ACT_CLAIM", "rush": "UI_ACT_RUSH", "reinforce": "UI_ACT_REINFORCE", "trap": "UI_ACT_TRAP"}
+
+
+def expected_vs(route_name: str) -> list:
+    """preview_vs of each round of a ref route whose tells are clear (the play_harness script): 「若{action}：{result}」
+    for the opponent's actual action, from the ref resolution of that round (docs/flows.md §4.8); "" for an
+    observe or a tail round."""
+    from sherefox_ref import events as E
+    from sherefox_ref.model import OA, PA, initial_state
+    from sherefox_ref.resolve import resolve_round
+    route = next(rt for rt in R.ROUTES if rt.name == route_name)
+    st = initial_state(route.case_fn(), route.board)
+    out = []
+    for p, o in route.moves:
+        nxt, evs = resolve_round(st, p, o)
+        if p.kind == PA.OBSERVE or st.in_tail:
+            out.append("")
+        else:
+            opp = sum(e.amount for e in evs if isinstance(e, E.DamageToOpponent) and e.source in ("chain", "counter"))
+            me = sum(e.amount for e in evs if isinstance(e, E.DamageToPlayer) and e.source in ("claim", "rush",
+                                                                                                  "trap_crit"))
+            atk = o.kind in (OA.CLAIM, OA.RUSH)
+            if p.kind == PA.PARRY:
+                res = zf("MSG_DEB_PARRY", n=R.g6(opp)) if atk else ZH["MSG_DEB_PARRY_WHIFF"]
+            elif atk:
+                res = f"{ZH['MSG_DEB_CLASH']}{R.g6(opp)}／−{R.g6(me)}"
+            elif p.kind == PA.SOPHISTRY and o.kind == OA.TRAP:
+                res = f"{ZH['MSG_DEB_TRAP_HIT']}0／−{R.g6(me)}"
+            else:
+                res = R.g6(opp)
+            out.append(zf("UI_DEB_PREVIEW_VS", action=ZH[ACT_KEY[o.kind.value]], result=res))
+        st = nxt
+    return out
+
+
+def check_reads(fail, label: str, play: Play, k: int, hit: int, total: int) -> None:
+    """The result's 讀對預兆 row (UI_RES_READS {hit} / {total}, M5c)."""
+    stats = play.list_write("result document.stats")
+    row = {"label": zf("UI_RES_READS", hit=hit, total=total), "value": ""}
+    fail.check(len(stats) > k and row in stats[k], f"{label}: reads row {row} not in {stats[k] if len(stats) > k else None}")
+
+
+def bgm_sequence(trace: list) -> list:
+    """The BGM ids the music flow wrote, in order (world.bgm: the flowBgm id in the music flow's trace values)."""
+    out = []
+    for line in trace:
+        seg = line.split("flows/music.xtflow:")[-1]
+        ids = [x for x in seg.split() if x.startswith("BGM")]
+        if ids and (not out or out[-1] != ids[-1]):
+            out.append(ids[-1])
+    return out
+
+
 def main() -> int:
     subprocess.run([sys.executable, str(TESTS / "gen_debate_play.py")], check=True, capture_output=True)
+    # the game's flows compile with their endpoints resolved before anything is replayed (AT-036)
+    cp.compile_game()
     ticks = json.loads((TESTS / "debate_ticks.json").read_text(encoding="utf-8"))
     fail = cp.Failures()
 
@@ -228,6 +296,8 @@ def main() -> int:
     fail.check(len(want) > 12 and play.lines[-len(want):] == want,
                "ch1_debate: the confession, the result scene's win lines and the notes")
     fail.check(play.papers[-1:] == [ZH["NEWS_01_END"]], f"ch1_debate: Ch.2 paper strip {play.papers[-1:]}")
+    route = next(rt for rt in R.ROUTES if rt.name == "ch1_route")
+    check_reads(fail, "ch1_debate", play, 0, R.build([route])[2][0].after[-1]["debReads"], len(route.moves))
 
     # Ch.2: the recommended route against the scripted opponent (tests/play_harness)
     events, err, colls = run("ch2_debate", gd.HARNESS, ticks["ch2_debate"])
@@ -243,6 +313,19 @@ def main() -> int:
     fail.check("E02_08" in items(colls, "held"), "ch2_debate: E02_08 not granted (ruling F3)")
     fail.check("G-01" in items(colls, "golden"), "ch2_debate: G-01 missing")
     fail.check(play.list_write("result document.costs")[-1:] == [[]], "ch2_debate: costs on a win")
+    want_vs = expected_vs("ch2_route")
+    fail.check(play.vs == want_vs, f"ch2_debate: preview_vs {play.vs} != {want_vs}")
+    route = next(rt for rt in R.ROUTES if rt.name == "ch2_route")
+    check_reads(fail, "ch2_debate", play, 0, R.build([route])[2][0].after[-1]["debReads"], len(route.moves))
+
+    # Ch.2 R5 (the tail) answered wrong: the 「（若尾聲出錯牌）」 line is the round's result line (M5c)
+    events, err, colls = run("ch2_tailwrong", gd.HARNESS, ticks["ch2_tailwrong"])
+    play = Play(events)
+    common(fail, "ch2_tailwrong", err)
+    fail.check([r[0] for r in play.rounds][4:5] == [(4, 4)], f"ch2_tailwrong: R5 reveal {[r[0] for r in play.rounds]}")
+    rl = [p.get("debate.result_line") for _, p, _, ch in play.tr.ticks if "debate.result_line" in ch]
+    fail.check(ZH["SCR_CH02_S05_L047"] in rl, f"ch2_tailwrong: result lines {rl[-6:]}")
+    fail.check(ZH["MSG_TAIL_WRONG"].split("{")[0] not in "".join(rl), "ch2_tailwrong: MSG_TAIL_WRONG still shown")
 
     # Ch.3: Ch.2 won first (G-01 earned), then the warmup, the three scenes, the ref board and ch3_route against the
     # scripted opponent (tests/play_harness)
@@ -252,8 +335,12 @@ def main() -> int:
     common(fail, "ch3_debate", err)
     check_route(fail, "ch3_debate", play, "ch3_route")
     check_result(fail, "ch3_debate", play, 0, 1, "ART_RES_CLEAN", "SCR_CH03_S06_L045", trust=(3, 4))
-    fail.check(in_order(full.lines, cue_lines(3, "S04", "pre")) and in_order(full.lines, cue_lines(3, "S04", "post")),
-               "ch3_debate: the warmup's opening and wrap-up lines")
+    fail.check(in_order(full.lines, cue_lines(3, "S04", "pre")) and in_order(full.lines, cue_lines(3, "S04", "postWin"))
+               and not any(x in full.lines for x in cue_lines(3, "S04", "postLose")),
+               "ch3_debate: the warmup's opening and wrap-up lines (passed: L006-L009)")
+    route = next(rt for rt in R.ROUTES if rt.name == "ch3_route")
+    check_reads(fail, "ch3_debate", play, 0, R.build([route])[2][0].after[-1]["debReads"], len(route.moves))
+
     fail.check(in_order(full.lines, cue_lines(3, "S06", "pre")), "ch3_debate: the opening line before the debate")
     want = scene_lines(3, "S07", "win") + scene_lines(3, "S08", "")
     fail.check(play.lines[-len(want):] == want, "ch3_debate: the result scene's win lines and the notes")
@@ -270,6 +357,21 @@ def main() -> int:
     fail.check("G-01" in items(colls, "golden"), "ch3_debate: G-01 missing")
     fail.check(items(colls, "oppHand") == [], f"ch3_debate: opponent hand {items(colls, 'oppHand')}")
 
+    # Ch.3 warmup failed (tests/warmfail_harness: mistake limit 0): S04 F001-F004 instead of L006-L009, the case's
+    # trust 2 (no police report: ART_NO_REPORT), and the music moments up to the investigation (rulings H1-H3)
+    trace = []
+    events, err, colls = run("ch3_warmfail", gd.WARMFAIL, ticks["ch3_warmfail"], trace)
+    play = Play(events)
+    common(fail, "ch3_warmfail", err)
+    fail_lines = cue_lines(3, "S04", "postLose")
+    fail.check(len(fail_lines) == 4 and in_order(play.lines, cue_lines(3, "S04", "pre") + fail_lines),
+               f"ch3_warmfail: the failure wrap-up {play.lines[-6:]}")
+    fail.check(not any(x in play.lines for x in cue_lines(3, "S04", "postWin")), "ch3_warmfail: L006-L009 played")
+    hints = [p.get("investigate.hint") for _, p, _, ch in play.tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
+    fail.check(hints[:1] == [ZH["ART_NO_REPORT"]], f"ch3_warmfail: investigation opens with {hints[:1]}")
+    bgm = bgm_sequence(trace)
+    fail.check(bgm == ["BGM01", "BGM02", "BGM07", "BGM05"], f"ch3_warmfail: music {bgm}")
+
     # Ch.2 lost (observe every round, the seeded AI), retried, lost again
     events, err, colls = run("ch2_lose", ROOT, ticks["ch2_lose"])
     play = Play(events)
@@ -280,6 +382,60 @@ def main() -> int:
     fail.check(costs[-1:] == [[{"text": zf("UI_RES_COST_SEIZE", name=ZH["E02_01_NAME"])}]], f"ch2_lose: costs {costs[-1:]}")
     rounds1 = [p.get("debate.round_text") for _, p, _ in play.rounds]
     fail.check(rounds1.count(zf("UI_DEB_ROUND", n=2)) >= 2, "ch2_lose: the retried debate starts at round 1 again")
+    pre = cue_lines(2, "S05", "pre")
+    fail.check(sum(play.lines.count(x) for x in pre) == len(pre), "ch2_lose: the retry plays the opening line again")
+    # 臨場硬接 in R1 (M5c): sophistry on E02_03 -> E02_02, the button, the only candidate E02_04 (wrong reason: a
+    # sophistry link by the board's rule, ref link_kind), the chain grows, the damage is the ref chain damage
+    from sherefox_ref.fixtures import ch2_case as ref_ch2
+    from sherefox_ref.rules import chain_damage_breakdown, link_kind
+    from dataclasses import replace as dc_replace
+    cards = {c.id: c for c in ref_ch2().cards}
+    kind = link_kind(cards["E02_02"], dc_replace(cards["E02_04"], reason_correct=False))
+    fail.check(kind == "sophistry", f"ch2_lose: ref link E02_02 - E02_04 {kind}")
+    t0, t1 = ticks["ch2_lose_prompt"], ticks["ch2_lose_picked"]
+    fail.check(any(p.get("debate.improv_ok") for t, p, _, _ in play.tr.ticks if t0 - 2 <= t <= t0 + 4),
+               "ch2_lose: 臨場硬接 not offered")
+    picks = [(t, json.loads(json.loads(rest.split(" ", 2)[2]))) for t, rest in play.writes
+             if rest.startswith("debate document.parry_cards ") and t0 <= t <= t1]
+    fail.check([x for _, x in picks if x][:1] == [[{"id": "E02_04", "name": ZH["E02_04_NAME"]}]],
+               f"ch2_lose: 臨場硬接 candidates {picks}")
+    fail.check(any(p.get("debate.picker_title") == ZH["BTN_DEB_SOPH_NEW"] for t, p, _, _ in play.tr.ticks
+                   if t0 <= t <= t1), "ch2_lose: picker title")
+    chains = [(t, json.loads(json.loads(rest.split(" ", 2)[2]))) for t, rest in play.writes
+              if rest.startswith("debate document.chains ") and t1 <= t <= t1 + 20]
+    want_ch = [(0, 0, "E02_03", 1), (0, 1, "E02_02", 2), (0, 2, "E02_04", 0)]
+    fail.check(bool(chains) and [(c["chain"], c["pos"], c["id"], c["link"]) for c in chains[-1][1]] == want_ch,
+               f"ch2_lose: chain after 臨場硬接 {chains[-1:]}")
+    me, opp = play.rounds[0][0]
+    fail.check(me == 2, f"ch2_lose: R1 reveal {play.rounds[0][0]}")
+    dmg = 0.0 if opp == 3 else chain_damage_breakdown(1, 1, False, 0, opp in (0, 1), False)[0]
+    got = [p.get("debate.float_opp") for t, p, _, ch in play.tr.ticks if "debate.float_opp" in ch and t1 < t]
+    fail.check((dmg == 0 and "" in got[:1]) or f"−{R.g6(dmg)}" in got[:2], f"ch2_lose: R1 damage {got[:2]} != {dmg}")
+    # retry: the board as it was locked (the improvised link undone)
+    board = items(colls, "debBoard")
+    fail.check(board[:3] == ["E02_03", "E02_02", "-"] and "E02_04" in board[15:], f"ch2_lose: board after retry {board}")
+    # the opponent notes (§4.4): the defeat review before each result (tab 2), one log row a round, the misread rows
+    # marked; their count agrees with the result's 讀對預兆; R1 (sophistry) is misread with Arthur's review line
+    for k, rt in enumerate(play.result_ticks[:2]):
+        before = play.result_ticks[k - 1] if k else 0
+        fail.check(any(before < t < rt for t in play.reviews), f"ch2_lose[{k}]: no review before the result")
+    logs = [(t, json.loads(json.loads(rest.split(" ", 2)[2]))) for t, rest in play.writes
+            if rest.startswith("notes document.log ")]
+    stats = play.list_write("result document.stats")
+    for k, rt in enumerate(play.result_ticks[:2]):
+        rows = [x for t, x in logs if t < rt][-1:] or [[]]
+        rows = rows[0]
+        total = len(rows)
+        hit = sum(1 for x in rows if not x["mark"])
+        fail.check(total > 3 and all(x["text"].startswith(zf("UI_NOTES_LOG_ROW", n=i + 1, tell="").split("：")[0])
+                                     for i, x in enumerate(rows)), f"ch2_lose[{k}]: log rows {rows[:2]}")
+        check_reads(fail, f"ch2_lose[{k}]", play, k, hit, total)
+    rows = [x for t, x in logs if t < play.result_ticks[0]][-1]
+    review = {0: "ART_REVIEW_CLASH", 1: "ART_REVIEW_CLASH", 2: "ART_REVIEW_HEAL", 3: "ART_REVIEW_TRAP"}[opp]
+    fail.check(rows[0]["mark"] and rows[0]["note"] == ZH[review], f"ch2_lose: R1 log row {rows[0]}")
+    gest = play.list_write("notes document.gestures")
+    fail.check(bool(gest) and len(gest[-1]) == 4 and all(g["text"] for g in gest[-1]), f"ch2_lose: gestures {gest[-1:]}")
+    fail.check(any(p.get("notes.tab") == 2 for _, p, _, _ in play.tr.ticks), "ch2_lose: notes tab")
     for k, res in enumerate(play.results[:2]):
         fail.check(res.get("debate.hp_me") == 0, f"ch2_lose[{k}]: lost at {res.get('debate.hp_me')}")
     want = scene_lines(2, "S06", "lose") + scene_lines(2, "S07", "")

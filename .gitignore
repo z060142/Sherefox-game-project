@@ -6,3 +6,4 @@ __pycache__/
 .venv/
 !tests/*.atrec
 tests/play_harness/
+tests/warmfail_harness/

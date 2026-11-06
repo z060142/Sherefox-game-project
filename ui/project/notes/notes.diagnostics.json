@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "tag.repeatBinding",
+      "severity": "warning",
+      "message": "bind:display=\"review\" on #l-rev is inside the template of <repeat id=\"l-list\"> but reads no item(), index or count: every entry shows the same value (27 §27.3.4)",
+      "element": "l-rev",
+      "source": "Notes.dc.html",
+      "line": 127,
+      "col": 0,
+      "ui": "notes",
+      "detail": {},
+      "fix": {
+        "kind": "board",
+        "applicability": "hint",
+        "board": {
+          "attr": "data-xt-bind",
+          "value": ""
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #scrim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "scrim",
+      "source": "Notes.dc.html",
+      "line": 60,
+      "col": 0,
+      "ui": "notes",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 38 element(s) is written to their <layout> #id rules (#notes, #scrim, #notes-dock, #book, #notes-title, ...)",
+      "element": "",
+      "source": "Notes.dc.html",
+      "line": 54,
+      "col": 0,
+      "ui": "notes",
+      "detail": {
+        "elements": "38",
+        "ids": "#notes #scrim #notes-dock #book #notes-title #tabs #btn-close #book-rule-a #book-rule-b #page #pg-opp #opp-type #opp-name #opp-desc #g-rule #g-list #g-row #g-act #g-text #pg-rules #r-empty #r-scroll #r-list #r-row #r-text #r-count #pg-log #legend #legend-sw #legend-t #l-scroll #l-list #l-row #l-text #l-rev #l-mark #l-frame #l-note"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

@@ -65,10 +65,14 @@
     result_line: string in = ""
     skip: event out
     next: event out
+    notes: event out
+    improv: event out
+    improv_ok: bool in = false
+    picker_title: string in = ""
   </ports>
 
   <body on:show="play(intro); play(fidget, loop)" key-activation="none">
-    <div id="debate" tabindex="0" autofocus="" on:port(phase)="if port(phase) eq 0 play(fidget, loop) else pause(fidget)" on:port(opp_char)="play(ink-in)" on:port(parry_cards)="play(picker-in)" on:port(reveal_seq)="play(reveal)" on:port(float_opp)="play(float-opp)" on:port(float_me)="play(float-me)" on:key(1)="if port(phase) eq 0 set(act, 1)" on:key(2)="if port(phase) eq 0 set(act, 2)" on:key(3)="if port(phase) eq 0 set(act, 3)" on:key(4)="if port(phase) eq 0 set(act, 4)" on:key(F)="if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct)" on:key(V)="if port(phase) eq 0 emit(assist)" on:key(T)="state(Open, toggle, target=#table)" on:key(Enter)="if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Space)="if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Backspace)="if port(phase) eq 0 emit(back)" on:click(right)="if port(phase) eq 0 emit(back)">
+    <div id="debate" tabindex="0" autofocus="" on:port(phase)="if port(phase) eq 0 play(fidget, loop) else pause(fidget)" on:port(opp_char)="play(ink-in)" on:port(parry_cards)="play(picker-in)" on:port(reveal_seq)="play(reveal)" on:port(float_opp)="play(float-opp)" on:port(float_me)="play(float-me)" on:key(1)="if port(phase) eq 0 set(act, 1)" on:key(2)="if port(phase) eq 0 set(act, 2)" on:key(3)="if port(phase) eq 0 set(act, 3)" on:key(4)="if port(phase) eq 0 set(act, 4)" on:key(F)="if port(phase) eq 0 and port(instinct_ok) eq true emit(instinct)" on:key(V)="if port(phase) eq 0 emit(assist)" on:key(T)="state(Open, toggle, target=#table)" on:key(Enter)="if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Space)="if port(phase) eq 1 emit(skip); if port(phase) ge 2 emit(next)" on:key(Backspace)="if port(phase) eq 0 emit(back)" on:key(N)="emit(notes)" on:click(right)="if port(phase) eq 0 emit(back)">
       <img id="bg-art" src="../shared/img/bg-debate.jpg"/>
       <div id="sheet">
         <div id="opp-fig">
@@ -202,7 +206,8 @@
         </div>
         <div id="claim-preview" class="kicker" bind:text="claim_preview" bind:display="claim_preview | ne('')">主張 26＋4×3＝38</div>
         <div id="picker" class="sheet-paper" bind:display="parry_cards | item(0) | item(id) | ne('')">
-          <div id="picker-k" class="kicker">@MSG_DEB_SELECT_PARRY</div>
+          <div id="picker-k" class="kicker" bind:display="picker_title | eq('')">@MSG_DEB_SELECT_PARRY</div>
+          <div id="picker-k2" class="kicker" bind:text="picker_title" bind:display="picker_title | ne('')">臨場硬接</div>
           <div id="picker-scroll">
             <repeat id="picker-list" port="parry_cards">
               <div id="pick" class="pick" on:click(left)="if port(phase) eq 0 set(card, item(id))">
@@ -215,7 +220,10 @@
         <div id="preview" class="sheet-paper" bind:display="preview | ne('')">
           <div id="preview-k" class="kicker">@UI_DEB_PREVIEW_LABEL</div>
           <div id="preview-t" class="preview-t" bind:text="preview">截斷：反擊 30、粉碎主張</div>
-          <div id="preview-vs" class="preview-vs" bind:text="preview_vs" bind:display="preview_vs | ne('')">若主張：截斷成立　若猛攻：截斷，對方動搖</div>
+          <div id="preview-vs" class="preview-vs" bind:text="preview_vs" bind:display="preview_vs | ne('')">若主張：等一下！（反擊 30）　若猛攻：等一下！（反擊 30）</div>
+          <div id="btn-improv" class="bbtn" on:click(left)="if port(phase) eq 0 emit(improv)" bind:display="improv_ok">
+            <div id="improv-t" class="bbtn-t">@BTN_DEB_SOPH_NEW</div>
+          </div>
         </div>
         <div id="tell" class="tell sheet-paper s-e35e37" bind:class.c0="tell_clarity | eq(0)" bind:class.c1="tell_clarity | eq(1)" bind:class.c2="tell_clarity | eq(2)">
           <div id="tell-head" class="col-head">@UI_DEB_GOSSIP</div>
@@ -562,7 +570,7 @@
             <div id="st-flags" class="st-flags" bind:text="st_flags" bind:display="st_flags | ne('')">不能補強・聽眾不耐</div>
           </div>
         </div>
-        <div id="btn-notes" class="tab">
+        <div id="btn-notes" class="tab" on:click(left)="emit(notes)">
           <div id="btn-notes-t" class="tab-t">@BTN_DEB_NOTES</div>
         </div>
         <div id="float-opp" class="float" bind:text="float_opp" bind:display="float_opp | ne('')">−35</div>
@@ -1484,6 +1492,15 @@
       width: 280px;
     }
     /* import: Debate.dc.html:1/1/8/1 */
+    #picker-k2 {
+      height: 18px;
+      left: 10px;
+      overflow: hidden;
+      position: absolute;
+      top: 4px;
+      width: 280px;
+    }
+    /* import: Debate.dc.html:1/1/8/2 */
     #picker-scroll {
       height: 100px;
       left: 10px;
@@ -1492,7 +1509,7 @@
       top: 24px;
       width: 284px;
     }
-    /* import: Debate.dc.html:1/1/8/1/0 */
+    /* import: Debate.dc.html:1/1/8/2/0 */
     #picker-list {
       display: flex;
       flex-direction: row;
@@ -1500,14 +1517,14 @@
       gap: 6px;
       width: 284px;
     }
-    /* import: Debate.dc.html:1/1/8/1/0/0 */
+    /* import: Debate.dc.html:1/1/8/2/0/0 */
     #pick {
       flex-shrink: 0;
       height: 52px;
       position: relative;
       width: 136px;
     }
-    /* import: Debate.dc.html:1/1/8/1/0/0/0 */
+    /* import: Debate.dc.html:1/1/8/2/0/0/0 */
     #pick-id {
       height: 12px;
       left: 8px;
@@ -1515,7 +1532,7 @@
       top: 3px;
       width: 120px;
     }
-    /* import: Debate.dc.html:1/1/8/1/0/0/1 */
+    /* import: Debate.dc.html:1/1/8/2/0/0/1 */
     #pick-t {
       height: 34px;
       left: 8px;
@@ -1554,6 +1571,22 @@
       position: absolute;
       top: 70px;
       width: 276px;
+    }
+    /* import: Debate.dc.html:1/1/9/3 */
+    #btn-improv {
+      height: 22px;
+      left: 166px;
+      position: absolute;
+      top: 2px;
+      width: 120px;
+    }
+    /* import: Debate.dc.html:1/1/9/3/0 */
+    #improv-t {
+      height: 22px;
+      left: 0px;
+      position: absolute;
+      top: -2px;
+      width: 120px;
     }
     /* import: Debate.dc.html:1/1/10 */
     #tell {

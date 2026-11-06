@@ -133,11 +133,11 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
-| id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn` |
+| id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn`；`SCR_CH0n_Sss_Fnnn` 是取代該場景某些 L 列播放的另一支（目前只有 Ch.3 S04 F001～F004：熱身失敗的收尾，在地化包 2026-11-06），排在該場景的 L 列之後 |
 | chapter | number | 章號 |
 | scene | string | `S01`…；`S90`＝論戰台詞庫 |
 | sceneKey | string | 章與場景的複合鍵 `CH0n_Sss`（例 `CH01_S02`）；流圖以單欄 `atrium.table.find` 找場景（`scene` 只在章內唯一） |
-| seq | number | 場景內行號（`L` 的數字；`1` 是場景標題） |
+| seq | number | 場景內行號（`L` 的數字；`1` 是場景標題；`F` 列為 1000 ＋ 數字，`tools/build_data.py` `VARIANT_SEQ`） |
 | kind | string | `heading`（場景標題，L001）、`subheading`（場景中的小標，例 Ch.3 S07 L009「（尾聲：碼頭）」）、`evidence`（證物描述）、`staging`（純演出行）、`branch`（分支標記）、`note`（備註，不播放）、`line`（有說話者的一般行；含旁白、系統、報紙） |
 | speaker | string | 說話者字串鍵 `SPK_*`；`line` 以外為空白 |
 | text | string | 顯示文字的字串鍵（＝id） |
@@ -150,7 +150,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | banner | string | 演出行中的書法大字／印章：`【大字：X】`→ `CUT_*`、`【印：X】`→ `STAMP_*`（以 ui_strings 中 zh-TW 文字對應；`破竹×n` 取 `STAMP_HACHIKU`），多值依出現順序 |
 | inactive | bool | 在地化備註寫「Not triggered in this chapter」或「not yet unlocked」（本章不會觸發，保留供重玩） |
 | playable | bool | 對白播放器會顯示的行：`kind = line` 且 `inactive = false` 且不在 `S90`（論戰台詞庫由 `tells` 表供論戰使用，不逐行播放）。規則見下 |
-| cue | string | 論戰／熱身場景中在 vn 播放的時機（`docs/flows.md` §4.2）：`pre` 論戰畫面開啟之前；`post` 論戰結束後、結算之前（不論結果）；`postWin`／`postLose` 同上，只在勝利／其他結果（含 Ch.1 未達成）時；空白＝不在 vn 播放（推薦路線的逐字稿）。其他場景一律空白。規則見下 |
+| cue | string | 論戰／熱身場景中在 vn 播放的時機（`docs/flows.md` §4.2）：`pre` 論戰畫面開啟之前；`postWin`／`postLose` 論戰結束後、結算之前，只在勝利（熱身：通過）／其他結果（含 Ch.1 未達成；熱身：失敗）時（`post`〔不論結果〕目前沒有列使用）；空白＝不在 vn 播放（推薦路線的逐字稿）。其他場景一律空白。規則見下 |
 | bg | string | 這行的背景 id（`vn.bg`）：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`，空字串＝新聞紙底。來自演出檔（§3.1） |
 | slot_l、slot_c、slot_r | string | 左／中／右立繪的角色 id（`vn.slot_*`），空字串＝無人。來自演出檔 |
 | focus | number | 說話位置：0 無（旁白、系統、報紙）、1 左、2 中、3 右；指向的位置一定有人。來自演出檔 |
@@ -158,7 +158,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 `playable` 的規則只看 `kind`、`inactive` 與場景：`line`（含旁白、系統、報紙行；`style` 2 的非人物文字也照樣顯示，所以 `style` 不影響可播放）為 true；`heading`、`subheading`、`evidence`、`staging`、`branch`、`note` 為 false。分支行（`branch` 有值）仍是 true，由播放器依結果另行篩選；`S90` 一律 false（其中的 `inactive` 行都在 `S90`）。哪一種畫面播放某行由它所屬場景的步驟種類決定（`steps.kind`：vn、result、debate…），不由本欄決定。
 
-`cue` 的規則（`tools/build_data.py` `script_cues`）：論戰與熱身場景的可播放列，從場景開頭到第一列「回合數 ≥ 1 或玩家行動（`act` 為 present、rebut、rebutBreak、solid、solidBreak、sophistry、observe）」之前是 `pre`（Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002；Ch.3 S04 L002～L004：系統行、警督的誤判、亞瑟的鑑定後說明）。結束後的台詞依 20-script 以常數 `DEBATE_POST` 列出：Ch.1 S05 L027～L035 `postWin`（論破後亞瑟招認；敗北的另一支由 S06 的 lose 分支敘述）；Ch.2 S05 L041～L042 `postWin`（尾聲裡 Wolfhart 以咖啡杯擋下配重，只發生在尾聲反駁成功時；出錯牌是 L047 的另一句）；Ch.3 S04 L006～L009 `post`（警督收場；失誤 3 次時 Sherefox 會自己駁正，A-13，所以兩種結果都播）。常數指到的列必須全是可播放列、不能同時是 `pre`，否則是錯誤。
+`cue` 的規則（`tools/build_data.py` `script_cues`）：論戰與熱身場景的可播放列，從場景開頭到第一列「回合數 ≥ 1 或玩家行動（`act` 為 present、rebut、rebutBreak、solid、solidBreak、sophistry、observe）」之前是 `pre`（Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002；Ch.3 S04 L002～L004：系統行、警督的誤判、亞瑟的鑑定後說明）。結束後的台詞依 20-script 以常數 `DEBATE_POST` 列出：Ch.1 S05 L027～L035 `postWin`（論破後亞瑟招認；敗北的另一支由 S06 的 lose 分支敘述）；Ch.2 S05 L041～L042 `postWin`（尾聲裡 Wolfhart 以咖啡杯擋下配重，只發生在尾聲反駁成功時；出錯牌是 L047 的另一句）；Ch.3 S04 L006～L009 `postWin`（熱身通過時警督收場）與 F001～F004 `postLose`（熱身失敗：失誤 3 次、本案信任度 2 時取代 L006～L009，在地化備註）。常數（每個場景一串 (cue, seq 起, seq 迄)）指到的列必須全是可播放列、不能同時有兩個 cue，否則是錯誤。
 
 不產生 `expr`（立繪表情）、`cmd`、`next`：劇本沒有寫明，不自行設計。`bg`、立繪與焦點、樣式由演出檔（§3.1）補上，劇本行文字與數量不因此改變。
 

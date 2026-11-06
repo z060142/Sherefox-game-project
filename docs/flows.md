@@ -1,6 +1,6 @@
 # 流圖（M4c：Ch.1～3 全程可玩：劇情、蒐證、線索板、熱身、論戰、結算）
 
-狀態：M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
+狀態：M5c 2026-11-06（XTAtrium 4352f29 起的 SDK：AT-036 `xtatrium compile --game` 在每個跑主遊戲的檢查之前執行，§6；熱身失敗的收尾台詞 S04 F001～F004 與熱身的 `postWin`／`postLose`，§4.2、§4.8；尾聲出錯牌的結算台詞，§4.8；重新論戰不重播開場台詞，§4.1、§4.2；「全部調查完畢」自動跳出結束確認，§4.4；鑑定台詞 `evidence.appraisalKey`，§4.6；論戰的對手筆記覆蓋層、預估列候選比較 `preview_vs`、狀態列旗標 `st_flags`、臨場硬接、敗北回顧，§4.8；結算的讀對預兆，§4.9；音樂掛鉤，§4.10）。M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
 
 本文件說明 `flows/*.xtflow` 每一張圖做什麼、圖與圖之間經哪些 `world.*` 訊號與集合溝通、「步驟」的介面合約，以及已知限制。M3 範圍：標題 → 選章 → 開場報紙 → 逐行播放 vn 場景 → 蒐證（調查點、刻度、鑑定、提示、證物冊、保底、漏證）→ 線索板（放卡、理由、拉線判定、推理鏈、鑑定、進入論戰前檢查、交給論戰引擎的板面）→ 熱身（Ch.3）→ 論戰（布丁論戰、Ch.2、Ch.3）→ 結算（後果、重新論戰、結算場景台詞）→ 下一章。語言可即時切換。
 
@@ -12,17 +12,18 @@
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`result`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `main`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
-| `main` | 66／115 | 應用狀態機：語言切換、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊覆蓋層、結尾卡 |
-| `dialogue` | 77／150 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞（§4.2）；結算步驟的場景台詞（§4.9） |
+| `main` | 70／130 | 應用狀態機：語言切換、選章、步驟執行器（`steps` 表）、畫面可見性、證物冊與對手筆記覆蓋層、結尾卡、重新論戰旗標 |
+| `dialogue` | 79／153 | `vn` 步驟：依 `script` 表逐列把可播放的對白寫進 `ui#vn`；論戰／熱身步驟前後的台詞（§4.2）；結算步驟的場景台詞（§4.9） |
 | `paper` | 44／71 | `paper` 步驟：依 `papers` 表填 `ui#paper`，兩頁翻完即結束 |
-| `investigate` | 670／1191 | `investigate` 步驟（01-systems §1）與證物冊 `ui#evbook` |
-| `board` | 1910／4113 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
-| `debate_ui` | 1119／2184 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、玩家選擇、揭示播放 |
-| `result` | 129／196 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
+| `investigate` | 699／1253 | `investigate` 步驟（01-systems §1）與證物冊 `ui#evbook` |
+| `board` | 1915／4124 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
+| `debate_ui` | 1709／3313 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放、敗北回顧 |
+| `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
+| `music` | 29／44 | 音樂掛鉤（§4.10）：`world.bgmMoment`、`world.bgm` |
 
 ### 1.1 寫法上的三條規則
 
@@ -51,8 +52,12 @@
 | `world.caseOutcome` | string | `result` | `paper` | 上一案的結果：`win`／`notorious`／`lose`（§3.3 判定順序；Ch.1 未達成記 `lose`）；按結算的「繼續」時寫入。 |
 | `world.resultLines`、`world.resultBranch` | pulse、string | `result` | `main`、`dialogue` | 結算畫面按「繼續」：播放結算場景（`steps.scene`）中 `script.branch` ＝ `win`／`lose` 的台詞。 |
 | `world.debRetry` | pulse | `result` | `main` | 重新論戰（A-14）：步驟回到論戰（`cur.decrement`）。 |
+| `world.debRetrying` | bool | `main` | `main`、`dialogue`、`debate_ui` | 目前的論戰步驟是由重新論戰進入的（`debRetry` 時 true，下一次 `stepDone` 時 false；在步驟開始的脈衝之前寫好）：不播開場台詞（§4.2），板面還原為鎖定時的樣子（§4.8）。 |
+| `world.notesOpen`、`world.notesShown` | pulse、bool | `debate_ui`、`main` | `main`、`debate_ui` | 打開對手筆記覆蓋層（`ui#notes`）；覆蓋層開著（論戰暫停，§4.8）。 |
+| `world.bgmDeb` | string | `debate_ui` | `music` | 論戰中的音樂時機（§4.10）。 |
+| `world.bgmMoment`、`world.bgm` | string | `music` | （日後的音樂播放） | 目前的音樂時機與它的 BGM id（§4.10）。 |
 | `world.debGo` | pulse | `dialogue` | `main`、`debate_ui` | 論戰／熱身步驟的開場台詞（`script.cue` = `pre`）播完（沒有時在步驟開始的同一 tick）：論戰畫面出現、論戰開始（§4.2、§4.8）。 |
-| `world.debEnd`、`world.debCue` | pulse、string | `debate_ui` | `dialogue` | 論戰結束（原本的 `stepDone`）；`debCue` ＝ 收尾台詞的 `script.cue`：熱身 `post`、論戰勝利 `postWin`、其他 `postLose`。 |
+| `world.debEnd`、`world.debCue` | pulse、string | `debate_ui` | `dialogue` | 論戰結束（原本的 `stepDone`）；`debCue` ＝ 收尾台詞的 `script.cue`：論戰勝利或熱身通過 `postWin`、其他（含熱身失敗：本案信任度 −1）`postLose`。 |
 | `world.vnShow` | pulse | `dialogue` | `main` | 有收尾台詞：畫面換回 vn。 |
 | `deb*`、`dw*` | | `debate_ui`／引擎 | | 論戰引擎的介面（`docs/debate-engine.md` §2.1）；`debOppBonus`（漏證加成）由 `debate_ui` 寫。 |
 
@@ -81,12 +86,16 @@
 | `debBoard`、`debBoardOk`、`debBoardLink` | list（24） | `board` | 論戰引擎的板面輸入（`docs/debate-engine.md` §2.2，宣告與 `tools/gen_debate.py` 相同） |
 | `dlgState` | map number | `dialogue` | `row`：目前顯示的劇本列 |
 | `dbui`、`dbuiS` | map number／string | `debate_ui`（`result` 讀 `maxd`／`maxc`，寫 `res`） | 論戰 UI 的狀態（§4.8） |
+| `debBoardS`、`debBoardOkS`、`debBoardLinkS` | list（24） | `debate_ui` | 鎖定時的板面（論戰第一次開始時存；重新論戰時還原，臨場硬接不留下，§4.8） |
+| `uiImpK`、`uiImpS`、`uiImpO` | map number | `debate_ui` | 臨場硬接的候選：卡 → 連結種類（1 實證／2 詭辯）、所在的散卡格、理由正確 |
+| `notesRule` | map number | `debate_ui` | 已記下的行為規則 1～5（跨章保留，不清空） |
+| `uiNoteG`、`uiNoteR`、`uiLog`、`uiLogMis`、`uiLogNote` | map | `debate_ui` | `notes.gestures`（行動鍵 → 小動作鍵）、`notes.rules`（規則鍵 → 次數文字）、`notes.log`（回合 → 列文字、讀錯、評語鍵）的來源 |
 | `caseMod` | map number | `debate_ui` | `trust`：熱身給本案的信任度修正；每章的開場報紙步驟清空 |
 | `progress` | map number | `result` | `trustAdj`：永久信任度相對 3 的增減（跨章） |
 | `uiNodeIds`、`uiShat`、`uiCands`、`uiParryAll`、`uiParry`、`evF`、`evN` | list | `debate_ui` | 節點 id、反駁候選與事件紀錄的拆欄（§4.8） |
 | `uiActOn`、`uiActWhy` | list bool／string（4） | `debate_ui` | `debate.act_enabled`／`act_reason` 的值陣列（`bare`，§4.8） |
 | `uiNodes`；`uiChains`／`uiChPos`／`uiChLink`／`uiChSel` | map | `debate_ui` | `debate.nodes`（節點 → state）與 `debate.chains`（卡 → 鏈、位置、link、sel）的來源（§4.8） |
-| `resStats`、`resCosts` | map string／list | `result` | 統計與代價兩個清單 port 的來源 |
+| `resStats`、`resCosts` | map string／list | `result` | 統計（已在地化的標籤 → 值）與代價兩個清單 port 的來源 |
 | 引擎的集合 | | 引擎 | `debState`、`dwState`、`debOn`、`debEvents`、`debSnap`、`debAssisted`（`docs/debate-engine.md` §2.2） |
 
 ## 3. 步驟合約
@@ -107,7 +116,8 @@
 - **選章**：`ui#title.chapter` → `find(steps, chapter, idx = "0")`；每次 `ui#title.chapter.emitted` 以 `filter(sample)` 把列號送進計數器 `cur`。若所選的列就是 `cur`（例如結尾卡關掉後連點同一章時值不變），另由一個以「相等」為 guard 的閘直接發 `world.stepBegin`。
 - **步驟前進**：`world.stepDone` → `cur.increment`（同 M2）。
 - **畫面**：`screen` 狀態 `title`／`paper`／`vn`／`investigate`／`board`／`debate`／`result`，由 `kind` 的 `compare.true` 切換；`world.resultLines` → vn（結算場景的台詞）。`warmup` 與 `debate` 在步驟開始的脈衝（`rebegin`，`cur.value` 的最後一條邊，場景與章已結算）上決定：該場景有 `script.cue` = `pre` 的可播放列 → vn，否則 → debate；`world.debGo` → debate、`world.vnShow` → vn（§4.2）。
-- **重新論戰**：`world.debRetry` → `cur.decrement`（結算步驟的前一列就是論戰步驟），步驟重新開始。
+- **重新論戰**：`world.debRetry` → toggle `retrying` 設 true（寫 `world.debRetrying`）→ `cur.decrement`（結算步驟的前一列就是論戰步驟），步驟重新開始；這時有開場台詞也直接換到論戰畫面（`debPre` 要求 `!retrying`）。`world.stepDone` 把它設回 false。
+- **對手筆記**（M5c，01-systems §4.4）：`notes` 狀態（closed／open）：`world.notesOpen` → open；`ui#notes.close` → closed；每次步驟開始 → closed。寫 `ui#notes.visible` 與 `world.notesShown`。modal 覆蓋層（`game.json` 的 `ui.surfaces` 在 cutin 之前；surfaces 不是流圖擁有的條目，手寫）。
 - **證物冊**：`book` 狀態（closed／open）：蒐證中 `ui#investigate.book` → open；`ui#evbook.close` → closed；每次步驟開始 → closed。寫 `ui#evbook.visible` 與 `world.bookOpen`。證物冊是 modal 覆蓋層，開著時下層收不到輸入。
 
 ### 4.2 `dialogue`
@@ -118,7 +128,7 @@
 - 顯示列 → `ui#vn` 各 port、章名、選項、`trust` 同 M2。
 - **結算步驟的台詞**（D6）：`result` 步驟裡 `world.resultLines` 是第二個入口；兩個 find 多一個條件 `branch` ＝（結算步驟時）`world.resultBranch`、（vn 步驟時）空字串（vn 場景沒有 branch 列）。播完發 `world.stepDone`。
 
-- **論戰與熱身步驟的台詞**（`script.cue`，`docs/data-schema.md` §3）：`first`／`next` 之外另有一對 find（`dfirst`／`dnext`），以 `cue` 為篩選欄。步驟開始（種類 debate／warmup）時找 `pre`：有就逐行播放，播完（或一開始就沒有）發 `world.debGo`。`world.debEnd` 時改找 `world.debCue`（`post`／`postWin`／`postLose`）：有就發 `world.vnShow` 並逐行播放，播完（或沒有）發 `world.stepDone`。重新論戰（A-14）時步驟重新開始，開場台詞也重播。分類：Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002、Ch.3 S04 L002～L004 是 `pre`；Ch.1 S05 L027～L035（論破後亞瑟招認）與 Ch.2 S05 L041～L042（尾聲 Wolfhart 擋下配重）是 `postWin`；Ch.3 S04 L006～L009（警督收場）是 `post`。其餘是推薦路線的逐字稿，不播放。
+- **論戰與熱身步驟的台詞**（`script.cue`，`docs/data-schema.md` §3）：`first`／`next` 之外另有一對 find（`dfirst`／`dnext`），以 `cue` 為篩選欄。步驟開始（種類 debate／warmup）時找 `pre`：有就逐行播放，播完（或一開始就沒有）發 `world.debGo`。`world.debEnd` 時改找 `world.debCue`（`postWin`／`postLose`）：有就發 `world.vnShow` 並逐行播放，播完（或沒有）發 `world.stepDone`。重新論戰（A-14，`world.debRetrying`）時不播開場台詞：找的 cue 換成沒有任何列的 `-`，所以步驟開始的同一 tick 就發 `world.debGo`（M5c；M5b 會重播）。分類：Ch.1 S05 L002、Ch.2 S05 L002、Ch.3 S06 L002、Ch.3 S04 L002～L004 是 `pre`；Ch.1 S05 L027～L035（論破後亞瑟招認）、Ch.2 S05 L041～L042（尾聲 Wolfhart 擋下配重）與 Ch.3 S04 L006～L009（熱身通過時警督收場）是 `postWin`；Ch.3 S04 F001～F004（熱身失敗：失誤 3 次、本案信任度 2，取代 L006～L009；在地化包 2026-11-06）是 `postLose`。其餘是推薦路線的逐字稿，不播放（Ch.2 S05 L047、Ch.3 S06 L046 是尾聲出錯牌時的結算台詞，§4.8）。
 
 ### 4.3 `paper`
 
@@ -146,13 +156,15 @@
 
 **彈窗關閉**（最後一句之後的 `dismiss`）：刻度已用完時，若還缺必需證物 → 亞瑟補撿（§1.7）：缺的卡全部加入 `held`，彈窗以訊息樣式（`popup_kind` 4）顯示 `MSG_INV_RESCUE`（`{name}` ＝ 補撿的卡名，以 `UI_TAG_SEP` 連接），台詞列是亞瑟的 `ART_RESCUE`；下一次關閉（或沒有缺卡時這一次）→ 結束蒐證。
 
+**全部調查完畢**（§1.7，M5c）：最後一個沒看過的調查點的彈窗關閉時（刻度未用完、必需證物已齊、`spotSeen` 張數 ≥ `visSpots` 張數），提示氣泡自動顯示 `WARN_INV_END_ZERO` 並把 `invState.arm` 設 1（再按一次「結束蒐證」就結束）；每案只跳一次（`invState.auto`）。不強制：點調查點或換場景照樣解除。Ch.2～3 的刻度少於調查點（裁決 F1），實際只有 Ch.1 會觸發；Ch.1 也用這句（設計沒有 Sherefox 版）。
+
 **結束蒐證**（`end`，只在 `can_end` ＝ `needed` 為空時）：第一次按下只在提示氣泡顯示確認（01-systems §1.7）：Ch.2～3 `WARN_INV_END`（`atrium.textf` 填 `{left}` ＝ 剩餘刻度，值在按下時鎖住；全部調查完畢時 `WARN_INV_END_ZERO`）；Ch.1（刻度不限、亞瑟還不是助手，§1.11）還有卡沒找到時 `SHF_C1_REMAIN`，都找到了就不確認。第二次按下才結束；之間點了調查點或切換場景要重新確認（`invState.arm`）。結束（或上述刻度用完）：`toFind` 中 `obtainable` 的卡在 `chapters.missToHand` 時進 `oppHand`（§1.8、D3、D4）；`missToHand` 的章下一 tick 以訊息彈窗顯示 `MSG_INV_MISSED`（`{n}` ＝ `oppHand` 張數；0 張時 `MSG_INV_MISSED_NONE`），關閉後發 `world.stepDone`；Ch.1 直接發。
 
 **提示**（`ask_hint`）：`toFind` 的張數 ≥4 `ART_REMAIN_MANY`、1～3 `ART_REMAIN_FEW`、0 `ART_REMAIN_NONE`；Ch.1 為 Sherefox 的 `SHF_C1_REMAIN`（還有）／`SHF_C1_IDLE`（沒有了；設計只有這兩句 SHF_）。
 
 **證物冊**：打開時與換分頁、選卡、鑑定、換語言後（下一 tick）重寫 `cards`：0 本案證物（`held` 中非劇情證物）、1 黃金線索（`golden`）、2 私人收藏（`held` 中的劇情證物）；`notes` 寫案件筆記。詳情：`sel_name`／`sel_desc`／`sel_tags`（§4.6）／`sel_grade`；`sel_can_appraise` ＝ 已解鎖、有隱藏標籤且未揭露、剩餘次數夠。關閉時清空 `newCards`。
 
-**鑑定**（§4.6）在證物冊與線索板共用同一套規則。台詞寫在 `investigate.hint`（證物冊沒有台詞 port）。
+**鑑定**（§4.6）在證物冊與線索板共用同一套規則。台詞寫在證物冊自己的 `evbook.remark`／`remark_seq`（M5c；證物冊打開時清空）。
 
 ### 4.5 `board`（01-systems §2；ui-contracts board）
 
@@ -184,7 +196,7 @@
 ### 4.6 共用：揭露、鑑定、標籤文字
 
 - **揭露**：卡沒有隱藏標籤、或在 `appraised`、或（警察章、信任度 ≥3 且 `flowCard.policeFull`）。產生器要求 `policeTags` 為空或等於 `hiddenTags`（目前只有 E03_01）。
-- **鑑定**（01-systems §1.5）：未解鎖（Ch.1）或沒有選卡 → 無反應；`appraiseCost` 0 或已揭露 → `ART_APPR_NONE`；剩餘次數不足 → `ART_APPR_EMPTY`；否則加入 `appraised`、`caseNum.appr` 扣掉次數，台詞依類型 `ART_APPR_MED_DONE`／`ART_APPR_MECH_DONE`／`ART_APPR_DUAL`。
+- **鑑定**（01-systems §1.5）：未解鎖（Ch.1）或沒有選卡 → 無反應；`appraiseCost` 0 或已揭露 → `ART_APPR_NONE`；剩餘次數不足 → `ART_APPR_EMPTY`；否則加入 `appraised`、`caseNum.appr` 扣掉次數，台詞是該卡的鑑定台詞 `evidence.appraisalKey`（§1.5 第 3 步「鑑定台詞」；`flowCard.apprLine`；Ch.2 E02_01／02／07、Ch.3 E03_01／02／04，都是亞瑟），沒有時依類型 `ART_APPR_MED_DONE`／`ART_APPR_MECH_DONE`／`ART_APPR_DUAL`（M5c）。線索板寫在 `remark`，證物冊寫在 `evbook.remark`。
 - **標籤文字**（`sel_tags`）：每個標籤的 `tags.nameKey` 文字，未揭露的隱藏標籤寫 `UI_TAG_HIDDEN`（「？」），以 `UI_TAG_SEP`（「・」／「, 」）隔開（線索板與證物冊）。
 
 ### 4.7 （M3 的 `stubs` 已移除：熱身、論戰、結算由 §4.8、§4.9 接手）
@@ -205,13 +217,17 @@
 
 **顯示**（都是純查詢）：`mode`、立繪（`flowDebCase.char`：該講者在劇本中最常用的立繪）、名牌與類型、壓力錶（`dbui` 的 `hpO`／`hpM` 與鎖住的上限）、`round_text`／`counter_text`／`tell_star_text`／`claim_preview`（`atrium.textf`：`UI_DEB_ROUND` `{n}`、`UI_CH1_CONTRA` `{n}`／`{r}`、`UI_WARMUP_MISS`、`UI_DEB_TELL_LIKELY`、`UI_DEB_COUNTER_PREVIEW(_RUSH)` `{base}`／`{n}`／`{dmg}`，`dmg` 照引擎的 `base + per × n`、猛攻 ×`rushN`／`rushD`；依據小銅牌 `UI_DEB_TELL_BASIS_RULE` 的 `{n}` ＝ `flowWord.code`）、預兆（台詞、小動作、清晰度、依據銅牌 `flowWord`、候選 A／B 與 ★；尾聲的玉石俱焚以猛攻圖示顯示）、狀態、直覺與援護燈、`phase`、`float_*`、`result_line`。
 
-**可按的行動**（§4.4、A-5、A-13）：實證連鎖＝板上有卡；詭辯＝本章開放（`playerActions`）且板上有未斷開的詭辯連結（不做臨場硬接）；反駁＝有亮起節點、不在失守，且有候選卡（或論破回合／尾聲可改出示鏈段）；觀察＝主論戰。熱身只有反駁。按了不可按的行動：不選取，確認列顯示原因（`MSG_DEB_NO_TARGET`、`MSG_DEB_NOSOPH`、`MSG_DEB_NOPARRY_SHISSHU`／`_NOCARD`）。`act_enabled`（四個行動依序可按與否）／`act_reason`（原因的字串鍵，在地化：同上，詭辯鈕改用短句 `UI_DEB_NOSOPH_REASON`；熱身的實證／詭辯／觀察與未開放的詭辯沒有原因）以 `atrium.ui.list` 的 `bare` 寫成值陣列（`uiActOn`／`uiActWhy`），每回合按鈕設定時（`r3`）與換語言時重寫，所以不可按的按鈕變灰並印出原因。
+**可按的行動**（§4.4、A-5、A-13）：實證連鎖＝板上有卡；詭辯＝本章開放（`playerActions`）且板上有未斷開的詭辯連結，或本回合還能臨場硬接（還沒硬接過、有散卡、板上有卡）；反駁＝有亮起節點、不在失守，且有候選卡（或論破回合／尾聲可改出示鏈段）；觀察＝主論戰。熱身只有反駁。按了不可按的行動：不選取，確認列顯示原因（`MSG_DEB_NO_TARGET`、`MSG_DEB_NOSOPH`、`MSG_DEB_NOPARRY_SHISSHU`／`_NOCARD`）。`act_enabled`（四個行動依序可按與否）／`act_reason`（原因的字串鍵，在地化：同上，詭辯鈕改用短句 `UI_DEB_NOSOPH_REASON`；熱身的實證／詭辯／觀察與未開放的詭辯沒有原因）以 `atrium.ui.list` 的 `bare` 寫成值陣列（`uiActOn`／`uiActWhy`），每回合按鈕設定時（`r3`）與換語言時重寫，所以不可按的按鈕變灰並印出原因。
 
 **選擇**（只在 phase 0；值型 port 經 `.emitted`）：`act`；`seg`：第一下＝起點，第二下＝終點（同一條鏈、中間的連結都在且沒斷開；否則重選起點）；`target`：可見的非脆弱節點（攻擊時）；`card`：反駁選擇器（清掉鏈段）；`back`：先退卡／鏈段，再退行動；`assist`：切換；`instinct`：發 `world.debInstinct`，0.1 秒後重新鎖住預兆，同時蓋 `STAMP_SEEN`。
 
-**能否鎖定**：實證＝鏈段只有實證連結、目標可見、至少一張卡與目標共享標籤（A-2）；詭辯＝鏈段含詭辯連結、同上；反駁＝不在失守、有亮起節點，且（單張：破解亮起節點、已揭露）或（鏈段：論破回合或尾聲、含破解證物、全部已揭露、論破回合要過門檻：Ch.1 E01_03 理由正確；否則強攻卡＋失效次數 − 破竹 3 的減免，或 2 張以上全實證，ref `break_threshold_met`）；觀察一律可以。單張反駁在論破回合本身就是論破時（Ch.1 E01_03、門檻 1 張時的強攻卡）以「一張卡的鏈段」送出（引擎只在鏈段上判論破）。確認列：可鎖時是 `UI_DEB_LOCK_SUMMARY_ATK`（`{action}` 行動鈕文字、`{node}` 目標、`{cards}` 鏈段「起 → 訖」）／`_PARRY`（`{node}` 亮起節點、`{card}` 出示的卡或鏈段）／`_OBSERVE`，不可鎖時是提示（`MSG_DEB_SELECT_CHAIN`／`NOSOLID`／`NOSOPH`／`NOTAG`／`SELECT_PARRY`）；預估列（裁決 G4）：攻擊時 `UI_DEB_PREVIEW`（`atrium.textf`：`{dmg}` ＝ 鏈傷害，含動搖 ×1.5 與破竹；`{mult}` ＝ 推理鏈倍率 1 ＋ 0.5 × 實證 ＋ 0.8 × 詭辯，動搖、破竹、對決表修正之前；`{shaken}` ＝ 動搖時 `UI_DEB_PREVIEW_SHAKEN`，否則空白），破竹有層數時接 `UI_DEB_PREVIEW_HACHIKU`（`{pct}` ＝ 10 × 層數），可以論破時接 `UI_DEB_PREVIEW_BREAK`；反駁 `UI_DEB_PREVIEW_PARRY`。
+**能否鎖定**：實證＝鏈段只有實證連結、目標可見、至少一張卡與目標共享標籤（A-2）；詭辯＝鏈段含詭辯連結、同上；反駁＝不在失守、有亮起節點，且（單張：破解亮起節點、已揭露）或（鏈段：論破回合或尾聲、含破解證物、全部已揭露、論破回合要過門檻：Ch.1 E01_03 理由正確；否則強攻卡＋失效次數 − 破竹 3 的減免，或 2 張以上全實證，ref `break_threshold_met`）；觀察一律可以。單張反駁在論破回合本身就是論破時（Ch.1 E01_03、門檻 1 張時的強攻卡）以「一張卡的鏈段」送出（引擎只在鏈段上判論破）。確認列：可鎖時是 `UI_DEB_LOCK_SUMMARY_ATK`（`{action}` 行動鈕文字、`{node}` 目標、`{cards}` 鏈段「起 → 訖」）／`_PARRY`（`{node}` 亮起節點、`{card}` 出示的卡或鏈段）／`_OBSERVE`，不可鎖時是提示（`MSG_DEB_SELECT_CHAIN`／`NOSOLID`／`NOSOPH`／`NOTAG`／`SELECT_PARRY`）；預估列的候選比較（M5c，§4.4「依當前預兆列出每個候選行動下的結果」）：`preview_vs` ＝ 預兆的每個候選（`tell_a`、`tell_b`）一段 `UI_DEB_PREVIEW_VS`「若{action}：{result}」（`{action}` ＝ `UI_ACT_*`），全形空白隔開；`{result}` 照引擎的公式（`docs/debate-engine.md` §3.1）：攻擊對主張／猛攻＝`MSG_DEB_CLASH`＋「鏈傷害 ÷2／−主張傷害（猛攻 ×1.25、困獸 ×1.25、第 15 回合起 +5）」；詭辯對設陷＝`MSG_DEB_TRAP_HIT`＋「0／−25」（援護待命時 0）；其他＝鏈傷害（實證對補強 ÷2；有脆弱節點 +10）；反駁對攻擊＝`MSG_DEB_PARRY`（反擊 30 × 破竹），對防守＝`MSG_DEB_PARRY_WHIFF`。觀察、尾聲、熱身與 Ch.1（沒有主導權）不顯示。論破回合的論破傷害不列（預估列已有「可以論破」）。預估列（裁決 G4）：攻擊時 `UI_DEB_PREVIEW`（`atrium.textf`：`{dmg}` ＝ 鏈傷害，含動搖 ×1.5 與破竹；`{mult}` ＝ 推理鏈倍率 1 ＋ 0.5 × 實證 ＋ 0.8 × 詭辯，動搖、破竹、對決表修正之前；`{shaken}` ＝ 動搖時 `UI_DEB_PREVIEW_SHAKEN`，否則空白），破竹有層數時接 `UI_DEB_PREVIEW_HACHIKU`（`{pct}` ＝ 10 × 層數），可以論破時接 `UI_DEB_PREVIEW_BREAK`；反駁 `UI_DEB_PREVIEW_PARRY`。
+
+**臨場硬接**（M5c；01-systems §4.4 詭辯「或此時臨場硬接一條新的詭辯連結」、A-2「論戰中臨場硬接的連結照同一規則判定」、A-7、§4.4 我方推理鏈「被打斷的詭辯連結……也不能臨場硬接補上」）：選了詭辯、鏈段沒有虛線（確認列 `MSG_DEB_NOSOPH`「要硬接一條嗎？」）、鏈段終點是該鏈的最後一張且鏈未滿 5 張、本回合還沒硬接過（`dbui.impR`）、有散卡（`debBoard` 15～）時 `improv_ok`。按 `improv` → `dbui.imp` 1，逐一檢查散卡與鏈段終點的連結（線索板的規則 §4.5：共享的已揭露標籤、擦邊、理由、替代證物；沒選理由或沒有共享 → 不列），可接的寫進 `parry_cards`（`picker_title` ＝ `BTN_DEB_SOPH_NEW`）。選一張（`card`）：該卡放進鏈尾的下一格（`debBoard`／`debBoardOk` 以 `removeAt`＋`insert` 改寫）、鏈尾格的 `debBoardLink` ＝ 連結種類、原散卡格寫 `-`；鏈段延伸到新卡；`impR` ＝ 本回合。只有鏈尾會長，所以被設陷斷開的連結不會被補上。引擎不用改：它在鎖定時讀 `debBoard*`（下一 tick 起已是新值），判定與 ref 相同（ref 沒有臨場硬接；同一條鏈段在 ref 以加長後的板面結算，`tests/check_debate_play.py` ch2_lose 比對傷害）。硬接的連結保留到論戰結束；重新論戰時板面還原（論戰第一次開始時把 `debBoard*` 存進 `debBoardS*`，`world.debRetrying` 時倒回來）。已知差異：A-7「抓住鏈段中最後建立的一條詭辯連結」引擎以位置取最後一條（ref 同），硬接的連結在鏈尾，順向鏈段時兩者一致。
 
 **鎖定**：`debCmd*` 直接跟著選擇（行動、鏈段、卡、目標、援護）寫到匯流排，鎖定時已是結算好的值；發 `world.debLock`（引擎在同一 tick 收到值與脈衝，AT-043，`docs/debate-engine.md` §7.6；M4c 在鎖定脈衝上以 `filter(sample)` 鎖住的寫法已拿掉）；phase 1。
+
+**狀態列旗標**（M5c，§4.4 狀態列）：`st_flags` ＝ 依序 `MSG_DEB_NO_REINFORCE`（引擎 `debNoReinf`：上回合陷阱落空）、`MSG_DEB_MUST_ATTACK`（`debMustAtk`：上回合陷阱被拆穿）、`MSG_DEB_IMPATIENT`（第 15 回合起，有主導權的論戰），以 `UI_TAG_SEP` 連接；回合開始時鎖住。逆・論破警告要有能逆・論破的對手（Ch.1～3 沒有），沒做。聽眾不耐沒有短的字串鍵，用 `MSG_DEB_IMPATIENT` 整句。
 
 **揭示播放**（0.1 秒後；`dbui.pb`：1 取下一筆 → 以 `|` 拆進 `evF`／`evN` → 2 播放 → 3 等到 `pbAt`）：
 
@@ -221,21 +237,38 @@
 | `cutin` | 播放全幕者 → `cutin.big`＋`big_seq`；印章與降級的破竹 3 → `stamp`＋`stamp_seq`（`stamp_n` 層數）；英文時 `subtitle` ＝ `<id>_SUB`（大字譯名預設開，沒有設定畫面；破竹印章 `STAMP_HACHIKU_SUB` 以 `atrium.textf` 填層數 `{n}`） | 1.6／4.0（論破）／0.6 秒 |
 | `dmgOpp`、`dmgPlayer`、`heal` | `float_*` 「−n」「+n」；壓力錶跟著紀錄的「後」值 | 0.6 秒 |
 | `nodeRemoved`、`nodeAdded` | 節點粉碎（state 4）／加入，清單重寫 | 有台詞時 0.6 秒 |
-| 其他 | `flowEvLine`（`case|種類|欄`）有台詞的寫進 `result_line`（截斷：`MSG_DEB_PARRY`）；台詞以 `atrium.textf` 填 `{name}`（對手）與 `{n}`（反擊量、矛盾數、尾聲反撲 `debCase.tw`），鍵與 `{n}` 存在 `dbuiS.rl`／`dbui.rln` | 0.6 秒或 0 |
+| 其他 | `flowEvLine`（`case|種類|欄`）有台詞的寫進 `result_line`（截斷：`MSG_DEB_PARRY`；尾聲出錯牌 `tailResult|0`：Ch.2 `SCR_CH02_S05_L047`、Ch.3 `SCR_CH03_S06_L046`〔設計確認，`tools/gen_debui.py` `TAIL_WRONG`；台詞照劇本，含行首的「（若尾聲出錯牌）」〕，其他 `MSG_TAIL_WRONG`）；台詞以 `atrium.textf` 填 `{name}`（對手）與 `{n}`（反擊量、矛盾數、尾聲反撲 `debCase.tw`），鍵與 `{n}` 存在 `dbuiS.rl`／`dbui.rln` | 0.6 秒或 0 |
 
-第一筆之後 phase 2（結算數字，`result_line` 可見）。`skip`／`next`（播放中）＝快轉：其餘紀錄每拍一筆、不播大字。播完：壓力錶＝引擎值、節點與清單重寫、停 1.5 秒（或 `next`）；沒結束 → 下一回合；結束（`debOver`／`dwOver`）→ phase 3，1.2 秒（或 `next`）後：熱身把 `dwTrustDelta` 寫進 `caseMod.trust`，寫 `world.debCue`、發 `world.debEnd`（收尾台詞由 `dialogue` 播放，之後才結束步驟，§4.2）。
+第一筆之後 phase 2（結算數字，`result_line` 可見）。每回合第一句有台詞的紀錄另存在 `dbuiS.lr1`／`dbui.lrn1`（回合紀錄的結果欄）。`skip`／`next`（播放中）＝快轉：其餘紀錄每拍一筆、不播大字。播完：壓力錶＝引擎值、節點與清單重寫、停 1.5 秒（或 `next`）；沒結束 → 下一回合；結束（`debOver`／`dwOver`）→ phase 3，1.2 秒（或 `next`）後：主論戰敗北（`debOutcome` ＝ `loss`）先打開對手筆記的回合紀錄（敗北回顧，下述；`dbui.rev` 1），等它關掉（`world.notesShown` 變 false → `rev` 2）才往下；熱身把 `dwTrustDelta` 寫進 `caseMod.trust`，寫 `world.debCue`（熱身：`dwTrustDelta` < 0〔失誤 3 次〕→ `postLose`，否則 `postWin`）、發 `world.debEnd`（收尾台詞由 `dialogue` 播放，之後才結束步驟，§4.2）。
+
+**對手筆記**（M5c，01-systems §4.4 亞瑟的對手筆記；ui-contracts notes）：主論戰中按 `BTN_DEB_NOTES` 或 N（`ui#debate.notes`）→ `world.notesOpen`（`main` 顯示覆蓋層）。開著時節拍停住（`beat` 經 `!world.notesShown` 的閘），揭示與計時都不推進（§4.4「翻閱時畫面暫停」）；熱身沒有對手筆記。
+- **這位對手**：`opp_name`、`opp_type`、`opp_desc`（`flowDebCase.typeDesc` ＝ `UI_TYPE_*_DESC`）；`gestures`：權重 > 0 的行動（`debCase.w0..w3`），對手第一次以該行動翻牌（`reveal` 紀錄）後記下小動作（`dbui.gl<n>`，`debCase.g0..g3`），之前是 `UI_NOTES_GESTURE_EMPTY`。
+- **行為規則**：翻牌時，規則 1～4 ＝本回合的 `debTellRule`（回合開始時鎖住）是 r 且對手的行動正是規則指向的（1 補強、2 設陷、3 猛攻、4 主張）；規則 5 ＝對手前兩手相同（`dbui.oh1`／`oh2`）而這一手不同，且本案有規則 5。第一次觸發時記進 `notesRule`（跨章保留），本場次數 `dbui.rc<r>`（`UI_NOTES_RULE_COUNT`）。劇本列的回合 `debTellRule` 為 0，不記規則 1～4。
+- **回合紀錄**：每回合播完時一列 `UI_NOTES_LOG_ROW`（`{n}` 回合、`{tell}` 預兆：明示＝行動名、模糊＝`UI_DEB_TELL_CANDIDATES`、`{mine}` `BTN_DEB_*`、`{theirs}` `UI_ACT_*`／尾聲 `UI_TAIL`、`{result}` 該回合第一句結算台詞），文字在寫入當下的語言組好；讀錯＝引擎的讀對次數（`debReads`）這回合沒有增加；讀錯時的評語 `ART_REVIEW_*`：尾聲 `TAIL`、反駁對防守 `PARRY_WHIFF`、詭辯對設陷 `TRAP`、攻擊對攻擊 `CLASH`、攻擊對補強 `HEAL`，其他（例：失守以外對攻擊觀察）沒有（`DISGUISE` Ch.1～3 用不到）。
+- 三個清單在每回合開始、打開時、換語言時重寫；分頁 `tab` ＝ 開始時 0、`select_tab`、敗北回顧時 2；`review` ＝ `dbui.rev` ≠ 0。
+- **敗北回顧**（§4.2 SCR_RESULT「敗北時，結算前先開啟對手筆記的回合紀錄，紅框標出讀錯的回合」）：上述，`review` true（UI 對讀錯的列加紅框並顯示評語）。
+
+**音樂時機**（§4.10）：`world.bgmDeb` ＝ 熱身 `warmup`；Ch.1 布丁論戰 `pudding`（裁決 H2）；主論戰 `debate`，播放到對手的主導權第一次 ≤ 50%（`dmgOpp` 紀錄的「後」值）或第一次動搖（`statusGained|shaken`）之後 `debate2`（H1）；論破（`break|1`）之後 `break` 直到結束（H3）；大字 `CUT_REVERSE`／`CUT_BRINK` 之後 `reverse`／`brink`，`CUT_COUNTER` 回到 `break`（H3，Ch.1～3 不會觸發）。時機跟著揭示播放（`dbui.m8`／`m9`／`m10`），重新論戰時重來。
 
 ### 4.9 `result`（`result` 步驟；01-systems §4.2 SCR_RESULT、§3.1～3.3、§8.8、A-14；ui-contracts result）
 
 引擎的輸出在論戰結束後保留，結算圖直接讀。
 
 - `win`：`debOutcome` win 1／unachieved 2／其他 0；`opp_line`：勝利或未達成時，論戰場景最後一回合對手的第一句無標記台詞（`flowDebCase.winLine`：Ch.1 L028、Ch.2 L046、Ch.3 L045），敗北空白；勝利時若這句已在論戰後的 vn 播過（`script.cue` = `postWin`，`flowDebCase.winPlayed`：Ch.1 L028）也空白，不重播。
-- `stats`（`resStats`，依序）：回合數、截斷次數、最大單次傷害（`dbui.maxd`）、最長連鎖（`dbui.maxc`）、論破次數（`dbui.brks`：播放到的 `break|1` 紀錄）、援護使用、狐耳直覺使用、剩餘主導權（沒有主導權的論戰不列傷害、援護與主導權）。「讀對預兆」沒有資料（引擎不記），不列。
+- `stats`（`resStats`，依序）：回合數、讀對預兆（M5c：`UI_RES_READS` 代入 `{hit}` ＝ 引擎的 `debReads`、`{total}` ＝ 回合數，整句當標籤、值空白）、截斷次數、最大單次傷害（`dbui.maxd`）、最長連鎖（`dbui.maxc`）、論破次數（`dbui.brks`：播放到的 `break|1` 紀錄）、援護使用、狐耳直覺使用、剩餘主導權（沒有主導權的論戰不列傷害、援護與主導權）。標籤在寫入時在地化（`resStats` 的鍵是文字）。讀對＝那一回合玩家的行動是對手實際行動的有利應對（A-15 破竹的定義：對攻擊截斷、失守中對攻擊觀察、對補強觀察〔Ch.4 起詭辯也算，裁決 B20〕、對設陷實證或觀察、醜聞動搖或論破成立；尾聲回合＝答對），由引擎計算（`docs/debate-engine.md` §3.2 `rd`）。
 - 信任度（§3.1）：永久值 `perm` ＝ 3 ＋ `progress.trustAdj`；變動 ＝ `chapters.trustDebate` 時勝 +1／敗 −1，加 `trustNotoriety` 且惡名 ≥3 時 −1（設計是下一案開始時套用，數值相同）；`trust_from`／`to` 只在 `chapters.trustShown`（Ch.3）顯示。
 - `comment`：勝利 惡名 0 `ART_RES_CLEAN`、1～2 `MID`、≥3 `NOTORIOUS`；敗北（含未達成）`LOSE`、惡名 ≥3 `LOSE_NOTO`。
 - `costs`（敗北）：信任度下降時 `UI_RES_COST_TRUST`，再加本案的扣押（10-cases：Ch.2 E02_01、Ch.3 E03_04，`flowDebCase.seize`；`UI_RES_COST_SEIZE` 以 `atrium.textf` 填卡名 `{name}`）。清單寫的是已在地化的文字（寫入當下的語言；清單本來就只在結算開始時寫一次）。`can_retry` ＝ 敗北。
 - **繼續**：寫 `progress.trustAdj`、`world.caseOutcome`（§3.3：敗北 `lose`、勝利且惡名 ≥3 `notorious`、否則 `win`）；勝利時加入本章 `obtain = afterDebate` 的卡（F3：E02_08 進私人收藏 `held`）；Ch.2 敗北移除 G-01（10-cases：Ch.3 改由 S-01 取代）；`world.resultBranch`（win／lose）後發 `world.resultLines`，`dialogue` 播放結算場景的那一支，播完結束步驟。
 - **重新論戰**（A-14）：發 `world.debRetry`。所有後果都在「繼續」時才套用，所以重來時沒有東西要還原；板面（`debBoard*`）不變，引擎由 `debStart` 重設。
+
+### 4.10 `music`（音樂掛鉤；裁決 H1～H3、`docs/audio-requests.md`）
+
+框架目前（本專案用的 SDK）沒有音樂播放；XTAtrium AT-050（b5077fc）已提供 `game.json` 的 `audio.music`／`audio.channels` 與 `atrium.music.play`／`stop`／`volume`／`playing`，但缺檔案時載入就失敗（`play` 在開始時驗證每個檔），而音檔還沒有，所以這裡只留掛鉤，不宣告 `audio.music`、不放 `atrium.music.play`。
+
+- `world.bgmMoment` ＝ 依步驟種類：沒有步驟／`end` `title`、`paper`／`vn` `daily`、`investigate`、`board`、`result`；`debate`／`warmup` 步驟＝`debate_ui` 的 `world.bgmDeb`（§4.8；含開場與收尾台詞的 vn）。
+- `world.bgm` ＝ `flowBgm`（時機 → BGM id；`tools/gen_debui.py` `BGM`）：title BGM01、daily BGM02、investigate BGM05、board BGM06、debate BGM07、debate2 BGM08、pudding BGM12、warmup BGM07、break BGM09、reverse／brink BGM10、result BGM11。
+- 接上播放（音檔到位後）：`game.json` 加 `audio.music`（每個 BGM id 一個條目，`loop` true）與 `audio.channels`，`music` 圖加一個 `atrium.music.play`（channel `bgm`，cue ＝ `world.bgm`，fadeIn 約 1 秒），由 `world.bgm` 的變化觸發（例：`filter` deadband 或 `compare` 的變化脈衝）。每個時機就是一列 `flowBgm`，換曲只改表。
 
 ## 5. 輔助表 `data/flow/`
 
@@ -245,10 +278,12 @@
 
 | 表 | 一列 | 內容 |
 |---|---|---|
-| `flowCard` | 一張證物卡 | 數字化的 `grade`（0 一般、1 關鍵、2 劇情、3 黃金、4 替代，＝ UI 的 grade）與 `appraise`（0～3）、`story`／`goldenCard`／`sub`／`fixed`／`hidden`／`policeFull` 旗標、`reason1..3`（＝`reason0..2Key`）、`tags`／`hiddenTags`／`grazingTags` 與拆開的 `tag0..3` |
+| `flowCard` | 一張證物卡 | `apprLine`（＝`evidence.appraisalKey`，鑑定台詞，§4.6）；數字化的 `grade`（0 一般、1 關鍵、2 劇情、3 黃金、4 替代，＝ UI 的 grade）與 `appraise`（0～3）、`story`／`goldenCard`／`sub`／`fixed`／`hidden`／`policeFull` 旗標、`reason1..3`（＝`reason0..2Key`）、`tags`／`hiddenTags`／`grazingTags` 與拆開的 `tag0..3` |
 | `flowSpot` | 一個蒐證階段的調查點 | 數字化的 `type`（0 檢視、1 證物、2 證詞）、`yield`（產出的卡，最多一張，產生器驗證）、`reqMissing`（`requires = missing:X` 的 X）、名稱與筆記鍵、`reportNote`（警方報告後的筆記鍵，§4.4）、矩形、反應台詞 `nLines` 與 `line0..`／`spk0..`（台詞鍵、說話者鍵；欄數＝各點最多的句數） |
 | `flowScene` | 章 × 場景 | 鍵 `章:索引`；`bg`（`hotspots.scene` → vn 背景 id）、`nameKey`（場景名 `SCENE_CH0x_*`，`tools/gen_flows.py` 的 `SCENE_NAME`；缺鍵時產生器報錯）、該場景的點 |
 | `flowCase` | 一章 | 場景數、全部點、事件中取得的卡、警方報告的卡、可上板的卡 |
+
+論戰 UI 與結算的表（`tools/gen_debui.py`）：`flowDebCase`（每場論戰：模式、立繪、名牌與類型鍵、類型說明 `typeDesc`、手牌、結局台詞、扣押、論戰後取得的卡）、`flowWord`、`flowNodeView`、`flowEvLine`（含尾聲出錯牌的台詞）、`flowCut`、`flowBgm`（音樂時機 → BGM id，§4.10）。
 
 ### 5.2 清單 port 的來源
 
@@ -264,10 +299,13 @@
 | `board.links` | `linkMap`（格 → kind） | `chain`、`pos` ＝ `table:flowLink[key].*`（`flowLink`：連結格 → 鏈、位置，12 列） |
 | `board.chain_info` | `chainMap`（鏈 → 預估傷害，依鏈序寫入） | `chain` ＝ `index`；`cards`、`solid`、`soph` ＝ `map:chainCards`／`chainSolid`／`chainSoph` |
 | `debate.nodes`、`debate.chains`、`debate.parry_cards` | §4.8 | `flowNodeView`：節點 id（含脆弱節點 F1～F12）→ `textKey`、`src`（恆空） |
+| `notes.gestures` | `uiNoteG`（行動鍵 → 小動作鍵） | `act` ＝ `key`、`text` ＝ `value`，兩者在地化 |
+| `notes.rules` | `uiNoteR`（規則鍵 → 次數文字） | `text` ＝ `key`（在地化）、`count` ＝ `value` |
+| `notes.log` | `uiLog`（回合 → 列文字） | `mark` ＝ `map:uiLogMis`、`note` ＝ `map:uiLogNote`（在地化） |
 
 ## 6. 驗證
 
-`tests/README.md`。
+`tests/README.md`。跑主遊戲（或它的副本）的檢查（`check_case`、`check_playthrough`、`check_debate_play`）先執行 `xtatrium compile --game E:\coding4\Sherefox`（AT-036，`tests/xt_cli.py` `compile_game`），端點錯誤在重播之前就擋下。
 
 - `uv run tests/check_playthrough.py`：story 流程（M2 的檢查），蒐證與線索板以最短路線通過（`tests/gen_case.py` 的 `MINIMAL`，第一次按「進入論戰」只顯示警告、第二次進入）；結尾卡關掉後連點同一章（值不變，經 `.emitted`）也會重新開始。
 - `uv run tests/check_case.py [--frames DIR]`：Ch.1 調查全部 10 點、不鑑定、組推薦鏈 E01_01→E01_04 並選對全部理由；Ch.2 用 3 次鑑定（1 次在證物冊）、漏 E02_05、一條詭辯（E02_04 理由錯）、一次無效彈回、兩條鏈。比對刻度、彈窗種類、提示與亞瑟台詞序列、清單 port 的 JSON（點、抽屜、格、連結、銅牌）、`oppHand`、`appraised`、`golden`，以及 `debBoard*` 與 ref 對同一路線的板面（`fixtures.ch1_board`；Ch.2 為 `ch2_case` 改 E02_04 理由錯、兩條鏈）逐格相等。
@@ -278,15 +316,16 @@
 
 ### 7.1 已知限制
 
-1. ~~調查時不播放 `hotspots.lines`~~：M5b 反應台詞在彈窗內播放（§4.4）。鑑定台詞 `evidence.appraisalKey` 仍沒有出口（證物冊與線索板的鑑定只說 `ART_APPR_*`）。
+1. ~~調查時不播放 `hotspots.lines`~~：M5b 反應台詞在彈窗內播放（§4.4）。~~鑑定台詞~~：M5c 在鑑定時播放（§4.6）。
 2. ~~「理由未定的卡不能連結」與「未選理由的卡不參戰」~~：M4c 照設計修正（§4.5）。
 3. 放卡一律接成連續的鏈；不能在同一列內直接移動（先收回再放）；拖曳與自由擺放不做（ui-contracts board 原型簡化）。
-4. 刻度歸零時在關閉彈窗後結束（設計：3 秒後自動結束）；「全部調查完畢」時自動跳出的確認（設計 §1.7；原型只在按「結束蒐證」時以 `WARN_INV_END_ZERO` 確認）、`WARN_BOARD_LOCK` 確認、閒置台詞（`ART_IDLE_*`、30 秒）沒做。`WARN_INV_END` 與漏證／補撿訊息 M5b 已做（§4.4）。
+4. 刻度歸零時在關閉彈窗後結束（設計：3 秒後自動結束）；`WARN_BOARD_LOCK` 確認、閒置台詞（`ART_IDLE_*`、30 秒）沒做。（「全部調查完畢」的自動確認 M5c 已做，§4.4。）`WARN_INV_END` 與漏證／補撿訊息 M5b 已做（§4.4）。
 5. 熱身的本案信任度修正已接上（§4.8）；鑑定在熱身中用掉次數（F5）沒做（熱身不開放鑑定）。
 6. 每個調查點最多產出 1 張卡（Ch.1～3 成立，產生器驗證）。
 7. Ch.1 板面的亞瑟台詞照用（Ch.1 沒有 SHF_ 版的線索板台詞）。（`area_name` M5b 已寫入場景名。）
 8. 同 M2：`sceneKey` 只適用 Ch.1～9；`dateline`、`mast`、`stamp` 沒有資料。
-9. 論戰（§4.8）：論戰場景（`steps.scene` S05／S06）中 `script.cue` 為空的台詞是推薦路線的逐字稿，不播放（開場與收尾的台詞 M5b 已在 vn 播放，§4.2）；「（若尾聲出錯牌）」的系統列（Ch.2 L047、Ch.3 L046）沒有接到尾聲出錯的揭示；Ch.3 熱身失誤 3 次（本案信任度降為 2）時收場台詞照播 L008「驗屍報告給妳」與 L009（劇本沒有另一支）。對手筆記、對決表的推薦、讀對預兆統計、`st_flags`（不能補強、必定攻擊、聽眾不耐）、預估列的 `preview_vs`、臨場硬接、首次大字必定完整播放、印章「落空的那一方」都沒做；跳過時不播大字。
+9. 論戰（§4.8）：論戰場景（`steps.scene` S05／S06）中 `script.cue` 為空的台詞是推薦路線的逐字稿，不播放（開場與收尾的台詞 M5b 已在 vn 播放，§4.2）。對決表的推薦（故事模式）、首次大字必定完整播放、印章「落空的那一方」、逆・論破警告沒做；跳過時不播大字。（M5c 已做：尾聲出錯牌的結算台詞、熱身失敗的收尾台詞、對手筆記與敗北回顧、讀對預兆、`st_flags`、`preview_vs`、臨場硬接。）熱身失敗在目前的資料下走不到：熱身的手牌 E03_05、E03_02 都破解 W1，選擇器只列破解的卡（§4.4），所以出示不會失誤；分支以 `tests/warmfail_harness`（失誤上限 0）測試。
+11. 對手筆記：回合紀錄與次數文字在寫入當下的語言組好（換語言後舊列不變）；「翻閱時畫面暫停」做成節拍停住（停留時間在關閉後照原本的時刻結算）；名偵探難度不記小動作（沒有難度設定）沒做。
 10. 尾聲反撲的揭示台詞用 `cornered` 組（G3 沒有指定組）；脆弱節點沒有文字（只有 `UI_NODE_FRAGILE` 小標）；`src`（來自漏證的節點）恆空（引擎未實作手牌補入，`docs/debate-engine.md` §7.4）。
 
 ### 7.2 對 XTAtrium 的請求

@@ -6782,5 +6782,21 @@
  "UI_DEB_PREVIEW_HACHIKU": {
   "zh-TW": "破竹 +{pct}%",
   "en": "Unstoppable +{pct}%"
+ },
+ "SCR_CH03_S04_F001": {
+  "zh-TW": "夠了，狐狸小姐！說錯三次，還想跟本警督要驗屍報告？門都沒有！",
+  "en": "Enough, Miss Fox! Three wrong guesses, and you still want this Inspector's post-mortem report? Not a chance!"
+ },
+ "SCR_CH03_S04_F002": {
+  "zh-TW": "船夫照樣羈押。甲板妳要看就自己去看，別指望本警督再幫忙。",
+  "en": "The bargeman stays in custody. Look at the deck yourself if you must, but don't expect any more help from this Inspector."
+ },
+ "SCR_CH03_S04_F003": {
+  "zh-TW": "沒關係，報告我們自己寫。遺體交給我，這種傷我在野戰醫護站見過。",
+  "en": "Never mind; we'll write the report ourselves. Leave the body to me. I've seen wounds like these at a field dressing station."
+ },
+ "SCR_CH03_S04_F004": {
+  "zh-TW": "警督信任度 2 以下：未取得驗屍報告；遺體（E03_01）需由亞瑟進行醫療鑑定。",
+  "en": "Inspector's Trust 2 or lower: the post-mortem report is withheld; Arthur must perform a medical appraisal on the body (E03_01)."
  }
 }

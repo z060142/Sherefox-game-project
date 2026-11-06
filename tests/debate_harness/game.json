@@ -197,6 +197,18 @@
    "type": "number",
    "initial": 0
   },
+  "debReads": {
+   "type": "number",
+   "initial": 0
+  },
+  "debNoReinf": {
+   "type": "number",
+   "initial": 0
+  },
+  "debMustAtk": {
+   "type": "number",
+   "initial": 0
+  },
   "dwActive": {
    "type": "number",
    "initial": 0

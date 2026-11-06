@@ -11451,7 +11451,7 @@
       }
     },
     {
-      "id": "ap_line",
+      "id": "ap_line0",
       "type": "lookup",
       "params": {
         "values": [
@@ -11463,6 +11463,37 @@
           "ART_APPR_DUAL"
         ]
       }
+    },
+    {
+      "id": "ap_apprLine",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "apprLine",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ap_hasALC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "ap_hasAL",
+      "type": "select"
+    },
+    {
+      "id": "ap_useAL",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ap_idx >= 3 && ap_hasAL"
+      }
+    },
+    {
+      "id": "ap_line",
+      "type": "select"
     },
     {
       "id": "ap_newLeft",
@@ -27681,7 +27712,51 @@
     },
     {
       "from": "ap_idx.value",
-      "to": "ap_line.index"
+      "to": "ap_line0.index"
+    },
+    {
+      "from": "ap_row.row",
+      "to": "ap_apprLine.row"
+    },
+    {
+      "from": "ap_apprLine.value",
+      "to": "ap_hasALC.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "ap_hasALC.b"
+    },
+    {
+      "from": "ap_hasALC.out",
+      "to": "ap_hasAL.cond"
+    },
+    {
+      "from": "K11.out",
+      "to": "ap_hasAL.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "ap_hasAL.b"
+    },
+    {
+      "from": "ap_idx.value",
+      "to": "ap_useAL.ap_idx"
+    },
+    {
+      "from": "ap_hasAL.out",
+      "to": "ap_useAL.ap_hasAL"
+    },
+    {
+      "from": "ap_useAL.truth",
+      "to": "ap_line.cond"
+    },
+    {
+      "from": "ap_apprLine.value",
+      "to": "ap_line.a"
+    },
+    {
+      "from": "ap_line0.out",
+      "to": "ap_line.b"
     },
     {
       "from": "apprLeft.value",

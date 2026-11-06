@@ -301,6 +301,41 @@
     },
     "vnShow": {
       "type": "pulse"
+    },
+    "debRetrying": {
+      "type": "bool",
+      "initial": false
+    },
+    "notesOpen": {
+      "type": "pulse"
+    },
+    "notesShown": {
+      "type": "bool",
+      "initial": false
+    },
+    "bgmMoment": {
+      "type": "string",
+      "initial": "title"
+    },
+    "bgm": {
+      "type": "string",
+      "initial": "BGM01"
+    },
+    "debReads": {
+      "type": "number",
+      "initial": 0
+    },
+    "debNoReinf": {
+      "type": "number",
+      "initial": 0
+    },
+    "debMustAtk": {
+      "type": "number",
+      "initial": 0
+    },
+    "bgmDeb": {
+      "type": "string",
+      "initial": ""
     }
   },
   "input": {
@@ -316,7 +351,8 @@
     "flows/debate_ui.xtflow",
     "flows/debate_engine.xtflow",
     "flows/debate_warmup.xtflow",
-    "flows/result.xtflow"
+    "flows/result.xtflow",
+    "flows/music.xtflow"
   ],
   "ui": {
     "bundle": "ui/bundle",
@@ -371,6 +407,13 @@
         "modal": true
       },
       {
+        "ui": "notes",
+        "width": 1280,
+        "height": 720,
+        "visible": false,
+        "modal": true
+      },
+      {
         "ui": "cutin",
         "width": 1280,
         "height": 720
@@ -419,7 +462,8 @@
     "flowWord": "data/flow/flowWord.json",
     "flowNodeView": "data/flow/flowNodeView.json",
     "flowEvLine": "data/flow/flowEvLine.json",
-    "flowCut": "data/flow/flowCut.json"
+    "flowCut": "data/flow/flowCut.json",
+    "flowBgm": "data/flow/flowBgm.json"
   },
   "collections": {
     "held": {
@@ -618,12 +662,12 @@
     "dbui": {
       "kind": "map",
       "type": "number",
-      "capacity": 32
+      "capacity": 64
     },
     "dbuiS": {
       "kind": "map",
       "type": "string",
-      "capacity": 16
+      "capacity": 32
     },
     "caseMod": {
       "kind": "map",
@@ -756,6 +800,66 @@
       "kind": "map",
       "type": "string",
       "capacity": 2
+    },
+    "debBoardS": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24
+    },
+    "debBoardOkS": {
+      "kind": "list",
+      "type": "number",
+      "capacity": 24
+    },
+    "debBoardLinkS": {
+      "kind": "list",
+      "type": "number",
+      "capacity": 24
+    },
+    "uiImpK": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 9
+    },
+    "uiImpS": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 9
+    },
+    "uiImpO": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 9
+    },
+    "notesRule": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 8
+    },
+    "uiNoteG": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 4
+    },
+    "uiNoteR": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 8
+    },
+    "uiLog": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "uiLogMis": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 32
+    },
+    "uiLogNote": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
     }
   }
 }

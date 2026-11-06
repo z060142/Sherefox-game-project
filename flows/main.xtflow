@@ -193,6 +193,13 @@
       }
     },
     {
+      "id": "retrying",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
       "id": "screen",
       "type": "state",
       "params": {
@@ -410,17 +417,21 @@
       "type": "select"
     },
     {
+      "id": "retryN",
+      "type": "select"
+    },
+    {
       "id": "debPre",
       "type": "atrium.expr",
       "params": {
-        "expr": "(isDebN || isWarmN) && hasPre"
+        "expr": "(isDebN || isWarmN) && hasPre && !retryN"
       }
     },
     {
       "id": "debNoPre",
       "type": "atrium.expr",
       "params": {
-        "expr": "(isDebN || isWarmN) && noPre"
+        "expr": "(isDebN || isWarmN) && (noPre || retryN)"
       }
     },
     {
@@ -639,6 +650,39 @@
           true
         ]
       }
+    },
+    {
+      "id": "notes",
+      "type": "state",
+      "params": {
+        "initial": "closed",
+        "states": [
+          "closed",
+          "open"
+        ],
+        "transitions": [
+          {
+            "from": "closed",
+            "on": "open",
+            "to": "open"
+          },
+          {
+            "from": "*",
+            "on": "close",
+            "to": "closed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "notesVis",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          true
+        ]
+      }
     }
   ],
   "edges": [
@@ -729,6 +773,22 @@
     {
       "from": "chPick.out",
       "to": "cur.set"
+    },
+    {
+      "from": "world.debRetry",
+      "to": "retrying.setTrue"
+    },
+    {
+      "from": "world.stepDone",
+      "to": "retrying.setFalse"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "retrying.setFalse"
+    },
+    {
+      "from": "retrying.value",
+      "to": "world.debRetrying"
     },
     {
       "from": "world.stepDone",
@@ -923,6 +983,18 @@
       "to": "isWarmN.b"
     },
     {
+      "from": "retrying.value",
+      "to": "retryN.cond"
+    },
+    {
+      "from": "K0.out",
+      "to": "retryN.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "retryN.b"
+    },
+    {
       "from": "isDebN.out",
       "to": "debPre.isDebN"
     },
@@ -935,6 +1007,10 @@
       "to": "debPre.hasPre"
     },
     {
+      "from": "retryN.out",
+      "to": "debPre.retryN"
+    },
+    {
       "from": "isDebN.out",
       "to": "debNoPre.isDebN"
     },
@@ -945,6 +1021,10 @@
     {
       "from": "noPre.value",
       "to": "debNoPre.noPre"
+    },
+    {
+      "from": "retryN.out",
+      "to": "debNoPre.retryN"
     },
     {
       "from": "world.debGo",
@@ -1101,6 +1181,30 @@
     {
       "from": "bookVis.out",
       "to": "world.bookOpen"
+    },
+    {
+      "from": "world.notesOpen",
+      "to": "notes.open"
+    },
+    {
+      "from": "ui#notes.close",
+      "to": "notes.close"
+    },
+    {
+      "from": "rebegin.out",
+      "to": "notes.close"
+    },
+    {
+      "from": "notes.index",
+      "to": "notesVis.index"
+    },
+    {
+      "from": "notesVis.out",
+      "to": "ui#notes.visible"
+    },
+    {
+      "from": "notesVis.out",
+      "to": "world.notesShown"
     }
   ]
 }

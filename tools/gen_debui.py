@@ -38,8 +38,8 @@ SLOTS = 15          # chain slots of debBoard (docs/debate-engine.md §2.2)
 SEG = 5             # longest segment (01-systems §2.5)
 
 COLLECTIONS = {
-    "dbui": {"kind": "map", "type": "number", "capacity": 32},
-    "dbuiS": {"kind": "map", "type": "string", "capacity": 16},
+    "dbui": {"kind": "map", "type": "number", "capacity": 64},
+    "dbuiS": {"kind": "map", "type": "string", "capacity": 32},
     "caseMod": {"kind": "map", "type": "number", "capacity": 4},     # this case only: warmup trust (A-13, §3.1)
     "progress": {"kind": "map", "type": "number", "capacity": 8},    # across chapters: trust (offset from 3)
     "uiNodeIds": {"kind": "list", "type": "string", "capacity": 16},
@@ -56,14 +56,46 @@ COLLECTIONS = {
     "uiActWhy": {"kind": "list", "type": "string", "capacity": 4},        # debate.act_reason: string keys (bare)
     "evF": {"kind": "list", "type": "string", "capacity": 8},
     "evN": {"kind": "list", "type": "number", "capacity": 8},
-    "resStats": {"kind": "map", "type": "string", "capacity": 12},
+    "resStats": {"kind": "map", "type": "string", "capacity": 12},     # localized label -> value
+    # M5c: the board as locked (restored on a retry: improvised links do not survive it), 臨場硬接 candidates
+    "debBoardS": {"kind": "list", "type": "string", "capacity": SLOTS + 9},
+    "debBoardOkS": {"kind": "list", "type": "number", "capacity": SLOTS + 9},
+    "debBoardLinkS": {"kind": "list", "type": "number", "capacity": SLOTS + 9},
+    "uiImpK": {"kind": "map", "type": "number", "capacity": 9},          # candidate card -> link kind 1 / 2
+    "uiImpS": {"kind": "map", "type": "number", "capacity": 9},          # candidate card -> its loose slot
+    "uiImpO": {"kind": "map", "type": "number", "capacity": 9},          # candidate card -> reason ok
+    # M5c: the opponent notes (01-systems §4.4): notes.gestures / rules / log
+    "notesRule": {"kind": "map", "type": "number", "capacity": 8},       # rules 1..5 learned (across chapters)
+    "uiNoteG": {"kind": "map", "type": "string", "capacity": 4},         # action key -> gesture key (or empty)
+    "uiNoteR": {"kind": "map", "type": "string", "capacity": 8},         # rule key -> count text
+    "uiLog": {"kind": "map", "type": "string", "capacity": 32},          # round -> row text
+    "uiLogMis": {"kind": "map", "type": "bool", "capacity": 32},         # round -> misread
+    "uiLogNote": {"kind": "map", "type": "string", "capacity": 32},      # round -> ART_REVIEW_* key
     "resCosts": {"kind": "list", "type": "string", "capacity": 8},
 }
 SIGNALS = {
     "resultLines": {"type": "pulse"},                    # result -> main, dialogue: play the result scene's lines
     "resultBranch": {"type": "string", "initial": "win"},  # script.branch of those lines (win / lose)
     "debRetry": {"type": "pulse"},                       # result -> main: back to the debate step (A-14 retry)
+    "bgmDeb": {"type": "string", "initial": ""},         # debate_ui -> music: the debate's music moment (H1-H3)
 }
+# Ruling H1-H3 / docs/audio-requests.md: the BGM of each music moment (flowBgm; the `music` flow writes world.bgm)
+BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board", "BGM06"), ("debate", "BGM07"),
+       ("debate2", "BGM08"), ("pudding", "BGM12"), ("warmup", "BGM07"), ("break", "BGM09"), ("reverse", "BGM10"),
+       ("brink", "BGM10"), ("result", "BGM11")]
+# The tail answered wrong (−30): the debate scene's 「（若尾聲出錯牌）」 system line is the round's result line
+# (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046); other cases keep MSG_TAIL_WRONG.
+TAIL_WRONG = {"CH02_MAIN": "SCR_CH02_S05_L047", "CH03_MAIN": "SCR_CH03_S06_L046"}
+# Arthur's review line of a misread round (01-systems §4.4 敗北時 ..., §8.6 ART_REVIEW_*): (player code, opponent
+# code) -> key; player 0 solid / 1 sophistry / 2 rebut / 3 observe, opponent 0 assert / 1 rush / 2 reinforce /
+# 3 trap / 4 the tail. ART_REVIEW_DISGUISE (no disguise in Ch.1-3) is not used; a misread with no fitting line
+# (observe into an attack) has none.
+REVIEW = ("{o} == 4 ? 1 : {p} == 2 && ({o} == 2 || {o} == 3) ? 2 : {p} == 1 && {o} == 3 ? 3 : "
+          "{p} <= 1 && {o} <= 1 ? 4 : {p} <= 1 && {o} == 2 ? 5 : 0")
+REVIEW_KEYS = ["", "ART_REVIEW_TAIL", "ART_REVIEW_PARRY_WHIFF", "ART_REVIEW_TRAP", "ART_REVIEW_CLASH", "ART_REVIEW_HEAL"]
+ACT_KEYS = ["UI_ACT_CLAIM", "UI_ACT_RUSH", "UI_ACT_REINFORCE", "UI_ACT_TRAP", "UI_TAIL"]   # opponent action names
+BTN_KEYS = ["BTN_DEB_SOLID", "BTN_DEB_SOPH", "BTN_DEB_PARRY", "BTN_DEB_OBSERVE"]          # player action names
+RULE_ACT = {1: 2, 2: 3, 3: 1, 4: 0}   # behaviour rule -> the action it points at (A-3)
 
 
 # ---------------------------------------------------------------------------------------------- support tables
@@ -115,8 +147,10 @@ def tables() -> dict[str, list[dict]]:
         line = result_line(o["id"], o["chapter"], st["scene"], o["speaker"]) if st and mode != 1 else ""
         seize, ungold = LOSE_COSTS.get(o["chapter"], ("", "")) if mode == 0 else ("", "")
         after = [e["id"] for e in ev if e["chapter"] == o["chapter"] and e["obtain"] == "afterDebate"] if mode != 1 else []
+        tkey = TYPE_KEY[o["type"]]
         case_rows.append({"id": o["id"], "chapter": o["chapter"], "mode": mode, "char": chars.get(o["speaker"], ""),
-                          "nameKey": o["speaker"], "typeKey": TYPE_KEY[o["type"]], "handPer": o["handPerMissed"],
+                          "nameKey": o["speaker"], "typeKey": tkey, "typeDesc": tkey + "_DESC" if tkey else "",
+                          "handPer": o["handPerMissed"],
                           "hpPer": o["hpPerMissed"], "hand": o["hand"] if mode == 1 else "",
                           "soph": int("sophistry" in split(o["playerActions"])),
                           "winLine": line, "winPlayed": int(line in post_win), "seize": seize, "ungold": ungold,
@@ -164,7 +198,7 @@ def tables() -> dict[str, list[dict]]:
         put("statusGained", "tail", "MSG_TAIL_START")
         put("break", "1", "UI_BREAK_LINE")
         put("breakVoided", "", "MSG_TAIL_TIMEOUT")
-        put("tailResult", "0", "MSG_TAIL_WRONG")
+        put("tailResult", "0", TAIL_WRONG.get(cid, "MSG_TAIL_WRONG"))
         for n in range(1, 5):
             put("contradiction", n, "MSG_CH1_CONTRA")
         put("linkSnapped", "", "MSG_DEB_LINK_CUT")
@@ -198,7 +232,7 @@ def tables() -> dict[str, list[dict]]:
         cut.append({"key": f"STAMP_HACHIKU{n}|0", "big": "", "stamp": "STAMP_HACHIKU", "n": n,
                     "sub": "STAMP_HACHIKU_SUB", "dwell": 1})
     return {"flowDebCase": case_rows, "flowWord": word, "flowNodeView": node_view, "flowEvLine": ev_rows,
-            "flowCut": cut}
+            "flowCut": cut, "flowBgm": [{"moment": m, "bgm": b} for m, b in BGM]}
 
 
 # ---------------------------------------------------------------------------------------------- helpers
@@ -292,13 +326,16 @@ def gen_debui() -> Graph:
     crow = g.tfind("dcRow", "flowDebCase", "id", case)
     for c in ("mode", "handPer", "hpPer", "soph"):
         g.tget("dc_" + c, "flowDebCase", c, crow, "number")
-    for c in ("char", "nameKey", "typeKey", "hand"):
+    for c in ("char", "nameKey", "typeKey", "typeDesc", "hand"):
         g.tget("dc_" + c, "flowDebCase", c, crow)
     erow = g.tfind("ecRow", "debCase", "id", case)
     for c in ("ssOn", "brChain", "ch1", "conD", "conT", "rcap", "base", "per", "rushN", "rushD", "tw", "fox",
-              "assists", "cap"):
+              "assists", "cap", "hp", "impR", "impA", "kjN", "kjD", "kjOn", "counter", "crit", "ru5",
+              "w0", "w1", "w2", "w3"):
         g.tget("ec_" + c, "debCase", c, erow, "number")
     g.tget("ec_t", "debCase", "t", erow)
+    for i in range(4):
+        g.tget(f"ec_g{i}", "debCase", f"g{i}", erow)
     # missed cards (01-systems §1.8, ruling D4): hand +handPerMissed and HP +hpPerMissed each, from debStart on
     g.count("missed", "oppHand")
     g.x("bonus", "isDebN ? missed * dc_hpPer : 0")
@@ -306,16 +343,17 @@ def gen_debui() -> Graph:
     g.x("handN", "isDebN ? missed * dc_handPer : 0")
 
     # ---- UI state (map dbui; slots are stored + 1, 0 = none)
-    for k in ("ph", "act", "sa", "sb", "segPh", "armed", "fast", "ev", "hold", "fin", "maxd", "maxc", "brks", "hpO", "hpM"):
+    for k in ("ph", "act", "sa", "sb", "segPh", "armed", "fast", "ev", "hold", "fin", "maxd", "maxc", "brks", "hpO", "hpM",
+              "imp", "impR", "rev", "oh1", "oh2", "m8", "m9", "m10", "lrn1"):
         g.mget("d_" + k, "dbui", g.k(k))
-    for k in ("card", "target", "msg", "rl", "fo", "fm"):
+    for k in ("card", "target", "msg", "rl", "fo", "fm", "lr1"):
         g.mget("s_" + k, "dbuiS", g.k(k))
 
     # ---- engine outputs, latched when a round is shown (snap) so the screen keeps the round's tell and state
     snap = g.merge("snap")   # inputs added below (round start, after the instinct)
     num = ["debRound", "debTellStarRule", "debShaken", "debInTail", "debTailLeft", "debHachiku", "debHachikuMode",
            "debKonju", "debShisshu", "debContra", "debInstinctLeft", "debAssist", "debVoids", "debPlayerMax",
-           "debOppMax", "debFragile", "dwRound", "dwMistakes"]
+           "debOppMax", "debFragile", "dwRound", "dwMistakes", "debTellRule", "debNoReinf", "debMustAtk", "debReads"]
     txt = ["debTellClarity", "debTellShown1", "debTellShown2", "debTellStar", "debTellBasis", "debTellLit",
            "debTellGesture", "debTellLine", "dwClaim"]
     for sig in num + txt:
@@ -386,8 +424,22 @@ def gen_debui() -> Graph:
     # ---- what can be pressed (01-systems §4.4 四個行動按鈕, A-13: the warmup only rebuts)
     g.count("parryCnt", "uiParryAll")
     g.count("chainCnt", "uiChains")
+    # 臨場硬接 (01-systems §4.4 詭辯, A-2, A-7): one new link a round, from the last card of the chosen segment's chain
+    # (the segment ends there, the chain has fewer than 5 cards) to a loose card (debBoard 15..), judged by the board's
+    # rule (§2.4, ruling C4). Only a chain's tail grows, so a link cut this round is never bridged.
+    for i in range(SLOTS, SLOTS + 9):
+        g.cget(f"lz{i}", "debBoard", g.k(i))
+        g.n(f"lzN{i}", g.cmp(f"lzC{i}", f"lz{i}", g.k("-"), "ne"))
+    g.x("looseN", " + ".join(f"lzN{i}" for i in range(SLOTS, SLOTS + 9)))
+    g.x("impFree", "isDebN && dc_soph && d_impR != L_Round && looseN > 0")
+    g.x("tailNext", "segHi + 1")
+    g.cget("segNext", "debBoard", "tailNext")
+    g.n("segNextE", g.cmp("segNextC", "segNext", g.k("-"), "eq"))
+    g.x("impOk", "impFree && d_ph == 0 && d_act == 2 && d_sa > 0 && segSoph == 0 && !d_imp && "
+                 "segHi - 5 * floor(segHi / 5) < 4 && segNextE")
+    g.edge("impOk.truth", "ui#debate.improv_ok")
     g.x("en1", "isDebN && chainCnt > 0")
-    g.x("en2", "isDebN && dc_soph && sophAvail > 0")
+    g.x("en2", "isDebN && dc_soph && (sophAvail > 0 || (impFree && chainCnt > 0))")
     g.x("en3", "hasLitN && !shiss && (parryCnt > 0 || (isDebN && (breakR || tailN)))")
     g.x("en4", "isDebN")
     why1 = g.sel("why1", "en1_t", g.k(""), g.k("MSG_DEB_NO_TARGET"))
@@ -462,7 +514,6 @@ def gen_debui() -> Graph:
     preview = ssel(g, "preview", [(g.b("pv12", g.x("pv12n", "(d_act == 1 || d_act == 2) && segL > 0")), "pvAtk"),
                                   (g.b("pv3", g.x("pv3n", "d_act == 3 && isDebN")), "pvParry.text")], g.k(""))
     g.edge(preview, "ui#debate.preview")
-    g.edge(g.k(""), "ui#debate.preview_vs")
 
     # ---- plain ports
     g.edge("dc_mode", "ui#debate.mode")
@@ -528,6 +579,59 @@ def gen_debui() -> Graph:
                          (g.b("cpRush", g.x("cpRushN", "rushN && !fuzzyN")), "cpR"),
                          (g.b("cpAsrt", g.x("cpAsrtN", "asrtN || asrt2N || rush2N || rushN")), "cpA")], g.k(""))
     g.edge(cp, "ui#debate.claim_preview")
+
+    # ---- preview_vs (§4.4 預估列: UI_DEB_PREVIEW_VS 「若{action}：{result}」 for each candidate of the tell), with the
+    # engine's formulas (docs/debate-engine.md §3.1): the chain damage (half on a clash or a solid chain into a
+    # reinforce, nothing into a trap with sophistry, +10 on a fragile node), the claim / rush the player takes on a
+    # clash (×1.25 rush, ×1.25 困獸, +5 from round 15), the 25 crit of a trap (none with the assist armed); a rebut:
+    # the counter (破竹 +10% a stack) or the whiff
+    g.x("vsStacks", "L_HachikuMode == 2 ? L_Hachiku : 0")
+    g.x("vsCtr", "vsStacks ? ec_counter * (10 + vsStacks) / 10 : ec_counter")
+    g.x("vsFrag", "L_Fragile > 0 ? 10 : 0")
+    g.x("vsBrk", "d_act == 1 && breakR && thr")
+    g.text("vsClashT", g.k("MSG_DEB_CLASH"))
+    g.text("vsTrapT", g.k("MSG_DEB_TRAP_HIT"))
+    g.text("vsWhiffT", g.k("MSG_DEB_PARRY_WHIFF"))
+    vs = []
+    for j, ts in ((1, "ts1"), (2, "ts2")):
+        c = f"vs{j}"
+        g.x(c + "Atk", f"{ts} == 0 || {ts} == 1")
+        g.x(c + "Trap", f"d_act == 2 && {ts} == 3")
+        g.x(c + "Half", f"{c}Atk || (d_act == 1 && {ts} == 2 && !vsBrk)")
+        g.x(c + "Opp", f"d_act == 3 ? ({c}Atk ? vsCtr : 0) : {c}Trap ? 0 : ({c}Half ? pvDmg / 2 : pvDmg) + vsFrag")
+        g.x(c + "Pd", f"(ec_base + ec_per * claimN) * ({ts} == 1 ? ec_rushN / ec_rushD : 1) * "
+                      f"(ec_kjOn && L_Konju > 0 ? ec_kjN / ec_kjD : 1) + (L_Round >= ec_impR ? ec_impA : 0)")
+        g.x(c + "Me", f"d_act == 3 ? 0 : {c}Atk ? {c}Pd : {c}Trap ? (d_armed ? 0 : ec_crit) : 0")
+        r_num = g.fmt(c + "R0", "{a}", c + "Opp")
+        r_clash = g.fmt(c + "R1", "{a}{b}／−{c}", "vsClashT.text", c + "Opp", c + "Me")
+        r_trap = g.fmt(c + "R2", "{a}{b}／−{c}", "vsTrapT.text", c + "Opp", c + "Me")
+        r_parry = g.textf(c + "R3", key="MSG_DEB_PARRY", n=c + "Opp")
+        res = ssel(g, c + "Res", [(g.b(c + "K3", g.x(c + "K3n", f"d_act == 3 && {c}Atk")), r_parry),
+                                  (g.b(c + "K4", g.x(c + "K4n", "d_act == 3")), "vsWhiffT.text"),
+                                  (g.b(c + "K1", c + "Atk"), r_clash), (g.b(c + "K2", c + "Trap"), r_trap)], r_num)
+        g.text(c + "ActT", g.lookup(c + "ActK", ACT_KEYS, g.x(c + "ActI", f"clamp({ts}, 0, 4)")))
+        vs.append(g.textf(c + "F", key="UI_DEB_PREVIEW_VS", action=c + "ActT.text", result=res))
+    g.fmt("vsBoth", "{a}　{b}", vs[0], vs[1])
+    vsOut = g.sel("vsOut", g.b("vsTwo", g.x("vsTwoN", "ts2 >= 0")), "vsBoth", vs[0])
+    g.x("vsOn", "isDebN && ec_hp && !tailN && ts1 >= 0 && (((d_act == 1 || d_act == 2) && segL > 0) || d_act == 3)")
+    g.edge(g.sel("vsShow", "vsOn_t", vsOut, g.k("")), "ui#debate.preview_vs")
+
+    # ---- st_flags (§4.4 狀態列): 不能補強 (a trap that missed), 必定攻擊 (a trap exposed), 聽眾不耐 (round 15 on), joined
+    # by UI_TAG_SEP; the 逆・論破 warning needs an opponent that can reverse-break (none in Ch.1-3)
+    g.text("flSep", g.k("UI_TAG_SEP"))
+    g.x("flA", "isDebN && L_NoReinf > 0")
+    g.x("flB", "isDebN && L_MustAtk > 0")
+    g.x("flC", "isDebN && ec_hp && L_Round >= ec_impR")
+    g.x("flAB", "flA || flB")
+    g.text("flAT", g.k("MSG_DEB_NO_REINFORCE"))
+    g.text("flBT", g.k("MSG_DEB_MUST_ATTACK"))
+    g.text("flCT", g.k("MSG_DEB_IMPATIENT"))
+    p1 = g.sel("flP1", "flA_t", "flAT.text", g.k(""))
+    p2 = g.sel("flP2", "flB_t", g.sel("flP2s", "flA_t", g.fmt("flP2f", "{a}{b}", "flSep.text", "flBT.text"),
+                                      "flBT.text"), g.k(""))
+    p3 = g.sel("flP3", "flC_t", g.sel("flP3s", "flAB_t", g.fmt("flP3f", "{a}{b}", "flSep.text", "flCT.text"),
+                                      "flCT.text"), g.k(""))
+    g.edge(g.fmt("flags", "{a}{b}{c}", p1, p2, p3), "ui#debate.st_flags")
     g.edge("handN", "ui#debate.hand")
     g.edge("d_act", "ui#debate.sel_act")
     g.edge("L_InstinctLeft", "ui#debate.instinct_left")
@@ -545,7 +649,6 @@ def gen_debui() -> Graph:
     g.edge(g.b("hkPrev", g.x("hkPrevN", "L_HachikuMode == 1")), "ui#debate.st_hachiku_preview")
     g.edge("L_Konju", "ui#debate.st_konju")
     g.edge("L_Shisshu", "ui#debate.st_shisshu")
-    g.edge(g.k(""), "ui#debate.st_flags")
     g.edge("d_ph", "ui#debate.phase")
     g.edge("s_fo", "ui#debate.float_opp")
     g.edge("s_fm", "ui#debate.float_me")
@@ -561,7 +664,9 @@ def gen_debui() -> Graph:
     g.put("now", "clock.seconds")
     g.node("beat", "filter", op="deadband", threshold=0)
     g.edge("clock.seconds", "beat.in")
-    beat = "beat.passed"
+    # the debate is paused while the opponent notes are open (§4.4 翻閱時畫面暫停): no stage runs
+    g.n("notesOnN", "world.notesShown")
+    beat = g.when("beatOn", "beat.passed", T("beatOk", "!notesOnN"))
     for k in ("rsAt", "r2", "r3", "sel", "instAt", "lockAt", "pb", "pbAt", "holdAt", "finAt"):
         g.mget("d_" + k, "dbui", g.k(k))
 
@@ -578,7 +683,17 @@ def gen_debui() -> Graph:
     lockT = stage("lockG2", "d_lockAt > 0 && now >= d_lockAt", "lockAt")
     g.x("soon", f"now + {START_DELAY}")
 
-    # ---- begin: reset, the rebut candidates, start the engine
+    # ---- begin: the board (a retry starts again from the locked board: improvised links are undone), reset, the
+    # rebut candidates, start the engine
+    g.n("retryN", "world.debRetrying")
+    for coll in ("debBoard", "debBoardOk", "debBoardLink"):
+        for nm, src, dst, cond in (("sv", coll, coll + "S", "!retryN"), ("rs", coll + "S", coll, "retryN")):
+            p_ = g.when(f"{nm}G_{coll}", begin, T(f"{nm}C_{coll}", cond))
+            g.edge(p_, g.eff(f"{nm}Clr_{coll}", "atrium.coll.clear", dst))
+            g.node(f"{nm}Each_{coll}", "atrium.coll.forEach", name=src)
+            g.edge(p_, f"{nm}Each_{coll}.trigger")
+            g.edge(f"{nm}Each_{coll}.each", g.eff(f"{nm}Add_{coll}", "atrium.coll.add", dst,
+                                                    value=f"{nm}Each_{coll}.item"))
     g.edge(begin, g.eff("clrDbui", "atrium.map.clear", "dbui"))
     g.edge(begin, g.eff("clrDbuiS", "atrium.map.clear", "dbuiS"))
     setn(begin, "ph", g.k(1))
@@ -595,7 +710,7 @@ def gen_debui() -> Graph:
     rs = g.merge("rs", startT)
     for k, v in (("ph", 0), ("act", 0), ("sa", 0), ("sb", 0), ("segPh", 0), ("armed", 0), ("fast", 0), ("hold", 0)):
         setn(rs, k, g.k(v))
-    for k in ("card", "target", "msg", "fo", "fm", "rl"):
+    for k in ("card", "target", "msg", "fo", "fm", "rl", "lr1"):
         sets(rs, k, g.k(""))
     setn(rs, "hpO", "world.debOppHp")
     setn(rs, "hpM", "world.debPlayerHp")
@@ -690,7 +805,7 @@ def gen_debui() -> Graph:
     g.node("ppEach", "atrium.coll.forEach", name="uiParryAll")
     g.edge(g.when("ppG", picker, T("ppOn", "d_act == 3")), "ppEach.trigger")
     g.edge("ppEach.each", g.eff("ppAdd", "atrium.coll.add", "uiParry", value="ppEach.item"))
-    pp_out = g.merge("ppOut", "ppEach.done", g.when("ppOff", picker, T("ppOffN", "d_act != 3")))
+    pp_out = g.merge("ppOut", "ppEach.done", g.when("ppOff", picker, T("ppOffN", "d_act != 3")), "impEach.done")
     g.edge(pp_out, g.ui_list("ppList", "ui.debate.parry_cards", "uiParry",
                              {"id": "item", "name": tref("flowCard", "id", "nameKey")}, localize=["name"]))
 
@@ -702,6 +817,7 @@ def gen_debui() -> Graph:
     g.x("enV", "actV == 1 ? en1 : actV == 2 ? en2 : actV == 3 ? en3 : actV == 4 ? en4 : 0")
     okA = g.when("actOk", aP, "enV_t")
     setn(okA, "act", "actV")
+    setn(okA, "imp", g.k(0))
     for k in ("card", "target", "msg"):
         sets(okA, k, g.k(""))
     g.edge(g.when("actObs", okA, T("actObsN", "actV == 4")), g.eff("obsClrSa", "atrium.map.set", "dbui",
@@ -729,6 +845,7 @@ def gen_debui() -> Graph:
     setn(sNew, "segPh", g.k(1))
     sets(sOk, "card", g.k(""))
     sets(sOk, "msg", g.k(""))
+    setn(sOk, "imp", g.k(0))
     setn(sOk, "sel", g.k(1))
     # target: another visible, non-fragile node (A-2)
     g.put("tgtV", "ui#debate.target")
@@ -756,6 +873,7 @@ def gen_debui() -> Graph:
     setn(bTop, "act", g.k(0))
     sets(bTop, "target", g.k(""))
     sets(bP, "msg", g.k(""))
+    setn(bP, "imp", g.k(0))
     setn(bP, "sel", g.k(1))
     # assist: armed before the lock (A-7), toggles
     asP = g.when("assistG", "ui#debate.assist", T("assistIn", "inOk && isDebN && L_Assist > 0"))
@@ -764,6 +882,63 @@ def gen_debui() -> Graph:
     inP = g.when("instG", "ui#debate.instinct", "instOk_t")
     g.edge(inP, "world.debInstinct")
     setn(inP, "instAt", "soon")
+
+    # 臨場硬接 (improv): the picker lists the loose cards that link to the segment's last card (kind by the board's
+    # rule: solid or sophistry; none / invalid are left out); picking one puts it after that card, the new link on
+    # the engine's board (debBoard*, read at the lock), and the segment runs on to it
+    imP = g.when("impG", "ui#debate.improv", "impOk_t")
+    setn(imP, "imp", g.k(1))
+    for coll in ("uiImpK", "uiImpS", "uiImpO"):
+        g.edge(imP, g.eff(f"impClr_{coll}", "atrium.map.clear", coll))
+    g.edge(imP, g.eff("impClrP", "atrium.coll.clear", "uiParry"))
+    g.node("impEach", "atrium.coll.forEach", name="debBoard")
+    g.edge(imP, "impEach.trigger")
+    ii, ix = g.put("ii", "impEach.index"), g.put("ixc", "impEach.item")
+    F.card_values(g, "it", "segLast")
+    F.reason_values(g, "it", "segLast")
+    F.card_values(g, "ix", ix)
+    F.reason_values(g, "ix", ix)
+    sh_, fm_ = [], []
+    for t in range(F.max_tags()):
+        tag = g.tget(f"ik_t{t}", "flowCard", f"tag{t}", "it_row")
+        g.n(f"ik_in{t}", g.thas(f"ik_inC{t}", "flowCard", "tags", "ix_row", tag))
+        g.n(f"ik_hb{t}", g.thas(f"ik_hbC{t}", "flowCard", "hiddenTags", "ix_row", tag))
+        g.n(f"ik_ha{t}", g.thas(f"ik_haC{t}", "flowCard", "hiddenTags", "it_row", tag))
+        g.n(f"ik_ga{t}", g.thas(f"ik_gaC{t}", "flowCard", "grazingTags", "it_row", tag))
+        g.n(f"ik_gb{t}", g.thas(f"ik_gbC{t}", "flowCard", "grazingTags", "ix_row", tag))
+        g.x(f"ik_sh{t}", f"ik_in{t} && (!ik_ha{t} || it_full) && (!ik_hb{t} || ix_full)")
+        g.x(f"ik_fm{t}", f"ik_sh{t} && !ik_ga{t} && !ik_gb{t}")
+        sh_.append(f"ik_sh{t}")
+        fm_.append(f"ik_fm{t}")
+    g.x("ik_shared", " + ".join(sh_))
+    g.x("ik_firm", " + ".join(fm_))
+    g.x("ik_kind", "ik_shared == 0 || !(it_rset && ix_rset) ? 0 : "
+                   "(ik_firm > 0 && it_ok && ix_ok && !it_sub && !ix_sub) ? 1 : 2")
+    g.n("ixCard", g.cmp("ixCardC", ix, g.k("-"), "ne"))
+    impC = g.when("impCandG", "impEach.each", T("impCand", f"ii >= {SLOTS} && ixCard && ik_kind > 0"))
+    g.edge(impC, g.eff("impSetK", "atrium.map.set", "uiImpK", key=ix, value="ik_kind"))
+    g.edge(impC, g.eff("impSetS", "atrium.map.set", "uiImpS", key=ix, value="ii"))
+    g.edge(impC, g.eff("impSetO", "atrium.map.set", "uiImpO", key=ix, value=g.x("ixOkN", "ix_ok ? 1 : 0")))
+    g.edge(impC, g.eff("impAddP", "atrium.coll.add", "uiParry", value=ix))
+    g.put("cardV", "ui#debate.card")
+    g.mget("impKV", "uiImpK", "cardV")
+    g.mget("impSV", "uiImpS", "cardV")
+    g.mget("impOV", "uiImpO", "cardV")
+    cImP = g.when("cardImpG", "ui#debate.card.emitted", T("cardImpIn", "inOk && d_act == 2 && d_imp == 1 && impKV > 0"))
+    for nm, coll, idx, val in (("ib", "debBoard", "tailNext", "cardV"), ("io", "debBoardOk", "tailNext", "impOV"),
+                               ("il", "debBoardLink", "segHi", "impKV"), ("ibl", "debBoard", "impSV", g.k("-")),
+                               ("iol", "debBoardOk", "impSV", g.k(0))):
+        g.edge(cImP, g.eff(nm + "Rm", "atrium.coll.removeAt", coll, index=idx))
+        g.edge(cImP, g.eff(nm + "In", "atrium.coll.insert", coll, index=idx, value=val))
+    setn(cImP, "imp", g.k(0))
+    setn(cImP, "impR", "L_Round")
+    setn(cImP, "sa", g.x("impSa", "segLo + 1"))
+    setn(cImP, "sb", g.x("impSb", "tailNext + 1"))
+    setn(cImP, "segPh", g.k(0))
+    sets(cImP, "msg", g.k(""))
+    setn(cImP, "sel", g.k(1))
+    g.text("pickTitleT", g.k("BTN_DEB_SOPH_NEW"))
+    g.edge(g.sel("pickTitle", g.b("impOnB", "d_imp"), "pickTitleT.text", g.k("")), "ui#debate.picker_title")
 
     # lock: the command values (on the bus before the pulse; the engine runs later in the tick and gets both in this
     # tick, 05 §5.4), then the pulse
@@ -835,6 +1010,10 @@ def gen_debui() -> Graph:
     lineP = g.when("lineG", parse, "hasLineC.out")
     sets(lineP, "rl", line)
     setn(lineP, "rln", "lineN")
+    g.n("lr1Empty", g.cmp("lr1EmptyC", "s_lr1", g.k(""), "eq"))
+    lr1P = g.when("lr1G", lineP, "lr1EmptyC.out")
+    sets(lr1P, "lr1", line)
+    setn(lr1P, "lrn1", "lineN")
     # reveal: the cards (reveal_me 1..4, reveal_opp 0..4, reveal_combo) and the statement (tells: the opponent's
     # action line when he attacks into a defence, Sherefox's when she attacks, the clash / standoff reactions;
     # the tail's 玉石俱焚 takes the cornered lines, ruling G3)
@@ -925,6 +1104,33 @@ def gen_debui() -> Graph:
     g.textf("csubF", pattern="csubT.text", n=csub.out("n", g.k(0)))
     # 大字譯名 (§4.6: on by default outside zh-TW; there is no settings screen): the subtitle in English
     g.edge(g.sel("csubOut", "langEn", "csubF", g.k("")), "ui#cutin.subtitle")
+    # ---- the opponent notes (01-systems §4.4 亞瑟的對手筆記), recorded as the reveal plays: a gesture is learned when
+    # the opponent first shows that action; a behaviour rule when it is first seen to fire (rules 1-4: the AI's rule
+    # of the round, debTellRule, and the action it points at; rule 5: the action changes after the same one twice),
+    # then counted (dbui rc1..rc5, this debate); learned rules stay across chapters (notesRule)
+    g.x("nrMain", "isDebN && isRevN")
+    revN = g.when("revNoteG", revP, "nrMain_t")
+    g.edge(revN, g.eff("glSet", "atrium.map.set", "dbui", key=g.fmt("glKey", "gl{a}", "revOpp"), value=g.k(1)))
+    for r in range(1, 6):
+        g.mget(f"d_rc{r}", "dbui", g.k(f"rc{r}"))
+        cond = (f"L_TellRule == {r} && revOpp == {RULE_ACT[r]}" if r < 5 else
+                "ec_ru5 && d_oh1 > 0 && d_oh1 == d_oh2 && revOpp + 1 != d_oh1")
+        rp = g.when(f"ruleG{r}", revN, T(f"ruleC{r}", cond))
+        g.edge(rp, g.eff(f"ruleLearn{r}", "atrium.map.set", "notesRule", key=g.k(str(r)), value=g.k(1)))
+        setn(rp, f"rc{r}", g.x(f"rcN{r}", f"d_rc{r} + 1"))
+    setn(revN, "oh2", "d_oh1")
+    setn(revN, "oh1", g.x("oh1N", "revOpp + 1"))
+    # music moments (rulings H1-H3): m8 the opponent's first <= 50% or first shaken (BGM07 -> BGM08), m9 a break
+    # (BGM09 to the end), m10 the reverse break 1 / the brink 2 (BGM10; a counter break goes back to BGM09)
+    g.n("isSGN", g.cmp("isSGC", "f0", g.k("statusGained")))
+    g.n("isShkN", g.cmp("isShkC", "f1", g.k("shaken")))
+    setn(g.when("m8G", parse, T("m8C", "isDebN && ((isDON && ec_hp && n4 <= L_OppMax / 2) || (isSGN && isShkN))")),
+         "m8", g.k(1))
+    setn(g.when("m9G", parse, T("m9C", "isDebN && isBrkN && n1 == 1")), "m9", g.k(1))
+    for nm, cid, val in (("Rev", "CUT_REVERSE", 1), ("Brk", "CUT_BRINK", 2), ("Ctr", "CUT_COUNTER", 0)):
+        g.n(f"mc{nm}N", g.cmp(f"mc{nm}C", "f1", g.k(cid)))
+        setn(g.when(f"m10{nm}G", parse, T(f"m10{nm}C", f"isCutN && mc{nm}N")), "m10", g.k(val))
+
     # the dwell before the next record (skip / next set `fast`: every record next tick, no cut-ins)
     g.x("dwell", "d_fast ? 0 : isRevAny ? 2 : isCutN ? cutDw : (isDON || isDPN || isHealN || hasLineN) ? 1 : 0")
     g.lookup("dwellS", DWELL, "dwell")
@@ -938,6 +1144,29 @@ def gen_debui() -> Graph:
     g.edge(endT, "nodesReset.in")
     setn(endT, "r2", g.k(1))
     setn(endT, "holdAt", g.x("holdAtN", f"now + {HOLD}"))
+    # the notes' round log (§4.4 回合紀錄): UI_NOTES_LOG_ROW with the tell, both actions and the round's first result
+    # line; misread = the engine's reads count did not grow (A-15 破竹 definition), with Arthur's review line
+    g.put("world_reads", "world.debReads")
+    g.x("lgP", "revMeL - 1")
+    g.x("lgO", "revOppL")
+    g.text("lgTs1T", g.lookup("lgTs1K", ACT_KEYS, g.x("lgTs1I", "clamp(ts1, 0, 4)")))
+    g.text("lgTs2T", g.lookup("lgTs2K", ACT_KEYS, g.x("lgTs2I", "clamp(ts2, 0, 4)")))
+    g.textf("lgTellF", key="UI_DEB_TELL_CANDIDATES", a="lgTs1T.text", b="lgTs2T.text")
+    lgTell = g.sel("lgTell", g.b("lgFuzzy", g.x("lgFuzzyN", "ts2 >= 0")), "lgTellF", "lgTs1T.text")
+    g.text("lgMineT", g.lookup("lgMineK", BTN_KEYS, g.x("lgMineI", "clamp(lgP, 0, 3)")))
+    g.text("lgTheirsT", g.lookup("lgTheirsK", ACT_KEYS, g.x("lgTheirsI", "clamp(lgO, 0, 4)")))
+    g.text("lgResT", "s_lr1")
+    g.textf("lgResF", pattern="lgResT.text", name="oppName.text", n="d_lrn1")
+    g.textf("lgRow", key="UI_NOTES_LOG_ROW", n="L_Round", tell=lgTell, mine="lgMineT.text", theirs="lgTheirsT.text",
+            result="lgResF")
+    g.x("lgMis", "world_reads - L_Reads == 0")
+    g.lookup("lgRevK", REVIEW_KEYS, g.x("lgRevI", REVIEW.format(p="lgP", o="lgO")))
+    lgNote = g.sel("lgNote", "lgMis_t", "lgRevK", g.k(""))
+    g.tostr("lgKey", "L_Round")
+    lgP_ = g.when("lgG", endT, T("lgOn", "isDebN && revMeL > 0"))
+    g.edge(lgP_, g.eff("lgSet", "atrium.map.set", "uiLog", key="lgKey", value="lgRow"))
+    g.edge(lgP_, g.eff("lgSetM", "atrium.map.set", "uiLogMis", key="lgKey", value="lgMis_t"))
+    g.edge(lgP_, g.eff("lgSetN", "atrium.map.set", "uiLogNote", key="lgKey", value=lgNote))
     nextP = "ui#debate.next"
     g.edge(g.when("skipG", g.merge("skipM", "ui#debate.skip", nextP),
                   T("skipIn", "activeN && (d_ph == 1 || d_ph == 2) && !d_hold")),
@@ -953,15 +1182,80 @@ def gen_debui() -> Graph:
     setn(over, "fin", g.k(1))
     setn(over, "finAt", g.x("finAtN", f"now + {FINISH}"))
     setn(g.when("nextFin", nextP, T("nextFinN", "activeN && d_ph == 3 && d_fin == 1")), "finAt", "now")
-    fin = stage("finG", "d_fin == 1 && now >= d_finAt", "fin")
+    finAll = stage("finG", "d_fin == 1 && now >= d_finAt")
+    # a defeat opens the notes' round log first (§4.4, §4.2 SCR_RESULT: misread rounds marked, Arthur's review); the
+    # beat waits while they are open, so the step ends once they are closed
+    g.n("lossN", g.cmp("lossC", "world.debOutcome", g.k("loss")))
+    # rev: 0 not yet, 1 open (waiting for it to be closed), 2 closed. (world.notesOpen reaches main a tick later, so
+    # the wait is on rev, not only on the paused beat.)
+    g.x("needRev", "isDebN && lossN && d_rev == 0")
+    revOpen = g.when("revOpenG", finAll, "needRev_t")
+    setn(revOpen, "rev", g.k(1))
+    g.node("notesShownC", "compare", op="eq")
+    g.edge("world.notesShown", "notesShownC.a")
+    g.edge(g.k(True), "notesShownC.b")
+    setn(g.when("revDoneG", "notesShownC.false", T("revDoneN", "d_rev == 1")), "rev", g.k(2))
+    fin = g.when("finEndG", finAll, T("noRev", "!needRev && d_rev != 1"))
+    setn(fin, "fin", g.k(0))
     # the warmup's trust for this case (A-13, §3.1: not written back to the permanent trust)
     g.edge(g.when("warmTrust", fin, "isWarmC.out"),
            g.eff("caseTrust", "atrium.map.set", "caseMod", key=g.k("trust"), value="world.dwTrustDelta"))
     # the lines after the debate (dialogue, script.cue): post (the warmup) / postWin / postLose, then the step ends
     g.n("outWinN", g.cmp("outWinC", "world.debOutcome", g.k("win")))
-    g.x("cueIdx", "isWarmN ? 0 : outWinN ? 1 : 2")
+    # the warmup: passed -> postWin (L006-L009); failed (three mistakes: the case's trust −1, A-13) -> postLose
+    # (F001-F004)
+    g.put("world_dwTrust", "world.dwTrustDelta")
+    g.x("cueIdx", "isWarmN ? (world_dwTrust < 0 ? 2 : 1) : outWinN ? 1 : 2")
     g.edge(g.latch("cueL", g.lookup("cueWord", ["post", "postWin", "postLose"], "cueIdx"), fin), "world.debCue")
     g.edge(fin, "world.debEnd")
+
+    # ---- the opponent notes overlay (ui#notes; main shows it on world.notesOpen): the 對手筆記 button / N during a
+    # main debate, or the defeat review (tab 2, misread rounds marked); the lists are rewritten each round, when it
+    # opens and when the language changes (the log rows are composed texts: written in the language of their round)
+    g.put("ui_notes_tab", "ui#notes.select_tab")
+    notesBtn = g.when("notesBtnG", "ui#debate.notes", T("notesBtnOk", "activeN && isDebN && !notesOnN"))
+    open_ = g.merge("notesOpenM", notesBtn, revOpen)
+    g.edge(open_, "world.notesOpen")
+    ntab = Mux(g, "ntab", ["v"])
+    ntab.add(begin, {"v": g.k(0)})
+    ntab.add("ui#notes.select_tab.emitted", {"v": g.x("ntabPick", "clamp(ui_notes_tab, 0, 2)")})
+    ntab.add(revOpen, {"v": g.k(2)})
+    g.edge(ntab.out("v", g.k(0)), "ui#notes.tab")
+    g.edge(g.b("revB", "d_rev"), "ui#notes.review")
+    g.edge("oppName.text", "ui#notes.opp_name")
+    g.edge("oppType.text", "ui#notes.opp_type")
+    g.edge(g.text("oppDesc", "dc_typeDesc"), "ui#notes.opp_desc")
+    for coll in ("uiLog", "uiLogMis", "uiLogNote"):
+        g.edge(begin, g.eff(f"clr_{coll}", "atrium.map.clear", coll))
+    nb = g.merge("notesBuild", rs2T, open_, "langEnC.true", "langEnC.false")
+    g.edge(nb, g.eff("ngClr", "atrium.map.clear", "uiNoteG"))
+    for i in range(4):
+        g.mget(f"d_gl{i}", "dbui", g.k(f"gl{i}"))
+        val = g.sel(f"ngV{i}", g.b(f"ngL{i}", f"d_gl{i}"), f"ec_g{i}", g.k("UI_NOTES_GESTURE_EMPTY"))
+        g.edge(g.when(f"ngG{i}", nb, T(f"ngOn{i}", f"ec_w{i} > 0")),
+               g.eff(f"ngSet{i}", "atrium.map.set", "uiNoteG", key=g.k(ACT_KEYS[i]), value=val))
+    g.edge(nb, g.ui_list("ngList", "ui.notes.gestures", "uiNoteG", {"act": "key", "text": "value"},
+                         localize=["act", "text"]))
+    g.edge(nb, g.eff("nrClr", "atrium.map.clear", "uiNoteR"))
+    for r in range(1, 6):
+        g.n(f"nrHas{r}", g.mhas(f"nrHasC{r}", "notesRule", g.k(str(r))))
+        g.textf(f"nrCnt{r}", key="UI_NOTES_RULE_COUNT", n=f"d_rc{r}")
+        g.edge(g.when(f"nrG{r}", nb, f"nrHasC{r}.has"),
+               g.eff(f"nrSet{r}", "atrium.map.set", "uiNoteR", key=g.k(f"UI_NOTES_RULE_{r}"), value=f"nrCnt{r}"))
+    g.edge(nb, g.ui_list("nrList", "ui.notes.rules", "uiNoteR", {"text": "key", "count": "value"},
+                         localize=["text"]))
+    g.edge(nb, g.ui_list("logList", "ui.notes.log", "uiLog",
+                         {"text": "value", "mark": "map:uiLogMis", "note": "map:uiLogNote"}, localize=["note"]))
+
+    # ---- music (rulings H1-H3): the debate's moment for the `music` flow
+    mom = ssel(g, "bgmMom", [(g.b("bmOff", g.x("bmOffN", "!activeN")), g.k("")),
+                             (g.b("bmWarm", "isWarmN"), g.k("warmup")),
+                             (g.b("bmPud", g.x("bmPudN", "dc_mode == 2")), g.k("pudding")),
+                             (g.b("bmRev", g.x("bmRevN", "d_m10 == 1")), g.k("reverse")),
+                             (g.b("bmBrink", g.x("bmBrinkN", "d_m10 == 2")), g.k("brink")),
+                             (g.b("bmBrk", "d_m9"), g.k("break")),
+                             (g.b("bm8", "d_m8"), g.k("debate2"))], g.k("debate"))
+    g.edge(mom, "world.bgmDeb")
     return g
 
 
@@ -1023,16 +1317,22 @@ def gen_result() -> Graph:
              ("UI_RES_ASSIST", "max(0, ec_assists - world_as)", "ec_hp"),
              ("UI_RES_INSTINCT", "max(0, ec_fox - world_fox)", None), ("UI_RES_HP", "max(0, world_php)", "ec_hp")]
     for nm, sig in (("world_round", "debRound"), ("world_par", "debParries"), ("world_as", "debAssist"),
-                    ("world_fox", "debInstinctLeft"), ("world_php", "debPlayerHp")):
+                    ("world_fox", "debInstinctLeft"), ("world_php", "debPlayerHp"), ("world_reads", "debReads")):
         g.put(nm, f"world.{sig}")
+    # 讀對預兆 (§4.2: reads / rounds; a read = the favourable answer to the opponent's actual action, A-15): its label
+    # is the filled template UI_RES_READS, so the rows' labels are localized when they are written (resStats: label
+    # text -> value; the list is written once, when the result opens)
+    g.x("stRounds", "max(0, world_round - 1)")
+    g.textf("stReadsL", key="UI_RES_READS", hit="world_reads", total="stRounds")
     g.edge(begin, g.eff("clrStats", "atrium.map.clear", "resStats"))
     for i, (key, expr, cond) in enumerate(stats):
         g.x(f"stV{i}", expr)
         g.fmt(f"stS{i}", "{a}", f"stV{i}")
         p = begin if cond is None else g.when(f"stG{i}", begin, T(f"stC{i}", cond))
-        g.edge(p, g.eff(f"stSet{i}", "atrium.map.set", "resStats", key=g.k(key), value=f"stS{i}"))
-    g.edge(begin, g.ui_list("statsList", "ui.result.stats", "resStats", {"label": "key", "value": "value"},
-                            localize=["label"]))
+        g.edge(p, g.eff(f"stSet{i}", "atrium.map.set", "resStats", key=g.text(f"stL{i}", g.k(key)), value=f"stS{i}"))
+        if i == 0:
+            g.edge(begin, g.eff("stSetReads", "atrium.map.set", "resStats", key="stReadsL", value=g.k("")))
+    g.edge(begin, g.ui_list("statsList", "ui.result.stats", "resStats", {"label": "key", "value": "value"}))
     # costs on a defeat (§4.2, 10-cases): the lines' text (UI_RES_COST_SEIZE names the card)
     g.edge(begin, g.eff("clrCosts", "atrium.coll.clear", "resCosts"))
     g.edge(g.when("costTrust", begin, T("costTrustN", "lossN && delta < 0")),

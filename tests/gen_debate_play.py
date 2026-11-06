@@ -38,10 +38,13 @@ import gen_playthrough as gp  # noqa: E402
 import debate_routes as R  # noqa: E402
 
 HARNESS = TESTS / "play_harness"
+WARMFAIL = TESTS / "warmfail_harness"
 GAP = 8
 ROUND_WAIT = 720         # ticks after a lock: the reveal, the records, the hold (01-systems §4.4: 3-6 s; 論破 4 s)
 CYCLE_WAIT = 64          # observe cycles: lock -> skip -> next
-KEY = {"1": 30, "2": 31, "3": 32, "4": 33, "Enter": 40, "R": 21, "E": 8}
+KEY = {"1": 30, "2": 31, "3": 32, "4": 33, "Enter": 40, "R": 21, "E": 8, "Escape": 41, "N": 17}
+IMPROV_XY = (476, 353)   # ui/boards/project/Debate.dc.html #btn-improv (in #preview at 250, 340)
+NOTES_TAB_XY = {0: (497, 97), 1: (655, 97), 2: (813, 97)}   # Notes.dc.html #tabs at (420, 78), 150 + 8 apart
 SKIP_XY = (640, 400)     # ui/boards/project/Debate.dc.html #reveal-hit (phase 1 skip, phase >= 2 next)
 
 
@@ -126,8 +129,37 @@ def ch2_route() -> int:
     return r.write("ch2_debate", 120)
 
 
-def ch2_play(r: Rec) -> None:
-    """From the title: Ch.2 won along ch2_route, up to the Ch.3 paper."""
+def ch2_tailwrong() -> int:
+    """tests/play_harness: ch2_route up to R4 (the break), then the tail answered wrong (M5c: the result line)."""
+    r = Rec()
+    ch2_play(r, tail_wrong=True)
+    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": HARNESS.as_posix()})
+    return r.write("ch2_tailwrong", 120)
+
+
+def ch3_warmfail() -> int:
+    """tests/warmfail_harness (the game with the warmup's mistake limit at 0, so the first card already fails it:
+    the shipped warmup cannot be failed, both hand cards refute the claim): Ch.3 from the title to the start of its
+    investigation; the warmup's failure wrap-up (S04 F001-F004, script.cue postLose) instead of L006-L009."""
+    r = Rec()
+    r.click("title", gp.TITLE_CH[3], 40)
+    for s in [s for s in gc.load("steps") if s["chapter"] == 3]:
+        if s["kind"] == "paper":
+            r.click("paper", gp.PAPER_CLICK, gp.SETTLE)
+            r.click("paper", gp.PAPER_CLICK, GAP)
+        elif s["kind"] == "vn":
+            r.vn_lines(3, s["scene"], "", gp.SETTLE)
+        elif s["kind"] == "warmup":
+            minimal(r, "warmup", 3, cue="postLose")
+        elif s["kind"] == "investigate":
+            break
+    r.lines[0] = json.dumps({"atrec": 1, "step": gp.STEP, "seed": 1, "game": WARMFAIL.as_posix()})
+    return r.write("ch3_warmfail", 120)
+
+
+def ch2_play(r: Rec, tail_wrong: bool = False) -> None:
+    """From the title: Ch.2 won along ch2_route, up to the Ch.3 paper. `tail_wrong`: R5 (the tail) is answered with
+    an observe instead (−30, the 「（若尾聲出錯牌）」 line), and the recording stops after that round."""
     gc.story(r, 2)
     gc.investigate(r, CH2_ALL)
     gc.end(r, 2, True, gc.FLY_WAIT)
@@ -147,6 +179,9 @@ def ch2_play(r: Rec) -> None:
     r.round(4)                          # R2 observe
     r.round(1, segs=(0, 3))             # R3 solid E02_03 .. E02_05 at N1
     r.round(3, segs=(5, 6))             # R4 rebut break E02_06 -> E02_01
+    if tail_wrong:
+        r.round(4)                      # R5 the tail answered wrong: observe
+        return
     r.round(3, segs=(7, 6))             # R5 the tail: rebut E02_07 -> E02_01
     r.cue_lines(2, "debate", "postWin", 0)     # Wolfhart's cup (S05 L041-L042)
     result_and_notes(r, 2, "win")
@@ -232,6 +267,7 @@ def observe_until_over(r: Rec, cycles: int) -> None:
 
 
 LOSE_CYCLES = 30
+IMPROV = {}     # ch2_lose: ticks of the 臨場硬接 prompt, the pick and the defeat review
 
 
 def ch2_lose() -> int:
@@ -251,15 +287,34 @@ def ch2_lose() -> int:
             b.appraise(card)
         b.correct(card)
         b.place(slot)
+    b.select("E02_04")                       # left in the drawer with a wrong reason: the 臨場硬接 candidate
+    b.wrong("E02_04")
     b.debate(16)
     b.debate(16)                             # the first press only warns (cards left to appraise, §2.7)
     r.cue_lines(2, "debate", "pre", gp.SETTLE)
     r.t += 40
+    # R1 (M5c): sophistry on E02_03 -> E02_02 (no dashed link), 臨場硬接 E02_02 - E02_04 (the only candidate), the
+    # opponent notes opened and their tabs looked at (N, Escape), lock
+    r.key("debate", "2", 24)
+    for slot in (0, 1):
+        r.click("debate", seg_xy(slot))
+    IMPROV["prompt"] = r.t
+    r.click("debate", IMPROV_XY, 20)
+    r.click("debate", pick_xy(0), 20)
+    IMPROV["picked"] = r.t
+    r.key("debate", "N", 20)
+    for k in (0, 1, 2):
+        r.click("notes", NOTES_TAB_XY[k], 20)
+    r.key("notes", "Escape", 20)
+    r.key("debate", "Enter", 20)
+    r.t += ROUND_WAIT
     observe_until_over(r, LOSE_CYCLES)
-    r.key("result", "R", 120)                # retry (A-14): the debate from its start, the board as it was
-    r.cue_lines(2, "debate", "pre", gp.SETTLE)    # the step begins again with its opening line
-    r.t += 40
+    IMPROV["review"] = r.t
+    r.key("notes", "Escape", 60)             # the defeat review (the round log) before the result
+    r.key("result", "R", 120)                # retry (A-14): the debate from its start, the board as it was locked
+    r.t += 40                                # (no opening line on a retry, M5c)
     observe_until_over(r, LOSE_CYCLES)
+    r.key("notes", "Escape", 60)
     result_and_notes(r, 2, "lose")
     return r.write("ch2_lose", 120)
 
@@ -271,7 +326,7 @@ MINIMAL_BRANCH = "lose"
 MINIMAL_CYCLES = {1: 8, 2: LOSE_CYCLES, 3: LOSE_CYCLES}
 
 
-def minimal(r, kind: str, chapter: int) -> None:
+def minimal(r, kind: str, chapter: int, cue: str = "postWin") -> None:
     rr = Rec.__new__(Rec)
     rr.__dict__ = r.__dict__   # share the recording's lines and clock
     if kind == "warmup":
@@ -282,11 +337,13 @@ def minimal(r, kind: str, chapter: int) -> None:
         for _ in range(3):
             rr.click("debate", SKIP_XY, CYCLE_WAIT)
         rr.t += 60
-        rr.cue_lines(chapter, kind, "post", gp.SETTLE)
+        rr.cue_lines(chapter, kind, cue, gp.SETTLE)   # passed: L006-L009 (postWin)
     elif kind == "debate":
         rr.cue_lines(chapter, kind, "pre", gp.SETTLE)
         rr.t += 40
         observe_until_over(rr, MINIMAL_CYCLES[chapter])
+        if chapter > 1:
+            rr.key("notes", "Escape", 60)    # a defeat opens the notes' round log first (§4.4, M5c)
         rr.cue_lines(chapter, kind, "postLose", gp.SETTLE)   # none in Ch.1-3
     elif kind == "result":
         step = next(s for s in gc.load("steps") if s["chapter"] == chapter and s["kind"] == "result")
@@ -309,28 +366,42 @@ def harness_script() -> list[dict]:
     return rows
 
 
+def copy_game(out: Path) -> None:
+    for sub in ("flows", "data", "strings", "ui"):
+        shutil.rmtree(out / sub, ignore_errors=True)
+    out.mkdir(exist_ok=True)
+    shutil.copytree(ROOT / "flows", out / "flows")
+    shutil.copytree(ROOT / "data", out / "data")
+    shutil.copytree(ROOT / "strings", out / "strings")
+    shutil.copytree(ROOT / "ui" / "bundle", out / "ui" / "bundle")
+    shutil.copyfile(ROOT / "game.json", out / "game.json")
+
+
 def build_harness() -> None:
     """tests/play_harness/: a copy of the game (game.json, flows, data, strings, the UI bundle) whose debScript
-    also plays the ch2_route opponent (game paths may not leave the game directory, so it is a copy)."""
-    for sub in ("flows", "data", "strings", "ui"):
-        shutil.rmtree(HARNESS / sub, ignore_errors=True)
-    HARNESS.mkdir(exist_ok=True)
-    shutil.copytree(ROOT / "flows", HARNESS / "flows")
-    shutil.copytree(ROOT / "data", HARNESS / "data")
-    shutil.copytree(ROOT / "strings", HARNESS / "strings")
-    shutil.copytree(ROOT / "ui" / "bundle", HARNESS / "ui" / "bundle")
-    shutil.copyfile(ROOT / "game.json", HARNESS / "game.json")
+    also plays the ch2_route opponent (game paths may not leave the game directory, so it is a copy).
+    tests/warmfail_harness/: a copy whose Ch.3 warmup has the mistake limit 0 (debCase CH03_WARMUP mis)."""
+    copy_game(HARNESS)
     (HARNESS / "data" / "debScript.json").write_text(
         "[\n" + ",\n".join(json.dumps(r, ensure_ascii=False) for r in harness_script()) + "\n]\n", encoding="utf-8")
+    copy_game(WARMFAIL)
+    path = WARMFAIL / "data" / "debate" / "debCase.json"
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    for row in rows:
+        if row["id"] == "CH03_WARMUP":
+            row["mis"] = 0
+    path.write_text(json.dumps(rows, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
-RECORDINGS = {"ch1_debate": ch1, "ch2_debate": ch2_route, "ch3_debate": ch3_route, "ch2_lose": ch2_lose}
+RECORDINGS = {"ch1_debate": ch1, "ch2_debate": ch2_route, "ch3_debate": ch3_route, "ch2_lose": ch2_lose,
+              "ch2_tailwrong": ch2_tailwrong, "ch3_warmfail": ch3_warmfail}
 
 
 def main() -> int:
     build_harness()
     ticks = {name: fn() for name, fn in RECORDINGS.items()}
     ticks["ch3_debate_from"] = CH3_START["tick"]
+    ticks.update({f"ch2_lose_{k}": v for k, v in IMPROV.items()})
     (TESTS / "debate_ticks.json").write_text(json.dumps(ticks, indent=1) + "\n", encoding="utf-8")
     return 0
 

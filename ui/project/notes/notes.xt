@@ -1,0 +1,436 @@
+<xt version="2">
+  <head>
+    <title>Notes</title>
+  </head>
+
+  <ports>
+    tab: number in = 2
+    opp_name: string in = "費奇"
+    opp_type: string in = "犯人"
+    opp_desc: string in = "他在說謊，主張裡一定藏著與事實衝突的矛盾。攻擊居多，被逼急就猛攻：等他開口時用反駁截斷最有效。"
+    gestures: list<struct{act: string, text: string}> in = [{"act":"主張","text":"拉袖口、鞠躬"},{"act":"猛攻","text":"（還沒看過他這樣做）"},{"act":"補強","text":"擦了擦額頭的汗"},{"act":"設陷","text":"（還沒看過他這樣做）"}]
+    rules: list<struct{text: string, count: string}> in = [{"text":"主張被推翻後，下一手傾向補強。","count":"本場已觸發 1 次"},{"text":"同一招連續出兩次後，第三次一定換招。","count":"本場已觸發 1 次"}]
+    log: list<struct{text: string, mark: bool, note: string}> in = [{"text":"第 1 回合　預兆：主張　你：反駁　對方：主張　等一下！（反擊 30）","mark":false,"note":""},{"text":"第 2 回合　預兆：候選：補強／主張　你：反駁　對方：補強　對方沒有開口，你的反駁落空了。","mark":true,"note":"「這一手，他是在護東西，不是要開口。」"},{"text":"第 3 回合　預兆：猛攻　你：實證連鎖　對方：猛攻　交鋒！","mark":true,"note":"「他要開口的時候，妳也搶著說話了。」"}]
+    review: bool in = true
+    select_tab: number out = 0
+    close: event out
+  </ports>
+
+  <body on:show="play(open)" key-activation="none">
+    <div id="notes" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(N)="emit(close)" on:key(Backspace)="emit(close)" on:key(1)="set(select_tab, 0)" on:key(2)="set(select_tab, 1)" on:key(3)="set(select_tab, 2)" on:key(Q)="set(select_tab, port(tab) | offset(-1) | clamp(0, 2))" on:key(E)="set(select_tab, port(tab) | offset(1) | clamp(0, 2))">
+      <div id="scrim" class="scrim" on:click(left)="emit(close)"/>
+      <div id="notes-dock">
+        <div id="book" class="book">
+          <div id="notes-title" class="f-disp">@UI_NOTES_TITLE_DUP2</div>
+          <div id="tabs">
+            <div id="tab-opp" class="tab" on:click(left)="set(select_tab, 0)" bind:class.on="tab | eq(0)">@UI_NOTES_TAB_OPP</div>
+            <div id="tab-rules" class="tab" on:click(left)="set(select_tab, 1)" bind:class.on="tab | eq(1)">@UI_NOTES_TAB_RULES</div>
+            <div id="tab-log" class="tab" on:click(left)="set(select_tab, 2)" bind:class.on="tab | eq(2)">@UI_NOTES_TAB_LOG</div>
+          </div>
+          <div id="btn-close" class="btn" on:click(left)="emit(close)">@BTN_CLOSE</div>
+          <div id="book-rule-a" class="rule-thick"/>
+          <div id="book-rule-b" class="rule-thin"/>
+          <div id="page" class="page">
+            <div id="pg-opp" bind:display="tab | eq(0)">
+              <div id="opp-type" class="kicker" bind:text="opp_type">犯人</div>
+              <div id="opp-name" class="opp-name" bind:text="opp_name">費奇</div>
+              <div id="opp-desc" class="opp-desc" bind:text="opp_desc">他在說謊，主張裡一定藏著與事實衝突的矛盾。攻擊居多，被逼急就猛攻：等他開口時用反駁截斷最有效。</div>
+              <div id="g-rule" class="s-15baa9"/>
+              <repeat id="g-list" port="gestures">
+                <div id="g-row" class="g-row">
+                  <div id="g-act" class="g-act" bind:text="item(act)">主張</div>
+                  <div id="g-text" class="g-text" bind:text="item(text)">拉袖口、鞠躬</div>
+                </div>
+              </repeat>
+            </div>
+            <div id="pg-rules" bind:display="tab | eq(1)">
+              <div id="r-empty" class="empty" bind:display="rules | item(0) | item(text) | eq('')">@UI_NOTES_GESTURE_EMPTY</div>
+              <div id="r-scroll">
+                <repeat id="r-list" port="rules">
+                  <div id="r-row" class="r-row">
+                    <div id="r-text" class="r-text" bind:text="item(text)">主張被推翻後，下一手傾向補強。</div>
+                    <div id="r-count" class="r-count" bind:text="item(count)">本場已觸發 1 次</div>
+                  </div>
+                </repeat>
+              </div>
+            </div>
+            <div id="pg-log" bind:display="tab | eq(2)">
+              <div id="legend" bind:display="review">
+                <div id="legend-sw" class="legend-sw"/>
+                <div id="legend-t" class="legend-t">@UI_NOTES_LOG_MISREAD</div>
+              </div>
+              <div id="l-scroll">
+                <repeat id="l-list" port="log">
+                  <div id="l-row" class="l-row">
+                    <div id="l-text" class="l-text" bind:text="item(text)">第 1 回合　預兆：主張　你：反駁　對方：主張　等一下！（反擊 30）</div>
+                    <div id="l-rev" class="s-66a9df" bind:display="review">
+                      <div id="l-mark" bind:display="item(mark)">
+                        <div id="l-frame" class="l-frame"/>
+                        <div id="l-note" class="l-note" bind:text="item(note)">「這一手，他是在護東西，不是要開口。」</div>
+                      </div>
+                    </div>
+                  </div>
+                </repeat>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Notes.dc.html:1 */
+    #notes {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Notes.dc.html:1/0 */
+    #scrim {
+      anchor: stretch stretch screen;
+    }
+    /* import: Notes.dc.html:1/1 */
+    #notes-dock {
+      height: 600px;
+      left: calc(50% - 520px);
+      position: absolute;
+      top: calc(50% - 300px);
+      width: 1040px;
+    }
+    /* import: Notes.dc.html:1/1/0 */
+    #book {
+      height: 600px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1040px;
+    }
+    /* import: Notes.dc.html:1/1/0/0 */
+    #notes-title {
+      height: 40px;
+      left: 28px;
+      position: absolute;
+      top: 14px;
+      width: 260px;
+    }
+    /* import: Notes.dc.html:1/1/0/1 */
+    #tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 34px;
+      left: 300px;
+      position: absolute;
+      top: 18px;
+      width: 470px;
+    }
+    /* import: Notes.dc.html:1/1/0/2 */
+    #btn-close {
+      left: 886px;
+      position: absolute;
+      top: 15px;
+      width: 128px;
+    }
+    /* import: Notes.dc.html:1/1/0/3 */
+    #book-rule-a {
+      height: 3px;
+      left: 20px;
+      position: absolute;
+      top: 64px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/4 */
+    #book-rule-b {
+      height: 1px;
+      left: 20px;
+      position: absolute;
+      top: 70px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/5 */
+    #page {
+      height: 500px;
+      left: 20px;
+      position: absolute;
+      top: 80px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0 */
+    #pg-opp {
+      height: 500px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/0 */
+    #opp-type {
+      height: 20px;
+      left: 28px;
+      position: absolute;
+      top: 18px;
+      width: 400px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/1 */
+    #opp-name {
+      height: 38px;
+      left: 28px;
+      position: absolute;
+      top: 40px;
+      width: 600px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/2 */
+    #opp-desc {
+      height: 104px;
+      left: 28px;
+      position: absolute;
+      top: 90px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/3 */
+    #g-rule {
+      height: 3px;
+      left: 28px;
+      position: absolute;
+      top: 210px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/4 */
+    #g-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 260px;
+      left: 28px;
+      position: absolute;
+      top: 226px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/4/0 */
+    #g-row {
+      flex-shrink: 0;
+      height: 36px;
+      position: relative;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/4/0/0 */
+    #g-act {
+      height: 34px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 160px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/0/4/0/1 */
+    #g-text {
+      height: 34px;
+      left: 170px;
+      position: absolute;
+      top: 0px;
+      width: 740px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1 */
+    #pg-rules {
+      height: 500px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/0 */
+    #r-empty {
+      height: 24px;
+      left: 28px;
+      position: absolute;
+      top: 24px;
+      width: 600px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/1 */
+    #r-scroll {
+      height: 464px;
+      left: 28px;
+      overflow-y: auto;
+      position: absolute;
+      top: 20px;
+      width: 940px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/1/0 */
+    #r-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/1/0/0 */
+    #r-row {
+      flex-shrink: 0;
+      height: 64px;
+      position: relative;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/1/0/0/0 */
+    #r-text {
+      height: 30px;
+      left: 16px;
+      position: absolute;
+      top: 6px;
+      width: 890px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/1/1/0/0/1 */
+    #r-count {
+      height: 18px;
+      left: 16px;
+      position: absolute;
+      top: 38px;
+      width: 600px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2 */
+    #pg-log {
+      height: 500px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 996px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/0 */
+    #legend {
+      height: 22px;
+      left: 28px;
+      position: absolute;
+      top: 12px;
+      width: 600px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/0/0 */
+    #legend-sw {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 3px;
+      width: 22px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/0/1 */
+    #legend-t {
+      height: 20px;
+      left: 32px;
+      position: absolute;
+      top: 0px;
+      width: 400px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1 */
+    #l-scroll {
+      height: 448px;
+      left: 28px;
+      overflow-y: auto;
+      position: absolute;
+      top: 40px;
+      width: 940px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0 */
+    #l-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0 */
+    #l-row {
+      flex-shrink: 0;
+      height: 72px;
+      position: relative;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0/0 */
+    #l-text {
+      height: 44px;
+      left: 12px;
+      position: absolute;
+      top: 6px;
+      width: 896px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0/1 */
+    #l-rev {
+      height: 72px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0/1/0 */
+    #l-mark {
+      height: 72px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0/1/0/0 */
+    #l-frame {
+      height: 72px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 920px;
+    }
+    /* import: Notes.dc.html:1/1/0/5/2/1/0/0/1/0/1 */
+    #l-note {
+      height: 19px;
+      left: 12px;
+      position: absolute;
+      top: 50px;
+      width: 896px;
+    }
+    .tab {
+      width: 150px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+    .btn {
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .opp-desc {
+      transform: skewX(-6deg);
+    }
+    .g-text {
+      overflow: hidden;
+      transform: skewX(-6deg);
+    }
+    .r-text {
+      transform: skewX(-6deg);
+    }
+    .l-note {
+      overflow: hidden;
+      transform: skewX(-6deg);
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="notes.xts"/>
+  <timelines>
+    @timeline open {
+      #scrim {
+        0ms {
+          opacity: 0;
+        }
+        200ms ease-out {
+          opacity: 1;
+        }
+      }
+      #book {
+        0ms {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        240ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

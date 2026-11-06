@@ -247,7 +247,11 @@ UI 側實作（板子 `ui/boards/project/Board.dc.html`）：
 | `sel_act` | number | in | 目前選的行動 0 無、1～4。 |
 | `parry_cards` | list<struct{id: string, name: string}> | in | 反駁時下方滑出的破解證物；空清單＝不顯示選擇器。 |
 | `summary` | string | in | 鎖定確認列文字（例「反駁　對準：…　出示：E02_04」）；空字串隱藏確認列。 |
-| `preview`、`preview_vs` | string | in | 預估列（攻擊：`UI_DEB_PREVIEW`「傷害 {dmg}　倍率 ×{mult}　{shaken}」＋破竹 `UI_DEB_PREVIEW_HACHIKU`＋「可以論破」；反駁：`UI_DEB_PREVIEW_PARRY`）與依候選行動的小字。 |
+| `preview`、`preview_vs` | string | in | 預估列（攻擊：`UI_DEB_PREVIEW`「傷害 {dmg}　倍率 ×{mult}　{shaken}」＋破竹 `UI_DEB_PREVIEW_HACHIKU`＋「可以論破」；反駁：`UI_DEB_PREVIEW_PARRY`）與依候選行動的小字（`UI_DEB_PREVIEW_VS`「若{action}：{result}」，每個候選一段，全形空白隔開；M5c）。 |
+| `improv_ok` | bool | in | 「臨場硬接」（`BTN_DEB_SOPH_NEW`）可按：選了詭辯、鏈段沒有虛線、鏈段終點是該鏈最後一張且鏈未滿 5 張、本回合還沒硬接過、有散卡（M5c，`docs/flows.md` §4.8）。 |
+| `improv` | event | out | 按了「臨場硬接」：流圖把可硬接的散卡列進 `parry_cards`（選擇器標題換成 `picker_title`），選一張（`card`）即接上。 |
+| `picker_title` | string | in | 選擇器的標題；空字串＝`MSG_DEB_SELECT_PARRY`（反駁），臨場硬接時為 `BTN_DEB_SOPH_NEW` 的文字。 |
+| `notes` | event | out | 開對手筆記（`BTN_DEB_NOTES` 或 N；M5c）。UI 不自己開，流圖決定（主論戰中）。 |
 | `can_lock` | bool | in | 「鎖定」可按。 |
 | `instinct_left`、`assist_left` | number | in | 狐耳直覺燈、援護燈（亮燈數）。 |
 | `instinct_ok` | bool | in | 狐耳直覺目前可用。 |
@@ -301,16 +305,17 @@ UI 側實作（板子 `ui/boards/project/Debate.dc.html`）：
 - **確認列**：`summary` 空字串隱藏；`assist_armed` 時多一行 `UI_DEB_ASSIST_ARMED`（燈火金）。右側 `BTN_BACK`（→ `emit(back)`）與 `BTN_DEB_LOCK`（`can_lock` 為 false 時灰且不送；→ `emit(lock)`）；`phase` ≠ 0 時兩鈕換成 `UI_DEB_LOCKED` 框。
 - **四個行動（鉛字塊）**：`UI_ACT_GROUP_ATK`「攻」＋實證連鎖、詭辯 │ 黃銅隔條 │ `UI_ACT_GROUP_DEF`「守」＋反駁、觀察；左上角小字 1～4。`sel_act` 選中的塊反白（新聞紙底、朱紅底線與光暈）；`act_enabled | item(i)` 為 false 時灰，`act_reason | item(i)` 印在塊內下方；`st_shisshu` > 0 時反駁塊蓋一道裂紋；`phase` ≠ 0 時整列變淡。**灰色的塊仍會送出 `act`**（`phase` 0 時）：系統規格 §4.4 要求失守時按下反駁要跳 MSG_DEB_NOPARRY_SHISSHU，所以由流圖判斷是否接受並顯示原因；流圖不得因此選取不可按的行動。
 - **援護**：左下亞瑟頭像（`char_arthur.png` 裁頭部）＋`BTN_DEB_ASSIST`＋燈（`assist_left`；2 時才出現第二顆）；`assist_armed` 時燈火金框光；`assist_left` 0 且未待命時頭像去色。點擊或 V → `emit(assist)`（`phase` 0 時）。
-- **狀態列**（右下）：`UI_DEB_STATUS_LABEL`（新增）；`st_break` → 朱紅 `UI_DEB_STATUS_BREAK_TURN`；`st_shaken` > 0 → 燈＋`UI_DEB_PREVIEW_SHAKEN`＋剩餘回合圓點；`st_tail` > 0 → `UI_TAIL`＋圓點；`st_flags`（最多三行）。全都沒有時顯示淡色「—」。其下 `BTN_DEB_NOTES`（合約沒有 port，只有外觀，不送事件）。`st_tail` > 0 時報頭列右端另掛「尾聲」大銅牌（設計說在兩錶之間）。
+- **狀態列**（右下）：`UI_DEB_STATUS_LABEL`（新增）；`st_break` → 朱紅 `UI_DEB_STATUS_BREAK_TURN`；`st_shaken` > 0 → 燈＋`UI_DEB_PREVIEW_SHAKEN`＋剩餘回合圓點；`st_tail` > 0 → `UI_TAIL`＋圓點；`st_flags`（最多三行）。全都沒有時顯示淡色「—」。其下 `BTN_DEB_NOTES`：點擊或 N → `emit(notes)`（M5c）。`st_tail` > 0 時報頭列右端另掛「尾聲」大銅牌（設計說在兩錶之間）。
 - **對決表**：右緣銅把手 `BTN_DEB_TABLE ▸`，點擊或 T 切換 `#table` 的 `Open` 狀態（UI 自己的狀態，不經 port）；展開為 4×3 的表（列 `BTN_DEB_*`、欄 `UI_TABLE_COL_*`、格 `UI_TABLE_*`，每格最多六行），疊在畫面中央之上；`tell_a`／`tell_b` 指到的欄（0／1 → 主張／猛攻、2 → 補強、3 → 設陷）表頭朱紅、格子淡黃；`st_shisshu` > 0 時反駁列淡出。不記住展開狀態。
 - **揭示（`phase` 1～3）**：中段蓋上一條深墨帶；`reveal_seq` 變更時播 `reveal`：雙方黃銅邊大卡從兩側飛入（300 ms）、翻面（420～540 ms），我方卡顯示 `BTN_DEB_*`（`reveal_me` 1～4），對手卡顯示 `UI_ACT_*`（`reveal_opp` 0～3；4 垂死反撲顯示 `UI_TAIL` 與爪痕）；卡頂是 `SPK_SHEREFOX` 與 `opp_name`。`reveal_combo` 2：兩卡之間金色爆光＋`MSG_DEB_CLASH`；3：兩卡變淡（僵持）；0／1 外觀相同（演出順序由流圖計時）。`phase` 1 時帶子下緣顯示 `reveal_line`（760 ms 淡入），`phase` ≥ 2 時改顯示 `result_line`（朱筆底線）。揭示期間全畫面點擊、Enter、Space：`phase` 1 → `emit(skip)`，`phase` ≥ 2 → `emit(next)`。
-- **鍵盤**（根元素持有焦點，同 vn）：1～4 行動、F 狐耳直覺、V 援護、T 對決表、Enter 鎖定（`can_lock`）／快轉／繼續、Space 快轉／繼續、Backspace 與右鍵 → `back`（`phase` 0 時）。
+- **鍵盤**（根元素持有焦點，同 vn）：1～4 行動、F 狐耳直覺、V 援護、T 對決表、N 對手筆記（M5c）、Enter 鎖定（`can_lock`）／快轉／繼續、Space 快轉／繼續、Backspace 與右鍵 → `back`（`phase` 0 時）。
 - **預設值**（截圖用）：Ch.2 主論戰第 3 回合：費奇（`valet`）70／100、我方 81／100，N1 亮起＋N2、N3，模糊預兆「主張／猛攻」與小動作「拉袖口、鞠躬」，推理鏈同 board 的樣本，破竹 1，已選反駁、選擇器兩張（E02_02、E02_04），確認列與預估列有字，手牌 1。
-- 未做（合約沒有對應 port，或需要動畫素材）：立繪的小動作動畫（以字幕代替）、管線蒸汽流向亮起節點、論破時版面撕裂與齒輪撞擊主張鏈、鎖在 1 的「瀕死底線」紅燈、壓力錶玻璃碎裂、故事模式的推薦格與小動作標註、偽裝對手的常駐說明 `UI_DEB_DISGUISER`、看穿時台詞泡泡上的裂開面具、援護確認、方向鍵選節點／證物／鏈、滾輪捲動選擇器、Ctrl 長按快轉、對決表展開狀態的記憶、對手筆記畫面（只有按鈕）。
+- 未做（合約沒有對應 port，或需要動畫素材）：立繪的小動作動畫（以字幕代替）、管線蒸汽流向亮起節點、論破時版面撕裂與齒輪撞擊主張鏈、鎖在 1 的「瀕死底線」紅燈、壓力錶玻璃碎裂、故事模式的推薦格與小動作標註、偽裝對手的常駐說明 `UI_DEB_DISGUISER`、看穿時台詞泡泡上的裂開面具、援護確認、方向鍵選節點／證物／鏈、滾輪捲動選擇器、Ctrl 長按快轉、對決表展開狀態的記憶。
+- **臨場硬接**（M5c）：預估框右上角的小鈕 `#btn-improv`（`BTN_DEB_SOPH_NEW`，`display=improv_ok`），點擊 → `emit(improv)`（`phase` 0 時）。選擇器的標題：`picker_title` 空字串時顯示 `MSG_DEB_SELECT_PARRY`，否則顯示 `picker_title`（朱紅）；選擇器的卡片照舊 `set(card, item(id))`。
 
 字串鍵：`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`UI_NODE_NORMAL`、`UI_NODE_LIT`、`UI_NODE_FRAGILE`、`UI_NODE_SECOND`、`UI_NODE_STURDY_SRC`、`UI_DEB_GOSSIP`（新增）、`BTN_DEB_INSTINCT`、`UI_DEB_TELL_CLEAR`、`UI_DEB_TELL_FUZZY`、`UI_DEB_TELL_SCRIPT`、`UI_ACT_CLAIM`、`UI_ACT_RUSH`、`UI_ACT_REINFORCE`、`UI_ACT_TRAP`、`UI_ACT_GROUP_ATK`、`UI_ACT_GROUP_DEF`、`MSG_DEB_SELECT_PARRY`、`UI_DEB_PREVIEW_LABEL`（新增）、`UI_DEB_PREVIEW_SHAKEN`、`UI_STATE_KONJU_TIP`、`UI_STATE_SHISSHU_TIP`、`BTN_BACK`、`BTN_DEB_LOCK`、`UI_DEB_LOCKED`、`UI_DEB_ASSIST_ARMED`、`BTN_DEB_SOLID`、`BTN_DEB_SOPH`、`BTN_DEB_PARRY`、`BTN_DEB_OBSERVE`、`BTN_DEB_ASSIST`、`UI_DEB_STATUS_LABEL`（新增）、`UI_DEB_STATUS_BREAK_TURN`、`UI_TAIL`、`BTN_DEB_NOTES`、`BTN_DEB_TABLE`、`UI_TABLE_TITLE`、`UI_TABLE_COL_*`、`UI_TABLE_*`、`SPK_SHEREFOX`、`MSG_DEB_CLASH`。新增的三個鍵只在 `ui/project/shared/strings/<lang>.csv`（`tools/build_data.py` 會保留並列為 UI-only），尚未進根目錄 `strings/`。
 
-流圖側（`flows/debate_ui.xtflow`，`docs/flows.md` §4.8）：除了 `preview_vs` 與 `st_flags`（空字串）以外的 port 全部寫入。`act_enabled`／`act_reason` 以 `atrium.ui.list` 的 `bare` 寫成值陣列（AT-047；詭辯鈕的原因 `UI_DEB_NOSOPH_REASON`）；按了不可按的行動時確認列（`summary`）也顯示原因。`summary`、`preview`、`round_text`、`counter_text`、`tell_star_text`、`claim_preview` 以 `atrium.textf` 填具名佔位（AT-046）。`skip`／`next` 在揭示中都是快轉，結算數字停留時 `next` 進下一回合（或結束）。論戰畫面在場景的開場台詞（vn）之後才出現，收尾台詞在論戰結束後回到 vn 播放（`docs/flows.md` §4.1、§4.2）。
+流圖側（`flows/debate_ui.xtflow`，`docs/flows.md` §4.8）：全部 port 寫入（M5c 起含 `preview_vs`、`st_flags`、`improv_ok`、`picker_title`）。`act_enabled`／`act_reason` 以 `atrium.ui.list` 的 `bare` 寫成值陣列（AT-047；詭辯鈕的原因 `UI_DEB_NOSOPH_REASON`）；按了不可按的行動時確認列（`summary`）也顯示原因。`summary`、`preview`、`round_text`、`counter_text`、`tell_star_text`、`claim_preview` 以 `atrium.textf` 填具名佔位（AT-046）。`skip`／`next` 在揭示中都是快轉，結算數字停留時 `next` 進下一回合（或結束）。論戰畫面在場景的開場台詞（vn）之後才出現，收尾台詞在論戰結束後回到 vn 播放（`docs/flows.md` §4.1、§4.2）。
 
 ## cutin（書法大字與印章，覆蓋層，最上層，非 modal）
 
@@ -362,11 +367,12 @@ UI 側實作（板子 `ui/boards/project/Result.dc.html`）：
 - **本案的代價**（`costs`）：`win` = 0 時顯示，朱紅上下框、小標 `UI_RES_COST`，`<repeat>` 每筆一列（朱紅小方塊＋`item(text)`），可見 2～3 列。
 - **按鈕**：右下 `BTN_RES_RETRY`（`can_retry` 為 false 時隱藏）→ `emit(retry)`；`BTN_RES_CONTINUE` → `emit(continue)`。鍵盤（根元素持有焦點，同 vn）：Enter／Space → `continue`，R → `retry`（`can_retry` 時）。
 - **預設值**（截圖用）：Ch.2 勝利、費奇的結局台詞 `SCR_CH02_S05_L046`、9 列統計樣本、`trust_from`／`trust_to` = −1、`ART_RES_CLEAN`、沒有代價、不能重來。
-- 未做（合約沒有對應 port）：敗北時先開對手筆記的回合紀錄、故事模式風評（`UI_RES_REPUTE`）、`BTN_RES_ACCEPT`。
+- 敗北時先開對手筆記的回合紀錄：由流圖在論戰結束、結算之前打開 notes 覆蓋層（notes 一節，M5c），結算畫面本身不變。
+- 未做（合約沒有對應 port）：故事模式風評（`UI_RES_REPUTE`）、`BTN_RES_ACCEPT`。
 
 字串鍵：`UI_PAPER_MAST`、`UI_RES_WIN`、`UI_RES_LOSE`、`UI_RES_UNACHIEVED`（新增，UI-only）、`UI_RES_TRUST_LABEL`（新增，UI-only）、`SPK_ARTHUR`、`UI_RES_COST`、`UI_PAPER_STAMP_CLOSED`、`BTN_RES_CONTINUE`、`BTN_RES_RETRY`。
 
-流圖側（`flows/result.xtflow`，`docs/flows.md` §4.9，M4c）：全部 port 寫入；`stats` 的 `value` 是字串（數字以 `%.6g`），「讀對預兆」沒有資料不列；`continue` 之後畫面換成 vn 播結算場景的台詞，`retry` 回到論戰步驟。cutin 由 `debate_ui` 寫（`big`／`big_seq`、`stamp`／`stamp_seq`／`stamp_n`、英文時的 `subtitle`）；`done` 不讀。
+流圖側（`flows/result.xtflow`，`docs/flows.md` §4.9，M4c）：全部 port 寫入；`stats` 的 `value` 是字串（數字以 `%.6g`）；`label` 是已在地化的文字（寫入當下的語言）；「讀對預兆」（M5c）一列的 `label` 是代入後的 `UI_RES_READS`（「讀對預兆 {hit}／{total}」），`value` 空字串；`continue` 之後畫面換成 vn 播結算場景的台詞，`retry` 回到論戰步驟。cutin 由 `debate_ui` 寫（`big`／`big_seq`、`stamp`／`stamp_seq`／`stamp_n`、英文時的 `subtitle`）；`done` 不讀。
 
 ## evbook（證物冊，覆蓋層，modal）
 
@@ -385,6 +391,7 @@ UI 側實作（板子 `ui/boards/project/Result.dc.html`）：
 | `select` | string | out | 選卡。 |
 | `appraise` | event | out | 交給亞瑟。 |
 | `close` | event | out | 關閉。 |
+| `remark`、`remark_seq` | string、number | in | 鑑定後亞瑟的一句話（卡片的鑑定台詞 `evidence.appraisalKey`，沒有時 `ART_APPR_*`；空字串隱藏）與每換一句 +1（M5c）。 |
 
 UI 側實作（板子 `ui/boards/project/Evbook.dc.html`）：
 
@@ -395,6 +402,33 @@ UI 側實作（板子 `ui/boards/project/Evbook.dc.html`）：
 - **詳情**（`sel_*`；`sel_id` 空字串隱藏）：同 board 的詳情面板：等級小標 `UI_GRADE_*`、頂端等級色條、右上 `sel_id`、`sel_name`、`sel_tags`、雙線、`sel_desc`（最多 9 行）；底部鑑定箱圖示＋`UI_INV_APPR`＋`format('×{0}', appraise_left)`，`BTN_APPRAISE`（`sel_can_appraise` 為 false 時灰色且不送）→ `emit(appraise)`。
 - **鍵盤**（根元素持有焦點，同 vn）：Esc、Tab、Backspace → `close`；1／2／3 → `set(select_tab, 0／1／2)`；Q／E → `set(select_tab, tab ∓ 1)`（`offset` 後 `clamp(0, 2)`）。
 - **預設值**（截圖用）：Ch.2 本案證物分頁 6 張（E02_01～E02_06；E02_01 為未鑑定的關鍵證物並選中，E02_05、E02_06 為新取得），案件筆記 2 則（`HS_CH02_09_NOTE`、`HS_CH02_11_NOTE`），鑑定 2 次。
+- **亞瑟的一句話**（`remark`，M5c）：詳情面板的鑑定列上方，舊紙底、銅色左線的框：`SPK_ARTHUR` 小標＋`remark`（三行，斜體）；`remark` 空字串隱藏，`remark_seq` 變更時播 `remark-in`（260 ms 淡入上移）。內文 `sel_desc` 因此改為最多 6 行。
 - 未做（合約沒有對應 port）：卡片上的五大標籤圖示與已鑑定鋼印、方向鍵選卡、筆記分類。
 
-字串鍵：`UI_EVBOOK_TITLE`、`UI_EVBOOK_TAB_CASE`、`UI_EVBOOK_TAB_GOLD`、`UI_EVBOOK_TAB_PLOT`、`UI_EVBOOK_GOLD_EMPTY`、`UI_NOTES_TITLE`、`BTN_CLOSE`、`UI_GRADE_*`、`UI_INV_APPR`、`BTN_APPRAISE`。
+字串鍵：`SPK_ARTHUR`、`UI_EVBOOK_TITLE`、`UI_EVBOOK_TAB_CASE`、`UI_EVBOOK_TAB_GOLD`、`UI_EVBOOK_TAB_PLOT`、`UI_EVBOOK_GOLD_EMPTY`、`UI_NOTES_TITLE`、`BTN_CLOSE`、`UI_GRADE_*`、`UI_INV_APPR`、`BTN_APPRAISE`。
+
+## notes（亞瑟的對手筆記，覆蓋層，modal；M5c）
+
+依據：系統規格 §4.4「亞瑟的對手筆記」、§4.2 SCR_RESULT（敗北時先開回合紀錄）、§8.6（`UI_NOTES_*`、`ART_REVIEW_*`）。`game.json` 裡 `"modal": true` 的覆蓋層（在 cutin 之前）；可見性由 `main` 決定（`world.notesOpen` 開、`close` 關、步驟開始時關，`docs/flows.md` §4.1），內容由 `debate_ui` 寫（§4.8）。開著時論戰暫停（流圖不推進揭示）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `tab` | number | in | 0 這位對手、1 行為規則、2 回合紀錄。 |
+| `opp_name`、`opp_type`、`opp_desc` | string | in | 對手名牌、類型（`UI_TYPE_*`）、類型與基本傾向的說明（`UI_TYPE_*_DESC`），已在地化。 |
+| `gestures` | list<struct{act: string, text: string}> | in | 對手會用的行動（權重 > 0，依主張、猛攻、補強、設陷）與它的小動作：第一次看到對手以該行動翻牌後是小動作文字，之前是 `UI_NOTES_GESTURE_EMPTY`；兩欄都已在地化。 |
+| `rules` | list<struct{text: string, count: string}> | in | 已記下的行為規則（`UI_NOTES_RULE_1`～`5`，第一次看到觸發時記下，跨章保留）與本場的次數（`UI_NOTES_RULE_COUNT`）；空清單＝還沒記下任何規則。 |
+| `log` | list<struct{text: string, mark: bool, note: string}> | in | 每回合一列：`UI_NOTES_LOG_ROW`（回合、預兆、我方、對方、該回合第一句結算台詞）；`mark` ＝讀錯的回合；`note` ＝讀錯時亞瑟的評語（`ART_REVIEW_*`，沒有合適的句子時空字串）。文字是寫入當下的語言。 |
+| `review` | bool | in | 敗北回顧：true 時 `mark` 的列加朱紅框並顯示 `note`，頁首顯示圖例 `UI_NOTES_LOG_MISREAD`。 |
+| `select_tab` | number | out | 切換分頁。 |
+| `close` | event | out | 關閉。 |
+
+UI 側實作（板子 `ui/boards/project/Notes.dc.html`）：
+
+- **整體**：同證物冊的做法：全畫面深墨半透明遮罩（點一下 → `emit(close)`），中央一本筆記（1040×600，以 `calc` 置中的 dock）：書名 `UI_NOTES_TITLE_DUP2`（「亞瑟的對手筆記」；設計的 `UI_NOTES_TITLE` 鍵被案件筆記用掉，在地化包另給 `_DUP2`）、三個分頁 `UI_NOTES_TAB_OPP`／`RULES`／`LOG`（`tab | eq(n)` 深墨底；點擊 → `set(select_tab, n)`）、`BTN_CLOSE`、雙線；其下一頁新聞紙（銅色左邊線）。顯示時播 `open`。
+- **這位對手**（`tab` 0）：`opp_type` 小標、`opp_name` 大字、`opp_desc`（斜體四行），細雙線下 `<repeat port="gestures">` 每列「`item(act)`（銅色粗體）＋`item(text)`（斜體）」，虛線分隔。
+- **行為規則**（`tab` 1）：`<repeat port="rules">` 每列舊紙底、銅色左線：`item(text)`（斜體兩行）＋`item(count)`（銅色小字）；清單空時顯示 `UI_NOTES_GESTURE_EMPTY`。
+- **回合紀錄**（`tab` 2）：`<repeat port="log">` 每列 `item(text)`（兩行）；`review` 為 true 時列上疊一層（`display=review`，範本裡讀頂層 port，每列相同，lint 的 `tag.repeatBinding` 提醒是預期的），其中 `display=item(mark)` 的朱紅 3 px 框與 `item(note)`（朱紅斜體）；頁首圖例（朱紅框小方塊＋`UI_NOTES_LOG_MISREAD`）同樣只在 `review` 時顯示。範本裡沒有固定文字（範本內的 `@key` 不會在地化）。
+- **鍵盤**（根元素持有焦點）：Esc、N、Backspace → `close`；1／2／3 → `set(select_tab, 0／1／2)`；Q／E → 前後分頁。
+- **預設值**（截圖用）：Ch.2 費奇的回合紀錄分頁、敗北回顧（三回合，兩回合讀錯）。
+
+字串鍵：`UI_NOTES_TITLE_DUP2`、`UI_NOTES_TAB_OPP`、`UI_NOTES_TAB_RULES`、`UI_NOTES_TAB_LOG`、`UI_NOTES_GESTURE_EMPTY`、`UI_NOTES_LOG_MISREAD`、`BTN_CLOSE`。

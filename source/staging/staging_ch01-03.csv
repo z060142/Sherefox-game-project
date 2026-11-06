@@ -339,6 +339,10 @@ SCR_CH03_S04_L006,debate,sherefox,arthur,baskerville,3,0,
 SCR_CH03_S04_L007,debate,sherefox,arthur,baskerville,1,0,
 SCR_CH03_S04_L008,dock_fog,sherefox,arthur,baskerville,3,0,judgement: the warm-up is over; wrap-up is back on the dock
 SCR_CH03_S04_L009,dock_fog,sherefox,arthur,baskerville,0,2,
+SCR_CH03_S04_F001,debate,sherefox,arthur,baskerville,3,0,warm-up failure variant (3 mistakes): replaces L006-L009
+SCR_CH03_S04_F002,dock_fog,sherefox,arthur,baskerville,3,0,judgement: as L008 the wrap-up is back on the dock
+SCR_CH03_S04_F003,dock_fog,sherefox,arthur,baskerville,2,0,
+SCR_CH03_S04_F004,dock_fog,sherefox,arthur,baskerville,0,2,
 SCR_CH03_S05_L001,boiler_room,,,,0,2,
 SCR_CH03_S05_L002,boiler_room,sherefox,,arthur,0,2,"bg follows the hotspot place of data-schema 5.1 (boiler H03_01, deck H03_06, dock H03_10); cast fixed for per-hotspot replay"
 SCR_CH03_S05_L003,boiler_room,sherefox,,arthur,3,0,

@@ -1261,7 +1261,7 @@
    }
   },
   {
-   "id": "s_da",
+   "id": "s_rd",
    "type": "atrium.map.get",
    "params": {
     "name": "debState"
@@ -1269,6 +1269,20 @@
   },
   {
    "id": "k40",
+   "type": "constant",
+   "params": {
+    "value": "rd"
+   }
+  },
+  {
+   "id": "s_da",
+   "type": "atrium.map.get",
+   "params": {
+    "name": "debState"
+   }
+  },
+  {
+   "id": "k41",
    "type": "constant",
    "params": {
     "value": "da"
@@ -1282,7 +1296,7 @@
    }
   },
   {
-   "id": "k41",
+   "id": "k42",
    "type": "constant",
    "params": {
     "value": "dlit"
@@ -1296,7 +1310,7 @@
    }
   },
   {
-   "id": "k42",
+   "id": "k43",
    "type": "constant",
    "params": {
     "value": "dcl"
@@ -1310,7 +1324,7 @@
    }
   },
   {
-   "id": "k43",
+   "id": "k44",
    "type": "constant",
    "params": {
     "value": "ds1"
@@ -1324,7 +1338,7 @@
    }
   },
   {
-   "id": "k44",
+   "id": "k45",
    "type": "constant",
    "params": {
     "value": "ds2"
@@ -1338,7 +1352,7 @@
    }
   },
   {
-   "id": "k45",
+   "id": "k46",
    "type": "constant",
    "params": {
     "value": "dst"
@@ -1352,7 +1366,7 @@
    }
   },
   {
-   "id": "k46",
+   "id": "k47",
    "type": "constant",
    "params": {
     "value": "dsr"
@@ -1366,7 +1380,7 @@
    }
   },
   {
-   "id": "k47",
+   "id": "k48",
    "type": "constant",
    "params": {
     "value": "db"
@@ -1380,7 +1394,7 @@
    }
   },
   {
-   "id": "k48",
+   "id": "k49",
    "type": "constant",
    "params": {
     "value": "dru"
@@ -1394,7 +1408,7 @@
    }
   },
   {
-   "id": "k49",
+   "id": "k50",
    "type": "constant",
    "params": {
     "value": "dln"
@@ -2311,7 +2325,7 @@
    }
   },
   {
-   "id": "k50",
+   "id": "k51",
    "type": "constant",
    "params": {
     "value": ""
@@ -2329,14 +2343,14 @@
    "type": "select"
   },
   {
-   "id": "k51",
+   "id": "k52",
    "type": "constant",
    "params": {
     "value": 1
    }
   },
   {
-   "id": "k52",
+   "id": "k53",
    "type": "constant",
    "params": {
     "value": 0
@@ -2523,7 +2537,7 @@
    "type": "select"
   },
   {
-   "id": "k53",
+   "id": "k54",
    "type": "constant",
    "params": {
     "value": "scorched"
@@ -3933,6 +3947,13 @@
    }
   },
   {
+   "id": "n_rd",
+   "type": "atrium.expr",
+   "params": {
+    "expr": "tailR ? (s_rd + tCorrect) : (s_rd + right)"
+   }
+  },
+  {
    "id": "dMode",
    "type": "state",
    "params": {
@@ -4858,7 +4879,7 @@
    "type": "toString"
   },
   {
-   "id": "k54",
+   "id": "k55",
    "type": "constant",
    "params": {
     "value": "warmup"
@@ -5113,7 +5134,7 @@
    "type": "select"
   },
   {
-   "id": "k55",
+   "id": "k56",
    "type": "constant",
    "params": {
     "value": "fuzzy"
@@ -5159,7 +5180,7 @@
    }
   },
   {
-   "id": "k56",
+   "id": "k57",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_SEEN|stamp||player|0|0"
@@ -5238,7 +5259,7 @@
    }
   },
   {
-   "id": "k57",
+   "id": "k58",
    "type": "constant",
    "params": {
     "value": "msg|WARN_DEB_OBSERVE_TAIL"
@@ -5518,7 +5539,7 @@
    }
   },
   {
-   "id": "k58",
+   "id": "k59",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_CLASH|stamp|||0|0"
@@ -5539,7 +5560,7 @@
    }
   },
   {
-   "id": "k59",
+   "id": "k60",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_PARRY|stamp||player|0|0"
@@ -5560,7 +5581,7 @@
    }
   },
   {
-   "id": "k60",
+   "id": "k61",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_WHIFF|stamp||player|0|0"
@@ -5581,7 +5602,7 @@
    }
   },
   {
-   "id": "k61",
+   "id": "k62",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_WHIFF|stamp||opponent|0|0"
@@ -5731,7 +5752,7 @@
    }
   },
   {
-   "id": "k62",
+   "id": "k63",
    "type": "constant",
    "params": {
     "value": "break|0|parry||"
@@ -5745,7 +5766,7 @@
    }
   },
   {
-   "id": "k63",
+   "id": "k64",
    "type": "constant",
    "params": {
     "value": "msg|MSG_DEB_PARRY_BREAK_MISS"
@@ -5787,7 +5808,7 @@
    }
   },
   {
-   "id": "k64",
+   "id": "k65",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_TRAP|stamp||player|0|0"
@@ -5808,7 +5829,7 @@
    }
   },
   {
-   "id": "k65",
+   "id": "k66",
    "type": "constant",
    "params": {
     "value": "msg|ASSIST_BLOCKED"
@@ -5822,7 +5843,7 @@
    }
   },
   {
-   "id": "k66",
+   "id": "k67",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_ASSIST|stamp||player|0|0"
@@ -5927,7 +5948,7 @@
    }
   },
   {
-   "id": "k67",
+   "id": "k68",
    "type": "constant",
    "params": {
     "value": "msg|MSG_DEB_ASSIST_WASTED"
@@ -5997,7 +6018,7 @@
    }
   },
   {
-   "id": "k68",
+   "id": "k69",
    "type": "constant",
    "params": {
     "value": "statusLost|shaken|opponent|break_round_passed"
@@ -6056,7 +6077,7 @@
    }
   },
   {
-   "id": "k69",
+   "id": "k70",
    "type": "constant",
    "params": {
     "value": "statusLost|shisshu|player|break"
@@ -6077,7 +6098,7 @@
    }
   },
   {
-   "id": "k70",
+   "id": "k71",
    "type": "constant",
    "params": {
     "value": "statusGained|shisshu|player|1"
@@ -6115,7 +6136,7 @@
    }
   },
   {
-   "id": "k71",
+   "id": "k72",
    "type": "constant",
    "params": {
     "value": "statusLost|shisshu|player|expired"
@@ -6202,7 +6223,7 @@
    }
   },
   {
-   "id": "k72",
+   "id": "k73",
    "type": "constant",
    "params": {
     "value": "cutin|STAMP_HACHIKU_LOST|stamp||player|0|0"
@@ -6223,7 +6244,7 @@
    }
   },
   {
-   "id": "k73",
+   "id": "k74",
    "type": "constant",
    "params": {
     "value": "statusLost|konju|opponent|break"
@@ -6244,7 +6265,7 @@
    }
   },
   {
-   "id": "k74",
+   "id": "k75",
    "type": "constant",
    "params": {
     "value": "statusLost|konju|opponent|expired"
@@ -6429,7 +6450,7 @@
    }
   },
   {
-   "id": "k75",
+   "id": "k76",
    "type": "constant",
    "params": {
     "value": "statusLost|tail|opponent|voided"
@@ -6443,7 +6464,7 @@
    }
   },
   {
-   "id": "k76",
+   "id": "k77",
    "type": "constant",
    "params": {
     "value": "statusLost|shaken|opponent|break_voided"
@@ -6773,6 +6794,13 @@
   },
   {
    "id": "w_pln",
+   "type": "atrium.map.set",
+   "params": {
+    "name": "debState"
+   }
+  },
+  {
+   "id": "w_rd",
    "type": "atrium.map.set",
    "params": {
     "name": "debState"
@@ -7364,7 +7392,7 @@
    "type": "select"
   },
   {
-   "id": "k77",
+   "id": "k78",
    "type": "constant",
    "params": {
     "value": "clear"
@@ -7391,7 +7419,7 @@
    "type": "select"
   },
   {
-   "id": "k78",
+   "id": "k79",
    "type": "constant",
    "params": {
     "value": "script"
@@ -7984,42 +8012,46 @@
   },
   {
    "from": "k40.out",
-   "to": "s_da.key"
+   "to": "s_rd.key"
   },
   {
    "from": "k41.out",
-   "to": "s_dlit.key"
+   "to": "s_da.key"
   },
   {
    "from": "k42.out",
-   "to": "s_dcl.key"
+   "to": "s_dlit.key"
   },
   {
    "from": "k43.out",
-   "to": "s_ds1.key"
+   "to": "s_dcl.key"
   },
   {
    "from": "k44.out",
-   "to": "s_ds2.key"
+   "to": "s_ds1.key"
   },
   {
    "from": "k45.out",
-   "to": "s_dst.key"
+   "to": "s_ds2.key"
   },
   {
    "from": "k46.out",
-   "to": "s_dsr.key"
+   "to": "s_dst.key"
   },
   {
    "from": "k47.out",
-   "to": "s_db.key"
+   "to": "s_dsr.key"
   },
   {
    "from": "k48.out",
-   "to": "s_dru.key"
+   "to": "s_db.key"
   },
   {
    "from": "k49.out",
+   "to": "s_dru.key"
+  },
+  {
+   "from": "k50.out",
    "to": "s_dln.key"
   },
   {
@@ -8871,7 +8903,7 @@
    "to": "hasScriptId_c.a"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "hasScriptId_c.b"
   },
   {
@@ -8879,11 +8911,11 @@
    "to": "hasScriptId.cond"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "hasScriptId.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "hasScriptId.b"
   },
   {
@@ -8891,7 +8923,7 @@
    "to": "scriptId_c.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "scriptId_c.b"
   },
   {
@@ -8995,7 +9027,7 @@
    "to": "aiLit3.a"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "aiLit3.b"
   },
   {
@@ -9039,7 +9071,7 @@
    "to": "actStr_c.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "actStr_c.b"
   },
   {
@@ -9047,7 +9079,7 @@
    "to": "actStr.cond"
   },
   {
-   "from": "k53.out",
+   "from": "k54.out",
    "to": "actStr.a"
   },
   {
@@ -9071,7 +9103,7 @@
    "to": "litStr_c.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "litStr_c.b"
   },
   {
@@ -9139,7 +9171,7 @@
    "to": "hasTarget_c.a"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "hasTarget_c.b"
   },
   {
@@ -9147,11 +9179,11 @@
    "to": "hasTarget.cond"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "hasTarget.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "hasTarget.b"
   },
   {
@@ -9159,7 +9191,7 @@
    "to": "targetStr_c.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "targetStr_c.b"
   },
   {
@@ -10811,7 +10843,7 @@
    "to": "gu.a"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "gu.b"
   },
   {
@@ -10819,7 +10851,7 @@
    "to": "hasGold_c.a"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "hasGold_c.b"
   },
   {
@@ -10827,11 +10859,11 @@
    "to": "hasGold.cond"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "hasGold.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "hasGold.b"
   },
   {
@@ -11571,11 +11603,27 @@
    "to": "n_pln.curLine"
   },
   {
-   "from": "k51.out",
-   "to": "dModeG.a"
+   "from": "tailR.value",
+   "to": "n_rd.tailR"
+  },
+  {
+   "from": "s_rd.value",
+   "to": "n_rd.s_rd"
+  },
+  {
+   "from": "tCorrect.value",
+   "to": "n_rd.tCorrect"
+  },
+  {
+   "from": "right.value",
+   "to": "n_rd.right"
   },
   {
    "from": "k52.out",
+   "to": "dModeG.a"
+  },
+  {
+   "from": "k53.out",
    "to": "dModeG.b"
   },
   {
@@ -12819,7 +12867,7 @@
    "to": "isMain_c.a"
   },
   {
-   "from": "k54.out",
+   "from": "k55.out",
    "to": "isMain_c.b"
   },
   {
@@ -12827,11 +12875,11 @@
    "to": "isMain.cond"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "isMain.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "isMain.b"
   },
   {
@@ -12851,7 +12899,7 @@
    "to": "i_r.key"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "i_r.value"
   },
   {
@@ -12931,7 +12979,7 @@
    "to": "stOn3.value"
   },
   {
-   "from": "k40.out",
+   "from": "k41.out",
    "to": "sd_da.key"
   },
   {
@@ -12939,7 +12987,7 @@
    "to": "sd_da.value"
   },
   {
-   "from": "k41.out",
+   "from": "k42.out",
    "to": "sd_dlit.key"
   },
   {
@@ -12947,7 +12995,7 @@
    "to": "sd_dlit.value"
   },
   {
-   "from": "k42.out",
+   "from": "k43.out",
    "to": "sd_dcl.key"
   },
   {
@@ -12955,7 +13003,7 @@
    "to": "sd_dcl.value"
   },
   {
-   "from": "k43.out",
+   "from": "k44.out",
    "to": "sd_ds1.key"
   },
   {
@@ -12963,7 +13011,7 @@
    "to": "sd_ds1.value"
   },
   {
-   "from": "k44.out",
+   "from": "k45.out",
    "to": "sd_ds2.key"
   },
   {
@@ -12971,7 +13019,7 @@
    "to": "sd_ds2.value"
   },
   {
-   "from": "k45.out",
+   "from": "k46.out",
    "to": "sd_dst.key"
   },
   {
@@ -12979,7 +13027,7 @@
    "to": "sd_dst.value"
   },
   {
-   "from": "k46.out",
+   "from": "k47.out",
    "to": "sd_dsr.key"
   },
   {
@@ -12987,7 +13035,7 @@
    "to": "sd_dsr.value"
   },
   {
-   "from": "k47.out",
+   "from": "k48.out",
    "to": "sd_db.key"
   },
   {
@@ -12995,7 +13043,7 @@
    "to": "sd_db.value"
   },
   {
-   "from": "k48.out",
+   "from": "k49.out",
    "to": "sd_dru.key"
   },
   {
@@ -13003,7 +13051,7 @@
    "to": "sd_dru.value"
   },
   {
-   "from": "k49.out",
+   "from": "k50.out",
    "to": "sd_dln.key"
   },
   {
@@ -13179,7 +13227,7 @@
    "to": "tellFuzzy_c.a"
   },
   {
-   "from": "k55.out",
+   "from": "k56.out",
    "to": "tellFuzzy_c.b"
   },
   {
@@ -13187,11 +13235,11 @@
    "to": "tellFuzzy.cond"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "tellFuzzy.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "tellFuzzy.b"
   },
   {
@@ -13223,7 +13271,7 @@
    "to": "n_foxrI.s_r"
   },
   {
-   "from": "k56.out",
+   "from": "k57.out",
    "to": "eSeen_add.value"
   },
   {
@@ -13327,7 +13375,7 @@
    "to": "tObs.kPA"
   },
   {
-   "from": "k57.out",
+   "from": "k58.out",
    "to": "eTObs_add.value"
   },
   {
@@ -13547,7 +13595,7 @@
    "to": "eClashC.oAtk"
   },
   {
-   "from": "k58.out",
+   "from": "k59.out",
    "to": "eClash_add.value"
   },
   {
@@ -13559,7 +13607,7 @@
    "to": "eParryC.icpt"
   },
   {
-   "from": "k59.out",
+   "from": "k60.out",
    "to": "eParry_add.value"
   },
   {
@@ -13575,7 +13623,7 @@
    "to": "eWhiffPC.oAtk"
   },
   {
-   "from": "k60.out",
+   "from": "k61.out",
    "to": "eWhiffP_add.value"
   },
   {
@@ -13591,7 +13639,7 @@
    "to": "eWhiffOC.oA"
   },
   {
-   "from": "k61.out",
+   "from": "k62.out",
    "to": "eWhiffO_add.value"
   },
   {
@@ -13727,11 +13775,11 @@
    "to": "eMissPB.missPB"
   },
   {
-   "from": "k62.out",
+   "from": "k63.out",
    "to": "eMissPB1_add.value"
   },
   {
-   "from": "k63.out",
+   "from": "k64.out",
    "to": "eMissPB2_add.value"
   },
   {
@@ -13775,7 +13823,7 @@
    "to": "eTrapC.trapOn"
   },
   {
-   "from": "k64.out",
+   "from": "k65.out",
    "to": "eTrap_add.value"
   },
   {
@@ -13787,11 +13835,11 @@
    "to": "eAsB.asBlock"
   },
   {
-   "from": "k65.out",
+   "from": "k66.out",
    "to": "eAsB1_add.value"
   },
   {
-   "from": "k66.out",
+   "from": "k67.out",
    "to": "eAsB2_add.value"
   },
   {
@@ -13799,7 +13847,7 @@
    "to": "lAsMark.key"
   },
   {
-   "from": "k51.out",
+   "from": "k52.out",
    "to": "lAsMark.value"
   },
   {
@@ -13883,7 +13931,7 @@
    "to": "eAsWC.asWaste"
   },
   {
-   "from": "k67.out",
+   "from": "k68.out",
    "to": "eAsW_add.value"
   },
   {
@@ -13939,7 +13987,7 @@
    "to": "eShLC.lostBR"
   },
   {
-   "from": "k68.out",
+   "from": "k69.out",
    "to": "eShL_add.value"
   },
   {
@@ -13975,7 +14023,7 @@
    "to": "eSsLBC.lostSsBr"
   },
   {
-   "from": "k69.out",
+   "from": "k70.out",
    "to": "eSsLB_add.value"
   },
   {
@@ -13987,7 +14035,7 @@
    "to": "eSsG.trigS"
   },
   {
-   "from": "k70.out",
+   "from": "k71.out",
    "to": "eSsGe_add.value"
   },
   {
@@ -14007,7 +14055,7 @@
    "to": "eSsLEC.lostSsExp"
   },
   {
-   "from": "k71.out",
+   "from": "k72.out",
    "to": "eSsLE_add.value"
   },
   {
@@ -14075,7 +14123,7 @@
    "to": "eHkLostC.hkLost"
   },
   {
-   "from": "k72.out",
+   "from": "k73.out",
    "to": "eHkLost_add.value"
   },
   {
@@ -14087,7 +14135,7 @@
    "to": "eKjLBC.lostKjBr"
   },
   {
-   "from": "k73.out",
+   "from": "k74.out",
    "to": "eKjLB_add.value"
   },
   {
@@ -14099,7 +14147,7 @@
    "to": "eKjLEC.lostKjExp"
   },
   {
-   "from": "k74.out",
+   "from": "k75.out",
    "to": "eKjLE_add.value"
   },
   {
@@ -14231,11 +14279,11 @@
    "to": "eVoid1_add.value"
   },
   {
-   "from": "k75.out",
+   "from": "k76.out",
    "to": "eVoid2_add.value"
   },
   {
-   "from": "k76.out",
+   "from": "k77.out",
    "to": "eVoid3_add.value"
   },
   {
@@ -14584,6 +14632,14 @@
   },
   {
    "from": "k40.out",
+   "to": "w_rd.key"
+  },
+  {
+   "from": "n_rd.value",
+   "to": "w_rd.value"
+  },
+  {
+   "from": "k41.out",
    "to": "w_da.key"
   },
   {
@@ -14591,7 +14647,7 @@
    "to": "w_da.value"
   },
   {
-   "from": "k41.out",
+   "from": "k42.out",
    "to": "w_dlit.key"
   },
   {
@@ -14599,7 +14655,7 @@
    "to": "w_dlit.value"
   },
   {
-   "from": "k42.out",
+   "from": "k43.out",
    "to": "w_dcl.key"
   },
   {
@@ -14607,7 +14663,7 @@
    "to": "w_dcl.value"
   },
   {
-   "from": "k43.out",
+   "from": "k44.out",
    "to": "w_ds1.key"
   },
   {
@@ -14615,7 +14671,7 @@
    "to": "w_ds1.value"
   },
   {
-   "from": "k44.out",
+   "from": "k45.out",
    "to": "w_ds2.key"
   },
   {
@@ -14623,7 +14679,7 @@
    "to": "w_ds2.value"
   },
   {
-   "from": "k45.out",
+   "from": "k46.out",
    "to": "w_dst.key"
   },
   {
@@ -14631,7 +14687,7 @@
    "to": "w_dst.value"
   },
   {
-   "from": "k46.out",
+   "from": "k47.out",
    "to": "w_dsr.key"
   },
   {
@@ -14639,7 +14695,7 @@
    "to": "w_dsr.value"
   },
   {
-   "from": "k47.out",
+   "from": "k48.out",
    "to": "w_db.key"
   },
   {
@@ -14647,7 +14703,7 @@
    "to": "w_db.value"
   },
   {
-   "from": "k48.out",
+   "from": "k49.out",
    "to": "w_dru.key"
   },
   {
@@ -14655,7 +14711,7 @@
    "to": "w_dru.value"
   },
   {
-   "from": "k49.out",
+   "from": "k50.out",
    "to": "w_dln.key"
   },
   {
@@ -15736,6 +15792,10 @@
   },
   {
    "from": "lg76.pass",
+   "to": "w_rd.trigger"
+  },
+  {
+   "from": "lg76.pass",
    "to": "w_da.trigger"
   },
   {
@@ -15775,7 +15835,7 @@
    "to": "w_dln.trigger"
   },
   {
-   "from": "k40.out",
+   "from": "k41.out",
    "to": "rd_da.key"
   },
   {
@@ -15783,7 +15843,7 @@
    "to": "rd_da.value"
   },
   {
-   "from": "k41.out",
+   "from": "k42.out",
    "to": "rd_dlit.key"
   },
   {
@@ -15791,7 +15851,7 @@
    "to": "rd_dlit.value"
   },
   {
-   "from": "k42.out",
+   "from": "k43.out",
    "to": "rd_dcl.key"
   },
   {
@@ -15799,7 +15859,7 @@
    "to": "rd_dcl.value"
   },
   {
-   "from": "k43.out",
+   "from": "k44.out",
    "to": "rd_ds1.key"
   },
   {
@@ -15807,7 +15867,7 @@
    "to": "rd_ds1.value"
   },
   {
-   "from": "k44.out",
+   "from": "k45.out",
    "to": "rd_ds2.key"
   },
   {
@@ -15815,7 +15875,7 @@
    "to": "rd_ds2.value"
   },
   {
-   "from": "k45.out",
+   "from": "k46.out",
    "to": "rd_dst.key"
   },
   {
@@ -15823,7 +15883,7 @@
    "to": "rd_dst.value"
   },
   {
-   "from": "k46.out",
+   "from": "k47.out",
    "to": "rd_dsr.key"
   },
   {
@@ -15831,7 +15891,7 @@
    "to": "rd_dsr.value"
   },
   {
-   "from": "k47.out",
+   "from": "k48.out",
    "to": "rd_db.key"
   },
   {
@@ -15839,7 +15899,7 @@
    "to": "rd_db.value"
   },
   {
-   "from": "k48.out",
+   "from": "k49.out",
    "to": "rd_dru.key"
   },
   {
@@ -15847,7 +15907,7 @@
    "to": "rd_dru.value"
   },
   {
-   "from": "k49.out",
+   "from": "k50.out",
    "to": "rd_dln.key"
   },
   {
@@ -16019,6 +16079,18 @@
    "to": "world.debHachikuMode"
   },
   {
+   "from": "s_rd.value",
+   "to": "world.debReads"
+  },
+  {
+   "from": "s_nrn.value",
+   "to": "world.debNoReinf"
+  },
+  {
+   "from": "s_man.value",
+   "to": "world.debMustAtk"
+  },
+  {
    "from": "s_out.value",
    "to": "outcome.index"
   },
@@ -16135,7 +16207,7 @@
    "to": "tClar.cond"
   },
   {
-   "from": "k77.out",
+   "from": "k78.out",
    "to": "tClar.a"
   },
   {
@@ -16159,7 +16231,7 @@
    "to": "tSh2.cond"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "tSh2.a"
   },
   {
@@ -16171,7 +16243,7 @@
    "to": "tStar.cond"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "tStar.a"
   },
   {
@@ -16195,7 +16267,7 @@
    "to": "tBasis_c.a"
   },
   {
-   "from": "k52.out",
+   "from": "k53.out",
    "to": "tBasis_c.b"
   },
   {
@@ -16203,7 +16275,7 @@
    "to": "tBasis.cond"
   },
   {
-   "from": "k78.out",
+   "from": "k79.out",
    "to": "tBasis.a"
   },
   {
@@ -16323,7 +16395,7 @@
    "to": "gesture.cond"
   },
   {
-   "from": "k50.out",
+   "from": "k51.out",
    "to": "gesture.a"
   },
   {

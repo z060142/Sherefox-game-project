@@ -341,6 +341,20 @@
       }
     },
     {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": "auto"
+      }
+    },
+    {
+      "id": "autoDone",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
       "id": "bookNew",
       "type": "counter",
       "params": {
@@ -352,7 +366,7 @@
       "type": "select"
     },
     {
-      "id": "K11",
+      "id": "K12",
       "type": "constant",
       "params": {
         "value": 1
@@ -408,7 +422,7 @@
       }
     },
     {
-      "id": "K12",
+      "id": "K13",
       "type": "constant",
       "params": {
         "value": ""
@@ -559,7 +573,7 @@
       }
     },
     {
-      "id": "K13",
+      "id": "K14",
       "type": "constant",
       "params": {
         "value": "ART_NO_REPORT"
@@ -1520,7 +1534,7 @@
       }
     },
     {
-      "id": "K14",
+      "id": "K15",
       "type": "constant",
       "params": {
         "value": "spot"
@@ -1747,7 +1761,7 @@
       }
     },
     {
-      "id": "K15",
+      "id": "K16",
       "type": "constant",
       "params": {
         "value": 2
@@ -1761,7 +1775,7 @@
       }
     },
     {
-      "id": "K16",
+      "id": "K17",
       "type": "constant",
       "params": {
         "value": 4
@@ -2018,6 +2032,52 @@
       "type": "atrium.gate"
     },
     {
+      "id": "autoN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!outOfTime && canEndN && visN > 0 && seenN >= visN && msgSt == 0 && !autoDone"
+      }
+    },
+    {
+      "id": "autoGate",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "au_armS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "au_doneS",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "invState"
+      }
+    },
+    {
+      "id": "K18",
+      "type": "constant",
+      "params": {
+        "value": "WARN_INV_END_ZERO"
+      }
+    },
+    {
+      "id": "hint4_key",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "hint4_left",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
       "id": "missEach",
       "type": "atrium.coll.forEach",
       "params": {
@@ -2243,14 +2303,14 @@
       }
     },
     {
-      "id": "hint4_key",
+      "id": "hint5_key",
       "type": "filter",
       "params": {
         "op": "sample"
       }
     },
     {
-      "id": "hint4_left",
+      "id": "hint5_left",
       "type": "filter",
       "params": {
         "op": "sample"
@@ -2264,7 +2324,7 @@
       }
     },
     {
-      "id": "K17",
+      "id": "K19",
       "type": "constant",
       "params": {
         "value": true
@@ -2506,7 +2566,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K18",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": "UI_TAG_SEP"
@@ -2562,7 +2622,7 @@
       }
     },
     {
-      "id": "K19",
+      "id": "K21",
       "type": "constant",
       "params": {
         "value": "UI_TAG_HIDDEN"
@@ -3065,7 +3125,7 @@
       }
     },
     {
-      "id": "ba_line",
+      "id": "ba_line0",
       "type": "lookup",
       "params": {
         "values": [
@@ -3077,6 +3137,37 @@
           "ART_APPR_DUAL"
         ]
       }
+    },
+    {
+      "id": "ba_apprLine",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowCard",
+        "column": "apprLine",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ba_hasALC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "ba_hasAL",
+      "type": "select"
+    },
+    {
+      "id": "ba_useAL",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ba_idx >= 3 && ba_hasAL"
+      }
+    },
+    {
+      "id": "ba_line",
+      "type": "select"
     },
     {
       "id": "ba_newLeft",
@@ -3115,18 +3206,75 @@
       "type": "atrium.gate"
     },
     {
-      "id": "hint5_key",
+      "id": "bookRmSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "bookRm1_key",
       "type": "filter",
       "params": {
         "op": "sample"
       }
     },
     {
-      "id": "hint5_left",
+      "id": "bookRm2_key",
       "type": "filter",
       "params": {
         "op": "sample"
       }
+    },
+    {
+      "id": "bookRmSrc",
+      "type": "state",
+      "params": {
+        "initial": "s0",
+        "states": [
+          "s0",
+          "s1",
+          "s2"
+        ],
+        "transitions": [
+          {
+            "from": "*",
+            "on": "e1",
+            "to": "s1"
+          },
+          {
+            "from": "*",
+            "on": "e2",
+            "to": "s2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bookRm_key_is1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "bookRm_key_1",
+      "type": "select"
+    },
+    {
+      "id": "bookRm_key_is2",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "bookRm_key_2",
+      "type": "select"
+    },
+    {
+      "id": "bookRemark",
+      "type": "atrium.text"
     },
     {
       "id": "clrBook",
@@ -3874,7 +4022,7 @@
       }
     },
     {
-      "id": "K20",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": -1
@@ -3960,7 +4108,7 @@
       "type": "select"
     },
     {
-      "id": "K21",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": 3
@@ -3989,7 +4137,7 @@
       "type": "select"
     },
     {
-      "id": "K22",
+      "id": "K24",
       "type": "constant",
       "params": {
         "value": 5
@@ -4579,7 +4727,7 @@
       }
     },
     {
-      "id": "K23",
+      "id": "K25",
       "type": "constant",
       "params": {
         "value": "MSG_INV_MISSED_NONE"
@@ -4689,7 +4837,7 @@
       "type": "select"
     },
     {
-      "id": "K24",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": "ART_RESCUE"
@@ -4704,7 +4852,7 @@
       "type": "select"
     },
     {
-      "id": "K25",
+      "id": "K27",
       "type": "constant",
       "params": {
         "value": "SPK_ARTHUR"
@@ -4977,11 +5125,15 @@
       "to": "endArm.key"
     },
     {
+      "from": "K11.out",
+      "to": "autoDone.key"
+    },
+    {
       "from": "world.bookOpen",
       "to": "bookOpenN.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bookOpenN.a"
     },
     {
@@ -5137,7 +5289,7 @@
       "to": "openLine.cond"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "openLine.a"
     },
     {
@@ -5201,7 +5353,7 @@
       "to": "si_held.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "si_held.a"
     },
     {
@@ -5217,7 +5369,7 @@
       "to": "si_gold.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "si_gold.a"
     },
     {
@@ -5237,7 +5389,7 @@
       "to": "si_noReqC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "si_noReqC.b"
     },
     {
@@ -5245,7 +5397,7 @@
       "to": "si_noReq.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "si_noReq.a"
     },
     {
@@ -5433,7 +5585,7 @@
       "to": "ss_noReqC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "ss_noReqC.b"
     },
     {
@@ -5441,7 +5593,7 @@
       "to": "ss_noReq.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ss_noReq.a"
     },
     {
@@ -5457,7 +5609,7 @@
       "to": "ss_gold.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ss_gold.a"
     },
     {
@@ -5473,7 +5625,7 @@
       "to": "ss_seen.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ss_seen.a"
     },
     {
@@ -5733,7 +5885,7 @@
       "to": "cy_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "cy_apprHas.a"
     },
     {
@@ -5765,7 +5917,7 @@
       "to": "c_seen.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_seen.a"
     },
     {
@@ -5781,7 +5933,7 @@
       "to": "c_held.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_held.a"
     },
     {
@@ -5797,7 +5949,7 @@
       "to": "c_hasRepC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "c_hasRepC.b"
     },
     {
@@ -5805,7 +5957,7 @@
       "to": "c_hasRep.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_hasRep.a"
     },
     {
@@ -5925,7 +6077,7 @@
       "to": "c_seenSet.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_seenSet.value"
     },
     {
@@ -5937,7 +6089,7 @@
       "to": "c_hereSet.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_hereSet.value"
     },
     {
@@ -6085,7 +6237,7 @@
       "to": "pop1_n.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop1_r0.in"
     },
     {
@@ -6093,7 +6245,7 @@
       "to": "pop1_r0.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop1_r1.in"
     },
     {
@@ -6101,7 +6253,7 @@
       "to": "pop1_r1.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop1_r2.in"
     },
     {
@@ -6121,7 +6273,7 @@
       "to": "c_popS.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "c_popS.value"
     },
     {
@@ -6141,7 +6293,7 @@
       "to": "c_plS.trigger"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "c_spotS.key"
     },
     {
@@ -6233,7 +6385,7 @@
       "to": "spotsList.trigger"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "s_spot.key"
     },
     {
@@ -6249,7 +6401,7 @@
       "to": "s_hasSpotC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "s_hasSpotC.b"
     },
     {
@@ -6257,7 +6409,7 @@
       "to": "s_hasSpot.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "s_hasSpot.a"
     },
     {
@@ -6361,11 +6513,11 @@
       "to": "d_plS.trigger"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "d_spotS.key"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "d_spotS.value"
     },
     {
@@ -6397,15 +6549,15 @@
       "to": "rc0.index"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "rc1.index"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "rc2.index"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "pop2_kind.in"
     },
     {
@@ -6413,7 +6565,7 @@
       "to": "pop2_kind.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop2_title.in"
     },
     {
@@ -6421,7 +6573,7 @@
       "to": "pop2_title.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop2_body.in"
     },
     {
@@ -6437,7 +6589,7 @@
       "to": "pop2_grade.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop2_spot.in"
     },
     {
@@ -6445,7 +6597,7 @@
       "to": "pop2_spot.trigger"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop2_msg.in"
     },
     {
@@ -6497,7 +6649,7 @@
       "to": "r_popS.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "r_popS.value"
     },
     {
@@ -6509,7 +6661,7 @@
       "to": "r_msgS.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "r_msgS.value"
     },
     {
@@ -6653,7 +6805,7 @@
       "to": "w_armS.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "w_armS.value"
     },
     {
@@ -6695,6 +6847,86 @@
     {
       "from": "goGate.pass",
       "to": "finish.in"
+    },
+    {
+      "from": "outOfTime.value",
+      "to": "autoN.outOfTime"
+    },
+    {
+      "from": "canEndN.value",
+      "to": "autoN.canEndN"
+    },
+    {
+      "from": "visN.count",
+      "to": "autoN.visN"
+    },
+    {
+      "from": "seenN.count",
+      "to": "autoN.seenN"
+    },
+    {
+      "from": "msgSt.value",
+      "to": "autoN.msgSt"
+    },
+    {
+      "from": "autoDone.value",
+      "to": "autoN.autoDone"
+    },
+    {
+      "from": "autoN.value",
+      "to": "autoGate.cond"
+    },
+    {
+      "from": "closeGate.pass",
+      "to": "autoGate.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "au_armS.key"
+    },
+    {
+      "from": "K12.out",
+      "to": "au_armS.value"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "au_armS.trigger"
+    },
+    {
+      "from": "K11.out",
+      "to": "au_doneS.key"
+    },
+    {
+      "from": "K12.out",
+      "to": "au_doneS.value"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "au_doneS.trigger"
+    },
+    {
+      "from": "K18.out",
+      "to": "hint4_key.in"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "hint4_key.trigger"
+    },
+    {
+      "from": "ticks.value",
+      "to": "hint4_left.in"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "hint4_left.trigger"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "hintSrc.e4"
+    },
+    {
+      "from": "autoGate.pass",
+      "to": "hintSeq.increment"
     },
     {
       "from": "finish.out",
@@ -6773,7 +7005,7 @@
       "to": "missMsg.handN"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "pop3_kind.in"
     },
     {
@@ -6781,7 +7013,7 @@
       "to": "pop3_kind.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_title.in"
     },
     {
@@ -6789,7 +7021,7 @@
       "to": "pop3_title.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_body.in"
     },
     {
@@ -6805,7 +7037,7 @@
       "to": "pop3_grade.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_spot.in"
     },
     {
@@ -6829,7 +7061,7 @@
       "to": "pop3_n.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_r0.in"
     },
     {
@@ -6837,7 +7069,7 @@
       "to": "pop3_r0.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_r1.in"
     },
     {
@@ -6845,7 +7077,7 @@
       "to": "pop3_r1.trigger"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop3_r2.in"
     },
     {
@@ -6865,7 +7097,7 @@
       "to": "m_popS.key"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "m_popS.value"
     },
     {
@@ -6877,7 +7109,7 @@
       "to": "m_msgS.key"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "m_msgS.value"
     },
     {
@@ -6930,23 +7162,23 @@
     },
     {
       "from": "askKey.out",
-      "to": "hint4_key.in"
+      "to": "hint5_key.in"
     },
     {
       "from": "askGate.pass",
-      "to": "hint4_key.trigger"
+      "to": "hint5_key.trigger"
     },
     {
       "from": "K7.out",
-      "to": "hint4_left.in"
+      "to": "hint5_left.in"
     },
     {
       "from": "askGate.pass",
-      "to": "hint4_left.trigger"
+      "to": "hint5_left.trigger"
     },
     {
       "from": "askGate.pass",
-      "to": "hintSrc.e4"
+      "to": "hintSrc.e5"
     },
     {
       "from": "askGate.pass",
@@ -6957,7 +7189,7 @@
       "to": "bookState.a"
     },
     {
-      "from": "K17.out",
+      "from": "K19.out",
       "to": "bookState.b"
     },
     {
@@ -7089,7 +7321,7 @@
       "to": "bs_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs_apprHas.a"
     },
     {
@@ -7133,7 +7365,7 @@
       "to": "ui#evbook.sel_desc"
     },
     {
-      "from": "K18.out",
+      "from": "K20.out",
       "to": "bs_sep.key"
     },
     {
@@ -7153,7 +7385,7 @@
       "to": "bs_h0.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs_h0.a"
     },
     {
@@ -7185,7 +7417,7 @@
       "to": "bs_key0.a"
     },
     {
-      "from": "K19.out",
+      "from": "K21.out",
       "to": "bs_key0.b"
     },
     {
@@ -7193,7 +7425,7 @@
       "to": "bs_e0.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_e0.b"
     },
     {
@@ -7205,7 +7437,7 @@
       "to": "bs_kk0.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_kk0.b"
     },
     {
@@ -7229,7 +7461,7 @@
       "to": "bs_h1.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs_h1.a"
     },
     {
@@ -7261,7 +7493,7 @@
       "to": "bs_key1.a"
     },
     {
-      "from": "K19.out",
+      "from": "K21.out",
       "to": "bs_key1.b"
     },
     {
@@ -7269,7 +7501,7 @@
       "to": "bs_e1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_e1.b"
     },
     {
@@ -7281,7 +7513,7 @@
       "to": "bs_kk1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_kk1.b"
     },
     {
@@ -7305,7 +7537,7 @@
       "to": "bs_p1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_p1.b"
     },
     {
@@ -7325,7 +7557,7 @@
       "to": "bs_h2.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs_h2.a"
     },
     {
@@ -7357,7 +7589,7 @@
       "to": "bs_key2.a"
     },
     {
-      "from": "K19.out",
+      "from": "K21.out",
       "to": "bs_key2.b"
     },
     {
@@ -7365,7 +7597,7 @@
       "to": "bs_e2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_e2.b"
     },
     {
@@ -7377,7 +7609,7 @@
       "to": "bs_kk2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_kk2.b"
     },
     {
@@ -7401,7 +7633,7 @@
       "to": "bs_p2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_p2.b"
     },
     {
@@ -7421,7 +7653,7 @@
       "to": "bs_h3.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bs_h3.a"
     },
     {
@@ -7453,7 +7685,7 @@
       "to": "bs_key3.a"
     },
     {
-      "from": "K19.out",
+      "from": "K21.out",
       "to": "bs_key3.b"
     },
     {
@@ -7461,7 +7693,7 @@
       "to": "bs_e3.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_e3.b"
     },
     {
@@ -7473,7 +7705,7 @@
       "to": "bs_kk3.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_kk3.b"
     },
     {
@@ -7497,7 +7729,7 @@
       "to": "bs_p3.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "bs_p3.b"
     },
     {
@@ -7649,7 +7881,7 @@
       "to": "ba_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ba_apprHas.a"
     },
     {
@@ -7677,7 +7909,7 @@
       "to": "ba_hasC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "ba_hasC.b"
     },
     {
@@ -7685,7 +7917,7 @@
       "to": "ba_has.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "ba_has.a"
     },
     {
@@ -7718,7 +7950,51 @@
     },
     {
       "from": "ba_idx.value",
-      "to": "ba_line.index"
+      "to": "ba_line0.index"
+    },
+    {
+      "from": "ba_row.row",
+      "to": "ba_apprLine.row"
+    },
+    {
+      "from": "ba_apprLine.value",
+      "to": "ba_hasALC.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "ba_hasALC.b"
+    },
+    {
+      "from": "ba_hasALC.out",
+      "to": "ba_hasAL.cond"
+    },
+    {
+      "from": "K12.out",
+      "to": "ba_hasAL.a"
+    },
+    {
+      "from": "K7.out",
+      "to": "ba_hasAL.b"
+    },
+    {
+      "from": "ba_idx.value",
+      "to": "ba_useAL.ba_idx"
+    },
+    {
+      "from": "ba_hasAL.out",
+      "to": "ba_useAL.ba_hasAL"
+    },
+    {
+      "from": "ba_useAL.truth",
+      "to": "ba_line.cond"
+    },
+    {
+      "from": "ba_apprLine.value",
+      "to": "ba_line.a"
+    },
+    {
+      "from": "ba_line0.out",
+      "to": "ba_line.b"
     },
     {
       "from": "apprLeft.value",
@@ -7769,28 +8045,88 @@
       "to": "ba_said.trigger"
     },
     {
+      "from": "K13.out",
+      "to": "bookRm1_key.in"
+    },
+    {
+      "from": "bookState.true",
+      "to": "bookRm1_key.trigger"
+    },
+    {
+      "from": "bookState.true",
+      "to": "bookRmSrc.e1"
+    },
+    {
+      "from": "bookState.true",
+      "to": "bookRmSeq.increment"
+    },
+    {
       "from": "ba_line.out",
-      "to": "hint5_key.in"
+      "to": "bookRm2_key.in"
     },
     {
       "from": "ba_said.pass",
-      "to": "hint5_key.trigger"
-    },
-    {
-      "from": "K7.out",
-      "to": "hint5_left.in"
+      "to": "bookRm2_key.trigger"
     },
     {
       "from": "ba_said.pass",
-      "to": "hint5_left.trigger"
+      "to": "bookRmSrc.e2"
     },
     {
       "from": "ba_said.pass",
-      "to": "hintSrc.e5"
+      "to": "bookRmSeq.increment"
     },
     {
-      "from": "ba_said.pass",
-      "to": "hintSeq.increment"
+      "from": "bookRmSrc.index",
+      "to": "bookRm_key_is1.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "bookRm_key_is1.b"
+    },
+    {
+      "from": "bookRm_key_is1.out",
+      "to": "bookRm_key_1.cond"
+    },
+    {
+      "from": "bookRm1_key.out",
+      "to": "bookRm_key_1.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "bookRm_key_1.b"
+    },
+    {
+      "from": "bookRmSrc.index",
+      "to": "bookRm_key_is2.a"
+    },
+    {
+      "from": "K16.out",
+      "to": "bookRm_key_is2.b"
+    },
+    {
+      "from": "bookRm_key_is2.out",
+      "to": "bookRm_key_2.cond"
+    },
+    {
+      "from": "bookRm2_key.out",
+      "to": "bookRm_key_2.a"
+    },
+    {
+      "from": "bookRm_key_1.out",
+      "to": "bookRm_key_2.b"
+    },
+    {
+      "from": "bookRm_key_2.out",
+      "to": "bookRemark.key"
+    },
+    {
+      "from": "bookRemark.text",
+      "to": "ui#evbook.remark"
+    },
+    {
+      "from": "bookRmSeq.value",
+      "to": "ui#evbook.remark_seq"
     },
     {
       "from": "ba_said.pass",
@@ -7905,7 +8241,7 @@
       "to": "bi0_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bi0_apprHas.a"
     },
     {
@@ -8057,7 +8393,7 @@
       "to": "bi1_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bi1_apprHas.a"
     },
     {
@@ -8205,7 +8541,7 @@
       "to": "bi2_apprHas.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "bi2_apprHas.a"
     },
     {
@@ -8309,7 +8645,7 @@
       "to": "apprPort.a"
     },
     {
-      "from": "K20.out",
+      "from": "K22.out",
       "to": "apprPort.b"
     },
     {
@@ -8333,7 +8669,7 @@
       "to": "trustPort.a"
     },
     {
-      "from": "K20.out",
+      "from": "K22.out",
       "to": "trustPort.b"
     },
     {
@@ -8353,7 +8689,7 @@
       "to": "hint_key_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "hint_key_is1.b"
     },
     {
@@ -8365,7 +8701,7 @@
       "to": "hint_key_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "hint_key_1.b"
     },
     {
@@ -8373,7 +8709,7 @@
       "to": "hint_key_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "hint_key_is2.b"
     },
     {
@@ -8393,7 +8729,7 @@
       "to": "hint_key_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "hint_key_is3.b"
     },
     {
@@ -8413,7 +8749,7 @@
       "to": "hint_key_is4.a"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "hint_key_is4.b"
     },
     {
@@ -8433,7 +8769,7 @@
       "to": "hint_key_is5.a"
     },
     {
-      "from": "K22.out",
+      "from": "K24.out",
       "to": "hint_key_is5.b"
     },
     {
@@ -8457,7 +8793,7 @@
       "to": "hint_left_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "hint_left_is1.b"
     },
     {
@@ -8477,7 +8813,7 @@
       "to": "hint_left_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "hint_left_is2.b"
     },
     {
@@ -8497,7 +8833,7 @@
       "to": "hint_left_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "hint_left_is3.b"
     },
     {
@@ -8517,7 +8853,7 @@
       "to": "hint_left_is4.a"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "hint_left_is4.b"
     },
     {
@@ -8537,7 +8873,7 @@
       "to": "hint_left_is5.a"
     },
     {
-      "from": "K22.out",
+      "from": "K24.out",
       "to": "hint_left_is5.b"
     },
     {
@@ -8573,7 +8909,7 @@
       "to": "pop_kind_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_kind_is1.b"
     },
     {
@@ -8593,7 +8929,7 @@
       "to": "pop_kind_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_kind_is2.b"
     },
     {
@@ -8613,7 +8949,7 @@
       "to": "pop_kind_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_kind_is3.b"
     },
     {
@@ -8649,7 +8985,7 @@
       "to": "pop_title_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_title_is1.b"
     },
     {
@@ -8661,7 +8997,7 @@
       "to": "pop_title_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_title_1.b"
     },
     {
@@ -8669,7 +9005,7 @@
       "to": "pop_title_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_title_is2.b"
     },
     {
@@ -8689,7 +9025,7 @@
       "to": "pop_title_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_title_is3.b"
     },
     {
@@ -8717,7 +9053,7 @@
       "to": "pop_spot_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_spot_is1.b"
     },
     {
@@ -8729,7 +9065,7 @@
       "to": "pop_spot_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_spot_1.b"
     },
     {
@@ -8737,7 +9073,7 @@
       "to": "pop_spot_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_spot_is2.b"
     },
     {
@@ -8757,7 +9093,7 @@
       "to": "pop_spot_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_spot_is3.b"
     },
     {
@@ -8777,7 +9113,7 @@
       "to": "pop_msg_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_msg_is1.b"
     },
     {
@@ -8797,7 +9133,7 @@
       "to": "pop_msg_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_msg_is2.b"
     },
     {
@@ -8817,7 +9153,7 @@
       "to": "pop_msg_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_msg_is3.b"
     },
     {
@@ -8845,7 +9181,7 @@
       "to": "p_hasSpotC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "p_hasSpotC.b"
     },
     {
@@ -8853,7 +9189,7 @@
       "to": "p_hasSpot.cond"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "p_hasSpot.a"
     },
     {
@@ -8881,7 +9217,7 @@
       "to": "pop_body_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_body_is1.b"
     },
     {
@@ -8893,7 +9229,7 @@
       "to": "pop_body_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_body_1.b"
     },
     {
@@ -8901,7 +9237,7 @@
       "to": "pop_body_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_body_is2.b"
     },
     {
@@ -8921,7 +9257,7 @@
       "to": "pop_body_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_body_is3.b"
     },
     {
@@ -8941,7 +9277,7 @@
       "to": "popBodyK.key"
     },
     {
-      "from": "K18.out",
+      "from": "K20.out",
       "to": "rsSep.key"
     },
     {
@@ -8949,7 +9285,7 @@
       "to": "pop_r0_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_r0_is1.b"
     },
     {
@@ -8961,7 +9297,7 @@
       "to": "pop_r0_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_r0_1.b"
     },
     {
@@ -8969,7 +9305,7 @@
       "to": "pop_r0_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_r0_is2.b"
     },
     {
@@ -8989,7 +9325,7 @@
       "to": "pop_r0_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_r0_is3.b"
     },
     {
@@ -9021,7 +9357,7 @@
       "to": "pop_r1_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_r1_is1.b"
     },
     {
@@ -9033,7 +9369,7 @@
       "to": "pop_r1_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_r1_1.b"
     },
     {
@@ -9041,7 +9377,7 @@
       "to": "pop_r1_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_r1_is2.b"
     },
     {
@@ -9061,7 +9397,7 @@
       "to": "pop_r1_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_r1_is3.b"
     },
     {
@@ -9093,7 +9429,7 @@
       "to": "rsHas1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "rsHas1.b"
     },
     {
@@ -9113,7 +9449,7 @@
       "to": "rsPart1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "rsPart1.b"
     },
     {
@@ -9121,7 +9457,7 @@
       "to": "pop_r2_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_r2_is1.b"
     },
     {
@@ -9133,7 +9469,7 @@
       "to": "pop_r2_1.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "pop_r2_1.b"
     },
     {
@@ -9141,7 +9477,7 @@
       "to": "pop_r2_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_r2_is2.b"
     },
     {
@@ -9161,7 +9497,7 @@
       "to": "pop_r2_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_r2_is3.b"
     },
     {
@@ -9193,7 +9529,7 @@
       "to": "rsHas2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "rsHas2.b"
     },
     {
@@ -9213,7 +9549,7 @@
       "to": "rsPart2.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "rsPart2.b"
     },
     {
@@ -9237,7 +9573,7 @@
       "to": "pop_n_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_n_is1.b"
     },
     {
@@ -9257,7 +9593,7 @@
       "to": "pop_n_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_n_is2.b"
     },
     {
@@ -9277,7 +9613,7 @@
       "to": "pop_n_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_n_is3.b"
     },
     {
@@ -9297,7 +9633,7 @@
       "to": "missedT.n"
     },
     {
-      "from": "K23.out",
+      "from": "K25.out",
       "to": "noneT.key"
     },
     {
@@ -9377,7 +9713,7 @@
       "to": "p_lk0.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "p_lk0.b"
     },
     {
@@ -9389,7 +9725,7 @@
       "to": "p_sk0.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "p_sk0.b"
     },
     {
@@ -9405,7 +9741,7 @@
       "to": "p_at1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "p_at1.b"
     },
     {
@@ -9441,7 +9777,7 @@
       "to": "p_lk.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "p_lk.b"
     },
     {
@@ -9449,7 +9785,7 @@
       "to": "p_lineKey.cond"
     },
     {
-      "from": "K24.out",
+      "from": "K26.out",
       "to": "p_lineKey.a"
     },
     {
@@ -9465,7 +9801,7 @@
       "to": "p_sk.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "p_sk.b"
     },
     {
@@ -9473,7 +9809,7 @@
       "to": "p_spkKey.cond"
     },
     {
-      "from": "K25.out",
+      "from": "K27.out",
       "to": "p_spkKey.a"
     },
     {
@@ -9521,7 +9857,7 @@
       "to": "pop_grade_is1.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "pop_grade_is1.b"
     },
     {
@@ -9541,7 +9877,7 @@
       "to": "pop_grade_is2.a"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "pop_grade_is2.b"
     },
     {
@@ -9561,7 +9897,7 @@
       "to": "pop_grade_is3.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "pop_grade_is3.b"
     },
     {

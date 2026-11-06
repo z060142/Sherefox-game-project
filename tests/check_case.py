@@ -165,7 +165,8 @@ def check_ch1(fail: cp.Failures, frames: Path | None) -> None:
     fail.check(tr.last("investigate.ticks_max") == 0 and tr.last("investigate.appraise_left") == -1,
                f"{label}: Ch.1 ticks / appraisals not hidden")
     hints = [p.get("investigate.hint") for _, p, _, ch in tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
-    fail.check(hints == [s["ART_OPEN_CH01"], s["SHF_C1_IDLE"]], f"{label}: hints {hints}")
+    # every spot looked at: the end confirmation comes up by itself when the last popup closes (§1.7, M5c)
+    fail.check(hints == [s["ART_OPEN_CH01"], s["WARN_INV_END_ZERO"], s["SHF_C1_IDLE"]], f"{label}: hints {hints}")
     want_lines = expected_popup_lines([f"HS_CH01_{i:02d}" for i in range(1, 11)], s)
     got_lines = popup_lines(tr)
     fail.check(got_lines == want_lines, f"{label}: popup lines {got_lines} != {want_lines}")
@@ -206,9 +207,12 @@ def check_ch2(fail: cp.Failures, frames: Path | None) -> None:
     fail.check(kinds == [2, 2, 2, 3, 2, 2, 1, 4], f"{label}: popup kinds {kinds}")
     hints = [p.get("investigate.hint") for _, p, _, ch in tr.ticks if ch.get("investigate.hint_seq", 0) != 0]
     # the first press of 結束蒐證 warns with the ticks left (WARN_INV_END {left}), the second ends
-    want = [s["ART_OPEN_CH02"], s["ART_FOUND_KEY"], s["ART_TIME_LOW"], s["ART_APPR_MECH_DONE"], s["ART_REMAIN_FEW"],
+    want = [s["ART_OPEN_CH02"], s["ART_FOUND_KEY"], s["ART_TIME_LOW"], s["ART_REMAIN_FEW"],
             s["WARN_INV_END"].replace("{left}", "1")]
     fail.check(hints == want, f"{label}: hints {hints}")
+    # the appraisal in the book: the card's appraisal line (evidence.appraisalKey) as the book's own remark (M5c)
+    book_rm = [p.get("evbook.remark") for _, p, _, ch in tr.ticks if ch.get("evbook.remark_seq", 0) != 0]
+    fail.check(book_rm[-1:] == [s["SCR_CH02_S04_L003"]], f"{label}: evidence book remark {book_rm}")
     want_lines = expected_popup_lines(gen_case.CH2_SPOTS, s)
     got_lines = popup_lines(tr)
     fail.check(got_lines == want_lines, f"{label}: popup lines {got_lines} != {want_lines}")
@@ -226,7 +230,7 @@ def check_ch2(fail: cp.Failures, frames: Path | None) -> None:
     fail.check(appr[-4:] == [3, 2, 1, 0], f"{label}: appraisals {appr}")
     fail.check(items(colls, "oppHand") == ["E02_05"], f"{label}: opponent hand {items(colls, 'oppHand')}")
     fail.check(sorted(items(colls, "appraised")) == ["E02_01", "E02_02", "E02_07"], f"{label}: appraised")
-    want_r = [s["ART_APPR_MECH_DONE"], s["ART_APPR_MECH_DONE"], s["ART_SOLID"], s["ART_SOPH_1"], s["ART_INVALID"]]
+    want_r = [s["SCR_CH02_S04_L005"], s["SCR_CH02_S04_L015"], s["ART_SOLID"], s["ART_SOPH_1"], s["ART_INVALID"]]
     fail.check(remarks(tr)[1:] == want_r, f"{label}: remarks {remarks(tr)}")
     links = lists(events, "board document.links")
     fail.check(any(any(x["kind"] == 3 for x in rows) for _, rows in links), f"{label}: no invalid link shown")
@@ -256,6 +260,7 @@ def main() -> int:
     if "--frames" in sys.argv:
         frames = Path(sys.argv[sys.argv.index("--frames") + 1]).resolve()
         frames.mkdir(parents=True, exist_ok=True)
+    cp.compile_game()     # AT-036: the flows' endpoints resolve before anything runs
     fail = cp.Failures()
     for name, fn in (("ch1_case", check_ch1), ("ch2_case", check_ch2)):
         raw = frames / "_ppm" if frames else None

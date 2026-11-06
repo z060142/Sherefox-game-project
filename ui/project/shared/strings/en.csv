@@ -885,6 +885,10 @@ SCR_CH03_S03_L004,"Silence! The bolt was shut from the inside, and you're the on
 SCR_CH03_S03_L005,"Inspector, may I ask a small question? How does a man opening the door from the outside come to find a door that was bolted from the inside?"
 SCR_CH03_S03_L006,Th-that's because... he has a key!
 SCR_CH03_S03_L007,"A key opens the outer lock. The bolt, you see, is on the inside."
+SCR_CH03_S04_F001,"Enough, Miss Fox! Three wrong guesses, and you still want this Inspector's post-mortem report? Not a chance!"
+SCR_CH03_S04_F002,"The bargeman stays in custody. Look at the deck yourself if you must, but don't expect any more help from this Inspector."
+SCR_CH03_S04_F003,Never mind; we'll write the report ourselves. Leave the body to me. I've seen wounds like these at a field dressing station.
+SCR_CH03_S04_F004,Inspector's Trust 2 or lower: the post-mortem report is withheld; Arthur must perform a medical appraisal on the body (E03_01).
 SCR_CH03_S04_L001,Scene 4: Warm-up Debate (No Dominance Loss)
 SCR_CH03_S04_L002,Warm-up Debate. Opponent: Inspector Baskerville. No Dominance loss.
 SCR_CH03_S04_L003,"(Misjudgement) The key was on the bargeman, and the door was locked from the inside, so he is the killer! This Inspector's reasoning is flawless!"
@@ -1056,6 +1060,7 @@ SCR_CH04_S01_L003,"Our correspondent reports: During the third act of ""The Cloc
 SHF_C1_IDLE,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces."""
 SHF_C1_REMAIN,"""Hold on, there's still something I haven't looked at. My ears are itching."""
 SPK_ARTHUR,Arthur
+SPK_BASKERVILLE,Baskerville
 SPK_FITCH,Fitch
 SPK_GRESHAM,Gresham
 SPK_HOLLOWAY,Holloway

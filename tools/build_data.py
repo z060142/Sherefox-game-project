@@ -132,10 +132,13 @@ TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # leading lines up to round 1 or the player's first move are `pre` (derived); the lines after the outcome are
 # listed here from 20-script: Ch.1 S05 the confession after 論破 (L027-L035, the win route only: the S06 lose
 # branch narrates the other ending); Ch.2 S05 Wolfhart's cup in the tail (L041-L042, only when the tail is
-# parried, i.e. a win: a wrong card in the tail is L047's graze); Ch.3 S04 the inspector's wrap-up (L006-L009,
-# either outcome: after three misses Sherefox corrects him herself, A-13). Every other line of these scenes is the
-# recommended route's transcript (cue empty, not played).
-DEBATE_POST = {"CH01_S05": ("postWin", 27, 35), "CH02_S05": ("postWin", 41, 42), "CH03_S04": ("post", 6, 9)}
+# parried, i.e. a win: a wrong card in the tail is L047's graze, shown as the round's result line); Ch.3 S04 the
+# inspector's wrap-up: L006-L009 when the warm-up is passed (`postWin`), F001-F004 instead when it fails with three
+# mistakes (`postLose`; the localization note: "plays instead of L006-L009"). Every other line of these scenes is the
+# recommended route's transcript (cue empty, not played). Ranges are seq (an F line's seq is VARIANT_SEQ + n).
+VARIANT_SEQ = 1000
+DEBATE_POST = {"CH01_S05": [("postWin", 27, 35)], "CH02_S05": [("postWin", 41, 42)],
+               "CH03_S04": [("postWin", 6, 9), ("postLose", VARIANT_SEQ + 1, VARIANT_SEQ + 4)]}
 PLAYER_MOVES = {"present", "rebut", "rebutBreak", "solid", "solidBreak", "sophistry", "observe"}
 # Warm-up (10-cases Ch.3 熱身; ruling B16: a single card, either one).
 WARMUP = {3: {"refuters": ["E03_05", "E03_02"], "hand": ["E03_05", "E03_02"]}}
@@ -426,11 +429,14 @@ def build_script(loc: dict, banners: dict) -> tuple[list[dict], dict]:
     rows = []
     info = {"scenes": {}, "speakers": {}, "evidence_lines": {}, "appraisal_line": {}}
     for r in loc["script"]:
-        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_L(\d{3})", r["ID"])
+        # L = the scene's lines; F = a variant played instead of some L lines (Ch.3 S04 F001-F004, the warm-up
+        # failure): it sorts after the scene's L lines, seq = VARIANT_SEQ + n
+        m = re.fullmatch(r"SCR_CH(\d\d)_S(\d\d)_([LF])(\d{3})", r["ID"])
         if not m:
             err(f"script: bad id {r['ID']}")
             continue
-        c, s, l = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        c, s = int(m.group(1)), int(m.group(2))
+        l = int(m.group(4)) + (VARIANT_SEQ if m.group(3) == "F" else 0)
         if c not in CHAPTERS:
             # Ruling E1: the Ch.4 S01 lines are only the lead of the final paper (CH04_OPEN), not script rows.
             continue
@@ -536,17 +542,14 @@ def script_cues(rows: list[dict], info: dict) -> None:
             if r["round"] > 0 or r["act"] in PLAYER_MOVES:
                 break
             r["cue"] = "pre"
-        post = DEBATE_POST.get(skey)
-        if not post:
-            continue
-        cue, lo, hi = post
-        got = [r for r in rs if lo <= r["seq"] <= hi]
-        if len(got) != hi - lo + 1:
-            err(f"script: DEBATE_POST {skey} L{lo:03d}-L{hi:03d} are not all playable rows")
-        for r in got:
-            if r["cue"]:
-                err(f"script: {r['id']} is both pre and {cue}")
-            r["cue"] = cue
+        for cue, lo, hi in DEBATE_POST.get(skey, []):
+            got = [r for r in rs if lo <= r["seq"] <= hi]
+            if len(got) != hi - lo + 1:
+                err(f"script: DEBATE_POST {skey} seq {lo}-{hi} are not all playable rows")
+            for r in got:
+                if r["cue"]:
+                    err(f"script: {r['id']} is both {r['cue']} and {cue}")
+                r["cue"] = cue
     for skey in DEBATE_POST:
         if not any(r["sceneKey"] == skey and r["cue"] for r in rows):
             err(f"script: DEBATE_POST names {skey}, which is not a debate or warm-up scene")
@@ -1177,7 +1180,9 @@ TEXTF_KEYS = {
     "UI_RES_COST_SEIZE": {"name"}, "WARN_BOARD_NOREASON": {"n"}, "WARN_BOARD_UNAPPR": {"n", "left"},
     "MSG_INV_MISSED": {"n"}, "MSG_INV_RESCUE": {"name"}, "WARN_INV_END": {"left"},
     "UI_BOARD_THRESHOLD": {"stage", "condition"}, "UI_DEB_PREVIEW": {"dmg", "mult", "shaken"},
-    "UI_DEB_PREVIEW_HACHIKU": {"pct"},
+    "UI_DEB_PREVIEW_HACHIKU": {"pct"}, "UI_DEB_PREVIEW_VS": {"action", "result"}, "UI_RES_READS": {"hit", "total"},
+    "UI_NOTES_LOG_ROW": {"n", "tell", "mine", "theirs", "result"}, "UI_NOTES_RULE_COUNT": {"n"},
+    "UI_DEB_TELL_CANDIDATES": {"a", "b"},
 }
 # The M4c pipeline wrote these templates filled in as `<KEY>__<values>` keys; the UI project's tables still hold them.
 STALE_EXPANDED = set(TEXTF_KEYS) | {"MSG_DEB_SHAKEN_END"}

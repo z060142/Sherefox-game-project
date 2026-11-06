@@ -207,8 +207,19 @@
       "id": "K7",
       "type": "constant",
       "params": {
+        "value": "-"
+      }
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
         "value": "pre"
       }
+    },
+    {
+      "id": "preCue",
+      "type": "select"
     },
     {
       "id": "cueVal",
@@ -710,6 +721,18 @@
       "to": "next.from"
     },
     {
+      "from": "world.debRetrying",
+      "to": "preCue.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "preCue.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "preCue.b"
+    },
+    {
       "from": "postMode.value",
       "to": "cueVal.cond"
     },
@@ -718,7 +741,7 @@
       "to": "cueVal.a"
     },
     {
-      "from": "K7.out",
+      "from": "preCue.out",
       "to": "cueVal.b"
     },
     {

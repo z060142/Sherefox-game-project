@@ -171,6 +171,13 @@ ROUTES = [
           overrides={"shaken": "armed", "opp_hp": 5.0}),
     Route("rule_b9_rule3_at_half", "test_warmup_and_rules::test_rule3_threshold_is_at_most_half", 2, ch2_case,
           ch2_board(), [(pa(PA.PARRY, "E02_02"), oa(OA.CLAIM, "N1"))], overrides={"opp_hp": 80.0}),
+    # M5c: the status line's 不能補強 / 必定攻擊 (debNoReinf / debMustAtk) and the reads count (A-4, A-15)
+    Route("m5c_solid_vs_trap_no_reinforce", "A-4 (陷阱落空: no reinforce next; a read)", 2, ch2_case, ch2_board(),
+          [(pa(PA.SOLID, segment=("E02_06", "E02_01"), target="N3"), oa(OA.TRAP, "N3")),
+           (pa(PA.OBSERVE), oa(OA.CLAIM, "N1"))]),
+    Route("m5c_observe_vs_trap_must_attack", "A-4 (拆穿陷阱: must attack next; a read)", 2, ch2_case, ch2_board(),
+          [(pa(PA.OBSERVE), oa(OA.TRAP, "N1")), (pa(PA.SOLID, segment=("E02_06", "E02_01"), target="N3"),
+                                                 oa(OA.CLAIM, "N1"))]),
 ]
 
 
@@ -288,7 +295,29 @@ def snapshot(s, chapter: int) -> dict:
         "debBreakLabel": s.break_label or "",
         "debGoldenUsed": int(bool(s.golden_used)),
         "debFragile": sum(1 for x in s.nodes if x.kind == "fragile"),
+        "debNoReinf": int(s.no_reinforce_next),
+        "debMustAtk": int(s.must_attack_next),
     }
+
+
+def round_read(prev, p, o, evs) -> int:
+    """1 when the round was a read (01-systems A-15 破竹: the favourable answer to the opponent's actual action; a
+    tail round: the right chain). Oracle from the ref records: the round's 破竹 record (after > 0), else (the round
+    that ends the debate has none) the A-15 table itself, with a break counting as a read."""
+    if prev.in_tail:
+        return int(any(isinstance(e, E.TailResult) and e.correct for e in evs))
+    hk = [e for e in evs if isinstance(e, E.HachikuChanged)]
+    if hk:
+        return int(hk[0].after > 0)
+    if any(isinstance(e, E.BreakResult) and e.success for e in evs):
+        return 1
+    if o.kind in (OA.CLAIM, OA.RUSH):
+        right = p.kind == PA.PARRY or (prev.case.shissu_enabled and prev.shissu_left > 0 and p.kind == PA.OBSERVE)
+    elif o.kind == OA.REINFORCE:
+        right = (p.kind == PA.SOPHISTRY and prev.case.sophistry_unlocked) or p.kind == PA.OBSERVE
+    else:
+        right = p.kind in (PA.SOLID, PA.OBSERVE)
+    return int(right)
 
 
 def warm_snapshot(ws, mistake_limit: int) -> dict:
@@ -354,7 +383,8 @@ def build(routes=None):
             h_in.append(_row(op="set", key=OVERRIDE_KEY[f], value=val, **base))
         if case.sophistry_unlocked and not G.derive_tables()["debCase"][rt.chapter - 1]["soph"]:
             h_in.append(_row(op="set", key="soph", value=1, **base))
-        exp = Expect(rt, len(h_in) - 1, [], [], [], snapshot(s, rt.chapter))  # after the start and the overrides
+        exp = Expect(rt, len(h_in) - 1, [], [], [], {**snapshot(s, rt.chapter), "debReads": 0})
+        reads = 0
         for i, (p, o) in enumerate(rt.moves, start=1):
             prev = s
             s, evs = resolve_round(s, p, o)
@@ -380,7 +410,8 @@ def build(routes=None):
             script.append({"key": f"{rt.name}:{i}", "action": OA_NAME[o.kind],
                            "lit": node_id(rt.chapter, o.lit) if o.lit else "", "scripted": int(o.scripted),
                            **tell, "star": "", "starRule": 0, "basis": "", "lineKey": ""})
-            exp.after.append(snapshot(s, rt.chapter))
+            reads += round_read(prev, p, o, evs)
+            exp.after.append({**snapshot(s, rt.chapter), "debReads": reads})
             exp.events.append([record(e, rt.chapter) for e in evs])
         expects.append(exp)
     return h_in, script, expects
