@@ -185,7 +185,7 @@ ID 命名：設計文件已有的用原名；其餘用 `SFX_<區域>_<名稱>`�
 
 ## 4. 檔案交付方式
 
-- 資料夾：`E:\coding4\Sherefox\audio\`，檔名＝ID，副檔名 `.wav`。
+- 資料夾：`E:\coding4\Sherefox\audio\`，檔名＝ID；背景音樂副檔名 `.ogg`，音效 `.wav`。
 
 ```
 audio/
