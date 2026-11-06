@@ -12,3 +12,4 @@
 | 新字串接線 | M4c 完成後 | 重新匯入在地化；SCENE_CH0x_* → investigate `area_name`；HS_CH03_01_NOTE_REPORT（信任度 ≥3 的遺體筆記）；G-01_DESC／G-01_REASON／S-01_DESC（S-01 名稱沿用 G-01_SUB）；UI_TAG_SEP 作為標籤分隔 |
 | publish 改為 include 清單 | AT-047 | 落地後重新 publish，用 `publish --list` 確認只含執行期檔案；不再手動刪 node_modules／tests 等 |
 | 行動按鈕可用狀態 | AT-047 `bare: true` | debate 的 `act_enabled`（list<bool>）、`act_reason`（list<string>）改用 `atrium.ui.list` 的 `bare` 模式寫入 |
+| `compile --game` 納入檢查 | AT-036（已落地，SDK 待重建） | 重建 SDK 後，在 tests/README 與各 check 前加 `xtatrium compile --game E:\coding4\Sherefox`，端點錯誤在打包前就擋下 |
