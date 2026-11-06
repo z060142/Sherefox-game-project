@@ -395,13 +395,14 @@ def harness_script() -> list[dict]:
 
 
 def copy_game(out: Path) -> None:
-    for sub in ("flows", "data", "strings", "ui"):
+    for sub in ("flows", "data", "strings", "ui", "audio"):
         shutil.rmtree(out / sub, ignore_errors=True)
     out.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "flows", out / "flows")
     shutil.copytree(ROOT / "data", out / "data")
     shutil.copytree(ROOT / "strings", out / "strings")
     shutil.copytree(ROOT / "ui" / "bundle", out / "ui" / "bundle")
+    shutil.copytree(ROOT / "audio", out / "audio")  # game.json declares the audio files; a missing one fails the load
     shutil.copyfile(ROOT / "game.json", out / "game.json")
 
 
