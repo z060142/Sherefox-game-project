@@ -427,6 +427,7 @@
     #area-plate {
       flex-shrink: 0;
       height: 44px;
+      position: relative;
       width: 400px;
     }
     /* import: Investigate.dc.html:1/2/1/0 */

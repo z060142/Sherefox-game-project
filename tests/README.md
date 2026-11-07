@@ -84,6 +84,15 @@ opens it and a click on the dimmed screen closes it (the paper stays on page 1);
 On while it is on sends nothing); every `res_options` write is the selected auto option only (`display.native*` are 0
 headless). It also checks the game.json `display` block and that the settings surface is modal, right below cutin.
 
+## Investigation area arrows
+
+```
+uv run tests/check_nav.py
+```
+
+It replays `tests/ch3_warmfail.atrec` (ending in Ch.3's investigation) plus clicks appended in a temporary copy:
+▶ twice, then ◀ twice; each must reach its arrow and emit `nav` (+1 / -1). Regression for the area name covering ◀.
+
 ## Music and the debate jingles
 
 ```
