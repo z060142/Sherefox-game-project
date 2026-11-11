@@ -49,7 +49,7 @@ def lists(events, port: str) -> list[tuple[int, list]]:
 
 def check_static(fail: cp.Failures) -> None:
     game = json.loads((ROOT / "game.json").read_text(encoding="utf-8"))
-    fail.check(game.get("display") == {"mode": "windowed", "resolution": "auto"}, f"game.json display {game.get('display')}")
+    fail.check(game.get("display") == {"mode": "windowed", "resolution": "auto", "msaa": 1, "gpuTrim": "on-hide"}, f"game.json display {game.get('display')}")
     order = [s["ui"] for s in game["ui"]["surfaces"]]
     surf = next((s for s in game["ui"]["surfaces"] if s["ui"] == "settings"), {})
     fail.check(surf.get("modal") is True and surf.get("visible") is False, f"game.json settings surface {surf}")

@@ -370,7 +370,9 @@
   },
   "display": {
     "mode": "windowed",
-    "resolution": "auto"
+    "resolution": "auto",
+    "msaa": 1,
+    "gpuTrim": "on-hide"
   },
   "flows": [
     "flows/main.xtflow",
