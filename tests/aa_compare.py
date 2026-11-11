@@ -11,7 +11,7 @@ Usage (from the project root):
 SCREENS) three times, with no window and no wall
 clock: OUTDIR/sw/<screen>.png (software renderer, the reference), OUTDIR/m1 (wgpu --msaa 1) and OUTDIR/m4 (wgpu --msaa 4). For
 each tick it prints, per GPU mode against sw: the number of pixels whose largest channel difference exceeds 16, and
-the largest channel difference. The same numbers go to OUTDIR/report.json. OUTDIR/zoom_<screen>.png shows the N
+the largest channel difference and the mean absolute error (all channels, 0..255). The same numbers go to OUTDIR/report.json. OUTDIR/zoom_<screen>.png shows the N
 64 px cells where msaa 1 or msaa 4 differs most from sw, as sw | m1 | m4 at an integer nearest-neighbour scale,
 each labelled with its source pixel range. OUTDIR/lib-log.txt keeps the wgpu run's library log (adapter,
 wgpu-native version, memory policy) for reports.
@@ -78,9 +78,12 @@ def load(out: Path, mode: str, name: str) -> np.ndarray:
     return np.asarray(Image.open(out / mode / f"{name}.png").convert("RGB"), dtype=np.int16)
 
 
-def metrics(ref: np.ndarray, img: np.ndarray) -> tuple[np.ndarray, int, int]:
-    d = np.abs(img - ref).max(axis=2)
-    return d, int((d > THRESHOLD).sum()), int(d.max())
+def metrics(ref: np.ndarray, img: np.ndarray) -> tuple[np.ndarray, int, int, float]:
+    """Per-pixel largest channel difference; pixels over THRESHOLD; largest difference; mean absolute error over all
+    channels of all pixels (0..255)."""
+    a = np.abs(img - ref)
+    d = a.max(axis=2)
+    return d, int((d > THRESHOLD).sum()), int(d.max()), round(float(a.mean()), 4)
 
 
 def zoom(out: Path, name: str, imgs: dict[str, np.ndarray], diffs: list[np.ndarray], n: int) -> None:
@@ -118,14 +121,15 @@ def main() -> int:
     args.out.mkdir(parents=True, exist_ok=True)
     shoot(args.out, screens)
     report = {}
-    print(f"{'screen':12} {'tick':>5}  {'m1 >16':>8} {'m1 max':>6}  {'m4 >16':>8} {'m4 max':>6}")
+    print(f"{'screen':14} {'tick':>5}  {'m1 >16':>8} {'max':>4} {'mae':>7}  {'m4 >16':>8} {'max':>4} {'mae':>7}")
     for name in screens:
         tick = SCREENS[name][0]
         imgs = {m: load(args.out, m, name) for m in MODES}
-        d1, n1, x1 = metrics(imgs["sw"], imgs["m1"])
-        d4, n4, x4 = metrics(imgs["sw"], imgs["m4"])
-        report[name] = {"tick": tick, "m1": {"over16": n1, "max": x1}, "m4": {"over16": n4, "max": x4}}
-        print(f"{name:12} {tick:>5}  {n1:>8} {x1:>6}  {n4:>8} {x4:>6}")
+        d1, n1, x1, e1 = metrics(imgs["sw"], imgs["m1"])
+        d4, n4, x4, e4 = metrics(imgs["sw"], imgs["m4"])
+        report[name] = {"tick": tick, "m1": {"over16": n1, "max": x1, "mae": e1},
+                        "m4": {"over16": n4, "max": x4, "mae": e4}}
+        print(f"{name:14} {tick:>5}  {n1:>8} {x1:>4} {e1:>7.4f}  {n4:>8} {x4:>4} {e4:>7.4f}")
         if args.zoom:
             zoom(args.out, name, imgs, [d1, d4], args.zoom)
     (args.out / "report.json").write_text(json.dumps(report, indent=1) + "\n", encoding="utf-8")
