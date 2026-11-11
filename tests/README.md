@@ -187,3 +187,12 @@ papers' strips are the lose variants. Their investigations click once per reacti
 first press warns) and close the missed-cards message (`gen_case.end`).
 `check_debate.py`, `check_policy.py` and `check_playthrough.py` use the CLI of `tests/xt_cli.py` (`XTATRIUM_EXE`,
 else the installed SDK, else the `XTATRIUM` checkout).
+
+## Edge smoothing, msaa 1 vs msaa 4 (report aid)
+
+`uv run tests/aa_compare.py OUTDIR [--screens title,debate]` (Windows; opens real `play` windows for about 2 min, keep
+them unobstructed). For each screen it replays `full_run.atrec` up to a fixed tick at `--msaa 1` and `--msaa 4`, grabs
+both windows, and writes `zoom_<screen>.png`: the cells where the two differ by small amounts, 3x, left 1x right 4x.
+It is not a pass/fail check. Rerun it whenever XTAtrium pins a new XTFrame tag, and report any visible stair-stepping
+to the framework session with the surface, tick and cell coordinates. Keep each tag's captures outside the repo for
+comparison.
