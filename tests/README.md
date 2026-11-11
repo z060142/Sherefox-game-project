@@ -190,9 +190,9 @@ else the installed SDK, else the `XTATRIUM` checkout).
 
 ## Edge smoothing, msaa 1 vs msaa 4 (report aid)
 
-`uv run tests/aa_compare.py OUTDIR [--screens title,debate]` (Windows; opens real `play` windows for about 2 min, keep
-them unobstructed). For each screen it replays `full_run.atrec` up to a fixed tick at `--msaa 1` and `--msaa 4`, grabs
-both windows, and writes `zoom_<screen>.png`: the cells where the two differ by small amounts, 3x, left 1x right 4x.
-It is not a pass/fail check. Rerun it whenever XTAtrium pins a new XTFrame tag, and report any visible stair-stepping
-to the framework session with the surface, tick and cell coordinates. Keep each tag's captures outside the repo for
-comparison.
+`uv run tests/aa_compare.py OUTDIR [--screens title,debate] [--zoom N]` uses `xtatrium shot` (no window, frame-exact) to
+render `full_run.atrec` at one tick per screen with the software renderer (reference), wgpu `--msaa 1` and wgpu
+`--msaa 4`. For each screen it prints, per GPU mode against software, the pixels whose largest channel difference
+exceeds 16 and the largest difference (also in `report.json`), and writes `zoom_<screen>.png` (sw | m1 | m4, 3x
+nearest-neighbour, source range labelled). It is not a pass/fail check. Rerun it whenever XTAtrium pins a new XTFrame
+tag and report the numbers to the framework session. Keep each tag's output outside the repo for comparison.
