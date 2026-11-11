@@ -7,8 +7,9 @@
 Usage (from the project root):
     uv run tests/aa_compare.py OUTDIR [--screens title,debate,...] [--zoom N]
 
-`xtatrium shot` renders tests/full_run.atrec's frame at each screen's tick three times, with no window and no wall
-clock: OUTDIR/sw (software renderer, the reference), OUTDIR/m1 (wgpu --msaa 1) and OUTDIR/m4 (wgpu --msaa 4). For
+`xtatrium shot` renders tests/full_run.atrec's frame at each screen's tick (some screens on a copy cut short, see
+SCREENS) three times, with no window and no wall
+clock: OUTDIR/sw/<screen>.png (software renderer, the reference), OUTDIR/m1 (wgpu --msaa 1) and OUTDIR/m4 (wgpu --msaa 4). For
 each tick it prints, per GPU mode against sw: the number of pixels whose largest channel difference exceeds 16, and
 the largest channel difference. The same numbers go to OUTDIR/report.json. OUTDIR/zoom_<screen>.png shows the N
 64 px cells where msaa 1 or msaa 4 differs most from sw, as sw | m1 | m4 at an integer nearest-neighbour scale,
@@ -22,8 +23,10 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -33,26 +36,45 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from xt_cli import EXE, XTFRAME  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SCREENS = {"title": 0, "paper": 60, "vn": 200, "investigate": 380, "board": 480, "debate": 800, "result": 1300}
+# screen -> (tick, cut): cut = drop the recording's inputs after that tick (None = whole recording), so a screen the
+# recording leaves quickly can be shot after its intro settles (paper: intro 700 ms, shown from t41, left at t64).
+SCREENS = {"title": (0, None), "paper": (60, None), "paper_settled": (120, 60), "vn": (200, None),
+           "investigate": (380, None), "board": (480, None), "debate": (800, None), "result": (1300, None)}
 MODES = {"sw": ["--renderer", "sw"], "m1": ["--renderer", "wgpu", "--msaa", "1"],
          "m4": ["--renderer", "wgpu", "--msaa", "4"]}
 THRESHOLD = 16
 CELL, SCALE = 64, 3
 
 
-def shoot(out: Path, ticks: list[int]) -> None:
+def shoot(out: Path, screens: list[str]) -> None:
+    """Writes OUTDIR/<mode>/<screen>.png; truncated recordings and raw shot output live in a deleted temp dir."""
     env = dict(os.environ, XTATRIUM_XTFRAME_DIR=str(XTFRAME))
-    at = ",".join(str(t) for t in ticks)
-    for mode, flags in MODES.items():
-        cmd = [str(EXE), "shot", "--game", ".", "--replay", "tests/full_run.atrec", "--at", at,
-               "--out", str(out / mode), *flags]
-        p = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8")
-        if p.returncode != 0:
-            raise SystemExit(f"FAIL xtatrium shot {mode} (exit {p.returncode})\n{p.stderr}")
+    lines = (ROOT / "tests" / "full_run.atrec").read_text(encoding="utf-8").splitlines()
+    groups: dict[int | None, list[str]] = {}
+    for s in screens:
+        groups.setdefault(SCREENS[s][1], []).append(s)
+    with tempfile.TemporaryDirectory(prefix="sherefox-aa-") as tmp:
+        for cut, names in groups.items():
+            rec = Path(tmp) / f"cut{cut}.atrec"
+            rec.write_text("\n".join(ln for ln in lines if cut is None or not ln.startswith('{"t"')
+                                     or json.loads(ln)["t"] <= cut) + "\n"
+                           # an empty input entry extends a cut recording to its last shot tick (shot stops there)
+                           + ("" if cut is None else json.dumps({"t": max(SCREENS[n][0] for n in names), "u": []})
+                              + "\n"), encoding="utf-8")
+            at = ",".join(str(t) for t in sorted({SCREENS[n][0] for n in names}))
+            for mode, flags in MODES.items():
+                raw = Path(tmp) / f"cut{cut}-{mode}"
+                cmd = [str(EXE), "shot", "--game", ".", "--replay", str(rec), "--at", at, "--out", str(raw), *flags]
+                p = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8")
+                if p.returncode != 0:
+                    raise SystemExit(f"FAIL xtatrium shot {mode} (exit {p.returncode})\n{p.stderr}")
+                (out / mode).mkdir(exist_ok=True)
+                for n in names:
+                    shutil.copyfile(raw / f"shot-{SCREENS[n][0]:06d}.png", out / mode / f"{n}.png")
 
 
-def load(out: Path, mode: str, tick: int) -> np.ndarray:
-    return np.asarray(Image.open(out / mode / f"shot-{tick:06d}.png").convert("RGB"), dtype=np.int16)
+def load(out: Path, mode: str, name: str) -> np.ndarray:
+    return np.asarray(Image.open(out / mode / f"{name}.png").convert("RGB"), dtype=np.int16)
 
 
 def metrics(ref: np.ndarray, img: np.ndarray) -> tuple[np.ndarray, int, int]:
@@ -93,12 +115,12 @@ def main() -> int:
     if bad:
         raise SystemExit(f"unknown screens {bad}; known: {', '.join(SCREENS)}")
     args.out.mkdir(parents=True, exist_ok=True)
-    shoot(args.out, sorted({SCREENS[s] for s in screens}))
+    shoot(args.out, screens)
     report = {}
     print(f"{'screen':12} {'tick':>5}  {'m1 >16':>8} {'m1 max':>6}  {'m4 >16':>8} {'m4 max':>6}")
     for name in screens:
-        tick = SCREENS[name]
-        imgs = {m: load(args.out, m, tick) for m in MODES}
+        tick = SCREENS[name][0]
+        imgs = {m: load(args.out, m, name) for m in MODES}
         d1, n1, x1 = metrics(imgs["sw"], imgs["m1"])
         d4, n4, x4 = metrics(imgs["sw"], imgs["m4"])
         report[name] = {"tick": tick, "m1": {"over16": n1, "max": x1}, "m4": {"over16": n4, "max": x4}}
