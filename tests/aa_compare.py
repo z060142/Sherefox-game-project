@@ -57,17 +57,18 @@ def shoot(out: Path, screens: list[str]) -> None:
         for cut, names in groups.items():
             rec = Path(tmp) / f"cut{cut}.atrec"
             rec.write_text("\n".join(ln for ln in lines if cut is None or not ln.startswith('{"t"')
-                                     or json.loads(ln)["t"] <= cut) + "\n"
-                           # an empty input entry extends a cut recording to its last shot tick (shot stops there)
-                           + ("" if cut is None else json.dumps({"t": max(SCREENS[n][0] for n in names), "u": []})
-                              + "\n"), encoding="utf-8")
+                                     or json.loads(ln)["t"] <= cut) + "\n", encoding="utf-8")
             at = ",".join(str(t) for t in sorted({SCREENS[n][0] for n in names}))
             for mode, flags in MODES.items():
                 raw = Path(tmp) / f"cut{cut}-{mode}"
                 cmd = [str(EXE), "shot", "--game", ".", "--replay", str(rec), "--at", at, "--out", str(raw), *flags]
+                if mode == "m1":
+                    cmd.append("--lib-log")
                 p = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8")
                 if p.returncode != 0:
                     raise SystemExit(f"FAIL xtatrium shot {mode} (exit {p.returncode})\n{p.stderr}")
+                if mode == "m1" and cut is None:
+                    (out / "lib-log.txt").write_text(p.stderr, encoding="utf-8")
                 (out / mode).mkdir(exist_ok=True)
                 for n in names:
                     shutil.copyfile(raw / f"shot-{SCREENS[n][0]:06d}.png", out / mode / f"{n}.png")
