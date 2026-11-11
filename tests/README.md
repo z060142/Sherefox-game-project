@@ -195,4 +195,6 @@ render `full_run.atrec` at one tick per screen with the software renderer (refer
 `--msaa 4`. For each screen it prints, per GPU mode against software, the pixels whose largest channel difference
 exceeds 16 and the largest difference (also in `report.json`), and writes `zoom_<screen>.png` (sw | m1 | m4, 3x
 nearest-neighbour, source range labelled). It is not a pass/fail check. Rerun it whenever XTAtrium pins a new XTFrame
-tag and report the numbers to the framework session. Keep each tag's output outside the repo for comparison.
+tag and report the numbers to the framework session. `--against OLDDIR` also compares each mode with an earlier run (for example an uncompressed bundle
+against a BC7 one) and writes `zoom_vs_<screen>.png`; the stamp and calligraphy cut-in frames come from the debate
+recordings. Keep each tag's output outside the repo for comparison.

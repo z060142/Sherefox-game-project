@@ -7,3 +7,4 @@ __pycache__/
 !tests/*.atrec
 tests/play_harness/
 tests/warmfail_harness/
+.xtframe-cache/

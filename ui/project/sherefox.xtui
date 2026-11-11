@@ -139,6 +139,9 @@
   },
   "target": "engine",
   "publish": {
+    "images": {
+      "compress": "auto"
+    },
     "outDir": "",
     "languages": [],
     "embedImages": false,
