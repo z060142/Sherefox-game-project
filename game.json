@@ -371,8 +371,7 @@
   "display": {
     "mode": "windowed",
     "resolution": "auto",
-    "msaa": 1,
-    "gpuTrim": "on-hide"
+    "msaa": 1
   },
   "flows": [
     "flows/main.xtflow",
