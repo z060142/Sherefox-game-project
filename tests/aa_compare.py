@@ -12,6 +12,7 @@ once with --msaa 4, same tick), lets it idle 5 s, and grabs the window's client 
 _m4.png. It then writes OUTDIR/zoom_<screen>.png: the six 64 px cells where the two differ most in small amounts
 (edge smoothing; large differences are animation and skipped), 3x nearest-neighbour, left msaa 1, right msaa 4.
 Animated screens are not frame-identical between the two runs; judge edges, not content.
+The last run's `play --lib-log` output (adapter, wgpu-native version, memory policy) is OUTDIR/lib-log.txt.
 Not a pass/fail check: a report aid for the XTFrame mainline. Truncated recordings live in a temp dir that is deleted.
 Keep the window unobstructed while it runs (~2 min).
 """
@@ -74,8 +75,10 @@ def capture(out: Path, screens: list[str]) -> None:
             rec = Path(tmp) / f"{name}.atrec"
             rec.write_text("\n".join(head) + "\n", encoding="utf-8")
             for msaa in (1, 4):
-                p = subprocess.Popen([str(EXE), "play", "--game", ".", "--replay", str(rec), "--msaa", str(msaa)],
-                                     cwd=ROOT, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                log = open(out / "lib-log.txt", "w", encoding="utf-8")
+                p = subprocess.Popen([str(EXE), "play", "--game", ".", "--replay", str(rec), "--msaa", str(msaa),
+                                      "--lib-log"], cwd=ROOT, env=env, stdout=subprocess.DEVNULL,
+                                     stderr=log)
                 try:
                     time.sleep(tick / 60 + 5)
                     box = window_rect(p.pid)
@@ -87,6 +90,7 @@ def capture(out: Path, screens: list[str]) -> None:
                 finally:
                     p.kill()
                     p.wait()
+                    log.close()
 
 
 def zoom(out: Path, name: str) -> None:
