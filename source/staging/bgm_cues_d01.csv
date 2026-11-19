@@ -12,7 +12,8 @@ BGM_D01_10,D01,SCR_D01_S07_L007,NONE,,out,殘局・罪惡感越線：他沒有�
 BGM_D01_11,D01,SCR_D01_S07_L012,BGM09,,cross,勝利收尾演出：找回附錄（已在 BGM09 時不重播）
 BGM_D01_12,D01,SCR_D01_S07_L015,NONE,,out,「把鏡子蓋上。拜託。」淡出靜音
 BGM_D01_13,D01,SCR_D01_S07_L016,NONE,,out,敗北：靜音到 L019
-BGM_D01_14,D01,SCR_D01_S08_L001,BGM12,,cross,結算：海德太太的話（溫馨小事）
+BGM_D01_14,D01,SCR_D01_S08_L001,BGM12,,cross,結算：海德太太的話（溫馨小事）；只在勝利時
+BGM_D01_20,D01,SCR_D01_S08_L011,NONE,,out,敗北的結算：全程靜音（不播 BGM_D01_14），到 S09 報紙才恢復
 BGM_D01_15,D01,SCR_D01_S09_L001,BGM11,,cross,章末報紙：體面版
 BGM_D01_16,D01,SCR_D01_S09_L003,BGM11,,cross,章末報紙：普通版
 BGM_D01_17,D01,SCR_D01_S09_L005,BGM11,,cross,章末報紙：難看版

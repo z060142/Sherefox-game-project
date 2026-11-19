@@ -238,6 +238,164 @@
       "type": "select"
     },
     {
+      "id": "langEnPC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langEnPN",
+      "type": "select"
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "bodyKeyL",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "bodyKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "lnBRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowTextLen",
+        "column": "id"
+      }
+    },
+    {
+      "id": "lnBZh",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "zh",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnBEn",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "en",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnB",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lnBRow >= 0 ? (langEnP ? lnBEn : lnBZh) : 0"
+      }
+    },
+    {
+      "id": "lnA2Row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowTextLen",
+        "column": "id"
+      }
+    },
+    {
+      "id": "lnA2Zh",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "zh",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnA2En",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "en",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnA2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lnA2Row >= 0 ? (langEnP ? lnA2En : lnA2Zh) : 0"
+      }
+    },
+    {
+      "id": "lnA3Row",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "flowTextLen",
+        "column": "id"
+      }
+    },
+    {
+      "id": "lnA3Zh",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "zh",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnA3En",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "flowTextLen",
+        "column": "en",
+        "type": "number"
+      }
+    },
+    {
+      "id": "lnA3",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lnA3Row >= 0 ? (langEnP ? lnA3En : lnA3Zh) : 0"
+      }
+    },
+    {
+      "id": "addOnNN",
+      "type": "select"
+    },
+    {
+      "id": "paperChars",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lnB + (addOnN ? lnA2 + lnA3 : 0)"
+      }
+    },
+    {
+      "id": "paperCols",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "paperChars > 6 * (langEnP ? 67 : 26) ? 2 : 1"
+      }
+    },
+    {
+      "id": "paperColH",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "paperCols == 1 ? 342 : ceil((ceil(paperChars / (langEnP ? 72 : 25)) + 1) / 2) * (langEnP ? 29 : 34)"
+      }
+    },
+    {
       "id": "page2HeadKey",
       "type": "atrium.table.get",
       "params": {
@@ -290,7 +448,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K5",
+      "id": "K7",
       "type": "constant",
       "params": {
         "value": "lose"
@@ -304,7 +462,7 @@
       }
     },
     {
-      "id": "K6",
+      "id": "K8",
       "type": "constant",
       "params": {
         "value": "notorious"
@@ -689,6 +847,170 @@
       "to": "ui#paper.body"
     },
     {
+      "from": "world.language",
+      "to": "langEnPC.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "langEnPC.b"
+    },
+    {
+      "from": "langEnPC.out",
+      "to": "langEnPN.cond"
+    },
+    {
+      "from": "K5.out",
+      "to": "langEnPN.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "langEnPN.b"
+    },
+    {
+      "from": "prow.row",
+      "to": "bodyKeyL.row"
+    },
+    {
+      "from": "bodyKeyL.value",
+      "to": "lnBRow.value"
+    },
+    {
+      "from": "lnBRow.row",
+      "to": "lnBZh.row"
+    },
+    {
+      "from": "lnBRow.row",
+      "to": "lnBEn.row"
+    },
+    {
+      "from": "lnBRow.row",
+      "to": "lnB.lnBRow"
+    },
+    {
+      "from": "langEnPN.out",
+      "to": "lnB.langEnP"
+    },
+    {
+      "from": "lnBEn.value",
+      "to": "lnB.lnBEn"
+    },
+    {
+      "from": "lnBZh.value",
+      "to": "lnB.lnBZh"
+    },
+    {
+      "from": "add2.value",
+      "to": "lnA2Row.value"
+    },
+    {
+      "from": "lnA2Row.row",
+      "to": "lnA2Zh.row"
+    },
+    {
+      "from": "lnA2Row.row",
+      "to": "lnA2En.row"
+    },
+    {
+      "from": "lnA2Row.row",
+      "to": "lnA2.lnA2Row"
+    },
+    {
+      "from": "langEnPN.out",
+      "to": "lnA2.langEnP"
+    },
+    {
+      "from": "lnA2En.value",
+      "to": "lnA2.lnA2En"
+    },
+    {
+      "from": "lnA2Zh.value",
+      "to": "lnA2.lnA2Zh"
+    },
+    {
+      "from": "add3.value",
+      "to": "lnA3Row.value"
+    },
+    {
+      "from": "lnA3Row.row",
+      "to": "lnA3Zh.row"
+    },
+    {
+      "from": "lnA3Row.row",
+      "to": "lnA3En.row"
+    },
+    {
+      "from": "lnA3Row.row",
+      "to": "lnA3.lnA3Row"
+    },
+    {
+      "from": "langEnPN.out",
+      "to": "lnA3.langEnP"
+    },
+    {
+      "from": "lnA3En.value",
+      "to": "lnA3.lnA3En"
+    },
+    {
+      "from": "lnA3Zh.value",
+      "to": "lnA3.lnA3Zh"
+    },
+    {
+      "from": "addenda.value",
+      "to": "addOnNN.cond"
+    },
+    {
+      "from": "K5.out",
+      "to": "addOnNN.a"
+    },
+    {
+      "from": "K6.out",
+      "to": "addOnNN.b"
+    },
+    {
+      "from": "lnB.value",
+      "to": "paperChars.lnB"
+    },
+    {
+      "from": "addOnNN.out",
+      "to": "paperChars.addOnN"
+    },
+    {
+      "from": "lnA2.value",
+      "to": "paperChars.lnA2"
+    },
+    {
+      "from": "lnA3.value",
+      "to": "paperChars.lnA3"
+    },
+    {
+      "from": "paperChars.value",
+      "to": "paperCols.paperChars"
+    },
+    {
+      "from": "langEnPN.out",
+      "to": "paperCols.langEnP"
+    },
+    {
+      "from": "paperCols.value",
+      "to": "paperColH.paperCols"
+    },
+    {
+      "from": "paperChars.value",
+      "to": "paperColH.paperChars"
+    },
+    {
+      "from": "langEnPN.out",
+      "to": "paperColH.langEnP"
+    },
+    {
+      "from": "paperCols.value",
+      "to": "ui#paper.cols"
+    },
+    {
+      "from": "paperColH.value",
+      "to": "ui#paper.col_h"
+    },
+    {
       "from": "prow.row",
       "to": "page2HeadKey.row"
     },
@@ -741,7 +1063,7 @@
       "to": "ocLose.a"
     },
     {
-      "from": "K5.out",
+      "from": "K7.out",
       "to": "ocLose.b"
     },
     {
@@ -749,7 +1071,7 @@
       "to": "ocNoto.a"
     },
     {
-      "from": "K6.out",
+      "from": "K8.out",
       "to": "ocNoto.b"
     },
     {

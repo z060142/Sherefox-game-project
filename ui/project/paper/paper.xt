@@ -16,6 +16,8 @@
     ad: string in = "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"
     stamp: number in = 0
     picture: string in = "ch02"
+    cols: number in = 2
+    col_h: number in = 204
     result_head: string in = "市議會擬加徵煤煙稅　工廠主人聯名抗議"
     result_sub: string in = ""
     next: event out
@@ -70,17 +72,13 @@
             </div>
           </div>
           <div id="lead-text" bind:display="picture | eq('')">
-            <div id="wcols">
-              <div id="wcol-1" class="col">
+            <div id="wcols" bind:class.one="cols | eq(1)">
+              <div id="wcol-1" class="col" bind:height="col_h | range(0, 720, 0px, 720px)">
                 <div id="wcol-1-text" class="wcol" bind:text="body">本報訊，肯辛頓海德宅遺囑附錄失竊案昨日真相大白。亡者之姪塞德里克・海德為掩飾鉅額賭債，趁守靈夜關閉煤氣總閥竊取附錄，嫁禍到府修鎖的鎖匠。貝克街的狐耳偵探當眾逐一指出破綻，附錄於書房壁爐中完好尋回。鎖匠布里格斯當場獲釋。</div>
               </div>
-              <div id="wcol-rule-1" class="rule-col"/>
-              <div id="wcol-2" class="col">
-                <div id="wcol-2-text" class="wcol" bind:text="body">本報訊</div>
-              </div>
-              <div id="wcol-rule-2" class="rule-col"/>
-              <div id="wcol-3" class="col">
-                <div id="wcol-3-text" class="wcol" bind:text="body">本報訊</div>
+              <div id="wcol-rule-1" class="rule-col" bind:height="col_h | range(0, 720, 0px, 720px)"/>
+              <div id="wcol-2" class="col" bind:height="col_h | range(0, 720, 0px, 720px)">
+                <div id="wcol-2-text" class="wcol" bind:text="body" bind:translate-y="col_h | scale(-1)">本報訊</div>
               </div>
             </div>
           </div>
@@ -402,7 +400,7 @@
     }
     /* import: Paper.dc.html:1/0/0/10/0 */
     #wcols {
-      height: 204px;
+      height: 342px;
       left: 0px;
       position: absolute;
       top: 14px;
@@ -414,7 +412,7 @@
       left: 0px;
       position: absolute;
       top: 0px;
-      width: 378px;
+      width: 560px;
     }
     /* import: Paper.dc.html:1/0/0/10/0/0/0 */
     #wcol-1-text {
@@ -422,12 +420,12 @@
       left: 0px;
       position: absolute;
       top: 0px;
-      width: 378px;
+      width: 560px;
     }
     /* import: Paper.dc.html:1/0/0/10/0/1 */
     #wcol-rule-1 {
       height: 204px;
-      left: 390px;
+      left: 591px;
       position: absolute;
       top: 0px;
       width: 1px;
@@ -435,42 +433,18 @@
     /* import: Paper.dc.html:1/0/0/10/0/2 */
     #wcol-2 {
       height: 204px;
-      left: 403px;
+      left: 624px;
       position: absolute;
       top: 0px;
-      width: 378px;
+      width: 560px;
     }
     /* import: Paper.dc.html:1/0/0/10/0/2/0 */
     #wcol-2-text {
       height: 1224px;
       left: 0px;
       position: absolute;
-      top: -204px;
-      width: 378px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/0/3 */
-    #wcol-rule-2 {
-      height: 204px;
-      left: 793px;
-      position: absolute;
       top: 0px;
-      width: 1px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/0/4 */
-    #wcol-3 {
-      height: 204px;
-      left: 806px;
-      position: absolute;
-      top: 0px;
-      width: 378px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/0/4/0 */
-    #wcol-3-text {
-      height: 1224px;
-      left: 0px;
-      position: absolute;
-      top: -408px;
-      width: 378px;
+      width: 560px;
     }
     /* import: Paper.dc.html:1/0/0/11 */
     #prev-case {
@@ -934,52 +908,32 @@
     .nodeck #lead-rule {
       display: none;
     }
-    .nodeck #lead-col-1 {
-      top: 0px;
-      width: 223px;
-      height: 338px;
+    .nodeck #lead-col-rule {
+      display: none;
     }
     .nodeck #lead-col-2 {
-      top: 0px;
-      left: 961px;
-      width: 223px;
-      height: 338px;
+      display: none;
     }
-    .nodeck #lead-col-rule {
+    .nodeck #lead-col-1 {
       top: 0px;
-      left: 948px;
-      height: 338px;
+      width: 458px;
+      height: 346px;
     }
     .nodeck #lead-col-1-text {
-      width: 223px;
+      width: 458px;
     }
-    .nodeck #lead-col-2-text {
-      width: 223px;
-      top: -338px;
+    .one #wcol-1 {
+      left: 272px;
+      width: 640px;
     }
-    :lang(en) #wcols {
-      height: 203px;
+    .one #wcol-1-text {
+      width: 640px;
     }
-    :lang(en) #wcol-1 {
-      height: 203px;
+    .one #wcol-rule-1 {
+      display: none;
     }
-    :lang(en) #wcol-2 {
-      height: 203px;
-    }
-    :lang(en) #wcol-3 {
-      height: 203px;
-    }
-    :lang(en) #wcol-rule-1 {
-      height: 203px;
-    }
-    :lang(en) #wcol-rule-2 {
-      height: 203px;
-    }
-    :lang(en) #wcol-2-text {
-      top: -203px;
-    }
-    :lang(en) #wcol-3-text {
-      top: -406px;
+    .one #wcol-2 {
+      display: none;
     }
   </layout>
   <style src="../shared/base.xts"/>

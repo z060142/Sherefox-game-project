@@ -46,10 +46,14 @@ HOLD = 0.6       # after the last record, before the next round is shown
 KITCHEN = ("E07", ("06B", "04C"))   # ch §12.0 BEAT_D01_REFUTED_1/2: 06B / 04C refuted with the handkerchief
 SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
 MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
-# Arthur's tell line (ref lines.tell_line), by index: 1-4 the action hints (tell code + 1), then the situations
+# Arthur's hint (ref lines.hint, v2 demo E5), by index: 1-4 the action hints (tell code + 1), then the situations; 5
+# and 9 every time, the others once per debate (u1 h<index>)
 HINTS = ["", "TELL_D01_HINT_ASSERT", "TELL_D01_HINT_PUSH", "TELL_D01_HINT_REBUT", "TELL_D01_HINT_STALL",
-         "TELL_D01_HINT_SLIP", "TELL_D01_HINT_KEY", "TELL_D01_HINT_FACT", "TELL_D01_HINT_NOCUT", "TELL_D01_HINT_LAST",
-         "BEAT_D01_LASTCARD_1", "SCR_D01_S07_L010"]
+         "TELL_D01_HINT_SLIP", "TELL_D01_HINT_KEY", "TELL_D01_HINT_FACT", "TELL_D01_HINT_NOCUT", "TELL_D01_HINT_LAST"]
+TELL_WORDS = ["ASSERT", "PUSH", "REBUT", "STALL"]      # his tell lines TELL_D01_<word>_<n> by tell code 0-3
+# the tail steps after a round's last record (ref lines.round_steps), in order: 破竹 held, the first psych card, a
+# private matter said, cover set and not triggered
+TAILS = ["SYS_D01_HACHIKU_KEEP", "SYS_D01_PSYCH_NOTE", "SYS_D01_PRIVATE", "SYS_D01_COVER_WASTED"]
 # The playback's extra steps around a record (ref lines.round_steps): (name, before / after the record's main step,
 # condition, speaker key or None for a system line, line key). Conditions read only what stays put while the record
 # plays (its fields, the lock's claim, the latched round, debate flags changed between records).
@@ -75,6 +79,11 @@ EXTRAS = [
     ("x2C", "post", "k_pAttach && isF02C", MRS, "BEAT_D01_02C_1"),
     ("x7a", "post", "(k_pAttach && isF07A) || (k_oDmg && c_intercept && isC07A)", MAR, "BEAT_D01_07A_1"),
     ("x7b", "post", "(k_pAttach && isF07A) || (k_oDmg && c_intercept && isC07A)", BRI, "BEAT_D01_07A_2"),
+    # E5: a sophistry link landed (not a psych card: no crack), after the link's other lines
+    ("xCrk", "post", "k_pAttach && myClaimSoph && !scPsych", None, "SYS_D01_CRACK"),
+    # E5: the first time 破竹 goes up in the debate (after SHF_HACHIKU_n); he enters 困獸
+    ("xHkA", "post", "k_hachiku && n2 > n1 && !d_hkA", AR, "STATE_D01_ART_HACHIKU"),
+    ("xCor", "post", "k_crossed && xP", AR, "STATE_D01_ART_CORNERED"),
     ("xRf1", "post", "k_refuted && rfKit", BRI, "BEAT_D01_REFUTED_1"),
     ("xRf2", "post", "k_refuted && rfKit", MAR, "BEAT_D01_REFUTED_2"),
     ("xRf3", "post", "k_refuted && rfHas", SH, "BEAT_D01_REFUTED_3"),
@@ -99,6 +108,16 @@ def ev_key(e: str) -> str:
     return f"C_D01_{e}_NAME" if CH.evidence[e].psych_card else f"E_D01_{e[1:]}_NAME"
 
 
+def person(cid: str) -> str:
+    """The speaker key of the person whose regard a private-matter claim costs (SYS_D01_PRIVATE {person}), "" for none."""
+    c = CH.claims[cid]
+    if not c.private:
+        return ""
+    if cid not in CH.private_favour:
+        raise SystemExit(f"claim {cid} is a private matter with no person (d01_extra.json private_favour)")
+    return f"SPK_{CH.private_favour[cid][0].upper()}"
+
+
 def tables() -> dict[str, list[dict]]:
     claims = []
     for cid, c in CH.claims.items():
@@ -108,12 +127,13 @@ def tables() -> dict[str, list[dict]]:
                        "appr": appr,
                        "issue": f"ISSUE_D01_{ISSUE[c.issue]}_SHORT", "issueName": f"ISSUE_D01_{ISSUE[c.issue]}",
                        "catch": 0, "psych": int(c.psych_card), "private": int(c.private),
-                       "react": f"REACT_D01_ISSUE_{ISSUE[c.issue]}"})
+                       "person": person(cid), "react": f"REACT_D01_ISSUE_{ISSUE[c.issue]}"})
     for cid, cd in CH.cards.items():
         if cd.kind == "unfav":
             claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE", "appr": "",
                            "line": f"CARD_D01_{cid}_CATCH", "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT",
                            "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0,
+                           "person": "",
                            "react": f"REACT_D01_ISSUE_{ISSUE[cd.issue]}"})
     keys = F.string_keys()
 
@@ -125,7 +145,9 @@ def tables() -> dict[str, list[dict]]:
         # fact / a lie knocked down (facts have no _DOWN: only sophistry knocks them down)
         state = f"CARD_D01_{cid}_STATE"
         down = have(f"CARD_D01_{cid}_DOWN", "REACT_D01_FACT_SOPH_1" if cd.is_fact else "REACT_D01_LIE_SOPH")
+        # lie / fav (E5 hints): a lie (NOCUT), a favourable fact (FACT; a slip's unfavourable fact is not one)
         cards.append({"id": cid, "kind": cd.kind, "fact": int(cd.is_fact), "key": int(cd.keystone),
+                      "lie": int(cd.is_lie), "fav": int(cd.is_fact and cd.kind != "unfav"),
                       "label": f"CARD_D01_{cid}",
                       "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT" if cd.issue else "",
                       "state": state, "push": have(f"CARD_D01_{cid}_PUSH", state),
@@ -194,6 +216,7 @@ COLLECTIONS = {
     "u1RecS": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecC": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecSt": {"kind": "map", "type": "string", "capacity": 32},
+    "u1Pv": {"kind": "map", "type": "bool", "capacity": 8},          # E5: private-matter claims announced
 }
 
 
@@ -209,9 +232,9 @@ def gen_d01ui() -> Graph:
     # ---- UI state
     for k in ("ph", "act", "armed", "stAt", "rsAt", "lockAt", "r2", "ref", "pb", "pbAt", "ev", "hpM", "hpO", "pat",
               "endAt", "soph", "intBlk", "rmN", "patD", "tail", "sub", "intro", "crk", "p1f", "p1u", "clsh", "clsP",
-              "cutOk", "m8", "m9", "m10", "hush"):
+              "cutOk", "m8", "m9", "m10", "hush", "hkA", "hkP", "shk", "shkP", "psn", "gsv"):
         g.mget("d_" + k, "u1", g.k(k))
-    for k in ("ev", "claim", "target", "hintK", "hintW"):
+    for k in ("ev", "claim", "target", "hintK", "hintW", "hint2K", "hint2W"):
         g.mget("s_" + k, "u1S", g.k(k))
     g.n("hasClaimN", g.cmp("hasClaimC", "s_claim", g.k(""), "ne"))
     g.n("hasTgtN", g.cmp("hasTgtC", "s_target", g.k(""), "ne"))
@@ -246,7 +269,7 @@ def gen_d01ui() -> Graph:
     begin = g.when("begin", "world.stepBegin", "isDebK")
     dev = g.when("devM", begin, "world.d1Dev")
     start = g.when("start", "world.debGo", "isDebK")
-    for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt"):
+    for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt", "u1Pv"):
         g.edge(start, g.eff(f"clr_{coll}", "atrium.map.clear", coll))
     for coll in ("u1F", "u1N", "u1G", "u1GN"):
         g.edge(start, g.eff(f"sClr_{coll}", "atrium.coll.clear", coll))
@@ -297,11 +320,11 @@ def gen_d01ui() -> Graph:
         sets(rs, k, g.k(""))
     setn(rs, "r2", g.k(1))
     setn(rs, "intro", g.k(0))
-    # the tell line (Arthur's hint, ref lines.tell_line) is chosen on the next beat; NOCUT needs to know whether a
+    # the tell's lines (ref lines.tell_lines) are chosen on the next beat; NOCUT needs to know whether a
     # claim of this round's picker that shows as sound breaks the tell's card (d1uiBreak)
     setn(rs, "cutOk", g.k(0))
-    sets(rs, "hintK", g.k(""))
-    sets(rs, "hintW", g.k(""))
+    for k in ("hintK", "hintW", "hint2K", "hint2W"):
+        sets(rs, k, g.k(""))
     g.node("cutEach", "atrium.coll.forEach", name="d1ClaimList")
     g.edge(rs, "cutEach.trigger")
     cuI = g.put("cuI", "cutEach.item")
@@ -502,13 +525,18 @@ def gen_d01ui() -> Graph:
     # ---- playback of the round's records (d1Events, debate-engine-v2 §2.3): pb 1 fetch, 2 play, 3 wait
     setn(lockT, "ev", g.k(0))
     setn(lockT, "pb", g.k(1))
-    for k in ("intBlk", "rmN", "patD", "tail", "sub", "intro"):
+    for k in ("intBlk", "rmN", "patD", "tail", "sub", "intro", "gsv"):
         setn(lockT, k, g.k(0))
     stepP = stage("fetchG", "d_pb == 1")
     # the first clash's beat was played on the record before: from the next record on it is done
     clsF = g.when("clsFG", stepP, T("clsFOn", "d_clsP == 1"))
     setn(clsF, "clsh", g.k(1))
     setn(clsF, "clsP", g.k(0))
+    # E5: the same for the once-per-debate state lines (ART_HACHIKU, SHF_SHAKEN), played on the record before
+    for flag, pend in (("hkA", "hkP"), ("shk", "shkP")):
+        fp = g.when(f"{pend}FG", stepP, T(f"{pend}FOn", f"d_{pend} == 1"))
+        setn(fp, flag, g.k(1))
+        setn(fp, pend, g.k(0))
     g.count("evCnt", "d1Events")
     g.cget("evRec", "d1Events", "d_ev")
     more = g.when("moreG", stepP, T("more", "d_ev < evCnt"))
@@ -524,15 +552,31 @@ def gen_d01ui() -> Graph:
     g.edge(more, add_all(g, "gnAdd", "u1GN", "evRecNx", "|"))
     setn(more, "ev", g.x("evNext", "d_ev + 1"))
     setn(more, "pb", g.k(2))
-    # E4: after the last record, one tail step when 破竹 was held this round (≥ 1 layer, no layer added, not reset; a
-    # normal round that the debate goes on after): the record lists are emptied, so only the tail line matches
+    # After the last record, the tail steps (TAILS, ref lines.round_steps), each one when its condition holds: E4 破竹
+    # held this round (≥ 1 layer, no layer added, not reset; a normal round that the debate goes on after); E5 the
+    # debate's first psych card, a private matter said (once per claim), cover set and not triggered (a normal round
+    # the debate goes on after). The record lists are emptied, so only the tail line matches; u1.tail = the tail step
+    # shown (1-4), the next fetch looks for the next one after it.
     g.n("outOver", g.cmp("outOverC", "world.d1Outcome", g.k(""), "ne"))
     g.put("hkNowN", "world.d1Hachiku")
-    g.x("tailWant", "d_tail == 0 && modeN == 0 && !outOver && L_Hachiku >= 1 && hkNowN == L_Hachiku")
+    g.tget("scPsych", "d1uiClaim", "psych", "scRow", "number")
+    g.tget("scPriv", "d1uiClaim", "private", "scRow", "number")
+    g.tget("scPerson", "d1uiClaim", "person", "scRow")
+    g.n("pvDone", g.mhas("pvDoneH", "u1Pv", "s_claim"))
+    g.x("usedClaim", "(" + " || ".join(f"act == {a}" for a in CLAIM_ACTS) + ") && hasClaimN")
+    conds = ["modeN == 0 && !outOver && L_Hachiku >= 1 && hkNowN == L_Hachiku",
+             "usedClaim && scPsych == 1 && !d_psn",
+             "usedClaim && scPriv == 1 && !pvDone",
+             "modeN == 0 && !outOver && d_armed && !d_gsv"]
+    nxt = "0"
+    for i in range(len(TAILS), 0, -1):
+        nxt = f"(d_tail < {i} && ({conds[i - 1]})) ? {i} : {nxt}"
+    g.x("tailNext", nxt)
+    g.x("tailWant", "tailNext > 0")
     tailP = g.when("tailG", stepP, T("tailGo", "!more && tailWant"))
     for coll in ("u1F", "u1N", "u1G", "u1GN"):
         g.edge(tailP, g.eff(f"tClr_{coll}", "atrium.coll.clear", coll))
-    setn(tailP, "tail", g.k(1))
+    setn(tailP, "tail", "tailNext")
     setn(tailP, "pb", g.k(2))
     endT = g.when("evDone", stepP, T("evOver", "!more && !tailWant"))
     setn(endT, "pb", g.k(0))
@@ -694,6 +738,7 @@ def gen_d01ui() -> Graph:
         (MN("sp15", "k_crossed && xG"), AR, g.k("BEAT_D01_GUILT_1")),
         (MN("sp16", "k_crossed && xA"), CE, g.k("BEAT_D01_ANGER_1")),
         (MN("sp17", "k_stall"), CE, g.k("REACT_D01_FOGGED")),       # §6.7 被打迷糊仗 (every 打迷糊仗)
+        (MN("sp18", "k_broken && !d_shk"), SH, g.k("STATE_D01_SHF_SHAKEN")),   # E5: his first 破防 of the debate
     ]
     g.x("hasSpeech", " || ".join(c[: -len("_t")] for c, _, _ in speech))
     who = ssel(g, "spWho", [(c, w) for c, w, _ in speech], g.k(""))
@@ -779,8 +824,8 @@ def gen_d01ui() -> Graph:
         (MN("syZw", "k_over && ovSecZero"), "SYS_D01_ZERO_WIN"),
         (MN("sy33", "k_over && ovWin"), "SYS_D01_WIN"),
         (MN("sy34", "k_over"), "SCR_D01_S07_L016"),
-        # E4: the round's tail (after its last record): 破竹 held
-        (MN("syHk", "d_tail == 1"), "SYS_D01_HACHIKU_KEEP"),
+        # the round's tail steps (after its last record; TAILS)
+        *[(MN(f"syTl{i}", f"d_tail == {i}"), key) for i, key in enumerate(TAILS, start=1)],
     ]
     g.x("hasSys", " || ".join(c[: -len("_t")] for c, _ in sysl))
     skey = ssel(g, "syKey", [(c, g.k(k)) for c, k in sysl], g.k(""))
@@ -817,13 +862,14 @@ def gen_d01ui() -> Graph:
             ("vValue", value), ("vNode", node), ("vClaim", "scLabel"), ("vIssue", "f1IssueName"), ("vFact", fact),
             ("vFormula", frm))}
     g.text("skT", lat["sk"])
-    for nm in ("vValue", "vNode", "vClaim", "vIssue", "vFact"):
+    lat["vPerson"] = g.latch("vPersonL", "scPerson", syP)
+    for nm in ("vValue", "vNode", "vClaim", "vIssue", "vFact", "vPerson"):
         g.text(nm + "T", lat[nm])
     sys_text = g.textf("sysF", pattern="skT.text", name="oppName.text", hp=lat["vHp"], dmg=lat["vDmg"],
                        hp_before=lat["vHpB"], hp_after=lat["vHpA"], hp_p=lat["vHp"], c=lat["vC"],
                        value="vValueT.text", node="vNodeT.text", claim="vClaimT.text", issue="vIssueT.text",
                        fact="vFactT.text", formula=lat["vFormula"], dmg_p=lat["vDmgP"], hp_o=lat["vHpO"],
-                       dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"])
+                       dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"], person="vPersonT.text")
     g.edge(sys_text, f"{P}.sys_line")
     g.counter("lineSeq", initial=0)
     g.edge(showP, "lineSeq.increment")
@@ -904,6 +950,14 @@ def gen_d01ui() -> Graph:
                  "(k_pDmg || k_oDmg || k_oHeal) ? 1 : 0")
     # the first clash's beat: done from the next record on (clsP, read at the next fetch)
     setn(g.when("clsPG", parse, MN("clsPOn", "clashRec && !d_clsh")), "clsP", g.k(1))
+    # E5: the once-per-debate lines, done from the next record on (hkP / shkP, read at the next fetch); the tail steps'
+    # own (psych note, private matter) right away: the next tail step looks only further on
+    setn(g.when("hkPG", parse, MN("hkPOn", "k_hachiku && n2 > n1 && !d_hkA")), "hkP", g.k(1))
+    setn(g.when("shkPG", parse, MN("shkPOn", "k_broken && !d_shk")), "shkP", g.k(1))
+    setn(g.when("psnG", parse, MN("psnOn", "d_tail == 2")), "psn", g.k(1))
+    g.edge(g.when("pvG", parse, MN("pvOn", "d_tail == 3")),
+           g.eff("pvSet", "atrium.map.set", "u1Pv", key="s_claim", value=g.k(True)))
+    setn(g.when("gsvG", parse, MN("gsvOn", "k_guardSaved")), "gsv", g.k(1))
     # ---- music (staging bgm_cues_d01.csv README): BGM07 at the start (S07 L004's cut), BGM08 when he first drops to
     # half or is first in 破防, BGM09 on 論破 and through the endgame, BGM10 on a Reverse Break (back to BGM09 when her
     # last card succeeds); silence from S07 L007 (he gives up) and on a loss (L016), until the lines after the debate
@@ -998,24 +1052,57 @@ def gen_d01ui() -> Graph:
     g.text("gestT", g.sel("gestSel", T("gestOn", "tellClearN && modeN == 0 && ta >= 0"), gest, g.k("")))
     g.edge("gestT.text", f"{P}.tell_gesture")
     g.edge(g.b("dyingB", "L_Dying"), f"{P}.dying")
-    # Arthur's tell line (ref lines.tell_line; ch §11, §12.0): slip > the ★ action > on a clear tell: keystone > fact >
-    # nothing carried can cut it > the action; each at most once per debate; the endgame's: the dying gasp (S07 L010,
-    # his), the picked-up keys (BEAT_D01_LASTCARD_1), any other last card (HINT_LAST); none in the §7.5 round
+    # The tell's lines (ref lines.tell_lines, v2 demo E5; ch §11 「亞瑟提示的時機」): on a clear tell (not the endgame) his
+    # own tell line TELL_D01_<action>_n (that action's lines in turn: u1 tc<code> counts them); then Arthur's hint, the
+    # first that holds and is not spent (a spent one falls through): 9 his last card (every time), 5 a half sentence
+    # (every time), 6 the keystone, 8 a lie no claim of this round's picker that shows as 正論 can cut (d1uiBreak), 7 a
+    # favourable fact, 1-4 the action on a clear tell (once per debate each: u1 h<index>); in the endgame the P05 beat
+    # before it and the dying gasp's S07 L010 (his) after it. Up to two lines (hint, hint2), none in the §7.5 round.
     g.tget("tcKeyN", "d1uiCard", "key", "tcRow", "number")
-    g.tget("tcFactN", "d1uiCard", "fact", "tcRow", "number")
-    g.x("starCode", "starA ? ta : starB ? tb : -1")
-    g.x("hIdx", "modeN == 2 ? 0 : modeN == 1 ? (L_Dying ? 11 : lcP05 ? 10 : 9) : L_TellPartial ? 5 : starCode >= 0 ? starCode + 1"
-                " : !tellClearN ? 0 : (tcHasN && tcKeyN) ? 6 : (tcHasN && tcFactN) ? 7 : (tcHasN && !d_cutOk) ? 8"
-                " : (ta >= 0 && ta <= 3) ? ta + 1 : 0")
+    g.tget("tcLieN", "d1uiCard", "lie", "tcRow", "number")
+    g.tget("tcFavN", "d1uiCard", "fav", "tcRow", "number")
+    for i in (1, 2, 3, 4, 6, 7, 8):
+        g.mget(f"hU{i}", "u1", g.k(f"h{i}"))
+    g.x("hIdx", "modeN == 2 ? 0 : modeN == 1 ? 9 : L_TellPartial ? 5 : (tcHasN && tcKeyN && !hU6) ? 6"
+                " : (tcHasN && tcLieN && !d_cutOk && !hU8) ? 8 : (tcHasN && tcFavN && !hU7) ? 7"
+                " : (tellClearN && ta >= 0 && ta <= 3 && !(ta == 0 ? hU1 : ta == 1 ? hU2 : ta == 2 ? hU3 : hU4))"
+                " ? ta + 1 : 0")
     hKey = g.lookup("hKey", HINTS, "hIdx")
     hFlag = g.fmt("hFlag", "h{a}", "hIdx")
-    g.mget("hUsed", "u1", hFlag)
-    hP = g.when("hintG", r2T, T("hintOn", "hIdx > 0 && !hUsed"))
-    sets(hP, "hintK", hKey)
-    sets(hP, "hintW", g.lookup("hWho", ["SPK_ARTHUR"] * (len(HINTS) - 1) + ["SPK_D01_CEDRIC"], "hIdx"))
-    g.edge(hP, g.eff("hMark", "atrium.map.set", "u1", key=hFlag, value=g.k(1)))
+    # his tell line: flat key list by tell code (each code's lines in turn)
+    keys = F.string_keys()
+    own, base, cnt = [], [], []
+    for w in TELL_WORDS:
+        ks = []
+        while f"TELL_D01_{w}_{len(ks) + 1}" in keys:
+            ks.append(f"TELL_D01_{w}_{len(ks) + 1}")
+        base.append(len(own) + 1)
+        cnt.append(len(ks))
+        own += ks
+    g.mget("tcN", "u1", g.fmt("tcNKey", "tc{a}", "ta"))
+    g.x("ownOn", f"tellClearN && modeN == 0 && ta >= 0 && ta <= 3")
+    g.x("ownCnt", " : ".join(f"ta == {i} ? {c}" for i, c in enumerate(cnt)) + " : 0")
+    g.x("ownBase", " : ".join(f"ta == {i} ? {b}" for i, b in enumerate(base)) + " : 0")
+    g.x("ownIdx", "ownOn && ownCnt > 0 ? ownBase + (tcN - ownCnt * floor(tcN / ownCnt)) : 0")
+    ownKey = g.lookup("ownKey", [""] + own, "ownIdx")
+    # the two lines: normal round: his line, Arthur's; endgame: P05 beat + hint, hint + L010 (dying), or the hint
+    g.x("t1Kind", "ownIdx > 0 ? 1 : (modeN == 1 && lcP05) ? 2 : hIdx > 0 ? 3 : 0")
+    g.x("t2Kind", "ownIdx > 0 ? (hIdx > 0 ? 3 : 0) : (modeN == 1 && lcP05) ? 3 : (modeN == 1 && L_Dying) ? 4 : 0")
+    kinds_k = [g.k(""), ownKey, g.k("BEAT_D01_LASTCARD_1"), hKey, g.k("SCR_D01_S07_L010")]
+    kinds_w = ["", "SPK_D01_CEDRIC", "SPK_ARTHUR", "SPK_ARTHUR", "SPK_D01_CEDRIC"]
+    for n in (1, 2):
+        kk = ssel(g, f"t{n}Key", [(T(f"t{n}K{i}", f"t{n}Kind == {i}"), kinds_k[i]) for i in range(1, 5)], g.k(""))
+        sets(r2T, "hintK" if n == 1 else "hint2K", kk)
+        sets(r2T, "hintW" if n == 1 else "hint2W", g.lookup(f"t{n}Who", kinds_w, f"t{n}Kind"))
+    # mark the hint used (the every-time ones too: harmless) and count his line
+    g.edge(g.when("hintG", r2T, T("hintOn", "hIdx > 0")), g.eff("hMark", "atrium.map.set", "u1", key=hFlag,
+                                                               value=g.k(1)))
+    g.edge(g.when("ownG", r2T, T("ownOnG", "ownIdx > 0")),
+           g.eff("ownCount", "atrium.map.set", "u1", key="tcNKey", value=g.x("tcNext", "tcN + 1")))
     g.edge(g.text("hintT", "s_hintK"), f"{P}.hint")
     g.edge(g.text("hintWT", "s_hintW"), f"{P}.hint_who")
+    g.edge(g.text("hint2T", "s_hint2K"), f"{P}.hint2")
+    g.edge(g.text("hint2WT", "s_hint2W"), f"{P}.hint2_who")
     g.edge(g.textf("dyingT", key="UI_V2_DEATH_THROE", n=g.k(M.DYING_DMG)), f"{P}.dying_text")
     # the choice
     g.edge(g.b("canDisB", g.x("canDis", "ocN > 0")), f"{P}.can_dismantle")

@@ -321,23 +321,13 @@
 }
 
 .nodeck #lead-col-1-text {
-  font-size: 17px;
-  line-height: 26px;
-}
-
-.nodeck #lead-col-2-text {
-  font-size: 17px;
-  line-height: 26px;
+  font-size: 22px;
+  line-height: 40px;
 }
 
 :lang(en) .nodeck #lead-col-1-text {
-  font-size: 15px;
-  line-height: 21.125px;
-}
-
-:lang(en) .nodeck #lead-col-2-text {
-  font-size: 15px;
-  line-height: 21.125px;
+  font-size: 17px;
+  line-height: 28px;
 }
 
 .wcol {
@@ -350,6 +340,16 @@
 :lang(en) .wcol {
   font-size: 16px;
   line-height: 29px;
+}
+
+.one #wcol-1-text {
+  font-size: 24px;
+  line-height: 38px;
+}
+
+:lang(en) .one #wcol-1-text {
+  font-size: 18px;
+  line-height: 30px;
 }
 
 :root {

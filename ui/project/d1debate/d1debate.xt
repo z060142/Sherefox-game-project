@@ -53,8 +53,10 @@
     need_target: bool in = false
     can_lock: bool in = true
     picker_on: bool in = true
-    hint_who: string in = "亞瑟"
-    hint: string in = "他在整理領巾。要開口了。"
+    hint_who: string in = "塞德里克"
+    hint: string in = "我受夠這場鬧劇了。"
+    hint2_who: string in = "亞瑟"
+    hint2: string in = "他摘手套了——準備接住。"
     speech_who: string in = "Sherefox"
     speech: string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"
     sys_line: string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"
@@ -175,8 +177,12 @@
         </div>
         <div id="hint-wrap" class="s-66a9df" bind:display="phase | eq(0)">
           <div id="hint-box" class="bubble" bind:display="hint | ne('')">
-            <div id="hint-who" class="kicker" bind:text="hint_who">亞瑟</div>
-            <div id="hint-text" class="hint-t" bind:text="hint">他在整理領巾。要開口了。</div>
+            <div id="hint-who" class="kicker" bind:text="hint_who">塞德里克</div>
+            <div id="hint-text" class="hint-t" bind:text="hint">我受夠這場鬧劇了。</div>
+          </div>
+          <div id="hint2-box" class="bubble" bind:display="hint2 | ne('')">
+            <div id="hint2-who" class="kicker" bind:text="hint2_who">亞瑟</div>
+            <div id="hint2-text" class="hint-t" bind:text="hint2">他摘手套了——準備接住。</div>
           </div>
         </div>
         <div id="tell" class="paper" bind:display="tell_on">
@@ -923,7 +929,7 @@
     }
     /* import: D1Debate.dc.html:1/1/11 */
     #hint-wrap {
-      height: 132px;
+      height: 272px;
       left: 828px;
       position: absolute;
       top: 276px;
@@ -947,6 +953,30 @@
     }
     /* import: D1Debate.dc.html:1/1/11/0/1 */
     #hint-text {
+      height: 102px;
+      left: 8px;
+      position: absolute;
+      top: 24px;
+      width: 152px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/1 */
+    #hint2-box {
+      height: 132px;
+      left: 0px;
+      position: absolute;
+      top: 140px;
+      width: 168px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/1/0 */
+    #hint2-who {
+      height: 18px;
+      left: 8px;
+      position: absolute;
+      top: 4px;
+      width: 152px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/1/1 */
+    #hint2-text {
       height: 102px;
       left: 8px;
       position: absolute;
@@ -1696,7 +1726,6 @@
       position: absolute;
       top: 0px;
       width: 880px;
-      display: none;
     }
     /* import: D1Debate.dc.html:1/1/21/0/0 */
     #rec-title {
@@ -1880,6 +1909,9 @@
     }
     .sysl {
       padding-left: 10px;
+    }
+    #record-panel {
+      display: none;
     }
     #record:state(Open) #record-panel {
       display: block;

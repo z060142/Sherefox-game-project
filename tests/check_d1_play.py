@@ -262,9 +262,19 @@ def tells_for(rounds: list, seed: int) -> list:
     return [decide(s, ch).tell for s, _, _ in rounds]
 
 
-def check_steps(tr, rounds: list, marks: dict, lang: str, seed: int, end: int) -> list[str]:
-    """Every round's playback steps and the tell line equal ref lines.round_steps / tell_line; the opening (L004)
-    plays once before round 1."""
+def tell_shown(tr, t0: int) -> list[tuple[str, str]]:
+    """The tell's lines on screen at tick t0 (E5: up to two, hint then hint2), as (name plate, text)."""
+    p = [pp for t, pp, v, c in tr.ticks if t <= t0][-1]
+    out = [(p.get("d1debate.hint_who", ""), p.get("d1debate.hint", "")),
+           (p.get("d1debate.hint2_who", ""), p.get("d1debate.hint2", ""))]
+    return [x for x in out if x[1]]
+
+
+def check_steps(tr, rounds: list, marks: dict, lang, seed: int, end: int) -> list[str]:
+    """Every round's playback steps and the tell's lines equal ref lines.round_steps / tell_lines; the opening (L004)
+    plays once before round 1. `lang`: the language, or a function of the round (a switch mid-debate)."""
+    lang_of = lang if callable(lang) else (lambda n: lang)
+    lang = lang_of(1)
     from sherefox_ref.v2 import lines as LN
     from sherefox_ref.v2.resolve import resolve_round
     bad = []
@@ -274,8 +284,9 @@ def check_steps(tr, rounds: list, marks: dict, lang: str, seed: int, end: int) -
     memo = LN.Memo()
     tells = tells_for(rounds, seed)
     for n, ((s, pa, oa), tl) in enumerate(zip(rounds, tells), start=1):
+        lang = lang_of(n)
         s2, ev = resolve_round(s, pa, oa)
-        hint = LN.tell_line(s, tl, memo)
+        hint = LN.tell_lines(s, tl, memo)
         want = LN.round_steps(s, pa, oa, ev, s2, memo)
         lo, hi = marks[f"lock{n}"], marks.get(f"lock{n + 1}", end)
         got = ui_steps(tr, lo, hi)
@@ -284,10 +295,9 @@ def check_steps(tr, rounds: list, marks: dict, lang: str, seed: int, end: int) -
                      min(len(want), len(got)))
             bad.append(f"R{n}: step {k + 1} of {len(want)} (shown {len(got)}): want "
                        f"{[show(w) for w in want[k:k + 2]]}, shown {[g for _, g in got[k:k + 2]]}")
-        p = [pp for t, pp, v, c in tr.ticks if t <= marks[f"chosen{n}"]][-1]
-        hw, hk = (S[lang][hint[0]], S[lang][hint[1]]) if hint else ("", "")
-        if (p.get("d1debate.hint_who", ""), p.get("d1debate.hint", "")) != (hw, hk):
-            bad.append(f"R{n}: tell line {(p.get('d1debate.hint_who'), p.get('d1debate.hint'))!r} (want {hint})")
+        got_t = tell_shown(tr, marks[f"chosen{n}"])
+        if got_t != [(S[lang][w], S[lang][k]) for w, k in hint]:
+            bad.append(f"R{n}: tell lines {got_t!r} (want {hint})")
     return bad
 
 
@@ -310,27 +320,33 @@ MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE
 # (route, round) -> lines the chapter's §12 text shows, in its order, as (speaker or "sys", key): each must be shown
 # in this order during the round (other lines may come between). Read off the chapter by hand, not from ref.
 CHAPTER_SAMPLE = {
+    # E5: 破竹 0 -> 1 (the table's 破竹 column) and the debate's first time: Sherefox's minute, then Arthur's line
+    ("A", 1): [(SH, "CLM_D01_11A_LINE"), ("sys", "SYS_D01_CUT_OK"), (SH, "STATE_D01_SHF_HACHIKU_1"),
+               (AR, "STATE_D01_ART_HACHIKU")],
     ("A", 3): [(SH, "CLM_D01_06A_LINE"), (CE, "BEAT_D01_CLASH_1"), (SH, "BEAT_D01_CLASH_2"), ("sys", "SYS_D01_CLASH"),
                ("sys", "SYS_D01_HACHIKU_KEEP")],
+    ("A", 4): [(SH, "CLM_D01_01A_LINE"), ("sys", "SYS_D01_CUT_OK"), (SH, "STATE_D01_SHF_HACHIKU_3")],
     ("A", 7): [(SH, "CLM_D01_07A_LINE"), (MAR, "BEAT_D01_07A_1"), (BRI, "BEAT_D01_07A_2"), (CE, "CARD_D01_L4_DOWN")],
     ("A", 8): [(SH, "CLM_D01_11B_LINE"), (SH, "STATE_D01_SHF_BREAK"), ("sys", "SCR_D01_S07_L005"),
                ("sys", "SCR_D01_S07_L009")],
     ("A", 9): [(SH, "CLM_D01_04B_LINE"), (CE, "CARD_D01_K1_DOWN"), ("sys", "SYS_D01_CUT_WIN")],
     ("B", 1): [(SH, "CLM_D01_P1A_LINE"), ("", "BEAT_D01_P1A_1"), (CE, "REACT_D01_P1A"), (AR, "BEAT_D01_P1A_2"),
-               ("sys", "SYS_D01_CLASH")],
+               ("sys", "SYS_D01_CLASH"), ("sys", "SYS_D01_PSYCH_NOTE")],          # E5: the psych card's note last
     ("B", 4): [(SH, "CLM_D01_08B_LINE"), ("sys", "SYS_D01_SLIP_NODMG"), (AR, "BEAT_D01_GUILT_1")],
     ("B", 5): [("sys", "SCR_D01_S07_L007"), (CE, "SCR_D01_S07_L008"), ("sys", "SYS_D01_WIN")],
     ("C", 5): [(CE, "CARD_D01_P05_STATE"), (CE, "BEAT_D01_LASTCARD_4"), (INS, "BEAT_D01_LASTCARD_2"),
                ("sys", "SYS_D01_LASTCARD_HIT"), (SH, "BEAT_D01_LASTCARD_5"), (AR, "BEAT_D01_LASTCARD_6")],
     ("C", 6): [(AR, "BEAT_D01_09A_1"), (SH, "CLM_D01_09A_LINE"), (IRE, "REACT_D01_09A_3"), (CE, "REACT_D01_09A_1"),
-               (MRS, "REACT_D01_09A_2")],
+               (MRS, "REACT_D01_09A_2"), ("sys", "SYS_D01_CLASH"), ("sys", "SYS_D01_PRIVATE")],   # E5: after the clash
     ("D", 4): [(SH, "CLM_D01_06B_LINE"), (CE, "REFUTE_D01_06B"), (BRI, "BEAT_D01_REFUTED_1"),
                (MAR, "BEAT_D01_REFUTED_2"), (SH, "BEAT_D01_REFUTED_3"), (AR, "BEAT_D01_REFUTED_4"),
                (SH, "STATE_D01_SHF_BREACHED"), (AR, "STATE_D01_ART_BREACHED")],
     ("D", 8): [(SH, "CLM_D01_11B_LINE"), ("sys", "SYS_D01_LASTSTAND_FAIL"), ("sys", "SCR_D01_S07_L016")],
 }
-# tell lines the chapter shows that do not depend on the AI's tell: the endgame's (ch §12.1 R9, §12.3 R5)
-CHAPTER_TELL = {("A", 9): (CE, "SCR_D01_S07_L010"), ("C", 5): (AR, "BEAT_D01_LASTCARD_1")}
+# tell lines the chapter shows that do not depend on the AI's tell: the endgame's (ch §12.1 R9: Arthur's hint, then
+# his line; §12.3 R5: the keys beat, then Arthur's hint)
+CHAPTER_TELL = {("A", 9): [(AR, "TELL_D01_HINT_LAST"), (CE, "SCR_D01_S07_L010")],
+                ("C", 5): [(AR, "BEAT_D01_LASTCARD_1"), (AR, "TELL_D01_HINT_LAST")]}
 
 
 def check_sample(tr, route: str, marks: dict, lang: str, end: int) -> list[str]:
@@ -354,11 +370,11 @@ def check_sample(tr, route: str, marks: dict, lang: str, end: int) -> list[str]:
             if not found:
                 bad.append(f"sample {route}{n}: {who}:{key} not shown in the chapter's order")
                 break
-    for (rt, n), (who, key) in CHAPTER_TELL.items():
+    for (rt, n), want in CHAPTER_TELL.items():
         if rt == route:
-            p = [pp for t, pp, v, c in tr.ticks if t <= marks[f"chosen{n}"]][-1]
-            if (p.get("d1debate.hint_who"), p.get("d1debate.hint")) != (S[lang][who], S[lang][key]):
-                bad.append(f"sample {route}{n}: tell line {p.get('d1debate.hint')!r} (want {key})")
+            got = tell_shown(tr, marks[f"chosen{n}"])
+            if got != [(S[lang][w], S[lang][k]) for w, k in want]:
+                bad.append(f"sample {route}{n}: tell lines {got!r} (want {want})")
     return bad
 
 

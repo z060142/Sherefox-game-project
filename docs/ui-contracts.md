@@ -85,7 +85,7 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 |---|---|---|---|
 | `page` | number | in | 1 頭版、2 第二版與側欄。 |
 | `mast` | number | in | 報頭版本：0 平常版、1 號外版、2 滲透版（Ch.8 後；原型只用 0）。 |
-| `dateline` | string | in | 日期線（例「1887 年 10 月 14 日・濃霧　每份一便士」）。v1 的報紙空白；D01 的開場報紙是 `HEAD_D01_DATE`（M4a）。 |
+| `dateline` | string | in | 日期線（例「1887 年 10 月 14 日・濃霧　每份一便士」）。v1 的報紙空白；D01 的兩份報紙是 `NEWS_D01_DATELINE`（E5）。 |
 | `headline` | string | in | 頭條。 |
 | `subhead` | string | in | 副標。 |
 | `body` | string | in | 頭版內文。 |
@@ -514,7 +514,8 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `picker_on`、`can_dismantle`、`guard_ok`、`guard_armed`、`guard_left`、`can_lock`、`need_target` | bool | in | 說法選擇器、拆台可按、援護可按／已佈置／還有、鎖定可按、拆台還沒選目標（`UI_V2_REBUT_PICK_LINK`） |
 | `sel_claim_text`、`sel_target_text` | string | in | 確認列 |
 | `speech_who`、`speech`、`sys_line`、`line_seq` | string、string、string、number | in | 播放帶：說話者、台詞、系統台詞；`line_seq` 每換一步 +1（一步同時寫三者，沒有的為空字串） |
-| `hint_who`、`hint` | string、string | in | 預兆的台詞（4.3：亞瑟的提示，或垂死反撲時塞德里克的 S07 L010）：預兆面板右側、心理量表下方的小框（#hint-wrap，選擇中才顯示；空字串隱藏） |
+| `hint_who`、`hint` | string、string | in | 預兆的第一句台詞（E5：明示時他的預兆台詞，或亞瑟的提示、P05 的串場）：預兆面板右側、心理量表下方的氣泡（#hint-wrap，選擇中才顯示；空字串隱藏） |
+| `hint2_who`、`hint2` | string、string | in | 預兆的第二句（E5：接在他的預兆台詞或 P05 串場之後的亞瑟提示、垂死反撲時塞德里克的 S07 L010）：第一個氣泡下方 8 px 的第二個氣泡（同尺寸 168×132；空字串隱藏） |
 | `float_opp`、`float_me`、`float_opp_seq`、`float_me_seq` | string、string、number、number | in | 浮動數字（序號變更時重播） |
 | `shatter_seq` | number | in | 論破：他的鏈碎掉 |
 | `pick_act`、`pick_ev`、`pick_claim`、`pick_target` | number、string、string、string | out | 選行動（1 議論、2 截斷、3 拆台、4 打迷糊仗、5 終局截斷、6 承受／放棄、7 §7.5 反駁）、證物、說法、他鏈上的一節 |
@@ -573,6 +574,8 @@ UI 側實作（板子 `ui/boards/project/D1Warm.dc.html`）：上方號外條（
 依據：`v2/11_demo_chapter.md` S11、§13「下一章預告佔位」。沒有流圖：文字是板上的字串鍵（`SCR_D01_S11_L001` 標題、`L002` 佔位文字、`L003` 按鈕），黑底與報紙剪影（純色塊）。`back`（event，out；按鈕、Enter）→ `main` 回到標題（`docs/flows.md` §4.15）；`settings`（Esc、F1）。
 
 paper 追加（4.4）：已知圖 id 加 `d01_wake`（`_blob/paper_d01_wake.jpg`，設計 `images/d01/news_d01_wake.png` 1813×868 轉成 JPEG；在 v1 的鋼版畫框裡 `object-fit: cover`，700×346 的框比原圖略窄，左右各裁一點）。有圖而 `subhead` 空字串時（D01 的開場報紙）`#lead-pic` 帶 `class.nodeck`：不留副標的空位，導言兩欄從頂端排到底（223 px 寬、338 px 高、中文 17／26 px 十三行、英文 15／21.125 px 十六行）；v1 的報紙都有副標，版面不變。無圖（D01 章末報紙）：不再有副標列與空白，內文三欄緊接頭條下方（每欄 378 px；中文 22／34 px 六行、英文 16／29 px 七行，欄高 204／203 px，同樣的位移法）；v1 沒有無圖的報紙。
+
+paper 追加（E5）：無副標的有圖版面（S01）改為一欄：導言 458 px 寬、346 px 高，占滿版畫右側（中文 22／40 px、英文 17／28 px），沒有第二欄與直線（原本的兩欄只排滿一欄，右側留下空欄與一道直線）。無圖版面（S09）新增 `cols`（number，in：1／2）與 `col_h`（number，in：欄高 px），由 `paper` 圖依字數算（`docs/flows.md` §4.15）：`cols` 1 → `#wcols` 帶 `class.one`，一欄 640 px 置中（中文 24／38 px、英文 18／30 px）；2 → 兩欄各 560 px（中文 22／34 px、英文 16／29 px），中間直線，`#wcol-1`／`#wcol-2`／直線的高度綁 `col_h`，第二欄文字 `translate-y` ＝ −`col_h`（位移法）。原本的第三欄拿掉。v1 的報紙不受影響（截圖逐位元組相同）。
 
 vn 追加（4.4）：角色 `irene`（`char_irene.png`，三個位置），S08 L003 用。
 

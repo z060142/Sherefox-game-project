@@ -856,6 +856,7 @@
     "flowScene": "data/flow/flowScene.json",
     "flowCase": "data/flow/flowCase.json",
     "flowLink": "data/flow/flowLink.json",
+    "flowTextLen": "data/flow/flowTextLen.json",
     "flowDebCase": "data/flow/flowDebCase.json",
     "flowWord": "data/flow/flowWord.json",
     "flowNodeView": "data/flow/flowNodeView.json",
@@ -1680,6 +1681,11 @@
     "e1Fav": {
       "kind": "list",
       "type": "string",
+      "capacity": 8
+    },
+    "u1Pv": {
+      "kind": "map",
+      "type": "bool",
       "capacity": 8
     }
   },

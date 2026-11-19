@@ -28,10 +28,20 @@ system lines with the ref's events (every line ch §12.0 calls for, with its num
   LASTCARD_CORNERED, the cracked link removed), then a second zero.
 - S5 (E4; route A's loadout): a cut sealed by last round's sidestep (CUT_SEALED), a sophistry 拆台 on another issue's
   fact (−5, TOPPLE_MISS_WRONG), a sophistry 拆台 that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS).
+- S6 (E5; route C's loadout): a private matter said with cover set that does not trigger (SYS_D01_PRIVATE {person},
+  then SYS_D01_COVER_WASTED), the private matter's claim not announced twice.
+
+E5 (v2 demo plan E5): every scenario's whole playback and the tell's lines are also compared step by step with ref
+lines.round_steps / tell_lines on the AI's tells of the debate seed (tests/check_d1_play.py check_steps). The lines
+E5 adds that routes A-D do not reach show here: his tell lines in turn (S3: PUSH_1 / PUSH_2, REBUT_1 / REBUT_2), a
+spent hint falling through (S2 R7, S4 R10: FACT spent, his action's hint instead), a half sentence on a clear tell
+(S4 R7: his line and SLIP), the P05 beat with HINT_LAST (S4 R9), SYS_D01_CRACK (S2 R1, S4 R4), SYS_D01_PSYCH_NOTE
+(S4 R2), STATE_D01_ART_CORNERED (S4 R5), SYS_D01_PRIVATE and SYS_D01_COVER_WASTED (S6). E5_REACHED lists them and
+the check fails when the scenario's ref playback stops reaching one (the AI's tells follow the seed).
 
 Usage (from the project root):
-    uv run tests/check_d1_lines.py [--shots DIR]    --shots also writes a failed-拆台 line and a LASTCARD_HIT line
-                                                    (zh-TW and en) to DIR
+    uv run tests/check_d1_lines.py [--shots DIR]    --shots also writes a failed-拆台 line, a LASTCARD_HIT line,
+                                                    Arthur's first 破竹 line and a private matter (zh-TW, en) to DIR
 """
 
 from __future__ import annotations
@@ -90,10 +100,20 @@ SCENARIOS = {
     # TOPPLE_MISS_WRONG), a sophistry dismantle that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS)
     "S5": route("S5", [(RT.cut("11A"), op(P)), (RT.cut("01A"), op(A, "L2")), (RT.argue("04A"), op(A, "F1")),
                        (dis("06B", "F1"), op(P)), (dis("06C", "F1"), op(R))]),
+    # E5: a private matter said (09A) under a cover that does not trigger (he sidesteps), then a quiet round
+    "S6": RT.Route("S6", RT.ROUTES["C"].loadout, tuple((pa, oa, None) for pa, oa in [
+        (RT.argue("09A", guard=True), op(P)), (RT.argue("10A"), op(P)), (RT.stall(), op(A, "L1"))])),
 }
+# E5: (scenario, round) -> lines the ref playback must reach there (tell lines and steps; see the module doc)
+E5_REACHED = {("S3", 6): ["TELL_D01_REBUT_1"], ("S3", 7): ["TELL_D01_REBUT_2"], ("S3", 9): ["TELL_D01_PUSH_1"],
+              ("S3", 11): ["TELL_D01_PUSH_2"], ("S2", 7): ["TELL_D01_HINT_PUSH"], ("S4", 10): ["TELL_D01_HINT_ASSERT"],
+              ("S4", 7): ["TELL_D01_PUSH_1", "TELL_D01_HINT_SLIP"], ("S4", 9): ["BEAT_D01_LASTCARD_1", "TELL_D01_HINT_LAST"],
+              ("S2", 1): ["SYS_D01_CRACK"], ("S4", 4): ["SYS_D01_CRACK"], ("S4", 2): ["SYS_D01_PSYCH_NOTE"],
+              ("S4", 5): ["STATE_D01_ART_CORNERED"], ("S6", 1): ["SYS_D01_PRIVATE", "SYS_D01_COVER_WASTED"]}
 LANG_SWITCH = ("S1", 4)        # (scenario, round): English chosen in the settings overlay before that round's choice
 CUTIN_CLICKS = ("S2", 5)       # (scenario, round): the playback is clicked on ui#cutin and ui#d1debate
-NO_SKIP = {("S1", 3), ("S2", 6)}   # rounds played back without clicks (the failed 拆台, his last card)
+NO_SKIP = {("S1", 3), ("S2", 6), ("S6", 1)}   # rounds played back without clicks (the failed 拆台, his last card, E5:
+                                              # Arthur's first 破竹 line and the private matter)
 
 
 def record(name: str, rt: RT.Route) -> tuple[int, dict]:
@@ -122,6 +142,8 @@ def record(name: str, rt: RT.Route) -> tuple[int, dict]:
         chain = [nd.card for nd in s.opp_chain]
         if pa.target in chain:
             rec.click("d1debate", gd.chain_xy(chain.index(pa.target)))
+        if pa.guard:                   # E5 (S6): cover set before the lock
+            rec.click("d1debate", gd.GUARD_XY)
         rec.marks[f"chosen{n}"] = rec.t + 4
         rec.click("d1debate", gd.LOCK_XY)
         rec.marks[f"lock{n}"] = rec.t
@@ -158,6 +180,10 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     tr = cp.Trace(events)
     at = cm.At(tr, events)
     bad = cd.check_lines(tr, rounds, marks, lang_of, marks["end"])
+    # E5: the whole playback and the tell's lines against ref, and the E5 lines this scenario is here to reach
+    seed = gd.CV.ui_debate_seed(1)
+    bad += cd.check_steps(tr, rounds, marks, lang_of, seed, marks["end"])
+    bad += reached(name, rounds, seed)
     # the outcome panel and round count equal the ref's
     grade, nrounds, outcome = cd.expected(rounds)
     L = S[lang_of(len(rounds))]
@@ -192,6 +218,11 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
         during = [c for c in marks.get("cutin_clicks", []) if any(b <= c < b + 96 for b in bigs)]
         if not bigs or not during:
             bad.append(f"R{n}: no click during a cut-in (cut-ins at {bigs})")
+    if name == "S6":                   # E5: SYS_D01_PRIVATE names the person whose regard it costs
+        lines, _ = cd.shown(tr, marks["lock1"], marks["lock2"])
+        want = cd.render("zh-TW", "SYS_D01_PRIVATE", {"person": S["zh-TW"]["SPK_MRS_HYDE"]})
+        if want not in lines:
+            bad.append(f"R1: {want!r} not shown ({lines})")
     if name == "S3":
         lines, _ = cd.shown(tr, marks[f"lock{len(rounds)}"], marks["end"])
         if S["zh-TW"]["UI_V2_TIME_UP"] not in lines:
@@ -207,27 +238,49 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     return tr
 
 
-# review screenshots (--shots DIR): a failed 拆台 on a fact (S1) and his last card recovering (S2), zh-TW and en
-SHOTS = {"S1": ("topple_miss_fact", "SYS_D01_TOPPLE_MISS_FACT"), "S2": ("lastcard_hit", "SYS_D01_LASTCARD_HIT")}
+def reached(name: str, rounds: list, seed: int) -> list[str]:
+    """E5_REACHED: the ref playback (tell lines and steps) of the listed rounds holds the listed lines."""
+    from sherefox_ref.v2 import lines as LN
+    from sherefox_ref.v2.resolve import resolve_round
+    memo, bad = LN.Memo(), []
+    for n, ((s, pa, oa), tl) in enumerate(zip(rounds, cd.tells_for(rounds, seed)), start=1):
+        s2, ev = resolve_round(s, pa, oa)
+        keys = [k for _, k in LN.tell_lines(s, tl, memo)]
+        keys += [k for st in LN.round_steps(s, pa, oa, ev, s2, memo) for k in (st.line, st.sys) if k]
+        missing = [k for k in E5_REACHED.get((name, n), []) if k not in keys]
+        if missing:
+            bad.append(f"R{n}: E5 scenario no longer reaches {missing}")
+    return bad
+
+
+# review screenshots (--shots DIR): a failed 拆台 on a fact (S1), his last card recovering (S2), E5: Arthur's first 破竹
+# line and the private matter (S6), zh-TW and en; (shot name, line key: a system line, or a spoken one)
+SHOTS = {"S1": [("topple_miss_fact", "SYS_D01_TOPPLE_MISS_FACT")], "S2": [("lastcard_hit", "SYS_D01_LASTCARD_HIT")],
+         "S6": [("hachiku_state_line", "STATE_D01_ART_HACHIKU"), ("private_matter", "SYS_D01_PRIVATE")]}
 
 
 def shots(out: Path, name: str, tr, end: int) -> None:
     import subprocess
     from xt_cli import EXE, XTFRAME
-    shot, key = SHOTS[name]
-    pt = cd.pattern("zh-TW", key)
-    t0 = next(t for t, p, v, c in tr.ticks if "d1debate.sys_line" in c and pt.match(p["d1debate.sys_line"])) + 40
+    named = {}
+    for shot, key in SHOTS[name]:
+        pt = cd.pattern("zh-TW", key)
+        port = "d1debate.sys_line" if key.startswith("SYS_") else "d1debate.speech"
+        named[shot] = next(t for t, p, v, c in tr.ticks if "d1debate.line_seq" in c and port in p
+                           and pt.match(p[port])) + 40
     out.mkdir(parents=True, exist_ok=True)
     for lang in ("zh-TW", "en"):
         tmp = Path(tempfile.mkdtemp(prefix="d1linesshots-"))
         try:
+            at = ",".join(str(t) for t in sorted(set(named.values())))
             p = subprocess.run([str(EXE), "shot", "--game", f"tests/d1play_harness{name}", "--replay",
-                                str(TESTS / f"d1_lines_{name}.atrec"), "--at", str(t0), "--out", str(tmp),
+                                str(TESTS / f"d1_lines_{name}.atrec"), "--at", at, "--out", str(tmp),
                                 "--lang", lang], capture_output=True, cwd=ROOT,
                                env=dict(os.environ, XTATRIUM_XTFRAME_DIR=XTFRAME))
             if p.returncode != 0:
                 raise SystemExit(f"shot failed: {p.stderr.decode('utf-8', 'replace')}")
-            shutil.copyfile(tmp / f"shot-{t0:06d}.png", out / f"{shot}_{lang}.png")
+            for shot, t0 in named.items():
+                shutil.copyfile(tmp / f"shot-{t0:06d}.png", out / f"{shot}_{lang}.png")
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 

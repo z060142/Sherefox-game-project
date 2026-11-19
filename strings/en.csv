@@ -522,7 +522,6 @@ HEAD_D01,Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes
 HEAD_D01_CLOSE_DECENT,Wake Mystery Solved; Missing Codicil Found in Fireplace
 HEAD_D01_CLOSE_NORMAL,"Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed"
 HEAD_D01_CLOSE_UGLY,Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake
-HEAD_D01_DATE,February 1888
 HS_CH01_01_NAME,Fridge
 HS_CH01_02_NAME,Empty Pudding Plate
 HS_CH01_03_NAME,Kitchen Floor
@@ -840,6 +839,7 @@ NEWS_03_NOTO,"Barge Murder Solved, but Fox-Eared Detective Criticised for ""Bull
 NEWS_03_NOTO_SUB,"""The Inspector declined to comment on the methods of his helper."""
 NEWS_03_WIN,Inspector Baskerville Solves Case at Lightning Speed: Barge Murder Culprit Arrested
 NEWS_03_WIN_SUB,"Inspector: ""Scotland Yard never lets fog hide the truth."""
+NEWS_D01_DATELINE,"LONDON, FEBRUARY 1888."
 NEWS_SIDE_01,"At the Clockmakers' Guild luncheon, a young municipal advisor attended and donated an apprentice scholarship."
 NEWS_SIDE_02,"The Municipal Hall expands its harbour inspectorate; Advisor Miss W says, ""Transparency is the prerequisite of efficiency."""
 NEWS_SIDE_03,An anonymous donor has given the Royal Opera House a batch of new-model lift parts.

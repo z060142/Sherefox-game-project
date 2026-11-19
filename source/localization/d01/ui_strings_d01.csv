@@ -147,3 +147,4 @@ SYS_D01_CUT_SEALED,Debate: system lines,截斷被封住了。他早有防備，�
 SYS_D01_OPP_REBUT_MISS,Debate: system lines,{name}的反駁落空！−5 → {hp}，陷入破防。,{name}'s rebuttal whiffs! −5 → {hp}. His guard is down.,TEMPLATE; he rebutted while the player knocked down a link (no promise about the next tell)
 SYS_D01_LASTCARD_CORNERED,Debate: system lines,{name}已是困獸，沒有回復。鎖定解除。,"{name} is cornered and recovers nothing. The lock is lifted.",TEMPLATE; appended after SYS_D01_LASTCARD_NOHEAL when his heal is void under 困獸
 UI_V2_WARMUP_PICK,Warm-up,選一條觀察，指出他的錯誤。,Pick an observation that shows where he is wrong.,prompt above the three observations in S04
+NEWS_D01_DATELINE,Newspaper,倫敦・1888 年 2 月,"LONDON, FEBRUARY 1888.",date line for the D01 newspapers (S01 and S09)

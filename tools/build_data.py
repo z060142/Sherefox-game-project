@@ -370,6 +370,7 @@ def parse_rules(cell: str) -> str:
 D01_DIR = LOC / "d01"
 D01_IMPORT = ("README.md", "strings_d01.json", "script_d01.csv", "evidence_d01.csv", "ui_strings_d01.csv")
 D01_PLACEHOLDERS = LOC / "d01_placeholders.csv"
+D01_DATELINE = "NEWS_D01_DATELINE"     # the D01 papers' date line (ui_strings_d01.csv, design 48be4a6)
 
 
 def merge_d01(strings: dict) -> None:
@@ -1347,25 +1348,24 @@ def main() -> int:
     paper(f"{nxt}_OPEN", last + 1, "open", f"{nxt}_OPEN", last, f"HEAD_{nxt}", f"HEAD_{nxt}_SUB",
           f"SCR_{nxt}_S01_L003", side[last], "", result_keys(last))
 
-    # The v2 demo D01's opening paper (S01; docs/flows.md §4.14): L001 is 【masthead・date】headline in one line, so it
-    # is split into the headline (HEAD_D01) and the dateline (HEAD_D01_DATE: the bracket's last part, after 「・」 /
-    # ", "), both derived from the package's text; L002 is the lead. One page: no second-page story, side news or
-    # advert, no previous case, no engraving.
+    # The v2 demo D01's opening paper (S01; docs/flows.md §4.14): L001 is 【masthead・date】headline in one line; the
+    # headline (HEAD_D01) is the text after the bracket. The dateline is the package's NEWS_D01_DATELINE (design
+    # 48be4a6, shared with the S09 papers; E5: no longer cut out of L001's bracket). L002 is the lead. One page: no
+    # second-page story, side news or advert, no previous case.
     l001 = strings.get("SCR_D01_S01_L001")
     if l001:
-        parts = {}
-        for lang, sep in (("zh-TW", "・"), ("en", ", ")):
-            m = re.fullmatch(r"【([^】]+)】\s*(.+)", l001[lang])
-            if not m or sep not in m.group(1):
-                err(f"SCR_D01_S01_L001 [{lang}]: not 【masthead{sep}date】headline: {l001[lang]!r}")
+        head = {}
+        for lang in LANGS:
+            m = re.fullmatch(r"【[^】]+】\s*(.+)", l001[lang])
+            if not m:
+                err(f"SCR_D01_S01_L001 [{lang}]: not 【masthead】headline: {l001[lang]!r}")
                 continue
-            parts[lang] = (m.group(1).rsplit(sep, 1)[1].strip(), m.group(2).strip())
-        if len(parts) == 2:
-            strings["HEAD_D01_DATE"] = {lang: parts[lang][0] for lang in LANGS}
-            strings["HEAD_D01"] = {lang: parts[lang][1] for lang in LANGS}
+            head[lang] = m.group(1).strip()
+        if len(head) == 2:
+            strings["HEAD_D01"] = head
         paper("D01_OPEN", D01_CHAPTER, "open", "D01_OPEN", 0, "HEAD_D01", "", "SCR_D01_S01_L002", "", "", no_result)
         # 4.4: the engraving news_d01_wake (the board's picture id d01_wake), in v1's engraving slot
-        papers[-1].update({"pictureId": "d01_wake", "datelineKey": "HEAD_D01_DATE", "pages": 1})
+        papers[-1].update({"pictureId": "d01_wake", "datelineKey": D01_DATELINE, "pages": 1})
     # The v2 demo D01's closing paper (S09, docs/flows.md §4.15): one row per version (decent / normal / ugly = the
     # engine's d1Paper; the step's arg D01_CLOSE is resolved by main to D01_CLOSE_<version>); the headline is the
     # version's 【masthead】headline line without the bracket (HEAD_D01_CLOSE_<VERSION>), the lead the next line; no
@@ -1385,7 +1385,7 @@ def main() -> int:
             strings[f"HEAD_D01_CLOSE_{ver.upper()}"] = head
         paper(f"D01_CLOSE_{ver}", D01_CHAPTER, "close", f"D01_CLOSE_{ver}", 0, f"HEAD_D01_CLOSE_{ver.upper()}", "",
               f"SCR_D01_S09_L{body:03d}", "", "", no_result)
-        papers[-1].update({"pictureId": "", "pages": 1, "addenda": True})
+        papers[-1].update({"pictureId": "", "datelineKey": D01_DATELINE, "pages": 1, "addenda": True})
 
     # ---- BGM cues (design staging table; data-schema §14)
     bgm_cues = build_bgm_cues(loc, script, sinfo, papers)

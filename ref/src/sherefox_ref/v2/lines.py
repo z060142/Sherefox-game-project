@@ -4,17 +4,27 @@ This is the oracle of the debate UI's playback (tools/gen_debui_v2.py, docs/flow
 round's records (the engine's d1Events, which equal the ref events, debate-engine-v2 §2.3) and of the state, so the
 UI and the tests read the same selection rule.
 
-* ``tell_line``: the line shown with the tell, before the player chooses (Arthur's hint ``TELL_D01_HINT_*``, the
-  P05 beat, S07 L010 for the dying gasp). Ch §11 names a hint per action and §12.0 one per situation; neither says
-  how often Arthur speaks. Reading used here (reported as a design question): the first situation that holds, in
-  the order slip (the half sentence) > the ★ action > on a clear tell: keystone > fact > nothing-can-cut > the
-  action; each hint at most once per debate (no fall through to a lower one when the first is used). A vague tell
-  without ★ gives none (the line on it may not be said, and an action hint would tell which of the two he picks).
-  No hint in the §7.5 round.
+* ``tell_lines``: the lines shown with the tell, before the player chooses (v2 demo E5, design 6a94528 / 93d037b; ch
+  §11 「亞瑟提示的時機」「其他台詞的時機」): on a clear tell his own tell line ``TELL_D01_<action>_n`` (the lines of
+  that action in turn, per debate; never on a vague tell: it would tell his real action), then at most one hint of
+  Arthur's, the first of this list whose condition holds and whose uses are not spent (a spent one falls through to
+  the next): 1 ``HINT_LAST`` his last card's tell, the dying gasp included (every time); 2 ``HINT_SLIP`` a half
+  sentence (every time); 3 ``HINT_KEY`` the tell box holds the keystone (once per debate); 4 ``HINT_NOCUT`` the tell
+  box holds a lie and no claim in this round's picker that shows as 正論 is in its breakable list (sophistry does not
+  count; once); 5 ``HINT_FACT`` the tell box holds a favourable fact (once); 6 the action hint
+  ``HINT_ASSERT``/``PUSH``/``REBUT``/``STALL``, on a clear tell only (once per action). 3-5 read the tell box's card,
+  clear or vague. In the endgame the P05 beat ``BEAT_D01_LASTCARD_1`` comes before Arthur's hint and the dying gasp's
+  S07 L010 (his) after it (ch §12.1 R9, §12.3 R5). None in the §7.5 round.
 * ``round_steps``: the playback of one round. Every record gives at most one main step (his or her spoken line and
   a system line shown together), with extra steps before (``pre``) or after (``post``) it for the S07 lines, the
   ``BEAT_D01_*`` interludes and the §9 / §11 lines that have a speaker of their own. After the last record, one tail
-  step (破竹維持). Empty steps are dropped.
+  step (破竹維持). Empty steps are dropped. E5 (plan E5's timing list): 破竹 up -> SHF_HACHIKU_n, the debate's first
+  time ART_HACHIKU after it; his first 破防 of the debate -> SHF_SHAKEN (the broken record); he enters 困獸 ->
+  ART_CORNERED; a sophistry link lands (not a psych card) -> SYS_D01_CRACK after the link's other lines; after the
+  last record the tail steps in order: 破竹維持, the debate's first psych card SYS_D01_PSYCH_NOTE, a private matter
+  said SYS_D01_PRIVATE (once per claim), cover set and not triggered SYS_D01_COVER_WASTED (a normal round the debate
+  goes on after). The chapter shows the psych note (B R1) and the private matter (C R6) after the clash, which the tail
+  agrees with; the order among the tail lines is not shown and follows "new after old".
 * ``OPENING`` / ``outro``: S07 around the debate (L001-L003 before it as dialogue, L004 when it starts, L012-L015 after
   a win, L017-L019 after a loss: L016 is the loss line inside the debate).
 
@@ -66,8 +76,13 @@ class Step:
 @dataclass
 class Memo:
     """What the playback remembers across the rounds of one debate."""
-    hints: set = field(default_factory=set)     # tell lines already shown
+    hints: set = field(default_factory=set)     # Arthur's hints already shown
+    tells: dict = field(default_factory=dict)    # his tell lines shown per action (they take turns)
     clashed: bool = False                        # BEAT_D01_CLASH_* played (first clash only)
+    hachiku: bool = False                        # 破竹 went up once (STATE_D01_ART_HACHIKU)
+    shaken: bool = False                         # he was in 破防 once (STATE_D01_SHF_SHAKEN)
+    psych_noted: bool = False                    # SYS_D01_PSYCH_NOTE shown
+    privates: set = field(default_factory=set)   # private-matter claims announced (SYS_D01_PRIVATE)
 
 
 def outro(outcome: str) -> tuple[str, ...]:
@@ -87,40 +102,63 @@ def can_cut(s: State, card: str) -> bool:
     return any(not v.soph and v.id in brk for v in K.claim_list(s) if not K.is_catch(v.id))
 
 
-def tell_line(s: State, tell, memo: Memo) -> tuple[str, str] | None:
-    """(speaker, key) shown with the tell of the round about to be chosen (state s, the AI's tell), or None.
-    Marks the hint used in `memo`."""
-    if s.outcome or s.player_locked or tell is None:
-        return None
+LAST_HINT, SLIP_HINT = "TELL_D01_HINT_LAST", "TELL_D01_HINT_SLIP"
+KEY_HINT, NOCUT_HINT, FACT_HINT = "TELL_D01_HINT_KEY", "TELL_D01_HINT_NOCUT", "TELL_D01_HINT_FACT"
+EVERY_TIME = (LAST_HINT, SLIP_HINT)
+TELL_WORD = {OA.ATTACK: "ASSERT", OA.FORCE: "PUSH", OA.REBUT: "REBUT", OA.PARRY: "STALL"}
+
+
+def tell_keys(keys: set, act) -> list[str]:
+    """His own tell lines for an action (TELL_D01_<ACTION>_1, _2, ... as the package has them)."""
+    word = TELL_WORD.get(act)
+    out = []
+    while word and f"TELL_D01_{word}_{len(out) + 1}" in keys:
+        out.append(f"TELL_D01_{word}_{len(out) + 1}")
+    return out
+
+
+def hint(s: State, tell, memo: Memo) -> str | None:
+    """Arthur's hint for the tell (rule items 1-6 above), not yet marked used."""
+    clear = tell.clarity.value == "clear"
+    cd = s.ch.cards.get(tell.card) if tell.card else None
+    cands = []
     if s.endgame is not None:
-        if s.endgame["dying"]:
-            return CE, "SCR_D01_S07_L010"
-        key = "BEAT_D01_LASTCARD_1" if s.endgame["card"] == "P05" else "TELL_D01_HINT_LAST"
-        out = (AR, key)
-    else:
-        card = tell.card
-        cd = s.ch.cards.get(card) if card else None
-        clear = tell.clarity.value == "clear"
-        if tell.partial:
-            key = "TELL_D01_HINT_SLIP"
-        elif tell.star is not None:
-            key = ACTION_HINT.get(tell.star)
-        elif not clear:
-            key = None
-        elif cd is not None and cd.keystone:
-            key = "TELL_D01_HINT_KEY"
-        elif cd is not None and cd.is_fact:
-            key = "TELL_D01_HINT_FACT"
-        elif cd is not None and not can_cut(s, card):
-            key = "TELL_D01_HINT_NOCUT"
-        else:
-            key = ACTION_HINT.get(tell.shown[0])
-        if key is None:
-            return None
-        out = (AR, key)
-    if out[1] in memo.hints:
-        return None
-    memo.hints.add(out[1])
+        cands.append(LAST_HINT)
+    if tell.partial:
+        cands.append(SLIP_HINT)
+    if cd is not None and cd.keystone:
+        cands.append(KEY_HINT)
+    if cd is not None and cd.is_lie and not can_cut(s, tell.card):
+        cands.append(NOCUT_HINT)
+    if cd is not None and cd.is_fact and cd.kind != "unfav":
+        cands.append(FACT_HINT)
+    if clear and tell.shown[0] in ACTION_HINT:
+        cands.append(ACTION_HINT[tell.shown[0]])
+    return next((k for k in cands if k in EVERY_TIME or k not in memo.hints), None)
+
+
+def tell_lines(s: State, tell, memo: Memo, keys: set | None = None) -> list[tuple[str, str]]:
+    """[(speaker, key)] shown with the tell of the round about to be chosen (state s, the AI's tell), in order.
+    Marks the hint used and turns his tell line in `memo`."""
+    if s.outcome or s.player_locked or tell is None:
+        return []
+    keys = package_keys() if keys is None else keys
+    out: list[tuple[str, str]] = []
+    if tell.clarity.value == "clear" and s.endgame is None:
+        act = tell.shown[0]
+        own = tell_keys(keys, act)
+        if own:
+            n = memo.tells.get(act, 0)
+            memo.tells[act] = n + 1
+            out.append((CE, own[n % len(own)]))
+    if s.endgame is not None and s.endgame["card"] == "P05":
+        out.append((AR, "BEAT_D01_LASTCARD_1"))
+    h = hint(s, tell, memo)
+    if h is not None:
+        memo.hints.add(h)
+        out.append((AR, h))
+    if s.endgame is not None and s.endgame["dying"]:
+        out.append((CE, "SCR_D01_S07_L010"))
     return out
 
 
@@ -251,7 +289,7 @@ def _claim_line(s: State, claim: str) -> str:
 
 def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | None = None) -> list[Step]:
     """The steps the screen shows for one round (state s, player action pa, opponent action oa as resolved, ref events
-    ev, state after s2), in order. Updates `memo` (first clash)."""
+    ev, state after s2), in order. Updates `memo` (the once-per-debate lines)."""
     keys = package_keys() if keys is None else keys
     ch = s.ch
     recs = records(ev, s)
@@ -261,6 +299,7 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
         claim = f"{CATCH}:{s.catch_card}"
     view = K.view(s, claim) if claim else None
     soph = bool(view and view.soph)
+    psych = bool(view and view.psych_card)
     crack = bool(view and view.red_crack)
     carried = set(s.loadout.carried)
     over = s2.outcome is not None
@@ -316,6 +355,12 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 post.append(Step(MRS, "BEAT_D01_02C_1"))
             if c == "07A":
                 post += [Step(MAR, "BEAT_D01_07A_1"), Step(BRI, "BEAT_D01_07A_2")]
+            if soph and not psych:      # E5: a sophistry link landed (a psych card leaves no crack)
+                post.append(Step(sys="SYS_D01_CRACK"))
+        elif k == "broken":             # E5: his first 破防 of the debate
+            if not memo.shaken:
+                memo.shaken = True
+                who, line = SH, "STATE_D01_SHF_SHAKEN"
         elif k == "oAttach":
             card = r["card"]
             who, line = CE, _card_line(keys, card, "PUSH" if oa.kind == OA.FORCE else "STATE")
@@ -368,6 +413,9 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
         elif k == "hachiku":
             if r["after"] > r["before"]:
                 who, line = SH, f"STATE_D01_SHF_HACHIKU_{min(3, r['after'])}"
+                if not memo.hachiku:        # E5: the first time 破竹 goes up in this debate
+                    memo.hachiku = True
+                    post.append(Step(AR, "STATE_D01_ART_HACHIKU"))
         elif k == "ronpa":
             who, line = SH, "STATE_D01_SHF_BREAK"
             if not over:
@@ -394,6 +442,8 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 who, line = AR, "BEAT_D01_GUILT_1"
             elif r["stat"] == "A":
                 who, line = CE, "BEAT_D01_ANGER_1"
+            elif r["stat"] == "P":          # E5: he is cornered (困獸)
+                post.append(Step(AR, "STATE_D01_ART_CORNERED"))
         elif k == "stall":
             who, line = CE, "REACT_D01_FOGGED"
             if r["vs"] == "rebut" and not r["repeat"]:
@@ -472,9 +522,19 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 elif nx["k"] == "lastCard":
                     sysk = "SYS_D01_LASTCARD_HIT"
         steps += pre + [Step(who, line, sysk)] + post
-    # tail: 破竹 held (E4: ≥ 1 layer, no layer added, not reset; a normal round the debate goes on after)
+    # tail (after the last record): 破竹 held (E4: ≥ 1 layer, no layer added, not reset; a normal round the debate
+    # goes on after); E5: the first psych card of the debate, a private matter said (once per claim), cover set and
+    # not triggered (a normal round the debate goes on after)
     if mode == "normal" and not over and s.hachiku >= 1 and s2.hachiku == s.hachiku:
         steps.append(Step(sys="SYS_D01_HACHIKU_KEEP"))
+    if psych and not memo.psych_noted:
+        memo.psych_noted = True
+        steps.append(Step(sys="SYS_D01_PSYCH_NOTE"))
+    if claim and not K.is_catch(claim) and ch.claims[claim].private and claim not in memo.privates:
+        memo.privates.add(claim)
+        steps.append(Step(sys="SYS_D01_PRIVATE"))
+    if mode == "normal" and not over and pa.guard and not any(r["k"] == "guardSaved" for r in recs):
+        steps.append(Step(sys="SYS_D01_COVER_WASTED"))
     return [st for st in steps if not st.empty()]
 
 
@@ -500,7 +560,7 @@ def _after_last_card(over: bool) -> list[Step]:
 
 
 def debate_steps(rounds: list, tells: list, keys: set | None = None) -> list[dict]:
-    """The whole debate: per round {'tell': (speaker, key) | None, 'steps': [Step]}; `rounds` = [(state before, pa,
+    """The whole debate: per round {'tell': [(speaker, key)], 'steps': [Step]}; `rounds` = [(state before, pa,
     oa)], `tells` = the AI's tell shown for each round (None in the §7.5 round). The opening step (L004) is not
     included (OPENING_SYS)."""
     from .resolve import resolve_round
@@ -509,6 +569,6 @@ def debate_steps(rounds: list, tells: list, keys: set | None = None) -> list[dic
     out = []
     for (s, pa, oa), tl in zip(rounds, tells):
         s2, ev = resolve_round(s, pa, oa)
-        hint = tell_line(s, tl, memo)
-        out.append({"tell": hint, "steps": round_steps(s, pa, oa, ev, s2, memo, keys)})
+        tell = tell_lines(s, tl, memo, keys)
+        out.append({"tell": tell, "steps": round_steps(s, pa, oa, ev, s2, memo, keys)})
     return out

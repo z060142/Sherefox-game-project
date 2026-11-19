@@ -83,17 +83,19 @@ TICKS.update({f"d1_story_{k}": v["ticks"] for k, v in json.loads((ROOT / "tests"
 # BGM07 at the start (L004's cut); BGM08 at his first 破防 (round 1 in A, D; round 2 in B); BGM09 on 論破 (A8, B5);
 # B: silence from L007 (he gives up), BGM09 again with L012 (crossfade), silence at L015; A: L012 keeps BGM09, silence
 # at L015; D: BGM10 on the Reverse Break (no track: BGM08 goes on), silence from the loss (L016) through L017-L019.
-# v2 demo 4.4 (cues BGM_D01_14-19): then the result step's S08 lines BGM12 (L001's cue; by the cue table's scene rule
-# also on a loss's L011), kept under the result screen; the S09 paper BGM11 (its version's cue: L001 decent, L005
-# ugly); S10 BGM02; S11 BGM01, which the title keeps after back to title (no change, no restart).
+# v2 demo 4.4 (cues BGM_D01_14-19): then the result step's S08 lines BGM12 (L001's cue), kept under the result screen;
+# the S09 paper BGM11 (its version's cue: L001 decent, L005 ugly); S10 BGM02; S11 BGM01, which the title keeps after
+# back to title (no change, no restart). E5 (design 48be4a6, BGM_D01_20): on a loss S08 never plays BGM12: its lines
+# (L011, L012) and the result screen stay silent after the loss's silence, and BGM11 comes back with the S09 paper.
 EPILOGUE = [("BGM12", "cross"), ("BGM11", "cross"), ("BGM02", "cross"), ("BGM01", "cross")]
+EPILOGUE_LOSS = [("BGM11", "cross"), ("BGM02", "cross"), ("BGM01", "cross")]
 D01_ROUTES = {
     "d1_routeA": ("A", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
                         ("", "out")] + EPILOGUE),
     "d1_routeB": ("B", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
                         ("", "out"), ("BGM09", "cross"), ("", "out")] + EPILOGUE),
     "d1_routeD": ("D", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM10", None),
-                        ("", "out")] + EPILOGUE),
+                        ("", "out")] + EPILOGUE_LOSS),
 }
 TICKS.update({k: v for k, v in json.loads((ROOT / "tests" / "d1_ticks.json").read_text(encoding="utf-8")).items()
               if k in D01_ROUTES})
@@ -184,11 +186,14 @@ def check_cues(fail: cp.Failures) -> None:
         if d["chapter"] not in ("1", "2") and got:
             print(f"  {d['cue_id']} {d['start_id']} -> {got[0]['line']}..{got[-1]['line']}: "
                   f"{want[0] or 'silence'} ({want[1]}; design {d['bgm']}{' / ' + d['fallback'] if d['fallback'] else ''})")
-    # the v2 demo D01 (source/staging/bgm_cues_d01.csv): all 19 cues are in the table, S07 onward too (no step plays
-    # those scenes yet, so they never fire); the pseudo id SCR_D01_S05_START has its row
+    # the v2 demo D01 (source/staging/bgm_cues_d01.csv): all 20 cues are in the table (E5: BGM_D01_20, the loss's
+    # silent S08 from L011), S07 onward too; the pseudo id SCR_D01_S05_START has its row
     text = (ROOT / "source" / "staging" / "bgm_cues_d01.csv").read_text(encoding="utf-8-sig")
     d01 = list(csv.DictReader(io.StringIO(text)))
-    fail.check(len(d01) == 19, f"bgm_cues_d01.csv: {len(d01)} cues (19 expected)")
+    fail.check(len(d01) == 20, f"bgm_cues_d01.csv: {len(d01)} cues (20 expected)")
+    loss = [r for r in load("data/bgmCues.json") if r["line"] in ("SCR_D01_S08_L011", "SCR_D01_S08_L012")]
+    fail.check([(r["cue"], r["bgm"]) for r in loss] == [("BGM_D01_20", "")] * 2,
+               f"the loss's S08 lines are not silent (BGM_D01_20): {loss}")
     for d in d01:
         bgm = d["bgm"] if d["bgm"] == "NONE" or d["bgm"] in F.MUSIC else d["fallback"]
         want = ("" if bgm == "NONE" else bgm, d["fade"])

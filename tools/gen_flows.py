@@ -387,6 +387,30 @@ def case_cards(chapter: int) -> list[dict]:
     return [e for e in load("evidence") if str(chapter) in split(e["usable"]) and e["onBoard"]]
 
 
+def string_texts(lang: str) -> dict[str, str]:
+    import csv
+    with (ROOT / "strings" / f"{lang}.csv").open(encoding="utf-8", newline="") as f:
+        return {r["key"]: r["text"] for r in csv.DictReader(f)}
+
+
+# E5: the no-picture paper (the D01 closing paper) sets its body in one or two columns by its length. The paper flow
+# sums the characters of the lead and the addenda (flowTextLen: the S09 lines, both languages) and estimates the lines
+# per column width: PAPER_COLS[lang] = (chars per line in the one wide column, chars per line in each of two columns,
+# two-column line height px; ui/boards Paper.dc.html .one #wcol-1-text / .wcol; Chinese exact, English measured on
+# the board: about 76 characters per two-column line); more than PAPER_ONE_LINES lines in
+# one column -> two columns of half the lines plus one (a safety line for proportional English) each.
+PAPER_COLS = {"zh-TW": (26, 25, 34), "en": (67, 72, 29)}
+PAPER_ONE_LINES = 6
+PAPER_FULL_H = 342       # the column height of the one-column layout (the whole space under the headline)
+
+
+def text_len() -> list[dict]:
+    zh, en = string_texts("zh-TW"), string_texts("en")
+    keys = sorted({p["bodyKey"] for p in load("papers") if not p["pictureId"]} |
+                  {k for k in zh if k.startswith("SCR_D01_S09_L")})
+    return [{"id": k, "zh": len(zh[k]), "en": len(en[k])} for k in keys]
+
+
 def string_keys() -> set[str]:
     import csv
     with (ROOT / "strings" / "zh-TW.csv").open(encoding="utf-8", newline="") as f:
@@ -478,7 +502,8 @@ def flow_tables() -> dict[str, list[dict]]:
 
     # board.links: a link slot -> its chain and position (the list's row key is the slot)
     link = [{"key": str(s), "chain": s // 5, "pos": s % 5} for s in range(SLOTS) if s % 5 < 4]
-    return {"flowCard": card, "flowSpot": spot, "flowScene": scene, "flowCase": case, "flowLink": link}
+    return {"flowCard": card, "flowSpot": spot, "flowScene": scene, "flowCase": case, "flowLink": link,
+            "flowTextLen": text_len()}
 
 
 def table_text(rows: list[dict]) -> str:
@@ -1364,6 +1389,24 @@ def gen_paper() -> Graph:
                           g.fmt(f"add{i}F", "{a}{b}", "addSep", f"add{i}T"), g.k("")))
     g.fmt("bodyAdd", "{a}{b}{c}", "bodyT.text", *adds)
     g.edge(g.sel("bodyV", "addenda.value", "bodyAdd", "bodyT.text"), "ui#paper.body")
+    # E5: the no-picture layout's columns (PAPER_COLS): the body's length in characters (lead + addenda shown) in the
+    # language of the moment -> cols (1 or 2) and the column height col_h
+    g.put("langEnP", g.n("langEnPN", g.cmp("langEnPC", "world.language", g.k("en"))))
+    lens = []
+    for nm, src in (("lnB", key("bodyKeyL", "bodyKey")), ("lnA2", "add2"), ("lnA3", "add3")):
+        row = g.tfind(nm + "Row", "flowTextLen", "id", src)
+        g.tget(nm + "Zh", "flowTextLen", "zh", row, "number")
+        g.tget(nm + "En", "flowTextLen", "en", row, "number")
+        g.x(nm, f"{nm}Row >= 0 ? (langEnP ? {nm}En : {nm}Zh) : 0")
+        lens.append(nm)
+    g.put("addOnN", g.n("addOnNN", "addenda.value"))
+    g.x("paperChars", f"lnB + (addOnN ? lnA2 + lnA3 : 0)")
+    (z1, z2, zh_lh), (e1, e2, en_lh) = PAPER_COLS["zh-TW"], PAPER_COLS["en"]
+    g.x("paperCols", f"paperChars > {PAPER_ONE_LINES} * (langEnP ? {e1} : {z1}) ? 2 : 1")
+    g.x("paperColH", f"paperCols == 1 ? {PAPER_FULL_H} : ceil((ceil(paperChars / (langEnP ? {e2} : {z2})) + 1) / 2)"
+                     f" * (langEnP ? {en_lh} : {zh_lh})")
+    g.edge("paperCols", "ui#paper.cols")
+    g.edge("paperColH", "ui#paper.col_h")
     text("page2Head", key("page2HeadKey", "page2HeadKey"), "page2_head")
     text("page2Body", key("page2BodyKey", "page2BodyKey"), "page2_body")
     text("side", key("sideKey", "sideKey"), "side")
