@@ -83,6 +83,7 @@ class Memo:
     shaken: bool = False                         # he was in 破防 once (STATE_D01_SHF_SHAKEN)
     psych_noted: bool = False                    # SYS_D01_PSYCH_NOTE shown
     privates: set = field(default_factory=set)   # private-matter claims announced (SYS_D01_PRIVATE)
+    nobreak: bool = False                        # E7: SYS_D01_CHAIN_NOBREAK shown (once per debate)
 
 
 def outro(outcome: str) -> tuple[str, ...]:
@@ -227,7 +228,7 @@ def records(events: list, before: State) -> list[dict]:
             out.append({"k": "reverseRonpa"})
             out += [{"k": "reverseRonpaNode"} for _ in e["chain"]]
         elif k == "ronpa":
-            out.append({"k": "ronpa"})
+            out.append({"k": "ronpa", "via": e["via"]})
             out += [{"k": "ronpaNode"} for _ in e["chain"]]
         elif k == "endgame":
             out.append({"k": "endgame", "trigger": e["trigger"]})
@@ -287,6 +288,59 @@ def _claim_line(s: State, claim: str) -> str:
     return f"CLM_D01_{claim}_LINE"
 
 
+ISSUE_KEY = {"機": "OPP", "法": "METHOD", "動": "MOTIVE"}
+
+
+def chain_issues(s: State, ids: list[str], cards: bool = False) -> list[str]:
+    """E7: the issues a chain covers ({issues} of SYS_D01_CHAIN_READY / REV_READY): their ISSUE_D01_<x> keys in the
+    order the chain first reaches them (ch §12.1 R8 機、法、動; §12.4 R6-R7 his chain F1 → L2 → F2: 法、機)."""
+    out: list[str] = []
+    for i in ids:
+        if cards:
+            iss = s.ch.cards[i].issue
+        else:
+            iss = s.ch.cards[i.split(":")[1]].issue if K.is_catch(i) else s.ch.claims[i].issue
+        key = f"ISSUE_D01_{ISSUE_KEY[iss]}"
+        if key not in out:
+            out.append(key)
+    return out
+
+
+def link_key(keys: set, s: State, prev: str, claim: str) -> str:
+    """Her 承接 line (ch §8) when her link follows `prev`: LINK_D01_<prev>_<claim>; a pair the table marks ↔ (both
+    directions in ch.continuations) has one line for both orders (E7: 03A after 02A and 02A after 03A alike)."""
+    if not prev:
+        return ""
+    k = f"LINK_D01_{prev}_{claim}"
+    if k in keys:
+        return k
+    rev = f"LINK_D01_{claim}_{prev}"
+    both = (prev, claim) in s.ch.continuations and (claim, prev) in s.ch.continuations
+    return rev if both and rev in keys else ""
+
+
+def excl_other(s: State, claim: str | None) -> str | None:
+    """E7 (ch §7 互斥表): the claim of her public record that `claim` contradicts (the red crack), the earliest
+    record entry when there are two; None for none."""
+    if not claim or K.is_catch(claim):
+        return None
+    excl = set(s.ch.claims[claim].exclusive)
+    return next((r.claim for r in s.record if r.claim in excl), None)
+
+
+def excl_keys(claim: str, other: str) -> tuple[str, str]:
+    """EXCL_D01_<a>_<b>_CATCH / _SELL, the pair in id order (ch §7)."""
+    a, b = sorted((claim, other))
+    return f"EXCL_D01_{a}_{b}_CATCH", f"EXCL_D01_{a}_{b}_SELL"
+
+
+def nobreak_now(s: State, recs: list, s2: State) -> bool:
+    """E7 (design ruling): her link landed and her chain is long enough for a Break, but he is not in 破防 (at the end
+    of the round, when the Break is judged), so no Break."""
+    return (any(r["k"] == "pAttach" for r in recs) and len(s2.player_chain) >= s.ch.ronpa_len
+            and s2.broken_until < s.round)
+
+
 def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | None = None) -> list[Step]:
     """The steps the screen shows for one round (state s, player action pa, opponent action oa as resolved, ref events
     ev, state after s2), in order. Updates `memo` (the once-per-debate lines)."""
@@ -340,8 +394,8 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
         elif k == "pAttach":
             pat = True
             c = r["claim"]
-            link = f"LINK_D01_{r['prev']}_{c}"
-            if r["prev"] and link in keys:
+            link = link_key(keys, s, r["prev"], c)
+            if link:
                 who, line = SH, link
             else:
                 who, line = CE, _react(keys, c, soph, s)
@@ -357,6 +411,9 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 post += [Step(MAR, "BEAT_D01_07A_1"), Step(BRI, "BEAT_D01_07A_2")]
             if soph and not psych:      # E5: a sophistry link landed (a psych card leaves no crack)
                 post.append(Step(sys="SYS_D01_CRACK"))
+            if not memo.nobreak and nobreak_now(s, recs, s2):     # E7: once per debate
+                memo.nobreak = True
+                post.append(Step(sys="SYS_D01_CHAIN_NOBREAK"))
         elif k == "broken":             # E5: his first 破防 of the debate
             if not memo.shaken:
                 memo.shaken = True
@@ -417,10 +474,13 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                     memo.hachiku = True
                     post.append(Step(AR, "STATE_D01_ART_HACHIKU"))
         elif k == "ronpa":
+            if r["via"] == "chain":     # E7: the Break by chain length and issues (a keystone Break: KEY_BREAK)
+                pre.append(Step(sys="SYS_D01_CHAIN_READY"))
             who, line = SH, "STATE_D01_SHF_BREAK"
             if not over:
                 sysk = "SCR_D01_S07_L005"
         elif k == "reverseRonpa":
+            pre.append(Step(sys="SYS_D01_REV_READY"))     # E7: right before SYS_D01_REVERSE
             who, line, sysk = CE, "BEAT_D01_REVERSE_1", "SYS_D01_REVERSE"
         elif k == "lastCard":
             if r["cut"]:
@@ -491,6 +551,10 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 sysk = "SYS_D01_REFUTED"
             elif cause == "contradiction":
                 sysk = "SYS_D01_REDCRACK"
+                other = excl_other(s, claim)    # E7 (ch §7): he catches the contradiction, she hard-sells
+                if other:
+                    ck, sk = excl_keys(claim, other)
+                    pre += [Step(CE, ck), Step(SH, sk)]
             elif cause == "whiff" and act == PA.INTERCEPT and nx["k"] == "oDmg":
                 sysk = "SYS_D01_BOTH_REBUT"
             elif cause == "whiff" and act == PA.INTERCEPT and nx["k"] in ("oHeal", "healVoid"):

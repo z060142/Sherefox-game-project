@@ -91,3 +91,10 @@ Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears i
 * Arthur's tell hints (`TELL_D01_HINT_*`): at most one per round, picked by the priority rule in chapter §11 ("亞瑟提示的時機"); the notes of the nine hint rows now say how often each plays. Strings unchanged.
 * Short labels: 42 rows `CLM_D01_<id>_SHORT` (all 30 claims) and `CARD_D01_<card>_SHORT` (all 12 opponent cards), en max 28 characters, for chain nodes and the Public Record. Seize His Words has no label of its own (its node shows the caught card's label, so use that card's `_SHORT`).
 * SCR_D01_S09_L004 en: "Mr Hyde was arrested" is now "Cedric Hyde was arrested" (Mr Hyde is the deceased). No other en string calls Cedric "Mr Hyde".
+* English consistency pass, from the production review:
+  * SYS_D01_LASTCARD_REMOVE no longer depends on singular or plural.
+  * Irene's statement now reads the same in HS_D01_02_DESC and E_D01_11_DESC.
+  * Each speaker calls Cedric the same way throughout: Irene "Master Cedric"; narration, notes, Arthur and Sherefox "Mr Cedric"; Mrs Hyde "Cedric"; newspaper and case notes "Cedric Hyde".
+  * "kitchen stove" everywhere.
+  * 撬痕 is "mark of forcing" in both APR_D01_01_LINE and CLM_D01_01A_LINE.
+  * HS_D01_14 and HS_D01_23 are now 書房書桌抽屜 / 臥室書桌抽屜 ("Study desk drawer" / "Bedroom desk drawer"), in the chapter as well.

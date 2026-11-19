@@ -22,6 +22,7 @@ from gen_debui import add_all, setter, ssel, truth
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "ref" / "src"))
+from sherefox_ref.v2 import lines as LN  # noqa: E402
 from sherefox_ref.v2 import model as M  # noqa: E402
 from sherefox_ref.v2.data import load_chapter  # noqa: E402
 from sherefox_ref.v2.routes import ROUTES  # noqa: E402
@@ -64,7 +65,13 @@ EXTRAS = [
     ("xIre", "pre", "k_pAttach && isF09A", IRE, "REACT_D01_09A_3"),
     ("xCl1", "pre", "clashRec && !d_clsh", CE, "BEAT_D01_CLASH_1"),
     ("xCl2", "pre", "clashRec && !d_clsh", SH, "BEAT_D01_CLASH_2"),
-    ("xLcS", "pre", "lcRec", CE, "@lcState"),
+    ("xLcS", "pre", "lcRec", CE, "@lcStateK"),
+    # E7 (ch §7): her claim contradicts her record (red crack): his catch and her hard sell, before SYS_D01_REDCRACK
+    ("xExC", "pre", "k_pDmg && c_contradiction && exHas", CE, "@exCatchK"),
+    ("xExS", "pre", "k_pDmg && c_contradiction && exHas", SH, "@exSellK"),
+    # E7: the Break by chain length and issues (not a keystone Break), the Reverse Break: the conditions first
+    ("xCRd", "pre", "k_ronpa && viaChain", None, "SYS_D01_CHAIN_READY"),
+    ("xRRd", "pre", "k_reverseRonpa", None, "SYS_D01_REV_READY"),
     ("xLc4", "pre", "lcRec && lcP05 && L_Cracks >= 1", CE, "BEAT_D01_LASTCARD_4"),
     ("xLc2", "pre", "lcRec && lcP05 && L_Cracks >= 1", INS, "BEAT_D01_LASTCARD_2"),
     ("xLc3", "pre", "lcRec && lcP05 && L_Cracks == 0", INS, "BEAT_D01_LASTCARD_3"),
@@ -81,6 +88,8 @@ EXTRAS = [
     ("x7b", "post", "(k_pAttach && isF07A) || (k_oDmg && c_intercept && isC07A)", BRI, "BEAT_D01_07A_2"),
     # E5: a sophistry link landed (not a psych card: no crack), after the link's other lines
     ("xCrk", "post", "k_pAttach && myClaimSoph && !scPsych", None, "SYS_D01_CRACK"),
+    # E7 (design 4ac5faf): her chain long enough for a Break but he is not in 破防 at the round's end (once per debate)
+    ("xNb", "post", "k_pAttach && nbNow && !d_nb", None, "SYS_D01_CHAIN_NOBREAK"),
     # E5: the first time 破竹 goes up in the debate (after SHF_HACHIKU_n); he enters 困獸
     ("xHkA", "post", "k_hachiku && n2 > n1 && !d_hkA", AR, "STATE_D01_ART_HACHIKU"),
     ("xCor", "post", "k_crossed && xP", AR, "STATE_D01_ART_CORNERED"),
@@ -132,7 +141,9 @@ def tables() -> dict[str, list[dict]]:
     for cid, cd in CH.cards.items():
         if cd.kind == "unfav":
             claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE", "appr": "",
-                           "short": "UI_V2_SEIZE",
+                           # E7 (design ruling): chains and the public record show the caught U card's short label;
+                           # UI_V2_SEIZE stays the row's name in the claim picker
+                           "short": f"CARD_D01_{cid}_SHORT",
                            "line": f"CARD_D01_{cid}_CATCH", "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT",
                            "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0,
                            "person": "",
@@ -152,6 +163,7 @@ def tables() -> dict[str, list[dict]]:
                       "lie": int(cd.is_lie), "fav": int(cd.is_fact and cd.kind != "unfav"),
                       "label": f"CARD_D01_{cid}", "short": f"CARD_D01_{cid}_SHORT",
                       "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT" if cd.issue else "",
+                      "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}" if cd.issue else "",
                       "state": state, "push": have(f"CARD_D01_{cid}_PUSH", state),
                       "retract": have(f"CARD_D01_{cid}_RETRACT", state), "down": down,
                       "tell": f"CARD_D01_{cid}_TELL" if cd.kind == "unfav" else ""})
@@ -166,6 +178,10 @@ def tables() -> dict[str, list[dict]]:
             lines.append({"id": f"CUT:{parts[2]}:{parts[3]}", "key": k})
         elif k.startswith("LINK_D01_") and len(parts) == 4:
             lines.append({"id": f"LINK:{parts[2]}:{parts[3]}", "key": k})
+            # E7: a pair ch §8 marks ↔ has one line for both orders (ref lines.link_key)
+            a, b = parts[2], parts[3]
+            if (b, a) in CH.continuations and (a, b) in CH.continuations and f"LINK_D01_{b}_{a}" not in keys:
+                lines.append({"id": f"LINK:{b}:{a}", "key": k})
         elif k.startswith("REACT_D01_") and parts[2] in CH.claims and (len(parts) == 3 or parts[3] == "1"):
             lines.append({"id": f"REACT:{parts[2]}", "key": k})
     # v2 demo 4.3 (ref sherefox_ref.v2.lines): the claims that break a card (`<card>:<claim>`, Arthur's NOCUT hint)
@@ -181,8 +197,24 @@ def tables() -> dict[str, list[dict]]:
             hs = next(x["id"] for x in spots if via in x["ev"].split(","))
             refute.append({"id": line, "item": ev_key(via), "place": f"HS_D01_{hs[2:]}_NAME",
                            "kitchen": int(via == KITCHEN[0] and cid in KITCHEN[1])})
+    # E7 (ch §7 互斥表): per claim, the claims of her record it contradicts and his catch / her hard sell for each
+    # (ref lines.excl_keys); the playback takes the earliest record entry (u1Used)
+    excl = []
+    for cid, c in CH.claims.items():
+        if not c.exclusive:
+            continue
+        if len(c.exclusive) > 2:
+            raise SystemExit(f"claim {cid}: more than two exclusive claims (d1uiExcl has two columns)")
+        row = {"id": cid}
+        for i in (1, 2):
+            o = c.exclusive[i - 1] if i <= len(c.exclusive) else ""
+            ck, sk = LN.excl_keys(cid, o) if o else ("", "")
+            if o and not {ck, sk} <= keys:
+                raise SystemExit(f"claims {cid} / {o}: no {ck} / {sk} in the strings (ch §7)")
+            row.update({f"x{i}": o, f"catch{i}": ck, f"sell{i}": sk})
+        excl.append(row)
     return {"d1uiClaim": claims, "d1uiCard": cards, "d1uiEv": ev, "d1uiLine": lines, "d1uiBreak": brk,
-            "d1uiRefute": refute}
+            "d1uiRefute": refute, "d1uiExcl": excl}
 
 
 SIGNALS = {
@@ -218,12 +250,41 @@ COLLECTIONS = {
     "u1RecS": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecC": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecSt": {"kind": "map", "type": "string", "capacity": 32},
+    "u1Used": {"kind": "map", "type": "number", "capacity": 40},       # E7: claim -> its first public record row
     "u1Pv": {"kind": "map", "type": "bool", "capacity": 8},          # E5: private-matter claims announced
     "u1None": {"kind": "list", "type": "string", "capacity": 1},     # E6: never filled (the lists before round 1)
 }
 
 
 # ---------------------------------------------------------------------------------------------- the flow
+
+def issues_text(g: Graph, T, pfx: str, coll: str, table: str, kmax: int = 12) -> str:
+    """E7: {issues} of SYS_D01_CHAIN_READY / REV_READY: the issue names a chain (list `coll`, ids of `table`) covers,
+    in the order the chain first reaches them, joined by UI_TAG_SEP (ref lines.chain_issues)."""
+    xs = list(ISSUE.values())
+    for k in range(kmax):
+        item = g.cget(f"{pfx}i{k}", coll, g.k(k))
+        g.tget(f"{pfx}n{k}", table, "issueName", g.tfind(f"{pfx}r{k}", table, "id", item))
+        for x in xs:
+            g.n(f"{pfx}h{k}{x}", g.cmp(f"{pfx}c{k}{x}", f"{pfx}n{k}", g.k(f"ISSUE_D01_{x}")))
+    for x in xs:
+        expr = "99"
+        for k in range(kmax - 1, -1, -1):
+            expr = f"{pfx}h{k}{x} ? {k} : ({expr})"
+        g.x(f"{pfx}f{x}", expr)          # the first chain position with issue x (99: none)
+    for x in xs:
+        g.x(f"{pfx}k{x}", " + ".join(f"({pfx}f{y} < {pfx}f{x} ? 1 : 0)" for y in xs if y != x))
+    g.x(f"{pfx}cnt", " + ".join(f"({pfx}f{x} < 99 ? 1 : 0)" for x in xs))
+    names = []
+    for pos in range(3):
+        key = ssel(g, f"{pfx}p{pos}", [(T(f"{pfx}p{pos}{x}", f"{pfx}f{x} < 99 && {pfx}k{x} == {pos}"),
+                                        g.k(f"ISSUE_D01_{x}")) for x in xs], g.k(""))
+        names.append(g.text(f"{pfx}t{pos}", key))
+    sep = g.text(f"{pfx}sep", g.k("UI_TAG_SEP"))
+    s1 = g.sel(f"{pfx}s1", T(f"{pfx}s1c", f"{pfx}cnt >= 2"), sep, g.k(""))
+    s2 = g.sel(f"{pfx}s2", T(f"{pfx}s2c", f"{pfx}cnt >= 3"), sep, g.k(""))
+    return g.fmt(f"{pfx}j2", "{a}{b}", g.fmt(f"{pfx}j1", "{a}{b}{c}{d}", names[0], s1, names[1], s2), names[2])
+
 
 def gen_d01ui() -> Graph:
     g = Graph()
@@ -235,7 +296,7 @@ def gen_d01ui() -> Graph:
     # ---- UI state
     for k in ("ph", "act", "armed", "stAt", "rsAt", "lockAt", "r2", "ref", "pb", "pbAt", "ev", "hpM", "hpO", "pat",
               "endAt", "soph", "intBlk", "rmN", "patD", "tail", "sub", "intro", "crk", "p1f", "p1u", "clsh", "clsP",
-              "cutOk", "m8", "m9", "m10", "hush", "hkA", "hkP", "shk", "shkP", "psn", "gsv"):
+              "cutOk", "m8", "m9", "m10", "hush", "hkA", "hkP", "shk", "shkP", "psn", "gsv", "nb", "nbP"):
         g.mget("d_" + k, "u1", g.k(k))
     for k in ("ev", "claim", "target", "hintK", "hintW", "hint2K", "hint2W"):
         g.mget("s_" + k, "u1S", g.k(k))
@@ -276,7 +337,7 @@ def gen_d01ui() -> Graph:
     # m8 / m9 / m10 / hush, must not reach this step's first ticks), and again on world.debGo
     for sfx, pulse in (("", start), ("B", begin)):
         for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt",
-                     "u1Pv"):
+                     "u1Pv", "u1Used"):
             g.edge(pulse, g.eff(f"clr{sfx}_{coll}", "atrium.map.clear", coll))
         for coll in ("u1F", "u1N", "u1G", "u1GN", "u1Rec"):
             g.edge(pulse, g.eff(f"sClr{sfx}_{coll}", "atrium.coll.clear", coll))
@@ -562,6 +623,10 @@ def gen_d01ui() -> Graph:
                       ("u1RecS", g.sel("recS", g.b("recSB", "scSoph"), g.k("UI_V2_CLAIM_SOPH"), g.k(""))),
                       ("u1RecC", g.sel("recC", g.b("recCB", "scCrack"), g.k("UI_V2_LINK_CRACKED"), g.k("")))):
         g.edge(rP, g.eff(f"rec_{coll}", "atrium.map.set", coll, key=rkey, value=val))
+    # E7: the first record row of each claim (the earliest contradiction picks his catch line, ref lines.excl_other)
+    g.n("usedHasN", g.mhas("usedHas", "u1Used", "s_claim"))
+    g.edge(g.when("usedG", rP, T("usedNew", "!usedHasN")),
+           g.eff("usedSet", "atrium.map.set", "u1Used", key="s_claim", value="recN"))
 
     # ---- playback of the round's records (d1Events, debate-engine-v2 §2.3): pb 1 fetch, 2 play, 3 wait
     setn(lockT, "ev", g.k(0))
@@ -574,7 +639,7 @@ def gen_d01ui() -> Graph:
     setn(clsF, "clsh", g.k(1))
     setn(clsF, "clsP", g.k(0))
     # E5: the same for the once-per-debate state lines (ART_HACHIKU, SHF_SHAKEN), played on the record before
-    for flag, pend in (("hkA", "hkP"), ("shk", "shkP")):
+    for flag, pend in (("hkA", "hkP"), ("shk", "shkP"), ("nb", "nbP")):
         fp = g.when(f"{pend}FG", stepP, T(f"{pend}FOn", f"d_{pend} == 1"))
         setn(fp, flag, g.k(1))
         setn(fp, pend, g.k(0))
@@ -725,6 +790,23 @@ def gen_d01ui() -> Graph:
     g.x("rfHas", "rfRow >= 0")
     g.x("rfKit", "rfRow >= 0 && rfKitN == 1")
     g.put("dyNow", "world.d1Dying")
+    # E7: the Break's way (ronpa|chain or ronpa|keystone); her chain long enough without 破防 at the round's end (the
+    # engine's state after the round: 破防 lasts through round broken_until); his catch of a contradiction: the
+    # earliest of her record's claims this one contradicts (d1uiExcl, u1Used = each claim's first record row)
+    isS("viaChain", "f1", "chain")
+    g.put("bkUntil", "world.d1BrokenUntil")
+    g.x("nbNow", f"pcN >= {CH.ronpa_len} && bkUntil < L_Round")
+    exRow = g.tfind("exRow", "d1uiExcl", "id", "s_claim")
+    for i in (1, 2):
+        g.tget(f"exX{i}", "d1uiExcl", f"x{i}", exRow)
+        g.tget(f"exC{i}", "d1uiExcl", f"catch{i}", exRow)
+        g.tget(f"exS{i}", "d1uiExcl", f"sell{i}", exRow)
+        g.n(f"exH{i}", g.mhas(f"exHm{i}", "u1Used", f"exX{i}"))
+        g.mget(f"exI{i}", "u1Used", f"exX{i}")
+    g.x("exUse1", "exH1 && (!exH2 || exI1 < exI2)")
+    g.x("exHas", "exRow >= 0 && (exH1 || exH2)")
+    g.sel("exCatchK", g.b("exUse1B", "exUse1"), "exC1", "exC2")
+    g.sel("exSellK", "exUse1B", "exS1", "exS2")
     pos = {"pre": [], "post": []}
     for nm, where, cond, _, _ in EXTRAS:
         g.x(nm + "C", f"({cond}) ? 1 : 0")
@@ -745,7 +827,7 @@ def gen_d01ui() -> Graph:
     for nm, where, cond, who, key in EXTRAS:
         at = f"{nm}P" if where == "pre" else f"preN + 1 + {nm}P"
         c = T(nm + "S", f"{nm}C == 1 && d_sub == {at}")
-        line_k = "lcStateK" if key == "@lcState" else g.k(key)
+        line_k = key[1:] if key.startswith("@") else g.k(key)
         if who is None:
             ex_sy.append((c, key))
         else:
@@ -889,6 +971,11 @@ def gen_d01ui() -> Graph:
     g.x("vHp", f"{R2('max(0, k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3)')}")
     g.x("vPct", "round(gn5 / L_OppMax * 100)")
     g.x("vRmN", "d_rmN + 1")
+    # E7: {n} of CHAIN_READY / NOBREAK (her chain), REV_READY (his), LASTCARD_REMOVE (the records); {issues}
+    g.x("vN", "k_reverseRonpa ? ocN : (k_ronpa || k_pAttach) ? pcN : vRmN")
+    myIss = issues_text(g, T, "piss", "d1PChain", "d1uiClaim")
+    opIss = issues_text(g, T, "oiss", "d1OChain", "d1uiCard")
+    issues = g.sel("vIss", g.b("vIssB", "k_reverseRonpa"), opIss, myIss)
     g.x("vHpO", R2("max(0, k_pDmg && c_last_card ? gn5 : d_hpO)"))
     g.x("vDmg", R2("k_pAttach ? n3 : n1"))
     g.x("vN1", R2("max(0, n1)"))
@@ -901,7 +988,7 @@ def gen_d01ui() -> Graph:
     frm = g.sel("vFormula", g.b("vFrmB", "k_pDmg"), lcF, formula)
     lat = {nm: g.latch(nm + "L", src, syP) for nm, src in
            (("sk", skey), ("vHp", "vHp"), ("vDmg", "vDmg"), ("vHpB", "vN1"), ("vHpA", "vN2"), ("vC", "world.d1Cracks"),
-            ("vDmgP", "vPatD"), ("vHpO", "vHpO"), ("vPct", "vPct"), ("vRmN", "vRmN"),
+            ("vDmgP", "vPatD"), ("vHpO", "vHpO"), ("vPct", "vPct"), ("vRmN", "vN"), ("vIss", issues),
             ("vValue", value), ("vNode", node), ("vClaim", "scLabel"), ("vIssue", "f1IssueName"), ("vFact", fact),
             ("vFormula", frm))}
     g.text("skT", lat["sk"])
@@ -912,7 +999,8 @@ def gen_d01ui() -> Graph:
                        hp_before=lat["vHpB"], hp_after=lat["vHpA"], hp_p=lat["vHp"], c=lat["vC"],
                        value="vValueT.text", node="vNodeT.text", claim="vClaimT.text", issue="vIssueT.text",
                        fact="vFactT.text", formula=lat["vFormula"], dmg_p=lat["vDmgP"], hp_o=lat["vHpO"],
-                       dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"], person="vPersonT.text")
+                       dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"], person="vPersonT.text",
+                       issues=lat["vIss"])
     g.edge(g.sel("sysOut", frPb, g.k(""), sys_text), f"{P}.sys_line")
     g.counter("lineSeq", initial=0)
     g.edge(showP, "lineSeq.increment")
@@ -961,7 +1049,9 @@ def gen_d01ui() -> Graph:
             (MN("bg3", "k_hachiku && n2 >= 3 && n1 < 3"), "CUT_HACHIKU3"), (MN("bg4", "k_shisshu && n1 == 1"), "CUT_SHISSHU"),
             (MN("bg5", "k_crossed && xP"), "CUT_KONJU"), (MN("bg6", "k_broken"), "CUT_SHAKEN")]
     # stamps (ruling c): the UI_V2_STAMP_* words on a text seal; his side top right (V2_TR), ours bottom left (V2_BL)
+    # E7: the endgame cut that lands is a 截 too (ch §12.1 R9 【印：截】)
     stamps = [(MN("sm1", "k_intercept && n3 == 1"), "CUT", "TR"), (MN("sm2", "k_intercept"), "WHIFF", "BL"),
+              (MN("sm9", "k_lastCard && n2 == 1"), "CUT", "TR"),
               (MN("sm3", "k_dismantle && n3 == 1"), "TOPPLE", "TR"), (MN("sm4", "k_dismantle"), "WHIFF", "BL"),
               (MN("sm5", "k_oAttach && d_pat"), "CLASH", "TR"), (MN("sm6", "k_guardSaved"), "COVER", "BL"),
               (MN("sm7", "k_oDmg && c_whiff"), "BAITED", "BL"), (MN("sm8", "k_pDmg && (c_exposed || c_refuted || c_last_card) && L_PCombo > 0"), "COMBO_BREAK", "BL")]
@@ -998,6 +1088,7 @@ def gen_d01ui() -> Graph:
     # own (psych note, private matter) right away: the next tail step looks only further on
     setn(g.when("hkPG", parse, MN("hkPOn", "k_hachiku && n2 > n1 && !d_hkA")), "hkP", g.k(1))
     setn(g.when("shkPG", parse, MN("shkPOn", "k_broken && !d_shk")), "shkP", g.k(1))
+    setn(g.when("nbPG", parse, MN("nbPOn", "k_pAttach && nbNow && !d_nb")), "nbP", g.k(1))      # E7
     setn(g.when("psnG", parse, MN("psnOn", "d_tail == 2")), "psn", g.k(1))
     g.edge(g.when("pvG", parse, MN("pvOn", "d_tail == 3")),
            g.eff("pvSet", "atrium.map.set", "u1Pv", key="s_claim", value=g.k(True)))

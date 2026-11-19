@@ -851,6 +851,7 @@
     "d1iClaim": "data/flow/d1iClaim.json",
     "d1uiBreak": "data/flow/d1uiBreak.json",
     "d1uiRefute": "data/flow/d1uiRefute.json",
+    "d1uiExcl": "data/flow/d1uiExcl.json",
     "flowCard": "data/flow/flowCard.json",
     "flowSpot": "data/flow/flowSpot.json",
     "flowScene": "data/flow/flowScene.json",
@@ -1692,6 +1693,11 @@
       "kind": "list",
       "type": "string",
       "capacity": 1
+    },
+    "u1Used": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 40
     }
   },
   "audio": {

@@ -1,0 +1,17 @@
+[
+  {"id": "01A", "x1": "01B", "catch1": "EXCL_D01_01A_01B_CATCH", "sell1": "EXCL_D01_01A_01B_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "01B", "x1": "01A", "catch1": "EXCL_D01_01A_01B_CATCH", "sell1": "EXCL_D01_01A_01B_SELL", "x2": "06A", "catch2": "EXCL_D01_01B_06A_CATCH", "sell2": "EXCL_D01_01B_06A_SELL"},
+  {"id": "01D", "x1": "05A", "catch1": "EXCL_D01_01D_05A_CATCH", "sell1": "EXCL_D01_01D_05A_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "02A", "x1": "02B", "catch1": "EXCL_D01_02A_02B_CATCH", "sell1": "EXCL_D01_02A_02B_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "02B", "x1": "02A", "catch1": "EXCL_D01_02A_02B_CATCH", "sell1": "EXCL_D01_02A_02B_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "04C", "x1": "07A", "catch1": "EXCL_D01_04C_07A_CATCH", "sell1": "EXCL_D01_04C_07A_SELL", "x2": "07B", "catch2": "EXCL_D01_04C_07B_CATCH", "sell2": "EXCL_D01_04C_07B_SELL"},
+  {"id": "05A", "x1": "01D", "catch1": "EXCL_D01_01D_05A_CATCH", "sell1": "EXCL_D01_01D_05A_SELL", "x2": "05B", "catch2": "EXCL_D01_05A_05B_CATCH", "sell2": "EXCL_D01_05A_05B_SELL"},
+  {"id": "05B", "x1": "05A", "catch1": "EXCL_D01_05A_05B_CATCH", "sell1": "EXCL_D01_05A_05B_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "06A", "x1": "01B", "catch1": "EXCL_D01_01B_06A_CATCH", "sell1": "EXCL_D01_01B_06A_SELL", "x2": "06C", "catch2": "EXCL_D01_06A_06C_CATCH", "sell2": "EXCL_D01_06A_06C_SELL"},
+  {"id": "06B", "x1": "07A", "catch1": "EXCL_D01_06B_07A_CATCH", "sell1": "EXCL_D01_06B_07A_SELL", "x2": "07B", "catch2": "EXCL_D01_06B_07B_CATCH", "sell2": "EXCL_D01_06B_07B_SELL"},
+  {"id": "06C", "x1": "06A", "catch1": "EXCL_D01_06A_06C_CATCH", "sell1": "EXCL_D01_06A_06C_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "07A", "x1": "04C", "catch1": "EXCL_D01_04C_07A_CATCH", "sell1": "EXCL_D01_04C_07A_SELL", "x2": "06B", "catch2": "EXCL_D01_06B_07A_CATCH", "sell2": "EXCL_D01_06B_07A_SELL"},
+  {"id": "07B", "x1": "04C", "catch1": "EXCL_D01_04C_07B_CATCH", "sell1": "EXCL_D01_04C_07B_SELL", "x2": "06B", "catch2": "EXCL_D01_06B_07B_CATCH", "sell2": "EXCL_D01_06B_07B_SELL"},
+  {"id": "09A", "x1": "09B", "catch1": "EXCL_D01_09A_09B_CATCH", "sell1": "EXCL_D01_09A_09B_SELL", "x2": "", "catch2": "", "sell2": ""},
+  {"id": "09B", "x1": "09A", "catch1": "EXCL_D01_09A_09B_CATCH", "sell1": "EXCL_D01_09A_09B_SELL", "x2": "", "catch2": "", "sell2": ""}
+]

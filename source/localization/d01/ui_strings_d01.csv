@@ -18,7 +18,7 @@ UI_V2_ACT_ARGUE,Debate: actions,議論,Argue,entry for 正論/詭辯
 UI_V2_ACT_REBUT,Debate: actions,反駁,Rebut,
 UI_V2_ACT_STALL,Debate: actions,打迷糊仗,Muddy the Waters,
 UI_V2_ACT_STALL_DESC,Debate: actions,說些不著邊際的話。不接節；他開口時我方只受一半傷害，他反駁時會落空。,"Say something beside the point. No link added; you take half damage if he speaks, and his rebuttal whiffs.",tooltip
-UI_V2_ACT_STALL_REPEAT,Debate: actions,連續打迷糊仗：效果取消，旁觀者不耐。,"Stalling twice in a row: no effect, and the onlookers lose patience.",warning on 2nd consecutive use
+UI_V2_ACT_STALL_REPEAT,Debate: actions,連續打迷糊仗：效果取消，旁觀者不耐。,"Muddying the waters twice in a row: no effect, and the onlookers lose patience.",warning on 2nd consecutive use
 UI_V2_REBUT_CUT,Debate: actions,截斷,Cut In,target: the claim he is about to make
 UI_V2_REBUT_CUT_DESC,Debate: actions,打他這回合要說的那句話。,Strike the claim he is about to make this round.,
 UI_V2_REBUT_TOPPLE,Debate: actions,拆台,Knock Down,target: a link standing on his chain
@@ -66,7 +66,7 @@ UI_V2_RECORD_DESC,Debate: chains and record,妳在這場論戰說過的每一句
 UI_V2_RECORD_STANDING,Debate: chains and record,站著,Standing,
 UI_V2_RECORD_DOWN,Debate: chains and record,被打掉,Knocked down,
 UI_V2_RECORD_REBUT,Debate: chains and record,反駁,Rebuttal,
-UI_V2_RECORD_CRACKS,Debate: chains and record,裂紋 {n} 道,{n} crack(s),
+UI_V2_RECORD_CRACKS,Debate: chains and record,裂紋 {n} 道,Cracks: {n},
 UI_V2_RONPA_PROGRESS,Debate: chains and record,鏈長 {n}／{need}　爭點 {m}／2,Chain {n}/{need}   Issues {m}/2,
 UI_V2_RONPA_READY,Debate: chains and record,他破防了。這回合接上就論破！,His guard is down. Land a link this round to break him!,
 UI_V2_GUARD_DOWN,Debate: chains and record,破防,Guard Down,
@@ -113,11 +113,11 @@ UI_V2_REP_LOSS,Result,論敗,Out-argued,
 UI_V2_REP_CRACKS,Result,說詞有裂紋 ×{n},Cracks in your account ×{n},
 UI_V2_REP_PRIVATE,Result,公開了別人的私事 ×{n},Exposed a private matter ×{n},
 UI_V2_REP_PSYCH,Result,用了攻心的手段,Played on his nerves,
-UI_V2_REP_STALL,Result,迷糊仗打太多,Stalled too often,
+UI_V2_REP_STALL,Result,迷糊仗打太多,Muddied the waters too often,
 UI_V2_REP_DENY,Result,硬把事實說成假的 ×{n},Argued a fact away ×{n},
 UI_V2_REP_UP,Result,↑,↑,direction only; no number
 UI_V2_REP_DOWN,Result,↓,↓,direction only; no number
-UI_V2_FAVOR_HEAD,Result,好感變化,Standing with Others,
+UI_V2_FAVOR_HEAD,Result,好感變化,How Others Regard You,
 UI_V2_FAVOR_LINE,Result,{name} {delta},{name} {delta},
 UI_V2_NEXT_PLACEHOLDER,Result,下一章預告（示範關卡到此結束）,Next chapter (the demo ends here),
 UI_V2_BACK_TITLE,Result,回到標題,Back to Title,
@@ -148,3 +148,4 @@ SYS_D01_OPP_REBUT_MISS,Debate: system lines,{name}的反駁落空！−5 → {hp
 SYS_D01_LASTCARD_CORNERED,Debate: system lines,{name}已是困獸，沒有回復。鎖定解除。,"{name} is cornered and recovers nothing. The lock is lifted.",TEMPLATE; appended after SYS_D01_LASTCARD_NOHEAL when his heal is void under 困獸
 UI_V2_WARMUP_PICK,Warm-up,選一條觀察，指出他的錯誤。,Pick an observation that shows where he is wrong.,prompt above the three observations in S04
 NEWS_D01_DATELINE,Newspaper,倫敦・1888 年 2 月,"LONDON, FEBRUARY 1888.",date line for the D01 newspapers (S01 and S09)
+SCENE_D01_BASEMENT_TAB,Investigation,地下室,Basement,short name for the location tab; the full name SCENE_D01_BASEMENT stays for headings

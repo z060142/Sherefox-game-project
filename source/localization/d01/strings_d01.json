@@ -33,7 +33,7 @@
  },
  "CLM_D01_01A_LINE": {
   "zh-TW": "筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。",
-  "en": "The lock is intact, not a single pick mark. Whoever opened it used a real key."
+  "en": "The lock is intact, not a single mark of forcing. Whoever opened it used a real key."
  },
  "CLM_D01_01B": {
   "zh-TW": "筒鎖被動過手腳",
@@ -565,7 +565,7 @@
  },
  "E_D01_08_DESC": {
   "zh-TW": "梅費爾俱樂部致塞德里克：欠款四百鎊，本月底前結清。日期是海德先生過世那天。",
-  "en": "The Mayfair Club to Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
+  "en": "The Mayfair Club to Mr Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
  },
  "E_D01_09_NAME": {
   "zh-TW": "髮辮胸針（小）",
@@ -589,7 +589,7 @@
  },
  "E_D01_11_DESC": {
   "zh-TW": "「燈滅之前，少爺的椅子就空了。燈亮的時候，他站在走廊口，黑手套的指尖亮亮的，像沾了灰。」",
-  "en": "\"Before the lights went out, the young master's chair was already empty. When they came back, he was standing at the end of the corridor, and the fingertips of his black gloves were shiny, like they'd got dust on them.\""
+  "en": "\"Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.\""
  },
  "E_D01_12_NAME": {
   "zh-TW": "黑紗花圈",
@@ -621,7 +621,7 @@
  },
  "PN_D01_1_TEXT": {
   "zh-TW": "塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色的眼珠玻璃、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的把戲」。",
-  "en": "Three little charms hang from Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are \"all bumpkin tricks\"."
+  "en": "Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are \"all bumpkin tricks\"."
  },
  "PN_D01_2_NAME": {
   "zh-TW": "白天的床頭燈",
@@ -629,7 +629,7 @@
  },
  "PN_D01_2_TEXT": {
   "zh-TW": "大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。",
-  "en": "In broad daylight, Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
+  "en": "In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
  },
  "PN_D01_3_NAME": {
   "zh-TW": "別過臉的遺體照",
@@ -637,7 +637,7 @@
  },
  "PN_D01_3_TEXT": {
   "zh-TW": "遺體照裡，塞德里克站在最邊上，臉別了過去。海德太太說：老爺走的那晚一直叫塞德里克的名字，他沒有回來。",
-  "en": "In the memorial photograph, Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Cedric's name, and Cedric never came."
+  "en": "In the memorial photograph, Mr Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Mr Cedric's name, and he never came."
  },
  "PN_D01_4_NAME": {
   "zh-TW": "不肯進書房的少爺",
@@ -645,7 +645,7 @@
  },
  "PN_D01_4_TEXT": {
   "zh-TW": "艾琳說：前天下午整理書房時，少爺站在門口不肯進來，叫她把鏡子的黑布再拉緊一點，說「看著礙眼」。",
-  "en": "Irene says: when she tidied the study the afternoon before yesterday, the young master stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was \"an eyesore\"."
+  "en": "Irene says: when she tidied the study the afternoon before yesterday, Master Cedric stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was \"an eyesore\"."
  },
  "APR_D01_01_RESULT": {
   "zh-TW": "鎖完好；用原配鑰匙開；鎖芯無油",
@@ -677,15 +677,15 @@
  },
  "HS_D01_02_DESC": {
   "zh-TW": "年輕的女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套——本來就是黑的，可是指尖亮亮的，像沾了灰。」",
-  "en": "The young maid clutches a tray, her hands still trembling. \"Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. He wears black gloves, they're black anyway, but the fingertips were shiny, like they'd got dust on them.\""
+  "en": "The young maid clutches a tray, her hands still trembling. \"Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.\""
  },
  "HS_D01_03_NAME": {
   "zh-TW": "塞德里克",
-  "en": "Cedric"
+  "en": "Mr Cedric"
  },
  "HS_D01_03_DESC": {
   "zh-TW": "塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色的眼珠玻璃、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的把戲。」",
-  "en": "Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, \"Aunt, these customs are nothing but bumpkin tricks.\""
+  "en": "Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, \"Aunt, these customs are nothing but bumpkin tricks.\""
  },
  "HS_D01_04_NAME": {
   "zh-TW": "遺體照",
@@ -693,7 +693,7 @@
  },
  "HS_D01_04_DESC": {
   "zh-TW": "靈堂正中掛著昨天拍的遺體照，全家人圍著亡者。塞德里克站在最邊上，臉別了過去，只拍到半張側臉。",
-  "en": "In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Cedric stands at the very edge, face turned away; the camera caught only half his profile."
+  "en": "In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile."
  },
  "HS_D01_05_NAME": {
   "zh-TW": "海德太太",
@@ -769,11 +769,11 @@
  },
  "HS_D01_13_DESC": {
   "zh-TW": "艾琳跟了過來，站在門口小聲說：「前天下午我整理書房，少爺站在門口，不肯進來。他叫我把鏡子的黑布再拉緊一點，說『看著礙眼』。」",
-  "en": "Irene has followed you and stands in the doorway, speaking softly. \"The afternoon before yesterday, I was tidying the study, and the young master stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.\""
+  "en": "Irene has followed you and stands in the doorway, speaking softly. \"The afternoon before yesterday, I was tidying the study, and Master Cedric stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.\""
  },
  "HS_D01_14_NAME": {
-  "zh-TW": "書桌抽屜",
-  "en": "Desk drawer"
+  "zh-TW": "書房書桌抽屜",
+  "en": "Study desk drawer"
  },
  "HS_D01_14_DESC": {
   "zh-TW": "右邊的抽屜沒有鎖，裡面有一個空的小絨布袋，袋口的形狀像是放過一把小鑰匙。",
@@ -845,7 +845,7 @@
  },
  "SCENE_D01_BEDROOM": {
   "zh-TW": "塞德里克的臥室",
-  "en": "Cedric's bedroom"
+  "en": "Mr Cedric's bedroom"
  },
  "HS_D01_22_NAME": {
   "zh-TW": "床頭燈",
@@ -856,8 +856,8 @@
   "en": "In broad daylight, the oil lamp by the bed is still burning. The wick is trimmed very short and the glass chimney is blackened; it plainly burned all night."
  },
  "HS_D01_23_NAME": {
-  "zh-TW": "書桌抽屜",
-  "en": "Desk drawer"
+  "zh-TW": "臥室書桌抽屜",
+  "en": "Bedroom desk drawer"
  },
  "HS_D01_23_DESC": {
   "zh-TW": "一封「梅費爾俱樂部」的信：「塞德里克・海德先生台鑒：閣下所欠四百鎊，請於本月底前結清。」日期是三天前——海德先生過世的那一天。",
@@ -1145,7 +1145,7 @@
  },
  "SCR_D01_S07_L001": {
   "zh-TW": "中午，靈堂。海德太太、艾琳、瑪莎、布里格斯都到了。警督站在門口，塞德里克坐在靈柩旁那張靠走廊的椅子上，像是他從沒離開過。",
-  "en": "Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
+  "en": "Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Mr Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
  },
  "SCR_D01_S07_L002": {
   "zh-TW": "狐狸小姐，請吧。我很好奇，您要怎麼替一個帶著萬用鑰匙的鎖匠脫罪。",
@@ -1537,7 +1537,7 @@
  },
  "REFUTE_D01_06B": {
   "zh-TW": "毫無關係？那這條手帕呢？廚房爐子後面撿到的，繡著廚娘名字的縮寫，沾著機油。鎖匠昨晚偷偷回來了——燈滅的時候，他就在屋裡。",
-  "en": "Nothing to do with it? Then what of this handkerchief? Found behind the kitchen range, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
+  "en": "Nothing to do with it? Then what of this handkerchief? Found behind the kitchen stove, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
  },
  "REACT_D01_FACT_SOPH_1": {
   "zh-TW": "荒謬。您明知道那是事實。",
@@ -1993,7 +1993,7 @@
  },
  "SYS_D01_LASTCARD_REMOVE": {
   "zh-TW": "我方紀錄上帶裂紋的 {n} 節被打掉，連擊與破竹歸零。",
-  "en": "The {n} cracked links on your record are knocked down. Combo and Unstoppable reset."
+  "en": "Cracked links knocked off your record: {n}. Combo and Unstoppable reset."
  },
  "SYS_D01_LASTCARD_HIT": {
   "zh-TW": "最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。{name}回復到上限的 {pct}%（{hp_o}），鎖定解除。",
@@ -2193,7 +2193,7 @@
  },
  "APR_D01_01_LINE": {
   "zh-TW": "鎖芯完好，一道撬痕也沒有。彈簧是新換的，裝得很漂亮。還有一件事——鎖芯裡乾乾淨淨，一滴油都沒有。萬用鑰匙要上油才轉得動，用萬用鑰匙開過，裡面一定會留下油。打開它的，是一把乾淨的原配鑰匙。",
-  "en": "The lock's workings are intact—not a single pry mark. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
+  "en": "The lock's workings are intact—not a single mark of forcing. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
  },
  "APR_D01_02_LINE": {
   "zh-TW": "鐘擺沒綁緞帶，是被震了一下才重新擺起來的。從九點四十分走到現在的十點四十八分，走了一小時八分鐘。往回推——它是在昨晚十一點零二分左右開始走的。正好是燈滅的時候。",

@@ -1,5 +1,5 @@
 key,text
-APR_D01_01_LINE,"The lock's workings are intact—not a single pry mark. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
+APR_D01_01_LINE,"The lock's workings are intact—not a single mark of forcing. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
 APR_D01_01_RESULT,Lock intact; opened with its own key; no oil inside
 APR_D01_02_LINE,"The pendulum wasn't tied with a ribbon; a jolt set it swinging again. From twenty to ten to the ten forty-eight it shows now, it has run one hour and eight minutes. Counting back, it started at about two minutes past eleven last night. Exactly when the lights went out."
 APR_D01_02_RESULT,Jolted back into motion when the lights went out
@@ -222,7 +222,7 @@ CLM_CH03_N3,Moss and I were just legitimate business partners
 CLM_CH03_T1,It was that old bargeman who turned the valve!
 CLM_CH03_W1,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!"
 CLM_D01_01A,"Lock intact, opened with its key"
-CLM_D01_01A_LINE,"The lock is intact, not a single pick mark. Whoever opened it used a real key."
+CLM_D01_01A_LINE,"The lock is intact, not a single mark of forcing. Whoever opened it used a real key."
 CLM_D01_01A_SHORT,"Lock intact, true key used"
 CLM_D01_01B,The lock was tampered with
 CLM_D01_01B_LINE,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
@@ -525,13 +525,13 @@ E_D01_06_DESC,"""3 to 5 p.m. Hyde residence, study, brass document tube. One new
 E_D01_06_NAME,Briggs's work order
 E_D01_07_DESC,"A man's handkerchief found behind the kitchen stove, embroidered with an ""M"". It smells of machine oil."
 E_D01_07_NAME,Embroidered handkerchief
-E_D01_08_DESC,"The Mayfair Club to Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
+E_D01_08_DESC,"The Mayfair Club to Mr Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
 E_D01_08_NAME,Gaming club's demand letter
 E_D01_09_DESC,"A mourning brooch from Irene's drawer, identical to Mrs Hyde's but a size smaller. Engraved on the back: ""For E."""
 E_D01_09_NAME,Hair brooch (small)
 E_D01_10_DESC,"Bears the codicil in mirror writing: ""...half of my estate I bequeath to..."" The name is lost in a smudge of ink."
 E_D01_10_NAME,Study blotter
-E_D01_11_DESC,"""Before the lights went out, the young master's chair was already empty. When they came back, he was standing at the end of the corridor, and the fingertips of his black gloves were shiny, like they'd got dust on them."""
+E_D01_11_DESC,"""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them."""
 E_D01_11_NAME,Irene's statement
 E_D01_12_DESC,"The black crape wreath on the inside of the front door, tied with meticulous care."
 E_D01_12_NAME,Black crape wreath
@@ -643,13 +643,13 @@ HS_D01_01_ART,The watchers sit here all night. The seat by the corridor... is cl
 HS_D01_01_DESC,"Six chairs line the coffin, three to a side. The one nearest the corridor still has a slight dent in its cushion. On the little table beside it sits an unfinished glass of brandy, but the small candlestick on the table's corner is empty. By the other five chairs, the white candles are still burning."
 HS_D01_01_NAME,Coffin and chairs
 HS_D01_02_ART,"She's frightened half to death, but she put it very clearly."
-HS_D01_02_DESC,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. He wears black gloves, they're black anyway, but the fingertips were shiny, like they'd got dust on them."""
+HS_D01_02_DESC,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them."""
 HS_D01_02_NAME,Irene
 HS_D01_03_ART,Rather a fashionable watch chain.
-HS_D01_03_DESC,"Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks."""
-HS_D01_03_NAME,Cedric
+HS_D01_03_DESC,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks."""
+HS_D01_03_NAME,Mr Cedric
 HS_D01_04_ART,Memorial photographs are all the fashion now. Perhaps he doesn't care to be photographed.
-HS_D01_04_DESC,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Cedric stands at the very edge, face turned away; the camera caught only half his profile."
+HS_D01_04_DESC,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile."
 HS_D01_04_NAME,Memorial photograph
 HS_D01_05_ART,Hair jewellery... another mourning custom.
 HS_D01_05_DESC,"""The night my husband died, he kept calling Cedric's name. I sent for him, but he never came."" She touches the hair brooch at her breast. ""My husband wove this for me from his own hair. There is only one in all the world."""
@@ -676,11 +676,11 @@ HS_D01_12_ART,Something seems to be stuffed up in there. ...Wedged in tight; we'
 HS_D01_12_DESC,No fire has been lit here for a long time; the grate is stone cold. The damper lever bears a fresh sooty fingerprint. The lever is jammed and won't budge.
 HS_D01_12_NAME,Fireplace damper
 HS_D01_13_ART,"Well, the black cloth isn't much to look at, I'll grant him."
-HS_D01_13_DESC,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and the young master stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'."""
+HS_D01_13_DESC,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and Master Cedric stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'."""
 HS_D01_13_NAME,Study doorway
 HS_D01_14_ART,Mr Hyde's spare key? Gone.
 HS_D01_14_DESC,"The right-hand drawer is unlocked. Inside is a small empty velvet pouch, its mouth shaped as though it once held a little key."
-HS_D01_14_NAME,Desk drawer
+HS_D01_14_NAME,Study desk drawer
 HS_D01_15_ART,"There's coal dust everywhere down here; a little soot is nothing odd. Still, I could take some to compare."
 HS_D01_15_DESC,"The wheel of the main valve shows fresh turn marks, and its rim is ringed with black dust."
 HS_D01_15_NAME,Main gas valve
@@ -707,7 +707,7 @@ HS_D01_22_DESC,"In broad daylight, the oil lamp by the bed is still burning. The
 HS_D01_22_NAME,Bedside lamp
 HS_D01_23_ART,Four hundred pounds! That's no small sum.
 HS_D01_23_DESC,"A letter from the Mayfair Club: ""C. Hyde, Esq. Sir, the four hundred pounds you owe are to be settled by the end of this month."" It is dated three days ago: the day Mr Hyde died."
-HS_D01_23_NAME,Desk drawer
+HS_D01_23_NAME,Bedroom desk drawer
 HS_D01_24_ART,"Left by a previous tenant, I expect."
 HS_D01_24_DESC,"A small rusty horseshoe is nailed to the inside of the wardrobe door, ends pointing up."
 HS_D01_24_NAME,Inside the wardrobe door
@@ -897,13 +897,13 @@ OBS_D01_W1,The brass tube's lid is shut and locked
 OBS_D01_W2,Briggs was searched on arrest and had no papers on him
 OBS_D01_W3,Every light in the house dimmed together and came back together
 PN_D01_1_NAME,Charms on his watch chain
-PN_D01_1_TEXT,"Three little charms hang from Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks""."
+PN_D01_1_TEXT,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks""."
 PN_D01_2_NAME,A bedside lamp by day
-PN_D01_2_TEXT,"In broad daylight, Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
+PN_D01_2_TEXT,"In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
 PN_D01_3_NAME,Face turned from the photograph
-PN_D01_3_TEXT,"In the memorial photograph, Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Cedric's name, and Cedric never came."
+PN_D01_3_TEXT,"In the memorial photograph, Mr Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Mr Cedric's name, and he never came."
 PN_D01_4_NAME,He won't enter the study
-PN_D01_4_TEXT,"Irene says: when she tidied the study the afternoon before yesterday, the young master stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore""."
+PN_D01_4_TEXT,"Irene says: when she tidied the study the afternoon before yesterday, Master Cedric stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore""."
 REACT_D01_01B,"(Smiles, relieved) A lock that was tampered with—yes, precisely what I said."
 REACT_D01_02C,(His fingers stop on his watch chain) ...What happened that night has no bearing on this case.
 REACT_D01_03B,"(Without thinking, he looks away from the direction of the study) The mirror? A cloth fell off, that is all. What are you driving at?"
@@ -929,7 +929,7 @@ REFUTE_D01_01D,"Nothing that could open it? Then whose is this ring of skeleton 
 REFUTE_D01_01D_FACT,the locksmith carried a ring of skeleton keys
 REFUTE_D01_05B,"Can't open it? Miss Fox, the locksmith's own work order says he tested the tube's lock with this very ring of skeleton keys. They open it—and he tried it three times."
 REFUTE_D01_05B_FACT,the work order states the lock was tested with skeleton keys
-REFUTE_D01_06B,"Nothing to do with it? Then what of this handkerchief? Found behind the kitchen range, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
+REFUTE_D01_06B,"Nothing to do with it? Then what of this handkerchief? Found behind the kitchen stove, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
 REFUTE_D01_06B_FACT,the locksmith came back last night
 S-01_DESC,"The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say ""very like"", never ""the same""."
 SCENE_CH01_KITCHEN,The Agency Kitchen and Parlour
@@ -940,7 +940,8 @@ SCENE_CH03_DOCK,The Wharf
 SCENE_D01_ATTIC,Attic (and servants' rooms)
 SCENE_D01_ATTIC_TAB,Attic
 SCENE_D01_BASEMENT,Basement (and kitchen)
-SCENE_D01_BEDROOM,Cedric's bedroom
+SCENE_D01_BASEMENT_TAB,Basement
+SCENE_D01_BEDROOM,Mr Cedric's bedroom
 SCENE_D01_HALL,Entrance Hall
 SCENE_D01_PARLOR,Parlour
 SCENE_D01_STUDY,Study
@@ -1511,7 +1512,7 @@ SCR_D01_S06_L010,The Inspector says whatever we don't take goes into the keeping
 SCR_D01_S06_L011,"There's still room, you know. One thing fewer means one card fewer."
 SCR_D01_S06_L012,"To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using."
 SCR_D01_S06_TITLE,Choose What to Bring
-SCR_D01_S07_L001,"Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
+SCR_D01_S07_L001,"Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Mr Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
 SCR_D01_S07_L002,"Please, Miss Fox, go ahead. I am curious to see how you mean to clear a locksmith caught carrying skeleton keys."
 SCR_D01_S07_L003,"I'm not here to clear anyone, Mr Cedric. I'm here to testify for those three minutes last night."
 SCR_D01_S07_L004,The debate begins. Opponent: Cedric Hyde. Both sides act at the same time.
@@ -1654,7 +1655,7 @@ SYS_D01_KEY_NORMAL,"(A keystone point, but his Credibility is above 50% and his 
 SYS_D01_LASTCARD_CORNERED,{name} is cornered and recovers nothing. The lock is lifted.
 SYS_D01_LASTCARD_HIT,"His last card! You take {formula} = {dmg} → {hp}. {name} recovers to {pct}% of his maximum ({hp_o}), and the lock is lifted."
 SYS_D01_LASTCARD_NOHEAL,His last card! You take {formula} = {dmg} → {hp}.
-SYS_D01_LASTCARD_REMOVE,The {n} cracked links on your record are knocked down. Combo and Unstoppable reset.
+SYS_D01_LASTCARD_REMOVE,Cracked links knocked off your record: {n}. Combo and Unstoppable reset.
 SYS_D01_LASTSTAND_FAIL,The refutation fails.
 SYS_D01_LASTSTAND_OK,"Refuted! {name}'s ""{node}"" and every link after it collapse. You recover to {hp}."
 SYS_D01_LASTSTAND_PROMPT,{name}'s chain: {chain}. Choose a sound claim that refutes one of these.
@@ -2291,7 +2292,7 @@ UI_V2_ACT_ARGUE,Argue
 UI_V2_ACT_REBUT,Rebut
 UI_V2_ACT_STALL,Muddy the Waters
 UI_V2_ACT_STALL_DESC,"Say something beside the point. No link added; you take half damage if he speaks, and his rebuttal whiffs."
-UI_V2_ACT_STALL_REPEAT,"Stalling twice in a row: no effect, and the onlookers lose patience."
+UI_V2_ACT_STALL_REPEAT,"Muddying the waters twice in a row: no effect, and the onlookers lose patience."
 UI_V2_APPRAISE,Ask Arthur to Appraise
 UI_V2_APPRAISED,Appraised
 UI_V2_APPRAISE_LEFT,Appraisals left: {n}
@@ -2330,7 +2331,7 @@ UI_V2_ENDGAME,Endgame
 UI_V2_ENDGAME_CUT,Cut In
 UI_V2_ENDGAME_TAKE,Take It
 UI_V2_EVLIST,Evidence List
-UI_V2_FAVOR_HEAD,Standing with Others
+UI_V2_FAVOR_HEAD,How Others Regard You
 UI_V2_FAVOR_LINE,{name} {delta}
 UI_V2_F_COMBO,Combo
 UI_V2_F_FOLLOW,Follow-up
@@ -2377,7 +2378,7 @@ UI_V2_REBUT_PICK_LINK,Choose a link to knock down
 UI_V2_REBUT_TOPPLE,Knock Down
 UI_V2_REBUT_TOPPLE_DESC,Strike a link already standing on his chain. He still speaks this round.
 UI_V2_RECORD,Public Record
-UI_V2_RECORD_CRACKS,{n} crack(s)
+UI_V2_RECORD_CRACKS,Cracks: {n}
 UI_V2_RECORD_DESC,Everything you have said in this debate.
 UI_V2_RECORD_DOWN,Knocked down
 UI_V2_RECORD_REBUT,Rebuttal
@@ -2393,7 +2394,7 @@ UI_V2_REP_HELD,A break that held
 UI_V2_REP_LOSS,Out-argued
 UI_V2_REP_PRIVATE,Exposed a private matter ×{n}
 UI_V2_REP_PSYCH,Played on his nerves
-UI_V2_REP_STALL,Stalled too often
+UI_V2_REP_STALL,Muddied the waters too often
 UI_V2_REP_UP,↑
 UI_V2_RESULT_ROUNDS,{n} rounds
 UI_V2_RONPA_PROGRESS,Chain {n}/{need}   Issues {m}/2

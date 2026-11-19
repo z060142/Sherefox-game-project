@@ -7,7 +7,7 @@ ISSUE_D01_MOTIVE,動機,Motive,issue name
 ISSUE_D01_MOTIVE_SHORT,動,Mot.,issue short label (chain colour chip)
 CLM_D01_01A,筒鎖完好，用真鑰匙開,"Lock intact, opened with its key",claim short label; evidence E01 文件筒; issue 法
 CLM_D01_01A_SHORT,筒鎖完好，用真鑰匙開,"Lock intact, true key used","short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_01A"
-CLM_D01_01A_LINE,筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。,"The lock is intact, not a single pick mark. Whoever opened it used a real key.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01A_LINE,筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。,"The lock is intact, not a single mark of forcing. Whoever opened it used a real key.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
 CLM_D01_01B,筒鎖被動過手腳,The lock was tampered with,claim short label; evidence E01 文件筒; issue 法
 CLM_D01_01B_SHORT,筒鎖被動過手腳,Lock was tampered with,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_01B"
 CLM_D01_01B_LINE,筒鎖被人動過手腳——可是動手腳的，不是只會修鎖的布里格斯。,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
@@ -140,13 +140,13 @@ E_D01_06_DESC,「下午三時至五時，海德宅書房黃銅文件筒，換新
 E_D01_07_NAME,繡字手帕,Embroidered handkerchief,evidence name; grade 關鍵; found at 地下室・廚房 HS17
 E_D01_07_DESC,廚房爐子後面撿到的男用手帕，繡著「M」，有機油味。,"A man's handkerchief found behind the kitchen stove, embroidered with an ""M"". It smells of machine oil.",evidence description (evidence list)
 E_D01_08_NAME,賭場的催款信,Gaming club's demand letter,evidence name; grade 關鍵; found at 臥室 HS23
-E_D01_08_DESC,梅費爾俱樂部致塞德里克：欠款四百鎊，本月底前結清。日期是海德先生過世那天。,"The Mayfair Club to Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died.",evidence description (evidence list)
+E_D01_08_DESC,梅費爾俱樂部致塞德里克：欠款四百鎊，本月底前結清。日期是海德先生過世那天。,"The Mayfair Club to Mr Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died.",evidence description (evidence list)
 E_D01_09_NAME,髮辮胸針（小）,Hair brooch (small),evidence name; grade 一般; found at 閣樓・艾琳的房間 HS20
 E_D01_09_DESC,艾琳抽屜裡的哀悼胸針，和海德太太那枚一模一樣，小一號，背面刻著「給 E.」。,"A mourning brooch from Irene's drawer, identical to Mrs Hyde's but a size smaller. Engraved on the back: ""For E.""",evidence description (evidence list)
 E_D01_10_NAME,書房的吸墨紙,Study blotter,evidence name; grade 關鍵; found at 書房 HS11
 E_D01_10_DESC,印著附錄的反字：「……將遺產之半數，贈予……」名字被墨跡糊掉。,"Bears the codicil in mirror writing: ""...half of my estate I bequeath to..."" The name is lost in a smudge of ink.",evidence description (evidence list)
 E_D01_11_NAME,艾琳的證詞,Irene's statement,evidence name; grade 一般; found at 靈堂 HS02
-E_D01_11_DESC,「燈滅之前，少爺的椅子就空了。燈亮的時候，他站在走廊口，黑手套的指尖亮亮的，像沾了灰。」,"""Before the lights went out, the young master's chair was already empty. When they came back, he was standing at the end of the corridor, and the fingertips of his black gloves were shiny, like they'd got dust on them.""",evidence description (evidence list)
+E_D01_11_DESC,「燈滅之前，少爺的椅子就空了。燈亮的時候，他站在走廊口，黑手套的指尖亮亮的，像沾了灰。」,"""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.""",evidence description (evidence list)
 E_D01_12_NAME,黑紗花圈,Black crape wreath,evidence name; grade 一般; found at 靈堂 HS06
 E_D01_12_DESC,大門內側的黑紗花圈，綁得一絲不苟。,"The black crape wreath on the inside of the front door, tied with meticulous care.",evidence description (evidence list); decoy: of no use
 C_D01_P1_NAME,通靈板,Talking board,evidence name; grade 心理牌; found at 閣樓 HS19
@@ -154,13 +154,13 @@ C_D01_P1_DESC,閣樓舊玩具箱裡的木製靈應盤，盒蓋寫著「1859，�
 OBS_D01_01_NAME,只有一枚的胸針,A one-of-a-kind brooch,觀察 title; found at 靈堂 HS05 海德太太
 OBS_D01_01_TEXT,海德太太說，她的髮辮胸針是老爺用自己的頭髮編的，「世上只有這一枚」。,"Mrs Hyde says her husband wove her hair brooch from his own hair: ""There is only one in all the world.""",觀察 text (notes page)
 PN_D01_1_NAME,懷錶鏈上的墜子,Charms on his watch chain,人物 title; found at 靈堂 HS03 塞德里克
-PN_D01_1_TEXT,塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色的眼珠玻璃、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的把戲」。,"Three little charms hang from Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks"".",人物 text (notes page)
+PN_D01_1_TEXT,塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色的眼珠玻璃、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的把戲」。,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks"".",人物 text (notes page)
 PN_D01_2_NAME,白天的床頭燈,A bedside lamp by day,人物 title; found at 臥室 HS22 床頭燈
-PN_D01_2_TEXT,大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。,"In broad daylight, Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night.",人物 text (notes page)
+PN_D01_2_TEXT,大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。,"In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night.",人物 text (notes page)
 PN_D01_3_NAME,別過臉的遺體照,Face turned from the photograph,人物 title; found at 靈堂 HS04 遺體照＋HS05 海德太太
-PN_D01_3_TEXT,遺體照裡，塞德里克站在最邊上，臉別了過去。海德太太說：老爺走的那晚一直叫塞德里克的名字，他沒有回來。,"In the memorial photograph, Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Cedric's name, and Cedric never came.",人物 text (notes page); complete only after both HS_D01_04 and HS_D01_05
+PN_D01_3_TEXT,遺體照裡，塞德里克站在最邊上，臉別了過去。海德太太說：老爺走的那晚一直叫塞德里克的名字，他沒有回來。,"In the memorial photograph, Mr Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Mr Cedric's name, and he never came.",人物 text (notes page); complete only after both HS_D01_04 and HS_D01_05
 PN_D01_4_NAME,不肯進書房的少爺,He won't enter the study,人物 title; found at 書房 HS13 書房門口（艾琳）
-PN_D01_4_TEXT,艾琳說：前天下午整理書房時，少爺站在門口不肯進來，叫她把鏡子的黑布再拉緊一點，說「看著礙眼」。,"Irene says: when she tidied the study the afternoon before yesterday, the young master stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore"".",人物 text (notes page)
+PN_D01_4_TEXT,艾琳說：前天下午整理書房時，少爺站在門口不肯進來，叫她把鏡子的黑布再拉緊一點，說「看著礙眼」。,"Irene says: when she tidied the study the afternoon before yesterday, Master Cedric stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore"".",人物 text (notes page)
 APR_D01_01_RESULT,鎖完好；用原配鑰匙開；鎖芯無油,Lock intact; opened with its own key; no oil inside,appraisal result note added to E01 黃銅文件筒
 APR_D01_02_RESULT,座鐘在熄燈時被震動而重新走動,Jolted back into motion when the lights went out,appraisal result note added to E02 書房的座鐘
 APR_D01_04_RESULT,總閥上是書房壁爐的煙灰,The valve bears soot from the study fireplace,appraisal result note added to E04 煤氣總閥
@@ -168,11 +168,11 @@ SCENE_D01_PARLOR,靈堂,Parlour,investigation location name
 HS_D01_01_NAME,靈柩與座椅,Coffin and chairs,hotspot name; yields 案件筆記
 HS_D01_01_DESC,靈柩兩旁排著六張椅子。最靠近走廊的那一張，椅墊上還有一點凹陷，坐墊旁的小桌上放著一杯沒喝完的白蘭地，桌角的小燭台卻是空的——其他五張椅子旁的白蠟燭都還點著。,"Six chairs line the coffin, three to a side. The one nearest the corridor still has a slight dent in its cushion. On the little table beside it sits an unfinished glass of brandy, but the small candlestick on the table's corner is empty. By the other five chairs, the white candles are still burning.",hotspot description shown when inspected
 HS_D01_02_NAME,艾琳,Irene,hotspot name; yields E_D01_11 艾琳的證詞
-HS_D01_02_DESC,年輕的女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套——本來就是黑的，可是指尖亮亮的，像沾了灰。」,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. He wears black gloves, they're black anyway, but the fingertips were shiny, like they'd got dust on them.""",hotspot description shown when inspected
-HS_D01_03_NAME,塞德里克,Cedric,hotspot name; yields PN_D01_1 護身符
-HS_D01_03_DESC,塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色的眼珠玻璃、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的把戲。」,"Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks.""",hotspot description shown when inspected
+HS_D01_02_DESC,年輕的女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套——本來就是黑的，可是指尖亮亮的，像沾了灰。」,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.""",hotspot description shown when inspected
+HS_D01_03_NAME,塞德里克,Mr Cedric,hotspot name; yields PN_D01_1 護身符
+HS_D01_03_DESC,塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色的眼珠玻璃、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的把戲。」,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks.""",hotspot description shown when inspected
 HS_D01_04_NAME,遺體照,Memorial photograph,hotspot name; yields PN_D01_3（前半）
-HS_D01_04_DESC,靈堂正中掛著昨天拍的遺體照，全家人圍著亡者。塞德里克站在最邊上，臉別了過去，只拍到半張側臉。,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Cedric stands at the very edge, face turned away; the camera caught only half his profile.",hotspot description shown when inspected
+HS_D01_04_DESC,靈堂正中掛著昨天拍的遺體照，全家人圍著亡者。塞德里克站在最邊上，臉別了過去，只拍到半張側臉。,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile.",hotspot description shown when inspected
 HS_D01_05_NAME,海德太太,Mrs Hyde,hotspot name; yields PN_D01_3（後半）、OBS_D01_01
 HS_D01_05_DESC,「老爺走的那晚，一直叫塞德里克的名字。我派人去找，他沒有回來。」她摸著胸前的髮辮胸針：「這是老爺用自己的頭髮給我編的，世上只有這一枚。」,"""The night my husband died, he kept calling Cedric's name. I sent for him, but he never came."" She touches the hair brooch at her breast. ""My husband wove this for me from his own hair. There is only one in all the world.""",hotspot description shown when inspected
 HS_D01_06_NAME,門口的黑紗花圈,Black crape wreath at the door,hotspot name; yields E_D01_12 黑紗花圈
@@ -191,8 +191,8 @@ HS_D01_11_DESC,吸墨紙上印著幾行反過來的字。拿到鏡子前（Shere
 HS_D01_12_NAME,壁爐的通風閥,Fireplace damper,hotspot name; yields 案件筆記
 HS_D01_12_DESC,壁爐很久沒生火了，爐膛冷冰冰的。通風閥的拉桿上有一道新鮮的煙灰指印，拉桿卡住了，拉不動。,No fire has been lit here for a long time; the grate is stone cold. The damper lever bears a fresh sooty fingerprint. The lever is jammed and won't budge.,hotspot description shown when inspected
 HS_D01_13_NAME,書房門口,Study doorway,hotspot name; yields PN_D01_4 書房門口
-HS_D01_13_DESC,艾琳跟了過來，站在門口小聲說：「前天下午我整理書房，少爺站在門口，不肯進來。他叫我把鏡子的黑布再拉緊一點，說『看著礙眼』。」,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and the young master stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.""",hotspot description shown when inspected
-HS_D01_14_NAME,書桌抽屜,Desk drawer,hotspot name; yields 案件筆記
+HS_D01_13_DESC,艾琳跟了過來，站在門口小聲說：「前天下午我整理書房，少爺站在門口，不肯進來。他叫我把鏡子的黑布再拉緊一點，說『看著礙眼』。」,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and Master Cedric stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.""",hotspot description shown when inspected
+HS_D01_14_NAME,書房書桌抽屜,Study desk drawer,hotspot name; yields 案件筆記
 HS_D01_14_DESC,右邊的抽屜沒有鎖，裡面有一個空的小絨布袋，袋口的形狀像是放過一把小鑰匙。,"The right-hand drawer is unlocked. Inside is a small empty velvet pouch, its mouth shaped as though it once held a little key.",hotspot description shown when inspected
 SCENE_D01_BASEMENT,地下室（含廚房）,Basement (and kitchen),investigation location name
 HS_D01_15_NAME,煤氣總閥,Main gas valve,hotspot name; yields E_D01_04 地下室煤氣總閥
@@ -210,10 +210,10 @@ HS_D01_20_NAME,艾琳的房間・抽屜,Irene's room: drawer,hotspot name; yield
 HS_D01_20_DESC,抽屜裡用手帕包著一枚小胸針，玻璃框裡編著一束灰褐色的頭髮，和海德太太胸前那枚一模一樣，只是小一號。背面刻著「給 E.」。,"Wrapped in a handkerchief in the drawer is a small brooch, a lock of greyish-brown hair woven under its glass. It is identical to the one Mrs Hyde wears, only a size smaller. Engraved on the back: ""For E.""",hotspot description shown when inspected
 HS_D01_21_NAME,窗台的鹽與迷迭香,Salt and rosemary on the sills,hotspot name; yields 案件筆記
 HS_D01_21_DESC,每扇窗的窗台上都撒了一小撮鹽，插著迷迭香。,Every windowsill has a small pinch of salt scattered on it and a sprig of rosemary laid there.,hotspot description shown when inspected
-SCENE_D01_BEDROOM,塞德里克的臥室,Cedric's bedroom,investigation location name
+SCENE_D01_BEDROOM,塞德里克的臥室,Mr Cedric's bedroom,investigation location name
 HS_D01_22_NAME,床頭燈,Bedside lamp,hotspot name; yields PN_D01_2 床頭燈
 HS_D01_22_DESC,大白天，床頭的油燈還點著。燈芯剪得很短，玻璃罩燻得發黑，看得出整夜沒熄過。,"In broad daylight, the oil lamp by the bed is still burning. The wick is trimmed very short and the glass chimney is blackened; it plainly burned all night.",hotspot description shown when inspected
-HS_D01_23_NAME,書桌抽屜,Desk drawer,hotspot name; yields E_D01_08 賭場的催款信
+HS_D01_23_NAME,臥室書桌抽屜,Bedroom desk drawer,hotspot name; yields E_D01_08 賭場的催款信
 HS_D01_23_DESC,一封「梅費爾俱樂部」的信：「塞德里克・海德先生台鑒：閣下所欠四百鎊，請於本月底前結清。」日期是三天前——海德先生過世的那一天。,"A letter from the Mayfair Club: ""C. Hyde, Esq. Sir, the four hundred pounds you owe are to be settled by the end of this month."" It is dated three days ago: the day Mr Hyde died.",hotspot description shown when inspected
 HS_D01_24_NAME,衣櫃門內側,Inside the wardrobe door,hotspot name; yields 案件筆記
 HS_D01_24_DESC,衣櫃門內側釘著一個生鏽的小馬蹄鐵，開口朝上。,"A small rusty horseshoe is nailed to the inside of the wardrobe door, ends pointing up.",hotspot description shown when inspected

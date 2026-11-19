@@ -96,9 +96,11 @@ def tables() -> dict[str, list[dict]]:
                       "art": f"HS_D01_{n}_ART", "x": s["x"], "y": s["y"], "w": s["w"], "h": s["h"], "type": s["icon"],
                       "ev": s["ev"], "ev0": ev[0], "ev1": ev[1], "note": s["note"], "pair": s["pair"],
                       "pairNote": s["pairNote"]})
-    # the place tab: the short name where the package has one (SCENE_D01_<id>_TAB), else the full name (headings)
+    # the place tab: the short name where the package has one (SCENE_D01_<id>_TAB), else the full name. E7: the
+    # full name of a place with a short tab is shown nowhere (no place heading on the screen; listed for the design
+    # team, docs/d01-string-coverage.md), so the table has no column for it
     keys = F.string_keys()
-    scenes = [{"id": sid, "bg": bg, "name": f"SCENE_D01_{sid}",
+    scenes = [{"id": sid, "bg": bg,
                "tab": f"SCENE_D01_{sid}_TAB" if f"SCENE_D01_{sid}_TAB" in keys else f"SCENE_D01_{sid}",
                "spots": SEP.join(s["id"] for s in SPOTS if s["scene"] == sid),
                "n": sum(1 for s in SPOTS if s["scene"] == sid)} for sid, bg in SCENES]

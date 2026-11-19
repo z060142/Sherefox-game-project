@@ -1,8 +1,8 @@
 [
-  {"id": "PARLOR", "bg": "parlour", "name": "SCENE_D01_PARLOR", "tab": "SCENE_D01_PARLOR", "spots": "HS01,HS02,HS03,HS04,HS05,HS06,HS07", "n": 7},
-  {"id": "STUDY", "bg": "study", "name": "SCENE_D01_STUDY", "tab": "SCENE_D01_STUDY", "spots": "HS08,HS09,HS10,HS11,HS12,HS13,HS14", "n": 7},
-  {"id": "BASEMENT", "bg": "basement", "name": "SCENE_D01_BASEMENT", "tab": "SCENE_D01_BASEMENT", "spots": "HS15,HS16,HS17,HS18", "n": 4},
-  {"id": "ATTIC", "bg": "attic", "name": "SCENE_D01_ATTIC", "tab": "SCENE_D01_ATTIC_TAB", "spots": "HS19,HS20,HS21", "n": 3},
-  {"id": "BEDROOM", "bg": "bedroom", "name": "SCENE_D01_BEDROOM", "tab": "SCENE_D01_BEDROOM", "spots": "HS22,HS23,HS24", "n": 3},
-  {"id": "HALL", "bg": "hall", "name": "SCENE_D01_HALL", "tab": "SCENE_D01_HALL", "spots": "HS25,HS26", "n": 2}
+  {"id": "PARLOR", "bg": "parlour", "tab": "SCENE_D01_PARLOR", "spots": "HS01,HS02,HS03,HS04,HS05,HS06,HS07", "n": 7},
+  {"id": "STUDY", "bg": "study", "tab": "SCENE_D01_STUDY", "spots": "HS08,HS09,HS10,HS11,HS12,HS13,HS14", "n": 7},
+  {"id": "BASEMENT", "bg": "basement", "tab": "SCENE_D01_BASEMENT_TAB", "spots": "HS15,HS16,HS17,HS18", "n": 4},
+  {"id": "ATTIC", "bg": "attic", "tab": "SCENE_D01_ATTIC_TAB", "spots": "HS19,HS20,HS21", "n": 3},
+  {"id": "BEDROOM", "bg": "bedroom", "tab": "SCENE_D01_BEDROOM", "spots": "HS22,HS23,HS24", "n": 3},
+  {"id": "HALL", "bg": "hall", "tab": "SCENE_D01_HALL", "spots": "HS25,HS26", "n": 2}
 ]
