@@ -24,3 +24,5 @@ tests/d1full_harnessD/
 tests/d1fuzz_harnessB/
 tests/d1fuzz_harnessC/
 tests/d1fuzz_harnessD/
+tests/d1labels_harness/
+tests/d1_labels.atrec

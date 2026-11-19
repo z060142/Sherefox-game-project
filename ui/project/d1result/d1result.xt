@@ -4,12 +4,12 @@
   </head>
 
   <ports>
-    win: number in = 1
-    grade_text: string in = "論破後被反擊仍勝"
-    rounds_text: string in = "共 10 回合"
-    rep: list<struct{label: string, up: number}> in = [{"label":"論破後被反擊仍勝","up":1},{"label":"說詞有裂紋 ×4","up":0},{"label":"公開了別人的私事 ×1","up":0},{"label":"硬把事實說成假的 ×1","up":0}]
-    fav: list<struct{text: string}> in = [{"text":"海德太太 −1"}]
-    fav_on: bool in = true
+    win: number in = 0
+    grade_text: string in = ""
+    rounds_text: string in = ""
+    rep: list<struct{label: string, up: number}> in = []
+    fav: list<struct{text: string}> in = []
+    fav_on: bool in = false
     next: event out
     settings: event out
   </ports>

@@ -340,6 +340,10 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
   - **狀態與系統台詞**：破竹升層 `STATE_D01_SHF_HACHIKU_n`（原有），本場第一次升層後加一步亞瑟 `STATE_D01_ART_HACHIKU`（`hachiku` 紀錄的後置步）；他本場第一次破防：`broken` 紀錄的主步播 Sherefox `STATE_D01_SHF_SHAKEN`（與動搖大字同步）；他進入困獸（`crossed` P）：後置步亞瑟 `STATE_D01_ART_CORNERED`；詭辯的節接上（不含心理牌）：`pAttach` 的最後一個後置步 `SYS_D01_CRACK`。一場一次的旗標用「下一筆才生效」（`hkP`→`hkA`、`shkP`→`shk`，同交鋒串場）。
   - **回合尾巴**（最後一筆紀錄之後，`TAILS` 依序，各自條件成立才播，`u1.tail` 記到第幾個）：`SYS_D01_HACHIKU_KEEP`（E4）、本場第一次用心理牌 `SYS_D01_PSYCH_NOTE`、說出帶私事的說法 `SYS_D01_PRIVATE`（每個說法一次，`u1Pv`；`{person}` ＝ `d1uiClaim.person`，ref `private_favour` 的人）、援護已佈置而本回合沒觸發（沒有 `guardSaved` 紀錄）且論戰沒結束 `SYS_D01_COVER_WASTED`。章節只寫出 B R1（心理牌註記接在 CLASH 之後）與 C R6（私事接在 CLASH 之後），與尾巴一致；四者之間的先後章節沒有寫，照「新句排在原有的之後」。
   - 測試：`tests/check_d1_play.py`（路線 A～D 的每一步與預兆台詞對 ref；手抄樣本加 A1、A4、B1、C6 與殘局的兩句預兆）、`tests/check_d1_lines.py`（各劇本也逐步對 ref；S6 私事與援護沒用上；`E5_REACHED` 列出輪流、遞補、半句、P05、裂紋、心理牌、困獸各在哪個劇本回合）。
+- **E6 追加**（M5 審查 V1、V2、V4、5.2 的發現）：
+  - **開場的第一個可見 tick**（V1）：`world.debGo` 時畫面就顯示，但引擎的第 1 回合要到開場一步（S07 L004）播完才鎖存。從步驟開始（`world.stepBegin`）與 `debGo` 起，到第 1 回合顯示為止，每個 port 都是新論戰的初始狀態：鎖存值 `L_<x>` 在這段期間是章的常數（ref `model.initial_state`：回合 1／`max_rounds`、雙方滿可信度、心理量表起始值與門檻 → 平常、表情 0、連擊與破竹 0、`choose`），之後才是引擎的鎖存值 `Lr_<x>`（同一個脈衝上切換，所以那個脈衝當下要讀的用 `Lr_<x>`）；兩條鏈、公開紀錄、證物與說法清單寫成空清單（從永遠空的 `u1None`，期間內的換語言也一樣）；`phase` 1（忙碌，開場一步接著播）、`hpM`／`hpO` 滿值；論點框（`tell_on`）、預兆台詞、播放的台詞與系統台詞、浮動數字都是空的，各自等到第 1 回合、第一個播放步、第一個浮動數字才寫（`fresh` 狀態節點）；論破進度與拆台按鈕不讀上一場的鏈。測試：`tests/check_d1_play.py` 的 `check_first_tick`（每條路線的第一場、`d1_twiceA`／`D` 打完一場後從開發入口再玩一場）與 `tests/check_d1_full.py`（章的第一場、路線 D 敗北後重玩到論戰）。
+  - **音樂旗標**（V2）：`u1`（含 `m8`／`m9`／`m10`／`hush`）與各集合在步驟開始時也清空（原本只在 `debGo`）：同一局的第二場論戰不再先閃一下 BGM09。`tests/check_music.py` 的 `d1_twiceA`／`d1_twiceD`。
+  - **短標**（V4，企劃 db14007）：兩條鏈的節與公開紀錄用 `d1uiClaim.short`（`CLM_D01_<id>_SHORT`）、`d1uiCard.short`（`CARD_D01_<牌>_SHORT`）；說法選擇器、確認列與系統台詞的 `{claim}`／`{node}` 仍用全名。抓住他的話的節與紀錄顯示 `UI_V2_SEIZE`（「抓住他的話」／Seize His Words），不是被抓的 U 牌的標籤（設計假設是 U 牌的 `_SHORT`；待企劃決定，沒有自己加 ID）。
 - **已知限制**：互相接上時 `SYS_D01_ATTACH` 與 `SYS_D01_CLASH` 都播（§12.1 第 3 回合只寫 CLASH，且把算式放進 `{dmg_p}`）；結算畫面、名聲與好感明細、回到標題由 4.4 接上（§4.15）。
 
 ### 4.13 `d01_investigate`（v2 示範關卡 D01 的蒐證、證物清單、人物筆記、攜帶選擇；v2 demo M3；ui-contracts d1inv、d1book、d1carry）
@@ -359,6 +363,10 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - **出發**：清空並依資料順序寫 `d1Carry`（選的）、`d1Appraised`（做過的鑑定）、`d1Notes`（取得的筆記），再發 `world.stepDone`；`d1debate` 開始後 0.1 秒才送 `d1Start`（§4.12），引擎在前一 tick 以前就讀得到。
 - **論戰的預設說法**（§4.12）：選證物（或換行動時沿用的證物）有私下的看法，而且那句說法在本回合的 `d1ClaimList`、行動可用（議論時不在鏈上）→ 說法選擇器預設停在那句。
 - **E3 追加**（企劃 e20fd81）：地點分頁用短名（`d1iScene.tab`：有 `SCENE_D01_<地點>_TAB` 的用它，目前是閣樓；全名留給標題）；地下室站著瑪莎（`char_martha.png`，廚房桌右側，HS18）、門廳的布里格斯改為自帶長椅的坐姿（`char_briggs_seated.png`，門前，不與背景的長椅重疊，HS26）；攜帶畫面「返回」不重置鑑定次數，再進來算新的一次，亞瑟說過的話可以再說（裁定 4，`tests/check_d1_m3.py`）。
+- **E6 追加**（M5 審查 V3、V5 與畫面稽核）：
+  - **L010**（V3，企劃裁定 (c)）：確定時只要宅邸裡還有對手撿得走的東西（ref `model.pickups_for`：撿取順序裡有 `opponent_use`、沒帶走的證物，由產生器從 ref 的資料推出 `PICKABLE`，含玩家沒找到的）就播 L010，不列出是什麼；留下的清單（L009）仍只列找到的。沒有「找到卻沒帶」的東西時不出確認框，直接播 L010（還有撿得走的）或出發。
+  - **新項目數字**（V5）：證物清單按鈕的數字與「新」標記只算證物與心理牌；人物筆記與觀察不再加入 `i1New`。
+  - **第一個可見 tick**（V1 的稽核）：蒐證、攜帶、熱身三個畫面的 port 在步驟開始的脈衝上寫、下一 tick 才讀回，`main` 因此晚一個 tick 才顯示它們（`D1_LATE`）；證物清單也在按鈕後一個 tick 才打開。結算畫面與 S11 原本就沒有問題。測試：`tests/check_d1_full.py` `check_settled`（每次顯示的第一個 tick 等於 5 tick 後、清單 port 都寫過）。
 - **已知限制**：蒐證與攜帶畫面的音樂由 D01 的 cue 表決定（§4.10）；地點與攜帶畫面沒有第一次出現的提示行以外的教學；地點分頁的完成點只看「都調查過」。
 
 ### 4.14 v2 示範關卡 D01 的劇情與熱身（M4a；`paper`、`vn`、`d01_warmup`；ui-contracts paper、vn、d1warm）

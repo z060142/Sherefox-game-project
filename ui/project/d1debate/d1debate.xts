@@ -553,7 +553,10 @@
 }
 
 :lang(en) .clm-t {
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: normal;
+  line-clamp: 2;
 }
 
 .tag {
@@ -566,6 +569,10 @@
 .tag-red {
   color: var(--vermilion);
   font-weight: 700;
+}
+
+:lang(en) .clm .tag {
+  font-size: 10px;
 }
 
 .tag-cu {

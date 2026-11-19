@@ -146,51 +146,63 @@ BTN_TO_DEBATE,Enter Debate
 BTN_YES,Yes
 CARD_D01_F1,Locksmith had the tube and keys
 CARD_D01_F1_PUSH,"He handled the tube, and he had skeleton keys! Do you dare deny either?"
+CARD_D01_F1_SHORT,Locksmith had tube and keys
 CARD_D01_F1_STATE,"The locksmith was alone with that tube this afternoon, and he carried skeleton keys. Those are facts."
 CARD_D01_F2,Anyone could have slipped out
 CARD_D01_F2_PUSH,Three minutes of darkness! Why single me out?
+CARD_D01_F2_SHORT,Anyone could have left
 CARD_D01_F2_STATE,"For those three minutes of darkness, no one could see anyone. Anyone in this house might have left their seat."
 CARD_D01_K1,I went to check the valve
 CARD_D01_K1_DOWN,S-soot from the study... (He looks at his own gloves)
+CARD_D01_K1_SHORT,I went to check the valve
 CARD_D01_K1_STATE,"I-I admit I went to the basement—the lights had gone out, someone had to see to the valve!"
 CARD_D01_L1,I stayed by the coffin all night
 CARD_D01_L1_DOWN,Th-that was... I misremembered. I merely went to fetch a glass.
 CARD_D01_L1_PUSH,I never stirred a step! Everyone present can vouch for me!
 CARD_D01_L1_RETRACT,...I may have got up once to replace a candle. Right beside the coffin.
+CARD_D01_L1_SHORT,By the coffin all night
 CARD_D01_L1_STATE,I kept watch beside my uncle's coffin all night. I never left it for a moment.
 CARD_D01_L2,The locksmith rigged the lock
 CARD_D01_L2_DOWN,...A real key? B-but only my uncle had that key—(he stops himself)
 CARD_D01_L2_PUSH,He tampered with it! How else does a locked tube empty itself?
 CARD_D01_L2_RETRACT,"What I mean is... the locksmith ""may"" have tampered with it. A perfectly reasonable inference."
+CARD_D01_L2_SHORT,Locksmith rigged the lock
 CARD_D01_L2_STATE,The locksmith tampered with the lock when he repaired it this afternoon. That tube could be opened without a key.
 CARD_D01_L3,The locksmith meant to blackmail Aunt
 CARD_D01_L3_DOWN,...Th-that was merely my supposition.
 CARD_D01_L3_PUSH,A poor locksmith sees something worth money—what more reason does he need?
 CARD_D01_L3_RETRACT,"Perhaps not blackmail... perhaps someone hired him. At any rate, it was not me."
+CARD_D01_L3_SHORT,Locksmith meant blackmail
 CARD_D01_L3_STATE,"The locksmith meant to use the codicil to blackmail my aunt. With it in hand, he could name his price."
 CARD_D01_L4,Someone fled by the back door
 CARD_D01_L4_DOWN,S-someone was in the kitchen the whole time? ...Then what did I hear?
 CARD_D01_L4_PUSH,The back door! I heard it as plain as day!
 CARD_D01_L4_RETRACT,Perhaps... it was the wind rattling the door.
+CARD_D01_L4_SHORT,Someone fled out the back
 CARD_D01_L4_STATE,"When the lights went out, I heard the back door bang. Someone ran out."
 CARD_D01_P05,Brass filings on the key
 CARD_D01_P05_DOWN,A c-clean lock...? (He puts the ring of keys back on the table)
 CARD_D01_P05_PUSH,Brass filings! The proof is on the very keys you left behind!
+CARD_D01_P05_SHORT,Brass filings on the key
 CARD_D01_P05_STATE,I have examined this ring of skeleton keys Miss Fox left behind. The teeth of this one bear brass filings from the tube's lock. This is the key that opened it.
 CARD_D01_P06,Locksmith worked on the tube alone
 CARD_D01_P06_PUSH,In black and white! He repaired it alone!
+CARD_D01_P06_SHORT,Locksmith alone with tube
 CARD_D01_P06_STATE,"This work order states it plainly: at three in the afternoon, the locksmith was alone in the study, repairing that tube."
 CARD_D01_P07,The locksmith came back last night
 CARD_D01_P07_PUSH,He was in the house! Your own handkerchief says so!
+CARD_D01_P07_SHORT,Locksmith back last night
 CARD_D01_P07_STATE,"This handkerchief was found in the kitchen, and it smells of machine oil. The locksmith crept back last night—when the lights went out, he was in this very house."
 CARD_D01_U1,That valve was always loose
 CARD_D01_U1_CATCH,"Only a man who has turned that valve would know whether it's loose. Mr Cedric, you turned it."
 CARD_D01_U1_PUSH,"That valve was always loose! One light turn and... I-I mean, so the servants say!"
+CARD_D01_U1_SHORT,That valve was always loose
 CARD_D01_U1_STATE,That valve in the basement was always loose—(he stops)
 CARD_D01_U1_TELL,The basement...
 CARD_D01_U2,I do owe a little money
 CARD_D01_U2_CATCH,A gentleman who owes four hundred pounds by the end of the month is the last man who wants his inheritance halved.
 CARD_D01_U2_PUSH,"Yes, I owe money! Four hundred pounds! And what of it?"
+CARD_D01_U2_SHORT,I do owe a little money
 CARD_D01_U2_STATE,"...Very well, I owe a little money. What gentleman doesn't?"
 CARD_D01_U2_TELL,Money...
 CHAP_01_TITLE,The Vanishing Clockwork Caramel Pudding
@@ -211,64 +223,94 @@ CLM_CH03_T1,It was that old bargeman who turned the valve!
 CLM_CH03_W1,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!"
 CLM_D01_01A,"Lock intact, opened with its key"
 CLM_D01_01A_LINE,"The lock is intact, not a single pick mark. Whoever opened it used a real key."
+CLM_D01_01A_SHORT,"Lock intact, true key used"
 CLM_D01_01B,The lock was tampered with
 CLM_D01_01B_LINE,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
+CLM_D01_01B_SHORT,Lock was tampered with
 CLM_D01_01C,No oil in the lock
 CLM_D01_01C_LINE,That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it.
+CLM_D01_01C_SHORT,No oil in the lock
 CLM_D01_01D,Locksmith had nothing to open it
 CLM_D01_01D_LINE,"It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
+CLM_D01_01D_SHORT,Locksmith couldn't open it
 CLM_D01_02A,Clock restarted when the lights died
 CLM_D01_02A_LINE,"The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece."
+CLM_D01_02A_SHORT,Clock restarted in the dark
 CLM_D01_02B,The clock restarted on its own
 CLM_D01_02B_LINE,An old clock left stopped will start swinging at the slightest tremor. It's over an hour slow. Nothing to do with the lights.
+CLM_D01_02B_SHORT,Clock restarted by itself
 CLM_D01_02C,"Twenty to ten, he called for you"
 CLM_D01_02C_LINE,"This clock stopped at twenty to ten, the moment Mr Hyde breathed his last. Until then he kept calling one name. Mr Cedric, where were you?"
+CLM_D01_02C_SHORT,"Twenty to ten, he called you"
 CLM_D01_03A,Wake candle wax on the cloth
 CLM_D01_03A_LINE,"On the black cloth from the study mirror there's a drop of white wax, still soft. Wake candle wax. And the candlestick by the chair nearest the corridor is empty. When the lights went out, someone took a candle from that seat into the study."
+CLM_D01_03A_SHORT,Wake candle wax on the cloth
 CLM_D01_03B,No one dared cover the mirror
 CLM_D01_03B_LINE,"The cloth was knocked off, and nobody put it back. A mirror left bare on a wake night! Whoever did it didn't dare so much as look back."
+CLM_D01_03B_SHORT,None dared cover the mirror
 CLM_D01_04A,Someone turned the valve down
 CLM_D01_04A_LINE,The main valve has fresh turn marks. The lights didn't dim on their own. Someone in the basement turned it down.
+CLM_D01_04A_SHORT,Valve was turned down
 CLM_D01_04B,Study soot on the valve wheel
 CLM_D01_04B_LINE,"The soot on that valve wheel came from the study fireplace. Whoever dimmed the lights went to the study first, then back down to turn them up again. He never left the house."
+CLM_D01_04B_SHORT,Study soot on the valve
 CLM_D01_04C,Only Martha in the kitchen
 CLM_D01_04C_LINE,"When the lights went out, the back door stayed shut and Martha was alone in the basement kitchen. No one ran out the back."
+CLM_D01_04C_SHORT,Only Martha in the kitchen
 CLM_D01_05A,Every skeleton key is oiled
 CLM_D01_05A_LINE,"Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn."
+CLM_D01_05A_SHORT,Every skeleton key is oiled
 CLM_D01_05B,Skeleton keys can't open the tube
 CLM_D01_05B_LINE,"Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube."
+CLM_D01_05B_SHORT,Keys can't open the tube
 CLM_D01_06A,"Lock mended, no back door left"
 CLM_D01_06A_LINE,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
+CLM_D01_06A_SHORT,"Lock mended, no back door"
 CLM_D01_06B,Locksmith left in the evening
 CLM_D01_06B_LINE,The work order says he finished at five. Briggs left in the evening and wasn't in the house on wake night at all. He has nothing to do with this.
+CLM_D01_06B_SHORT,Locksmith left by evening
 CLM_D01_06C,"Work order only says ""tested"""
 CLM_D01_06C_LINE,"The work order says ""tested"", not ""repaired"". Briggs never touched the inside of that lock."
+CLM_D01_06C_SHORT,"Work order says ""tested"""
 CLM_D01_07A,Locksmith met Martha in the kitchen
 CLM_D01_07A_LINE,"This handkerchief was behind the kitchen stove. It smells of machine oil and bears Martha the cook's initial. Briggs slipped back at night to see her. When the lights went out, he was in the kitchen by the back door, and nobody ran out the back."
+CLM_D01_07A_SHORT,Locksmith met Martha
 CLM_D01_07B,Locksmith came back for Martha
 CLM_D01_07B_LINE,"Briggs risked sneaking back for Martha, not for any codicil."
+CLM_D01_07B_SHORT,He came back for Martha
 CLM_D01_08A,Four hundred pounds in gaming debts
 CLM_D01_08A_LINE,The Mayfair Club. Four hundred pounds. Due by the end of the month. The one who needs money is you.
+CLM_D01_08A_SHORT,£400 in gaming debts
 CLM_D01_08B,At the club the night Uncle died
 CLM_D01_08B_LINE,"The demand letter is dated the day Mr Hyde died. And that night, you were at the club."
+CLM_D01_08B_SHORT,At the club when Uncle died
 CLM_D01_09A,Irene is Mr Hyde's daughter
 CLM_D01_09A_LINE,"The brooch in Irene's drawer is the twin of Mrs Hyde's, woven from Mr Hyde's hair. Irene is Mr Hyde's daughter. The codicil was meant for her."
+CLM_D01_09A_SHORT,Irene is Mr Hyde's daughter
 CLM_D01_09B,The brooch is just a keepsake
 CLM_D01_09B_LINE,Mrs Hyde gave Irene that brooch as a keepsake. It has nothing to do with the will.
+CLM_D01_09B_SHORT,Brooch is just a keepsake
 CLM_D01_10A,The codicil halved your share
 CLM_D01_10A_LINE,"The blotter holds the codicil in mirror writing: ""half of my estate I bequeath to..."" The old will left you everything. This codicil cut your share in half."
+CLM_D01_10A_SHORT,Codicil halved your share
 CLM_D01_10B,First to see the codicil
 CLM_D01_10B_LINE,"Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done."
+CLM_D01_10B_SHORT,First to see the codicil
 CLM_D01_11A,Your chair was empty before dark
 CLM_D01_11A_LINE,Irene says your chair was already empty before the lights went out.
+CLM_D01_11A_SHORT,Empty chair before the dark
 CLM_D01_11B,Dust on your glove tips
 CLM_D01_11B_LINE,"Irene says when the lights came back you were at the end of the corridor, with dust on the fingertips of your black gloves."
+CLM_D01_11B_SHORT,Dust on your glove tips
 CLM_D01_12A,This family takes the wake seriously
 CLM_D01_12A_LINE,"The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter."
+CLM_D01_12A_SHORT,They take the wake seriously
 CLM_D01_P1A,He is still in this house
 CLM_D01_P1A_LINE,"(Sets the talking board on the little table by the coffin) The wake isn't over. Mr Hyde is still in this house. Mr Cedric, is there anything you'd like to say to him?"
+CLM_D01_P1A_SHORT,He is still in this house
 CLM_D01_P1B,He knows who did it
 CLM_D01_P1B_LINE,"(The planchette slides slowly to ""YES"") ...Look. He says he knows who did it."
+CLM_D01_P1B_SHORT,He knows who did it
 CUT_BRINK,絕境
 CUT_BRINK_LOG,【絕境】
 CUT_BRINK_SUB,AT THE BRINK
@@ -1506,7 +1548,7 @@ SCR_D01_S08_TITLE,Results
 SCR_D01_S09_L001,【The London Lantern】Wake Mystery Solved; Missing Codicil Found in Fireplace
 SCR_D01_S09_L002,"Our correspondent reports: the truth behind the theft of a codicil from Hyde House, Kensington, came to light yesterday. Cedric Hyde, nephew of the deceased, seeking to conceal heavy gaming debts, closed the main gas valve during the wake, took the codicil and laid the blame on a locksmith who had called to mend the lock. The fox-eared detective of Baker Street exposed the flaws in his story one by one before all present, and the codicil was recovered intact from the study fireplace. The locksmith, Briggs, was released on the spot."
 SCR_D01_S09_L003,"【The London Lantern】Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed"
-SCR_D01_S09_L004,"Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Mr Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
+SCR_D01_S09_L004,"Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Cedric Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
 SCR_D01_S09_L005,【The London Lantern】Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake
 SCR_D01_S09_L006,"Our correspondent reports: in the matter of the codicil stolen from Hyde House, the locksmith Briggs has been formally committed. The fox-eared detective of Baker Street, engaged to look into the affair, argued openly with the Hyde family in the parlour but failed to produce any convincing evidence. The family states that the estate will be settled under the existing will."
 SCR_D01_S09_L007,We are further informed by a source close to the household that a young maid in the Hyde family's service is believed to be the natural daughter of the deceased. The matter was revealed before all present in the parlour; Mrs Hyde has since declined to be interviewed.

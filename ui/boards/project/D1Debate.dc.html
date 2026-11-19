@@ -105,9 +105,11 @@
   .clm.soph .clm-kind { background-color: #6b3a7a }
   .clm-t { font-family: var(--font-display); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-deep);
            white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-  :lang(en) .clm-t { font-size: 13px }
+  /* v2 demo E6 (V4): in English a claim title wraps to two lines (the full title, no ellipsis needed). */
+  :lang(en) .clm-t { font-size: 12px; line-height: 14px; white-space: normal; line-clamp: 2 }
   .tag { font-family: var(--font-body); font-size: 11px; line-height: 16px; white-space: nowrap; flex-shrink: 0 }
   .tag-red { color: var(--vermilion); font-weight: 700 }
+  :lang(en) .clm .tag { font-size: 10px }
   .tag-cu { color: var(--copper) }
   .tag-ink { color: #123a31aa }
 
@@ -174,7 +176,7 @@
   .opp-name { font-family: var(--font-display); font-size: 20px; line-height: 34px; font-weight: 700; color: var(--paper); text-align: center; white-space: nowrap }
 </style></helmet>
 <div id="d1debate" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
-     data-xt-port='round_text:string in = "第 3 回合／20"; opp_name:string in = "塞德里克"; opp_cred:string in = "塞德里克 的可信度"; hp_me:number in = 124; hp_me_max:number in = 140; hp_opp:number in = 180.5; hp_opp_max:number in = 230; face:number in = 1; band_p:number in = 0; band_g:number in = 1; band_a:number in = 0; combo_text:string in = "連擊 ×2"; hachiku:number in = 2; hachiku_text:string in = "破竹 ×2"; guard_down:bool in = false; shisshu:bool in = false; ronpa_text:string in = "鏈長 2／4　爭點 2／2"; ronpa_ready:bool in = false; ronpa_ready_text:string in = "他破防了。這回合接上就論破！"; show_ronpa:bool in = true; tell_on:bool in = true; tell_head:string in = "他正要說"; tell_card:string in = "鎖匠碰過筒子、有萬用鑰匙"; tell_partial:bool in = false; tell_clear:bool in = true; tell_a:number in = 0; tell_b:number in = -1; tell_star:number in = -1; tell_gesture:string in = "整理黑領巾、微微一笑"; dying:bool in = false; dying_text:string in = "垂死反撲：打中只扣 10"; ochain_title:string in = "塞德里克 的推理鏈"; ochain:list&lt;struct{id: string, label: string, issue: string, sel: bool}&gt; in = [{"id":"L1","label":"整晚守在靈柩旁","issue":"機","sel":false}]; pchain:list&lt;struct{id: string, label: string, issue: string, crack: number}&gt; in = [{"id":"04A","label":"總閥被人關小","issue":"法","crack":0},{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","crack":0}]; ev_list:list&lt;struct{id: string, name: string, sel: bool}&gt; in = [{"id":"E01","name":"黃銅文件筒（空）","sel":false},{"id":"E02","name":"書房的座鐘","sel":false},{"id":"E04","name":"地下室煤氣總閥","sel":false},{"id":"E06","name":"布里格斯的工作單","sel":true},{"id":"E08","name":"賭場的催款信","sel":false}]; claims:list&lt;struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}&gt; in = [{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","kind":"正論","soph":0,"crack":"","stand":"已在鏈上","extra":"","ok":0,"sel":false},{"id":"06B","label":"鎖匠傍晚就走了","issue":"機","kind":"正論","soph":0,"crack":"","stand":"","extra":"","ok":1,"sel":true},{"id":"06C","label":"工作單只寫「校試」","issue":"法","kind":"詭辯","soph":1,"crack":"與妳說過的話矛盾","stand":"","extra":"","ok":1,"sel":false}]; record:list&lt;struct{n: string, label: string, use: string, soph: string, crack: string, state: string}&gt; in = [{"n":"第 1 回合","label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":"第 2 回合","label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]; mode:number in = 0; phase:number in = 0; act:number in = 1; can_dismantle:bool in = true; guard_ok:bool in = true; guard_armed:bool in = false; guard_left:bool in = true; sel_claim_text:string in = "鎖匠傍晚就走了"; sel_target_text:string in = ""; need_target:bool in = false; can_lock:bool in = true; picker_on:bool in = true; hint_who:string in = "塞德里克"; hint:string in = "我受夠這場鬧劇了。"; hint2_who:string in = "亞瑟"; hint2:string in = "他摘手套了——準備接住。"; speech_who:string in = "Sherefox"; speech:string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"; sys_line:string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"; line_seq:number in = 0; float_opp:string in = ""; float_me:string in = ""; float_opp_seq:number in = 0; float_me_seq:number in = 0; shatter_seq:number in = 0; pick_act:number out = 0; pick_ev:string out = ""; pick_claim:string out = ""; pick_target:string out = ""; guard:event out; lock:event out; skip:event out; settings:event out'
+     data-xt-port='round_text:string in = ""; opp_name:string in = ""; opp_cred:string in = ""; hp_me:number in = 0; hp_me_max:number in = 0; hp_opp:number in = 0; hp_opp_max:number in = 0; face:number in = 0; band_p:number in = 0; band_g:number in = 0; band_a:number in = 0; combo_text:string in = ""; hachiku:number in = 0; hachiku_text:string in = ""; guard_down:bool in = false; shisshu:bool in = false; ronpa_text:string in = ""; ronpa_ready:bool in = false; ronpa_ready_text:string in = ""; show_ronpa:bool in = false; tell_on:bool in = false; tell_head:string in = ""; tell_card:string in = ""; tell_partial:bool in = false; tell_clear:bool in = false; tell_a:number in = -1; tell_b:number in = -1; tell_star:number in = -1; tell_gesture:string in = ""; dying:bool in = false; dying_text:string in = ""; ochain_title:string in = ""; ochain:list&lt;struct{id: string, label: string, issue: string, sel: bool}&gt; in = []; pchain:list&lt;struct{id: string, label: string, issue: string, crack: number}&gt; in = []; ev_list:list&lt;struct{id: string, name: string, sel: bool}&gt; in = []; claims:list&lt;struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}&gt; in = []; record:list&lt;struct{n: string, label: string, use: string, soph: string, crack: string, state: string}&gt; in = []; mode:number in = 0; phase:number in = 0; act:number in = 0; can_dismantle:bool in = false; guard_ok:bool in = false; guard_armed:bool in = false; guard_left:bool in = false; sel_claim_text:string in = ""; sel_target_text:string in = ""; need_target:bool in = false; can_lock:bool in = false; picker_on:bool in = false; hint_who:string in = ""; hint:string in = ""; hint2_who:string in = ""; hint2:string in = ""; speech_who:string in = ""; speech:string in = ""; sys_line:string in = ""; line_seq:number in = 0; float_opp:string in = ""; float_me:string in = ""; float_opp_seq:number in = 0; float_me_seq:number in = 0; shatter_seq:number in = 0; pick_act:number out = 0; pick_ev:string out = ""; pick_claim:string out = ""; pick_target:string out = ""; guard:event out; lock:event out; skip:event out; settings:event out'
      data-xt-trigger="show:play(intro); port(float_opp_seq):play(float-opp); port(float_me_seq):play(float-me); port(line_seq):play(line-in); port(shatter_seq):play(shatter); port(face):play(face-in); key(1):if port(phase) eq 0 set(pick_act, 1); key(2):if port(phase) eq 0 set(pick_act, 2); key(3):if port(phase) eq 0 set(pick_act, 3); key(4):if port(phase) eq 0 set(pick_act, 4); key(V):if port(phase) eq 0 emit(guard); key(R):state(Open, toggle, target=#record); key(Enter):if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); key(Space):if port(phase) eq 1 emit(skip); key(Escape):emit(settings); key(F1):emit(settings)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: #092e28; font-family: var(--font-body); color: #123a31;">
@@ -214,14 +216,14 @@
   <!-- His credibility (with the guard-down plate) and the three psych gauges. -->
   <div id="opp-cred" class="paper" style="position: absolute; left: 824px; top: 6px; width: 444px; height: 50px;">
     <div id="opp-cred-l" class="cred-l" data-xt-bind="text=opp_cred" style="position: absolute; left: 10px; top: 3px; width: 300px; height: 20px;">塞德里克 的可信度</div>
-    <div id="opp-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_opp, hp_opp_max)" style="position: absolute; left: 310px; top: 3px; width: 124px; height: 20px;">180.5 / 230</div>
+    <div id="opp-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_opp, hp_opp_max); display=hp_opp_max | gt(0)" style="position: absolute; left: 310px; top: 3px; width: 124px; height: 20px;">180.5 / 230</div>
     <div id="opp-track" class="track" style="position: absolute; left: 10px; top: 27px; width: 424px; height: 14px;">
-      <div id="opp-fill" class="fill-opp" data-xt-bind="width=hp_opp | range(0, hp_opp_max, 0%, 100%)" style="position: absolute; left: 0px; top: 0px; width: 78%; height: 12px;"></div>
+      <div id="opp-fill" class="fill-opp" data-xt-bind="width=hp_opp | range(0, hp_opp_max, 0%, 100%); display=hp_opp_max | gt(0)" style="position: absolute; left: 0px; top: 0px; width: 78%; height: 12px;"></div>
     </div>
   </div>
   <div id="float-opp" class="float" data-xt-bind="text=float_opp"
        data-xt-timeline="float-opp: 0 opacity 1, 0 transform translateY(0px), 1300ms ease-out opacity 0, 1300ms ease-out transform translateY(-26px)"
-       style="position: absolute; left: 1080px; top: 56px; width: 180px; height: 36px;">−20</div>
+       style="position: absolute; left: 1080px; top: 56px; width: 180px; height: 36px; pointer-events: none;"></div>
   <div id="guard-down" class="plate red" data-xt-bind="display=guard_down" style="position: absolute; left: 836px; top: 64px; width: 126px; height: 26px;">
     <div id="guard-down-t" class="plate-t" data-xt-key="UI_V2_GUARD_DOWN" style="position: absolute; left: 4px; top: 1px; width: 118px; height: 24px;">破防</div>
   </div>
@@ -291,8 +293,8 @@
              data-xt-trigger="click(left):if port(phase) eq 0 set(pick_claim, item(id))"
              style="position: relative; width: 318px; height: 48px; flex-shrink: 0;">
           <div id="clm-kind" class="clm-kind" data-xt-bind="text=item(kind)" style="position: absolute; left: 6px; top: 4px; width: 72px; height: 18px;">正論</div>
-          <div id="clm-t" class="clm-t" data-xt-bind="text=item(label)" style="position: absolute; left: 84px; top: 3px; width: 226px; height: 20px;">鎖匠傍晚就走了</div>
-          <div id="clm-tags" style="position: absolute; left: 6px; top: 27px; width: 304px; height: 16px; display: flex; flex-direction: row; gap: 8px; overflow: hidden;">
+          <div id="clm-t" class="clm-t" data-xt-bind="text=item(label)" style="position: absolute; left: 84px; top: 2px; width: 226px; height: 28px;">鎖匠傍晚就走了</div>
+          <div id="clm-tags" style="position: absolute; left: 6px; top: 30px; width: 304px; height: 16px; display: flex; flex-direction: row; gap: 8px; overflow: hidden;">
             <div id="clm-iss" class="iss" data-xt-bind="text=item(issue)" style="width: 34px; height: 16px; flex-shrink: 0;">機</div>
             <div id="clm-crack" class="tag tag-red" data-xt-bind="text=item(crack)" style="height: 16px;">與妳說過的話矛盾</div>
             <div id="clm-stand" class="tag tag-ink" data-xt-bind="text=item(stand)" style="height: 16px;"></div>
@@ -359,9 +361,9 @@
   <div id="me-cred" class="paper" style="position: absolute; left: 12px; top: 414px; width: 806px; height: 36px;">
     <div id="me-cred-l" class="cred-l" data-xt-key="UI_V2_CRED_PLAYER" style="position: absolute; left: 10px; top: 6px; width: 140px; height: 20px;">我方可信度</div>
     <div id="me-track" class="track" style="position: absolute; left: 154px; top: 9px; width: 200px; height: 14px;">
-      <div id="me-fill" class="fill-me" data-xt-bind="width=hp_me | range(0, hp_me_max, 0%, 100%)" style="position: absolute; left: 0px; top: 0px; width: 88%; height: 12px;"></div>
+      <div id="me-fill" class="fill-me" data-xt-bind="width=hp_me | range(0, hp_me_max, 0%, 100%); display=hp_me_max | gt(0)" style="position: absolute; left: 0px; top: 0px; width: 88%; height: 12px;"></div>
     </div>
-    <div id="me-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_me, hp_me_max)" style="position: absolute; left: 356px; top: 6px; width: 90px; height: 20px;">124 / 140</div>
+    <div id="me-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_me, hp_me_max); display=hp_me_max | gt(0)" style="position: absolute; left: 356px; top: 6px; width: 90px; height: 20px;">124 / 140</div>
     <div id="me-combo" class="cred-l" data-xt-bind="text=combo_text" style="position: absolute; left: 462px; top: 6px; width: 110px; height: 20px; color: #a65432;">連擊 ×2</div>
     <div id="me-hk" data-xt-bind="display=hachiku | gt(0)" style="position: absolute; left: 576px; top: 4px; width: 200px; height: 24px; display: flex; flex-direction: row; gap: 4px;">
       <div id="me-hk-n" class="cred-l" data-xt-bind="text=hachiku_text" style="height: 24px; line-height: 24px; flex-shrink: 0; color: #2f6b3a;">破竹 ×2</div>
@@ -371,7 +373,7 @@
   </div>
   <div id="float-me" class="float" data-xt-bind="text=float_me"
        data-xt-timeline="float-me: 0 opacity 1, 0 transform translateY(0px), 1300ms ease-out opacity 0, 1300ms ease-out transform translateY(-26px)"
-       style="position: absolute; left: 230px; top: 382px; width: 180px; height: 36px;">−16</div>
+       style="position: absolute; left: 230px; top: 382px; width: 180px; height: 36px; pointer-events: none;"></div>
 
   <!-- Our chain and the Break progress (chain length / 4, issues covered; lit when his guard is down). -->
   <div id="pchain-box" class="paper" style="position: absolute; left: 12px; top: 456px; width: 806px; height: 98px;">
@@ -395,10 +397,10 @@
 
   <!-- The chosen claim / target and the cover note. -->
   <div id="confirm" class="confirm" style="position: absolute; left: 12px; top: 560px; width: 806px; height: 34px; display: flex; flex-direction: row; gap: 10px; padding: 0px 12px 0px 12px;">
-    <div id="sum-claim" class="sum-t" data-xt-bind="text=sel_claim_text" style="width: 300px; height: 34px; flex-shrink: 0;">鎖匠傍晚就走了</div>
+    <div id="sum-claim" class="sum-t" data-xt-bind="text=sel_claim_text" style="width: 290px; height: 34px; flex-shrink: 0;">鎖匠傍晚就走了</div>
     <div id="sum-arrow" class="sum-a" data-xt-bind="display=sel_target_text | ne('')" style="width: 20px; height: 34px; flex-shrink: 0;">→</div>
-    <div id="sum-target" class="sum-t" data-xt-bind="text=sel_target_text; display=sel_target_text | ne('')" style="width: 220px; height: 34px; flex-shrink: 0;"></div>
-    <div id="sum-armed" class="sum-a" data-xt-key="UI_V2_SUPPORT_ARMED" data-xt-bind="display=guard_armed" style="width: 200px; height: 34px; flex-shrink: 0; text-align: right;">援護：已佈置</div>
+    <div id="sum-target" class="sum-t" data-xt-bind="text=sel_target_text; display=sel_target_text | ne('')" style="width: 330px; height: 34px; flex-shrink: 0;"></div>
+    <div id="sum-armed" class="sum-a" data-xt-key="UI_V2_SUPPORT_ARMED" data-xt-bind="display=guard_armed" style="width: 110px; height: 34px; flex-shrink: 0; text-align: right;">援護：已佈置</div>
   </div>
 
   <!-- Actions. mode 0: argue | rebut (cut in / knock down) | muddy the waters, cover; mode 1 (endgame): cut in / take it;

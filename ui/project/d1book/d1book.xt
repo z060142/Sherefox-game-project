@@ -5,21 +5,21 @@
 
   <ports>
     tab: number in = 0
-    cards: list<struct{id: string, name: string, psy: bool, sel: bool, mark: string, isnew: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","psy":false,"sel":true,"mark":"已鑑定","isnew":false},{"id":"E05","name":"萬用鑰匙圈","psy":false,"sel":false,"mark":"","isnew":true},{"id":"P1","name":"通靈板","psy":true,"sel":false,"mark":"","isnew":false}]
-    has_sel: bool in = true
-    sel_kind: string in = "證物"
-    sel_name: string in = "黃銅文件筒（空）"
-    sel_desc: string in = "書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。鎖孔周圍光亮，沒有明顯的刮痕。"
-    appraisable: bool in = true
-    appraised: bool in = true
+    cards: list<struct{id: string, name: string, psy: bool, sel: bool, mark: string, isnew: bool}> in = []
+    has_sel: bool in = false
+    sel_kind: string in = ""
+    sel_name: string in = ""
+    sel_desc: string in = ""
+    appraisable: bool in = false
+    appraised: bool in = false
     can_appraise: bool in = false
-    appr_left: string in = "鑑定 剩 1 次"
-    sel_result: string in = "鎖完好；用原配鑰匙開；鎖芯無油"
-    remark_speaker: string in = "亞瑟"
-    remark: string in = "「鎖芯完好，一道撬痕也沒有。」"
+    appr_left: string in = ""
+    sel_result: string in = ""
+    remark_speaker: string in = ""
+    remark: string in = ""
     remark_seq: number in = 0
-    opts: list<struct{id: string, label: string, sel: bool}> in = [{"id":"-","label":"（還沒有看法）","sel":false},{"id":"01A","label":"用原配鑰匙開的","sel":true},{"id":"01B","label":"鎖被撬過","sel":false}]
-    pnotes: list<struct{kind: string, name: string, text: string}> in = [{"kind":"人物筆記","name":"懷錶鏈上的墜子","text":"塞德里克的懷錶鏈上掛著三個小墜子。"}]
+    opts: list<struct{id: string, label: string, sel: bool}> in = []
+    pnotes: list<struct{kind: string, name: string, text: string}> in = []
     pick_tab: number out = 0
     pick_card: string out = ""
     pick_opt: string out = ""

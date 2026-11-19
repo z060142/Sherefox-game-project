@@ -124,6 +124,7 @@ def tables() -> dict[str, list[dict]]:
         # appr: the appraisal the claim contradicts (BEAT_D01_SOPH_03C_1, ref lines), "" for none
         appr = next((k for k in c.conflicts if k in CH.appraisals), "")
         claims.append({"id": cid, "evidence": c.evidence, "label": f"CLM_D01_{cid}", "line": f"CLM_D01_{cid}_LINE",
+                       "short": f"CLM_D01_{cid}_SHORT",
                        "appr": appr,
                        "issue": f"ISSUE_D01_{ISSUE[c.issue]}_SHORT", "issueName": f"ISSUE_D01_{ISSUE[c.issue]}",
                        "catch": 0, "psych": int(c.psych_card), "private": int(c.private),
@@ -131,6 +132,7 @@ def tables() -> dict[str, list[dict]]:
     for cid, cd in CH.cards.items():
         if cd.kind == "unfav":
             claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE", "appr": "",
+                           "short": "UI_V2_SEIZE",
                            "line": f"CARD_D01_{cid}_CATCH", "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT",
                            "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0,
                            "person": "",
@@ -148,7 +150,7 @@ def tables() -> dict[str, list[dict]]:
         # lie / fav (E5 hints): a lie (NOCUT), a favourable fact (FACT; a slip's unfavourable fact is not one)
         cards.append({"id": cid, "kind": cd.kind, "fact": int(cd.is_fact), "key": int(cd.keystone),
                       "lie": int(cd.is_lie), "fav": int(cd.is_fact and cd.kind != "unfav"),
-                      "label": f"CARD_D01_{cid}",
+                      "label": f"CARD_D01_{cid}", "short": f"CARD_D01_{cid}_SHORT",
                       "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT" if cd.issue else "",
                       "state": state, "push": have(f"CARD_D01_{cid}_PUSH", state),
                       "retract": have(f"CARD_D01_{cid}_RETRACT", state), "down": down,
@@ -217,6 +219,7 @@ COLLECTIONS = {
     "u1RecC": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecSt": {"kind": "map", "type": "string", "capacity": 32},
     "u1Pv": {"kind": "map", "type": "bool", "capacity": 8},          # E5: private-matter claims announced
+    "u1None": {"kind": "list", "type": "string", "capacity": 1},     # E6: never filled (the lists before round 1)
 }
 
 
@@ -269,17 +272,36 @@ def gen_d01ui() -> Graph:
     begin = g.when("begin", "world.stepBegin", "isDebK")
     dev = g.when("devM", begin, "world.d1Dev")
     start = g.when("start", "world.debGo", "isDebK")
-    for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt", "u1Pv"):
-        g.edge(start, g.eff(f"clr_{coll}", "atrium.map.clear", coll))
-    for coll in ("u1F", "u1N", "u1G", "u1GN"):
-        g.edge(start, g.eff(f"sClr_{coll}", "atrium.coll.clear", coll))
+    # v2 demo E6 (V2): the UI state is cleared when the step begins too (the music moment of the debate before, u1
+    # m8 / m9 / m10 / hush, must not reach this step's first ticks), and again on world.debGo
+    for sfx, pulse in (("", start), ("B", begin)):
+        for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt",
+                     "u1Pv"):
+            g.edge(pulse, g.eff(f"clr{sfx}_{coll}", "atrium.map.clear", coll))
+        for coll in ("u1F", "u1N", "u1G", "u1GN", "u1Rec"):
+            g.edge(pulse, g.eff(f"sClr{sfx}_{coll}", "atrium.coll.clear", coll))
+    # v2 demo E6 (V1): the screen is shown on world.debGo, but the engine's round 1 is latched only after the opening
+    # step (S07 L004). Until then every port shows the new debate's initial state: `fresh` states, on when the step
+    # begins and on debGo, off on the pulse that writes the real value (the round shown, a playback step, a float)
+    g.merge("frOnP", begin, start)
+
+    def fresh(name: str, off: str) -> str:
+        g.node(name, "state", initial="s1", states=["s0", "s1"],
+               transitions=[{"from": "*", "on": "on", "to": "s1"}, {"from": "*", "on": "off", "to": "s0"}])
+        g.edge("frOnP.out", f"{name}.on")
+        g.edge(off, f"{name}.off")
+        return g.cmp(name + "C", f"{name}.index", g.k(1))
     for coll, items in (("d1Carry", DEV.carried), ("d1Appraised", DEV.appraisals), ("d1Notes", DEV.notes)):
         g.edge(dev, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
         g.edge(dev, add_all(g, f"add_{coll}", coll, g.k(",".join(items))))
     g.edge(dev, g.eff("clr_d1PrivNote", "atrium.map.clear", "d1PrivNote"))
-    g.edge(start, g.eff("clr_u1Rec", "atrium.coll.clear", "u1Rec"))
     g.x("stSoon", "now + 0.1")
     setn(start, "stAt", "stSoon")
+    # E6 (V1): from debGo on the screen is busy (the opening plays next), at full credibility on both sides
+    setn(start, "ph", g.k(2))
+    for pulse in (begin, start):
+        setn(pulse, "hpM", g.k(CH.player_max_hp))
+        setn(pulse, "hpO", g.k(CH.opp_max_hp))
     g.edge(g.latch("wuDev", g.k(DEV_WARMUP), dev), "world.d1Warmup")
     # the debate's seed (debate-engine-v2 §3.4): the next value of the simulation's rng when the step begins, so a
     # replay draws the same seed and two debates in one run differ; the engine reads it at d1Start
@@ -300,10 +322,20 @@ def gen_d01ui() -> Graph:
            "d1OverP", "d1OverG", "d1OverA", "d1Cracks", "d1GuardUsed", "d1Dying", "d1TellPartial", "d1Grade"]
     txt = ["d1Phase", "d1TellClarity", "d1TellShown1", "d1TellShown2", "d1TellStar", "d1TellCard", "d1TellAction",
            "d1LastCard", "d1Outcome", "d1CatchCard"]
-    for sig in num + txt:
-        g.latch("L_" + sig[2:], f"world.{sig}", rs)
+    # E6 (V1): L_<x> is the latched engine value once a round is shown (Lr_<x>), the debate's initial state before
+    # (the chapter's constants: ref model.initial_state); the latch and `fresh` change on the same pulse, so what runs
+    # on that pulse itself reads Lr_<x>
+    init = {"d1Round": 1, "d1RoundLimit": CH.max_rounds, "d1PlayerHp": CH.player_max_hp,
+            "d1PlayerMax": CH.player_max_hp, "d1OppHp": CH.opp_max_hp, "d1OppMax": CH.opp_max_hp,
+            "d1PsychP": CH.psych_start[0], "d1PsychG": CH.psych_start[1], "d1PsychA": CH.psych_start[2],
+            "d1ThreshP": CH.psych_threshold[0], "d1ThreshG": CH.psych_threshold[1],
+            "d1ThreshA": CH.psych_threshold[2], "d1Phase": "choose"}
+    frR = fresh("frR", rs)
+    for sig in num + txt + ["d1OppAct"]:
+        g.latch("Lr_" + sig[2:], f"world.{sig}", rs)
+        g.sel("L_" + sig[2:], frR, g.k(init.get(sig, "" if sig in txt or sig == "d1OppAct" else 0)), "Lr_" + sig[2:])
+    g.n("frRN", frR)
     # his move this round: the test hook's when it pins one (d1OppAct), else the AI's decision (debate-engine-v2 §2.1)
-    g.latch("L_OppAct", "world.d1OppAct", rs)
     g.n("oppPinN", g.cmp("oppPinC", "L_OppAct", g.k(""), "ne"))
     g.sel("effAct", "oppPinC", "L_OppAct", "L_TellAction")
     phase_i = ssel(g, "phW", [(g.cmp("phEg", "L_Phase", g.k("endgame")), g.k(1)),
@@ -328,13 +360,21 @@ def gen_d01ui() -> Graph:
     g.node("cutEach", "atrium.coll.forEach", name="d1ClaimList")
     g.edge(rs, "cutEach.trigger")
     cuI = g.put("cuI", "cutEach.item")
-    g.tfind("cuBrk", "d1uiBreak", "id", g.fmt("cuBrkId", "{a}:{b}", "L_TellCard", cuI))
+    g.tfind("cuBrk", "d1uiBreak", "id", g.fmt("cuBrkId", "{a}:{b}", "Lr_TellCard", cuI))
     g.mget("cuSoph", "d1ClaimSoph", cuI)
     g.edge(g.when("cuBrkG", "cutEach.each", T("cuBrkOk", "cuBrk >= 0 && !cuSoph")),
            g.eff("cuSet", "atrium.map.set", "u1", key=g.k("cutOk"), value=g.k(1)))
 
     # ---- the lists (rebuilt on the next beat after a round is shown, after a choice, on a language change)
-    refresh = g.merge("refresh", r2T, refT, "langEnC.true", "langEnC.false")
+    # E6 (V1): before round 1 is shown (fresh) the lists are written empty instead (from u1None, never filled): his
+    # chain and ours, the record, the picker (hidden then)
+    refAny = g.merge("refAny", r2T, refT, "langEnC.true", "langEnC.false")
+    refresh = g.when("refresh", refAny, T("refOk", "!frRN"))
+    emptyP = g.merge("emptyP", "frOnP.out", g.when("refEmp", refAny, T("refEmpOk", "frRN")))
+
+    def lst(name: str, port: str, source: str, fields: dict, localize: list) -> str:
+        g.edge(emptyP, g.ui_list(name + "0", port, "u1None", fields, localize=localize))
+        return g.ui_list(name, port, source, fields, localize=localize)
     g.put("act", g.p("d_act"))
     # evidence chips: the evidence of the claim picker's claims, in its order (抓住他的話 first)
     for coll in ("u1Ev",):
@@ -352,7 +392,7 @@ def gen_d01ui() -> Graph:
     g.edge("evEach.each", g.eff("evAdd", "atrium.coll.add", "u1Ev", value="eiEv"))
     g.edge("evEach.each", g.eff("evSelSet", "atrium.map.set", "u1EvSel", key="eiEv",
                                   value=g.cmp("eiSel", "eiEv", "s_ev")))
-    g.edge("evEach.done", g.ui_list("evList", f"ui.{UI}.ev_list", "u1Ev",
+    g.edge("evEach.done", lst("evList", f"ui.{UI}.ev_list", "u1Ev",
                                     {"id": "item", "name": tref("d1uiEv", "id", "name"), "sel": "map:u1EvSel"},
                                     localize=["name"]))
     # claims of the chosen evidence; ok = the current action may use it (argue: not standing; the others: not
@@ -387,7 +427,7 @@ def gen_d01ui() -> Graph:
     xtr = ssel(g, "ciXtr", [(g.b("ciPsB", "ciPsych"), g.k("UI_V2_CLAIM_PSYCH")),
                             (g.b("ciPrB", "ciPriv"), g.k("UI_V2_CLAIM_PRIVATE"))], g.k(""))
     g.edge(clG, g.eff("clXtr", "atrium.map.set", "u1ClXtr", key=ci, value=xtr))
-    g.edge("clEach.done", g.ui_list("clList", f"ui.{UI}.claims", "u1Cl",
+    g.edge("clEach.done", lst("clList", f"ui.{UI}.claims", "u1Cl",
                                     {"id": "item", "label": tref("d1uiClaim", "id", "label"),
                                      "issue": tref("d1uiClaim", "id", "issue"), "kind": "map:u1ClKind",
                                      "soph": "map:d1ClaimSoph", "crack": "map:u1ClCrk", "stand": "map:u1ClStd",
@@ -398,8 +438,8 @@ def gen_d01ui() -> Graph:
     g.edge(refresh, "ocEach.trigger")
     g.edge("ocEach.each", g.eff("ocSel", "atrium.map.set", "u1OSel", key="ocEach.item",
                                   value=g.cmp("ocSelC", "ocEach.item", "s_target")))
-    g.edge("ocEach.done", g.ui_list("ocList", f"ui.{UI}.ochain", "d1OChain",
-                                    {"id": "item", "label": tref("d1uiCard", "id", "label"),
+    g.edge("ocEach.done", lst("ocList", f"ui.{UI}.ochain", "d1OChain",
+                                    {"id": "item", "label": tref("d1uiCard", "id", "short"),
                                      "issue": tref("d1uiCard", "id", "issue"), "sel": "map:u1OSel"},
                                     localize=["label", "issue"]))
     # our chain (crack = d1State pk_<claim>); u1Iss = the issues it covers (論破進度)
@@ -410,8 +450,8 @@ def gen_d01ui() -> Graph:
     g.edge("pcEach.each", g.eff("pcCr", "atrium.map.set", "u1PCr", key=pi, value="piCrack"))
     g.tget("piIss", "d1uiClaim", "issue", g.tfind("piRow", "d1uiClaim", "id", pi))
     g.edge("pcEach.each", g.eff("pcIss", "atrium.map.set", "u1Iss", key="piIss", value=g.k(1)))
-    g.edge("pcEach.done", g.ui_list("pcList", f"ui.{UI}.pchain", "d1PChain",
-                                    {"id": "item", "label": tref("d1uiClaim", "id", "label"),
+    g.edge("pcEach.done", lst("pcList", f"ui.{UI}.pchain", "d1PChain",
+                                    {"id": "item", "label": tref("d1uiClaim", "id", "short"),
                                      "issue": tref("d1uiClaim", "id", "issue"), "crack": "map:u1PCr"},
                                     localize=["label", "issue"]))
     # the public record (rows added at each lock; standing / knocked down read now)
@@ -430,7 +470,7 @@ def gen_d01ui() -> Graph:
     g.mget("rkN", "u1RecN", rk)
     g.edge("rcEach.each", g.eff("rcNT", "atrium.map.set", "u1RecNT", key=rk,
                                   value=g.textf("rkNT", key="UI_DEB_ROUND", n="rkN")))
-    g.edge("rcEach.done", g.ui_list("rcList", f"ui.{UI}.record", "u1Rec",
+    g.edge("rcEach.done", lst("rcList", f"ui.{UI}.record", "u1Rec",
                                     {"n": "map:u1RecNT", "label": "map:u1RecL", "use": "map:u1RecU",
                                      "soph": "map:u1RecS", "crack": "map:u1RecC", "state": "map:u1RecSt"},
                                     localize=["label", "use", "soph", "crack", "state"]))
@@ -511,13 +551,14 @@ def gen_d01ui() -> Graph:
     g.edge(rP, g.eff("recAdd", "atrium.coll.add", "u1Rec", value=rkey))
     crow2 = g.tfind("scRow", "d1uiClaim", "id", "s_claim")
     g.tget("scLabel", "d1uiClaim", "label", crow2)
+    g.tget("scShort", "d1uiClaim", "short", crow2)     # E6 V4: the public record and the chains use the short label
     g.tget("scLine", "d1uiClaim", "line", crow2)
     g.tget("scIssueName", "d1uiClaim", "issueName", crow2)
     g.mget("scSoph", "d1ClaimSoph", "s_claim")
     g.mget("scCrack", "d1ClaimCrack", "s_claim")
     use = g.lookup("recUse", ["", "", "UI_V2_RECORD_REBUT", "UI_V2_RECORD_REBUT", "", "UI_V2_RECORD_REBUT", "",
                               "UI_V2_RECORD_REBUT"], "act")
-    for coll, val in (("u1RecId", "s_claim"), ("u1RecN", "L_Round"), ("u1RecL", "scLabel"), ("u1RecU", use),
+    for coll, val in (("u1RecId", "s_claim"), ("u1RecN", "L_Round"), ("u1RecL", "scShort"), ("u1RecU", use),
                       ("u1RecS", g.sel("recS", g.b("recSB", "scSoph"), g.k("UI_V2_CLAIM_SOPH"), g.k(""))),
                       ("u1RecC", g.sel("recC", g.b("recCB", "scCrack"), g.k("UI_V2_LINK_CRACKED"), g.k("")))):
         g.edge(rP, g.eff(f"rec_{coll}", "atrium.map.set", coll, key=rkey, value=val))
@@ -838,8 +879,10 @@ def gen_d01ui() -> Graph:
     g.text("rfItemT", g.latch("rfItemL", "rfItemK", spP))
     g.text("rfPlaceT", g.latch("rfPlaceL", "rfPlaceK", spP))
     g.textf("lineT", pattern="lineK.text", item="rfItemT.text", place="rfPlaceT.text")
-    g.edge("whoT.text", f"{P}.speech_who")
-    g.edge("lineT.text", f"{P}.speech")
+    # E6 (V1): blank until this debate's first playback step (the debate before left its last line here)
+    frPb = fresh("frPb", showP)
+    g.edge(g.sel("whoOut", frPb, g.k(""), "whoT.text"), f"{P}.speech_who")
+    g.edge(g.sel("lineOut", frPb, g.k(""), "lineT.text"), f"{P}.speech")
     # values: hp after (pDmg / oDmg n3, lastStand n4), damage n1 / n3, the values of oHeal, the gauge's name, ...
     # v2 demo 4.4: every credibility and damage number is shown the way the chapter's §12 tables write it: at most two
     # decimals (R2: round(x * 100) / 100; the framework prints the shortest form), never below 0
@@ -870,7 +913,7 @@ def gen_d01ui() -> Graph:
                        value="vValueT.text", node="vNodeT.text", claim="vClaimT.text", issue="vIssueT.text",
                        fact="vFactT.text", formula=lat["vFormula"], dmg_p=lat["vDmgP"], hp_o=lat["vHpO"],
                        dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"], person="vPersonT.text")
-    g.edge(sys_text, f"{P}.sys_line")
+    g.edge(g.sel("sysOut", frPb, g.k(""), sys_text), f"{P}.sys_line")
     g.counter("lineSeq", initial=0)
     g.edge(showP, "lineSeq.increment")
     g.edge("lineSeq.value", f"{P}.line_seq")
@@ -887,8 +930,9 @@ def gen_d01ui() -> Graph:
     fo = ssel(g, "foSel", [(g.b("foHeal", "k_oHeal"), g.fmt("foH", "+{a}", g.x("healAmt", R2("n2 - n1"))))],
               g.fmt("foD", "−{a}", "fN1"))
     foL = g.latch("foL", fo, g.merge("foM", odP, hlP))
-    g.edge(foL, f"{P}.float_opp")
-    g.edge(fm, f"{P}.float_me")
+    # E6 (V1): no float of the debate before
+    g.edge(g.sel("foOut", fresh("frFo", "foM.out"), g.k(""), foL), f"{P}.float_opp")
+    g.edge(g.sel("fmOut", fresh("frFm", pdP), g.k(""), fm), f"{P}.float_me")
     g.counter("foSeq", initial=0)
     g.edge(g.merge("foM2", odP, hlP), "foSeq.increment")
     g.edge("foSeq.value", f"{P}.float_opp_seq")
@@ -1003,7 +1047,10 @@ def gen_d01ui() -> Graph:
     g.x("guardDown", "L_Broken && modeN == 0")
     g.edge("guardDown_t", f"{P}.guard_down")
     g.edge(g.b("shisB", "L_Shisshu"), f"{P}.shisshu")
-    g.edge(g.textf("ronpaT", key="UI_V2_RONPA_PROGRESS", n="pcN", need=g.k(CH.ronpa_len), m="issN"),
+    # E6 (V1): the chains are the debate before's until round 1 is shown
+    g.x("pcNv", "frRN ? 0 : pcN")
+    g.x("issNv", "frRN ? 0 : issN")
+    g.edge(g.textf("ronpaT", key="UI_V2_RONPA_PROGRESS", n="pcNv", need=g.k(CH.ronpa_len), m="issNv"),
            f"{P}.ronpa_text")
     g.x("ronpaShow", "modeN == 0")
     g.edge("ronpaShow_t", f"{P}.show_ronpa")
@@ -1022,7 +1069,7 @@ def gen_d01ui() -> Graph:
     g.edge(g.text("ronpaRT", g.sel("ronpaRK", "ronpaTwo_t", g.k("UI_V2_RONPA_READY"), g.k("UI_V2_RONPA_READY_ISSUE"))),
            f"{P}.ronpa_ready_text")
     # the tell (laststand: none)
-    g.x("tellOn", "modeN == 0 || modeN == 1")
+    g.x("tellOn", "(modeN == 0 || modeN == 1) && !frRN")     # E6: none before round 1 is shown
     g.edge("tellOn_t", f"{P}.tell_on")
     g.n("tellClearN", g.cmp("tellClearC", "L_TellClarity", g.k("clear")))
     g.edge("tellClearC.out", f"{P}.tell_clear")
@@ -1105,7 +1152,7 @@ def gen_d01ui() -> Graph:
     g.edge(g.text("hint2WT", "s_hint2W"), f"{P}.hint2_who")
     g.edge(g.textf("dyingT", key="UI_V2_DEATH_THROE", n=g.k(M.DYING_DMG)), f"{P}.dying_text")
     # the choice
-    g.edge(g.b("canDisB", g.x("canDis", "ocN > 0")), f"{P}.can_dismantle")
+    g.edge(g.b("canDisB", g.x("canDis", "ocN > 0 && !frRN")), f"{P}.can_dismantle")
     g.edge("guardOk_t", f"{P}.guard_ok")
     g.x("guardArmed", "d_armed && modeN == 0")
     g.edge("guardArmed_t", f"{P}.guard_armed")

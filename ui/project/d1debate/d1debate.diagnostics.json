@@ -9,7 +9,7 @@
       "message": "anchor: #bg-d01-parlour right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "bg-d01-parlour",
       "source": "D1Debate.dc.html",
-      "line": 183,
+      "line": 185,
       "col": 0,
       "ui": "d1debate",
       "detail": {
@@ -33,7 +33,7 @@
       "message": "the board's inline geometry of 190 element(s) is written to their <layout> #id rules (#d1debate, #bg-d01-parlour, #sheet, #opp-fig, #cedric-composed, ...)",
       "element": "",
       "source": "D1Debate.dc.html",
-      "line": 176,
+      "line": 178,
       "col": 0,
       "ui": "d1debate",
       "detail": {

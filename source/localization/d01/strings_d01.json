@@ -27,6 +27,10 @@
   "zh-TW": "筒鎖完好，用真鑰匙開",
   "en": "Lock intact, opened with its key"
  },
+ "CLM_D01_01A_SHORT": {
+  "zh-TW": "筒鎖完好，用真鑰匙開",
+  "en": "Lock intact, true key used"
+ },
  "CLM_D01_01A_LINE": {
   "zh-TW": "筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。",
   "en": "The lock is intact, not a single pick mark. Whoever opened it used a real key."
@@ -35,11 +39,19 @@
   "zh-TW": "筒鎖被動過手腳",
   "en": "The lock was tampered with"
  },
+ "CLM_D01_01B_SHORT": {
+  "zh-TW": "筒鎖被動過手腳",
+  "en": "Lock was tampered with"
+ },
  "CLM_D01_01B_LINE": {
   "zh-TW": "筒鎖被人動過手腳——可是動手腳的，不是只會修鎖的布里格斯。",
   "en": "Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
  },
  "CLM_D01_01C": {
+  "zh-TW": "鎖芯裡沒有油",
+  "en": "No oil in the lock"
+ },
+ "CLM_D01_01C_SHORT": {
   "zh-TW": "鎖芯裡沒有油",
   "en": "No oil in the lock"
  },
@@ -51,6 +63,10 @@
   "zh-TW": "鎖匠沒有能開鎖的東西",
   "en": "Locksmith had nothing to open it"
  },
+ "CLM_D01_01D_SHORT": {
+  "zh-TW": "鎖匠沒有能開鎖的東西",
+  "en": "Locksmith couldn't open it"
+ },
  "CLM_D01_01D_LINE": {
   "zh-TW": "筒鎖是好鎖，布里格斯修好之後也沒有留備用鑰匙——他手上，根本沒有能打開它的東西。",
   "en": "It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
@@ -58,6 +74,10 @@
  "CLM_D01_02A": {
   "zh-TW": "座鐘在熄燈時重新走動",
   "en": "Clock restarted when the lights died"
+ },
+ "CLM_D01_02A_SHORT": {
+  "zh-TW": "座鐘在熄燈時重新走動",
+  "en": "Clock restarted in the dark"
  },
  "CLM_D01_02A_LINE": {
   "zh-TW": "書房的鐘本來停在九點四十分。它在熄燈的那三分鐘裡重新走了起來——那時候，有人在書房裡撞到了壁爐架。",
@@ -67,6 +87,10 @@
   "zh-TW": "座鐘是自己擺起來的",
   "en": "The clock restarted on its own"
  },
+ "CLM_D01_02B_SHORT": {
+  "zh-TW": "座鐘是自己擺起來的",
+  "en": "Clock restarted by itself"
+ },
  "CLM_D01_02B_LINE": {
   "zh-TW": "老座鐘停久了，屋子一震就會自己擺起來。它慢了一個多小時，跟熄燈沒有關係。",
   "en": "An old clock left stopped will start swinging at the slightest tremor. It's over an hour slow. Nothing to do with the lights."
@@ -75,11 +99,19 @@
   "zh-TW": "九點四十分，他在叫你",
   "en": "Twenty to ten, he called for you"
  },
+ "CLM_D01_02C_SHORT": {
+  "zh-TW": "九點四十分，他在叫你",
+  "en": "Twenty to ten, he called you"
+ },
  "CLM_D01_02C_LINE": {
   "zh-TW": "這座鐘停在九點四十分，海德先生嚥氣的那一刻。那時候他一直在叫一個人的名字——塞德里克先生，你在哪裡？",
   "en": "This clock stopped at twenty to ten, the moment Mr Hyde breathed his last. Until then he kept calling one name. Mr Cedric, where were you?"
  },
  "CLM_D01_03A": {
+  "zh-TW": "黑布上的守靈白蠟",
+  "en": "Wake candle wax on the cloth"
+ },
+ "CLM_D01_03A_SHORT": {
   "zh-TW": "黑布上的守靈白蠟",
   "en": "Wake candle wax on the cloth"
  },
@@ -91,6 +123,10 @@
   "zh-TW": "沒人敢把黑布蓋回去",
   "en": "No one dared cover the mirror"
  },
+ "CLM_D01_03B_SHORT": {
+  "zh-TW": "沒人敢把黑布蓋回去",
+  "en": "None dared cover the mirror"
+ },
  "CLM_D01_03B_LINE": {
   "zh-TW": "黑布是被碰掉的，可是沒有人把它蓋回去。在守靈夜讓鏡子就這樣敞著——那個人，連回頭看一眼都不敢。",
   "en": "The cloth was knocked off, and nobody put it back. A mirror left bare on a wake night! Whoever did it didn't dare so much as look back."
@@ -98,6 +134,10 @@
  "CLM_D01_04A": {
   "zh-TW": "總閥被人關小",
   "en": "Someone turned the valve down"
+ },
+ "CLM_D01_04A_SHORT": {
+  "zh-TW": "總閥被人關小",
+  "en": "Valve was turned down"
  },
  "CLM_D01_04A_LINE": {
   "zh-TW": "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。",
@@ -107,11 +147,19 @@
   "zh-TW": "閥輪上是書房的煙灰",
   "en": "Study soot on the valve wheel"
  },
+ "CLM_D01_04B_SHORT": {
+  "zh-TW": "閥輪上是書房的煙灰",
+  "en": "Study soot on the valve"
+ },
  "CLM_D01_04B_LINE": {
   "zh-TW": "閥輪上沾的是書房壁爐的煙灰。關燈的人先去了書房，再回到地下室把燈打開——他從頭到尾都在屋裡。",
   "en": "The soot on that valve wheel came from the study fireplace. Whoever dimmed the lights went to the study first, then back down to turn them up again. He never left the house."
  },
  "CLM_D01_04C": {
+  "zh-TW": "廚房裡只有瑪莎",
+  "en": "Only Martha in the kitchen"
+ },
+ "CLM_D01_04C_SHORT": {
   "zh-TW": "廚房裡只有瑪莎",
   "en": "Only Martha in the kitchen"
  },
@@ -123,6 +171,10 @@
   "zh-TW": "萬用鑰匙全上了油",
   "en": "Every skeleton key is oiled"
  },
+ "CLM_D01_05A_SHORT": {
+  "zh-TW": "萬用鑰匙全上了油",
+  "en": "Every skeleton key is oiled"
+ },
  "CLM_D01_05A_LINE": {
   "zh-TW": "布里格斯的萬用鑰匙，每一把都上了油。不上油，它們轉不動。",
   "en": "Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn."
@@ -130,6 +182,10 @@
  "CLM_D01_05B": {
   "zh-TW": "萬用鑰匙打不開筒子",
   "en": "Skeleton keys can't open the tube"
+ },
+ "CLM_D01_05B_SHORT": {
+  "zh-TW": "萬用鑰匙打不開筒子",
+  "en": "Keys can't open the tube"
  },
  "CLM_D01_05B_LINE": {
   "zh-TW": "這種圈子上的萬用鑰匙，連一般的門都很難打開，何況是黃銅筒。",
@@ -139,6 +195,10 @@
   "zh-TW": "鎖已修妥，沒留後門",
   "en": "Lock mended, no back door left"
  },
+ "CLM_D01_06A_SHORT": {
+  "zh-TW": "鎖已修妥，沒留後門",
+  "en": "Lock mended, no back door"
+ },
  "CLM_D01_06A_LINE": {
   "zh-TW": "工作單寫著：換新彈簧，當著主人的面試開三次，修妥。鎖修好了，沒有留後門。",
   "en": "The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
@@ -146,6 +206,10 @@
  "CLM_D01_06B": {
   "zh-TW": "鎖匠傍晚就走了",
   "en": "Locksmith left in the evening"
+ },
+ "CLM_D01_06B_SHORT": {
+  "zh-TW": "鎖匠傍晚就走了",
+  "en": "Locksmith left by evening"
  },
  "CLM_D01_06B_LINE": {
   "zh-TW": "工作單寫著五點收工。布里格斯傍晚就走了，守靈夜根本不在屋裡——他跟這件事毫無關係。",
@@ -155,6 +219,10 @@
   "zh-TW": "工作單只寫「校試」",
   "en": "Work order only says \"tested\""
  },
+ "CLM_D01_06C_SHORT": {
+  "zh-TW": "工作單只寫「校試」",
+  "en": "Work order says \"tested\""
+ },
  "CLM_D01_06C_LINE": {
   "zh-TW": "工作單上寫的是『校試』，不是『修理』——布里格斯根本沒動過那個筒子的鎖芯。",
   "en": "The work order says \"tested\", not \"repaired\". Briggs never touched the inside of that lock."
@@ -162,6 +230,10 @@
  "CLM_D01_07A": {
   "zh-TW": "鎖匠在廚房見瑪莎",
   "en": "Locksmith met Martha in the kitchen"
+ },
+ "CLM_D01_07A_SHORT": {
+  "zh-TW": "鎖匠在廚房見瑪莎",
+  "en": "Locksmith met Martha"
  },
  "CLM_D01_07A_LINE": {
   "zh-TW": "這條手帕掉在廚房爐子後面，有機油味，繡著廚娘瑪莎的縮寫。布里格斯晚上偷偷回來見她——燈滅的時候，他就在後門邊的廚房，沒有人從後門跑出去。",
@@ -171,6 +243,10 @@
   "zh-TW": "鎖匠是為瑪莎回來的",
   "en": "Locksmith came back for Martha"
  },
+ "CLM_D01_07B_SHORT": {
+  "zh-TW": "鎖匠是為瑪莎回來的",
+  "en": "He came back for Martha"
+ },
  "CLM_D01_07B_LINE": {
   "zh-TW": "布里格斯冒險溜回來，是為了瑪莎，不是為了什麼附錄。",
   "en": "Briggs risked sneaking back for Martha, not for any codicil."
@@ -178,6 +254,10 @@
  "CLM_D01_08A": {
   "zh-TW": "四百鎊的賭債",
   "en": "Four hundred pounds in gaming debts"
+ },
+ "CLM_D01_08A_SHORT": {
+  "zh-TW": "四百鎊的賭債",
+  "en": "£400 in gaming debts"
  },
  "CLM_D01_08A_LINE": {
   "zh-TW": "梅費爾俱樂部，四百鎊，月底前還清。需要錢的人，是你。",
@@ -187,11 +267,19 @@
   "zh-TW": "叔叔過世那晚，你在俱樂部",
   "en": "At the club the night Uncle died"
  },
+ "CLM_D01_08B_SHORT": {
+  "zh-TW": "叔叔過世那晚，你在俱樂部",
+  "en": "At the club when Uncle died"
+ },
  "CLM_D01_08B_LINE": {
   "zh-TW": "催款信的日期，是海德先生過世的那一天。那一晚，你在俱樂部。",
   "en": "The demand letter is dated the day Mr Hyde died. And that night, you were at the club."
  },
  "CLM_D01_09A": {
+  "zh-TW": "艾琳是海德先生的女兒",
+  "en": "Irene is Mr Hyde's daughter"
+ },
+ "CLM_D01_09A_SHORT": {
   "zh-TW": "艾琳是海德先生的女兒",
   "en": "Irene is Mr Hyde's daughter"
  },
@@ -203,6 +291,10 @@
   "zh-TW": "胸針只是紀念品",
   "en": "The brooch is just a keepsake"
  },
+ "CLM_D01_09B_SHORT": {
+  "zh-TW": "胸針只是紀念品",
+  "en": "Brooch is just a keepsake"
+ },
  "CLM_D01_09B_LINE": {
   "zh-TW": "這枚胸針是海德太太送給艾琳的紀念品，跟遺囑沒有關係。",
   "en": "Mrs Hyde gave Irene that brooch as a keepsake. It has nothing to do with the will."
@@ -211,11 +303,19 @@
   "zh-TW": "附錄讓你少了一半",
   "en": "The codicil halved your share"
  },
+ "CLM_D01_10A_SHORT": {
+  "zh-TW": "附錄讓你少了一半",
+  "en": "Codicil halved your share"
+ },
  "CLM_D01_10A_LINE": {
   "zh-TW": "吸墨紙上印著附錄的反字：『將遺產之半數，贈予……』。舊遺囑把一切留給你，這份附錄，讓你少了一半。",
   "en": "The blotter holds the codicil in mirror writing: \"half of my estate I bequeath to...\" The old will left you everything. This codicil cut your share in half."
  },
  "CLM_D01_10B": {
+  "zh-TW": "最早看到附錄的人",
+  "en": "First to see the codicil"
+ },
+ "CLM_D01_10B_SHORT": {
   "zh-TW": "最早看到附錄的人",
   "en": "First to see the codicil"
  },
@@ -227,11 +327,19 @@
   "zh-TW": "燈滅前，你的椅子就空了",
   "en": "Your chair was empty before dark"
  },
+ "CLM_D01_11A_SHORT": {
+  "zh-TW": "燈滅前，你的椅子就空了",
+  "en": "Empty chair before the dark"
+ },
  "CLM_D01_11A_LINE": {
   "zh-TW": "艾琳說，燈滅之前，你的椅子就已經空了。",
   "en": "Irene says your chair was already empty before the lights went out."
  },
  "CLM_D01_11B": {
+  "zh-TW": "你的手套指尖沾著灰",
+  "en": "Dust on your glove tips"
+ },
+ "CLM_D01_11B_SHORT": {
   "zh-TW": "你的手套指尖沾著灰",
   "en": "Dust on your glove tips"
  },
@@ -243,11 +351,19 @@
   "zh-TW": "這家人很重視守靈",
   "en": "This family takes the wake seriously"
  },
+ "CLM_D01_12A_SHORT": {
+  "zh-TW": "這家人很重視守靈",
+  "en": "They take the wake seriously"
+ },
  "CLM_D01_12A_LINE": {
   "zh-TW": "全屋照規矩辦喪事，連門環都綁了黑紗。這家人很重視守靈——所以熄燈三分鐘，是件大事。",
   "en": "The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter."
  },
  "CLM_D01_P1A": {
+  "zh-TW": "他還在這棟屋子裡",
+  "en": "He is still in this house"
+ },
+ "CLM_D01_P1A_SHORT": {
   "zh-TW": "他還在這棟屋子裡",
   "en": "He is still in this house"
  },
@@ -259,6 +375,10 @@
   "zh-TW": "他知道是誰",
   "en": "He knows who did it"
  },
+ "CLM_D01_P1B_SHORT": {
+  "zh-TW": "他知道是誰",
+  "en": "He knows who did it"
+ },
  "CLM_D01_P1B_LINE": {
   "zh-TW": "（指示板慢慢滑向『YES』）……看。他說，他知道是誰。",
   "en": "(The planchette slides slowly to \"YES\") ...Look. He says he knows who did it."
@@ -267,27 +387,55 @@
   "zh-TW": "整晚守在靈柩旁",
   "en": "I stayed by the coffin all night"
  },
+ "CARD_D01_L1_SHORT": {
+  "zh-TW": "整晚守在靈柩旁",
+  "en": "By the coffin all night"
+ },
  "CARD_D01_L2": {
   "zh-TW": "鎖匠修鎖時動了手腳",
   "en": "The locksmith rigged the lock"
+ },
+ "CARD_D01_L2_SHORT": {
+  "zh-TW": "鎖匠修鎖時動了手腳",
+  "en": "Locksmith rigged the lock"
  },
  "CARD_D01_L3": {
   "zh-TW": "鎖匠想勒索嬸嬸",
   "en": "The locksmith meant to blackmail Aunt"
  },
+ "CARD_D01_L3_SHORT": {
+  "zh-TW": "鎖匠想勒索嬸嬸",
+  "en": "Locksmith meant blackmail"
+ },
  "CARD_D01_L4": {
   "zh-TW": "有人從後門跑了",
   "en": "Someone fled by the back door"
+ },
+ "CARD_D01_L4_SHORT": {
+  "zh-TW": "有人從後門跑了",
+  "en": "Someone fled out the back"
  },
  "CARD_D01_F1": {
   "zh-TW": "鎖匠碰過筒子、有萬用鑰匙",
   "en": "Locksmith had the tube and keys"
  },
+ "CARD_D01_F1_SHORT": {
+  "zh-TW": "鎖匠碰過筒子、有萬用鑰匙",
+  "en": "Locksmith had tube and keys"
+ },
  "CARD_D01_F2": {
   "zh-TW": "三分鐘裡誰都可能離席",
   "en": "Anyone could have slipped out"
  },
+ "CARD_D01_F2_SHORT": {
+  "zh-TW": "三分鐘裡誰都可能離席",
+  "en": "Anyone could have left"
+ },
  "CARD_D01_U1": {
+  "zh-TW": "閥門本來就鬆",
+  "en": "That valve was always loose"
+ },
+ "CARD_D01_U1_SHORT": {
   "zh-TW": "閥門本來就鬆",
   "en": "That valve was always loose"
  },
@@ -295,7 +443,15 @@
   "zh-TW": "我是欠了一點錢",
   "en": "I do owe a little money"
  },
+ "CARD_D01_U2_SHORT": {
+  "zh-TW": "我是欠了一點錢",
+  "en": "I do owe a little money"
+ },
  "CARD_D01_P05": {
+  "zh-TW": "鑰匙齒上有黃銅屑",
+  "en": "Brass filings on the key"
+ },
+ "CARD_D01_P05_SHORT": {
   "zh-TW": "鑰匙齒上有黃銅屑",
   "en": "Brass filings on the key"
  },
@@ -303,11 +459,23 @@
   "zh-TW": "鎖匠昨晚回來過",
   "en": "The locksmith came back last night"
  },
+ "CARD_D01_P07_SHORT": {
+  "zh-TW": "鎖匠昨晚回來過",
+  "en": "Locksmith back last night"
+ },
  "CARD_D01_P06": {
   "zh-TW": "鎖匠一個人修筒子",
   "en": "Locksmith worked on the tube alone"
  },
+ "CARD_D01_P06_SHORT": {
+  "zh-TW": "鎖匠一個人修筒子",
+  "en": "Locksmith alone with tube"
+ },
  "CARD_D01_K1": {
+  "zh-TW": "我是去看閥門的",
+  "en": "I went to check the valve"
+ },
+ "CARD_D01_K1_SHORT": {
   "zh-TW": "我是去看閥門的",
   "en": "I went to check the valve"
  },
@@ -1121,7 +1289,7 @@
  },
  "SCR_D01_S09_L004": {
   "zh-TW": "本報訊，海德宅遺囑附錄失竊案出現逆轉。據悉，貝克街狐耳偵探在靈堂與亡者之姪塞德里克・海德激烈交鋒，過程一度陷入僵局，最終塞德里克被捕，附錄尋回。蘇格蘭場對此案不予置評。",
-  "en": "Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Mr Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
+  "en": "Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Cedric Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
  },
  "SCR_D01_S09_L005": {
   "zh-TW": "【倫敦提燈報】鎖匠移送法辦　狐耳偵探守靈夜鎩羽",

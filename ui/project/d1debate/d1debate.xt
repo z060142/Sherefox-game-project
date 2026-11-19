@@ -4,62 +4,62 @@
   </head>
 
   <ports>
-    round_text: string in = "第 3 回合／20"
-    opp_name: string in = "塞德里克"
-    opp_cred: string in = "塞德里克 的可信度"
-    hp_me: number in = 124
-    hp_me_max: number in = 140
-    hp_opp: number in = 180.5
-    hp_opp_max: number in = 230
-    face: number in = 1
+    round_text: string in = ""
+    opp_name: string in = ""
+    opp_cred: string in = ""
+    hp_me: number in = 0
+    hp_me_max: number in = 0
+    hp_opp: number in = 0
+    hp_opp_max: number in = 0
+    face: number in = 0
     band_p: number in = 0
-    band_g: number in = 1
+    band_g: number in = 0
     band_a: number in = 0
-    combo_text: string in = "連擊 ×2"
-    hachiku: number in = 2
-    hachiku_text: string in = "破竹 ×2"
+    combo_text: string in = ""
+    hachiku: number in = 0
+    hachiku_text: string in = ""
     guard_down: bool in = false
     shisshu: bool in = false
-    ronpa_text: string in = "鏈長 2／4　爭點 2／2"
+    ronpa_text: string in = ""
     ronpa_ready: bool in = false
-    ronpa_ready_text: string in = "他破防了。這回合接上就論破！"
-    show_ronpa: bool in = true
-    tell_on: bool in = true
-    tell_head: string in = "他正要說"
-    tell_card: string in = "鎖匠碰過筒子、有萬用鑰匙"
+    ronpa_ready_text: string in = ""
+    show_ronpa: bool in = false
+    tell_on: bool in = false
+    tell_head: string in = ""
+    tell_card: string in = ""
     tell_partial: bool in = false
-    tell_clear: bool in = true
-    tell_a: number in = 0
+    tell_clear: bool in = false
+    tell_a: number in = -1
     tell_b: number in = -1
     tell_star: number in = -1
-    tell_gesture: string in = "整理黑領巾、微微一笑"
+    tell_gesture: string in = ""
     dying: bool in = false
-    dying_text: string in = "垂死反撲：打中只扣 10"
-    ochain_title: string in = "塞德里克 的推理鏈"
-    ochain: list<struct{id: string, label: string, issue: string, sel: bool}> in = [{"id":"L1","label":"整晚守在靈柩旁","issue":"機","sel":false}]
-    pchain: list<struct{id: string, label: string, issue: string, crack: number}> in = [{"id":"04A","label":"總閥被人關小","issue":"法","crack":0},{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","crack":0}]
-    ev_list: list<struct{id: string, name: string, sel: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","sel":false},{"id":"E02","name":"書房的座鐘","sel":false},{"id":"E04","name":"地下室煤氣總閥","sel":false},{"id":"E06","name":"布里格斯的工作單","sel":true},{"id":"E08","name":"賭場的催款信","sel":false}]
-    claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}> in = [{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","kind":"正論","soph":0,"crack":"","stand":"已在鏈上","extra":"","ok":0,"sel":false},{"id":"06B","label":"鎖匠傍晚就走了","issue":"機","kind":"正論","soph":0,"crack":"","stand":"","extra":"","ok":1,"sel":true},{"id":"06C","label":"工作單只寫「校試」","issue":"法","kind":"詭辯","soph":1,"crack":"與妳說過的話矛盾","stand":"","extra":"","ok":1,"sel":false}]
-    record: list<struct{n: string, label: string, use: string, soph: string, crack: string, state: string}> in = [{"n":"第 1 回合","label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":"第 2 回合","label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]
+    dying_text: string in = ""
+    ochain_title: string in = ""
+    ochain: list<struct{id: string, label: string, issue: string, sel: bool}> in = []
+    pchain: list<struct{id: string, label: string, issue: string, crack: number}> in = []
+    ev_list: list<struct{id: string, name: string, sel: bool}> in = []
+    claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}> in = []
+    record: list<struct{n: string, label: string, use: string, soph: string, crack: string, state: string}> in = []
     mode: number in = 0
     phase: number in = 0
-    act: number in = 1
-    can_dismantle: bool in = true
-    guard_ok: bool in = true
+    act: number in = 0
+    can_dismantle: bool in = false
+    guard_ok: bool in = false
     guard_armed: bool in = false
-    guard_left: bool in = true
-    sel_claim_text: string in = "鎖匠傍晚就走了"
+    guard_left: bool in = false
+    sel_claim_text: string in = ""
     sel_target_text: string in = ""
     need_target: bool in = false
-    can_lock: bool in = true
-    picker_on: bool in = true
-    hint_who: string in = "塞德里克"
-    hint: string in = "我受夠這場鬧劇了。"
-    hint2_who: string in = "亞瑟"
-    hint2: string in = "他摘手套了——準備接住。"
-    speech_who: string in = "Sherefox"
-    speech: string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"
-    sys_line: string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"
+    can_lock: bool in = false
+    picker_on: bool in = false
+    hint_who: string in = ""
+    hint: string in = ""
+    hint2_who: string in = ""
+    hint2: string in = ""
+    speech_who: string in = ""
+    speech: string in = ""
+    sys_line: string in = ""
     line_seq: number in = 0
     float_opp: string in = ""
     float_me: string in = ""
@@ -101,12 +101,12 @@
         </div>
         <div id="opp-cred" class="paper">
           <div id="opp-cred-l" class="cred-l" bind:text="opp_cred">塞德里克 的可信度</div>
-          <div id="opp-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_opp, hp_opp_max)">180.5 / 230</div>
+          <div id="opp-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_opp, hp_opp_max)" bind:display="hp_opp_max | gt(0)">180.5 / 230</div>
           <div id="opp-track" class="track">
-            <div id="opp-fill" class="fill-opp" bind:width="hp_opp | range(0, hp_opp_max, 0%, 100%)"/>
+            <div id="opp-fill" class="fill-opp" bind:width="hp_opp | range(0, hp_opp_max, 0%, 100%)" bind:display="hp_opp_max | gt(0)"/>
           </div>
         </div>
-        <div id="float-opp" class="float" bind:text="float_opp">−20</div>
+        <div id="float-opp" class="float s-66a9df" bind:text="float_opp"/>
         <div id="guard-down" class="plate red" bind:display="guard_down">
           <div id="guard-down-t" class="plate-t">@UI_V2_GUARD_DOWN</div>
         </div>
@@ -221,16 +221,16 @@
         <div id="me-cred" class="paper">
           <div id="me-cred-l" class="cred-l">@UI_V2_CRED_PLAYER</div>
           <div id="me-track" class="track">
-            <div id="me-fill" class="fill-me" bind:width="hp_me | range(0, hp_me_max, 0%, 100%)"/>
+            <div id="me-fill" class="fill-me" bind:width="hp_me | range(0, hp_me_max, 0%, 100%)" bind:display="hp_me_max | gt(0)"/>
           </div>
-          <div id="me-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_me, hp_me_max)">124 / 140</div>
+          <div id="me-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_me, hp_me_max)" bind:display="hp_me_max | gt(0)">124 / 140</div>
           <div id="me-combo" class="cred-l" bind:text="combo_text">連擊 ×2</div>
           <div id="me-hk" bind:display="hachiku | gt(0)">
             <div id="me-hk-n" class="cred-l" bind:text="hachiku_text">破竹 ×2</div>
           </div>
           <div id="me-shisshu" class="shis-t" bind:display="shisshu">@UI_V2_SHISHOU_HINT</div>
         </div>
-        <div id="float-me" class="float" bind:text="float_me">−16</div>
+        <div id="float-me" class="float s-66a9df" bind:text="float_me"/>
         <div id="pchain-box" class="paper">
           <div id="pchain-title" class="kicker">@UI_V2_CHAIN_PLAYER</div>
           <div id="ronpa-ready" class="plate red" bind:display="ronpa_ready">
@@ -891,10 +891,10 @@
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/1 */
     #clm-t {
-      height: 20px;
+      height: 28px;
       left: 84px;
       position: absolute;
-      top: 3px;
+      top: 2px;
       width: 226px;
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/2 */
@@ -906,7 +906,7 @@
       left: 6px;
       overflow: hidden;
       position: absolute;
-      top: 27px;
+      top: 30px;
       width: 304px;
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/2/0 */
@@ -1387,7 +1387,7 @@
     #sum-claim {
       flex-shrink: 0;
       height: 34px;
-      width: 300px;
+      width: 290px;
     }
     /* import: D1Debate.dc.html:1/1/16/1 */
     #sum-arrow {
@@ -1399,13 +1399,13 @@
     #sum-target {
       flex-shrink: 0;
       height: 34px;
-      width: 220px;
+      width: 330px;
     }
     /* import: D1Debate.dc.html:1/1/16/3 */
     #sum-armed {
       flex-shrink: 0;
       height: 34px;
-      width: 200px;
+      width: 110px;
     }
     /* import: D1Debate.dc.html:1/1/17 */
     #acts {

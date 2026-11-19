@@ -50,6 +50,8 @@ APPRS = [a["id"] for a in DEBATE["appraisals"]]
 SEP = ","
 # S06 Ask Arthur, in priority order (ruling): (line, condition). L004 is followed by Sherefox's L005; L012 repeats.
 ASK = ["L008", "L004", "L003", "L006", "L007", "L011", "L012"]
+# v2 demo E6 (V3): what he could pick up if it stays behind (ref model.pickups_for, from ref's data)
+PICKABLE = [e for e in CH.pickup_priority if CH.evidence[e].opponent_use]
 
 
 def item_keys(i: str) -> tuple[str, str, str]:
@@ -243,14 +245,14 @@ def gen_d01inv() -> Graph:
     g.edge(first, g.eff("leftDec", "atrium.map.set", "i1Left", key="sp_scene", value=g.x("leftN", "spLeft - 1")))
     evP = g.when("evG", first, T("evOk", "hasEvN"))
     g.edge(evP, add_all(g, "haveAdd", "i1Have", "sp_ev"))
+    # the evidence list's "new" marks and its button's count: evidence and psych cards only (v2 demo E6 V5: notes on
+    # people are on the notes page, not in the list)
     g.edge(evP, add_all(g, "newAdd", "i1New", "sp_ev"))
     ntP = g.when("ntG", first, T("ntOk", "hasNoteN"))
     g.edge(ntP, g.eff("noteAdd", "atrium.coll.add", "i1Notes", value="sp_note"))
-    g.edge(ntP, g.eff("noteNew", "atrium.coll.add", "i1New", value="sp_note"))
     # PN3: both halves (HS04 + HS05) looked at (ref optional_known: both hotspots needed)
     prP = g.when("prG", first, T("prOk", "hasPairN && pairSeenN"))
     g.edge(prP, g.eff("pairAdd", "atrium.coll.add", "i1Notes", value="sp_pairNote"))
-    g.edge(prP, g.eff("pairNew", "atrium.coll.add", "i1New", value="sp_pairNote"))
     sets(sP, "sp", sid)
     seti(sP, "pop", g.k(1))
     seti(sP, "pnote", g.x("pnoteV", "hasNoteN || (hasPairN && pairSeenN)"))
@@ -484,22 +486,25 @@ def gen_d01inv() -> Graph:
         acc = g.sel(f"la{i}", f"lf{i}_t", joined, acc)
         parts.append(f"lf{i}")
     g.x("nLeft", " + ".join(parts))
-    g.x("nLeftEv", " + ".join(p for p, i in zip(parts, ITEMS) if not CH.evidence[i].psych_card))
+    # v2 demo E6 (V3, ruling c): L010 plays while anything he could pick up stays in the house, found or not (ref
+    # model.pickups_for: the pickup priority's evidence with an opponent use, not carried); nothing names it
+    g.x("nPick", " + ".join(f"!ls{i}" for i in PICKABLE))
     g.edge(g.textf("confT", key="SCR_D01_S06_L009", list=acc), f"{CAR}.confirm_text")
     cfP = g.when("confG", f"{CAR}.confirm", T("confOk", "d_cph == 0"))
     seti(g.when("confAskG", cfP, T("confAsk", "nLeft > 0")), "cph", g.k(1))
-    goNow = g.when("confGoG", cfP, T("confGo", "nLeft == 0"))
+    noList = g.when("confNoListG", cfP, T("confNoList", "nLeft == 0"))
+    goNow = g.when("confGoG", noList, T("confGo", "nPick == 0"))
     seti(g.merge("noM", f"{CAR}.no"), "cph", g.k(0))
     yP = g.when("yesG", f"{CAR}.yes", T("yesOk", "d_cph == 1"))
-    # L010 plays when evidence stays behind (S06); a click goes on
-    l10 = g.when("l10G", yP, T("l10On", "nLeftEv > 0"))
+    # L010 (S06; E6 V3: while he could pick something up); a click goes on
+    l10 = g.when("l10G", g.merge("l10M", yP, noList), T("l10On", "nPick > 0"))
     seti(l10, "cph", g.k(2))
     sets(l10, "w1", g.k("SPK_ARTHUR"))
     sets(l10, "s1", g.k("SCR_D01_S06_L010"))
     sets(l10, "w2", g.k(""))
     sets(l10, "s2", g.k(""))
     g.edge(l10, "saySeq.increment")
-    goYes = g.when("yesGoG", yP, T("yesGo", "nLeftEv == 0"))
+    goYes = g.when("yesGoG", yP, T("yesGo", "nPick == 0"))
     goClick = g.when("goG", f"{CAR}.go", T("goOk", "d_cph == 2"))
     go = g.merge("goM", goNow, goYes, goClick)
     seti(go, "cph", g.k(0))

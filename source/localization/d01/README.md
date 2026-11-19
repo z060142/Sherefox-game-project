@@ -18,8 +18,8 @@ All files are UTF-8 (CSV files have a BOM).
 | File | Rows | Content |
 | --- | ---: | :--- |
 | script_d01.csv | 354 | ID, speaker_zh, speaker_en, zh-TW, en, note. Spoken lines and system lines |
-| evidence_d01.csv | 181 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
-| strings_d01.json | 535 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
+| evidence_d01.csv | 223 | ID, zh-TW, en, note. Labels and texts shown on cards, chains and lists |
+| strings_d01.json | 577 | `{ID: {"zh-TW", "en"}}`, merge of the two CSVs above |
 | ui_strings_d01.csv | — | written by Sherefox遊戲企劃, not part of this build; not merged into strings_d01.json |
 
 ## ID scheme
@@ -29,6 +29,7 @@ All files are UTF-8 (CSV files have a BOM).
 | `ISSUE_D01_{OPP,METHOD,MOTIVE}` (+`_SHORT`) | issue names 機會／手法／動機 (short: 機／法／動) | evidence |
 | `CLM_D01_<id>` / `CLM_D01_<id>_LINE` | claim short label (shown on the chain and in the claim picker) / Sherefox's spoken line. `<id>` = 01A … 12A, P1A, P1B | evidence |
 | `CARD_D01_<card>` | opponent card short label (his chain). `<card>` = L1–L4, F1, F2, U1, U2, P05, P06, P07, K1 | evidence |
+| `CLM_D01_<id>_SHORT` / `CARD_D01_<card>_SHORT` | short label for chain nodes and the Public Record, right after the full label. en max 28 characters including spaces; zh-TW copies the full label. Full labels are unchanged and still used in the claim picker and card lists | evidence |
 | `CARD_D01_<card>_STATE / _PUSH / _RETRACT / _DOWN` | 立論 / 強辯 / 周旋改口 (re-raised, softened) / knocked down by a 正論 | script |
 | `CARD_D01_U*_TELL / _CATCH` | half-sentence shown in the tell before a slip / Sherefox's 「抓住他的話」 line | script |
 | `CUT_D01_<claim>_<card>` | his reaction when that claim cuts that card (replaces `_DOWN`) | script |
@@ -82,9 +83,11 @@ Other fixes:
 
 ## Check
 
-Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears in `v2/11_demo_chapter.md`. Every en string keeps its zh-TW placeholder set, and no en string is empty.
+Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears in `v2/11_demo_chapter.md`, except the `_SHORT` labels (added after delivery for screen space). Every en string keeps its zh-TW placeholder set, and no en string is empty.
 
 ## Changes after delivery
 
 * S06 (carry screen): Arthur's comments now play only through the 「問亞瑟的意見」 button (UI_V2_CARRY_ASK_ARTHUR), in the priority order given in each row's note. New line SCR_D01_S06_L012 (priority 7, repeatable). L010 still plays automatically. The old 「待使用者決定」 flag on L008 is gone.
 * Arthur's tell hints (`TELL_D01_HINT_*`): at most one per round, picked by the priority rule in chapter §11 ("亞瑟提示的時機"); the notes of the nine hint rows now say how often each plays. Strings unchanged.
+* Short labels: 42 rows `CLM_D01_<id>_SHORT` (all 30 claims) and `CARD_D01_<card>_SHORT` (all 12 opponent cards), en max 28 characters, for chain nodes and the Public Record. Seize His Words has no label of its own (its node shows the caught card's label, so use that card's `_SHORT`).
+* SCR_D01_S09_L004 en: "Mr Hyde was arrested" is now "Cedric Hyde was arrested" (Mr Hyde is the deceased). No other en string calls Cedric "Mr Hyde".

@@ -7,19 +7,6 @@
   color: #123a31;
 }
 
-.btn {
-  text-align: center;
-  line-height: 42px;
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: var(--paper);
-  background-color: var(--ink);
-  border: 1px #092e28;
-  effect: shadow(3px 3px 0px 0px #092e2866);
-  transition: background-color 120ms linear;
-}
-
 .f-body {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
 }
@@ -160,6 +147,19 @@
 :lang(en) .stamp-text {
   font-size: 24px;
   letter-spacing: 2px;
+}
+
+.btn {
+  text-align: center;
+  line-height: 42px;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--paper);
+  background-color: var(--ink);
+  border: 1px #092e28;
+  effect: shadow(3px 3px 0px 0px #092e2866);
+  transition: background-color 120ms linear;
 }
 
 .btn:hover {

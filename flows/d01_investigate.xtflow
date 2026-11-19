@@ -1108,13 +1108,6 @@
       }
     },
     {
-      "id": "noteNew",
-      "type": "atrium.coll.add",
-      "params": {
-        "name": "i1New"
-      }
-    },
-    {
       "id": "prOk",
       "type": "atrium.expr",
       "params": {
@@ -1130,13 +1123,6 @@
       "type": "atrium.coll.add",
       "params": {
         "name": "i1Notes"
-      }
-    },
-    {
-      "id": "pairNew",
-      "type": "atrium.coll.add",
-      "params": {
-        "name": "i1New"
       }
     },
     {
@@ -3936,10 +3922,10 @@
       }
     },
     {
-      "id": "nLeftEv",
+      "id": "nPick",
       "type": "atrium.expr",
       "params": {
-        "expr": "lfE01 + lfE02 + lfE03 + lfE04 + lfE05 + lfE06 + lfE07 + lfE08 + lfE09 + lfE10 + lfE11 + lfE12"
+        "expr": "!lsE05 + !lsE07 + !lsE06"
       }
     },
     {
@@ -3982,10 +3968,21 @@
       }
     },
     {
-      "id": "confGo",
+      "id": "confNoList",
       "type": "atrium.expr",
       "params": {
         "expr": "nLeft == 0"
+      }
+    },
+    {
+      "id": "confNoListG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "confGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nPick == 0"
       }
     },
     {
@@ -4015,10 +4012,14 @@
       "type": "atrium.gate"
     },
     {
+      "id": "l10M",
+      "type": "merge"
+    },
+    {
       "id": "l10On",
       "type": "atrium.expr",
       "params": {
-        "expr": "nLeftEv > 0"
+        "expr": "nPick > 0"
       }
     },
     {
@@ -4071,7 +4072,7 @@
       "id": "yesGo",
       "type": "atrium.expr",
       "params": {
-        "expr": "nLeftEv == 0"
+        "expr": "nPick == 0"
       }
     },
     {
@@ -5055,14 +5056,6 @@
       "to": "noteAdd.trigger"
     },
     {
-      "from": "sp_note.value",
-      "to": "noteNew.value"
-    },
-    {
-      "from": "ntG.pass",
-      "to": "noteNew.trigger"
-    },
-    {
       "from": "hasPairN.out",
       "to": "prOk.hasPairN"
     },
@@ -5085,14 +5078,6 @@
     {
       "from": "prG.pass",
       "to": "pairAdd.trigger"
-    },
-    {
-      "from": "sp_pairNote.value",
-      "to": "pairNew.value"
-    },
-    {
-      "from": "prG.pass",
-      "to": "pairNew.trigger"
     },
     {
       "from": "K9.out",
@@ -8527,52 +8512,16 @@
       "to": "nLeft.lfP1"
     },
     {
-      "from": "lfE01.value",
-      "to": "nLeftEv.lfE01"
+      "from": "lsE05.out",
+      "to": "nPick.lsE05"
     },
     {
-      "from": "lfE02.value",
-      "to": "nLeftEv.lfE02"
+      "from": "lsE07.out",
+      "to": "nPick.lsE07"
     },
     {
-      "from": "lfE03.value",
-      "to": "nLeftEv.lfE03"
-    },
-    {
-      "from": "lfE04.value",
-      "to": "nLeftEv.lfE04"
-    },
-    {
-      "from": "lfE05.value",
-      "to": "nLeftEv.lfE05"
-    },
-    {
-      "from": "lfE06.value",
-      "to": "nLeftEv.lfE06"
-    },
-    {
-      "from": "lfE07.value",
-      "to": "nLeftEv.lfE07"
-    },
-    {
-      "from": "lfE08.value",
-      "to": "nLeftEv.lfE08"
-    },
-    {
-      "from": "lfE09.value",
-      "to": "nLeftEv.lfE09"
-    },
-    {
-      "from": "lfE10.value",
-      "to": "nLeftEv.lfE10"
-    },
-    {
-      "from": "lfE11.value",
-      "to": "nLeftEv.lfE11"
-    },
-    {
-      "from": "lfE12.value",
-      "to": "nLeftEv.lfE12"
+      "from": "lsE06.out",
+      "to": "nPick.lsE06"
     },
     {
       "from": "laP1.out",
@@ -8620,14 +8569,26 @@
     },
     {
       "from": "nLeft.value",
-      "to": "confGo.nLeft"
+      "to": "confNoList.nLeft"
+    },
+    {
+      "from": "confNoList.value",
+      "to": "confNoListG.cond"
+    },
+    {
+      "from": "confG.pass",
+      "to": "confNoListG.trigger"
+    },
+    {
+      "from": "nPick.value",
+      "to": "confGo.nPick"
     },
     {
       "from": "confGo.value",
       "to": "confGoG.cond"
     },
     {
-      "from": "confG.pass",
+      "from": "confNoListG.pass",
       "to": "confGoG.trigger"
     },
     {
@@ -8659,15 +8620,23 @@
       "to": "yesG.trigger"
     },
     {
-      "from": "nLeftEv.value",
-      "to": "l10On.nLeftEv"
+      "from": "yesG.pass",
+      "to": "l10M.in"
+    },
+    {
+      "from": "confNoListG.pass",
+      "to": "l10M.in"
+    },
+    {
+      "from": "nPick.value",
+      "to": "l10On.nPick"
     },
     {
       "from": "l10On.value",
       "to": "l10G.cond"
     },
     {
-      "from": "yesG.pass",
+      "from": "l10M.out",
       "to": "l10G.trigger"
     },
     {
@@ -8735,8 +8704,8 @@
       "to": "saySeq.increment"
     },
     {
-      "from": "nLeftEv.value",
-      "to": "yesGo.nLeftEv"
+      "from": "nPick.value",
+      "to": "yesGo.nPick"
     },
     {
       "from": "yesGo.value",

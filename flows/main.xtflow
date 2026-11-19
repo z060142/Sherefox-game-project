@@ -1291,6 +1291,42 @@
     {
       "id": "quit",
       "type": "atrium.app.quit"
+    },
+    {
+      "id": "isD1InvLate",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "isD1CarLate",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "isD1WarmLate",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
+    },
+    {
+      "id": "d1bkLate",
+      "type": "timer",
+      "params": {
+        "interval": 0.001,
+        "autostart": false,
+        "repeat": false
+      }
     }
   ],
   "edges": [
@@ -1748,6 +1784,10 @@
     },
     {
       "from": "isD1Inv.true",
+      "to": "isD1InvLate.start"
+    },
+    {
+      "from": "isD1InvLate.tick",
       "to": "screen.to_d1inv"
     },
     {
@@ -1760,6 +1800,10 @@
     },
     {
       "from": "isD1Car.true",
+      "to": "isD1CarLate.start"
+    },
+    {
+      "from": "isD1CarLate.tick",
       "to": "screen.to_d1carry"
     },
     {
@@ -1780,6 +1824,10 @@
     },
     {
       "from": "isD1Warm.true",
+      "to": "isD1WarmLate.start"
+    },
+    {
+      "from": "isD1WarmLate.tick",
       "to": "screen.to_d1warm"
     },
     {
@@ -2208,6 +2256,10 @@
     },
     {
       "from": "d1bkGate.changed",
+      "to": "d1bkLate.start"
+    },
+    {
+      "from": "d1bkLate.tick",
       "to": "d1bk.open"
     },
     {

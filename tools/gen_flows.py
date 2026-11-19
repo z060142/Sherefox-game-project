@@ -399,6 +399,9 @@ def string_texts(lang: str) -> dict[str, str]:
 # two-column line height px; ui/boards Paper.dc.html .one #wcol-1-text / .wcol; Chinese exact, English measured on
 # the board: about 76 characters per two-column line); more than PAPER_ONE_LINES lines in
 # one column -> two columns of half the lines plus one (a safety line for proportional English) each.
+# v2 demo E6: the D01 screens main shows one tick after their step begins (their flows write the ports on the begin
+# pulse; read back on the next tick): the investigation, the carry screen, the warm-up
+D1_LATE = ("d1inv", "d1carry", "d1warm")
 PAPER_COLS = {"zh-TW": (26, 25, 34), "en": (67, 72, 29)}
 PAPER_ONE_LINES = 6
 PAPER_FULL_H = 342       # the column height of the one-column layout (the whole space under the headline)
@@ -942,7 +945,13 @@ def gen_main() -> Graph:
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
         g.edge(name + "Tag.out", name + ".b")
-        if scr:
+        if scr and scr in D1_LATE:
+            # v2 demo E6: a D01 screen whose flow fills its ports when the step begins is shown one tick later, so its
+            # first visible frame has them (not the board's defaults or the chapter played before)
+            late_start, late_tick = g.timer(name + "Late")
+            g.edge(name + ".true", late_start)
+            g.edge(late_tick, f"screen.to_{scr}")
+        elif scr:
             g.edge(name + ".true", f"screen.to_{scr}")
     # decided on the step's begin pulse (cur.value's last edge: the step's scene and chapter are settled by then)
     g.n("isDebN", "isDeb.out")
@@ -1021,7 +1030,10 @@ def gen_main() -> Graph:
     g.edge("ui#d1inv.book", "d1bkOpen.in")
     g.edge("ui#d1inv.notes", "d1bkOpen.in")
     g.edge("d1bkOpen.out", "d1bkGate.go")
-    g.edge("d1bkGate.changed", "d1bk.open")
+    # v2 demo E6: shown one tick after the button (the list and its first card are written on the click's tick)
+    d1bk_start, d1bk_tick = g.timer("d1bkLate")
+    g.edge("d1bkGate.changed", d1bk_start)
+    g.edge(d1bk_tick, "d1bk.open")
     g.edge("ui#d1book.close", "d1bk.close")
     g.edge("rebegin.out", "d1bk.close")
     g.node("d1bkVis", "lookup", values=[False, True])

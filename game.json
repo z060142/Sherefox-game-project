@@ -1687,6 +1687,11 @@
       "kind": "map",
       "type": "bool",
       "capacity": 8
+    },
+    "u1None": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 1
     }
   },
   "audio": {

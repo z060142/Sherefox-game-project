@@ -631,3 +631,9 @@ vn 追加（4.4）：角色 `irene`（`char_irene.png`，三個位置），S08 L
 title（v2 demo M3）：「v2 示範關卡」項目改為 `set(chapter, 101)`（選 D01 章，`v2demo` 移除）；旁邊的小鈕 `v2dev`（event，out，`UI_V2_DEV_DEBATE` 預留列）＝ 開發入口，直接進入 D01 的論戰列。
 
 d1debate（v2 demo M3）：加 `ronpa_ready_text`（string，in：`UI_V2_RONPA_READY`／`UI_V2_RONPA_READY_ISSUE`）；破竹的標籤改用 `UI_V2_F_HACHIKU`（英文 Unstoppable）。cutin（v2 demo M3）：加 `stamp_text`（string，in）與 `stamp` 值 `V2_TR`／`V2_BL`：文字印（右上／左下），字由 `d01_debate_ui` 寫（`UI_V2_STAMP_*`）。
+
+### D01 各畫面追加（E6）
+
+- 板子的範例資料（d1debate、d1inv、d1book、d1carry、d1warm、d1result）：每個 `in` port 的預設值改成空的（清單 `[]`、字串空白、數字 0（`tell_a`／`tell_b`／`tell_star` −1）、bool false），流圖還沒寫的 port 不會露出假的鏈、數字或文字。d1debate 的兩個可信度數字與量條在 `hp_*_max` 為 0 時不顯示。
+- d1debate：浮動數字 `#float-me`／`#float-opp` 加 `pointer-events: none`（淡出後仍擋住說法選擇器第 4 列的點擊，5.2 的發現；匯入後落在共用的 `pointer-events: none` 類別）。其他 D01 板子沒有蓋在可點元素上的隱形或裝飾元素（d1inv 的數字徽章、d1debate 的 `#hint-wrap`、cutin 原本就是 `pointer-events: none`）。
+- d1debate（V4）：英文的說法選擇器每列標題可換兩行（12／14 px，`line-clamp: 2`，標籤列下移到 30 px；英文的標籤 10 px）；確認列：說法 290 px、目標 330 px、援護 110 px（說法與目標都顯示全名）。鏈上的節（`ochain`／`pchain` 的 `label`）與公開紀錄（`record.label`）收短標（`docs/flows.md` §4.12 E6）。

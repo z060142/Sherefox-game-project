@@ -2,6 +2,7 @@
 
 /* import: D1Warm.dc.html:1 */
 #d1warm {
+  background-color: #f3eedf;
   background-color: var(--paper);
 }
 
@@ -13,20 +14,6 @@
 /* import: D1Warm.dc.html:1/4 */
 #head {
   background-color: #f3eedfeb;
-}
-
-.title {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 24px;
-  line-height: 36px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.ch-art {
-  object-fit: contain;
 }
 
 .kicker {
@@ -60,6 +47,16 @@
   letter-spacing: 1px;
 }
 
+.title {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 :lang(en) .title {
   font-size: 20px;
 }
@@ -78,6 +75,10 @@
 
 .rule {
   background-color: var(--ink);
+}
+
+.ch-art {
+  object-fit: contain;
 }
 
 .fig {

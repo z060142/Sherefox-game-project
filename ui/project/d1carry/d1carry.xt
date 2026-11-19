@@ -5,16 +5,16 @@
 
   <ports>
     phase: number in = 0
-    count_text: string in = "可攜帶：9 件。已選：8 件。"
+    count_text: string in = ""
     full: bool in = false
-    first_hint: string in = "能帶進論戰的東西有限。留下的證物，可能落入對手手中。"
-    items: list<struct{id: string, name: string, desc: string, kind: string, psy: bool, sel: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","desc":"書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。","kind":"證物","psy":false,"sel":true},{"id":"E03","name":"落在地上的鏡子黑布","desc":"書房穿衣鏡的黑布掉在地毯上。","kind":"證物","psy":false,"sel":false},{"id":"P1","name":"通靈板","desc":"閣樓舊玩具箱裡的木製靈應盤。","kind":"心理牌","psy":true,"sel":false}]
-    who1: string in = "亞瑟"
-    say1: string in = "鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。"
+    first_hint: string in = ""
+    items: list<struct{id: string, name: string, desc: string, kind: string, psy: bool, sel: bool}> in = []
+    who1: string in = ""
+    say1: string in = ""
     who2: string in = ""
     say2: string in = ""
     say_seq: number in = 0
-    confirm_text: string in = "以下東西會留在宅邸：落在地上的鏡子黑布、通靈板。確定嗎？"
+    confirm_text: string in = ""
     pick_item: string out = ""
     ask: event out
     confirm: event out
@@ -27,7 +27,7 @@
 
   <body key-activation="none">
     <div id="d1carry" tabindex="0" autofocus="" on:key(Escape)="if port(phase) eq 1 emit(no) else emit(settings)" on:key(F1)="emit(settings)" on:key(Enter)="if port(phase) eq 2 emit(go)" on:key(Space)="if port(phase) eq 2 emit(go)">
-      <img id="bg" src="../shared/img/bg-hall.jpg"/>
+      <img id="bg" src="../shared/img/bg-d01-hall.jpg"/>
       <div id="dim"/>
       <div id="main">
         <div id="sheet" class="sheet">
