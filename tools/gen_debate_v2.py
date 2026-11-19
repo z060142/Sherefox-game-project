@@ -192,6 +192,7 @@ COLLECTIONS = {
     "d1Known": {"kind": "list", "type": "string", "capacity": 128, "unique": True},
     "d1Record": {"kind": "list", "type": "string", "capacity": 128},
     "d1ClaimList": {"kind": "list", "type": "string", "capacity": 64},
+    "d1ClaimVoid": {"kind": "list", "type": "string", "capacity": 64},     # E8: refuted claims (greyed rows)
     "d1ClaimSoph": {"kind": "map", "type": "number", "capacity": 64},
     "d1ClaimCrack": {"kind": "map", "type": "number", "capacity": 64},
     "d1ClaimStand": {"kind": "map", "type": "number", "capacity": 64},
@@ -208,7 +209,7 @@ COLLECTIONS = {
     "d1Notes": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
 }
 ENGINE_LISTS = ["d1Events", "d1PChain", "d1OChain", "d1Hand", "d1Knocked", "d1Known", "d1Record", "d1ClaimList",
-                "d1Rep", "d1Favour", "d1EpS08", "d1EpS09", "d1EpS10", "d1EpRep"]
+                "d1ClaimVoid", "d1Rep", "d1Favour", "d1EpS08", "d1EpS09", "d1EpS10", "d1EpRep"]
 
 # --------------------------------------------------------------------------------------------- tables
 
@@ -238,6 +239,8 @@ def derive_tables() -> dict[str, list[dict]]:
                       "fact": int(cd.is_fact), "keystone": int(cd.keystone), "frames": int(cd.frames),
                       "source": cd.source or "",
                       **{k: loc.get(k, "") for k in ("label", "state", "push", "retract", "down", "tell", "catch")}})
+        if cid == M.never_in_hand(CH):   # E8: never said as 強辯 (ref model.never_in_hand): no _PUSH line
+            cards[-1]["push"] = ""
     evidence = [{"id": e.id, "appraisal": e.appraisal or "", "opponentUse": e.opponent_use or "", "key": int(e.key),
                  "psychCard": int(e.psych_card)} for e in CH.evidence.values()]
     codes = [{"id": n, "side": "opponent", "code": i} for i, n in enumerate(OA_NAMES)]
@@ -532,6 +535,14 @@ def avail_of(i: int) -> N:
     if c.opp_refute:
         parts.append(T.NOT(g(f"vd_{c.id}")))
     return T.AND(*parts)
+
+
+def void_row_of(i: int) -> N:
+    """avail_of without the void test (ref known.void_rows: carried and unlocked)."""
+    c = CH.claims[CL[i]]
+    if any(u not in KNOWN for u in c.unlock):
+        return T.c(0)
+    return T.AND(*([g(f"car_{c.evidence}")] + [g(kn_key(u)) for u in c.unlock]))
 
 
 def vec(prefix: str, ids, idx_of) -> list:
@@ -1241,12 +1252,13 @@ def last_stand_round(cmd: Cmd) -> None:
                 put(f"oc_{c}", T.SEL(rem, 0, g(f"oc_{c}")))
             put("ocb", 0)
             put("php", T.c(CH.player_max_hp) * M.COMEBACK_RATIO)
-            T.when(red, lambda: put("php", g("php") - M.CONTRADICTION))
             put("pl", 0)
             ev("lastStand", cls(ci), cks(hit), 1, g("php"))
             foreach_sub("d1OChain", "lastStandDestroyed", "d1Card", lambda row: T.GE(T.PICK(row, ocv), mn))
             for rem, c in rems:
                 eff_if(rem, "remove", coll="d1OChain", value=T.sc(c))
+            # V-12: back to 30%, then −10; E8 (design ruling): the −10 is its own record (a red crack's damage)
+            T.when(red, lambda: hurt_player(M.CONTRADICTION, "contradiction"))
             pev("lie_down_proper", CH.psych_events["lie_down_proper"])
             put("fps", 0)
             put("fkl", 0)
@@ -1564,6 +1576,11 @@ def claim_list() -> None:
         eff_if(T.EQ(g("cc"), CK.index(u) + 1), "add", coll="d1ClaimList", value=T.sc(f"{M.CATCH}:{u}"))
     for i, c in enumerate(CLAIMS):
         eff_if(avail_of(i), "add", coll="d1ClaimList", value=T.sc(c))
+    # E8 (ref known.void_rows): the refuted claims whose evidence is carried and unlocked, greyed in the picker
+    T.effect("clear", coll="d1ClaimVoid")
+    for i, c in enumerate(CLAIMS):
+        if CH.claims[c].opp_refute:
+            eff_if(T.AND(void_row_of(i), g(f"vd_{c}")), "add", coll="d1ClaimVoid", value=T.sc(c))
     for i, c in enumerate(CL):
         T.effect("mset", coll="d1ClaimSoph", key=T.sc(c), value=soph_of(i))
         T.effect("mset", coll="d1ClaimCrack", key=T.sc(c), value=red_of(i))

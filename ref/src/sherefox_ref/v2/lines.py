@@ -84,6 +84,8 @@ class Memo:
     psych_noted: bool = False                    # SYS_D01_PSYCH_NOTE shown
     privates: set = field(default_factory=set)   # private-matter claims announced (SYS_D01_PRIVATE)
     nobreak: bool = False                        # E7: SYS_D01_CHAIN_NOBREAK shown (once per debate)
+    cut_opens: int = 0                           # E8: SHF_D01_CUT_OPEN_1 / _2 played (they take turns)
+    key_open: bool = False                       # E8: SHF_D01_CUT_OPEN_3 played (the keystone, once per debate)
 
 
 def outro(outcome: str) -> tuple[str, ...]:
@@ -334,6 +336,21 @@ def excl_keys(claim: str, other: str) -> tuple[str, str]:
     return f"EXCL_D01_{a}_{b}_CATCH", f"EXCL_D01_{a}_{b}_SELL"
 
 
+CUT_OPEN = ("SHF_D01_CUT_OPEN_1", "SHF_D01_CUT_OPEN_2")
+CUT_OPEN_KEY = "SHF_D01_CUT_OPEN_3"
+
+
+def cut_open(memo: Memo, keystone: bool) -> str:
+    """E8 (design ruling): Sherefox's opener before her claim line when her cut lands in a normal round. The keystone
+    (L2) gets _3 the first time; every other landed cut takes _1 and _2 in turn, from _1. Marks it in `memo`."""
+    if keystone and not memo.key_open:
+        memo.key_open = True
+        return CUT_OPEN_KEY
+    k = CUT_OPEN[memo.cut_opens % len(CUT_OPEN)]
+    memo.cut_opens += 1
+    return k
+
+
 def nobreak_now(s: State, recs: list, s2: State) -> bool:
     """E7 (design ruling): her link landed and her chain is long enough for a Break, but he is not in 破防 (at the end
     of the round, when the Break is judged), so no Break."""
@@ -379,6 +396,9 @@ def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | N
                 pre.append(Step(AR, "BEAT_D01_09A_1"))
             if mode == "endgame" and not s.endgame["dying"]:
                 pre.append(Step(sys="SCR_D01_S07_L011"))
+            cut = next((x for x in recs if x["k"] == "intercept" and x["ok"]), None)
+            if mode == "normal" and cut is not None:     # E8: right before her claim line
+                pre.append(Step(SH, cut_open(memo, ch.cards[cut["card"]].keystone)))
             if claim:
                 who, line = SH, _claim_line(s, claim)
             elif pa.kind == PA.STALL:

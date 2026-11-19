@@ -42,15 +42,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 18 element(s) is written to their <layout> #id rules (#d1end, #sheet, #sil, #sil-mast, #sil-rule, ...)",
+      "message": "the board's inline geometry of 19 element(s) is written to their <layout> #id rules (#d1end, #sheet, #title, #sil, #sil-mast, ...)",
       "element": "",
       "source": "D1End.dc.html",
-      "line": 22,
+      "line": 25,
       "col": 0,
       "ui": "d1end",
       "detail": {
-        "elements": "18",
-        "ids": "#d1end #sheet #sil #sil-mast #sil-rule #sil-head #sil-pic #sil-c1 #sil-c2 #sil-c3 #sil-c4 #sil-c5 #sil-c6 #sil-c7 #sil-c8 #head #sub #btns"
+        "elements": "19",
+        "ids": "#d1end #sheet #title #sil #sil-mast #sil-rule #sil-head #sil-pic #sil-c1 #sil-c2 #sil-c3 #sil-c4 #sil-c5 #sil-c6 #sil-c7 #sil-c8 #head #sub #btns"
       },
       "fix": {
         "kind": "editor",

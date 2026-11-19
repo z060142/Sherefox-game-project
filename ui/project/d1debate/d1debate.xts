@@ -36,27 +36,27 @@
   line-height: 24px;
 }
 
-/* import: D1Debate.dc.html:1/1/16/3 */
+/* import: D1Debate.dc.html:1/1/16/5 */
 #sum-armed {
   text-align: right;
 }
 
-/* import: D1Debate.dc.html:1/1/21/0/4/0/0/2 */
+/* import: D1Debate.dc.html:1/1/22/0/5/0/0/2 */
 #rec-use {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/21/0/4/0/0/3 */
+/* import: D1Debate.dc.html:1/1/22/0/5/0/0/3 */
 #rec-soph {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/21/0/4/0/0/4 */
+/* import: D1Debate.dc.html:1/1/22/0/5/0/0/4 */
 #rec-crack {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/21/0/4/0/0/5 */
+/* import: D1Debate.dc.html:1/1/22/0/5/0/0/5 */
 #rec-state {
   line-height: 26px;
 }
@@ -574,7 +574,7 @@
   line-height: 16px;
 }
 
-:lang(en) #clm-iss, :lang(en) #clm-crack, :lang(en) #clm-stand, :lang(en) #clm-extra {
+:lang(en) #clm-iss, :lang(en) #clm-crack, :lang(en) #clm-stand, :lang(en) #clm-note, :lang(en) #clm-extra {
   line-height: 13px;
 }
 
@@ -800,6 +800,81 @@
 
 .acts.busy {
   opacity: 0.5;
+}
+
+.sum-pv {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 34px;
+  font-weight: 700;
+  color: var(--lamp-gold);
+  white-space: nowrap;
+}
+
+.sum-cc {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 34px;
+  font-weight: 700;
+  color: #ff9a8f;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.desc-l {
+  background-color: #092e28d9;
+  border-left-width: 3px;
+  border-left-color: #e0a050;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--paper);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+:lang(en) .desc-l {
+  font-size: 12px;
+}
+
+.guard-n {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 16px;
+  color: #f3eedfcc;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.eg-head {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--paper);
+  background-color: var(--vermilion);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tell-pos {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #9a5a14;
+  line-clamp: 2;
+}
+
+.rec-crk {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 15px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--vermilion);
+  text-align: right;
+  white-space: nowrap;
 }
 
 .band {

@@ -81,7 +81,7 @@
       "message": "anchor: #post right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "post",
       "source": "D1Carry.dc.html",
-      "line": 120,
+      "line": 121,
       "col": 0,
       "ui": "d1carry",
       "detail": {
@@ -102,15 +102,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 37 element(s) is written to their <layout> #id rules (#d1carry, #bg, #dim, #main, #sheet, ...)",
+      "message": "the board's inline geometry of 38 element(s) is written to their <layout> #id rules (#d1carry, #bg, #dim, #main, #sheet, ...)",
       "element": "",
       "source": "D1Carry.dc.html",
       "line": 58,
       "col": 0,
       "ui": "d1carry",
       "detail": {
-        "elements": "37",
-        "ids": "#d1carry #bg #dim #main #sheet #k #title #count #hint #items #item #it-box #it-tick #it-n #it-d #it-k #side #arthur #arthur-art #btn-ask #btn-ask-t #btn-back #btn-confirm #dlg #who1 #say1 #who2 #say2 #confirm #c-veil #c-box #c-k #c-t #c-no #c-yes #post #post-more"
+        "elements": "38",
+        "ids": "#d1carry #bg #dim #main #sheet #k #title #count #hint #items #item #it-box #it-tick #it-n #it-d #it-k #side #arthur #arthur-art #btn-ask #btn-ask-t #btn-back #btn-confirm #dlg #who1 #say1 #who2 #say2 #confirm #c-veil #c-box #c-k #c-t #c-ask #c-no #c-yes #post #post-more"
       },
       "fix": {
         "kind": "editor",

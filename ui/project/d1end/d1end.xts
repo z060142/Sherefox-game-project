@@ -60,6 +60,20 @@
   letter-spacing: 0px;
 }
 
+.kick {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 4px;
+  text-align: center;
+  color: #8f8873;
+  white-space: nowrap;
+}
+
+:lang(en) .kick {
+  letter-spacing: 1px;
+}
+
 .btn:hover {
   background-color: #a65432;
 }

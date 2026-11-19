@@ -80,3 +80,27 @@ def claim_list(s: State) -> list[ClaimView]:
         out.append(view(s, f"{CATCH}:{s.catch_card}"))
     out += [v for v in (view(s, cid) for cid in s.ch.claims) if v.available]
     return out
+
+
+# --------------------------------------------------------------------------- E8 picker tags
+
+
+def restate(s: State, claim_id: str) -> bool:
+    """UI_V2_CLAIM_RESTATE (E8): the claim was knocked off her chain and may be raised again at x0.5 (§3.4): in the
+    picker, not standing, not void. 抓住他的話 never is."""
+    if is_catch(claim_id):
+        return False
+    v = view(s, claim_id)
+    return v.available and not v.standing and claim_id in s.knocked_claims
+
+
+def void_rows(s: State) -> list[str]:
+    """UI_V2_CLAIM_VOID (E8): claims refuted this debate (void, §3.4 / R-21) whose evidence is carried and unlocked: the
+    picker lists them greyed with the tag, after the available ones of their evidence (data order). Never selectable."""
+    out = []
+    for cid in s.voided:
+        c = s.ch.claims[cid]
+        if c.evidence in s.loadout.carried and all(u in s.known for u in c.unlock):
+            out.append(cid)
+    order = list(s.ch.claims)
+    return sorted(out, key=order.index)

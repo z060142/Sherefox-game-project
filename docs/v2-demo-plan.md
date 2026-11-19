@@ -199,3 +199,25 @@
 - S07 L004 播放時預兆框不顯示：現狀正確。
 - 5.3 英文檢查回報的版面與字串問題。
 - ✔ 完成：抓住他的話的節顯示 U 牌短標（`tests/check_d1_fuzz.py` 與 `tests/shots_d1_labels.py` 的期望值由規則寫出，改動前失敗）。拉設計 4ac5faf、fdbf90c 的字串（地下室分頁 `SCENE_D01_BASEMENT_TAB`）。字串稽核：A 類 25 個 ID（CHAIN_READY、REV_READY、CHAIN_NOBREAK、互斥表 22 句）加上 ↔ 承接反向、殘局截斷的「截」；B 類 30 個 ID 由 `tests/check_d1_lines.py` S7～S14 走到（含 §7.5 成功回到 30%）；C 類 25 個與 3 個非 ID 問題、D 類 1 個列給企劃；`tests/check_d1_strings.py` 讓沒人用的新字串會失敗；大字與小印逐回合對 ref。
+
+### E8：原本沒顯示的字串（企劃裁定，接在 E7 的清查之後；Opus） ✔
+
+**台詞**
+- `SHF_D01_CUT_OPEN_1～3`：玩家截斷成功時，Sherefox 先說這句，再接該說法自己的台詞。截掉的是要害論點 L2 時用 `_3`（每場最多一次）；其餘在 `_1`、`_2` 之間輪流，從 `_1` 開始。截斷落空、拆台、殘局的截斷都不播。（ref `lines.py` 先改）
+- §7.5 最後一擊用了帶紅色裂紋的說法：先 `SYS_D01_LASTSTAND_OK`（回到 42），再播該組矛盾台詞與 `SYS_D01_REDCRACK`（−10 → 32），裂紋照記。
+- 確認不改：`{issues}` 用爭點全名、依鏈上出現的順序；一個說法與兩句矛盾時取紀錄中最早的一句，只扣一次、只記一道裂紋。
+
+**UI 字串：要顯示**
+- `UI_V2_ACT_STALL_REPEAT`：上一回合打過迷糊仗時，顯示在「打迷糊仗」的說明位置（取代 `UI_V2_ACT_STALL_DESC`）。
+- `UI_V2_CLAIM_CRACK_COST`：帶紅色裂紋標記的說法，在標記旁或確認列，`{n}`＝10（取自規則資料，不寫死）。
+- `UI_V2_CLAIM_RESTATE`：被打掉後可以重提的說法，該列加標籤。`UI_V2_CLAIM_VOID`：被駁倒而作廢的說法，該列反灰並加標籤。
+- `UI_V2_DMG_PREVIEW`：確認列顯示所選說法的預估論證（以回合開始時的狀態計算，不含對手行動的影響）。算法先寫進 ref 並測試，畫面對上 ref；fuzz 每回合比對。不得洩漏隱藏數值（只用玩家看得到的狀態：連擊、破竹、破防、承接／重提）。
+- `UI_V2_ENDGAME`：進入殘局時，最後一張牌提示上方的小標。`UI_V2_SUPPORT_LEFT`：援護按鈕上的剩餘次數。
+- `UI_V2_TELL_POSSIBLE`：模糊預兆面板列出兩個候選行動的那一行（有★時該行動後加 `UI_V2_TELL_LIKELY`）。
+- `UI_V2_RECORD_CRACKS`：公開紀錄面板的標題列，顯示目前的裂紋數。`UI_V2_CARRY_LEFT_ASK`：攜帶確認清單下方的確認問句。
+- `UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE`：S11 佔位畫面的標題與回標題的按鈕（台詞播完後停在這裡，按了才回標題）。
+- 各個 `_DESC` 說明字串（行動、截斷／拆台、援護、詭辯、抓住他的話、公開紀錄、人物筆記）：示範關卡沒有教學，這是唯一的說明。滑鼠停在或選到對應項目時，顯示在行動面板的一行說明位置；公開紀錄與人物筆記的說明放在面板標題下。
+
+**不顯示**（列入 `NOT_DISPLAYED` 並註明理由）：`UI_V2_CLAIM_CAN_CUT`（會洩漏哪個說法截得掉）、`UI_V2_ISSUE`、`SCENE_D01_ATTIC`／`BASEMENT` 全名、`CARD_D01_P05_PUSH`（P05 只當最後一張牌）。覆蓋表 C 類若還有未被上面涵蓋的 key，列出 ID 回報企劃。
+
+- ✔ 完成：ref 先改（`lines.cut_open`、`resolve._last_stand` 改為兩筆事件、`preview.py`、`known.restate`／`void_rows`、`model.never_in_hand`；`ref/tests/test_v2_e8.py`），引擎（紅色裂紋的最後一擊、`d1ClaimVoid`）與畫面對上 ref；確認列加寬放預估與代價，行動列上方一行說明（滑鼠所在或選中的項目），模糊預兆一行、援護次數、紀錄裂紋數、殘局小標、說法列的重提／作廢標籤、攜帶確認問句、S11 的標題與按鈕（停到按下）。測試：`check_e8`（路線與劇本每回合）、`check_d1_lines` `E8_REACHED`／`HOVER_PROBE`／`RED_LAST`、fuzz 每次點擊、`check_d1_full`／`check_d1_m3`；fuzz 的精選種子重選。字串：704 個要顯示的 ID 中 700 個在測試畫面出現。另列給企劃：`SCR_D01_S11_L003` 改為不顯示；`SCR_D01_S06_L009` 已以「確定嗎？」結尾，與 `UI_V2_CARRY_LEFT_ASK` 重複。

@@ -11,6 +11,7 @@
   <body on:show="play(fade-in)" key-activation="none">
     <div id="d1end" tabindex="0" autofocus="" on:key(Enter)="emit(back)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
       <div id="sheet">
+        <div id="title" class="kick">@UI_V2_NEXT_PLACEHOLDER</div>
         <div id="sil" class="sil">
           <div id="sil-mast" class="sil-bar"/>
           <div id="sil-rule" class="sil-bar"/>
@@ -28,7 +29,7 @@
         <div id="head" class="head">@SCR_D01_S11_L001</div>
         <div id="sub" class="sub">@SCR_D01_S11_L002</div>
         <div id="btns">
-          <div id="btn-back" class="btn" on:click(left)="emit(back)">@SCR_D01_S11_L003</div>
+          <div id="btn-back" class="btn" on:click(left)="emit(back)">@UI_V2_BACK_TITLE</div>
         </div>
       </div>
     </div>
@@ -55,6 +56,14 @@
       width: 1280px;
     }
     /* import: D1End.dc.html:1/0/0 */
+    #title {
+      height: 30px;
+      left: 140px;
+      position: absolute;
+      top: 22px;
+      width: 1000px;
+    }
+    /* import: D1End.dc.html:1/0/1 */
     #sil {
       height: 330px;
       left: 390px;
@@ -63,7 +72,7 @@
       transform: rotate(-4deg);
       width: 500px;
     }
-    /* import: D1End.dc.html:1/0/0/0 */
+    /* import: D1End.dc.html:1/0/1/0 */
     #sil-mast {
       height: 34px;
       left: 40px;
@@ -71,7 +80,7 @@
       top: 26px;
       width: 420px;
     }
-    /* import: D1End.dc.html:1/0/0/1 */
+    /* import: D1End.dc.html:1/0/1/1 */
     #sil-rule {
       height: 3px;
       left: 30px;
@@ -79,7 +88,7 @@
       top: 72px;
       width: 440px;
     }
-    /* import: D1End.dc.html:1/0/0/2 */
+    /* import: D1End.dc.html:1/0/1/2 */
     #sil-head {
       height: 22px;
       left: 60px;
@@ -87,7 +96,7 @@
       top: 92px;
       width: 380px;
     }
-    /* import: D1End.dc.html:1/0/0/3 */
+    /* import: D1End.dc.html:1/0/1/3 */
     #sil-pic {
       height: 160px;
       left: 30px;
@@ -95,7 +104,7 @@
       top: 134px;
       width: 240px;
     }
-    /* import: D1End.dc.html:1/0/0/4 */
+    /* import: D1End.dc.html:1/0/1/4 */
     #sil-c1 {
       height: 8px;
       left: 290px;
@@ -103,7 +112,7 @@
       top: 134px;
       width: 180px;
     }
-    /* import: D1End.dc.html:1/0/0/5 */
+    /* import: D1End.dc.html:1/0/1/5 */
     #sil-c2 {
       height: 8px;
       left: 290px;
@@ -111,7 +120,7 @@
       top: 154px;
       width: 180px;
     }
-    /* import: D1End.dc.html:1/0/0/6 */
+    /* import: D1End.dc.html:1/0/1/6 */
     #sil-c3 {
       height: 8px;
       left: 290px;
@@ -119,7 +128,7 @@
       top: 174px;
       width: 160px;
     }
-    /* import: D1End.dc.html:1/0/0/7 */
+    /* import: D1End.dc.html:1/0/1/7 */
     #sil-c4 {
       height: 8px;
       left: 290px;
@@ -127,7 +136,7 @@
       top: 194px;
       width: 180px;
     }
-    /* import: D1End.dc.html:1/0/0/8 */
+    /* import: D1End.dc.html:1/0/1/8 */
     #sil-c5 {
       height: 8px;
       left: 290px;
@@ -135,7 +144,7 @@
       top: 214px;
       width: 140px;
     }
-    /* import: D1End.dc.html:1/0/0/9 */
+    /* import: D1End.dc.html:1/0/1/9 */
     #sil-c6 {
       height: 8px;
       left: 290px;
@@ -143,7 +152,7 @@
       top: 234px;
       width: 180px;
     }
-    /* import: D1End.dc.html:1/0/0/10 */
+    /* import: D1End.dc.html:1/0/1/10 */
     #sil-c7 {
       height: 8px;
       left: 290px;
@@ -151,7 +160,7 @@
       top: 254px;
       width: 170px;
     }
-    /* import: D1End.dc.html:1/0/0/11 */
+    /* import: D1End.dc.html:1/0/1/11 */
     #sil-c8 {
       height: 8px;
       left: 290px;
@@ -159,7 +168,7 @@
       top: 274px;
       width: 120px;
     }
-    /* import: D1End.dc.html:1/0/1 */
+    /* import: D1End.dc.html:1/0/2 */
     #head {
       height: 70px;
       left: 140px;
@@ -167,7 +176,7 @@
       top: 440px;
       width: 1000px;
     }
-    /* import: D1End.dc.html:1/0/2 */
+    /* import: D1End.dc.html:1/0/3 */
     #sub {
       height: 64px;
       left: 140px;
@@ -175,7 +184,7 @@
       top: 522px;
       width: 1000px;
     }
-    /* import: D1End.dc.html:1/0/3 */
+    /* import: D1End.dc.html:1/0/4 */
     #btns {
       display: flex;
       flex-direction: row;

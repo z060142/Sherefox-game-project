@@ -250,6 +250,16 @@ def pickups_for(ch: Chapter, carried) -> tuple[str, ...]:
     return tuple(ch.evidence[e].opponent_use for e in left[: ch.max_pickup])
 
 
+def never_in_hand(ch: Chapter) -> str | None:
+    """The picked-up card that is never in his hand (E8, class D of docs/d01-string-coverage.md): the card of the first
+    evidence in pickup priority. Whenever it is picked up it is picked first, so initial_state keeps it as his last
+    card (ch §3.4 / §6.5); it is never said as 立論 or 強辯 (its _PUSH line cannot show)."""
+    if not (ch.last_card_order and ch.last_card_order[0] == "@pickup"):
+        return None
+    first = next((e for e in ch.pickup_priority if ch.evidence[e].opponent_use), None)
+    return ch.evidence[first].opponent_use if first else None
+
+
 def validate_loadout(ch: Chapter, lo: Loadout) -> None:
     if len(lo.carried) > ch.carry_limit:
         raise IllegalAction(f"carrying {len(lo.carried)} > {ch.carry_limit}")

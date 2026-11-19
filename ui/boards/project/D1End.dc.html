@@ -13,6 +13,9 @@
   .sub { font-family: var(--font-body); font-size: 20px; line-height: 32px; letter-spacing: 2px; text-align: center;
          color: #b9b19c }
   :lang(en) .sub { font-size: 18px; letter-spacing: 0px }
+  .kick { font-family: var(--font-body); font-size: 16px; line-height: 30px; letter-spacing: 4px; text-align: center;
+          color: #8f8873; white-space: nowrap }
+  :lang(en) .kick { letter-spacing: 1px }
   .btn { width: 240px; height: 48px; flex-shrink: 0; text-align: center; line-height: 46px;
          font-family: var(--font-body); font-size: 17px; letter-spacing: 2px; color: #e9e2cf;
          background-color: #0b0d0c; border: 1px solid #b9b19c; transition: background-color 120ms linear }
@@ -26,6 +29,10 @@
 
   <div id="sheet" data-xt-timeline="fade-in: 0 opacity 0, 900ms ease-out opacity 1"
        style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+    <!-- E8: the placeholder's title (UI_V2_NEXT_PLACEHOLDER) above the silhouette; the button is UI_V2_BACK_TITLE. -->
+    <div id="title" class="kick" data-xt-key="UI_V2_NEXT_PLACEHOLDER"
+         style="position: absolute; left: 140px; top: 22px; width: 1000px; height: 30px;">下一章預告（示範關卡到此結束）</div>
 
     <!-- The newspaper's silhouette: a sheet in shadow, a masthead bar, a picture block and column lines. -->
     <div id="sil" class="sil" style="position: absolute; left: 390px; top: 70px; width: 500px; height: 330px; transform: rotate(-4deg);">
@@ -49,7 +56,7 @@
          style="position: absolute; left: 140px; top: 522px; width: 1000px; height: 64px;">《（章名待定）》——本 demo 到此結束。感謝遊玩。</div>
     <div id="btns" style="position: absolute; left: 140px; top: 616px; width: 1000px; height: 48px;
          display: flex; flex-direction: row; justify-content: center;">
-      <div id="btn-back" class="btn" data-xt-key="SCR_D01_S11_L003" data-xt-trigger="click(left):emit(back)">回到標題畫面</div>
+      <div id="btn-back" class="btn" data-xt-key="UI_V2_BACK_TITLE" data-xt-trigger="click(left):emit(back)">回到標題</div>
     </div>
   </div>
 </div>

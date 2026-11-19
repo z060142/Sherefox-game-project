@@ -62,6 +62,9 @@ EXTRAS = [
     ("xRc", "pre", "k_round && d_crk", AR, "BEAT_D01_REDCRACK_1"),
     ("x09", "pre", "k_round && isC09A", AR, "BEAT_D01_09A_1"),
     ("xL11", "pre", "k_round && modeN == 1 && !L_Dying", None, "SCR_D01_S07_L011"),
+    # E8 (design ruling): her cut lands in a normal round: Sherefox's opener right before her claim line (ref
+    # lines.cut_open: the keystone's _3 once per debate, else _1 / _2 in turn)
+    ("xCo", "pre", "k_round && modeN == 0 && coLand", SH, "@coKey"),
     ("xIre", "pre", "k_pAttach && isF09A", IRE, "REACT_D01_09A_3"),
     ("xCl1", "pre", "clashRec && !d_clsh", CE, "BEAT_D01_CLASH_1"),
     ("xCl2", "pre", "clashRec && !d_clsh", SH, "BEAT_D01_CLASH_2"),
@@ -164,7 +167,9 @@ def tables() -> dict[str, list[dict]]:
                       "label": f"CARD_D01_{cid}", "short": f"CARD_D01_{cid}_SHORT",
                       "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT" if cd.issue else "",
                       "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}" if cd.issue else "",
-                      "state": state, "push": have(f"CARD_D01_{cid}_PUSH", state),
+                      # E8: the card ref model.never_in_hand names is never said as 強辯: its _PUSH line cannot show
+                      "state": state,
+                      "push": state if cid == M.never_in_hand(CH) else have(f"CARD_D01_{cid}_PUSH", state),
                       "retract": have(f"CARD_D01_{cid}_RETRACT", state), "down": down,
                       "tell": f"CARD_D01_{cid}_TELL" if cd.kind == "unfav" else ""})
     ev = [{"id": e, "name": ev_key(e)} for e in CH.evidence] + [{"id": M.CATCH, "name": "UI_V2_SEIZE"}]
@@ -213,8 +218,10 @@ def tables() -> dict[str, list[dict]]:
                 raise SystemExit(f"claims {cid} / {o}: no {ck} / {sk} in the strings (ch §7)")
             row.update({f"x{i}": o, f"catch{i}": ck, f"sell{i}": sk})
         excl.append(row)
+    # E8: the scripted 承接 pairs (ch §8; the damage preview's 延續加成, ref preview.py), `<a>:<b>` = b follows a
+    cont = [{"id": f"{a}:{b}"} for a, b in sorted(CH.continuations)]
     return {"d1uiClaim": claims, "d1uiCard": cards, "d1uiEv": ev, "d1uiLine": lines, "d1uiBreak": brk,
-            "d1uiRefute": refute, "d1uiExcl": excl}
+            "d1uiRefute": refute, "d1uiExcl": excl, "d1uiCont": cont}
 
 
 SIGNALS = {
@@ -237,6 +244,7 @@ COLLECTIONS = {
     "u1ClCrk": {"kind": "map", "type": "string", "capacity": 16},
     "u1ClStd": {"kind": "map", "type": "string", "capacity": 16},
     "u1ClXtr": {"kind": "map", "type": "string", "capacity": 16},
+    "u1ClNote": {"kind": "map", "type": "string", "capacity": 16},     # E8: restated / void tag
     "u1OSel": {"kind": "map", "type": "bool", "capacity": 16},
     "u1PCr": {"kind": "map", "type": "number", "capacity": 16},
     "u1Iss": {"kind": "map", "type": "number", "capacity": 4},
@@ -296,7 +304,7 @@ def gen_d01ui() -> Graph:
     # ---- UI state
     for k in ("ph", "act", "armed", "stAt", "rsAt", "lockAt", "r2", "ref", "pb", "pbAt", "ev", "hpM", "hpO", "pat",
               "endAt", "soph", "intBlk", "rmN", "patD", "tail", "sub", "intro", "crk", "p1f", "p1u", "clsh", "clsP",
-              "cutOk", "m8", "m9", "m10", "hush", "hkA", "hkP", "shk", "shkP", "psn", "gsv", "nb", "nbP"):
+              "cutOk", "m8", "m9", "m10", "hush", "hkA", "hkP", "shk", "shkP", "psn", "gsv", "nb", "nbP", "co", "coK"):
         g.mget("d_" + k, "u1", g.k(k))
     for k in ("ev", "claim", "target", "hintK", "hintW", "hint2K", "hint2W"):
         g.mget("s_" + k, "u1S", g.k(k))
@@ -443,8 +451,8 @@ def gen_d01ui() -> Graph:
     for coll in ("u1EvSel", "u1Cl"):
         typ = "atrium.coll.clear" if coll == "u1Cl" else "atrium.map.clear"
         g.edge(refresh, g.eff("clr_" + coll, typ, coll))
-    for coll in ("u1ClOk", "u1ClSel", "u1ClKind", "u1ClCrk", "u1ClStd", "u1ClXtr", "u1OSel", "u1PCr", "u1Iss",
-                 "u1LkIss"):
+    for coll in ("u1ClOk", "u1ClSel", "u1ClKind", "u1ClCrk", "u1ClStd", "u1ClXtr", "u1ClNote", "u1OSel", "u1PCr",
+                 "u1Iss", "u1LkIss"):
         g.edge(refresh, g.eff("clr_" + coll, "atrium.map.clear", coll))
     g.node("evEach", "atrium.coll.forEach", name="d1ClaimList")
     g.edge(refresh, "evEach.trigger")
@@ -453,7 +461,15 @@ def gen_d01ui() -> Graph:
     g.edge("evEach.each", g.eff("evAdd", "atrium.coll.add", "u1Ev", value="eiEv"))
     g.edge("evEach.each", g.eff("evSelSet", "atrium.map.set", "u1EvSel", key="eiEv",
                                   value=g.cmp("eiSel", "eiEv", "s_ev")))
-    g.edge("evEach.done", lst("evList", f"ui.{UI}.ev_list", "u1Ev",
+    # E8: then the evidence of the refuted claims (greyed rows, d1ClaimVoid = ref known.void_rows), after the others
+    g.node("vEvEach", "atrium.coll.forEach", name="d1ClaimVoid")
+    g.edge("evEach.done", "vEvEach.trigger")
+    vei = g.put("vei", "vEvEach.item")
+    g.tget("veiEv", "d1uiClaim", "evidence", g.tfind("veiRow", "d1uiClaim", "id", vei))
+    g.edge("vEvEach.each", g.eff("vEvAdd", "atrium.coll.add", "u1Ev", value="veiEv"))
+    g.edge("vEvEach.each", g.eff("vEvSelSet", "atrium.map.set", "u1EvSel", key="veiEv",
+                                   value=g.cmp("veiSel", "veiEv", "s_ev")))
+    g.edge("vEvEach.done", lst("evList", f"ui.{UI}.ev_list", "u1Ev",
                                     {"id": "item", "name": tref("d1uiEv", "id", "name"), "sel": "map:u1EvSel"},
                                     localize=["name"]))
     # claims of the chosen evidence; ok = the current action may use it (argue: not standing; the others: not
@@ -488,12 +504,34 @@ def gen_d01ui() -> Graph:
     xtr = ssel(g, "ciXtr", [(g.b("ciPsB", "ciPsych"), g.k("UI_V2_CLAIM_PSYCH")),
                             (g.b("ciPrB", "ciPriv"), g.k("UI_V2_CLAIM_PRIVATE"))], g.k(""))
     g.edge(clG, g.eff("clXtr", "atrium.map.set", "u1ClXtr", key=ci, value=xtr))
-    g.edge("clEach.done", lst("clList", f"ui.{UI}.claims", "u1Cl",
+    # E8: a claim knocked off her chain that may be raised again (ref known.restate): UI_V2_CLAIM_RESTATE
+    g.mget("ciKnock", "d1State", g.fmt("ciKnK", "kc_{a}", ci))
+    g.x("ciRestate", "ciKnock > 0 && !ciStand && !ciCatch")
+    g.edge(clG, g.eff("clNote", "atrium.map.set", "u1ClNote", key=ci,
+                      value=g.sel("ciNoteK", "ciRestate_t", g.k("UI_V2_CLAIM_RESTATE"), g.k(""))))
+    # E8: the refuted claims of the chosen evidence after the others, greyed (ok 0) with UI_V2_CLAIM_VOID
+    g.node("vcEach", "atrium.coll.forEach", name="d1ClaimVoid")
+    g.edge("clEach.done", "vcEach.trigger")
+    vc = g.put("vc", "vcEach.item")
+    g.tget("vcEv", "d1uiClaim", "evidence", g.tfind("vcRow", "d1uiClaim", "id", vc))
+    vcG = g.when("vcG", "vcEach.each", g.cmp("vcIn", "vcEv", "s_ev"))
+    g.mget("vcSoph", "d1ClaimSoph", vc)
+    for nm, coll, val in (("vcAdd", "u1Cl", None), ("vcOk", "u1ClOk", g.k(0)), ("vcSel", "u1ClSel", g.k(False)),
+                          ("vcKind", "u1ClKind", g.sel("vcKindK", g.b("vcSophB", "vcSoph"), g.k("UI_V2_CLAIM_SOPH"),
+                                                       g.k("UI_V2_CLAIM_SOUND"))),
+                          ("vcCrk", "u1ClCrk", g.k("")), ("vcStd", "u1ClStd", g.k("")), ("vcXtr", "u1ClXtr", g.k("")),
+                          ("vcNote", "u1ClNote", g.k("UI_V2_CLAIM_VOID"))):
+        if val is None:
+            g.edge(vcG, g.eff(nm, "atrium.coll.add", coll, value=vc))
+        else:
+            g.edge(vcG, g.eff(nm, "atrium.map.set", coll, key=vc, value=val))
+    g.edge("vcEach.done", lst("clList", f"ui.{UI}.claims", "u1Cl",
                                     {"id": "item", "label": tref("d1uiClaim", "id", "label"),
                                      "issue": tref("d1uiClaim", "id", "issue"), "kind": "map:u1ClKind",
                                      "soph": "map:d1ClaimSoph", "crack": "map:u1ClCrk", "stand": "map:u1ClStd",
-                                     "extra": "map:u1ClXtr", "ok": "map:u1ClOk", "sel": "map:u1ClSel"},
-                                    localize=["label", "issue", "kind", "crack", "stand", "extra"]))
+                                     "extra": "map:u1ClXtr", "note": "map:u1ClNote", "ok": "map:u1ClOk",
+                                     "sel": "map:u1ClSel"},
+                                    localize=["label", "issue", "kind", "crack", "stand", "extra", "note"]))
     # his chain (sel = the chosen target)
     g.node("ocEach", "atrium.coll.forEach", name="d1OChain")
     g.edge(refresh, "ocEach.trigger")
@@ -794,6 +832,20 @@ def gen_d01ui() -> Graph:
     # engine's state after the round: 破防 lasts through round broken_until); his catch of a contradiction: the
     # earliest of her record's claims this one contradicts (d1uiExcl, u1Used = each claim's first record row)
     isS("viaChain", "f1", "chain")
+    # E8: her cut landed this round (the round's records hold `intercept|<claim>|<card>|1|<keystone Break>|0`) and
+    # whether the card is the keystone: the opener (ref lines.cut_open; u1 co = _1 / _2 played, coK = _3 played)
+    land, keyl = [], []
+    for cid, cd in CH.cards.items():
+        for kb in (0, 1):
+            nm = f"coH{cid}{kb}"
+            g.n(nm, g.contains(nm + "C", "d1Events", g.fmt(nm + "F", f"intercept|{{a}}|{cid}|1|{kb}|0", "s_claim")))
+            land.append(nm)
+            if cd.keystone:
+                keyl.append(nm)
+    g.x("coLand", " || ".join(land))
+    g.x("coKeyOn", "(" + " || ".join(keyl or ["0"]) + ") && !d_coK")
+    g.x("coI", "coKeyOn ? 2 : d_co - 2 * floor(d_co / 2)")
+    g.lookup("coKey", list(LN.CUT_OPEN) + [LN.CUT_OPEN_KEY], "coI")
     g.put("bkUntil", "world.d1BrokenUntil")
     g.x("nbNow", f"pcN >= {CH.ronpa_len} && bkUntil < L_Round")
     exRow = g.tfind("exRow", "d1uiExcl", "id", "s_claim")
@@ -1089,6 +1141,10 @@ def gen_d01ui() -> Graph:
     setn(g.when("hkPG", parse, MN("hkPOn", "k_hachiku && n2 > n1 && !d_hkA")), "hkP", g.k(1))
     setn(g.when("shkPG", parse, MN("shkPOn", "k_broken && !d_shk")), "shkP", g.k(1))
     setn(g.when("nbPG", parse, MN("nbPOn", "k_pAttach && nbNow && !d_nb")), "nbP", g.k(1))      # E7
+    # E8: the cut opener played (read on the next tick; the step's line was latched with the old count)
+    coP = g.when("coPG", parse, "xCoS_t")
+    setn(g.when("coKG", coP, "coKeyOn_t"), "coK", g.k(1))
+    setn(g.when("coNG", coP, T("coNOn", "!coKeyOn")), "co", g.x("coNext", "d_co + 1"))
     setn(g.when("psnG", parse, MN("psnOn", "d_tail == 2")), "psn", g.k(1))
     g.edge(g.when("pvG", parse, MN("pvOn", "d_tail == 3")),
            g.eff("pvSet", "atrium.map.set", "u1Pv", key="s_claim", value=g.k(True)))
@@ -1258,4 +1314,80 @@ def gen_d01ui() -> Graph:
     g.edge("needTgtOut_t", f"{P}.need_target")
     g.x("pickOn", "needClaim && d_ph == 1")
     g.edge("pickOn_t", f"{P}.picker_on")
+    e8_ports(g, T)
     return g
+
+
+def e8_ports(g: Graph, T) -> None:
+    """v2 demo E8 (design rulings): the damage preview and the red crack's cost on the confirm row, the one-line
+    description (_DESC) of what the pointer is on or what is chosen, the cover count, the vague tell's line, the public
+    record's crack count. docs/ui-contracts.md d1debate (E8)."""
+    # ---- UI_V2_DMG_PREVIEW (ref preview.py): 議論 with the chosen claim in a normal round, from the round-start state
+    # and only what the player sees: her combo (+1 for this link), 破竹, his 破防, 承接 (same issue as the link it
+    # follows or a scripted pair, d1uiCont), restated (d1State kc_<claim>); a red-crack claim first withdraws the claims
+    # it contradicts (d1uiExcl), so it follows the link left last
+    g.tget("pvCatch", "d1uiClaim", "catch", "scRow", "number")
+    g.tget("pvIss", "d1uiClaim", "issue", "scRow")
+    g.mget("pvKnock", "d1State", g.fmt("pvKnK", "kc_{a}", "s_claim"))
+    g.n("pvCrkN", g.b("pvCrkB", "scCrack"))
+    for i in (1, 2, 3):
+        g.cget(f"pvE{i}", "d1PChain", g.x(f"pvI{i}", f"pcN - {i}"))
+        g.n(f"pvX{i}a", g.cmp(f"pvX{i}aC", f"pvE{i}", "exX1"))
+        g.n(f"pvX{i}b", g.cmp(f"pvX{i}bC", f"pvE{i}", "exX2"))
+        g.x(f"pvOut{i}", f"pvCrkN && exRow >= 0 && (pvX{i}a || pvX{i}b)")
+    g.x("pvPos", "!pvOut1 ? 1 : !pvOut2 ? 2 : 3")
+    g.x("pvHas", "pcN - pvPos >= 0")
+    prev = ssel(g, "pvPrev", [(T("pvP1", "pvPos == 1"), "pvE1"), (T("pvP2", "pvPos == 2"), "pvE2")], "pvE3")
+    g.tget("pvPrevIss", "d1uiClaim", "issue", g.tfind("pvPrevRow", "d1uiClaim", "id", prev))
+    g.n("pvSameIss", g.cmp("pvSameC", "pvPrevIss", "pvIss"))
+    g.tfind("pvContRow", "d1uiCont", "id", g.fmt("pvContId", "{a}:{b}", prev, "s_claim"))
+    g.n("pvSophN", g.b("pvSophB", "scSoph"))
+    g.n("pvBrkN", g.b("pvBrkB", "L_Broken"))
+    g.x("pvVal", f"(pvCatch ? {M.BASE_CATCH} : pvSophN ? {M.BASE_SOPH} : {M.BASE_PROPER})"
+                 f" * (1 + {M.COMBO_STEP} * (min(L_PCombo + 1, {M.COMBO_CAP}) - 1))"
+                 f" * ((pvHas && (pvSameIss || pvContRow >= 0)) ? {M.CONTINUATION} : 1)"
+                 f" * ((!pvCatch && pvKnock > 0) ? {M.RERAISE_MULT} : 1)"
+                 f" * (1 + {M.HACHIKU_STEP} * L_Hachiku) * (pvBrkN ? {M.BROKEN_BONUS} : 1)")
+    g.x("pvShow", "act == 1 && hasClaimN && modeN == 0 && d_ph == 1")
+    pv = g.textf("pvT", key="UI_V2_DMG_PREVIEW", n=g.x("pvR", R2("pvVal")))
+    g.edge(g.sel("pvwOut", "pvShow_t", pv, g.k("")), f"{P}.preview_text")
+    # ---- UI_V2_CLAIM_CRACK_COST: the chosen claim contradicts her record ({n} = the rule's red-crack cost)
+    g.x("ccOn", "needClaim && hasClaimN && pvCrkN && d_ph == 1")
+    cc = g.textf("ccT", key="UI_V2_CLAIM_CRACK_COST", n=g.k(M.CONTRADICTION))
+    g.edge(g.sel("ccOut", "ccOn_t", cc, g.k("")), f"{P}.crack_cost_text")
+    # ---- the one-line description (_DESC): what the pointer is on (out port `hover`: act2 / act3 / act4 / guard or a
+    # claim id), else the chosen claim (sophistry, 抓住他的話), else the chosen action, else cover when armed. A sound
+    # claim has no description; 打迷糊仗 after a 打迷糊仗 last round (d1State sstk, the stall streak) warns instead.
+    g.put("hv", f"{P}.hover")
+    g.mget("dsStreak", "d1State", g.k("sstk"))
+    hrow = g.tfind("hvRow", "d1uiClaim", "id", "hv")
+    g.tget("hvCatch", "d1uiClaim", "catch", hrow, "number")
+    g.mget("hvSoph", "d1ClaimSoph", "hv")
+    g.n("hvA2", g.cmp("hvA2C", "hv", g.k("act2")))
+    g.n("hvA3", g.cmp("hvA3C", "hv", g.k("act3")))
+    g.n("hvA4", g.cmp("hvA4C", "hv", g.k("act4")))
+    g.n("hvGd", g.cmp("hvGdC", "hv", g.k("guard")))
+    g.x("hvClaim", "hvRow >= 0 ? (hvCatch ? 6 : hvSoph ? 5 : 0) : 0")
+    g.x("hvAct", "modeN == 0 ? (hvA2 ? 2 : hvA3 ? 3 : hvA4 ? 4 : hvGd ? 7 : 0) : 0")
+    g.x("selClaimD", "needClaim && hasClaimN ? (pvCatch ? 6 : pvSophN ? 5 : 0) : 0")
+    g.x("selActD", "modeN == 0 ? (act == 2 ? 2 : act == 3 ? 3 : act == 4 ? 4 : d_armed ? 7 : 0) : 0")
+    g.x("dsI0", "hvAct > 0 ? hvAct : hvClaim > 0 ? hvClaim : selClaimD > 0 ? selClaimD : selActD")
+    g.x("dsI", "d_ph != 1 ? 0 : (dsI0 == 4 && dsStreak > 0) ? 8 : dsI0")
+    desc = g.lookup("dsKey", ["", "", "UI_V2_REBUT_CUT_DESC", "UI_V2_REBUT_TOPPLE_DESC", "UI_V2_ACT_STALL_DESC",
+                              "UI_V2_CLAIM_SOPH_DESC", "UI_V2_SEIZE_DESC", "UI_V2_SUPPORT_DESC",
+                              "UI_V2_ACT_STALL_REPEAT"], "dsI")
+    g.edge(g.text("dsT", desc), f"{P}.desc_text")
+    # ---- UI_V2_SUPPORT_LEFT on the cover button (cover is once per debate: 1 left until used)
+    g.edge(g.textf("glT", key="UI_V2_SUPPORT_LEFT", n=g.x("glN", "L_GuardUsed ? 0 : 1")), f"{P}.guard_left_text")
+    # ---- UI_V2_TELL_POSSIBLE: a vague tell's two candidate actions, the starred one followed by UI_V2_TELL_LIKELY
+    names = ["UI_V2_OPP_ASSERT", "UI_V2_OPP_PRESS", "UI_V2_OPP_REBUT", "UI_V2_OPP_DODGE", "UI_V2_LAST_CARD"]
+    g.text("tlLk", g.k("UI_V2_TELL_LIKELY"))
+    parts = []
+    for nm, code, star in (("tpA", "ta", "starA"), ("tpB", "tb", "starB")):
+        g.text(nm + "N", g.lookup(nm + "K", names, g.x(nm + "I", f"clamp({code}, 0, 4)")))
+        parts.append(g.sel(nm, g.b(nm + "Sb", star), g.fmt(nm + "S", "{a} \u2605{b}", nm + "N", "tlLk"), nm + "N"))
+    tp = g.textf("tpT", key="UI_V2_TELL_POSSIBLE", a=parts[0], b=parts[1])
+    g.x("tpOn", "!tellClearN && ta >= 0 && tb >= 0 && tellOn")
+    g.edge(g.sel("tpOut", "tpOn_t", tp, g.k("")), f"{P}.tell_possible")
+    # ---- UI_V2_RECORD_CRACKS: the public record's heading (the cracks on her record when the round was shown)
+    g.edge(g.textf("rcCrT", key="UI_V2_RECORD_CRACKS", n="L_Cracks"), f"{P}.record_cracks")

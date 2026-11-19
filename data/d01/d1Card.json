@@ -155,7 +155,7 @@
   "source": "E05",
   "label": "CARD_D01_P05",
   "state": "CARD_D01_P05_STATE",
-  "push": "CARD_D01_P05_PUSH",
+  "push": "",
   "retract": "",
   "down": "CARD_D01_P05_DOWN",
   "tell": "",

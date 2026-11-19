@@ -741,11 +741,11 @@ def _last_stand(s: State, rd: _Round, pa: PlayerAction, oa: OpponentAction, ev: 
     del s.opp_chain[idx:]
     s.opp_combo = 0
     s.player_hp = ch.player_max_hp * COMEBACK_RATIO
-    if v.red_crack:  # V-12: back to 30%, then −10
-        s.player_hp -= CONTRADICTION
     s.player_locked = False
     ev.append({"kind": "last_stand", "claim": pa.claim, "target": hit.card, "ok": True,
                "destroyed": destroyed, "hp": s.player_hp})
+    if v.red_crack:  # V-12: back to 30%, then −10 (E8 design ruling: told as two steps, the −10 as a red crack)
+        _hurt_player(s, rd, CONTRADICTION, "contradiction", ev)
     rd.p_events.append(("lie_down_proper", None))
     s.flag_player_soph = False
     s.flag_knocked_lie = None

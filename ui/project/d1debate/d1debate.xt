@@ -39,7 +39,7 @@
     ochain: list<struct{id: string, label: string, issue: string, sel: bool}> in = []
     pchain: list<struct{id: string, label: string, issue: string, crack: number}> in = []
     ev_list: list<struct{id: string, name: string, sel: bool}> in = []
-    claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}> in = []
+    claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, note: string, ok: number, sel: bool}> in = []
     record: list<struct{n: string, label: string, use: string, soph: string, crack: string, state: string}> in = []
     mode: number in = 0
     phase: number in = 0
@@ -66,6 +66,13 @@
     float_opp_seq: number in = 0
     float_me_seq: number in = 0
     shatter_seq: number in = 0
+    preview_text: string in = ""
+    crack_cost_text: string in = ""
+    desc_text: string in = ""
+    guard_left_text: string in = ""
+    tell_possible: string in = ""
+    record_cracks: string in = ""
+    hover: string out = ""
     pick_act: number out = 0
     pick_ev: string out = ""
     pick_claim: string out = ""
@@ -162,13 +169,14 @@
           <div id="pk-cl-k" class="kicker">@UI_V2_PICK_CLAIM</div>
           <div id="pk-cl-scroll">
             <repeat id="cls" port="claims">
-              <div id="clm" class="clm" on:click(left)="if port(phase) eq 0 set(pick_claim, item(id))" bind:class.soph="item(soph) | eq(1)" bind:class.sel="item(sel)" bind:class.off="item(ok) | eq(0)">
+              <div id="clm" class="clm" on:click(left)="if port(phase) eq 0 set(pick_claim, item(id))" on:hover="set(hover, item(id))" on:leave="set(hover, '')" bind:class.soph="item(soph) | eq(1)" bind:class.sel="item(sel)" bind:class.off="item(ok) | eq(0)">
                 <div id="clm-kind" class="clm-kind" bind:text="item(kind)">正論</div>
                 <div id="clm-t" class="clm-t" bind:text="item(label)">鎖匠傍晚就走了</div>
                 <div id="clm-tags">
                   <div id="clm-iss" class="iss" bind:text="item(issue)">機</div>
                   <div id="clm-crack" class="tag tag-red" bind:text="item(crack)">與妳說過的話矛盾</div>
                   <div id="clm-stand" class="tag tag-ink" bind:text="item(stand)"/>
+                  <div id="clm-note" class="tag tag-ink" bind:text="item(note)"/>
                   <div id="clm-extra" class="tag tag-cu" bind:text="item(extra)"/>
                 </div>
               </div>
@@ -215,6 +223,7 @@
               <div id="cand-b-lk" class="likely">@UI_V2_TELL_LIKELY</div>
             </div>
           </div>
+          <div id="tell-pos" class="tell-pos" bind:text="tell_possible" bind:display="tell_possible | ne('')">可能行動：反駁 ★較可能／周旋</div>
           <div id="tell-gesture" class="gesture" bind:text="tell_gesture" bind:display="tell_gesture | ne('')">整理黑領巾、微微一笑</div>
           <div id="tell-dying" class="dying-t" bind:text="dying_text" bind:display="dying">垂死反撲：打中只扣 10</div>
         </div>
@@ -252,8 +261,11 @@
           <div id="sum-claim" class="sum-t" bind:text="sel_claim_text">鎖匠傍晚就走了</div>
           <div id="sum-arrow" class="sum-a" bind:display="sel_target_text | ne('')">→</div>
           <div id="sum-target" class="sum-t" bind:text="sel_target_text" bind:display="sel_target_text | ne('')"/>
+          <div id="sum-pv" class="sum-pv" bind:text="preview_text" bind:display="preview_text | ne('')">預估論證 19.8</div>
+          <div id="sum-cc" class="sum-cc" bind:text="crack_cost_text" bind:display="crack_cost_text | ne('')">可信度 −10，先前那句失效</div>
           <div id="sum-armed" class="sum-a" bind:display="guard_armed">@UI_V2_SUPPORT_ARMED</div>
         </div>
+        <div id="desc-line" class="desc-l s-66a9df" bind:text="desc_text" bind:display="desc_text | ne('')">說些不著邊際的話。不接節；他開口時我方只受一半傷害，他反駁時會落空。</div>
         <div id="acts" class="acts" bind:class.busy="phase | ne(0)">
           <div id="acts-0" bind:display="mode | eq(0)">
             <div id="act-1" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 1)" bind:class.on="act | eq(1)">
@@ -261,24 +273,26 @@
               <div id="act-1-t" class="tb-t">@UI_V2_ACT_ARGUE</div>
             </div>
             <div id="grp-rebut" class="grp-l">@UI_V2_ACT_REBUT</div>
-            <div id="act-2" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 2)" bind:class.on="act | eq(2)">
+            <div id="act-2" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 2)" on:hover="set(hover, 'act2')" on:leave="set(hover, '')" bind:class.on="act | eq(2)">
               <div id="act-2-k" class="tb-k">2</div>
               <div id="act-2-t" class="tb-t">@UI_V2_REBUT_CUT</div>
             </div>
-            <div id="act-3" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 3)" bind:class.on="act | eq(3)" bind:class.off="can_dismantle | not">
+            <div id="act-3" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 3)" on:hover="set(hover, 'act3')" on:leave="set(hover, '')" bind:class.on="act | eq(3)" bind:class.off="can_dismantle | not">
               <div id="act-3-k" class="tb-k">3</div>
               <div id="act-3-t" class="tb-t">@UI_V2_REBUT_TOPPLE</div>
             </div>
-            <div id="act-4" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 4)" bind:class.on="act | eq(4)">
+            <div id="act-4" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 4)" on:hover="set(hover, 'act4')" on:leave="set(hover, '')" bind:class.on="act | eq(4)">
               <div id="act-4-k" class="tb-k">4</div>
               <div id="act-4-t" class="tb-t">@UI_V2_ACT_STALL</div>
             </div>
-            <div id="btn-guard" class="guard" on:click(left)="if port(phase) eq 0 emit(guard)" bind:class.armed="guard_armed" bind:class.off="guard_ok | not">
+            <div id="btn-guard" class="guard" on:click(left)="if port(phase) eq 0 emit(guard)" on:hover="set(hover, 'guard')" on:leave="set(hover, '')" bind:class.armed="guard_armed" bind:class.off="guard_ok | not">
               <div id="guard-t" class="guard-t">@UI_V2_SUPPORT</div>
               <div id="guard-lamp" class="lamp" bind:class.on="guard_left"/>
+              <div id="guard-n" class="guard-n" bind:text="guard_left_text">援護 剩 1 次</div>
             </div>
           </div>
           <div id="acts-1" bind:display="mode | eq(1)">
+            <div id="eg-head" class="eg-head">@UI_V2_ENDGAME</div>
             <div id="eg-prompt" class="prompt">@UI_V2_LAST_CARD_PROMPT</div>
             <div id="act-5" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 5)" bind:class.on="act | eq(5)">
               <div id="act-5-t" class="tb-t">@UI_V2_ENDGAME_CUT</div>
@@ -311,6 +325,7 @@
           <div id="record-panel" class="sheet-big s-e1040c">
             <div id="rec-title" class="h1">@UI_V2_RECORD</div>
             <div id="rec-desc" class="desc">@UI_V2_RECORD_DESC</div>
+            <div id="rec-cracks" class="rec-crk" bind:text="record_cracks">裂紋 1 道</div>
             <div id="rec-close" class="bbtn" on:click(left)="state(Open, off, target=#record)">
               <div id="rec-close-t" class="bbtn-t">@BTN_CLOSE</div>
             </div>
@@ -1165,7 +1180,7 @@
       width: 100px;
     }
     /* import: D1Debate.dc.html:1/1/12/6 */
-    #tell-gesture {
+    #tell-pos {
       height: 32px;
       left: 10px;
       position: absolute;
@@ -1173,6 +1188,14 @@
       width: 240px;
     }
     /* import: D1Debate.dc.html:1/1/12/7 */
+    #tell-gesture {
+      height: 32px;
+      left: 10px;
+      position: absolute;
+      top: 192px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/8 */
     #tell-dying {
       height: 40px;
       left: 10px;
@@ -1363,7 +1386,7 @@
       padding-top: 0px;
       position: absolute;
       top: 560px;
-      width: 806px;
+      width: 1256px;
     }
     /* import: D1Debate.dc.html:1/1/16/0 */
     #sum-claim {
@@ -1384,12 +1407,30 @@
       width: 330px;
     }
     /* import: D1Debate.dc.html:1/1/16/3 */
+    #sum-pv {
+      height: 34px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/4 */
+    #sum-cc {
+      flex-shrink: 1;
+      height: 34px;
+      width: 560px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/5 */
     #sum-armed {
       flex-shrink: 0;
       height: 34px;
       width: 110px;
     }
     /* import: D1Debate.dc.html:1/1/17 */
+    #desc-line {
+      height: 20px;
+      left: 560px;
+      position: absolute;
+      top: 598px;
+      width: 708px;
+    }
+    /* import: D1Debate.dc.html:1/1/18 */
     #acts {
       height: 112px;
       left: 12px;
@@ -1397,7 +1438,7 @@
       top: 600px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0 */
+    /* import: D1Debate.dc.html:1/1/18/0 */
     #acts-0 {
       height: 112px;
       left: 0px;
@@ -1405,7 +1446,7 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/0 */
     #act-1 {
       height: 84px;
       left: 0px;
@@ -1413,7 +1454,7 @@
       top: 22px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/0/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/0/0 */
     #act-1-k {
       height: 14px;
       left: 0px;
@@ -1421,7 +1462,7 @@
       top: 6px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/0/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/0/1 */
     #act-1-t {
       height: 28px;
       left: 6px;
@@ -1429,7 +1470,7 @@
       top: 28px;
       width: 178px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/1 */
     #grp-rebut {
       height: 18px;
       left: 200px;
@@ -1437,7 +1478,7 @@
       top: 0px;
       width: 340px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/2 */
+    /* import: D1Debate.dc.html:1/1/18/0/2 */
     #act-2 {
       height: 84px;
       left: 200px;
@@ -1445,7 +1486,7 @@
       top: 22px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/2/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/2/0 */
     #act-2-k {
       height: 14px;
       left: 0px;
@@ -1453,7 +1494,7 @@
       top: 6px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/2/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/2/1 */
     #act-2-t {
       height: 28px;
       left: 6px;
@@ -1461,7 +1502,7 @@
       top: 28px;
       width: 154px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/3 */
+    /* import: D1Debate.dc.html:1/1/18/0/3 */
     #act-3 {
       height: 84px;
       left: 374px;
@@ -1469,7 +1510,7 @@
       top: 22px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/3/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/3/0 */
     #act-3-k {
       height: 14px;
       left: 0px;
@@ -1477,7 +1518,7 @@
       top: 6px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/3/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/3/1 */
     #act-3-t {
       height: 28px;
       left: 6px;
@@ -1485,7 +1526,7 @@
       top: 28px;
       width: 154px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/4 */
+    /* import: D1Debate.dc.html:1/1/18/0/4 */
     #act-4 {
       height: 84px;
       left: 550px;
@@ -1493,7 +1534,7 @@
       top: 22px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/4/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/4/0 */
     #act-4-k {
       height: 14px;
       left: 0px;
@@ -1501,7 +1542,7 @@
       top: 6px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/4/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/4/1 */
     #act-4-t {
       height: 28px;
       left: 6px;
@@ -1509,7 +1550,7 @@
       top: 28px;
       width: 178px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/5 */
+    /* import: D1Debate.dc.html:1/1/18/0/5 */
     #btn-guard {
       height: 84px;
       left: 760px;
@@ -1517,7 +1558,7 @@
       top: 22px;
       width: 150px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/5/0 */
+    /* import: D1Debate.dc.html:1/1/18/0/5/0 */
     #guard-t {
       height: 22px;
       left: 4px;
@@ -1525,15 +1566,23 @@
       top: 20px;
       width: 142px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0/5/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/5/1 */
     #guard-lamp {
       height: 10px;
       left: 70px;
       position: absolute;
-      top: 52px;
+      top: 48px;
       width: 10px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1 */
+    /* import: D1Debate.dc.html:1/1/18/0/5/2 */
+    #guard-n {
+      height: 16px;
+      left: 4px;
+      position: absolute;
+      top: 62px;
+      width: 142px;
+    }
+    /* import: D1Debate.dc.html:1/1/18/1 */
     #acts-1 {
       height: 112px;
       left: 0px;
@@ -1541,7 +1590,15 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1/0 */
+    /* import: D1Debate.dc.html:1/1/18/1/0 */
+    #eg-head {
+      height: 18px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 120px;
+    }
+    /* import: D1Debate.dc.html:1/1/18/1/1 */
     #eg-prompt {
       height: 66px;
       left: 0px;
@@ -1549,7 +1606,7 @@
       top: 30px;
       width: 300px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1/1 */
+    /* import: D1Debate.dc.html:1/1/18/1/2 */
     #act-5 {
       height: 84px;
       left: 320px;
@@ -1557,7 +1614,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1/1/0 */
+    /* import: D1Debate.dc.html:1/1/18/1/2/0 */
     #act-5-t {
       height: 28px;
       left: 6px;
@@ -1565,7 +1622,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1/2 */
+    /* import: D1Debate.dc.html:1/1/18/1/3 */
     #act-6 {
       height: 84px;
       left: 530px;
@@ -1573,7 +1630,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/17/1/2/0 */
+    /* import: D1Debate.dc.html:1/1/18/1/3/0 */
     #act-6-t {
       height: 28px;
       left: 6px;
@@ -1581,7 +1638,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2 */
+    /* import: D1Debate.dc.html:1/1/18/2 */
     #acts-2 {
       height: 112px;
       left: 0px;
@@ -1589,7 +1646,7 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2/0 */
+    /* import: D1Debate.dc.html:1/1/18/2/0 */
     #ls-prompt {
       height: 84px;
       left: 0px;
@@ -1597,7 +1654,7 @@
       top: 22px;
       width: 300px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2/1 */
+    /* import: D1Debate.dc.html:1/1/18/2/1 */
     #act-7 {
       height: 84px;
       left: 320px;
@@ -1605,7 +1662,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2/1/0 */
+    /* import: D1Debate.dc.html:1/1/18/2/1/0 */
     #act-7-t {
       height: 28px;
       left: 6px;
@@ -1613,7 +1670,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2/2 */
+    /* import: D1Debate.dc.html:1/1/18/2/2 */
     #act-6b {
       height: 84px;
       left: 530px;
@@ -1621,7 +1678,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/17/2/2/0 */
+    /* import: D1Debate.dc.html:1/1/18/2/2/0 */
     #act-6b-t {
       height: 28px;
       left: 6px;
@@ -1629,7 +1686,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/18 */
+    /* import: D1Debate.dc.html:1/1/19 */
     #btn-lock {
       height: 84px;
       left: 1046px;
@@ -1637,7 +1694,7 @@
       top: 622px;
       width: 222px;
     }
-    /* import: D1Debate.dc.html:1/1/18/0 */
+    /* import: D1Debate.dc.html:1/1/19/0 */
     #btn-lock-t {
       height: 40px;
       left: 4px;
@@ -1645,7 +1702,7 @@
       top: 22px;
       width: 214px;
     }
-    /* import: D1Debate.dc.html:1/1/19 */
+    /* import: D1Debate.dc.html:1/1/20 */
     #hit {
       height: 720px;
       left: 0px;
@@ -1653,7 +1710,7 @@
       top: 0px;
       width: 1280px;
     }
-    /* import: D1Debate.dc.html:1/1/20 */
+    /* import: D1Debate.dc.html:1/1/21 */
     #band {
       height: 158px;
       left: 0px;
@@ -1661,7 +1718,7 @@
       top: 250px;
       width: 1280px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0 */
+    /* import: D1Debate.dc.html:1/1/21/0 */
     #band-who {
       height: 22px;
       left: 110px;
@@ -1669,7 +1726,7 @@
       top: 14px;
       width: 600px;
     }
-    /* import: D1Debate.dc.html:1/1/20/1 */
+    /* import: D1Debate.dc.html:1/1/21/1 */
     #band-speech {
       height: 56px;
       left: 110px;
@@ -1677,7 +1734,7 @@
       top: 40px;
       width: 1060px;
     }
-    /* import: D1Debate.dc.html:1/1/20/2 */
+    /* import: D1Debate.dc.html:1/1/21/2 */
     #band-sys {
       height: 44px;
       left: 110px;
@@ -1685,7 +1742,7 @@
       top: 104px;
       width: 1060px;
     }
-    /* import: D1Debate.dc.html:1/1/20/3 */
+    /* import: D1Debate.dc.html:1/1/21/3 */
     #band-more {
       height: 16px;
       left: 1180px;
@@ -1693,7 +1750,7 @@
       top: 132px;
       width: 80px;
     }
-    /* import: D1Debate.dc.html:1/1/21 */
+    /* import: D1Debate.dc.html:1/1/22 */
     #record {
       height: 540px;
       left: 200px;
@@ -1701,7 +1758,7 @@
       top: 60px;
       width: 880px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0 */
+    /* import: D1Debate.dc.html:1/1/22/0 */
     #record-panel {
       height: 540px;
       left: 0px;
@@ -1709,15 +1766,15 @@
       top: 0px;
       width: 880px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/0 */
+    /* import: D1Debate.dc.html:1/1/22/0/0 */
     #rec-title {
       height: 32px;
       left: 20px;
       position: absolute;
       top: 12px;
-      width: 600px;
+      width: 450px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/1 */
+    /* import: D1Debate.dc.html:1/1/22/0/1 */
     #rec-desc {
       height: 18px;
       left: 20px;
@@ -1725,7 +1782,15 @@
       top: 46px;
       width: 700px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/2 */
+    /* import: D1Debate.dc.html:1/1/22/0/2 */
+    #rec-cracks {
+      height: 32px;
+      left: 480px;
+      position: absolute;
+      top: 12px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/0/3 */
     #rec-close {
       height: 32px;
       left: 740px;
@@ -1733,7 +1798,7 @@
       top: 14px;
       width: 120px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/2/0 */
+    /* import: D1Debate.dc.html:1/1/22/0/3/0 */
     #rec-close-t {
       height: 30px;
       left: 4px;
@@ -1741,7 +1806,7 @@
       top: 1px;
       width: 112px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/3 */
+    /* import: D1Debate.dc.html:1/1/22/0/4 */
     #rec-rule {
       height: 3px;
       left: 20px;
@@ -1749,7 +1814,7 @@
       top: 70px;
       width: 840px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4 */
+    /* import: D1Debate.dc.html:1/1/22/0/5 */
     #rec-scroll {
       height: 444px;
       left: 20px;
@@ -1758,14 +1823,14 @@
       top: 80px;
       width: 840px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0 */
     #recs {
       display: flex;
       flex-direction: column;
       gap: 0px;
       width: 834px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0 */
     #rec {
       display: flex;
       flex-direction: row;
@@ -1780,30 +1845,30 @@
       position: relative;
       width: 834px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/0 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/0 */
     #rec-n {
       height: 26px;
       width: 84px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/1 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/1 */
     #rec-t {
       flex-shrink: 0;
       height: 26px;
       width: 282px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/2 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/2 */
     #rec-use {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/3 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/3 */
     #rec-soph {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/4 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/4 */
     #rec-crack {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/5 */
+    /* import: D1Debate.dc.html:1/1/22/0/5/0/0/5 */
     #rec-state {
       height: 26px;
     }
@@ -1887,6 +1952,7 @@
     #clm-iss,
     #clm-crack,
     #clm-stand,
+    #clm-note,
     #clm-extra {
       height: 16px;
     }
@@ -1902,6 +1968,7 @@
     :lang(en) #clm-iss,
     :lang(en) #clm-crack,
     :lang(en) #clm-stand,
+    :lang(en) #clm-note,
     :lang(en) #clm-extra {
       height: 13px;
     }
@@ -1918,6 +1985,19 @@
       overflow: hidden;
     }
     .tb-t {
+      overflow: hidden;
+    }
+    .sum-pv {
+      flex-shrink: 0;
+    }
+    .sum-cc {
+      overflow: hidden;
+    }
+    .desc-l {
+      padding-top: 0px;
+      padding-right: 8px;
+      padding-bottom: 0px;
+      padding-left: 8px;
       overflow: hidden;
     }
     .sysl {
