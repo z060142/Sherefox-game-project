@@ -1,0 +1,1183 @@
+{
+ "route": "D",
+ "loadout": {
+  "carried": [
+   "E01",
+   "E02",
+   "E03",
+   "E04",
+   "E06",
+   "E08",
+   "E10",
+   "E11",
+   "E12"
+  ],
+  "appraisals": [
+   "A02"
+  ],
+  "notes": [],
+  "warmup": "fail"
+ },
+ "start": {
+  "round": 0,
+  "player_hp": 140.0,
+  "opp_hp": 230.0,
+  "player_chain": [],
+  "opp_chain": [],
+  "player_combo": 0,
+  "opp_combo": 0,
+  "hachiku": 0,
+  "broken_until": 0,
+  "shisshu": false,
+  "psych_end": [
+   0.0,
+   10.0,
+   10.0
+  ],
+  "psych_next": [
+   0.0,
+   10.0,
+   10.0
+  ],
+  "over": [
+   false,
+   false,
+   false
+  ],
+  "cracks": 0,
+  "denials": 0,
+  "known": [
+   "A02",
+   "E01",
+   "E02",
+   "E03",
+   "E04",
+   "E06",
+   "E08",
+   "E10",
+   "E11",
+   "E12"
+  ],
+  "hand": [
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "F1",
+   "F2",
+   "U1",
+   "U2",
+   "P07"
+  ],
+  "knocked": [],
+  "reserved_last": "P05",
+  "endgame": null,
+  "player_locked": false,
+  "outcome": null,
+  "grade": null
+ },
+ "rounds": [
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "force"
+    ],
+    "star": null,
+    "card": "L1",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "L1"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "11A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 1
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 20.0,
+     "cause": "intercept",
+     "hp": 210.0
+    },
+    {
+     "kind": "broken",
+     "cause": "intercepted",
+     "until": 2
+    },
+    {
+     "kind": "intercept",
+     "claim": "11A",
+     "card": "L1",
+     "ok": true,
+     "keystone": false
+    },
+    {
+     "kind": "hachiku",
+     "before": 0,
+     "after": 1
+    },
+    {
+     "kind": "psych_event",
+     "event": "lie_down_proper",
+     "delta": [
+      20.0,
+      10.0,
+      0.0
+     ],
+     "psych": [
+      20.0,
+      20.0,
+      10.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 1,
+    "player_hp": 140.0,
+    "opp_hp": 210.0,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 1,
+    "broken_until": 2,
+    "shisshu": false,
+    "psych_end": [
+     20.0,
+     20.0,
+     10.0
+    ],
+    "psych_next": [
+     17.0,
+     19.0,
+     6.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F1",
+     "F2",
+     "U1",
+     "U2",
+     "P07"
+    ],
+    "knocked": [
+     "L1"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "parry"
+    ],
+    "star": "parry",
+    "card": null,
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "parry",
+    "card": null
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "04A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 2
+    },
+    {
+     "kind": "opp_heal",
+     "before": 210.0,
+     "hp": 215.0
+    },
+    {
+     "kind": "player_attach",
+     "claim": "04A",
+     "combo": 1,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.0,
+      "hachiku": 1.1,
+      "broken": 1.25
+     },
+     "damage": 16.5
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 16.5,
+     "cause": "argument",
+     "hp": 198.5
+    },
+    {
+     "kind": "reraise",
+     "card": "L1"
+    },
+    {
+     "kind": "hachiku",
+     "before": 1,
+     "after": 2
+    }
+   ],
+   "after": {
+    "round": 2,
+    "player_hp": 140.0,
+    "opp_hp": 198.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ]
+    ],
+    "opp_chain": [],
+    "player_combo": 1,
+    "opp_combo": 0,
+    "hachiku": 2,
+    "broken_until": 2,
+    "shisshu": false,
+    "psych_end": [
+     17.0,
+     19.0,
+     6.0
+    ],
+    "psych_next": [
+     14.0,
+     18.0,
+     2.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F1",
+     "F2",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "attack"
+    ],
+    "star": null,
+    "card": "F1",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "F1"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "01B",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 3
+    },
+    {
+     "kind": "intercept",
+     "claim": "01B",
+     "card": "F1",
+     "ok": false,
+     "blocked_by_parry": false
+    },
+    {
+     "kind": "player_damage",
+     "amount": 10.0,
+     "cause": "fact_miss",
+     "hp": 130.0
+    },
+    {
+     "kind": "opp_attach",
+     "card": "F1",
+     "combo": 1
+    },
+    {
+     "kind": "hachiku",
+     "before": 2,
+     "after": 0
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      4.0,
+      18.0,
+      0.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 3,
+    "player_hp": 130.0,
+    "opp_hp": 198.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1"
+    ],
+    "player_combo": 1,
+    "opp_combo": 1,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": false,
+    "psych_end": [
+     4.0,
+     18.0,
+     0.0
+    ],
+    "psych_next": [
+     1.0,
+     17.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "rebut"
+    ],
+    "star": "attack",
+    "card": null,
+    "partial": false
+   },
+   "policy_can_produce": false,
+   "opponent_action": {
+    "kind": "rebut",
+    "card": null
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "06B",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 4
+    },
+    {
+     "kind": "player_damage",
+     "amount": 15.0,
+     "cause": "refuted",
+     "hp": 115.0
+    },
+    {
+     "kind": "refuted",
+     "claim": "06B",
+     "line": "REFUTE_D01_06B",
+     "reveals": "said:鎖匠昨晚回來過"
+    },
+    {
+     "kind": "shisshu",
+     "on": true
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      0.0,
+      17.0,
+      0.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 4,
+    "player_hp": 115.0,
+    "opp_hp": 198.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1"
+    ],
+    "player_combo": 0,
+    "opp_combo": 1,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": true,
+    "psych_end": [
+     0.0,
+     17.0,
+     0.0
+    ],
+    "psych_next": [
+     0.0,
+     16.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12",
+     "said:鎖匠昨晚回來過"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "attack"
+    ],
+    "star": null,
+    "card": "L2",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "L2"
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "10A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 5
+    },
+    {
+     "kind": "player_attach",
+     "claim": "10A",
+     "combo": 1,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.0,
+      "hachiku": 1.0
+     },
+     "damage": 12.0
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 12.0,
+     "cause": "argument",
+     "hp": 186.5
+    },
+    {
+     "kind": "opp_attach",
+     "card": "L2",
+     "combo": 2
+    },
+    {
+     "kind": "player_damage",
+     "amount": 25.0,
+     "cause": "argument",
+     "hp": 90.0
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      0.0,
+      16.0,
+      0.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 5,
+    "player_hp": 90.0,
+    "opp_hp": 186.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ],
+     [
+      "10A",
+      "動",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1",
+     "L2"
+    ],
+    "player_combo": 1,
+    "opp_combo": 2,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": true,
+    "psych_end": [
+     0.0,
+     16.0,
+     0.0
+    ],
+    "psych_next": [
+     0.0,
+     15.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12",
+     "said:鎖匠昨晚回來過"
+    ],
+    "hand": [
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "attack"
+    ],
+    "star": null,
+    "card": "F2",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "F2"
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "08A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 6
+    },
+    {
+     "kind": "player_attach",
+     "claim": "08A",
+     "combo": 2,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.25,
+      "continuation": 1.2,
+      "hachiku": 1.0
+     },
+     "damage": 18.0
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 18.0,
+     "cause": "argument",
+     "hp": 168.5
+    },
+    {
+     "kind": "opp_attach",
+     "card": "F2",
+     "combo": 3
+    },
+    {
+     "kind": "player_damage",
+     "amount": 30.0,
+     "cause": "argument",
+     "hp": 60.0
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      0.0,
+      15.0,
+      0.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 6,
+    "player_hp": 60.0,
+    "opp_hp": 168.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ],
+     [
+      "10A",
+      "動",
+      false
+     ],
+     [
+      "08A",
+      "動",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1",
+     "L2",
+     "F2"
+    ],
+    "player_combo": 2,
+    "opp_combo": 3,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": true,
+    "psych_end": [
+     0.0,
+     15.0,
+     0.0
+    ],
+    "psych_next": [
+     0.0,
+     14.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12",
+     "said:鎖匠昨晚回來過"
+    ],
+    "hand": [
+     "L3",
+     "L4",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "force"
+    ],
+    "star": "attack",
+    "card": "L4",
+    "partial": false
+   },
+   "policy_can_produce": false,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "L4"
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "02A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 7
+    },
+    {
+     "kind": "player_attach",
+     "claim": "02A",
+     "combo": 3,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.5,
+      "hachiku": 1.0
+     },
+     "damage": 18.0
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 18.0,
+     "cause": "argument",
+     "hp": 150.5
+    },
+    {
+     "kind": "opp_attach",
+     "card": "L4",
+     "combo": 4
+    },
+    {
+     "kind": "player_damage",
+     "amount": 35.0,
+     "cause": "argument",
+     "hp": 25.0
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      0.0,
+      14.0,
+      0.0
+     ]
+    },
+    {
+     "kind": "reverse_ronpa",
+     "chain": [
+      "F1",
+      "L2",
+      "F2",
+      "L4"
+     ]
+    }
+   ],
+   "after": {
+    "round": 7,
+    "player_hp": 1.0,
+    "opp_hp": 150.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ],
+     [
+      "10A",
+      "動",
+      false
+     ],
+     [
+      "08A",
+      "動",
+      false
+     ],
+     [
+      "02A",
+      "機",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1",
+     "L2",
+     "F2",
+     "L4"
+    ],
+    "player_combo": 0,
+    "opp_combo": 4,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": true,
+    "psych_end": [
+     0.0,
+     14.0,
+     0.0
+    ],
+    "psych_next": [
+     0.0,
+     13.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12",
+     "said:鎖匠昨晚回來過"
+    ],
+    "hand": [
+     "L3",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": true,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": null,
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "none",
+    "card": null
+   },
+   "player_action": {
+    "kind": "last_stand",
+    "claim": "11B",
+    "target": "L1",
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 8
+    },
+    {
+     "kind": "last_stand",
+     "claim": "11B",
+     "target": "L1",
+     "ok": false
+    },
+    {
+     "kind": "debate_over",
+     "outcome": "loss",
+     "grade": 5,
+     "reason": "last_stand_failed"
+    }
+   ],
+   "after": {
+    "round": 8,
+    "player_hp": 0.0,
+    "opp_hp": 150.5,
+    "player_chain": [
+     [
+      "04A",
+      "機",
+      false
+     ],
+     [
+      "10A",
+      "動",
+      false
+     ],
+     [
+      "08A",
+      "動",
+      false
+     ],
+     [
+      "02A",
+      "機",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F1",
+     "L2",
+     "F2",
+     "L4"
+    ],
+    "player_combo": 0,
+    "opp_combo": 4,
+    "hachiku": 0,
+    "broken_until": 2,
+    "shisshu": true,
+    "psych_end": [
+     0.0,
+     14.0,
+     0.0
+    ],
+    "psych_next": [
+     0.0,
+     13.0,
+     0.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 0,
+    "denials": 0,
+    "known": [
+     "A02",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E08",
+     "E10",
+     "E11",
+     "E12",
+     "said:鎖匠昨晚回來過"
+    ],
+    "hand": [
+     "L3",
+     "U1",
+     "U2",
+     "P07",
+     "L1"
+    ],
+    "knocked": [],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": true,
+    "outcome": "loss",
+    "grade": 5
+   }
+  }
+ ],
+ "result": {
+  "outcome": "loss",
+  "grade": 5,
+  "reason": "last_stand_failed",
+  "rounds": 8,
+  "player_hp": 0.0,
+  "opp_hp": 150.5,
+  "cracks": 0,
+  "denials": 0,
+  "truth": 60,
+  "false_claims": [
+   "01B",
+   "06B"
+  ],
+  "key_left": [
+   "E07"
+  ],
+  "reputation": [
+   [
+    "grade_5",
+    -4
+   ]
+  ],
+  "reputation_delta": -4,
+  "reputation_after": 46,
+  "next_start_hp": -0.8,
+  "favour": [
+   [
+    "inspector",
+    -1
+   ]
+  ],
+  "note_version": "half",
+  "newspaper": "ugly"
+ }
+}

@@ -1,0 +1,1205 @@
+{
+ "route": "C",
+ "loadout": {
+  "carried": [
+   "E01",
+   "E02",
+   "E03",
+   "E04",
+   "E06",
+   "E07",
+   "E08",
+   "E09",
+   "E10"
+  ],
+  "appraisals": [
+   "A02",
+   "A04"
+  ],
+  "notes": [
+   "PN1",
+   "PN3",
+   "OBS01"
+  ],
+  "warmup": "pass"
+ },
+ "start": {
+  "round": 0,
+  "player_hp": 140.0,
+  "opp_hp": 230.0,
+  "player_chain": [],
+  "opp_chain": [],
+  "player_combo": 0,
+  "opp_combo": 0,
+  "hachiku": 0,
+  "broken_until": 0,
+  "shisshu": false,
+  "psych_end": [
+   0.0,
+   10.0,
+   10.0
+  ],
+  "psych_next": [
+   0.0,
+   10.0,
+   10.0
+  ],
+  "over": [
+   false,
+   false,
+   false
+  ],
+  "cracks": 0,
+  "denials": 0,
+  "known": [
+   "A02",
+   "A04",
+   "E01",
+   "E02",
+   "E03",
+   "E04",
+   "E06",
+   "E07",
+   "E08",
+   "E09",
+   "E10",
+   "OBS01",
+   "PN1",
+   "PN3"
+  ],
+  "hand": [
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "F1",
+   "F2",
+   "U1",
+   "U2"
+  ],
+  "knocked": [],
+  "reserved_last": "P05",
+  "endgame": null,
+  "player_locked": false,
+  "outcome": null,
+  "grade": null
+ },
+ "rounds": [
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "force"
+    ],
+    "star": null,
+    "card": "L1",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "L1"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "06B",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 1
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 20.0,
+     "cause": "intercept",
+     "hp": 210.0
+    },
+    {
+     "kind": "broken",
+     "cause": "intercepted",
+     "until": 2
+    },
+    {
+     "kind": "intercept",
+     "claim": "06B",
+     "card": "L1",
+     "ok": true,
+     "keystone": false
+    },
+    {
+     "kind": "hachiku",
+     "before": 0,
+     "after": 1
+    },
+    {
+     "kind": "psych_event",
+     "event": "lie_down_soph",
+     "delta": [
+      12.0,
+      0.0,
+      12.0
+     ],
+     "psych": [
+      12.0,
+      10.0,
+      22.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 1,
+    "player_hp": 140.0,
+    "opp_hp": 210.0,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 1,
+    "broken_until": 2,
+    "shisshu": false,
+    "psych_end": [
+     12.0,
+     10.0,
+     22.0
+    ],
+    "psych_next": [
+     9.0,
+     9.0,
+     18.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 1,
+    "denials": 0,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F1",
+     "F2",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "rebut",
+     "parry"
+    ],
+    "star": "rebut",
+    "card": null,
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "rebut",
+    "card": null
+   },
+   "player_action": {
+    "kind": "stall",
+    "claim": null,
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 2
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 5.0,
+     "cause": "whiff",
+     "hp": 205.0
+    },
+    {
+     "kind": "broken",
+     "cause": "rebut_whiff",
+     "until": 3
+    },
+    {
+     "kind": "stall",
+     "vs": "rebut",
+     "repeat": false
+    },
+    {
+     "kind": "hachiku",
+     "before": 1,
+     "after": 2
+    },
+    {
+     "kind": "psych_event",
+     "event": "stalled",
+     "delta": [
+      0.0,
+      0.0,
+      15.0
+     ],
+     "psych": [
+      9.0,
+      9.0,
+      33.0
+     ]
+    },
+    {
+     "kind": "psych_event",
+     "event": "own_rebut_whiff",
+     "delta": [
+      8.0,
+      0.0,
+      12.0
+     ],
+     "psych": [
+      17.0,
+      9.0,
+      45.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 2,
+    "player_hp": 140.0,
+    "opp_hp": 205.0,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 2,
+    "broken_until": 3,
+    "shisshu": false,
+    "psych_end": [
+     17.0,
+     9.0,
+     45.0
+    ],
+    "psych_next": [
+     14.0,
+     8.0,
+     41.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 1,
+    "denials": 0,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F1",
+     "F2",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "attack"
+    ],
+    "star": null,
+    "card": "F1",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "attack",
+    "card": "F1"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "06C",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 3
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 20.0,
+     "cause": "intercept",
+     "hp": 185.0
+    },
+    {
+     "kind": "broken",
+     "cause": "intercepted",
+     "until": 4
+    },
+    {
+     "kind": "intercept",
+     "claim": "06C",
+     "card": "F1",
+     "ok": true,
+     "keystone": false
+    },
+    {
+     "kind": "hachiku",
+     "before": 2,
+     "after": 3
+    },
+    {
+     "kind": "psych_event",
+     "event": "fact_down_soph",
+     "delta": [
+      5.0,
+      0.0,
+      20.0
+     ],
+     "psych": [
+      19.0,
+      8.0,
+      61.0
+     ]
+    },
+    {
+     "kind": "threshold_crossed",
+     "stat": "A"
+    },
+    {
+     "kind": "broken",
+     "cause": "crossed_A",
+     "until": 4
+    }
+   ],
+   "after": {
+    "round": 3,
+    "player_hp": 140.0,
+    "opp_hp": 185.0,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 3,
+    "broken_until": 4,
+    "shisshu": false,
+    "psych_end": [
+     19.0,
+     8.0,
+     61.0
+    ],
+    "psych_next": [
+     16.0,
+     7.0,
+     57.0
+    ],
+    "over": [
+     false,
+     false,
+     true
+    ],
+    "cracks": 2,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L2",
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "force"
+    ],
+    "star": null,
+    "card": "L2",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "force",
+    "card": "L2"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "06A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 4
+    },
+    {
+     "kind": "player_damage",
+     "amount": 10.0,
+     "cause": "contradiction",
+     "hp": 130.0
+    },
+    {
+     "kind": "red_crack",
+     "claim": "06A",
+     "removed": []
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 30.0,
+     "cause": "intercept",
+     "hp": 155.0
+    },
+    {
+     "kind": "broken",
+     "cause": "intercepted",
+     "until": 5
+    },
+    {
+     "kind": "intercept",
+     "claim": "06A",
+     "card": "L2",
+     "ok": true,
+     "keystone": true
+    },
+    {
+     "kind": "psych_event",
+     "event": "lie_down_proper",
+     "delta": [
+      20.0,
+      10.0,
+      0.0
+     ],
+     "psych": [
+      36.0,
+      17.0,
+      57.0
+     ]
+    },
+    {
+     "kind": "ronpa",
+     "via": "keystone",
+     "chain": []
+    },
+    {
+     "kind": "endgame",
+     "trigger": "ronpa",
+     "cracks": 3
+    }
+   ],
+   "after": {
+    "round": 4,
+    "player_hp": 130.0,
+    "opp_hp": 1.0,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 3,
+    "broken_until": 5,
+    "shisshu": false,
+    "psych_end": [
+     36.0,
+     17.0,
+     57.0
+    ],
+    "psych_next": [
+     33.0,
+     16.0,
+     53.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 3,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1",
+     "L2"
+    ],
+    "reserved_last": "P05",
+    "endgame": {
+     "trigger": "ronpa",
+     "card": "P05",
+     "dying": false
+    },
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "last"
+    ],
+    "star": null,
+    "card": "P05",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "last",
+    "card": "P05"
+   },
+   "player_action": {
+    "kind": "accept",
+    "claim": null,
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 5
+    },
+    {
+     "kind": "player_damage",
+     "amount": 55.0,
+     "cause": "last_card",
+     "hp": 75.0
+    },
+    {
+     "kind": "last_card",
+     "card": "P05",
+     "cut": false,
+     "removed": [],
+     "damage": 55.0,
+     "opp_hp": 82.8
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      23.0,
+      16.0,
+      45.0
+     ]
+    },
+    {
+     "kind": "rule3_armed"
+    }
+   ],
+   "after": {
+    "round": 5,
+    "player_hp": 75.0,
+    "opp_hp": 82.8,
+    "player_chain": [],
+    "opp_chain": [],
+    "player_combo": 0,
+    "opp_combo": 0,
+    "hachiku": 0,
+    "broken_until": 0,
+    "shisshu": false,
+    "psych_end": [
+     23.0,
+     16.0,
+     45.0
+    ],
+    "psych_next": [
+     20.0,
+     15.0,
+     41.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 3,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L3",
+     "L4",
+     "F2",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1",
+     "L2"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "clear",
+    "shown": [
+     "force"
+    ],
+    "star": null,
+    "card": "F2",
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "force",
+    "card": "F2"
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "09A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 6
+    },
+    {
+     "kind": "player_attach",
+     "claim": "09A",
+     "combo": 1,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.0,
+      "hachiku": 1.0
+     },
+     "damage": 12.0
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 12.0,
+     "cause": "argument",
+     "hp": 70.8
+    },
+    {
+     "kind": "opp_attach",
+     "card": "F2",
+     "combo": 1
+    },
+    {
+     "kind": "player_damage",
+     "amount": 20.0,
+     "cause": "argument",
+     "hp": 55.0
+    },
+    {
+     "kind": "psych_event",
+     "event": "private",
+     "delta": [
+      10.0,
+      0.0,
+      15.0
+     ],
+     "psych": [
+      30.0,
+      15.0,
+      56.0
+     ]
+    },
+    {
+     "kind": "psych_event",
+     "event": "hit_player",
+     "delta": [
+      -10.0,
+      0.0,
+      -8.0
+     ],
+     "psych": [
+      20.0,
+      15.0,
+      48.0
+     ]
+    },
+    {
+     "kind": "psych_event",
+     "event": "few_options",
+     "delta": [
+      -10.0,
+      0.0,
+      0.0
+     ],
+     "psych": [
+      10.0,
+      15.0,
+      48.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 6,
+    "player_hp": 55.0,
+    "opp_hp": 70.8,
+    "player_chain": [
+     [
+      "09A",
+      "動",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F2"
+    ],
+    "player_combo": 1,
+    "opp_combo": 1,
+    "hachiku": 0,
+    "broken_until": 0,
+    "shisshu": false,
+    "psych_end": [
+     10.0,
+     15.0,
+     48.0
+    ],
+    "psych_next": [
+     7.0,
+     14.0,
+     44.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 3,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L3",
+     "L4",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1",
+     "L2"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "force"
+    ],
+    "star": "attack",
+    "card": "L4",
+    "partial": false
+   },
+   "policy_can_produce": false,
+   "opponent_action": {
+    "kind": "force",
+    "card": "L4"
+   },
+   "player_action": {
+    "kind": "intercept",
+    "claim": "07A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 7
+    },
+    {
+     "kind": "player_damage",
+     "amount": 10.0,
+     "cause": "contradiction",
+     "hp": 45.0
+    },
+    {
+     "kind": "red_crack",
+     "claim": "07A",
+     "removed": []
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 30.0,
+     "cause": "intercept",
+     "hp": 40.8
+    },
+    {
+     "kind": "broken",
+     "cause": "intercepted",
+     "until": 8
+    },
+    {
+     "kind": "intercept",
+     "claim": "07A",
+     "card": "L4",
+     "ok": true,
+     "keystone": false
+    },
+    {
+     "kind": "hachiku",
+     "before": 0,
+     "after": 1
+    },
+    {
+     "kind": "psych_event",
+     "event": "lie_down_proper",
+     "delta": [
+      20.0,
+      10.0,
+      0.0
+     ],
+     "psych": [
+      27.0,
+      24.0,
+      44.0
+     ]
+    }
+   ],
+   "after": {
+    "round": 7,
+    "player_hp": 45.0,
+    "opp_hp": 40.8,
+    "player_chain": [
+     [
+      "09A",
+      "動",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F2"
+    ],
+    "player_combo": 1,
+    "opp_combo": 0,
+    "hachiku": 1,
+    "broken_until": 8,
+    "shisshu": false,
+    "psych_end": [
+     27.0,
+     24.0,
+     44.0
+    ],
+    "psych_next": [
+     24.0,
+     23.0,
+     40.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 4,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L3",
+     "U1",
+     "U2"
+    ],
+    "knocked": [
+     "L1",
+     "L2",
+     "L4"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  },
+  {
+   "tell": {
+    "clarity": "vague",
+    "shown": [
+     "attack",
+     "parry"
+    ],
+    "star": "parry",
+    "card": null,
+    "partial": false
+   },
+   "policy_can_produce": true,
+   "opponent_action": {
+    "kind": "parry",
+    "card": null
+   },
+   "player_action": {
+    "kind": "argue",
+    "claim": "10A",
+    "target": null,
+    "guard": false
+   },
+   "events": [
+    {
+     "kind": "round",
+     "round": 8
+    },
+    {
+     "kind": "opp_heal",
+     "before": 40.8,
+     "hp": 45.8
+    },
+    {
+     "kind": "player_attach",
+     "claim": "10A",
+     "combo": 2,
+     "factors": {
+      "base": 12.0,
+      "combo": 1.25,
+      "continuation": 1.2,
+      "hachiku": 1.1,
+      "broken": 1.25
+     },
+     "damage": 24.75
+    },
+    {
+     "kind": "opp_damage",
+     "amount": 24.75,
+     "cause": "argument",
+     "hp": 21.049999999999997
+    },
+    {
+     "kind": "reraise",
+     "card": "L4"
+    },
+    {
+     "kind": "hachiku",
+     "before": 1,
+     "after": 2
+    }
+   ],
+   "after": {
+    "round": 8,
+    "player_hp": 45.0,
+    "opp_hp": 21.049999999999997,
+    "player_chain": [
+     [
+      "09A",
+      "動",
+      false
+     ],
+     [
+      "10A",
+      "動",
+      false
+     ]
+    ],
+    "opp_chain": [
+     "F2"
+    ],
+    "player_combo": 2,
+    "opp_combo": 0,
+    "hachiku": 2,
+    "broken_until": 8,
+    "shisshu": false,
+    "psych_end": [
+     24.0,
+     23.0,
+     40.0
+    ],
+    "psych_next": [
+     21.0,
+     22.0,
+     36.0
+    ],
+    "over": [
+     false,
+     false,
+     false
+    ],
+    "cracks": 4,
+    "denials": 1,
+    "known": [
+     "A02",
+     "A04",
+     "E01",
+     "E02",
+     "E03",
+     "E04",
+     "E06",
+     "E07",
+     "E08",
+     "E09",
+     "E10",
+     "OBS01",
+     "PN1",
+     "PN3"
+    ],
+    "hand": [
+     "L3",
+     "U1",
+     "U2",
+     "L4"
+    ],
+    "knocked": [
+     "L1",
+     "L2"
+    ],
+    "reserved_last": "P05",
+    "endgame": null,
+    "player_locked": false,
+    "outcome": null,
+    "grade": null
+   }
+  }
+ ],
+ "result": null
+}

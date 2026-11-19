@@ -1,0 +1,1021 @@
+{
+  "format": "sherefox-debate/1",
+  "id": "d01_cedric",
+  "source": "v2/11_demo_chapter.md",
+  "note": "Demo chapter 《守靈夜消失的遺囑》 main debate vs 塞德里克. Short IDs in this file map to full IDs: 01A = CLM_D01_01A, L1 = CRD_D01_L1, E05 = E_D01_05, A01 = APR_D01_01, PN1 = PN_D01_1, OBS01 = OBS_D01_01. optional_known: notes/observations a player may miss; the checker should test loadouts with and without them (always_known is left empty on purpose). Localization IDs: claims[].loc and opponent.cards[].loc point into localization/d01/strings_d01.json.",
+  "stage": "mid",
+  "carry_limit": 9,
+  "appraisal_limit": 2,
+  "max_pickup": 2,
+  "issues": [
+    {
+      "id": "機",
+      "name": "機會"
+    },
+    {
+      "id": "法",
+      "name": "手法"
+    },
+    {
+      "id": "動",
+      "name": "動機"
+    }
+  ],
+  "always_known": [],
+  "evidence": [
+    {
+      "id": "E01",
+      "name": "黃銅文件筒（空）",
+      "carriable": true,
+      "appraisal": "A01",
+      "key": true
+    },
+    {
+      "id": "E02",
+      "name": "書房的座鐘",
+      "carriable": true,
+      "appraisal": "A02",
+      "key": true
+    },
+    {
+      "id": "E03",
+      "name": "落在地上的鏡子黑布",
+      "carriable": true
+    },
+    {
+      "id": "E04",
+      "name": "地下室煤氣總閥",
+      "carriable": true,
+      "appraisal": "A04",
+      "key": true
+    },
+    {
+      "id": "E05",
+      "name": "萬用鑰匙圈",
+      "carriable": true,
+      "opponent_use": "P05"
+    },
+    {
+      "id": "E06",
+      "name": "布里格斯的工作單",
+      "carriable": true,
+      "opponent_use": "P06"
+    },
+    {
+      "id": "E07",
+      "name": "繡字手帕",
+      "carriable": true,
+      "opponent_use": "P07",
+      "key": true
+    },
+    {
+      "id": "E08",
+      "name": "賭場的催款信",
+      "carriable": true,
+      "key": true
+    },
+    {
+      "id": "E09",
+      "name": "髮辮胸針（小）",
+      "carriable": true
+    },
+    {
+      "id": "E10",
+      "name": "書房的吸墨紙",
+      "carriable": true,
+      "key": true
+    },
+    {
+      "id": "E11",
+      "name": "艾琳的證詞",
+      "carriable": true
+    },
+    {
+      "id": "E12",
+      "name": "黑紗花圈",
+      "carriable": true,
+      "note": "useless decoy"
+    },
+    {
+      "id": "P1",
+      "name": "通靈板",
+      "carriable": true,
+      "psych_card": true
+    }
+  ],
+  "appraisals": [
+    {
+      "id": "A01",
+      "target": "E01",
+      "unlocks": [
+        "01A",
+        "01C"
+      ]
+    },
+    {
+      "id": "A02",
+      "target": "E02",
+      "unlocks": [
+        "02A"
+      ]
+    },
+    {
+      "id": "A04",
+      "target": "E04",
+      "unlocks": [
+        "04B"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "01A",
+      "evidence": "E01",
+      "issue": "法",
+      "unlock": [
+        "A01"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "01B"
+      ],
+      "breaks": [
+        "L2",
+        "P05"
+      ],
+      "loc": {
+        "label": "CLM_D01_01A",
+        "line": "CLM_D01_01A_LINE"
+      }
+    },
+    {
+      "id": "01B",
+      "evidence": "E01",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [
+        "A01"
+      ],
+      "true": false,
+      "exclusive": [
+        "01A",
+        "06A"
+      ],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_01B",
+        "line": "CLM_D01_01B_LINE"
+      }
+    },
+    {
+      "id": "01C",
+      "evidence": "E01",
+      "issue": "法",
+      "unlock": [
+        "A01"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "P05"
+      ],
+      "loc": {
+        "label": "CLM_D01_01C",
+        "line": "CLM_D01_01C_LINE"
+      }
+    },
+    {
+      "id": "01D",
+      "evidence": "E01",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [
+        "E05",
+        "said:鎖匠身上有萬用鑰匙圈"
+      ],
+      "true": false,
+      "exclusive": [
+        "05A"
+      ],
+      "breaks": [],
+      "opp_refute": [
+        {
+          "via": "E05",
+          "line_id": "REFUTE_D01_01D"
+        }
+      ],
+      "loc": {
+        "label": "CLM_D01_01D",
+        "line": "CLM_D01_01D_LINE"
+      }
+    },
+    {
+      "id": "02A",
+      "evidence": "E02",
+      "issue": "機",
+      "unlock": [
+        "A02"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "02B"
+      ],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_02A",
+        "line": "CLM_D01_02A_LINE"
+      }
+    },
+    {
+      "id": "02B",
+      "evidence": "E02",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [
+        "A02"
+      ],
+      "true": false,
+      "exclusive": [
+        "02A"
+      ],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_02B",
+        "line": "CLM_D01_02B_LINE"
+      }
+    },
+    {
+      "id": "02C",
+      "evidence": "E02",
+      "issue": "機",
+      "unlock": [
+        "PN3"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "psych": {
+        "P": 5,
+        "G": 15
+      },
+      "note": "heart-knot, once per debate",
+      "loc": {
+        "label": "CLM_D01_02C",
+        "line": "CLM_D01_02C_LINE"
+      }
+    },
+    {
+      "id": "03A",
+      "evidence": "E03",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "L1"
+      ],
+      "loc": {
+        "label": "CLM_D01_03A",
+        "line": "CLM_D01_03A_LINE"
+      }
+    },
+    {
+      "id": "03B",
+      "evidence": "E03",
+      "issue": "機",
+      "unlock": [
+        "PN4"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "psych": {
+        "P": 12
+      },
+      "note": "weakness, once per debate",
+      "loc": {
+        "label": "CLM_D01_03B",
+        "line": "CLM_D01_03B_LINE"
+      }
+    },
+    {
+      "id": "04A",
+      "evidence": "E04",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_04A",
+        "line": "CLM_D01_04A_LINE"
+      }
+    },
+    {
+      "id": "04B",
+      "evidence": "E04",
+      "issue": "機",
+      "unlock": [
+        "A04"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "L4",
+        "K1"
+      ],
+      "loc": {
+        "label": "CLM_D01_04B",
+        "line": "CLM_D01_04B_LINE"
+      }
+    },
+    {
+      "id": "04C",
+      "evidence": "E04",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [
+        "E07",
+        "said:鎖匠昨晚回來過"
+      ],
+      "true": false,
+      "exclusive": [
+        "07A",
+        "07B"
+      ],
+      "breaks": [
+        "L4"
+      ],
+      "note": "sincere-but-wrong; flips to sophistry once he says the locksmith came back (06B refute or P07)",
+      "loc": {
+        "label": "CLM_D01_04C",
+        "line": "CLM_D01_04C_LINE"
+      }
+    },
+    {
+      "id": "05A",
+      "evidence": "E05",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "05B",
+        "01D"
+      ],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_05A",
+        "line": "CLM_D01_05A_LINE"
+      }
+    },
+    {
+      "id": "05B",
+      "evidence": "E05",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [
+        "E06",
+        "said:工作單寫明以萬用鑰匙校試"
+      ],
+      "true": false,
+      "exclusive": [
+        "05A"
+      ],
+      "breaks": [],
+      "opp_refute": [
+        {
+          "via": "E06",
+          "line_id": "REFUTE_D01_05B"
+        }
+      ],
+      "loc": {
+        "label": "CLM_D01_05B",
+        "line": "CLM_D01_05B_LINE"
+      }
+    },
+    {
+      "id": "06A",
+      "evidence": "E06",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "01B",
+        "06C"
+      ],
+      "breaks": [
+        "L2"
+      ],
+      "loc": {
+        "label": "CLM_D01_06A",
+        "line": "CLM_D01_06A_LINE"
+      }
+    },
+    {
+      "id": "06B",
+      "evidence": "E06",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [
+        "E07",
+        "said:鎖匠昨晚回來過"
+      ],
+      "true": false,
+      "exclusive": [
+        "07A",
+        "07B"
+      ],
+      "breaks": [
+        "L3"
+      ],
+      "opp_refute": [
+        {
+          "via": "E07",
+          "line_id": "REFUTE_D01_06B"
+        }
+      ],
+      "loc": {
+        "label": "CLM_D01_06B",
+        "line": "CLM_D01_06B_LINE"
+      }
+    },
+    {
+      "id": "06C",
+      "evidence": "E06",
+      "issue": "法",
+      "unlock": [],
+      "conflicts": [
+        "E06"
+      ],
+      "true": false,
+      "exclusive": [
+        "06A"
+      ],
+      "breaks": [],
+      "note": "always sophistry",
+      "loc": {
+        "label": "CLM_D01_06C",
+        "line": "CLM_D01_06C_LINE"
+      }
+    },
+    {
+      "id": "07A",
+      "evidence": "E07",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "06B",
+        "04C"
+      ],
+      "breaks": [
+        "L4"
+      ],
+      "loc": {
+        "label": "CLM_D01_07A",
+        "line": "CLM_D01_07A_LINE"
+      }
+    },
+    {
+      "id": "07B",
+      "evidence": "E07",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "06B",
+        "04C"
+      ],
+      "breaks": [
+        "L3"
+      ],
+      "loc": {
+        "label": "CLM_D01_07B",
+        "line": "CLM_D01_07B_LINE"
+      }
+    },
+    {
+      "id": "08A",
+      "evidence": "E08",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "L3"
+      ],
+      "loc": {
+        "label": "CLM_D01_08A",
+        "line": "CLM_D01_08A_LINE"
+      }
+    },
+    {
+      "id": "08B",
+      "evidence": "E08",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "psych": {
+        "P": 5,
+        "G": 15
+      },
+      "note": "heart-knot, once per debate",
+      "loc": {
+        "label": "CLM_D01_08B",
+        "line": "CLM_D01_08B_LINE"
+      }
+    },
+    {
+      "id": "09A",
+      "evidence": "E09",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [
+        "09B"
+      ],
+      "breaks": [
+        "L3"
+      ],
+      "private": true,
+      "psych": {
+        "P": 10,
+        "A": 15
+      },
+      "loc": {
+        "label": "CLM_D01_09A",
+        "line": "CLM_D01_09A_LINE"
+      }
+    },
+    {
+      "id": "09B",
+      "evidence": "E09",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [
+        "OBS01"
+      ],
+      "true": false,
+      "exclusive": [
+        "09A"
+      ],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_09B",
+        "line": "CLM_D01_09B_LINE"
+      }
+    },
+    {
+      "id": "10A",
+      "evidence": "E10",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_10A",
+        "line": "CLM_D01_10A_LINE"
+      }
+    },
+    {
+      "id": "10B",
+      "evidence": "E10",
+      "issue": "動",
+      "unlock": [
+        "PN4"
+      ],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_10B",
+        "line": "CLM_D01_10B_LINE"
+      }
+    },
+    {
+      "id": "11A",
+      "evidence": "E11",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "L1"
+      ],
+      "loc": {
+        "label": "CLM_D01_11A",
+        "line": "CLM_D01_11A_LINE"
+      }
+    },
+    {
+      "id": "11B",
+      "evidence": "E11",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [
+        "L1"
+      ],
+      "loc": {
+        "label": "CLM_D01_11B",
+        "line": "CLM_D01_11B_LINE"
+      }
+    },
+    {
+      "id": "12A",
+      "evidence": "E12",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": true,
+      "exclusive": [],
+      "breaks": [],
+      "loc": {
+        "label": "CLM_D01_12A",
+        "line": "CLM_D01_12A_LINE"
+      }
+    },
+    {
+      "id": "P1A",
+      "evidence": "P1",
+      "issue": "機",
+      "unlock": [],
+      "conflicts": [],
+      "true": false,
+      "exclusive": [],
+      "breaks": [],
+      "psych_card": true,
+      "psych": {
+        "P": 20,
+        "G": 35
+      },
+      "loc": {
+        "label": "CLM_D01_P1A",
+        "line": "CLM_D01_P1A_LINE"
+      }
+    },
+    {
+      "id": "P1B",
+      "evidence": "P1",
+      "issue": "動",
+      "unlock": [],
+      "conflicts": [],
+      "true": false,
+      "exclusive": [],
+      "breaks": [],
+      "psych_card": true,
+      "psych": {
+        "P": 25,
+        "G": 15
+      },
+      "loc": {
+        "label": "CLM_D01_P1B",
+        "line": "CLM_D01_P1B_LINE"
+      }
+    }
+  ],
+  "opponent": {
+    "name": "塞德里克・海德",
+    "hp": 230,
+    "base_damage": 16,
+    "cards": [
+      {
+        "id": "L1",
+        "kind": "lie",
+        "issue": "機",
+        "breakable_by": [
+          "11A",
+          "11B",
+          "03A"
+        ],
+        "loc": {
+          "label": "CARD_D01_L1",
+          "state": "CARD_D01_L1_STATE",
+          "push": "CARD_D01_L1_PUSH",
+          "retract": "CARD_D01_L1_RETRACT",
+          "down": "CARD_D01_L1_DOWN",
+          "cut_reactions": [
+            "CUT_D01_03A_L1"
+          ]
+        }
+      },
+      {
+        "id": "L2",
+        "kind": "lie",
+        "issue": "法",
+        "breakable_by": [
+          "01A",
+          "06A"
+        ],
+        "keystone": true,
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_L2",
+          "state": "CARD_D01_L2_STATE",
+          "push": "CARD_D01_L2_PUSH",
+          "retract": "CARD_D01_L2_RETRACT",
+          "down": "CARD_D01_L2_DOWN"
+        }
+      },
+      {
+        "id": "L3",
+        "kind": "lie",
+        "issue": "動",
+        "breakable_by": [
+          "07B",
+          "09A",
+          "08A",
+          "06B"
+        ],
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_L3",
+          "state": "CARD_D01_L3_STATE",
+          "push": "CARD_D01_L3_PUSH",
+          "retract": "CARD_D01_L3_RETRACT",
+          "down": "CARD_D01_L3_DOWN",
+          "cut_reactions": [
+            "CUT_D01_08A_L3",
+            "CUT_D01_09A_L3"
+          ]
+        }
+      },
+      {
+        "id": "L4",
+        "kind": "lie",
+        "issue": "機",
+        "breakable_by": [
+          "04B",
+          "07A",
+          "04C"
+        ],
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_L4",
+          "state": "CARD_D01_L4_STATE",
+          "push": "CARD_D01_L4_PUSH",
+          "retract": "CARD_D01_L4_RETRACT",
+          "down": "CARD_D01_L4_DOWN",
+          "cut_reactions": [
+            "CUT_D01_04C_L4"
+          ]
+        }
+      },
+      {
+        "id": "F1",
+        "kind": "fav",
+        "issue": "法",
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_F1",
+          "state": "CARD_D01_F1_STATE",
+          "push": "CARD_D01_F1_PUSH"
+        }
+      },
+      {
+        "id": "F2",
+        "kind": "fav",
+        "issue": "機",
+        "loc": {
+          "label": "CARD_D01_F2",
+          "state": "CARD_D01_F2_STATE",
+          "push": "CARD_D01_F2_PUSH"
+        }
+      },
+      {
+        "id": "U1",
+        "kind": "unfav",
+        "issue": "機",
+        "loc": {
+          "label": "CARD_D01_U1",
+          "state": "CARD_D01_U1_STATE",
+          "push": "CARD_D01_U1_PUSH",
+          "tell": "CARD_D01_U1_TELL",
+          "catch": "CARD_D01_U1_CATCH"
+        }
+      },
+      {
+        "id": "U2",
+        "kind": "unfav",
+        "issue": "動",
+        "loc": {
+          "label": "CARD_D01_U2",
+          "state": "CARD_D01_U2_STATE",
+          "push": "CARD_D01_U2_PUSH",
+          "tell": "CARD_D01_U2_TELL",
+          "catch": "CARD_D01_U2_CATCH"
+        }
+      },
+      {
+        "id": "P05",
+        "kind": "pickup",
+        "as": "lie",
+        "source": "E05",
+        "issue": "法",
+        "breakable_by": [
+          "01A",
+          "01C"
+        ],
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_P05",
+          "state": "CARD_D01_P05_STATE",
+          "push": "CARD_D01_P05_PUSH",
+          "down": "CARD_D01_P05_DOWN"
+        }
+      },
+      {
+        "id": "P07",
+        "kind": "pickup",
+        "as": "fav",
+        "source": "E07",
+        "issue": "機",
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_P07",
+          "state": "CARD_D01_P07_STATE",
+          "push": "CARD_D01_P07_PUSH"
+        }
+      },
+      {
+        "id": "P06",
+        "kind": "pickup",
+        "as": "fav",
+        "source": "E06",
+        "issue": "法",
+        "frames": true,
+        "loc": {
+          "label": "CARD_D01_P06",
+          "state": "CARD_D01_P06_STATE",
+          "push": "CARD_D01_P06_PUSH"
+        }
+      },
+      {
+        "id": "K1",
+        "kind": "last",
+        "breakable_by": [
+          "04B"
+        ],
+        "loc": {
+          "label": "CARD_D01_K1",
+          "state": "CARD_D01_K1_STATE",
+          "down": "CARD_D01_K1_DOWN"
+        }
+      }
+    ],
+    "pickup_priority": [
+      "E05",
+      "E07",
+      "E06"
+    ],
+    "last_card_priority": [
+      "pickup",
+      "last"
+    ],
+    "personality": {
+      "archetype": "自信的專家（改）",
+      "start": {
+        "P": 0,
+        "G": 10,
+        "A": 10
+      },
+      "threshold": {
+        "P": 65,
+        "G": 60,
+        "A": 55
+      },
+      "decay": {
+        "P": 3,
+        "G": 1,
+        "A": 4
+      },
+      "mult": {
+        "P": 1.0,
+        "G": 1.0,
+        "A": 1.0
+      },
+      "exceptions": {
+        "options_low": {
+          "P": -10,
+          "A": 0
+        },
+        "fooled": {
+          "A": 15
+        }
+      },
+      "weakness": {
+        "P1A": {
+          "P": 20,
+          "G": 35
+        },
+        "P1B": {
+          "P": 25,
+          "G": 15
+        },
+        "03B": {
+          "P": 12
+        }
+      },
+      "heart_knot": {
+        "02C": {
+          "P": 5,
+          "G": 15
+        },
+        "08B": {
+          "P": 5,
+          "G": 15
+        }
+      },
+      "rage_strong_ratio": 0.6
+    },
+    "behavior": {
+      "weights": {
+        "立論": 35,
+        "強辯": 10,
+        "反駁": 35,
+        "周旋": 20
+      },
+      "rules": [
+        "② player used sophistry or psych card last round -> 反駁 (tendency 80%)",
+        "① his card knocked down last round -> 周旋, re-raise it (tendency 80%)",
+        "③ first time HP <= 50% -> 強辯, explicit tell (always)",
+        "④ hit the player last round -> 立論 (tendency 80%)",
+        "⑤ same action twice -> change on the third (always)",
+        "priority: always > ② > ① > ④"
+      ],
+      "play_order": [
+        "L1",
+        "F1",
+        "L2",
+        "F2",
+        "L4",
+        "pickups except the one kept as last card",
+        "re-raised cards",
+        "L3"
+      ],
+      "tell_clarity": {
+        "explicit": 0.4,
+        "vague": 0.6,
+        "disguised": 0.0
+      }
+    }
+  },
+  "optional_known": [
+    {
+      "id": "OBS01",
+      "hotspots": [
+        "HS05"
+      ],
+      "note": "海德太太：胸針只有一枚"
+    },
+    {
+      "id": "PN1",
+      "hotspots": [
+        "HS03"
+      ]
+    },
+    {
+      "id": "PN2",
+      "hotspots": [
+        "HS22"
+      ]
+    },
+    {
+      "id": "PN3",
+      "hotspots": [
+        "HS04",
+        "HS05"
+      ],
+      "note": "both hotspots needed"
+    },
+    {
+      "id": "PN4",
+      "hotspots": [
+        "HS13"
+      ]
+    }
+  ]
+}

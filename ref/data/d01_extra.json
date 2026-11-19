@@ -1,0 +1,84 @@
+{
+  "format": "sherefox-debate-extra/1",
+  "id": "d01_cedric",
+  "source": "v2/11_demo_chapter.md",
+  "note": "Chapter fields that d01_debate.json lacks, transcribed from 11_demo_chapter.md. Every block carries a section reference. Short IDs as in d01_debate.json.",
+  "numbers": {
+    "ref": "11_demo_chapter.md §0.1, §12 (common conditions); 00_core_rules.md §7.6 + design-owner ruling (round limit)",
+    "player_max_hp": 140,
+    "reputation_start": 50,
+    "inspector_favour_start": 3,
+    "ronpa_issues": 2,
+    "max_rounds": 20,
+    "tell_clarity": {"clear": 40, "vague": 60}
+  },
+  "psych_events": {
+    "ref": "§10 事件的實際增量 (rules 8.2 x the personality table); values are (P, G, A)",
+    "lie_down_proper": [20, 10, 0],
+    "lie_down_soph": [12, 0, 12],
+    "fact_down_soph": [5, 0, 20],
+    "own_rebut_whiff": [8, 0, 12],
+    "stalled": [0, 0, 15],
+    "hit_player": [-10, 0, -8],
+    "few_options": [-10, 0, 0]
+  },
+  "claim_psych": {
+    "ref": "§5.2 心理作用 column, §10 個人弱點／心結／私事. Values come from d01_debate.json claims[].psych.",
+    "02C": {"kind": "heart_knot", "once": true},
+    "08B": {"kind": "heart_knot", "once": true},
+    "03B": {"kind": "weakness", "once": true},
+    "09A": {"kind": "private", "once": false},
+    "P1A": {"kind": "weakness", "once": false},
+    "P1B": {"kind": "weakness", "once": false}
+  },
+  "private_favour": {
+    "ref": "§5.2 私事 column (09A: 海德太太好感 −1), §2 S08 L002",
+    "09A": {"who": "mrs_hyde", "delta": -1}
+  },
+  "continuations": {
+    "ref": "§8 承接表. [from, to, both_directions]",
+    "pairs": [
+      ["05A", "01C", false],
+      ["02A", "03A", true],
+      ["02A", "04B", true],
+      ["02C", "08B", false],
+      ["10A", "08A", true],
+      ["09A", "10A", true],
+      ["11A", "11B", false]
+    ]
+  },
+  "refute_lines": {
+    "ref": "§6.6 駁倒台詞, column 之後成為玩家已知",
+    "REFUTE_D01_05B": {"claim": "05B", "via": "E06", "reveals": "said:工作單寫明以萬用鑰匙校試"},
+    "REFUTE_D01_01D": {"claim": "01D", "via": "E05", "reveals": "said:鎖匠身上有萬用鑰匙圈"},
+    "REFUTE_D01_06B": {"claim": "06B", "via": "E07", "reveals": "said:鎖匠昨晚回來過"}
+  },
+  "behavior": {
+    "ref": "§11 行為表",
+    "follow_pct": 80,
+    "tendencies": [
+      {"rule": 2, "when": "player_soph_last_round", "action": "rebut"},
+      {"rule": 1, "when": "own_lie_knocked_last_round", "action": "parry"},
+      {"rule": 4, "when": "hit_player_last_round", "action": "attack"}
+    ],
+    "rule3_hp_ratio": 0.5,
+    "rage_split": {"force": 60, "rebut": 40},
+    "play_order": ["L1", "F1", "L2", "F2", "L4", "@pickups", "@reraised", "L3"],
+    "unfav_order": ["U1", "U2"],
+    "unfav_order_ref": "not in the chapter (§6.3 lists U1 then U2); SPEC-QUESTION"
+  },
+  "last_card_order": {
+    "ref": "§6.5 打哪一張: picked-up evidence (P05 > P07 > P06, first still held) > K1",
+    "order": ["@pickup", "K1"]
+  },
+  "warmup": {
+    "ref": "§2 S04 L013 (zero mistakes: inspector +1), L014 (failure: inspector -1, appraisals 2 -> 1)",
+    "pass_clean": {"inspector": 1, "appraisal_limit": 2},
+    "pass": {"inspector": 0, "appraisal_limit": 2},
+    "fail": {"inspector": -1, "appraisal_limit": 1}
+  },
+  "flags": {
+    "ref": "§2 S06 L008 〔待使用者決定〕; design-owner ruling: a data flag, off by default, dialogue only",
+    "S06_L008": false
+  }
+}
