@@ -142,7 +142,25 @@ def parse_events(out: str) -> list[tuple[int, str, str]]:
             events.append((-1 if m.group(1) == "load" else int(m.group(1)), m.group(2), m.group(3)))
         elif raw.strip():
             raise SystemExit(f"error: not a port trace record: {raw[:200]!r}")
+    log_texts(out)
     return events
+
+
+_TEXT = re.compile(r'"((?:[^"\\]|\\.)*)"')
+_TEXT_LOCK = __import__("threading").Lock()   # check_d1_fuzz parses on several threads
+
+
+def log_texts(out: str) -> None:
+    """v2 demo E7: with SHEREFOX_TEXTLOG=<dir> set, every distinct string value of the trace is appended (escaped as
+    the CLI wrote it, one per line) to <dir>/<script>.txt, for tests/check_d1_strings.py --coverage <dir> (which D01
+    strings the test runs showed). Off by default."""
+    d = os.environ.get("SHEREFOX_TEXTLOG")
+    if not d:
+        return
+    vals = sorted({m.group(1) for m in _TEXT.finditer(out) if m.group(1)})
+    name = Path(sys.argv[0]).stem
+    with _TEXT_LOCK, open(Path(d) / f"{name}.txt", "a", encoding="utf-8", newline="\n") as f:
+        f.write("".join(v + "\n" for v in vals))
 
 
 _ESC = {"\\": "\\", "n": "\n", "r": "\r", "t": "\t", '"': '"'}

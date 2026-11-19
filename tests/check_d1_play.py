@@ -68,7 +68,11 @@ SYS_UNDER_TEST = ("SYS_D01_BOTH_REBUT", "SYS_D01_CUT_EMPTY", "SYS_D01_MISS_WRONG
                   "SYS_D01_LASTCARD_HIT", "SYS_D01_LASTCARD_NOHEAL", "SYS_D01_LASTCARD_REMOVE", "SYS_D01_ZERO_WIN",
                   "SYS_D01_KEY_BREAK", "SYS_D01_KEY_NORMAL", "SYS_D01_DENY_FACT", "SCR_D01_S07_L005",
                   "SCR_D01_S07_L006", "SYS_D01_CUT_SEALED", "SYS_D01_OPP_REBUT_MISS", "SYS_D01_LASTCARD_CORNERED",
-                  "SYS_D01_HACHIKU_KEEP")
+                  "SYS_D01_HACHIKU_KEEP",
+                  # E7 (design 4ac5faf): the Break / Reverse Break conditions, the chain without 破防 (once)
+                  "SYS_D01_CHAIN_READY", "SYS_D01_REV_READY", "SYS_D01_CHAIN_NOBREAK",
+                  # E7: the lines only the fuzz reached before (now scripted in check_d1_lines S7, S8, S10, S11)
+                  "SYS_D01_LASTSTAND_OK", "SYS_D01_DESPERATE_HIT", "SYS_D01_BLOCKED")
 
 
 def num(v: float) -> str:
@@ -81,6 +85,8 @@ def num(v: float) -> str:
 def render(lang: str, key: str, vals: dict) -> str:
     out = S[lang][key].replace("{name}", S[lang]["SPK_D01_CEDRIC"])
     for k, v in vals.items():
+        if isinstance(v, list):     # E7 {issues}: string keys joined the way the screen joins them
+            v = S[lang]["UI_TAG_SEP"].join(S[lang][x] for x in v)
         if not isinstance(v, str) and k.startswith("hp"):
             v = max(0.0, v)   # a credibility is never shown below 0
         out = out.replace("{" + k + "}", v if isinstance(v, str) else num(v))
@@ -92,13 +98,15 @@ def pattern(lang: str, key: str):
     return re.compile("^" + ".*".join(re.escape(x) for x in parts) + "$", re.S)
 
 
-def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
+def ref_lines(s, pa, ev: list, s2, memo: dict | None = None) -> tuple[list[tuple[str, dict]], bool]:
     """The ref's oracle for one round: the system lines under test that ch §12.0 calls for, with their numbers taken
     from the ref's events (state before s, player action pa, events ev, state after s2), and whether the player's
-    combo resets to 0 (the 斷 stamp, ruling 7)."""
+    combo resets to 0 (the 斷 stamp, ruling 7). `memo` carries the once-per-debate lines across rounds."""
     from sherefox_ref.v2 import known as K
+    from sherefox_ref.v2 import lines as LN
     from sherefox_ref.v2 import model as M
     from sherefox_ref.v2.model import PA
+    memo = {} if memo is None else memo
 
     def first(kind, **f):
         return next((e for e in ev if e["kind"] == kind and all(e.get(k) == v for k, v in f.items())), None)
@@ -169,6 +177,25 @@ def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
             out.append(("SYS_D01_KEY_NORMAL", {}))
         if cd.is_fact:
             out.append(("SYS_D01_DENY_FACT", {}))
+    # E7: the Break by chain: its conditions (n links, the issues in the order the chain reaches them); a keystone
+    # Break has KEY_BREAK instead. The Reverse Break: his chain. Her chain long enough without 破防: once per debate
+    rp = first("ronpa")
+    if rp and rp["via"] == "chain":
+        out.append(("SYS_D01_CHAIN_READY", {"n": len(rp["chain"]), "issues": LN.chain_issues(s, rp["chain"])}))
+    rv = first("reverse_ronpa")
+    if rv:
+        out.append(("SYS_D01_REV_READY", {"n": len(rv["chain"]), "issues": LN.chain_issues(s, rv["chain"], True)}))
+    if not memo.get("nobreak") and LN.nobreak_now(s, LN.records(ev, s), s2):
+        memo["nobreak"] = True
+        out.append(("SYS_D01_CHAIN_NOBREAK", {"n": len(s2.player_chain)}))
+    ls = first("last_stand", ok=True)     # E7: {node} his card the claim refutes, {hp} her 30% (−10 on a red crack)
+    if ls:
+        out.append(("SYS_D01_LASTSTAND_OK", {"node": [f"CARD_D01_{ls['target']}"], "hp": ls["hp"]}))
+    dy = next((e for e in pd if e["cause"] == "dying"), None)
+    if dy:
+        out.append(("SYS_D01_DESPERATE_HIT", {"hp": dy["hp"]}))
+    if first("blocked"):
+        out.append(("SYS_D01_BLOCKED", {}))
     if first("ronpa") and not s2.outcome:
         out.append(("SCR_D01_S07_L005", {}))
     if first("endgame", trigger="zero") and not s2.outcome:
@@ -179,6 +206,60 @@ def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
     reset = s.player_combo > 0 and (any(e["cause"] in ("exposed", "refuted") for e in pd)
                                     or (lc is not None and not lc.get("dying")))
     return out, reset
+
+
+def ref_cutins(s, ev: list) -> list[tuple[str, str]]:
+    """E7: the cut-ins of one round from the ref's records, in order, ("big", id) or ("stamp", word): ch §13 態勢大字與小印
+    (the five big words 論破 / 動搖 on 破防 / 破竹 at 3 / 困獸 / 失守, and 逆論破 on a Reverse Break; guilt or anger over
+    the threshold has none, design E7) and the text seals (flows §4.12: 截 on a cut that lands, the endgame cut
+    included (ch §12.1 R9), 拆, 落空, 交鋒, 援護, 中計, 斷 on the combo's reset). One per record, a big word first."""
+    from sherefox_ref.v2 import lines as LN
+    out = []
+    pat = False
+    for r in LN.records(ev, s):
+        k = r["k"]
+        big = {"ronpa": "CUT_RONPA", "reverseRonpa": "CUT_REVERSE", "broken": "CUT_SHAKEN"}.get(k)
+        if k == "hachiku" and r["after"] >= 3 > r["before"]:
+            big = "CUT_HACHIKU3"
+        elif k == "shisshu" and r["on"]:
+            big = "CUT_SHISSHU"
+        elif k == "crossed" and r["stat"] == "P":
+            big = "CUT_KONJU"
+        stamp = None
+        if k in ("intercept", "dismantle"):
+            stamp = ("CUT" if k == "intercept" else "TOPPLE") if r["ok"] else "WHIFF"
+        elif k == "lastCard" and r["cut"]:
+            stamp = "CUT"
+        elif k == "oAttach" and pat:
+            stamp = "CLASH"
+        elif k == "guardSaved":
+            stamp = "COVER"
+        elif k == "oDmg" and r["cause"] == "whiff":
+            stamp = "BAITED"
+        elif k == "pDmg" and r["cause"] in ("exposed", "refuted", "last_card") and s.player_combo > 0:
+            stamp = "COMBO_BREAK"
+        if k == "pAttach":
+            pat = True
+        if big:
+            out.append(("big", big))
+        elif stamp:
+            out.append(("stamp", stamp))
+    return out
+
+
+def shown_cutins(tr, lo: int, hi: int, lang: str) -> list[tuple[str, str]]:
+    """The cut-ins ui#cutin played in ticks lo..hi-1, in the form of ref_cutins (a seal by its UI_V2_STAMP_* word)."""
+    words = {S[lang][f"UI_V2_STAMP_{w}"]: w for w in ("CUT", "TOPPLE", "WHIFF", "CLASH", "COVER", "BAITED",
+                                                       "COMBO_BREAK")}
+    out = []
+    for t, p, v, c in tr.ticks:
+        if not lo <= t < hi:
+            continue
+        if "cutin.big_seq" in c and p.get("cutin.big_seq", 0) > 0:
+            out.append(("big", p.get("cutin.big")))
+        if "cutin.stamp_seq" in c and p.get("cutin.stamp_seq", 0) > 0:
+            out.append(("stamp", words.get(p.get("cutin.stamp_text"), p.get("cutin.stamp_text"))))
+    return out
 
 
 def shown(tr, lo: int, hi: int) -> tuple[list[str], list[str]]:
@@ -193,12 +274,13 @@ def check_lines(tr, rounds: list, marks: dict, lang_of, end: int) -> list[str]:
     斷 stamp shows exactly when the combo resets. `rounds` = forced() of the recording; lang_of(n) its language."""
     from sherefox_ref.v2.resolve import resolve_round
     bad = []
+    memo: dict = {}
     for n, (s, pa, oa) in enumerate(rounds, start=1):
         s2, ev = resolve_round(s, pa, oa)
         lang = lang_of(n)
         lo, hi = marks[f"lock{n}"], marks.get(f"lock{n + 1}", end)
         lines, stamps = shown(tr, lo, hi)
-        want, reset = ref_lines(s, pa, ev, s2)
+        want, reset = ref_lines(s, pa, ev, s2, memo)
         wanted = {render(lang, key, vals) for key, vals in want}
         for key, vals in want:
             txt = render(lang, key, vals)
@@ -212,6 +294,9 @@ def check_lines(tr, rounds: list, marks: dict, lang_of, end: int) -> list[str]:
         brk = S[lang]["UI_V2_STAMP_COMBO_BREAK"]
         if (brk in stamps) != reset or stamps.count(brk) > 1:
             bad.append(f"R{n}: stamp {brk!r} x{stamps.count(brk)} (combo reset: {reset}; stamps {stamps})")
+        cuts, want_cuts = shown_cutins(tr, lo, hi, lang), ref_cutins(s, ev)     # E7: every big word and seal
+        if cuts != want_cuts:
+            bad.append(f"R{n}: cut-ins {cuts} (ref {want_cuts})")
     return bad
 
 
@@ -393,13 +478,20 @@ CHAPTER_SAMPLE = {
                ("sys", "SYS_D01_HACHIKU_KEEP")],
     ("A", 4): [(SH, "CLM_D01_01A_LINE"), ("sys", "SYS_D01_CUT_OK"), (SH, "STATE_D01_SHF_HACHIKU_3")],
     ("A", 7): [(SH, "CLM_D01_07A_LINE"), (MAR, "BEAT_D01_07A_1"), (BRI, "BEAT_D01_07A_2"), (CE, "CARD_D01_L4_DOWN")],
-    ("A", 8): [(SH, "CLM_D01_11B_LINE"), (SH, "STATE_D01_SHF_BREAK"), ("sys", "SCR_D01_S07_L005"),
+    ("A", 8): [(SH, "CLM_D01_11B_LINE"), ("sys", "SYS_D01_CHAIN_READY"), (SH, "STATE_D01_SHF_BREAK"),
+               ("sys", "SCR_D01_S07_L005"),
                ("sys", "SCR_D01_S07_L009")],
     ("A", 9): [(SH, "CLM_D01_04B_LINE"), (CE, "CARD_D01_K1_DOWN"), ("sys", "SYS_D01_CUT_WIN")],
     ("B", 1): [(SH, "CLM_D01_P1A_LINE"), ("", "BEAT_D01_P1A_1"), (CE, "REACT_D01_P1A"), (AR, "BEAT_D01_P1A_2"),
                ("sys", "SYS_D01_CLASH"), ("sys", "SYS_D01_PSYCH_NOTE")],          # E5: the psych card's note last
     ("B", 4): [(SH, "CLM_D01_08B_LINE"), ("sys", "SYS_D01_SLIP_NODMG"), (AR, "BEAT_D01_GUILT_1")],
-    ("B", 5): [("sys", "SCR_D01_S07_L007"), (CE, "SCR_D01_S07_L008"), ("sys", "SYS_D01_WIN")],
+    ("B", 5): [("sys", "SYS_D01_CHAIN_READY"), ("sys", "SCR_D01_S07_L007"), (CE, "SCR_D01_S07_L008"),
+               ("sys", "SYS_D01_WIN")],
+    # E7 (ch §7, §12.3 R4 / R7): his catch of the contradiction and her hard sell, then the red crack's cost
+    ("C", 4): [(AR, "BEAT_D01_REDCRACK_1"), (SH, "CLM_D01_06A_LINE"), (CE, "EXCL_D01_06A_06C_CATCH"),
+               (SH, "EXCL_D01_06A_06C_SELL"), ("sys", "SYS_D01_REDCRACK")],
+    ("C", 7): [(AR, "BEAT_D01_REDCRACK_1"), (SH, "CLM_D01_07A_LINE"), (CE, "EXCL_D01_06B_07A_CATCH"),
+               (SH, "EXCL_D01_06B_07A_SELL"), ("sys", "SYS_D01_REDCRACK")],
     ("C", 5): [(CE, "CARD_D01_P05_STATE"), (CE, "BEAT_D01_LASTCARD_4"), (INS, "BEAT_D01_LASTCARD_2"),
                ("sys", "SYS_D01_LASTCARD_HIT"), (SH, "BEAT_D01_LASTCARD_5"), (AR, "BEAT_D01_LASTCARD_6")],
     ("C", 6): [(AR, "BEAT_D01_09A_1"), (SH, "CLM_D01_09A_LINE"), (IRE, "REACT_D01_09A_3"), (CE, "REACT_D01_09A_1"),
@@ -407,6 +499,7 @@ CHAPTER_SAMPLE = {
     ("D", 4): [(SH, "CLM_D01_06B_LINE"), (CE, "REFUTE_D01_06B"), (BRI, "BEAT_D01_REFUTED_1"),
                (MAR, "BEAT_D01_REFUTED_2"), (SH, "BEAT_D01_REFUTED_3"), (AR, "BEAT_D01_REFUTED_4"),
                (SH, "STATE_D01_SHF_BREACHED"), (AR, "STATE_D01_ART_BREACHED")],
+    ("D", 7): [("sys", "SYS_D01_REV_READY"), (CE, "BEAT_D01_REVERSE_1"), ("sys", "SYS_D01_REVERSE")],   # E7
     ("D", 8): [(SH, "CLM_D01_11B_LINE"), ("sys", "SYS_D01_LASTSTAND_FAIL"), ("sys", "SCR_D01_S07_L016")],
 }
 # tell lines the chapter shows that do not depend on the AI's tell: the endgame's (ch §12.1 R9: Arthur's hint, then

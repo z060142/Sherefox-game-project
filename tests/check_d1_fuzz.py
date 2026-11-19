@@ -478,6 +478,17 @@ def num(v: float) -> float:
     return math.floor(max(0.0, v) * 100 + 0.5) / 100
 
 
+def short_key(c: str) -> str:
+    """The short label a chain node / record row shows (E6 V4); a 抓住他的話 node shows the caught U card's short label
+    (E7, design ruling: CARD_D01_U1_SHORT / U2_SHORT), never UI_V2_SEIZE."""
+    return f"CARD_D01_{c.split(':', 1)[1]}_SHORT" if K.is_catch(c) else f"CLM_D01_{c}_SHORT"
+
+
+def label_key(c: str) -> str:
+    """The full title a claim row shows; UI_V2_SEIZE stays the name of the 抓住他的話 row in the picker (E7)."""
+    return "UI_V2_SEIZE" if K.is_catch(c) else f"CLM_D01_{c}"
+
+
 def b(v) -> bool:
     return bool(v) and v != "false"
 
@@ -546,7 +557,7 @@ def check_obs(at, o: Obs, lo: str, seed: int) -> list[str]:
                            f"{'legal' if want_ok else 'illegal'}")
             if b(c["sel"]) != (c["id"] == sel.claim):
                 bad.append(f"{head}: claim {c['id']} sel {c['sel']!r} (chosen {sel.claim or '-'})")
-            if c["label"] != L[CLAIM[c["id"]]["label"]]:    # E6 (V4): the picker shows the full title
+            if c["label"] != L[label_key(c["id"])]:    # E6 (V4): the picker shows the full title
                 bad.append(f"{head}: claim {c['id']} label {c['label']!r} (want the full title)")
             view = K.view(o.s, c["id"])
             if b(c["soph"]) != view.soph:
@@ -585,7 +596,7 @@ def check_shown(at, o: Obs, r: Ref, head: str, L: dict) -> list[str]:
     eq("hp_me_max", float(s.ch.player_max_hp))
     eq("hp_opp_max", float(s.ch.opp_max_hp))
     pc = [(x["id"], b(x["crack"]), x["label"]) for x in (get("pchain") or [])]
-    want = [(nd.claim, nd.cracked, L[CLAIM[nd.claim]["short"]]) for nd in s.player_chain]
+    want = [(nd.claim, nd.cracked, L[short_key(nd.claim)]) for nd in s.player_chain]
     if pc != want:
         bad.append(f"{head}: our chain {pc} (ref {want})")
     rec = get("record") or []
@@ -593,7 +604,7 @@ def check_shown(at, o: Obs, r: Ref, head: str, L: dict) -> list[str]:
              L["UI_V2_CLAIM_SOPH"] if soph else "", L["UI_V2_LINK_CRACKED"] if crk else "",
              "" if not argue or K.is_catch(c) else
              L["UI_V2_RECORD_STANDING"] if c in s.chain_claims() else L["UI_V2_RECORD_DOWN"],
-             L[CLAIM[c]["short"]])      # E6 (V4): the short label
+             L[short_key(c)])      # E6 (V4): the short label; E7: a catch shows the U card's
             for rn, argue, soph, crk, c in o.record]
     got = [(x["n"], x["use"], x["soph"], x["crack"], x["state"], x["label"]) for x in rec]
     if got != want:

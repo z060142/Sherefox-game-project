@@ -18,7 +18,8 @@ from sherefox_ref.v2.routes import ROUTES, replay
 
 KEYS = LN.package_keys()
 TRACKED = ("BEAT_D01_", "SCR_D01_S07_", "STATE_D01_", "REACT_D01_09A_2", "REACT_D01_09A_3", "SYS_D01_HACHIKU_KEEP",
-           "SYS_D01_CRACK", "SYS_D01_PSYCH_NOTE", "SYS_D01_PRIVATE", "SYS_D01_COVER_WASTED")
+           "SYS_D01_CRACK", "SYS_D01_PSYCH_NOTE", "SYS_D01_PRIVATE", "SYS_D01_COVER_WASTED",
+           "EXCL_D01_", "SYS_D01_CHAIN_", "SYS_D01_REV_READY")      # E7
 V, C = "vague", "clear"
 AT, FO, RE, PR, LAST = OA.ATTACK, OA.FORCE, OA.REBUT, OA.PARRY, OA.LAST
 OA_PARRY, OA_REBUT = OpponentAction(PR), OpponentAction(RE)
@@ -49,6 +50,10 @@ H_ASSERT, H_PUSH = "TELL_D01_HINT_ASSERT", "TELL_D01_HINT_PUSH"
 HK1, HK2, HK3 = (f"STATE_D01_SHF_HACHIKU_{n}" for n in (1, 2, 3))
 ART_HK, SHAKEN, KEEP = "STATE_D01_ART_HACHIKU", "STATE_D01_SHF_SHAKEN", "SYS_D01_HACHIKU_KEEP"
 CLASH = ["BEAT_D01_CLASH_1", "BEAT_D01_CLASH_2"]
+# E7 (design 4ac5faf): the Break by chain (CHAIN_READY before SHF_BREAK; not on a keystone Break: C4), the first
+# chain long enough without 破防 (NOBREAK, once), the Reverse Break (REV_READY before REVERSE), his catch of a
+# contradiction and her hard sell (ch §7: C4 06A ↔ 06C, C7 06B ↔ 07A, as the route text shows them)
+READY, NOBRK, REVR = "SYS_D01_CHAIN_READY", "SYS_D01_CHAIN_NOBREAK", "SYS_D01_REV_READY"
 # (route) -> round -> (tell lines, playback lines). Hints: A R1 −, R2 FACT, R3 ASSERT, R4 KEY, R5 −, R6 −, R7 PUSH,
 # R8 −, R9 LAST; B R1 NOCUT, R2 FACT, R3 ASSERT, R4 SLIP, R5 −; C R1 −, R2 FACT, R3 ASSERT, R4 KEY, R5 LAST, R6 PUSH,
 # R7-R10 −; D R1 −, R2 FACT, R3 ASSERT, R4 KEY, R5 −, R6 −, R7 NOCUT, R8 −. His tell line on every clear tell of the
@@ -60,24 +65,26 @@ CHAPTER = {
           3: (["TELL_D01_ASSERT_1", H_ASSERT], CLASH + [KEEP]),
           4: ([H_KEY], [HK3]),
           5: ([], [KEEP]),
-          6: (["TELL_D01_ASSERT_1"], [KEEP]),
+          6: (["TELL_D01_ASSERT_1"], [NOBRK, KEEP]),
           7: (["TELL_D01_PUSH_1", H_PUSH], ["BEAT_D01_07A_1", "BEAT_D01_07A_2", KEEP]),
-          8: ([], ["STATE_D01_SHF_BREAK", "SCR_D01_S07_L005", "SCR_D01_S07_L009", KEEP]),
+          8: ([], [READY, "STATE_D01_SHF_BREAK", "SCR_D01_S07_L005", "SCR_D01_S07_L009", KEEP]),
           9: ([H_LAST, "SCR_D01_S07_L010"], [])},
     "B": {1: ([H_NOCUT], ["BEAT_D01_P1A_1", "BEAT_D01_P1A_2"] + CLASH + ["SYS_D01_PSYCH_NOTE"]),
           2: ([H_FACT], [SHAKEN, HK1, ART_HK]),
           3: (["TELL_D01_ASSERT_1", H_ASSERT], ["BEAT_D01_02C_1", KEEP]),
           4: ([H_SLIP], ["BEAT_D01_GUILT_1", KEEP]),
-          5: ([], ["STATE_D01_SHF_BREAK", "SCR_D01_S07_L007", "SCR_D01_S07_L008"])},
+          5: ([], [READY, "STATE_D01_SHF_BREAK", "SCR_D01_S07_L007", "SCR_D01_S07_L008"])},
     "C": {1: ([], ["BEAT_D01_SOPH_06B_1", SHAKEN, HK1, ART_HK]),
           2: ([H_FACT], [HK2]),
           3: (["TELL_D01_ASSERT_1", H_ASSERT], ["BEAT_D01_SOPH_06C_1", HK3, "BEAT_D01_ANGER_1"]),
-          4: (["TELL_D01_PUSH_1", H_KEY], ["BEAT_D01_REDCRACK_1", "STATE_D01_SHF_BREAK", "SCR_D01_S07_L005", KEEP]),
+          4: (["TELL_D01_PUSH_1", H_KEY], ["BEAT_D01_REDCRACK_1", "EXCL_D01_06A_06C_CATCH", "EXCL_D01_06A_06C_SELL",
+                                           "STATE_D01_SHF_BREAK", "SCR_D01_S07_L005", KEEP]),
           5: (["BEAT_D01_LASTCARD_1", H_LAST], ["SCR_D01_S07_L011", "BEAT_D01_LASTCARD_4", "BEAT_D01_LASTCARD_2",
                                                 "BEAT_D01_LASTCARD_5", "BEAT_D01_LASTCARD_6"]),
           6: (["TELL_D01_PUSH_2", H_PUSH], ["BEAT_D01_09A_1", "REACT_D01_09A_3", "REACT_D01_09A_2"] + CLASH
               + ["SYS_D01_PRIVATE"]),
-          7: ([], ["BEAT_D01_REDCRACK_1", "BEAT_D01_07A_1", "BEAT_D01_07A_2", HK1]),
+          7: ([], ["BEAT_D01_REDCRACK_1", "EXCL_D01_06B_07A_CATCH", "EXCL_D01_06B_07A_SELL", "BEAT_D01_07A_1",
+                   "BEAT_D01_07A_2", HK1]),
           8: ([], [HK2]),
           9: (["TELL_D01_ASSERT_1"], [HK3]),
           10: ([], [])},
@@ -88,7 +95,7 @@ CHAPTER = {
                         "STATE_D01_SHF_BREACHED", "STATE_D01_ART_BREACHED"]),
           5: (["TELL_D01_ASSERT_1"], CLASH),
           6: (["TELL_D01_ASSERT_1"], []),
-          7: ([H_NOCUT], ["BEAT_D01_REVERSE_1"]),
+          7: ([H_NOCUT], [NOBRK, REVR, "BEAT_D01_REVERSE_1"]),
           8: ([], ["BEAT_D01_LASTSTAND_FAIL_1", "SCR_D01_S07_L016"])},
 }
 
@@ -310,3 +317,35 @@ def test_cover_wasted_when_set_and_not_triggered():
     used = steps_of(s, PlayerAction(PA.INTERCEPT, "11A", guard=True), OA_REBUT)
     assert "SYS_D01_COVER" in used and "SYS_D01_COVER_WASTED" not in used
     assert "SYS_D01_COVER_WASTED" not in steps_of(state("A", 2), PlayerAction(PA.ARGUE, "04A"), OA_PARRY)
+
+
+# ---------------------------------------------------------------------------------------------- E7
+
+
+def test_chain_issues_in_the_order_the_chain_reaches_them():
+    s = replay("A").states[8]                             # after R8's Break
+    assert LN.chain_issues(s, [n.claim for n in s.player_chain]) == [
+        "ISSUE_D01_OPP", "ISSUE_D01_METHOD", "ISSUE_D01_MOTIVE"]                # ch §12.1 R8: 機、法、動
+    s = replay("D").states[7]                             # his chain after R7 (the Reverse Break)
+    assert LN.chain_issues(s, [n.card for n in s.opp_chain], cards=True) == ["ISSUE_D01_METHOD", "ISSUE_D01_OPP"]
+
+
+def test_nobreak_once_per_debate():
+    got = run("A")
+    assert [n for n, (_, keys, _) in enumerate(got, start=1) if NOBRK in keys] == [6]
+
+
+def test_excl_pair_and_earliest_record_entry():
+    from sherefox_ref.v2.model import RecordEntry
+    s = replay("C").states[3]                             # before C4: 06C is on her record
+    assert LN.excl_other(s, "06A") == "06C"
+    assert LN.excl_keys("06A", "06C") == ("EXCL_D01_06A_06C_CATCH", "EXCL_D01_06A_06C_SELL")
+    assert LN.excl_keys("07A", "06B") == ("EXCL_D01_06B_07A_CATCH", "EXCL_D01_06B_07A_SELL")
+    from dataclasses import replace
+    s = replace(s, record=[RecordEntry(1, "07B", "argue", False, False, True),
+                           RecordEntry(2, "07A", "argue", False, False, True)])
+    assert LN.excl_other(s, "04C") == "07B"               # two contradictions: the earlier entry
+    assert LN.excl_other(s, "CATCH:U1") is None
+    for c, cl in s.ch.claims.items():                     # every pair has its catch and sell lines (ch §7, 11 pairs)
+        for o in cl.exclusive:
+            assert set(LN.excl_keys(c, o)) <= KEYS, (c, o)

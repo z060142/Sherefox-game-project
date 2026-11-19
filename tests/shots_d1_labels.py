@@ -14,6 +14,10 @@ its own pulses, and nothing is clicked while the pages run):
   title as the target, our chain seven claims from k on and his chain seven cards from k on (short labels);
 - then the public record (opened with R): every claim's short label, 14 rows per page.
 
+E7: before shooting, the labels the gallery reads (d1uiClaim's label / short) are checked against the design's keys:
+a claim's CLM_D01_<id> / CLM_D01_<id>_SHORT; a 抓住他的話 row UI_V2_SEIZE in the picker and the caught U card's
+CARD_D01_<card>_SHORT on the chains and in the record (design ruling). A mismatch fails the run (exit 1).
+
 Each page is shot in zh-TW and en (xtatrium shot) into DIR/labels/<lang>/page_NN.png (record_N.png for the record).
 
 Usage (from the project root):
@@ -51,6 +55,22 @@ KEY_R = 21          # XtKey.R
 
 def cyc(seq: list[str], k: int, n: int) -> list[str]:
     return [seq[(k + i) % len(seq)] for i in range(min(n, len(seq)))]
+
+
+def check_labels() -> list[str]:
+    """E7: the keys the chains, the record and the picker show for every claim, from the design's rule (not from the
+    generator): the picker the full title, chains and record the short label; a catch the caught U card's."""
+    rows = {r["id"]: r for r in json.loads((ROOT / "data" / "flow" / "d1uiClaim.json").read_text(encoding="utf-8"))}
+    bad = []
+    for c in CLAIMS:
+        if c.startswith("CATCH:"):
+            want = ("UI_V2_SEIZE", f"CARD_D01_{c.split(':', 1)[1]}_SHORT")
+        else:
+            want = (f"CLM_D01_{c}", f"CLM_D01_{c}_SHORT")
+        got = (rows[c]["label"], rows[c]["short"]) if c in rows else None
+        if got != want:
+            bad.append(f"FAIL labels: {c} label / short {got}, want {want}")
+    return bad
 
 
 def pages() -> tuple[list[dict], list[list[str]]]:
@@ -138,6 +158,10 @@ def main() -> int:
         print(__doc__)
         return 2
     out = Path(sys.argv[1]) / "labels"
+    bad = check_labels()
+    if bad:
+        print("\n".join(bad))
+        return 1
     compile_game()
     tw = TempWatch().__enter__()
     try:
