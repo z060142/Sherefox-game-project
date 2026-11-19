@@ -13,7 +13,7 @@ a clean warm-up: tests/gen_d1_story.py story()), then:
 - end of the search -> the carry screen, Ask Arthur once (L008); back to the investigation (the appraisal count
   stays) and end again (a second visit, where Arthur may say L008 again); Ask Arthur with nothing chosen, then with P1, E12, E09, E03 chosen (seven presses: the S06 priority order, L012 repeating), then
   route A's nine (ref routes.py), a tenth click (no room), Ask Arthur once more, confirm (the list of what stays),
-  yes (L010), a click on;
+  yes (E6: no L010, route A carries everything he could pick up), a click on (lands nowhere);
 - the debate: route A clicked the M2 way (tests/gen_d1_play.py), the opponent pinned by the harness; rounds 2 and 3
   play back without clicks (for the review screenshots).
 

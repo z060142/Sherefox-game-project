@@ -103,15 +103,15 @@ K_NUM = {1: 30, 2: 31, 3: 32, 4: 33}   # XtKey.Key1..Key4
 K_V, K_R, K_ENTER = 25, 21, 40
 REC_BTN = (718, 27)                    # D1Debate #btn-record (624..812 x 10..44)
 REC_CLOSE = (1000, 90)                 # #rec-close (940..1060 x 74..106)
-# Claim rows are clicked right of #float-me (230..410 x 356..418 once a number has floated up): the faded number
-# stays there and takes the clicks meant for the fourth row (a board bug found by this fuzz, reported in ticket 5.2;
-# D1Debate.dc.html #float-me / #float-opp need pointer-events: none). Back to gd.claim_xy's x once it is fixed.
-CLAIM_X = 490
+# Claim rows are clicked at their centre (gd.claim_xy). Until v2 demo E6 the faded floating number #float-me took
+# the clicks meant for the fourth row (found by this fuzz in 5.2); the board now gives it pointer-events: none.
+CLAIM_X = gd.claim_xy(0)[0]
 GAP = (7, 10)                          # ticks between two choosing clicks
 OBS = 5                                # a click's effect is read this many ticks later (lists rebuilt on the next beat)
 SKIP_GAP = (4, 7)
 TAIL = 70                              # after the last playback click: the hold (0.6 s) and the next round's lists
 CARD = {r["id"]: r for r in json.loads((ROOT / "data" / "flow" / "d1uiCard.json").read_text(encoding="utf-8"))}
+CLAIM = {r["id"]: r for r in json.loads((ROOT / "data" / "flow" / "d1uiClaim.json").read_text(encoding="utf-8"))}
 
 
 def harness(lo: str) -> str:
@@ -546,13 +546,16 @@ def check_obs(at, o: Obs, lo: str, seed: int) -> list[str]:
                            f"{'legal' if want_ok else 'illegal'}")
             if b(c["sel"]) != (c["id"] == sel.claim):
                 bad.append(f"{head}: claim {c['id']} sel {c['sel']!r} (chosen {sel.claim or '-'})")
+            if c["label"] != L[CLAIM[c["id"]]["label"]]:    # E6 (V4): the picker shows the full title
+                bad.append(f"{head}: claim {c['id']} label {c['label']!r} (want the full title)")
             view = K.view(o.s, c["id"])
             if b(c["soph"]) != view.soph:
                 bad.append(f"{head}: claim {c['id']} soph {c['soph']!r}, ref {view.soph}")
     # his chain (target chips) with the chosen target
     oc = get("ochain") or []
-    got = [(x["id"], b(x["sel"])) for x in oc]
-    want = [(t, t == sel.target) for t in r.chain]
+    got = [(x["id"], b(x["sel"]), x["label"]) for x in oc]
+    # E6 (V4): chain nodes show the short label (CARD_D01_<card>_SHORT)
+    want = [(t, t == sel.target, L[CARD[t]["short"]]) for t in r.chain]
     if got != want:
         bad.append(f"{head}: his chain {got} (ref {want})")
     if o.shown:
@@ -581,17 +584,18 @@ def check_shown(at, o: Obs, r: Ref, head: str, L: dict) -> list[str]:
     eq("hp_opp", num(s.opp_hp))
     eq("hp_me_max", float(s.ch.player_max_hp))
     eq("hp_opp_max", float(s.ch.opp_max_hp))
-    pc = [(x["id"], b(x["crack"])) for x in (get("pchain") or [])]
-    want = [(nd.claim, nd.cracked) for nd in s.player_chain]
+    pc = [(x["id"], b(x["crack"]), x["label"]) for x in (get("pchain") or [])]
+    want = [(nd.claim, nd.cracked, L[CLAIM[nd.claim]["short"]]) for nd in s.player_chain]
     if pc != want:
         bad.append(f"{head}: our chain {pc} (ref {want})")
     rec = get("record") or []
     want = [(L["UI_DEB_ROUND"].replace("{n}", str(rn)), "" if argue else L["UI_V2_RECORD_REBUT"],
              L["UI_V2_CLAIM_SOPH"] if soph else "", L["UI_V2_LINK_CRACKED"] if crk else "",
              "" if not argue or K.is_catch(c) else
-             L["UI_V2_RECORD_STANDING"] if c in s.chain_claims() else L["UI_V2_RECORD_DOWN"])
+             L["UI_V2_RECORD_STANDING"] if c in s.chain_claims() else L["UI_V2_RECORD_DOWN"],
+             L[CLAIM[c]["short"]])      # E6 (V4): the short label
             for rn, argue, soph, crk, c in o.record]
-    got = [(x["n"], x["use"], x["soph"], x["crack"], x["state"]) for x in rec]
+    got = [(x["n"], x["use"], x["soph"], x["crack"], x["state"], x["label"]) for x in rec]
     if got != want:
         bad.append(f"{head}: public record {got} (ref {want})")
     eq("tell_on", r.mode in (0, 1))

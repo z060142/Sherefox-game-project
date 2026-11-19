@@ -94,11 +94,8 @@ CHAPTER = {
 
 # (route, round): what the chapter's route text shows instead of CHAPTER, and why CHAPTER expects the rule's line
 # (reported to the design owner; the rule is not bent to fit one route).
-DIVERGES = {
-    ("A", 7): ("tell", ["TELL_D01_PUSH_2", H_PUSH],
-               "the text gives him 「我受夠這場鬧劇了。」 (PUSH_2) on route A's first clear 強辯; his tell lines of an "
-               "action take turns from _1, so the first one is PUSH_1 「夠了。」 (design question)"),
-}
+# (none left: route A round 7's PUSH_1 was confirmed by the design team, design 1d56459, v2 demo E6)
+DIVERGES: dict = {}
 # Route text the expectation above already settles (earlier rulings; not divergences): the split-screen beat
 # BEAT_D01_CLASH_* on the first clash of every debate (B1, C6, D5; written out only in A3), S07 L011 at the start of
 # the endgame round (C5), 07A's Martha / Briggs beat and the red-crack beat whenever they happen (C7, plan E5), D8's

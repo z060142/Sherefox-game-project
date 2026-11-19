@@ -172,7 +172,10 @@ def check(lang: str, ticks: dict, fails: list) -> None:
     eq("confirm list", at.get(marks["confirm"], "d1carry.confirm_text"),
        L["SCR_D01_S06_L009"].replace("{list}", sep.join(L[item_name(i)] for i in left)))
     eq("confirm shown", at.get(marks["confirm"], "d1carry.phase"), 1.0)
-    eq("L010", at.get(marks["l010"], "d1carry.say1"), L["SCR_D01_S06_L010"])
+    # E6 (V3, ruling c): route A carries E05, E06 and E07, so nothing he could pick up stays: no L010, the step goes on
+    eq("no L010 (nothing he could pick up stays)", ("d1carry" in at.vis(marks["l010"]),
+                                                    at.get(marks["l010"], "d1carry.say1") == L["SCR_D01_S06_L010"]),
+       (False, False))
     eq("S07 before the debate", "vn" in at.vis(marks["go"] + 30), True)
     eq("debate shown", "d1debate" in at.vis(marks["start"] + 30), True)
     # the debate: the private view preselects 01A when E01 is chosen (round 4); no view, nothing preselected
@@ -191,7 +194,7 @@ def check(lang: str, ticks: dict, fails: list) -> None:
         print(f"FAIL chapter [{lang}]: " + "; ".join(bad[:20]))
     else:
         print(f"PASS chapter [{lang}]: 26 hotspots, 2 appraisals, private view, notes page, Ask Arthur "
-              f"{' '.join(w for _, w in asks)}, confirm list, L010; route A grade {grade}, {nrounds} rounds, {outcome}")
+              f"{' '.join(w for _, w in asks)}, confirm list, no L010; route A grade {grade}, {nrounds} rounds, {outcome}")
 
 
 def check_loadout(ticks: dict, fails: list) -> None:
@@ -228,7 +231,7 @@ def shots(out: Path, ticks: dict) -> None:
     named = {f"loc_{s.lower()}": m[f"scene_{s}"] for s in gm.SCENES}
     named |= {"note_hs25": m["pop_HS25"] + 8, "evlist_appraised": m["appr_A01"], "evlist_view": m["note_E01"],
               "notes_page": m["notes_page"], "carry_first": m["carry1"], "carry_arthur": m["ask1"],
-              "carry_confirm": m["confirm"], "carry_l010": m["l010"], "debate_formula": t_formula + 45,
+              "carry_confirm": m["confirm"], "debate_formula": t_formula + 45,
               "debate_stamp": t_stamp + 14}
     for lang in ("zh-TW", "en"):
         tmp = Path(tempfile.mkdtemp(prefix="d1m3shots-"))

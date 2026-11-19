@@ -21,6 +21,9 @@ step (S08 lines, the result screen), the S09 paper, S10 Arthur's notes and the S
   so the recording is valid only while the engine and ref draw the same numbers.
 - tests/d1_shots.atrec (tests/d1play_harnessA, route A): no playback clicks in round 8 (the Break plays out), for the
   screenshots of tests/check_d1_play.py --shots.
+- tests/d1_twiceA.atrec, tests/d1_twiceD.atrec (v2 demo E6): route A (a win) / D (a loss) as above, back to the title,
+  then the dev entry again up to the second debate's round 1 (its first ticks: check_d1_play; its music:
+  check_music).
 
 Usage (from the project root):
     uv run tests/gen_d1_play.py
@@ -101,6 +104,11 @@ class Rec:
         self.t += wait
         x, y = xy
         self.lines.append(json.dumps({"t": self.t, "u": [[ui, "pd", x, y, 0, 1], [ui, "pu", x, y, 0]]}))
+
+    def at(self, dt: int, events) -> None:
+        """gen_playthrough.Recording's interface (its story steps: tests/gen_d1_full.py v1_first, v2 demo E6)."""
+        self.t += dt
+        self.lines.append(json.dumps({"t": self.t, "u": events}, ensure_ascii=False))
 
     def round(self, s, pa, n: int, skips: int = SKIPS) -> None:
         act = PA_ACT[pa.kind]
@@ -213,6 +221,20 @@ def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset(), outcome: str |
         epilogue(rec, final or final_state(rounds))
 
 
+def again(rec: Rec) -> None:
+    """v2 demo E6: after a debate and back to the title, the dev entry again: S07 L001-L003, the new debate's first
+    ticks (marks `again_start`, `again_pre_*`) and its round 1 shown (mark `again_r1`)."""
+    before = dict(rec.marks)
+    rec.click("title", TITLE_V2, 40)
+    rec.t += 40
+    opening(rec)
+    for k in [k for k in rec.marks if k == "start" or k.startswith("pre_")]:
+        rec.marks[f"again_{k}"] = rec.marks[k]
+        rec.marks[k] = before[k]
+    rec.marks["again_r1"] = rec.t + 20
+    rec.t += 40
+
+
 def outcome_of(rounds: list) -> str | None:
     s, pa, oa = rounds[-1]
     return resolve_round(s, pa, oa)[0].outcome
@@ -283,6 +305,7 @@ def build_harness(route: str, rt=None, out: Path | None = None, pin: bool = True
 RECORDINGS = (("d1_routeA", "A", set()), ("d1_routeB", "B", set()), ("d1_routeC", "C", set()),
               ("d1_routeD", "D", set()), ("d1_shots", "A", {8}))
 ROUTES = ("A", "B", "C", "D")
+TWICE = (("d1_twiceA", "A"), ("d1_twiceD", "D"))
 
 
 def main() -> int:
@@ -292,6 +315,13 @@ def main() -> int:
     for name, route, no_skip in RECORDINGS:
         r = Rec(f"tests/d1play_harness{route}")
         play(r, forced(route), no_skip, outcome_of(forced(route)))
+        ticks[name] = r.write(name, 60)
+        ticks[name + "_marks"] = r.marks
+    # v2 demo E6: a whole debate (a win, a loss), back to the title, the dev entry again (V1 first tick, V2 music)
+    for name, route in TWICE:
+        r = Rec(f"tests/d1play_harness{route}")
+        play(r, forced(route), outcome=outcome_of(forced(route)))
+        again(r)
         ticks[name] = r.write(name, 60)
         ticks[name + "_marks"] = r.marks
     bot = CV.play_debate("bot", RT.ROUTES["A"].loadout, BOT_DEBATE_SEED)

@@ -97,6 +97,12 @@ D01_ROUTES = {
     "d1_routeD": ("D", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM10", None),
                         ("", "out")] + EPILOGUE_LOSS),
 }
+# v2 demo E6 (V2): two debates in one run (tests/gen_d1_play.py d1_twiceA / d1_twiceD: route A won / route D lost, back
+# to the title, the dev entry again): the title keeps S11's BGM01, S07 L001's silence, then BGM07 (cut) with nothing
+# of the debate before in between (its BGM09 / BGM10 / silence flags are cleared when the step begins)
+AGAIN = [("", "out"), ("BGM07", "cut")]
+D01_ROUTES["d1_twiceA"] = ("A", D01_ROUTES["d1_routeA"][1] + AGAIN)
+D01_ROUTES["d1_twiceD"] = ("D", D01_ROUTES["d1_routeD"][1] + AGAIN)
 TICKS.update({k: v for k, v in json.loads((ROOT / "tests" / "d1_ticks.json").read_text(encoding="utf-8")).items()
               if k in D01_ROUTES})
 VALUES = ("moment", "momBgm", "cueOk", "cueBgm", "bgmId", "bgmFadeA", "bgmSecsA", "bgmPlays", "bgmStops", "bgmNow")

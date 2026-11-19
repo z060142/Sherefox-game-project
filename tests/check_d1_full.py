@@ -83,18 +83,22 @@ def r2(v: float) -> float:
     return math.floor(v * 100 + 0.5) / 100
 
 
-def check(route: str, lang: str, info: dict, fails: list) -> None:
+def check(route: str, lang: str, info: dict, fails: list, v1: bool = False) -> None:
     L = S[lang]
     marks = info["marks"]
-    events, err = cd.run(f"d1_full{route}", f"tests/d1full_harness{route}", info["ticks"], lang)
+    events, err = cd.run(f"d1_full{route}{'_v1' if v1 else ''}", f"tests/d1full_harness{route}", info["ticks"], lang)
     tr = cp.Trace(events)
     at = cm.At(tr, events)
+    at.marks = marks
     bad: list[str] = []
 
     def eq(what, got, want):
         if got != want:
             bad.append(f"{what}: {got!r} (want {want!r})")
 
+    bad += check_settled(at)
+    if v1:   # v1's Ch.1-3 were played to the end card, dismissed: the title is the only main screen
+        eq("v1 first: on the title", sorted(at.vis(marks["v1_done"]) & set(cp.MAIN_SCREENS)), ["title"])
     rounds = gd.forced(route)
     final = gd.final_state(rounds)
     e, res = epilogue(final), compute(final)
@@ -111,6 +115,12 @@ def check(route: str, lang: str, info: dict, fails: list) -> None:
     # the investigation took what the route carried; the debate reached the route's end (the loadout was right)
     eq("investigation shown", "d1inv" in at.vis(marks["inv"] + 20), True)
     eq("carry screen shown", "d1carry" in at.vis(marks["carry"]), True)
+    # E6 (V5): the evidence list button counts the new evidence and psych cards, not the notes on people
+    found = {x for s in gf.spots_for(route) for x in s["ev"].split(",") if x}
+    eq("list button count (evidence and psych cards only)", at.get(marks["before_book"], "d1inv.book_new"),
+       float(len(found)))
+    # E6 (V1): the chapter's first debate on its first visible tick
+    bad += cd.check_first_tick(at, marks["go"], lang, "first debate")
     # S08 on the vn, in ref's order
     for lid in e.s08:
         t = marks[f"s08_{lid}"]
@@ -168,10 +178,16 @@ def check(route: str, lang: str, info: dict, fails: list) -> None:
     eq("again: nothing found yet", at.get(t, "d1inv.book_new"), 0.0)
     locs = at.get(t, "d1inv.locs") or []
     eq("again: no place done", [x.get("done") for x in locs], [False] * 6)
+    if route == "D":   # E6: after the loss, the chapter played again up to its debate (gen_d1_full.again_debate)
+        bad += check_again(at, lang)
+    elif route == "B" and not v1:   # E6 (V3): again, everything found carried (HS25, HS06, HS19 never looked at)
+        t = marks["again_confirm"]
+        eq("again: nothing found left, confirm -> L010 (he could pick up E05 / E06)",
+           (at.get(t, "d1carry.phase"), at.get(t, "d1carry.say1")), (2.0, L["SCR_D01_S06_L010"]))
     noise = [ln for ln in err.split("\n") if ln.strip() and not ln.startswith("render: off")]
     if noise:
         bad.append("stderr: " + " | ".join(noise[:5]))
-    label = f"route {route} [{lang}]"
+    label = f"route {route}{' after v1 Ch.1-3' if v1 else ''} [{lang}]"
     if bad:
         fails.append(label)
         print(f"FAIL {label}: " + "; ".join(bad[:25]))
@@ -180,6 +196,65 @@ def check(route: str, lang: str, info: dict, fails: list) -> None:
               f"{' + ' + ', '.join(x[-4:] for x in e.paper_addenda) if e.paper_addenda else ''}; notes {e.notes}"
               f"{' + ' + ', '.join(x[-4:] for x in e.note_addenda) if e.note_addenda else ''}; back to title; "
               f"clean restart")
+
+
+SETTLED_UIS = ("d1warm", "d1inv", "d1book", "d1carry", "d1result", "d1end")
+SETTLE = 5   # ticks: no input reaches a screen this soon after it is shown (the recordings wait 10 or more)
+
+
+def list_ports(ui: str) -> list[str]:
+    """The list ports of a board (ui/boards/project/<Ui>.dc.html data-xt-port)."""
+    import html
+    import re
+    board = next(p for p in (ROOT / "ui" / "boards" / "project").glob("*.dc.html") if p.name.lower() == f"{ui}.dc.html")
+    ports = html.unescape(re.search(r"data-xt-port='([^']*)'", board.read_text(encoding="utf-8")).group(1))
+    return re.findall(r"(?:^|;)\s*(\w+):list<", ports)
+
+
+def check_settled(at) -> list[str]:
+    """v2 demo E6 (the screen audit after V1): every time a D01 screen other than the debate (which has its own check)
+    becomes visible, its first visible tick already shows what it shows SETTLE ticks later (no board default, nothing
+    of the chapter played before), and each of its list ports has been written."""
+    bad, prev = [], set()
+    for t, p, vis, _ in at.tr.ticks:
+        for ui in sorted((vis - prev) & set(SETTLED_UIS)):
+            for lp in list_ports(ui):
+                if at.get(t, f"{ui}.{lp}") is None:
+                    bad.append(f"{ui} shown at t{t}: list {lp} never written (the board's default)")
+            for k in sorted(k for k in p if k.startswith(ui + ".")):
+                a, b = at.get(t, k), at.get(t + SETTLE, k)
+                if a != b:
+                    bad.append(f"{ui} shown at t{t}: {k} = {str(a)[:50]!r}, {SETTLE} ticks later {str(b)[:50]!r}")
+        prev = vis
+    return bad
+
+
+def check_again(at, lang: str) -> list[str]:
+    """Route D's chapter again (a replay after a loss): the carry screen with HS25 (E05, E06) and HS06 (E12) never
+    looked at, the nine evidence found carried and the talking board left (V3: the confirm list names only what was
+    found; L010 plays because he could still pick up E05 / E06); the debate on its first visible tick (V1) and its
+    round 1."""
+    L = S[lang]
+    marks = at.marks
+    bad = []
+    t = marks["again_confirm"]
+    want = L["SCR_D01_S06_L009"].replace("{list}", L["C_D01_P1_NAME"])
+    got = (at.get(t, "d1carry.phase"), at.get(t, "d1carry.confirm_text"))
+    if got != (1.0, want):
+        bad.append(f"again: confirm (phase, list) {got!r} (want {(1.0, want)!r})")
+    t = marks["again_l010"]
+    got = (at.get(t, "d1carry.phase"), at.get(t, "d1carry.say1"))
+    if got != (2.0, L["SCR_D01_S06_L010"]):
+        bad.append(f"again: after yes (phase, line) {got!r} (want L010: he could pick up what was never found)")
+    bad += cd.check_first_tick(at, marks["again_go"], lang, "debate again")
+    t = marks["again_r1"]
+    want = cd.fresh_ports(lang)
+    for p in ("round_text", "hp_me", "hp_opp", "ochain", "pchain", "record", "combo_text", "hachiku"):
+        if at.get(t, f"d1debate.{p}") != want[p]:
+            bad.append(f"again, round 1: d1debate.{p} = {at.get(t, f'd1debate.{p}')!r} (want {want[p]!r})")
+    if at.get(t, "d1debate.phase") != 0.0:
+        bad.append("again: round 1 is not offered")
+    return bad
 
 
 def shots(out: Path, ticks: dict) -> None:
@@ -225,6 +300,8 @@ def main() -> int:
         ticks = json.loads((TESTS / "d1_full_ticks.json").read_text(encoding="utf-8"))
         for route, lang in RUNS:
             check(route, lang, ticks[route], fails)
+        # E6: v1's three chapters first in the same run, then the chapter (route A)
+        check("A", "zh-TW", ticks["A_v1"], fails, v1=True)
         if "--shots" in argv:
             shots(Path(argv[argv.index("--shots") + 1]), ticks)
     finally:

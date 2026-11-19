@@ -219,6 +219,80 @@ def check_lines(tr, rounds: list, marks: dict, lang_of, end: int) -> list[str]:
 # order: the S07 lines, the BEAT_D01_* interludes, Arthur's hints with the tell), and a hand-written sample of the
 # chapter's §12 route texts (so that ref and the game agreeing on a wrong reading is still caught)
 
+# ---- v2 demo E6 (V1): the debate screen on its first visible tick
+
+FIRST_TICK_SKIP = {"line_seq", "float_opp_seq", "float_me_seq", "shatter_seq",          # triggers: any value
+                   "pick_act", "pick_ev", "pick_claim", "pick_target", "guard", "lock", "skip", "settings"}  # outputs
+FIRST_TICK_LISTS = ("ochain", "pchain", "ev_list", "claims", "record")
+
+
+def fresh_ports(lang: str) -> dict:
+    """Every d1debate port (FIRST_TICK_SKIP aside) as a new debate shows it before round 1 (S07 L004 plays next):
+    round 1, full credibility both sides, empty chains / record / picker, calm gauges, composed, combo and 破竹 0, the
+    screen busy (phase 1), nothing of a debate before (tell, tell lines, playback line, floats, plates)."""
+    L = S[lang]
+    name = L["SPK_D01_CEDRIC"]
+    from sherefox_ref.v2.data import load_chapter
+    ch = load_chapter()
+
+    def f(key, **kw):
+        out = L[key].replace("{name}", name)
+        for k, v in kw.items():
+            out = out.replace("{" + k + "}", str(v))
+        return out
+    want = {
+        "round_text": f("UI_V2_ROUND", n=1, max=ch.max_rounds), "opp_name": name, "opp_cred": f("UI_V2_CRED_OPP"),
+        "ochain_title": f("UI_V2_CHAIN_OPP"),
+        "hp_me": float(ch.player_max_hp), "hp_me_max": float(ch.player_max_hp),
+        "hp_opp": float(ch.opp_max_hp), "hp_opp_max": float(ch.opp_max_hp),
+        "face": 0.0, "band_p": 0.0, "band_g": 0.0, "band_a": 0.0,
+        "combo_text": f("UI_V2_COMBO", n=0), "hachiku": 0.0, "hachiku_text": f("UI_STATE_HACHIKU", n=0),
+        "guard_down": False, "shisshu": False,
+        "ronpa_text": f("UI_V2_RONPA_PROGRESS", n=0, need=ch.ronpa_len, m=0), "ronpa_ready": False,
+        "ronpa_ready_text": f("UI_V2_RONPA_READY_ISSUE"), "show_ronpa": True,
+        "tell_on": False, "tell_head": f("UI_V2_TELL_HEAD"), "tell_card": "", "tell_partial": False,
+        "tell_clear": False, "tell_a": -1.0, "tell_b": -1.0, "tell_star": -1.0, "tell_gesture": "", "dying": False,
+        "dying_text": f("UI_V2_DEATH_THROE", n=10),
+        "mode": 0.0, "phase": 1.0, "act": 0.0, "can_dismantle": False, "guard_ok": False, "guard_armed": False,
+        "guard_left": True, "sel_claim_text": "", "sel_target_text": "", "need_target": False, "can_lock": False,
+        "picker_on": False, "hint_who": "", "hint": "", "hint2_who": "", "hint2": "",
+        "speech_who": "", "speech": "", "sys_line": "", "float_opp": "", "float_me": "",
+    }
+    want.update({k: [] for k in FIRST_TICK_LISTS})
+    return want
+
+
+def first_shown(tr, after: int, ui: str = "d1debate") -> int | None:
+    """The first tick at or after `after` with `ui` visible."""
+    for t, _, vis, _ in tr.ticks:
+        if t >= after and ui in vis:
+            return t
+    return None
+
+
+def check_first_tick(at, after: int, lang: str, what: str) -> list[str]:
+    """Every d1debate port on the first tick the screen is visible after `after` (at: check_d1_m3.At)."""
+    t = first_shown(at.tr, after)
+    if t is None:
+        return [f"{what}: d1debate never shown after tick {after}"]
+    want = fresh_ports(lang)
+    bad = []
+    names = sorted({k.split(".", 1)[1] for k in at.ports(t) if k.startswith("d1debate.")})
+    for p in names:
+        if p in FIRST_TICK_SKIP:
+            continue
+        if p not in want:
+            bad.append(f"{what}: port {p} has no expected first-tick value (add it to fresh_ports)")
+            continue
+        got = at.get(t, f"d1debate.{p}")
+        if got != want[p]:
+            bad.append(f"{what}, first visible tick {t}: d1debate.{p} = {got!r} (want {want[p]!r})")
+    for p in want:
+        if p not in names:
+            bad.append(f"{what}: port {p} not in the trace")
+    return bad
+
+
 def ui_steps(tr, lo: int, hi: int) -> list[tuple[int, tuple[str, str, str]]]:
     """(tick, (name plate, spoken line, system line)) of every playback step shown in ticks lo..hi-1."""
     out = []
@@ -337,7 +411,8 @@ CHAPTER_SAMPLE = {
 }
 # tell lines the chapter shows that do not depend on the AI's tell: the endgame's (ch §12.1 R9: Arthur's hint, then
 # his line; §12.3 R5: the keys beat, then Arthur's hint)
-CHAPTER_TELL = {("A", 9): [(AR, "TELL_D01_HINT_LAST"), (CE, "SCR_D01_S07_L010")],
+CHAPTER_TELL = {("A", 7): [(CE, "TELL_D01_PUSH_1"), (AR, "TELL_D01_HINT_PUSH")],   # E6: design 1d56459
+                ("A", 9): [(AR, "TELL_D01_HINT_LAST"), (CE, "SCR_D01_S07_L010")],
                 ("C", 5): [(AR, "BEAT_D01_LASTCARD_1"), (AR, "TELL_D01_HINT_LAST")]}
 
 
@@ -397,6 +472,9 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
         bad.append(f"round {nrounds} was never shown ({last_round!r})")
     if "title" not in end_vis or end_vis & {"vn", "paper", "d1debate", "d1result", "d1end"}:
         bad.append(f"after back to title the visible screens are {sorted(end_vis)}")
+    import check_d1_m3 as cm
+    # E6 (V1): the first debate of the run on its first visible tick (the dev entry)
+    bad += check_first_tick(cm.At(tr, events), 0, lang, "first debate")
     if route:
         from sherefox_ref.v2 import lines as LN
         rounds = gd.forced(route)
@@ -413,6 +491,32 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
         print(f"FAIL {label}: " + "; ".join(bad))
     else:
         print(f"PASS {label}: grade {grade} ({exp['d1result.grade_text']}), {nrounds} rounds, {outcome}")
+
+
+def check_twice(label: str, rec: str, game: str, ticks: int, marks: dict, lang: str, fails: list) -> None:
+    """v2 demo E6 (V1): a debate played to its end (a win / a loss), back to the title, the dev entry again: the second
+    debate's first visible tick shows a new debate (not the one before), and its round 1 then the engine's round 1."""
+    import check_d1_m3 as cm
+    events, err = run(rec, game, ticks, lang)
+    tr = cp.Trace(events)
+    at = cm.At(tr, events)
+    bad = check_first_tick(at, 0, lang, "first debate")
+    bad += check_first_tick(at, marks["back"], lang, "debate again")
+    t = marks["again_r1"]
+    want = fresh_ports(lang)
+    for p in ("round_text", "hp_me", "hp_opp", "ochain", "pchain", "record", "combo_text", "hachiku"):
+        if at.get(t, f"d1debate.{p}") != want[p]:
+            bad.append(f"debate again, round 1 shown: d1debate.{p} = {at.get(t, f'd1debate.{p}')!r} (want {want[p]!r})")
+    if at.get(t, "d1debate.phase") != 0.0 or not at.get(t, "d1debate.tell_on"):
+        bad.append("debate again: round 1 is not offered (phase / tell)")
+    noise = [ln for ln in err.split("\n") if ln.strip() and not ln.startswith("render: off")]
+    if noise:
+        bad.append("stderr: " + " | ".join(noise[:5]))
+    if bad:
+        fails.append(label)
+        print(f"FAIL {label}: " + "; ".join(bad))
+    else:
+        print(f"PASS {label}: the second debate starts fresh")
 
 
 def ronpa_tick(rec: str, game: str, ticks: int) -> int:
@@ -468,6 +572,9 @@ def main() -> int:
         last = bot.steps[-1][3]
         check(f"seeded AI (seed {gd.BOT_SEED})", "d1_bot", ".", ticks["d1_bot"], ticks["d1_bot_marks"],
               (last.grade, last.round - 1, last.outcome), "zh-TW", fails)
+        for label, rec, route, lang in (("replay after a win", "d1_twiceA", "A", "zh-TW"),
+                                        ("replay after a loss [en]", "d1_twiceD", "D", "en")):
+            check_twice(label, rec, f"tests/d1play_harness{route}", ticks[rec], ticks[rec + "_marks"], lang, fails)
         if "--shots" in argv:
             shots(Path(argv[argv.index("--shots") + 1]), ticks)
     finally:
