@@ -29733,16 +29733,16 @@
           "left": "10px",
           "position": "absolute",
           "top": "3px",
-          "width": "200px"
+          "width": "180px"
         },
         "text": "@UI_V2_CHAIN_PLAYER"
       },
-      "contentHash": "75194dd711f1bafc",
+      "contentHash": "28c5398de7f50ac8",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 368,
       "outId": "pchain-title",
-      "selfHash": "2842ac927c4a4b58",
+      "selfHash": "b5adefc84294b77f",
       "sourceId": "D1Debate.dc.html:1/1/14/0",
       "sourceName": "pchain-title",
       "ui": "d1debate",
@@ -29759,16 +29759,16 @@
           "left": "4px",
           "position": "absolute",
           "top": "-1px",
-          "width": "372px"
+          "width": "428px"
         },
         "text": "@UI_V2_RONPA_READY"
       },
-      "contentHash": "5d9dd3ef9bb21bb1",
+      "contentHash": "bd784589df31065f",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 370,
       "outId": "ronpa-ready-t",
-      "selfHash": "7997d8b1b1d6acdb",
+      "selfHash": "863a76e2faab02e5",
       "sourceId": "D1Debate.dc.html:1/1/14/1/0",
       "sourceName": "ronpa-ready-t",
       "ui": "d1debate",
@@ -29782,18 +29782,18 @@
         },
         "decls": {
           "height": "22px",
-          "left": "214px",
+          "left": "196px",
           "position": "absolute",
           "top": "1px",
-          "width": "380px"
+          "width": "436px"
         }
       },
-      "contentHash": "77814e9814d70a17",
+      "contentHash": "b7cb9bbd33c429a9",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 369,
       "outId": "ronpa-ready",
-      "selfHash": "57206a1496ad7ceb",
+      "selfHash": "8a52d18c52389322",
       "sourceId": "D1Debate.dc.html:1/1/14/1",
       "sourceName": "ronpa-ready",
       "ui": "d1debate",
@@ -29808,19 +29808,19 @@
         },
         "decls": {
           "height": "18px",
-          "left": "598px",
+          "left": "636px",
           "position": "absolute",
           "top": "3px",
-          "width": "198px"
+          "width": "160px"
         },
         "text": "鏈長 2／4　爭點 2／2"
       },
-      "contentHash": "f2146bbe27f9cd2f",
+      "contentHash": "9f2f63d8580aa742",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 372,
       "outId": "ronpa-t",
-      "selfHash": "d191bc4ea8525358",
+      "selfHash": "1107666ab55ad92a",
       "sourceId": "D1Debate.dc.html:1/1/14/2",
       "sourceName": "ronpa-t",
       "ui": "d1debate",
@@ -29993,7 +29993,7 @@
           "width": "806px"
         }
       },
-      "contentHash": "2784501e8993a9f6",
+      "contentHash": "2f351107d08eff8b",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 367,
@@ -31697,7 +31697,7 @@
           "width": "1280px"
         }
       },
-      "contentHash": "1d725be9a6f2cb12",
+      "contentHash": "38980fa6fe4c7689",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 189,
@@ -31743,7 +31743,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "dd79a03fa08332a5",
+      "contentHash": "dfe34a629a0af9b0",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 179,

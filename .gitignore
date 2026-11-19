@@ -7,6 +7,8 @@ __pycache__/
 !tests/*.atrec
 tests/play_harness/
 tests/d1play_harnessA/
+tests/d1play_harnessB/
+tests/d1play_harnessC/
 tests/d1play_harnessD/
 tests/warmfail_harness/
 .xtframe-cache/

@@ -3461,6 +3461,163 @@
       }
     },
     {
+      "id": "reId",
+      "type": "format",
+      "params": {
+        "format": "REACT:{a}"
+      }
+    },
+    {
+      "id": "reRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1uiLine",
+        "column": "id"
+      }
+    },
+    {
+      "id": "reKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1uiLine",
+        "column": "key",
+        "type": "string"
+      }
+    },
+    {
+      "id": "reIss",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1uiClaim",
+        "column": "react",
+        "type": "string"
+      }
+    },
+    {
+      "id": "f1Soph",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1ClaimSoph"
+      }
+    },
+    {
+      "id": "reOwn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "reRow >= 0"
+      }
+    },
+    {
+      "id": "f1SophB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "K87",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_SOPH"
+      }
+    },
+    {
+      "id": "reGen",
+      "type": "select"
+    },
+    {
+      "id": "reLine",
+      "type": "select"
+    },
+    {
+      "id": "k_factK",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1uiCard",
+        "column": "fact",
+        "type": "number"
+      }
+    },
+    {
+      "id": "myClaimSoph",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1ClaimSoph"
+      }
+    },
+    {
+      "id": "rcFactI",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "L_Round - 2 * floor(L_Round / 2)"
+      }
+    },
+    {
+      "id": "factOdd",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "rcFactI == 1"
+      }
+    },
+    {
+      "id": "K88",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_FACT_SOPH_1"
+      }
+    },
+    {
+      "id": "K89",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_FACT_SOPH_2"
+      }
+    },
+    {
+      "id": "factLine",
+      "type": "select"
+    },
+    {
+      "id": "knFact",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "k_factK"
+      }
+    },
+    {
+      "id": "knSoph",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "myClaimSoph"
+      }
+    },
+    {
+      "id": "K90",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_LIE_SOPH"
+      }
+    },
+    {
+      "id": "knCut",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "cuOk && k_intercept"
+      }
+    },
+    {
+      "id": "knLine_2",
+      "type": "select"
+    },
+    {
+      "id": "knLine_1",
+      "type": "select"
+    },
+    {
+      "id": "knLine_0",
+      "type": "select"
+    },
+    {
       "id": "fogI",
       "type": "atrium.expr",
       "params": {
@@ -3498,14 +3655,14 @@
       }
     },
     {
-      "id": "K87",
+      "id": "K91",
       "type": "constant",
       "params": {
         "value": "SPK_SHEREFOX"
       }
     },
     {
-      "id": "K88",
+      "id": "K92",
       "type": "constant",
       "params": {
         "value": "SPK_ARTHUR"
@@ -3530,6 +3687,13 @@
       "type": "atrium.expr",
       "params": {
         "expr": "k_pAttach && lkOk"
+      }
+    },
+    {
+      "id": "sp3b",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "k_pAttach && !lkOk"
       }
     },
     {
@@ -3572,14 +3736,38 @@
       }
     },
     {
-      "id": "icLine",
-      "type": "select"
-    },
-    {
       "id": "sp8",
       "type": "atrium.expr",
       "params": {
         "expr": "k_dismantle && n3 == 1"
+      }
+    },
+    {
+      "id": "sp8b",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "k_blocked"
+      }
+    },
+    {
+      "id": "K93",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_BLOCK"
+      }
+    },
+    {
+      "id": "sp8c",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "k_oDmg && c_whiff"
+      }
+    },
+    {
+      "id": "K94",
+      "type": "constant",
+      "params": {
+        "value": "REACT_D01_FOOLED"
       }
     },
     {
@@ -3590,7 +3778,7 @@
       }
     },
     {
-      "id": "K89",
+      "id": "K95",
       "type": "constant",
       "params": {
         "value": "STATE_D01_ART_COVER"
@@ -3611,7 +3799,7 @@
       }
     },
     {
-      "id": "K90",
+      "id": "K96",
       "type": "constant",
       "params": {
         "value": "STATE_D01_SHF_BREAK"
@@ -3625,7 +3813,7 @@
       }
     },
     {
-      "id": "K91",
+      "id": "K97",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_REVERSE_1"
@@ -3646,7 +3834,7 @@
       }
     },
     {
-      "id": "K92",
+      "id": "K98",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_LASTSTAND_FAIL_1"
@@ -3660,7 +3848,7 @@
       }
     },
     {
-      "id": "K93",
+      "id": "K99",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_GUILT_1"
@@ -3674,7 +3862,7 @@
       }
     },
     {
-      "id": "K94",
+      "id": "K100",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_ANGER_1"
@@ -3684,8 +3872,20 @@
       "id": "hasSpeech",
       "type": "atrium.expr",
       "params": {
-        "expr": "sp1 || sp2 || sp3 || sp4 || sp5 || sp6 || sp7 || sp8 || sp9 || sp10 || sp11 || sp12 || sp13 || sp14 || sp15 || sp16"
+        "expr": "sp1 || sp2 || sp3 || sp3b || sp4 || sp5 || sp6 || sp7 || sp8 || sp8b || sp8c || sp9 || sp10 || sp11 || sp12 || sp13 || sp14 || sp15 || sp16"
       }
+    },
+    {
+      "id": "spWho_18",
+      "type": "select"
+    },
+    {
+      "id": "spWho_17",
+      "type": "select"
+    },
+    {
+      "id": "spWho_16",
+      "type": "select"
     },
     {
       "id": "spWho_15",
@@ -3749,6 +3949,18 @@
     },
     {
       "id": "spWho_0",
+      "type": "select"
+    },
+    {
+      "id": "spLine_18",
+      "type": "select"
+    },
+    {
+      "id": "spLine_17",
+      "type": "select"
+    },
+    {
+      "id": "spLine_16",
       "type": "select"
     },
     {
@@ -3866,7 +4078,7 @@
       }
     },
     {
-      "id": "K95",
+      "id": "K101",
       "type": "constant",
       "params": {
         "value": "pickup"
@@ -3891,7 +4103,7 @@
       }
     },
     {
-      "id": "K96",
+      "id": "K102",
       "type": "constant",
       "params": {
         "value": 20.0
@@ -3905,7 +4117,7 @@
       }
     },
     {
-      "id": "K97",
+      "id": "K103",
       "type": "constant",
       "params": {
         "value": 15.0
@@ -3930,7 +4142,7 @@
       }
     },
     {
-      "id": "K98",
+      "id": "K104",
       "type": "constant",
       "params": {
         "value": 10.0
@@ -4139,6 +4351,13 @@
       }
     },
     {
+      "id": "sy15b",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "k_oDmg && c_intercept && myClaimSoph"
+      }
+    },
+    {
       "id": "sy15",
       "type": "atrium.expr",
       "params": {
@@ -4282,246 +4501,257 @@
       "id": "hasSys",
       "type": "atrium.expr",
       "params": {
-        "expr": "sy1 || sy2 || sy3 || sy4 || sy5 || sy6 || sy7 || sy8 || sy9 || sy10 || sy11 || sy12 || sy13 || sy14 || sy15 || sy16 || sy17 || sy18 || sy19 || sy20 || sy21 || sy22 || sy23 || sy24 || sy25 || sy26 || sy27 || sy28 || sy29 || sy30 || sy31 || sy32 || sy33 || sy34"
-      }
-    },
-    {
-      "id": "K99",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_ATTACH"
-      }
-    },
-    {
-      "id": "K100",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_SLIP_NODMG"
-      }
-    },
-    {
-      "id": "K101",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_FOG_TAKE"
-      }
-    },
-    {
-      "id": "K102",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_EXPOSED"
-      }
-    },
-    {
-      "id": "K103",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_REFUTED"
-      }
-    },
-    {
-      "id": "K104",
-      "type": "constant",
-      "params": {
-        "value": "SYS_D01_REDCRACK"
+        "expr": "sy1 || sy2 || sy3 || sy4 || sy5 || sy6 || sy7 || sy8 || sy9 || sy10 || sy11 || sy12 || sy13 || sy14 || sy15b || sy15 || sy16 || sy17 || sy18 || sy19 || sy20 || sy21 || sy22 || sy23 || sy24 || sy25 || sy26 || sy27 || sy28 || sy29 || sy30 || sy31 || sy32 || sy33 || sy34"
       }
     },
     {
       "id": "K105",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_CUT_EMPTY"
+        "value": "SYS_D01_ATTACH"
       }
     },
     {
       "id": "K106",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_MISS_WRONG"
+        "value": "SYS_D01_SLIP_NODMG"
       }
     },
     {
       "id": "K107",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_MISS_FACT"
+        "value": "SYS_D01_FOG_TAKE"
       }
     },
     {
       "id": "K108",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_FOG_STALL"
+        "value": "SYS_D01_EXPOSED"
       }
     },
     {
       "id": "K109",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_BOTH_REBUT"
+        "value": "SYS_D01_REFUTED"
       }
     },
     {
       "id": "K110",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_FOG_REPEAT"
+        "value": "SYS_D01_REDCRACK"
       }
     },
     {
       "id": "K111",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_DESPERATE_HIT"
+        "value": "SYS_D01_CUT_EMPTY"
       }
     },
     {
       "id": "K112",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_LASTCARD_NOHEAL"
+        "value": "SYS_D01_MISS_WRONG"
       }
     },
     {
       "id": "K113",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_CUT_PUSH"
+        "value": "SYS_D01_MISS_FACT"
       }
     },
     {
       "id": "K114",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_CUT_OK"
+        "value": "SYS_D01_FOG_STALL"
       }
     },
     {
       "id": "K115",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_DISMANTLE"
+        "value": "SYS_D01_BOTH_REBUT"
       }
     },
     {
       "id": "K116",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_FOOLED"
+        "value": "SYS_D01_FOG_REPEAT"
       }
     },
     {
       "id": "K117",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_STALL_HEAL"
+        "value": "SYS_D01_DESPERATE_HIT"
       }
     },
     {
       "id": "K118",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_NOW_KNOWN"
+        "value": "SYS_D01_LASTCARD_NOHEAL"
       }
     },
     {
       "id": "K119",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_BLOCKED"
+        "value": "SYS_D01_CUT_SOPH"
       }
     },
     {
       "id": "K120",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_COVER"
+        "value": "SYS_D01_CUT_PUSH"
       }
     },
     {
       "id": "K121",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_BREACH_HINT"
+        "value": "SYS_D01_CUT_OK"
       }
     },
     {
       "id": "K122",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_PSYCH_CROSS"
+        "value": "SYS_D01_DISMANTLE"
       }
     },
     {
       "id": "K123",
       "type": "constant",
       "params": {
-        "value": "SCR_D01_S07_L005"
+        "value": "SYS_D01_FOOLED"
       }
     },
     {
       "id": "K124",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_REVERSE"
+        "value": "SYS_D01_STALL_HEAL"
       }
     },
     {
       "id": "K125",
       "type": "constant",
       "params": {
-        "value": "SCR_D01_S07_L006"
+        "value": "SYS_D01_NOW_KNOWN"
       }
     },
     {
       "id": "K126",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_CUT_WIN"
+        "value": "SYS_D01_BLOCKED"
       }
     },
     {
       "id": "K127",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_LASTSTAND_OK"
+        "value": "SYS_D01_COVER"
       }
     },
     {
       "id": "K128",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_LASTSTAND_FAIL"
+        "value": "SYS_D01_BREACH_HINT"
       }
     },
     {
       "id": "K129",
       "type": "constant",
       "params": {
-        "value": "UI_V2_GIVE_UP"
+        "value": "SYS_D01_PSYCH_CROSS"
       }
     },
     {
       "id": "K130",
       "type": "constant",
       "params": {
-        "value": "UI_V2_TIME_UP"
+        "value": "SCR_D01_S07_L005"
       }
     },
     {
       "id": "K131",
       "type": "constant",
       "params": {
-        "value": "SYS_D01_WIN"
+        "value": "SYS_D01_REVERSE"
       }
     },
     {
       "id": "K132",
       "type": "constant",
       "params": {
+        "value": "SCR_D01_S07_L006"
+      }
+    },
+    {
+      "id": "K133",
+      "type": "constant",
+      "params": {
+        "value": "SYS_D01_CUT_WIN"
+      }
+    },
+    {
+      "id": "K134",
+      "type": "constant",
+      "params": {
+        "value": "SYS_D01_LASTSTAND_OK"
+      }
+    },
+    {
+      "id": "K135",
+      "type": "constant",
+      "params": {
+        "value": "SYS_D01_LASTSTAND_FAIL"
+      }
+    },
+    {
+      "id": "K136",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_GIVE_UP"
+      }
+    },
+    {
+      "id": "K137",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_TIME_UP"
+      }
+    },
+    {
+      "id": "K138",
+      "type": "constant",
+      "params": {
+        "value": "SYS_D01_WIN"
+      }
+    },
+    {
+      "id": "K139",
+      "type": "constant",
+      "params": {
         "value": "SCR_D01_S07_L016"
       }
+    },
+    {
+      "id": "syKey_34",
+      "type": "select"
     },
     {
       "id": "syKey_33",
@@ -4692,7 +4922,7 @@
       }
     },
     {
-      "id": "K133",
+      "id": "K140",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_PRESSURE"
@@ -4706,14 +4936,14 @@
       }
     },
     {
-      "id": "K134",
+      "id": "K141",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_GUILT"
       }
     },
     {
-      "id": "K135",
+      "id": "K142",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_ANGER"
@@ -5257,42 +5487,42 @@
       }
     },
     {
-      "id": "K136",
+      "id": "K143",
       "type": "constant",
       "params": {
         "value": "CUT_RONPA"
       }
     },
     {
-      "id": "K137",
+      "id": "K144",
       "type": "constant",
       "params": {
         "value": "CUT_REVERSE"
       }
     },
     {
-      "id": "K138",
+      "id": "K145",
       "type": "constant",
       "params": {
         "value": "CUT_HACHIKU3"
       }
     },
     {
-      "id": "K139",
+      "id": "K146",
       "type": "constant",
       "params": {
         "value": "CUT_SHISSHU"
       }
     },
     {
-      "id": "K140",
+      "id": "K147",
       "type": "constant",
       "params": {
         "value": "CUT_KONJU"
       }
     },
     {
-      "id": "K141",
+      "id": "K148",
       "type": "constant",
       "params": {
         "value": "CUT_SHAKEN"
@@ -5323,49 +5553,49 @@
       "type": "select"
     },
     {
-      "id": "K142",
+      "id": "K149",
       "type": "constant",
       "params": {
         "value": "STAMP_PARRY"
       }
     },
     {
-      "id": "K143",
+      "id": "K150",
       "type": "constant",
       "params": {
         "value": "STAMP_WHIFF"
       }
     },
     {
-      "id": "K144",
+      "id": "K151",
       "type": "constant",
       "params": {
         "value": "STAMP_CLASH"
       }
     },
     {
-      "id": "K145",
+      "id": "K152",
       "type": "constant",
       "params": {
         "value": "STAMP_ASSIST"
       }
     },
     {
-      "id": "K146",
+      "id": "K153",
       "type": "constant",
       "params": {
         "value": "STAMP_TRAP"
       }
     },
     {
-      "id": "K147",
+      "id": "K154",
       "type": "constant",
       "params": {
         "value": "STAMP_HACHIKU"
       }
     },
     {
-      "id": "K148",
+      "id": "K155",
       "type": "constant",
       "params": {
         "value": "STAMP_HACHIKU_LOST"
@@ -5680,7 +5910,7 @@
       }
     },
     {
-      "id": "K149",
+      "id": "K156",
       "type": "constant",
       "params": {
         "value": "clear"
@@ -9377,6 +9607,142 @@
       "to": "cuOk.cuRow"
     },
     {
+      "from": "f1.value",
+      "to": "reId.a"
+    },
+    {
+      "from": "reId.out",
+      "to": "reRow.value"
+    },
+    {
+      "from": "reRow.row",
+      "to": "reKey.row"
+    },
+    {
+      "from": "f1Row.row",
+      "to": "reIss.row"
+    },
+    {
+      "from": "f1.value",
+      "to": "f1Soph.key"
+    },
+    {
+      "from": "reRow.row",
+      "to": "reOwn.reRow"
+    },
+    {
+      "from": "f1Soph.value",
+      "to": "f1SophB.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "f1SophB.b"
+    },
+    {
+      "from": "f1SophB.out",
+      "to": "reGen.cond"
+    },
+    {
+      "from": "K87.out",
+      "to": "reGen.a"
+    },
+    {
+      "from": "reIss.value",
+      "to": "reGen.b"
+    },
+    {
+      "from": "reOwn.truth",
+      "to": "reLine.cond"
+    },
+    {
+      "from": "reKey.value",
+      "to": "reLine.a"
+    },
+    {
+      "from": "reGen.out",
+      "to": "reLine.b"
+    },
+    {
+      "from": "kRow.row",
+      "to": "k_factK.row"
+    },
+    {
+      "from": "s_claim.value",
+      "to": "myClaimSoph.key"
+    },
+    {
+      "from": "L_Round.out",
+      "to": "rcFactI.L_Round"
+    },
+    {
+      "from": "rcFactI.value",
+      "to": "factOdd.rcFactI"
+    },
+    {
+      "from": "factOdd.truth",
+      "to": "factLine.cond"
+    },
+    {
+      "from": "K88.out",
+      "to": "factLine.a"
+    },
+    {
+      "from": "K89.out",
+      "to": "factLine.b"
+    },
+    {
+      "from": "k_factK.value",
+      "to": "knFact.k_factK"
+    },
+    {
+      "from": "myClaimSoph.value",
+      "to": "knSoph.myClaimSoph"
+    },
+    {
+      "from": "cuOk.value",
+      "to": "knCut.cuOk"
+    },
+    {
+      "from": "k_intercept.out",
+      "to": "knCut.k_intercept"
+    },
+    {
+      "from": "knCut.truth",
+      "to": "knLine_2.cond"
+    },
+    {
+      "from": "cuKey.value",
+      "to": "knLine_2.a"
+    },
+    {
+      "from": "k_downK.value",
+      "to": "knLine_2.b"
+    },
+    {
+      "from": "knSoph.truth",
+      "to": "knLine_1.cond"
+    },
+    {
+      "from": "K90.out",
+      "to": "knLine_1.a"
+    },
+    {
+      "from": "knLine_2.out",
+      "to": "knLine_1.b"
+    },
+    {
+      "from": "knFact.truth",
+      "to": "knLine_0.cond"
+    },
+    {
+      "from": "factLine.out",
+      "to": "knLine_0.a"
+    },
+    {
+      "from": "knLine_1.out",
+      "to": "knLine_0.b"
+    },
+    {
       "from": "L_Round.out",
       "to": "fogI.L_Round"
     },
@@ -9421,6 +9787,14 @@
       "to": "sp3.lkOk"
     },
     {
+      "from": "k_pAttach.out",
+      "to": "sp3b.k_pAttach"
+    },
+    {
+      "from": "lkOk.value",
+      "to": "sp3b.lkOk"
+    },
+    {
       "from": "k_oAttach.out",
       "to": "sp4.k_oAttach"
     },
@@ -9461,24 +9835,24 @@
       "to": "sp7.n3"
     },
     {
-      "from": "cuOk.truth",
-      "to": "icLine.cond"
-    },
-    {
-      "from": "cuKey.value",
-      "to": "icLine.a"
-    },
-    {
-      "from": "k_downK.value",
-      "to": "icLine.b"
-    },
-    {
       "from": "k_dismantle.out",
       "to": "sp8.k_dismantle"
     },
     {
       "from": "n3.value",
       "to": "sp8.n3"
+    },
+    {
+      "from": "k_blocked.out",
+      "to": "sp8b.k_blocked"
+    },
+    {
+      "from": "k_oDmg.out",
+      "to": "sp8c.k_oDmg"
+    },
+    {
+      "from": "c_whiff.out",
+      "to": "sp8c.c_whiff"
     },
     {
       "from": "k_guardSaved.out",
@@ -9549,6 +9923,10 @@
       "to": "hasSpeech.sp3"
     },
     {
+      "from": "sp3b.value",
+      "to": "hasSpeech.sp3b"
+    },
+    {
       "from": "sp4.value",
       "to": "hasSpeech.sp4"
     },
@@ -9567,6 +9945,14 @@
     {
       "from": "sp8.value",
       "to": "hasSpeech.sp8"
+    },
+    {
+      "from": "sp8b.value",
+      "to": "hasSpeech.sp8b"
+    },
+    {
+      "from": "sp8c.value",
+      "to": "hasSpeech.sp8c"
     },
     {
       "from": "sp9.value",
@@ -9602,6 +9988,42 @@
     },
     {
       "from": "sp16.truth",
+      "to": "spWho_18.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "spWho_18.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "spWho_18.b"
+    },
+    {
+      "from": "sp15.truth",
+      "to": "spWho_17.cond"
+    },
+    {
+      "from": "K92.out",
+      "to": "spWho_17.a"
+    },
+    {
+      "from": "spWho_18.out",
+      "to": "spWho_17.b"
+    },
+    {
+      "from": "sp14.truth",
+      "to": "spWho_16.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "spWho_16.a"
+    },
+    {
+      "from": "spWho_17.out",
+      "to": "spWho_16.b"
+    },
+    {
+      "from": "sp13.truth",
       "to": "spWho_15.cond"
     },
     {
@@ -9609,15 +10031,15 @@
       "to": "spWho_15.a"
     },
     {
-      "from": "K19.out",
+      "from": "spWho_16.out",
       "to": "spWho_15.b"
     },
     {
-      "from": "sp15.truth",
+      "from": "sp12.truth",
       "to": "spWho_14.cond"
     },
     {
-      "from": "K88.out",
+      "from": "K1.out",
       "to": "spWho_14.a"
     },
     {
@@ -9625,11 +10047,11 @@
       "to": "spWho_14.b"
     },
     {
-      "from": "sp14.truth",
+      "from": "sp11.truth",
       "to": "spWho_13.cond"
     },
     {
-      "from": "K1.out",
+      "from": "K91.out",
       "to": "spWho_13.a"
     },
     {
@@ -9637,11 +10059,11 @@
       "to": "spWho_13.b"
     },
     {
-      "from": "sp13.truth",
+      "from": "sp10.truth",
       "to": "spWho_12.cond"
     },
     {
-      "from": "K1.out",
+      "from": "K91.out",
       "to": "spWho_12.a"
     },
     {
@@ -9649,11 +10071,11 @@
       "to": "spWho_12.b"
     },
     {
-      "from": "sp12.truth",
+      "from": "sp9.truth",
       "to": "spWho_11.cond"
     },
     {
-      "from": "K1.out",
+      "from": "K92.out",
       "to": "spWho_11.a"
     },
     {
@@ -9661,11 +10083,11 @@
       "to": "spWho_11.b"
     },
     {
-      "from": "sp11.truth",
+      "from": "sp8c.truth",
       "to": "spWho_10.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K1.out",
       "to": "spWho_10.a"
     },
     {
@@ -9673,11 +10095,11 @@
       "to": "spWho_10.b"
     },
     {
-      "from": "sp10.truth",
+      "from": "sp8b.truth",
       "to": "spWho_9.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K1.out",
       "to": "spWho_9.a"
     },
     {
@@ -9685,11 +10107,11 @@
       "to": "spWho_9.b"
     },
     {
-      "from": "sp9.truth",
+      "from": "sp8.truth",
       "to": "spWho_8.cond"
     },
     {
-      "from": "K88.out",
+      "from": "K1.out",
       "to": "spWho_8.a"
     },
     {
@@ -9697,7 +10119,7 @@
       "to": "spWho_8.b"
     },
     {
-      "from": "sp8.truth",
+      "from": "sp7.truth",
       "to": "spWho_7.cond"
     },
     {
@@ -9709,7 +10131,7 @@
       "to": "spWho_7.b"
     },
     {
-      "from": "sp7.truth",
+      "from": "sp6.truth",
       "to": "spWho_6.cond"
     },
     {
@@ -9721,7 +10143,7 @@
       "to": "spWho_6.b"
     },
     {
-      "from": "sp6.truth",
+      "from": "sp5.truth",
       "to": "spWho_5.cond"
     },
     {
@@ -9733,7 +10155,7 @@
       "to": "spWho_5.b"
     },
     {
-      "from": "sp5.truth",
+      "from": "sp4.truth",
       "to": "spWho_4.cond"
     },
     {
@@ -9745,7 +10167,7 @@
       "to": "spWho_4.b"
     },
     {
-      "from": "sp4.truth",
+      "from": "sp3b.truth",
       "to": "spWho_3.cond"
     },
     {
@@ -9761,7 +10183,7 @@
       "to": "spWho_2.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K91.out",
       "to": "spWho_2.a"
     },
     {
@@ -9773,7 +10195,7 @@
       "to": "spWho_1.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K91.out",
       "to": "spWho_1.a"
     },
     {
@@ -9785,7 +10207,7 @@
       "to": "spWho_0.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K91.out",
       "to": "spWho_0.a"
     },
     {
@@ -9794,22 +10216,58 @@
     },
     {
       "from": "sp16.truth",
-      "to": "spLine_15.cond"
+      "to": "spLine_18.cond"
     },
     {
-      "from": "K94.out",
-      "to": "spLine_15.a"
+      "from": "K100.out",
+      "to": "spLine_18.a"
     },
     {
       "from": "K19.out",
-      "to": "spLine_15.b"
+      "to": "spLine_18.b"
     },
     {
       "from": "sp15.truth",
+      "to": "spLine_17.cond"
+    },
+    {
+      "from": "K99.out",
+      "to": "spLine_17.a"
+    },
+    {
+      "from": "spLine_18.out",
+      "to": "spLine_17.b"
+    },
+    {
+      "from": "sp14.truth",
+      "to": "spLine_16.cond"
+    },
+    {
+      "from": "K98.out",
+      "to": "spLine_16.a"
+    },
+    {
+      "from": "spLine_17.out",
+      "to": "spLine_16.b"
+    },
+    {
+      "from": "sp13.truth",
+      "to": "spLine_15.cond"
+    },
+    {
+      "from": "k_downK.value",
+      "to": "spLine_15.a"
+    },
+    {
+      "from": "spLine_16.out",
+      "to": "spLine_15.b"
+    },
+    {
+      "from": "sp12.truth",
       "to": "spLine_14.cond"
     },
     {
-      "from": "K93.out",
+      "from": "K97.out",
       "to": "spLine_14.a"
     },
     {
@@ -9817,11 +10275,11 @@
       "to": "spLine_14.b"
     },
     {
-      "from": "sp14.truth",
+      "from": "sp11.truth",
       "to": "spLine_13.cond"
     },
     {
-      "from": "K92.out",
+      "from": "K96.out",
       "to": "spLine_13.a"
     },
     {
@@ -9829,11 +10287,11 @@
       "to": "spLine_13.b"
     },
     {
-      "from": "sp13.truth",
+      "from": "sp10.truth",
       "to": "spLine_12.cond"
     },
     {
-      "from": "k_downK.value",
+      "from": "hkK.out",
       "to": "spLine_12.a"
     },
     {
@@ -9841,11 +10299,11 @@
       "to": "spLine_12.b"
     },
     {
-      "from": "sp12.truth",
+      "from": "sp9.truth",
       "to": "spLine_11.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K95.out",
       "to": "spLine_11.a"
     },
     {
@@ -9853,11 +10311,11 @@
       "to": "spLine_11.b"
     },
     {
-      "from": "sp11.truth",
+      "from": "sp8c.truth",
       "to": "spLine_10.cond"
     },
     {
-      "from": "K90.out",
+      "from": "K94.out",
       "to": "spLine_10.a"
     },
     {
@@ -9865,11 +10323,11 @@
       "to": "spLine_10.b"
     },
     {
-      "from": "sp10.truth",
+      "from": "sp8b.truth",
       "to": "spLine_9.cond"
     },
     {
-      "from": "hkK.out",
+      "from": "K93.out",
       "to": "spLine_9.a"
     },
     {
@@ -9877,11 +10335,11 @@
       "to": "spLine_9.b"
     },
     {
-      "from": "sp9.truth",
+      "from": "sp8.truth",
       "to": "spLine_8.cond"
     },
     {
-      "from": "K89.out",
+      "from": "knLine_0.out",
       "to": "spLine_8.a"
     },
     {
@@ -9889,11 +10347,11 @@
       "to": "spLine_8.b"
     },
     {
-      "from": "sp8.truth",
+      "from": "sp7.truth",
       "to": "spLine_7.cond"
     },
     {
-      "from": "k_downK.value",
+      "from": "knLine_0.out",
       "to": "spLine_7.a"
     },
     {
@@ -9901,11 +10359,11 @@
       "to": "spLine_7.b"
     },
     {
-      "from": "sp7.truth",
+      "from": "sp6.truth",
       "to": "spLine_6.cond"
     },
     {
-      "from": "icLine.out",
+      "from": "f2.value",
       "to": "spLine_6.a"
     },
     {
@@ -9913,11 +10371,11 @@
       "to": "spLine_6.b"
     },
     {
-      "from": "sp6.truth",
+      "from": "sp5.truth",
       "to": "spLine_5.cond"
     },
     {
-      "from": "f2.value",
+      "from": "k_retractK.value",
       "to": "spLine_5.a"
     },
     {
@@ -9925,11 +10383,11 @@
       "to": "spLine_5.b"
     },
     {
-      "from": "sp5.truth",
+      "from": "sp4.truth",
       "to": "spLine_4.cond"
     },
     {
-      "from": "k_retractK.value",
+      "from": "oaLine.out",
       "to": "spLine_4.a"
     },
     {
@@ -9937,11 +10395,11 @@
       "to": "spLine_4.b"
     },
     {
-      "from": "sp4.truth",
+      "from": "sp3b.truth",
       "to": "spLine_3.cond"
     },
     {
-      "from": "oaLine.out",
+      "from": "reLine.out",
       "to": "spLine_3.a"
     },
     {
@@ -10045,7 +10503,7 @@
       "to": "lcPickedC.a"
     },
     {
-      "from": "K95.out",
+      "from": "K101.out",
       "to": "lcPickedC.b"
     },
     {
@@ -10065,11 +10523,11 @@
       "to": "lcZero.L_Cracks"
     },
     {
-      "from": "K96.out",
+      "from": "K102.out",
       "to": "lcZ.a"
     },
     {
-      "from": "K97.out",
+      "from": "K103.out",
       "to": "lcC.a"
     },
     {
@@ -10101,7 +10559,7 @@
       "to": "lcP.a"
     },
     {
-      "from": "K98.out",
+      "from": "K104.out",
       "to": "lcP.b"
     },
     {
@@ -10358,6 +10816,18 @@
     },
     {
       "from": "k_oDmg.out",
+      "to": "sy15b.k_oDmg"
+    },
+    {
+      "from": "c_intercept.out",
+      "to": "sy15b.c_intercept"
+    },
+    {
+      "from": "myClaimSoph.value",
+      "to": "sy15b.myClaimSoph"
+    },
+    {
+      "from": "k_oDmg.out",
       "to": "sy15.k_oDmg"
     },
     {
@@ -10549,6 +11019,10 @@
       "to": "hasSys.sy14"
     },
     {
+      "from": "sy15b.value",
+      "to": "hasSys.sy15b"
+    },
+    {
       "from": "sy15.value",
       "to": "hasSys.sy15"
     },
@@ -10630,22 +11104,34 @@
     },
     {
       "from": "sy34.truth",
-      "to": "syKey_33.cond"
+      "to": "syKey_34.cond"
     },
     {
-      "from": "K132.out",
-      "to": "syKey_33.a"
+      "from": "K139.out",
+      "to": "syKey_34.a"
     },
     {
       "from": "K19.out",
-      "to": "syKey_33.b"
+      "to": "syKey_34.b"
     },
     {
       "from": "sy33.truth",
+      "to": "syKey_33.cond"
+    },
+    {
+      "from": "K138.out",
+      "to": "syKey_33.a"
+    },
+    {
+      "from": "syKey_34.out",
+      "to": "syKey_33.b"
+    },
+    {
+      "from": "sy32.truth",
       "to": "syKey_32.cond"
     },
     {
-      "from": "K131.out",
+      "from": "K137.out",
       "to": "syKey_32.a"
     },
     {
@@ -10653,11 +11139,11 @@
       "to": "syKey_32.b"
     },
     {
-      "from": "sy32.truth",
+      "from": "sy31.truth",
       "to": "syKey_31.cond"
     },
     {
-      "from": "K130.out",
+      "from": "K136.out",
       "to": "syKey_31.a"
     },
     {
@@ -10665,11 +11151,11 @@
       "to": "syKey_31.b"
     },
     {
-      "from": "sy31.truth",
+      "from": "sy30.truth",
       "to": "syKey_30.cond"
     },
     {
-      "from": "K129.out",
+      "from": "K135.out",
       "to": "syKey_30.a"
     },
     {
@@ -10677,11 +11163,11 @@
       "to": "syKey_30.b"
     },
     {
-      "from": "sy30.truth",
+      "from": "sy29.truth",
       "to": "syKey_29.cond"
     },
     {
-      "from": "K128.out",
+      "from": "K134.out",
       "to": "syKey_29.a"
     },
     {
@@ -10689,11 +11175,11 @@
       "to": "syKey_29.b"
     },
     {
-      "from": "sy29.truth",
+      "from": "sy28.truth",
       "to": "syKey_28.cond"
     },
     {
-      "from": "K127.out",
+      "from": "K133.out",
       "to": "syKey_28.a"
     },
     {
@@ -10701,11 +11187,11 @@
       "to": "syKey_28.b"
     },
     {
-      "from": "sy28.truth",
+      "from": "sy27.truth",
       "to": "syKey_27.cond"
     },
     {
-      "from": "K126.out",
+      "from": "K132.out",
       "to": "syKey_27.a"
     },
     {
@@ -10713,11 +11199,11 @@
       "to": "syKey_27.b"
     },
     {
-      "from": "sy27.truth",
+      "from": "sy26.truth",
       "to": "syKey_26.cond"
     },
     {
-      "from": "K125.out",
+      "from": "K131.out",
       "to": "syKey_26.a"
     },
     {
@@ -10725,11 +11211,11 @@
       "to": "syKey_26.b"
     },
     {
-      "from": "sy26.truth",
+      "from": "sy25.truth",
       "to": "syKey_25.cond"
     },
     {
-      "from": "K124.out",
+      "from": "K130.out",
       "to": "syKey_25.a"
     },
     {
@@ -10737,11 +11223,11 @@
       "to": "syKey_25.b"
     },
     {
-      "from": "sy25.truth",
+      "from": "sy24.truth",
       "to": "syKey_24.cond"
     },
     {
-      "from": "K123.out",
+      "from": "K129.out",
       "to": "syKey_24.a"
     },
     {
@@ -10749,11 +11235,11 @@
       "to": "syKey_24.b"
     },
     {
-      "from": "sy24.truth",
+      "from": "sy23.truth",
       "to": "syKey_23.cond"
     },
     {
-      "from": "K122.out",
+      "from": "K128.out",
       "to": "syKey_23.a"
     },
     {
@@ -10761,11 +11247,11 @@
       "to": "syKey_23.b"
     },
     {
-      "from": "sy23.truth",
+      "from": "sy22.truth",
       "to": "syKey_22.cond"
     },
     {
-      "from": "K121.out",
+      "from": "K127.out",
       "to": "syKey_22.a"
     },
     {
@@ -10773,11 +11259,11 @@
       "to": "syKey_22.b"
     },
     {
-      "from": "sy22.truth",
+      "from": "sy21.truth",
       "to": "syKey_21.cond"
     },
     {
-      "from": "K120.out",
+      "from": "K126.out",
       "to": "syKey_21.a"
     },
     {
@@ -10785,11 +11271,11 @@
       "to": "syKey_21.b"
     },
     {
-      "from": "sy21.truth",
+      "from": "sy20.truth",
       "to": "syKey_20.cond"
     },
     {
-      "from": "K119.out",
+      "from": "K125.out",
       "to": "syKey_20.a"
     },
     {
@@ -10797,11 +11283,11 @@
       "to": "syKey_20.b"
     },
     {
-      "from": "sy20.truth",
+      "from": "sy19.truth",
       "to": "syKey_19.cond"
     },
     {
-      "from": "K118.out",
+      "from": "K124.out",
       "to": "syKey_19.a"
     },
     {
@@ -10809,11 +11295,11 @@
       "to": "syKey_19.b"
     },
     {
-      "from": "sy19.truth",
+      "from": "sy18.truth",
       "to": "syKey_18.cond"
     },
     {
-      "from": "K117.out",
+      "from": "K123.out",
       "to": "syKey_18.a"
     },
     {
@@ -10821,11 +11307,11 @@
       "to": "syKey_18.b"
     },
     {
-      "from": "sy18.truth",
+      "from": "sy17.truth",
       "to": "syKey_17.cond"
     },
     {
-      "from": "K116.out",
+      "from": "K122.out",
       "to": "syKey_17.a"
     },
     {
@@ -10833,11 +11319,11 @@
       "to": "syKey_17.b"
     },
     {
-      "from": "sy17.truth",
+      "from": "sy16.truth",
       "to": "syKey_16.cond"
     },
     {
-      "from": "K115.out",
+      "from": "K121.out",
       "to": "syKey_16.a"
     },
     {
@@ -10845,11 +11331,11 @@
       "to": "syKey_16.b"
     },
     {
-      "from": "sy16.truth",
+      "from": "sy15.truth",
       "to": "syKey_15.cond"
     },
     {
-      "from": "K114.out",
+      "from": "K120.out",
       "to": "syKey_15.a"
     },
     {
@@ -10857,11 +11343,11 @@
       "to": "syKey_15.b"
     },
     {
-      "from": "sy15.truth",
+      "from": "sy15b.truth",
       "to": "syKey_14.cond"
     },
     {
-      "from": "K113.out",
+      "from": "K119.out",
       "to": "syKey_14.a"
     },
     {
@@ -10873,7 +11359,7 @@
       "to": "syKey_13.cond"
     },
     {
-      "from": "K112.out",
+      "from": "K118.out",
       "to": "syKey_13.a"
     },
     {
@@ -10885,7 +11371,7 @@
       "to": "syKey_12.cond"
     },
     {
-      "from": "K111.out",
+      "from": "K117.out",
       "to": "syKey_12.a"
     },
     {
@@ -10897,7 +11383,7 @@
       "to": "syKey_11.cond"
     },
     {
-      "from": "K110.out",
+      "from": "K116.out",
       "to": "syKey_11.a"
     },
     {
@@ -10909,7 +11395,7 @@
       "to": "syKey_10.cond"
     },
     {
-      "from": "K109.out",
+      "from": "K115.out",
       "to": "syKey_10.a"
     },
     {
@@ -10921,7 +11407,7 @@
       "to": "syKey_9.cond"
     },
     {
-      "from": "K108.out",
+      "from": "K114.out",
       "to": "syKey_9.a"
     },
     {
@@ -10933,7 +11419,7 @@
       "to": "syKey_8.cond"
     },
     {
-      "from": "K107.out",
+      "from": "K113.out",
       "to": "syKey_8.a"
     },
     {
@@ -10945,7 +11431,7 @@
       "to": "syKey_7.cond"
     },
     {
-      "from": "K106.out",
+      "from": "K112.out",
       "to": "syKey_7.a"
     },
     {
@@ -10957,7 +11443,7 @@
       "to": "syKey_6.cond"
     },
     {
-      "from": "K105.out",
+      "from": "K111.out",
       "to": "syKey_6.a"
     },
     {
@@ -10969,7 +11455,7 @@
       "to": "syKey_5.cond"
     },
     {
-      "from": "K104.out",
+      "from": "K110.out",
       "to": "syKey_5.a"
     },
     {
@@ -10981,7 +11467,7 @@
       "to": "syKey_4.cond"
     },
     {
-      "from": "K103.out",
+      "from": "K109.out",
       "to": "syKey_4.a"
     },
     {
@@ -10993,7 +11479,7 @@
       "to": "syKey_3.cond"
     },
     {
-      "from": "K102.out",
+      "from": "K108.out",
       "to": "syKey_3.a"
     },
     {
@@ -11005,7 +11491,7 @@
       "to": "syKey_2.cond"
     },
     {
-      "from": "K101.out",
+      "from": "K107.out",
       "to": "syKey_2.a"
     },
     {
@@ -11017,7 +11503,7 @@
       "to": "syKey_1.cond"
     },
     {
-      "from": "K100.out",
+      "from": "K106.out",
       "to": "syKey_1.a"
     },
     {
@@ -11029,7 +11515,7 @@
       "to": "syKey_0.cond"
     },
     {
-      "from": "K99.out",
+      "from": "K105.out",
       "to": "syKey_0.a"
     },
     {
@@ -11105,11 +11591,11 @@
       "to": "vVal_1.cond"
     },
     {
-      "from": "K134.out",
+      "from": "K141.out",
       "to": "vVal_1.a"
     },
     {
-      "from": "K135.out",
+      "from": "K142.out",
       "to": "vVal_1.b"
     },
     {
@@ -11117,7 +11603,7 @@
       "to": "vVal_0.cond"
     },
     {
-      "from": "K133.out",
+      "from": "K140.out",
       "to": "vVal_0.a"
     },
     {
@@ -11873,7 +12359,7 @@
       "to": "bigId_5.cond"
     },
     {
-      "from": "K141.out",
+      "from": "K148.out",
       "to": "bigId_5.a"
     },
     {
@@ -11885,7 +12371,7 @@
       "to": "bigId_4.cond"
     },
     {
-      "from": "K140.out",
+      "from": "K147.out",
       "to": "bigId_4.a"
     },
     {
@@ -11897,7 +12383,7 @@
       "to": "bigId_3.cond"
     },
     {
-      "from": "K139.out",
+      "from": "K146.out",
       "to": "bigId_3.a"
     },
     {
@@ -11909,7 +12395,7 @@
       "to": "bigId_2.cond"
     },
     {
-      "from": "K138.out",
+      "from": "K145.out",
       "to": "bigId_2.a"
     },
     {
@@ -11921,7 +12407,7 @@
       "to": "bigId_1.cond"
     },
     {
-      "from": "K137.out",
+      "from": "K144.out",
       "to": "bigId_1.a"
     },
     {
@@ -11933,7 +12419,7 @@
       "to": "bigId_0.cond"
     },
     {
-      "from": "K136.out",
+      "from": "K143.out",
       "to": "bigId_0.a"
     },
     {
@@ -11945,7 +12431,7 @@
       "to": "stampId_7.cond"
     },
     {
-      "from": "K148.out",
+      "from": "K155.out",
       "to": "stampId_7.a"
     },
     {
@@ -11957,7 +12443,7 @@
       "to": "stampId_6.cond"
     },
     {
-      "from": "K147.out",
+      "from": "K154.out",
       "to": "stampId_6.a"
     },
     {
@@ -11969,7 +12455,7 @@
       "to": "stampId_5.cond"
     },
     {
-      "from": "K146.out",
+      "from": "K153.out",
       "to": "stampId_5.a"
     },
     {
@@ -11981,7 +12467,7 @@
       "to": "stampId_4.cond"
     },
     {
-      "from": "K145.out",
+      "from": "K152.out",
       "to": "stampId_4.a"
     },
     {
@@ -11993,7 +12479,7 @@
       "to": "stampId_3.cond"
     },
     {
-      "from": "K144.out",
+      "from": "K151.out",
       "to": "stampId_3.a"
     },
     {
@@ -12005,7 +12491,7 @@
       "to": "stampId_2.cond"
     },
     {
-      "from": "K143.out",
+      "from": "K150.out",
       "to": "stampId_2.a"
     },
     {
@@ -12017,7 +12503,7 @@
       "to": "stampId_1.cond"
     },
     {
-      "from": "K143.out",
+      "from": "K150.out",
       "to": "stampId_1.a"
     },
     {
@@ -12029,7 +12515,7 @@
       "to": "stampId_0.cond"
     },
     {
-      "from": "K142.out",
+      "from": "K149.out",
       "to": "stampId_0.a"
     },
     {
@@ -12501,7 +12987,7 @@
       "to": "tellClearC.a"
     },
     {
-      "from": "K149.out",
+      "from": "K156.out",
       "to": "tellClearC.b"
     },
     {
@@ -12749,7 +13235,7 @@
       "to": "ui#d1debate.dying"
     },
     {
-      "from": "K98.out",
+      "from": "K104.out",
       "to": "dyingT.n"
     },
     {

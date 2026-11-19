@@ -9,6 +9,9 @@ Every recording starts at the title, clicks the v2 entry and plays the D01 debat
 
 - tests/d1_routeA.atrec (tests/d1play_harnessA): ref route A (ch §12.1), the opponent's moves pinned by the harness
   (the engine's d1OppAct / d1OppCard test hook, debate-engine-v2 §2.1): a clean Break, grade 1 in 9 rounds.
+- tests/d1_routeB.atrec, tests/d1_routeC.atrec (tests/d1play_harnessB, C): ref routes B (talking board, seize his
+  words, guilt over the threshold: he gives up) and C (sophistry, Irene's parentage, the picked-up keys as his last
+  card, a win after a second endgame).
 - tests/d1_routeD.atrec (tests/d1play_harnessD): ref route D (ch §12.4: a Reverse Break and a failed last card, a
   loss in 8 rounds); the harness also replaces the dev entry's loadout with route D's (build_harness).
 - tests/d1_bot.atrec (the game itself, seed BOT_SEED): nothing pinned. The opponent is the engine's AI on the run's
@@ -201,12 +204,14 @@ def build_harness(route: str) -> None:
                                    newline="\n")
 
 
-RECORDINGS = (("d1_routeA", "A", set()), ("d1_routeD", "D", set()), ("d1_shots", "A", {8}))
+RECORDINGS = (("d1_routeA", "A", set()), ("d1_routeB", "B", set()), ("d1_routeC", "C", set()),
+              ("d1_routeD", "D", set()), ("d1_shots", "A", {8}))
+ROUTES = ("A", "B", "C", "D")
 
 
 def main() -> int:
     ticks = {}
-    for route in ("A", "D"):
+    for route in ROUTES:
         build_harness(route)
     for name, route, no_skip in RECORDINGS:
         r = Rec(f"tests/d1play_harness{route}")

@@ -55,23 +55,33 @@ def tables() -> dict[str, list[dict]]:
     for cid, c in CH.claims.items():
         claims.append({"id": cid, "evidence": c.evidence, "label": f"CLM_D01_{cid}", "line": f"CLM_D01_{cid}_LINE",
                        "issue": f"ISSUE_D01_{ISSUE[c.issue]}_SHORT", "issueName": f"ISSUE_D01_{ISSUE[c.issue]}",
-                       "catch": 0, "psych": int(c.psych_card), "private": int(c.private)})
+                       "catch": 0, "psych": int(c.psych_card), "private": int(c.private),
+                       "react": f"REACT_D01_ISSUE_{ISSUE[c.issue]}"})
     for cid, cd in CH.cards.items():
         if cd.kind == "unfav":
             claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE",
                            "line": f"CARD_D01_{cid}_CATCH", "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT",
-                           "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0})
+                           "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0,
+                           "react": f"REACT_D01_ISSUE_{ISSUE[cd.issue]}"})
+    keys = F.string_keys()
+
+    def have(k: str, alt: str) -> str:
+        return k if k in keys else alt
     cards = []
     for cid, cd in CH.cards.items():
-        cards.append({"id": cid, "kind": cd.kind, "label": f"CARD_D01_{cid}",
+        # a line the package does not have falls back: 強辯 / 改口 -> 立論; knocked down -> his generic reaction to a
+        # fact / a lie knocked down (facts have no _DOWN: only sophistry knocks them down)
+        state = f"CARD_D01_{cid}_STATE"
+        down = have(f"CARD_D01_{cid}_DOWN", "REACT_D01_FACT_SOPH_1" if cd.is_fact else "REACT_D01_LIE_SOPH")
+        cards.append({"id": cid, "kind": cd.kind, "fact": int(cd.is_fact), "label": f"CARD_D01_{cid}",
                       "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT" if cd.issue else "",
-                      "state": f"CARD_D01_{cid}_STATE", "push": f"CARD_D01_{cid}_PUSH",
-                      "retract": f"CARD_D01_{cid}_RETRACT", "down": f"CARD_D01_{cid}_DOWN",
+                      "state": state, "push": have(f"CARD_D01_{cid}_PUSH", state),
+                      "retract": have(f"CARD_D01_{cid}_RETRACT", state), "down": down,
                       "tell": f"CARD_D01_{cid}_TELL" if cd.kind == "unfav" else ""})
     ev = [{"id": e, "name": ev_key(e)} for e in CH.evidence] + [{"id": M.CATCH, "name": "UI_V2_SEIZE"}]
-    # spoken lines that replace the default one: CUT_D01_<claim>_<card> (his reaction to that cut, replaces _DOWN)
-    # and LINK_D01_<a>_<b> (承接, replaces the claim line); only keys the string tables have
-    keys = F.string_keys()
+    # spoken lines that replace the default one: CUT_D01_<claim>_<card> (his reaction to that cut, replaces _DOWN),
+    # LINK_D01_<a>_<b> (承接, replaces the claim line) and REACT_D01_<claim>[_1] (his own reaction to that claim
+    # landing, replaces the reaction by issue); only keys the string tables have
     lines = []
     for k in sorted(keys):
         parts = k.split("_")
@@ -79,6 +89,8 @@ def tables() -> dict[str, list[dict]]:
             lines.append({"id": f"CUT:{parts[2]}:{parts[3]}", "key": k})
         elif k.startswith("LINK_D01_") and len(parts) == 4:
             lines.append({"id": f"LINK:{parts[2]}:{parts[3]}", "key": k})
+        elif k.startswith("REACT_D01_") and parts[2] in CH.claims and (len(parts) == 3 or parts[3] == "1"):
+            lines.append({"id": f"REACT:{parts[2]}", "key": k})
     return {"d1uiClaim": claims, "d1uiCard": cards, "d1uiEv": ev, "d1uiLine": lines}
 
 
@@ -409,6 +421,22 @@ def gen_d01ui() -> Graph:
     cutRow = g.tfind("cuRow", "d1uiLine", "id", g.fmt("cuId", "CUT:{a}:{b}", "f1", "f2"))
     g.tget("cuKey", "d1uiLine", "key", cutRow)
     g.x("cuOk", "cuRow >= 0")
+    # his reaction to a link landing: REACT_D01_<claim>, else the sophistry one, else the one of its issue
+    reRow = g.tfind("reRow", "d1uiLine", "id", g.fmt("reId", "REACT:{a}", "f1"))
+    g.tget("reKey", "d1uiLine", "key", reRow)
+    g.tget("reIss", "d1uiClaim", "react", "f1Row")
+    g.mget("f1Soph", "d1ClaimSoph", "f1")
+    react = g.sel("reLine", T("reOwn", "reRow >= 0"), "reKey",
+                  g.sel("reGen", g.b("f1SophB", "f1Soph"), g.k("REACT_D01_SOPH"), "reIss"))
+    # a link of his knocked down: a fact (only sophistry does that) / a lie by sophistry / the claim's own cut line
+    g.tget("k_factK", "d1uiCard", "fact", krow, "number")
+    g.mget("myClaimSoph", "d1ClaimSoph", "s_claim")
+    g.x("rcFactI", "L_Round - 2 * floor(L_Round / 2)")
+    factLine = g.sel("factLine", T("factOdd", "rcFactI == 1"), g.k("REACT_D01_FACT_SOPH_1"),
+                     g.k("REACT_D01_FACT_SOPH_2"))
+    knocked = ssel(g, "knLine", [(T("knFact", "k_factK"), factLine),
+                                 (T("knSoph", "myClaimSoph"), g.k("REACT_D01_LIE_SOPH")),
+                                 (T("knCut", "cuOk && k_intercept"), "cuKey")], "k_downK")
     g.x("fogI", "(L_Round - 1) - 3 * floor((L_Round - 1) / 3)")
     fog = g.lookup("fogK", ["FOG_D01_1", "FOG_D01_2", "FOG_D01_3"], "fogI")
     hkLine = g.lookup("hkK", ["", "STATE_D01_SHF_HACHIKU_1", "STATE_D01_SHF_HACHIKU_2", "STATE_D01_SHF_HACHIKU_3"],
@@ -421,12 +449,15 @@ def gen_d01ui() -> Graph:
         (T("sp1", f"k_round && ({claim_act}) && hasClaimN"), SH, "scLine"),
         (T("sp2", "k_round && act == 4"), SH, fog),
         (T("sp3", "k_pAttach && lkOk"), SH, "lkKey"),
+        (T("sp3b", "k_pAttach && !lkOk"), CE, react),
         (T("sp4", "k_oAttach"), CE, g.sel("oaLine", g.b("hisForceB", "hisForce"),
                                          "k_pushK", "k_stateK")),
         (T("sp5", "k_reraise"), CE, "k_retractK"),
         (T("sp6", "k_refuted"), CE, "f2"),
-        (T("sp7", "k_intercept && n3 == 1"), CE, g.sel("icLine", "cuOk_t", "cuKey", "k_downK")),
-        (T("sp8", "k_dismantle && n3 == 1"), CE, "k_downK"),
+        (T("sp7", "k_intercept && n3 == 1"), CE, knocked),
+        (T("sp8", "k_dismantle && n3 == 1"), CE, knocked),
+        (T("sp8b", "k_blocked"), CE, g.k("REACT_D01_BLOCK")),
+        (T("sp8c", "k_oDmg && c_whiff"), CE, g.k("REACT_D01_FOOLED")),
         (T("sp9", "k_guardSaved"), AR, g.k("STATE_D01_ART_COVER")),
         (T("sp10", "k_hachiku && n2 > n1"), SH, hkLine),
         (T("sp11", "k_ronpa"), SH, g.k("STATE_D01_SHF_BREAK")),
@@ -436,7 +467,7 @@ def gen_d01ui() -> Graph:
         (T("sp15", "k_crossed && xG"), AR, g.k("BEAT_D01_GUILT_1")),
         (T("sp16", "k_crossed && xA"), CE, g.k("BEAT_D01_ANGER_1")),
     ]
-    g.x("hasSpeech", " || ".join(f"sp{i}" for i in range(1, len(speech) + 1)))
+    g.x("hasSpeech", " || ".join(c[: -len("_t")] for c, _, _ in speech))
     who = ssel(g, "spWho", [(c, w) for c, w, _ in speech], g.k(""))
     line = ssel(g, "spLine", [(c, ln) for c, _, ln in speech], g.k(""))
     spP = g.when("spG", parse, T("spOn", "hasSpeech || k_round"))
@@ -471,6 +502,7 @@ def gen_d01ui() -> Graph:
         (T("sy12", "k_pDmg && c_stall_repeat"), "SYS_D01_FOG_REPEAT"),
         (T("sy13", "k_pDmg && c_dying"), "SYS_D01_DESPERATE_HIT"),
         (T("sy14", "k_pDmg && c_last_card"), "SYS_D01_LASTCARD_NOHEAL"),
+        (T("sy15b", "k_oDmg && c_intercept && myClaimSoph"), "SYS_D01_CUT_SOPH"),
         (T("sy15", "k_oDmg && c_intercept && hisForce"), "SYS_D01_CUT_PUSH"),
         (T("sy16", "k_oDmg && c_intercept"), "SYS_D01_CUT_OK"),
         (T("sy17", "k_oDmg && c_dismantle"), "SYS_D01_DISMANTLE"),
@@ -492,7 +524,7 @@ def gen_d01ui() -> Graph:
         (T("sy33", "k_over && ovWin"), "SYS_D01_WIN"),
         (T("sy34", "k_over"), "SCR_D01_S07_L016"),
     ]
-    g.x("hasSys", " || ".join(f"sy{i}" for i in range(1, len(sysl) + 1)))
+    g.x("hasSys", " || ".join(c[: -len("_t")] for c, _ in sysl))
     skey = ssel(g, "syKey", [(c, g.k(k)) for c, k in sysl], g.k(""))
     syP = g.when("syG", parse, T("syOn", "hasSys || k_round"))
     # values: hp after (pDmg / oDmg n3, lastStand n4), damage n1 / n3, the values of oHeal, the gauge's name, ...

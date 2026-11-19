@@ -1239,15 +1239,15 @@
       left: 10px;
       position: absolute;
       top: 3px;
-      width: 200px;
+      width: 180px;
     }
     /* import: D1Debate.dc.html:1/1/14/1 */
     #ronpa-ready {
       height: 22px;
-      left: 214px;
+      left: 196px;
       position: absolute;
       top: 1px;
-      width: 380px;
+      width: 436px;
     }
     /* import: D1Debate.dc.html:1/1/14/1/0 */
     #ronpa-ready-t {
@@ -1255,15 +1255,15 @@
       left: 4px;
       position: absolute;
       top: -1px;
-      width: 372px;
+      width: 428px;
     }
     /* import: D1Debate.dc.html:1/1/14/2 */
     #ronpa-t {
       height: 18px;
-      left: 598px;
+      left: 636px;
       position: absolute;
       top: 3px;
-      width: 198px;
+      width: 160px;
     }
     /* import: D1Debate.dc.html:1/1/14/3 */
     #pchain-empty {

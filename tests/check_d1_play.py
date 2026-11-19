@@ -150,6 +150,7 @@ def main() -> int:
             raise SystemExit("gen_d1_play failed")
         ticks = json.loads((TESTS / "d1_ticks.json").read_text(encoding="utf-8"))
         for label, rec, route, lang in (("route A", "d1_routeA", "A", "zh-TW"), ("route A [en]", "d1_routeA", "A", "en"),
+                                        ("route B", "d1_routeB", "B", "zh-TW"), ("route C", "d1_routeC", "C", "en"),
                                         ("route D", "d1_routeD", "D", "zh-TW")):
             check(label, rec, f"tests/d1play_harness{route}", ticks[rec], ticks[rec + "_marks"],
                   expected(gd.forced(route)), lang, fails)
@@ -160,7 +161,7 @@ def main() -> int:
         if "--shots" in argv:
             shots(Path(argv[argv.index("--shots") + 1]), ticks)
     finally:
-        for route in ("A", "D"):
+        for route in gd.ROUTES:
             shutil.rmtree(gd.harness_dir(route), ignore_errors=True)
     left = sorted(n for n in set(os.listdir(temp)) - before if n.startswith(("d1shots-", "tmp")))
     if left:
