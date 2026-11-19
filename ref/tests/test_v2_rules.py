@@ -306,3 +306,67 @@ def test_golden_trace_matches_committed_file(name):
     fresh = json.loads(json.dumps(run_route(name), ensure_ascii=False))
     committed = json.loads((TRACE_DIR / f"route_{name}.json").read_text(encoding="utf-8"))
     assert fresh == committed
+
+
+# ---------------------------------------------------------------------------- rules 0.6 rulings
+
+
+def test_shisshu_bonus_only_on_damage_he_deals():
+    s = states("D")[4]  # 失守 after the R4 refute; 115 HP
+    assert s.shisshu and s.player_hp == 115
+    # red crack −10 is her own cost: not raised (06A cuts L2: success)
+    s1, _ = resolve_round(s, PlayerAction(PA.INTERCEPT, "06A"), OpponentAction(OA.ATTACK, "L2"))
+    assert s1.player_hp == pytest.approx(105)
+    # wrong-claim cut: −5 not raised; his node's 論證 is (16 x 1.25 x 1.25)
+    s2, _ = resolve_round(s, PlayerAction(PA.INTERCEPT, "10A"), OpponentAction(OA.ATTACK, "L2"))
+    assert s2.player_hp == pytest.approx(115 - 5 - 25)
+    # 打迷糊仗 vs 周旋: bystander −3 not raised
+    s3, _ = resolve_round(s, PlayerAction(PA.STALL), OpponentAction(OA.PARRY))
+    assert s3.player_hp == pytest.approx(112)
+    # mutual whiff −5 not raised
+    s4, _ = resolve_round(s, PlayerAction(PA.INTERCEPT, "10A"), OpponentAction(OA.REBUT))
+    assert s4.player_hp == pytest.approx(110)
+    # 拆穿 25 is raised (04C shows 詭辯 now)
+    s5, _ = resolve_round(s, PlayerAction(PA.ARGUE, "04C"), OpponentAction(OA.REBUT))
+    assert s5.player_hp == pytest.approx(115 - 25 * 1.25)
+
+
+def test_shisshu_bonus_on_the_last_card():
+    s = _set(states("C")[4], shisshu=True)
+    s2, _ = resolve_round(s, PlayerAction(PA.ACCEPT), OpponentAction(OA.LAST, "P05"))
+    assert s2.player_hp == pytest.approx(s.player_hp - (15 * 3 + 10) * 1.25)
+
+
+@pytest.mark.parametrize("his,hachiku,shisshu", [
+    (OpponentAction(OA.ATTACK, "F2"), 2, True),  # his node lands with damage: hold, 失守 stays
+    (OpponentAction(OA.PARRY), 3, False),
+    (OpponentAction(OA.REBUT), 3, False),
+])
+def test_dismantle_is_a_correct_read_only_when_unhurt(his, hachiku, shisshu):
+    s = _set(states("D")[5], hachiku=2)  # his chain F1, L2; 失守
+    assert s.shisshu and [n.card for n in s.opp_chain] == ["F1", "L2"]
+    s2, _ = resolve_round(s, PlayerAction(PA.DISMANTLE, "06A", "L2"), his)
+    assert "L2" not in [n.card for n in s2.opp_chain]
+    assert s2.hachiku == hachiku and s2.shisshu == shisshu
+
+
+def test_soph_cut_on_another_issue_fails_like_a_wrong_claim():
+    s = states("C")[0]
+    s1, _ = resolve_round(s, PlayerAction(PA.INTERCEPT, "06B"), OpponentAction(OA.ATTACK, "F1"))
+    assert s1.player_hp == pytest.approx(140 - 5 - 16)  # F1 is a fact on 法; 06B is 機
+    assert s1.opp_chain[-1].card == "F1" and s1.cracks == 1 and s1.hachiku == 0
+
+
+def test_soph_cut_on_the_keystone_triggers_the_shortcut():
+    s = _set(states("C")[0], opp_hp=110.0)
+    s1, ev = resolve_round(s, PlayerAction(PA.INTERCEPT, "06C"), OpponentAction(OA.ATTACK, "L2"))
+    assert any(e["kind"] == "ronpa" and e["via"] == "keystone" for e in ev) and s1.ronpa_done
+
+
+@pytest.mark.parametrize("cracks,grade", [(0, 1), (1, 2)])
+def test_guilt_confession_grade(cracks, grade):
+    s = states("B")[2]
+    s = _set(s, cracks=cracks)
+    s.psych[1] = 95.0
+    s1, _ = resolve_round(s, PlayerAction(PA.ARGUE, "02C"), OpponentAction(OA.ATTACK, "F1"))
+    assert s1.outcome == "win" and s1.end_reason == "confession" and s1.grade == grade

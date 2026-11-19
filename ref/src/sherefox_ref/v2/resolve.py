@@ -70,11 +70,17 @@ class _Round:
 # --------------------------------------------------------------------------- small helpers
 
 
+# Damage the opponent deals the player (§7.2 失守 +25% applies to these only).
+OPP_DEALT = frozenset({"argument", "exposed", "refuted", "last_card", "dying"})
+
+
 def _hurt_player(s: State, rd: _Round, amount: float, cause: str, ev: list) -> float:
-    # SPEC-QUESTION: §7.2 says 失守 raises "期間玩家受到的傷害" by 25%. Applied literally to
-    # every HP loss in a round that started in 失守 (ch §12.4 only shows his 論證);
-    # sim/engine.py applies it to his 論證 only.
-    if rd.shisshu_start:
+    # SPEC-QUESTION, decided by the design owner (rules 0.6): 失守 +25% applies only to
+    # damage he deals the player: his 論證, 拆穿 25, 駁倒 15 and the last card's hit
+    # (incl. the dying gasp). Not to costs the player causes herself: red crack −10, a
+    # whiffed cut's −5/−10, 打迷糊仗 penalties (−3, bystander −3), mutual whiffs, a bad
+    # endgame cut's −5.
+    if rd.shisshu_start and cause in OPP_DEALT:
         amount *= SHISSHU_MULT
     s.player_hp -= amount
     ev.append({"kind": "player_damage", "amount": amount, "cause": cause, "hp": s.player_hp})
@@ -358,20 +364,22 @@ def _normal_round(s: State, rd: _Round, pa: PlayerAction, oa: OpponentAction, ev
                     rd.p_events.append(("fact_down_soph", None))
                 _set_broken(s, rd, "intercepted", ev)
                 rd.read_ok = True
-                # §7.3 抓漏洞; R-25 round-start state. SPEC-QUESTION: a 詭辯 cut counts too
-                # (rules silent; sim ASSUMPTION-06).
+                # §7.3 抓漏洞; R-25 round-start state. SPEC-QUESTION, accepted by the design
+                # owner (rules 0.6): a 詭辯 cut on the keystone triggers it under the same
+                # conditions.
                 if cd.keystone and (rd.broken_start or rd.opp_hp_start <= KEY_HP_RATIO * ch.opp_max_hp):
                     rd.key_ronpa = True
                 ev.append({"kind": "intercept", "claim": claim_id, "card": oa.card, "ok": True,
                            "keystone": rd.key_ronpa})
                 _claim_effect(s, rd, claim_id)
             else:
-                # SPEC-QUESTION: a 詭辯 cut on another issue fails like a 正論 cut (rules
-                # silent on its cost).
+                # SPEC-QUESTION, accepted by the design owner (rules 0.6): a 詭辯 cut on
+                # another issue fails like a wrong-claim cut: −5 and his node lands with
+                # damage (also on a fact).
                 rd.read_bad = rd.guard_trigger = True
                 ev.append({"kind": "intercept", "claim": claim_id, "card": oa.card, "ok": False,
                            "blocked_by_parry": blocked})
-                if cd.is_lie or blocked:
+                if cd.is_lie or blocked or v.soph:
                     _hurt_player(s, rd, WHIFF, "whiff", ev)
                     _opp_attach(s, rd, oa, ev)
                 else:  # a fact: −10, his node lands, no 論證 (§6.4)
@@ -415,8 +423,11 @@ def _normal_round(s: State, rd: _Round, pa: PlayerAction, oa: OpponentAction, ev
             else:
                 s.denials += 1
                 rd.p_events.append(("fact_down_soph", None))
-            # SPEC-QUESTION: §7.2 does not list 拆台 among the correct reads; sim/engine.py
-            # (ASSUMPTION-37) does. Followed (rules silent).
+            # SPEC-QUESTION, decided by the design owner (rules 0.6): a successful 拆台 is a
+            # correct read only if he did not hurt the player this round (one definition,
+            # §7.2). read_ok is set here; the 破竹/失守 step below requires `not rd.hurt`,
+            # and read_bad stays False, so a 拆台 while his new node lands with damage holds
+            # 破竹 (no add, no reset) and keeps 失守.
             rd.read_ok = True
             _claim_effect(s, rd, claim_id)
         else:
@@ -522,8 +533,8 @@ def _psych_step(s: State, rd: _Round, ev: list) -> None:
         s.over[i] = now
     s.psych_end = tuple(s.psych)
     if s.psych[G] >= 100.0:
-        # SPEC-QUESTION: §8.3 confession ends in a win; its grade is not defined. Graded as
-        # a ronpa with surrender (1 if c = 0 else 2), as sim/engine.py does.
+        # SPEC-QUESTION, accepted by the design owner (rules 0.6): a guilt confession is
+        # grade 1 if c = 0, else 2.
         _win(s, 1 if s.cracks == 0 else 2, "confession", ev)
 
 
