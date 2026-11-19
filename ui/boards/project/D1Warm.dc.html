@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>D1Warm</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #f3eedf }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper); white-space: nowrap }
+  :lang(en) .kicker { letter-spacing: 1px }
+  .extra { font-family: var(--font-display); font-size: 20px; line-height: 36px; font-weight: 700; letter-spacing: 4px;
+           text-align: center; color: var(--paper); background-color: var(--vermilion); white-space: nowrap }
+  :lang(en) .extra { font-size: 15px; letter-spacing: 1px }
+  .title { font-family: var(--font-display); font-size: 24px; line-height: 36px; font-weight: 700; color: var(--ink-deep);
+           white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  :lang(en) .title { font-size: 20px }
+  .miss { font-family: var(--font-display); font-size: 18px; line-height: 34px; font-weight: 700; text-align: center;
+          color: var(--ink-deep); background-color: var(--paper); border: 2px solid var(--ink); white-space: nowrap }
+  .rule { background-color: var(--ink) }
+  .ch-art { position: absolute; left: 0px; top: 0px; width: 340px; height: 510px; object-fit: contain; }
+  .fig { filter: brightness(1) saturate(1); transition: filter 220ms ease-out }
+  .fig.dim { filter: brightness(0.86) saturate(0.5) }
+
+  /* His point: a headline block with a vermilion frame (the v1 warm-up's lit claim node). */
+  .point { background-color: #fbf8ef; border: 3px solid var(--vermilion); box-shadow: 5px 5px 0px 0px #092e2866 }
+  .point-t { font-family: var(--font-display); font-size: 23px; line-height: 33px; font-weight: 700; color: var(--ink-deep) }
+  :lang(en) .point-t { font-size: 19px; line-height: 26px }
+
+  .prompt { font-family: var(--font-body); font-size: 15px; line-height: 22px; color: var(--paper); text-align: center;
+            background-color: #092e28d9; border-top: 1px solid var(--copper); border-bottom: 1px solid var(--copper) }
+
+  /* The three observations: clippings, clickable only while a point waits. */
+  .obs { background-color: var(--paper); border: 1px solid var(--ink); border-top: 4px solid var(--copper);
+         box-shadow: 3px 3px 0px 0px #092e2866; opacity: 0.6; transition: background-color 120ms linear }
+  .obs.on { opacity: 1 }
+  .obs.on:hover { background-color: #fff3cf; border-top-color: var(--vermilion) }
+  .obs-k { font-family: var(--font-body); font-size: 12px; line-height: 18px; letter-spacing: 2px; color: var(--copper); white-space: nowrap }
+  .obs-n { font-family: var(--font-display); font-size: 15px; line-height: 18px; font-weight: 700; color: var(--copper); text-align: right; white-space: nowrap }
+  .obs-t { font-family: var(--font-body); font-size: 17px; line-height: 25px; color: var(--ink-deep) }
+  :lang(en) .obs-t { font-size: 15px; line-height: 21px }
+
+  /* The line being said (as the vn's column). */
+  .dlg { background-color: var(--paper); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+         box-shadow: 4px 4px 0px 0px #092e2859 }
+  .spk { font-family: var(--font-body); font-size: 14px; line-height: 22px; letter-spacing: 3px; color: var(--copper); white-space: nowrap }
+  :lang(en) .spk { letter-spacing: 1px }
+  .line { font-family: var(--font-body); font-size: 20px; line-height: 30px; color: var(--ink) }
+  :lang(en) .line { font-size: 18px; line-height: 26px }
+</style></helmet>
+<div id="d1warm" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='title:string in = "熱身小論戰：巴斯克維爾警督（不扣血）"; miss_text:string in = "失誤 1／3"; point:string in = "論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！"; speaker:string in = "巴斯克維爾"; line:string in = "論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！"; line_seq:number in = 0; focus:number in = 3; choosing:bool in = true; obs1:string in = "黃銅筒的蓋子關得好好的，鎖是鎖上的"; obs2:string in = "布里格斯被逮捕時已被搜身，身上沒有任何紙張"; obs3:string in = "熄燈時全屋的燈一起變暗、一起變亮"; pick:number out = 0; advance:event out; settings:event out'
+     data-xt-trigger="key(Enter):if port(choosing) eq false emit(advance); key(Space):if port(choosing) eq false emit(advance); key(1):if port(choosing) eq true set(pick, 1); key(2):if port(choosing) eq true set(pick, 2); key(3):if port(choosing) eq true set(pick, 3); key(Escape):emit(settings); key(F1):emit(settings)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; background-color: var(--paper);">
+
+  <img id="bg" src="/_blob/bg_debate.jpg" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; object-fit: cover;">
+
+  <!-- Click anywhere to go on (not while a point waits for an observation). -->
+  <div id="hit" data-xt-trigger="click(left):if port(choosing) eq false emit(advance)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+
+  <!-- Standees: Sherefox left, the inspector right; the one not speaking dims (focus 1 / 3; 0 nobody dims). -->
+  <div id="fig-l" class="fig" data-xt-bind="class.dim=focus | eq(3)"
+       style="position: absolute; left: -10px; top: 150px; width: 340px; height: 510px;">
+    <img id="ch-sherefox" class="ch-art" src="/_blob/char_sherefox.png">
+  </div>
+  <div id="fig-r" class="fig" data-xt-bind="class.dim=focus | eq(1)"
+       style="position: absolute; left: 950px; top: 150px; width: 340px; height: 510px;">
+    <img id="ch-baskerville" class="ch-art" src="/_blob/char_baskerville.png">
+  </div>
+
+  <!-- Header: the extra's red tag, the scene title, the mistakes. -->
+  <div id="head" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 76px; background-color: #f3eedfeb;">
+    <div id="extra" class="extra" data-xt-key="UI_PAPER_EXTRA" style="position: absolute; left: 32px; top: 20px; width: 92px; height: 36px;">號外</div>
+    <div id="title" class="title" data-xt-bind="text=title" style="position: absolute; left: 140px; top: 20px; width: 860px; height: 36px;">熱身小論戰：巴斯克維爾警督（不扣血）</div>
+    <div id="miss" class="miss" data-xt-bind="text=miss_text" style="position: absolute; left: 1060px; top: 19px; width: 188px; height: 34px;">失誤 1／3</div>
+    <div id="rule-a" class="rule" style="position: absolute; left: 0px; top: 70px; width: 1280px; height: 3px;"></div>
+    <div id="rule-b" class="rule" style="position: absolute; left: 0px; top: 75px; width: 1280px; height: 1px;"></div>
+  </div>
+
+  <!-- His point (stays up while it is answered). -->
+  <div id="point" class="point" data-xt-bind="display=point | ne('')" data-xt-trigger="port(point):play(point-in)"
+       data-xt-timeline="point-in: 0 opacity 0, 0 transform translateY(-8px), 300ms ease-out opacity 1, 300ms ease-out transform translateY(0px)"
+       style="position: absolute; left: 300px; top: 96px; width: 680px; height: 140px;">
+    <div id="point-t" class="point-t" data-xt-bind="text=point" style="position: absolute; left: 22px; top: 18px; width: 636px; height: 104px;">論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！</div>
+  </div>
+
+  <!-- The three observations. -->
+  <div id="prompt" class="prompt" data-xt-key="UI_V2_WARMUP_PICK" data-xt-bind="display=choosing"
+       style="position: absolute; left: 300px; top: 252px; width: 680px; height: 24px;">選一條觀察，指出他的錯誤。</div>
+  <div id="obs-1" class="obs" data-xt-bind="class.on=choosing" data-xt-trigger="click(left):if port(choosing) eq true set(pick, 1)"
+       style="position: absolute; left: 300px; top: 288px; width: 216px; height: 184px;">
+    <div id="obs-1-k" class="obs-k" data-xt-key="UI_V2_TYPE_OBS" style="position: absolute; left: 14px; top: 8px; width: 150px; height: 18px;">觀察</div>
+    <div id="obs-1-n" class="obs-n" style="position: absolute; left: 170px; top: 8px; width: 32px; height: 18px;">1</div>
+    <div id="obs-1-t" class="obs-t" data-xt-bind="text=obs1" style="position: absolute; left: 14px; top: 32px; width: 188px; height: 142px;">黃銅筒的蓋子關得好好的，鎖是鎖上的</div>
+  </div>
+  <div id="obs-2" class="obs" data-xt-bind="class.on=choosing" data-xt-trigger="click(left):if port(choosing) eq true set(pick, 2)"
+       style="position: absolute; left: 532px; top: 288px; width: 216px; height: 184px;">
+    <div id="obs-2-k" class="obs-k" data-xt-key="UI_V2_TYPE_OBS" style="position: absolute; left: 14px; top: 8px; width: 150px; height: 18px;">觀察</div>
+    <div id="obs-2-n" class="obs-n" style="position: absolute; left: 170px; top: 8px; width: 32px; height: 18px;">2</div>
+    <div id="obs-2-t" class="obs-t" data-xt-bind="text=obs2" style="position: absolute; left: 14px; top: 32px; width: 188px; height: 142px;">布里格斯被逮捕時已被搜身，身上沒有任何紙張</div>
+  </div>
+  <div id="obs-3" class="obs" data-xt-bind="class.on=choosing" data-xt-trigger="click(left):if port(choosing) eq true set(pick, 3)"
+       style="position: absolute; left: 764px; top: 288px; width: 216px; height: 184px;">
+    <div id="obs-3-k" class="obs-k" data-xt-key="UI_V2_TYPE_OBS" style="position: absolute; left: 14px; top: 8px; width: 150px; height: 18px;">觀察</div>
+    <div id="obs-3-n" class="obs-n" style="position: absolute; left: 170px; top: 8px; width: 32px; height: 18px;">3</div>
+    <div id="obs-3-t" class="obs-t" data-xt-bind="text=obs3" style="position: absolute; left: 14px; top: 32px; width: 188px; height: 142px;">熄燈時全屋的燈一起變暗、一起變亮</div>
+  </div>
+
+  <!-- The line being said; a click on it goes on (not while a point waits). -->
+  <div id="dlg" class="dlg" data-xt-trigger="click(left):if port(choosing) eq false emit(advance)"
+       style="position: absolute; left: 140px; top: 520px; width: 1000px; height: 176px;">
+    <div id="spk" class="spk" data-xt-bind="text=speaker; display=speaker | ne('')" style="position: absolute; left: 32px; top: 12px; width: 600px; height: 22px;">巴斯克維爾</div>
+    <div id="line" class="line" data-xt-bind="text=line" data-xt-trigger="port(line_seq):play(reveal)"
+         data-xt-timeline="reveal: 0 opacity 0, 0 transform translateY(6px), 260ms ease-out opacity 1, 260ms ease-out transform translateY(0px)"
+         style="position: absolute; left: 32px; top: 40px; width: 936px; height: 124px;">論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！</div>
+    <svg id="more" viewBox="0 0 14 10" data-xt-bind="display=choosing | eq(false)"
+         data-xt-timeline="idle loop: 0 opacity 1, 600ms ease-in-out opacity 0.25, 1200ms ease-in-out opacity 1"
+         style="position: absolute; left: 962px; top: 156px; width: 14px; height: 10px;">
+      <polygon id="Tri" points="0,0 14,0 7,10" fill="#a65432"/>
+    </svg>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

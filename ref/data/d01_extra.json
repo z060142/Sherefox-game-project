@@ -75,5 +75,20 @@
     "pass_clean": {"inspector": 1, "appraisal_limit": 2},
     "pass": {"inspector": 0, "appraisal_limit": 2},
     "fail": {"inspector": -1, "appraisal_limit": 1}
+  },
+  "warmup_play": {
+    "ref": "§2 S04 (rules line; L001-L015), §3.2 OBS_D01_W1-W3. A repeat of an observation already used correctly counts as wrong (design 3689f6d, E4). The third mistake plays L014 without L005 first (SPEC-QUESTION: the chapter does not say).",
+    "observations": ["W1", "W2", "W3"],
+    "opening": ["L001"],
+    "points": [
+      {"line": "L002", "answer": "W1", "reply": ["L003", "L004"]},
+      {"line": "L006", "answer": "W2", "reply": ["L007", "L008"]},
+      {"line": "L009", "answer": "W3", "reply": ["L010", "L011"]}
+    ],
+    "wrong": ["L005"],
+    "max_wrong": 3,
+    "success": ["L012"],
+    "clean": ["L013"],
+    "failure": ["L014", "L015"]
   }
 }

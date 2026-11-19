@@ -5,7 +5,8 @@
 """Write the v2 demo D01 chapter recording (M3: investigation, evidence list, notes, appraisal, carry screen, debate;
 docs/flows.md §4.13, tests/README.md) and its harness.
 
-tests/d1_m3.atrec clicks, from the title's v2 entry (chapter 101):
+tests/d1_m3.atrec clicks, from the title's v2 entry (chapter 101), through the story steps (S01 paper, S02 / S03 vn,
+a clean warm-up: tests/gen_d1_story.py story()), then:
 - the investigation: every place by its tab, every hotspot of it (data/d01/d1Hotspot.json), closing each note;
 - the evidence list: appraise E01 and E04 (A01, A04: the two appraisals), the private view of E01 set to 01A, the
   notes page, close;
@@ -36,6 +37,7 @@ TESTS = ROOT / "tests"
 sys.path.insert(0, str(TESTS))
 sys.path.insert(0, str(ROOT / "tools"))
 import gen_d1_play as gd  # noqa: E402
+import gen_d1_story as gs  # noqa: E402
 from sherefox_ref.v2 import routes as RT  # noqa: E402
 
 SPOTS = json.loads((ROOT / "data" / "d01" / "d1Hotspot.json").read_text(encoding="utf-8"))
@@ -78,14 +80,13 @@ def item_xy(i: int) -> tuple[int, int]:
     return 400, 124 + i * 34 + 15
 
 
-class Rec(gd.Rec):
+class Rec(gs.Rec):
     def mark(self, name: str, after: int = 4) -> None:
         self.marks[name] = self.t + after
 
 
 def investigate(r: Rec) -> None:
-    r.click("title", TITLE_V2, 40)
-    r.t += 30
+    gs.story(r, gs.RUNS["clean"])   # the title's v2 entry, S01-S03 and a clean warm-up (M4a) -> the investigation
     for i, scene in enumerate(SCENES):
         if i:
             r.click("d1inv", loc_xy(i), 10)

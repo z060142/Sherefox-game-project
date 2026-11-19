@@ -518,6 +518,8 @@ HEAD_CH03,市政廳官員陳屍駁船鍋爐室！房門反鎖，警方已逮捕�
 HEAD_CH03_SUB,巴斯克維爾警督：「兇手就在船上，本案今晚結束。」
 HEAD_CH04,歌劇院驚魂！女高音瓦倫小姐於詠嘆調中墜落舞台
 HEAD_CH04_SUB,學院派名偵探維多・克勞已封鎖現場：「真相明早公布。」
+HEAD_D01,守靈夜燈滅三分鐘　富商遺囑附錄不翼而飛
+HEAD_D01_DATE,1888 年 2 月
 HS_CH01_01_NAME,冰箱
 HS_CH01_02_NAME,空布丁盤
 HS_CH01_03_NAME,廚房地板
@@ -1526,11 +1528,14 @@ SHF_D01_CUT_OPEN_1,等一下！
 SHF_D01_CUT_OPEN_2,就是那一句。
 SHF_D01_CUT_OPEN_3,這三分鐘，你走得太遠了。
 SPK_ARTHUR,亞瑟
+SPK_BRIGGS,布里格斯
 SPK_D01_CEDRIC,塞德里克
 SPK_FITCH,費奇
 SPK_GRESHAM,格雷沙姆
 SPK_HOLLOWAY,霍洛威
 SPK_INSPECTOR_BASKERVILLE,巴斯克維爾
+SPK_LANDLADY,房東太太
+SPK_MRS_HYDE,海德太太
 SPK_NARRATION_ARTHURS_NOTES,旁白（亞瑟筆記）
 SPK_NEWSPAPER,報紙
 SPK_OLD_TOM,老湯姆
@@ -1585,6 +1590,7 @@ SYS_D01_CRACK,這一節帶 1 道裂紋。
 SYS_D01_CUT_EMPTY,落空。他沒有開口。我方 −5；下回合他的立論無法被截斷。
 SYS_D01_CUT_OK,截斷成功！{name} −{dmg} → {hp}，陷入破防。
 SYS_D01_CUT_PUSH,截斷強辯！{name} −{dmg} → {hp}，陷入破防。
+SYS_D01_CUT_SEALED,截斷被封住了。他早有防備，論點照常接上。
 SYS_D01_CUT_SOPH,截斷成功（同爭點的詭辯）。{name} −{dmg} → {hp}，陷入破防。紀錄留 1 道裂紋。
 SYS_D01_CUT_WIN,截斷成功。論戰勝利。
 SYS_D01_DENY_FACT,否定事實 1 次。
@@ -1598,6 +1604,7 @@ SYS_D01_FOOLED,{name}的反駁落空！−5 → {hp}，陷入破防。下回合�
 SYS_D01_HACHIKU_KEEP,破竹維持。
 SYS_D01_KEY_BREAK,截斷要害論點，且{name}處於破防——論破！
 SYS_D01_KEY_NORMAL,（要害論點；他可信度高於 50% 且原本沒有破防，算一般截斷。）
+SYS_D01_LASTCARD_CORNERED,{name}已是困獸，沒有回復。鎖定解除。
 SYS_D01_LASTCARD_HIT,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。{name}回復到上限的 {pct}%（{hp_o}），鎖定解除。
 SYS_D01_LASTCARD_NOHEAL,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。
 SYS_D01_LASTCARD_REMOVE,我方紀錄上帶裂紋的 {n} 節被打掉，連擊與破竹歸零。
@@ -1607,6 +1614,7 @@ SYS_D01_LASTSTAND_PROMPT,{name}的鏈：{chain}。選一個能駁倒其中一句
 SYS_D01_MISS_FACT,落空。他的論點是事實，打不掉。我方 −10 → {hp}。他的論點照常接上。
 SYS_D01_MISS_WRONG,落空。這句話駁不倒他的論點。我方 −5 → {hp}。他的論點照常接上。
 SYS_D01_NOW_KNOWN,妳現在知道：{fact}。
+SYS_D01_OPP_REBUT_MISS,{name}的反駁落空！−5 → {hp}，陷入破防。
 SYS_D01_PRIVATE,（公開私事：社會聲譽 −3，{person}好感 −1）
 SYS_D01_PSYCH_CROSS,{name}的{value}越過了門檻。
 SYS_D01_PSYCH_NOTE,（心理牌的節照詭辯結算，但不計裂紋；社會聲譽 −2。）
@@ -2372,6 +2380,7 @@ UI_V2_TYPE_EVIDENCE,證物
 UI_V2_TYPE_NOTE,人物筆記
 UI_V2_TYPE_OBS,觀察
 UI_V2_TYPE_PSYCH,心理牌
+UI_V2_WARMUP_PICK,選一條觀察，指出他的錯誤。
 UI_WARMUP_MISS,失誤 {n}／3
 UI_WARMUP_TITLE,熱身　糾正誤判
 WARN_BOARD_LOCK,進入論戰後，歸類理由將會鎖定，論戰中也不能修改線索板。確定嗎？

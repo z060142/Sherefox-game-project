@@ -2,7 +2,6 @@
 
 /* import: Vn.dc.html:1 */
 #vn {
-  background-color: #f3eedf;
   background-color: var(--paper);
   color: var(--ink);
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
@@ -58,6 +57,57 @@
   object-fit: contain;
 }
 
+.qb {
+  line-height: 25px;
+  text-align: center;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px #123a31;
+  border-bottom-width: 0px;
+  transition: background-color 120ms linear, color 120ms linear;
+}
+
+.choice {
+  background-color: var(--paper);
+  border: 1px #123a31;
+  transition: background-color 120ms linear;
+}
+
+.choice-num {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--copper);
+}
+
+.choice-text {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  border: 2px #123a31;
+  border-radius: 0px 0px 9px 9px;
+  background-color: var(--paper);
+}
+
+.note .line {
+  font-style: italic;
+  color: var(--ink-deep);
+  background-image: url("../shared/img/ui-ruled.png");
+  background-repeat: repeat;
+  border-left-width: 2px;
+  border-left-color: #a65432;
+}
+
 .fig {
   effect: color-adjust(brightness(0) saturate(0));
   transition: effect 220ms ease-out;
@@ -80,19 +130,6 @@
   color: var(--copper);
 }
 
-.qb {
-  line-height: 25px;
-  text-align: center;
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: var(--ink);
-  background-color: var(--paper);
-  border: 1px #123a31;
-  border-bottom-width: 0px;
-  transition: background-color 120ms linear, color 120ms linear;
-}
-
 .qb:hover {
   color: var(--paper);
   background-color: var(--ink);
@@ -103,35 +140,12 @@
   background-color: var(--paper-old);
 }
 
-.choice {
-  background-color: var(--paper);
-  border: 1px #123a31;
-  transition: background-color 120ms linear;
-}
-
 .choice:hover {
   background-color: var(--ink);
 }
 
 .choice:active {
   background-color: var(--paper-old);
-}
-
-.choice-num {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 15px;
-  line-height: 24px;
-  text-align: center;
-  color: var(--copper);
-}
-
-.choice-text {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 18px;
-  line-height: 24px;
-  color: var(--ink);
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .choice:hover .choice-text {
@@ -152,12 +166,6 @@
 
 .choice.locked:hover .choice-text {
   color: var(--lamp-gold);
-}
-
-.badge {
-  border: 2px #123a31;
-  border-radius: 0px 0px 9px 9px;
-  background-color: var(--paper);
 }
 
 .badge.on {
@@ -188,15 +196,6 @@
 .dlg.note {
   background-color: var(--paper-old);
   border-top-color: var(--copper);
-}
-
-.note .line {
-  font-style: italic;
-  color: var(--ink-deep);
-  background-image: url("../shared/img/ui-ruled.png");
-  background-repeat: repeat;
-  border-left-width: 2px;
-  border-left-color: #a65432;
 }
 
 .dlg.sys {

@@ -44,6 +44,7 @@
           <img id="bg-barge-deck" class="bg-art" src="../shared/img/bg-barge-deck.jpg" bind:display="bg | eq('barge_deck')"/>
           <img id="bg-boiler-room" class="bg-art" src="../shared/img/bg-boiler-room.jpg" bind:display="bg | eq('boiler_room')"/>
           <img id="bg-debate" class="bg-art" src="../shared/img/bg-debate.jpg" bind:display="bg | eq('debate')"/>
+          <img id="bg-d01-hall" class="bg-art" src="../shared/img/bg-d01-hall.jpg" bind:display="bg | eq('d01_hall')"/>
         </div>
       </div>
       <div id="slot-c" class="fig" bind:class.dim="focus | ne(2)" bind:class.narr="focus | eq(0)">
@@ -55,6 +56,10 @@
           <img id="ch-c-wolfhart" class="ch-art" src="../shared/img/ch-c-wolfhart.png" bind:display="slot_c | eq('wolfhart')"/>
           <img id="ch-c-valet" class="ch-art" src="../shared/img/ch-c-valet.png" bind:display="slot_c | eq('valet')"/>
           <img id="ch-c-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_c | eq('partner')"/>
+          <img id="ch-c-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_c | eq('landlady')"/>
+          <img id="ch-c-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_c | eq('mrs_hyde')"/>
+          <img id="ch-c-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_c | eq('briggs')"/>
+          <img id="ch-c-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_c | eq('cedric_composed')"/>
         </div>
       </div>
       <div id="slot-l" class="fig" bind:class.dim="focus | ne(1)" bind:class.narr="focus | eq(0)">
@@ -66,6 +71,10 @@
           <img id="ch-l-wolfhart" class="ch-art" src="../shared/img/ch-c-wolfhart.png" bind:display="slot_l | eq('wolfhart')"/>
           <img id="ch-l-valet" class="ch-art" src="../shared/img/ch-c-valet.png" bind:display="slot_l | eq('valet')"/>
           <img id="ch-l-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_l | eq('partner')"/>
+          <img id="ch-l-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_l | eq('landlady')"/>
+          <img id="ch-l-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_l | eq('mrs_hyde')"/>
+          <img id="ch-l-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_l | eq('briggs')"/>
+          <img id="ch-l-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_l | eq('cedric_composed')"/>
         </div>
       </div>
       <div id="slot-r" class="fig" bind:class.dim="focus | ne(3)" bind:class.narr="focus | eq(0)">
@@ -77,6 +86,10 @@
           <img id="ch-r-wolfhart" class="ch-art" src="../shared/img/ch-c-wolfhart.png" bind:display="slot_r | eq('wolfhart')"/>
           <img id="ch-r-valet" class="ch-art" src="../shared/img/ch-c-valet.png" bind:display="slot_r | eq('valet')"/>
           <img id="ch-r-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_r | eq('partner')"/>
+          <img id="ch-r-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_r | eq('landlady')"/>
+          <img id="ch-r-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_r | eq('mrs_hyde')"/>
+          <img id="ch-r-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_r | eq('briggs')"/>
+          <img id="ch-r-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_r | eq('cedric_composed')"/>
         </div>
       </div>
       <div id="shade" bind:display="bg | ne('')"/>

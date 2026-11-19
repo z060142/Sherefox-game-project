@@ -518,6 +518,8 @@ HEAD_CH03,"Municipal Hall Official Found Dead in Barge Boiler Room! Door Bolted 
 HEAD_CH03_SUB,"Inspector Baskerville: ""The killer is on that barge. This case ends tonight."""
 HEAD_CH04,Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria
 HEAD_CH04_SUB,"Celebrated academic detective Victor Crowe has sealed off the scene: ""The truth will be made known tomorrow morning."""
+HEAD_D01,Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes
+HEAD_D01_DATE,February 1888
 HS_CH01_01_NAME,Fridge
 HS_CH01_02_NAME,Empty Pudding Plate
 HS_CH01_03_NAME,Kitchen Floor
@@ -1526,11 +1528,14 @@ SHF_D01_CUT_OPEN_1,Hold on!
 SHF_D01_CUT_OPEN_2,That's the one.
 SHF_D01_CUT_OPEN_3,You wandered rather far in those three minutes.
 SPK_ARTHUR,Arthur
+SPK_BRIGGS,Briggs
 SPK_D01_CEDRIC,Cedric
 SPK_FITCH,Fitch
 SPK_GRESHAM,Gresham
 SPK_HOLLOWAY,Holloway
 SPK_INSPECTOR_BASKERVILLE,Inspector Baskerville
+SPK_LANDLADY,Landlady
+SPK_MRS_HYDE,Mrs Hyde
 SPK_NARRATION_ARTHURS_NOTES,Narration (Arthur's Notes)
 SPK_NEWSPAPER,Newspaper
 SPK_OLD_TOM,Old Tom
@@ -1585,6 +1590,7 @@ SYS_D01_CRACK,This link carries 1 crack.
 SYS_D01_CUT_EMPTY,Whiffed. He said nothing. You −5; next round his Assert cannot be cut in on.
 SYS_D01_CUT_OK,Cut-in! {name} −{dmg} → {hp}. His guard is down.
 SYS_D01_CUT_PUSH,You cut in on his Press! {name} −{dmg} → {hp}. His guard is down.
+SYS_D01_CUT_SEALED,Your cut-in is shut out. He was ready for it; his point lands as usual.
 SYS_D01_CUT_SOPH,Cut-in (sophistry on the same Issue). {name} −{dmg} → {hp}. His guard is down. 1 crack left on your record.
 SYS_D01_CUT_WIN,Cut-in successful. You win the debate.
 SYS_D01_DENY_FACT,1 fact argued away.
@@ -1598,6 +1604,7 @@ SYS_D01_FOOLED,{name}'s rebuttal whiffs! −5 → {hp}. His guard is down. His t
 SYS_D01_HACHIKU_KEEP,Unstoppable holds.
 SYS_D01_KEY_BREAK,You cut in on his keystone point while {name}'s guard is down—Break!
 SYS_D01_KEY_NORMAL,"(A keystone point, but his Credibility is above 50% and his guard was not down, so this counts as a normal cut-in.)"
+SYS_D01_LASTCARD_CORNERED,{name} is cornered and recovers nothing. The lock is lifted.
 SYS_D01_LASTCARD_HIT,"His last card! You take {formula} = {dmg} → {hp}. {name} recovers to {pct}% of his maximum ({hp_o}), and the lock is lifted."
 SYS_D01_LASTCARD_NOHEAL,His last card! You take {formula} = {dmg} → {hp}.
 SYS_D01_LASTCARD_REMOVE,The {n} cracked links on your record are knocked down. Combo and Unstoppable reset.
@@ -1607,6 +1614,7 @@ SYS_D01_LASTSTAND_PROMPT,{name}'s chain: {chain}. Choose a sound claim that refu
 SYS_D01_MISS_FACT,Whiffed. His point is a fact; it cannot be knocked down. You −10 → {hp}. His point lands as usual.
 SYS_D01_MISS_WRONG,Whiffed. That claim does not refute his point. You −5 → {hp}. His point lands as usual.
 SYS_D01_NOW_KNOWN,Now you know: {fact}.
+SYS_D01_OPP_REBUT_MISS,{name}'s rebuttal whiffs! −5 → {hp}. His guard is down.
 SYS_D01_PRIVATE,"(Private matter exposed: reputation −3, {person}'s regard −1)"
 SYS_D01_PSYCH_CROSS,{name}'s {value} has crossed the threshold.
 SYS_D01_PSYCH_NOTE,(A Mind Game link resolves like sophistry but leaves no crack; reputation −2.)
@@ -2372,6 +2380,7 @@ UI_V2_TYPE_EVIDENCE,Evidence
 UI_V2_TYPE_NOTE,Note
 UI_V2_TYPE_OBS,Observation
 UI_V2_TYPE_PSYCH,Mind Game
+UI_V2_WARMUP_PICK,Pick an observation that shows where he is wrong.
 UI_WARMUP_MISS,Mistakes {n}/3
 UI_WARMUP_TITLE,Warm-up: Correct the Misjudgement
 WARN_BOARD_LOCK,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?"

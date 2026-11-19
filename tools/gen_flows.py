@@ -359,7 +359,20 @@ SCENE_BG = {"kitchen": "kitchen_morning", "clock_shop": "clockshop", "boiler_roo
 # 10-cases 場景與登場人物 -> the scene's name key (investigate.area_name; SCENE_CH0x_*)
 SCENE_NAME = {(1, "kitchen"): "SCENE_CH01_KITCHEN", (2, "clock_shop"): "SCENE_CH02_CLOCKSHOP",
               (3, "boiler_room"): "SCENE_CH03_BOILER", (3, "deck"): "SCENE_CH03_DECK", (3, "dock"): "SCENE_CH03_DOCK"}
-D01_DEV_ROW = "D01_02"   # the v2 demo's debate row (tools/build_data.py D01_STEPS): the title's dev shortcut
+D01_CHAPTER = 101        # the v2 demo D01's chapter number in the steps table (tools/build_data.py D01_CHAPTER)
+D01_DEV_KIND = "d1debate"   # the title's dev shortcut enters the D01 row of this kind (docs/flows.md §4.13)
+
+
+def d01_dev_row() -> str:
+    return next(s["id"] for s in load("steps") if s["chapter"] == D01_CHAPTER and s["kind"] == D01_DEV_KIND)
+
+
+def scene_key(g: "Graph", name: str, chapter: str, scene: str) -> str:
+    """script.sceneKey of a chapter's scene: CH0{chapter}_{scene} for v1 (chapters 1-9), D01_{scene} for the v2 demo
+    (chapter 101; tools/build_data.py build_d01_script)."""
+    g.fmt(name + "V1", "CH0{a}_{b}", chapter, scene)
+    g.fmt(name + "D1", "D01_{a}", scene)
+    return g.sel(name, g.cmp(name + "IsD1", chapter, g.k(D01_CHAPTER)), name + "D1", name + "V1")
 SLOTS = 15          # board: 3 chains x 5 slots (ui-contracts board)
 LOOSE = 9           # debBoard slots 15..23 (docs/debate-engine.md §2.2)
 
@@ -563,6 +576,9 @@ MUSIC = {
 # cross = crossfade (new in, old out together); cut = the old track fades out, then the new one starts at full volume;
 # out = fade to silence. A change of the moment default (flowBgm) is a cross; the end card is an out.
 FADE_SECONDS = {"cross": 1.5, "cut": 0.2, "out": 2.0}
+# The v2 demo D01's steps without script lines -> the bgmCues line whose cue they play (docs/flows.md §4.10)
+D01_FIXED_CUES = (("d1warmup", "SCR_D01_S04_L001"), ("d1investigate", "SCR_D01_S05_START"),
+                  ("d1carry", "SCR_D01_S06_L001"))
 SFX = ["SFX_DEB_WIN", "SFX_DEB_LOSE"]   # one-shot cues (docs/audio-requests.md §3), audio/sfx/<id>.mp3
 
 
@@ -588,7 +604,7 @@ def audio_decl() -> dict:
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
 FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
-              "d01_investigate", "d01_debate_ui", "d01_debate_engine", "result", "music"]
+              "d01_warmup", "d01_investigate", "d01_debate_ui", "d01_debate_engine", "result", "music"]
 
 
 def game_json_text(tables: dict) -> str:
@@ -596,11 +612,12 @@ def game_json_text(tables: dict) -> str:
     import gen_debui_v2
     import gen_debate_v2
     import gen_inv_v2
+    import gen_warm_v2
     game = json.loads(GAME_JSON.read_text(encoding="utf-8"))
     # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py);
     # the v2 demo: the D01 engine's (tools/gen_debate_v2.py) and its screen's (tools/gen_debui_v2.py)
     for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS, **gen_debate_v2.SIGNALS,
-                       **gen_debui_v2.SIGNALS, **gen_inv_v2.SIGNALS}.items():
+                       **gen_debui_v2.SIGNALS, **gen_inv_v2.SIGNALS, **gen_warm_v2.SIGNALS}.items():
         game["signals"][name] = decl
     colls = game.get("collections", {})
     colls.update(gen_debate.COLLECTIONS)
@@ -609,6 +626,7 @@ def game_json_text(tables: dict) -> str:
     colls.update(gen_debate_v2.COLLECTIONS)
     colls.update(gen_debui_v2.COLLECTIONS)
     colls.update(gen_inv_v2.COLLECTIONS)
+    colls.update(gen_warm_v2.COLLECTIONS)
     game["collections"] = colls
     surfaces = game["ui"]["surfaces"]
     if not any(s["ui"] == gen_debui_v2.UI for s in surfaces):   # the v2 debate screen, after result (a main screen)
@@ -616,7 +634,8 @@ def game_json_text(tables: dict) -> str:
         surfaces.insert(at, {"ui": gen_debui_v2.UI, "width": 1280, "height": 720, "visible": False})
     # the v2 demo's investigation and carry screens (main screens, after d1debate) and its evidence list (a modal
     # overlay, before the settings)
-    for ui, after, modal in (("d1inv", gen_debui_v2.UI, False), ("d1carry", "d1inv", False), ("d1book", "notes", True)):
+    for ui, after, modal in (("d1inv", gen_debui_v2.UI, False), ("d1carry", "d1inv", False), ("d1warm", "d1carry", False),
+                             ("d1book", "notes", True)):
         if not any(s["ui"] == ui for s in surfaces):
             at = next(i for i, s in enumerate(surfaces) if s["ui"] == after) + 1
             decl = {"ui": ui, "width": 1280, "height": 720, "visible": False}
@@ -799,7 +818,7 @@ def gen_main() -> Graph:
     # restart logic as a chapter, its row chosen by `entry` (switched before the pulses reach the latch); world.d1Dev
     # tells the debate to load route A's fixed set (a chapter choice clears it)
     g.node("devRow", "atrium.table.find", table="steps", column="id")
-    g.edge(g.k(D01_DEV_ROW), "devRow.value")
+    g.edge(g.k(d01_dev_row()), "devRow.value")
     g.node("entry", "state", initial="ch", states=["ch", "dev"],
            transitions=[{"from": "*", "on": "ch", "to": "ch"}, {"from": "*", "on": "dev", "to": "dev"}])
     g.edge("ui#title.chapter.emitted", "entry.ch")
@@ -861,7 +880,8 @@ def gen_main() -> Graph:
     # Screens: exactly one of title / paper / vn / investigate / board / debate / result is visible; `end` shows
     # the title with its end card; warmup and debate steps show the debate; a result step shows the result, then
     # the vn for its scene's lines (world.resultLines).
-    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result", "d1debate", "d1inv", "d1carry"]
+    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result", "d1debate", "d1inv", "d1carry",
+               "d1warm"]
     g.node("screen", "state", initial="title", states=screens,
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
     # A debate / warmup step whose scene has `pre` lines (script.cue) starts on the vn; the debate screen comes with
@@ -874,7 +894,7 @@ def gen_main() -> Graph:
                            ("isInv", "investigate", "investigate"), ("isBoard", "board", "board"),
                            ("isDeb", "debate", None), ("isWarm", "warmup", None), ("isRes", "result", "result"),
                            ("isD1Inv", "d1investigate", "d1inv"), ("isD1Car", "d1carry", "d1carry"),
-                           ("isD1Deb", "d1debate", "d1debate")):
+                           ("isD1Deb", "d1debate", "d1debate"), ("isD1Warm", "d1warmup", "d1warm")):
         g.const(name + "Tag", tag)
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
@@ -974,7 +994,7 @@ def gen_main() -> Graph:
            transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
     g.edge("ui#title.open_settings", "settings.open")
     for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes", "d1debate", "d1inv", "d1book",
-               "d1carry"):
+               "d1carry", "d1warm"):
         g.edge(f"ui#{ui}.settings", "settings.open")
     g.edge("ui#settings.close", "settings.close")
     g.node("settingsVis", "lookup", values=[False, True])
@@ -1085,15 +1105,14 @@ def gen_dialogue() -> Graph:
     g.x("vnOrRes", "isVnN || isResN || isDebK")
     g.node("vnScene", "select")
     g.node("chText", "toString")
-    g.node("sceneKey", "format", format="CH0{a}_{b}")   # script.sceneKey, e.g. CH01_S02 (chapters 1-9)
     g.edge("world.stepKind", "isVn.a")
     g.edge("vnTag.out", "isVn.b")
     g.edge("vnOrRes.truth", "vnScene.cond")
     g.edge("world.stepScene", "vnScene.a")
     g.edge("empty.out", "vnScene.b")
     g.edge("world.chapter", "chText.in")
-    g.edge("world.chapter", "sceneKey.a")
-    g.edge("vnScene.out", "sceneKey.b")
+    # script.sceneKey, e.g. CH01_S02 (chapters 1-9), D01_S02 (the v2 demo)
+    g.put("sceneKey.out", scene_key(g, "sceneKey", "world.chapter", "vnScene.out"))
 
     # A result step's lines (world.resultLines, after the result screen) are the rows of its branch (script.branch
     # win / lose, world.resultBranch); vn scenes have no branch rows.
@@ -1226,7 +1245,9 @@ def gen_dialogue() -> Graph:
     g.node("chTitle", "atrium.text")
     g.edge("chText.out", "chRow.value")
     g.edge("chRow.row", "chTitleKey.row")
-    g.edge("chTitleKey.value", "chTitle.key")
+    # the v2 demo D01 (chapter 101) is not in the chapters table: its tab is the title entry's case name
+    g.edge(g.sel("chTitleK", g.cmp("chIsD1", "world.chapter", g.k(D01_CHAPTER)), g.k("CHAP_D01_TITLE"),
+                 "chTitleKey.value"), "chTitle.key")
     g.edge("chTitle.text", "ui#vn.chapter_title")
     g.edge("zero.out", "ui#vn.choice_count")
     for i in range(1, 5):
@@ -1290,13 +1311,19 @@ def gen_paper() -> Graph:
         text(f"result{col}", f"sx{col}", port)
     g.edge(key("pictureId", "pictureId"), "ui#paper.picture")
 
-    # No data for these yet (docs/flows.md): plain masthead, no stamp, no dateline.
+    # No data for these yet (docs/flows.md): plain masthead, no stamp. The dateline: papers.datelineKey (only the v2
+    # demo D01's paper has one; v1's are empty).
     g.edge("zero.out", "ui#paper.mast")
     g.edge("zero.out", "ui#paper.stamp")
-    g.edge("empty.out", "ui#paper.dateline")
+    text("dateline", key("datelineKey", "datelineKey"), "dateline")
 
     # Pages: pg 1 = front page, 2 = second page, 3 = read (step done). Reset when a paper step begins; next/prev
     # only count during a paper step.
+    # papers.pages: 2 (v1), 1 (the D01 paper: a click on the front page ends it)
+    g.node("pages", "atrium.table.get", table="papers", column="pages", type="number")
+    g.edge("prow.row", "pages.row")
+    g.node("pgEnd", "atrium.expr", expr="pages + 1")
+    g.edge("pages.value", "pgEnd.pages")
     g.node("pg", "counter", initial=1, min=1, max=3)
     g.node("page", "atrium.expr", expr="min(pg, 2)")
     g.node("pgDone", "compare", op="ge")
@@ -1312,7 +1339,7 @@ def gen_paper() -> Graph:
     g.edge("pg.value", "page.pg")
     g.edge("page.value", "ui#paper.page")
     g.edge("pg.value", "pgDone.a")
-    g.edge("three.out", "pgDone.b")
+    g.edge("pgEnd.value", "pgDone.b")
     g.edge("pgDone.true", "world.stepDone")
     return g
 
@@ -2139,17 +2166,26 @@ def gen_music() -> Graph:
 
     # ---- the scene cue: the shown line (a paper step: its lead) when it belongs to the step's scene
     body = g.tget("cueBody", "papers", "bodyKey", g.tfind("cuePaper", "papers", "group", "world.stepArg"))
-    key = g.sel("cueKey", "is_paper", body, "world.vnLine")
+    key = g.sel("cueKey0", "is_paper", body, "world.vnLine")
+    # the v2 demo D01's steps that show no script line take a fixed cue row (bgmCues; tools/build_data.py
+    # build_d01_cues): the warm-up its first line's (the whole warm-up), the investigation the pseudo start id, the
+    # carry screen its first line's (S06 L001). The debate has none yet (later ticket): it keeps its moment.
+    fixed = g.k("")
+    for kind, line in D01_FIXED_CUES:
+        fixed = g.sel(f"cueFix_{kind}", g.cmp(f"isFix_{kind}", "world.stepKind", g.k(kind)), g.k(line), fixed)
+    g.put("cueFixed", fixed)
+    g.n("fixedN", g.cmp("isFixed", "cueFixed", g.k(""), "ne"))
+    key = g.sel("cueKey", "isFixed", "cueFixed", key)
     crow = g.tfind("cueRow", "bgmCues", "line", key)
     g.cmp("cueHere", g.tget("cueScene", "bgmCues", "scene", crow),
-          g.fmt("stepScene", "CH0{a}_{b}", "world.chapter", "world.stepScene"))
+          scene_key(g, "stepScene", "world.chapter", "world.stepScene"))
     g.toggle("debOn")   # the debate screen has taken over from the step's opening lines
     g.edge("world.stepBegin", "debOn.setFalse")
     g.edge("world.debGo", "debOn.setTrue")
     for nm, flag in (("isPaperN", "is_paper"), ("isVnN", "is_vn"), ("isResN", "is_result"), ("cueHereN", "cueHere"),
                      ("debOnN", "debOn")):
         g.n(nm, flag)
-    g.x("cueOk", "cueRow >= 0 && (isPaperN || cueHereN && (isVnN || isResN || isDebK && !debOnN))")
+    g.x("cueOk", "cueRow >= 0 && (isPaperN || fixedN || cueHereN && (isVnN || isResN || isDebK && !debOnN))")
     g.tget("cueBgm", "bgmCues", "bgm", crow)
     g.tget("cueFade", "bgmCues", "fade", crow)
     g.tget("cueSecs", "bgmCues", "secs", crow, "number")
@@ -2215,9 +2251,11 @@ def graphs() -> dict:
     import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
     import gen_debui_v2  # the v2 demo D01 debate screen
     import gen_inv_v2  # the v2 demo D01 investigation, evidence list and carry screen
+    import gen_warm_v2  # the v2 demo D01 warm-up
     return {"main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
             "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music,
-            "d01_debate_ui": gen_debui_v2.gen_d01ui, "d01_investigate": gen_inv_v2.gen_d01inv}
+            "d01_debate_ui": gen_debui_v2.gen_d01ui, "d01_investigate": gen_inv_v2.gen_d01inv,
+            "d01_warmup": gen_warm_v2.gen_d01warm}
 
 
 def outputs() -> dict[Path, str]:

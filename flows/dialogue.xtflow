@@ -138,14 +138,39 @@
       "type": "toString"
     },
     {
-      "id": "sceneKey",
+      "id": "sceneKeyV1",
       "type": "format",
       "params": {
         "format": "CH0{a}_{b}"
       }
     },
     {
+      "id": "sceneKeyD1",
+      "type": "format",
+      "params": {
+        "format": "D01_{a}"
+      }
+    },
+    {
       "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": 101
+      }
+    },
+    {
+      "id": "sceneKeyIsD1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "sceneKey",
+      "type": "select"
+    },
+    {
+      "id": "K6",
       "type": "constant",
       "params": {
         "value": ""
@@ -166,7 +191,7 @@
       }
     },
     {
-      "id": "K6",
+      "id": "K7",
       "type": "constant",
       "params": {
         "value": "row"
@@ -211,14 +236,14 @@
       }
     },
     {
-      "id": "K7",
+      "id": "K8",
       "type": "constant",
       "params": {
         "value": "-"
       }
     },
     {
-      "id": "K8",
+      "id": "K9",
       "type": "constant",
       "params": {
         "value": "pre"
@@ -589,6 +614,24 @@
       "type": "atrium.text"
     },
     {
+      "id": "chIsD1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "CHAP_D01_TITLE"
+      }
+    },
+    {
+      "id": "chTitleK",
+      "type": "select"
+    },
+    {
       "id": "postTimer",
       "type": "timer",
       "params": {
@@ -717,10 +760,34 @@
     },
     {
       "from": "world.chapter",
-      "to": "sceneKey.a"
+      "to": "sceneKeyV1.a"
     },
     {
       "from": "vnScene.out",
+      "to": "sceneKeyV1.b"
+    },
+    {
+      "from": "vnScene.out",
+      "to": "sceneKeyD1.a"
+    },
+    {
+      "from": "world.chapter",
+      "to": "sceneKeyIsD1.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "sceneKeyIsD1.b"
+    },
+    {
+      "from": "sceneKeyIsD1.out",
+      "to": "sceneKey.cond"
+    },
+    {
+      "from": "sceneKeyD1.out",
+      "to": "sceneKey.a"
+    },
+    {
+      "from": "sceneKeyV1.out",
       "to": "sceneKey.b"
     },
     {
@@ -732,7 +799,7 @@
       "to": "branch.a"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "branch.b"
     },
     {
@@ -744,7 +811,7 @@
       "to": "first.filterValue"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "cur.key"
     },
     {
@@ -768,11 +835,11 @@
       "to": "preCue.cond"
     },
     {
-      "from": "K7.out",
+      "from": "K8.out",
       "to": "preCue.a"
     },
     {
-      "from": "K8.out",
+      "from": "K9.out",
       "to": "preCue.b"
     },
     {
@@ -1124,7 +1191,7 @@
       "to": "disp.trigger"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "setRow.key"
     },
     {
@@ -1256,7 +1323,27 @@
       "to": "chTitleKey.row"
     },
     {
+      "from": "world.chapter",
+      "to": "chIsD1.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "chIsD1.b"
+    },
+    {
+      "from": "chIsD1.out",
+      "to": "chTitleK.cond"
+    },
+    {
+      "from": "K10.out",
+      "to": "chTitleK.a"
+    },
+    {
       "from": "chTitleKey.value",
+      "to": "chTitleK.b"
+    },
+    {
+      "from": "chTitleK.out",
       "to": "chTitle.key"
     },
     {

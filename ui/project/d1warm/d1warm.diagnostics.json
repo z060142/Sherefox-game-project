@@ -1,0 +1,464 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #bg right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "bg",
+      "source": "D1Warm.dc.html",
+      "line": 53,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hit right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "hit",
+      "source": "D1Warm.dc.html",
+      "line": 56,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #fig-l left: -10px; bottom: auto; top: 150px -> anchor: left bottom; offset: -42px 42px; size: 340px 510px",
+      "element": "fig-l",
+      "source": "D1Warm.dc.html",
+      "line": 60,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: -10px; bottom: auto; top: 150px",
+        "to": "anchor: left bottom; offset: -42px 42px; size: 340px 510px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #fig-r right: auto; left: 950px; bottom: auto; top: 150px -> anchor: right bottom; offset: -42px 42px; size: 340px 510px",
+      "element": "fig-r",
+      "source": "D1Warm.dc.html",
+      "line": 64,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 950px; bottom: auto; top: 150px",
+        "to": "anchor: right bottom; offset: -42px 42px; size: 340px 510px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head right auto -> 0",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "right",
+        "from": "auto",
+        "to": "0"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head width 1280px -> (removed)",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "width",
+        "from": "1280px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head top 0px -> calc(1safe-top - 18px)",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "0px",
+        "to": "calc(1safe-top - 18px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #point left: 300px; top: 96px -> anchor: left top; offset: 268px 78px; size: 680px 140px",
+      "element": "point",
+      "source": "D1Warm.dc.html",
+      "line": 79,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 300px; top: 96px",
+        "to": "anchor: left top; offset: 268px 78px; size: 680px 140px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #prompt left 300px -> calc(1safe-left + 268px)",
+      "element": "prompt",
+      "source": "D1Warm.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "300px",
+        "to": "calc(1safe-left + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #prompt top 252px -> calc(36.21% - 8.69px)",
+      "element": "prompt",
+      "source": "D1Warm.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "252px",
+        "to": "calc(36.21% - 8.69px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-1 left 300px -> calc(1safe-left + 268px)",
+      "element": "obs-1",
+      "source": "D1Warm.dc.html",
+      "line": 88,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "300px",
+        "to": "calc(1safe-left + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-1 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-1",
+      "source": "D1Warm.dc.html",
+      "line": 88,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-2 left 532px -> calc(50% - 108px)",
+      "element": "obs-2",
+      "source": "D1Warm.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "532px",
+        "to": "calc(50% - 108px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-2 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-2",
+      "source": "D1Warm.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 right auto -> calc(1safe-right + 268px)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "right",
+        "from": "auto",
+        "to": "calc(1safe-right + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 left 764px -> (removed)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "764px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #dlg left: 140px; bottom: auto; top: 520px -> anchor: left bottom; offset: 108px 6px; size: 1000px 176px",
+      "element": "dlg",
+      "source": "D1Warm.dc.html",
+      "line": 108,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 140px; bottom: auto; top: 520px",
+        "to": "anchor: left bottom; offset: 108px 6px; size: 1000px 176px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 30 element(s) is written to their <layout> #id rules (#d1warm, #bg, #hit, #fig-l, #fig-r, ...)",
+      "element": "",
+      "source": "D1Warm.dc.html",
+      "line": 48,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "elements": "30",
+        "ids": "#d1warm #bg #hit #fig-l #fig-r #head #extra #title #miss #rule-a #rule-b #point #point-t #prompt #obs-1 #obs-1-k #obs-1-n #obs-1-t #obs-2 #obs-2-k #obs-2-n #obs-2-t #obs-3 #obs-3-k #obs-3-n #obs-3-t #dlg #spk #line #more"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

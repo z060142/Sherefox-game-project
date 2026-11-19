@@ -206,7 +206,7 @@
       "id": "K0",
       "type": "constant",
       "params": {
-        "value": "D01_02"
+        "value": "D01_06"
       }
     },
     {
@@ -313,7 +313,8 @@
           "result",
           "d1debate",
           "d1inv",
-          "d1carry"
+          "d1carry",
+          "d1warm"
         ],
         "transitions": [
           {
@@ -365,6 +366,11 @@
             "from": "*",
             "on": "to_d1carry",
             "to": "d1carry"
+          },
+          {
+            "from": "*",
+            "on": "to_d1warm",
+            "to": "d1warm"
           }
         ]
       }
@@ -554,6 +560,20 @@
       }
     },
     {
+      "id": "isD1WarmTag",
+      "type": "constant",
+      "params": {
+        "value": "d1warmup"
+      }
+    },
+    {
+      "id": "isD1Warm",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "isDebN",
       "type": "select"
     },
@@ -656,6 +676,7 @@
           false,
           false,
           false,
+          false,
           false
         ]
       }
@@ -667,6 +688,7 @@
         "values": [
           false,
           true,
+          false,
           false,
           false,
           false,
@@ -692,6 +714,7 @@
           false,
           false,
           false,
+          false,
           false
         ]
       }
@@ -705,6 +728,7 @@
           false,
           false,
           true,
+          false,
           false,
           false,
           false,
@@ -728,6 +752,7 @@
           false,
           false,
           false,
+          false,
           false
         ]
       }
@@ -743,6 +768,7 @@
           false,
           false,
           true,
+          false,
           false,
           false,
           false,
@@ -764,6 +790,7 @@
           true,
           false,
           false,
+          false,
           false
         ]
       }
@@ -781,6 +808,7 @@
           false,
           false,
           true,
+          false,
           false,
           false
         ]
@@ -800,6 +828,7 @@
           false,
           false,
           true,
+          false,
           false
         ]
       }
@@ -809,6 +838,26 @@
       "type": "lookup",
       "params": {
         "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1warm",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
           false,
           false,
           false,
@@ -1411,6 +1460,18 @@
       "to": "screen.to_d1debate"
     },
     {
+      "from": "kind.value",
+      "to": "isD1Warm.a"
+    },
+    {
+      "from": "isD1WarmTag.out",
+      "to": "isD1Warm.b"
+    },
+    {
+      "from": "isD1Warm.true",
+      "to": "screen.to_d1warm"
+    },
+    {
       "from": "isDeb.out",
       "to": "isDebN.cond"
     },
@@ -1639,6 +1700,14 @@
       "to": "ui#d1carry.visible"
     },
     {
+      "from": "screen.index",
+      "to": "visD1warm.index"
+    },
+    {
+      "from": "visD1warm.out",
+      "to": "ui#d1warm.visible"
+    },
+    {
       "from": "isInv.out",
       "to": "bookGate.guard"
     },
@@ -1780,6 +1849,10 @@
     },
     {
       "from": "ui#d1carry.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1warm.settings",
       "to": "settings.open"
     },
     {

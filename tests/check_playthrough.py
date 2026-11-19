@@ -18,7 +18,7 @@ Environment:
 Checks:
 1. Data assumptions of flows/dialogue.xtflow: every vn scene of Ch.1-3 has playable rows (script.playable; the
    flow skips the others, so they need not be contiguous), script.playable follows its rule (kind line, not inactive, not S90), and sceneKey is
-   CH0n_Sss with n < 10 (the flow builds it with format "CH0{a}_{b}").
+   CH0n_Sss with n < 10 (the flow builds it with format "CH0{a}_{b}"), or D01_Sss for the v2 demo D01 (chapter 101).
 2. ch1_playthrough (zh-TW and --lang en): every playable line of Ch.1's vn steps is shown exactly once, in order
    (one vn.line_seq change per line, with the expected vn.line and vn.speaker text), the vn surface is the only
    visible main screen while lines are shown, the Ch.1 paper shows both pages while it is the only visible main
@@ -79,17 +79,22 @@ class Failures:
 
 # ---------------------------------------------------------------- data assumptions
 
+def scene_key(chapter: int, scene: str) -> str:
+    """script.sceneKey: CH0n_Sxx (v1), D01_Sxx (the v2 demo D01, chapter 101; tools/gen_flows.py scene_key)."""
+    return f"D01_{scene}" if chapter == 101 else f"CH0{chapter}_{scene}"
+
+
 def check_data(fail: Failures) -> None:
     script = load("script")
     for r in script:
         fail.check(r["playable"] == (r["kind"] == "line" and not r["inactive"] and r["scene"] != "S90"),
                    f"{r['id']}: playable {r['playable']} does not follow the rule (data-schema §3)")
-        fail.check(r["sceneKey"] == f"CH0{r['chapter']}_{r['scene']}" and r["chapter"] < 10,
+        fail.check(r["sceneKey"] == scene_key(r["chapter"], r["scene"]) and (r["chapter"] < 10 or r["chapter"] == 101),
                    f"{r['id']}: sceneKey {r['sceneKey']!r}")
     for step in load("steps"):
         if step["kind"] != "vn":
             continue
-        key = f"CH0{step['chapter']}_{step['scene']}"
+        key = scene_key(step["chapter"], step["scene"])
         idx = [i for i, r in enumerate(script) if r["sceneKey"] == key and r["playable"]]
         fail.check(bool(idx), f"{step['id']}: {key} has no playable row")
 

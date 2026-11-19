@@ -120,6 +120,14 @@
       "h": 720,
       "title": "D1Carry",
       "page": "main"
+    },
+    "D1Warm.dc.html": {
+      "x": 0,
+      "y": 12000,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Warm",
+      "page": "main"
     }
   },
   "order": [
@@ -137,7 +145,8 @@
     "D1Debate.dc.html",
     "D1Inv.dc.html",
     "D1Book.dc.html",
-    "D1Carry.dc.html"
+    "D1Carry.dc.html",
+    "D1Warm.dc.html"
   ],
   "pages": [
     "main"

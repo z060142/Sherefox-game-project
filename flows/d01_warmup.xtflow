@@ -1,0 +1,1062 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "n"
+      }
+    },
+    {
+      "id": "n",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "pt"
+      }
+    },
+    {
+      "id": "pt",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": "mis"
+      }
+    },
+    {
+      "id": "mis",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "d1warmup"
+      }
+    },
+    {
+      "id": "isWarmK",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isWarmN",
+      "type": "select"
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "begin",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "choosing",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "n == 2 || n == 6 || n == 9"
+      }
+    },
+    {
+      "id": "nextN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "n == 1 ? 2 : n == 3 ? 4 : n == 4 ? 6 : n == 7 ? 8 : n == 8 ? 9 : n == 10 ? 11 : n == 11 ? 12 : n == 5 ? (pt == 0 ? 2 : pt == 1 ? 6 : 9) : n == 12 ? (mis == 0 ? 13 : 0) : n == 14 ? 15 : 0"
+      }
+    },
+    {
+      "id": "advK",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "advOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "n > 0 && !choosing"
+      }
+    },
+    {
+      "id": "advG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "nextOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nextN > 0"
+      }
+    },
+    {
+      "id": "showNextG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "nextEnd",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nextN == 0"
+      }
+    },
+    {
+      "id": "doneG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "nextPt",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nextN == 6 ? 1 : nextN == 9 ? 2 : pt"
+      }
+    },
+    {
+      "id": "w1_pt_1",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "w1_n_2",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "pickK",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pickG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "right",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pick == pt + 1"
+      }
+    },
+    {
+      "id": "misN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "right ? mis : mis + 1"
+      }
+    },
+    {
+      "id": "pickN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "right ? (pt == 0 ? 3 : pt == 1 ? 7 : 10) : (misN >= 3 ? 14 : 5)"
+      }
+    },
+    {
+      "id": "w1_mis_3",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "w1_n_4",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "passNow",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "right && pt == 2"
+      }
+    },
+    {
+      "id": "failNow",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!right && misN >= 3"
+      }
+    },
+    {
+      "id": "outNow",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "passNow || failNow"
+      }
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": "fail"
+      }
+    },
+    {
+      "id": "cleanNow",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "mis == 0"
+      }
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "pass_clean"
+      }
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "pass"
+      }
+    },
+    {
+      "id": "outP",
+      "type": "select"
+    },
+    {
+      "id": "outV",
+      "type": "select"
+    },
+    {
+      "id": "outG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "outL",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "w1_n_5",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "w1_pt_6",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "w1_mis_7",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "w1"
+      }
+    },
+    {
+      "id": "lineSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "seqM",
+      "type": "merge"
+    },
+    {
+      "id": "lnKey",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "",
+          "SCR_D01_S04_L001",
+          "SCR_D01_S04_L002",
+          "SCR_D01_S04_L003",
+          "SCR_D01_S04_L004",
+          "SCR_D01_S04_L005",
+          "SCR_D01_S04_L006",
+          "SCR_D01_S04_L007",
+          "SCR_D01_S04_L008",
+          "SCR_D01_S04_L009",
+          "SCR_D01_S04_L010",
+          "SCR_D01_S04_L011",
+          "SCR_D01_S04_L012",
+          "SCR_D01_S04_L013",
+          "SCR_D01_S04_L014",
+          "SCR_D01_S04_L015"
+        ]
+      }
+    },
+    {
+      "id": "lnRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "script",
+        "column": "id"
+      }
+    },
+    {
+      "id": "lnSpk",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "script",
+        "column": "speaker",
+        "type": "string"
+      }
+    },
+    {
+      "id": "lineT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": "SPK_SYSTEM"
+      }
+    },
+    {
+      "id": "isSys",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "spkT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "spkV",
+      "type": "select"
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": "SPK_SHEREFOX"
+      }
+    },
+    {
+      "id": "isShf",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isShfN",
+      "type": "select"
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": "SPK_INSPECTOR_BASKERVILLE"
+      }
+    },
+    {
+      "id": "isIns",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isInsN",
+      "type": "select"
+    },
+    {
+      "id": "focusV",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isShfN ? 1 : isInsN ? 3 : 0"
+      }
+    },
+    {
+      "id": "ptKey",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "SCR_D01_S04_L002",
+          "SCR_D01_S04_L006",
+          "SCR_D01_S04_L009"
+        ]
+      }
+    },
+    {
+      "id": "pointOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "n != 1"
+      }
+    },
+    {
+      "id": "pointT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pointV",
+      "type": "select"
+    },
+    {
+      "id": "missT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_WARMUP_MISS",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S04_TITLE"
+      }
+    },
+    {
+      "id": "titleT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": "OBS_D01_W1"
+      }
+    },
+    {
+      "id": "obs1T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K15",
+      "type": "constant",
+      "params": {
+        "value": "OBS_D01_W2"
+      }
+    },
+    {
+      "id": "obs2T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": "OBS_D01_W3"
+      }
+    },
+    {
+      "id": "obs3T",
+      "type": "atrium.text"
+    }
+  ],
+  "edges": [
+    {
+      "from": "K0.out",
+      "to": "n.key"
+    },
+    {
+      "from": "K1.out",
+      "to": "pt.key"
+    },
+    {
+      "from": "K2.out",
+      "to": "mis.key"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isWarmK.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "isWarmK.b"
+    },
+    {
+      "from": "isWarmK.out",
+      "to": "isWarmN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "isWarmN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isWarmN.b"
+    },
+    {
+      "from": "isWarmK.out",
+      "to": "begin.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "begin.go"
+    },
+    {
+      "from": "n.value",
+      "to": "choosing.n"
+    },
+    {
+      "from": "n.value",
+      "to": "nextN.n"
+    },
+    {
+      "from": "pt.value",
+      "to": "nextN.pt"
+    },
+    {
+      "from": "mis.value",
+      "to": "nextN.mis"
+    },
+    {
+      "from": "isWarmK.out",
+      "to": "advK.guard"
+    },
+    {
+      "from": "ui#d1warm.advance",
+      "to": "advK.go"
+    },
+    {
+      "from": "n.value",
+      "to": "advOk.n"
+    },
+    {
+      "from": "choosing.value",
+      "to": "advOk.choosing"
+    },
+    {
+      "from": "advOk.value",
+      "to": "advG.cond"
+    },
+    {
+      "from": "advK.changed",
+      "to": "advG.trigger"
+    },
+    {
+      "from": "nextN.value",
+      "to": "nextOk.nextN"
+    },
+    {
+      "from": "nextOk.value",
+      "to": "showNextG.cond"
+    },
+    {
+      "from": "advG.pass",
+      "to": "showNextG.trigger"
+    },
+    {
+      "from": "nextN.value",
+      "to": "nextEnd.nextN"
+    },
+    {
+      "from": "nextEnd.value",
+      "to": "doneG.cond"
+    },
+    {
+      "from": "advG.pass",
+      "to": "doneG.trigger"
+    },
+    {
+      "from": "doneG.pass",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "nextN.value",
+      "to": "nextPt.nextN"
+    },
+    {
+      "from": "pt.value",
+      "to": "nextPt.pt"
+    },
+    {
+      "from": "K1.out",
+      "to": "w1_pt_1.key"
+    },
+    {
+      "from": "nextPt.value",
+      "to": "w1_pt_1.value"
+    },
+    {
+      "from": "showNextG.pass",
+      "to": "w1_pt_1.trigger"
+    },
+    {
+      "from": "K0.out",
+      "to": "w1_n_2.key"
+    },
+    {
+      "from": "nextN.value",
+      "to": "w1_n_2.value"
+    },
+    {
+      "from": "showNextG.pass",
+      "to": "w1_n_2.trigger"
+    },
+    {
+      "from": "isWarmK.out",
+      "to": "pickK.guard"
+    },
+    {
+      "from": "ui#d1warm.pick.emitted",
+      "to": "pickK.go"
+    },
+    {
+      "from": "choosing.value",
+      "to": "pickG.cond"
+    },
+    {
+      "from": "pickK.changed",
+      "to": "pickG.trigger"
+    },
+    {
+      "from": "ui#d1warm.pick",
+      "to": "right.pick"
+    },
+    {
+      "from": "pt.value",
+      "to": "right.pt"
+    },
+    {
+      "from": "right.value",
+      "to": "misN.right"
+    },
+    {
+      "from": "mis.value",
+      "to": "misN.mis"
+    },
+    {
+      "from": "right.value",
+      "to": "pickN.right"
+    },
+    {
+      "from": "pt.value",
+      "to": "pickN.pt"
+    },
+    {
+      "from": "misN.value",
+      "to": "pickN.misN"
+    },
+    {
+      "from": "K2.out",
+      "to": "w1_mis_3.key"
+    },
+    {
+      "from": "misN.value",
+      "to": "w1_mis_3.value"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "w1_mis_3.trigger"
+    },
+    {
+      "from": "K0.out",
+      "to": "w1_n_4.key"
+    },
+    {
+      "from": "pickN.value",
+      "to": "w1_n_4.value"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "w1_n_4.trigger"
+    },
+    {
+      "from": "right.value",
+      "to": "passNow.right"
+    },
+    {
+      "from": "pt.value",
+      "to": "passNow.pt"
+    },
+    {
+      "from": "right.value",
+      "to": "failNow.right"
+    },
+    {
+      "from": "misN.value",
+      "to": "failNow.misN"
+    },
+    {
+      "from": "passNow.value",
+      "to": "outNow.passNow"
+    },
+    {
+      "from": "failNow.value",
+      "to": "outNow.failNow"
+    },
+    {
+      "from": "mis.value",
+      "to": "cleanNow.mis"
+    },
+    {
+      "from": "cleanNow.truth",
+      "to": "outP.cond"
+    },
+    {
+      "from": "K7.out",
+      "to": "outP.a"
+    },
+    {
+      "from": "K8.out",
+      "to": "outP.b"
+    },
+    {
+      "from": "failNow.truth",
+      "to": "outV.cond"
+    },
+    {
+      "from": "K6.out",
+      "to": "outV.a"
+    },
+    {
+      "from": "outP.out",
+      "to": "outV.b"
+    },
+    {
+      "from": "outNow.value",
+      "to": "outG.cond"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "outG.trigger"
+    },
+    {
+      "from": "outV.out",
+      "to": "outL.in"
+    },
+    {
+      "from": "outG.pass",
+      "to": "outL.trigger"
+    },
+    {
+      "from": "outL.out",
+      "to": "world.d1Warmup"
+    },
+    {
+      "from": "K0.out",
+      "to": "w1_n_5.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "w1_n_5.value"
+    },
+    {
+      "from": "begin.changed",
+      "to": "w1_n_5.trigger"
+    },
+    {
+      "from": "K1.out",
+      "to": "w1_pt_6.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "w1_pt_6.value"
+    },
+    {
+      "from": "begin.changed",
+      "to": "w1_pt_6.trigger"
+    },
+    {
+      "from": "K2.out",
+      "to": "w1_mis_7.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "w1_mis_7.value"
+    },
+    {
+      "from": "begin.changed",
+      "to": "w1_mis_7.trigger"
+    },
+    {
+      "from": "begin.changed",
+      "to": "seqM.in"
+    },
+    {
+      "from": "showNextG.pass",
+      "to": "seqM.in"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "seqM.in"
+    },
+    {
+      "from": "seqM.out",
+      "to": "lineSeq.increment"
+    },
+    {
+      "from": "n.value",
+      "to": "lnKey.index"
+    },
+    {
+      "from": "lnKey.out",
+      "to": "lnRow.value"
+    },
+    {
+      "from": "lnRow.row",
+      "to": "lnSpk.row"
+    },
+    {
+      "from": "lnKey.out",
+      "to": "lineT.key"
+    },
+    {
+      "from": "lineT.text",
+      "to": "ui#d1warm.line"
+    },
+    {
+      "from": "lnSpk.value",
+      "to": "isSys.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isSys.b"
+    },
+    {
+      "from": "lnSpk.value",
+      "to": "spkT.key"
+    },
+    {
+      "from": "isSys.out",
+      "to": "spkV.cond"
+    },
+    {
+      "from": "spkT.text",
+      "to": "spkV.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "spkV.b"
+    },
+    {
+      "from": "spkV.out",
+      "to": "ui#d1warm.speaker"
+    },
+    {
+      "from": "lnSpk.value",
+      "to": "isShf.a"
+    },
+    {
+      "from": "K11.out",
+      "to": "isShf.b"
+    },
+    {
+      "from": "isShf.out",
+      "to": "isShfN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "isShfN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isShfN.b"
+    },
+    {
+      "from": "lnSpk.value",
+      "to": "isIns.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "isIns.b"
+    },
+    {
+      "from": "isIns.out",
+      "to": "isInsN.cond"
+    },
+    {
+      "from": "K4.out",
+      "to": "isInsN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isInsN.b"
+    },
+    {
+      "from": "isShfN.out",
+      "to": "focusV.isShfN"
+    },
+    {
+      "from": "isInsN.out",
+      "to": "focusV.isInsN"
+    },
+    {
+      "from": "focusV.value",
+      "to": "ui#d1warm.focus"
+    },
+    {
+      "from": "lineSeq.value",
+      "to": "ui#d1warm.line_seq"
+    },
+    {
+      "from": "choosing.truth",
+      "to": "ui#d1warm.choosing"
+    },
+    {
+      "from": "pt.value",
+      "to": "ptKey.index"
+    },
+    {
+      "from": "n.value",
+      "to": "pointOn.n"
+    },
+    {
+      "from": "ptKey.out",
+      "to": "pointT.key"
+    },
+    {
+      "from": "pointOn.truth",
+      "to": "pointV.cond"
+    },
+    {
+      "from": "pointT.text",
+      "to": "pointV.a"
+    },
+    {
+      "from": "K10.out",
+      "to": "pointV.b"
+    },
+    {
+      "from": "pointV.out",
+      "to": "ui#d1warm.point"
+    },
+    {
+      "from": "mis.value",
+      "to": "missT.n"
+    },
+    {
+      "from": "missT.text",
+      "to": "ui#d1warm.miss_text"
+    },
+    {
+      "from": "K13.out",
+      "to": "titleT.key"
+    },
+    {
+      "from": "titleT.text",
+      "to": "ui#d1warm.title"
+    },
+    {
+      "from": "K14.out",
+      "to": "obs1T.key"
+    },
+    {
+      "from": "obs1T.text",
+      "to": "ui#d1warm.obs1"
+    },
+    {
+      "from": "K15.out",
+      "to": "obs2T.key"
+    },
+    {
+      "from": "obs2T.text",
+      "to": "ui#d1warm.obs2"
+    },
+    {
+      "from": "K16.out",
+      "to": "obs3T.key"
+    },
+    {
+      "from": "obs3T.text",
+      "to": "ui#d1warm.obs3"
+    }
+  ]
+}

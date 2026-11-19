@@ -1,0 +1,13 @@
+version: 1
+id: 84eaaaca-c17d-490c-9346-2dc52df71781
+type: image
+title: ch-c-briggs
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_briggs.png
+content: sha256:057b25da51943bfd74e7e0e5b82368c249fab19db2c0412212a8bc76d4f22900
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

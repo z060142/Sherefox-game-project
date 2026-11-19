@@ -1,0 +1,13 @@
+version: 1
+id: fd94ad35-a80c-4156-b434-3d5af7b1e6dd
+type: image
+title: ch-c-landlady
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_landlady.png
+content: sha256:bb06963ab53f2df9852a4c65c349acda8d939801db15c77d384da6bbe5c82873
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

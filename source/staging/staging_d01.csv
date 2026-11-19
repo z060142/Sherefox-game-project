@@ -1,0 +1,49 @@
+id,bg,slot_l,slot_c,slot_r,focus,style,note
+SCR_D01_S01_TITLE,,,,,0,2,
+SCR_D01_S01_L001,,,,,0,2,
+SCR_D01_S01_L002,,,,,0,2,
+SCR_D01_S02_TITLE,office_night,,,,0,2,
+SCR_D01_S02_L001,office_night,,,,0,1,opening narration (Arthur's notes); the others enter on their first line
+SCR_D01_S02_L002,office_night,sherefox,landlady,arthur,2,0,the landlady stands in the middle (she brought the cocoa up)
+SCR_D01_S02_L003,office_night,sherefox,landlady,arthur,3,0,
+SCR_D01_S02_L004,office_night,sherefox,landlady,arthur,2,0,
+SCR_D01_S02_L005,office_night,sherefox,landlady,arthur,3,0,
+SCR_D01_S02_L006,office_night,sherefox,landlady,arthur,1,0,
+SCR_D01_S02_L007,office_night,sherefox,landlady,arthur,3,0,
+SCR_D01_S02_L008,office_night,sherefox,landlady,arthur,1,0,
+SCR_D01_S02_L009,office_night,sherefox,landlady,arthur,3,0,
+SCR_D01_S02_L010,office_night,sherefox,landlady,arthur,1,0,
+SCR_D01_S02_L011,office_night,sherefox,landlady,arthur,2,0,
+SCR_D01_S02_L012,office_night,sherefox,landlady,arthur,1,0,
+SCR_D01_S03_TITLE,office_day,,,,0,2,
+SCR_D01_S03_L001,office_day,,,,0,1,next morning at Baker Street: Mrs Hyde's carriage (narration)
+SCR_D01_S03_L002,d01_hall,,,,0,1,"arrival at the Hyde house: the entrance hall (bg_d01_hall), narration"
+SCR_D01_S03_L003,d01_hall,sherefox,,baskerville,3,0,in the entrance hall (stage direction)
+SCR_D01_S03_L004,d01_hall,sherefox,,baskerville,1,0,
+SCR_D01_S03_L005,d01_hall,sherefox,,baskerville,3,0,
+SCR_D01_S03_L006,d01_hall,sherefox,baskerville,briggs,3,0,Briggs held by a constable; the inspector steps to the middle
+SCR_D01_S03_L007,d01_hall,sherefox,baskerville,briggs,2,0,
+SCR_D01_S03_L008,d01_hall,sherefox,baskerville,cedric_composed,3,0,Cedric comes out of the parlour into the hall
+SCR_D01_S03_L009,d01_hall,sherefox,arthur,cedric_composed,1,0,Sherefox introduces Arthur
+SCR_D01_S03_L010,d01_hall,sherefox,arthur,cedric_composed,3,0,
+SCR_D01_S03_L011,d01_hall,sherefox,mrs_hyde,cedric_composed,2,0,Mrs Hyde checks her nephew
+SCR_D01_S03_L012,d01_hall,sherefox,mrs_hyde,cedric_composed,3,0,
+SCR_D01_S03_L013,d01_hall,sherefox,,arthur,3,0,a quiet aside between Arthur and Sherefox
+SCR_D01_S03_L014,d01_hall,sherefox,,arthur,1,0,
+SCR_D01_S03_L015,d01_hall,sherefox,,baskerville,3,0,the inspector cuts in: the warm-up follows
+SCR_D01_S04_TITLE,,,,,0,2,"S04 is shown by the warm-up screen (d1warm), not the vn"
+SCR_D01_S04_L001,,,,,0,0,
+SCR_D01_S04_L002,,,,,0,0,
+SCR_D01_S04_L003,,,,,0,0,
+SCR_D01_S04_L004,,,,,0,0,
+SCR_D01_S04_L005,,,,,0,0,
+SCR_D01_S04_L006,,,,,0,0,
+SCR_D01_S04_L007,,,,,0,0,
+SCR_D01_S04_L008,,,,,0,0,
+SCR_D01_S04_L009,,,,,0,0,
+SCR_D01_S04_L010,,,,,0,0,
+SCR_D01_S04_L011,,,,,0,0,
+SCR_D01_S04_L012,,,,,0,0,
+SCR_D01_S04_L013,,,,,0,0,
+SCR_D01_S04_L014,,,,,0,0,
+SCR_D01_S04_L015,,,,,0,0,

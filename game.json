@@ -653,6 +653,7 @@
     "flows/debate_ui.xtflow",
     "flows/debate_engine.xtflow",
     "flows/debate_warmup.xtflow",
+    "flows/d01_warmup.xtflow",
     "flows/d01_investigate.xtflow",
     "flows/d01_debate_ui.xtflow",
     "flows/d01_debate_engine.xtflow",
@@ -718,6 +719,12 @@
       },
       {
         "ui": "d1carry",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "d1warm",
         "width": 1280,
         "height": 720,
         "visible": false
@@ -1596,6 +1603,11 @@
       "kind": "map",
       "type": "string",
       "capacity": 32
+    },
+    "w1": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 4
     }
   },
   "audio": {

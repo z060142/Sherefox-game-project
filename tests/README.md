@@ -239,7 +239,8 @@ uv run tests/check_d1_m3.py [--shots DIR]
 ```
 
 `check_d1_m3.py` regenerates `tests/d1_m3.atrec` (`tests/gen_d1_m3.py`) and replays it with `--ports` in zh-TW and en,
-from the title's v2 entry (chapter 101) to the debate's outcome panel:
+from the title's v2 entry (chapter 101; since M4a through the S01 paper, S02 / S03 and a clean warm-up, `gen_d1_story.py`
+`story()`) to the debate's outcome panel:
 
 | Check | What it asserts |
 |---|---|
@@ -252,6 +253,24 @@ writes the review screenshots (zh-TW and en): each place with its hotspots, a ho
 appraisal and with a private view, the notes page, the carry screen (first visit, an Arthur line, the confirm list,
 L010), a playback line with the formula names and a stamp; and `DIR/overlays/` (every hotspot rectangle with its id over
 each place, with ImageMagick).
+
+### D01 story (M4a)
+
+```
+uv run tests/check_d1_story.py [--shots DIR]
+```
+
+`check_d1_story.py` regenerates `tests/d1_story_{clean,pass,fail}.atrec` and `tests/d1_story_ticks.json`
+(`tests/gen_d1_story.py`) and replays them with `--ports` in zh-TW and en, from the title's v2 entry:
+
+| Check | What it asserts |
+|---|---|
+| `clean`, `pass`, `fail` `[zh-TW]`, `[en]` | the S01 paper (headline, dateline, lead, page 1, no strip or engraving); every S02 and S03 line in script order with its name plate, staging and the chapter tab, the vn the only main screen; every warm-up line in the reference model's order (`ref sherefox_ref.v2.warmup`) with its speaker, the point, the mistakes count, the observations, `choosing` exactly on a point; L013 only on a clean pass, L005 on a mistake, L014 + L015 on the third; `world.d1Warmup` = pass_clean / pass / fail (`xtatrium trace`, zh-TW run); the investigation follows with 2 / 2 / 1 appraisals; the clean run reaches the carry screen; nothing on stderr |
+
+Picks: clean W1 W2 W3; pass W2 (wrong), W1, W2, W1 (already used: wrong), W3; fail W2, W3, W1, W1. `--shots DIR` writes
+the S01 paper, S02 with the landlady, S03 with Briggs and with Cedric, a point with the three observations, a wrong pick
+(L005), the success (L013) and the failure (L014, L015). `tests/check_music.py` replays `d1_story_clean` for the D01
+cues. The check fails if it leaves a `tmp*`／`d1storyshots-*` entry in `%TEMP%`.
 
 `check_d1_play.py` (M2) now enters through the title's dev shortcut (`v2dev`, the D01 debate row with route A's set).
 

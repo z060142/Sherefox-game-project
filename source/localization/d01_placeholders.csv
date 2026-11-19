@@ -1,2 +1,3 @@
 ﻿ID,zh-TW,en,note
 UI_V2_DEV_DEBATE,開發：直接進入論戰,Dev: straight to the debate,"PLACEHOLDER: title screen dev shortcut (skips investigation and carry; route A's fixed loadout); not a player-facing feature"
+UI_V2_WARMUP_PICK,選一條觀察，指出他的錯誤。,Pick an observation that shows where he is wrong.,"PLACEHOLDER: warm-up screen (d1warm) prompt over the three observations while a point waits; the chapter has no UI line for it"

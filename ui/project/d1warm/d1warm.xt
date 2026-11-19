@@ -1,0 +1,349 @@
+<xt version="2">
+  <head>
+    <title>D1Warm</title>
+  </head>
+
+  <ports>
+    title: string in = "熱身小論戰：巴斯克維爾警督（不扣血）"
+    miss_text: string in = "失誤 1／3"
+    point: string in = "論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！"
+    speaker: string in = "巴斯克維爾"
+    line: string in = "論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！"
+    line_seq: number in = 0
+    focus: number in = 3
+    choosing: bool in = true
+    obs1: string in = "黃銅筒的蓋子關得好好的，鎖是鎖上的"
+    obs2: string in = "布里格斯被逮捕時已被搜身，身上沒有任何紙張"
+    obs3: string in = "熄燈時全屋的燈一起變暗、一起變亮"
+    pick: number out = 0
+    advance: event out
+    settings: event out
+  </ports>
+
+  <body key-activation="none">
+    <div id="d1warm" tabindex="0" autofocus="" on:key(Enter)="if port(choosing) eq false emit(advance)" on:key(Space)="if port(choosing) eq false emit(advance)" on:key(1)="if port(choosing) eq true set(pick, 1)" on:key(2)="if port(choosing) eq true set(pick, 2)" on:key(3)="if port(choosing) eq true set(pick, 3)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
+      <img id="bg" src="../shared/img/bg-debate.jpg"/>
+      <div id="hit" on:click(left)="if port(choosing) eq false emit(advance)"/>
+      <div id="fig-l" class="fig" bind:class.dim="focus | eq(3)">
+        <img id="ch-sherefox" class="ch-art" src="../shared/img/ch-c-sherefox.png"/>
+      </div>
+      <div id="fig-r" class="fig" bind:class.dim="focus | eq(1)">
+        <img id="ch-baskerville" class="ch-art" src="../shared/img/ch-c-baskerville.png"/>
+      </div>
+      <div id="head">
+        <div id="extra" class="extra">@UI_PAPER_EXTRA</div>
+        <div id="title" class="title" bind:text="title">熱身小論戰：巴斯克維爾警督（不扣血）</div>
+        <div id="miss" class="miss" bind:text="miss_text">失誤 1／3</div>
+        <div id="rule-a" class="rule"/>
+        <div id="rule-b" class="rule"/>
+      </div>
+      <div id="point" class="point" on:port(point)="play(point-in)" bind:display="point | ne('')">
+        <div id="point-t" class="point-t" bind:text="point">論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！</div>
+      </div>
+      <div id="prompt" class="prompt" bind:display="choosing">@UI_V2_WARMUP_PICK</div>
+      <div id="obs-1" class="obs" on:click(left)="if port(choosing) eq true set(pick, 1)" bind:class.on="choosing">
+        <div id="obs-1-k" class="obs-k">@UI_V2_TYPE_OBS</div>
+        <div id="obs-1-n" class="obs-n">1</div>
+        <div id="obs-1-t" class="obs-t" bind:text="obs1">黃銅筒的蓋子關得好好的，鎖是鎖上的</div>
+      </div>
+      <div id="obs-2" class="obs" on:click(left)="if port(choosing) eq true set(pick, 2)" bind:class.on="choosing">
+        <div id="obs-2-k" class="obs-k">@UI_V2_TYPE_OBS</div>
+        <div id="obs-2-n" class="obs-n">2</div>
+        <div id="obs-2-t" class="obs-t" bind:text="obs2">布里格斯被逮捕時已被搜身，身上沒有任何紙張</div>
+      </div>
+      <div id="obs-3" class="obs" on:click(left)="if port(choosing) eq true set(pick, 3)" bind:class.on="choosing">
+        <div id="obs-3-k" class="obs-k">@UI_V2_TYPE_OBS</div>
+        <div id="obs-3-n" class="obs-n">3</div>
+        <div id="obs-3-t" class="obs-t" bind:text="obs3">熄燈時全屋的燈一起變暗、一起變亮</div>
+      </div>
+      <div id="dlg" class="dlg" on:click(left)="if port(choosing) eq false emit(advance)">
+        <div id="spk" class="spk" bind:text="speaker" bind:display="speaker | ne('')">巴斯克維爾</div>
+        <div id="line" class="line" on:port(line_seq)="play(reveal)" bind:text="line">論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！</div>
+        <svg id="more" bind:display="choosing | eq(false)" viewBox="0 0 14 10">
+          <polygon id="Tri" points="0,0 14,0 7,10" fill="#a65432"/>
+        </svg>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1Warm.dc.html:1 */
+    #d1warm {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1Warm.dc.html:1/0 */
+    #bg {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Warm.dc.html:1/1 */
+    #hit {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Warm.dc.html:1/2 */
+    #fig-l {
+      anchor: left bottom;
+      offset: -42px 42px;
+      size: 340px 510px;
+    }
+    /* import: D1Warm.dc.html:1/3 */
+    #fig-r {
+      anchor: right bottom;
+      offset: -42px 42px;
+      size: 340px 510px;
+    }
+    /* import: D1Warm.dc.html:1/4 */
+    #head {
+      height: 76px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: calc(1safe-top - 18px);
+    }
+    /* import: D1Warm.dc.html:1/4/0 */
+    #extra {
+      height: 36px;
+      left: 32px;
+      position: absolute;
+      top: 20px;
+      width: 92px;
+    }
+    /* import: D1Warm.dc.html:1/4/1 */
+    #title {
+      height: 36px;
+      left: 140px;
+      position: absolute;
+      top: 20px;
+      width: 860px;
+    }
+    /* import: D1Warm.dc.html:1/4/2 */
+    #miss {
+      height: 34px;
+      left: 1060px;
+      position: absolute;
+      top: 19px;
+      width: 188px;
+    }
+    /* import: D1Warm.dc.html:1/4/3 */
+    #rule-a {
+      height: 3px;
+      left: 0px;
+      position: absolute;
+      top: 70px;
+      width: 1280px;
+    }
+    /* import: D1Warm.dc.html:1/4/4 */
+    #rule-b {
+      height: 1px;
+      left: 0px;
+      position: absolute;
+      top: 75px;
+      width: 1280px;
+    }
+    /* import: D1Warm.dc.html:1/5 */
+    #point {
+      anchor: left top;
+      offset: 268px 78px;
+      size: 680px 140px;
+    }
+    /* import: D1Warm.dc.html:1/5/0 */
+    #point-t {
+      height: 104px;
+      left: 22px;
+      position: absolute;
+      top: 18px;
+      width: 636px;
+    }
+    /* import: D1Warm.dc.html:1/6 */
+    #prompt {
+      height: 24px;
+      left: calc(1safe-left + 268px);
+      position: absolute;
+      top: calc(36.21% - 8.69px);
+      width: 680px;
+    }
+    /* import: D1Warm.dc.html:1/7 */
+    #obs-1 {
+      height: 184px;
+      left: calc(1safe-left + 268px);
+      position: absolute;
+      top: calc(53.73% - 98.86px);
+      width: 216px;
+    }
+    /* import: D1Warm.dc.html:1/7/0 */
+    #obs-1-k {
+      height: 18px;
+      left: 14px;
+      position: absolute;
+      top: 8px;
+      width: 150px;
+    }
+    /* import: D1Warm.dc.html:1/7/1 */
+    #obs-1-n {
+      height: 18px;
+      left: 170px;
+      position: absolute;
+      top: 8px;
+      width: 32px;
+    }
+    /* import: D1Warm.dc.html:1/7/2 */
+    #obs-1-t {
+      height: 142px;
+      left: 14px;
+      position: absolute;
+      top: 32px;
+      width: 188px;
+    }
+    /* import: D1Warm.dc.html:1/8 */
+    #obs-2 {
+      height: 184px;
+      left: calc(50% - 108px);
+      position: absolute;
+      top: calc(53.73% - 98.86px);
+      width: 216px;
+    }
+    /* import: D1Warm.dc.html:1/8/0 */
+    #obs-2-k {
+      height: 18px;
+      left: 14px;
+      position: absolute;
+      top: 8px;
+      width: 150px;
+    }
+    /* import: D1Warm.dc.html:1/8/1 */
+    #obs-2-n {
+      height: 18px;
+      left: 170px;
+      position: absolute;
+      top: 8px;
+      width: 32px;
+    }
+    /* import: D1Warm.dc.html:1/8/2 */
+    #obs-2-t {
+      height: 142px;
+      left: 14px;
+      position: absolute;
+      top: 32px;
+      width: 188px;
+    }
+    /* import: D1Warm.dc.html:1/9 */
+    #obs-3 {
+      height: 184px;
+      position: absolute;
+      right: calc(1safe-right + 268px);
+      top: calc(53.73% - 98.86px);
+      width: 216px;
+    }
+    /* import: D1Warm.dc.html:1/9/0 */
+    #obs-3-k {
+      height: 18px;
+      left: 14px;
+      position: absolute;
+      top: 8px;
+      width: 150px;
+    }
+    /* import: D1Warm.dc.html:1/9/1 */
+    #obs-3-n {
+      height: 18px;
+      left: 170px;
+      position: absolute;
+      top: 8px;
+      width: 32px;
+    }
+    /* import: D1Warm.dc.html:1/9/2 */
+    #obs-3-t {
+      height: 142px;
+      left: 14px;
+      position: absolute;
+      top: 32px;
+      width: 188px;
+    }
+    /* import: D1Warm.dc.html:1/10 */
+    #dlg {
+      anchor: left bottom;
+      offset: 108px 6px;
+      size: 1000px 176px;
+    }
+    /* import: D1Warm.dc.html:1/10/0 */
+    #spk {
+      height: 22px;
+      left: 32px;
+      position: absolute;
+      top: 12px;
+      width: 600px;
+    }
+    /* import: D1Warm.dc.html:1/10/1 */
+    #line {
+      height: 124px;
+      left: 32px;
+      position: absolute;
+      top: 40px;
+      width: 936px;
+    }
+    /* import: D1Warm.dc.html:1/10/2 */
+    #more {
+      height: 10px;
+      left: 962px;
+      position: absolute;
+      top: 156px;
+      width: 14px;
+    }
+    .title {
+      overflow: hidden;
+    }
+    .ch-art {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 340px;
+      height: 510px;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1warm.xts"/>
+  <timelines>
+    @timeline idle {
+      #more {
+        0ms {
+          opacity: 1;
+        }
+        600ms ease-in-out {
+          opacity: 0.25;
+        }
+        1200ms ease-in-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline point-in {
+      #point {
+        0ms {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        300ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+    @timeline reveal {
+      #line {
+        0ms {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        260ms ease-out {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

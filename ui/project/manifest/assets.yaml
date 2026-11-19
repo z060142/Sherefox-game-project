@@ -37,6 +37,12 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 2560, h: 1440, alpha: false }
+  - id: bg-d01-hall
+    type: image
+    file: shared/img/bg-d01-hall.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-d01-parlour
     type: image
     file: shared/img/bg-d01-parlour.jpg
@@ -154,6 +160,30 @@ assets:
   - id: ch-c-baskerville
     type: image
     file: shared/img/ch-c-baskerville.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: ch-c-briggs
+    type: image
+    file: shared/img/ch-c-briggs.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: ch-c-cedric-composed
+    type: image
+    file: shared/img/ch-c-cedric-composed.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: ch-c-landlady
+    type: image
+    file: shared/img/ch-c-landlady.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: ch-c-mrs-hyde
+    type: image
+    file: shared/img/ch-c-mrs-hyde.png
     source: import:claude-design
     status: draft
     measured: { w: 1024, h: 1536, alpha: true }

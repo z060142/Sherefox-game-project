@@ -19,7 +19,8 @@ Usage (from the project root):
 3. Replays (--trace; the music commands do not reach the trace, so the music flow's own values are read: world.bgm,
    the cue in effect, the fade of the last change, the command counters bgmPlays / bgmStops and the channel's
    target cue from atrium.music.playing): ch1_debate (the pudding debate won), ch2_lose (Ch.2 lost, retried, lost
-   again), ch3_warmfail (Ch.3 from the title to the investigation, three warm-up mistakes). The expected sequence of
+   again), ch3_warmfail (Ch.3 from the title to the investigation, three warm-up mistakes), d1_story_clean (the v2
+   demo D01 from the title through S01-S04 and the investigation to the carry screen; tests/gen_d1_story.py). The expected sequence of
    (track, fade) is derived from ROUTES (the steps and scenes each replay passes through) with bgmCues for the lines
    and flowBgm for the moments, and printed. In each: world.bgm is the cue's track while a cue is in effect and
    flowBgm's id of the moment otherwise, on every tick; its sequence of changes equals the expected one; each change
@@ -66,7 +67,15 @@ ROUTES = {
     "ch3_warmfail": ([("moment", "title"), ("paper", "CH03_OPEN"), ("lines", "CH03_S02", ""),
                       ("lines", "CH03_S03", ""), ("lines", "CH03_S04", ""), ("moment", "warmup"),
                       ("moment", "investigate")], {}),
+    # the v2 demo D01 (tests/gen_d1_story.py, M4a): the S01 paper, S02, S03 (L003's cut), then the steps without
+    # script lines play a fixed cue row (docs/flows.md §4.10): the warm-up (S04 L001's), the investigation (the pseudo
+    # id SCR_D01_S05_START), the carry screen (S06 L001's)
+    "d1_story_clean": ([("moment", "title"), ("paper", "D01_OPEN"), ("lines", "D01_S02", ""), ("lines", "D01_S03", ""),
+                        ("fixed", "SCR_D01_S04_L001"), ("fixed", "SCR_D01_S05_START"), ("fixed", "SCR_D01_S06_L001")],
+                       {}),
 }
+TICKS.update({f"d1_story_{k}": v["ticks"] for k, v in json.loads((ROOT / "tests" / "d1_story_ticks.json").read_text(
+    encoding="utf-8")).items()})
 VALUES = ("moment", "momBgm", "cueOk", "cueBgm", "bgmId", "bgmFadeA", "bgmSecsA", "bgmPlays", "bgmStops", "bgmNow")
 
 
@@ -84,6 +93,8 @@ def expected(name: str) -> list[tuple[str, str]]:
         if seg[0] == "moment":
             r = bgm[seg[1]]
             asks = [(r["bgm"], r["fade"])] if r["play"] else []
+        elif seg[0] == "fixed":
+            asks = [(r["bgm"], r["fade"]) for r in cues if r["line"] == seg[1]]
         elif seg[0] == "paper":
             asks = [(r["bgm"], r["fade"]) for r in cues if r["line"] == body[seg[1]]]
         else:
@@ -152,6 +163,21 @@ def check_cues(fail: cp.Failures) -> None:
         if d["chapter"] not in ("1", "2") and got:
             print(f"  {d['cue_id']} {d['start_id']} -> {got[0]['line']}..{got[-1]['line']}: "
                   f"{want[0] or 'silence'} ({want[1]}; design {d['bgm']}{' / ' + d['fallback'] if d['fallback'] else ''})")
+    # the v2 demo D01 (source/staging/bgm_cues_d01.csv): all 19 cues are in the table, S07 onward too (no step plays
+    # those scenes yet, so they never fire); the pseudo id SCR_D01_S05_START has its row
+    text = (ROOT / "source" / "staging" / "bgm_cues_d01.csv").read_text(encoding="utf-8-sig")
+    d01 = list(csv.DictReader(io.StringIO(text)))
+    fail.check(len(d01) == 19, f"bgm_cues_d01.csv: {len(d01)} cues (19 expected)")
+    for d in d01:
+        bgm = d["bgm"] if d["bgm"] == "NONE" or d["bgm"] in F.MUSIC else d["fallback"]
+        want = ("" if bgm == "NONE" else bgm, d["fade"])
+        got = [r for r in rows if r["cue"] == d["cue_id"]]
+        fail.check(bool(got) and all((r["bgm"], r["fade"]) == want for r in got) and got[0]["line"] == d["start_id"],
+                   f"{d['cue_id']}: bgmCues rows {[(r['line'], r['bgm'], r['fade']) for r in got]}, expected {want} "
+                   f"from {d['start_id']}")
+    r = next((r for r in rows if r["line"] == "SCR_D01_S05_START"), None)
+    fail.check(r is not None and (r["cue"], r["scene"], r["bgm"]) == ("BGM_D01_06", "D01_S05", "BGM05"),
+               f"bgmCues SCR_D01_S05_START: {r}")
     for line, cue, bgm, fade in (("SCR_CH03_S03_L002", "BGM_CH03_03", "BGM03", "cross"),
                                  ("SCR_CH03_S03_L003", "BGM_CH03_04", "BGM04", "cut"),
                                  ("SCR_CH03_S07_L010", "BGM_CH03_09", "BGM03", "cross")):

@@ -9,7 +9,7 @@
       "message": "anchor: #dlg-dock bottom: 20px -> anchor: center bottom; offset: 0 2px; size: 1000px 200px",
       "element": "dlg-dock",
       "source": "Vn.dc.html",
-      "line": 147,
+      "line": 160,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -57,7 +57,7 @@
       "message": "anchor: #slot-c left: 420px; bottom: auto; top: 70px -> anchor: center bottom; offset: 0 -28px; size: 440px 660px",
       "element": "slot-c",
       "source": "Vn.dc.html",
-      "line": 75,
+      "line": 76,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -81,7 +81,7 @@
       "message": "anchor: #slot-l left: 40px; bottom: auto; top: 70px -> anchor: left bottom; offset: 8px -28px; size: 440px 660px",
       "element": "slot-l",
       "source": "Vn.dc.html",
-      "line": 89,
+      "line": 94,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -105,7 +105,7 @@
       "message": "anchor: #slot-r right: auto; left: 800px; bottom: auto; top: 70px -> anchor: right bottom; offset: 8px -28px; size: 440px 660px",
       "element": "slot-r",
       "source": "Vn.dc.html",
-      "line": 103,
+      "line": 112,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -129,7 +129,7 @@
       "message": "anchor: #shade right auto -> 0",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 132,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -153,7 +153,7 @@
       "message": "anchor: #shade width 1280px -> (removed)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 132,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -177,7 +177,7 @@
       "message": "anchor: #shade bottom auto -> calc(1safe-bottom - 18px)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 132,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -201,7 +201,7 @@
       "message": "anchor: #shade top 400px -> (removed)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 132,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -225,7 +225,7 @@
       "message": "anchor: #hit right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "hit",
       "source": "Vn.dc.html",
-      "line": 123,
+      "line": 136,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -249,7 +249,7 @@
       "message": "anchor: #hud-tr right: 40px; top: 24px -> anchor: right top; offset: 8px 6px; size: 600px 76px",
       "element": "hud-tr",
       "source": "Vn.dc.html",
-      "line": 127,
+      "line": 140,
       "col": 0,
       "ui": "vn",
       "detail": {

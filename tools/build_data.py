@@ -44,7 +44,7 @@ TAG_FILE = ROOT / "source" / "tags" / "tags_ch01-03.csv"
 STAGING_FILE = ROOT / "source" / "staging" / "staging_ch01-03.csv"
 # The design repo's per-scene BGM cue table (its staging/ folder; --import-staging copies it here)
 CUE_FILE = ROOT / "source" / "staging" / "bgm_cues_ch01-03.csv"
-STAGING_IMPORT = ("bgm_cues_ch01-03.csv",)
+STAGING_IMPORT = ("bgm_cues_ch01-03.csv", "bgm_cues_d01.csv")
 DESIGN = ROOT / "docs" / "design"
 DATA_OUT = ROOT / "data"
 STRINGS_OUT = ROOT / "strings"
@@ -137,7 +137,18 @@ END_CARD_KEY = "UI_TO_BE_CONTINUED"
 # The v2 demo chapter D01 in the step table (docs/flows.md §4.13): its own chapter number, outside the v1 range, and
 # rows D01_xx after the v1 rows. M3 rows: investigation -> carry screen -> debate (M4 inserts the story steps).
 D01_CHAPTER = 101
-D01_STEPS = (("d1investigate", "S05"), ("d1carry", "S06"), ("d1debate", "S07"))
+# M4a (docs/flows.md §4.14): S01 opening paper -> S02 / S03 vn -> S04 warm-up -> S05 investigation -> S06 carry -> S07
+# debate. (kind, scene, arg)
+D01_STEPS = (("paper", "S01", "D01_OPEN"), ("vn", "S02", ""), ("vn", "S03", ""), ("d1warmup", "S04", ""),
+             ("d1investigate", "S05", ""), ("d1carry", "S06", ""), ("d1debate", "S07", ""))
+# D01 scenes whose lines become script rows (sceneKey D01_Sxx): the paper, the two vn scenes, the warm-up (its lines
+# are shown by the d01_warmup flow, which reads their speakers from the script table)
+D01_SCRIPT_SCENES = ("S01", "S02", "S03", "S04")
+D01_STAGING_FILE = ROOT / "source" / "staging" / "staging_d01.csv"
+# The D01 cue table (design repo staging/bgm_cues_d01.csv). Its one pseudo start id stands for "when the investigation
+# step begins" (no script line); the music flow looks it up on a d1investigate step.
+D01_CUE_FILE = ROOT / "source" / "staging" / "bgm_cues_d01.csv"
+D01_CUE_PSEUDO = {"SCR_D01_S05_START": "S05"}
 # Ruling C3: endgame second-claim refuters.
 TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # Debate and warm-up scenes: lines played on the vn around the debate screen (script.cue, data-schema §3). The
@@ -163,8 +174,9 @@ WARMUP = {3: {"refuters": ["E03_05", "E03_02"]}}
 # VN staging vocabularies (docs/ui-contracts.md, vn section). Characters without a standee yet use a slug of
 # their English name so the UI can add the standee later.
 STAGING_BGS = {"", "office_night", "office_day", "kitchen_morning", "clockshop", "dock_fog", "barge_deck",
-               "boiler_room", "debate"}
-STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner"}
+               "boiler_room", "debate", "d01_hall"}
+STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner",
+                 "landlady", "mrs_hyde", "briggs", "cedric_composed"}   # the last four: the v2 demo D01
 STAGING_PLACEHOLDER_CHARS = {"holloway", "gresham", "tommy", "old_tom"}
 STAGING_COLUMNS = ["id", "bg", "slot_l", "slot_c", "slot_r", "focus", "style", "note"]
 # BGM cue table (design staging README; 設計總覽 §十一): columns, the design's track ids (BGM01-BGM20) and silence
@@ -619,15 +631,53 @@ def script_cues(rows: list[dict], info: dict) -> None:
         r["cue"] = f"wrong:{card}"
 
 
+def build_d01_script(strings: dict) -> list[dict]:
+    """Script rows of the v2 demo D01 scenes the step table plays (D01_SCRIPT_SCENES; docs/flows.md §4.14), from the
+    package's script_d01.csv: chapter D01_CHAPTER, sceneKey D01_Sxx, the scene heading SCR_D01_Sxx_TITLE first (seq 0,
+    not played), then the L lines (seq = line number). The rest of the columns as v1's rows (no debate markers, cue
+    empty). A speaker gets SPK_D01_<slug> when the package has that key, else SPK_<slug>, made from the CSV's speaker
+    columns when no string has it yet (as v1's speakers)."""
+    path = D01_DIR / "script_d01.csv"
+    if not path.exists():
+        return []
+    out = []
+    for r in read_csv(path):
+        m = re.fullmatch(r"SCR_D01_(S\d\d)_(TITLE|L(\d{3}))", r["ID"])
+        if not m or m.group(1) not in D01_SCRIPT_SCENES:
+            continue
+        scene, title = m.group(1), m.group(2) == "TITLE"
+        kind = "heading" if title else PSEUDO_SPEAKERS.get(r["speaker_zh"], "line")
+        speaker = ""
+        if kind == "line":
+            slug = slug_upper(r["speaker_en"])
+            speaker = f"SPK_D01_{slug}" if f"SPK_D01_{slug}" in strings else f"SPK_{slug}"
+            if speaker not in strings:
+                strings[speaker] = {"zh-TW": r["speaker_zh"], "en": r["speaker_en"]}
+        out.append({
+            "id": r["ID"], "chapter": D01_CHAPTER, "scene": scene, "sceneKey": f"D01_{scene}",
+            "seq": 0 if title else int(m.group(3)), "kind": kind, "speaker": speaker, "text": r["ID"], "branch": "",
+            "round": 0, "act": "", "node": "", "evidence": "", "appraisal": False, "banner": "", "inactive": False,
+            "playable": kind == "line", "cue": "",
+        })
+    out.sort(key=lambda r: (r["scene"], r["seq"]))
+    for scene in D01_SCRIPT_SCENES:
+        if not any(r["scene"] == scene and r["playable"] for r in out):
+            err(f"script: D01 {scene} has no line in {path.name}")
+    return out
+
+
 def merge_staging(script: list[dict]) -> None:
     """Add bg / slot_l / slot_c / slot_r / focus / style to every script row from the staging file."""
     if not STAGING_FILE.exists():
         err(f"staging: {STAGING_FILE.relative_to(ROOT)} not found")
         return
-    rows = read_csv(STAGING_FILE)
-    if rows and list(rows[0].keys()) != STAGING_COLUMNS:
-        err(f"staging: header must be {','.join(STAGING_COLUMNS)}, got {','.join(rows[0].keys())}")
-        return
+    rows = []
+    for f in (STAGING_FILE, D01_STAGING_FILE):   # v1, then the v2 demo D01 (written in this repo, same columns)
+        part = read_csv(f) if f.exists() else []
+        if part and list(part[0].keys()) != STAGING_COLUMNS:
+            err(f"staging: {f.name} header must be {','.join(STAGING_COLUMNS)}, got {','.join(part[0].keys())}")
+            return
+        rows += part
     by_id: dict[str, dict] = {}
     for r in rows:
         if r["id"] in by_id:
@@ -761,6 +811,64 @@ def build_bgm_cues(loc: dict, script: list[dict], sinfo: dict, papers: list[dict
         if cue["cue"] not in used:
             err(f"bgm cue {cue['cue']}: {cue['start']} governs no line a dialogue or paper shows")
     return rows
+
+
+def build_d01_cues() -> list[dict]:
+    """bgmCues rows of the v2 demo D01 (design staging/bgm_cues_d01.csv; docs/flows.md §4.10, §4.14), same columns as
+    v1's: per line of script_d01.csv, the latest cue at or before it in its scene (S07 onward too: those scenes have
+    no step yet, so their rows never apply), plus one row for each pseudo start id (D01_CUE_PSEUDO: the
+    investigation step's start). Validation as load_bgm_cues: unique ids, start ids that exist, design track ids or
+    NONE, a fade kind, a delivered track (else the fallback), `out` only to silence; every cue governs a row."""
+    if not D01_CUE_FILE.exists():
+        err(f"bgm cues: {D01_CUE_FILE.relative_to(ROOT)} not found")
+        return []
+    rows = read_csv(D01_CUE_FILE)
+    if rows and list(rows[0].keys()) != CUE_COLUMNS:
+        err(f"bgm cues D01: header must be {','.join(CUE_COLUMNS)}")
+        return []
+    lines = [r["ID"] for r in read_csv(D01_DIR / "script_d01.csv") if re.fullmatch(r"SCR_D01_S\d\d_L\d{3}", r["ID"])]
+    cues, seen = {}, set()
+    for r in rows:
+        cid, sid, bgm, fb, fade = r["cue_id"], r["start_id"], r["bgm"], r["fallback"], r["fade"]
+        where = f"bgm cue {cid or '?'}"
+        if not re.fullmatch(r"BGM_D01_\d\d", cid) or cid in seen or r["chapter"] != "D01":
+            err(f"{where}: bad or duplicate cue_id, or chapter {r['chapter']!r} is not D01")
+        seen.add(cid)
+        if sid not in lines and sid not in D01_CUE_PSEUDO:
+            err(f"{where}: start_id {sid!r} is not a D01 script line or pseudo id")
+            continue
+        if sid in cues:
+            err(f"{where}: a second cue on {sid}")
+        for t in (bgm, fb):
+            if t and t != CUE_NONE and not re.fullmatch(CUE_TRACK, t):
+                err(f"{where}: {t!r} is not a track id (BGM01-BGM20) or {CUE_NONE}")
+        if fade not in gen_flows.FADE_SECONDS:
+            err(f"{where}: fade {fade!r} is not one of {', '.join(gen_flows.FADE_SECONDS)}")
+            continue
+        if bgm == CUE_NONE or bgm in gen_flows.MUSIC:
+            track = bgm
+        elif fb == CUE_NONE or fb in gen_flows.MUSIC:
+            track = fb
+        else:
+            err(f"{where}: {bgm} is not delivered (tools/gen_flows.py MUSIC) and has no delivered fallback ({fb!r})")
+            continue
+        if fade == "out" and track != CUE_NONE:
+            err(f"{where}: fade out fades to silence, but the cue plays {track}")
+        cues[sid] = {"cue": cid, "bgm": "" if track == CUE_NONE else track, "fade": fade}
+    out, used, cur, scene = [], set(), None, None
+    for lid in sorted(lines) + sorted(D01_CUE_PSEUDO):
+        sc = D01_CUE_PSEUDO.get(lid) or lid.split("_")[2]
+        if sc != scene:
+            scene, cur = sc, None
+        cur = cues.get(lid, cur)
+        if cur:
+            used.add(cur["cue"])
+            out.append({"line": lid, "cue": cur["cue"], "scene": f"D01_{sc}", "bgm": cur["bgm"], "fade": cur["fade"],
+                        "secs": gen_flows.FADE_SECONDS[cur["fade"]]})
+    for c in cues.values():
+        if c["cue"] not in used:
+            err(f"bgm cue {c['cue']}: governs no D01 line")
+    return out
 
 
 def build_tells(loc: dict, script_rows: list[dict]) -> tuple[list[dict], dict]:
@@ -913,6 +1021,7 @@ def main() -> int:
             banners[("大字" if m.group(1) == "CUT" else "印", r["zh-TW"])] = r["ID"]
 
     script, sinfo = build_script(loc, banners)
+    script += build_d01_script(strings)
     merge_staging(script)
     tells, _gesture_en = build_tells(loc, script)
 
@@ -1196,7 +1305,8 @@ def main() -> int:
     def paper(pid, c, kind, group, result_ch, head, sub, body, side_key, ad, res):
         row = {"id": pid, "chapter": c, "kind": kind, "group": group, "resultChapter": result_ch,
                "mastKey": "UI_PAPER_MAST", "pictureId": f"ch{c:02d}", "headlineKey": head, "subKey": sub,
-               "bodyKey": body, "page2HeadKey": "", "page2BodyKey": "", "sideKey": side_key, "adKey": ad}
+               "bodyKey": body, "page2HeadKey": "", "page2BodyKey": "", "sideKey": side_key, "adKey": ad,
+               "datelineKey": "", "pages": 2}
         for name, (hk, sk) in zip(("Win", "Noto", "Lose"), res):
             row[f"side{name}Key"] = hk
             row[f"side{name}SubKey"] = sk
@@ -1220,8 +1330,28 @@ def main() -> int:
     paper(f"{nxt}_OPEN", last + 1, "open", f"{nxt}_OPEN", last, f"HEAD_{nxt}", f"HEAD_{nxt}_SUB",
           f"SCR_{nxt}_S01_L003", side[last], "", result_keys(last))
 
+    # The v2 demo D01's opening paper (S01; docs/flows.md §4.14): L001 is 【masthead・date】headline in one line, so it
+    # is split into the headline (HEAD_D01) and the dateline (HEAD_D01_DATE: the bracket's last part, after 「・」 /
+    # ", "), both derived from the package's text; L002 is the lead. One page: no second-page story, side news or
+    # advert, no previous case, no engraving.
+    l001 = strings.get("SCR_D01_S01_L001")
+    if l001:
+        parts = {}
+        for lang, sep in (("zh-TW", "・"), ("en", ", ")):
+            m = re.fullmatch(r"【([^】]+)】\s*(.+)", l001[lang])
+            if not m or sep not in m.group(1):
+                err(f"SCR_D01_S01_L001 [{lang}]: not 【masthead{sep}date】headline: {l001[lang]!r}")
+                continue
+            parts[lang] = (m.group(1).rsplit(sep, 1)[1].strip(), m.group(2).strip())
+        if len(parts) == 2:
+            strings["HEAD_D01_DATE"] = {lang: parts[lang][0] for lang in LANGS}
+            strings["HEAD_D01"] = {lang: parts[lang][1] for lang in LANGS}
+        paper("D01_OPEN", D01_CHAPTER, "open", "D01_OPEN", 0, "HEAD_D01", "", "SCR_D01_S01_L002", "", "", no_result)
+        papers[-1].update({"pictureId": "", "datelineKey": "HEAD_D01_DATE", "pages": 1})
+
     # ---- BGM cues (design staging table; data-schema §14)
     bgm_cues = build_bgm_cues(loc, script, sinfo, papers)
+    bgm_cues += build_d01_cues()
 
     # ---- steps
     steps = []
@@ -1243,9 +1373,9 @@ def main() -> int:
             steps.append({"id": f"{ch_key(c)}_{i:02d}", "chapter": c, "idx": i, "kind": k, "sub": sub,
                           "scene": scene, "arg": arg})
 
-    for i, (k, scene) in enumerate(D01_STEPS):
+    for i, (k, scene, arg) in enumerate(D01_STEPS):
         steps.append({"id": f"D01_{i:02d}", "chapter": D01_CHAPTER, "idx": i, "kind": k, "sub": "", "scene": scene,
-                      "arg": ""})
+                      "arg": arg})
 
     # ---- chapter titles: CHAP_0n_TITLE from the localization package; fallback: the closing-notes line
     # 「案件名稱：…。」 / "Case name: …."
@@ -1364,7 +1494,7 @@ def main() -> int:
 KEY_COLUMNS = {
     "chapters": ["titleKey"], "script": ["text", "speaker"], "evidence": ["nameKey", "descKey", "tagsKey", "appraisalKey", "reason0Key", "reason1Key", "reason2Key"],
     "nodes": ["textKey"], "opponents": ["speaker", "gestureAssert", "gestureRush", "gestureReinforce", "gestureTrap"],
-    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "headlineKey", "subKey", "bodyKey", "page2HeadKey", "page2BodyKey", "sideKey", "adKey",
+    "tells": ["text", "speaker", "gesture"], "papers": ["mastKey", "datelineKey", "headlineKey", "subKey", "bodyKey", "page2HeadKey", "page2BodyKey", "sideKey", "adKey",
                "sideWinKey", "sideWinSubKey", "sideNotoKey", "sideNotoSubKey", "sideLoseKey", "sideLoseSubKey"],
     "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"], "hotspots": ["nameKey", "noteKey", "hintKey"],
 }

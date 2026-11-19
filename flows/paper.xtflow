@@ -281,6 +281,35 @@
       }
     },
     {
+      "id": "datelineKey",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "datelineKey",
+        "type": "string"
+      }
+    },
+    {
+      "id": "dateline",
+      "type": "atrium.text"
+    },
+    {
+      "id": "pages",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "pages",
+        "type": "number"
+      }
+    },
+    {
+      "id": "pgEnd",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pages + 1"
+      }
+    },
+    {
       "id": "pg",
       "type": "counter",
       "params": {
@@ -584,8 +613,24 @@
       "to": "ui#paper.stamp"
     },
     {
-      "from": "empty.out",
+      "from": "prow.row",
+      "to": "datelineKey.row"
+    },
+    {
+      "from": "datelineKey.value",
+      "to": "dateline.key"
+    },
+    {
+      "from": "dateline.text",
       "to": "ui#paper.dateline"
+    },
+    {
+      "from": "prow.row",
+      "to": "pages.row"
+    },
+    {
+      "from": "pages.value",
+      "to": "pgEnd.pages"
     },
     {
       "from": "paperBegin.changed",
@@ -628,7 +673,7 @@
       "to": "pgDone.a"
     },
     {
-      "from": "three.out",
+      "from": "pgEnd.value",
       "to": "pgDone.b"
     },
     {

@@ -261,6 +261,103 @@
       }
     },
     {
+      "id": "cueKey0",
+      "type": "select"
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "d1warmup"
+      }
+    },
+    {
+      "id": "isFix_d1warmup",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S04_L001"
+      }
+    },
+    {
+      "id": "cueFix_d1warmup",
+      "type": "select"
+    },
+    {
+      "id": "K15",
+      "type": "constant",
+      "params": {
+        "value": "d1investigate"
+      }
+    },
+    {
+      "id": "isFix_d1investigate",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S05_START"
+      }
+    },
+    {
+      "id": "cueFix_d1investigate",
+      "type": "select"
+    },
+    {
+      "id": "K17",
+      "type": "constant",
+      "params": {
+        "value": "d1carry"
+      }
+    },
+    {
+      "id": "isFix_d1carry",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K18",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S06_L001"
+      }
+    },
+    {
+      "id": "cueFix_d1carry",
+      "type": "select"
+    },
+    {
+      "id": "isFixed",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "fixedN",
+      "type": "select"
+    },
+    {
       "id": "cueKey",
       "type": "select"
     },
@@ -282,11 +379,36 @@
       }
     },
     {
-      "id": "stepScene",
+      "id": "stepSceneV1",
       "type": "format",
       "params": {
         "format": "CH0{a}_{b}"
       }
+    },
+    {
+      "id": "stepSceneD1",
+      "type": "format",
+      "params": {
+        "format": "D01_{a}"
+      }
+    },
+    {
+      "id": "K19",
+      "type": "constant",
+      "params": {
+        "value": 101
+      }
+    },
+    {
+      "id": "stepSceneIsD1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "stepScene",
+      "type": "select"
     },
     {
       "id": "cueHere",
@@ -326,7 +448,7 @@
       "id": "cueOk",
       "type": "atrium.expr",
       "params": {
-        "expr": "cueRow >= 0 && (isPaperN || cueHereN && (isVnN || isResN || isDebK && !debOnN))"
+        "expr": "cueRow >= 0 && (isPaperN || fixedN || cueHereN && (isVnN || isResN || isDebK && !debOnN))"
       }
     },
     {
@@ -435,13 +557,6 @@
       "type": "merge"
     },
     {
-      "id": "K12",
-      "type": "constant",
-      "params": {
-        "value": ""
-      }
-    },
-    {
       "id": "trkNone",
       "type": "compare",
       "params": {
@@ -453,7 +568,7 @@
       "type": "select"
     },
     {
-      "id": "K13",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": "cut"
@@ -815,14 +930,106 @@
     },
     {
       "from": "is_paper.out",
-      "to": "cueKey.cond"
+      "to": "cueKey0.cond"
     },
     {
       "from": "cueBody.value",
-      "to": "cueKey.a"
+      "to": "cueKey0.a"
     },
     {
       "from": "world.vnLine",
+      "to": "cueKey0.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isFix_d1warmup.a"
+    },
+    {
+      "from": "K13.out",
+      "to": "isFix_d1warmup.b"
+    },
+    {
+      "from": "isFix_d1warmup.out",
+      "to": "cueFix_d1warmup.cond"
+    },
+    {
+      "from": "K14.out",
+      "to": "cueFix_d1warmup.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "cueFix_d1warmup.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isFix_d1investigate.a"
+    },
+    {
+      "from": "K15.out",
+      "to": "isFix_d1investigate.b"
+    },
+    {
+      "from": "isFix_d1investigate.out",
+      "to": "cueFix_d1investigate.cond"
+    },
+    {
+      "from": "K16.out",
+      "to": "cueFix_d1investigate.a"
+    },
+    {
+      "from": "cueFix_d1warmup.out",
+      "to": "cueFix_d1investigate.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isFix_d1carry.a"
+    },
+    {
+      "from": "K17.out",
+      "to": "isFix_d1carry.b"
+    },
+    {
+      "from": "isFix_d1carry.out",
+      "to": "cueFix_d1carry.cond"
+    },
+    {
+      "from": "K18.out",
+      "to": "cueFix_d1carry.a"
+    },
+    {
+      "from": "cueFix_d1investigate.out",
+      "to": "cueFix_d1carry.b"
+    },
+    {
+      "from": "cueFix_d1carry.out",
+      "to": "isFixed.a"
+    },
+    {
+      "from": "K12.out",
+      "to": "isFixed.b"
+    },
+    {
+      "from": "isFixed.out",
+      "to": "fixedN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "fixedN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "fixedN.b"
+    },
+    {
+      "from": "isFixed.out",
+      "to": "cueKey.cond"
+    },
+    {
+      "from": "cueFix_d1carry.out",
+      "to": "cueKey.a"
+    },
+    {
+      "from": "cueKey0.out",
       "to": "cueKey.b"
     },
     {
@@ -835,10 +1042,34 @@
     },
     {
       "from": "world.chapter",
-      "to": "stepScene.a"
+      "to": "stepSceneV1.a"
     },
     {
       "from": "world.stepScene",
+      "to": "stepSceneV1.b"
+    },
+    {
+      "from": "world.stepScene",
+      "to": "stepSceneD1.a"
+    },
+    {
+      "from": "world.chapter",
+      "to": "stepSceneIsD1.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "stepSceneIsD1.b"
+    },
+    {
+      "from": "stepSceneIsD1.out",
+      "to": "stepScene.cond"
+    },
+    {
+      "from": "stepSceneD1.out",
+      "to": "stepScene.a"
+    },
+    {
+      "from": "stepSceneV1.out",
       "to": "stepScene.b"
     },
     {
@@ -924,6 +1155,10 @@
     {
       "from": "isPaperN.out",
       "to": "cueOk.isPaperN"
+    },
+    {
+      "from": "fixedN.out",
+      "to": "cueOk.fixedN"
     },
     {
       "from": "cueHereN.out",
@@ -1094,7 +1329,7 @@
       "to": "fadeCut.a"
     },
     {
-      "from": "K13.out",
+      "from": "K20.out",
       "to": "fadeCut.b"
     },
     {

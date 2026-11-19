@@ -1,0 +1,20 @@
+cue_id,chapter,start_id,bgm,fallback,fade,note
+BGM_D01_01,D01,SCR_D01_S01_L001,BGM11,,cross,開場報紙
+BGM_D01_02,D01,SCR_D01_S02_L001,BGM02,,cross,事務所・前一晚：房東太太的鬼故事
+BGM_D01_03,D01,SCR_D01_S03_L001,BGM03,,cross,隔天早上前往海德宅
+BGM_D01_04,D01,SCR_D01_S03_L003,BGM04,,cut,警督宣布破案、鎖匠被押：遭遇事件
+BGM_D01_05,D01,SCR_D01_S04_L001,BGM07,,cross,熱身小論戰全程 BGM07（含失敗分支）
+BGM_D01_06,D01,SCR_D01_S05_START,BGM05,,cross,蒐證；六個地點共用，不因換地點重播
+BGM_D01_07,D01,SCR_D01_S06_L001,BGM06,,cross,整理帶走的證物（沿用線索板的曲子）
+BGM_D01_08,D01,SCR_D01_S07_L001,NONE,,out,論戰前的靜場：眾人到齊
+BGM_D01_09,D01,SCR_D01_S07_L004,BGM07,,cut,主論戰開始；之後依論戰切換規則（BGM08／09／10）
+BGM_D01_10,D01,SCR_D01_S07_L007,NONE,,out,殘局・罪惡感越線：他沒有再開口，靜音到 L008 結束
+BGM_D01_11,D01,SCR_D01_S07_L012,BGM09,,cross,勝利收尾演出：找回附錄（已在 BGM09 時不重播）
+BGM_D01_12,D01,SCR_D01_S07_L015,NONE,,out,「把鏡子蓋上。拜託。」淡出靜音
+BGM_D01_13,D01,SCR_D01_S07_L016,NONE,,out,敗北：靜音到 L019
+BGM_D01_14,D01,SCR_D01_S08_L001,BGM12,,cross,結算：海德太太的話（溫馨小事）
+BGM_D01_15,D01,SCR_D01_S09_L001,BGM11,,cross,章末報紙：體面版
+BGM_D01_16,D01,SCR_D01_S09_L003,BGM11,,cross,章末報紙：普通版
+BGM_D01_17,D01,SCR_D01_S09_L005,BGM11,,cross,章末報紙：難看版
+BGM_D01_18,D01,SCR_D01_S10_L001,BGM02,,cross,亞瑟的結案筆記
+BGM_D01_19,D01,SCR_D01_S11_L001,BGM01,,cross,下一章預告佔位：主題曲；回到標題時不中斷
