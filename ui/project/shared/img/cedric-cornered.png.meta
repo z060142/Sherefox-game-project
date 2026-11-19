@@ -1,0 +1,13 @@
+version: 1
+id: dc354f5b-7bee-4e2f-943e-7f15735f5d62
+type: image
+title: cedric-cornered
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_cedric_cornered.png
+content: sha256:7988e66333454209ecd401fac7167cd1bba1a2a6c77af712c6353bff638a4c9a
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

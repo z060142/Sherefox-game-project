@@ -188,6 +188,28 @@ first press warns) and close the missed-cards message (`gen_case.end`).
 `check_debate.py`, `check_policy.py` and `check_playthrough.py` use the CLI of `tests/xt_cli.py` (`XTATRIUM_EXE`,
 else the installed SDK, else the `XTATRIUM` checkout).
 
+## v2 demo: the D01 debate screen (M2)
+
+```
+uv run tests/check_debate_v2.py                 # the engine against the ref (unchanged by M2)
+uv run tests/check_d1_play.py [--shots DIR]
+```
+
+`check_d1_play.py` regenerates the recordings (`tests/gen_d1_play.py`) and replays them with `--ports`. Each one starts
+at the title's v2 entry and plays the whole D01 debate by clicking the `d1debate` screen (action, evidence, claim,
+target, cover, lock, one click per playback record), then the outcome panel's back to title.
+
+| Check | Recording | What it asserts |
+|---|---|---|
+| `route A`, `route A [en]` | `d1_routeA.atrec` on `tests/d1play_harnessA` | ref route A (ch §12.1) with Cedric's moves pinned through the engine's `d1OppAct`／`d1OppCard` test hook (a flow the harness adds): the outcome panel shows grade 1 and 9 rounds, a win; round 9 was shown; back to title leaves only the title; nothing on stderr |
+| `route D` | `d1_routeD.atrec` on `tests/d1play_harnessD` | ref route D (ch §12.4; the harness also swaps in route D's loadout): grade 5, 8 rounds, a loss (Reverse Break, then the last card fails; route D names L1 as the target, no longer on his chain, so no target is clicked: same result) |
+| `seeded AI (seed 3)` | `d1_bot.atrec` on the game itself | nothing pinned: the engine's AI on the run's seed against the moves of ref `play.bot` on the framework's Rng (`check_debate_v2.py` `FrameworkRng`); the outcome matches ref |
+
+The harnesses (`tests/d1play_harnessA/`, `D/`, copies of the game; gitignored) are deleted when the check ends, and the
+check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR` also writes review screenshots in
+zh-TW and en (`xtatrium shot`): the claim picker in an ordinary round, a playback line, the 論破 cut-in, the endgame
+prompt with the last gasp, the §7.5 round, both outcome panels.
+
 ## Edge smoothing, msaa 1 vs msaa 4 (report aid)
 
 `uv run tests/aa_compare.py OUTDIR [--screens title,debate] [--zoom N]` uses `xtatrium shot` (no window, frame-exact) to

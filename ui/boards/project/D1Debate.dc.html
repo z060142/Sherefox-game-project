@@ -1,0 +1,508 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>D1Debate</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #092e28 }
+  .kicker { font-family: var(--font-body); font-size: 12px; line-height: 18px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--copper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  :lang(en) .kicker { letter-spacing: 1px }
+  .paper { background-color: #f3eedfeb; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+           box-shadow: 3px 3px 0px 0px #092e2859 }
+  .mast-t { font-family: var(--font-display); font-size: 19px; line-height: 30px; letter-spacing: 4px; color: var(--ink-deep); white-space: nowrap }
+  .extra { background-color: var(--vermilion); color: var(--paper); text-align: center; font-family: var(--font-display);
+           font-size: 16px; line-height: 26px; font-weight: 700; letter-spacing: 4px; white-space: nowrap }
+  .round { font-family: var(--font-display); font-size: 17px; line-height: 30px; font-weight: 700; color: var(--copper); white-space: nowrap }
+
+  /* Buttons. */
+  .bbtn { background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 2px 2px 0px 0px #092e2866;
+          transition: background-color 120ms linear }
+  .bbtn:hover { background-color: var(--copper) }
+  .bbtn-t { font-family: var(--font-body); font-size: 13px; line-height: 30px; letter-spacing: 1px; color: var(--paper);
+            white-space: nowrap; text-align: center; overflow: hidden; text-overflow: ellipsis }
+
+  /* Credibility bars. */
+  .cred-l { font-family: var(--font-display); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-deep);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .cred-n { font-family: var(--font-display); font-size: 15px; line-height: 20px; font-weight: 700; color: var(--ink-deep);
+            text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums }
+  .track { background-color: #092e2833; border: 1px solid var(--ink) }
+  .fill-opp { background: linear-gradient(90deg, #7a3e24 0%, #b8322a 100%) }
+  .fill-me { background: linear-gradient(90deg, #123a31 0%, #2f6b3a 100%) }
+  .float { font-family: var(--font-display); font-size: 30px; line-height: 36px; font-weight: 700; color: var(--vermilion);
+           text-align: center; text-shadow: 0px 0px 3px #f3eedf, 0px 0px 6px #f3eedf; opacity: 0; white-space: nowrap }
+  .plate { background: linear-gradient(180deg, #d79b55 0%, #a65432 60%, #7a3e24 100%); border: 1px solid #5e2c18;
+           box-shadow: 2px 2px 0px 0px #092e2866 }
+  .plate-t { font-family: var(--font-display); font-size: 14px; line-height: 24px; font-weight: 700; letter-spacing: 1px;
+             color: var(--paper); white-space: nowrap; text-align: center; overflow: hidden; text-overflow: ellipsis }
+  .plate.red { background: linear-gradient(180deg, #d23f35 0%, #b8322a 60%, #7a1d17 100%); border-color: #5c1913;
+               animation: redpulse 0.9s ease-in-out infinite alternate }
+  @keyframes redpulse { from { opacity: 0.75 } to { opacity: 1 } }
+
+  /* Psych gauges: three colour bands, no numbers. */
+  .g-name { font-family: var(--font-display); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-deep); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .g-band { display: none; font-family: var(--font-body); font-size: 12px; line-height: 20px; text-align: right; white-space: nowrap }
+  .seg { background-color: #092e2826; border: 1px solid #123a3166 }
+  .gauge.b0 .s1 { background-color: #6f8f7a }
+  .gauge.b1 .s1 { background-color: #d08a2a } .gauge.b1 .s2 { background-color: #d08a2a }
+  .gauge.b2 .s1 { background-color: #b8322a } .gauge.b2 .s2 { background-color: #b8322a } .gauge.b2 .s3 { background-color: #b8322a }
+  .gauge.b0 .gb-0 { display: block; color: #4d6b57 }
+  .gauge.b1 .gb-1 { display: block; color: #9a5a14 }
+  .gauge.b2 .gb-2 { display: block; color: var(--vermilion); font-weight: 700 }
+  .gauge.b2 .s3 { animation: redpulse 0.6s ease-in-out infinite alternate }
+
+  /* Chains. */
+  .chip { background-color: var(--paper); border: 1px solid #123a3199; box-shadow: 2px 2px 0px 0px #092e2840;
+          transition: background-color 120ms linear }
+  .chip.click:hover { background-color: #fff3cf }
+  .chip.sel { background-color: #fff3cf; border: 2px solid var(--vermilion); box-shadow: 0px 0px 8px 1px #b8322a99 }
+  .chip-t { font-family: var(--font-body); font-size: 12px; line-height: 15px; color: var(--ink-deep); line-clamp: 3 }
+  .iss { font-family: var(--font-display); font-size: 11px; line-height: 16px; font-weight: 700; color: var(--paper);
+         background-color: var(--ink); text-align: center; white-space: nowrap; overflow: hidden }
+  .empty { font-family: var(--font-body); font-size: 13px; line-height: 20px; font-style: italic; color: #123a3199; white-space: nowrap }
+  .shis-t { font-family: var(--font-display); font-size: 12px; line-height: 15px; font-weight: 700; color: var(--vermilion); line-clamp: 2 }
+  .ronpa-t { font-family: var(--font-display); font-size: 13px; line-height: 18px; font-weight: 700; color: var(--ink-deep);
+             text-align: right; white-space: nowrap }
+  .crack-m { display: none }
+  .chip.cracked .crack-m { display: block }
+
+  /* Tell. */
+  .bubble { background-color: var(--paper); border: 1px solid var(--ink); box-shadow: 3px 3px 0px 0px #092e2866 }
+  .tell-card { font-family: var(--font-display); font-size: 16px; line-height: 21px; font-weight: 700; color: var(--ink-deep); line-clamp: 3 }
+  :lang(en) .tell-card { font-size: 14px; line-height: 18px }
+  :lang(en) .cand-l { font-size: 13px }
+  :lang(en) .chip-t { font-size: 11px; line-height: 14px }
+  .tell-hes { font-family: var(--font-body); font-size: 12px; line-height: 16px; font-style: italic; color: var(--copper); white-space: nowrap }
+  .clar { font-family: var(--font-body); font-size: 13px; line-height: 20px; font-weight: 700; color: var(--copper); white-space: nowrap }
+  .cand { background-color: var(--paper); border: 1px solid #123a3199; box-shadow: 2px 2px 0px 0px #092e2840 }
+  .cand.star { border: 2px solid var(--lamp-gold); background-color: #fff8e6 }
+  .cand-l { display: none; font-family: var(--font-display); font-size: 15px; line-height: 22px; font-weight: 700; color: var(--ink-deep);
+            text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .cand.a0 .ca-0 { display: block } .cand.a1 .ca-1 { display: block } .cand.a2 .ca-2 { display: block }
+  .cand.a3 .ca-3 { display: block } .cand.a4 .ca-4 { display: block }
+  .likely { display: none; font-family: var(--font-body); font-size: 11px; line-height: 14px; color: #9a5a14; text-align: center; white-space: nowrap }
+  .cand.star .likely { display: block }
+  .slash { font-family: var(--font-display); font-size: 20px; line-height: 44px; color: var(--copper); text-align: center }
+  .gesture { font-family: var(--font-body); font-size: 12px; line-height: 16px; font-style: italic; color: var(--ink); line-clamp: 2 }
+  .dying-t { font-family: var(--font-display); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--vermilion); line-clamp: 2 }
+
+  /* Claim picker. */
+  .evc { background-color: var(--paper); border-left: 3px solid #123a3166; transition: background-color 120ms linear }
+  .evc:hover { background-color: #fff3cf }
+  .evc.sel { background-color: var(--ink); border-left-color: var(--vermilion) }
+  .evc-t { font-family: var(--font-body); font-size: 12px; line-height: 20px; color: var(--ink-deep); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .evc.sel .evc-t { color: var(--paper) }
+  .clm { background-color: var(--paper); border: 1px solid #123a3166; border-left: 4px solid #2f6b3a;
+         transition: background-color 120ms linear }
+  .clm:hover { background-color: #fff3cf }
+  .clm.soph { border-left-color: #6b3a7a }
+  .clm.sel { background-color: #fff3cf; border: 2px solid var(--vermilion); border-left: 4px solid var(--vermilion) }
+  .clm.off { opacity: 0.42 }
+  .clm.off:hover { background-color: var(--paper) }
+  .clm-kind { font-family: var(--font-display); font-size: 12px; line-height: 18px; font-weight: 700; color: var(--paper);
+              background-color: #2f6b3a; text-align: center; white-space: nowrap; overflow: hidden }
+  .clm.soph .clm-kind { background-color: #6b3a7a }
+  .clm-t { font-family: var(--font-display); font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-deep);
+           white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  :lang(en) .clm-t { font-size: 13px }
+  .tag { font-family: var(--font-body); font-size: 11px; line-height: 16px; white-space: nowrap; flex-shrink: 0 }
+  .tag-red { color: var(--vermilion); font-weight: 700 }
+  .tag-cu { color: var(--copper) }
+  .tag-ink { color: #123a31aa }
+
+  /* Summary, actions, lock. */
+  .confirm { background-color: #092e28e6; border: 1px solid #000000; box-shadow: 3px 3px 0px 0px #092e2866 }
+  .sum-t { font-family: var(--font-body); font-size: 14px; line-height: 34px; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .sum-a { font-family: var(--font-body); font-size: 14px; line-height: 34px; color: var(--lamp-gold); white-space: nowrap; text-align: center }
+  .sum-hint { font-family: var(--font-body); font-size: 13px; line-height: 34px; color: #ff9a8f; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .tblock { background: linear-gradient(180deg, #2a4f45 0%, #123a31 45%, #092e28 100%); border: 1px solid #000000;
+            box-shadow: inset 0px 2px 0px 0px #ffffff26, inset 0px -3px 0px 0px #00000066, 3px 3px 0px 0px #092e2880;
+            transition: background-color 120ms linear }
+  .tblock:hover { background: linear-gradient(180deg, #c06a40 0%, #a65432 50%, #7a3e24 100%) }
+  .tblock.on { background: linear-gradient(180deg, #ffffff 0%, #f3eedf 60%, #e3d9c2 100%); border: 2px solid var(--vermilion);
+               box-shadow: inset 0px -5px 0px 0px #b8322a, 0px 0px 12px 2px #b8322a99 }
+  .tblock.off { background: linear-gradient(180deg, #7b8581 0%, #5b6662 100%) }
+  .tblock.off:hover { background: linear-gradient(180deg, #7b8581 0%, #5b6662 100%) }
+  .tb-t { font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: 2px; color: var(--paper);
+          text-align: center; white-space: nowrap; text-shadow: 0px -1px 0px #000000; overflow: hidden; text-overflow: ellipsis }
+  :lang(en) .tb-t { font-size: 15px; letter-spacing: 0px }
+  .tblock.on .tb-t { color: var(--ink-deep); text-shadow: 0px 1px 0px #ffffff }
+  .tblock.off .tb-t { color: #d7dbd6 }
+  .tb-k { font-family: var(--font-body); font-size: 11px; line-height: 14px; color: #f3eedf99; text-align: center }
+  .tblock.on .tb-k { color: var(--vermilion) }
+  .grp-l { font-family: var(--font-display); font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 3px; color: var(--paper);
+           text-align: center; background-color: #092e28d9; white-space: nowrap }
+  .lamp { border-radius: 5px; background-color: #3a2a1e; border: 1px solid #5e2c18 }
+  .lamp.on { background-color: var(--lamp-gold); box-shadow: 0px 0px 6px 1px #e0a050cc }
+  .guard { background-color: #092e28d9; border: 1px solid #000000; transition: background-color 120ms linear }
+  .guard:hover { background-color: #123a31 }
+  .guard.armed { border: 2px solid var(--lamp-gold); box-shadow: 0px 0px 12px 2px #e0a050aa }
+  .guard.off { opacity: 0.5 }
+  .guard-t { font-family: var(--font-display); font-size: 16px; line-height: 22px; font-weight: 700; color: var(--paper); white-space: nowrap; text-align: center }
+  .guard.armed .guard-t { color: var(--lamp-gold) }
+  .prompt { font-family: var(--font-display); font-size: 16px; line-height: 22px; font-weight: 700; color: var(--paper); line-clamp: 3 }
+  :lang(en) .prompt { font-size: 14px; line-height: 19px }
+  .lockb { background-color: var(--vermilion); border: 1px solid #5c1913; box-shadow: 3px 3px 0px 0px #092e2880; transition: background-color 120ms linear }
+  .lockb:hover { background-color: #d23f35 }
+  .lockb.off { background-color: #5b6662; border-color: #5b6662 }
+  .lockb-t { font-family: var(--font-display); font-size: 26px; line-height: 40px; font-weight: 700; letter-spacing: 4px; color: var(--paper);
+             white-space: nowrap; text-align: center }
+  :lang(en) .lockb-t { font-size: 22px; letter-spacing: 1px }
+  .acts.busy { opacity: 0.5 }
+
+  /* Playback band. */
+  .band { background-color: #092e28eb; border-top: 2px solid var(--copper); border-bottom: 2px solid var(--copper) }
+  .who { font-family: var(--font-display); font-size: 16px; line-height: 22px; font-weight: 700; letter-spacing: 2px; color: var(--lamp-gold); white-space: nowrap }
+  .speech { font-family: var(--font-body); font-size: 20px; line-height: 28px; color: var(--paper); line-clamp: 2 }
+  :lang(en) .speech { font-size: 18px; line-height: 25px }
+  .sysl { font-family: var(--font-display); font-size: 16px; line-height: 22px; font-weight: 700; color: #f3eedf;
+          border-left: 4px solid var(--vermilion); padding-left: 10px; line-clamp: 2 }
+  :lang(en) .sysl { font-size: 15px; line-height: 20px }
+  .more { font-family: var(--font-body); font-size: 12px; line-height: 16px; color: #f3eedf88; text-align: right; white-space: nowrap }
+
+  /* Record and outcome. */
+  #record-panel { display: none }
+  #record:state(Open) #record-panel { display: block }
+  .sheet-big { background-color: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0px 0px #092e2899 }
+  .rec-row { background-color: #fbf8ef; border-bottom: 1px dashed #123a3166 }
+  .rec-n { font-family: var(--font-display); font-size: 13px; line-height: 26px; font-weight: 700; color: var(--copper); white-space: nowrap; flex-shrink: 0 }
+  .rec-t { font-family: var(--font-display); font-size: 14px; line-height: 26px; font-weight: 700; color: var(--ink-deep); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .h1 { font-family: var(--font-display); font-size: 24px; line-height: 32px; font-weight: 700; color: var(--ink-deep); white-space: nowrap }
+  .desc { font-family: var(--font-body); font-size: 13px; line-height: 18px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .veil { background-color: #092e28b3 }
+  .grade-t { font-family: var(--font-display); font-size: 40px; line-height: 52px; font-weight: 700; color: var(--vermilion); text-align: center; white-space: nowrap }
+  :lang(en) .grade-t { font-size: 30px }
+  .outcome.win .grade-t { color: var(--ink-deep) }
+  .rounds-t { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--ink); text-align: center; white-space: nowrap }
+  .name-plate { background-color: #092e28e6; border: 1px solid #000000 }
+  .opp-name { font-family: var(--font-display); font-size: 20px; line-height: 34px; font-weight: 700; color: var(--paper); text-align: center; white-space: nowrap }
+</style></helmet>
+<div id="d1debate" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='round_text:string in = "第 3 回合／20"; opp_name:string in = "塞德里克"; opp_cred:string in = "塞德里克 的可信度"; hp_me:number in = 124; hp_me_max:number in = 140; hp_opp:number in = 180.5; hp_opp_max:number in = 230; face:number in = 1; band_p:number in = 0; band_g:number in = 1; band_a:number in = 0; combo_text:string in = "連擊 ×2"; hachiku:number in = 2; guard_down:bool in = false; shisshu:bool in = false; ronpa_text:string in = "鏈長 2／4　爭點 2／2"; ronpa_ready:bool in = false; show_ronpa:bool in = true; tell_on:bool in = true; tell_card:string in = "鎖匠碰過筒子、有萬用鑰匙"; tell_partial:bool in = false; tell_clear:bool in = true; tell_a:number in = 0; tell_b:number in = -1; tell_star:number in = -1; tell_gesture:string in = "整理黑領巾、微微一笑"; dying:bool in = false; dying_text:string in = "垂死反撲：打中只扣 10"; ochain_title:string in = "塞德里克 的推理鏈"; ochain:list&lt;struct{id: string, label: string, issue: string, sel: bool}&gt; in = [{"id":"L1","label":"整晚守在靈柩旁","issue":"機","sel":false}]; pchain:list&lt;struct{id: string, label: string, issue: string, crack: number}&gt; in = [{"id":"04A","label":"總閥被人關小","issue":"法","crack":0},{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","crack":0}]; ev_list:list&lt;struct{id: string, name: string, sel: bool}&gt; in = [{"id":"E01","name":"黃銅文件筒（空）","sel":false},{"id":"E02","name":"書房的座鐘","sel":false},{"id":"E04","name":"地下室煤氣總閥","sel":false},{"id":"E06","name":"布里格斯的工作單","sel":true},{"id":"E08","name":"賭場的催款信","sel":false}]; claims:list&lt;struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}&gt; in = [{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","kind":"正論","soph":0,"crack":"","stand":"已在鏈上","extra":"","ok":0,"sel":false},{"id":"06B","label":"鎖匠傍晚就走了","issue":"機","kind":"正論","soph":0,"crack":"","stand":"","extra":"","ok":1,"sel":true},{"id":"06C","label":"工作單只寫「校試」","issue":"法","kind":"詭辯","soph":1,"crack":"與妳說過的話矛盾","stand":"","extra":"","ok":1,"sel":false}]; record:list&lt;struct{n: number, label: string, use: string, soph: string, crack: string, state: string}&gt; in = [{"n":1,"label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":2,"label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]; mode:number in = 0; phase:number in = 0; act:number in = 1; can_dismantle:bool in = true; guard_ok:bool in = true; guard_armed:bool in = false; guard_left:bool in = true; sel_claim_text:string in = "鎖匠傍晚就走了"; sel_target_text:string in = ""; need_target:bool in = false; can_lock:bool in = true; picker_on:bool in = true; speech_who:string in = "Sherefox"; speech:string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"; sys_line:string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"; line_seq:number in = 0; float_opp:string in = ""; float_me:string in = ""; float_opp_seq:number in = 0; float_me_seq:number in = 0; shatter_seq:number in = 0; grade_text:string in = "乾淨論破"; rounds_text:string in = "回合數 9"; outcome_win:bool in = true; pick_act:number out = 0; pick_ev:string out = ""; pick_claim:string out = ""; pick_target:string out = ""; guard:event out; lock:event out; skip:event out; back_title:event out; settings:event out'
+     data-xt-trigger="show:play(intro); port(float_opp_seq):play(float-opp); port(float_me_seq):play(float-me); port(line_seq):play(line-in); port(shatter_seq):play(shatter); port(face):play(face-in); key(1):if port(phase) eq 0 set(pick_act, 1); key(2):if port(phase) eq 0 set(pick_act, 2); key(3):if port(phase) eq 0 set(pick_act, 3); key(4):if port(phase) eq 0 set(pick_act, 4); key(V):if port(phase) eq 0 emit(guard); key(R):state(Open, toggle, target=#record); key(Enter):if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip); key(Space):if port(phase) eq 1 emit(skip); key(Escape):emit(settings); key(F1):emit(settings)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background-color: #092e28; font-family: var(--font-body); color: #123a31;">
+
+  <!-- The wake parlour, full bleed. -->
+  <img id="bg-d01-parlour" src="/_blob/bg_d01_parlour.jpg" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px; object-fit: cover;">
+
+  <!-- Everything else sits on one 1280x720 sheet, centred. -->
+  <div id="sheet" data-xt-timeline="intro: 0 opacity 0, 400ms ease-out opacity 1"
+       style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+  <!-- Cedric: one portrait per expression (face 0 composed, 1 uneasy, 2 cornered, 3 angry, 4 guilt). -->
+  <div id="opp-fig" data-xt-timeline="face-in: 0 opacity 0.4, 380ms ease-out opacity 1"
+       style="position: absolute; left: 968px; top: 52px; width: 310px; height: 465px;">
+    <img id="cedric-composed" src="/_blob/char_cedric_composed.png" data-xt-bind="display=face | eq(0)" style="position: absolute; left: 0px; top: 0px; width: 310px; height: 465px; object-fit: contain;">
+    <img id="cedric-uneasy" src="/_blob/char_cedric_uneasy.png" data-xt-bind="display=face | eq(1)" style="position: absolute; left: 0px; top: 0px; width: 310px; height: 465px; object-fit: contain;">
+    <img id="cedric-cornered" src="/_blob/char_cedric_cornered.png" data-xt-bind="display=face | eq(2)" style="position: absolute; left: 0px; top: 0px; width: 310px; height: 465px; object-fit: contain;">
+    <img id="cedric-angry" src="/_blob/char_cedric_angry.png" data-xt-bind="display=face | eq(3)" style="position: absolute; left: 0px; top: 0px; width: 310px; height: 465px; object-fit: contain;">
+    <img id="cedric-guilt" src="/_blob/char_cedric_guilt.png" data-xt-bind="display=face | eq(4)" style="position: absolute; left: 0px; top: 0px; width: 310px; height: 465px; object-fit: contain;">
+  </div>
+  <div id="opp-plate" class="name-plate" style="position: absolute; left: 1000px; top: 512px; width: 250px; height: 34px;">
+    <div id="opp-name" class="opp-name" data-xt-bind="text=opp_name" style="position: absolute; left: 0px; top: 0px; width: 250px; height: 34px;">塞德里克</div>
+  </div>
+
+  <!-- Masthead: the Extra edition, the round; the public record button. -->
+  <div id="mast-bg" style="position: absolute; left: 12px; top: 6px; width: 600px; height: 44px; background-color: #f3eedfe6; box-shadow: 3px 3px 0px 0px #092e2859;"></div>
+  <div id="mast" style="position: absolute; left: 22px; top: 13px; width: 584px; height: 30px; display: flex; flex-direction: row; align-items: center; gap: 12px;">
+    <div id="mast-name" class="mast-t" data-xt-key="UI_PAPER_MAST" style="height: 30px; flex-shrink: 0;">倫敦提燈報</div>
+    <div id="mast-extra" class="extra" data-xt-key="UI_PAPER_EXTRA" style="width: 64px; height: 26px; flex-shrink: 0;">號外</div>
+    <div id="round" class="round" data-xt-bind="text=round_text" style="height: 30px; flex-shrink: 0;">第 3 回合／20</div>
+  </div>
+  <div id="btn-record" class="bbtn" data-xt-trigger="click(left):state(Open, toggle, target=#record)"
+       style="position: absolute; left: 624px; top: 10px; width: 188px; height: 34px;">
+    <div id="btn-record-t" class="bbtn-t" data-xt-key="UI_V2_RECORD" style="position: absolute; left: 4px; top: 2px; width: 180px; height: 30px;">公開紀錄</div>
+  </div>
+
+  <!-- His credibility (with the guard-down plate) and the three psych gauges. -->
+  <div id="opp-cred" class="paper" style="position: absolute; left: 824px; top: 6px; width: 444px; height: 50px;">
+    <div id="opp-cred-l" class="cred-l" data-xt-bind="text=opp_cred" style="position: absolute; left: 10px; top: 3px; width: 300px; height: 20px;">塞德里克 的可信度</div>
+    <div id="opp-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_opp, hp_opp_max)" style="position: absolute; left: 310px; top: 3px; width: 124px; height: 20px;">180.5 / 230</div>
+    <div id="opp-track" class="track" style="position: absolute; left: 10px; top: 27px; width: 424px; height: 14px;">
+      <div id="opp-fill" class="fill-opp" data-xt-bind="width=hp_opp | range(0, hp_opp_max, 0%, 100%)" style="position: absolute; left: 0px; top: 0px; width: 78%; height: 12px;"></div>
+    </div>
+  </div>
+  <div id="float-opp" class="float" data-xt-bind="text=float_opp"
+       data-xt-timeline="float-opp: 0 opacity 1, 0 transform translateY(0px), 1300ms ease-out opacity 0, 1300ms ease-out transform translateY(-26px)"
+       style="position: absolute; left: 1080px; top: 56px; width: 180px; height: 36px;">−20</div>
+  <div id="guard-down" class="plate red" data-xt-bind="display=guard_down" style="position: absolute; left: 836px; top: 64px; width: 126px; height: 26px;">
+    <div id="guard-down-t" class="plate-t" data-xt-key="UI_V2_GUARD_DOWN" style="position: absolute; left: 4px; top: 1px; width: 118px; height: 24px;">破防</div>
+  </div>
+  <div id="psych" class="paper" style="position: absolute; left: 824px; top: 96px; width: 150px; height: 172px;">
+    <div id="g-p" class="gauge" data-xt-bind="class.b0=band_p | eq(0); class.b1=band_p | eq(1); class.b2=band_p | eq(2)" style="position: absolute; left: 8px; top: 6px; width: 134px; height: 50px;">
+      <div id="g-p-n" class="g-name" data-xt-key="UI_V2_GAUGE_PRESSURE" style="position: absolute; left: 0px; top: 0px; width: 70px; height: 20px;">壓力</div>
+      <div id="g-p-b0" class="g-band gb-0" data-xt-key="UI_V2_GAUGE_CALM" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">平常</div>
+      <div id="g-p-b1" class="g-band gb-1" data-xt-key="UI_V2_GAUGE_FLOAT" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">浮動</div>
+      <div id="g-p-b2" class="g-band gb-2" data-xt-key="UI_V2_GAUGE_BROKEN" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">失常</div>
+      <div id="g-p-s1" class="seg s1" style="position: absolute; left: 0px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-p-s2" class="seg s2" style="position: absolute; left: 46px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-p-s3" class="seg s3" style="position: absolute; left: 92px; top: 24px; width: 42px; height: 14px;"></div>
+    </div>
+    <div id="g-g" class="gauge" data-xt-bind="class.b0=band_g | eq(0); class.b1=band_g | eq(1); class.b2=band_g | eq(2)" style="position: absolute; left: 8px; top: 60px; width: 134px; height: 50px;">
+      <div id="g-g-n" class="g-name" data-xt-key="UI_V2_GAUGE_GUILT" style="position: absolute; left: 0px; top: 0px; width: 70px; height: 20px;">罪惡感</div>
+      <div id="g-g-b0" class="g-band gb-0" data-xt-key="UI_V2_GAUGE_CALM" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">平常</div>
+      <div id="g-g-b1" class="g-band gb-1" data-xt-key="UI_V2_GAUGE_FLOAT" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">浮動</div>
+      <div id="g-g-b2" class="g-band gb-2" data-xt-key="UI_V2_GAUGE_BROKEN" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">失常</div>
+      <div id="g-g-s1" class="seg s1" style="position: absolute; left: 0px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-g-s2" class="seg s2" style="position: absolute; left: 46px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-g-s3" class="seg s3" style="position: absolute; left: 92px; top: 24px; width: 42px; height: 14px;"></div>
+    </div>
+    <div id="g-a" class="gauge" data-xt-bind="class.b0=band_a | eq(0); class.b1=band_a | eq(1); class.b2=band_a | eq(2)" style="position: absolute; left: 8px; top: 114px; width: 134px; height: 50px;">
+      <div id="g-a-n" class="g-name" data-xt-key="UI_V2_GAUGE_ANGER" style="position: absolute; left: 0px; top: 0px; width: 70px; height: 20px;">怒氣</div>
+      <div id="g-a-b0" class="g-band gb-0" data-xt-key="UI_V2_GAUGE_CALM" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">平常</div>
+      <div id="g-a-b1" class="g-band gb-1" data-xt-key="UI_V2_GAUGE_FLOAT" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">浮動</div>
+      <div id="g-a-b2" class="g-band gb-2" data-xt-key="UI_V2_GAUGE_BROKEN" style="position: absolute; left: 66px; top: 0px; width: 68px; height: 20px;">失常</div>
+      <div id="g-a-s1" class="seg s1" style="position: absolute; left: 0px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-a-s2" class="seg s2" style="position: absolute; left: 46px; top: 24px; width: 42px; height: 14px;"></div>
+      <div id="g-a-s3" class="seg s3" style="position: absolute; left: 92px; top: 24px; width: 42px; height: 14px;"></div>
+    </div>
+  </div>
+
+  <!-- His chain: the links standing, in order (click = the target of a knock-down / the last card). -->
+  <div id="ochain-box" class="paper" style="position: absolute; left: 12px; top: 56px; width: 800px; height: 100px;">
+    <div id="ochain-title" class="kicker" data-xt-bind="text=ochain_title" style="position: absolute; left: 10px; top: 3px; width: 380px; height: 18px;">塞德里克 的推理鏈</div>
+    <div id="ochain-hint" class="kicker" data-xt-key="UI_V2_REBUT_PICK_LINK" data-xt-bind="display=need_target"
+         style="position: absolute; left: 400px; top: 3px; width: 390px; height: 18px; text-align: right; color: #b8322a; text-transform: none;">選擇要拆的一節</div>
+    <div id="ochain-empty" class="empty" data-xt-key="UI_V2_CHAIN_EMPTY" data-xt-bind="display=ochain | item(0) | item(id) | eq('')"
+         style="position: absolute; left: 12px; top: 44px; width: 400px; height: 20px;">（還沒有站得住的論點）</div>
+    <div id="ochain" data-xt-repeat="ochain"
+         data-xt-timeline="shatter: 0 opacity 1, 0 transform translateY(0px), 120 transform translateX(-6px), 240 transform translateX(6px), 360 transform translateX(0px), 1400ms ease-in opacity 0, 1400ms ease-in transform translateY(30px), 3800 opacity 0, 3900 opacity 1, 3900 transform translateY(0px)"
+         style="position: absolute; left: 8px; top: 24px; width: 788px; height: 70px; display: flex; flex-direction: row; gap: 6px;">
+      <div id="oc" class="chip click" data-xt-bind="class.sel=item(sel)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_target, item(id))"
+           style="position: relative; width: 106px; height: 68px; flex-shrink: 0;">
+        <div id="oc-iss" class="iss" data-xt-bind="text=item(issue)" style="position: absolute; left: 4px; top: 4px; width: 34px; height: 16px;">機</div>
+        <div id="oc-t" class="chip-t" data-xt-bind="text=item(label)" style="position: absolute; left: 6px; top: 21px; width: 96px; height: 45px;">整晚守在靈柩旁</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The claim picker: evidence on the left, its claims on the right (sound / sophistry, red crack, on the chain). -->
+  <div id="picker" class="paper" data-xt-bind="display=picker_on" style="position: absolute; left: 12px; top: 164px; width: 536px; height: 244px;">
+    <div id="pk-ev-k" class="kicker" data-xt-key="UI_V2_PICK_EVIDENCE" style="position: absolute; left: 10px; top: 3px; width: 180px; height: 18px;">選擇證物</div>
+    <div id="pk-ev-scroll" style="position: absolute; left: 8px; top: 24px; width: 190px; height: 212px; overflow-y: auto;">
+      <div id="evs" data-xt-repeat="ev_list" style="width: 184px; display: flex; flex-direction: column; gap: 2px;">
+        <div id="evc" class="evc" data-xt-bind="class.sel=item(sel)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_ev, item(id))"
+             style="position: relative; width: 184px; height: 20px; flex-shrink: 0;">
+          <div id="evc-t" class="evc-t" data-xt-bind="text=item(name)" style="position: absolute; left: 6px; top: 0px; width: 174px; height: 20px;">黃銅文件筒（空）</div>
+        </div>
+      </div>
+    </div>
+    <div id="pk-cl-k" class="kicker" data-xt-key="UI_V2_PICK_CLAIM" style="position: absolute; left: 208px; top: 3px; width: 318px; height: 18px;">選擇說法</div>
+    <div id="pk-cl-scroll" style="position: absolute; left: 206px; top: 24px; width: 324px; height: 212px; overflow-y: auto;">
+      <div id="cls" data-xt-repeat="claims" style="width: 318px; display: flex; flex-direction: column; gap: 4px;">
+        <div id="clm" class="clm" data-xt-bind="class.soph=item(soph) | eq(1); class.sel=item(sel); class.off=item(ok) | eq(0)"
+             data-xt-trigger="click(left):if port(phase) eq 0 set(pick_claim, item(id))"
+             style="position: relative; width: 318px; height: 48px; flex-shrink: 0;">
+          <div id="clm-kind" class="clm-kind" data-xt-bind="text=item(kind)" style="position: absolute; left: 6px; top: 4px; width: 72px; height: 18px;">正論</div>
+          <div id="clm-t" class="clm-t" data-xt-bind="text=item(label)" style="position: absolute; left: 84px; top: 3px; width: 226px; height: 20px;">鎖匠傍晚就走了</div>
+          <div id="clm-tags" style="position: absolute; left: 6px; top: 27px; width: 304px; height: 16px; display: flex; flex-direction: row; gap: 8px; overflow: hidden;">
+            <div id="clm-iss" class="iss" data-xt-bind="text=item(issue)" style="width: 34px; height: 16px; flex-shrink: 0;">機</div>
+            <div id="clm-crack" class="tag tag-red" data-xt-bind="text=item(crack)" style="height: 16px;">與妳說過的話矛盾</div>
+            <div id="clm-stand" class="tag tag-ink" data-xt-bind="text=item(stand)" style="height: 16px;"></div>
+            <div id="clm-extra" class="tag tag-cu" data-xt-bind="text=item(extra)" style="height: 16px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The tell: what he is about to say, clear / unclear, his possible moves (the likelier one starred), the gesture.
+       Endgame: his last card (a last gasp hits for only 10). -->
+  <div id="tell" class="paper" data-xt-bind="display=tell_on" style="position: absolute; left: 556px; top: 164px; width: 260px; height: 244px;">
+    <div id="tell-head" class="kicker" data-xt-key="UI_V2_TELL_HEAD" data-xt-bind="display=mode | ne(1)" style="position: absolute; left: 10px; top: 3px; width: 240px; height: 18px;">他正要說</div>
+    <div id="tell-last" class="plate red" data-xt-bind="display=mode | eq(1)" style="position: absolute; left: 10px; top: 2px; width: 180px; height: 22px;">
+      <div id="tell-last-t" class="plate-t" data-xt-key="UI_V2_LAST_CARD" style="position: absolute; left: 2px; top: -1px; width: 176px; height: 24px; font-size: 13px;">最後一張牌</div>
+    </div>
+    <div id="tell-bubble" class="bubble" data-xt-bind="display=tell_card | ne('')" style="position: absolute; left: 10px; top: 28px; width: 240px; height: 84px;">
+      <div id="tell-hes" class="tell-hes" data-xt-key="UI_V2_TELL_HESITATE" data-xt-bind="display=tell_partial" style="position: absolute; left: 8px; top: 4px; width: 224px; height: 16px;">（欲言又止）</div>
+      <div id="tell-card" class="tell-card" data-xt-bind="text=tell_card" style="position: absolute; left: 8px; top: 20px; width: 224px; height: 62px;">鎖匠碰過筒子、有萬用鑰匙</div>
+    </div>
+    <div id="clar-c" class="clar" data-xt-key="UI_V2_TELL_CLEAR" data-xt-bind="display=tell_clear" style="position: absolute; left: 10px; top: 116px; width: 240px; height: 20px;">明示</div>
+    <div id="clar-v" class="clar" data-xt-key="UI_V2_TELL_VAGUE" data-xt-bind="display=tell_clear | not" style="position: absolute; left: 10px; top: 116px; width: 240px; height: 20px;">模糊</div>
+    <div id="tell-cands" style="position: absolute; left: 10px; top: 138px; width: 240px; height: 48px; display: flex; flex-direction: row; gap: 4px;">
+      <div id="cand-a" class="cand" data-xt-bind="class.a0=tell_a | eq(0); class.a1=tell_a | eq(1); class.a2=tell_a | eq(2); class.a3=tell_a | eq(3); class.a4=tell_a | eq(4); class.star=tell_star | eq(0)"
+           style="position: relative; width: 108px; height: 46px; flex-shrink: 0;">
+        <div id="cand-a-0" class="cand-l ca-0" data-xt-key="UI_V2_OPP_ASSERT" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">立論</div>
+        <div id="cand-a-1" class="cand-l ca-1" data-xt-key="UI_V2_OPP_PRESS" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">強辯</div>
+        <div id="cand-a-2" class="cand-l ca-2" data-xt-key="UI_V2_OPP_REBUT" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">反駁</div>
+        <div id="cand-a-3" class="cand-l ca-3" data-xt-key="UI_V2_OPP_DODGE" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">周旋</div>
+        <div id="cand-a-4" class="cand-l ca-4" data-xt-key="UI_V2_LAST_CARD" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">最後一張牌</div>
+        <div id="cand-a-lk" class="likely" data-xt-key="UI_V2_TELL_LIKELY" style="position: absolute; left: 4px; top: 27px; width: 100px; height: 14px;">較可能</div>
+      </div>
+      <div id="cand-sep" class="slash" data-xt-bind="display=tell_b | ge(0)" style="width: 20px; height: 46px; flex-shrink: 0;">／</div>
+      <div id="cand-b" class="cand" data-xt-bind="class.a0=tell_b | eq(0); class.a1=tell_b | eq(1); class.a2=tell_b | eq(2); class.a3=tell_b | eq(3); class.a4=tell_b | eq(4); class.star=tell_star | eq(1); display=tell_b | ge(0)"
+           style="position: relative; width: 108px; height: 46px; flex-shrink: 0;">
+        <div id="cand-b-0" class="cand-l ca-0" data-xt-key="UI_V2_OPP_ASSERT" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">立論</div>
+        <div id="cand-b-1" class="cand-l ca-1" data-xt-key="UI_V2_OPP_PRESS" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">強辯</div>
+        <div id="cand-b-2" class="cand-l ca-2" data-xt-key="UI_V2_OPP_REBUT" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">反駁</div>
+        <div id="cand-b-3" class="cand-l ca-3" data-xt-key="UI_V2_OPP_DODGE" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">周旋</div>
+        <div id="cand-b-4" class="cand-l ca-4" data-xt-key="UI_V2_LAST_CARD" style="position: absolute; left: 4px; top: 4px; width: 100px; height: 22px;">最後一張牌</div>
+        <div id="cand-b-lk" class="likely" data-xt-key="UI_V2_TELL_LIKELY" style="position: absolute; left: 4px; top: 27px; width: 100px; height: 14px;">較可能</div>
+      </div>
+    </div>
+    <div id="tell-gesture" class="gesture" data-xt-bind="text=tell_gesture; display=tell_gesture | ne('')" style="position: absolute; left: 10px; top: 192px; width: 240px; height: 32px;">整理黑領巾、微微一笑</div>
+    <div id="tell-dying" class="dying-t" data-xt-bind="text=dying_text; display=dying" style="position: absolute; left: 10px; top: 192px; width: 240px; height: 40px;">垂死反撲：打中只扣 10</div>
+  </div>
+
+  <!-- Our credibility, combo, Unstoppable, on the back foot. -->
+  <div id="me-cred" class="paper" style="position: absolute; left: 12px; top: 414px; width: 806px; height: 36px;">
+    <div id="me-cred-l" class="cred-l" data-xt-key="UI_V2_CRED_PLAYER" style="position: absolute; left: 10px; top: 6px; width: 140px; height: 20px;">我方可信度</div>
+    <div id="me-track" class="track" style="position: absolute; left: 154px; top: 9px; width: 200px; height: 14px;">
+      <div id="me-fill" class="fill-me" data-xt-bind="width=hp_me | range(0, hp_me_max, 0%, 100%)" style="position: absolute; left: 0px; top: 0px; width: 88%; height: 12px;"></div>
+    </div>
+    <div id="me-cred-n" class="cred-n" data-xt-bind="text=format('{0} / {1}', hp_me, hp_me_max)" style="position: absolute; left: 356px; top: 6px; width: 90px; height: 20px;">124 / 140</div>
+    <div id="me-combo" class="cred-l" data-xt-bind="text=combo_text" style="position: absolute; left: 462px; top: 6px; width: 110px; height: 20px; color: #a65432;">連擊 ×2</div>
+    <div id="me-hk" data-xt-bind="display=hachiku | gt(0)" style="position: absolute; left: 576px; top: 4px; width: 90px; height: 24px; display: flex; flex-direction: row; gap: 4px;">
+      <div id="me-hk-t" class="cred-l" data-xt-key="STAMP_HACHIKU" style="height: 24px; line-height: 24px; flex-shrink: 0; color: #2f6b3a;">破竹</div>
+      <div id="me-hk-n" class="cred-l" data-xt-bind="text=format('×{0}', hachiku)" style="height: 24px; line-height: 24px; flex-shrink: 0; color: #2f6b3a;">×2</div>
+    </div>
+    <div id="me-shisshu" class="shis-t" data-xt-key="UI_V2_SHISHOU_HINT" data-xt-bind="display=shisshu"
+         style="position: absolute; left: 576px; top: 3px; width: 224px; height: 30px;">失守：讀對一次才能站穩。</div>
+  </div>
+  <div id="float-me" class="float" data-xt-bind="text=float_me"
+       data-xt-timeline="float-me: 0 opacity 1, 0 transform translateY(0px), 1300ms ease-out opacity 0, 1300ms ease-out transform translateY(-26px)"
+       style="position: absolute; left: 230px; top: 382px; width: 180px; height: 36px;">−16</div>
+
+  <!-- Our chain and the Break progress (chain length / 4, issues covered; lit when his guard is down). -->
+  <div id="pchain-box" class="paper" style="position: absolute; left: 12px; top: 456px; width: 806px; height: 98px;">
+    <div id="pchain-title" class="kicker" data-xt-key="UI_V2_CHAIN_PLAYER" style="position: absolute; left: 10px; top: 3px; width: 200px; height: 18px;">我方的推理鏈</div>
+    <div id="ronpa-ready" class="plate red" data-xt-bind="display=ronpa_ready" style="position: absolute; left: 214px; top: 1px; width: 380px; height: 22px;">
+      <div id="ronpa-ready-t" class="plate-t" data-xt-key="UI_V2_RONPA_READY" style="position: absolute; left: 4px; top: -1px; width: 372px; height: 24px; font-size: 13px;">他破防了。這回合接上就論破！</div>
+    </div>
+    <div id="ronpa-t" class="ronpa-t" data-xt-bind="text=ronpa_text; display=show_ronpa" style="position: absolute; left: 598px; top: 3px; width: 198px; height: 18px;">鏈長 2／4　爭點 2／2</div>
+    <div id="pchain-empty" class="empty" data-xt-key="UI_V2_CHAIN_EMPTY" data-xt-bind="display=pchain | item(0) | item(id) | eq('')"
+         style="position: absolute; left: 12px; top: 44px; width: 400px; height: 20px;">（還沒有站得住的論點）</div>
+    <div id="pchain" data-xt-repeat="pchain" style="position: absolute; left: 8px; top: 24px; width: 788px; height: 68px; display: flex; flex-direction: row; gap: 6px;">
+      <div id="pc" class="chip" data-xt-bind="class.cracked=item(crack) | gt(0)" style="position: relative; width: 106px; height: 66px; flex-shrink: 0;">
+        <div id="pc-iss" class="iss" data-xt-bind="text=item(issue)" style="position: absolute; left: 4px; top: 4px; width: 34px; height: 16px;">法</div>
+        <svg id="pc-crack" class="crack-m" viewBox="0 0 24 24" style="position: absolute; left: 80px; top: 2px; width: 22px; height: 22px;">
+          <path id="Crack" d="M20 2 L13 9 L16 12 L8 18 L11 21 L4 23" fill="none" stroke="#b8322a" stroke-width="2.2"/>
+        </svg>
+        <div id="pc-t" class="chip-t" data-xt-bind="text=item(label)" style="position: absolute; left: 6px; top: 21px; width: 96px; height: 44px;">總閥被人關小</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The chosen claim / target and the cover note. -->
+  <div id="confirm" class="confirm" style="position: absolute; left: 12px; top: 560px; width: 806px; height: 34px; display: flex; flex-direction: row; gap: 10px; padding: 0px 12px 0px 12px;">
+    <div id="sum-claim" class="sum-t" data-xt-bind="text=sel_claim_text" style="width: 300px; height: 34px; flex-shrink: 0;">鎖匠傍晚就走了</div>
+    <div id="sum-arrow" class="sum-a" data-xt-bind="display=sel_target_text | ne('')" style="width: 20px; height: 34px; flex-shrink: 0;">→</div>
+    <div id="sum-target" class="sum-t" data-xt-bind="text=sel_target_text; display=sel_target_text | ne('')" style="width: 220px; height: 34px; flex-shrink: 0;"></div>
+    <div id="sum-armed" class="sum-a" data-xt-key="UI_V2_SUPPORT_ARMED" data-xt-bind="display=guard_armed" style="width: 200px; height: 34px; flex-shrink: 0; text-align: right;">援護：已佈置</div>
+  </div>
+
+  <!-- Actions. mode 0: argue | rebut (cut in / knock down) | muddy the waters, cover; mode 1 (endgame): cut in / take it;
+       mode 2 (after a Reverse Break): rebut one of his links / give up. -->
+  <div id="acts" class="acts" data-xt-bind="class.busy=phase | ne(0)" style="position: absolute; left: 12px; top: 600px; width: 1016px; height: 112px;">
+    <div id="acts-0" data-xt-bind="display=mode | eq(0)" style="position: absolute; left: 0px; top: 0px; width: 1016px; height: 112px;">
+      <div id="act-1" class="tblock" data-xt-bind="class.on=act | eq(1)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 1)"
+           style="position: absolute; left: 0px; top: 22px; width: 190px; height: 84px;">
+        <div id="act-1-k" class="tb-k" style="position: absolute; left: 0px; top: 6px; width: 190px; height: 14px;">1</div>
+        <div id="act-1-t" class="tb-t" data-xt-key="UI_V2_ACT_ARGUE" style="position: absolute; left: 6px; top: 28px; width: 178px; height: 28px;">議論</div>
+      </div>
+      <div id="grp-rebut" class="grp-l" data-xt-key="UI_V2_ACT_REBUT" style="position: absolute; left: 200px; top: 0px; width: 340px; height: 18px;">反駁</div>
+      <div id="act-2" class="tblock" data-xt-bind="class.on=act | eq(2)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 2)"
+           style="position: absolute; left: 200px; top: 22px; width: 166px; height: 84px;">
+        <div id="act-2-k" class="tb-k" style="position: absolute; left: 0px; top: 6px; width: 166px; height: 14px;">2</div>
+        <div id="act-2-t" class="tb-t" data-xt-key="UI_V2_REBUT_CUT" style="position: absolute; left: 6px; top: 28px; width: 154px; height: 28px;">截斷</div>
+      </div>
+      <div id="act-3" class="tblock" data-xt-bind="class.on=act | eq(3); class.off=can_dismantle | not" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 3)"
+           style="position: absolute; left: 374px; top: 22px; width: 166px; height: 84px;">
+        <div id="act-3-k" class="tb-k" style="position: absolute; left: 0px; top: 6px; width: 166px; height: 14px;">3</div>
+        <div id="act-3-t" class="tb-t" data-xt-key="UI_V2_REBUT_TOPPLE" style="position: absolute; left: 6px; top: 28px; width: 154px; height: 28px;">拆台</div>
+      </div>
+      <div id="act-4" class="tblock" data-xt-bind="class.on=act | eq(4)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 4)"
+           style="position: absolute; left: 550px; top: 22px; width: 190px; height: 84px;">
+        <div id="act-4-k" class="tb-k" style="position: absolute; left: 0px; top: 6px; width: 190px; height: 14px;">4</div>
+        <div id="act-4-t" class="tb-t" data-xt-key="UI_V2_ACT_STALL" style="position: absolute; left: 6px; top: 28px; width: 178px; height: 28px;">打迷糊仗</div>
+      </div>
+      <div id="btn-guard" class="guard" data-xt-bind="class.armed=guard_armed; class.off=guard_ok | not" data-xt-trigger="click(left):if port(phase) eq 0 emit(guard)"
+           style="position: absolute; left: 760px; top: 22px; width: 150px; height: 84px;">
+        <div id="guard-t" class="guard-t" data-xt-key="UI_V2_SUPPORT" style="position: absolute; left: 4px; top: 20px; width: 142px; height: 22px;">援護</div>
+        <div id="guard-lamp" class="lamp" data-xt-bind="class.on=guard_left" style="position: absolute; left: 70px; top: 52px; width: 10px; height: 10px;"></div>
+      </div>
+    </div>
+    <div id="acts-1" data-xt-bind="display=mode | eq(1)" style="position: absolute; left: 0px; top: 0px; width: 1016px; height: 112px;">
+      <div id="eg-prompt" class="prompt" data-xt-key="UI_V2_LAST_CARD_PROMPT" style="position: absolute; left: 0px; top: 30px; width: 300px; height: 66px;">他還有話要說。截斷，還是承受？</div>
+      <div id="act-5" class="tblock" data-xt-bind="class.on=act | eq(5)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 5)"
+           style="position: absolute; left: 320px; top: 22px; width: 200px; height: 84px;">
+        <div id="act-5-t" class="tb-t" data-xt-key="UI_V2_ENDGAME_CUT" style="position: absolute; left: 6px; top: 28px; width: 188px; height: 28px;">截斷</div>
+      </div>
+      <div id="act-6" class="tblock" data-xt-bind="class.on=act | eq(6)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 6)"
+           style="position: absolute; left: 530px; top: 22px; width: 200px; height: 84px;">
+        <div id="act-6-t" class="tb-t" data-xt-key="UI_V2_ENDGAME_TAKE" style="position: absolute; left: 6px; top: 28px; width: 188px; height: 28px;">承受</div>
+      </div>
+    </div>
+    <div id="acts-2" data-xt-bind="display=mode | eq(2)" style="position: absolute; left: 0px; top: 0px; width: 1016px; height: 112px;">
+      <div id="ls-prompt" class="prompt" data-xt-key="UI_V2_MY_LAST_CARD" style="position: absolute; left: 0px; top: 22px; width: 300px; height: 84px;">最後一張牌：選他的一句話，用正論駁倒它。</div>
+      <div id="act-7" class="tblock" data-xt-bind="class.on=act | eq(7)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 7)"
+           style="position: absolute; left: 320px; top: 22px; width: 200px; height: 84px;">
+        <div id="act-7-t" class="tb-t" data-xt-key="UI_V2_ACT_REBUT" style="position: absolute; left: 6px; top: 28px; width: 188px; height: 28px;">反駁</div>
+      </div>
+      <div id="act-6b" class="tblock" data-xt-bind="class.on=act | eq(6)" data-xt-trigger="click(left):if port(phase) eq 0 set(pick_act, 6)"
+           style="position: absolute; left: 530px; top: 22px; width: 200px; height: 84px;">
+        <div id="act-6b-t" class="tb-t" data-xt-key="UI_V2_GIVE_UP_BTN" style="position: absolute; left: 6px; top: 28px; width: 188px; height: 28px;">放棄</div>
+      </div>
+    </div>
+  </div>
+  <div id="btn-lock" class="lockb" data-xt-bind="class.off=can_lock | not; display=mode | lt(3)" data-xt-trigger="click(left):if port(phase) eq 0 and port(can_lock) eq true emit(lock)"
+       style="position: absolute; left: 1046px; top: 622px; width: 222px; height: 84px;">
+    <div id="btn-lock-t" class="lockb-t" data-xt-key="UI_V2_LOCK_IN" style="position: absolute; left: 4px; top: 22px; width: 214px; height: 40px;">鎖定</div>
+  </div>
+
+  <!-- Playback: who speaks, the line, the system line (a click shows the next one). -->
+  <div id="hit" data-xt-bind="display=phase | eq(1)" data-xt-trigger="click(left):emit(skip)"
+       style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+  <div id="band" class="band" data-xt-bind="display=phase | eq(1)" data-xt-trigger="click(left):emit(skip)"
+       style="position: absolute; left: 0px; top: 250px; width: 1280px; height: 158px;">
+    <div id="band-who" class="who" data-xt-bind="text=speech_who" data-xt-timeline="line-in: 0 opacity 0.3, 260ms ease-out opacity 1"
+         style="position: absolute; left: 110px; top: 14px; width: 600px; height: 22px;">Sherefox</div>
+    <div id="band-speech" class="speech" data-xt-bind="text=speech" data-xt-timeline="line-in: 0 opacity 0.3, 260ms ease-out opacity 1"
+         style="position: absolute; left: 110px; top: 40px; width: 1060px; height: 56px;">總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。</div>
+    <div id="band-sys" class="sysl" data-xt-bind="text=sys_line; display=sys_line | ne('')" data-xt-timeline="line-in: 0 opacity 0, 200ms opacity 0, 500ms ease-out opacity 1"
+         style="position: absolute; left: 110px; top: 104px; width: 1060px; height: 44px;">接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。</div>
+    <div id="band-more" class="more" style="position: absolute; left: 1180px; top: 132px; width: 80px; height: 16px;">▶</div>
+  </div>
+
+  <!-- The public record (R or the button): every claim used this debate. -->
+  <div id="record" style="position: absolute; left: 200px; top: 60px; width: 880px; height: 540px; pointer-events: none;">
+    <div id="record-panel" class="sheet-big" style="position: absolute; left: 0px; top: 0px; width: 880px; height: 540px; pointer-events: auto;">
+      <div id="rec-title" class="h1" data-xt-key="UI_V2_RECORD" style="position: absolute; left: 20px; top: 12px; width: 600px; height: 32px;">公開紀錄</div>
+      <div id="rec-desc" class="desc" data-xt-key="UI_V2_RECORD_DESC" style="position: absolute; left: 20px; top: 46px; width: 700px; height: 18px;">妳在這場論戰說過的每一句話。</div>
+      <div id="rec-close" class="bbtn" data-xt-trigger="click(left):state(Open, off, target=#record)" style="position: absolute; left: 740px; top: 14px; width: 120px; height: 32px;">
+        <div id="rec-close-t" class="bbtn-t" data-xt-key="BTN_CLOSE" style="position: absolute; left: 4px; top: 1px; width: 112px; height: 30px;">關閉</div>
+      </div>
+      <div id="rec-rule" style="position: absolute; left: 20px; top: 70px; width: 840px; height: 3px; background-color: #123a31;"></div>
+      <div id="rec-scroll" style="position: absolute; left: 20px; top: 80px; width: 840px; height: 444px; overflow-y: auto;">
+        <div id="recs" data-xt-repeat="record" style="width: 834px; display: flex; flex-direction: column; gap: 0px;">
+          <div id="rec" class="rec-row" style="position: relative; width: 834px; height: 30px; flex-shrink: 0; display: flex; flex-direction: row; gap: 12px; padding: 2px 8px 2px 8px; overflow: hidden;">
+            <div id="rec-n" class="rec-n" data-xt-bind="text=format('R{0}', item(n))" style="width: 36px; height: 26px;">R1</div>
+            <div id="rec-t" class="rec-t" data-xt-bind="text=item(label)" style="width: 330px; height: 26px; flex-shrink: 0;">燈滅前，你的椅子就空了</div>
+            <div id="rec-use" class="tag tag-cu" data-xt-bind="text=item(use)" style="height: 26px; line-height: 26px;">反駁</div>
+            <div id="rec-soph" class="tag tag-cu" data-xt-bind="text=item(soph)" style="height: 26px; line-height: 26px;"></div>
+            <div id="rec-crack" class="tag tag-red" data-xt-bind="text=item(crack)" style="height: 26px; line-height: 26px;"></div>
+            <div id="rec-state" class="tag tag-ink" data-xt-bind="text=item(state)" style="height: 26px; line-height: 26px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The outcome: the grade, the rounds, back to the title. -->
+  <div id="outcome-veil" class="veil" data-xt-bind="display=mode | eq(3)" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></div>
+  <div id="outcome" class="outcome sheet-big" data-xt-bind="display=mode | eq(3); class.win=outcome_win" style="position: absolute; left: 360px; top: 190px; width: 560px; height: 300px;">
+    <div id="out-k" class="kicker" data-xt-key="UI_V2_GRADE_LABEL" style="position: absolute; left: 20px; top: 20px; width: 520px; height: 18px; text-align: center;">勝利等級</div>
+    <div id="out-rule" style="position: absolute; left: 20px; top: 44px; width: 520px; height: 3px; background-color: #123a31;"></div>
+    <div id="out-grade" class="grade-t" data-xt-bind="text=grade_text" style="position: absolute; left: 20px; top: 70px; width: 520px; height: 52px;">乾淨論破</div>
+    <div id="out-rounds" class="rounds-t" data-xt-bind="text=rounds_text" style="position: absolute; left: 20px; top: 140px; width: 520px; height: 24px;">回合數 9</div>
+    <div id="out-back" class="bbtn" data-xt-trigger="click(left):emit(back_title)" style="position: absolute; left: 170px; top: 210px; width: 220px; height: 44px;">
+      <div id="out-back-t" class="bbtn-t" data-xt-key="UI_V2_BACK_TITLE" style="position: absolute; left: 4px; top: 6px; width: 212px; height: 30px; font-size: 16px;">回到標題</div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

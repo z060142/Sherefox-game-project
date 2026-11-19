@@ -1,0 +1,13 @@
+version: 1
+id: 38d2152f-bbac-40a1-b8f0-6008904bb0f0
+type: image
+title: cedric-angry
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_cedric_angry.png
+content: sha256:d898dae6db96d2b5efce35c2111405af7faefb01abae9fea532845da835eda52
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

@@ -1,0 +1,2045 @@
+<xt version="2">
+  <head>
+    <title>D1Debate</title>
+  </head>
+
+  <ports>
+    round_text: string in = "第 3 回合／20"
+    opp_name: string in = "塞德里克"
+    opp_cred: string in = "塞德里克 的可信度"
+    hp_me: number in = 124
+    hp_me_max: number in = 140
+    hp_opp: number in = 180.5
+    hp_opp_max: number in = 230
+    face: number in = 1
+    band_p: number in = 0
+    band_g: number in = 1
+    band_a: number in = 0
+    combo_text: string in = "連擊 ×2"
+    hachiku: number in = 2
+    guard_down: bool in = false
+    shisshu: bool in = false
+    ronpa_text: string in = "鏈長 2／4　爭點 2／2"
+    ronpa_ready: bool in = false
+    show_ronpa: bool in = true
+    tell_on: bool in = true
+    tell_card: string in = "鎖匠碰過筒子、有萬用鑰匙"
+    tell_partial: bool in = false
+    tell_clear: bool in = true
+    tell_a: number in = 0
+    tell_b: number in = -1
+    tell_star: number in = -1
+    tell_gesture: string in = "整理黑領巾、微微一笑"
+    dying: bool in = false
+    dying_text: string in = "垂死反撲：打中只扣 10"
+    ochain_title: string in = "塞德里克 的推理鏈"
+    ochain: list<struct{id: string, label: string, issue: string, sel: bool}> in = [{"id":"L1","label":"整晚守在靈柩旁","issue":"機","sel":false}]
+    pchain: list<struct{id: string, label: string, issue: string, crack: number}> in = [{"id":"04A","label":"總閥被人關小","issue":"法","crack":0},{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","crack":0}]
+    ev_list: list<struct{id: string, name: string, sel: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","sel":false},{"id":"E02","name":"書房的座鐘","sel":false},{"id":"E04","name":"地下室煤氣總閥","sel":false},{"id":"E06","name":"布里格斯的工作單","sel":true},{"id":"E08","name":"賭場的催款信","sel":false}]
+    claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}> in = [{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","kind":"正論","soph":0,"crack":"","stand":"已在鏈上","extra":"","ok":0,"sel":false},{"id":"06B","label":"鎖匠傍晚就走了","issue":"機","kind":"正論","soph":0,"crack":"","stand":"","extra":"","ok":1,"sel":true},{"id":"06C","label":"工作單只寫「校試」","issue":"法","kind":"詭辯","soph":1,"crack":"與妳說過的話矛盾","stand":"","extra":"","ok":1,"sel":false}]
+    record: list<struct{n: number, label: string, use: string, soph: string, crack: string, state: string}> in = [{"n":1,"label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":2,"label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]
+    mode: number in = 0
+    phase: number in = 0
+    act: number in = 1
+    can_dismantle: bool in = true
+    guard_ok: bool in = true
+    guard_armed: bool in = false
+    guard_left: bool in = true
+    sel_claim_text: string in = "鎖匠傍晚就走了"
+    sel_target_text: string in = ""
+    need_target: bool in = false
+    can_lock: bool in = true
+    picker_on: bool in = true
+    speech_who: string in = "Sherefox"
+    speech: string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"
+    sys_line: string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"
+    line_seq: number in = 0
+    float_opp: string in = ""
+    float_me: string in = ""
+    float_opp_seq: number in = 0
+    float_me_seq: number in = 0
+    shatter_seq: number in = 0
+    grade_text: string in = "乾淨論破"
+    rounds_text: string in = "回合數 9"
+    outcome_win: bool in = true
+    pick_act: number out = 0
+    pick_ev: string out = ""
+    pick_claim: string out = ""
+    pick_target: string out = ""
+    guard: event out
+    lock: event out
+    skip: event out
+    back_title: event out
+    settings: event out
+  </ports>
+
+  <body on:show="play(intro)" key-activation="none">
+    <div id="d1debate" tabindex="0" autofocus="" on:port(float_opp_seq)="play(float-opp)" on:port(float_me_seq)="play(float-me)" on:port(line_seq)="play(line-in)" on:port(shatter_seq)="play(shatter)" on:port(face)="play(face-in)" on:key(1)="if port(phase) eq 0 set(pick_act, 1)" on:key(2)="if port(phase) eq 0 set(pick_act, 2)" on:key(3)="if port(phase) eq 0 set(pick_act, 3)" on:key(4)="if port(phase) eq 0 set(pick_act, 4)" on:key(V)="if port(phase) eq 0 emit(guard)" on:key(R)="state(Open, toggle, target=#record)" on:key(Enter)="if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip)" on:key(Space)="if port(phase) eq 1 emit(skip)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
+      <img id="bg-d01-parlour" src="../shared/img/bg-d01-parlour.jpg"/>
+      <div id="sheet">
+        <div id="opp-fig">
+          <img id="cedric-composed" class="s-b00406" src="../shared/img/cedric-composed.png" bind:display="face | eq(0)"/>
+          <img id="cedric-uneasy" class="s-b00406" src="../shared/img/cedric-uneasy.png" bind:display="face | eq(1)"/>
+          <img id="cedric-cornered" class="s-b00406" src="../shared/img/cedric-cornered.png" bind:display="face | eq(2)"/>
+          <img id="cedric-angry" class="s-b00406" src="../shared/img/cedric-angry.png" bind:display="face | eq(3)"/>
+          <img id="cedric-guilt" class="s-b00406" src="../shared/img/cedric-guilt.png" bind:display="face | eq(4)"/>
+        </div>
+        <div id="opp-plate" class="name-plate">
+          <div id="opp-name" class="opp-name" bind:text="opp_name">塞德里克</div>
+        </div>
+        <div id="mast-bg" class="s-e8d5ea"/>
+        <div id="mast">
+          <div id="mast-name" class="mast-t">@UI_PAPER_MAST</div>
+          <div id="mast-extra" class="extra">@UI_PAPER_EXTRA</div>
+          <div id="round" class="round" bind:text="round_text">第 3 回合／20</div>
+        </div>
+        <div id="btn-record" class="bbtn" on:click(left)="state(Open, toggle, target=#record)">
+          <div id="btn-record-t" class="bbtn-t">@UI_V2_RECORD</div>
+        </div>
+        <div id="opp-cred" class="paper">
+          <div id="opp-cred-l" class="cred-l" bind:text="opp_cred">塞德里克 的可信度</div>
+          <div id="opp-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_opp, hp_opp_max)">180.5 / 230</div>
+          <div id="opp-track" class="track">
+            <div id="opp-fill" class="fill-opp" bind:width="hp_opp | range(0, hp_opp_max, 0%, 100%)"/>
+          </div>
+        </div>
+        <div id="float-opp" class="float" bind:text="float_opp">−20</div>
+        <div id="guard-down" class="plate red" bind:display="guard_down">
+          <div id="guard-down-t" class="plate-t">@UI_V2_GUARD_DOWN</div>
+        </div>
+        <div id="psych" class="paper">
+          <div id="g-p" class="gauge" bind:class.b0="band_p | eq(0)" bind:class.b1="band_p | eq(1)" bind:class.b2="band_p | eq(2)">
+            <div id="g-p-n" class="g-name">@UI_V2_GAUGE_PRESSURE</div>
+            <div id="g-p-b0" class="g-band gb-0">@UI_V2_GAUGE_CALM</div>
+            <div id="g-p-b1" class="g-band gb-1">@UI_V2_GAUGE_FLOAT</div>
+            <div id="g-p-b2" class="g-band gb-2">@UI_V2_GAUGE_BROKEN</div>
+            <div id="g-p-s1" class="seg s1"/>
+            <div id="g-p-s2" class="seg s2"/>
+            <div id="g-p-s3" class="seg s3"/>
+          </div>
+          <div id="g-g" class="gauge" bind:class.b0="band_g | eq(0)" bind:class.b1="band_g | eq(1)" bind:class.b2="band_g | eq(2)">
+            <div id="g-g-n" class="g-name">@UI_V2_GAUGE_GUILT</div>
+            <div id="g-g-b0" class="g-band gb-0">@UI_V2_GAUGE_CALM</div>
+            <div id="g-g-b1" class="g-band gb-1">@UI_V2_GAUGE_FLOAT</div>
+            <div id="g-g-b2" class="g-band gb-2">@UI_V2_GAUGE_BROKEN</div>
+            <div id="g-g-s1" class="seg s1"/>
+            <div id="g-g-s2" class="seg s2"/>
+            <div id="g-g-s3" class="seg s3"/>
+          </div>
+          <div id="g-a" class="gauge" bind:class.b0="band_a | eq(0)" bind:class.b1="band_a | eq(1)" bind:class.b2="band_a | eq(2)">
+            <div id="g-a-n" class="g-name">@UI_V2_GAUGE_ANGER</div>
+            <div id="g-a-b0" class="g-band gb-0">@UI_V2_GAUGE_CALM</div>
+            <div id="g-a-b1" class="g-band gb-1">@UI_V2_GAUGE_FLOAT</div>
+            <div id="g-a-b2" class="g-band gb-2">@UI_V2_GAUGE_BROKEN</div>
+            <div id="g-a-s1" class="seg s1"/>
+            <div id="g-a-s2" class="seg s2"/>
+            <div id="g-a-s3" class="seg s3"/>
+          </div>
+        </div>
+        <div id="ochain-box" class="paper">
+          <div id="ochain-title" class="kicker" bind:text="ochain_title">塞德里克 的推理鏈</div>
+          <div id="ochain-hint" class="kicker" bind:display="need_target">@UI_V2_REBUT_PICK_LINK</div>
+          <div id="ochain-empty" class="empty" bind:display="ochain | item(0) | item(id) | eq('')">@UI_V2_CHAIN_EMPTY</div>
+          <repeat id="ochain" port="ochain">
+            <div id="oc" class="chip click" on:click(left)="if port(phase) eq 0 set(pick_target, item(id))" bind:class.sel="item(sel)">
+              <div id="oc-iss" class="iss" bind:text="item(issue)">機</div>
+              <div id="oc-t" class="chip-t" bind:text="item(label)">整晚守在靈柩旁</div>
+            </div>
+          </repeat>
+        </div>
+        <div id="picker" class="paper" bind:display="picker_on">
+          <div id="pk-ev-k" class="kicker">@UI_V2_PICK_EVIDENCE</div>
+          <div id="pk-ev-scroll">
+            <repeat id="evs" port="ev_list">
+              <div id="evc" class="evc" on:click(left)="if port(phase) eq 0 set(pick_ev, item(id))" bind:class.sel="item(sel)">
+                <div id="evc-t" class="evc-t" bind:text="item(name)">黃銅文件筒（空）</div>
+              </div>
+            </repeat>
+          </div>
+          <div id="pk-cl-k" class="kicker">@UI_V2_PICK_CLAIM</div>
+          <div id="pk-cl-scroll">
+            <repeat id="cls" port="claims">
+              <div id="clm" class="clm" on:click(left)="if port(phase) eq 0 set(pick_claim, item(id))" bind:class.soph="item(soph) | eq(1)" bind:class.sel="item(sel)" bind:class.off="item(ok) | eq(0)">
+                <div id="clm-kind" class="clm-kind" bind:text="item(kind)">正論</div>
+                <div id="clm-t" class="clm-t" bind:text="item(label)">鎖匠傍晚就走了</div>
+                <div id="clm-tags">
+                  <div id="clm-iss" class="iss" bind:text="item(issue)">機</div>
+                  <div id="clm-crack" class="tag tag-red" bind:text="item(crack)">與妳說過的話矛盾</div>
+                  <div id="clm-stand" class="tag tag-ink" bind:text="item(stand)"/>
+                  <div id="clm-extra" class="tag tag-cu" bind:text="item(extra)"/>
+                </div>
+              </div>
+            </repeat>
+          </div>
+        </div>
+        <div id="tell" class="paper" bind:display="tell_on">
+          <div id="tell-head" class="kicker" bind:display="mode | ne(1)">@UI_V2_TELL_HEAD</div>
+          <div id="tell-last" class="plate red" bind:display="mode | eq(1)">
+            <div id="tell-last-t" class="plate-t">@UI_V2_LAST_CARD</div>
+          </div>
+          <div id="tell-bubble" class="bubble" bind:display="tell_card | ne('')">
+            <div id="tell-hes" class="tell-hes" bind:display="tell_partial">@UI_V2_TELL_HESITATE</div>
+            <div id="tell-card" class="tell-card" bind:text="tell_card">鎖匠碰過筒子、有萬用鑰匙</div>
+          </div>
+          <div id="clar-c" class="clar" bind:display="tell_clear">@UI_V2_TELL_CLEAR</div>
+          <div id="clar-v" class="clar" bind:display="tell_clear | not">@UI_V2_TELL_VAGUE</div>
+          <div id="tell-cands">
+            <div id="cand-a" class="cand" bind:class.a0="tell_a | eq(0)" bind:class.a1="tell_a | eq(1)" bind:class.a2="tell_a | eq(2)" bind:class.a3="tell_a | eq(3)" bind:class.a4="tell_a | eq(4)" bind:class.star="tell_star | eq(0)">
+              <div id="cand-a-0" class="cand-l ca-0">@UI_V2_OPP_ASSERT</div>
+              <div id="cand-a-1" class="cand-l ca-1">@UI_V2_OPP_PRESS</div>
+              <div id="cand-a-2" class="cand-l ca-2">@UI_V2_OPP_REBUT</div>
+              <div id="cand-a-3" class="cand-l ca-3">@UI_V2_OPP_DODGE</div>
+              <div id="cand-a-4" class="cand-l ca-4">@UI_V2_LAST_CARD</div>
+              <div id="cand-a-lk" class="likely">@UI_V2_TELL_LIKELY</div>
+            </div>
+            <div id="cand-sep" class="slash" bind:display="tell_b | ge(0)">／</div>
+            <div id="cand-b" class="cand" bind:class.a0="tell_b | eq(0)" bind:class.a1="tell_b | eq(1)" bind:class.a2="tell_b | eq(2)" bind:class.a3="tell_b | eq(3)" bind:class.a4="tell_b | eq(4)" bind:class.star="tell_star | eq(1)" bind:display="tell_b | ge(0)">
+              <div id="cand-b-0" class="cand-l ca-0">@UI_V2_OPP_ASSERT</div>
+              <div id="cand-b-1" class="cand-l ca-1">@UI_V2_OPP_PRESS</div>
+              <div id="cand-b-2" class="cand-l ca-2">@UI_V2_OPP_REBUT</div>
+              <div id="cand-b-3" class="cand-l ca-3">@UI_V2_OPP_DODGE</div>
+              <div id="cand-b-4" class="cand-l ca-4">@UI_V2_LAST_CARD</div>
+              <div id="cand-b-lk" class="likely">@UI_V2_TELL_LIKELY</div>
+            </div>
+          </div>
+          <div id="tell-gesture" class="gesture" bind:text="tell_gesture" bind:display="tell_gesture | ne('')">整理黑領巾、微微一笑</div>
+          <div id="tell-dying" class="dying-t" bind:text="dying_text" bind:display="dying">垂死反撲：打中只扣 10</div>
+        </div>
+        <div id="me-cred" class="paper">
+          <div id="me-cred-l" class="cred-l">@UI_V2_CRED_PLAYER</div>
+          <div id="me-track" class="track">
+            <div id="me-fill" class="fill-me" bind:width="hp_me | range(0, hp_me_max, 0%, 100%)"/>
+          </div>
+          <div id="me-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_me, hp_me_max)">124 / 140</div>
+          <div id="me-combo" class="cred-l" bind:text="combo_text">連擊 ×2</div>
+          <div id="me-hk" bind:display="hachiku | gt(0)">
+            <div id="me-hk-t" class="cred-l">@STAMP_HACHIKU</div>
+            <div id="me-hk-n" class="cred-l" bind:text="format('×{0}', hachiku)">×2</div>
+          </div>
+          <div id="me-shisshu" class="shis-t" bind:display="shisshu">@UI_V2_SHISHOU_HINT</div>
+        </div>
+        <div id="float-me" class="float" bind:text="float_me">−16</div>
+        <div id="pchain-box" class="paper">
+          <div id="pchain-title" class="kicker">@UI_V2_CHAIN_PLAYER</div>
+          <div id="ronpa-ready" class="plate red" bind:display="ronpa_ready">
+            <div id="ronpa-ready-t" class="plate-t">@UI_V2_RONPA_READY</div>
+          </div>
+          <div id="ronpa-t" class="ronpa-t" bind:text="ronpa_text" bind:display="show_ronpa">鏈長 2／4　爭點 2／2</div>
+          <div id="pchain-empty" class="empty" bind:display="pchain | item(0) | item(id) | eq('')">@UI_V2_CHAIN_EMPTY</div>
+          <repeat id="pchain" port="pchain">
+            <div id="pc" class="chip" bind:class.cracked="item(crack) | gt(0)">
+              <div id="pc-iss" class="iss" bind:text="item(issue)">法</div>
+              <svg id="pc-crack" class="crack-m" viewBox="0 0 24 24">
+                <path id="Crack" d="M20 2 L13 9 L16 12 L8 18 L11 21 L4 23" fill="none" stroke="#b8322a" stroke-width="2.2"/>
+              </svg>
+              <div id="pc-t" class="chip-t" bind:text="item(label)">總閥被人關小</div>
+            </div>
+          </repeat>
+        </div>
+        <div id="confirm" class="confirm">
+          <div id="sum-claim" class="sum-t" bind:text="sel_claim_text">鎖匠傍晚就走了</div>
+          <div id="sum-arrow" class="sum-a" bind:display="sel_target_text | ne('')">→</div>
+          <div id="sum-target" class="sum-t" bind:text="sel_target_text" bind:display="sel_target_text | ne('')"/>
+          <div id="sum-armed" class="sum-a" bind:display="guard_armed">@UI_V2_SUPPORT_ARMED</div>
+        </div>
+        <div id="acts" class="acts" bind:class.busy="phase | ne(0)">
+          <div id="acts-0" bind:display="mode | eq(0)">
+            <div id="act-1" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 1)" bind:class.on="act | eq(1)">
+              <div id="act-1-k" class="tb-k">1</div>
+              <div id="act-1-t" class="tb-t">@UI_V2_ACT_ARGUE</div>
+            </div>
+            <div id="grp-rebut" class="grp-l">@UI_V2_ACT_REBUT</div>
+            <div id="act-2" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 2)" bind:class.on="act | eq(2)">
+              <div id="act-2-k" class="tb-k">2</div>
+              <div id="act-2-t" class="tb-t">@UI_V2_REBUT_CUT</div>
+            </div>
+            <div id="act-3" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 3)" bind:class.on="act | eq(3)" bind:class.off="can_dismantle | not">
+              <div id="act-3-k" class="tb-k">3</div>
+              <div id="act-3-t" class="tb-t">@UI_V2_REBUT_TOPPLE</div>
+            </div>
+            <div id="act-4" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 4)" bind:class.on="act | eq(4)">
+              <div id="act-4-k" class="tb-k">4</div>
+              <div id="act-4-t" class="tb-t">@UI_V2_ACT_STALL</div>
+            </div>
+            <div id="btn-guard" class="guard" on:click(left)="if port(phase) eq 0 emit(guard)" bind:class.armed="guard_armed" bind:class.off="guard_ok | not">
+              <div id="guard-t" class="guard-t">@UI_V2_SUPPORT</div>
+              <div id="guard-lamp" class="lamp" bind:class.on="guard_left"/>
+            </div>
+          </div>
+          <div id="acts-1" bind:display="mode | eq(1)">
+            <div id="eg-prompt" class="prompt">@UI_V2_LAST_CARD_PROMPT</div>
+            <div id="act-5" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 5)" bind:class.on="act | eq(5)">
+              <div id="act-5-t" class="tb-t">@UI_V2_ENDGAME_CUT</div>
+            </div>
+            <div id="act-6" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 6)" bind:class.on="act | eq(6)">
+              <div id="act-6-t" class="tb-t">@UI_V2_ENDGAME_TAKE</div>
+            </div>
+          </div>
+          <div id="acts-2" bind:display="mode | eq(2)">
+            <div id="ls-prompt" class="prompt">@UI_V2_MY_LAST_CARD</div>
+            <div id="act-7" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 7)" bind:class.on="act | eq(7)">
+              <div id="act-7-t" class="tb-t">@UI_V2_ACT_REBUT</div>
+            </div>
+            <div id="act-6b" class="tblock" on:click(left)="if port(phase) eq 0 set(pick_act, 6)" bind:class.on="act | eq(6)">
+              <div id="act-6b-t" class="tb-t">@UI_V2_GIVE_UP_BTN</div>
+            </div>
+          </div>
+        </div>
+        <div id="btn-lock" class="lockb" on:click(left)="if port(phase) eq 0 and port(can_lock) eq true emit(lock)" bind:class.off="can_lock | not" bind:display="mode | lt(3)">
+          <div id="btn-lock-t" class="lockb-t">@UI_V2_LOCK_IN</div>
+        </div>
+        <div id="hit" on:click(left)="emit(skip)" bind:display="phase | eq(1)"/>
+        <div id="band" class="band" on:click(left)="emit(skip)" bind:display="phase | eq(1)">
+          <div id="band-who" class="who" bind:text="speech_who">Sherefox</div>
+          <div id="band-speech" class="speech" bind:text="speech">總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。</div>
+          <div id="band-sys" class="sysl" bind:text="sys_line" bind:display="sys_line | ne('')">接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。</div>
+          <div id="band-more" class="more">▶</div>
+        </div>
+        <div id="record" class="s-66a9df">
+          <div id="record-panel" class="sheet-big s-e1040c">
+            <div id="rec-title" class="h1">@UI_V2_RECORD</div>
+            <div id="rec-desc" class="desc">@UI_V2_RECORD_DESC</div>
+            <div id="rec-close" class="bbtn" on:click(left)="state(Open, off, target=#record)">
+              <div id="rec-close-t" class="bbtn-t">@BTN_CLOSE</div>
+            </div>
+            <div id="rec-rule" class="s-614666"/>
+            <div id="rec-scroll">
+              <repeat id="recs" port="record">
+                <div id="rec" class="rec-row">
+                  <div id="rec-n" class="rec-n" bind:text="format('R{0}', item(n))">R1</div>
+                  <div id="rec-t" class="rec-t" bind:text="item(label)">燈滅前，你的椅子就空了</div>
+                  <div id="rec-use" class="tag tag-cu" bind:text="item(use)">反駁</div>
+                  <div id="rec-soph" class="tag tag-cu" bind:text="item(soph)"/>
+                  <div id="rec-crack" class="tag tag-red" bind:text="item(crack)"/>
+                  <div id="rec-state" class="tag tag-ink" bind:text="item(state)"/>
+                </div>
+              </repeat>
+            </div>
+          </div>
+        </div>
+        <div id="outcome-veil" class="veil" bind:display="mode | eq(3)"/>
+        <div id="outcome" class="outcome sheet-big" bind:display="mode | eq(3)" bind:class.win="outcome_win">
+          <div id="out-k" class="kicker s-872272">@UI_V2_GRADE_LABEL</div>
+          <div id="out-rule" class="s-614666"/>
+          <div id="out-grade" class="grade-t" bind:text="grade_text">乾淨論破</div>
+          <div id="out-rounds" class="rounds-t" bind:text="rounds_text">回合數 9</div>
+          <div id="out-back" class="bbtn" on:click(left)="emit(back_title)">
+            <div id="out-back-t" class="bbtn-t">@UI_V2_BACK_TITLE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1Debate.dc.html:1 */
+    #d1debate {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1Debate.dc.html:1/0 */
+    #bg-d01-parlour {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Debate.dc.html:1/1 */
+    #sheet {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: D1Debate.dc.html:1/1/0 */
+    #opp-fig {
+      height: 465px;
+      left: 968px;
+      position: absolute;
+      top: 52px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/0/0 */
+    #cedric-composed {
+      height: 465px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/0/1 */
+    #cedric-uneasy {
+      height: 465px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/0/2 */
+    #cedric-cornered {
+      height: 465px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/0/3 */
+    #cedric-angry {
+      height: 465px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/0/4 */
+    #cedric-guilt {
+      height: 465px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 310px;
+    }
+    /* import: D1Debate.dc.html:1/1/1 */
+    #opp-plate {
+      height: 34px;
+      left: 1000px;
+      position: absolute;
+      top: 512px;
+      width: 250px;
+    }
+    /* import: D1Debate.dc.html:1/1/1/0 */
+    #opp-name {
+      height: 34px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 250px;
+    }
+    /* import: D1Debate.dc.html:1/1/2 */
+    #mast-bg {
+      height: 44px;
+      left: 12px;
+      position: absolute;
+      top: 6px;
+      width: 600px;
+    }
+    /* import: D1Debate.dc.html:1/1/3 */
+    #mast {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      height: 30px;
+      left: 22px;
+      position: absolute;
+      top: 13px;
+      width: 584px;
+    }
+    /* import: D1Debate.dc.html:1/1/3/0 */
+    #mast-name {
+      flex-shrink: 0;
+      height: 30px;
+    }
+    /* import: D1Debate.dc.html:1/1/3/1 */
+    #mast-extra {
+      flex-shrink: 0;
+      height: 26px;
+      width: 64px;
+    }
+    /* import: D1Debate.dc.html:1/1/3/2 */
+    #round {
+      flex-shrink: 0;
+      height: 30px;
+    }
+    /* import: D1Debate.dc.html:1/1/4 */
+    #btn-record {
+      height: 34px;
+      left: 624px;
+      position: absolute;
+      top: 10px;
+      width: 188px;
+    }
+    /* import: D1Debate.dc.html:1/1/4/0 */
+    #btn-record-t {
+      height: 30px;
+      left: 4px;
+      position: absolute;
+      top: 2px;
+      width: 180px;
+    }
+    /* import: D1Debate.dc.html:1/1/5 */
+    #opp-cred {
+      height: 50px;
+      left: 824px;
+      position: absolute;
+      top: 6px;
+      width: 444px;
+    }
+    /* import: D1Debate.dc.html:1/1/5/0 */
+    #opp-cred-l {
+      height: 20px;
+      left: 10px;
+      position: absolute;
+      top: 3px;
+      width: 300px;
+    }
+    /* import: D1Debate.dc.html:1/1/5/1 */
+    #opp-cred-n {
+      height: 20px;
+      left: 310px;
+      position: absolute;
+      top: 3px;
+      width: 124px;
+    }
+    /* import: D1Debate.dc.html:1/1/5/2 */
+    #opp-track {
+      height: 14px;
+      left: 10px;
+      position: absolute;
+      top: 27px;
+      width: 424px;
+    }
+    /* import: D1Debate.dc.html:1/1/5/2/0 */
+    #opp-fill {
+      height: 12px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 78%;
+    }
+    /* import: D1Debate.dc.html:1/1/6 */
+    #float-opp {
+      height: 36px;
+      left: 1080px;
+      position: absolute;
+      top: 56px;
+      width: 180px;
+    }
+    /* import: D1Debate.dc.html:1/1/7 */
+    #guard-down {
+      height: 26px;
+      left: 836px;
+      position: absolute;
+      top: 64px;
+      width: 126px;
+    }
+    /* import: D1Debate.dc.html:1/1/7/0 */
+    #guard-down-t {
+      height: 24px;
+      left: 4px;
+      position: absolute;
+      top: 1px;
+      width: 118px;
+    }
+    /* import: D1Debate.dc.html:1/1/8 */
+    #psych {
+      height: 172px;
+      left: 824px;
+      position: absolute;
+      top: 96px;
+      width: 150px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0 */
+    #g-p {
+      height: 50px;
+      left: 8px;
+      position: absolute;
+      top: 6px;
+      width: 134px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/0 */
+    #g-p-n {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 70px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/1 */
+    #g-p-b0 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/2 */
+    #g-p-b1 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/3 */
+    #g-p-b2 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/4 */
+    #g-p-s1 {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/5 */
+    #g-p-s2 {
+      height: 14px;
+      left: 46px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/0/6 */
+    #g-p-s3 {
+      height: 14px;
+      left: 92px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1 */
+    #g-g {
+      height: 50px;
+      left: 8px;
+      position: absolute;
+      top: 60px;
+      width: 134px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/0 */
+    #g-g-n {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 70px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/1 */
+    #g-g-b0 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/2 */
+    #g-g-b1 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/3 */
+    #g-g-b2 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/4 */
+    #g-g-s1 {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/5 */
+    #g-g-s2 {
+      height: 14px;
+      left: 46px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/1/6 */
+    #g-g-s3 {
+      height: 14px;
+      left: 92px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2 */
+    #g-a {
+      height: 50px;
+      left: 8px;
+      position: absolute;
+      top: 114px;
+      width: 134px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/0 */
+    #g-a-n {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 70px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/1 */
+    #g-a-b0 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/2 */
+    #g-a-b1 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/3 */
+    #g-a-b2 {
+      height: 20px;
+      left: 66px;
+      position: absolute;
+      top: 0px;
+      width: 68px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/4 */
+    #g-a-s1 {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/5 */
+    #g-a-s2 {
+      height: 14px;
+      left: 46px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/8/2/6 */
+    #g-a-s3 {
+      height: 14px;
+      left: 92px;
+      position: absolute;
+      top: 24px;
+      width: 42px;
+    }
+    /* import: D1Debate.dc.html:1/1/9 */
+    #ochain-box {
+      height: 100px;
+      left: 12px;
+      position: absolute;
+      top: 56px;
+      width: 800px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/0 */
+    #ochain-title {
+      height: 18px;
+      left: 10px;
+      position: absolute;
+      top: 3px;
+      width: 380px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/1 */
+    #ochain-hint {
+      height: 18px;
+      left: 400px;
+      position: absolute;
+      top: 3px;
+      width: 390px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/2 */
+    #ochain-empty {
+      height: 20px;
+      left: 12px;
+      position: absolute;
+      top: 44px;
+      width: 400px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/3 */
+    #ochain {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      height: 70px;
+      left: 8px;
+      position: absolute;
+      top: 24px;
+      width: 788px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/3/0 */
+    #oc {
+      flex-shrink: 0;
+      height: 68px;
+      position: relative;
+      width: 106px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/3/0/0 */
+    #oc-iss {
+      height: 16px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 34px;
+    }
+    /* import: D1Debate.dc.html:1/1/9/3/0/1 */
+    #oc-t {
+      height: 45px;
+      left: 6px;
+      position: absolute;
+      top: 21px;
+      width: 96px;
+    }
+    /* import: D1Debate.dc.html:1/1/10 */
+    #picker {
+      height: 244px;
+      left: 12px;
+      position: absolute;
+      top: 164px;
+      width: 536px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/0 */
+    #pk-ev-k {
+      height: 18px;
+      left: 10px;
+      position: absolute;
+      top: 3px;
+      width: 180px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/1 */
+    #pk-ev-scroll {
+      height: 212px;
+      left: 8px;
+      overflow-y: auto;
+      position: absolute;
+      top: 24px;
+      width: 190px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/1/0 */
+    #evs {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      width: 184px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/1/0/0 */
+    #evc {
+      flex-shrink: 0;
+      height: 20px;
+      position: relative;
+      width: 184px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/1/0/0/0 */
+    #evc-t {
+      height: 20px;
+      left: 6px;
+      position: absolute;
+      top: 0px;
+      width: 174px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/2 */
+    #pk-cl-k {
+      height: 18px;
+      left: 208px;
+      position: absolute;
+      top: 3px;
+      width: 318px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3 */
+    #pk-cl-scroll {
+      height: 212px;
+      left: 206px;
+      overflow-y: auto;
+      position: absolute;
+      top: 24px;
+      width: 324px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0 */
+    #cls {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 318px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0 */
+    #clm {
+      flex-shrink: 0;
+      height: 48px;
+      position: relative;
+      width: 318px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/0 */
+    #clm-kind {
+      height: 18px;
+      left: 6px;
+      position: absolute;
+      top: 4px;
+      width: 72px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/1 */
+    #clm-t {
+      height: 20px;
+      left: 84px;
+      position: absolute;
+      top: 3px;
+      width: 226px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/2 */
+    #clm-tags {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      height: 16px;
+      left: 6px;
+      overflow: hidden;
+      position: absolute;
+      top: 27px;
+      width: 304px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/0 */
+    #clm-iss {
+      flex-shrink: 0;
+      height: 16px;
+      width: 34px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/1 */
+    #clm-crack {
+      height: 16px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/2 */
+    #clm-stand {
+      height: 16px;
+    }
+    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/3 */
+    #clm-extra {
+      height: 16px;
+    }
+    /* import: D1Debate.dc.html:1/1/11 */
+    #tell {
+      height: 244px;
+      left: 556px;
+      position: absolute;
+      top: 164px;
+      width: 260px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/0 */
+    #tell-head {
+      height: 18px;
+      left: 10px;
+      position: absolute;
+      top: 3px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/1 */
+    #tell-last {
+      height: 22px;
+      left: 10px;
+      position: absolute;
+      top: 2px;
+      width: 180px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/1/0 */
+    #tell-last-t {
+      height: 24px;
+      left: 2px;
+      position: absolute;
+      top: -1px;
+      width: 176px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/2 */
+    #tell-bubble {
+      height: 84px;
+      left: 10px;
+      position: absolute;
+      top: 28px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/2/0 */
+    #tell-hes {
+      height: 16px;
+      left: 8px;
+      position: absolute;
+      top: 4px;
+      width: 224px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/2/1 */
+    #tell-card {
+      height: 62px;
+      left: 8px;
+      position: absolute;
+      top: 20px;
+      width: 224px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/3 */
+    #clar-c {
+      height: 20px;
+      left: 10px;
+      position: absolute;
+      top: 116px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/4 */
+    #clar-v {
+      height: 20px;
+      left: 10px;
+      position: absolute;
+      top: 116px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5 */
+    #tell-cands {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 48px;
+      left: 10px;
+      position: absolute;
+      top: 138px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0 */
+    #cand-a {
+      flex-shrink: 0;
+      height: 46px;
+      position: relative;
+      width: 108px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/0 */
+    #cand-a-0 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/1 */
+    #cand-a-1 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/2 */
+    #cand-a-2 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/3 */
+    #cand-a-3 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/4 */
+    #cand-a-4 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/0/5 */
+    #cand-a-lk {
+      height: 14px;
+      left: 4px;
+      position: absolute;
+      top: 27px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/1 */
+    #cand-sep {
+      flex-shrink: 0;
+      height: 46px;
+      width: 20px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2 */
+    #cand-b {
+      flex-shrink: 0;
+      height: 46px;
+      position: relative;
+      width: 108px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/0 */
+    #cand-b-0 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/1 */
+    #cand-b-1 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/2 */
+    #cand-b-2 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/3 */
+    #cand-b-3 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/4 */
+    #cand-b-4 {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/5/2/5 */
+    #cand-b-lk {
+      height: 14px;
+      left: 4px;
+      position: absolute;
+      top: 27px;
+      width: 100px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/6 */
+    #tell-gesture {
+      height: 32px;
+      left: 10px;
+      position: absolute;
+      top: 192px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/7 */
+    #tell-dying {
+      height: 40px;
+      left: 10px;
+      position: absolute;
+      top: 192px;
+      width: 240px;
+    }
+    /* import: D1Debate.dc.html:1/1/12 */
+    #me-cred {
+      height: 36px;
+      left: 12px;
+      position: absolute;
+      top: 414px;
+      width: 806px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/0 */
+    #me-cred-l {
+      height: 20px;
+      left: 10px;
+      position: absolute;
+      top: 6px;
+      width: 140px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/1 */
+    #me-track {
+      height: 14px;
+      left: 154px;
+      position: absolute;
+      top: 9px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/1/0 */
+    #me-fill {
+      height: 12px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 88%;
+    }
+    /* import: D1Debate.dc.html:1/1/12/2 */
+    #me-cred-n {
+      height: 20px;
+      left: 356px;
+      position: absolute;
+      top: 6px;
+      width: 90px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/3 */
+    #me-combo {
+      height: 20px;
+      left: 462px;
+      position: absolute;
+      top: 6px;
+      width: 110px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/4 */
+    #me-hk {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      height: 24px;
+      left: 576px;
+      position: absolute;
+      top: 4px;
+      width: 90px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/4/0 */
+    #me-hk-t {
+      flex-shrink: 0;
+      height: 24px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/4/1 */
+    #me-hk-n {
+      flex-shrink: 0;
+      height: 24px;
+    }
+    /* import: D1Debate.dc.html:1/1/12/5 */
+    #me-shisshu {
+      height: 30px;
+      left: 576px;
+      position: absolute;
+      top: 3px;
+      width: 224px;
+    }
+    /* import: D1Debate.dc.html:1/1/13 */
+    #float-me {
+      height: 36px;
+      left: 230px;
+      position: absolute;
+      top: 382px;
+      width: 180px;
+    }
+    /* import: D1Debate.dc.html:1/1/14 */
+    #pchain-box {
+      height: 98px;
+      left: 12px;
+      position: absolute;
+      top: 456px;
+      width: 806px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/0 */
+    #pchain-title {
+      height: 18px;
+      left: 10px;
+      position: absolute;
+      top: 3px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/1 */
+    #ronpa-ready {
+      height: 22px;
+      left: 214px;
+      position: absolute;
+      top: 1px;
+      width: 380px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/1/0 */
+    #ronpa-ready-t {
+      height: 24px;
+      left: 4px;
+      position: absolute;
+      top: -1px;
+      width: 372px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/2 */
+    #ronpa-t {
+      height: 18px;
+      left: 598px;
+      position: absolute;
+      top: 3px;
+      width: 198px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/3 */
+    #pchain-empty {
+      height: 20px;
+      left: 12px;
+      position: absolute;
+      top: 44px;
+      width: 400px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/4 */
+    #pchain {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      height: 68px;
+      left: 8px;
+      position: absolute;
+      top: 24px;
+      width: 788px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/4/0 */
+    #pc {
+      flex-shrink: 0;
+      height: 66px;
+      position: relative;
+      width: 106px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/4/0/0 */
+    #pc-iss {
+      height: 16px;
+      left: 4px;
+      position: absolute;
+      top: 4px;
+      width: 34px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/4/0/1 */
+    #pc-crack {
+      height: 22px;
+      left: 80px;
+      position: absolute;
+      top: 2px;
+      width: 22px;
+    }
+    /* import: D1Debate.dc.html:1/1/14/4/0/2 */
+    #pc-t {
+      height: 44px;
+      left: 6px;
+      position: absolute;
+      top: 21px;
+      width: 96px;
+    }
+    /* import: D1Debate.dc.html:1/1/15 */
+    #confirm {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      height: 34px;
+      left: 12px;
+      padding-bottom: 0px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 0px;
+      position: absolute;
+      top: 560px;
+      width: 806px;
+    }
+    /* import: D1Debate.dc.html:1/1/15/0 */
+    #sum-claim {
+      flex-shrink: 0;
+      height: 34px;
+      width: 300px;
+    }
+    /* import: D1Debate.dc.html:1/1/15/1 */
+    #sum-arrow {
+      flex-shrink: 0;
+      height: 34px;
+      width: 20px;
+    }
+    /* import: D1Debate.dc.html:1/1/15/2 */
+    #sum-target {
+      flex-shrink: 0;
+      height: 34px;
+      width: 220px;
+    }
+    /* import: D1Debate.dc.html:1/1/15/3 */
+    #sum-armed {
+      flex-shrink: 0;
+      height: 34px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/16 */
+    #acts {
+      height: 112px;
+      left: 12px;
+      position: absolute;
+      top: 600px;
+      width: 1016px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0 */
+    #acts-0 {
+      height: 112px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1016px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/0 */
+    #act-1 {
+      height: 84px;
+      left: 0px;
+      position: absolute;
+      top: 22px;
+      width: 190px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/0/0 */
+    #act-1-k {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 6px;
+      width: 190px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/0/1 */
+    #act-1-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 178px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/1 */
+    #grp-rebut {
+      height: 18px;
+      left: 200px;
+      position: absolute;
+      top: 0px;
+      width: 340px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/2 */
+    #act-2 {
+      height: 84px;
+      left: 200px;
+      position: absolute;
+      top: 22px;
+      width: 166px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/2/0 */
+    #act-2-k {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 6px;
+      width: 166px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/2/1 */
+    #act-2-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 154px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/3 */
+    #act-3 {
+      height: 84px;
+      left: 374px;
+      position: absolute;
+      top: 22px;
+      width: 166px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/3/0 */
+    #act-3-k {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 6px;
+      width: 166px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/3/1 */
+    #act-3-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 154px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/4 */
+    #act-4 {
+      height: 84px;
+      left: 550px;
+      position: absolute;
+      top: 22px;
+      width: 190px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/4/0 */
+    #act-4-k {
+      height: 14px;
+      left: 0px;
+      position: absolute;
+      top: 6px;
+      width: 190px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/4/1 */
+    #act-4-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 178px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/5 */
+    #btn-guard {
+      height: 84px;
+      left: 760px;
+      position: absolute;
+      top: 22px;
+      width: 150px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/5/0 */
+    #guard-t {
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      top: 20px;
+      width: 142px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/0/5/1 */
+    #guard-lamp {
+      height: 10px;
+      left: 70px;
+      position: absolute;
+      top: 52px;
+      width: 10px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1 */
+    #acts-1 {
+      height: 112px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1016px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1/0 */
+    #eg-prompt {
+      height: 66px;
+      left: 0px;
+      position: absolute;
+      top: 30px;
+      width: 300px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1/1 */
+    #act-5 {
+      height: 84px;
+      left: 320px;
+      position: absolute;
+      top: 22px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1/1/0 */
+    #act-5-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 188px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1/2 */
+    #act-6 {
+      height: 84px;
+      left: 530px;
+      position: absolute;
+      top: 22px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/1/2/0 */
+    #act-6-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 188px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2 */
+    #acts-2 {
+      height: 112px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1016px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2/0 */
+    #ls-prompt {
+      height: 84px;
+      left: 0px;
+      position: absolute;
+      top: 22px;
+      width: 300px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2/1 */
+    #act-7 {
+      height: 84px;
+      left: 320px;
+      position: absolute;
+      top: 22px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2/1/0 */
+    #act-7-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 188px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2/2 */
+    #act-6b {
+      height: 84px;
+      left: 530px;
+      position: absolute;
+      top: 22px;
+      width: 200px;
+    }
+    /* import: D1Debate.dc.html:1/1/16/2/2/0 */
+    #act-6b-t {
+      height: 28px;
+      left: 6px;
+      position: absolute;
+      top: 28px;
+      width: 188px;
+    }
+    /* import: D1Debate.dc.html:1/1/17 */
+    #btn-lock {
+      height: 84px;
+      left: 1046px;
+      position: absolute;
+      top: 622px;
+      width: 222px;
+    }
+    /* import: D1Debate.dc.html:1/1/17/0 */
+    #btn-lock-t {
+      height: 40px;
+      left: 4px;
+      position: absolute;
+      top: 22px;
+      width: 214px;
+    }
+    /* import: D1Debate.dc.html:1/1/18 */
+    #hit {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: D1Debate.dc.html:1/1/19 */
+    #band {
+      height: 158px;
+      left: 0px;
+      position: absolute;
+      top: 250px;
+      width: 1280px;
+    }
+    /* import: D1Debate.dc.html:1/1/19/0 */
+    #band-who {
+      height: 22px;
+      left: 110px;
+      position: absolute;
+      top: 14px;
+      width: 600px;
+    }
+    /* import: D1Debate.dc.html:1/1/19/1 */
+    #band-speech {
+      height: 56px;
+      left: 110px;
+      position: absolute;
+      top: 40px;
+      width: 1060px;
+    }
+    /* import: D1Debate.dc.html:1/1/19/2 */
+    #band-sys {
+      height: 44px;
+      left: 110px;
+      position: absolute;
+      top: 104px;
+      width: 1060px;
+    }
+    /* import: D1Debate.dc.html:1/1/19/3 */
+    #band-more {
+      height: 16px;
+      left: 1180px;
+      position: absolute;
+      top: 132px;
+      width: 80px;
+    }
+    /* import: D1Debate.dc.html:1/1/20 */
+    #record {
+      height: 540px;
+      left: 200px;
+      position: absolute;
+      top: 60px;
+      width: 880px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0 */
+    #record-panel {
+      height: 540px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 880px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/0 */
+    #rec-title {
+      height: 32px;
+      left: 20px;
+      position: absolute;
+      top: 12px;
+      width: 600px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/1 */
+    #rec-desc {
+      height: 18px;
+      left: 20px;
+      position: absolute;
+      top: 46px;
+      width: 700px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/2 */
+    #rec-close {
+      height: 32px;
+      left: 740px;
+      position: absolute;
+      top: 14px;
+      width: 120px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/2/0 */
+    #rec-close-t {
+      height: 30px;
+      left: 4px;
+      position: absolute;
+      top: 1px;
+      width: 112px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/3 */
+    #rec-rule {
+      height: 3px;
+      left: 20px;
+      position: absolute;
+      top: 70px;
+      width: 840px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4 */
+    #rec-scroll {
+      height: 444px;
+      left: 20px;
+      overflow-y: auto;
+      position: absolute;
+      top: 80px;
+      width: 840px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0 */
+    #recs {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      width: 834px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0 */
+    #rec {
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 12px;
+      height: 30px;
+      overflow: hidden;
+      padding-bottom: 2px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 2px;
+      position: relative;
+      width: 834px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/0 */
+    #rec-n {
+      height: 26px;
+      width: 36px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/1 */
+    #rec-t {
+      flex-shrink: 0;
+      height: 26px;
+      width: 330px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/2 */
+    #rec-use {
+      height: 26px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/3 */
+    #rec-soph {
+      height: 26px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/4 */
+    #rec-crack {
+      height: 26px;
+    }
+    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/5 */
+    #rec-state {
+      height: 26px;
+    }
+    /* import: D1Debate.dc.html:1/1/21 */
+    #outcome-veil {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: D1Debate.dc.html:1/1/22 */
+    #outcome {
+      height: 300px;
+      left: 360px;
+      position: absolute;
+      top: 190px;
+      width: 560px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/0 */
+    #out-k {
+      height: 18px;
+      left: 20px;
+      position: absolute;
+      top: 20px;
+      width: 520px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/1 */
+    #out-rule {
+      height: 3px;
+      left: 20px;
+      position: absolute;
+      top: 44px;
+      width: 520px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/2 */
+    #out-grade {
+      height: 52px;
+      left: 20px;
+      position: absolute;
+      top: 70px;
+      width: 520px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/3 */
+    #out-rounds {
+      height: 24px;
+      left: 20px;
+      position: absolute;
+      top: 140px;
+      width: 520px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/4 */
+    #out-back {
+      height: 44px;
+      left: 170px;
+      position: absolute;
+      top: 210px;
+      width: 220px;
+    }
+    /* import: D1Debate.dc.html:1/1/22/4/0 */
+    #out-back-t {
+      height: 30px;
+      left: 4px;
+      position: absolute;
+      top: 6px;
+      width: 212px;
+    }
+    .kicker {
+      overflow: hidden;
+    }
+    .bbtn-t {
+      overflow: hidden;
+    }
+    .cred-l {
+      overflow: hidden;
+    }
+    .plate-t {
+      overflow: hidden;
+    }
+    .g-name {
+      overflow: hidden;
+    }
+    .g-band {
+      display: none;
+    }
+    .gauge.b0 .gb-0 {
+      display: block;
+    }
+    .gauge.b1 .gb-1 {
+      display: block;
+    }
+    .gauge.b2 .gb-2 {
+      display: block;
+    }
+    .iss {
+      overflow: hidden;
+    }
+    .crack-m {
+      display: none;
+    }
+    .chip.cracked .crack-m {
+      display: block;
+    }
+    .cand-l {
+      display: none;
+      overflow: hidden;
+    }
+    .cand.a0 .ca-0 {
+      display: block;
+    }
+    .cand.a1 .ca-1 {
+      display: block;
+    }
+    .cand.a2 .ca-2 {
+      display: block;
+    }
+    .cand.a3 .ca-3 {
+      display: block;
+    }
+    .cand.a4 .ca-4 {
+      display: block;
+    }
+    .likely {
+      display: none;
+    }
+    .cand.star .likely {
+      display: block;
+    }
+    .evc-t {
+      overflow: hidden;
+    }
+    .clm-kind {
+      overflow: hidden;
+    }
+    .clm-t {
+      overflow: hidden;
+    }
+    .tag {
+      flex-shrink: 0;
+    }
+    .sum-t {
+      overflow: hidden;
+    }
+    .sum-hint {
+      overflow: hidden;
+    }
+    .tb-t {
+      overflow: hidden;
+    }
+    .sysl {
+      padding-left: 10px;
+    }
+    #record-panel {
+      display: none;
+    }
+    #record:state(Open) #record-panel {
+      display: block;
+    }
+    .rec-n {
+      flex-shrink: 0;
+    }
+    .rec-t {
+      overflow: hidden;
+    }
+    .desc {
+      overflow: hidden;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1debate.xts"/>
+  <timelines>
+    @timeline face-in {
+      #opp-fig {
+        0ms {
+          opacity: 0.4;
+        }
+        380ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline float-me {
+      #float-me {
+        0ms {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+        1300ms ease-out {
+          opacity: 0;
+          transform: translateY(-26px);
+        }
+      }
+    }
+    @timeline float-opp {
+      #float-opp {
+        0ms {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+        1300ms ease-out {
+          opacity: 0;
+          transform: translateY(-26px);
+        }
+      }
+    }
+    @timeline intro {
+      #sheet {
+        0ms {
+          opacity: 0;
+        }
+        400ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline line-in {
+      #band-who {
+        0ms {
+          opacity: 0.3;
+        }
+        260ms ease-out {
+          opacity: 1;
+        }
+      }
+      #band-speech {
+        0ms {
+          opacity: 0.3;
+        }
+        260ms ease-out {
+          opacity: 1;
+        }
+      }
+      #band-sys {
+        0ms {
+          opacity: 0;
+        }
+        200ms {
+          opacity: 0;
+        }
+        500ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+    @timeline shatter {
+      #ochain {
+        0ms {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+        120ms {
+          transform: translateX(-6px);
+        }
+        240ms {
+          transform: translateX(6px);
+        }
+        360ms {
+          transform: translateX(0px);
+        }
+        1400ms ease-in {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        3800ms {
+          opacity: 0;
+        }
+        3900ms {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  </timelines>
+</xt>

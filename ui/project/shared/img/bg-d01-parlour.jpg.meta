@@ -1,0 +1,13 @@
+version: 1
+id: 1e6c7535-5acb-4e17-9db5-22a3f733e0b5
+type: image
+title: bg-d01-parlour
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_parlour.jpg
+content: sha256:f7e575095dd8ab2ae55fb5106ff18be8fed5f31d018b641cc33a4fcb3f48cd76
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

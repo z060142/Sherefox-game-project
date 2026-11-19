@@ -12,7 +12,7 @@
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_debate_ui`、`d01_debate_engine`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
@@ -24,6 +24,7 @@
 | `board` | 1915／4124 | `board` 步驟（01-systems §2）：抽屜、板面、理由、拉線判定、推理鏈、鑑定、進入論戰、論戰引擎的板面輸入 |
 | `debate_ui` | 1739／3377 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧、論戰結束音效 |
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
+| `d01_debate_ui` | 924／1721 | v2 示範關卡 D01 的論戰畫面（§4.12）：開發入口的攜帶集合、`d01_debate_engine` 的指令、`ui#d1debate`、`ui#cutin`、事件紀錄的播放、結果框 |
 | `music` | 89／161 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
 
 ### 1.1 寫法上的三條規則
@@ -302,6 +303,17 @@
 - 解析度：選項 0 ＝ 自動，1～5 ＝ 1280×720、1600×900、1920×1080、2560×1440、3840×2160；只列不超過 `display.nativeWidth/Height` 的（兩邊都遞增，所以列出的一定是前綴，第 i 項就是第 i 個預設值）。`pick_res.emitted` → `atrium.display.set`（寬高查表，自動 0 × 0）並記下選項（`filter(sample)`，初始 0 ＝ 自動，同 `game.json` 的 `display.resolution`）。`res_options` 在開始時、選了解析度、`display.changed`、語言改變時重寫（一個 1 ms 計時器之後，讓文字與選項先結算）：清空 `setRes` → 加 `UI_SET_RES_AUTO` 的文字 → 合乎原生解析度的預設值（不分語言的數字）→ `setResOn` 只放選中那一項 → `atrium.ui.list`。headless 只有「自動」。
 - 大字譯名：`toggle`（初始開）；`ui#settings.toggle_sub` 翻轉，寫 `ui#settings.sub_on` 與 `world.cutinSub`。
 - 限制：選中的解析度只是「上次選的」：用 `play --width/--height` 以固定解析度啟動時，畫面上仍標「自動」（沒有讀回目前解析度設定的訊號）。
+
+### 4.12 `d01_debate_ui`（v2 示範關卡 D01 的論戰畫面；v2 demo M2；ui-contracts d1debate；`docs/debate-engine-v2.md` §2）
+
+由 `tools/gen_debui_v2.py` 產生（`tools/gen_flows.py` 匯入）；引擎 `d01_debate_engine` 由 `tools/gen_debate_v2.py` 產生，兩者在 `flows` 中排在 `debate_warmup` 之後、`result` 之前（UI 在引擎之前：指令與脈衝引擎同 tick 收到）。輔助表 `d1uiClaim`、`d1uiCard`、`d1uiEv`、`d1uiLine`（`data/flow/`：說法的短標、台詞、爭點鍵、證物名鍵；牌的台詞鍵；`CUT_D01_<說法>_<卡>` 與 `LINK_D01_<a>_<b>` 有字串的才列）。UI 狀態在 map `u1`（數字）、`u1S`（字串）；各段工作掛在每 tick 的節拍上、由 `u1` 的旗標或時刻選出（同 §4.8）。
+
+- **入口（開發用）**：標題的 `v2demo` → `main` 切到 `d1debate` 畫面；本圖清空狀態、寫入攜帶集合（ref `routes.py` 路線 A 的攜帶、鑑定、筆記，`d1Warmup` ＝ `pass_clean`），0.1 秒後送 `d1Start`（引擎要在前一 tick 或更早看到攜帶集合）。蒐證、攜帶畫面、劇情與 S07 的開場收尾是之後的里程碑。
+- **一回合**：引擎輸出在顯示回合時鎖存（`L_*`），選擇在 `act`（1 議論、2 截斷、3 拆台、4 打迷糊仗、5 終局截斷、6 承受／放棄、7 §7.5 反駁）、`ev`、`claim`、`target`、`armed`。可選與否全由 UI 判斷（引擎不驗證，debate-engine-v2 §4）：議論只能用不在鏈上的說法（抓住他的話只在議論）；截斷、拆台、終局截斷、§7.5 只能用證物的說法；拆台要他鏈上有節並點選一節；援護每場一次且只在一般回合；終局只有截斷／承受，§7.5 只有反駁／放棄。說法選擇器＝`d1ClaimList`（依證物分組，抓住他的話在最前），正論／詭辯、紅色裂紋、已在鏈上、心理牌、私事由 `d1ClaimSoph`／`d1ClaimCrack`／`d1ClaimStand` 與 `d1uiClaim` 標出。鎖定時 `d1CmdKind`／`d1CmdClaim`／`d1CmdTarget`／`d1CmdGuard` 已在匯流排上，再送 `d1Lock`；同時在公開紀錄（`u1Rec*`）加一列（說法、用法、當時顯示的詭辯與紅色裂紋）。
+- **播放**：鎖定 0.1 秒後逐筆讀 `d1Events`（`|` 拆成 `u1F`／`u1N`），每筆決定說話者與台詞（Sherefox 的說法台詞／承接台詞／打迷糊仗台詞、他的立論／強辯／改口／被打下／駁倒台詞、亞瑟的援護…）、系統台詞（`SYS_D01_*` 等樣板，以 `atrium.textf` 填 `{name}`、`{hp}`、`{dmg}`、`{formula}`…）、兩邊可信度與浮動數字、大字或印章（`ui#cutin`，同 v1 的 id：論破、逆論破、破竹、失守、困獸、破防觸發的動搖；印章截、落空、交鋒、援護、中計、破竹、斷），再停留（無 0、只有數字 0.5、系統台詞 1.8、台詞 2.4、大字 1.6、論破 4 秒）；點一下畫面即下一筆。播完 0.6 秒後顯示下一回合，論戰結束則顯示結果框（評級 `UI_V2_GRADE_<n>`、回合數），「回到標題」送 `world.d1Back`，`main` 切回標題。
+- **不顯示的數值**（隱藏數值裁決）：心理量表只給三段（平常＜門檻−15≦浮動＜門檻≦失常，`FLOAT_BAND`）與塞德里克的表情（罪惡感越線＞怒氣越線＞困獸＞任一量表浮動或破防＞平常）；不顯示門檻、量表數值、真相度、名聲總和。
+- **與 v1 共用 `ui#cutin`**：兩張圖都寫同一組 port；本圖的序號從 100001 起（初值仍是 0），不會與 v1 論戰寫過的序號相同而漏播。
+- **已知限制**：預兆只在明示時顯示小動作（模糊時顯示哪一個未定）；`SYS_D01_ATTACH` 的算式只列數字（沒有「破竹」「破防」等標籤）；最後一張牌命中的算式以回合開始時的裂痕數組出；`BEAT_*` 串場與亞瑟的預兆提示（`TELL_D01_HINT_*`）沒有播放；論戰中沒有音樂時機（沿用標題的曲子）；S07 開場收尾、結算畫面、名聲與好感明細是之後的里程碑。
 
 ## 5. 輔助表 `data/flow/`
 

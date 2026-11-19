@@ -1,4 +1,10 @@
 key,text
+APR_D01_01_LINE,"The lock's workings are intact—not a single pry mark. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
+APR_D01_01_RESULT,Lock intact; opened with its own key; no oil inside
+APR_D01_02_LINE,"The pendulum wasn't tied with a ribbon; a jolt set it swinging again. From twenty to ten to the ten forty-eight it shows now, it has run one hour and eight minutes. Counting back, it started at about two minutes past eleven last night. Exactly when the lights went out."
+APR_D01_02_RESULT,Jolted back into motion when the lights went out
+APR_D01_04_LINE,That isn't coal dust from the basement on the valve wheel—it's fine soot from a fireplace. The only fireplace in this house that hasn't been lit for ages and is caked with that kind of old soot is the one in the study. The hand that turned the main valve had just come from the study fireplace.
+APR_D01_04_RESULT,The valve bears soot from the study fireplace
 ART_APPR_DUAL,"""Half flesh, half brass. I have to look at both, and that's going to cost me some effort."""
 ART_APPR_EMPTY,"""My toolbox has run dry. The rest is down to your eyes."""
 ART_APPR_INSIGHT,"""If that's the case, your earlier inference might need a second look."""
@@ -55,6 +61,33 @@ ART_SUB_LINK,"""That scrap of paper won't hold for long, Sherefox."""
 ART_TIME_LOW,"""We're running short on time. The police... or someone else... could come and clear the scene any moment."""
 ART_TIME_LOW_FIELD,"""It's getting dark. Any later and the locals won't let us stay."""
 ART_TIME_OUT,"""That's it. Come on, Sherefox, any longer and we'll be shown the door."""
+BEAT_D01_02C_1,(Lowers her head)
+BEAT_D01_07A_1,(Covers her mouth)
+BEAT_D01_07A_2,"...I'm sorry, Martha."
+BEAT_D01_09A_1,"Sherefox, that's Irene's—"
+BEAT_D01_ANGER_1,(Stands and flings his glove down on the table) Enough. I have had quite enough of this farce.
+BEAT_D01_CLASH_1,You—
+BEAT_D01_CLASH_2,—let me finish first.
+BEAT_D01_GIVEUP_1,Cedric says nothing more.
+BEAT_D01_GUILT_1,(Quietly) He's... trembling.
+BEAT_D01_LASTCARD_1,That's... the ring of keys we left in the entrance hall!
+BEAT_D01_LASTCARD_2,Wh-what's this... Miss Fox?
+BEAT_D01_LASTCARD_3,Brass filings! Th-this Inspector said so all along!
+BEAT_D01_LASTCARD_4,"And another thing: everything you said a moment ago—everyone in this house heard it, and none of it was true."
+BEAT_D01_LASTCARD_5,"...Ugh, he saw right through me."
+BEAT_D01_LASTCARD_6,"Steady yourself. Take apart the rest of what he says, one line at a time."
+BEAT_D01_LASTSTAND_FAIL_1,That statement is not on my chain.
+BEAT_D01_P1A_1,"(The parlour falls silent. A draught slips in through the gap in the window, and the candle flames lean.)"
+BEAT_D01_P1A_2,"(Quietly) Sherefox, you actually brought it..."
+BEAT_D01_REDCRACK_1,"(Seeing the red crack) Sherefox, that doesn't square with what you said at the start—"
+BEAT_D01_REFUTED_1,I...
+BEAT_D01_REFUTED_2,(Covers her face)
+BEAT_D01_REFUTED_3,{item}...?
+BEAT_D01_REFUTED_4,"(Flipping through his notes) ...{place}. We found it, but we didn't bring it."
+BEAT_D01_REVERSE_1,"Miss Fox, not even you can make what you've said today hang together."
+BEAT_D01_SOPH_03C_1,"(Quietly) Sherefox, we only just appraised that..."
+BEAT_D01_SOPH_06B_1,(Quietly) But that handkerchief...
+BEAT_D01_SOPH_06C_1,"(Leafing through the work order, quietly) ...It clearly says a new spring was fitted."
 BTN_APPRAISE,Hand to Arthur
 BTN_AUTO,Auto
 BTN_BACK,Back
@@ -111,9 +144,59 @@ BTN_SKIP,Skip
 BTN_SNEAK,Sneak In (Ticks −2)
 BTN_TO_DEBATE,Enter Debate
 BTN_YES,Yes
+CARD_D01_F1,Locksmith had the tube and keys
+CARD_D01_F1_PUSH,"He handled the tube, and he had skeleton keys! Do you dare deny either?"
+CARD_D01_F1_STATE,"The locksmith was alone with that tube this afternoon, and he carried skeleton keys. Those are facts."
+CARD_D01_F2,Anyone could have slipped out
+CARD_D01_F2_PUSH,Three minutes of darkness! Why single me out?
+CARD_D01_F2_STATE,"For those three minutes of darkness, no one could see anyone. Anyone in this house might have left their seat."
+CARD_D01_K1,I went to check the valve
+CARD_D01_K1_DOWN,S-soot from the study... (He looks at his own gloves)
+CARD_D01_K1_STATE,"I-I admit I went to the basement—the lights had gone out, someone had to see to the valve!"
+CARD_D01_L1,I stayed by the coffin all night
+CARD_D01_L1_DOWN,Th-that was... I misremembered. I merely went to fetch a glass.
+CARD_D01_L1_PUSH,I never stirred a step! Everyone present can vouch for me!
+CARD_D01_L1_RETRACT,...I may have got up once to replace a candle. Right beside the coffin.
+CARD_D01_L1_STATE,I kept watch beside my uncle's coffin all night. I never left it for a moment.
+CARD_D01_L2,The locksmith rigged the lock
+CARD_D01_L2_DOWN,...A real key? B-but only my uncle had that key—(he stops himself)
+CARD_D01_L2_PUSH,He tampered with it! How else does a locked tube empty itself?
+CARD_D01_L2_RETRACT,"What I mean is... the locksmith ""may"" have tampered with it. A perfectly reasonable inference."
+CARD_D01_L2_STATE,The locksmith tampered with the lock when he repaired it this afternoon. That tube could be opened without a key.
+CARD_D01_L3,The locksmith meant to blackmail Aunt
+CARD_D01_L3_DOWN,...Th-that was merely my supposition.
+CARD_D01_L3_PUSH,A poor locksmith sees something worth money—what more reason does he need?
+CARD_D01_L3_RETRACT,"Perhaps not blackmail... perhaps someone hired him. At any rate, it was not me."
+CARD_D01_L3_STATE,"The locksmith meant to use the codicil to blackmail my aunt. With it in hand, he could name his price."
+CARD_D01_L4,Someone fled by the back door
+CARD_D01_L4_DOWN,S-someone was in the kitchen the whole time? ...Then what did I hear?
+CARD_D01_L4_PUSH,The back door! I heard it as plain as day!
+CARD_D01_L4_RETRACT,Perhaps... it was the wind rattling the door.
+CARD_D01_L4_STATE,"When the lights went out, I heard the back door bang. Someone ran out."
+CARD_D01_P05,Brass filings on the key
+CARD_D01_P05_DOWN,A c-clean lock...? (He puts the ring of keys back on the table)
+CARD_D01_P05_PUSH,Brass filings! The proof is on the very keys you left behind!
+CARD_D01_P05_STATE,I have examined this ring of skeleton keys Miss Fox left behind. The teeth of this one bear brass filings from the tube's lock. This is the key that opened it.
+CARD_D01_P06,Locksmith worked on the tube alone
+CARD_D01_P06_PUSH,In black and white! He repaired it alone!
+CARD_D01_P06_STATE,"This work order states it plainly: at three in the afternoon, the locksmith was alone in the study, repairing that tube."
+CARD_D01_P07,The locksmith came back last night
+CARD_D01_P07_PUSH,He was in the house! Your own handkerchief says so!
+CARD_D01_P07_STATE,"This handkerchief was found in the kitchen, and it smells of machine oil. The locksmith crept back last night—when the lights went out, he was in this very house."
+CARD_D01_U1,That valve was always loose
+CARD_D01_U1_CATCH,"Only a man who has turned that valve would know whether it's loose. Mr Cedric, you turned it."
+CARD_D01_U1_PUSH,"That valve was always loose! One light turn and... I-I mean, so the servants say!"
+CARD_D01_U1_STATE,That valve in the basement was always loose—(he stops)
+CARD_D01_U1_TELL,The basement...
+CARD_D01_U2,I do owe a little money
+CARD_D01_U2_CATCH,A gentleman who owes four hundred pounds by the end of the month is the last man who wants his inheritance halved.
+CARD_D01_U2_PUSH,"Yes, I owe money! Four hundred pounds! And what of it?"
+CARD_D01_U2_STATE,"...Very well, I owe a little money. What gentleman doesn't?"
+CARD_D01_U2_TELL,Money...
 CHAP_01_TITLE,The Vanishing Clockwork Caramel Pudding
 CHAP_02_TITLE,The Cuckoo Three Minutes Slow
 CHAP_03_TITLE,The Steam Barge Murder in the Fog on the Thames
+CHAP_D01_TITLE,The Will That Vanished at the Wake
 CLM_CH01_N1,I slept straight through until morning
 CLM_CH01_N2,The cat ate the pudding
 CLM_CH01_N3,I have nothing whatsoever to do with the pudding
@@ -126,12 +209,76 @@ CLM_CH03_N2,The door locked from the inside; it was an accident
 CLM_CH03_N3,Moss and I were just legitimate business partners
 CLM_CH03_T1,It was that old bargeman who turned the valve!
 CLM_CH03_W1,"The key was on the bargeman and the door was bolted from within. Ergo, it was him!"
+CLM_D01_01A,"Lock intact, opened with its key"
+CLM_D01_01A_LINE,"The lock is intact, not a single pick mark. Whoever opened it used a real key."
+CLM_D01_01B,The lock was tampered with
+CLM_D01_01B_LINE,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
+CLM_D01_01C,No oil in the lock
+CLM_D01_01C_LINE,That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it.
+CLM_D01_01D,Locksmith had nothing to open it
+CLM_D01_01D_LINE,"It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
+CLM_D01_02A,Clock restarted when the lights died
+CLM_D01_02A_LINE,"The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece."
+CLM_D01_02B,The clock restarted on its own
+CLM_D01_02B_LINE,An old clock left stopped will start swinging at the slightest tremor. It's over an hour slow. Nothing to do with the lights.
+CLM_D01_02C,"Twenty to ten, he called for you"
+CLM_D01_02C_LINE,"This clock stopped at twenty to ten, the moment Mr Hyde breathed his last. Until then he kept calling one name. Mr Cedric, where were you?"
+CLM_D01_03A,Wake candle wax on the cloth
+CLM_D01_03A_LINE,"On the black cloth from the study mirror there's a drop of white wax, still soft. Wake candle wax. And the candlestick by the chair nearest the corridor is empty. When the lights went out, someone took a candle from that seat into the study."
+CLM_D01_03B,No one dared cover the mirror
+CLM_D01_03B_LINE,"The cloth was knocked off, and nobody put it back. A mirror left bare on a wake night! Whoever did it didn't dare so much as look back."
+CLM_D01_04A,Someone turned the valve down
+CLM_D01_04A_LINE,The main valve has fresh turn marks. The lights didn't dim on their own. Someone in the basement turned it down.
+CLM_D01_04B,Study soot on the valve wheel
+CLM_D01_04B_LINE,"The soot on that valve wheel came from the study fireplace. Whoever dimmed the lights went to the study first, then back down to turn them up again. He never left the house."
+CLM_D01_04C,Only Martha in the kitchen
+CLM_D01_04C_LINE,"When the lights went out, the back door stayed shut and Martha was alone in the basement kitchen. No one ran out the back."
+CLM_D01_05A,Every skeleton key is oiled
+CLM_D01_05A_LINE,"Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn."
+CLM_D01_05B,Skeleton keys can't open the tube
+CLM_D01_05B_LINE,"Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube."
+CLM_D01_06A,"Lock mended, no back door left"
+CLM_D01_06A_LINE,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
+CLM_D01_06B,Locksmith left in the evening
+CLM_D01_06B_LINE,The work order says he finished at five. Briggs left in the evening and wasn't in the house on wake night at all. He has nothing to do with this.
+CLM_D01_06C,"Work order only says ""tested"""
+CLM_D01_06C_LINE,"The work order says ""tested"", not ""repaired"". Briggs never touched the inside of that lock."
+CLM_D01_07A,Locksmith met Martha in the kitchen
+CLM_D01_07A_LINE,"This handkerchief was behind the kitchen stove. It smells of machine oil and bears Martha the cook's initial. Briggs slipped back at night to see her. When the lights went out, he was in the kitchen by the back door, and nobody ran out the back."
+CLM_D01_07B,Locksmith came back for Martha
+CLM_D01_07B_LINE,"Briggs risked sneaking back for Martha, not for any codicil."
+CLM_D01_08A,Four hundred pounds in gaming debts
+CLM_D01_08A_LINE,The Mayfair Club. Four hundred pounds. Due by the end of the month. The one who needs money is you.
+CLM_D01_08B,At the club the night Uncle died
+CLM_D01_08B_LINE,"The demand letter is dated the day Mr Hyde died. And that night, you were at the club."
+CLM_D01_09A,Irene is Mr Hyde's daughter
+CLM_D01_09A_LINE,"The brooch in Irene's drawer is the twin of Mrs Hyde's, woven from Mr Hyde's hair. Irene is Mr Hyde's daughter. The codicil was meant for her."
+CLM_D01_09B,The brooch is just a keepsake
+CLM_D01_09B_LINE,Mrs Hyde gave Irene that brooch as a keepsake. It has nothing to do with the will.
+CLM_D01_10A,The codicil halved your share
+CLM_D01_10A_LINE,"The blotter holds the codicil in mirror writing: ""half of my estate I bequeath to..."" The old will left you everything. This codicil cut your share in half."
+CLM_D01_10B,First to see the codicil
+CLM_D01_10B_LINE,"Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done."
+CLM_D01_11A,Your chair was empty before dark
+CLM_D01_11A_LINE,Irene says your chair was already empty before the lights went out.
+CLM_D01_11B,Dust on your glove tips
+CLM_D01_11B_LINE,"Irene says when the lights came back you were at the end of the corridor, with dust on the fingertips of your black gloves."
+CLM_D01_12A,This family takes the wake seriously
+CLM_D01_12A_LINE,"The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter."
+CLM_D01_P1A,He is still in this house
+CLM_D01_P1A_LINE,"(Sets the talking board on the little table by the coffin) The wake isn't over. Mr Hyde is still in this house. Mr Cedric, is there anything you'd like to say to him?"
+CLM_D01_P1B,He knows who did it
+CLM_D01_P1B_LINE,"(The planchette slides slowly to ""YES"") ...Look. He says he knows who did it."
 CUT_BRINK,絕境
 CUT_BRINK_LOG,【絕境】
 CUT_BRINK_SUB,AT THE BRINK
 CUT_COUNTER,反擊論破
 CUT_COUNTER_LOG,【反擊論破】
 CUT_COUNTER_SUB,COUNTER BREAK
+CUT_D01_03A_L1,I-I only... went to replace a candle.
+CUT_D01_04C_L4,O-only the cook? ...Then what did I hear?
+CUT_D01_08A_L3,"F-four hundred pounds, and what of it? That is an account between gentlemen... what has it to do with a locksmith?"
+CUT_D01_09A_L3,...My uncle's daughter? Wh-what of it? What has that to do with the locksmith's blackmail?
 CUT_DOUBLE,二連論破
 CUT_DOUBLE_LOG,【二連論破】
 CUT_DOUBLE_SUB,DOUBLE BREAK
@@ -153,6 +300,8 @@ CUT_SHAKEN_SUB,SHAKEN
 CUT_SHISSHU,失守
 CUT_SHISSHU_LOG,【失守】
 CUT_SHISSHU_SUB,BREACHED
+C_D01_P1_DESC,"A wooden talking board from an old toy chest in the attic. The lid reads: ""1859, for dearest Margaret""."
+C_D01_P1_NAME,Talking board
 E01_01_DESC,"The plate is spotless, with only a perfect ring of caramel left on it. There are no spoon scrape marks."
 E01_01_NAME,The Empty Pudding Plate
 E01_01_REASON_A,"There are no spoon scrapes on the plate: the pudding slid off whole, it wasn't eaten."
@@ -297,6 +446,56 @@ E03_09_REASON_A,"The audit was proposed by municipal advisor ""W."", which pushe
 E03_09_REASON_B,Routine business
 E03_09_REASON_C,Unrelated to the case
 E03_09_TAGS,Person · Scandal
+EXCL_D01_01A_01B_CATCH,"A moment ago you said the lock had been tampered with, and now you say it is intact?"
+EXCL_D01_01A_01B_SELL,"I meant it had been tampered with... ""in spirit""."
+EXCL_D01_01B_06A_CATCH,"A moment ago you said the lock had been tampered with, and now you say the locksmith repaired it?"
+EXCL_D01_01B_06A_SELL,"He repaired it, and then somebody else tampered with it."
+EXCL_D01_01D_05A_CATCH,"A moment ago you said the locksmith had nothing that could open the lock, and now you produce his skeleton keys?"
+EXCL_D01_01D_05A_SELL,"I meant... nothing ""legal""."
+EXCL_D01_02A_02B_CATCH,"A moment ago you said the clock started on its own, and now you say someone knocked into it?"
+EXCL_D01_02A_02B_SELL,Clocks can be startled awake too.
+EXCL_D01_04C_07A_CATCH,"A moment ago you said only the cook was in the kitchen, and now you say the locksmith was there too?"
+EXCL_D01_04C_07A_SELL,Martha is... very good at hiding people.
+EXCL_D01_04C_07B_CATCH,"A moment ago you said only the cook was in the kitchen, and now you say the locksmith crept back for her?"
+EXCL_D01_04C_07B_SELL,I-I stand corrected.
+EXCL_D01_05A_05B_CATCH,"A moment ago you said the skeleton keys couldn't open it, and now you say they are oiled and turn easily?"
+EXCL_D01_05A_05B_SELL,Turning isn't the same as opening!
+EXCL_D01_06A_06C_CATCH,"A moment ago you said he never touched the lock's workings, and now you say he fitted a new spring?"
+EXCL_D01_06A_06C_SELL,"A spring... doesn't count as the workings, does it?"
+EXCL_D01_06B_07A_CATCH,"A moment ago you said the locksmith was not even in the house last night and had nothing to do with this, and now you say he spent the whole night in the kitchen? Miss Fox, can your locksmith be in two places at once?"
+EXCL_D01_06B_07A_SELL,"...Let me amend that. Even gentlemen correct a typo now and then, don't they?"
+EXCL_D01_06B_07B_CATCH,"A moment ago you said the locksmith was not even in the house, and now you say he crept back for the cook?"
+EXCL_D01_06B_07B_SELL,He... came back very quietly.
+EXCL_D01_09A_09B_CATCH,"A moment ago you said it was merely a keepsake, and now you say she is my uncle's daughter?"
+EXCL_D01_09A_09B_SELL,A keepsake can keep blood ties too.
+EXCL_D01_TEMPLATE,"A moment ago you said {a}, and now you say {b}? Miss Fox, which is it to be?"
+E_D01_01_DESC,"The brass document tube on the desk. The lid is locked and the tube is empty. The keyhole is bright, with no obvious scratches."
+E_D01_01_NAME,Brass document tube (empty)
+E_D01_02_DESC,"The only clock in the house that is running. It reads 10:48, more than an hour slow."
+E_D01_02_NAME,Study mantel clock
+E_D01_03_DESC,"The black cloth from the study's cheval glass lies on the carpet, the mirror left bare. On the cloth is a drop of white wake-candle wax, not yet set."
+E_D01_03_NAME,Fallen mirror cloth
+E_D01_04_DESC,"The valve wheel shows fresh turn marks, and its rim is ringed with black dust."
+E_D01_04_NAME,Basement main gas valve
+E_D01_05_DESC,"Briggs's skeleton keys. Twelve of them, every one oiled."
+E_D01_05_NAME,Ring of skeleton keys
+E_D01_06_DESC,"""3 to 5 p.m. Hyde residence, study, brass document tube. One new spring fitted. Tested three times with skeleton keys. Opened in the owner's presence. Repaired. Briggs."""
+E_D01_06_NAME,Briggs's work order
+E_D01_07_DESC,"A man's handkerchief found behind the kitchen stove, embroidered with an ""M"". It smells of machine oil."
+E_D01_07_NAME,Embroidered handkerchief
+E_D01_08_DESC,"The Mayfair Club to Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
+E_D01_08_NAME,Gaming club's demand letter
+E_D01_09_DESC,"A mourning brooch from Irene's drawer, identical to Mrs Hyde's but a size smaller. Engraved on the back: ""For E."""
+E_D01_09_NAME,Hair brooch (small)
+E_D01_10_DESC,"Bears the codicil in mirror writing: ""...half of my estate I bequeath to..."" The name is lost in a smudge of ink."
+E_D01_10_NAME,Study blotter
+E_D01_11_DESC,"""Before the lights went out, the young master's chair was already empty. When they came back, he was standing at the end of the corridor, and the fingertips of his black gloves were shiny, like they'd got dust on them."""
+E_D01_11_NAME,Irene's statement
+E_D01_12_DESC,"The black crape wreath on the inside of the front door, tied with meticulous care."
+E_D01_12_NAME,Black crape wreath
+FOG_D01_1,"Speaking of wakes—Mr Cedric, do you know why the window is left open a crack? They say it's to let the soul out. Though I suppose it would let the gas smell out too."
+FOG_D01_2,"Mr Cedric, what lovely charms. The blue eye bead—did you buy that in Venice?"
+FOG_D01_3,"Scuffs, you say... speaking of scuffs, your boot heels are dreadfully worn down."
 G-01,Military Black-Market Batch-Number Transcript
 G-01_DESC,"A list traced and copied from the replacement movement's batch number: a string of serials used only on the military black market, scrawled as if someone wrote it down in a hurry and hid it in a hurry."
 G-01_REASON,"This batch of military parts found its way into London's black market, and more than one pair of hands passed it along."
@@ -394,6 +593,97 @@ HS_CH03_21_NOTE,"The Inspector is telling the reporters ""this case will be clos
 HS_CH03_22_NAME,The River in the Fog
 HS_CH03_22_NOTE,The fog hides the water entirely; all you can hear is the dull knock of barges bumping into one another.
 HS_CH03_23_NAME,Boiler-Room Corner
+HS_D01_01_ART,The watchers sit here all night. The seat by the corridor... is closest to the servants' stairs.
+HS_D01_01_DESC,"Six chairs line the coffin, three to a side. The one nearest the corridor still has a slight dent in its cushion. On the little table beside it sits an unfinished glass of brandy, but the small candlestick on the table's corner is empty. By the other five chairs, the white candles are still burning."
+HS_D01_01_NAME,Coffin and chairs
+HS_D01_02_ART,"She's frightened half to death, but she put it very clearly."
+HS_D01_02_DESC,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. He wears black gloves, they're black anyway, but the fingertips were shiny, like they'd got dust on them."""
+HS_D01_02_NAME,Irene
+HS_D01_03_ART,Rather a fashionable watch chain.
+HS_D01_03_DESC,"Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks."""
+HS_D01_03_NAME,Cedric
+HS_D01_04_ART,Memorial photographs are all the fashion now. Perhaps he doesn't care to be photographed.
+HS_D01_04_DESC,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Cedric stands at the very edge, face turned away; the camera caught only half his profile."
+HS_D01_04_NAME,Memorial photograph
+HS_D01_05_ART,Hair jewellery... another mourning custom.
+HS_D01_05_DESC,"""The night my husband died, he kept calling Cedric's name. I sent for him, but he never came."" She touches the hair brooch at her breast. ""My husband wove this for me from his own hair. There is only one in all the world."""
+HS_D01_05_NAME,Mrs Hyde
+HS_D01_06_ART,"Everything done properly, by the book. This... has nothing to do with the case, surely?"
+HS_D01_06_DESC,"A black crape wreath hangs on the inside of the front door, tied with meticulous care."
+HS_D01_06_NAME,Black crape wreath at the door
+HS_D01_07_ART,The moment Mr Hyde passed away. Every clock in the house is stopped at it.
+HS_D01_07_DESC,"The parlour's wall clock has stopped at twenty to ten, its pendulum tied still with a black satin ribbon."
+HS_D01_07_NAME,Stopped wall clock
+HS_D01_08_ART,"Let me take the lock apart and have a look. With a lock like this, I can tell at a glance whether it's been tampered with."
+HS_D01_08_DESC,"The brass document tube on the desk. The lid is locked and there is nothing inside. The keyhole is bright, with no obvious scratches."
+HS_D01_08_NAME,Brass document tube
+HS_D01_09_ART,Its pendulum isn't tied with a ribbon. Let me see when it started running.
+HS_D01_09_DESC,"The mantel clock is running. Every other clock in the house stopped at twenty to ten, yet this one alone is ticking, and it reads 10:48, more than an hour slow."
+HS_D01_09_NAME,Clock on the mantelpiece
+HS_D01_10_ART,"The wind, probably—the window's been left open a crack. Wax... the white candles used for the wake?"
+HS_D01_10_DESC,"The study's cheval glass is uncovered. Its black cloth lies crumpled on the carpet in front of it. On the cloth is a drop of white wax, not yet set."
+HS_D01_10_NAME,Mirror and black cloth
+HS_D01_11_ART,"That's the text of the codicil. Half the estate, left to someone else."
+HS_D01_11_DESC,"The blotter bears a few lines of reversed writing. Held up to a mirror (Sherefox turns aside from the glass and uses a small hand mirror), it reads: ""...half of my estate I bequeath to..."" The name has been lost in a smudge of ink."
+HS_D01_11_NAME,Blotter on the desk
+HS_D01_12_ART,Something seems to be stuffed up in there. ...Wedged in tight; we'd need someone to take it apart.
+HS_D01_12_DESC,No fire has been lit here for a long time; the grate is stone cold. The damper lever bears a fresh sooty fingerprint. The lever is jammed and won't budge.
+HS_D01_12_NAME,Fireplace damper
+HS_D01_13_ART,"Well, the black cloth isn't much to look at, I'll grant him."
+HS_D01_13_DESC,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and the young master stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'."""
+HS_D01_13_NAME,Study doorway
+HS_D01_14_ART,Mr Hyde's spare key? Gone.
+HS_D01_14_DESC,"The right-hand drawer is unlocked. Inside is a small empty velvet pouch, its mouth shaped as though it once held a little key."
+HS_D01_14_NAME,Desk drawer
+HS_D01_15_ART,"There's coal dust everywhere down here; a little soot is nothing odd. Still, I could take some to compare."
+HS_D01_15_DESC,"The wheel of the main valve shows fresh turn marks, and its rim is ringed with black dust."
+HS_D01_15_NAME,Main gas valve
+HS_D01_16_ART,Less than a minute's walk from the parlour.
+HS_D01_16_DESC,A narrow wooden staircase running straight up from the basement to the ground-floor corridor beside the study.
+HS_D01_16_NAME,Servants' stairs
+HS_D01_17_ART,Machine oil... who in a kitchen would use machine oil?
+HS_D01_17_DESC,"In the gap between the stove and the wall lies a man's handkerchief with an ""M"" embroidered in one corner. It smells of machine oil."
+HS_D01_17_NAME,Behind the kitchen stove
+HS_D01_18_ART,She seems very nervous.
+HS_D01_18_DESC,"Martha keeps wiping the same plate. ""I-I was in the kitchen all night. The back door? The back door stayed shut, nobody came in or out... truly, nobody."" As she says ""nobody"", her eyes drift to the hook by the back door, where a man's hat is hanging."
+HS_D01_18_NAME,Martha the cook
+HS_D01_19_ART,"A parlour game. We played it as children too—it's your own hand that pushes the planchette. This has nothing to do with the case, surely? Since when have you collected curios?"
+HS_D01_19_DESC,"Inside are spinning tops and faded rag dolls. At the very bottom lies a wooden talking board, its letters set in a half circle, with a heart-shaped planchette. The lid reads ""1859, for dearest Margaret"": Mrs Hyde's name."
+HS_D01_19_NAME,Old toy chest
+HS_D01_20_ART,This is... mourning jewellery. How would a maid come by it?
+HS_D01_20_DESC,"Wrapped in a handkerchief in the drawer is a small brooch, a lock of greyish-brown hair woven under its glass. It is identical to the one Mrs Hyde wears, only a size smaller. Engraved on the back: ""For E."""
+HS_D01_20_NAME,Irene's room: drawer
+HS_D01_21_ART,To ward off evil. This house has a custom for everything.
+HS_D01_21_DESC,Every windowsill has a small pinch of salt scattered on it and a sprig of rosemary laid there.
+HS_D01_21_NAME,Salt and rosemary on the sills
+HS_D01_22_ART,"A waste of lamp oil. A rich family's habit, I suppose."
+HS_D01_22_DESC,"In broad daylight, the oil lamp by the bed is still burning. The wick is trimmed very short and the glass chimney is blackened; it plainly burned all night."
+HS_D01_22_NAME,Bedside lamp
+HS_D01_23_ART,Four hundred pounds! That's no small sum.
+HS_D01_23_DESC,"A letter from the Mayfair Club: ""C. Hyde, Esq. Sir, the four hundred pounds you owe are to be settled by the end of this month."" It is dated three days ago: the day Mr Hyde died."
+HS_D01_23_NAME,Desk drawer
+HS_D01_24_ART,"Left by a previous tenant, I expect."
+HS_D01_24_DESC,"A small rusty horseshoe is nailed to the inside of the wardrobe door, ends pointing up."
+HS_D01_24_NAME,Inside the wardrobe door
+HS_D01_25_ART,Every key oiled. A locksmith's habit.
+HS_D01_25_DESC,"The Inspector has packed Briggs's belongings into a wooden box: a ring of skeleton keys, every one gleaming with oil, and a work order in a neat hand."
+HS_D01_25_NAME,The Inspector's box
+HS_D01_26_ART,Who is he protecting?
+HS_D01_26_DESC,"Briggs sits on the bench in the entrance hall, a constable watching him. ""I swear I never touched that codicil. Last night I... last night I come on a private matter. I can't say what. If I did, someone'd get hurt."""
+HS_D01_26_NAME,Briggs
+ISSUE_D01_METHOD,Method
+ISSUE_D01_METHOD_SHORT,Meth.
+ISSUE_D01_MOTIVE,Motive
+ISSUE_D01_MOTIVE_SHORT,Mot.
+ISSUE_D01_OPP,Opportunity
+ISSUE_D01_OPP_SHORT,Opp.
+LINK_D01_02A_03A,"The mantel clock started up when the lights went out, and the mirror's black cloth fell at the same moment. In those three minutes, someone was in the study."
+LINK_D01_02A_04B,"The study clock was jolted awake when the lights went out, and the main valve bears soot from the study. Whoever turned down the lights went by way of the study."
+LINK_D01_02C_08B,"The clock stopped at twenty to ten, at the very moment he was calling for you. And that night, you were at the club—the date on the demand letter is that very day."
+LINK_D01_05A_01C,"Every skeleton key is oiled, and without oil they won't turn—yet the tube's lock is spotlessly clean. Whatever opened it, it wasn't this ring of keys."
+LINK_D01_09A_10A,"Half the inheritance, left to a maid you order about every day."
+LINK_D01_10A_08A,"The codicil cost you half your inheritance. And you owe four hundred pounds, due at the end of the month."
+LINK_D01_11A_11B,"Before the lights went out, your chair was empty; when they came back, you were standing at the end of the corridor with soot on your gloves."
 MSG_APPR_DONE,Appraisal complete: new tags revealed.
 MSG_APPR_EMPTY,No appraisals left for this case.
 MSG_APPR_LOCKED,You can't appraise during a debate.
@@ -554,12 +844,58 @@ OBS_CH03_01_TAGS,Person · Physical
 OBS_CH03_02_DESC,The door has split down the middle and its hinges hang askew. The constables needed three charges to break it in; it really was bolted from inside.
 OBS_CH03_02_NAME,The Battered-In Hatch
 OBS_CH03_02_TAGS,Place · Physical
+OBS_D01_01_NAME,A one-of-a-kind brooch
+OBS_D01_01_TEXT,"Mrs Hyde says her husband wove her hair brooch from his own hair: ""There is only one in all the world."""
+OBS_D01_W1,The brass tube's lid is shut and locked
+OBS_D01_W2,Briggs was searched on arrest and had no papers on him
+OBS_D01_W3,Every light in the house dimmed together and came back together
+PN_D01_1_NAME,Charms on his watch chain
+PN_D01_1_TEXT,"Three little charms hang from Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks""."
+PN_D01_2_NAME,A bedside lamp by day
+PN_D01_2_TEXT,"In broad daylight, Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
+PN_D01_3_NAME,Face turned from the photograph
+PN_D01_3_TEXT,"In the memorial photograph, Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Cedric's name, and Cedric never came."
+PN_D01_4_NAME,He won't enter the study
+PN_D01_4_TEXT,"Irene says: when she tidied the study the afternoon before yesterday, the young master stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore""."
+REACT_D01_01B,"(Smiles, relieved) A lock that was tampered with—yes, precisely what I said."
+REACT_D01_02C,(His fingers stop on his watch chain) ...What happened that night has no bearing on this case.
+REACT_D01_03B,"(Without thinking, he looks away from the direction of the study) The mirror? A cloth fell off, that is all. What are you driving at?"
+REACT_D01_06B,"The locksmith had nothing to do with it? Then pray tell, who did?"
+REACT_D01_08B,(He goes pale) I was at the club that day. What of it? Uncle... he would not have waited for me.
+REACT_D01_09A_1,"(Glances at Irene and sneers) I see. Uncle's little secret. Miss Fox, do you imagine my aunt will thank you for saying such a thing beside his coffin?"
+REACT_D01_09A_2,...Miss Detective.
+REACT_D01_09A_3,(The tray clatters to the floor)
+REACT_D01_12A,(Glances at the wreath) ...My aunt spent a pretty penny.
+REACT_D01_BLOCK,That proves nothing.
+REACT_D01_FACT_SOPH_1,Absurd. You know perfectly well that is a fact.
+REACT_D01_FACT_SOPH_2,"Miss Fox, will you simply trample the facts underfoot?"
+REACT_D01_FOGGED,"Did you come here to debate, or to chat?"
+REACT_D01_FOOLED,...What are you talking about?
+REACT_D01_ISSUE_METHOD,"Locks, keys, tubes—you argue it very neatly. Unfortunately, I have no interest in locks."
+REACT_D01_ISSUE_MOTIVE,"Money? Everyone needs money, Miss Fox."
+REACT_D01_ISSUE_OPP,You saw remarkably well for three minutes of darkness.
+REACT_D01_LIE_SOPH,What a marvellous story. A pity it is only a story.
+REACT_D01_P1A,"(His breath catches; his fingertips close tight on the charm on his watch chain) ...Put that thing away. This is a house of mourning, not a salon."
+REACT_D01_P1B,"(Leaps to his feet, knocking his chair over) Enough! Your hand pushed that planchette! ...You pushed it, didn't you?"
+REACT_D01_SOPH,Not even a country bumpkin would believe that.
+REFUTE_D01_01D,"Nothing that could open it? Then whose is this ring of skeleton keys Miss Fox left in the entrance hall? Twelve keys, every one of them oiled."
+REFUTE_D01_01D_FACT,the locksmith carried a ring of skeleton keys
+REFUTE_D01_05B,"Can't open it? Miss Fox, the locksmith's own work order says he tested the tube's lock with this very ring of skeleton keys. They open it—and he tried it three times."
+REFUTE_D01_05B_FACT,the work order states the lock was tested with skeleton keys
+REFUTE_D01_06B,"Nothing to do with it? Then what of this handkerchief? Found behind the kitchen range, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
+REFUTE_D01_06B_FACT,the locksmith came back last night
 S-01_DESC,"The tooth profile of a gear, rubbed onto paper in pencil. The shape matches, but there's no batch number: it can say ""very like"", never ""the same""."
 SCENE_CH01_KITCHEN,The Agency Kitchen and Parlour
 SCENE_CH02_CLOCKSHOP,The Cuckoo Clockworks
 SCENE_CH03_BOILER,The Barge Boiler Room
 SCENE_CH03_DECK,The Barge Deck
 SCENE_CH03_DOCK,The Wharf
+SCENE_D01_ATTIC,Attic (and servants' rooms)
+SCENE_D01_BASEMENT,Basement (and kitchen)
+SCENE_D01_BEDROOM,Cedric's bedroom
+SCENE_D01_HALL,Entrance Hall
+SCENE_D01_PARLOR,Parlour
+SCENE_D01_STUDY,Study
 SCR_CH01_S01_L001,Scene 1: Newspaper Front Page (Opening)
 SCR_CH01_S01_L002,"【The London Lantern · October 1887】Laurel Pastry Shop's Limited ""Clockwork Caramel Pudding"" Goes on Sale: Queue Winds Twice Around Baker Street"
 SCR_CH01_S01_L003,"Our correspondent reports: Laurel Pastry Shop on Baker Street yesterday launched its new ""Clockwork Caramel Pudding"", famed for its caramel topping shaped like a brass clockwork spring. Limited to forty a day, they sold out within an hour of opening. Among the queue were many ladies and gentlemen who had come specially, including one fox-eared girl whose tail was reportedly ""never still from start to finish"". Also, this paper's classified column carries a notice: ""Fox-Eared Detective Agency seeks a flatmate. Cooks preferred; those afraid of fox fur need not apply."""
@@ -1065,9 +1401,131 @@ SCR_CH03_S90_L068,Hold on with solid evidence. The fog will lift.
 SCR_CH04_S01_L001,Scene 1: Newspaper Front Page (Opening)
 SCR_CH04_S01_L002,【The London Lantern · November 1887】Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria
 SCR_CH04_S01_L003,"Our correspondent reports: During the third act of ""The Clockwork Nightingale"" at the Royal Opera House last night, the stage lift on which the soprano Miss Isabella Valen stood suddenly gave way, and Miss Valen fell some ten feet. She remains unconscious in hospital. The celebrated academic detective Mr. Victor Crowe happened to be in the audience and sealed off the scene at once. Mr. Crowe stated: ""This was no accident. The truth will be made known tomorrow morning."""
+SCR_D01_S01_L001,"【The London Lantern, February 1888】Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes"
+SCR_D01_S01_L002,"Our correspondent reports: during the wake of Mr Hyde, a Kensington merchant, last night, every gas lamp in the house went out at once for some three minutes. When the light returned, Mrs Hyde discovered that the codicil her late husband had recently made had vanished from its locked brass document tube. Inspector Baskerville of Scotland Yard arrested on the spot a locksmith who had called that afternoon to repair the tube's lock. Said the Inspector: ""He fixed the lock, he had the keys on him, and this Inspector's nose is never wrong."""
+SCR_D01_S01_TITLE,Opening newspaper
+SCR_D01_S02_L001,"London in February, and the fog thick enough to eat with a spoon. The landlady came up with hot cocoa, and with this evening's entertainment."
+SCR_D01_S02_L002,"Do you know why the empty house across the street won't let? The last tenant heard someone on the stairs in the middle of the night. He went down to look, and there was nothing. But on the carpet, there was a line of wet footprints."
+SCR_D01_S02_L003,"That's a leak, madam. I saw their roof dripping only last week."
+SCR_D01_S02_L004,"Mr Pendleton, a ghost doesn't care whether your roof leaks."
+SCR_D01_S02_L005,"Ghosts don't exist, madam. That is a medical fact. When a man dies his heart stops, and nothing is left to go walking up and down the stairs."
+SCR_D01_S02_L006,"(Cradling her cocoa, one ear twitching) You're saying that very firmly, Arthur."
+SCR_D01_S02_L007,Because it's true.
+SCR_D01_S02_L008,Mm. I've just noticed that people who don't believe usually aren't afraid. It's the frightened ones who protest the loudest.
+SCR_D01_S02_L009,...Are you talking about me?
+SCR_D01_S02_L010,"I'm talking about the cocoa. It's scalding, and it keeps insisting it's only ""warm""."
+SCR_D01_S02_L011,"Sip it slowly. Oh, and the paper says Mr Hyde of Kensington has passed away. They're keeping the wake the old-fashioned way, clocks stopped and all. Rich folk are particular."
+SCR_D01_S02_L012,"Stop the clocks, cover the mirrors, leave a window open a crack. The dead are no trouble at all. It's the living and their rules that are the trouble."
+SCR_D01_S02_TITLE,Daily life: the Baker Street office (the night before)
+SCR_D01_S03_L001,"Early the next morning, Mrs Hyde's carriage drew up in Baker Street. She said only one thing: ""Please come. The Inspector has arrested the wrong man."""
+SCR_D01_S03_L002,"Black crape hung on the front door of Hyde House, and the knocker was bound in black cloth. The wall clock in the entrance hall had stopped at twenty to ten, and every mirror was covered in black. Every gas lamp in the house was lit, even in daylight."
+SCR_D01_S03_L003,"(In the entrance hall, dangling a ring of keys) Miss Fox! You're too late. This Inspector solved the case last night!"
+SCR_D01_S03_L004,"Good morning, Inspector. Solved so quickly the papers haven't even had time to get it wrong."
+SCR_D01_S03_L005,"Hmph! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!"
+SCR_D01_S03_L006,"(Held by a constable) I didn't steal anything! I, I was only... I can't say..."
+SCR_D01_S03_L007,Hear that! He can't say!
+SCR_D01_S03_L008,"(Stepping out of the parlour, straightening his black cravat) The Inspector is quite right. The locksmith rigged the lock while he was mending it that afternoon. Nothing could be plainer. Forgive me, and you are?"
+SCR_D01_S03_L009,"Sherefox, detective, of Baker Street. This is Arthur."
+SCR_D01_S03_L010,"Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country tricks the undertakers use to fleece people."
+SCR_D01_S03_L011,Cedric.
+SCR_D01_S03_L012,"I only speak the truth, Aunt."
+SCR_D01_S03_L013,"(Quietly) He's not wrong, mind you. None of those customs has any scientific basis."
+SCR_D01_S03_L014,"(Quietly) True. But the whole time he was saying ""country tricks"", his hand kept going to his watch chain."
+SCR_D01_S03_L015,"Enough, enough! Miss Fox, if you mean to speak up for the locksmith, you'll have to get past this Inspector first!"
+SCR_D01_S03_TITLE,"The case: Hyde House, the wake"
+SCR_D01_S04_L001,Warm-up debate: Inspector Baskerville. Point out his mistakes. Three wrong answers and it's over.
+SCR_D01_S04_L002,"Point one! The moment the lights went out he struck. He'd rigged the lock that afternoon, so the tube opened at a touch!"
+SCR_D01_S04_L003,Whoever took the codicil still had time to lock the tube again. A rigged lock wouldn't need locking back up.
+SCR_D01_S04_L004,L-locked again? ...P-perhaps he's a tidy sort of thief!
+SCR_D01_S04_L005,"Miss Fox, your answer has nothing to do with this Inspector's question!"
+SCR_D01_S04_L006,"Point two! The codicil must still be on him. Find it, and this Inspector closes the case!"
+SCR_D01_S04_L007,"You've already searched him, Inspector. The codicil isn't on him."
+SCR_D01_S04_L008,...Naturally this Inspector knows that! This Inspector was merely checking that you were listening!
+SCR_D01_S04_L009,"Point three! Every lamp in the house went out at once, so he must have cut the gas pipe outside!"
+SCR_D01_S04_L010,The lamps all dimmed together and all came back together. A cut pipe doesn't mend itself and light the lamps again. Someone inside turned the main valve.
+SCR_D01_S04_L011,I-inside? ...The basement! This Inspector was just about to send a man to the basement!
+SCR_D01_S04_L012,Ahem! The locksmith stays in custody for now; he won't be sent on. Search the house as you please. This Inspector has put the locksmith's things in the box in the entrance hall. Look for yourself if you must.
+SCR_D01_S04_L013,"...Miss Fox, on today's three questions, this Inspector gives you a pass."
+SCR_D01_S04_L014,"That's enough! Three wrong answers, and you still want to lay down the law at this Inspector's scene? Pendleton, my lad, come here and help take down statements!"
+SCR_D01_S04_L015,"...Sorry, Sherefox. I'll only be able to appraise one thing for you now."
+SCR_D01_S04_TITLE,Warm-up debate: Inspector Baskerville (no Credibility lost)
+SCR_D01_S05_TITLE,Investigation
+SCR_D01_S06_L001,You can only bring so much into a debate. Evidence you leave behind may fall into your opponent's hands.
+SCR_D01_S06_L002,You can bring {max}. Chosen: {n}.
+SCR_D01_S06_L003,This really is no use.
+SCR_D01_S06_L004,"Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?"
+SCR_D01_S06_L005,"It's light. Besides, wood can talk, if someone's willing to listen."
+SCR_D01_S06_L006,This belongs to Irene. Are you sure you want to bring it out in front of everyone?
+SCR_D01_S06_L007,"A piece of cloth... Well, you're the detective."
+SCR_D01_S06_L008,Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it.
+SCR_D01_S06_L009,These will be left at the house: {list}. Are you sure?
+SCR_D01_S06_L010,The Inspector says whatever we don't take goes into the keeping of the master of the house. ...Which is now Mr Cedric.
+SCR_D01_S06_L011,"There's still room, you know. One thing fewer means one card fewer."
+SCR_D01_S06_L012,"To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using."
+SCR_D01_S06_TITLE,Choose What to Bring
+SCR_D01_S07_L001,"Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
+SCR_D01_S07_L002,"Please, Miss Fox, go ahead. I am curious to see how you mean to clear a locksmith caught carrying skeleton keys."
+SCR_D01_S07_L003,"I'm not here to clear anyone, Mr Cedric. I'm here to testify for those three minutes last night."
+SCR_D01_S07_L004,The debate begins. Opponent: Cedric Hyde. Both sides act at the same time.
+SCR_D01_S07_L005,Break! Cedric's chain is destroyed. His Credibility drops to 1 and is locked. On to the Endgame.
+SCR_D01_S07_L006,Cedric's Credibility has hit bottom and is locked at 1. On to the Endgame.
+SCR_D01_S07_L007,Cedric says nothing more.
+SCR_D01_S07_L008,"...That night, he called for me, again and again. I heard him. I was at the card table, and I thought, one more hand and I'll go back. ...The codicil is in the study fireplace. I meant to burn it."
+SCR_D01_S07_L009,Cedric has one last thing to say.
+SCR_D01_S07_L010,"I, I admit I went down to the basement! The lights were out; someone had to check the valve!"
+SCR_D01_S07_L011,Cedric plays his last card.
+SCR_D01_S07_L012,"Arthur and a constable opened the damper in the study fireplace and drew out a roll of paper, its edges blackened with soot."
+SCR_D01_S07_L013,The codicil. Still here.
+SCR_D01_S07_L014,"Cedric Hyde! For the theft of a will, ahem, you will come along with this Inspector! Briggs, you, you may go home!"
+SCR_D01_S07_L015,"(Stopping as he passes the study door, not looking in) ...Cover the mirror. Please."
+SCR_D01_S07_L016,Debate lost.
+SCR_D01_S07_L017,"Right! The locksmith goes before the magistrate! Miss Fox, next time you investigate, mind you bring everything you need!"
+SCR_D01_S07_L018,"Aunt, I shall have the solicitors see to the estate. ...I'll put the study in order myself."
+SCR_D01_S07_L019,"That night, smoke rose once from the study fireplace at Hyde House."
+SCR_D01_S07_TITLE,Main debate: opening and close
+SCR_D01_S08_L001,"Thank you, Miss Detective. ...About Irene, I had guessed long ago, in truth. In those last years my husband often went up to the attic alone."
+SCR_D01_S08_L002,"But that was for me to tell her. Not in the parlour, in front of everyone."
+SCR_D01_S08_L003,"(Standing in the corner holding a tray, saying nothing at all)"
+SCR_D01_S08_L004,"Thank you, miss. I came back that night for Martha... Ma'am, please don't send her away."
+SCR_D01_S08_L005,"The house rules were my husband's. He is gone now, and perhaps the rules ought to change too."
+SCR_D01_S08_L006,(Bows to Sherefox and hurries off without a word of explanation)
+SCR_D01_S08_L007,"Miss Fox, this time... this Inspector admits his nose was a trifle blocked."
+SCR_D01_S08_L008,"It's February, Inspector. Everyone's a bit stuffed up."
+SCR_D01_S08_L009,That board of yours... how did you know it would be any use?
+SCR_D01_S08_L010,I didn't. I only know that the man who scoffs the loudest is the one carrying the most charms.
+SCR_D01_S08_L011,I'm sorry. If only I'd taken that tube apart and looked.
+SCR_D01_S08_L012,"It isn't your fault, Arthur. ...I'm the one who left behind what I shouldn't have."
+SCR_D01_S08_TITLE,Results
+SCR_D01_S09_L001,【The London Lantern】Wake Mystery Solved; Missing Codicil Found in Fireplace
+SCR_D01_S09_L002,"Our correspondent reports: the truth behind the theft of a codicil from Hyde House, Kensington, came to light yesterday. Cedric Hyde, nephew of the deceased, seeking to conceal heavy gaming debts, closed the main gas valve during the wake, took the codicil and laid the blame on a locksmith who had called to mend the lock. The fox-eared detective of Baker Street exposed the flaws in his story one by one before all present, and the codicil was recovered intact from the study fireplace. The locksmith, Briggs, was released on the spot."
+SCR_D01_S09_L003,"【The London Lantern】Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed"
+SCR_D01_S09_L004,"Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Mr Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
+SCR_D01_S09_L005,【The London Lantern】Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake
+SCR_D01_S09_L006,"Our correspondent reports: in the matter of the codicil stolen from Hyde House, the locksmith Briggs has been formally committed. The fox-eared detective of Baker Street, engaged to look into the affair, argued openly with the Hyde family in the parlour but failed to produce any convincing evidence. The family states that the estate will be settled under the existing will."
+SCR_D01_S09_L007,We are further informed by a source close to the household that a young maid in the Hyde family's service is believed to be the natural daughter of the deceased. The matter was revealed before all present in the parlour; Mrs Hyde has since declined to be interviewed.
+SCR_D01_S09_L008,"Some who attended also remarked that the detective ""said a good many things she plainly did not believe herself""."
+SCR_D01_S09_TITLE,End-of-chapter newspaper (by result grade)
+SCR_D01_S10_L001,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. Method: he turned down the main gas valve in the basement, used the dead man's spare key to open the brass tube in the dark, and hid the codicil in the study fireplace. The mantel clock started again because he knocked against the mantelpiece; the soot on the main valve was left when he went back down from the study to the basement. Motive: four hundred pounds of gaming debts, and a codicil that left half the estate to someone else."
+SCR_D01_S10_L002,"Addendum: the locksmith Briggs came back that night to see Martha, the cook. Mrs Hyde says the house rules are to change."
+SCR_D01_S10_L003,"Second addendum: he knocked the black cloth off the mirror, but he never put it back. It took me a long time to understand. He hadn't forgotten; he didn't dare look round. Sherefox says the people most afraid of ghosts are usually the ones most certain they've done wrong."
+SCR_D01_S10_L004,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. He put out the lights and took the codicil; of that there is no doubt. As for how the tube was opened, and where exactly he went in those three minutes, I fear what we said in the debate and what I am writing now are not quite the same."
+SCR_D01_S10_L005,"Addendum: after the debate, Sherefox stood alone in the study for a long time. She said that half the account that won the day was her own invention."
+SCR_D01_S10_L006,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. ...That is the conclusion. I have tried three times to set down the reasoning, and three times it would not hold together. The clock, the lock, the lamps: in the debate, every one of them was made out to be something it was not. We caught the right man, but I am not sure we know what he did."
+SCR_D01_S10_L007,"One more thing nobody explained: why was Briggs in the house that night? He said ""telling would get someone hurt"". We never asked."
+SCR_D01_S10_L008,"In the debate, Sherefox said the locksmith had nothing to do with any of this. Yet he was plainly in the house that night. We let him go home without ever letting him explain."
+SCR_D01_S10_L009,The locksmith was committed today. The codicil was burnt that same night; I am sure of it. I am just as sure we could have saved him.
+SCR_D01_S10_TITLE,Arthur's case notes (by truth level)
+SCR_D01_S11_L001,Next Chapter: Preview
+SCR_D01_S11_L002,"""(Title to be decided)"": the demo ends here. Thank you for playing."
+SCR_D01_S11_L003,Back to Title Screen
+SCR_D01_S11_TITLE,Next chapter preview (placeholder)
 SHF_C1_IDLE,"""Someone's been at my things, and very carefully too. And careful people leave the most careful traces."""
 SHF_C1_REMAIN,"""Hold on, there's still something I haven't looked at. My ears are itching."""
+SHF_D01_CUT_OPEN_1,Hold on!
+SHF_D01_CUT_OPEN_2,That's the one.
+SHF_D01_CUT_OPEN_3,You wandered rather far in those three minutes.
 SPK_ARTHUR,Arthur
+SPK_D01_CEDRIC,Cedric
 SPK_FITCH,Fitch
 SPK_GRESHAM,Gresham
 SPK_HOLLOWAY,Holloway
@@ -1103,6 +1561,66 @@ STAMP_TRAP_SUB,TRAPPED
 STAMP_WHIFF,落空
 STAMP_WHIFF_LOG,【落空】
 STAMP_WHIFF_SUB,WHIFF
+STATE_D01_ART_BREACHED,Steady yourself first. Use a sound claim next; I'll see you through this.
+STATE_D01_ART_CORNERED,He's backed into a corner. Every line from here will hit hard—but they'll be easy to read.
+STATE_D01_ART_COVER,"One moment, everyone! What she means is—(smoothing it over)"
+STATE_D01_ART_HACHIKU,Well done—you read him right.
+STATE_D01_SHF_BREACHED,"...Ugh, he saw right through me."
+STATE_D01_SHF_BREAK,Your three minutes of darkness are over!
+STATE_D01_SHF_HACHIKU_1,One minute.
+STATE_D01_SHF_HACHIKU_2,Two minutes.
+STATE_D01_SHF_HACHIKU_3,"Three minutes, right on time—unstoppable!"
+STATE_D01_SHF_SHAKEN,"The lights are back on, Mr Cedric."
+SYS_D01_ATTACH,Link attached ({issue}). Argument {formula} = {dmg}.
+SYS_D01_BLOCKED,Blocked. This link did not land.
+SYS_D01_BOTH_REBUT,You are both waiting for the other to speak. Both whiff: −5 each.
+SYS_D01_BREACH_HINT,You stay on the back foot until you next read him right.
+SYS_D01_CHAIN_NOBREAK,"Your chain is {n} links long, but {name}'s guard is not down. No Break."
+SYS_D01_CHAIN_READY,"Your chain is {n} links long, covers {issues}, and {name}'s guard is down."
+SYS_D01_CLASH,Both links land. Your argument {dmg_p} → {hp_o}. {name}'s argument {dmg_o} → you {hp_p}.
+SYS_D01_COVER,Arthur steps in to smooth things over! This round's damage and back-foot effect are cancelled.
+SYS_D01_COVER_WASTED,Cover went unused.
+SYS_D01_CRACK,This link carries 1 crack.
+SYS_D01_CUT_EMPTY,Whiffed. He said nothing. You −5; next round his Assert cannot be cut in on.
+SYS_D01_CUT_OK,Cut-in! {name} −{dmg} → {hp}. His guard is down.
+SYS_D01_CUT_PUSH,You cut in on his Press! {name} −{dmg} → {hp}. His guard is down.
+SYS_D01_CUT_SOPH,Cut-in (sophistry on the same Issue). {name} −{dmg} → {hp}. His guard is down. 1 crack left on your record.
+SYS_D01_CUT_WIN,Cut-in successful. You win the debate.
+SYS_D01_DENY_FACT,1 fact argued away.
+SYS_D01_DESPERATE_HIT,His last gasp lands: you −10 → {hp}.
+SYS_D01_DISMANTLE,"Knocked down! ""{node}"" is removed from {name}'s chain, and he takes 10."
+SYS_D01_EXPOSED,Exposed! You −25 → {hp}. 1 crack left on your record. Combo reset.
+SYS_D01_FOG_REPEAT,The onlookers have lost patience. Muddy the Waters no longer works; you −3.
+SYS_D01_FOG_STALL,Stalemate. The onlookers grow impatient: −3 each.
+SYS_D01_FOG_TAKE,He lands a link. Muddy the Waters halves it: you −{dmg} → {hp}.
+SYS_D01_FOOLED,{name}'s rebuttal whiffs! −5 → {hp}. His guard is down. His tell will be Clear next round.
+SYS_D01_HACHIKU_KEEP,Unstoppable holds.
+SYS_D01_KEY_BREAK,You cut in on his keystone point while {name}'s guard is down—Break!
+SYS_D01_KEY_NORMAL,"(A keystone point, but his Credibility is above 50% and his guard was not down, so this counts as a normal cut-in.)"
+SYS_D01_LASTCARD_HIT,"His last card! You take {formula} = {dmg} → {hp}. {name} recovers to {pct}% of his maximum ({hp_o}), and the lock is lifted."
+SYS_D01_LASTCARD_NOHEAL,His last card! You take {formula} = {dmg} → {hp}.
+SYS_D01_LASTCARD_REMOVE,The {n} cracked links on your record are knocked down. Combo and Unstoppable reset.
+SYS_D01_LASTSTAND_FAIL,The refutation fails.
+SYS_D01_LASTSTAND_OK,"Refuted! {name}'s ""{node}"" and every link after it collapse. You recover to {hp}."
+SYS_D01_LASTSTAND_PROMPT,{name}'s chain: {chain}. Choose a sound claim that refutes one of these.
+SYS_D01_MISS_FACT,Whiffed. His point is a fact; it cannot be knocked down. You −10 → {hp}. His point lands as usual.
+SYS_D01_MISS_WRONG,Whiffed. That claim does not refute his point. You −5 → {hp}. His point lands as usual.
+SYS_D01_NOW_KNOWN,Now you know: {fact}.
+SYS_D01_PRIVATE,"(Private matter exposed: reputation −3, {person}'s regard −1)"
+SYS_D01_PSYCH_CROSS,{name}'s {value} has crossed the threshold.
+SYS_D01_PSYCH_NOTE,(A Mind Game link resolves like sophistry but leaves no crack; reputation −2.)
+SYS_D01_REDCRACK,Red crack: you −10 → {hp}. 1 crack left on your record ({c} in all).
+SYS_D01_REFUTED,Refuted! {name} knew something you didn't. You −15 → {hp}. The claim {claim} is void for this debate. Combo reset.
+SYS_D01_REVERSE,Reverse Break! Your Credibility drops to 1. Next round you can play your own last card: a sound claim that refutes one of the lies on his chain.
+SYS_D01_REV_READY,"{name}'s chain is {n} links long, covers {issues}, and you are on the back foot."
+SYS_D01_SLIP_NODMG,An unfavourable fact deals no argument when it lands. You stay at {hp_p}.
+SYS_D01_STALL_HEAL,{name} sidesteps and recovers 5: {hp_before} → {hp_after}.
+SYS_D01_TELL_CLEAR,(Tell: Clear) {gesture}. Point: {statement}. {action}.
+SYS_D01_TELL_SLIP,"(Tell) {name} opens his mouth, then shuts it again. Point: {half}"
+SYS_D01_TELL_VAGUE,(Tell) {gesture}. Point: {statement}. Possible: {action1} / {action2}.
+SYS_D01_TELL_VAGUE_LIKELY,(Tell) {gesture}. Point: {statement}. Possible: {action1} (more likely) / {action2}.
+SYS_D01_WIN,You win the debate.
+SYS_D01_ZERO_WIN,{name}'s Credibility hits zero. He has no last card left. You win the debate.
 TAG_PERSON_ARTHUR,Arthur
 TAG_PERSON_CAT,The Cat
 TAG_PERSON_FITCH,Fitch
@@ -1149,6 +1667,25 @@ TAG_TIME_2210,22:10
 TAG_TIME_EARLY_MORNING,Early Morning
 TAG_TIME_LATE_NIGHT,Late Night
 TAG_TIME_SHOP_CLOCK_SLOW,Shop Clock 3 Minutes Slow
+TELL_D01_ASSERT_1,Permit me to make myself clear.
+TELL_D01_GESTURE_ASSERT,Straightens his black cravat and smiles faintly
+TELL_D01_GESTURE_PUSH,Pulls off a glove and slaps it on the table
+TELL_D01_GESTURE_REBUT,Steeples his fingers and leans back
+TELL_D01_GESTURE_STALL,Fingers the charms on his watch chain
+TELL_D01_HINT_ASSERT,He's straightening his cravat. He's about to speak.
+TELL_D01_HINT_FACT,This one... is true. We can't knock it down.
+TELL_D01_HINT_KEY,That's the foundation of his whole story!
+TELL_D01_HINT_LAST,He's going to change his story. Have you got anything that can stop that line?
+TELL_D01_HINT_NOCUT,We've nothing on us that can refute that.
+TELL_D01_HINT_PUSH,The glove's coming off—brace yourself.
+TELL_D01_HINT_REBUT,He's waiting for you to go first. Don't throw links about carelessly.
+TELL_D01_HINT_SLIP,He didn't... finish that sentence.
+TELL_D01_HINT_STALL,He's fiddling with that watch chain again... playing for time. Make our case now.
+TELL_D01_PUSH_1,Enough.
+TELL_D01_PUSH_2,I have had quite enough of this farce.
+TELL_D01_REBUT_1,"Please, go on. I am all ears."
+TELL_D01_REBUT_2,Are you quite sure you wish to say that?
+TELL_D01_STALL_1,I think we could all do with a moment's calm.
 TUT_01_01_BODY,"Clues can hide in every corner of a scene. Move the cursor; anything that glows as you approach is an Investigation Point, and one click investigates it. There are five types: Examine, Evidence, Testimony, Mechanism, and Locked Area."
 TUT_01_01_TITLE,Evidence Search
 TUT_01_02_BODY,"What you find becomes an Evidence Card and goes into your Evidence Book. Each card carries five kinds of Tag: Time, Place, Person, Physical, and Scandal. When you reason later, the game uses these Tags to decide whether two pieces of evidence fit together."
@@ -1692,6 +2229,129 @@ UI_TYPE_PROTECTOR,Protector
 UI_TYPE_PROTECTOR_DESC,"He is shielding someone, deflecting and playing on emotion. Mostly Reinforces: Observe and Scandal evidence work best, and Sophistry punches through a Reinforce."
 UI_TYPE_RIVAL,Rival Detective
 UI_TYPE_RIVAL_DESC,"He has evidence of his own, including what you missed. He predicts you will repeat your last move and counters it, and his Tells may be Disguised. Change things up, and mind your Weak Points."
+UI_V2_ACT_ARGUE,Argue
+UI_V2_ACT_REBUT,Rebut
+UI_V2_ACT_STALL,Muddy the Waters
+UI_V2_ACT_STALL_DESC,"Say something beside the point. No link added; you take half damage if he speaks, and his rebuttal whiffs."
+UI_V2_ACT_STALL_REPEAT,"Stalling twice in a row: no effect, and the onlookers lose patience."
+UI_V2_APPRAISE,Ask Arthur to Appraise
+UI_V2_APPRAISED,Appraised
+UI_V2_APPRAISE_LEFT,Appraisals left: {n}
+UI_V2_APPRAISE_NONE,No appraisals left.
+UI_V2_BACK_TITLE,Back to Title
+UI_V2_CARRY_ASK_ARTHUR,Ask Arthur
+UI_V2_CARRY_CONFIRM,Confirm
+UI_V2_CARRY_COUNT,Chosen {n} / {max}
+UI_V2_CARRY_FULL,No room. Put something down first.
+UI_V2_CARRY_LEFT_ASK,Are you sure?
+UI_V2_CARRY_LEFT_HEAD,These will be left behind
+UI_V2_CARRY_TITLE,Choose What to Bring
+UI_V2_CHAIN_EMPTY,(Nothing standing yet)
+UI_V2_CHAIN_OPP,{name}'s Chain
+UI_V2_CHAIN_PLAYER,Your Chain
+UI_V2_CLAIM_CAN_CUT,Usable to rebut
+UI_V2_CLAIM_CRACK,Contradicts what you said
+UI_V2_CLAIM_CRACK_COST,Credibility −{n}; your earlier statement is withdrawn
+UI_V2_CLAIM_ON_CHAIN,Already on your chain
+UI_V2_CLAIM_PRIVATE,Exposes someone's private matter
+UI_V2_CLAIM_PSYCH,Mind Game
+UI_V2_CLAIM_RESTATE,Restated (half strength)
+UI_V2_CLAIM_SOPH,Sophistry
+UI_V2_CLAIM_SOPH_DESC,"You know this doesn't hold. Hits harder, but leaves a crack and may be exposed."
+UI_V2_CLAIM_SOUND,Sound
+UI_V2_CLAIM_VOID,Refuted; void for this debate
+UI_V2_COMBO,Combo ×{n}
+UI_V2_CRED,Credibility
+UI_V2_CRED_OPP,{name}'s Credibility
+UI_V2_CRED_PLAYER,Your Credibility
+UI_V2_DEATH_THROE,Last gasp: only {n} if it lands
+UI_V2_DEMO_NOTE,"Demo chapter: a standalone case, not part of the main story."
+UI_V2_DMG_PREVIEW,Est. Argument {n}
+UI_V2_ENDGAME,Endgame
+UI_V2_ENDGAME_CUT,Cut In
+UI_V2_ENDGAME_TAKE,Take It
+UI_V2_FAVOR_HEAD,Standing with Others
+UI_V2_FAVOR_LINE,{name} {delta}
+UI_V2_GAUGE_ANGER,Anger
+UI_V2_GAUGE_BROKEN,Rattled
+UI_V2_GAUGE_CALM,Steady
+UI_V2_GAUGE_FLOAT,Wavering
+UI_V2_GAUGE_GUILT,Guilt
+UI_V2_GAUGE_PRESSURE,Pressure
+UI_V2_GIVE_UP,{name} lowers his head and says nothing more.
+UI_V2_GIVE_UP_BTN,Give Up
+UI_V2_GOT_NOTE,Noted.
+UI_V2_GRADE_1,Clean Break
+UI_V2_GRADE_2,Break Held
+UI_V2_GRADE_3,"Broke Him, Took the Counter, Won"
+UI_V2_GRADE_4,Won Without a Break
+UI_V2_GRADE_5,Out-Argued
+UI_V2_GRADE_LABEL,Result
+UI_V2_GUARD_DOWN,Guard Down
+UI_V2_ISSUE,Issue
+UI_V2_LAST_CARD,His Last Card
+UI_V2_LAST_CARD_PROMPT,"He isn't finished. Cut in, or take it?"
+UI_V2_LINK_CRACKED,Cracked
+UI_V2_LOCK_IN,Lock In
+UI_V2_MY_LAST_CARD,Your last card: pick one of his statements and refute it with a sound claim.
+UI_V2_NEXT_PLACEHOLDER,Next chapter (the demo ends here)
+UI_V2_NOTES_DESC,These take no room and cannot be presented.
+UI_V2_NOTES_PAGE,Notes on People
+UI_V2_OPP_ASSERT,Assert
+UI_V2_OPP_DODGE,Sidestep
+UI_V2_OPP_PRESS,Press
+UI_V2_OPP_REBUT,Rebut
+UI_V2_PICK_CLAIM,Choose a Claim
+UI_V2_PICK_EVIDENCE,Choose Evidence
+UI_V2_PRIVATE_VIEW,Private View
+UI_V2_PRIVATE_VIEW_NONE,(No view yet)
+UI_V2_REBUT_CUT,Cut In
+UI_V2_REBUT_CUT_DESC,Strike the claim he is about to make this round.
+UI_V2_REBUT_PICK_LINK,Choose a link to knock down
+UI_V2_REBUT_TOPPLE,Knock Down
+UI_V2_REBUT_TOPPLE_DESC,Strike a link already standing on his chain. He still speaks this round.
+UI_V2_RECORD,Public Record
+UI_V2_RECORD_CRACKS,{n} crack(s)
+UI_V2_RECORD_DESC,Everything you have said in this debate.
+UI_V2_RECORD_DOWN,Knocked down
+UI_V2_RECORD_REBUT,Rebuttal
+UI_V2_RECORD_STANDING,Standing
+UI_V2_REP_CLEAN,A clean break
+UI_V2_REP_COUNTERED,Won after taking his counter
+UI_V2_REP_CRACKS,Cracks in your account ×{n}
+UI_V2_REP_DENY,Argued a fact away ×{n}
+UI_V2_REP_DOWN,↓
+UI_V2_REP_GRIND,Won without a break
+UI_V2_REP_HEAD,How the Town Saw It
+UI_V2_REP_HELD,A break that held
+UI_V2_REP_LOSS,Out-argued
+UI_V2_REP_PRIVATE,Exposed a private matter ×{n}
+UI_V2_REP_PSYCH,Played on his nerves
+UI_V2_REP_STALL,Stalled too often
+UI_V2_REP_UP,↑
+UI_V2_RESULT_ROUNDS,Rounds: {n}
+UI_V2_RONPA_PROGRESS,Chain {n}/{need}   Issues {m}/2
+UI_V2_RONPA_READY,His guard is down. Land a link this round to break him!
+UI_V2_ROUND,Round {n} / {max}
+UI_V2_SEIZE,Seize His Words
+UI_V2_SEIZE_DESC,He just let something slip. No evidence needed; this round only.
+UI_V2_SHISHOU_HINT,On the back foot: read him right once to steady yourself.
+UI_V2_SUPPORT,Cover
+UI_V2_SUPPORT_ARMED,Cover: Armed
+UI_V2_SUPPORT_DESC,"If you are exposed, refuted or whiff a rebuttal this round, Arthur smooths it over. Otherwise it is wasted."
+UI_V2_SUPPORT_LEFT,Cover: {n} left
+UI_V2_TELL_CLEAR,Clear
+UI_V2_TELL_HEAD,He is about to say
+UI_V2_TELL_HESITATE,"(He starts, then stops)"
+UI_V2_TELL_LIKELY,More likely
+UI_V2_TELL_POSSIBLE,Possible: {a} / {b}
+UI_V2_TELL_VAGUE,Unclear
+UI_V2_TIME_UP,The onlookers are leaving.
+UI_V2_TITLE_ENTRY,v2 Demo Chapter
+UI_V2_TYPE_EVIDENCE,Evidence
+UI_V2_TYPE_NOTE,Note
+UI_V2_TYPE_OBS,Observation
+UI_V2_TYPE_PSYCH,Mind Game
 UI_WARMUP_MISS,Mistakes {n}/3
 UI_WARMUP_TITLE,Warm-up: Correct the Misjudgement
 WARN_BOARD_LOCK,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?"

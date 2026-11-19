@@ -1,0 +1,13 @@
+version: 1
+id: b30481e9-39c6-422c-bcdf-4518a141c618
+type: image
+title: cedric-composed
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_cedric_composed.png
+content: sha256:03d5b3558c4c02490026e8e9a7e3b609b47028f7bf8195b425a821d0a1ddecb2
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

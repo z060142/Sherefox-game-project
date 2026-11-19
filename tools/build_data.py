@@ -338,6 +338,33 @@ def parse_rules(cell: str) -> str:
 
 # ---------------------------------------------------------------- localization loading
 
+# The v2 demo chapter D01 (design repo localization/d01/, README there): strings_d01.json (script + evidence) and
+# ui_strings_d01.csv (the UI_V2_ keys, not part of strings_d01.json) are merged into the game's string tables. Keys the
+# UI needs that the package does not have yet are placeholder rows in d01_placeholders.csv (written in this repo,
+# note "PLACEHOLDER: ..."; to be replaced by the design session's rows).
+D01_DIR = LOC / "d01"
+D01_IMPORT = ("README.md", "strings_d01.json", "script_d01.csv", "evidence_d01.csv", "ui_strings_d01.csv")
+D01_PLACEHOLDERS = LOC / "d01_placeholders.csv"
+
+
+def merge_d01(strings: dict) -> None:
+    """Add the D01 package's keys (and the placeholder rows) to `strings`; a key that is already there with another
+    text is an error (the v1 and D01 key spaces must not overlap)."""
+    if not (D01_DIR / "strings_d01.json").exists():
+        return
+    rows = {k: {"zh-TW": v["zh-TW"], "en": v["en"]} for k, v in json.loads(read_text(D01_DIR / "strings_d01.json")).items()}
+    for src in (D01_DIR / "ui_strings_d01.csv", D01_PLACEHOLDERS):
+        if src.exists():
+            for r in read_csv(src):
+                if r["ID"] in rows:
+                    err(f"{src.name}: {r['ID']} is already in the D01 package")
+                rows[r["ID"]] = {"zh-TW": r["zh-TW"], "en": r["en"]}
+    for k, v in rows.items():
+        if k in strings and strings[k] != v:
+            err(f"D01 string {k} differs from the v1 string with the same key")
+        strings[k] = v
+
+
 def load_localization() -> dict:
     strings = json.loads(read_text(LOC / "strings.json"))
     evidence_rows = read_csv(LOC / "evidence_ch01-03.csv")
@@ -800,6 +827,10 @@ def main() -> int:
         for name in ("README.md", "strings.json", "ui_strings.csv", "tutorial.csv",
                      "evidence_ch01-03.csv", "script_ch01-03.csv", "glossary.csv"):
             shutil.copyfile(src / name, LOC / name)
+        if (src / "d01").is_dir():   # the v2 demo chapter D01 (merged by load_localization)
+            (LOC / "d01").mkdir(exist_ok=True)
+            for name in D01_IMPORT:
+                shutil.copyfile(src / "d01" / name, LOC / "d01" / name)
         print(f"imported localization from {src}")
     if args.import_staging:
         src = Path(args.import_staging)
@@ -813,6 +844,7 @@ def main() -> int:
     cases = parse_cases()
     loc = load_localization()
     strings: dict[str, dict] = {k: dict(v) for k, v in loc["strings"].items()}
+    merge_d01(strings)
     ev_loc = loc["evidence"]
 
     # ---- evidence base data from the localization package (NAME note carries grade / appraisal)

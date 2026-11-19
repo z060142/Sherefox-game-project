@@ -116,6 +116,14 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "d1debate",
+      "doc": "d1debate/d1debate.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {
@@ -139,9 +147,6 @@
   },
   "target": "engine",
   "publish": {
-    "images": {
-      "compress": "auto"
-    },
     "outDir": "",
     "languages": [],
     "embedImages": false,
@@ -156,6 +161,9 @@
       "padding": 2,
       "mipmaps": false,
       "scope": "ui"
+    },
+    "images": {
+      "compress": "auto"
     }
   }
 }

@@ -1,0 +1,13 @@
+version: 1
+id: 84964227-6995-4813-993c-58a6fa5527d5
+type: image
+title: cedric-guilt
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_cedric_guilt.png
+content: sha256:ee1abea73bd3a37a4c00183a0e2531f400439665f65a6d9235efefb2c2f1ad1a
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: 5647695c-873f-4c69-afc6-89baa4e79f4b
+type: image
+title: cedric-uneasy
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_cedric_uneasy.png
+content: sha256:19da59223cccd21d619ecae67f0b92817bf5502070d4016169840c8ab65494b5
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

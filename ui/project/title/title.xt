@@ -11,6 +11,7 @@
     end_dismiss: event out
     open_settings: event out
     quit: event out
+    v2demo: event out
   </ports>
 
   <body on:show="play(intro)">
@@ -41,6 +42,11 @@
         <h1 id="lead-headline">@UI_TITLE_LOGO</h1>
         <div id="lead-rule" class="rule-thin"/>
         <p id="lead-deck">@UI_TITLE_SUB</p>
+      </div>
+      <div id="btn-v2" class="v2-entry" tabindex="0" on:click="emit(v2demo)">
+        <div id="btn-v2-k" class="v2-k">@UI_V2_TITLE_ENTRY</div>
+        <div id="btn-v2-t" class="v2-t">@CHAP_D01_TITLE</div>
+        <div id="btn-v2-n" class="v2-n">@UI_V2_DEMO_NOTE</div>
       </div>
       <div id="rule-column" class="rule-thin"/>
       <div id="contents">
@@ -237,6 +243,36 @@
       width: 712px;
     }
     /* import: Title.dc.html:1/9 */
+    #btn-v2 {
+      anchor: left bottom;
+      offset: 16px 20px;
+      size: 712px 78px;
+    }
+    /* import: Title.dc.html:1/9/0 */
+    #btn-v2-k {
+      height: 20px;
+      left: 16px;
+      position: absolute;
+      top: 6px;
+      width: 680px;
+    }
+    /* import: Title.dc.html:1/9/1 */
+    #btn-v2-t {
+      height: 30px;
+      left: 16px;
+      position: absolute;
+      top: 25px;
+      width: 680px;
+    }
+    /* import: Title.dc.html:1/9/2 */
+    #btn-v2-n {
+      height: 16px;
+      left: 16px;
+      position: absolute;
+      top: 56px;
+      width: 680px;
+    }
+    /* import: Title.dc.html:1/10 */
     #rule-column {
       bottom: calc(1safe-bottom + 18px);
       height: 384px;
@@ -244,7 +280,7 @@
       position: absolute;
       width: 1px;
     }
-    /* import: Title.dc.html:1/10 */
+    /* import: Title.dc.html:1/11 */
     #contents {
       anchor: right bottom;
       display: flex;
@@ -253,58 +289,58 @@
       offset: 16px 18px;
       size: 408px 384px;
     }
-    /* import: Title.dc.html:1/10/0 */
+    /* import: Title.dc.html:1/11/0 */
     #contents-heading {
       flex-shrink: 0;
       height: 28px;
       width: 408px;
     }
-    /* import: Title.dc.html:1/10/1 */
+    /* import: Title.dc.html:1/11/1 */
     #btn-ch1 {
       flex-shrink: 0;
     }
-    /* import: Title.dc.html:1/10/1/0 */
+    /* import: Title.dc.html:1/11/1/0 */
     #btn-ch1-no {
       flex-shrink: 0;
       height: 22px;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/1/1 */
+    /* import: Title.dc.html:1/11/1/1 */
     #btn-ch1-title {
       flex-shrink: 0;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/2 */
+    /* import: Title.dc.html:1/11/2 */
     #btn-ch2 {
       flex-shrink: 0;
     }
-    /* import: Title.dc.html:1/10/2/0 */
+    /* import: Title.dc.html:1/11/2/0 */
     #btn-ch2-no {
       flex-shrink: 0;
       height: 22px;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/2/1 */
+    /* import: Title.dc.html:1/11/2/1 */
     #btn-ch2-title {
       flex-shrink: 0;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/3 */
+    /* import: Title.dc.html:1/11/3 */
     #btn-ch3 {
       flex-shrink: 0;
     }
-    /* import: Title.dc.html:1/10/3/0 */
+    /* import: Title.dc.html:1/11/3/0 */
     #btn-ch3-no {
       flex-shrink: 0;
       height: 22px;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/3/1 */
+    /* import: Title.dc.html:1/11/3/1 */
     #btn-ch3-title {
       flex-shrink: 0;
       width: 376px;
     }
-    /* import: Title.dc.html:1/10/4 */
+    /* import: Title.dc.html:1/11/4 */
     #contents-foot {
       display: flex;
       flex-direction: row;
@@ -317,17 +353,17 @@
       padding-top: 12px;
       width: 408px;
     }
-    /* import: Title.dc.html:1/11 */
+    /* import: Title.dc.html:1/12 */
     #rule-foot {
       anchor: left bottom;
       offset: 16px 9px;
       size: 1184px 1px;
     }
-    /* import: Title.dc.html:1/12 */
+    /* import: Title.dc.html:1/13 */
     #end-card {
       anchor: stretch stretch screen;
     }
-    /* import: Title.dc.html:1/12/0 */
+    /* import: Title.dc.html:1/13/0 */
     #end-dock {
       height: 720px;
       left: calc(50% - 640px);
@@ -335,7 +371,7 @@
       top: calc(50% - 360px);
       width: 1280px;
     }
-    /* import: Title.dc.html:1/12/0/0 */
+    /* import: Title.dc.html:1/13/0/0 */
     #end-mast {
       height: 136px;
       left: 340px;
@@ -344,7 +380,7 @@
       top: 96px;
       width: 600px;
     }
-    /* import: Title.dc.html:1/12/0/0/0 */
+    /* import: Title.dc.html:1/13/0/0/0 */
     #end-mast-art {
       height: 200px;
       left: 0px;
@@ -352,7 +388,7 @@
       top: -27px;
       width: 600px;
     }
-    /* import: Title.dc.html:1/12/0/1 */
+    /* import: Title.dc.html:1/13/0/1 */
     #end-rule-a {
       height: 3px;
       left: 240px;
@@ -360,7 +396,7 @@
       top: 252px;
       width: 800px;
     }
-    /* import: Title.dc.html:1/12/0/2 */
+    /* import: Title.dc.html:1/13/0/2 */
     #end-rule-b {
       height: 1px;
       left: 240px;
@@ -368,7 +404,7 @@
       top: 258px;
       width: 800px;
     }
-    /* import: Title.dc.html:1/12/0/3 */
+    /* import: Title.dc.html:1/13/0/3 */
     #end-text {
       height: 160px;
       left: 240px;
@@ -376,7 +412,7 @@
       top: 284px;
       width: 800px;
     }
-    /* import: Title.dc.html:1/12/0/4 */
+    /* import: Title.dc.html:1/13/0/4 */
     #end-rule-c {
       height: 1px;
       left: 240px;
@@ -384,7 +420,7 @@
       top: 470px;
       width: 800px;
     }
-    /* import: Title.dc.html:1/12/0/5 */
+    /* import: Title.dc.html:1/13/0/5 */
     #end-rule-d {
       height: 3px;
       left: 240px;
@@ -392,7 +428,7 @@
       top: 474px;
       width: 800px;
     }
-    /* import: Title.dc.html:1/12/0/6 */
+    /* import: Title.dc.html:1/13/0/6 */
     #end-name {
       height: 28px;
       left: 340px;
@@ -421,6 +457,12 @@
       width: 200px;
       height: 44px;
       flex-shrink: 0;
+    }
+    .v2-t {
+      overflow: hidden;
+    }
+    .v2-n {
+      overflow: hidden;
     }
   </layout>
   <style src="../shared/base.xts"/>

@@ -243,7 +243,8 @@
           "investigate",
           "board",
           "debate",
-          "result"
+          "result",
+          "d1debate"
         ],
         "transitions": [
           {
@@ -280,6 +281,11 @@
             "from": "*",
             "on": "to_result",
             "to": "result"
+          },
+          {
+            "from": "*",
+            "on": "to_d1debate",
+            "to": "d1debate"
           }
         ]
       }
@@ -533,6 +539,7 @@
           false,
           false,
           false,
+          false,
           false
         ]
       }
@@ -544,6 +551,7 @@
         "values": [
           false,
           true,
+          false,
           false,
           false,
           false,
@@ -563,6 +571,7 @@
           false,
           false,
           false,
+          false,
           false
         ]
       }
@@ -576,6 +585,7 @@
           false,
           false,
           true,
+          false,
           false,
           false,
           false
@@ -593,6 +603,7 @@
           false,
           true,
           false,
+          false,
           false
         ]
       }
@@ -608,6 +619,7 @@
           false,
           false,
           true,
+          false,
           false
         ]
       }
@@ -617,6 +629,23 @@
       "type": "lookup",
       "params": {
         "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1debate",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
           false,
           false,
           false,
@@ -1148,6 +1177,14 @@
       "to": "screen.to_vn"
     },
     {
+      "from": "ui#title.v2demo",
+      "to": "screen.to_d1debate"
+    },
+    {
+      "from": "world.d1Back",
+      "to": "screen.to_title"
+    },
+    {
       "from": "debPre.value",
       "to": "debPreG.cond"
     },
@@ -1264,6 +1301,14 @@
       "to": "ui#result.visible"
     },
     {
+      "from": "screen.index",
+      "to": "visD1debate.index"
+    },
+    {
+      "from": "visD1debate.out",
+      "to": "ui#d1debate.visible"
+    },
+    {
       "from": "isInv.out",
       "to": "bookGate.guard"
     },
@@ -1353,6 +1398,10 @@
     },
     {
       "from": "ui#notes.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1debate.settings",
       "to": "settings.open"
     },
     {

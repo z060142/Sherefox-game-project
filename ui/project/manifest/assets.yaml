@@ -19,6 +19,12 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 2560, h: 1440, alpha: false }
+  - id: bg-d01-parlour
+    type: image
+    file: shared/img/bg-d01-parlour.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 2560, h: 1440, alpha: false }
   - id: bg-debate
     type: image
     file: shared/img/bg-debate.jpg
@@ -79,6 +85,36 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1774, h: 887, alpha: true }
+  - id: cedric-angry
+    type: image
+    file: shared/img/cedric-angry.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: cedric-composed
+    type: image
+    file: shared/img/cedric-composed.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: cedric-cornered
+    type: image
+    file: shared/img/cedric-cornered.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: cedric-guilt
+    type: image
+    file: shared/img/cedric-guilt.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
+  - id: cedric-uneasy
+    type: image
+    file: shared/img/cedric-uneasy.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-arthur
     type: image
     file: shared/img/ch-c-arthur.png

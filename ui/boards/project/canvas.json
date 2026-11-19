@@ -88,6 +88,14 @@
       "h": 720,
       "title": "Settings",
       "page": "main"
+    },
+    "D1Debate.dc.html": {
+      "x": 0,
+      "y": 8800,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Debate",
+      "page": "main"
     }
   },
   "order": [
@@ -101,7 +109,8 @@
     "Result.dc.html",
     "Evbook.dc.html",
     "Notes.dc.html",
-    "Settings.dc.html"
+    "Settings.dc.html",
+    "D1Debate.dc.html"
   ],
   "pages": [
     "main"

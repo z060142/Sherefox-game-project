@@ -200,6 +200,70 @@
   color: var(--ink);
 }
 
+.v2-entry {
+  background-color: var(--paper);
+  border: 1px #123a31;
+  border-left-width: 6px;
+  border-left-color: #b8322a;
+  transition: background-color 150ms linear;
+}
+
+.v2-entry:hover {
+  background-color: var(--ink);
+}
+
+.v2-entry:active {
+  background-color: var(--paper-old);
+}
+
+.v2-entry:focus {
+  outline: 2px solid #a65432;
+  outline-offset: -4px;
+}
+
+.v2-k {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 3px;
+  color: var(--vermilion);
+  white-space: nowrap;
+}
+
+:lang(en) .v2-k {
+  letter-spacing: 1px;
+}
+
+.v2-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 22px;
+  line-height: 30px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.v2-n {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.v2-entry:hover .v2-k {
+  color: var(--lamp-gold);
+}
+
+.v2-entry:hover .v2-t {
+  color: var(--paper);
+}
+
+.v2-entry:hover .v2-n {
+  color: var(--paper);
+}
+
 :root {
   --copper: #a65432;
   --ink: #123a31;
@@ -207,5 +271,6 @@
   --lamp-gold: #e0a050;
   --paper: #f3eedf;
   --paper-old: #e3d9c2;
+  --vermilion: #b8322a;
 }
 

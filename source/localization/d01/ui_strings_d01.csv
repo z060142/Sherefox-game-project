@@ -1,0 +1,123 @@
+﻿ID,category,zh-TW,en,note
+UI_V2_TITLE_ENTRY,Title,v2 示範關卡,v2 Demo Chapter,title-screen entry for the D01 demo
+CHAP_D01_TITLE,Title,守靈夜消失的遺囑,The Will That Vanished at the Wake,chapter title
+UI_V2_DEMO_NOTE,Title,示範關卡：獨立章節，不屬於正式遊戲的故事。,"Demo chapter: a standalone case, not part of the main story.",shown under the entry
+UI_V2_CRED,Debate: values,可信度,Credibility,the HP bar (v1: 主導權)
+UI_V2_CRED_PLAYER,Debate: values,我方可信度,Your Credibility,
+UI_V2_CRED_OPP,Debate: values,{name} 的可信度,{name}'s Credibility,
+UI_V2_GAUGE_PRESSURE,Debate: values,壓力,Pressure,"opponent gauge, no number shown"
+UI_V2_GAUGE_GUILT,Debate: values,罪惡感,Guilt,"opponent gauge, no number shown"
+UI_V2_GAUGE_ANGER,Debate: values,怒氣,Anger,"opponent gauge, no number shown"
+UI_V2_GAUGE_CALM,Debate: values,平常,Steady,gauge band 1
+UI_V2_GAUGE_FLOAT,Debate: values,浮動,Wavering,gauge band 2 (threshold - 15 and up)
+UI_V2_GAUGE_BROKEN,Debate: values,失常,Rattled,gauge band 3 (over threshold)
+UI_V2_ROUND,Debate: values,第 {n} 回合／{max},Round {n} / {max},max = 20
+UI_V2_COMBO,Debate: values,連擊 ×{n},Combo ×{n},
+UI_V2_DMG_PREVIEW,Debate: values,預估論證 {n},Est. Argument {n},damage preview on the claim picker
+UI_V2_ACT_ARGUE,Debate: actions,議論,Argue,entry for 正論/詭辯
+UI_V2_ACT_REBUT,Debate: actions,反駁,Rebut,
+UI_V2_ACT_STALL,Debate: actions,打迷糊仗,Muddy the Waters,
+UI_V2_ACT_STALL_DESC,Debate: actions,說些不著邊際的話。不接節；他開口時我方只受一半傷害，他反駁時會落空。,"Say something beside the point. No link added; you take half damage if he speaks, and his rebuttal whiffs.",tooltip
+UI_V2_ACT_STALL_REPEAT,Debate: actions,連續打迷糊仗：效果取消，旁觀者不耐。,"Stalling twice in a row: no effect, and the onlookers lose patience.",warning on 2nd consecutive use
+UI_V2_REBUT_CUT,Debate: actions,截斷,Cut In,target: the claim he is about to make
+UI_V2_REBUT_CUT_DESC,Debate: actions,打他這回合要說的那句話。,Strike the claim he is about to make this round.,
+UI_V2_REBUT_TOPPLE,Debate: actions,拆台,Knock Down,target: a link standing on his chain
+UI_V2_REBUT_TOPPLE_DESC,Debate: actions,打他鏈上已經站著的一節。他這回合照常開口。,Strike a link already standing on his chain. He still speaks this round.,
+UI_V2_REBUT_PICK_LINK,Debate: actions,選擇要拆的一節,Choose a link to knock down,
+UI_V2_SUPPORT,Debate: actions,援護,Cover,"Arthur, once per debate"
+UI_V2_SUPPORT_ARMED,Debate: actions,援護：已佈置,Cover: Armed,
+UI_V2_SUPPORT_LEFT,Debate: actions,援護 剩 {n} 次,Cover: {n} left,
+UI_V2_SUPPORT_DESC,Debate: actions,這回合若被拆穿、被駁倒或反駁落空，亞瑟會替妳打圓場。沒發生就白費。,"If you are exposed, refuted or whiff a rebuttal this round, Arthur smooths it over. Otherwise it is wasted.",
+UI_V2_LOCK_IN,Debate: actions,鎖定,Lock In,
+UI_V2_PICK_EVIDENCE,Debate: actions,選擇證物,Choose Evidence,
+UI_V2_PICK_CLAIM,Debate: actions,選擇說法,Choose a Claim,
+UI_V2_OPP_ASSERT,Debate: actions,立論,Assert,opponent action
+UI_V2_OPP_PRESS,Debate: actions,強辯,Press,opponent action (v1 猛攻)
+UI_V2_OPP_REBUT,Debate: actions,反駁,Rebut,opponent action
+UI_V2_OPP_DODGE,Debate: actions,周旋,Sidestep,opponent action (v1 補強)
+UI_V2_CLAIM_SOUND,Debate: claim picker,正論,Sound,claim label
+UI_V2_CLAIM_SOPH,Debate: claim picker,詭辯,Sophistry,claim label
+UI_V2_CLAIM_SOPH_DESC,Debate: claim picker,妳知道這說不通。論證較高，但會留下裂紋，也可能被拆穿。,"You know this doesn't hold. Hits harder, but leaves a crack and may be exposed.",
+UI_V2_CLAIM_CRACK,Debate: claim picker,與妳說過的話矛盾,Contradicts what you said,red-crack marker tooltip
+UI_V2_CLAIM_CRACK_COST,Debate: claim picker,可信度 −{n}，先前那句失效,Credibility −{n}; your earlier statement is withdrawn,
+UI_V2_CLAIM_ON_CHAIN,Debate: claim picker,已在鏈上,Already on your chain,cannot be attached again
+UI_V2_CLAIM_RESTATE,Debate: claim picker,重提（論證減半）,Restated (half strength),
+UI_V2_CLAIM_VOID,Debate: claim picker,已被駁倒，本場作廢,Refuted; void for this debate,
+UI_V2_CLAIM_PSYCH,Debate: claim picker,心理牌,Mind Game,psych card label
+UI_V2_CLAIM_PRIVATE,Debate: claim picker,會公開他人的私事,Exposes someone's private matter,
+UI_V2_CLAIM_CAN_CUT,Debate: claim picker,可用來反駁,Usable to rebut,
+UI_V2_SEIZE,Debate: claim picker,抓住他的話,Seize His Words,one-round option after a slip
+UI_V2_SEIZE_DESC,Debate: claim picker,他剛才說溜了嘴。不需要證物，只有這一回合有效。,He just let something slip. No evidence needed; this round only.,
+UI_V2_ISSUE,Debate: claim picker,爭點,Issue,
+UI_V2_PRIVATE_VIEW,Debate: claim picker,私下的看法,Private View,note on the evidence list
+UI_V2_PRIVATE_VIEW_NONE,Debate: claim picker,（還沒有看法）,(No view yet),
+UI_V2_TELL_HEAD,Debate: tell panel,他正要說,He is about to say,
+UI_V2_TELL_CLEAR,Debate: tell panel,明示,Clear,
+UI_V2_TELL_VAGUE,Debate: tell panel,模糊,Unclear,
+UI_V2_TELL_LIKELY,Debate: tell panel,較可能,More likely,
+UI_V2_TELL_HESITATE,Debate: tell panel,（欲言又止）,"(He starts, then stops)",shown instead of the claim before a slip
+UI_V2_TELL_POSSIBLE,Debate: tell panel,可能行動：{a}／{b},Possible: {a} / {b},
+UI_V2_CHAIN_PLAYER,Debate: chains and record,我方的推理鏈,Your Chain,
+UI_V2_CHAIN_OPP,Debate: chains and record,{name} 的推理鏈,{name}'s Chain,
+UI_V2_CHAIN_EMPTY,Debate: chains and record,（還沒有站得住的論點）,(Nothing standing yet),
+UI_V2_LINK_CRACKED,Debate: chains and record,裂紋,Cracked,
+UI_V2_RECORD,Debate: chains and record,公開紀錄,Public Record,
+UI_V2_RECORD_DESC,Debate: chains and record,妳在這場論戰說過的每一句話。,Everything you have said in this debate.,
+UI_V2_RECORD_STANDING,Debate: chains and record,站著,Standing,
+UI_V2_RECORD_DOWN,Debate: chains and record,被打掉,Knocked down,
+UI_V2_RECORD_REBUT,Debate: chains and record,反駁,Rebuttal,
+UI_V2_RECORD_CRACKS,Debate: chains and record,裂紋 {n} 道,{n} crack(s),
+UI_V2_RONPA_PROGRESS,Debate: chains and record,鏈長 {n}／{need}　爭點 {m}／2,Chain {n}/{need}   Issues {m}/2,
+UI_V2_RONPA_READY,Debate: chains and record,他破防了。這回合接上就論破！,His guard is down. Land a link this round to break him!,
+UI_V2_GUARD_DOWN,Debate: chains and record,破防,Guard Down,
+UI_V2_SHISHOU_HINT,Debate: chains and record,失守：讀對一次才能站穩。,On the back foot: read him right once to steady yourself.,
+UI_V2_ENDGAME,Debate: endgame,殘局,Endgame,
+UI_V2_LAST_CARD,Debate: endgame,最後一張牌,His Last Card,
+UI_V2_LAST_CARD_PROMPT,Debate: endgame,他還有話要說。截斷，還是承受？,"He isn't finished. Cut in, or take it?",
+UI_V2_ENDGAME_CUT,Debate: endgame,截斷,Cut In,
+UI_V2_ENDGAME_TAKE,Debate: endgame,承受,Take It,
+UI_V2_DEATH_THROE,Debate: endgame,垂死反撲：打中只扣 {n},Last gasp: only {n} if it lands,
+UI_V2_GIVE_UP,Debate: endgame,{name} 垂下了頭，沒有再開口。,{name} lowers his head and says nothing more.,guilt over threshold: no last card
+UI_V2_MY_LAST_CARD,Debate: endgame,最後一張牌：選他的一句話，用正論駁倒它。,Your last card: pick one of his statements and refute it with a sound claim.,after 逆論破 (7.5)
+UI_V2_TIME_UP,Debate: endgame,旁觀者散場了。,The onlookers are leaving.,round 20
+UI_V2_CARRY_TITLE,Investigation,整理帶走的證物,Choose What to Bring,
+UI_V2_CARRY_COUNT,Investigation,已選 {n}／{max},Chosen {n} / {max},
+UI_V2_CARRY_FULL,Investigation,帶不下了。先放下一件。,No room. Put something down first.,
+UI_V2_CARRY_CONFIRM,Investigation,確定,Confirm,
+UI_V2_CARRY_LEFT_HEAD,Investigation,以下東西會留在現場,These will be left behind,
+UI_V2_CARRY_LEFT_ASK,Investigation,確定嗎？,Are you sure?,
+UI_V2_CARRY_ASK_ARTHUR,Investigation,問亞瑟的意見,Ask Arthur,button on the carry screen; Arthur comments on the current selection (he can be wrong)
+UI_V2_APPRAISE,Investigation,請亞瑟鑑定,Ask Arthur to Appraise,
+UI_V2_APPRAISE_LEFT,Investigation,鑑定 剩 {n} 次,Appraisals left: {n},
+UI_V2_APPRAISE_NONE,Investigation,鑑定次數用完了。,No appraisals left.,
+UI_V2_APPRAISED,Investigation,已鑑定,Appraised,
+UI_V2_NOTES_PAGE,Investigation,人物筆記,Notes on People,
+UI_V2_NOTES_DESC,Investigation,不佔名額，也不能當證物出示。,These take no room and cannot be presented.,
+UI_V2_TYPE_EVIDENCE,Investigation,證物,Evidence,
+UI_V2_TYPE_PSYCH,Investigation,心理牌,Mind Game,
+UI_V2_TYPE_OBS,Investigation,觀察,Observation,
+UI_V2_TYPE_NOTE,Investigation,人物筆記,Note,
+UI_V2_GOT_NOTE,Investigation,記下了一條人物筆記。,Noted.,
+UI_V2_GRADE_LABEL,Result,勝利等級,Result,
+UI_V2_GRADE_1,Result,乾淨論破,Clean Break,grade 1
+UI_V2_GRADE_2,Result,論破守成,Break Held,grade 2
+UI_V2_GRADE_3,Result,論破後被反擊仍勝,"Broke Him, Took the Counter, Won",grade 3
+UI_V2_GRADE_4,Result,未論破而勝,Won Without a Break,grade 4
+UI_V2_GRADE_5,Result,論敗,Out-Argued,grade 5
+UI_V2_REP_HEAD,Result,世人怎麼看這一場,How the Town Saw It,reputation change list; total is never shown
+UI_V2_REP_CLEAN,Result,乾淨論破,A clean break,
+UI_V2_REP_HELD,Result,論破守成,A break that held,
+UI_V2_REP_COUNTERED,Result,論破後被反擊仍勝,Won after taking his counter,
+UI_V2_REP_GRIND,Result,未論破而勝,Won without a break,
+UI_V2_REP_LOSS,Result,論敗,Out-argued,
+UI_V2_REP_CRACKS,Result,說詞有裂紋 ×{n},Cracks in your account ×{n},
+UI_V2_REP_PRIVATE,Result,公開了別人的私事 ×{n},Exposed a private matter ×{n},
+UI_V2_REP_PSYCH,Result,用了攻心的手段,Played on his nerves,
+UI_V2_REP_STALL,Result,迷糊仗打太多,Stalled too often,
+UI_V2_REP_DENY,Result,硬把事實說成假的 ×{n},Argued a fact away ×{n},
+UI_V2_REP_UP,Result,↑,↑,direction only; no number
+UI_V2_REP_DOWN,Result,↓,↓,direction only; no number
+UI_V2_FAVOR_HEAD,Result,好感變化,Standing with Others,
+UI_V2_FAVOR_LINE,Result,{name} {delta},{name} {delta},
+UI_V2_NEXT_PLACEHOLDER,Result,下一章預告（示範關卡到此結束）,Next chapter (the demo ends here),
+UI_V2_BACK_TITLE,Result,回到標題,Back to Title,

@@ -1,0 +1,4 @@
+﻿ID,zh-TW,en,note
+SPK_D01_CEDRIC,塞德里克,Cedric,"PLACEHOLDER: name plate / speaker / {name}; text from the speaker columns of script_d01.csv"
+UI_V2_GIVE_UP_BTN,放棄,Give Up,"PLACEHOLDER: §7.5 player's last card round, the button that gives up (the engine's accept)"
+UI_V2_RESULT_ROUNDS,回合數 {n},Rounds: {n},"PLACEHOLDER: the debate's outcome panel, round count"

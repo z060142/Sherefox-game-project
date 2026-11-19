@@ -13,12 +13,6 @@
   object-fit: cover;
 }
 
-/* import: Debate.dc.html:1/1/2 */
-#mast-bg {
-  background-color: #f3eedfe6;
-  effect: shadow(3px 3px 0px 0px #092e2859);
-}
-
 /* import: Debate.dc.html:1/1/4/0 */
 #tail-t {
   font-size: 18px;
@@ -90,16 +84,6 @@
   border-left-width: 3px;
   border-top-color: #123a31;
   border-top-width: 3px;
-}
-
-/* import: Debate.dc.html:1/1/9/3/0 */
-#improv-t {
-  text-align: center;
-}
-
-/* import: Debate.dc.html:1/1/10/2 */
-#tell-rule {
-  background-color: #123a31;
 }
 
 /* import: Debate.dc.html:1/1/10/3/2 */

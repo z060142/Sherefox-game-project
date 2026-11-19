@@ -362,6 +362,255 @@
     "endCard": {
       "type": "bool",
       "initial": false
+    },
+    "d1Start": {
+      "type": "pulse"
+    },
+    "d1Lock": {
+      "type": "pulse"
+    },
+    "d1Warmup": {
+      "type": "string",
+      "initial": "pass"
+    },
+    "d1CmdKind": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1CmdClaim": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1CmdTarget": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1CmdGuard": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OppAct": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1OppCard": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Round": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PlayerHp": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PlayerMax": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OppHp": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OppMax": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PCombo": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OCombo": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Hachiku": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Broken": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1BrokenUntil": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Shisshu": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychP": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychG": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychA": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychEndP": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychEndG": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PsychEndA": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OverP": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OverG": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1OverA": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1ThreshP": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1ThreshG": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1ThreshA": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Cracks": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Denials": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1GuardUsed": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Dying": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1LastCardUsed": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1PlayerLocked": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1RoundLimit": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Grade": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Truth": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1RepDelta": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1RepAfter": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1NextStartHp": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1TellPartial": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1TellRule": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1HandCount": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1Phase": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1CatchCard": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Endgame": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1LastCard": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Outcome": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1EndReason": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Note": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Paper": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellClarity": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellShown1": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellShown2": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellStar": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellCard": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellForced": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1TellAction": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Back": {
+      "type": "pulse"
     }
   },
   "input": {
@@ -384,6 +633,8 @@
     "flows/debate_ui.xtflow",
     "flows/debate_engine.xtflow",
     "flows/debate_warmup.xtflow",
+    "flows/d01_debate_ui.xtflow",
+    "flows/d01_debate_engine.xtflow",
     "flows/result.xtflow",
     "flows/music.xtflow"
   ],
@@ -428,6 +679,12 @@
       },
       {
         "ui": "result",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "d1debate",
         "width": 1280,
         "height": 720,
         "visible": false
@@ -494,6 +751,17 @@
         "lineKey"
       ]
     },
+    "d1uiClaim": "data/flow/d1uiClaim.json",
+    "d1uiCard": "data/flow/d1uiCard.json",
+    "d1uiEv": "data/flow/d1uiEv.json",
+    "d1uiLine": "data/flow/d1uiLine.json",
+    "d1Claim": "data/d01/d1Claim.json",
+    "d1Card": "data/d01/d1Card.json",
+    "d1Evidence": "data/d01/d1Evidence.json",
+    "d1Code": "data/d01/d1Code.json",
+    "d1Warmup": "data/d01/d1Warmup.json",
+    "d1KnownItem": "data/d01/d1KnownItem.json",
+    "d1Refute": "data/d01/d1Refute.json",
     "flowCard": "data/flow/flowCard.json",
     "flowSpot": "data/flow/flowSpot.json",
     "flowScene": "data/flow/flowScene.json",
@@ -912,6 +1180,216 @@
       "kind": "list",
       "type": "string",
       "capacity": 1
+    },
+    "d1State": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 1024
+    },
+    "d1Events": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 512
+    },
+    "d1PChain": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "d1OChain": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "d1Hand": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "d1Knocked": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "d1Known": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 128,
+      "unique": true
+    },
+    "d1Record": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 128
+    },
+    "d1ClaimList": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 64
+    },
+    "d1ClaimSoph": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 64
+    },
+    "d1ClaimCrack": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 64
+    },
+    "d1ClaimStand": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 64
+    },
+    "d1Rep": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "d1Favour": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "d1Carry": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 32,
+      "unique": true
+    },
+    "d1Appraised": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 32,
+      "unique": true
+    },
+    "d1Notes": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 32,
+      "unique": true
+    },
+    "u1": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 48
+    },
+    "u1S": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1F": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1N": {
+      "kind": "list",
+      "type": "number",
+      "capacity": 16
+    },
+    "u1Ev": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24,
+      "unique": true
+    },
+    "u1EvSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 24
+    },
+    "u1Cl": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1ClOk": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 40
+    },
+    "u1ClSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 16
+    },
+    "u1ClKind": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1ClCrk": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1ClStd": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1ClXtr": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1OSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 16
+    },
+    "u1PCr": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 16
+    },
+    "u1Iss": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 4
+    },
+    "u1Rec": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecId": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecN": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "u1RecL": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecU": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecS": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecC": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
+    },
+    "u1RecSt": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
     }
   },
   "audio": {

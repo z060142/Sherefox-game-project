@@ -486,3 +486,39 @@ UI 側實作（板子 `ui/boards/project/Settings.dc.html`）：
 title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小按鈕（`BTN_SETTINGS`、`BTN_QUIT`，各 200×44）；章節項目因此改為 100 px 高。
 
 字串鍵：`BTN_SETTINGS`、`BTN_CLOSE`、`BTN_QUIT`、`UI_SET_RES`、`UI_SET_RES_AUTO`、`UI_SET_RES_CURRENT`、`UI_SET_WINDOW`、`UI_SET_WINDOW_WIN`、`UI_SET_WINDOW_BORDERLESS`、`UI_SET_WINDOW_FULL`、`UI_SET_LANG_TEXT`、`UI_TITLE_LANG_ZH`、`UI_TITLE_LANG_EN`、`UI_SET_CUTIN_SUB`、`UI_SET_ON`、`UI_SET_OFF`。
+
+## d1debate（v2 示範關卡 D01 的論戰畫面，1280×720；v2 demo M2）
+
+依據：設計 `v2/11_demo_chapter.md` §13（說法選擇器、行動選擇列、對手的預兆面板、雙方的推理鏈、論破進度提示、三條心理量表、公開紀錄、抓住他的話、玩家的最後一張牌、殘局提示、態勢大字與小印）、§12.0（系統台詞樣板）；`docs/debate-engine-v2.md` §2。流圖 `flows/d01_debate_ui.xtflow`（`docs/flows.md` §4.12）寫全部 `in` port；書法大字與印章沿用 `cutin`。板子 `ui/boards/project/D1Debate.dc.html`。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `round_text` | string | in | `UI_V2_ROUND`（第 n 回合／20） |
+| `opp_name`、`opp_cred`、`ochain_title` | string | in | 名牌（`SPK_D01_CEDRIC`）、`UI_V2_CRED_OPP`、`UI_V2_CHAIN_OPP` |
+| `hp_me`、`hp_me_max`、`hp_opp`、`hp_opp_max` | number | in | 兩邊可信度（播放時逐筆跟著事件紀錄） |
+| `face` | number | in | 塞德里克的表情 0 平常、1 不安、2 困獸、3 憤怒、4 罪惡感（`char_cedric_*.png`） |
+| `band_p`、`band_g`、`band_a` | number | in | 壓力、罪惡感、怒氣的段：0 平常、1 浮動、2 失常（沒有數字） |
+| `combo_text`、`hachiku`、`guard_down`、`shisshu` | string、number、bool、bool | in | `UI_V2_COMBO`、破竹層數、他破防中（一般回合）、我方失守（`UI_V2_SHISHOU_HINT`） |
+| `ronpa_text`、`show_ronpa`、`ronpa_ready` | string、bool、bool | in | `UI_V2_RONPA_PROGRESS`（鏈長／4、爭點／2）；一般回合才顯示；他破防且鏈長 ≥ 3、爭點 ≥ 2 時亮 `UI_V2_RONPA_READY` |
+| `tell_on`、`tell_card`、`tell_partial`、`tell_clear`、`tell_a`、`tell_b`、`tell_star`、`tell_gesture` | | in | 預兆：一般回合與終局才顯示；他要說的牌（口誤時是前半句，前面加 `UI_V2_TELL_HESITATE`）；明示／模糊；候選行動 0 立論、1 強辯、2 反駁、3 周旋、4 最後一張牌（`tell_b` −1 ＝ 只有一個）；★ 的候選（−1 無，該格加 `UI_V2_TELL_LIKELY`）；明示時的小動作 |
+| `dying`、`dying_text` | bool、string | in | 垂死反撲（`UI_V2_DEATH_THROE`，{n} ＝ 10） |
+| `ochain` | list<struct{id, label, issue: string, sel: bool}> | in | 他的鏈（`d1OChain`），`sel` ＝ 選中的拆台／§7.5 目標 |
+| `pchain` | list<struct{id, label, issue: string, crack: number}> | in | 我方的鏈（`d1PChain`），`crack` ＝ 裂紋 |
+| `ev_list` | list<struct{id, name: string, sel: bool}> | in | 說法選擇器的證物欄（有說法可用的證物；抓住他的話在最前） |
+| `claims` | list<struct{id, label, issue, kind: string, soph: number, crack, stand, extra: string, ok: number, sel: bool}> | in | 選中證物的說法：`kind` 正論／詭辯、`crack` 紅色裂紋、`stand` 已在鏈上、`extra` 心理牌／私事（皆已在地化）；`ok` 0 ＝ 目前的行動不能用（灰、點了不收） |
+| `record` | list<struct{n: number, label, use, soph, crack, state: string}> | in | 公開紀錄：回合、說法、反駁、詭辯、裂紋、站著／被打掉 |
+| `mode`、`phase`、`act` | number | in | 0 一般、1 終局、2 §7.5、3 結束；0 選擇中、1 播放中、2 結束；選中的行動 1～7 |
+| `picker_on`、`can_dismantle`、`guard_ok`、`guard_armed`、`guard_left`、`can_lock`、`need_target` | bool | in | 說法選擇器、拆台可按、援護可按／已佈置／還有、鎖定可按、拆台還沒選目標（`UI_V2_REBUT_PICK_LINK`） |
+| `sel_claim_text`、`sel_target_text` | string | in | 確認列 |
+| `speech_who`、`speech`、`sys_line`、`line_seq` | string、string、string、number | in | 播放帶：說話者、台詞、系統台詞；`line_seq` 每換一句 +1 |
+| `float_opp`、`float_me`、`float_opp_seq`、`float_me_seq` | string、string、number、number | in | 浮動數字（序號變更時重播） |
+| `shatter_seq` | number | in | 論破：他的鏈碎掉 |
+| `grade_text`、`rounds_text`、`outcome_win` | string、string、bool | in | 結果框：`UI_V2_GRADE_<n>`、`UI_V2_RESULT_ROUNDS` |
+| `pick_act`、`pick_ev`、`pick_claim`、`pick_target` | number、string、string、string | out | 選行動（1 議論、2 截斷、3 拆台、4 打迷糊仗、5 終局截斷、6 承受／放棄、7 §7.5 反駁）、證物、說法、他鏈上的一節 |
+| `guard`、`lock`、`skip`、`back_title`、`settings` | event | out | 援護開關、鎖定、播放的下一筆、回到標題、設定（Esc／F1） |
+
+UI 側：背景 `bg_d01_parlour.jpg`；左上報頭（`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`round_text`）與公開紀錄鈕（`UI_V2_RECORD`，或 R：UI 自己的 `Open` 狀態，面板列出 `record`，`BTN_CLOSE` 關閉）；右側塞德里克立繪（五張依 `face`）、名牌、可信度條、破防銅牌、三條量表（三格依段點亮，旁邊 `UI_V2_GAUGE_CALM`／`FLOAT`／`BROKEN`）；上方他的鏈（可點的剪報卡）、中段說法選擇器（左證物、右說法）與預兆欄、我方可信度列、我方的鏈與論破進度、確認列；下方行動列（一般：`UI_V2_ACT_ARGUE`、`UI_V2_ACT_REBUT` 之下的 `UI_V2_REBUT_CUT`／`UI_V2_REBUT_TOPPLE`、`UI_V2_ACT_STALL`、`UI_V2_SUPPORT`；終局：`UI_V2_LAST_CARD_PROMPT`、`UI_V2_ENDGAME_CUT`、`UI_V2_ENDGAME_TAKE`；§7.5：`UI_V2_MY_LAST_CARD`、`UI_V2_ACT_REBUT`、`UI_V2_GIVE_UP_BTN`）與 `UI_V2_LOCK_IN`。播放中整個畫面可點（下一筆），播放帶蓋在中段。鍵盤：1～4、V（援護）、R、Enter（鎖定／下一筆）、Space、Esc／F1。
+
+字串鍵：上述 `UI_V2_*`、`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`STAMP_HACHIKU`、`BTN_CLOSE`；預留列（`source/localization/d01_placeholders.csv`，待設計補）：`SPK_D01_CEDRIC`、`UI_V2_GIVE_UP_BTN`、`UI_V2_RESULT_ROUNDS`。
+
+title 追加（v2 demo M2）：`v2demo`（event，out）＝ 主標題下方的「v2 示範關卡」項目（`UI_V2_TITLE_ENTRY`、`CHAP_D01_TITLE`、`UI_V2_DEMO_NOTE`）；`main` 切到 `d1debate`，`d01_debate_ui` 開始 D01 論戰。

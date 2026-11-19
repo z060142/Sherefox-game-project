@@ -4,6 +4,8 @@
 
 本里程碑只有遊戲邏輯：引擎流圖、衍生表與 headless 驗證。沒有 UI，`game.json` 沒有接上這張圖（v1 檔案一律不動）。
 
+M2（2026-11-19）：`game.json` 已接上（`tools/gen_flows.py` 把 §2 的訊號、集合與衍生表加進去，`flows` 中排在 `d01_debate_ui` 之後），論戰畫面見 `docs/flows.md` §4.12、`docs/ui-contracts.md` d1debate。
+
 ## 1. 檔案與產生方式
 
 | 檔案 | 內容 | 產生 |

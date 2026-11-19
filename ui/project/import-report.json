@@ -43,7 +43,13 @@
     "shared/img/st-stamp-trap-img.png",
     "shared/img/st-stamp-whiff-img.png",
     "shared/img/st-stamp-assist-img.png",
-    "shared/img/st-stamp-hachiku-lost-img.png"
+    "shared/img/st-stamp-hachiku-lost-img.png",
+    "shared/img/bg-d01-parlour.jpg",
+    "shared/img/cedric-composed.png",
+    "shared/img/cedric-uneasy.png",
+    "shared/img/cedric-cornered.png",
+    "shared/img/cedric-angry.png",
+    "shared/img/cedric-guilt.png"
   ],
   "bindings": [],
   "bundle": {
@@ -85,7 +91,7 @@
       "contentHash": "c9bd1334bb763015",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 55,
+      "line": 68,
       "outId": "kicker",
       "selfHash": "34ee05a2f36b589f",
       "sourceId": "Title.dc.html:1/0",
@@ -110,7 +116,7 @@
       "contentHash": "52373fe4ec62526b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 61,
+      "line": 74,
       "outId": "lang-label",
       "selfHash": "612af15ca1f61466",
       "sourceId": "Title.dc.html:1/1/0",
@@ -130,7 +136,7 @@
       "contentHash": "6df6d8fe670e465c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 65,
+      "line": 78,
       "outId": "lang-zh",
       "selfHash": "4c10043df79e5244",
       "sourceId": "Title.dc.html:1/1/1/0",
@@ -150,7 +156,7 @@
       "contentHash": "3cabe25c3eeb841a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 67,
+      "line": 80,
       "outId": "lang-en",
       "selfHash": "cbd4b27fcea17e83",
       "sourceId": "Title.dc.html:1/1/1/1",
@@ -179,7 +185,7 @@
       "contentHash": "479f5f2495856cd8",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 63,
+      "line": 76,
       "outId": "lang-switch",
       "selfHash": "d574f8e0e8d12ce8",
       "sourceId": "Title.dc.html:1/1/1",
@@ -206,7 +212,7 @@
       "contentHash": "2c4024de5df0c684",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 58,
+      "line": 71,
       "outId": "lang-toggle",
       "selfHash": "8f37f13d8d1698ae",
       "sourceId": "Title.dc.html:1/1",
@@ -228,7 +234,7 @@
       "contentHash": "9f8ae72ef13a4f78",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 72,
+      "line": 85,
       "outId": "rule-top",
       "selfHash": "74f353e1d4457593",
       "sourceId": "Title.dc.html:1/2",
@@ -253,7 +259,7 @@
       "contentHash": "d39477f38f9d66f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 80,
+      "line": 93,
       "outId": "masthead-art",
       "selfHash": "612390f61d339dbd",
       "sourceId": "Title.dc.html:1/3/0/0",
@@ -276,7 +282,7 @@
       "contentHash": "c0b20a76e06fdccd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 78,
+      "line": 91,
       "outId": "masthead",
       "selfHash": "7a94dd2856d2b8a1",
       "sourceId": "Title.dc.html:1/3/0",
@@ -300,7 +306,7 @@
       "contentHash": "26598414c8264761",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 83,
+      "line": 96,
       "outId": "mast-tick",
       "selfHash": "8112e663c7e1bc68",
       "sourceId": "Title.dc.html:1/3/1",
@@ -320,7 +326,7 @@
       "contentHash": "7052e1fd74148d7d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 77,
+      "line": 90,
       "outId": "mast-dock",
       "selfHash": "3d673906c470bc0a",
       "sourceId": "Title.dc.html:1/3",
@@ -344,7 +350,7 @@
       "contentHash": "9e9fc70be642bbe4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 92,
+      "line": 105,
       "outId": "rule-mast-thick",
       "selfHash": "4c775b55937b1764",
       "sourceId": "Title.dc.html:1/4",
@@ -368,7 +374,7 @@
       "contentHash": "0191409c641f5b6c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 94,
+      "line": 107,
       "outId": "rule-mast-thin",
       "selfHash": "ba2ed9e2ed01b1a9",
       "sourceId": "Title.dc.html:1/5",
@@ -397,7 +403,7 @@
       "contentHash": "a4730fd9b4bb56e3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 96,
+      "line": 109,
       "outId": "paper-name",
       "selfHash": "7bebc8cda4750ea5",
       "sourceId": "Title.dc.html:1/6",
@@ -421,7 +427,7 @@
       "contentHash": "92f1397661c102ee",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 100,
+      "line": 113,
       "outId": "rule-name",
       "selfHash": "530a8219c7de4986",
       "sourceId": "Title.dc.html:1/7",
@@ -444,7 +450,7 @@
       "contentHash": "feaac93aee4e7e80",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 107,
+      "line": 120,
       "outId": "lead-kicker",
       "selfHash": "49135128b83fafa1",
       "sourceId": "Title.dc.html:1/8/0",
@@ -475,7 +481,7 @@
       "contentHash": "b12acc56e4edb4dd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 109,
+      "line": 122,
       "outId": "lead-headline",
       "selfHash": "c2c91f544474b334",
       "sourceId": "Title.dc.html:1/8/1",
@@ -497,7 +503,7 @@
       "contentHash": "c13f55154d206bc7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 112,
+      "line": 125,
       "outId": "lead-rule",
       "selfHash": "3fd9c460f3f595e4",
       "sourceId": "Title.dc.html:1/8/2",
@@ -526,7 +532,7 @@
       "contentHash": "52b1c7201f0aeb26",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 113,
+      "line": 126,
       "outId": "lead-deck",
       "selfHash": "4bc899ed63aaaa42",
       "sourceId": "Title.dc.html:1/8/3",
@@ -549,11 +555,110 @@
       "contentHash": "c0e68cf51343fa54",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 104,
+      "line": 117,
       "outId": "lead",
       "selfHash": "8b0923b256c11e12",
       "sourceId": "Title.dc.html:1/8",
       "sourceName": "lead",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "v2-k"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "680px"
+        },
+        "text": "@UI_V2_TITLE_ENTRY"
+      },
+      "contentHash": "795409180f7a7f2d",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 134,
+      "outId": "btn-v2-k",
+      "selfHash": "d0d0738f7691dd70",
+      "sourceId": "Title.dc.html:1/9/0",
+      "sourceName": "btn-v2-k",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "v2-t"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "25px",
+          "width": "680px"
+        },
+        "text": "@CHAP_D01_TITLE"
+      },
+      "contentHash": "8b9ecd82dc50753b",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 135,
+      "outId": "btn-v2-t",
+      "selfHash": "d94af95318bdfb7a",
+      "sourceId": "Title.dc.html:1/9/1",
+      "sourceName": "btn-v2-t",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "v2-n"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "16px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "680px"
+        },
+        "text": "@UI_V2_DEMO_NOTE"
+      },
+      "contentHash": "e47d42b88091ea61",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 136,
+      "outId": "btn-v2-n",
+      "selfHash": "3cc7a2ea17fb560b",
+      "sourceId": "Title.dc.html:1/9/2",
+      "sourceName": "btn-v2-n",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "v2-entry",
+          "on:click": "emit(v2demo)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "anchor": "left bottom",
+          "offset": "16px 20px",
+          "size": "712px 78px"
+        }
+      },
+      "contentHash": "561a315e76394094",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 132,
+      "outId": "btn-v2",
+      "selfHash": "8c0bbcea1c0f115e",
+      "sourceId": "Title.dc.html:1/9",
+      "sourceName": "btn-v2",
       "ui": "title",
       "warnings": []
     },
@@ -573,10 +678,10 @@
       "contentHash": "1211d91114382c2c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 118,
+      "line": 139,
       "outId": "rule-column",
       "selfHash": "e6cf287badf98534",
-      "sourceId": "Title.dc.html:1/9",
+      "sourceId": "Title.dc.html:1/10",
       "sourceName": "rule-column",
       "ui": "title",
       "warnings": []
@@ -596,10 +701,10 @@
       "contentHash": "233dc16bea35b975",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 125,
+      "line": 146,
       "outId": "contents-heading",
       "selfHash": "05f293093193f70e",
-      "sourceId": "Title.dc.html:1/10/0",
+      "sourceId": "Title.dc.html:1/11/0",
       "sourceName": "contents-heading",
       "ui": "title",
       "warnings": []
@@ -619,10 +724,10 @@
       "contentHash": "c698067b17c6612d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 128,
+      "line": 149,
       "outId": "btn-ch1-no",
       "selfHash": "87f1f901f1e2b97b",
-      "sourceId": "Title.dc.html:1/10/1/0",
+      "sourceId": "Title.dc.html:1/11/1/0",
       "sourceName": "btn-ch1-no",
       "ui": "title",
       "warnings": []
@@ -641,10 +746,10 @@
       "contentHash": "d98d8c4159ff2bfa",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 129,
+      "line": 150,
       "outId": "btn-ch1-title",
       "selfHash": "d0c88b33f74cd4cc",
-      "sourceId": "Title.dc.html:1/10/1/1",
+      "sourceId": "Title.dc.html:1/11/1/1",
       "sourceName": "btn-ch1-title",
       "ui": "title",
       "warnings": []
@@ -663,10 +768,10 @@
       "contentHash": "8c72ed8d0703e3bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 127,
+      "line": 148,
       "outId": "btn-ch1",
       "selfHash": "4c2b9a5d56ba7057",
-      "sourceId": "Title.dc.html:1/10/1",
+      "sourceId": "Title.dc.html:1/11/1",
       "sourceName": "btn-ch1",
       "ui": "title",
       "warnings": []
@@ -686,10 +791,10 @@
       "contentHash": "d6e4ac83cf46e3d4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 132,
+      "line": 153,
       "outId": "btn-ch2-no",
       "selfHash": "d1cfd98f26e0e3ab",
-      "sourceId": "Title.dc.html:1/10/2/0",
+      "sourceId": "Title.dc.html:1/11/2/0",
       "sourceName": "btn-ch2-no",
       "ui": "title",
       "warnings": []
@@ -708,10 +813,10 @@
       "contentHash": "49aed684c6122047",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 133,
+      "line": 154,
       "outId": "btn-ch2-title",
       "selfHash": "9bcc2c1bc3b67e50",
-      "sourceId": "Title.dc.html:1/10/2/1",
+      "sourceId": "Title.dc.html:1/11/2/1",
       "sourceName": "btn-ch2-title",
       "ui": "title",
       "warnings": []
@@ -730,10 +835,10 @@
       "contentHash": "179994c2c6917c8f",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 131,
+      "line": 152,
       "outId": "btn-ch2",
       "selfHash": "9d9e043d79fee23d",
-      "sourceId": "Title.dc.html:1/10/2",
+      "sourceId": "Title.dc.html:1/11/2",
       "sourceName": "btn-ch2",
       "ui": "title",
       "warnings": []
@@ -753,10 +858,10 @@
       "contentHash": "a04e87a29f64a96d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 136,
+      "line": 157,
       "outId": "btn-ch3-no",
       "selfHash": "bfd22da34df1d8cf",
-      "sourceId": "Title.dc.html:1/10/3/0",
+      "sourceId": "Title.dc.html:1/11/3/0",
       "sourceName": "btn-ch3-no",
       "ui": "title",
       "warnings": []
@@ -775,10 +880,10 @@
       "contentHash": "47be5e010027e1bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 137,
+      "line": 158,
       "outId": "btn-ch3-title",
       "selfHash": "cd1763d84d255400",
-      "sourceId": "Title.dc.html:1/10/3/1",
+      "sourceId": "Title.dc.html:1/11/3/1",
       "sourceName": "btn-ch3-title",
       "ui": "title",
       "warnings": []
@@ -797,10 +902,10 @@
       "contentHash": "7d7f7ece068a2e21",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 135,
+      "line": 156,
       "outId": "btn-ch3",
       "selfHash": "aa57c5b222728017",
-      "sourceId": "Title.dc.html:1/10/3",
+      "sourceId": "Title.dc.html:1/11/3",
       "sourceName": "btn-ch3",
       "ui": "title",
       "warnings": []
@@ -818,10 +923,10 @@
       "contentHash": "288d57bd574181e7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 141,
+      "line": 162,
       "outId": "btn-settings",
       "selfHash": "39752d0adc7d8cac",
-      "sourceId": "Title.dc.html:1/10/4/0",
+      "sourceId": "Title.dc.html:1/11/4/0",
       "sourceName": "btn-settings",
       "ui": "title",
       "warnings": []
@@ -839,10 +944,10 @@
       "contentHash": "b4f992e68ec7b7bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 142,
+      "line": 163,
       "outId": "btn-quit",
       "selfHash": "055a7304fc7d830b",
-      "sourceId": "Title.dc.html:1/10/4/1",
+      "sourceId": "Title.dc.html:1/11/4/1",
       "sourceName": "btn-quit",
       "ui": "title",
       "warnings": []
@@ -866,10 +971,10 @@
       "contentHash": "a898afd287eaa972",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 139,
+      "line": 160,
       "outId": "contents-foot",
       "selfHash": "f6a12f5eb207b030",
-      "sourceId": "Title.dc.html:1/10/4",
+      "sourceId": "Title.dc.html:1/11/4",
       "sourceName": "contents-foot",
       "ui": "title",
       "warnings": []
@@ -889,10 +994,10 @@
       "contentHash": "47c52aecb61bef95",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 122,
+      "line": 143,
       "outId": "contents",
       "selfHash": "2a8b825ec8cb116f",
-      "sourceId": "Title.dc.html:1/10",
+      "sourceId": "Title.dc.html:1/11",
       "sourceName": "contents",
       "ui": "title",
       "warnings": []
@@ -911,10 +1016,10 @@
       "contentHash": "af23d1f1262aa2ef",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 146,
+      "line": 167,
       "outId": "rule-foot",
       "selfHash": "003a043cfa4db92f",
-      "sourceId": "Title.dc.html:1/11",
+      "sourceId": "Title.dc.html:1/12",
       "sourceName": "rule-foot",
       "ui": "title",
       "warnings": []
@@ -936,10 +1041,10 @@
       "contentHash": "9d9311710b97541a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 157,
+      "line": 178,
       "outId": "end-mast-art",
       "selfHash": "ad2d5f8afe181de8",
-      "sourceId": "Title.dc.html:1/12/0/0/0",
+      "sourceId": "Title.dc.html:1/13/0/0/0",
       "sourceName": "end-mast-art",
       "ui": "title",
       "warnings": []
@@ -959,10 +1064,10 @@
       "contentHash": "ad6641bf74edd5f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 156,
+      "line": 177,
       "outId": "end-mast",
       "selfHash": "924c2ac15ba401a2",
-      "sourceId": "Title.dc.html:1/12/0/0",
+      "sourceId": "Title.dc.html:1/13/0/0",
       "sourceName": "end-mast",
       "ui": "title",
       "warnings": []
@@ -983,10 +1088,10 @@
       "contentHash": "e56ea059a3df441b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 160,
+      "line": 181,
       "outId": "end-rule-a",
       "selfHash": "079b53f93c774f09",
-      "sourceId": "Title.dc.html:1/12/0/1",
+      "sourceId": "Title.dc.html:1/13/0/1",
       "sourceName": "end-rule-a",
       "ui": "title",
       "warnings": []
@@ -1007,10 +1112,10 @@
       "contentHash": "e9a6b2070b728379",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 161,
+      "line": 182,
       "outId": "end-rule-b",
       "selfHash": "dbde0159673de502",
-      "sourceId": "Title.dc.html:1/12/0/2",
+      "sourceId": "Title.dc.html:1/13/0/2",
       "sourceName": "end-rule-b",
       "ui": "title",
       "warnings": []
@@ -1032,10 +1137,10 @@
       "contentHash": "e9f02341ce2ad624",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 162,
+      "line": 183,
       "outId": "end-text",
       "selfHash": "dcb22d54c5ac6146",
-      "sourceId": "Title.dc.html:1/12/0/3",
+      "sourceId": "Title.dc.html:1/13/0/3",
       "sourceName": "end-text",
       "ui": "title",
       "warnings": []
@@ -1056,10 +1161,10 @@
       "contentHash": "5cd38174b78e8b4a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 165,
+      "line": 186,
       "outId": "end-rule-c",
       "selfHash": "887cf4238550165d",
-      "sourceId": "Title.dc.html:1/12/0/4",
+      "sourceId": "Title.dc.html:1/13/0/4",
       "sourceName": "end-rule-c",
       "ui": "title",
       "warnings": []
@@ -1080,10 +1185,10 @@
       "contentHash": "9786b658d0767466",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 166,
+      "line": 187,
       "outId": "end-rule-d",
       "selfHash": "39e60eba3b1187b6",
-      "sourceId": "Title.dc.html:1/12/0/5",
+      "sourceId": "Title.dc.html:1/13/0/5",
       "sourceName": "end-rule-d",
       "ui": "title",
       "warnings": []
@@ -1105,10 +1210,10 @@
       "contentHash": "f83a4f4f37e2dfa3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 167,
+      "line": 188,
       "outId": "end-name",
       "selfHash": "5d8ef2d558a3e80e",
-      "sourceId": "Title.dc.html:1/12/0/6",
+      "sourceId": "Title.dc.html:1/13/0/6",
       "sourceName": "end-name",
       "ui": "title",
       "warnings": []
@@ -1127,10 +1232,10 @@
       "contentHash": "e23b3fd5293d3bff",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 155,
+      "line": 176,
       "outId": "end-dock",
       "selfHash": "23ef726b795eae1a",
-      "sourceId": "Title.dc.html:1/12/0",
+      "sourceId": "Title.dc.html:1/13/0",
       "sourceName": "end-dock",
       "ui": "title",
       "warnings": []
@@ -1151,10 +1256,10 @@
       "contentHash": "14519bafcd9ebd0b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 151,
+      "line": 172,
       "outId": "end-card",
       "selfHash": "31a9c4841798bfb5",
-      "sourceId": "Title.dc.html:1/12",
+      "sourceId": "Title.dc.html:1/13",
       "sourceName": "end-card",
       "ui": "title",
       "warnings": []
@@ -1176,10 +1281,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "1dd19eb890c849d6",
+      "contentHash": "1a6481fc609b0be5",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 48,
+      "line": 61,
       "outId": "title",
       "selfHash": "aed19fb1d6d103ba",
       "sourceId": "Title.dc.html:1",
@@ -11664,10 +11769,10 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "s-e8d5ea"
+        },
         "decls": {
-          "background-color": "#f3eedfe6",
-          "effect": "shadow(3px 3px 0px 0px #092e2859)",
           "height": "52px",
           "left": "12px",
           "position": "absolute",
@@ -11675,12 +11780,12 @@
           "width": "800px"
         }
       },
-      "contentHash": "cc22770088f45f7c",
+      "contentHash": "c7e9c2bf5af1763f",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 277,
       "outId": "mast-bg",
-      "selfHash": "2b5130f4bc332029",
+      "selfHash": "d437dbb8d4825364",
       "sourceId": "Debate.dc.html:1/1/2",
       "sourceName": "mast-bg",
       "ui": "debate",
@@ -13858,24 +13963,23 @@
     {
       "base": {
         "attrs": {
-          "class": "bbtn-t"
+          "class": "bbtn-t s-872272"
         },
         "decls": {
           "height": "22px",
           "left": "0px",
           "position": "absolute",
-          "text-align": "center",
           "top": "-2px",
           "width": "120px"
         },
         "text": "@BTN_DEB_SOPH_NEW"
       },
-      "contentHash": "6bae5d9def0d4163",
+      "contentHash": "e87ecba1a71074ad",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 448,
       "outId": "improv-t",
-      "selfHash": "184efbbb614266cd",
+      "selfHash": "d27532a6d469e938",
       "sourceId": "Debate.dc.html:1/1/9/3/0",
       "sourceName": "improv-t",
       "ui": "debate",
@@ -13896,7 +14000,7 @@
           "width": "120px"
         }
       },
-      "contentHash": "9f1b5254d99984df",
+      "contentHash": "33e7fbf86581ddb7",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 445,
@@ -13925,7 +14029,7 @@
           "width": "300px"
         }
       },
-      "contentHash": "67b3630a334b8403",
+      "contentHash": "5de6d67e0baee357",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 439,
@@ -14065,9 +14169,10 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "s-614666"
+        },
         "decls": {
-          "background-color": "#123a31",
           "height": "1px",
           "left": "10px",
           "position": "absolute",
@@ -14075,12 +14180,12 @@
           "width": "270px"
         }
       },
-      "contentHash": "1dc1136746f1579d",
+      "contentHash": "2b751ae44d76c13d",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 464,
       "outId": "tell-rule",
-      "selfHash": "83365c07584cbb2e",
+      "selfHash": "8220b1625ae6f20d",
       "sourceId": "Debate.dc.html:1/1/10/2",
       "sourceName": "tell-rule",
       "ui": "debate",
@@ -15233,7 +15338,7 @@
           "width": "290px"
         }
       },
-      "contentHash": "7b522deaa8cd2aa6",
+      "contentHash": "2fff1f468183bc4f",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 454,
@@ -21158,7 +21263,7 @@
           "width": "1280px"
         }
       },
-      "contentHash": "b61debc4ae36da8c",
+      "contentHash": "7ae8b5ed548d56f8",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 253,
@@ -21231,7 +21336,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "3062191146f6df3d",
+      "contentHash": "40a4fc1b5de32e40",
       "fidelity": "High",
       "file": "Debate.dc.html",
       "line": 243,
@@ -26812,6 +26917,4842 @@
       "sourceName": "Settings",
       "ui": "settings",
       "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "src": "../shared/img/bg-d01-parlour.jpg"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen",
+          "object-fit": "cover"
+        }
+      },
+      "contentHash": "c1c4fb537833a284",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 186,
+      "outId": "bg-d01-parlour",
+      "selfHash": "996b88243b3ea95a",
+      "sourceId": "D1Debate.dc.html:1/0",
+      "sourceName": "bg-d01-parlour",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "face | eq(0)",
+          "class": "s-b00406",
+          "src": "../shared/img/cedric-composed.png"
+        },
+        "decls": {
+          "height": "465px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "3ef7bb6ea02d1966",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 195,
+      "outId": "cedric-composed",
+      "selfHash": "d7a24c667e1c3ca9",
+      "sourceId": "D1Debate.dc.html:1/1/0/0",
+      "sourceName": "cedric-composed",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "face | eq(1)",
+          "class": "s-b00406",
+          "src": "../shared/img/cedric-uneasy.png"
+        },
+        "decls": {
+          "height": "465px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "aa5fe851af7a0da6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 196,
+      "outId": "cedric-uneasy",
+      "selfHash": "c2eeadadd9750f6a",
+      "sourceId": "D1Debate.dc.html:1/1/0/1",
+      "sourceName": "cedric-uneasy",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "face | eq(2)",
+          "class": "s-b00406",
+          "src": "../shared/img/cedric-cornered.png"
+        },
+        "decls": {
+          "height": "465px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "11b096e100c17c48",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 197,
+      "outId": "cedric-cornered",
+      "selfHash": "47f68be2baf1d07f",
+      "sourceId": "D1Debate.dc.html:1/1/0/2",
+      "sourceName": "cedric-cornered",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "face | eq(3)",
+          "class": "s-b00406",
+          "src": "../shared/img/cedric-angry.png"
+        },
+        "decls": {
+          "height": "465px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "8035afa38dc357c3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 198,
+      "outId": "cedric-angry",
+      "selfHash": "216ca6614b8e646a",
+      "sourceId": "D1Debate.dc.html:1/1/0/3",
+      "sourceName": "cedric-angry",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "face | eq(4)",
+          "class": "s-b00406",
+          "src": "../shared/img/cedric-guilt.png"
+        },
+        "decls": {
+          "height": "465px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "39410bb5c83cc4bb",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 199,
+      "outId": "cedric-guilt",
+      "selfHash": "7266076a19035779",
+      "sourceId": "D1Debate.dc.html:1/1/0/4",
+      "sourceName": "cedric-guilt",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "465px",
+          "left": "968px",
+          "position": "absolute",
+          "top": "52px",
+          "width": "310px"
+        }
+      },
+      "contentHash": "89f76edbe1adb387",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 193,
+      "outId": "opp-fig",
+      "selfHash": "71365ecb7657732f",
+      "sourceId": "D1Debate.dc.html:1/1/0",
+      "sourceName": "opp-fig",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "opp_name",
+          "class": "opp-name"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "250px"
+        },
+        "text": "塞德里克"
+      },
+      "contentHash": "477c78a18fb1e8ad",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 202,
+      "outId": "opp-name",
+      "selfHash": "3e36efc61a0a3e24",
+      "sourceId": "D1Debate.dc.html:1/1/1/0",
+      "sourceName": "opp-name",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "name-plate"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "1000px",
+          "position": "absolute",
+          "top": "512px",
+          "width": "250px"
+        }
+      },
+      "contentHash": "3b523f4544972a46",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 201,
+      "outId": "opp-plate",
+      "selfHash": "b09b638db5860f32",
+      "sourceId": "D1Debate.dc.html:1/1/1",
+      "sourceName": "opp-plate",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-e8d5ea"
+        },
+        "decls": {
+          "height": "44px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "600px"
+        }
+      },
+      "contentHash": "19a8269baaceadee",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 206,
+      "outId": "mast-bg",
+      "selfHash": "f64c063c7aca9db3",
+      "sourceId": "D1Debate.dc.html:1/1/2",
+      "sourceName": "mast-bg",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "mast-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px"
+        },
+        "text": "@UI_PAPER_MAST"
+      },
+      "contentHash": "c1debcafd166d062",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 208,
+      "outId": "mast-name",
+      "selfHash": "a4578f86d2cfb95c",
+      "sourceId": "D1Debate.dc.html:1/1/3/0",
+      "sourceName": "mast-name",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "extra"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "26px",
+          "width": "64px"
+        },
+        "text": "@UI_PAPER_EXTRA"
+      },
+      "contentHash": "96a0ea49aa325a7e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 209,
+      "outId": "mast-extra",
+      "selfHash": "2c37a84ce1fbbc92",
+      "sourceId": "D1Debate.dc.html:1/1/3/1",
+      "sourceName": "mast-extra",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "round_text",
+          "class": "round"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px"
+        },
+        "text": "第 3 回合／20"
+      },
+      "contentHash": "8b2ab1352fcdc09b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 210,
+      "outId": "round",
+      "selfHash": "613b5313f4e1febc",
+      "sourceId": "D1Debate.dc.html:1/1/3/2",
+      "sourceName": "round",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "12px",
+          "height": "30px",
+          "left": "22px",
+          "position": "absolute",
+          "top": "13px",
+          "width": "584px"
+        }
+      },
+      "contentHash": "ca3c832604cac4ef",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 207,
+      "outId": "mast",
+      "selfHash": "9b959e24cb54e915",
+      "sourceId": "D1Debate.dc.html:1/1/3",
+      "sourceName": "mast",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn-t"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "2px",
+          "width": "180px"
+        },
+        "text": "@UI_V2_RECORD"
+      },
+      "contentHash": "58dfe66e1168f077",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 214,
+      "outId": "btn-record-t",
+      "selfHash": "26b72e206b74781a",
+      "sourceId": "D1Debate.dc.html:1/1/4/0",
+      "sourceName": "btn-record-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn",
+          "on:click(left)": "state(Open, toggle, target=#record)"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "624px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "188px"
+        }
+      },
+      "contentHash": "abd951276eed5455",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 212,
+      "outId": "btn-record",
+      "selfHash": "cd819117fdf53ed4",
+      "sourceId": "D1Debate.dc.html:1/1/4",
+      "sourceName": "btn-record",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "opp_cred",
+          "class": "cred-l"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "300px"
+        },
+        "text": "塞德里克 的可信度"
+      },
+      "contentHash": "4a9eed91e6af9efc",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 219,
+      "outId": "opp-cred-l",
+      "selfHash": "c319df4892daf029",
+      "sourceId": "D1Debate.dc.html:1/1/5/0",
+      "sourceName": "opp-cred-l",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('{0} / {1}', hp_opp, hp_opp_max)",
+          "class": "cred-n"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "310px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "124px"
+        },
+        "text": "180.5 / 230"
+      },
+      "contentHash": "b6c0e1cf7e4c7990",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 220,
+      "outId": "opp-cred-n",
+      "selfHash": "11eba7ca9fa292eb",
+      "sourceId": "D1Debate.dc.html:1/1/5/1",
+      "sourceName": "opp-cred-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:width": "hp_opp | range(0, hp_opp_max, 0%, 100%)",
+          "class": "fill-opp"
+        },
+        "decls": {
+          "height": "12px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "78%"
+        }
+      },
+      "contentHash": "6c51144e820b2e39",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 222,
+      "outId": "opp-fill",
+      "selfHash": "9ef305e148fa8472",
+      "sourceId": "D1Debate.dc.html:1/1/5/2/0",
+      "sourceName": "opp-fill",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "track"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "27px",
+          "width": "424px"
+        }
+      },
+      "contentHash": "dc3f93e6d1b92a89",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 221,
+      "outId": "opp-track",
+      "selfHash": "c9357a0fce3bfcf8",
+      "sourceId": "D1Debate.dc.html:1/1/5/2",
+      "sourceName": "opp-track",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "paper"
+        },
+        "decls": {
+          "height": "50px",
+          "left": "824px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "444px"
+        }
+      },
+      "contentHash": "0accd627dc97a1fd",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 218,
+      "outId": "opp-cred",
+      "selfHash": "3325bde3ff9e63ce",
+      "sourceId": "D1Debate.dc.html:1/1/5",
+      "sourceName": "opp-cred",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "float_opp",
+          "class": "float"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "1080px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "180px"
+        },
+        "text": "−20"
+      },
+      "contentHash": "297d3c634657071d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 225,
+      "outId": "float-opp",
+      "selfHash": "1dea2308f2188e06",
+      "sourceId": "D1Debate.dc.html:1/1/6",
+      "sourceName": "float-opp",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "height": "24px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "1px",
+          "width": "118px"
+        },
+        "text": "@UI_V2_GUARD_DOWN"
+      },
+      "contentHash": "27500b67b33fe84d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 229,
+      "outId": "guard-down-t",
+      "selfHash": "e4312b19d4afe42a",
+      "sourceId": "D1Debate.dc.html:1/1/7/0",
+      "sourceName": "guard-down-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "guard_down",
+          "class": "plate red"
+        },
+        "decls": {
+          "height": "26px",
+          "left": "836px",
+          "position": "absolute",
+          "top": "64px",
+          "width": "126px"
+        }
+      },
+      "contentHash": "2b49bc65ee380f3d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 228,
+      "outId": "guard-down",
+      "selfHash": "8d44e6a5835908d2",
+      "sourceId": "D1Debate.dc.html:1/1/7",
+      "sourceName": "guard-down",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-name"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "70px"
+        },
+        "text": "@UI_V2_GAUGE_PRESSURE"
+      },
+      "contentHash": "0d6e45cbbce0c113",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 233,
+      "outId": "g-p-n",
+      "selfHash": "cafa88f6c5998555",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/0",
+      "sourceName": "g-p-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_CALM"
+      },
+      "contentHash": "f4cd0693939e4eaa",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 234,
+      "outId": "g-p-b0",
+      "selfHash": "f3178af9035473d8",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/1",
+      "sourceName": "g-p-b0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_FLOAT"
+      },
+      "contentHash": "3a17ac38b75c153a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 235,
+      "outId": "g-p-b1",
+      "selfHash": "b3467b7166f807a3",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/2",
+      "sourceName": "g-p-b1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_BROKEN"
+      },
+      "contentHash": "b35fc288112189f3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 236,
+      "outId": "g-p-b2",
+      "selfHash": "8921c45c055043f6",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/3",
+      "sourceName": "g-p-b2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s1"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "b108cbee90ac2ebf",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 237,
+      "outId": "g-p-s1",
+      "selfHash": "6cef1a2e0eae94ba",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/4",
+      "sourceName": "g-p-s1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s2"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "46px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "213d4ff617e47f5b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 238,
+      "outId": "g-p-s2",
+      "selfHash": "d7df255221e59b34",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/5",
+      "sourceName": "g-p-s2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s3"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "92px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "d5ee1d27012a9f53",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 239,
+      "outId": "g-p-s3",
+      "selfHash": "c3d7680c807222d9",
+      "sourceId": "D1Debate.dc.html:1/1/8/0/6",
+      "sourceName": "g-p-s3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.b0": "band_p | eq(0)",
+          "bind:class.b1": "band_p | eq(1)",
+          "bind:class.b2": "band_p | eq(2)",
+          "class": "gauge"
+        },
+        "decls": {
+          "height": "50px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "134px"
+        }
+      },
+      "contentHash": "427ecc66f77058e2",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 232,
+      "outId": "g-p",
+      "selfHash": "cb246ca5b22a6a0a",
+      "sourceId": "D1Debate.dc.html:1/1/8/0",
+      "sourceName": "g-p",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-name"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "70px"
+        },
+        "text": "@UI_V2_GAUGE_GUILT"
+      },
+      "contentHash": "802b7596b36a9b69",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 242,
+      "outId": "g-g-n",
+      "selfHash": "42014b66234a4092",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/0",
+      "sourceName": "g-g-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_CALM"
+      },
+      "contentHash": "2146d680338bcd8d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 243,
+      "outId": "g-g-b0",
+      "selfHash": "040df248bb57fbbf",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/1",
+      "sourceName": "g-g-b0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_FLOAT"
+      },
+      "contentHash": "aec4720d9379b6a6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 244,
+      "outId": "g-g-b1",
+      "selfHash": "d1f5e925a152d852",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/2",
+      "sourceName": "g-g-b1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_BROKEN"
+      },
+      "contentHash": "882586ee4be35746",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 245,
+      "outId": "g-g-b2",
+      "selfHash": "f44506d4a35a341d",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/3",
+      "sourceName": "g-g-b2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s1"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "75b7c879c34078d6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 246,
+      "outId": "g-g-s1",
+      "selfHash": "59e18c9cf8196ecd",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/4",
+      "sourceName": "g-g-s1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s2"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "46px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "e7f569b6881dc430",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 247,
+      "outId": "g-g-s2",
+      "selfHash": "7bc93c7cd64870b1",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/5",
+      "sourceName": "g-g-s2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s3"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "92px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "e03b601f9c6cef31",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 248,
+      "outId": "g-g-s3",
+      "selfHash": "a0b8a540f525a804",
+      "sourceId": "D1Debate.dc.html:1/1/8/1/6",
+      "sourceName": "g-g-s3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.b0": "band_g | eq(0)",
+          "bind:class.b1": "band_g | eq(1)",
+          "bind:class.b2": "band_g | eq(2)",
+          "class": "gauge"
+        },
+        "decls": {
+          "height": "50px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "60px",
+          "width": "134px"
+        }
+      },
+      "contentHash": "1d9200a0ae4a2252",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 241,
+      "outId": "g-g",
+      "selfHash": "aad3843ec6aa66e2",
+      "sourceId": "D1Debate.dc.html:1/1/8/1",
+      "sourceName": "g-g",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-name"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "70px"
+        },
+        "text": "@UI_V2_GAUGE_ANGER"
+      },
+      "contentHash": "e466b5eedcea0172",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 251,
+      "outId": "g-a-n",
+      "selfHash": "c336dde53d365bc8",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/0",
+      "sourceName": "g-a-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-0"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_CALM"
+      },
+      "contentHash": "912b7fdd822ae591",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 252,
+      "outId": "g-a-b0",
+      "selfHash": "b4ed0d946146bf29",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/1",
+      "sourceName": "g-a-b0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-1"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_FLOAT"
+      },
+      "contentHash": "8277608733c30f5c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 253,
+      "outId": "g-a-b1",
+      "selfHash": "c8c4d6c9e85f3994",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/2",
+      "sourceName": "g-a-b1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "g-band gb-2"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "66px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "68px"
+        },
+        "text": "@UI_V2_GAUGE_BROKEN"
+      },
+      "contentHash": "70bb4bfbde69a22f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 254,
+      "outId": "g-a-b2",
+      "selfHash": "16bbfd5bb8e92ddf",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/3",
+      "sourceName": "g-a-b2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s1"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "86a3d4469e70daf1",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 255,
+      "outId": "g-a-s1",
+      "selfHash": "9003f955f2cd5267",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/4",
+      "sourceName": "g-a-s1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s2"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "46px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "379980c52314a97c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 256,
+      "outId": "g-a-s2",
+      "selfHash": "48893d19542c7cab",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/5",
+      "sourceName": "g-a-s2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "seg s3"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "92px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "42px"
+        }
+      },
+      "contentHash": "6f59584fd663229f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 257,
+      "outId": "g-a-s3",
+      "selfHash": "59c73d3c8f1fe816",
+      "sourceId": "D1Debate.dc.html:1/1/8/2/6",
+      "sourceName": "g-a-s3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.b0": "band_a | eq(0)",
+          "bind:class.b1": "band_a | eq(1)",
+          "bind:class.b2": "band_a | eq(2)",
+          "class": "gauge"
+        },
+        "decls": {
+          "height": "50px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "114px",
+          "width": "134px"
+        }
+      },
+      "contentHash": "811e90f11e3cdb42",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 250,
+      "outId": "g-a",
+      "selfHash": "13c5dc8ad99f3ebe",
+      "sourceId": "D1Debate.dc.html:1/1/8/2",
+      "sourceName": "g-a",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "paper"
+        },
+        "decls": {
+          "height": "172px",
+          "left": "824px",
+          "position": "absolute",
+          "top": "96px",
+          "width": "150px"
+        }
+      },
+      "contentHash": "cb70155b10cd469f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 231,
+      "outId": "psych",
+      "selfHash": "078bf6c05adc6ff3",
+      "sourceId": "D1Debate.dc.html:1/1/8",
+      "sourceName": "psych",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "ochain_title",
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "380px"
+        },
+        "text": "塞德里克 的推理鏈"
+      },
+      "contentHash": "ac4d6bf06b083a2e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 263,
+      "outId": "ochain-title",
+      "selfHash": "414432e6f3a17ac8",
+      "sourceId": "D1Debate.dc.html:1/1/9/0",
+      "sourceName": "ochain-title",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "need_target",
+          "class": "kicker"
+        },
+        "decls": {
+          "color": "#b8322a",
+          "height": "18px",
+          "left": "400px",
+          "position": "absolute",
+          "text-align": "right",
+          "text-transform": "none",
+          "top": "3px",
+          "width": "390px"
+        },
+        "text": "@UI_V2_REBUT_PICK_LINK"
+      },
+      "contentHash": "4fa1b94e39ee26ed",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 264,
+      "outId": "ochain-hint",
+      "selfHash": "a9120014ed33bca7",
+      "sourceId": "D1Debate.dc.html:1/1/9/1",
+      "sourceName": "ochain-hint",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ochain | item(0) | item(id) | eq('')",
+          "class": "empty"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "400px"
+        },
+        "text": "@UI_V2_CHAIN_EMPTY"
+      },
+      "contentHash": "d696b3598cfb95ec",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 266,
+      "outId": "ochain-empty",
+      "selfHash": "ba0ce5e9cb79b67e",
+      "sourceId": "D1Debate.dc.html:1/1/9/2",
+      "sourceName": "ochain-empty",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(issue)",
+          "class": "iss"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "34px"
+        },
+        "text": "機"
+      },
+      "contentHash": "3ca91fdc912d819e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 273,
+      "outId": "oc-iss",
+      "selfHash": "22e9e19454ac85f2",
+      "sourceId": "D1Debate.dc.html:1/1/9/3/0/0",
+      "sourceName": "oc-iss",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "chip-t"
+        },
+        "decls": {
+          "height": "45px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "21px",
+          "width": "96px"
+        },
+        "text": "整晚守在靈柩旁"
+      },
+      "contentHash": "ef540d9647752932",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 274,
+      "outId": "oc-t",
+      "selfHash": "d170c8cd8e221483",
+      "sourceId": "D1Debate.dc.html:1/1/9/3/0/1",
+      "sourceName": "oc-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.sel": "item(sel)",
+          "class": "chip click",
+          "on:click(left)": "if port(phase) eq 0 set(pick_target, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "68px",
+          "position": "relative",
+          "width": "106px"
+        }
+      },
+      "contentHash": "59c8496433544a3b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 271,
+      "outId": "oc",
+      "selfHash": "7652632f7f0e40d2",
+      "sourceId": "D1Debate.dc.html:1/1/9/3/0",
+      "sourceName": "oc",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "ochain"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "height": "70px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "788px"
+        }
+      },
+      "contentHash": "be6dd845c917a837",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 268,
+      "outId": "ochain",
+      "selfHash": "a264bd941b2edec1",
+      "sourceId": "D1Debate.dc.html:1/1/9/3",
+      "sourceName": "ochain",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "paper"
+        },
+        "decls": {
+          "height": "100px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "800px"
+        }
+      },
+      "contentHash": "39d4bcf2ae79ef41",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 262,
+      "outId": "ochain-box",
+      "selfHash": "6c97c28d606b2066",
+      "sourceId": "D1Debate.dc.html:1/1/9",
+      "sourceName": "ochain-box",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "180px"
+        },
+        "text": "@UI_V2_PICK_EVIDENCE"
+      },
+      "contentHash": "e5b7f88966606147",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 281,
+      "outId": "pk-ev-k",
+      "selfHash": "e624ad1f8010c1ce",
+      "sourceId": "D1Debate.dc.html:1/1/10/0",
+      "sourceName": "pk-ev-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "evc-t"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "174px"
+        },
+        "text": "黃銅文件筒（空）"
+      },
+      "contentHash": "4f30e7a78ddf2aac",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 286,
+      "outId": "evc-t",
+      "selfHash": "f7e04bab5d3d1f5b",
+      "sourceId": "D1Debate.dc.html:1/1/10/1/0/0/0",
+      "sourceName": "evc-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.sel": "item(sel)",
+          "class": "evc",
+          "on:click(left)": "if port(phase) eq 0 set(pick_ev, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "position": "relative",
+          "width": "184px"
+        }
+      },
+      "contentHash": "9a1982069c7b41c6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 284,
+      "outId": "evc",
+      "selfHash": "3e6219155870590c",
+      "sourceId": "D1Debate.dc.html:1/1/10/1/0/0",
+      "sourceName": "evc",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "ev_list"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "2px",
+          "width": "184px"
+        }
+      },
+      "contentHash": "aea4622dd9e8553b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 283,
+      "outId": "evs",
+      "selfHash": "69bd3fad878be97d",
+      "sourceId": "D1Debate.dc.html:1/1/10/1/0",
+      "sourceName": "evs",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "212px",
+          "left": "8px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "24px",
+          "width": "190px"
+        }
+      },
+      "contentHash": "d9af4f63d49226b6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 282,
+      "outId": "pk-ev-scroll",
+      "selfHash": "f78a9ae2f1e88dd6",
+      "sourceId": "D1Debate.dc.html:1/1/10/1",
+      "sourceName": "pk-ev-scroll",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "208px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "318px"
+        },
+        "text": "@UI_V2_PICK_CLAIM"
+      },
+      "contentHash": "d38c05acc7c9639a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 290,
+      "outId": "pk-cl-k",
+      "selfHash": "ec376175ce88f5b9",
+      "sourceId": "D1Debate.dc.html:1/1/10/2",
+      "sourceName": "pk-cl-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(kind)",
+          "class": "clm-kind"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "72px"
+        },
+        "text": "正論"
+      },
+      "contentHash": "1be9f5edc226551b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 296,
+      "outId": "clm-kind",
+      "selfHash": "c4cd9a039053b749",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/0",
+      "sourceName": "clm-kind",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "clm-t"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "84px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "226px"
+        },
+        "text": "鎖匠傍晚就走了"
+      },
+      "contentHash": "c54d46f723a3e6d4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 297,
+      "outId": "clm-t",
+      "selfHash": "e9c62d5ddbb9ccbf",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/1",
+      "sourceName": "clm-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(issue)",
+          "class": "iss"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "16px",
+          "width": "34px"
+        },
+        "text": "機"
+      },
+      "contentHash": "55a5d9560673ba5a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 299,
+      "outId": "clm-iss",
+      "selfHash": "7e5b92f04af8f8e9",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/2/0",
+      "sourceName": "clm-iss",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(crack)",
+          "class": "tag tag-red"
+        },
+        "decls": {
+          "height": "16px"
+        },
+        "text": "與妳說過的話矛盾"
+      },
+      "contentHash": "f3b44af7c50b34e6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 300,
+      "outId": "clm-crack",
+      "selfHash": "114d5a6da7d33cc7",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/2/1",
+      "sourceName": "clm-crack",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(stand)",
+          "class": "tag tag-ink"
+        },
+        "decls": {
+          "height": "16px"
+        }
+      },
+      "contentHash": "bcf590d895742cc3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 301,
+      "outId": "clm-stand",
+      "selfHash": "70a3cdfecb439015",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/2/2",
+      "sourceName": "clm-stand",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(extra)",
+          "class": "tag tag-cu"
+        },
+        "decls": {
+          "height": "16px"
+        }
+      },
+      "contentHash": "2185899be6c656a6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 302,
+      "outId": "clm-extra",
+      "selfHash": "10aa626793331bdf",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/2/3",
+      "sourceName": "clm-extra",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "8px",
+          "height": "16px",
+          "left": "6px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "27px",
+          "width": "304px"
+        }
+      },
+      "contentHash": "8b7e35263534957c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 298,
+      "outId": "clm-tags",
+      "selfHash": "98817ea24ea34769",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0/2",
+      "sourceName": "clm-tags",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "item(ok) | eq(0)",
+          "bind:class.sel": "item(sel)",
+          "bind:class.soph": "item(soph) | eq(1)",
+          "class": "clm",
+          "on:click(left)": "if port(phase) eq 0 set(pick_claim, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "48px",
+          "position": "relative",
+          "width": "318px"
+        }
+      },
+      "contentHash": "24df6c6add64565d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 293,
+      "outId": "clm",
+      "selfHash": "c1f2b112e00a6f10",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0/0",
+      "sourceName": "clm",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "claims"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "width": "318px"
+        }
+      },
+      "contentHash": "bbc712cab819ca65",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 292,
+      "outId": "cls",
+      "selfHash": "9c7812e6b820fc55",
+      "sourceId": "D1Debate.dc.html:1/1/10/3/0",
+      "sourceName": "cls",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "212px",
+          "left": "206px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "24px",
+          "width": "324px"
+        }
+      },
+      "contentHash": "51c18c38420c5a34",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 291,
+      "outId": "pk-cl-scroll",
+      "selfHash": "2ae1ed19a12930b9",
+      "sourceId": "D1Debate.dc.html:1/1/10/3",
+      "sourceName": "pk-cl-scroll",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "picker_on",
+          "class": "paper"
+        },
+        "decls": {
+          "height": "244px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "164px",
+          "width": "536px"
+        }
+      },
+      "contentHash": "517d749da8889b06",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 280,
+      "outId": "picker",
+      "selfHash": "da7b472728931099",
+      "sourceId": "D1Debate.dc.html:1/1/10",
+      "sourceName": "picker",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | ne(1)",
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "240px"
+        },
+        "text": "@UI_V2_TELL_HEAD"
+      },
+      "contentHash": "f8b6db7285e9ec22",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 312,
+      "outId": "tell-head",
+      "selfHash": "2da4dc1f57a86339",
+      "sourceId": "D1Debate.dc.html:1/1/11/0",
+      "sourceName": "tell-head",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "font-size": "13px",
+          "height": "24px",
+          "left": "2px",
+          "position": "absolute",
+          "top": "-1px",
+          "width": "176px"
+        },
+        "text": "@UI_V2_LAST_CARD"
+      },
+      "contentHash": "2f0bf8a8b74a7cf1",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 314,
+      "outId": "tell-last-t",
+      "selfHash": "a273f75ca6297fc2",
+      "sourceId": "D1Debate.dc.html:1/1/11/1/0",
+      "sourceName": "tell-last-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | eq(1)",
+          "class": "plate red"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "2px",
+          "width": "180px"
+        }
+      },
+      "contentHash": "cd36979976f78e3d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 313,
+      "outId": "tell-last",
+      "selfHash": "312be5c81ce329a5",
+      "sourceId": "D1Debate.dc.html:1/1/11/1",
+      "sourceName": "tell-last",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_partial",
+          "class": "tell-hes"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "224px"
+        },
+        "text": "@UI_V2_TELL_HESITATE"
+      },
+      "contentHash": "f2d91cbb6cf86b78",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 317,
+      "outId": "tell-hes",
+      "selfHash": "f3636587eaa6768c",
+      "sourceId": "D1Debate.dc.html:1/1/11/2/0",
+      "sourceName": "tell-hes",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "tell_card",
+          "class": "tell-card"
+        },
+        "decls": {
+          "height": "62px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "224px"
+        },
+        "text": "鎖匠碰過筒子、有萬用鑰匙"
+      },
+      "contentHash": "85641a1cc3d14cde",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 318,
+      "outId": "tell-card",
+      "selfHash": "ba36a8d0bcba1447",
+      "sourceId": "D1Debate.dc.html:1/1/11/2/1",
+      "sourceName": "tell-card",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_card | ne('')",
+          "class": "bubble"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "240px"
+        }
+      },
+      "contentHash": "7de091b4845416ea",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 316,
+      "outId": "tell-bubble",
+      "selfHash": "41e652d19fd57942",
+      "sourceId": "D1Debate.dc.html:1/1/11/2",
+      "sourceName": "tell-bubble",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_clear",
+          "class": "clar"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "116px",
+          "width": "240px"
+        },
+        "text": "@UI_V2_TELL_CLEAR"
+      },
+      "contentHash": "6f714a97994756e7",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 320,
+      "outId": "clar-c",
+      "selfHash": "595532ba243f7fd8",
+      "sourceId": "D1Debate.dc.html:1/1/11/3",
+      "sourceName": "clar-c",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_clear | not",
+          "class": "clar"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "116px",
+          "width": "240px"
+        },
+        "text": "@UI_V2_TELL_VAGUE"
+      },
+      "contentHash": "bd1b3d5d9bb94970",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 321,
+      "outId": "clar-v",
+      "selfHash": "a86bf4353321ad0d",
+      "sourceId": "D1Debate.dc.html:1/1/11/4",
+      "sourceName": "clar-v",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-0"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_ASSERT"
+      },
+      "contentHash": "9dccee3f6fa48956",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 325,
+      "outId": "cand-a-0",
+      "selfHash": "76f48866f3891331",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/0",
+      "sourceName": "cand-a-0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-1"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_PRESS"
+      },
+      "contentHash": "1c198bc4292e400a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 326,
+      "outId": "cand-a-1",
+      "selfHash": "9c444cbbf20b5740",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/1",
+      "sourceName": "cand-a-1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-2"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_REBUT"
+      },
+      "contentHash": "5d9a9b798a7ba15f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 327,
+      "outId": "cand-a-2",
+      "selfHash": "c45d4305d3eef7bd",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/2",
+      "sourceName": "cand-a-2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-3"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_DODGE"
+      },
+      "contentHash": "e9303375a942d15e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 328,
+      "outId": "cand-a-3",
+      "selfHash": "04740c4e27c7684c",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/3",
+      "sourceName": "cand-a-3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-4"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_LAST_CARD"
+      },
+      "contentHash": "9ad0fbc40a997b29",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 329,
+      "outId": "cand-a-4",
+      "selfHash": "c04c88180708c0c6",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/4",
+      "sourceName": "cand-a-4",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "likely"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "27px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_TELL_LIKELY"
+      },
+      "contentHash": "ff4fcf410e310749",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 330,
+      "outId": "cand-a-lk",
+      "selfHash": "77cd6fc2dea9d00c",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0/5",
+      "sourceName": "cand-a-lk",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.a0": "tell_a | eq(0)",
+          "bind:class.a1": "tell_a | eq(1)",
+          "bind:class.a2": "tell_a | eq(2)",
+          "bind:class.a3": "tell_a | eq(3)",
+          "bind:class.a4": "tell_a | eq(4)",
+          "bind:class.star": "tell_star | eq(0)",
+          "class": "cand"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "46px",
+          "position": "relative",
+          "width": "108px"
+        }
+      },
+      "contentHash": "2b2618506ede83d0",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 323,
+      "outId": "cand-a",
+      "selfHash": "a3506557cf3e75ad",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/0",
+      "sourceName": "cand-a",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_b | ge(0)",
+          "class": "slash"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "46px",
+          "width": "20px"
+        },
+        "text": "／"
+      },
+      "contentHash": "3e316a97906522cf",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 332,
+      "outId": "cand-sep",
+      "selfHash": "a74acd2629f504c3",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/1",
+      "sourceName": "cand-sep",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-0"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_ASSERT"
+      },
+      "contentHash": "9c0a1b73fa8c0f66",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 335,
+      "outId": "cand-b-0",
+      "selfHash": "7b07ead7a51c3cd0",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/0",
+      "sourceName": "cand-b-0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-1"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_PRESS"
+      },
+      "contentHash": "07ee6f7425829d3a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 336,
+      "outId": "cand-b-1",
+      "selfHash": "299a41a8e228113b",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/1",
+      "sourceName": "cand-b-1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-2"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_REBUT"
+      },
+      "contentHash": "12c6f4604d8a40d1",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 337,
+      "outId": "cand-b-2",
+      "selfHash": "e064946f8c2c191e",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/2",
+      "sourceName": "cand-b-2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-3"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_OPP_DODGE"
+      },
+      "contentHash": "3a41d7b63110f15c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 338,
+      "outId": "cand-b-3",
+      "selfHash": "b5bf3168f37890f7",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/3",
+      "sourceName": "cand-b-3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cand-l ca-4"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_LAST_CARD"
+      },
+      "contentHash": "b98b25ca98732915",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 339,
+      "outId": "cand-b-4",
+      "selfHash": "eb217eb1b23eb599",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/4",
+      "sourceName": "cand-b-4",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "likely"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "27px",
+          "width": "100px"
+        },
+        "text": "@UI_V2_TELL_LIKELY"
+      },
+      "contentHash": "eda662916bae2a99",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 340,
+      "outId": "cand-b-lk",
+      "selfHash": "a62748d5a09fe075",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2/5",
+      "sourceName": "cand-b-lk",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.a0": "tell_b | eq(0)",
+          "bind:class.a1": "tell_b | eq(1)",
+          "bind:class.a2": "tell_b | eq(2)",
+          "bind:class.a3": "tell_b | eq(3)",
+          "bind:class.a4": "tell_b | eq(4)",
+          "bind:class.star": "tell_star | eq(1)",
+          "bind:display": "tell_b | ge(0)",
+          "class": "cand"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "46px",
+          "position": "relative",
+          "width": "108px"
+        }
+      },
+      "contentHash": "c130dcc366e33c6e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 333,
+      "outId": "cand-b",
+      "selfHash": "2d853c4373453143",
+      "sourceId": "D1Debate.dc.html:1/1/11/5/2",
+      "sourceName": "cand-b",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "48px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "138px",
+          "width": "240px"
+        }
+      },
+      "contentHash": "e1b59faf2cf7a2d4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 322,
+      "outId": "tell-cands",
+      "selfHash": "d86db7c77c888cf1",
+      "sourceId": "D1Debate.dc.html:1/1/11/5",
+      "sourceName": "tell-cands",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_gesture | ne('')",
+          "bind:text": "tell_gesture",
+          "class": "gesture"
+        },
+        "decls": {
+          "height": "32px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "192px",
+          "width": "240px"
+        },
+        "text": "整理黑領巾、微微一笑"
+      },
+      "contentHash": "a90797564703b408",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 343,
+      "outId": "tell-gesture",
+      "selfHash": "496626454f3a9604",
+      "sourceId": "D1Debate.dc.html:1/1/11/6",
+      "sourceName": "tell-gesture",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "dying",
+          "bind:text": "dying_text",
+          "class": "dying-t"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "192px",
+          "width": "240px"
+        },
+        "text": "垂死反撲：打中只扣 10"
+      },
+      "contentHash": "90aa0d1b87f5c5b5",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 344,
+      "outId": "tell-dying",
+      "selfHash": "110a3801a046fa1b",
+      "sourceId": "D1Debate.dc.html:1/1/11/7",
+      "sourceName": "tell-dying",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tell_on",
+          "class": "paper"
+        },
+        "decls": {
+          "height": "244px",
+          "left": "556px",
+          "position": "absolute",
+          "top": "164px",
+          "width": "260px"
+        }
+      },
+      "contentHash": "6fe14316d4aa32cc",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 311,
+      "outId": "tell",
+      "selfHash": "5cd8bae11df77cda",
+      "sourceId": "D1Debate.dc.html:1/1/11",
+      "sourceName": "tell",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cred-l"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "140px"
+        },
+        "text": "@UI_V2_CRED_PLAYER"
+      },
+      "contentHash": "afb5011a41c9a68d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 349,
+      "outId": "me-cred-l",
+      "selfHash": "aadab855bf712478",
+      "sourceId": "D1Debate.dc.html:1/1/12/0",
+      "sourceName": "me-cred-l",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:width": "hp_me | range(0, hp_me_max, 0%, 100%)",
+          "class": "fill-me"
+        },
+        "decls": {
+          "height": "12px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "88%"
+        }
+      },
+      "contentHash": "cc67ddf7fa35cb5c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 351,
+      "outId": "me-fill",
+      "selfHash": "f47fe25e7ce53c7f",
+      "sourceId": "D1Debate.dc.html:1/1/12/1/0",
+      "sourceName": "me-fill",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "track"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "154px",
+          "position": "absolute",
+          "top": "9px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "79f556098c3a394b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 350,
+      "outId": "me-track",
+      "selfHash": "bfe82ca5b4c3a814",
+      "sourceId": "D1Debate.dc.html:1/1/12/1",
+      "sourceName": "me-track",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('{0} / {1}', hp_me, hp_me_max)",
+          "class": "cred-n"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "356px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "90px"
+        },
+        "text": "124 / 140"
+      },
+      "contentHash": "60b482935feaff11",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 353,
+      "outId": "me-cred-n",
+      "selfHash": "a09ce1bf6e0425da",
+      "sourceId": "D1Debate.dc.html:1/1/12/2",
+      "sourceName": "me-cred-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "combo_text",
+          "class": "cred-l"
+        },
+        "decls": {
+          "color": "#a65432",
+          "height": "20px",
+          "left": "462px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "110px"
+        },
+        "text": "連擊 ×2"
+      },
+      "contentHash": "f748e8bd4d2d70fd",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 354,
+      "outId": "me-combo",
+      "selfHash": "0b763b7995edf34f",
+      "sourceId": "D1Debate.dc.html:1/1/12/3",
+      "sourceName": "me-combo",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cred-l"
+        },
+        "decls": {
+          "color": "#2f6b3a",
+          "flex-shrink": "0",
+          "height": "24px",
+          "line-height": "24px"
+        },
+        "text": "@STAMP_HACHIKU"
+      },
+      "contentHash": "4d50442aad616780",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 356,
+      "outId": "me-hk-t",
+      "selfHash": "dd56ca3ac70261c4",
+      "sourceId": "D1Debate.dc.html:1/1/12/4/0",
+      "sourceName": "me-hk-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('×{0}', hachiku)",
+          "class": "cred-l"
+        },
+        "decls": {
+          "color": "#2f6b3a",
+          "flex-shrink": "0",
+          "height": "24px",
+          "line-height": "24px"
+        },
+        "text": "×2"
+      },
+      "contentHash": "70b95542a8af54b3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 357,
+      "outId": "me-hk-n",
+      "selfHash": "25b666b6576467e9",
+      "sourceId": "D1Debate.dc.html:1/1/12/4/1",
+      "sourceName": "me-hk-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "hachiku | gt(0)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "4px",
+          "height": "24px",
+          "left": "576px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "90px"
+        }
+      },
+      "contentHash": "53cc1057fa7970ce",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 355,
+      "outId": "me-hk",
+      "selfHash": "94d48d529c0c4519",
+      "sourceId": "D1Debate.dc.html:1/1/12/4",
+      "sourceName": "me-hk",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "shisshu",
+          "class": "shis-t"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "576px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "224px"
+        },
+        "text": "@UI_V2_SHISHOU_HINT"
+      },
+      "contentHash": "8072c3a22f1be1c4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 359,
+      "outId": "me-shisshu",
+      "selfHash": "189415fe83aaef6d",
+      "sourceId": "D1Debate.dc.html:1/1/12/5",
+      "sourceName": "me-shisshu",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "paper"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "414px",
+          "width": "806px"
+        }
+      },
+      "contentHash": "5e1c09d26ba178e3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 348,
+      "outId": "me-cred",
+      "selfHash": "1201ad84234a8669",
+      "sourceId": "D1Debate.dc.html:1/1/12",
+      "sourceName": "me-cred",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "float_me",
+          "class": "float"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "230px",
+          "position": "absolute",
+          "top": "382px",
+          "width": "180px"
+        },
+        "text": "−16"
+      },
+      "contentHash": "6cee8eca758ba08c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 362,
+      "outId": "float-me",
+      "selfHash": "a26b4c38a7a41413",
+      "sourceId": "D1Debate.dc.html:1/1/13",
+      "sourceName": "float-me",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "200px"
+        },
+        "text": "@UI_V2_CHAIN_PLAYER"
+      },
+      "contentHash": "75194dd711f1bafc",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 368,
+      "outId": "pchain-title",
+      "selfHash": "2842ac927c4a4b58",
+      "sourceId": "D1Debate.dc.html:1/1/14/0",
+      "sourceName": "pchain-title",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "plate-t"
+        },
+        "decls": {
+          "font-size": "13px",
+          "height": "24px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "-1px",
+          "width": "372px"
+        },
+        "text": "@UI_V2_RONPA_READY"
+      },
+      "contentHash": "5d9dd3ef9bb21bb1",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 370,
+      "outId": "ronpa-ready-t",
+      "selfHash": "7997d8b1b1d6acdb",
+      "sourceId": "D1Debate.dc.html:1/1/14/1/0",
+      "sourceName": "ronpa-ready-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "ronpa_ready",
+          "class": "plate red"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "214px",
+          "position": "absolute",
+          "top": "1px",
+          "width": "380px"
+        }
+      },
+      "contentHash": "77814e9814d70a17",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 369,
+      "outId": "ronpa-ready",
+      "selfHash": "57206a1496ad7ceb",
+      "sourceId": "D1Debate.dc.html:1/1/14/1",
+      "sourceName": "ronpa-ready",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "show_ronpa",
+          "bind:text": "ronpa_text",
+          "class": "ronpa-t"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "598px",
+          "position": "absolute",
+          "top": "3px",
+          "width": "198px"
+        },
+        "text": "鏈長 2／4　爭點 2／2"
+      },
+      "contentHash": "f2146bbe27f9cd2f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 372,
+      "outId": "ronpa-t",
+      "selfHash": "d191bc4ea8525358",
+      "sourceId": "D1Debate.dc.html:1/1/14/2",
+      "sourceName": "ronpa-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "pchain | item(0) | item(id) | eq('')",
+          "class": "empty"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "400px"
+        },
+        "text": "@UI_V2_CHAIN_EMPTY"
+      },
+      "contentHash": "ae4da180c0bd0f43",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 373,
+      "outId": "pchain-empty",
+      "selfHash": "23427f6cc757ff8a",
+      "sourceId": "D1Debate.dc.html:1/1/14/3",
+      "sourceName": "pchain-empty",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(issue)",
+          "class": "iss"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "34px"
+        },
+        "text": "法"
+      },
+      "contentHash": "79deeedfd249277e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 377,
+      "outId": "pc-iss",
+      "selfHash": "91d2eaa13058e1af",
+      "sourceId": "D1Debate.dc.html:1/1/14/4/0/0",
+      "sourceName": "pc-iss",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "crack-m",
+          "viewBox": "0 0 24 24"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "80px",
+          "position": "absolute",
+          "top": "2px",
+          "width": "22px"
+        }
+      },
+      "contentHash": "116ac3578b5421c8",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 378,
+      "outId": "pc-crack",
+      "selfHash": "cc7785309bcc45ab",
+      "sourceId": "D1Debate.dc.html:1/1/14/4/0/1",
+      "sourceName": "pc-crack",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "chip-t"
+        },
+        "decls": {
+          "height": "44px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "21px",
+          "width": "96px"
+        },
+        "text": "總閥被人關小"
+      },
+      "contentHash": "f6df8e65ef031f1c",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 381,
+      "outId": "pc-t",
+      "selfHash": "8c898b05da0301de",
+      "sourceId": "D1Debate.dc.html:1/1/14/4/0/2",
+      "sourceName": "pc-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.cracked": "item(crack) | gt(0)",
+          "class": "chip"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "66px",
+          "position": "relative",
+          "width": "106px"
+        }
+      },
+      "contentHash": "81332c1c598a11cb",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 376,
+      "outId": "pc",
+      "selfHash": "dc3290162d587d97",
+      "sourceId": "D1Debate.dc.html:1/1/14/4/0",
+      "sourceName": "pc",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "pchain"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "height": "68px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "24px",
+          "width": "788px"
+        }
+      },
+      "contentHash": "222d99b9452e9233",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 375,
+      "outId": "pchain",
+      "selfHash": "941bf6557e5e928a",
+      "sourceId": "D1Debate.dc.html:1/1/14/4",
+      "sourceName": "pchain",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "paper"
+        },
+        "decls": {
+          "height": "98px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "456px",
+          "width": "806px"
+        }
+      },
+      "contentHash": "2784501e8993a9f6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 367,
+      "outId": "pchain-box",
+      "selfHash": "5a7a748a3ff7305f",
+      "sourceId": "D1Debate.dc.html:1/1/14",
+      "sourceName": "pchain-box",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_claim_text",
+          "class": "sum-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "34px",
+          "width": "300px"
+        },
+        "text": "鎖匠傍晚就走了"
+      },
+      "contentHash": "3bde436bf4a896c7",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 388,
+      "outId": "sum-claim",
+      "selfHash": "2fe901e7bc0a938e",
+      "sourceId": "D1Debate.dc.html:1/1/15/0",
+      "sourceName": "sum-claim",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "sel_target_text | ne('')",
+          "class": "sum-a"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "34px",
+          "width": "20px"
+        },
+        "text": "→"
+      },
+      "contentHash": "7d639c901c42879d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 389,
+      "outId": "sum-arrow",
+      "selfHash": "b1a4d60d665bfd23",
+      "sourceId": "D1Debate.dc.html:1/1/15/1",
+      "sourceName": "sum-arrow",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "sel_target_text | ne('')",
+          "bind:text": "sel_target_text",
+          "class": "sum-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "34px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "c1da01440f695494",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 390,
+      "outId": "sum-target",
+      "selfHash": "3e93ade3585def41",
+      "sourceId": "D1Debate.dc.html:1/1/15/2",
+      "sourceName": "sum-target",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "guard_armed",
+          "class": "sum-a"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "34px",
+          "text-align": "right",
+          "width": "200px"
+        },
+        "text": "@UI_V2_SUPPORT_ARMED"
+      },
+      "contentHash": "5f375c9a6a355f83",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 391,
+      "outId": "sum-armed",
+      "selfHash": "e72b06ff02d32a19",
+      "sourceId": "D1Debate.dc.html:1/1/15/3",
+      "sourceName": "sum-armed",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "confirm"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "10px",
+          "height": "34px",
+          "left": "12px",
+          "padding-bottom": "0px",
+          "padding-left": "12px",
+          "padding-right": "12px",
+          "padding-top": "0px",
+          "position": "absolute",
+          "top": "560px",
+          "width": "806px"
+        }
+      },
+      "contentHash": "9cb5bc12dc190746",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 387,
+      "outId": "confirm",
+      "selfHash": "f23fe52db05df381",
+      "sourceId": "D1Debate.dc.html:1/1/15",
+      "sourceName": "confirm",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-k"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "190px"
+        },
+        "text": "1"
+      },
+      "contentHash": "53c0f094dce47630",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 400,
+      "outId": "act-1-k",
+      "selfHash": "cea8fee9a9cf550b",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/0/0",
+      "sourceName": "act-1-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "178px"
+        },
+        "text": "@UI_V2_ACT_ARGUE"
+      },
+      "contentHash": "3348864b5cda2193",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 401,
+      "outId": "act-1-t",
+      "selfHash": "816c9fcbfd04e3f8",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/0/1",
+      "sourceName": "act-1-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(1)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 1)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "190px"
+        }
+      },
+      "contentHash": "79fb9461713a036f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 398,
+      "outId": "act-1",
+      "selfHash": "f4f5a4197a7d1a87",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/0",
+      "sourceName": "act-1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "grp-l"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "200px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "340px"
+        },
+        "text": "@UI_V2_ACT_REBUT"
+      },
+      "contentHash": "9a925c226199f2fb",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 403,
+      "outId": "grp-rebut",
+      "selfHash": "5fa092ceb4da4db4",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/1",
+      "sourceName": "grp-rebut",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-k"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "166px"
+        },
+        "text": "2"
+      },
+      "contentHash": "f4b2dac4e06841b6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 406,
+      "outId": "act-2-k",
+      "selfHash": "3ec9b5a5f5b82cd0",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/2/0",
+      "sourceName": "act-2-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "154px"
+        },
+        "text": "@UI_V2_REBUT_CUT"
+      },
+      "contentHash": "ad1663036efd7c4d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 407,
+      "outId": "act-2-t",
+      "selfHash": "3bfe89df247e089b",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/2/1",
+      "sourceName": "act-2-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(2)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 2)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "200px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "166px"
+        }
+      },
+      "contentHash": "7b972a351c4b2f7a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 404,
+      "outId": "act-2",
+      "selfHash": "74653354b43eae29",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/2",
+      "sourceName": "act-2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-k"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "166px"
+        },
+        "text": "3"
+      },
+      "contentHash": "7e283d508be39179",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 411,
+      "outId": "act-3-k",
+      "selfHash": "23b745e2caa9d950",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/3/0",
+      "sourceName": "act-3-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "154px"
+        },
+        "text": "@UI_V2_REBUT_TOPPLE"
+      },
+      "contentHash": "3620c1252aad95b0",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 412,
+      "outId": "act-3-t",
+      "selfHash": "ef95ee2ccbc24b96",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/3/1",
+      "sourceName": "act-3-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "can_dismantle | not",
+          "bind:class.on": "act | eq(3)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 3)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "374px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "166px"
+        }
+      },
+      "contentHash": "c070eef5f24813b4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 409,
+      "outId": "act-3",
+      "selfHash": "516117fa29355d98",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/3",
+      "sourceName": "act-3",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-k"
+        },
+        "decls": {
+          "height": "14px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "190px"
+        },
+        "text": "4"
+      },
+      "contentHash": "10e6c24c8b72e493",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 416,
+      "outId": "act-4-k",
+      "selfHash": "ee5df605bd96140b",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/4/0",
+      "sourceName": "act-4-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "178px"
+        },
+        "text": "@UI_V2_ACT_STALL"
+      },
+      "contentHash": "84109c8f117fe766",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 417,
+      "outId": "act-4-t",
+      "selfHash": "6b0359c31ba4ca8d",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/4/1",
+      "sourceName": "act-4-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(4)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 4)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "550px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "190px"
+        }
+      },
+      "contentHash": "41b1466afd1e09a2",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 414,
+      "outId": "act-4",
+      "selfHash": "8fdf87cca50cab04",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/4",
+      "sourceName": "act-4",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "guard-t"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "142px"
+        },
+        "text": "@UI_V2_SUPPORT"
+      },
+      "contentHash": "72fec448f1599a59",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 421,
+      "outId": "guard-t",
+      "selfHash": "7aef2240aeba4e89",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/5/0",
+      "sourceName": "guard-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "guard_left",
+          "class": "lamp"
+        },
+        "decls": {
+          "height": "10px",
+          "left": "70px",
+          "position": "absolute",
+          "top": "52px",
+          "width": "10px"
+        }
+      },
+      "contentHash": "8da18f16efcafeee",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 422,
+      "outId": "guard-lamp",
+      "selfHash": "094dbdeae301f69b",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/5/1",
+      "sourceName": "guard-lamp",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.armed": "guard_armed",
+          "bind:class.off": "guard_ok | not",
+          "class": "guard",
+          "on:click(left)": "if port(phase) eq 0 emit(guard)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "760px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "150px"
+        }
+      },
+      "contentHash": "db8eb9182f018119",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 419,
+      "outId": "btn-guard",
+      "selfHash": "b94d5ba0ae0ccc4c",
+      "sourceId": "D1Debate.dc.html:1/1/16/0/5",
+      "sourceName": "btn-guard",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | eq(0)"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1016px"
+        }
+      },
+      "contentHash": "ed7a92b5ebc71b74",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 397,
+      "outId": "acts-0",
+      "selfHash": "a01874c94b85e686",
+      "sourceId": "D1Debate.dc.html:1/1/16/0",
+      "sourceName": "acts-0",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "prompt"
+        },
+        "decls": {
+          "height": "66px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "30px",
+          "width": "300px"
+        },
+        "text": "@UI_V2_LAST_CARD_PROMPT"
+      },
+      "contentHash": "0c78e7660ccae3f2",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 426,
+      "outId": "eg-prompt",
+      "selfHash": "4cbb4a34ecd35712",
+      "sourceId": "D1Debate.dc.html:1/1/16/1/0",
+      "sourceName": "eg-prompt",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "188px"
+        },
+        "text": "@UI_V2_ENDGAME_CUT"
+      },
+      "contentHash": "14f515cd809bfebf",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 429,
+      "outId": "act-5-t",
+      "selfHash": "d1dbcd9fea911ea4",
+      "sourceId": "D1Debate.dc.html:1/1/16/1/1/0",
+      "sourceName": "act-5-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(5)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 5)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "320px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "a92f7263c878b7f7",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 427,
+      "outId": "act-5",
+      "selfHash": "30501c39e1abd94c",
+      "sourceId": "D1Debate.dc.html:1/1/16/1/1",
+      "sourceName": "act-5",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "188px"
+        },
+        "text": "@UI_V2_ENDGAME_TAKE"
+      },
+      "contentHash": "cd01885aa49f2f52",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 433,
+      "outId": "act-6-t",
+      "selfHash": "943c00c2a0a773d2",
+      "sourceId": "D1Debate.dc.html:1/1/16/1/2/0",
+      "sourceName": "act-6-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(6)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 6)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "530px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "55b1d83d1e29b2a3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 431,
+      "outId": "act-6",
+      "selfHash": "ff0933972ceafcf8",
+      "sourceId": "D1Debate.dc.html:1/1/16/1/2",
+      "sourceName": "act-6",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | eq(1)"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1016px"
+        }
+      },
+      "contentHash": "6755fca25a72ed8f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 425,
+      "outId": "acts-1",
+      "selfHash": "8804f089754111b4",
+      "sourceId": "D1Debate.dc.html:1/1/16/1",
+      "sourceName": "acts-1",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "prompt"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "300px"
+        },
+        "text": "@UI_V2_MY_LAST_CARD"
+      },
+      "contentHash": "5837e76157f430d4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 437,
+      "outId": "ls-prompt",
+      "selfHash": "ae2258c903dda1dc",
+      "sourceId": "D1Debate.dc.html:1/1/16/2/0",
+      "sourceName": "ls-prompt",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "188px"
+        },
+        "text": "@UI_V2_ACT_REBUT"
+      },
+      "contentHash": "7e120e6a2c5beef3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 440,
+      "outId": "act-7-t",
+      "selfHash": "c6f406dd2d3a254d",
+      "sourceId": "D1Debate.dc.html:1/1/16/2/1/0",
+      "sourceName": "act-7-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(7)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 7)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "320px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "7045a83331927ac6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 438,
+      "outId": "act-7",
+      "selfHash": "e127b4f789de2cf2",
+      "sourceId": "D1Debate.dc.html:1/1/16/2/1",
+      "sourceName": "act-7",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tb-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "28px",
+          "width": "188px"
+        },
+        "text": "@UI_V2_GIVE_UP_BTN"
+      },
+      "contentHash": "55fbb987284a9e9f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 444,
+      "outId": "act-6b-t",
+      "selfHash": "c950b8f49d961c87",
+      "sourceId": "D1Debate.dc.html:1/1/16/2/2/0",
+      "sourceName": "act-6b-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.on": "act | eq(6)",
+          "class": "tblock",
+          "on:click(left)": "if port(phase) eq 0 set(pick_act, 6)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "530px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "200px"
+        }
+      },
+      "contentHash": "4b06f84e130861e4",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 442,
+      "outId": "act-6b",
+      "selfHash": "fc74328d0fea02d0",
+      "sourceId": "D1Debate.dc.html:1/1/16/2/2",
+      "sourceName": "act-6b",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | eq(2)"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1016px"
+        }
+      },
+      "contentHash": "2730884071b4d329",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 436,
+      "outId": "acts-2",
+      "selfHash": "bca1160c9fd3ab72",
+      "sourceId": "D1Debate.dc.html:1/1/16/2",
+      "sourceName": "acts-2",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.busy": "phase | ne(0)",
+          "class": "acts"
+        },
+        "decls": {
+          "height": "112px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "600px",
+          "width": "1016px"
+        }
+      },
+      "contentHash": "9568853c62d4fb50",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 396,
+      "outId": "acts",
+      "selfHash": "016d9a779fea7c5a",
+      "sourceId": "D1Debate.dc.html:1/1/16",
+      "sourceName": "acts",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "lockb-t"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "22px",
+          "width": "214px"
+        },
+        "text": "@UI_V2_LOCK_IN"
+      },
+      "contentHash": "eaede6365610a4cf",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 450,
+      "outId": "btn-lock-t",
+      "selfHash": "e3f0d486ea3685d6",
+      "sourceId": "D1Debate.dc.html:1/1/17/0",
+      "sourceName": "btn-lock-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "can_lock | not",
+          "bind:display": "mode | lt(3)",
+          "class": "lockb",
+          "on:click(left)": "if port(phase) eq 0 and port(can_lock) eq true emit(lock)"
+        },
+        "decls": {
+          "height": "84px",
+          "left": "1046px",
+          "position": "absolute",
+          "top": "622px",
+          "width": "222px"
+        }
+      },
+      "contentHash": "aca2ec574ed1cd29",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 448,
+      "outId": "btn-lock",
+      "selfHash": "c80f4781c72f71d2",
+      "sourceId": "D1Debate.dc.html:1/1/17",
+      "sourceName": "btn-lock",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "phase | eq(1)",
+          "on:click(left)": "emit(skip)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "bb458ccb29279dd3",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 454,
+      "outId": "hit",
+      "selfHash": "3acc6c0887e12521",
+      "sourceId": "D1Debate.dc.html:1/1/18",
+      "sourceName": "hit",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "speech_who",
+          "class": "who"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "110px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "600px"
+        },
+        "text": "Sherefox"
+      },
+      "contentHash": "14bdbbd5fb154db6",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 458,
+      "outId": "band-who",
+      "selfHash": "d7b76882f26fb60c",
+      "sourceId": "D1Debate.dc.html:1/1/19/0",
+      "sourceName": "band-who",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "speech",
+          "class": "speech"
+        },
+        "decls": {
+          "height": "56px",
+          "left": "110px",
+          "position": "absolute",
+          "top": "40px",
+          "width": "1060px"
+        },
+        "text": "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"
+      },
+      "contentHash": "656b23ae1488eb52",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 460,
+      "outId": "band-speech",
+      "selfHash": "e88ab9f0f4e56682",
+      "sourceId": "D1Debate.dc.html:1/1/19/1",
+      "sourceName": "band-speech",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "sys_line | ne('')",
+          "bind:text": "sys_line",
+          "class": "sysl"
+        },
+        "decls": {
+          "height": "44px",
+          "left": "110px",
+          "position": "absolute",
+          "top": "104px",
+          "width": "1060px"
+        },
+        "text": "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"
+      },
+      "contentHash": "096bca5eee437849",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 462,
+      "outId": "band-sys",
+      "selfHash": "1f4d6c14f84db7c1",
+      "sourceId": "D1Debate.dc.html:1/1/19/2",
+      "sourceName": "band-sys",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "more"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "1180px",
+          "position": "absolute",
+          "top": "132px",
+          "width": "80px"
+        },
+        "text": "▶"
+      },
+      "contentHash": "51ddb39e05d5d2ce",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 464,
+      "outId": "band-more",
+      "selfHash": "0271422c103a1df2",
+      "sourceId": "D1Debate.dc.html:1/1/19/3",
+      "sourceName": "band-more",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "phase | eq(1)",
+          "class": "band",
+          "on:click(left)": "emit(skip)"
+        },
+        "decls": {
+          "height": "158px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "250px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "b5a81aed03aa37ee",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 456,
+      "outId": "band",
+      "selfHash": "8d844347898f1913",
+      "sourceId": "D1Debate.dc.html:1/1/19",
+      "sourceName": "band",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "h1"
+        },
+        "decls": {
+          "height": "32px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "12px",
+          "width": "600px"
+        },
+        "text": "@UI_V2_RECORD"
+      },
+      "contentHash": "0c88bff08ab5775e",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 470,
+      "outId": "rec-title",
+      "selfHash": "6a9bb1ab8d4d905e",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/0",
+      "sourceName": "rec-title",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "desc"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "46px",
+          "width": "700px"
+        },
+        "text": "@UI_V2_RECORD_DESC"
+      },
+      "contentHash": "13efb6f7eb79f759",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 471,
+      "outId": "rec-desc",
+      "selfHash": "35bce78553326dcd",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/1",
+      "sourceName": "rec-desc",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn-t"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "1px",
+          "width": "112px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "ae72635cd0eaaba9",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 473,
+      "outId": "rec-close-t",
+      "selfHash": "cbc42001182d2bbf",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/2/0",
+      "sourceName": "rec-close-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn",
+          "on:click(left)": "state(Open, off, target=#record)"
+        },
+        "decls": {
+          "height": "32px",
+          "left": "740px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "120px"
+        }
+      },
+      "contentHash": "2672affe4c2954d8",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 472,
+      "outId": "rec-close",
+      "selfHash": "1e54284506c94a29",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/2",
+      "sourceName": "rec-close",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-614666"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "70px",
+          "width": "840px"
+        }
+      },
+      "contentHash": "e99cbc775c351f6d",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 475,
+      "outId": "rec-rule",
+      "selfHash": "18fb64b13fba48a1",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/3",
+      "sourceName": "rec-rule",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "format('R{0}', item(n))",
+          "class": "rec-n"
+        },
+        "decls": {
+          "height": "26px",
+          "width": "36px"
+        },
+        "text": "R1"
+      },
+      "contentHash": "4669957305888fbb",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 479,
+      "outId": "rec-n",
+      "selfHash": "d3cffb59852d86eb",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/0",
+      "sourceName": "rec-n",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "rec-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "26px",
+          "width": "330px"
+        },
+        "text": "燈滅前，你的椅子就空了"
+      },
+      "contentHash": "ee765228a847077f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 480,
+      "outId": "rec-t",
+      "selfHash": "0664410912860728",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/1",
+      "sourceName": "rec-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(use)",
+          "class": "tag tag-cu"
+        },
+        "decls": {
+          "height": "26px",
+          "line-height": "26px"
+        },
+        "text": "反駁"
+      },
+      "contentHash": "2240d95be3c2fc1b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 481,
+      "outId": "rec-use",
+      "selfHash": "441255de19050991",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/2",
+      "sourceName": "rec-use",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(soph)",
+          "class": "tag tag-cu"
+        },
+        "decls": {
+          "height": "26px",
+          "line-height": "26px"
+        }
+      },
+      "contentHash": "947f08e9d0390a3a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 482,
+      "outId": "rec-soph",
+      "selfHash": "2a8c489bc43ce8fb",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/3",
+      "sourceName": "rec-soph",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(crack)",
+          "class": "tag tag-red"
+        },
+        "decls": {
+          "height": "26px",
+          "line-height": "26px"
+        }
+      },
+      "contentHash": "5a7d66542fcecada",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 483,
+      "outId": "rec-crack",
+      "selfHash": "6eb69242f034d6ac",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/4",
+      "sourceName": "rec-crack",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(state)",
+          "class": "tag tag-ink"
+        },
+        "decls": {
+          "height": "26px",
+          "line-height": "26px"
+        }
+      },
+      "contentHash": "efdec068c212af49",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 484,
+      "outId": "rec-state",
+      "selfHash": "25d4f1d6db71a843",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0/5",
+      "sourceName": "rec-state",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "rec-row"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "row",
+          "flex-shrink": "0",
+          "gap": "12px",
+          "height": "30px",
+          "overflow": "hidden",
+          "padding-bottom": "2px",
+          "padding-left": "8px",
+          "padding-right": "8px",
+          "padding-top": "2px",
+          "position": "relative",
+          "width": "834px"
+        }
+      },
+      "contentHash": "a9478467792a803b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 478,
+      "outId": "rec",
+      "selfHash": "702545baad6a152b",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0/0",
+      "sourceName": "rec",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "record"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "0px",
+          "width": "834px"
+        }
+      },
+      "contentHash": "ae6f0562f00ac163",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 477,
+      "outId": "recs",
+      "selfHash": "92b0555e896ac9f9",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4/0",
+      "sourceName": "recs",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "444px",
+          "left": "20px",
+          "overflow-y": "auto",
+          "position": "absolute",
+          "top": "80px",
+          "width": "840px"
+        }
+      },
+      "contentHash": "8c9cc7c9c01c3ecb",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 476,
+      "outId": "rec-scroll",
+      "selfHash": "de3947ee55989b18",
+      "sourceId": "D1Debate.dc.html:1/1/20/0/4",
+      "sourceName": "rec-scroll",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "sheet-big s-e1040c"
+        },
+        "decls": {
+          "display": "none",
+          "height": "540px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "880px"
+        }
+      },
+      "contentHash": "902f9ca559023c47",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 469,
+      "outId": "record-panel",
+      "selfHash": "2e95815766560be4",
+      "sourceId": "D1Debate.dc.html:1/1/20/0",
+      "sourceName": "record-panel",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-66a9df"
+        },
+        "decls": {
+          "height": "540px",
+          "left": "200px",
+          "position": "absolute",
+          "top": "60px",
+          "width": "880px"
+        }
+      },
+      "contentHash": "db14775bf1a9090b",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 468,
+      "outId": "record",
+      "selfHash": "b5f98c072ea7f825",
+      "sourceId": "D1Debate.dc.html:1/1/20",
+      "sourceName": "record",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "mode | eq(3)",
+          "class": "veil"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "829a2ced650735e7",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 492,
+      "outId": "outcome-veil",
+      "selfHash": "de7040181a1d31c5",
+      "sourceId": "D1Debate.dc.html:1/1/21",
+      "sourceName": "outcome-veil",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker s-872272"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "520px"
+        },
+        "text": "@UI_V2_GRADE_LABEL"
+      },
+      "contentHash": "cd539de91e3f977a",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 494,
+      "outId": "out-k",
+      "selfHash": "3c5dc42e22ad3552",
+      "sourceId": "D1Debate.dc.html:1/1/22/0",
+      "sourceName": "out-k",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-614666"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "520px"
+        }
+      },
+      "contentHash": "9b2a1ea18e34c197",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 495,
+      "outId": "out-rule",
+      "selfHash": "2e0fff002483486d",
+      "sourceId": "D1Debate.dc.html:1/1/22/1",
+      "sourceName": "out-rule",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "grade_text",
+          "class": "grade-t"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "70px",
+          "width": "520px"
+        },
+        "text": "乾淨論破"
+      },
+      "contentHash": "06fb8c4d8818846f",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 496,
+      "outId": "out-grade",
+      "selfHash": "907acdaa5c2828d6",
+      "sourceId": "D1Debate.dc.html:1/1/22/2",
+      "sourceName": "out-grade",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "rounds_text",
+          "class": "rounds-t"
+        },
+        "decls": {
+          "height": "24px",
+          "left": "20px",
+          "position": "absolute",
+          "top": "140px",
+          "width": "520px"
+        },
+        "text": "回合數 9"
+      },
+      "contentHash": "dde28741a9a1afd9",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 497,
+      "outId": "out-rounds",
+      "selfHash": "5cc3480f3751cc1e",
+      "sourceId": "D1Debate.dc.html:1/1/22/3",
+      "sourceName": "out-rounds",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn-t"
+        },
+        "decls": {
+          "font-size": "16px",
+          "height": "30px",
+          "left": "4px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "212px"
+        },
+        "text": "@UI_V2_BACK_TITLE"
+      },
+      "contentHash": "df14bdd86214ff52",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 499,
+      "outId": "out-back-t",
+      "selfHash": "d0033e54952aa0a4",
+      "sourceId": "D1Debate.dc.html:1/1/22/4/0",
+      "sourceName": "out-back-t",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "bbtn",
+          "on:click(left)": "emit(back_title)"
+        },
+        "decls": {
+          "height": "44px",
+          "left": "170px",
+          "position": "absolute",
+          "top": "210px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "79d67aed900223fd",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 498,
+      "outId": "out-back",
+      "selfHash": "a5748395f4512b94",
+      "sourceId": "D1Debate.dc.html:1/1/22/4",
+      "sourceName": "out-back",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.win": "outcome_win",
+          "bind:display": "mode | eq(3)",
+          "class": "outcome sheet-big"
+        },
+        "decls": {
+          "height": "300px",
+          "left": "360px",
+          "position": "absolute",
+          "top": "190px",
+          "width": "560px"
+        }
+      },
+      "contentHash": "709d59e3f024fe02",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 493,
+      "outId": "outcome",
+      "selfHash": "e460b398a6d43032",
+      "sourceId": "D1Debate.dc.html:1/1/22",
+      "sourceName": "outcome",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "1d725be9a6f2cb12",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 189,
+      "outId": "sheet",
+      "selfHash": "e120efa88a3022be",
+      "sourceId": "D1Debate.dc.html:1/1",
+      "sourceName": "sheet",
+      "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(1)": "if port(phase) eq 0 set(pick_act, 1)",
+          "on:key(2)": "if port(phase) eq 0 set(pick_act, 2)",
+          "on:key(3)": "if port(phase) eq 0 set(pick_act, 3)",
+          "on:key(4)": "if port(phase) eq 0 set(pick_act, 4)",
+          "on:key(Enter)": "if port(phase) eq 0 and port(can_lock) eq true emit(lock); if port(phase) eq 1 emit(skip)",
+          "on:key(Escape)": "emit(settings)",
+          "on:key(F1)": "emit(settings)",
+          "on:key(R)": "state(Open, toggle, target=#record)",
+          "on:key(Space)": "if port(phase) eq 1 emit(skip)",
+          "on:key(V)": "if port(phase) eq 0 emit(guard)",
+          "on:port(face)": "play(face-in)",
+          "on:port(float_me_seq)": "play(float-me)",
+          "on:port(float_opp_seq)": "play(float-opp)",
+          "on:port(line_seq)": "play(line-in)",
+          "on:port(shatter_seq)": "play(shatter)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#092e28",
+          "color": "#123a31",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "dd79a03fa08332a5",
+      "fidelity": "High",
+      "file": "D1Debate.dc.html",
+      "line": 179,
+      "outId": "d1debate",
+      "selfHash": "5446f86351756bad",
+      "sourceId": "D1Debate.dc.html:1",
+      "sourceName": "D1Debate",
+      "ui": "d1debate",
+      "warnings": []
     }
   ],
   "notes": [],
@@ -26824,13 +31765,13 @@
   "skipped": [],
   "topLevelFrames": [],
   "totals": {
-    "assets": 44,
+    "assets": 50,
     "dropped": 0,
-    "high": 1090,
-    "inlineSvg": 56,
+    "high": 1286,
+    "inlineSvg": 57,
     "low": 0,
     "medium": 0,
-    "nodes": 1090,
+    "nodes": 1286,
     "rasterized": 0,
     "vectors": 0
   },
@@ -26847,7 +31788,8 @@
         "--ink-deep": "#092e28",
         "--lamp-gold": "#e0a050",
         "--paper": "#f3eedf",
-        "--paper-old": "#e3d9c2"
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
       }
     },
     {
@@ -26988,6 +31930,20 @@
         "--ink-deep": "#092e28",
         "--paper": "#f3eedf",
         "--paper-old": "#e3d9c2"
+      }
+    },
+    {
+      "doc": "d1debate/d1debate.xt",
+      "flow": "",
+      "id": "d1debate",
+      "name": "D1Debate",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--vermilion": "#b8322a"
       }
     }
   ]

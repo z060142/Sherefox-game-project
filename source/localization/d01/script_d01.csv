@@ -1,0 +1,355 @@
+﻿ID,speaker_zh,speaker_en,zh-TW,en,note
+SCR_D01_S01_TITLE,（場景標題）,,開場報紙,Opening newspaper,scene heading
+SCR_D01_S01_L001,報紙,Newspaper,【倫敦提燈報・1888 年 2 月】守靈夜燈滅三分鐘　富商遺囑附錄不翼而飛,"【The London Lantern, February 1888】Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes",
+SCR_D01_S01_L002,報紙,Newspaper,本報訊，肯辛頓富商海德先生昨夜守靈時，宅內煤氣燈突然全數熄滅約三分鐘。燈火恢復後，海德太太發現亡夫生前新立的遺囑附錄，已從上鎖的黃銅文件筒中消失。蘇格蘭場巴斯克維爾警督當場逮捕當日下午到府修理筒鎖的鎖匠一名。警督表示：「鎖是他修的，鑰匙在他身上，本警督的鼻子從不出錯。」,"Our correspondent reports: during the wake of Mr Hyde, a Kensington merchant, last night, every gas lamp in the house went out at once for some three minutes. When the light returned, Mrs Hyde discovered that the codicil her late husband had recently made had vanished from its locked brass document tube. Inspector Baskerville of Scotland Yard arrested on the spot a locksmith who had called that afternoon to repair the tube's lock. Said the Inspector: ""He fixed the lock, he had the keys on him, and this Inspector's nose is never wrong.""",
+SCR_D01_S02_TITLE,（場景標題）,,日常：貝克街事務所（前一晚）,Daily life: the Baker Street office (the night before),scene heading
+SCR_D01_S02_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),二月的倫敦，霧濃得能用湯匙舀。房東太太端著熱可可上樓，順便帶來了她今晚的節目。,"London in February, and the fog thick enough to eat with a spoon. The landlady came up with hot cocoa, and with this evening's entertainment.",
+SCR_D01_S02_L002,房東太太,Landlady,你們知道對街那棟空屋為什麼租不出去嗎？前一個房客半夜聽見樓梯有人走，下樓一看——什麼也沒有。可是地毯上，有一排濕腳印。,"Do you know why the empty house across the street won't let? The last tenant heard someone on the stairs in the middle of the night. He went down to look, and there was nothing. But on the carpet, there was a line of wet footprints.",
+SCR_D01_S02_L003,亞瑟,Arthur,太太，那是漏水。我上週就看到他們家的屋頂在滴水。,"That's a leak, madam. I saw their roof dripping only last week.",
+SCR_D01_S02_L004,房東太太,Landlady,潘德爾頓先生，鬼可不管你屋頂漏不漏。,"Mr Pendleton, a ghost doesn't care whether your roof leaks.",
+SCR_D01_S02_L005,亞瑟,Arthur,鬼不存在，太太。這是醫學上的事實。人死了，心跳停了，就沒有什麼東西會在樓梯上走來走去。,"Ghosts don't exist, madam. That is a medical fact. When a man dies his heart stops, and nothing is left to go walking up and down the stairs.",
+SCR_D01_S02_L006,Sherefox,Sherefox,（捧著可可，耳朵一抖）亞瑟，你說得好用力。,"(Cradling her cocoa, one ear twitching) You're saying that very firmly, Arthur.",
+SCR_D01_S02_L007,亞瑟,Arthur,因為這是真的。,Because it's true.,
+SCR_D01_S02_L008,Sherefox,Sherefox,嗯。我只是發現，不信的人通常不怕；怕的人，才最嘴硬。,Mm. I've just noticed that people who don't believe usually aren't afraid. It's the frightened ones who protest the loudest.,
+SCR_D01_S02_L009,亞瑟,Arthur,……妳是在說我嗎？,...Are you talking about me?,
+SCR_D01_S02_L010,Sherefox,Sherefox,我是在說可可。它燙得要命，卻一直說自己「溫的」。,"I'm talking about the cocoa. It's scalding, and it keeps insisting it's only ""warm"".",
+SCR_D01_S02_L011,房東太太,Landlady,喝慢點。對了，報上說肯辛頓的海德先生過世了，他家守靈照老規矩辦，連鐘都停了。有錢人家講究。,"Sip it slowly. Oh, and the paper says Mr Hyde of Kensington has passed away. They're keeping the wake the old-fashioned way, clocks stopped and all. Rich folk are particular.",
+SCR_D01_S02_L012,Sherefox,Sherefox,停鐘、蓋鏡子、留一道窗縫。死人一點都不麻煩，麻煩的是活人的規矩。,"Stop the clocks, cover the mirrors, leave a window open a crack. The dead are no trouble at all. It's the living and their rules that are the trouble.",
+SCR_D01_S03_TITLE,（場景標題）,,事件：海德宅・守靈夜,"The case: Hyde House, the wake",scene heading
+SCR_D01_S03_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),隔天一早，海德太太的馬車停在貝克街。她只說了一句：「請您來，警督抓錯人了。」,"Early the next morning, Mrs Hyde's carriage drew up in Baker Street. She said only one thing: ""Please come. The Inspector has arrested the wrong man.""",
+SCR_D01_S03_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),海德宅的大門綁著黑紗，門環也纏著黑布。玄關的掛鐘停在九點四十分，所有的鏡子都蓋著黑布。屋裡的煤氣燈全部點著，白天也是。,"Black crape hung on the front door of Hyde House, and the knocker was bound in black cloth. The wall clock in the entrance hall had stopped at twenty to ten, and every mirror was covered in black. Every gas lamp in the house was lit, even in daylight.",
+SCR_D01_S03_L003,巴斯克維爾,Inspector Baskerville,（在門廳，手裡拎著一圈鑰匙）狐狸小姐！妳來晚了，本警督昨晚就破案了！,"(In the entrance hall, dangling a ring of keys) Miss Fox! You're too late. This Inspector solved the case last night!",
+SCR_D01_S03_L004,Sherefox,Sherefox,早安，警督。破案破得這麼快，難怪報紙還來不及印錯。,"Good morning, Inspector. Solved so quickly the papers haven't even had time to get it wrong.",
+SCR_D01_S03_L005,巴斯克維爾,Inspector Baskerville,哼！鎖匠布里格斯，下午修了那個黃銅筒子；晚上燈一滅，筒子就空了；本警督在門廳逮到他的時候，他正要從後門溜走，身上還有這個——萬用鑰匙圈！,"Hmph! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!",
+SCR_D01_S03_L006,布里格斯,Briggs,（被警員押著）我沒有偷！我、我只是……我不能說……,"(Held by a constable) I didn't steal anything! I, I was only... I can't say...",
+SCR_D01_S03_L007,巴斯克維爾,Inspector Baskerville,聽聽！不能說！,Hear that! He can't say!,
+SCR_D01_S03_L008,塞德里克,Cedric,（從靈堂走出，整理了一下黑領巾）警督說得沒錯。鎖匠下午修鎖時就留了一手，這是再清楚不過的事。抱歉，您是？,"(Stepping out of the parlour, straightening his black cravat) The Inspector is quite right. The locksmith rigged the lock while he was mending it that afternoon. Nothing could be plainer. Forgive me, and you are?",
+SCR_D01_S03_L009,Sherefox,Sherefox,Sherefox，貝克街的偵探。這位是亞瑟。,"Sherefox, detective, of Baker Street. This is Arthur.",
+SCR_D01_S03_L010,塞德里克,Cedric,塞德里克・海德，亡者的姪子。久仰。嬸嬸大概是太傷心了，才會連偵探都請來。（瞥了一眼蓋著黑布的鏡子）這屋子裡的規矩已經夠多了，停鐘、蓋鏡子、整夜點燈——全是殯葬業者騙錢的鄉下把戲。,"Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country tricks the undertakers use to fleece people.",
+SCR_D01_S03_L011,海德太太,Mrs Hyde,塞德里克。,Cedric.,
+SCR_D01_S03_L012,塞德里克,Cedric,我只是實話實說，嬸嬸。,"I only speak the truth, Aunt.",
+SCR_D01_S03_L013,亞瑟,Arthur,（低聲）他說得倒是不錯，那些規矩確實沒有科學根據。,"(Quietly) He's not wrong, mind you. None of those customs has any scientific basis.",
+SCR_D01_S03_L014,Sherefox,Sherefox,（低聲）是啊。可是他說「鄉下把戲」的時候，手一直在摸懷錶鏈。,"(Quietly) True. But the whole time he was saying ""country tricks"", his hand kept going to his watch chain.",
+SCR_D01_S03_L015,巴斯克維爾,Inspector Baskerville,好了好了！狐狸小姐，妳要是想替鎖匠說話，先過本警督這一關！,"Enough, enough! Miss Fox, if you mean to speak up for the locksmith, you'll have to get past this Inspector first!",
+SCR_D01_S04_TITLE,（場景標題）,,熱身小論戰：巴斯克維爾警督（不扣血）,Warm-up debate: Inspector Baskerville (no Credibility lost),scene heading
+SCR_D01_S04_L001,系統,System,熱身論戰：巴斯克維爾警督。指出他的錯誤，答錯 3 次即結束。,Warm-up debate: Inspector Baskerville. Point out his mistakes. Three wrong answers and it's over.,
+SCR_D01_S04_L002,巴斯克維爾,Inspector Baskerville,論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！,"Point one! The moment the lights went out he struck. He'd rigged the lock that afternoon, so the tube opened at a touch!",correct answer: OBS_D01_W1
+SCR_D01_S04_L003,Sherefox,Sherefox,拿走附錄的人，還有空把筒子重新鎖好。動過手腳的鎖，用不著鎖回去。,Whoever took the codicil still had time to lock the tube again. A rigged lock wouldn't need locking back up.,cond: 選 W1
+SCR_D01_S04_L004,巴斯克維爾,Inspector Baskerville,鎖、鎖回去了？……也、也許他是個愛乾淨的小偷！,L-locked again? ...P-perhaps he's a tidy sort of thief!,cond: 選 W1
+SCR_D01_S04_L005,巴斯克維爾,Inspector Baskerville,狐狸小姐，妳答的跟本警督問的根本不是同一件事！,"Miss Fox, your answer has nothing to do with this Inspector's question!",cond: 選錯
+SCR_D01_S04_L006,巴斯克維爾,Inspector Baskerville,論點二！附錄一定還在他身上，只要搜到，本警督就結案！,"Point two! The codicil must still be on him. Find it, and this Inspector closes the case!",correct answer: OBS_D01_W2
+SCR_D01_S04_L007,Sherefox,Sherefox,您已經搜過他了，警督。附錄不在他身上。,"You've already searched him, Inspector. The codicil isn't on him.",cond: 選 W2
+SCR_D01_S04_L008,巴斯克維爾,Inspector Baskerville,……本警督當然知道！本警督只是在確認妳有沒有在聽！,...Naturally this Inspector knows that! This Inspector was merely checking that you were listening!,cond: 選 W2
+SCR_D01_S04_L009,巴斯克維爾,Inspector Baskerville,論點三！全屋的燈一起滅，一定是他在屋外剪了煤氣管！,"Point three! Every lamp in the house went out at once, so he must have cut the gas pipe outside!",correct answer: OBS_D01_W3
+SCR_D01_S04_L010,Sherefox,Sherefox,燈是一起暗、一起亮的。管子剪斷了，燈不會自己亮回來——有人在屋裡轉了總閥。,The lamps all dimmed together and all came back together. A cut pipe doesn't mend itself and light the lamps again. Someone inside turned the main valve.,cond: 選 W3
+SCR_D01_S04_L011,巴斯克維爾,Inspector Baskerville,屋、屋裡？……地下室！本警督正要派人去地下室看！,I-inside? ...The basement! This Inspector was just about to send a man to the basement!,cond: 選 W3
+SCR_D01_S04_L012,巴斯克維爾,Inspector Baskerville,咳！鎖匠先暫時看管，不移送。整棟房子妳要查就查，鎖匠的東西本警督放在門廳的箱子裡，妳要看自己去看。,Ahem! The locksmith stays in custody for now; he won't be sent on. Search the house as you please. This Inspector has put the locksmith's things in the box in the entrance hall. Look for yourself if you must.,cond: 成功
+SCR_D01_S04_L013,巴斯克維爾,Inspector Baskerville,……狐狸小姐，今天這三題，本警督給妳及格。,"...Miss Fox, on today's three questions, this Inspector gives you a pass.",cond: 成功・零失誤; effect: Inspector regard +1
+SCR_D01_S04_L014,巴斯克維爾,Inspector Baskerville,夠了！說錯三次，還想在本警督的現場指手畫腳？潘德爾頓小子，你給我過來幫忙抄筆錄！,"That's enough! Three wrong answers, and you still want to lay down the law at this Inspector's scene? Pendleton, my lad, come here and help take down statements!",cond: 失敗; effect: Inspector regard −1; appraisals this chapter 2 → 1
+SCR_D01_S04_L015,亞瑟,Arthur,……抱歉，Sherefox，我只能幫妳鑑定一樣東西了。,"...Sorry, Sherefox. I'll only be able to appraise one thing for you now.",cond: 失敗
+SCR_D01_S05_TITLE,（場景標題）,,蒐證,Investigation,scene heading
+SCR_D01_S06_TITLE,（場景標題）,,整理帶走的證物,Choose What to Bring,scene heading
+SCR_D01_S06_L001,系統,System,能帶進論戰的東西有限。留下的證物，可能落入對手手中。,You can only bring so much into a debate. Evidence you leave behind may fall into your opponent's hands.,cond: 首次出現此畫面
+SCR_D01_S06_L002,系統,System,可攜帶：{max} 件。已選：{n} 件。,You can bring {max}. Chosen: {n}.,TEMPLATE; same as UI_V2_CARRY_COUNT
+SCR_D01_S06_L003,亞瑟,Arthur,這個真的沒用。,This really is no use.,"Ask Arthur, priority 3: E12 selected"
+SCR_D01_S06_L004,亞瑟,Arthur,Sherefox，我們是去論戰，不是去開沙龍。它真的要佔一個位子嗎？,"Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?","Ask Arthur, priority 2: talking board C_D01_P1 selected (followed by L005)"
+SCR_D01_S06_L005,Sherefox,Sherefox,它很輕。而且，木頭會說話——如果有人肯聽的話。,"It's light. Besides, wood can talk, if someone's willing to listen.",follows L004 immediately
+SCR_D01_S06_L006,亞瑟,Arthur,這是艾琳的私人物品。妳確定要帶上台？,This belongs to Irene. Are you sure you want to bring it out in front of everyone?,"Ask Arthur, priority 4: E09 selected"
+SCR_D01_S06_L007,亞瑟,Arthur,一塊布……好吧，妳說了算。,"A piece of cloth... Well, you're the detective.","Ask Arthur, priority 5: E03 selected"
+SCR_D01_S06_L008,亞瑟,Arthur,鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。,Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it.,"Ask Arthur, priority 1: E05 not selected"
+SCR_D01_S06_L009,系統,System,以下東西會留在宅邸：{list}。確定嗎？,These will be left at the house: {list}. Are you sure?,cond: 按下「確定」時; TEMPLATE; {list} = names of the items left behind
+SCR_D01_S06_L010,亞瑟,Arthur,警督說，我們沒帶走的東西，交給屋主保管。……屋主現在是塞德里克先生。,The Inspector says whatever we don't take goes into the keeping of the master of the house. ...Which is now Mr Cedric.,plays automatically after Confirm when items are left behind
+SCR_D01_S06_L011,亞瑟,Arthur,還有空位喔。少帶一樣，就少一張牌。,"There's still room, you know. One thing fewer means one card fewer.","Ask Arthur, priority 6: fewer than 9 selected (rule 4.5 only guarantees full loadouts)"
+SCR_D01_S06_L012,亞瑟,Arthur,就醫生和修錶匠的眼光，我挑不出毛病。……不過妳帶的東西裡，總有一兩樣是我看不懂、最後卻用上了的。,"To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using.","Ask Arthur, priority 7: nothing above matches, or all were already said this visit (repeatable)"
+SCR_D01_S07_TITLE,（場景標題）,,主論戰的開場與收尾,Main debate: opening and close,scene heading
+SCR_D01_S07_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),中午，靈堂。海德太太、艾琳、瑪莎、布里格斯都到了。警督站在門口，塞德里克坐在靈柩旁那張靠走廊的椅子上，像是他從沒離開過。,"Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it.",
+SCR_D01_S07_L002,塞德里克,Cedric,狐狸小姐，請吧。我很好奇，您要怎麼替一個帶著萬用鑰匙的鎖匠脫罪。,"Please, Miss Fox, go ahead. I am curious to see how you mean to clear a locksmith caught carrying skeleton keys.",
+SCR_D01_S07_L003,Sherefox,Sherefox,我不替誰脫罪，塞德里克先生。我只替昨晚那三分鐘作證。,"I'm not here to clear anyone, Mr Cedric. I'm here to testify for those three minutes last night.",
+SCR_D01_S07_L004,系統,System,論戰開始。對手：塞德里克・海德。雙方同時出招。,The debate begins. Opponent: Cedric Hyde. Both sides act at the same time.,
+SCR_D01_S07_L005,系統,System,論破！塞德里克的推理鏈全毀，可信度降到 1 並鎖定。進入殘局。,Break! Cedric's chain is destroyed. His Credibility drops to 1 and is locked. On to the Endgame.,cond: 論破
+SCR_D01_S07_L006,系統,System,塞德里克的可信度見底，鎖定在 1。進入殘局。,Cedric's Credibility has hit bottom and is locked at 1. On to the Endgame.,cond: 對手可信度將歸零
+SCR_D01_S07_L007,系統,System,塞德里克沒有再開口。,Cedric says nothing more.,cond: 殘局・罪惡感越過門檻
+SCR_D01_S07_L008,塞德里克,Cedric,……那天晚上，他叫了我好幾次。我聽到了，在牌桌上，我想，再一把就回去。……附錄在書房的壁爐裡。我本來想燒掉的。,"...That night, he called for me, again and again. I heard him. I was at the card table, and I thought, one more hand and I'll go back. ...The codicil is in the study fireplace. I meant to burn it.",cond: 殘局・放棄
+SCR_D01_S07_L009,系統,System,塞德里克還想說最後一句話。,Cedric has one last thing to say.,cond: 殘局・c ＝ 0 且沒撿到證物; this is the last gasp (UI_V2_DEATH_THROE)
+SCR_D01_S07_L010,塞德里克,Cedric,我、我承認我去過地下室——燈滅了，總得有人去看閥門！,"I, I admit I went down to the basement! The lights were out; someone had to check the valve!",cond: 垂死反撲／最後一張牌 K1 的預兆
+SCR_D01_S07_L011,系統,System,塞德里克打出最後一張牌。,Cedric plays his last card.,cond: 最後一張牌
+SCR_D01_S07_L012,系統,System,亞瑟和警員拆開書房壁爐的通風閥，從裡面拉出一卷燻黑了邊的紙。,"Arthur and a constable opened the damper in the study fireplace and drew out a roll of paper, its edges blackened with soot.",cond: 勝利・收尾演出
+SCR_D01_S07_L013,亞瑟,Arthur,附錄。還在。,The codicil. Still here.,cond: 勝利
+SCR_D01_S07_L014,巴斯克維爾,Inspector Baskerville,塞德里克・海德！以竊取遺囑的罪名——咳——跟本警督走一趟！布里格斯，你、你可以回家了！,"Cedric Hyde! For the theft of a will, ahem, you will come along with this Inspector! Briggs, you, you may go home!",cond: 勝利
+SCR_D01_S07_L015,塞德里克,Cedric,（經過書房門口時停下，沒有往裡看）……把鏡子蓋上。拜託。,"(Stopping as he passes the study door, not looking in) ...Cover the mirror. Please.",cond: 勝利・離場前
+SCR_D01_S07_L016,系統,System,論戰敗北。,Debate lost.,cond: 敗北
+SCR_D01_S07_L017,巴斯克維爾,Inspector Baskerville,好了！鎖匠移送！狐狸小姐，下次查案，記得把東西帶齊！,"Right! The locksmith goes before the magistrate! Miss Fox, next time you investigate, mind you bring everything you need!",cond: 敗北
+SCR_D01_S07_L018,塞德里克,Cedric,嬸嬸，我會請律師處理遺產的事。……書房我來整理就好。,"Aunt, I shall have the solicitors see to the estate. ...I'll put the study in order myself.",cond: 敗北
+SCR_D01_S07_L019,旁白（亞瑟筆記）,Narration (Arthur's Notes),那天晚上，海德宅的書房壁爐，冒了一次煙。,"That night, smoke rose once from the study fireplace at Hyde House.",cond: 敗北
+SCR_D01_S08_TITLE,（場景標題）,,結算,Results,scene heading
+SCR_D01_S08_L001,海德太太,Mrs Hyde,謝謝妳，偵探小姐。……艾琳的事，我其實早就猜到了。老爺那幾年，常常一個人去閣樓。,"Thank you, Miss Detective. ...About Irene, I had guessed long ago, in truth. In those last years my husband often went up to the attic alone.",cond: 勝利
+SCR_D01_S08_L002,海德太太,Mrs Hyde,可是，那件事應該由我來告訴她，而不是在靈堂上，當著所有人的面。,"But that was for me to tell her. Not in the parlour, in front of everyone.",cond: 勝利・公開過艾琳的身世; effect: Mrs Hyde regard −1
+SCR_D01_S08_L003,艾琳,Irene,（抱著托盤站在角落，一句話也沒說）,"(Standing in the corner holding a tray, saying nothing at all)",cond: 勝利・公開過艾琳的身世
+SCR_D01_S08_L004,布里格斯,Briggs,謝謝妳。我晚上回來是為了瑪莎……太太，請您別趕她走。,"Thank you, miss. I came back that night for Martha... Ma'am, please don't send her away.",cond: 勝利・說過 07A 或 07B
+SCR_D01_S08_L005,海德太太,Mrs Hyde,家規是老爺定的。老爺不在了，規矩也該改一改了。,"The house rules were my husband's. He is gone now, and perhaps the rules ought to change too.",cond: 勝利・說過 07A 或 07B
+SCR_D01_S08_L006,布里格斯,Briggs,（向 Sherefox 鞠躬，什麼也沒解釋，快步走了）,(Bows to Sherefox and hurries off without a word of explanation),cond: 勝利・沒說過 07A、07B
+SCR_D01_S08_L007,巴斯克維爾,Inspector Baskerville,狐狸小姐，這次……本警督承認，鼻子稍微塞住了一點。,"Miss Fox, this time... this Inspector admits his nose was a trifle blocked.",cond: 勝利
+SCR_D01_S08_L008,Sherefox,Sherefox,二月嘛，大家都鼻塞。,"It's February, Inspector. Everyone's a bit stuffed up.",cond: 勝利
+SCR_D01_S08_L009,亞瑟,Arthur,妳那塊木板……妳怎麼知道它有用？,That board of yours... how did you know it would be any use?,cond: 勝利・用過通靈板
+SCR_D01_S08_L010,Sherefox,Sherefox,我不知道。我只知道，嘴上最不信的人，身上的護身符最多。,I didn't. I only know that the man who scoffs the loudest is the one carrying the most charms.,cond: 勝利・用過通靈板
+SCR_D01_S08_L011,亞瑟,Arthur,對不起。如果我把那個筒子拆開看就好了。,I'm sorry. If only I'd taken that tube apart and looked.,cond: 敗北
+SCR_D01_S08_L012,Sherefox,Sherefox,不是你的錯，亞瑟。……是我留下了不該留的東西。,"It isn't your fault, Arthur. ...I'm the one who left behind what I shouldn't have.",cond: 敗北
+SCR_D01_S09_TITLE,（場景標題）,,章末報紙（依勝利等級）,End-of-chapter newspaper (by result grade),scene heading
+SCR_D01_S09_L001,報紙,Newspaper,【倫敦提燈報】守靈夜疑案告破　遺囑附錄壁爐中尋回,【The London Lantern】Wake Mystery Solved; Missing Codicil Found in Fireplace,version: 體面; cond: 等級一、二; headline
+SCR_D01_S09_L002,報紙,Newspaper,本報訊，肯辛頓海德宅遺囑附錄失竊案昨日真相大白。亡者之姪塞德里克・海德為掩飾鉅額賭債，趁守靈夜關閉煤氣總閥竊取附錄，嫁禍到府修鎖的鎖匠。貝克街的狐耳偵探當眾逐一指出破綻，附錄於書房壁爐中完好尋回。鎖匠布里格斯當場獲釋。,"Our correspondent reports: the truth behind the theft of a codicil from Hyde House, Kensington, came to light yesterday. Cedric Hyde, nephew of the deceased, seeking to conceal heavy gaming debts, closed the main gas valve during the wake, took the codicil and laid the blame on a locksmith who had called to mend the lock. The fox-eared detective of Baker Street exposed the flaws in his story one by one before all present, and the codicil was recovered intact from the study fireplace. The locksmith, Briggs, was released on the spot.",version: 體面
+SCR_D01_S09_L003,報紙,Newspaper,【倫敦提燈報】海德宅遺囑案逆轉　姪子被捕、鎖匠獲釋,"【The London Lantern】Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed",version: 普通; cond: 等級三、四; headline
+SCR_D01_S09_L004,報紙,Newspaper,本報訊，海德宅遺囑附錄失竊案出現逆轉。據悉，貝克街狐耳偵探在靈堂與亡者之姪塞德里克・海德激烈交鋒，過程一度陷入僵局，最終塞德里克被捕，附錄尋回。蘇格蘭場對此案不予置評。,"Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Mr Hyde was arrested and the codicil recovered. Scotland Yard declined to comment.",version: 普通
+SCR_D01_S09_L005,報紙,Newspaper,【倫敦提燈報】鎖匠移送法辦　狐耳偵探守靈夜鎩羽,【The London Lantern】Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake,version: 難看; cond: 論敗; headline
+SCR_D01_S09_L006,報紙,Newspaper,本報訊，海德宅遺囑附錄失竊案，鎖匠布里格斯已正式移送。貝克街的狐耳偵探曾受託介入，在靈堂上與海德家人公開爭執，未能提出有力證據。海德家表示，遺產將依舊遺囑辦理。,"Our correspondent reports: in the matter of the codicil stolen from Hyde House, the locksmith Briggs has been formally committed. The fox-eared detective of Baker Street, engaged to look into the affair, argued openly with the Hyde family in the parlour but failed to produce any convincing evidence. The family states that the estate will be settled under the existing will.",version: 難看
+SCR_D01_S09_L007,報紙,Newspaper,另據知情人士透露，海德家一名年輕女僕疑為亡者私生女，此事在靈堂上被當眾揭露，海德太太事後拒絕受訪。,We are further informed by a source close to the household that a young maid in the Hyde family's service is believed to be the natural daughter of the deceased. The matter was revealed before all present in the parlour; Mrs Hyde has since declined to be interviewed.,version: 附加; cond: 公開過艾琳的身世（任何版本）
+SCR_D01_S09_L008,報紙,Newspaper,亦有旁聽者批評，偵探在論戰中「說了不少連自己都不信的話」。,"Some who attended also remarked that the detective ""said a good many things she plainly did not believe herself"".",version: 附加; cond: 否定事實 ≥ 1 或裂紋 ≥ 3（勝利時）
+SCR_D01_S10_TITLE,（場景標題）,,亞瑟的結案筆記（依真相度）,Arthur's case notes (by truth level),scene heading
+SCR_D01_S10_L001,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。手法：從地下室關小煤氣總閥，趁暗用亡者的備用鑰匙打開黃銅筒，把附錄藏進書房壁爐。座鐘因為他撞到壁爐架而重新走動；總閥上的煙灰，是他從書房回到地下室時留下的。動機：四百鎊的賭債，以及一份把一半遺產留給別人的附錄。,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. Method: he turned down the main gas valve in the basement, used the dead man's spare key to open the brass tube in the dark, and hid the codicil in the study fireplace. The mantel clock started again because he knocked against the mantelpiece; the soot on the main valve was left when he went back down from the study to the basement. Motive: four hundred pounds of gaming debts, and a codicil that left half the estate to someone else.",version: 知道全貌; cond: 真相度 ≥ 70%
+SCR_D01_S10_L002,旁白（亞瑟筆記）,Narration (Arthur's Notes),附記：鎖匠布里格斯那晚是回來見廚娘瑪莎的。海德太太說，家規要改了。,"Addendum: the locksmith Briggs came back that night to see Martha, the cook. Mrs Hyde says the house rules are to change.",version: 知道全貌
+SCR_D01_S10_L003,旁白（亞瑟筆記）,Narration (Arthur's Notes),附記二：鏡子的黑布是他碰掉的，可是他沒有把它蓋回去。我想了很久才明白：他不是忘了，是不敢回頭。Sherefox 說，這世上最怕鬼的，往往是最確定自己做錯了事的人。,"Second addendum: he knocked the black cloth off the mirror, but he never put it back. It took me a long time to understand. He hadn't forgotten; he didn't dare look round. Sherefox says the people most afraid of ghosts are usually the ones most certain they've done wrong.",version: 知道全貌
+SCR_D01_S10_L004,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。他關掉了燈，拿走了附錄，這一點沒有疑問。至於筒子是怎麼打開的、他在那三分鐘裡到底去了哪些地方，我們在論戰上說的，和我現在寫下的，恐怕不完全一樣。,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. He put out the lights and took the codicil; of that there is no doubt. As for how the tube was opened, and where exactly he went in those three minutes, I fear what we said in the debate and what I am writing now are not quite the same.",version: 只知道一半; cond: 40～69%
+SCR_D01_S10_L005,旁白（亞瑟筆記）,Narration (Arthur's Notes),附記：論戰結束後，Sherefox 一個人在書房站了很久。她說，贏了的那一套說法，有一半是她自己編的。,"Addendum: after the debate, Sherefox stood alone in the study for a long time. She said that half the account that won the day was her own invention.",version: 只知道一半
+SCR_D01_S10_L006,旁白（亞瑟筆記）,Narration (Arthur's Notes),案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。……這是結論。我試著把理由寫下來，寫了三次都寫不通。鐘、鎖、燈，每一樣東西在論戰上都被說成了它本來不是的樣子。我們抓對了人，但我不確定我們知道他做了什麼。,"Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. ...That is the conclusion. I have tried three times to set down the reasoning, and three times it would not hold together. The clock, the lock, the lamps: in the debate, every one of them was made out to be something it was not. We caught the right man, but I am not sure we know what he did.",version: 抓對人但理由是錯的; cond: ＜ 40%
+SCR_D01_S10_L007,旁白（亞瑟筆記）,Narration (Arthur's Notes),還有一件事沒有人解釋：布里格斯那晚為什麼會在屋裡？他說「說了會害到人」。我們沒有問。,"One more thing nobody explained: why was Briggs in the house that night? He said ""telling would get someone hurt"". We never asked.",version: 附加; cond: 論戰中沒有說過 07A、07B（任何版本）
+SCR_D01_S10_L008,旁白（亞瑟筆記）,Narration (Arthur's Notes),Sherefox 在論戰上說，鎖匠跟這件事毫無關係。可是他那晚明明就在屋裡。我們讓他回家了，卻沒有讓他說清楚。,"In the debate, Sherefox said the locksmith had nothing to do with any of this. Yet he was plainly in the house that night. We let him go home without ever letting him explain.",version: 附加; cond: 說過 06B「鎖匠毫無關係」且真相度 ＜ 70%
+SCR_D01_S10_L009,旁白（亞瑟筆記）,Narration (Arthur's Notes),鎖匠今天被移送了。附錄那天晚上就燒掉了，我很確定。我也很確定，我們本來可以救他的。,The locksmith was committed today. The codicil was burnt that same night; I am sure of it. I am just as sure we could have saved him.,version: 附加; cond: 敗北（任何版本）
+SCR_D01_S11_TITLE,（場景標題）,,下一章預告（佔位）,Next chapter preview (placeholder),scene heading
+SCR_D01_S11_L001,系統,System,下一章　預告,Next Chapter: Preview,cond: 佔位畫面：黑底、報紙剪影
+SCR_D01_S11_L002,系統,System,《（章名待定）》——本 demo 到此結束。感謝遊玩。,"""(Title to be decided)"": the demo ends here. Thank you for playing.",cond: 佔位文字
+SCR_D01_S11_L003,系統,System,回到標題畫面,Back to Title Screen,cond: 按鈕
+CARD_D01_L1_STATE,塞德里克,Cedric,我整晚守在叔叔的靈柩旁，一步也沒有離開過。,I kept watch beside my uncle's coffin all night. I never left it for a moment.,L1 立論 (Assert)
+CARD_D01_L1_PUSH,塞德里克,Cedric,我一步都沒離開！在場的每一個人都可以作證！,I never stirred a step! Everyone present can vouch for me!,L1 強辯 (Insist)
+CARD_D01_L1_RETRACT,塞德里克,Cedric,……我也許起身添過一次蠟燭。就在靈柩旁邊。,...I may have got up once to replace a candle. Right beside the coffin.,"L1′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L1_DOWN,塞德里克,Cedric,那、那是……我記錯了，只是去拿了一下酒杯。,Th-that was... I misremembered. I merely went to fetch a glass.,L1 knocked down by a 正論 (default reaction)
+CARD_D01_L2_STATE,塞德里克,Cedric,鎖匠下午修鎖時動了手腳。那個筒子，不用鑰匙也打得開。,The locksmith tampered with the lock when he repaired it this afternoon. That tube could be opened without a key.,L2 立論 (Assert)
+CARD_D01_L2_PUSH,塞德里克,Cedric,他動了手腳！不然一個鎖好的筒子，怎麼會自己空掉！,He tampered with it! How else does a locked tube empty itself?,L2 強辯 (Insist)
+CARD_D01_L2_RETRACT,塞德里克,Cedric,我是說……鎖匠『可能』動了手腳。這是合理的推測。,"What I mean is... the locksmith ""may"" have tampered with it. A perfectly reasonable inference.","L2′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L2_DOWN,塞德里克,Cedric,……一把真正的鑰匙？可、可是那把鑰匙只有叔叔才——（住口）,...A real key? B-but only my uncle had that key—(he stops himself),L2 knocked down by a 正論 (default reaction)
+CARD_D01_L3_STATE,塞德里克,Cedric,鎖匠想拿附錄去勒索嬸嬸。有了它，他想要多少錢都行。,"The locksmith meant to use the codicil to blackmail my aunt. With it in hand, he could name his price.",L3 立論 (Assert)
+CARD_D01_L3_PUSH,塞德里克,Cedric,一個窮鎖匠，看見能換錢的東西，還需要什麼理由！,A poor locksmith sees something worth money—what more reason does he need?,L3 強辯 (Insist)
+CARD_D01_L3_RETRACT,塞德里克,Cedric,也許不是勒索……也許是有人僱他。總之，不是我。,"Perhaps not blackmail... perhaps someone hired him. At any rate, it was not me.","L3′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L3_DOWN,塞德里克,Cedric,……那、那只是我的推測。,...Th-that was merely my supposition.,L3 knocked down by a 正論 (default reaction)
+CARD_D01_L4_STATE,塞德里克,Cedric,燈滅的時候，我聽見後門響了一聲，有人跑了出去。,"When the lights went out, I heard the back door bang. Someone ran out.",L4 立論 (Assert)
+CARD_D01_L4_PUSH,塞德里克,Cedric,後門！我清清楚楚聽見後門的聲音！,The back door! I heard it as plain as day!,L4 強辯 (Insist)
+CARD_D01_L4_RETRACT,塞德里克,Cedric,也許……是風把門吹響的。,Perhaps... it was the wind rattling the door.,"L4′ 周旋改口 (Stall: re-raised, softened)"
+CARD_D01_L4_DOWN,塞德里克,Cedric,廚、廚房裡一直有人？……那我聽到的是什麼？,S-someone was in the kitchen the whole time? ...Then what did I hear?,L4 knocked down by a 正論 (default reaction)
+CUT_D01_03A_L1,塞德里克,Cedric,我、我只是……去添了一次蠟燭。,I-I only... went to replace a candle.,L1 cut by 03A (replaces the default knocked-down reaction); his later sidestep L1′ picks up this line
+CUT_D01_08A_L3,塞德里克,Cedric,四、四百鎊又怎樣？那是紳士之間的帳……跟一個鎖匠有什麼關係！,"F-four hundred pounds, and what of it? That is an account between gentlemen... what has it to do with a locksmith?",L3 cut by 08A (replaces the default knocked-down reaction)
+CUT_D01_09A_L3,塞德里克,Cedric,……叔叔的女兒？那、那又怎樣。這跟鎖匠勒索有什麼關係？,...My uncle's daughter? Wh-what of it? What has that to do with the locksmith's blackmail?,L3 cut by 09A (replaces the default knocked-down reaction)
+CUT_D01_04C_L4,塞德里克,Cedric,只、只有廚娘？……那我聽到的是什麼？,O-only the cook? ...Then what did I hear?,L4 cut by 04C (replaces the default knocked-down reaction)
+CARD_D01_F1_STATE,塞德里克,Cedric,鎖匠下午單獨碰過那個筒子，身上還帶著萬用鑰匙。這是事實。,"The locksmith was alone with that tube this afternoon, and he carried skeleton keys. Those are facts.",F1 立論 (fact in his favour)
+CARD_D01_F1_PUSH,塞德里克,Cedric,他碰過筒子，他有萬用鑰匙！這兩件事，您敢否認嗎？,"He handled the tube, and he had skeleton keys! Do you dare deny either?",F1 強辯
+CARD_D01_F2_STATE,塞德里克,Cedric,燈滅的那三分鐘，誰都看不見誰。屋裡任何一個人，都可能離席。,"For those three minutes of darkness, no one could see anyone. Anyone in this house might have left their seat.",F2 立論 (fact in his favour)
+CARD_D01_F2_PUSH,塞德里克,Cedric,三分鐘的黑暗！您憑什麼只盯著我？,Three minutes of darkness! Why single me out?,F2 強辯
+CARD_D01_U1_STATE,塞德里克,Cedric,地下室那個閥門本來就鬆——（停住）,That valve in the basement was always loose—(he stops),U1 slip (fact against him); no damage when it lands
+CARD_D01_U1_PUSH,塞德里克,Cedric,那個閥門本來就鬆！輕輕一轉就……我、我是說，傭人都這麼說！,"That valve was always loose! One light turn and... I-I mean, so the servants say!",U1 shouted while Cornered
+CARD_D01_U1_TELL,塞德里克,Cedric,地下室……,The basement...,U1 tell text: only the first half-sentence is shown
+CARD_D01_U1_CATCH,Sherefox,Sherefox,閥門鬆不鬆，只有轉過它的人才知道。塞德里克先生，你轉過它。,"Only a man who has turned that valve would know whether it's loose. Mr Cedric, you turned it.",Sherefox's 「抓住他的話」 on U1 (next round only)
+CARD_D01_U2_STATE,塞德里克,Cedric,……我是欠了一點錢。紳士誰不欠點錢？,"...Very well, I owe a little money. What gentleman doesn't?",U2 slip (fact against him); no damage when it lands
+CARD_D01_U2_PUSH,塞德里克,Cedric,對，我欠錢！四百鎊！那又怎樣！,"Yes, I owe money! Four hundred pounds! And what of it?",U2 shouted while Cornered
+CARD_D01_U2_TELL,塞德里克,Cedric,錢……,Money...,U2 tell text: only the first half-sentence is shown
+CARD_D01_U2_CATCH,Sherefox,Sherefox,欠四百鎊、月底到期的紳士，最不希望遺產少一半。,A gentleman who owes four hundred pounds by the end of the month is the last man who wants his inheritance halved.,Sherefox's 「抓住他的話」 on U2 (next round only)
+CARD_D01_P05_STATE,塞德里克,Cedric,狐狸小姐留下的這圈萬用鑰匙，我仔細看過了。這一把的齒上，沾著筒鎖裡的黃銅屑。它就是開筒子的鑰匙。,I have examined this ring of skeleton keys Miss Fox left behind. The teeth of this one bear brass filings from the tube's lock. This is the key that opened it.,"P05 picked-up evidence (E05 萬用鑰匙圈), 立論"
+CARD_D01_P05_PUSH,塞德里克,Cedric,黃銅屑！證據就在您留下的鑰匙上！,Brass filings! The proof is on the very keys you left behind!,P05 強辯
+CARD_D01_P05_DOWN,塞德里克,Cedric,乾、乾淨的鎖……？（把鑰匙圈放回桌上）,A c-clean lock...? (He puts the ring of keys back on the table),P05 knocked down
+CARD_D01_P07_STATE,塞德里克,Cedric,廚房裡撿到的手帕，有機油味。鎖匠昨晚偷偷回來過——燈滅的時候，他就在這棟屋子裡。,"This handkerchief was found in the kitchen, and it smells of machine oil. The locksmith crept back last night—when the lights went out, he was in this very house.","P07 picked-up evidence (E07 繡字手帕), 立論"
+CARD_D01_P07_PUSH,塞德里克,Cedric,他就在屋裡！您留下的手帕說的！,He was in the house! Your own handkerchief says so!,P07 強辯
+CARD_D01_P06_STATE,塞德里克,Cedric,這張工作單寫得清清楚楚：下午三點，鎖匠一個人在書房，修那個筒子。,"This work order states it plainly: at three in the afternoon, the locksmith was alone in the study, repairing that tube.","P06 picked-up evidence (E06 工作單), 立論"
+CARD_D01_P06_PUSH,塞德里克,Cedric,白紙黑字！他一個人修的！,In black and white! He repaired it alone!,P06 強辯
+CARD_D01_K1_STATE,塞德里克,Cedric,我、我承認我去過地下室——燈滅了，總得有人去看閥門！,"I-I admit I went to the basement—the lights had gone out, someone had to see to the valve!",K1 last card / dying gasp; same line as SCR_D01_S07_L010
+CARD_D01_K1_DOWN,塞德里克,Cedric,書、書房的煙灰……（看著自己的手套）,S-soot from the study... (He looks at his own gloves),K1 cut by 04B
+REFUTE_D01_05B,塞德里克,Cedric,打不開？狐狸小姐，鎖匠自己的工作單上寫著，他就是用這圈萬用鑰匙校試筒鎖的。打得開，而且他試了三次。,"Can't open it? Miss Fox, the locksmith's own work order says he tested the tube's lock with this very ring of skeleton keys. They open it—and he tried it three times.",refutes claim 05B (他撿到 E06); refute + frame
+REFUTE_D01_01D,塞德里克,Cedric,沒有能打開它的東西？狐狸小姐留在門廳的這圈萬用鑰匙，是誰的？十二把，每一把都上了油。,"Nothing that could open it? Then whose is this ring of skeleton keys Miss Fox left in the entrance hall? Twelve keys, every one of them oiled.",refutes claim 01D (他撿到 E05); refute + frame
+REFUTE_D01_06B,塞德里克,Cedric,毫無關係？那這條手帕呢？廚房爐子後面撿到的，繡著廚娘名字的縮寫，沾著機油。鎖匠昨晚偷偷回來了——燈滅的時候，他就在屋裡。,"Nothing to do with it? Then what of this handkerchief? Found behind the kitchen range, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house.",refutes claim 06B (他撿到 E07); refute + frame
+REACT_D01_FACT_SOPH_1,塞德里克,Cedric,荒謬。您明知道那是事實。,Absurd. You know perfectly well that is a fact.,"his true fact knocked down by sophistry (2 lines, alternate)"
+REACT_D01_FACT_SOPH_2,塞德里克,Cedric,狐狸小姐，您就這樣把事實踩在腳下？,"Miss Fox, will you simply trample the facts underfoot?","his true fact knocked down by sophistry (2 lines, alternate)"
+REACT_D01_LIE_SOPH,塞德里克,Cedric,多麼精采的故事。可惜，只是故事。,What a marvellous story. A pity it is only a story.,his lie knocked down by sophistry
+EXCL_D01_TEMPLATE,塞德里克,Cedric,您剛才說{a}，現在又說{b}？狐狸小姐，您到底要哪一種？,"A moment ago you said {a}, and now you say {b}? Miss Fox, which is it to be?","TEMPLATE for contradiction catches; {a} = gist of the earlier claim, {b} = gist of the new one. Section 7 rows are the filled versions"
+REACT_D01_BLOCK,塞德里克,Cedric,這說明不了什麼。,That proves nothing.,his rebuttal blocked a 正論 (no refute)
+REACT_D01_FOOLED,塞德里克,Cedric,……您在說什麼？,...What are you talking about?,his rebuttal missed
+REACT_D01_FOGGED,塞德里克,Cedric,您是來論戰的，還是來聊天的？,"Did you come here to debate, or to chat?",player chose 打迷糊仗
+SHF_D01_CUT_OPEN_1,Sherefox,Sherefox,等一下！,Hold on!,"Sherefox's opener when cutting (shared, all chapters)"
+SHF_D01_CUT_OPEN_2,Sherefox,Sherefox,就是那一句。,That's the one.,"Sherefox's opener when cutting (shared, all chapters)"
+SHF_D01_CUT_OPEN_3,Sherefox,Sherefox,這三分鐘，你走得太遠了。,You wandered rather far in those three minutes.,Sherefox's opener when cutting (this chapter)
+EXCL_D01_01A_01B_CATCH,塞德里克,Cedric,您剛才說鎖被動過手腳，現在又說鎖完好？,"A moment ago you said the lock had been tampered with, and now you say it is intact?",contradiction 01A/01B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01A_01B_SELL,Sherefox,Sherefox,我是說，它被動過『想法』。,"I meant it had been tampered with... ""in spirit"".",contradiction 01A/01B: Sherefox's hard sell
+EXCL_D01_01B_06A_CATCH,塞德里克,Cedric,您剛才說鎖被動過手腳，現在又說鎖匠修好了？,"A moment ago you said the lock had been tampered with, and now you say the locksmith repaired it?",contradiction 01B/06A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01B_06A_SELL,Sherefox,Sherefox,修好之後，又被別人動了嘛。,"He repaired it, and then somebody else tampered with it.",contradiction 01B/06A: Sherefox's hard sell
+EXCL_D01_02A_02B_CATCH,塞德里克,Cedric,您剛才說鐘是自己走的，現在又說有人撞到它？,"A moment ago you said the clock started on its own, and now you say someone knocked into it?",contradiction 02A/02B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_02A_02B_SELL,Sherefox,Sherefox,鐘也會被嚇醒的。,Clocks can be startled awake too.,contradiction 02A/02B: Sherefox's hard sell
+EXCL_D01_05A_05B_CATCH,塞德里克,Cedric,您剛才說萬用鑰匙打不開，現在又說它們上了油轉得動？,"A moment ago you said the skeleton keys couldn't open it, and now you say they are oiled and turn easily?",contradiction 05A/05B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_05A_05B_SELL,Sherefox,Sherefox,轉得動，不代表打得開！,Turning isn't the same as opening!,contradiction 05A/05B: Sherefox's hard sell
+EXCL_D01_01D_05A_CATCH,塞德里克,Cedric,您剛才說鎖匠手上沒有能開鎖的東西，現在又拿出他的萬用鑰匙？,"A moment ago you said the locksmith had nothing that could open the lock, and now you produce his skeleton keys?",contradiction 01D/05A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_01D_05A_SELL,Sherefox,Sherefox,我是說……沒有『合法』的東西。,"I meant... nothing ""legal"".",contradiction 01D/05A: Sherefox's hard sell
+EXCL_D01_04C_07A_CATCH,塞德里克,Cedric,您剛才說廚房裡只有廚娘，現在又說鎖匠也在？,"A moment ago you said only the cook was in the kitchen, and now you say the locksmith was there too?",contradiction 04C/07A: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_04C_07A_SELL,Sherefox,Sherefox,瑪莎……很會藏人。,Martha is... very good at hiding people.,contradiction 04C/07A: Sherefox's hard sell
+EXCL_D01_04C_07B_CATCH,塞德里克,Cedric,您剛才說廚房裡只有廚娘，現在又說鎖匠是為了她溜回來的？,"A moment ago you said only the cook was in the kitchen, and now you say the locksmith crept back for her?",contradiction 04C/07B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_04C_07B_SELL,Sherefox,Sherefox,我、我更正。,I-I stand corrected.,contradiction 04C/07B: Sherefox's hard sell
+EXCL_D01_06A_06C_CATCH,塞德里克,Cedric,您剛才說他沒動過鎖芯，現在又說他換了彈簧？,"A moment ago you said he never touched the lock's workings, and now you say he fitted a new spring?",contradiction 06A/06C: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_06A_06C_SELL,Sherefox,Sherefox,彈簧……不算鎖芯吧？,"A spring... doesn't count as the workings, does it?",contradiction 06A/06C: Sherefox's hard sell
+EXCL_D01_06B_07A_CATCH,塞德里克,Cedric,剛才您說鎖匠昨晚根本不在屋裡、跟這件事毫無關係，現在又說他整晚待在廚房？狐狸小姐，您的鎖匠，會分身嗎？,"A moment ago you said the locksmith was not even in the house last night and had nothing to do with this, and now you say he spent the whole night in the kitchen? Miss Fox, can your locksmith be in two places at once?",contradiction 06B/07A: Cedric's catch (unique line)
+EXCL_D01_06B_07A_SELL,Sherefox,Sherefox,……我修正一下。紳士也會改錯字吧？,"...Let me amend that. Even gentlemen correct a typo now and then, don't they?",contradiction 06B/07A: Sherefox's hard sell
+EXCL_D01_06B_07B_CATCH,塞德里克,Cedric,您剛才說鎖匠根本不在屋裡，現在又說他是為了廚娘溜回來？,"A moment ago you said the locksmith was not even in the house, and now you say he crept back for the cook?",contradiction 06B/07B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_06B_07B_SELL,Sherefox,Sherefox,他……回來得很安靜。,He... came back very quietly.,contradiction 06B/07B: Sherefox's hard sell
+EXCL_D01_09A_09B_CATCH,塞德里克,Cedric,您剛才說那只是紀念品，現在又說她是叔叔的女兒？,"A moment ago you said it was merely a keepsake, and now you say she is my uncle's daughter?",contradiction 09A/09B: Cedric's catch (filled template EXCL_D01_TEMPLATE)
+EXCL_D01_09A_09B_SELL,Sherefox,Sherefox,紀念品，也可以紀念血緣。,A keepsake can keep blood ties too.,contradiction 09A/09B: Sherefox's hard sell
+LINK_D01_05A_01C,Sherefox,Sherefox,萬用鑰匙全上了油，不上油轉不動——可是筒鎖裡乾乾淨淨。打開它的，不是這圈鑰匙。,"Every skeleton key is oiled, and without oil they won't turn—yet the tube's lock is spotlessly clean. Whatever opened it, it wasn't this ring of keys.",link line 05A → 01C (replaces the claim line; ×1.2)
+LINK_D01_02A_03A,Sherefox,Sherefox,座鐘在熄燈時走了起來，鏡子的黑布也在那時掉了。那三分鐘，書房裡有人。,"The mantel clock started up when the lights went out, and the mirror's black cloth fell at the same moment. In those three minutes, someone was in the study.",link line 02A ↔ 03A (replaces the claim line; ×1.2)
+LINK_D01_02A_04B,Sherefox,Sherefox,書房的鐘在熄燈時被撞醒，總閥上沾著書房的煙灰。關燈的人，中間去了一趟書房。,"The study clock was jolted awake when the lights went out, and the main valve bears soot from the study. Whoever turned down the lights went by way of the study.",link line 02A ↔ 04B (replaces the claim line; ×1.2)
+LINK_D01_02C_08B,Sherefox,Sherefox,鐘停在九點四十分，那一刻他在叫你。而那一晚，你在俱樂部——催款信上的日期，就是那一天。,"The clock stopped at twenty to ten, at the very moment he was calling for you. And that night, you were at the club—the date on the demand letter is that very day.",link line 02C → 08B (replaces the claim line; ×1.2)
+LINK_D01_10A_08A,Sherefox,Sherefox,附錄讓你少了一半遺產。而你欠四百鎊，月底到期。,"The codicil cost you half your inheritance. And you owe four hundred pounds, due at the end of the month.",link line 10A ↔ 08A (replaces the claim line; ×1.2)
+LINK_D01_09A_10A,Sherefox,Sherefox,一半的遺產，留給了一個你每天使喚的女僕。,"Half the inheritance, left to a maid you order about every day.",link line 09A ↔ 10A (replaces the claim line; ×1.2)
+LINK_D01_11A_11B,Sherefox,Sherefox,燈滅前，你的椅子空了；燈亮時，你站在走廊口，手套沾著灰。,"Before the lights went out, your chair was empty; when they came back, you were standing at the end of the corridor with soot on your gloves.",link line 11A → 11B (replaces the claim line; ×1.2)
+REACT_D01_ISSUE_OPP,塞德里克,Cedric,三分鐘的黑暗裡，您倒是看得很清楚。,You saw remarkably well for three minutes of darkness.,reaction: 依爭點・機 / 機的正論（無專屬者）
+REACT_D01_ISSUE_METHOD,塞德里克,Cedric,鎖、鑰匙、筒子——您說得頭頭是道。可惜，我對鎖沒有興趣。,"Locks, keys, tubes—you argue it very neatly. Unfortunately, I have no interest in locks.",reaction: 依爭點・法 / 法的正論（無專屬者）
+REACT_D01_ISSUE_MOTIVE,塞德里克,Cedric,錢？每個人都需要錢，狐狸小姐。,"Money? Everyone needs money, Miss Fox.",reaction: 依爭點・動 / 動的正論（無專屬者）
+REACT_D01_SOPH,塞德里克,Cedric,這種說法，連鄉下人都不會信。,Not even a country bumpkin would believe that.,reaction: 詭辯接上（共用） / 任何詭辯節
+REACT_D01_01B,塞德里克,Cedric,（微笑，鬆了口氣）動了手腳的鎖——對，我也是這麼說的。,"(Smiles, relieved) A lock that was tampered with—yes, precisely what I said.",reaction: 專屬 / 01B
+REACT_D01_06B,塞德里克,Cedric,鎖匠毫無關係？那您倒是說說，誰有關係。,"The locksmith had nothing to do with it? Then pray tell, who did?",reaction: 專屬 / 06B
+REACT_D01_02C,塞德里克,Cedric,（手指停在懷錶鏈上）……那晚的事，與本案無關。,(His fingers stop on his watch chain) ...What happened that night has no bearing on this case.,reaction: 專屬（心結） / 02C
+REACT_D01_08B,塞德里克,Cedric,（臉色一白）那天我在俱樂部，那又怎樣。叔叔他……他不會等我的。,(He goes pale) I was at the club that day. What of it? Uncle... he would not have waited for me.,reaction: 專屬（心結） / 08B
+REACT_D01_03B,塞德里克,Cedric,（下意識別開視線，避開書房的方向）鏡子？一塊布掉了而已。您想說什麼？,"(Without thinking, he looks away from the direction of the study) The mirror? A cloth fell off, that is all. What are you driving at?",reaction: 專屬（弱點） / 03B
+REACT_D01_09A_1,塞德里克,Cedric,（看了艾琳一眼，冷笑）原來如此，叔叔的小秘密。狐狸小姐，您在靈堂上說這種話，嬸嬸會感謝您嗎？,"(Glances at Irene and sneers) I see. Uncle's little secret. Miss Fox, do you imagine my aunt will thank you for saying such a thing beside his coffin?","reaction to 09A (private matter), part 1"
+REACT_D01_09A_2,海德太太,Mrs Hyde,……偵探小姐。,...Miss Detective.,"reaction to 09A (private matter), part 2"
+REACT_D01_09A_3,艾琳,Irene,（托盤掉在地上）,(The tray clatters to the floor),"reaction to 09A (private matter), part 3"
+REACT_D01_P1A,塞德里克,Cedric,（呼吸停了一拍，指尖捏緊懷錶鏈上的護身符）……把那東西收起來。這是靈堂，不是沙龍。,"(His breath catches; his fingertips close tight on the charm on his watch chain) ...Put that thing away. This is a house of mourning, not a salon.",reaction: 專屬（心理牌） / P1A
+REACT_D01_P1B,塞德里克,Cedric,（猛地站起來，椅子倒在地上）夠了！指示板是妳的手推的！……是妳推的，對吧？,"(Leaps to his feet, knocking his chair over) Enough! Your hand pushed that planchette! ...You pushed it, didn't you?",reaction: 專屬（心理牌） / P1B
+REACT_D01_12A,塞德里克,Cedric,（看了花圈一眼）……嬸嬸花了不少錢。,(Glances at the wreath) ...My aunt spent a pretty penny.,reaction: 專屬 / 12A
+TELL_D01_GESTURE_ASSERT,（演出）,(Staging),整理黑領巾、微微一笑,Straightens his black cravat and smiles faintly,gesture text for 立論
+TELL_D01_GESTURE_PUSH,（演出）,(Staging),摘下手套拍在桌上,Pulls off a glove and slaps it on the table,gesture text for 強辯
+TELL_D01_GESTURE_REBUT,（演出）,(Staging),十指相抵、身體往後靠,Steeples his fingers and leans back,gesture text for 反駁
+TELL_D01_GESTURE_STALL,（演出）,(Staging),摸懷錶鏈上的護身符,Fingers the charms on his watch chain,gesture text for 周旋
+TELL_D01_ASSERT_1,塞德里克,Cedric,請容我把話說清楚。,Permit me to make myself clear.,預兆台詞
+TELL_D01_PUSH_1,塞德里克,Cedric,夠了。,Enough.,預兆台詞
+TELL_D01_PUSH_2,塞德里克,Cedric,我受夠這場鬧劇了。,I have had quite enough of this farce.,預兆台詞
+TELL_D01_REBUT_1,塞德里克,Cedric,請說，我洗耳恭聽。,"Please, go on. I am all ears.",預兆台詞
+TELL_D01_REBUT_2,塞德里克,Cedric,您確定要這麼說？,Are you quite sure you wish to say that?,預兆台詞
+TELL_D01_STALL_1,塞德里克,Cedric,我想，我們都需要冷靜一下。,I think we could all do with a moment's calm.,預兆台詞
+TELL_D01_HINT_ASSERT,亞瑟,Arthur,他在整理領巾。要開口了。,He's straightening his cravat. He's about to speak.,亞瑟的預兆提示
+TELL_D01_HINT_PUSH,亞瑟,Arthur,他摘手套了——準備接住。,The glove's coming off—brace yourself.,亞瑟的預兆提示
+TELL_D01_HINT_REBUT,亞瑟,Arthur,他在等妳先說。別亂拉線。,He's waiting for you to go first. Don't throw links about carelessly.,亞瑟的預兆提示
+TELL_D01_HINT_STALL,亞瑟,Arthur,他又在摸那個錶鏈……在拖時間。現在說我們的。,He's fiddling with that watch chain again... playing for time. Make our case now.,亞瑟的預兆提示
+STATE_D01_ART_HACHIKU,亞瑟,Arthur,漂亮，讀對了。,Well done—you read him right.,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_CORNERED,亞瑟,Arthur,他被逼到牆角了，接下來每一句都會很重——但也很好認。,He's backed into a corner. Every line from here will hit hard—but they'll be easy to read.,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_BREACHED,亞瑟,Arthur,先站穩，下一手用正論，我陪妳撐過去。,Steady yourself first. Use a sound claim next; I'll see you through this.,亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_ART_COVER,亞瑟,Arthur,等一下，各位！她的意思是——（打圓場）,"One moment, everyone! What she means is—(smoothing it over)",亞瑟的狀態台詞（沿用 v1 的語氣）
+STATE_D01_SHF_HACHIKU_1,Sherefox,Sherefox,一分鐘。,One minute.,Sherefox 的狀態台詞
+STATE_D01_SHF_HACHIKU_2,Sherefox,Sherefox,兩分鐘。,Two minutes.,Sherefox 的狀態台詞
+STATE_D01_SHF_HACHIKU_3,Sherefox,Sherefox,三分鐘，剛剛好——勢如破竹！,"Three minutes, right on time—unstoppable!",Sherefox 的狀態台詞
+STATE_D01_SHF_BREAK,Sherefox,Sherefox,三分鐘的黑暗，到此為止！,Your three minutes of darkness are over!,Sherefox 的狀態台詞
+STATE_D01_SHF_SHAKEN,Sherefox,Sherefox,燈亮了，塞德里克先生。,"The lights are back on, Mr Cedric.",Sherefox 的狀態台詞
+STATE_D01_SHF_BREACHED,Sherefox,Sherefox,……嗚，被看穿了。,"...Ugh, he saw right through me.",Sherefox 的狀態台詞
+SYS_D01_TELL_CLEAR,系統,System,（預兆・明示）{gesture}。論點：{statement}。{action}。,(Tell: Clear) {gesture}. Point: {statement}. {action}.,"TEMPLATE; clear tell; {gesture} = TELL_D01_GESTURE_*, {statement} = his card's short label or 「改口」「反駁」, {action} = action name"
+SYS_D01_TELL_VAGUE,系統,System,（預兆）{gesture}。論點：{statement}。可能行動：{action1}／{action2}。,(Tell) {gesture}. Point: {statement}. Possible: {action1} / {action2}.,"TEMPLATE; vague tell, no rule points either way"
+SYS_D01_TELL_VAGUE_LIKELY,系統,System,（預兆）{gesture}。論點：{statement}。可能行動：{action1}（較可能）／{action2}。,(Tell) {gesture}. Point: {statement}. Possible: {action1} (more likely) / {action2}.,"TEMPLATE; vague tell, {action1} is what a behaviour rule points to"
+SYS_D01_TELL_SLIP,系統,System,（預兆）{name}張了張口，又閉上。論點：{half},"(Tell) {name} opens his mouth, then shuts it again. Point: {half}",TEMPLATE; tell before a slip; {half} = CARD_D01_U*_TELL
+SYS_D01_ATTACH,系統,System,接上一節（{issue}）。論證 {formula} ＝ {dmg}。,Link attached ({issue}). Argument {formula} = {dmg}.,TEMPLATE; player's node lands; {formula} e.g. 12 × 1.0 × 破竹 1.1 × 破防 1.25
+SYS_D01_STALL_HEAL,系統,System,{name}周旋回復 5，{hp_before} → {hp_after}。,{name} sidesteps and recovers 5: {hp_before} → {hp_after}.,TEMPLATE; opponent stalled and healed
+SYS_D01_CLASH,系統,System,互相接上。我方論證 {dmg_p} → {hp_o}。{name}論證 {dmg_o} → 我方 {hp_p}。,Both links land. Your argument {dmg_p} → {hp_o}. {name}'s argument {dmg_o} → you {hp_p}.,TEMPLATE; both nodes land
+SYS_D01_HACHIKU_KEEP,系統,System,破竹維持。,Unstoppable holds.,appended after a clash when the 破竹 stack is kept
+SYS_D01_SLIP_NODMG,系統,System,不利的事實接上時不造成論證，我方維持 {hp_p}。,An unfavourable fact deals no argument when it lands. You stay at {hp_p}.,"TEMPLATE; his slip landed (no damage, rule 0.5)"
+SYS_D01_CUT_OK,系統,System,截斷成功！{name} −{dmg} → {hp}，陷入破防。,Cut-in! {name} −{dmg} → {hp}. His guard is down.,TEMPLATE; player cut his line
+SYS_D01_CUT_PUSH,系統,System,截斷強辯！{name} −{dmg} → {hp}，陷入破防。,You cut in on his Press! {name} −{dmg} → {hp}. His guard is down.,TEMPLATE; player cut an Insist (−30)
+SYS_D01_CUT_SOPH,系統,System,截斷成功（同爭點的詭辯）。{name} −{dmg} → {hp}，陷入破防。紀錄留 1 道裂紋。,Cut-in (sophistry on the same Issue). {name} −{dmg} → {hp}. His guard is down. 1 crack left on your record.,TEMPLATE; sophistry cut
+SYS_D01_DENY_FACT,系統,System,否定事實 1 次。,1 fact argued away.,appended when a sophistry cut knocks down a true fact
+SYS_D01_KEY_NORMAL,系統,System,（要害論點；他可信度高於 50% 且原本沒有破防，算一般截斷。）,"(A keystone point, but his Credibility is above 50% and his guard was not down, so this counts as a normal cut-in.)",keystone cut that does not Break
+SYS_D01_KEY_BREAK,系統,System,截斷要害論點，且{name}處於破防——論破！,You cut in on his keystone point while {name}'s guard is down—Break!,TEMPLATE; keystone cut that Breaks
+SYS_D01_CUT_EMPTY,系統,System,落空。他沒有開口。我方 −5；下回合他的立論無法被截斷。,Whiffed. He said nothing. You −5; next round his Assert cannot be cut in on.,player cut while he stalled
+SYS_D01_MISS_FACT,系統,System,落空。他的論點是事實，打不掉。我方 −10 → {hp}。他的論點照常接上。,Whiffed. His point is a fact; it cannot be knocked down. You −10 → {hp}. His point lands as usual.,TEMPLATE; player cut a true fact with a 正論
+SYS_D01_MISS_WRONG,系統,System,落空。這句話駁不倒他的論點。我方 −5 → {hp}。他的論點照常接上。,Whiffed. That claim does not refute his point. You −5 → {hp}. His point lands as usual.,TEMPLATE; player cut a lie with a 正論 that does not break it
+SYS_D01_BOTH_REBUT,系統,System,雙方都在等對方開口。互相落空，各 −5。,You are both waiting for the other to speak. Both whiff: −5 each.,rebuttal vs rebuttal
+SYS_D01_BLOCKED,系統,System,被擋下。這一節沒有接上。,Blocked. This link did not land.,his rebuttal blocked a 正論
+SYS_D01_FOOLED,系統,System,{name}的反駁落空！−5 → {hp}，陷入破防。下回合預兆明示。,{name}'s rebuttal whiffs! −5 → {hp}. His guard is down. His tell will be Clear next round.,TEMPLATE; player's 打迷糊仗 baited his rebuttal
+SYS_D01_FOG_TAKE,系統,System,他接上一節。打迷糊仗減半：我方 −{dmg} → {hp}。,He lands a link. Muddy the Waters halves it: you −{dmg} → {hp}.,TEMPLATE; 打迷糊仗 vs his Assert
+SYS_D01_FOG_STALL,系統,System,僵持。旁觀者不耐，雙方各 −3。,Stalemate. The onlookers grow impatient: −3 each.,打迷糊仗 vs Stall
+SYS_D01_FOG_REPEAT,系統,System,旁觀者不耐煩了。打迷糊仗不再有效，我方 −3。,The onlookers have lost patience. Muddy the Waters no longer works; you −3.,second 打迷糊仗 in a row
+SYS_D01_EXPOSED,系統,System,被拆穿！我方 −25 → {hp}。紀錄留 1 道裂紋。連擊歸零。,Exposed! You −25 → {hp}. 1 crack left on your record. Combo reset.,TEMPLATE; his rebuttal caught a sophistry node
+SYS_D01_REFUTED,系統,System,被駁倒！{name}握有妳不知道的資訊。我方 −15 → {hp}。說法 {claim} 本場作廢。連擊歸零。,Refuted! {name} knew something you didn't. You −15 → {hp}. The claim {claim} is void for this debate. Combo reset.,TEMPLATE; his rebuttal refuted a sincere-but-wrong claim
+SYS_D01_NOW_KNOWN,系統,System,妳現在知道：{fact}。,Now you know: {fact}.,TEMPLATE; {fact} = REFUTE_D01_*_FACT
+SYS_D01_BREACH_HINT,系統,System,失守會持續到妳下一次讀對為止。,You stay on the back foot until you next read him right.,shown when 失守 starts (also as the UI hint 「讀對一次才能站穩」)
+SYS_D01_CRACK,系統,System,這一節帶 1 道裂紋。,This link carries 1 crack.,sophistry node landed
+SYS_D01_REDCRACK,系統,System,紅色裂紋：我方 −10 → {hp}，紀錄留 1 道裂紋（共 {c}）。,Red crack: you −10 → {hp}. 1 crack left on your record ({c} in all).,TEMPLATE; player chose a claim that contradicts her own record
+SYS_D01_PSYCH_NOTE,系統,System,（心理牌的節照詭辯結算，但不計裂紋；社會聲譽 −2。）,(A Mind Game link resolves like sophistry but leaves no crack; reputation −2.),psych card used
+SYS_D01_PRIVATE,系統,System,（公開私事：社會聲譽 −3，{person}好感 −1）,"(Private matter exposed: reputation −3, {person}'s regard −1)",TEMPLATE; private matter exposed
+SYS_D01_PSYCH_CROSS,系統,System,{name}的{value}越過了門檻。,{name}'s {value} has crossed the threshold.,TEMPLATE; {value} = 壓力 / 罪惡感 / 怒氣
+SYS_D01_CHAIN_NOBREAK,系統,System,我方的鏈 {n} 節，但{name}沒有破防，不構成論破。,"Your chain is {n} links long, but {name}'s guard is not down. No Break.",TEMPLATE; chain long enough but no 破防
+SYS_D01_CHAIN_READY,系統,System,我方的鏈 {n} 節，涵蓋 {issues}，且{name}處於破防。,"Your chain is {n} links long, covers {issues}, and {name}'s guard is down.",TEMPLATE; Break conditions met (followed by STATE_D01_SHF_BREAK and SCR_D01_S07_L005)
+SYS_D01_LASTCARD_REMOVE,系統,System,我方紀錄上帶裂紋的 {n} 節被打掉，連擊與破竹歸零。,The {n} cracked links on your record are knocked down. Combo and Unstoppable reset.,TEMPLATE; last card removes cracked nodes
+SYS_D01_LASTCARD_HIT,系統,System,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。{name}回復到上限的 {pct}%（{hp_o}），鎖定解除。,"His last card! You take {formula} = {dmg} → {hp}. {name} recovers to {pct}% of his maximum ({hp_o}), and the lock is lifted.",TEMPLATE; last card hits
+SYS_D01_LASTCARD_NOHEAL,系統,System,最後一張牌！我方受 {formula} ＝ {dmg} → {hp}。,His last card! You take {formula} = {dmg} → {hp}.,TEMPLATE; last card hits and ends the debate
+SYS_D01_DESPERATE_HIT,系統,System,垂死反撲打中，我方 −10 → {hp}。,His last gasp lands: you −10 → {hp}.,"TEMPLATE; K1 as dying gasp hits (no heal, no grade change)"
+SYS_D01_CUT_WIN,系統,System,截斷成功。論戰勝利。,Cut-in successful. You win the debate.,endgame cut succeeds
+SYS_D01_ZERO_WIN,系統,System,{name}的可信度歸零。他已經沒有最後一張牌。論戰勝利。,{name}'s Credibility hits zero. He has no last card left. You win the debate.,TEMPLATE; second endgame
+SYS_D01_REV_READY,系統,System,{name}的鏈 {n} 節，涵蓋 {issues}，且妳處於失守。,"{name}'s chain is {n} links long, covers {issues}, and you are on the back foot.",TEMPLATE; Reverse Break conditions met
+SYS_D01_REVERSE,系統,System,逆論破！妳的可信度降到 1。下一回合，妳可以打出自己的最後一張牌：一個能駁倒他鏈上某個謊言的正論。,Reverse Break! Your Credibility drops to 1. Next round you can play your own last card: a sound claim that refutes one of the lies on his chain.,Reverse Break
+SYS_D01_LASTSTAND_PROMPT,系統,System,{name}的鏈：{chain}。選一個能駁倒其中一句的正論。,{name}'s chain: {chain}. Choose a sound claim that refutes one of these.,TEMPLATE; 7.5 prompt; {chain} = his card labels joined with →
+SYS_D01_LASTSTAND_OK,系統,System,駁倒成功！{name}的「{node}」與其後的節全毀。妳回復到 {hp}。,"Refuted! {name}'s ""{node}"" and every link after it collapse. You recover to {hp}.",TEMPLATE; 7.5 success
+SYS_D01_LASTSTAND_FAIL,系統,System,駁倒失敗。,The refutation fails.,7.5 failure (followed by SCR_D01_S07_L016)
+SYS_D01_COVER,系統,System,亞瑟出面打圓場！這一回合的傷害與失守取消。,Arthur steps in to smooth things over! This round's damage and back-foot effect are cancelled.,援護 triggered (after STATE_D01_ART_COVER)
+SYS_D01_COVER_WASTED,系統,System,援護沒有用上。,Cover went unused.,援護 set but nothing happened
+SYS_D01_DISMANTLE,系統,System,拆台成功！移除{name}鏈上的「{node}」，他受 10。,"Knocked down! ""{node}"" is removed from {name}'s chain, and he takes 10.",TEMPLATE; dismantle
+SYS_D01_WIN,系統,System,論戰勝利。,You win the debate.,generic win line
+BEAT_D01_CLASH_1,塞德里克,Cedric,您——,You—,"clash split screen, his half"
+BEAT_D01_CLASH_2,Sherefox,Sherefox,——我先說完。,—let me finish first.,"clash split screen, her half"
+BEAT_D01_07A_1,瑪莎,Martha,（摀住嘴）,(Covers her mouth),when 07A lands or cuts
+BEAT_D01_07A_2,布里格斯,Briggs,……對不起，瑪莎。,"...I'm sorry, Martha.",when 07A lands or cuts
+BEAT_D01_P1A_1,（演出）,(Staging),（靈堂裡一片安靜。窗縫吹進一陣風，蠟燭的火苗歪了一下。）,"(The parlour falls silent. A draught slips in through the gap in the window, and the candle flames lean.)",first use of the talking board
+BEAT_D01_P1A_2,亞瑟,Arthur,（小聲）Sherefox，妳真的把它帶來了……,"(Quietly) Sherefox, you actually brought it...",first use of the talking board
+BEAT_D01_02C_1,海德太太,Mrs Hyde,（低下頭）,(Lowers her head),when 02C lands
+BEAT_D01_GUILT_1,亞瑟,Arthur,（小聲）他……在發抖。,(Quietly) He's... trembling.,罪惡感 crosses
+BEAT_D01_ANGER_1,塞德里克,Cedric,（站起來，手套摔在桌上）夠了。我受夠這場鬧劇了。,(Stands and flings his glove down on the table) Enough. I have had quite enough of this farce.,怒氣 crosses
+BEAT_D01_SOPH_06B_1,亞瑟,Arthur,（小聲）可是那條手帕……,(Quietly) But that handkerchief...,06B used while E07 is carried
+BEAT_D01_SOPH_06C_1,亞瑟,Arthur,（翻著工作單，小聲）……上面明明寫著換新彈簧。,"(Leafing through the work order, quietly) ...It clearly says a new spring was fitted.",06C used
+BEAT_D01_SOPH_03C_1,亞瑟,Arthur,（小聲）Sherefox，我們剛剛才鑑定過……,"(Quietly) Sherefox, we only just appraised that...",generic: sophistry that contradicts an appraisal
+BEAT_D01_REDCRACK_1,亞瑟,Arthur,（看到紅色裂紋）Sherefox，這句跟妳一開始說的對不上——,"(Seeing the red crack) Sherefox, that doesn't square with what you said at the start—",player hovers a red-crack claim
+BEAT_D01_09A_1,亞瑟,Arthur,Sherefox，那是艾琳的——,"Sherefox, that's Irene's—",player selects E09 for 09A
+BEAT_D01_LASTCARD_1,亞瑟,Arthur,那是……我們留在門廳的鑰匙圈！,That's... the ring of keys we left in the entrance hall!,P05 last card tell
+BEAT_D01_LASTCARD_2,巴斯克維爾,Inspector Baskerville,這、這……狐狸小姐？,Wh-what's this... Miss Fox?,P05 last card when c ≥ 1
+BEAT_D01_LASTCARD_3,巴斯克維爾,Inspector Baskerville,黃銅屑！本、本警督就說嘛！,Brass filings! Th-this Inspector said so all along!,P05 last card when c = 0
+BEAT_D01_LASTCARD_4,塞德里克,Cedric,還有，您剛才說的那些話——這屋子裡的每個人都聽見了，那些都不是真的。,"And another thing: everything you said a moment ago—everyone in this house heard it, and none of it was true.",appended to P05 when c ≥ 1
+BEAT_D01_LASTCARD_5,Sherefox,Sherefox,……嗚，被看穿了。,"...Ugh, he saw right through me.",after a last card hits (same as STATE_D01_SHF_BREACHED)
+BEAT_D01_LASTCARD_6,亞瑟,Arthur,先站穩。他剩下的話，一句一句拆。,"Steady yourself. Take apart the rest of what he says, one line at a time.",after a last card hits and the debate goes on
+BEAT_D01_REFUTED_1,布里格斯,Briggs,我……,I...,06B or 04C refuted via E07
+BEAT_D01_REFUTED_2,瑪莎,Martha,（摀住臉）,(Covers her face),06B or 04C refuted via E07
+BEAT_D01_REFUTED_3,Sherefox,Sherefox,{item}……？,{item}...?,TEMPLATE; after any refute; {item} = the picked-up evidence name
+BEAT_D01_REFUTED_4,亞瑟,Arthur,（翻筆記）……{place}，我們撿到了，可是沒帶上來。,"(Flipping through his notes) ...{place}. We found it, but we didn't bring it.",TEMPLATE; after any refute; {place} = where it was found
+BEAT_D01_REVERSE_1,塞德里克,Cedric,狐狸小姐，您今天說的話，連您自己都接不起來。,"Miss Fox, not even you can make what you've said today hang together.",Reverse Break
+BEAT_D01_LASTSTAND_FAIL_1,塞德里克,Cedric,那句話，不在我的鏈上。,That statement is not on my chain.,7.5 failure
+BEAT_D01_GIVEUP_1,系統,System,塞德里克沒有再開口。,Cedric says nothing more.,same as SCR_D01_S07_L007
+TELL_D01_HINT_FACT,亞瑟,Arthur,這句……是真的。打不掉。,This one... is true. We can't knock it down.,Arthur hint when his line is a true fact
+TELL_D01_HINT_SLIP,亞瑟,Arthur,他的話……沒說完。,He didn't... finish that sentence.,Arthur hint before a slip
+TELL_D01_HINT_KEY,亞瑟,Arthur,這是他整套說法的地基！,That's the foundation of his whole story!,Arthur hint when the keystone L2 is on the tell
+TELL_D01_HINT_LAST,亞瑟,Arthur,他要翻供。妳手上有能堵住這句話的東西嗎？,He's going to change his story. Have you got anything that can stop that line?,Arthur hint on the last card
+TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,We've nothing on us that can refute that.,Arthur hint when nothing carried can cut his line
+FOG_D01_1,Sherefox,Sherefox,說到守靈——塞德里克先生，你知道為什麼窗戶要留一道縫嗎？聽說是給靈魂走的。不過我猜，也可以給煤氣味走。,"Speaking of wakes—Mr Cedric, do you know why the window is left open a crack? They say it's to let the soul out. Though I suppose it would let the gas smell out too.",打迷糊仗 line
+FOG_D01_2,Sherefox,Sherefox,塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？,"Mr Cedric, what lovely charms. The blue eye bead—did you buy that in Venice?",打迷糊仗 line
+FOG_D01_3,Sherefox,Sherefox,刮痕啊……說到刮痕，你的鞋跟也磨得好厲害喔。,"Scuffs, you say... speaking of scuffs, your boot heels are dreadfully worn down.",打迷糊仗 line
+APR_D01_01_LINE,亞瑟,Arthur,鎖芯完好，一道撬痕也沒有。彈簧是新換的，裝得很漂亮。還有一件事——鎖芯裡乾乾淨淨，一滴油都沒有。萬用鑰匙要上油才轉得動，用萬用鑰匙開過，裡面一定會留下油。打開它的，是一把乾淨的原配鑰匙。,"The lock's workings are intact—not a single pry mark. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key.",appraisal line for E01 黃銅文件筒
+APR_D01_02_LINE,亞瑟,Arthur,鐘擺沒綁緞帶，是被震了一下才重新擺起來的。從九點四十分走到現在的十點四十八分，走了一小時八分鐘。往回推——它是在昨晚十一點零二分左右開始走的。正好是燈滅的時候。,"The pendulum wasn't tied with a ribbon; a jolt set it swinging again. From twenty to ten to the ten forty-eight it shows now, it has run one hour and eight minutes. Counting back, it started at about two minutes past eleven last night. Exactly when the lights went out.",appraisal line for E02 書房的座鐘
+APR_D01_04_LINE,亞瑟,Arthur,閥輪上的不是地下室的煤塵，是壁爐的細煙灰。這屋子裡只有書房的壁爐很久沒生火、積著這種舊灰。轉開總閥的那隻手，剛從書房的壁爐出來。,That isn't coal dust from the basement on the valve wheel—it's fine soot from a fireplace. The only fireplace in this house that hasn't been lit for ages and is caked with that kind of old soot is the one in the study. The hand that turned the main valve had just come from the study fireplace.,appraisal line for E04 煤氣總閥
+HS_D01_01_ART,亞瑟,Arthur,守靈的人整夜坐在這裡。靠走廊的位子……離傭人樓梯最近。,The watchers sit here all night. The seat by the corridor... is closest to the servants' stairs.,Arthur's comment at this hotspot
+HS_D01_02_ART,亞瑟,Arthur,她嚇壞了，可是說得很清楚。,"She's frightened half to death, but she put it very clearly.",Arthur's comment at this hotspot
+HS_D01_03_ART,亞瑟,Arthur,倒是挺時髦的錶鏈。,Rather a fashionable watch chain.,Arthur's comment at this hotspot
+HS_D01_04_ART,亞瑟,Arthur,遺體照現在很流行。他大概是不喜歡拍照。,Memorial photographs are all the fashion now. Perhaps he doesn't care to be photographed.,Arthur's comment at this hotspot
+HS_D01_05_ART,亞瑟,Arthur,髮辮首飾……也是喪事的習俗。,Hair jewellery... another mourning custom.,Arthur's comment at this hotspot
+HS_D01_06_ART,亞瑟,Arthur,照規矩辦得很完整。這個……跟案子沒關係吧？,"Everything done properly, by the book. This... has nothing to do with the case, surely?",Arthur's comment at this hotspot
+HS_D01_07_ART,亞瑟,Arthur,海德先生走的時刻。全屋的鐘都停在這裡。,The moment Mr Hyde passed away. Every clock in the house is stopped at it.,Arthur's comment at this hotspot
+HS_D01_08_ART,亞瑟,Arthur,可以讓我拆開鎖看看。這種鎖，是不是被人動過，一看便知。,"Let me take the lock apart and have a look. With a lock like this, I can tell at a glance whether it's been tampered with.",Arthur's comment at this hotspot; appraisable
+HS_D01_09_ART,亞瑟,Arthur,它的鐘擺沒有綁緞帶。可以讓我看看它是什麼時候開始走的。,Its pendulum isn't tied with a ribbon. Let me see when it started running.,Arthur's comment at this hotspot; appraisable
+HS_D01_10_ART,亞瑟,Arthur,大概是風吹的，窗戶留了一道縫。蠟……守靈用的那種白蠟燭？,"The wind, probably—the window's been left open a crack. Wax... the white candles used for the wake?",Arthur's comment at this hotspot
+HS_D01_11_ART,亞瑟,Arthur,這是附錄的內容。一半遺產，給了別人。,"That's the text of the codicil. Half the estate, left to someone else.",Arthur's comment at this hotspot
+HS_D01_12_ART,亞瑟,Arthur,裡面好像塞了什麼東西。……卡得很緊，得找人來拆。,Something seems to be stuffed up in there. ...Wedged in tight; we'd need someone to take it apart.,Arthur's comment at this hotspot; the codicil is found here after a win
+HS_D01_13_ART,亞瑟,Arthur,嗯，黑布確實不太好看。,"Well, the black cloth isn't much to look at, I'll grant him.",Arthur's comment at this hotspot
+HS_D01_14_ART,亞瑟,Arthur,海德先生的備用鑰匙？不見了。,Mr Hyde's spare key? Gone.,Arthur's comment at this hotspot
+HS_D01_15_ART,亞瑟,Arthur,地下室到處是煤塵，這點灰不奇怪。不過我可以拿去比對看看。,"There's coal dust everywhere down here; a little soot is nothing odd. Still, I could take some to compare.",Arthur's comment at this hotspot; appraisable
+HS_D01_16_ART,亞瑟,Arthur,從靈堂走到這裡，不用一分鐘。,Less than a minute's walk from the parlour.,Arthur's comment at this hotspot
+HS_D01_17_ART,亞瑟,Arthur,機油……廚房裡有誰會用機油？,Machine oil... who in a kitchen would use machine oil?,Arthur's comment at this hotspot
+HS_D01_18_ART,亞瑟,Arthur,她好像很緊張。,She seems very nervous.,Arthur's comment at this hotspot
+HS_D01_19_ART,亞瑟,Arthur,沙龍遊戲。我們小時候也玩過，指示板是手自己推的。這跟案子沒關係吧？妳什麼時候開始收集工藝品了？,"A parlour game. We played it as children too—it's your own hand that pushes the planchette. This has nothing to do with the case, surely? Since when have you collected curios?",Arthur's comment at this hotspot
+HS_D01_20_ART,亞瑟,Arthur,這是……哀悼首飾。女僕怎麼會有？,This is... mourning jewellery. How would a maid come by it?,Arthur's comment at this hotspot
+HS_D01_21_ART,亞瑟,Arthur,驅邪的。這屋子真是什麼規矩都有。,To ward off evil. This house has a custom for everything.,Arthur's comment at this hotspot
+HS_D01_22_ART,亞瑟,Arthur,浪費燈油。有錢人家的習慣吧。,"A waste of lamp oil. A rich family's habit, I suppose.",Arthur's comment at this hotspot
+HS_D01_23_ART,亞瑟,Arthur,四百鎊！這可不是小數目。,Four hundred pounds! That's no small sum.,Arthur's comment at this hotspot
+HS_D01_24_ART,亞瑟,Arthur,前一任房客留下的吧。,"Left by a previous tenant, I expect.",Arthur's comment at this hotspot
+HS_D01_25_ART,亞瑟,Arthur,鑰匙全上了油。鎖匠的習慣。,Every key oiled. A locksmith's habit.,Arthur's comment at this hotspot
+HS_D01_26_ART,亞瑟,Arthur,他在保護誰？,Who is he protecting?,Arthur's comment at this hotspot

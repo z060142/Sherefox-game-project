@@ -92,7 +92,7 @@
         <div id="me-fig">
           <img id="me-sherefox" class="s-b00406" src="../shared/img/ch-c-sherefox.png"/>
         </div>
-        <div id="mast-bg"/>
+        <div id="mast-bg" class="s-e8d5ea"/>
         <div id="mast">
           <div id="mast-name" class="mast-t">@UI_PAPER_MAST</div>
           <div id="mast-extra" class="extra">@UI_PAPER_EXTRA</div>
@@ -223,7 +223,7 @@
           <div id="preview-t" class="preview-t" bind:text="preview">截斷：反擊 30、粉碎主張</div>
           <div id="preview-vs" class="preview-vs" bind:text="preview_vs" bind:display="preview_vs | ne('')">若主張：等一下！（反擊 30）　若猛攻：等一下！（反擊 30）</div>
           <div id="btn-improv" class="bbtn" on:click(left)="if port(phase) eq 0 emit(improv)" bind:display="improv_ok">
-            <div id="improv-t" class="bbtn-t">@BTN_DEB_SOPH_NEW</div>
+            <div id="improv-t" class="bbtn-t s-872272">@BTN_DEB_SOPH_NEW</div>
           </div>
         </div>
         <div id="tell" class="tell sheet-paper s-e35e37" bind:class.c0="tell_clarity | eq(0)" bind:class.c1="tell_clarity | eq(1)" bind:class.c2="tell_clarity | eq(2)">
@@ -233,7 +233,7 @@
             <div id="instinct-l1" class="lamp" bind:class.on="instinct_left | ge(1)"/>
             <div id="instinct-l2" class="lamp" bind:class.on="instinct_left | ge(2)"/>
           </div>
-          <div id="tell-rule"/>
+          <div id="tell-rule" class="s-614666"/>
           <div id="tell-bubble" class="bubble" bind:display="tell_line | ne('')">
             <div id="tell-q-zh" class="tell-line q-zh" bind:text="format('「{0}」', tell_line)">「小人記得清清楚楚，報時鳥一叫我就走了。」</div>
             <div id="tell-q-en" class="tell-line q-en" bind:text="format('“{0}”', tell_line)">“I remember it clearly.”</div>

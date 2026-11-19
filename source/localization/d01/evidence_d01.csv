@@ -1,0 +1,182 @@
+﻿ID,zh-TW,en,note
+ISSUE_D01_OPP,機會,Opportunity,issue name
+ISSUE_D01_OPP_SHORT,機,Opp.,issue short label (chain colour chip)
+ISSUE_D01_METHOD,手法,Method,issue name
+ISSUE_D01_METHOD_SHORT,法,Meth.,issue short label (chain colour chip)
+ISSUE_D01_MOTIVE,動機,Motive,issue name
+ISSUE_D01_MOTIVE_SHORT,動,Mot.,issue short label (chain colour chip)
+CLM_D01_01A,筒鎖完好，用真鑰匙開,"Lock intact, opened with its key",claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01A_LINE,筒鎖完好，一道撬痕也沒有。打開它的，是一把真正的鑰匙。,"The lock is intact, not a single pick mark. Whoever opened it used a real key.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01B,筒鎖被動過手腳,The lock was tampered with,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01B_LINE,筒鎖被人動過手腳——可是動手腳的，不是只會修鎖的布里格斯。,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01C,鎖芯裡沒有油,No oil in the lock,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01C_LINE,筒鎖裡乾乾淨淨，一滴油都沒有。上了油的鑰匙，沒有碰過這把鎖。,That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it.,claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_01D,鎖匠沒有能開鎖的東西,Locksmith had nothing to open it,claim short label; evidence E01 文件筒; issue 法
+CLM_D01_01D_LINE,筒鎖是好鎖，布里格斯修好之後也沒有留備用鑰匙——他手上，根本沒有能打開它的東西。,"It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it.",claim spoken line (Sherefox); evidence E01 文件筒; issue 法
+CLM_D01_02A,座鐘在熄燈時重新走動,Clock restarted when the lights died,claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02A_LINE,書房的鐘本來停在九點四十分。它在熄燈的那三分鐘裡重新走了起來——那時候，有人在書房裡撞到了壁爐架。,"The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece.",claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_02B,座鐘是自己擺起來的,The clock restarted on its own,claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02B_LINE,老座鐘停久了，屋子一震就會自己擺起來。它慢了一個多小時，跟熄燈沒有關係。,An old clock left stopped will start swinging at the slightest tremor. It's over an hour slow. Nothing to do with the lights.,claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_02C,九點四十分，他在叫你,"Twenty to ten, he called for you",claim short label; evidence E02 座鐘; issue 機
+CLM_D01_02C_LINE,這座鐘停在九點四十分，海德先生嚥氣的那一刻。那時候他一直在叫一個人的名字——塞德里克先生，你在哪裡？,"This clock stopped at twenty to ten, the moment Mr Hyde breathed his last. Until then he kept calling one name. Mr Cedric, where were you?",claim spoken line (Sherefox); evidence E02 座鐘; issue 機
+CLM_D01_03A,黑布上的守靈白蠟,Wake candle wax on the cloth,claim short label; evidence E03 黑布; issue 機
+CLM_D01_03A_LINE,書房鏡子的黑布上，滴著一滴還沒乾透的白蠟——守靈用的蠟燭。靠走廊那張椅子旁的燭台，是空的。燈滅的時候，有人從那個位子拿著蠟燭，進了書房。,"On the black cloth from the study mirror there's a drop of white wax, still soft. Wake candle wax. And the candlestick by the chair nearest the corridor is empty. When the lights went out, someone took a candle from that seat into the study.",claim spoken line (Sherefox); evidence E03 黑布; issue 機
+CLM_D01_03B,沒人敢把黑布蓋回去,No one dared cover the mirror,claim short label; evidence E03 黑布; issue 機
+CLM_D01_03B_LINE,黑布是被碰掉的，可是沒有人把它蓋回去。在守靈夜讓鏡子就這樣敞著——那個人，連回頭看一眼都不敢。,"The cloth was knocked off, and nobody put it back. A mirror left bare on a wake night! Whoever did it didn't dare so much as look back.",claim spoken line (Sherefox); evidence E03 黑布; issue 機
+CLM_D01_04A,總閥被人關小,Someone turned the valve down,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04A_LINE,總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。,The main valve has fresh turn marks. The lights didn't dim on their own. Someone in the basement turned it down.,claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_04B,閥輪上是書房的煙灰,Study soot on the valve wheel,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04B_LINE,閥輪上沾的是書房壁爐的煙灰。關燈的人先去了書房，再回到地下室把燈打開——他從頭到尾都在屋裡。,"The soot on that valve wheel came from the study fireplace. Whoever dimmed the lights went to the study first, then back down to turn them up again. He never left the house.",claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_04C,廚房裡只有瑪莎,Only Martha in the kitchen,claim short label; evidence E04 總閥; issue 機
+CLM_D01_04C_LINE,燈滅的時候，後門一直關著，地下室的廚房裡只有瑪莎一個人——沒有人從後門跑出去。,"When the lights went out, the back door stayed shut and Martha was alone in the basement kitchen. No one ran out the back.",claim spoken line (Sherefox); evidence E04 總閥; issue 機
+CLM_D01_05A,萬用鑰匙全上了油,Every skeleton key is oiled,claim short label; evidence E05 萬用鑰匙; issue 法
+CLM_D01_05A_LINE,布里格斯的萬用鑰匙，每一把都上了油。不上油，它們轉不動。,"Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn.",claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
+CLM_D01_05B,萬用鑰匙打不開筒子,Skeleton keys can't open the tube,claim short label; evidence E05 萬用鑰匙; issue 法
+CLM_D01_05B_LINE,這種圈子上的萬用鑰匙，連一般的門都很難打開，何況是黃銅筒。,"Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube.",claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
+CLM_D01_06A,鎖已修妥，沒留後門,"Lock mended, no back door left",claim short label; evidence E06 工作單; issue 法
+CLM_D01_06A_LINE,工作單寫著：換新彈簧，當著主人的面試開三次，修妥。鎖修好了，沒有留後門。,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it.",claim spoken line (Sherefox); evidence E06 工作單; issue 法
+CLM_D01_06B,鎖匠傍晚就走了,Locksmith left in the evening,claim short label; evidence E06 工作單; issue 機
+CLM_D01_06B_LINE,工作單寫著五點收工。布里格斯傍晚就走了，守靈夜根本不在屋裡——他跟這件事毫無關係。,The work order says he finished at five. Briggs left in the evening and wasn't in the house on wake night at all. He has nothing to do with this.,claim spoken line (Sherefox); evidence E06 工作單; issue 機
+CLM_D01_06C,工作單只寫「校試」,"Work order only says ""tested""",claim short label; evidence E06 工作單; issue 法
+CLM_D01_06C_LINE,工作單上寫的是『校試』，不是『修理』——布里格斯根本沒動過那個筒子的鎖芯。,"The work order says ""tested"", not ""repaired"". Briggs never touched the inside of that lock.",claim spoken line (Sherefox); evidence E06 工作單; issue 法
+CLM_D01_07A,鎖匠在廚房見瑪莎,Locksmith met Martha in the kitchen,claim short label; evidence E07 手帕; issue 機
+CLM_D01_07A_LINE,這條手帕掉在廚房爐子後面，有機油味，繡著廚娘瑪莎的縮寫。布里格斯晚上偷偷回來見她——燈滅的時候，他就在後門邊的廚房，沒有人從後門跑出去。,"This handkerchief was behind the kitchen stove. It smells of machine oil and bears Martha the cook's initial. Briggs slipped back at night to see her. When the lights went out, he was in the kitchen by the back door, and nobody ran out the back.",claim spoken line (Sherefox); evidence E07 手帕; issue 機
+CLM_D01_07B,鎖匠是為瑪莎回來的,Locksmith came back for Martha,claim short label; evidence E07 手帕; issue 動
+CLM_D01_07B_LINE,布里格斯冒險溜回來，是為了瑪莎，不是為了什麼附錄。,"Briggs risked sneaking back for Martha, not for any codicil.",claim spoken line (Sherefox); evidence E07 手帕; issue 動
+CLM_D01_08A,四百鎊的賭債,Four hundred pounds in gaming debts,claim short label; evidence E08 催款信; issue 動
+CLM_D01_08A_LINE,梅費爾俱樂部，四百鎊，月底前還清。需要錢的人，是你。,The Mayfair Club. Four hundred pounds. Due by the end of the month. The one who needs money is you.,claim spoken line (Sherefox); evidence E08 催款信; issue 動
+CLM_D01_08B,叔叔過世那晚，你在俱樂部,At the club the night Uncle died,claim short label; evidence E08 催款信; issue 動
+CLM_D01_08B_LINE,催款信的日期，是海德先生過世的那一天。那一晚，你在俱樂部。,"The demand letter is dated the day Mr Hyde died. And that night, you were at the club.",claim spoken line (Sherefox); evidence E08 催款信; issue 動
+CLM_D01_09A,艾琳是海德先生的女兒,Irene is Mr Hyde's daughter,claim short label; evidence E09 胸針; issue 動
+CLM_D01_09A_LINE,艾琳抽屜裡的胸針，和海德太太的是一對，編的是海德先生的頭髮。艾琳是海德先生的女兒——那份附錄，是留給她的。,"The brooch in Irene's drawer is the twin of Mrs Hyde's, woven from Mr Hyde's hair. Irene is Mr Hyde's daughter. The codicil was meant for her.",claim spoken line (Sherefox); evidence E09 胸針; issue 動
+CLM_D01_09B,胸針只是紀念品,The brooch is just a keepsake,claim short label; evidence E09 胸針; issue 動
+CLM_D01_09B_LINE,這枚胸針是海德太太送給艾琳的紀念品，跟遺囑沒有關係。,Mrs Hyde gave Irene that brooch as a keepsake. It has nothing to do with the will.,claim spoken line (Sherefox); evidence E09 胸針; issue 動
+CLM_D01_10A,附錄讓你少了一半,The codicil halved your share,claim short label; evidence E10 吸墨紙; issue 動
+CLM_D01_10A_LINE,吸墨紙上印著附錄的反字：『將遺產之半數，贈予……』。舊遺囑把一切留給你，這份附錄，讓你少了一半。,"The blotter holds the codicil in mirror writing: ""half of my estate I bequeath to..."" The old will left you everything. This codicil cut your share in half.",claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
+CLM_D01_10B,最早看到附錄的人,First to see the codicil,claim short label; evidence E10 吸墨紙; issue 動
+CLM_D01_10B_LINE,附錄是海德先生最後幾天寫的。前天整理書房的人，最早看到它——那個人站在門口，不肯進去，卻一直待到整理完。,"Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done.",claim spoken line (Sherefox); evidence E10 吸墨紙; issue 動
+CLM_D01_11A,燈滅前，你的椅子就空了,Your chair was empty before dark,claim short label; evidence E11 艾琳的證詞; issue 機
+CLM_D01_11A_LINE,艾琳說，燈滅之前，你的椅子就已經空了。,Irene says your chair was already empty before the lights went out.,claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
+CLM_D01_11B,你的手套指尖沾著灰,Dust on your glove tips,claim short label; evidence E11 艾琳的證詞; issue 機
+CLM_D01_11B_LINE,艾琳說，燈亮的時候你站在走廊口，黑手套的指尖沾著灰。,"Irene says when the lights came back you were at the end of the corridor, with dust on the fingertips of your black gloves.",claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
+CLM_D01_12A,這家人很重視守靈,This family takes the wake seriously,claim short label; evidence E12 花圈; issue 機
+CLM_D01_12A_LINE,全屋照規矩辦喪事，連門環都綁了黑紗。這家人很重視守靈——所以熄燈三分鐘，是件大事。,"The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter.",claim spoken line (Sherefox); evidence E12 花圈; issue 機
+CLM_D01_P1A,他還在這棟屋子裡,He is still in this house,claim short label; evidence C_D01_P1 通靈板; issue 機
+CLM_D01_P1A_LINE,（把通靈板擺上靈柩旁的小桌）守靈夜還沒有過，海德先生還在這棟屋子裡。塞德里克先生，你有什麼話，想對他說嗎？,"(Sets the talking board on the little table by the coffin) The wake isn't over. Mr Hyde is still in this house. Mr Cedric, is there anything you'd like to say to him?",claim spoken line (Sherefox); evidence C_D01_P1 通靈板; issue 機
+CLM_D01_P1B,他知道是誰,He knows who did it,claim short label; evidence C_D01_P1 通靈板; issue 動
+CLM_D01_P1B_LINE,（指示板慢慢滑向『YES』）……看。他說，他知道是誰。,"(The planchette slides slowly to ""YES"") ...Look. He says he knows who did it.",claim spoken line (Sherefox); evidence C_D01_P1 通靈板; issue 動
+CARD_D01_L1,整晚守在靈柩旁,I stayed by the coffin all night,opponent card short label (his chain)
+CARD_D01_L2,鎖匠修鎖時動了手腳,The locksmith rigged the lock,opponent card short label (his chain)
+CARD_D01_L3,鎖匠想勒索嬸嬸,The locksmith meant to blackmail Aunt,opponent card short label (his chain)
+CARD_D01_L4,有人從後門跑了,Someone fled by the back door,opponent card short label (his chain)
+CARD_D01_F1,鎖匠碰過筒子、有萬用鑰匙,Locksmith had the tube and keys,opponent card short label (his chain)
+CARD_D01_F2,三分鐘裡誰都可能離席,Anyone could have slipped out,opponent card short label (his chain)
+CARD_D01_U1,閥門本來就鬆,That valve was always loose,opponent card short label (his chain)
+CARD_D01_U2,我是欠了一點錢,I do owe a little money,opponent card short label (his chain)
+CARD_D01_P05,鑰匙齒上有黃銅屑,Brass filings on the key,opponent card short label (his chain)
+CARD_D01_P07,鎖匠昨晚回來過,The locksmith came back last night,opponent card short label (his chain)
+CARD_D01_P06,鎖匠一個人修筒子,Locksmith worked on the tube alone,opponent card short label (his chain)
+CARD_D01_K1,我是去看閥門的,I went to check the valve,opponent card short label (his chain)
+REFUTE_D01_05B_FACT,工作單寫明以萬用鑰匙校試,the work order states the lock was tested with skeleton keys,fact the player now knows after 05B is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+REFUTE_D01_01D_FACT,鎖匠身上有萬用鑰匙圈,the locksmith carried a ring of skeleton keys,fact the player now knows after 01D is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+REFUTE_D01_06B_FACT,鎖匠昨晚回來過,the locksmith came back last night,fact the player now knows after 06B is refuted (fills {fact} in SYS_D01_NOW_KNOWN)
+OBS_D01_W1,黃銅筒的蓋子關得好好的，鎖是鎖上的,The brass tube's lid is shut and locked,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L003
+OBS_D01_W2,布里格斯被逮捕時已被搜身，身上沒有任何紙張,Briggs was searched on arrest and had no papers on him,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L007
+OBS_D01_W3,熄燈時全屋的燈一起變暗、一起變亮,Every light in the house dimmed together and came back together,warm-up observation card; Sherefox's line when played = SCR_D01_S04_L010
+E_D01_01_NAME,黃銅文件筒（空）,Brass document tube (empty),evidence name; grade 關鍵; found at 書房 HS08
+E_D01_01_DESC,書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。鎖孔周圍光亮，沒有明顯的刮痕。,"The brass document tube on the desk. The lid is locked and the tube is empty. The keyhole is bright, with no obvious scratches.",evidence description (evidence list)
+E_D01_02_NAME,書房的座鐘,Study mantel clock,evidence name; grade 關鍵; found at 書房 HS09
+E_D01_02_DESC,全屋唯一在走的鐘。指著十點四十八分，比真正的時間慢了一個多小時。,"The only clock in the house that is running. It reads 10:48, more than an hour slow.",evidence description (evidence list)
+E_D01_03_NAME,落在地上的鏡子黑布,Fallen mirror cloth,evidence name; grade 一般; found at 書房 HS10
+E_D01_03_DESC,書房穿衣鏡的黑布掉在地毯上，鏡子敞著。黑布上有一滴還沒乾透的守靈白蠟。,"The black cloth from the study's cheval glass lies on the carpet, the mirror left bare. On the cloth is a drop of white wake-candle wax, not yet set.",evidence description (evidence list)
+E_D01_04_NAME,地下室煤氣總閥,Basement main gas valve,evidence name; grade 關鍵; found at 地下室 HS15
+E_D01_04_DESC,閥輪有新鮮的扳動痕跡，輪緣沾著一圈黑灰。,"The valve wheel shows fresh turn marks, and its rim is ringed with black dust.",evidence description (evidence list)
+E_D01_05_NAME,萬用鑰匙圈,Ring of skeleton keys,evidence name; grade 一般; found at 門廳 HS25
+E_D01_05_DESC,布里格斯的萬用鑰匙，十二把，每一把都上了油。,"Briggs's skeleton keys. Twelve of them, every one oiled.",evidence description (evidence list)
+E_D01_06_NAME,布里格斯的工作單,Briggs's work order,evidence name; grade 一般; found at 門廳 HS25
+E_D01_06_DESC,「下午三時至五時，海德宅書房黃銅文件筒，換新彈簧一組，以萬用鑰匙校試三次，當主人面試開，修妥。布里格斯。」,"""3 to 5 p.m. Hyde residence, study, brass document tube. One new spring fitted. Tested three times with skeleton keys. Opened in the owner's presence. Repaired. Briggs.""",evidence description (evidence list)
+E_D01_07_NAME,繡字手帕,Embroidered handkerchief,evidence name; grade 關鍵; found at 地下室・廚房 HS17
+E_D01_07_DESC,廚房爐子後面撿到的男用手帕，繡著「M」，有機油味。,"A man's handkerchief found behind the kitchen stove, embroidered with an ""M"". It smells of machine oil.",evidence description (evidence list)
+E_D01_08_NAME,賭場的催款信,Gaming club's demand letter,evidence name; grade 關鍵; found at 臥室 HS23
+E_D01_08_DESC,梅費爾俱樂部致塞德里克：欠款四百鎊，本月底前結清。日期是海德先生過世那天。,"The Mayfair Club to Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died.",evidence description (evidence list)
+E_D01_09_NAME,髮辮胸針（小）,Hair brooch (small),evidence name; grade 一般; found at 閣樓・艾琳的房間 HS20
+E_D01_09_DESC,艾琳抽屜裡的哀悼胸針，和海德太太那枚一模一樣，小一號，背面刻著「給 E.」。,"A mourning brooch from Irene's drawer, identical to Mrs Hyde's but a size smaller. Engraved on the back: ""For E.""",evidence description (evidence list)
+E_D01_10_NAME,書房的吸墨紙,Study blotter,evidence name; grade 關鍵; found at 書房 HS11
+E_D01_10_DESC,印著附錄的反字：「……將遺產之半數，贈予……」名字被墨跡糊掉。,"Bears the codicil in mirror writing: ""...half of my estate I bequeath to..."" The name is lost in a smudge of ink.",evidence description (evidence list)
+E_D01_11_NAME,艾琳的證詞,Irene's statement,evidence name; grade 一般; found at 靈堂 HS02
+E_D01_11_DESC,「燈滅之前，少爺的椅子就空了。燈亮的時候，他站在走廊口，黑手套的指尖亮亮的，像沾了灰。」,"""Before the lights went out, the young master's chair was already empty. When they came back, he was standing at the end of the corridor, and the fingertips of his black gloves were shiny, like they'd got dust on them.""",evidence description (evidence list)
+E_D01_12_NAME,黑紗花圈,Black crape wreath,evidence name; grade 一般; found at 靈堂 HS06
+E_D01_12_DESC,大門內側的黑紗花圈，綁得一絲不苟。,"The black crape wreath on the inside of the front door, tied with meticulous care.",evidence description (evidence list); decoy: of no use
+C_D01_P1_NAME,通靈板,Talking board,evidence name; grade 心理牌; found at 閣樓 HS19
+C_D01_P1_DESC,閣樓舊玩具箱裡的木製靈應盤，盒蓋寫著「1859，給親愛的瑪格麗特」。,"A wooden talking board from an old toy chest in the attic. The lid reads: ""1859, for dearest Margaret"".",evidence description (evidence list)
+OBS_D01_01_NAME,只有一枚的胸針,A one-of-a-kind brooch,觀察 title; found at 靈堂 HS05 海德太太
+OBS_D01_01_TEXT,海德太太說，她的髮辮胸針是老爺用自己的頭髮編的，「世上只有這一枚」。,"Mrs Hyde says her husband wove her hair brooch from his own hair: ""There is only one in all the world.""",觀察 text (notes page)
+PN_D01_1_NAME,懷錶鏈上的墜子,Charms on his watch chain,人物 title; found at 靈堂 HS03 塞德里克
+PN_D01_1_TEXT,塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色的眼珠玻璃、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的把戲」。,"Three little charms hang from Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks"".",人物 text (notes page)
+PN_D01_2_NAME,白天的床頭燈,A bedside lamp by day,人物 title; found at 臥室 HS22 床頭燈
+PN_D01_2_TEXT,大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。,"In broad daylight, Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night.",人物 text (notes page)
+PN_D01_3_NAME,別過臉的遺體照,Face turned from the photograph,人物 title; found at 靈堂 HS04 遺體照＋HS05 海德太太
+PN_D01_3_TEXT,遺體照裡，塞德里克站在最邊上，臉別了過去。海德太太說：老爺走的那晚一直叫塞德里克的名字，他沒有回來。,"In the memorial photograph, Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Cedric's name, and Cedric never came.",人物 text (notes page); complete only after both HS_D01_04 and HS_D01_05
+PN_D01_4_NAME,不肯進書房的少爺,He won't enter the study,人物 title; found at 書房 HS13 書房門口（艾琳）
+PN_D01_4_TEXT,艾琳說：前天下午整理書房時，少爺站在門口不肯進來，叫她把鏡子的黑布再拉緊一點，說「看著礙眼」。,"Irene says: when she tidied the study the afternoon before yesterday, the young master stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was ""an eyesore"".",人物 text (notes page)
+APR_D01_01_RESULT,鎖完好；用原配鑰匙開；鎖芯無油,Lock intact; opened with its own key; no oil inside,appraisal result note added to E01 黃銅文件筒
+APR_D01_02_RESULT,座鐘在熄燈時被震動而重新走動,Jolted back into motion when the lights went out,appraisal result note added to E02 書房的座鐘
+APR_D01_04_RESULT,總閥上是書房壁爐的煙灰,The valve bears soot from the study fireplace,appraisal result note added to E04 煤氣總閥
+SCENE_D01_PARLOR,靈堂,Parlour,investigation location name
+HS_D01_01_NAME,靈柩與座椅,Coffin and chairs,hotspot name; yields 案件筆記
+HS_D01_01_DESC,靈柩兩旁排著六張椅子。最靠近走廊的那一張，椅墊上還有一點凹陷，坐墊旁的小桌上放著一杯沒喝完的白蘭地，桌角的小燭台卻是空的——其他五張椅子旁的白蠟燭都還點著。,"Six chairs line the coffin, three to a side. The one nearest the corridor still has a slight dent in its cushion. On the little table beside it sits an unfinished glass of brandy, but the small candlestick on the table's corner is empty. By the other five chairs, the white candles are still burning.",hotspot description shown when inspected
+HS_D01_02_NAME,艾琳,Irene,hotspot name; yields E_D01_11 艾琳的證詞
+HS_D01_02_DESC,年輕的女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套——本來就是黑的，可是指尖亮亮的，像沾了灰。」,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. He wears black gloves, they're black anyway, but the fingertips were shiny, like they'd got dust on them.""",hotspot description shown when inspected
+HS_D01_03_NAME,塞德里克,Cedric,hotspot name; yields PN_D01_1 護身符
+HS_D01_03_DESC,塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色的眼珠玻璃、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的把戲。」,"Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks.""",hotspot description shown when inspected
+HS_D01_04_NAME,遺體照,Memorial photograph,hotspot name; yields PN_D01_3（前半）
+HS_D01_04_DESC,靈堂正中掛著昨天拍的遺體照，全家人圍著亡者。塞德里克站在最邊上，臉別了過去，只拍到半張側臉。,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Cedric stands at the very edge, face turned away; the camera caught only half his profile.",hotspot description shown when inspected
+HS_D01_05_NAME,海德太太,Mrs Hyde,hotspot name; yields PN_D01_3（後半）、OBS_D01_01
+HS_D01_05_DESC,「老爺走的那晚，一直叫塞德里克的名字。我派人去找，他沒有回來。」她摸著胸前的髮辮胸針：「這是老爺用自己的頭髮給我編的，世上只有這一枚。」,"""The night my husband died, he kept calling Cedric's name. I sent for him, but he never came."" She touches the hair brooch at her breast. ""My husband wove this for me from his own hair. There is only one in all the world.""",hotspot description shown when inspected
+HS_D01_06_NAME,門口的黑紗花圈,Black crape wreath at the door,hotspot name; yields E_D01_12 黑紗花圈
+HS_D01_06_DESC,大門內側掛著一個黑紗花圈，綁得一絲不苟。,"A black crape wreath hangs on the inside of the front door, tied with meticulous care.",hotspot description shown when inspected
+HS_D01_07_NAME,停住的掛鐘,Stopped wall clock,hotspot name; yields 案件筆記
+HS_D01_07_DESC,靈堂的掛鐘停在九點四十分，鐘擺用一條黑緞帶綁住。,"The parlour's wall clock has stopped at twenty to ten, its pendulum tied still with a black satin ribbon.",hotspot description shown when inspected
+SCENE_D01_STUDY,書房,Study,investigation location name
+HS_D01_08_NAME,黃銅文件筒,Brass document tube,hotspot name; yields E_D01_01 黃銅文件筒（空）
+HS_D01_08_DESC,書桌上的黃銅文件筒，蓋子鎖著，裡面空空如也。鎖孔周圍光亮，沒有明顯的刮痕。,"The brass document tube on the desk. The lid is locked and there is nothing inside. The keyhole is bright, with no obvious scratches.",hotspot description shown when inspected
+HS_D01_09_NAME,壁爐架上的座鐘,Clock on the mantelpiece,hotspot name; yields E_D01_02 書房的座鐘
+HS_D01_09_DESC,壁爐架上的座鐘在走。全屋的鐘都停在九點四十分，只有它在滴答作響，而且指著十點四十八分——比真正的時間慢了一個多小時。,"The mantel clock is running. Every other clock in the house stopped at twenty to ten, yet this one alone is ticking, and it reads 10:48, more than an hour slow.",hotspot description shown when inspected
+HS_D01_10_NAME,鏡子與黑布,Mirror and black cloth,hotspot name; yields E_D01_03 落在地上的鏡子黑布
+HS_D01_10_DESC,書房的穿衣鏡沒有蓋著，黑布掉在鏡子前的地毯上，皺成一團。黑布上有一滴還沒乾透的白蠟。,"The study's cheval glass is uncovered. Its black cloth lies crumpled on the carpet in front of it. On the cloth is a drop of white wax, not yet set.",hotspot description shown when inspected
+HS_D01_11_NAME,書桌上的吸墨紙,Blotter on the desk,hotspot name; yields E_D01_10 書房的吸墨紙
+HS_D01_11_DESC,吸墨紙上印著幾行反過來的字。拿到鏡子前（Sherefox 側身避開鏡面，用小鏡子照）讀得出：「……將遺產之半數，贈予……」名字的部分被墨跡糊掉了。,"The blotter bears a few lines of reversed writing. Held up to a mirror (Sherefox turns aside from the glass and uses a small hand mirror), it reads: ""...half of my estate I bequeath to..."" The name has been lost in a smudge of ink.",hotspot description shown when inspected
+HS_D01_12_NAME,壁爐的通風閥,Fireplace damper,hotspot name; yields 案件筆記
+HS_D01_12_DESC,壁爐很久沒生火了，爐膛冷冰冰的。通風閥的拉桿上有一道新鮮的煙灰指印，拉桿卡住了，拉不動。,No fire has been lit here for a long time; the grate is stone cold. The damper lever bears a fresh sooty fingerprint. The lever is jammed and won't budge.,hotspot description shown when inspected
+HS_D01_13_NAME,書房門口,Study doorway,hotspot name; yields PN_D01_4 書房門口
+HS_D01_13_DESC,艾琳跟了過來，站在門口小聲說：「前天下午我整理書房，少爺站在門口，不肯進來。他叫我把鏡子的黑布再拉緊一點，說『看著礙眼』。」,"Irene has followed you and stands in the doorway, speaking softly. ""The afternoon before yesterday, I was tidying the study, and the young master stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.""",hotspot description shown when inspected
+HS_D01_14_NAME,書桌抽屜,Desk drawer,hotspot name; yields 案件筆記
+HS_D01_14_DESC,右邊的抽屜沒有鎖，裡面有一個空的小絨布袋，袋口的形狀像是放過一把小鑰匙。,"The right-hand drawer is unlocked. Inside is a small empty velvet pouch, its mouth shaped as though it once held a little key.",hotspot description shown when inspected
+SCENE_D01_BASEMENT,地下室（含廚房）,Basement (and kitchen),investigation location name
+HS_D01_15_NAME,煤氣總閥,Main gas valve,hotspot name; yields E_D01_04 地下室煤氣總閥
+HS_D01_15_DESC,總閥的閥輪上有新鮮的扳動痕跡，輪緣沾著一圈黑灰。,"The wheel of the main valve shows fresh turn marks, and its rim is ringed with black dust.",hotspot description shown when inspected
+HS_D01_16_NAME,傭人樓梯,Servants' stairs,hotspot name; yields 案件筆記
+HS_D01_16_DESC,一道窄窄的木梯，從地下室直通一樓書房旁的走廊。,A narrow wooden staircase running straight up from the basement to the ground-floor corridor beside the study.,hotspot description shown when inspected
+HS_D01_17_NAME,廚房爐子後面,Behind the kitchen stove,hotspot name; yields E_D01_07 繡字手帕
+HS_D01_17_DESC,爐子和牆之間的縫裡，掉著一條男用手帕，角落繡著一個「M」。手帕上有機油味。,"In the gap between the stove and the wall lies a man's handkerchief with an ""M"" embroidered in one corner. It smells of machine oil.",hotspot description shown when inspected
+HS_D01_18_NAME,廚娘瑪莎,Martha the cook,hotspot name; yields 案件筆記
+HS_D01_18_DESC,瑪莎一直在擦同一個盤子。「我、我整晚都在廚房，後門？後門一直關著，沒人進出……真的沒有。」她說「沒人」的時候，眼睛飄向後門的掛鉤，那裡掛著一頂男用帽子。,"Martha keeps wiping the same plate. ""I-I was in the kitchen all night. The back door? The back door stayed shut, nobody came in or out... truly, nobody."" As she says ""nobody"", her eyes drift to the hook by the back door, where a man's hat is hanging.",hotspot description shown when inspected
+SCENE_D01_ATTIC,閣樓（含傭人房）,Attic (and servants' rooms),investigation location name
+HS_D01_19_NAME,舊玩具箱,Old toy chest,hotspot name; yields C_D01_P1 通靈板
+HS_D01_19_DESC,箱子裡有陀螺、褪色的布偶，最底下是一塊木製的靈應盤，字母排成半圓，附一個心形的指示板。盒蓋上寫著「1859，給親愛的瑪格麗特」——海德太太的名字。,"Inside are spinning tops and faded rag dolls. At the very bottom lies a wooden talking board, its letters set in a half circle, with a heart-shaped planchette. The lid reads ""1859, for dearest Margaret"": Mrs Hyde's name.",hotspot description shown when inspected
+HS_D01_20_NAME,艾琳的房間・抽屜,Irene's room: drawer,hotspot name; yields E_D01_09 髮辮胸針（小）
+HS_D01_20_DESC,抽屜裡用手帕包著一枚小胸針，玻璃框裡編著一束灰褐色的頭髮，和海德太太胸前那枚一模一樣，只是小一號。背面刻著「給 E.」。,"Wrapped in a handkerchief in the drawer is a small brooch, a lock of greyish-brown hair woven under its glass. It is identical to the one Mrs Hyde wears, only a size smaller. Engraved on the back: ""For E.""",hotspot description shown when inspected
+HS_D01_21_NAME,窗台的鹽與迷迭香,Salt and rosemary on the sills,hotspot name; yields 案件筆記
+HS_D01_21_DESC,每扇窗的窗台上都撒了一小撮鹽，插著迷迭香。,Every windowsill has a small pinch of salt scattered on it and a sprig of rosemary laid there.,hotspot description shown when inspected
+SCENE_D01_BEDROOM,塞德里克的臥室,Cedric's bedroom,investigation location name
+HS_D01_22_NAME,床頭燈,Bedside lamp,hotspot name; yields PN_D01_2 床頭燈
+HS_D01_22_DESC,大白天，床頭的油燈還點著。燈芯剪得很短，玻璃罩燻得發黑，看得出整夜沒熄過。,"In broad daylight, the oil lamp by the bed is still burning. The wick is trimmed very short and the glass chimney is blackened; it plainly burned all night.",hotspot description shown when inspected
+HS_D01_23_NAME,書桌抽屜,Desk drawer,hotspot name; yields E_D01_08 賭場的催款信
+HS_D01_23_DESC,一封「梅費爾俱樂部」的信：「塞德里克・海德先生台鑒：閣下所欠四百鎊，請於本月底前結清。」日期是三天前——海德先生過世的那一天。,"A letter from the Mayfair Club: ""C. Hyde, Esq. Sir, the four hundred pounds you owe are to be settled by the end of this month."" It is dated three days ago: the day Mr Hyde died.",hotspot description shown when inspected
+HS_D01_24_NAME,衣櫃門內側,Inside the wardrobe door,hotspot name; yields 案件筆記
+HS_D01_24_DESC,衣櫃門內側釘著一個生鏽的小馬蹄鐵，開口朝上。,"A small rusty horseshoe is nailed to the inside of the wardrobe door, ends pointing up.",hotspot description shown when inspected
+SCENE_D01_HALL,門廳,Entrance Hall,investigation location name
+HS_D01_25_NAME,警督保管的箱子,The Inspector's box,hotspot name; yields E_D01_05 萬用鑰匙圈、E_D01_06 布里格斯的工作單
+HS_D01_25_DESC,警督把布里格斯的東西收在一個木箱裡：一圈萬用鑰匙，每一把都油亮亮的；一張工作單，字跡工整。,"The Inspector has packed Briggs's belongings into a wooden box: a ring of skeleton keys, every one gleaming with oil, and a work order in a neat hand.",hotspot description shown when inspected
+HS_D01_26_NAME,布里格斯,Briggs,hotspot name; yields 案件筆記
+HS_D01_26_DESC,布里格斯坐在門廳的長椅上，警員看著他。「我發誓我沒碰附錄。我晚上……我晚上是來辦點私事，不能說，說了會害到人。」,"Briggs sits on the bench in the entrance hall, a constable watching him. ""I swear I never touched that codicil. Last night I... last night I come on a private matter. I can't say what. If I did, someone'd get hurt.""",hotspot description shown when inspected

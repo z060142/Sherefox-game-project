@@ -22,3 +22,17 @@ sharp at 2x in every one of them.
 | char_partner.png | opp_partner.png (20261105-193547) |
 
 `art_masthead.png` (2172x724, title and paper masthead) is already the generator original (20261105-232229).
+
+## v2 demo D01 (design repo `images/d01/`, commit 70cbb23)
+
+Copied from the design repo's `images/d01/cedric_<expression>.png` (1024x1536 RGBA), re-encoded losslessly with the
+same `magick ... -strip -define png:compression-level=9 -define png:compression-strategy=1` command. Drawn by the
+d1debate board in a 330x495 box (`object-fit: contain`).
+
+| file | source |
+|---|---|
+| char_cedric_composed.png | images/d01/cedric_composed.png |
+| char_cedric_uneasy.png | images/d01/cedric_uneasy.png |
+| char_cedric_cornered.png | images/d01/cedric_cornered.png |
+| char_cedric_angry.png | images/d01/cedric_angry.png |
+| char_cedric_guilt.png | images/d01/cedric_guilt.png |

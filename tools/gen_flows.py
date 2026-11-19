@@ -587,25 +587,35 @@ def audio_decl() -> dict:
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
 FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
-              "result", "music"]
+              "d01_debate_ui", "d01_debate_engine", "result", "music"]
 
 
 def game_json_text(tables: dict) -> str:
     import gen_debui
+    import gen_debui_v2
+    import gen_debate_v2
     game = json.loads(GAME_JSON.read_text(encoding="utf-8"))
-    # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py)
-    for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS}.items():
+    # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py);
+    # the v2 demo: the D01 engine's (tools/gen_debate_v2.py) and its screen's (tools/gen_debui_v2.py)
+    for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS, **gen_debate_v2.SIGNALS,
+                       **gen_debui_v2.SIGNALS}.items():
         game["signals"][name] = decl
     colls = game.get("collections", {})
     colls.update(gen_debate.COLLECTIONS)
     colls.update(COLLECTIONS)
     colls.update(gen_debui.COLLECTIONS)
+    colls.update(gen_debate_v2.COLLECTIONS)
+    colls.update(gen_debui_v2.COLLECTIONS)
     game["collections"] = colls
+    surfaces = game["ui"]["surfaces"]
+    if not any(s["ui"] == gen_debui_v2.UI for s in surfaces):   # the v2 debate screen, after result (a main screen)
+        at = next(i for i, s in enumerate(surfaces) if s["ui"] == "result") + 1
+        surfaces.insert(at, {"ui": gen_debui_v2.UI, "width": 1280, "height": 720, "visible": False})
     for name in [n for n in game["tables"] if n.startswith("flow")]:   # the flow tables are all regenerated
         del game["tables"][name]
     for name in tables:
         game["tables"][name] = f"data/flow/{name}.json"
-    for name, rel in gen_debate.TABLES.items():
+    for name, rel in {**gen_debate.TABLES, **gen_debate_v2.TABLES}.items():
         game["tables"][name] = rel
     game["tables"][gen_debate.SCRIPT_TABLE] = gen_debate.script_table("data/debScript.json")   # tools/build_data.py
     game["flows"] = [f"flows/{f}.xtflow" for f in FLOW_ORDER]
@@ -814,7 +824,7 @@ def gen_main() -> Graph:
     # Screens: exactly one of title / paper / vn / investigate / board / debate / result is visible; `end` shows
     # the title with its end card; warmup and debate steps show the debate; a result step shows the result, then
     # the vn for its scene's lines (world.resultLines).
-    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result"]
+    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result", "d1debate"]
     g.node("screen", "state", initial="title", states=screens,
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
     # A debate / warmup step whose scene has `pre` lines (script.cue) starts on the vn; the debate screen comes with
@@ -842,6 +852,9 @@ def gen_main() -> Graph:
     g.edge("world.vnShow", "screen.to_vn")
     g.edge("world.debBack", "screen.to_debate")
     g.edge("world.resultLines", "screen.to_vn")
+    # the v2 demo (docs/flows.md §4.12): the title's v2 entry shows the D01 debate screen, its back to title ends it
+    g.edge("ui#title.v2demo", "screen.to_d1debate")
+    g.edge("world.d1Back", "screen.to_title")
     g.edge(g.when("debPreG", "rebegin.out", "debPre_t"), "screen.to_vn")
     g.edge(g.when("debNoPreG", "rebegin.out", "debNoPre_t"), "screen.to_debate")
 
@@ -904,7 +917,7 @@ def gen_main() -> Graph:
     g.node("settings", "state", initial="closed", states=["closed", "open"],
            transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
     g.edge("ui#title.open_settings", "settings.open")
-    for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes"):
+    for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes", "d1debate"):
         g.edge(f"ui#{ui}.settings", "settings.open")
     g.edge("ui#settings.close", "settings.close")
     g.node("settingsVis", "lookup", values=[False, True])
@@ -2143,15 +2156,19 @@ def gen_music() -> Graph:
 
 def graphs() -> dict:
     import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
+    import gen_debui_v2  # the v2 demo D01 debate screen
     return {"main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
-            "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music}
+            "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music,
+            "d01_debate_ui": gen_debui_v2.gen_d01ui}
 
 
 def outputs() -> dict[Path, str]:
     import gen_debui
     out = {FLOWS / f"{name}.xtflow": fn().text_out() for name, fn in graphs().items()}
+    import gen_debui_v2
     tables = flow_tables()
     tables.update(gen_debui.tables())
+    tables.update(gen_debui_v2.tables())
     for name, rows in tables.items():
         out[FLOW_DATA / f"{name}.json"] = table_text(rows)
     out[GAME_JSON] = game_json_text(tables)
