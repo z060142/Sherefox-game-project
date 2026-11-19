@@ -181,6 +181,12 @@ def gen_d01ui() -> Graph:
     g.x("stSoon", "now + 0.1")
     setn(start, "stAt", "stSoon")
     g.edge(g.latch("wuDev", g.k(DEV_WARMUP), dev), "world.d1Warmup")
+    # the debate's seed (debate-engine-v2 §3.4): the next value of the simulation's rng when the step begins, so a
+    # replay draws the same seed and two debates in one run differ; the engine reads it at d1Start
+    g.node("seedRng", "atrium.rng")
+    g.edge(start, "seedRng.trigger")
+    g.put("seedU", "seedRng.value")
+    g.edge(g.x("seedV", "floor(seedU * 16777216)"), "world.d1Seed")
     g.edge(stT, "world.d1Start")
     setn(stT, "rsAt", "soon")
 
@@ -694,6 +700,11 @@ def gen_d01ui() -> Graph:
     g.edge("tellOn_t", f"{P}.tell_on")
     g.n("tellClearN", g.cmp("tellClearC", "L_TellClarity", g.k("clear")))
     g.edge("tellClearC.out", f"{P}.tell_clear")
+    # heading: a vague tell with a card shows the card he would say if he speaks (00_core_rules §15〔M2〕)
+    g.n("tcHasN", g.cmp("tcHasC", "L_TellCard", g.k(""), op="ne"))
+    g.x("tellIfs", "!tellClearN && tcHasN")
+    g.edge(g.text("tellHeadT", g.sel("tellHeadK", "tellIfs_t", g.k("UI_V2_TELL_IF_SPEAKS"), g.k("UI_V2_TELL_HEAD"))),
+           f"{P}.tell_head")
     for nm, sig in (("ta", "L_TellShown1"), ("tb", "L_TellShown2")):
         g.tget(nm + "Code", "d1Code", "code", g.tfind(nm + "Row", "d1Code", "id", sig), "number")
         g.x(nm, f"{nm}Row >= 0 ? {nm}Code : -1")

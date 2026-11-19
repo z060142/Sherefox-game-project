@@ -204,7 +204,7 @@ target, cover, lock, one click per playback record), then the outcome panel's ba
 | `route A`, `route A [en]` | `d1_routeA.atrec` on `tests/d1play_harnessA` | ref route A (ch §12.1) with Cedric's moves pinned through the engine's `d1OppAct`／`d1OppCard` test hook (a flow the harness adds): the outcome panel shows grade 1 and 9 rounds, a win; round 9 was shown; back to title leaves only the title; nothing on stderr |
 | `route B`, `route C [en]` | `d1_routeB.atrec`, `d1_routeC.atrec` on `tests/d1play_harnessB`, `C` | ref routes B (talking board, seize his words, he gives up: grade 1, 5 rounds) and C (sophistry, a private matter, the picked-up keys as his last card taken, a second endgame: grade 3, 10 rounds), each with its own loadout |
 | `route D` | `d1_routeD.atrec` on `tests/d1play_harnessD` | ref route D (ch §12.4; the harness also swaps in route D's loadout): grade 5, 8 rounds, a loss (Reverse Break, then the last card fails; route D names L1 as the target, no longer on his chain, so no target is clicked: same result) |
-| `seeded AI (seed 3)` | `d1_bot.atrec` on the game itself | nothing pinned: the engine's AI on the run's seed against the moves of ref `play.bot` on the framework's Rng (`check_debate_v2.py` `FrameworkRng`); the outcome matches ref |
+| `seeded AI (seed 3)` | `d1_bot.atrec` on the game itself | nothing pinned: the engine's AI on the debate seed the UI draws from the run's rng (`check_debate_v2.py` `ui_debate_seed`) against the moves of ref `play.bot` on the same seed; the outcome matches ref |
 
 The harnesses (`tests/d1play_harnessA/` … `D/`, copies of the game; gitignored) are deleted when the check ends, and the
 check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR` also writes review screenshots in

@@ -154,7 +154,7 @@ def main() -> int:
                                         ("route D", "d1_routeD", "D", "zh-TW")):
             check(label, rec, f"tests/d1play_harness{route}", ticks[rec], ticks[rec + "_marks"],
                   expected(gd.forced(route)), lang, fails)
-        bot = gd.CV.play_debate("bot", gd.RT.ROUTES["A"].loadout, gd.BOT_SEED)
+        bot = gd.CV.play_debate("bot", gd.RT.ROUTES["A"].loadout, gd.BOT_DEBATE_SEED)
         last = bot.steps[-1][3]
         check(f"seeded AI (seed {gd.BOT_SEED})", "d1_bot", ".", ticks["d1_bot"], ticks["d1_bot_marks"],
               (last.grade, last.round - 1, last.outcome), "zh-TW", fails)

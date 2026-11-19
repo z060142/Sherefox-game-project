@@ -14,9 +14,10 @@ Every recording starts at the title, clicks the v2 entry and plays the D01 debat
   card, a win after a second endgame).
 - tests/d1_routeD.atrec (tests/d1play_harnessD): ref route D (ch §12.4: a Reverse Break and a failed last card, a
   loss in 8 rounds); the harness also replaces the dev entry's loadout with route D's (build_harness).
-- tests/d1_bot.atrec (the game itself, seed BOT_SEED): nothing pinned. The opponent is the engine's AI on the run's
-  seed; the player's moves are ref play.bot's against ref policy.decide on the framework's Rng (tests/check_debate_v2.py
-  FrameworkRng), so the recording is valid only while the engine and ref draw the same numbers.
+- tests/d1_bot.atrec (the game itself, run seed BOT_SEED): nothing pinned. The opponent is the engine's AI on the
+  debate seed the debate UI draws from the run's rng (BOT_DEBATE_SEED, tests/check_debate_v2.py ui_debate_seed: the
+  first atrium.rng value of the run); the player's moves are ref play.bot's against ref policy.decide on that seed,
+  so the recording is valid only while the engine and ref draw the same numbers.
 - tests/d1_shots.atrec (tests/d1play_harnessA, route A): no playback clicks in round 8 (the Break plays out), for the
   screenshots of tests/check_d1_play.py --shots.
 
@@ -45,6 +46,7 @@ from sherefox_ref.v2.resolve import resolve_round  # noqa: E402
 STEP = 1 / 60
 GAP = 8
 BOT_SEED = 3
+BOT_DEBATE_SEED = CV.ui_debate_seed(BOT_SEED)  # no atrium.rng draw before the debate starts
 # ui/boards/project/D1Debate.dc.html (1280x720 logical; the sheet is at 0, 0)
 TITLE_V2 = (654, 624)                                   # Title.dc.html #btn-v2-dev (the dev shortcut to the debate)
 ACT_XY = {1: (107, 664), 2: (295, 664), 3: (469, 664), 4: (657, 664), 5: (432, 664), 6: (642, 664), 7: (432, 664)}
@@ -218,7 +220,7 @@ def main() -> int:
         play(r, forced(route), no_skip)
         ticks[name] = r.write(name, 60)
         ticks[name + "_marks"] = r.marks
-    bot = CV.play_debate("bot", RT.ROUTES["A"].loadout, BOT_SEED)
+    bot = CV.play_debate("bot", RT.ROUTES["A"].loadout, BOT_DEBATE_SEED)
     r = Rec(".", BOT_SEED)
     play(r, [(st[2], st[0], None) for st in bot.steps])
     ticks["d1_bot"] = r.write("d1_bot", 60)

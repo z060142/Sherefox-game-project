@@ -106,14 +106,14 @@
   "over": 3734,
   "back": 3764
  },
- "d1_bot": 3101,
+ "d1_bot": 3416,
  "d1_bot_marks": {
   "chosen1": 112,
   "lock1": 116,
-  "chosen2": 427,
-  "lock2": 431,
-  "chosen3": 742,
-  "lock3": 746,
+  "chosen2": 443,
+  "lock2": 447,
+  "chosen3": 758,
+  "lock3": 762,
   "chosen4": 1073,
   "lock4": 1077,
   "chosen5": 1404,
@@ -122,11 +122,13 @@
   "lock6": 1739,
   "chosen7": 2050,
   "lock7": 2054,
-  "chosen8": 2381,
-  "lock8": 2385,
-  "chosen9": 2712,
-  "lock9": 2716,
-  "over": 3011,
-  "back": 3041
+  "chosen8": 2365,
+  "lock8": 2369,
+  "chosen9": 2696,
+  "lock9": 2700,
+  "chosen10": 3027,
+  "lock10": 3031,
+  "over": 3326,
+  "back": 3356
  }
 }

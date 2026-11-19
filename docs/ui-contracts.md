@@ -500,7 +500,7 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `band_p`、`band_g`、`band_a` | number | in | 壓力、罪惡感、怒氣的段：0 平常、1 浮動、2 失常（沒有數字） |
 | `combo_text`、`hachiku`、`guard_down`、`shisshu` | string、number、bool、bool | in | `UI_V2_COMBO`、破竹層數、他破防中（一般回合）、我方失守（`UI_V2_SHISHOU_HINT`） |
 | `ronpa_text`、`show_ronpa`、`ronpa_ready` | string、bool、bool | in | `UI_V2_RONPA_PROGRESS`（鏈長／4、爭點／2）；一般回合才顯示；他破防且鏈長 ≥ 3、爭點 ≥ 2 時亮 `UI_V2_RONPA_READY` |
-| `tell_on`、`tell_card`、`tell_partial`、`tell_clear`、`tell_a`、`tell_b`、`tell_star`、`tell_gesture` | | in | 預兆：一般回合與終局才顯示；他要說的牌（口誤時是前半句，前面加 `UI_V2_TELL_HESITATE`）；明示／模糊；候選行動 0 立論、1 強辯、2 反駁、3 周旋、4 最後一張牌（`tell_b` −1 ＝ 只有一個）；★ 的候選（−1 無，該格加 `UI_V2_TELL_LIKELY`）；明示時的小動作 |
+| `tell_on`、`tell_head`、`tell_card`、`tell_partial`、`tell_clear`、`tell_a`、`tell_b`、`tell_star`、`tell_gesture` | | in | 預兆：一般回合與終局才顯示；論點框的標題文字（`UI_V2_TELL_HEAD`，模糊而有牌時 `UI_V2_TELL_IF_SPEAKS`「他若開口，會說」；終局時不顯示）；他要說的牌（模糊時是他若開口會說的牌，不論實際行動；口誤時是前半句，前面加 `UI_V2_TELL_HESITATE`）；明示／模糊；候選行動 0 立論、1 強辯、2 反駁、3 周旋、4 最後一張牌（`tell_b` −1 ＝ 只有一個）；★ 的候選（−1 無，該格加 `UI_V2_TELL_LIKELY`）；明示時的小動作 |
 | `dying`、`dying_text` | bool、string | in | 垂死反撲（`UI_V2_DEATH_THROE`，{n} ＝ 10） |
 | `ochain` | list<struct{id, label, issue: string, sel: bool}> | in | 他的鏈（`d1OChain`），`sel` ＝ 選中的拆台／§7.5 目標 |
 | `pchain` | list<struct{id, label, issue: string, crack: number}> | in | 我方的鏈（`d1PChain`），`crack` ＝ 裂紋 |

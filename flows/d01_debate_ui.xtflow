@@ -681,6 +681,17 @@
       }
     },
     {
+      "id": "seedRng",
+      "type": "atrium.rng"
+    },
+    {
+      "id": "seedV",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "floor(seedU * 16777216)"
+      }
+    },
+    {
       "id": "u1_rsAt_7",
       "type": "atrium.map.set",
       "params": {
@@ -6378,6 +6389,46 @@
       "type": "select"
     },
     {
+      "id": "tcHasC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "tcHasN",
+      "type": "select"
+    },
+    {
+      "id": "tellIfs",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!tellClearN && tcHasN"
+      }
+    },
+    {
+      "id": "K170",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_TELL_IF_SPEAKS"
+      }
+    },
+    {
+      "id": "K171",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_TELL_HEAD"
+      }
+    },
+    {
+      "id": "tellHeadK",
+      "type": "select"
+    },
+    {
+      "id": "tellHeadT",
+      "type": "atrium.text"
+    },
+    {
       "id": "taRow",
       "type": "atrium.table.find",
       "params": {
@@ -7135,6 +7186,18 @@
     {
       "from": "wuDev.out",
       "to": "world.d1Warmup"
+    },
+    {
+      "from": "start.changed",
+      "to": "seedRng.trigger"
+    },
+    {
+      "from": "seedRng.value",
+      "to": "seedV.seedU"
+    },
+    {
+      "from": "seedV.value",
+      "to": "world.d1Seed"
     },
     {
       "from": "stG.pass",
@@ -13967,6 +14030,54 @@
     {
       "from": "tellClearC.out",
       "to": "ui#d1debate.tell_clear"
+    },
+    {
+      "from": "L_TellCard.out",
+      "to": "tcHasC.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "tcHasC.b"
+    },
+    {
+      "from": "tcHasC.out",
+      "to": "tcHasN.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "tcHasN.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "tcHasN.b"
+    },
+    {
+      "from": "tellClearN.out",
+      "to": "tellIfs.tellClearN"
+    },
+    {
+      "from": "tcHasN.out",
+      "to": "tellIfs.tcHasN"
+    },
+    {
+      "from": "tellIfs.truth",
+      "to": "tellHeadK.cond"
+    },
+    {
+      "from": "K170.out",
+      "to": "tellHeadK.a"
+    },
+    {
+      "from": "K171.out",
+      "to": "tellHeadK.b"
+    },
+    {
+      "from": "tellHeadK.out",
+      "to": "tellHeadT.key"
+    },
+    {
+      "from": "tellHeadT.text",
+      "to": "ui#d1debate.tell_head"
     },
     {
       "from": "L_TellShown1.out",

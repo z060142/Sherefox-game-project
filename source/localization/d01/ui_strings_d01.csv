@@ -137,3 +137,6 @@ UI_V2_STAMP_CLASH,Debate: stamps,交鋒,Clash,both links landed
 UI_V2_STAMP_BAITED,Debate: stamps,中計,Baited,stalling drew his rebuttal
 UI_V2_STAMP_COVER,Debate: stamps,援護,Cover,Arthur's cover triggered
 UI_V2_STAMP_COMBO_BREAK,Debate: stamps,斷,Broken,combo reset
+UI_V2_TELL_IF_SPEAKS,Debate: tell panel,他若開口，會說,"If he speaks, he will say",claim box heading under a vague tell (the claim is shown whatever he actually does)
+SYS_D01_TOPPLE_MISS_FACT,Debate: system lines,落空。那一節是事實，拆不掉。我方 −{dmg} → {hp}。那一節還站著。,Whiffed. That link is a fact; it cannot be knocked down. You −{dmg} → {hp}. The link still stands.,TEMPLATE; knock-down with a 正論 on a true fact (−10)
+SYS_D01_TOPPLE_MISS_WRONG,Debate: system lines,落空。這句話駁不倒那一節。我方 −{dmg} → {hp}。那一節還站著。,Whiffed. That claim does not refute the link. You −{dmg} → {hp}. The link still stands.,TEMPLATE; knock-down that does not break the link (−5)

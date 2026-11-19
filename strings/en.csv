@@ -1619,6 +1619,8 @@ SYS_D01_TELL_CLEAR,(Tell: Clear) {gesture}. Point: {statement}. {action}.
 SYS_D01_TELL_SLIP,"(Tell) {name} opens his mouth, then shuts it again. Point: {half}"
 SYS_D01_TELL_VAGUE,(Tell) {gesture}. Point: {statement}. Possible: {action1} / {action2}.
 SYS_D01_TELL_VAGUE_LIKELY,(Tell) {gesture}. Point: {statement}. Possible: {action1} (more likely) / {action2}.
+SYS_D01_TOPPLE_MISS_FACT,Whiffed. That link is a fact; it cannot be knocked down. You −{dmg} → {hp}. The link still stands.
+SYS_D01_TOPPLE_MISS_WRONG,Whiffed. That claim does not refute the link. You −{dmg} → {hp}. The link still stands.
 SYS_D01_WIN,You win the debate.
 SYS_D01_ZERO_WIN,{name}'s Credibility hits zero. He has no last card left. You win the debate.
 TAG_PERSON_ARTHUR,Arthur
@@ -2359,6 +2361,7 @@ UI_V2_SUPPORT_LEFT,Cover: {n} left
 UI_V2_TELL_CLEAR,Clear
 UI_V2_TELL_HEAD,He is about to say
 UI_V2_TELL_HESITATE,"(He starts, then stops)"
+UI_V2_TELL_IF_SPEAKS,"If he speaks, he will say"
 UI_V2_TELL_LIKELY,More likely
 UI_V2_TELL_POSSIBLE,Possible: {a} / {b}
 UI_V2_TELL_VAGUE,Unclear

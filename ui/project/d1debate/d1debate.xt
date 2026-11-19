@@ -24,6 +24,7 @@
     ronpa_ready_text: string in = "他破防了。這回合接上就論破！"
     show_ronpa: bool in = true
     tell_on: bool in = true
+    tell_head: string in = "他正要說"
     tell_card: string in = "鎖匠碰過筒子、有萬用鑰匙"
     tell_partial: bool in = false
     tell_clear: bool in = true
@@ -174,7 +175,7 @@
           </div>
         </div>
         <div id="tell" class="paper" bind:display="tell_on">
-          <div id="tell-head" class="kicker" bind:display="mode | ne(1)">@UI_V2_TELL_HEAD</div>
+          <div id="tell-head" class="kicker" bind:text="tell_head" bind:display="mode | ne(1)">他正要說</div>
           <div id="tell-last" class="plate red" bind:display="mode | eq(1)">
             <div id="tell-last-t" class="plate-t">@UI_V2_LAST_CARD</div>
           </div>
@@ -1674,6 +1675,7 @@
       position: absolute;
       top: 0px;
       width: 880px;
+      display: none;
     }
     /* import: D1Debate.dc.html:1/1/20/0/0 */
     #rec-title {
@@ -1921,9 +1923,6 @@
     }
     .sysl {
       padding-left: 10px;
-    }
-    #record-panel {
-      display: none;
     }
     #record:state(Open) #record-panel {
       display: block;

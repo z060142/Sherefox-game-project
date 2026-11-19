@@ -1619,6 +1619,8 @@ SYS_D01_TELL_CLEAR,（預兆・明示）{gesture}。論點：{statement}。{acti
 SYS_D01_TELL_SLIP,（預兆）{name}張了張口，又閉上。論點：{half}
 SYS_D01_TELL_VAGUE,（預兆）{gesture}。論點：{statement}。可能行動：{action1}／{action2}。
 SYS_D01_TELL_VAGUE_LIKELY,（預兆）{gesture}。論點：{statement}。可能行動：{action1}（較可能）／{action2}。
+SYS_D01_TOPPLE_MISS_FACT,落空。那一節是事實，拆不掉。我方 −{dmg} → {hp}。那一節還站著。
+SYS_D01_TOPPLE_MISS_WRONG,落空。這句話駁不倒那一節。我方 −{dmg} → {hp}。那一節還站著。
 SYS_D01_WIN,論戰勝利。
 SYS_D01_ZERO_WIN,{name}的可信度歸零。他已經沒有最後一張牌。論戰勝利。
 TAG_PERSON_ARTHUR,亞瑟
@@ -2359,6 +2361,7 @@ UI_V2_SUPPORT_LEFT,援護 剩 {n} 次
 UI_V2_TELL_CLEAR,明示
 UI_V2_TELL_HEAD,他正要說
 UI_V2_TELL_HESITATE,（欲言又止）
+UI_V2_TELL_IF_SPEAKS,他若開口，會說
 UI_V2_TELL_LIKELY,較可能
 UI_V2_TELL_POSSIBLE,可能行動：{a}／{b}
 UI_V2_TELL_VAGUE,模糊
