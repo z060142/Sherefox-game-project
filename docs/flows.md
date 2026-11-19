@@ -1,5 +1,7 @@
 # 流圖（M4c：Ch.1～3 全程可玩：劇情、蒐證、線索板、熱身、論戰、結算）
 
+v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱身、D01 的場景 BGM，§4.10、§4.14）。
+
 狀態：場景 BGM 2026-11-07（設計的逐場景 BGM 表 `source/staging/bgm_cues_ch01-03.csv` → `data/bgmCues.json`：台詞與報紙顯示時以場景的 cue 優先於時機預設，淡化分 cross／cut／out，結尾卡淡出靜音，§2.1、§4.1、§4.2、§4.10；`tests/check_music.py` 加 Ch.3 熱身重播，§6）。音樂 2026-11-06（第一批音檔：背景音樂播放與論戰結束音效，§4.8、§4.10，`tests/check_music.py`，§6）。G5／G6 2026-11-06（熱身手牌 4 張、觀察卡 OBS_CH03_01／02，選擇器列出整手；出示觀察卡＝失誤，`MSG_WARMUP_WRONG` 之後在 vn 播放警督的反駁 W001／W002，§4.2、§4.8；熱身失敗與一次失誤以主遊戲測試，§6）。M5c 2026-11-06（XTAtrium 4352f29 起的 SDK：AT-036 `xtatrium compile --game` 在每個跑主遊戲的檢查之前執行，§6；熱身失敗的收尾台詞 S04 F001～F004 與熱身的 `postWin`／`postLose`，§4.2、§4.8；尾聲出錯牌的結算台詞，§4.8；重新論戰不重播開場台詞，§4.1、§4.2；「全部調查完畢」自動跳出結束確認，§4.4；鑑定台詞 `evidence.appraisalKey`，§4.6；論戰的對手筆記覆蓋層、預估列候選比較 `preview_vs`、狀態列旗標 `st_flags`、臨場硬接、敗北回顧，§4.8；結算的讀對預兆，§4.9；音樂掛鉤，§4.10）。M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
 
 本文件說明 `flows/*.xtflow` 每一張圖做什麼、圖與圖之間經哪些 `world.*` 訊號與集合溝通、「步驟」的介面合約，以及已知限制。M3 範圍：標題 → 選章 → 開場報紙 → 逐行播放 vn 場景 → 蒐證（調查點、刻度、鑑定、提示、證物冊、保底、漏證）→ 線索板（放卡、理由、拉線判定、推理鏈、鑑定、進入論戰前檢查、交給論戰引擎的板面）→ 熱身（Ch.3）→ 論戰（布丁論戰、Ch.2、Ch.3）→ 結算（後果、重新論戰、結算場景台詞）→ 下一章。語言可即時切換。
@@ -12,7 +14,7 @@
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_debate_ui`、`d01_debate_engine`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_warmup`、`d01_investigate`、`d01_debate_ui`、`d01_debate_engine`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
@@ -25,7 +27,8 @@
 | `debate_ui` | 1739／3377 | `debate`、`warmup` 步驟（§4.8）：引擎輸入、`ui#debate`、`ui#cutin`、`ui#notes`、玩家選擇、臨場硬接、揭示播放（含熱身的反駁，裁決 G5）、敗北回顧、論戰結束音效 |
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
 | `d01_debate_ui` | 967／1796 | v2 示範關卡 D01 的論戰畫面（§4.12）：開發入口的攜帶集合、`d01_debate_engine` 的指令、`ui#d1debate`、`ui#cutin`、事件紀錄的播放、結果框 |
-| `music` | 89／161 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
+| `d01_warmup` | 76／127 | v2 示範關卡 D01 的熱身論戰（§4.14）：`ui#d1warm`、三個論點與三條觀察、失誤、`world.d1Warmup` |
+| `music` | 108／191 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
 
 ### 1.1 寫法上的三條規則
 
@@ -62,6 +65,7 @@
 | `world.bgmMoment`、`world.bgm` | string | `music` | `music`（播放） | 目前的音樂時機，與要播的 BGM id：場景 cue 生效時是 cue 的曲子，否則是時機的曲子；空字串＝靜音（§4.10）。 |
 | `world.vnLine` | string | `dialogue` | `music` | vn 目前顯示的劇本行 id（`script.id`；每次顯示一行時寫入，換步驟不清除，§4.10 以場景比對排除上一步驟的行）。 |
 | `world.endCard` | bool | `main` | `music` | 結尾卡（`UI_TO_BE_CONTINUED`）正顯示（＝`ui#title.ended`）：音樂淡出（§4.10）。 |
+| `world.d1Warmup` | string | `d01_investigate`（選章時預設 `pass`）、`d01_warmup`（結果確定時） | `d01_investigate`（鑑定次數）、`d01_debate_ui` | D01 熱身的結果 `pass_clean`／`pass`／`fail`（§4.14）。 |
 | `world.d1Dev` | bool | `main` | `d01_debate_ui` | 標題的開發入口進入了 D01 的論戰列（選章時 false）：論戰載入路線 A 的固定攜帶（§4.13）。 |
 | `world.d1StepBack` | pulse | `d01_investigate` | `main` | 攜帶畫面的「返回」：步驟回到上一列（`cur.decrement`，§4.13）。 |
 | `world.debGo` | pulse | `dialogue` | `main`、`debate_ui` | 論戰／熱身步驟的開場台詞（`script.cue` = `pre`）播完（沒有時在步驟開始的同一 tick）：論戰畫面出現、論戰開始（§4.2、§4.8）。 |
@@ -287,6 +291,7 @@
 - **場景 cue**（`data/bgmCues.json`，`tools/build_data.py` 由設計表產生，`docs/data-schema.md` §14）：每一個可顯示的劇本行一列，記它當下生效的 cue（場景中位置在它之前、最近的一個 cue；分支行上的 cue 只在該分支生效）與解析後的曲子、淡化。生效條件（`cueOk`）：找得到列，而且
   - `paper` 步驟：查該報紙的導言 `papers.bodyKey`（`world.stepArg` 的那一份；Ch.4 預告報紙也是）；
   - 其他步驟：查 `world.vnLine`，且該列的 `scene` ＝ 目前步驟的場景（`CH0{章}_{steps.scene}`；上一步驟殘留的行因此不算），且步驟是 `vn`、`result`（結算畫面之後的場景台詞；結算畫面本身沒有台詞，用時機 result）或 `debate`／`warmup` 而論戰畫面尚未接手（`world.debGo` 之前，toggle `debOn`，每次步驟開始清掉）。論戰與熱身場景的表列只有開場台詞（`pre`），所以收尾台詞、熱身的反駁與 F001～F004 都回到論戰時機（設計表規則 4：cue 只定開場的曲子，之後由 H1～H3 接手；Ch.3 熱身全程 BGM07）。
+  - v2 示範關卡 D01（M4a）：場景鍵是 `D01_{steps.scene}`（`tools/gen_flows.py` `scene_key`，章 101）；沒有劇本行的 D01 步驟查固定的列（`D01_FIXED_CUES`）：`d1warmup` 查 `SCR_D01_S04_L001`（熱身全程 BGM07，含失敗）、`d1investigate` 查假 ID `SCR_D01_S05_START`、`d1carry` 查 `SCR_D01_S06_L001`，找到就生效（不比對場景）。`d1debate` 沒有固定列：用時機的曲子（D01 的步驟種類不在時機表，落到 `title`）；S07 以後的 cue 已在表裡，但沒有步驟播那些場景，所以不會生效（論戰中的音樂切換是之後的工作單）。
   - 沒有台詞的畫面（蒐證、線索板、論戰畫面、結算畫面、標題、結尾卡）用時機的曲子（規則 5）；回到有台詞的場景時，顯示中那一行的列就是「該場景最近的 cue」，所以 cue 自動重新生效。蒐證場景的 cue 永遠不會生效，`tools/gen_flows.py` 在產生時檢查它等於 investigate 的曲子（BGM05）。
 - **要播的曲子** `world.bgm` ＝ `cueOk` 時 cue 的曲子，否則時機的曲子；淡化同理（cue 的 `fade`／`secs`，否則時機的）。
 - **播放**：`world.bgm` 改變（`filter` deadband）→ 1 ms 計時器（下一 tick 的第 4 步，選擇鏈與其他圖的寫入都已結算；一個 tick 內改變多次只觸發一次；`autostart` 讓開機時播出標題曲）→ cue 生效或 `flowBgm.play` 為 1 時取樣當下的淡化與 id → 第二個 deadband 只在 id 與上次不同時送出（同一首不重啟，規則 2；沒有音檔的 id（BGM10）維持目前的曲子；從 BGM10 回到原曲也不重啟）→ 鎖住這次的淡化，經 `merge` 結算後分流：
@@ -324,9 +329,9 @@
 
 由 `tools/gen_inv_v2.py` 產生（`tools/gen_flows.py` 匯入），在 `flows` 中排在 `d01_debate_ui` 之前。設計：`v2/11_demo_chapter.md` S05、S06、§3.1～§3.3、§13。輔助表 `d1iSpot`（調查點：場景、名稱／描述／亞瑟評語鍵、矩形、圖示、取得的證物 `ev`（逗號，最多 2）、筆記 `note`、成對的點 `pair`／`pairNote`）、`d1iScene`（六個地點：背景 id、名稱鍵、點清單）、`d1iItem`（證物、心理牌、人物筆記、觀察：名稱／文字／種類鍵、鑑定 `appr` 與鑑定台詞／結果鍵）、`d1iClaim`（私下的看法的選項：說法的證物、短標、解鎖項目；`-` ＝「還沒有看法」）。調查點的矩形是本倉庫寫的 `data/d01/d1Hotspot.json`（設計沒有座標；依背景圖放在對應物件上，人物點放在立繪上）。UI 狀態在 map `i1`（數字）、`i1S`（字串）；要讀回集合的工作掛在下一個節拍上（同 §4.12）。
 
-**D01 是步驟表的一章**（主線 2026-11-19 架構決定）：章號 101（`tools/build_data.py` 的 `D01_CHAPTER`，不與 v1 的 1～3 重疊），列 `D01_00` `d1investigate`（S05）→ `D01_01` `d1carry`（S06）→ `D01_02` `d1debate`（S07，§4.12），排在 v1 列之後（v1 的結尾卡仍是 v1 最後一列，`build_data` 的檢查改為只看 v1 章）。標題的「v2 示範關卡」像目錄一樣選章（`chapter` ＝ 101）；開發入口（標題的小鈕 `v2dev`）直接進入 `D01_02`，並由 `main` 寫 `world.d1Dev` ＝ true（選章時 false），論戰載入路線 A 的固定攜帶。M4 會在這三列前後插入 S01 報紙、S02～S03 vn、S04 熱身、S07 台詞、S08～S11。
+**D01 是步驟表的一章**（主線 2026-11-19 架構決定）：章號 101（`tools/build_data.py` 的 `D01_CHAPTER`，不與 v1 的 1～3 重疊），排在 v1 列之後（v1 的結尾卡仍是 v1 最後一列，`build_data` 的檢查改為只看 v1 章）。M4a 起的列（§4.14）：`D01_00` `paper`（S01）→ `D01_01` `vn`（S02）→ `D01_02` `vn`（S03）→ `D01_03` `d1warmup`（S04）→ `D01_04` `d1investigate`（S05）→ `D01_05` `d1carry`（S06）→ `D01_06` `d1debate`（S07，§4.12）。標題的「v2 示範關卡」像目錄一樣選章（`chapter` ＝ 101，從 S01 報紙開始）；開發入口（標題的小鈕 `v2dev`）直接進入 `d1debate` 那一列（`tools/gen_flows.py` 由步驟表找出，不寫死列號），並由 `main` 寫 `world.d1Dev` ＝ true（選章時 false），論戰載入路線 A 的固定攜帶與 `pass_clean`。之後還會插入 S07 台詞、S08～S11。
 
-- **選章（章的開始）**：`ui#title.chapter.emitted` 且值為 101 → 清空本章全部狀態（`i1*`、`d1PrivNote`），寫入常數清單（地點、可攜帶的 13 件、筆記 5 條、鑑定 3 項、說法），各地點未看的點數，`world.d1Warmup` ＝ `pass`（M4 的熱身步驟改寫；它也決定鑑定次數）。之後各步驟需要的東西都在跨步驟的集合裡：看過的點 `i1Seen`、取得的證物 `i1Have`、筆記 `i1Notes`、做過的鑑定 `i1Appr`（剩餘次數＝熱身 `fail` 時 1、否則 2，減去已做的）、私下的看法 `d1PrivNote`、攜帶的選擇 `i1Sel`。
+- **選章（章的開始）**：`ui#title.chapter.emitted` 且值為 101 → 清空本章全部狀態（`i1*`、`d1PrivNote`），寫入常數清單（地點、可攜帶的 13 件、筆記 5 條、鑑定 3 項、說法），各地點未看的點數，`world.d1Warmup` ＝ `pass`（熱身步驟 `d1warmup` 在結果確定時改寫，§4.14；它也決定鑑定次數）。之後各步驟需要的東西都在跨步驟的集合裡：看過的點 `i1Seen`、取得的證物 `i1Have`、筆記 `i1Notes`、做過的鑑定 `i1Appr`（剩餘次數＝熱身 `fail` 時 1、否則 2，減去已做的）、私下的看法 `d1PrivNote`、攜帶的選擇 `i1Sel`。
 - **`d1investigate` 開始**（第一次或攜帶畫面「返回」後）：下一節拍重建點與地點分頁。地點分頁 `pick_loc` 換地點（自由移動，沒有刻度）。
 - **調查點**（彈窗關著時）：第一次調查 → 記入 `i1Seen`、該地點未看數 −1、取得物：證物／心理牌進 `i1Have`，人物筆記／觀察進 `i1Notes`；`PN3` 要 HS04、HS05 都看過才取得（ref `optional_known`：both hotspots needed），在第二個點取得。每次（含重看）彈窗顯示名稱、描述、亞瑟的評語（`SPK_ARTHUR`）、`UI_V2_GOT`（`{list}` ＝ 該點證物名，`UI_TAG_SEP` 連接）與（取得或已取得筆記時）`UI_V2_GOT_NOTE`。案件筆記點只有描述與評語（設計：只是氣氛，不進判定；沒有清單）。
 - **證物清單／人物筆記頁**（`ui#d1book`，modal；可見性由 `main` 管：蒐證中按 `book`／`notes` 開、`close` 或步驟開始關）：卡片＝取得的證物與心理牌（資料順序）；選卡顯示種類、名稱、描述；可鑑定（E01、E02、E04）時「請亞瑟鑑定」與 `UI_V2_APPRAISE_LEFT`（0 次時 `UI_V2_APPRAISE_NONE`），鑑定後顯示 `UI_V2_APPRAISED` 與結果（`APR_*_RESULT`）、亞瑟的鑑定台詞（`APR_*_LINE`），卡上標 `UI_V2_APPRAISED`。私下的看法：`-` 加上該證物「現在已解鎖」的說法（解鎖項目已取得或已鑑定；心理牌也可選），選一句寫 `d1PrivNote[證物]`，選 `-` 清掉。人物筆記頁：取得的人物筆記與觀察（種類、名稱、全文），`UI_V2_NOTES_DESC`。關閉時清掉「新」標記（`i1New`，`book_new` 的紅點數）。
@@ -337,7 +342,18 @@
 - **出發**：清空並依資料順序寫 `d1Carry`（選的）、`d1Appraised`（做過的鑑定）、`d1Notes`（取得的筆記），再發 `world.stepDone`；`d1debate` 開始後 0.1 秒才送 `d1Start`（§4.12），引擎在前一 tick 以前就讀得到。
 - **論戰的預設說法**（§4.12）：選證物（或換行動時沿用的證物）有私下的看法，而且那句說法在本回合的 `d1ClaimList`、行動可用（議論時不在鏈上）→ 說法選擇器預設停在那句。
 - **E3 追加**（企劃 e20fd81）：地點分頁用短名（`d1iScene.tab`：有 `SCENE_D01_<地點>_TAB` 的用它，目前是閣樓；全名留給標題）；地下室站著瑪莎（`char_martha.png`，廚房桌右側，HS18）、門廳的布里格斯改為自帶長椅的坐姿（`char_briggs_seated.png`，門前，不與背景的長椅重疊，HS26）；攜帶畫面「返回」不重置鑑定次數，再進來算新的一次，亞瑟說過的話可以再說（裁定 4，`tests/check_d1_m3.py`）。
-- **已知限制**：D01 的步驟沒有音樂時機（沿用目前的曲子）；地點與攜帶畫面沒有第一次出現的提示行以外的教學；地點分頁的完成點只看「都調查過」。
+- **已知限制**：蒐證與攜帶畫面的音樂由 D01 的 cue 表決定（§4.10）；地點與攜帶畫面沒有第一次出現的提示行以外的教學；地點分頁的完成點只看「都調查過」。
+
+### 4.14 v2 示範關卡 D01 的劇情與熱身（M4a；`paper`、`vn`、`d01_warmup`；ui-contracts paper、vn、d1warm）
+
+設計：`v2/11_demo_chapter.md` §2 S01～S04、§3.2（OBS_D01_W1～W3）。
+
+- **S01 開場報紙**：v1 的 `paper` 步驟，`papers` 的 `D01_OPEN` 列（`docs/data-schema.md` §9）：頭條 `HEAD_D01`、日期線 `HEAD_D01_DATE`（兩者由 L001 拆出）、導言 L002，無圖、一頁。`paper` 圖新增兩欄的讀取：`datelineKey` → `paper.dateline`（v1 空白，照舊）、`pages`（v1 2、D01 1；`pg` 到 `pages + 1` 結束步驟）。
+- **S02、S03**：v1 的 `vn` 步驟與 `dialogue` 圖。D01 的劇本列（`docs/data-schema.md` §3）的場景鍵是 `D01_Sxx`：`dialogue` 與 `music` 的場景鍵改由 `scene_key`（章 101 → `D01_{場景}`，其他 → `CH0{章}_{場景}`）產生；章名頁籤：章 101 不在 `chapters` 表，用標題入口的案名 `CHAP_D01_TITLE`。演出（`source/staging/staging_d01.csv`）：S02 事務所夜景 `office_night`，Sherefox 左、房東太太中、亞瑟右；S03 L001 是隔天早上在貝克街（`office_day`，旁白），L002 起是海德宅門廳 `d01_hall`（設計的 S05 門廳背景）：警督與 Sherefox；布里格斯被押著時警督站中間、布里格斯在右；塞德里克（`cedric_composed`）從靈堂出來後在右，中間依序是警督、亞瑟（介紹）、海德太太；L013～L014 亞瑟與 Sherefox 低聲交談；L015 警督。
+- **S04 熱身**（`d1warmup` 步驟，`tools/gen_warm_v2.py` → `flows/d01_warmup.xtflow`；規則以 ref 為準：`ref/src/sherefox_ref/v2/warmup.py`，資料 `ref/data/d01_extra.json` `warmup_play`，測試 `ref/tests/test_v2_warmup.py`）：畫面是一串 S04 台詞，一次一行。狀態在 map `w1`：`n`（顯示 `SCR_D01_S04_L<n>`）、`pt`（論點 0～2）、`mis`（失誤）。步驟開始 → L001。點一下（`ui#d1warm.advance`，論點等待選擇時不收）→ 下一行：L001 → L002；回答 L003 → L004 → L006；L007 → L008 → L009；L010 → L011 → L012；L005 → 目前的論點再問一次；L012 → 零失誤時 L013，否則結束；L013、L015 結束；L014 → L015。結束 ＝ `world.stepDone`。論點（L002、L006、L009）等待選擇（`choosing`）：`ui#d1warm.pick` ＝ 1～3（觀察 W1～W3），等於 `pt + 1` 為正確 → 回答的第一行；否則失誤 +1 → L005，第 3 次失誤 → L014（不先播 L005）。用對過的觀察再選一次自然是錯的（每個論點的答案不同；企劃 3689f6d 確認算答錯）。不扣可信度。**結果**在確定的那一下寫 `world.d1Warmup`：答完第三點時 `pass_clean`（零失誤）或 `pass`，第 3 次失誤時 `fail`；`d01_investigate` 由它算鑑定次數（`fail` 1、其他 2）。
+- **ui#d1warm 的值**：`line`、`speaker`（劇本表該列的說話者；系統台詞不顯示名牌）、`focus`（Sherefox 1、警督 3、其他 0）、`line_seq`、`choosing`、`point`（目前的論點，L001 時空白；結束台詞時仍顯示最後的論點）、`miss_text`（`UI_WARMUP_MISS`，`{n}` ＝ 失誤）、`title`（`SCR_D01_S04_TITLE`）、`obs1`～`obs3`（`OBS_D01_W1`～`W3`）。三條觀察一開始就全部可選（設計：現場一眼可見，自動取得），不進人物筆記頁。
+- **音樂**：§4.10（S01 BGM11、S02 BGM02、S03 L001 BGM03、L003 起 BGM04（cut）、熱身 BGM07、蒐證 BGM05、攜帶 BGM06）。
+- **測試**：`tests/check_d1_story.py`（`tests/gen_d1_story.py` 的三條錄影，中英文）：從標題逐行點過 S01～S03（每行的文字、名牌、演出對 `script_d01.csv` 與演出檔），熱身三種結果的每一行對 ref 的順序，`world.d1Warmup` 與蒐證的鑑定次數；`tests/check_music.py` 的 `d1_story_clean`。`tests/check_d1_m3.py` 的錄影改為從標題經 S01～S04（零失誤）進入蒐證。
 
 ## 5. 輔助表 `data/flow/`
 

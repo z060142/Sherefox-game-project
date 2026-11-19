@@ -65,6 +65,7 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 
 - **背景切換**：每個已知背景 id 各有一張 `<img id="bg-<id>">`，以 `bind:display="bg | eq('<id>')"` 只顯示相符的那一張；其他值（含空字串、未知 id）全部隱藏，露出新聞紙底色（下方墨色漸層也一併隱藏）。`bg` 變更時播 `bg-in`（360 ms 淡入）。已知 id：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`；圖檔 `ui/boards/_blob/bg_<id>.jpg`（2560×1440 JPEG，品質 90，由 1672×941 原圖以 Lanczos 放大，供 2× 渲染；版面仍以 `.bg-art` 的 100%／`cover` 畫在 1280×720 邏輯框；來源見 `_blob/bg_README.md`）。
 - **立繪切換**：三個位置（`slot-l`、`slot-c`、`slot-r`）各有一組 `<img id="ch-<位置>-<id>">`，每個已知角色 id 一張去背圖，以 `bind:display="slot_x | eq('<id>')"` 只顯示相符的一張，未知或空 id 什麼都不畫（三組引用同一批圖檔，打包時去重）。位置元素綁 `class.dim = focus | ne(n)`（左 1、中 2、右 3）與 `class.narr = focus | eq(0)`：`.dim` 且非 `.narr` 時套色彩調整（亮度 −0.14、飽和度 −0.5，220 ms 過渡）；`focus` 0 時三人都不變暗。`slot_x` 變更時播 `ink-in-<位置>`（420 ms 淡入）。疊放順序：中在最下，左、右在上。不用符號：XTAtrium 會把符號實例內的每個元素（路徑 id 帶 `/`）登記成 `ui.vn.<id>.<事件>` 訊號而對每個發出「not a valid signal name」警告（一個 vn 畫面 225 行）。已知 id：`sherefox`、`arthur`、`baskerville`、`victor`、`wolfhart`、`valet`（Ch.2 費奇）、`partner`（Ch.3 皮爾斯）；圖檔 `ui/boards/_blob/char_<id>.png`（1024×1536 原圖，畫在 `.ch-art` 的 440×660 邏輯框，`contain`；來源見 `_blob/char_README.md`）。
+- v2 示範關卡 D01（M4a）：背景 `d01_hall`（`bg_d01_hall.jpg`，與 d1inv／d1carry 共用）；角色 `landlady`（`char_landlady.png`，設計 repo `images/d01/landlady.png`）、`mrs_hyde`、`briggs`、`cedric_composed`（與 d1inv／d1debate 共用的圖檔）。
 - 新增背景或角色：在板子多加一張 `<img>`（同樣的 `eq` 綁定）並重新 import；流圖與合約不變。圖檔一律平放在 `_blob/` 下，因為 `xtframe-import` 的 blob id 只能是單一檔名（`/_blob/<file>`），不能有子目錄。
 - **文字演出**：`line_seq` 每次變更（及畫面顯示時）播 `reveal`：整句 260 ms 淡入並上移 6 px。逐字顯示（`text-reveal`）目前寫不進板子：轉換器把 `text-reveal` 當成樣式子集外的屬性丟掉。
 - **style**：0 一般（新聞紙底、雙線頂線）；1 亞瑟筆記（`.note`：舊紙底、銅色頂線、橫格線、銅色左邊線；只有 NotoSansTC Regular 一種中文字面，所以用 `skewX(-6deg)` 模擬手寫斜度，英文同樣斜排）；2 系統訊息（`.sys`：深墨底、新聞紙色字、置中）。
@@ -83,7 +84,7 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 |---|---|---|---|
 | `page` | number | in | 1 頭版、2 第二版與側欄。 |
 | `mast` | number | in | 報頭版本：0 平常版、1 號外版、2 滲透版（Ch.8 後；原型只用 0）。 |
-| `dateline` | string | in | 日期線（例「1887 年 10 月 14 日・濃霧　每份一便士」）。 |
+| `dateline` | string | in | 日期線（例「1887 年 10 月 14 日・濃霧　每份一便士」）。v1 的報紙空白；D01 的開場報紙是 `HEAD_D01_DATE`（M4a）。 |
 | `headline` | string | in | 頭條。 |
 | `subhead` | string | in | 副標。 |
 | `body` | string | in | 頭版內文。 |
@@ -523,6 +524,28 @@ UI 側：背景 `bg_d01_parlour.jpg`；左上報頭（`UI_PAPER_MAST`、`UI_PAPE
 字串鍵：上述 `UI_V2_*`、`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`BTN_CLOSE`（`SPK_D01_CEDRIC`、`UI_V2_GIVE_UP_BTN`、`UI_V2_RESULT_ROUNDS` 已由設計的 ui_strings_d01.csv 補上）。
 
 title 追加（v2 demo M2）：`v2demo`（event，out）＝ 主標題下方的「v2 示範關卡」項目（`UI_V2_TITLE_ENTRY`、`CHAP_D01_TITLE`、`UI_V2_DEMO_NOTE`）；`main` 切到 `d1debate`，`d01_debate_ui` 開始 D01 論戰。
+
+## d1warm（v2 示範關卡 D01 的熱身論戰，1280×720；v2 demo M4a）
+
+依據：`v2/11_demo_chapter.md` §2 S04、§3.2；流圖 `flows/d01_warmup.xtflow`（`docs/flows.md` §4.14）。沒有沿用 v1 的 debate 板：v1 熱身是整套論戰畫面的模式 1（行動鈕、反駁、鎖定、揭示），D01 的熱身只有「一個論點、三選一、台詞」，所以做一張小板，沿用 v1 的號外風格（`bg_debate.jpg`、朱紅「號外」、亮起節點的朱紅框、v1 的「失誤 n／3」）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `title` | string | in | 場景標題（`SCR_D01_S04_TITLE`）。 |
+| `miss_text` | string | in | 「失誤 n／3」（`UI_WARMUP_MISS`）。 |
+| `point` | string | in | 目前的論點（警督的台詞全文）；空字串隱藏論點框。 |
+| `speaker`、`line` | string | in | 正在說的那一行與名牌；名牌空字串隱藏。 |
+| `line_seq` | number | in | 每換一行 +1，重播文字出現的演出。 |
+| `focus` | number | in | 1 Sherefox 說話（警督變暗）、3 警督說話（Sherefox 變暗）、0 都不變暗。 |
+| `choosing` | bool | in | 論點等待選擇：觀察卡可點、提示列顯示、`advance` 不送出。 |
+| `obs1`～`obs3` | string | in | 三條觀察（`OBS_D01_W1`～`W3`）。 |
+| `pick` | number | out | 選了第幾條觀察（1～3，`set`）；只在 `choosing` 時送出。 |
+| `advance` | event | out | 下一行（點畫面或對白框、Enter、Space）；`choosing` 時不送出。 |
+| `settings` | event | out | 開設定（Esc、F1）。 |
+
+UI 側實作（板子 `ui/boards/project/D1Warm.dc.html`）：上方號外條（`UI_PAPER_EXTRA`、`title`、右側 `miss_text` 報框）；Sherefox 立繪在左、警督在右（340×510，`focus` 決定誰變暗）；中央論點框（朱紅框，`point` 改變時落下）；其下提示列（`UI_V2_WARMUP_PICK`，`choosing` 時）與三張觀察剪報（`UI_V2_TYPE_OBS`＋編號＋全文；`choosing` 時不透明、可點，滑過變黃）；下方對白框（名牌、台詞、`choosing` 以外顯示「下一行」三角）。鍵盤：1～3 選觀察、Enter／Space 下一行、Esc／F1 設定。
+
+字串鍵：`UI_PAPER_EXTRA`、`UI_V2_WARMUP_PICK`（PLACEHOLDER，`source/localization/d01_placeholders.csv`）、`UI_V2_TYPE_OBS`。
 
 ## d1inv（v2 示範關卡 D01 的蒐證，1280×720；v2 demo M3）
 

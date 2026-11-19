@@ -133,6 +133,8 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 ## 3. `script`：劇本行（每行一列，依章、場景號、行號）
 
+v2 示範關卡 D01（M4a）：`localization/d01/script_d01.csv` 中步驟表會播的場景 S01～S04（`tools/build_data.py` `D01_SCRIPT_SCENES`）也是這張表的列，排在 v1 之後：`chapter` 101、`sceneKey` `D01_Sxx`、場景標題 `SCR_D01_Sxx_TITLE`（`seq` 0、`kind` heading、不播放），其後是 L 列（`seq` ＝ 行號）；說話者鍵為 `SPK_D01_<slug>`（在地化包有時）或 `SPK_<slug>`（沒有時由 CSV 的說話者兩欄產生，同 v1）。演出在 `source/staging/staging_d01.csv`（同欄位，本倉庫撰寫）。S04 的列由熱身畫面讀說話者，不經 vn。
+
 | 欄 | 型別 | 意義 |
 |---|---|---|
 | id | string | 劇本行 id，`SCR_CH0n_Sss_Lnnn`；`SCR_CH0n_Sss_Fnnn` 是取代該場景某些 L 列播放的另一支（目前只有 Ch.3 S04 F001～F004：熱身失敗的收尾，在地化包 2026-11-06），排在該場景的 L 列之後；`SCR_CH0n_Sss_Wnnn` 是熱身出示錯卡時警督的反駁（裁決 G5：Ch.3 S04 W001＝OBS_CH03_01、W002＝OBS_CH03_02；在地化備註「when OBS_… is presented」指名對應的觀察卡），排在 F 列之後 |
@@ -333,6 +335,8 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 
 ## 9. `papers`：報紙（章節交界的合併報紙；依章）
 
+v2 示範關卡 D01（M4a，`docs/flows.md` §4.14）另有一列 `D01_OPEN`（chapter 101）：S01 的 L001 是「【報名・日期】頭條」一整行，建置時拆成 `HEAD_D01`（頭條）與 `HEAD_D01_DATE`（括號內最後一段：中文「・」、英文「, 」之後），兩者都由在地化包的文字推導；導言 `SCR_D01_S01_L002`；無圖、無副標、一頁。
+
 裁決 D5：章節交界只有**一份**報紙，放在下一章開頭。主頭條與導言（`headlineKey`、`subKey`、`bodyKey`）是該章劇本 S01 開場（`HEAD_CH0n`、`HEAD_CH0n_SUB`、`SCR_CH0n_S01_L003`）；側欄刊上一案的結果，提供勝利／惡名／敗北三個版本，由流圖在執行時依「頭條判定順序」（01-systems §3.3）選一個。共 4 列：`CH01_OPEN`、`CH02_OPEN`、`CH03_OPEN`，以及 Ch.3 之後的最終報紙 `CH04_OPEN`（原型結尾：Ch.4 的開場合併報紙，裁決 E1）。
 
 | 欄 | 型別 | 意義 |
@@ -347,6 +351,8 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | headlineKey | string | 主頭條：`HEAD_CH0n` |
 | subKey | string | 主頭條副標：`HEAD_CH0n_SUB` |
 | bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`（`CH04_OPEN` 用 `SCR_CH04_S01_L003`；Ch.4 的劇本行不進 `script` 表，只當這份報紙的導言） |
+| datelineKey | string | 日期線（`paper.dateline`）的字串鍵；v1 的報紙空白，v2 示範關卡 D01 的 `D01_OPEN` 是 `HEAD_D01_DATE`（M4a） |
+| pages | number | 頁數：v1 為 2（翻完第二版結束），`D01_OPEN` 為 1（頭版點一下就結束；沒有第二版、側欄、廣告與上一案結果） |
 | page2HeadKey／page2BodyKey | string | 第二版文章的標題與內文（`paper.page2_head`／`page2_body`）；原型的轉場報紙都沒有第二版文章，全空白（兩欄同時有值或同時空白，建置時驗證） |
 | sideKey | string | 側欄城市短訊（`paper.side`）：`NEWS_SIDE_0n`（n＝`resultChapter`）；`CH01_OPEN` 為開場城市新聞 `NEWS_00_OPEN` |
 | adKey | string | 廣告欄（`paper.ad`）：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，事務所招租）；其餘空白 |
@@ -451,6 +457,8 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 | secs | number | 淡化秒數：cross 1.5、cut 0.2、out 2.0（`tools/gen_flows.py` `FADE_SECONDS`，設計表 README） |
 
 哪些行有列：`script.playable` 的列（不含 `S90`），但論戰與熱身場景只有 `cue` ＝ `pre` 的開場台詞（設計表規則 4：場景的 cue 只定開場的曲子，之後由論戰的音樂規則接手，所以收尾台詞、反駁、F 列沒有列）；加上每一份報紙的導言 `papers.bodyKey`。每一列的 cue ＝ 同場景中位置在它之前（含它自己）最近的 cue；位在分支（`script.branch`）上的 cue 只算進同一分支的列（規則 3：例 Ch.1 S06 L006「敗北」的 cue 只在 lose 分支的 L007、L008 生效），分支之前的 cue 兩支都算。cue 掛在不顯示的行（場景標題 L001、分支標記、小標）時，從其後第一個顯示的行開始生效。
+
+v2 示範關卡 D01（M4a）：`source/staging/bgm_cues_d01.csv`（設計 repo `staging/`，19 筆，`--import-staging` 一併複製）另外產生 `D01_Sxx` 的列（`tools/build_data.py` `build_d01_cues`）：`script_d01.csv` 每一個 L 行一列（S07 以後的場景也有列，但還沒有步驟播它們，所以不會生效），cue ＝ 同場景中位置在它之前最近的 cue；假 ID `SCR_D01_S05_START`（「蒐證步驟開始時」）自成一列（場景 `D01_S05`）。驗證同下（cue_id 為 `BGM_D01_nn`、`chapter` 為 `D01`、`start_id` 是 D01 的行或假 ID）。
 
 驗證（錯誤，建置失敗）：
 - 標頭不符；`cue_id` 不是 `BGM_CHnn_nn` 或重複；`chapter` 與 `start_id` 的章不同。
