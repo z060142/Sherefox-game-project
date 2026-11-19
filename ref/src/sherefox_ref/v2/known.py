@@ -5,9 +5,8 @@
 * Known = carried evidence + appraisals done + notes found (Loadout), plus two kinds of
   opponent speech (§3.2, R-06): a line he used to 駁倒 the player (``said:`` items of
   ch §6.6) and an unfavourable fact the player caught with 抓住他的話.
-  SPEC-QUESTION: ch §5.2 (note under the table) says 04C also turns 詭辯 when he plays
-  the picked-up handkerchief P07; rules §3.2 allow only the two cases above, so playing
-  P07 does not make "said:鎖匠昨晚回來過" known here (rules win on how a rule works).
+  Playing the picked-up handkerchief P07 does not make "said:鎖匠昨晚回來過" known
+  (design ruling, rules 0.6; ch §5.2 corrected in ea48cc1).
 * Red crack: the claim is exclusive with a claim on the player's public record (§3.4).
 """
 

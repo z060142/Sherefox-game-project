@@ -726,16 +726,16 @@
    "tell": {
     "clarity": "vague",
     "shown": [
-     "attack",
-     "force"
+     "force",
+     "parry"
     ],
-    "star": "attack",
+    "star": null,
     "card": "F2",
     "partial": false
    },
-   "policy_can_produce": false,
+   "policy_can_produce": true,
    "opponent_action": {
-    "kind": "attack",
+    "kind": "force",
     "card": "F2"
    },
    "player_action": {
@@ -774,9 +774,9 @@
     },
     {
      "kind": "player_damage",
-     "amount": 28.0,
+     "amount": 35.0,
      "cause": "argument",
-     "hp": 76.0
+     "hp": 69.0
     },
     {
      "kind": "psych_event",
@@ -816,7 +816,7 @@
    ],
    "after": {
     "round": 5,
-    "player_hp": 76.0,
+    "player_hp": 69.0,
     "opp_hp": 1.0,
     "player_chain": [
      [
@@ -902,7 +902,7 @@
   "grade": 1,
   "reason": "surrender",
   "rounds": 5,
-  "player_hp": 76.0,
+  "player_hp": 69.0,
   "opp_hp": 1.0,
   "cracks": 0,
   "denials": 0,

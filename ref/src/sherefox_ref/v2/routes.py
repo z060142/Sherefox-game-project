@@ -1,15 +1,6 @@
 """The four worked playthroughs of ch §12 (routes A-D), as forced-opponent replays.
 
-SPEC-QUESTION (route tables vs rules / rulings; the tests mark these rows xfail):
-* §12.1 R5 tell 周旋★/立論: decoy 立論 is unavailable (rule ⑤ after 立論 in R3, R4).
-* §12.2 R5 and §12.4 R7: a third 立論 in a row breaks rule ⑤ (必定).
-* §12.3 R7 and §12.4 R4: ★ on the decoy (ch §11 wording) vs the ruling (★ only on the
-  true action).
-* §12.3 R4: 06A is exclusive with 06C (said in R3); the red crack (−10, c = 3) is
-  missing, so R4-R8 HP and the ending differ (rules-correct: he is at 21.05 after R8).
-* §12.3 R6: 選項所剩無幾 (pressure −10) is missing; R6/R7 pressure differ.
-* §12.3 R8: 破竹 stays 1 although 10A lands on his 周旋 (rules: 2).
-* §12.4 R7: combo 3 after the reverse ronpa (rules §5.1: reset to 0).
+Tables as corrected in design commit ea48cc1 (rules 0.6).
 
 Each round is (player action, opponent action, stated tell). The opponent's moves and
 tells are taken from the route tables as written; ``replay`` feeds them straight into
@@ -76,7 +67,7 @@ ROUTES = {
         (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR)),
         (argue("06A"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
         (cut("01A"), opp(AT, "L2"), tell(V, (AT, FO), star=AT, card="L2")),
-        (argue("08A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("08A"), opp(PR), tell(V, (PR, RE), star=PR)),
         (argue("10A"), opp(AT, "F2"), tell(C, (AT,), card="F2")),
         (cut("07A"), opp(FO, "L4"), tell(C, (FO,), card="L4")),
         (argue("11B"), opp(PR), tell(V, (PR, AT), star=PR)),
@@ -89,7 +80,7 @@ ROUTES = {
         (stall(), opp(RE), tell(V, (RE, AT), star=RE)),
         (argue("02C"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
         (argue("08B"), opp(AT, "U1"), tell(V, (AT, FO), star=AT, card="U1", partial=True)),
-        (argue("CATCH"), opp(AT, "F2"), tell(V, (AT, FO), star=AT, card="F2")),
+        (argue("CATCH"), opp(FO, "F2"), tell(V, (FO, PR), card="F2")),
     )),
     # ch §12.3
     "C": Route("C", Loadout(("E01", "E02", "E03", "E04", "E06", "E07", "E08", "E09", "E10"),
@@ -100,8 +91,10 @@ ROUTES = {
         (cut("06A"), opp(FO, "L2"), tell(C, (FO,), card="L2")),
         (accept(), opp(LAST, "P05"), tell(C, (LAST,), card="P05")),
         (argue("09A"), opp(FO, "F2"), tell(C, (FO,), card="F2")),
-        (cut("07A"), opp(FO, "L4"), tell(V, (AT, FO), star=AT, card="L4")),
+        (cut("07A"), opp(FO, "L4"), tell(V, (FO, AT), card="L4")),
         (argue("10A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (cut("04B"), opp(AT, "L4"), tell(C, (AT,), card="L4")),  # L4′ (re-raised in R8)
+        (argue("08A"), opp(PR), tell(V, (PR, AT), star=PR)),
     )),
     # ch §12.4
     "D": Route("D", Loadout(("E01", "E02", "E03", "E04", "E06", "E08", "E10", "E11", "E12"),
@@ -109,10 +102,10 @@ ROUTES = {
         (cut("11A"), opp(AT, "L1"), tell(V, (AT, FO), card="L1")),
         (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR)),
         (cut("01B"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
-        (argue("06B"), opp(RE), tell(V, (AT, RE), star=AT)),
+        (argue("06B"), opp(RE), tell(V, (AT, RE))),
         (argue("10A"), opp(AT, "L2"), tell(C, (AT,), card="L2")),
         (argue("08A"), opp(AT, "F2"), tell(C, (AT,), card="F2")),
-        (argue("02A"), opp(AT, "L4"), tell(V, (AT, FO), star=AT, card="L4")),
+        (argue("02A"), opp(FO, "L4"), tell(V, (FO, RE), card="L4")),
         (last_stand("11B", "L1"), opp(NONE), None),
     )),
 }

@@ -354,7 +354,7 @@
       "breaks": [
         "L4"
       ],
-      "note": "sincere-but-wrong; flips to sophistry once he says the locksmith came back (06B refute or P07)",
+      "note": "sincere-but-wrong; flips to sophistry once he says the locksmith came back in the 06B refute line",
       "loc": {
         "label": "CLM_D01_04C",
         "line": "CLM_D01_04C_LINE"
@@ -383,8 +383,7 @@
       "issue": "法",
       "unlock": [],
       "conflicts": [
-        "E06",
-        "said:工作單寫明以萬用鑰匙校試"
+        "E06"
       ],
       "true": false,
       "exclusive": [

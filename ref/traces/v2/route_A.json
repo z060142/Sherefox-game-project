@@ -640,14 +640,14 @@
    "tell": {
     "clarity": "vague",
     "shown": [
-     "attack",
+     "rebut",
      "parry"
     ],
     "star": "parry",
     "card": null,
     "partial": false
    },
-   "policy_can_produce": false,
+   "policy_can_produce": true,
    "opponent_action": {
     "kind": "parry",
     "card": null

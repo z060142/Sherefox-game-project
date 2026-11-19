@@ -141,9 +141,6 @@ def load_chapter(debate: str = "d01_debate.json", extra: str = "d01_extra.json")
         for e in d["evidence"]
     }
 
-    # SPEC-QUESTION: d01_debate.json 05B.conflicts adds "said:工作單寫明以萬用鑰匙校試";
-    # ch §5.2 lists only E06 (the said item is the ch §6.6 reveal). No effect: 05B is void
-    # once that line is said. Kept as in the JSON.
     # exclusives are written on one side or both; merge to both directions
     excl: dict[str, set] = {c["id"]: set(c["exclusive"]) for c in d["claims"]}
     for c in d["claims"]:

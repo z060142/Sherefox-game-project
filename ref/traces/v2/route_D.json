@@ -464,11 +464,11 @@
      "attack",
      "rebut"
     ],
-    "star": "attack",
+    "star": null,
     "card": null,
     "partial": false
    },
-   "policy_can_produce": false,
+   "policy_can_produce": true,
    "opponent_action": {
     "kind": "rebut",
     "card": null
@@ -874,16 +874,16 @@
    "tell": {
     "clarity": "vague",
     "shown": [
-     "attack",
-     "force"
+     "force",
+     "rebut"
     ],
-    "star": "attack",
+    "star": null,
     "card": "L4",
     "partial": false
    },
-   "policy_can_produce": false,
+   "policy_can_produce": true,
    "opponent_action": {
-    "kind": "attack",
+    "kind": "force",
     "card": "L4"
    },
    "player_action": {
@@ -921,9 +921,9 @@
     },
     {
      "kind": "player_damage",
-     "amount": 35.0,
+     "amount": 43.75,
      "cause": "argument",
-     "hp": 25.0
+     "hp": 16.25
     },
     {
      "kind": "psych_event",
