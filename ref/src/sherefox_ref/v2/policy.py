@@ -6,7 +6,7 @@
 Trace contract: the order of random draws (each through the chooser), every draw made
 only when its condition holds:
 
-  1. tendency rule followed?  percent(80)         a tendency rule (②>①>④) applies and no
+  1. tendency rule followed?  percent(50)         a tendency rule (②>①>④) applies and no
                                                    必定 rule / 怒氣 fixes the action
   2. tell clarity             weighted(clear 40, vague 60)
                                                    not forced clear (rule ③, 怒氣, 困獸,

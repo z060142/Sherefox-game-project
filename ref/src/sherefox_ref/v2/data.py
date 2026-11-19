@@ -226,7 +226,7 @@ def load_chapter(debate: str = "d01_debate.json", extra: str = "d01_extra.json")
         tell_clarity=(int(nums["tell_clarity"]["clear"]), int(nums["tell_clarity"]["vague"])),
         continuations=frozenset(cont),
         refute_lines={k: v["reveals"] for k, v in x["refute_lines"].items() if k != "ref"},
-        follow_pct=int(beh["follow_pct"]),
+        follow_pct=round(float(opp["behavior"]["tendency"]) * 100),  # ch §11, JSON behavior.tendency
         tendencies=tuple((t["rule"], t["when"], t["action"]) for t in beh["tendencies"]),
         rule3_hp_ratio=float(beh["rule3_hp_ratio"]),
         rage_split=(int(beh["rage_split"]["force"]), int(beh["rage_split"]["rebut"])),

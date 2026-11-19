@@ -958,13 +958,15 @@
         "周旋": 20
       },
       "rules": [
-        "② player used sophistry or psych card last round -> 反駁 (tendency 80%)",
-        "① his card knocked down last round -> 周旋, re-raise it (tendency 80%)",
+        "② player used sophistry or psych card last round -> 反駁 (tendency 50%)",
+        "① his card knocked down last round -> 周旋, re-raise it (tendency 50%)",
         "③ first time HP <= 50% -> 強辯, explicit tell (always)",
-        "④ hit the player last round -> 立論 (tendency 80%)",
+        "④ hit the player last round -> 立論 (tendency 50%)",
         "⑤ same action twice -> change on the third (always)",
-        "priority: always > ② > ① > ④"
+        "priority: always > ② > ① > ④",
+        "傾向約 50%"
       ],
+      "tendency": 0.5,
       "play_order": [
         "L1",
         "F1",

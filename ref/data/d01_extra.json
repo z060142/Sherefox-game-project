@@ -55,7 +55,6 @@
   },
   "behavior": {
     "ref": "§11 行為表",
-    "follow_pct": 80,
     "tendencies": [
       {"rule": 2, "when": "player_soph_last_round", "action": "rebut"},
       {"rule": 1, "when": "own_lie_knocked_last_round", "action": "parry"},
