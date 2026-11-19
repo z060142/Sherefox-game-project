@@ -59,7 +59,8 @@ LOCK_XY = (1157, 664)
 SKIP_XY = (900, 580)      # #hit during playback; nothing there while choosing
 RES_NEXT_XY = (1038, 650)  # D1Result #btn-next (繼續)
 PAPER_XY = (640, 400)      # Paper: a click anywhere turns / ends the page
-END_BACK_XY = (640, 640)   # D1End #btn-back (S11 L003)
+END_BACK_XY = (640, 640)   # D1End #btn-back (E8: UI_V2_BACK_TITLE)
+END_STRAY_XY = (640, 250)  # D1End: the newspaper's silhouette (nothing to click)
 PA_ACT = {PA.ARGUE: 1, PA.INTERCEPT: 2, PA.DISMANTLE: 3, PA.STALL: 4, PA.CUT: 5, PA.ACCEPT: 6, PA.LAST_STAND: 7}
 VN_XY = (640, 300)        # Vn #hit (the S07 lines before and after the debate)
 VN_WAIT = 30              # ticks between vn clicks (the standees' fade-in is over)
@@ -104,6 +105,12 @@ class Rec:
         self.t += wait
         x, y = xy
         self.lines.append(json.dumps({"t": self.t, "u": [[ui, "pd", x, y, 0, 1], [ui, "pu", x, y, 0]]}))
+
+    def hover(self, ui: str, xy, wait: int = GAP) -> None:
+        """E8: the pointer moves onto xy (no button): what it is on shows its description."""
+        self.t += wait
+        x, y = xy
+        self.lines.append(json.dumps({"t": self.t, "u": [[ui, "pm", x, y]]}))
 
     def at(self, dt: int, events) -> None:
         """gen_playthrough.Recording's interface (its story steps: tests/gen_d1_full.py v1_first, v2 demo E6)."""
@@ -201,6 +208,10 @@ def epilogue(rec: Rec, final, back: bool = True) -> None:
         rec.click("vn", VN_XY, VN_WAIT)
     rec.marks["s11"] = rec.t + 80
     rec.t += 100
+    # E8 (design ruling): S11 stays until its button (UI_V2_BACK_TITLE) is pressed: a click beside it and a wait first
+    rec.click("d1end", END_STRAY_XY, 0)
+    rec.t += 240
+    rec.marks["s11_stay"] = rec.t
     if back:
         rec.click("d1end", END_BACK_XY, 0)
         rec.marks["back"] = rec.t + 30

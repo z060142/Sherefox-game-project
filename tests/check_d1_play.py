@@ -307,7 +307,8 @@ def check_lines(tr, rounds: list, marks: dict, lang_of, end: int) -> list[str]:
 # ---- v2 demo E6 (V1): the debate screen on its first visible tick
 
 FIRST_TICK_SKIP = {"line_seq", "float_opp_seq", "float_me_seq", "shatter_seq",          # triggers: any value
-                   "pick_act", "pick_ev", "pick_claim", "pick_target", "guard", "lock", "skip", "settings"}  # outputs
+                   "pick_act", "pick_ev", "pick_claim", "pick_target", "guard", "lock", "skip", "settings",
+                   "hover"}  # outputs
 FIRST_TICK_LISTS = ("ochain", "pchain", "ev_list", "claims", "record")
 
 
@@ -342,6 +343,9 @@ def fresh_ports(lang: str) -> dict:
         "guard_left": True, "sel_claim_text": "", "sel_target_text": "", "need_target": False, "can_lock": False,
         "picker_on": False, "hint_who": "", "hint": "", "hint2_who": "", "hint2": "",
         "speech_who": "", "speech": "", "sys_line": "", "float_opp": "", "float_me": "",
+        # E8: no preview, crack cost, description or vague-tell line yet; cover 1 left; no cracks on the record
+        "preview_text": "", "crack_cost_text": "", "desc_text": "", "tell_possible": "",
+        "guard_left_text": f("UI_V2_SUPPORT_LEFT", n=1), "record_cracks": f("UI_V2_RECORD_CRACKS", n=0),
     }
     want.update({k: [] for k in FIRST_TICK_LISTS})
     return want
@@ -466,6 +470,135 @@ def check_vn(tr, marks: dict, lang: str, lines: tuple, prefix: str) -> list[str]
     return bad
 
 
+# ---- v2 demo E8 (design rulings): what the choosing screen shows besides the picker, from ref and the choice. Shared
+# with check_d1_lines and check_d1_fuzz.
+
+E8_ACT_DESC = {2: "UI_V2_REBUT_CUT_DESC", 3: "UI_V2_REBUT_TOPPLE_DESC", 4: "UI_V2_ACT_STALL_DESC"}
+E8_TELL = {"attack": "UI_V2_OPP_ASSERT", "force": "UI_V2_OPP_PRESS", "rebut": "UI_V2_OPP_REBUT", "parry": "UI_V2_OPP_DODGE",
+           "last": "UI_V2_LAST_CARD"}
+
+
+def e8_claim(s, claim: str) -> str:
+    return f"CATCH:{s.catch_card}" if claim == "CATCH" else claim
+
+
+def e8_preview(lang: str, s, act: int, claim: str) -> str:
+    """preview_text: 議論 with a chosen claim in a normal round shows ref preview.preview (UI_V2_DMG_PREVIEW)."""
+    from sherefox_ref.v2.preview import preview
+    if act != 1 or not claim or s.endgame or s.player_locked or s.outcome:
+        return ""
+    v = preview(s, e8_claim(s, claim))
+    return "" if v is None else render(lang, "UI_V2_DMG_PREVIEW", {"n": v})
+
+
+def e8_crack(lang: str, s, act: int, claim: str) -> str:
+    """crack_cost_text: the chosen claim (any claim action) has a red crack (UI_V2_CLAIM_CRACK_COST, {n} = 10)."""
+    from sherefox_ref.v2 import known as K
+    from sherefox_ref.v2.model import CONTRADICTION
+    if act not in (1, 2, 3, 5, 7) or not claim or not K.view(s, e8_claim(s, claim)).red_crack:
+        return ""
+    return render(lang, "UI_V2_CLAIM_CRACK_COST", {"n": CONTRADICTION})
+
+
+def e8_desc_key(s, act: int, claim: str, armed: bool, hover: str = "") -> str:
+    """desc_text's key: the hovered action / cover / claim, else the chosen claim (sophistry, 抓住他的話), else the chosen
+    action (2-4; 打迷糊仗 after a 打迷糊仗 last round: UI_V2_ACT_STALL_REPEAT), else cover when armed; "" for none."""
+    from sherefox_ref.v2 import known as K
+    normal = not (s.endgame or s.player_locked or s.outcome)
+
+    def of_claim(c):
+        if not c:
+            return ""
+        c = e8_claim(s, c)
+        if K.is_catch(c):
+            return "UI_V2_SEIZE_DESC"
+        return "UI_V2_CLAIM_SOPH_DESC" if K.view(s, c).soph else ""
+    key = ""
+    if normal and hover in ("act2", "act3", "act4"):
+        key = E8_ACT_DESC[int(hover[3])]
+    elif normal and hover == "guard":
+        key = "UI_V2_SUPPORT_DESC"
+    elif hover and of_claim(hover):
+        key = of_claim(hover)
+    elif act in (1, 2, 3, 5, 7) and of_claim(claim):
+        key = of_claim(claim)
+    elif normal and act in E8_ACT_DESC:
+        key = E8_ACT_DESC[act]
+    elif normal and armed:
+        key = "UI_V2_SUPPORT_DESC"
+    if key == "UI_V2_ACT_STALL_DESC" and s.stall_streak > 0:
+        key = "UI_V2_ACT_STALL_REPEAT"
+    return key
+
+
+def e8_desc(lang: str, s, act: int, claim: str, armed: bool, hover: str = "") -> str:
+    k = e8_desc_key(s, act, claim, armed, hover)
+    return S[lang][k] if k else ""
+
+
+def e8_note(lang: str, s, cid: str) -> str:
+    """A claim row's tag: UI_V2_CLAIM_VOID (refuted, greyed), UI_V2_CLAIM_RESTATE (knocked off, may be raised again)."""
+    from sherefox_ref.v2 import known as K
+    if cid in K.void_rows(s):
+        return S[lang]["UI_V2_CLAIM_VOID"]
+    return S[lang]["UI_V2_CLAIM_RESTATE"] if K.restate(s, cid) else ""
+
+
+def e8_tell(lang: str, s, tell) -> str:
+    """tell_possible: a vague tell's two actions, the starred one followed by ★ and UI_V2_TELL_LIKELY."""
+    from sherefox_ref.v2.model import Clarity
+    if tell is None or s.player_locked or s.outcome or tell.clarity == Clarity.CLEAR or len(tell.shown) < 2:
+        return ""
+    L = S[lang]
+    names = [L[E8_TELL[a.value]] + (f" \u2605{L['UI_V2_TELL_LIKELY']}" if tell.star == a else "") for a in tell.shown]
+    return L["UI_V2_TELL_POSSIBLE"].replace("{a}", names[0]).replace("{b}", names[1])
+
+
+def e8_round(lang: str, s) -> dict:
+    """The E8 ports that follow the round shown: the cover count and the record's crack count."""
+    return {"guard_left_text": render(lang, "UI_V2_SUPPORT_LEFT", {"n": 0 if s.guard_used else 1}),
+            "record_cracks": render(lang, "UI_V2_RECORD_CRACKS", {"n": s.cracks})}
+
+
+def e8_void_evs(s) -> list[str]:
+    """The evidence chips the void rows add after the picker's (ref known.void_rows, first appearance)."""
+    from sherefox_ref.v2 import known as K
+    out: list[str] = []
+    have = {e for e, _ in gd.picker(s)}
+    for c in K.void_rows(s):
+        e = s.ch.claims[c].evidence
+        if e not in have and e not in out:
+            out.append(e)
+    return out
+
+
+def check_e8(tr, rounds: list, marks: dict, lang_of, seed: int) -> list[str]:
+    """Per round of a recording (no pointer moves: nothing hovered), at its `chosen` mark: the preview, the crack cost
+    and the description for the choice; the vague tell's line; the cover count and the record's crack count; the
+    restated / void tags of the rows the picker shows."""
+    bad = []
+    tells = tells_for(rounds, seed)
+    for n, ((s, pa, oa), tl) in enumerate(zip(rounds, tells), start=1):
+        lang = lang_of(n)
+        t0 = marks[f"chosen{n}"]
+        p = [pp for t, pp, v, c in tr.ticks if t <= t0][-1]
+        act = {"argue": 1, "intercept": 2, "dismantle": 3, "stall": 4, "cut": 5, "accept": 6,
+               "last_stand": 7}[pa.kind.value]
+        claim = pa.claim or ""
+        want = {"preview_text": e8_preview(lang, s, act, claim), "crack_cost_text": e8_crack(lang, s, act, claim),
+                "desc_text": e8_desc(lang, s, act, claim, bool(pa.guard)), "tell_possible": e8_tell(lang, s, tl)}
+        want.update(e8_round(lang, s))
+        for k, v in want.items():
+            if p.get(f"d1debate.{k}") != v:
+                bad.append(f"R{n}: {k} = {p.get(f'd1debate.{k}')!r} (want {v!r})")
+        rows = p.get("d1debate.claims") or []
+        for row in (json.loads(rows) if isinstance(rows, str) else rows):
+            w = e8_note(lang, s, row["id"])
+            if row.get("note") != w:
+                bad.append(f"R{n}: claim {row['id']} tag {row.get('note')!r} (want {w!r})")
+    return bad
+
+
 SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
 MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
 # (route, round) -> lines the chapter's §12 text shows, in its order, as (speaker or "sys", key): each must be shown
@@ -573,6 +706,7 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
         rounds = gd.forced(route)
         bad += check_lines(tr, rounds, marks, lambda n: lang, marks["end"])
         bad += check_steps(tr, rounds, marks, lang, gd.CV.ui_debate_seed(1), marks["end"])
+        bad += check_e8(tr, rounds, marks, lambda n: lang, gd.CV.ui_debate_seed(1))
         bad += check_sample(tr, route, marks, lang, marks["end"])
         bad += check_vn(tr, marks, lang, LN.PRE_LINES, "pre")
         bad += check_vn(tr, marks, lang, LN.outro(outcome), "post")

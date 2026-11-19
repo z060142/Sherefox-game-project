@@ -54,6 +54,15 @@ Every round of these is checked like the others (check_lines, check_steps, the c
 each must keep reaching, HP_AT her credibility after the last stand, and a scenario that ends also has its S08 / S10
 lines checked against ref epilogue.
 
+E8 (v2 demo plan E8, design rulings): every round of every scenario is also checked at its choice
+(tests/check_d1_play.py check_e8): the damage preview (ref preview.py), the red crack's cost, the one-line description of
+the choice, the vague tell's line (with ★ UI_V2_TELL_LIKELY on the likelier action), the cover count, the public
+record's crack count and the restated / void tags of the claim rows. E8_REACHED lists what the scenarios must keep
+showing there (a preview, a cost, each description, a restated and a void row, a starred and an unstarred vague line, a
+record with cracks), HOVER_PROBE the round where the pointer is moved over 截斷, 拆台, 打迷糊仗 and 援護 (each one's
+description) and off again; the cut opener SHF_D01_CUT_OPEN_n plays in the playback (check_steps), and S14's red-crack
+last stand shows LASTSTAND_OK at 42 before the contradiction lines and REDCRACK at 32 (RED_LAST).
+
 E5 (v2 demo plan E5): every scenario's whole playback and the tell's lines are also compared step by step with ref
 lines.round_steps / tell_lines on the AI's tells of the debate seed (tests/check_d1_play.py check_steps). The lines
 E5 adds that routes A-D do not reach show here: his tell lines in turn (S3: PUSH_1 / PUSH_2, REBUT_1 / REBUT_2), a
@@ -182,7 +191,22 @@ E7_REACHED = {
 # E7: her credibility on the screen when that round is shown (rules §7.5: the last stand puts her back to 30% of 140;
 # a red-crack claim then costs 10, V-12)
 HP_AT = {("S8", 9): 42.0, ("S14", 9): 32.0}
-RECORD_PEEK = ("S7", 12)       # (scenario, round): the public record opened with R and closed again before choosing
+# (scenario, round): the public record opened with R and closed again before choosing (E7: S7's catch node; E8: S9's
+# record header with two cracks)
+RECORD_PEEKS = {("S7", 12), ("S9", 9)}
+# E8: (scenario, round) -> what the choice must show there (check_e8 checks every round; these say the scenarios still
+# reach each case): "desc:<key>", "preview", "crack", "restate:<claim>", "void:<claim>", "star", "nostar", "cracks"
+E8_REACHED = {("S3", 2): ["desc:UI_V2_ACT_STALL_REPEAT"], ("S9", 2): ["preview", "star"], ("S9", 7): ["crack"],
+              ("S9", 6): ["desc:UI_V2_CLAIM_SOPH_DESC"], ("S9", 8): ["restate:05A", "crack", "star", "preview"],
+              ("S9", 9): ["cracks"], ("S7", 11): ["desc:UI_V2_SEIZE_DESC"], ("S7", 8): ["desc:UI_V2_REBUT_TOPPLE_DESC"],
+              ("S7", 5): ["desc:UI_V2_REBUT_CUT_DESC", "nostar"], ("S6", 1): ["desc:UI_V2_SUPPORT_DESC"],
+              ("S6", 3): ["desc:UI_V2_ACT_STALL_DESC"], ("S14", 8): ["void:06B", "crack"]}
+# E8: the round where the pointer is moved over the actions and cover before choosing, then off them (onto his chain's
+# empty box): (x, y, hover value) in order
+HOVER_PROBE = ("S1", 2)
+HOVER_AT = [(gd.ACT_XY[2], "act2"), (gd.ACT_XY[3], "act3"), (gd.ACT_XY[4], "act4"), (gd.GUARD_XY, "guard"),
+            ((700, 120), "")]
+RED_LAST = ("S14", 8)          # E8: the red-crack last stand, two steps (42, then the red crack's −10 to 32)
 # E5: (scenario, round) -> lines the ref playback must reach there (tell lines and steps; see the module doc)
 E5_REACHED = {("S3", 6): ["TELL_D01_REBUT_1"], ("S3", 7): ["TELL_D01_REBUT_2"], ("S3", 9): ["TELL_D01_PUSH_1"],
               ("S3", 11): ["TELL_D01_PUSH_2"], ("S2", 7): ["TELL_D01_HINT_PUSH"], ("S4", 10): ["TELL_D01_HINT_ASSERT"],
@@ -212,7 +236,11 @@ def record(name: str, rt: RT.Route) -> tuple[int, dict]:
             rec.lines.append(cp_json({"t": rec.t, "u": gp.key("settings", gp.KEY_ESC)}))
             rec.t += gp.SETTLE
         rec.marks[f"shown{n}"] = rec.t + 6
-        if (name, n) == RECORD_PEEK:   # E7: the public record with the catch node (R opens it, R closes it)
+        if (name, n) == HOVER_PROBE:   # E8: the pointer over each action and cover, then off them
+            for k, (xy, _) in enumerate(HOVER_AT):
+                rec.hover("d1debate", xy, 20 if k == 0 else 12)
+                rec.marks[f"hover{k}"] = rec.t + 4
+        if (name, n) in RECORD_PEEKS:  # E7: the public record with the catch node (R opens it, R closes it)
             rec.lines.append(cp_json({"t": rec.t + 40, "u": gp.key("d1debate", KEY_R)}))
             rec.marks["record_open"] = rec.t + 70
             rec.t += 90
@@ -272,6 +300,26 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     seed = gd.CV.ui_debate_seed(1)
     bad += cd.check_steps(tr, rounds, marks, lang_of, seed, marks["end"])
     bad += reached(name, rounds, seed)
+    bad += cd.check_e8(tr, rounds, marks, lang_of, seed)        # E8: preview, cost, description, tags, counts
+    bad += e8_reached(name, rounds, seed)
+    if name == HOVER_PROBE[0]:
+        n = HOVER_PROBE[1]
+        s0 = rounds[n - 1][0]
+        for k, (_, hv) in enumerate(HOVER_AT):
+            want = cd.e8_desc(lang_of(n), s0, 0, "", False, hv)
+            got = at.get(marks[f"hover{k}"], "d1debate.desc_text")
+            if got != want or (hv and not want):
+                bad.append(f"R{n}: pointer on {hv or 'nothing'}: desc_text {got!r} (want {want!r})")
+    if name == RED_LAST[0]:            # E8: 42 first, then the contradiction's lines and the red crack at 32
+        n = RED_LAST[1]
+        steps = [g for _, g in cd.ui_steps(tr, marks[f"lock{n}"], marks.get(f"lock{n + 1}", marks["end"]))]
+        sysl = [x[2] for x in steps if x[2]]
+        ok = cd.pattern("zh-TW", "SYS_D01_LASTSTAND_OK")
+        rc = cd.pattern("zh-TW", "SYS_D01_REDCRACK")
+        i = next((k for k, x in enumerate(sysl) if ok.match(x)), None)
+        j = next((k for k, x in enumerate(sysl) if rc.match(x)), None)
+        if i is None or j is None or j < i or "42" not in sysl[i] or "32" not in sysl[j]:
+            bad.append(f"R{n}: the red-crack last stand: {sysl}")
     # the outcome panel and round count equal the ref's
     grade, nrounds, outcome = cd.expected(rounds)
     L = S[lang_of(len(rounds))]
@@ -314,8 +362,8 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     for (sc, n), hp in HP_AT.items():  # E7: the last stand's 30%
         if sc == name and abs((at.get(marks[f"shown{n}"], "d1debate.hp_me") or 0) - hp) > 0.01:
             bad.append(f"R{n}: hp_me {at.get(marks[f'shown{n}'], 'd1debate.hp_me')!r} (want {hp})")
-    if name == RECORD_PEEK[0]:         # E7: 抓住他的話 shows the caught U card's short label (design ruling)
-        n = RECORD_PEEK[1]
+    if name == "S7":                   # E7: 抓住他的話 shows the caught U card's short label (design ruling)
+        n = 12
         u2 = S["zh-TW"]["CARD_D01_U2_SHORT"]
         chain = [x["label"] for x in at.get(marks[f"shown{n}"], "d1debate.pchain") or []]
         recl = [x["label"] for x in at.get(marks["record_open"], "d1debate.record") or []]
@@ -343,6 +391,30 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     return tr
 
 
+def e8_reached(name: str, rounds: list, seed: int) -> list[str]:
+    """E8_REACHED: the scenario's ref states and choices still reach each listed case."""
+    from sherefox_ref.v2 import known as K
+    bad = []
+    tells = cd.tells_for(rounds, seed)
+    for n, ((s, pa, _), tl) in enumerate(zip(rounds, tells), start=1):
+        act = gd.PA_ACT[pa.kind]
+        c = pa.claim or ""
+        for want in E8_REACHED.get((name, n), []):
+            kind, _, arg = want.partition(":")
+            ok = {"desc": lambda: cd.e8_desc_key(s, act, c, bool(pa.guard)) == arg,
+                  "preview": lambda: cd.e8_preview("zh-TW", s, act, c) != "",
+                  "crack": lambda: cd.e8_crack("zh-TW", s, act, c) != "",
+                  "restate": lambda: K.restate(s, arg) and s.ch.claims[arg].evidence == s.ch.claims[c].evidence,
+                  "void": lambda: arg in K.void_rows(s) and s.ch.claims[arg].evidence == s.ch.claims[c].evidence,
+                  "star": lambda: S["zh-TW"]["UI_V2_TELL_LIKELY"] in cd.e8_tell("zh-TW", s, tl),
+                  "nostar": lambda: cd.e8_tell("zh-TW", s, tl) != "" and
+                  S["zh-TW"]["UI_V2_TELL_LIKELY"] not in cd.e8_tell("zh-TW", s, tl),
+                  "cracks": lambda: s.cracks >= 2}[kind]()
+            if not ok:
+                bad.append(f"R{n}: the scenario no longer reaches E8 case {want}")
+    return bad
+
+
 def reached(name: str, rounds: list, seed: int) -> list[str]:
     """E5_REACHED: the ref playback (tell lines and steps) of the listed rounds holds the listed lines."""
     from sherefox_ref.v2 import lines as LN
@@ -360,20 +432,28 @@ def reached(name: str, rounds: list, seed: int) -> list[str]:
 
 # review screenshots (--shots DIR): a failed 拆台 on a fact (S1), his last card recovering (S2), E5: Arthur's first 破竹
 # line and the private matter (S6), zh-TW and en; (shot name, line key: a system line, or a spoken one)
-SHOTS = {"S1": [("topple_miss_fact", "SYS_D01_TOPPLE_MISS_FACT")], "S2": [("lastcard_hit", "SYS_D01_LASTCARD_HIT")],
+SHOTS = {"S2": [("lastcard_hit", "SYS_D01_LASTCARD_HIT")],
          "S6": [("hachiku_state_line", "STATE_D01_ART_HACHIKU"), ("private_matter", "SYS_D01_PRIVATE")],
          # E7: the lines shown for the first time, the catch node on the chain (round shown) and in the record
-         "S7": [("blocked", "SYS_D01_BLOCKED"), ("link_03a_02a", "LINK_D01_02A_03A"), ("cut_03a_l1", "CUT_D01_03A_L1"),
+         "S1": [("topple_miss_fact", "SYS_D01_TOPPLE_MISS_FACT"),
+                # E8: the one-line description with the pointer on each action and on cover
+                ("desc_cut", "@hover0"), ("desc_topple", "@hover1"), ("desc_stall", "@hover2"),
+                ("desc_cover", "@hover3")],
+         "S3": [("desc_stall_repeat", "@chosen2")],
+         "S7": [("cut_open", "SHF_D01_CUT_OPEN_1"), ("desc_seize", "@chosen11"), ("blocked", "SYS_D01_BLOCKED"), ("link_03a_02a", "LINK_D01_02A_03A"), ("cut_03a_l1", "CUT_D01_03A_L1"),
                 ("refute_05b", "SYS_D01_NOW_KNOWN"), ("u2_catch_line", "CARD_D01_U2_CATCH"),
                 ("chain_nobreak", "SYS_D01_CHAIN_NOBREAK"), ("catch_on_chain", "@shown12"),
                 ("catch_in_record", "@record_open"), ("cover", "SYS_D01_COVER")],
          "S8": [("rev_ready", "SYS_D01_REV_READY"), ("laststand_ok", "SYS_D01_LASTSTAND_OK"), ("after_laststand", "@shown9")],
-         "S9": [("excl_catch", "EXCL_D01_01D_05A_CATCH"), ("excl_sell", "EXCL_D01_01D_05A_SELL"),
+         "S9": [("preview_star", "@chosen2"), ("desc_soph", "@chosen6"), ("crack_cost", "@chosen7"),
+                ("restate_row", "@chosen8"), ("record_cracks", "@record_open"), ("endgame_head", "@chosen10"),
+                ("excl_catch", "EXCL_D01_01D_05A_CATCH"), ("excl_sell", "EXCL_D01_01D_05A_SELL"),
                 ("zero_endgame", "SCR_D01_S07_L006"), ("s10_l008", "@s10_SCR_D01_S10_L008")],
          "S10": [("desperate_hit", "SYS_D01_DESPERATE_HIT")],
          "S12": [("p07_push", "CARD_D01_P07_PUSH"), ("endgame_cut_stamp", "CARD_D01_P05_DOWN")],
          "S13": [("lastcard_3", "BEAT_D01_LASTCARD_3")],
-         "S14": [("laststand_redcrack", "SYS_D01_LASTSTAND_OK"), ("after_laststand_redcrack", "@shown9")]}
+         "S14": [("void_row", "@chosen8"), ("laststand_redcrack", "SYS_D01_LASTSTAND_OK"),
+                 ("redcrack_after_laststand", "SYS_D01_REDCRACK"), ("after_laststand_redcrack", "@shown9")]}
 
 
 def shots(out: Path, name: str, tr, end: int, marks: dict) -> None:
@@ -382,7 +462,8 @@ def shots(out: Path, name: str, tr, end: int, marks: dict) -> None:
     named = {}
     for shot, key in SHOTS[name]:
         if key.startswith("@"):        # E7: a mark of the recording (a round shown, the record open, a vn line)
-            named[shot] = marks[key[1:]] + 10
+            # E8: a choice (`chosen`, before the lock) or a pointer position (`hover`) is shot on its mark
+            named[shot] = marks[key[1:]] + (0 if key.startswith(("@chosen", "@hover")) else 10)
             continue
         pt = cd.pattern("zh-TW", key)
         port = "d1debate.sys_line" if key.startswith(("SYS_", "SCR_D01_S07_")) else "d1debate.speech"

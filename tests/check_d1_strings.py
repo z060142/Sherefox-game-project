@@ -9,7 +9,8 @@ Default (static, no CLI needed): the keys of source/localization/d01/ (strings_d
 evidence_d01.csv, ui_strings_d01.csv) are each
 
 - referenced: the key appears in a flow (flows/*.xtflow), a board (ui/boards/project/*.dc.html), a flow or data table
-  (data/**/*.json; data/script.json only through a row the vn plays, `playable`), or matches a pattern a generator
+  (data/**/*.json; data/script.json only through a row the vn plays, `playable`; not data/bgmCues.json, which times the
+  music by line and shows nothing), or matches a pattern a generator
   builds keys from (PATTERNS, with the generator that builds it), or
 - on NOT_DISPLAYED with the reason (a design ruling, a template, a heading, a key another one replaced).
 
@@ -44,7 +45,7 @@ PATTERNS = {
     r"REFUTE_D01_[0-9A-Z]+_FACT": "tools/gen_debui_v2.py: SYS_D01_NOW_KNOWN {fact} = fmt {refute line}_FACT",
 }
 
-# Not displayed, with the reason (E7 design rulings, docs/d01-string-coverage.md class C / D).
+# Not displayed, with the reason (E7 / E8 design rulings, docs/d01-string-coverage.md).
 NOT_DISPLAYED = {
     # design ruling (4ac5faf, E7)
     "SYS_D01_LASTSTAND_PROMPT": "ruling E7: the §7.5 screen already shows UI_V2_MY_LAST_CARD and his chain",
@@ -66,32 +67,13 @@ NOT_DISPLAYED = {
     "SCR_D01_S09_TITLE": "scene heading",
     "SCR_D01_S10_TITLE": "scene heading",
     "SCR_D01_S11_TITLE": "scene heading",
-    # class C: the design gives no condition or no place on the screen (listed for the design team)
-    "SHF_D01_CUT_OPEN_1": "class C: cut opener, no rule for when it plays or which of the three",
-    "SHF_D01_CUT_OPEN_2": "class C: cut opener, no rule for when it plays or which of the three",
-    "SHF_D01_CUT_OPEN_3": "class C: cut opener, no rule for when it plays or which of the three",
-    "UI_V2_ACT_STALL_DESC": "class C: tooltip; ch §13 has no tooltip or description area",
-    "UI_V2_REBUT_CUT_DESC": "class C: action description; ch §13 has no description area",
-    "UI_V2_REBUT_TOPPLE_DESC": "class C: action description; ch §13 has no description area",
-    "UI_V2_SUPPORT_DESC": "class C: action description; ch §13 has no description area",
-    "UI_V2_SEIZE_DESC": "class C: claim description; ch §13 has no description area",
-    "UI_V2_CLAIM_SOPH_DESC": "class C: claim description; ch §13 has no description area",
-    "UI_V2_ACT_STALL_REPEAT": "class C: warning on the 2nd stall in a row; no place on the screen given",
-    "UI_V2_CLAIM_CAN_CUT": "class C: claim picker tag with no condition (every evidence claim can rebut)",
-    "UI_V2_CLAIM_CRACK_COST": "class C: red-crack cost text; no place given (the row has the red-crack tag)",
-    "UI_V2_CLAIM_RESTATE": "class C: restated-claim tag; ch §13's picker lists only sound / sophistry / red crack",
-    "UI_V2_CLAIM_VOID": "class C: refuted-claim tag; the picker does not list a void claim (§3.4: void)",
-    "UI_V2_DMG_PREVIEW": "class C: damage preview; no rule for what the estimate includes",
-    "UI_V2_ENDGAME": "class C: label with no place given (the endgame screen has UI_V2_LAST_CARD)",
-    "UI_V2_ISSUE": "class C: label with no place given (claims show the issue chip)",
-    "UI_V2_SUPPORT_LEFT": "class C: cover count; cover is once per debate, the button greys out when spent",
-    "UI_V2_TELL_POSSIBLE": "class C: the tell panel shows the two actions with UI_V2_TELL_VAGUE / _LIKELY",
-    "UI_V2_RECORD_CRACKS": "class C: crack count with no place given in ch §13's public record",
-    "UI_V2_BACK_TITLE": "class C: S11's button uses SCR_D01_S11_L003 (design's own line)",
-    "UI_V2_NEXT_PLACEHOLDER": "class C: S11 shows SCR_D01_S11_L001-L003 instead",
-    "UI_V2_CARRY_LEFT_ASK": "class C: the confirm box shows SCR_D01_S06_L009 and its buttons",
-    "SCENE_D01_ATTIC": "class C: full name 'for headings', but the investigation has no place heading (tab: _TAB)",
-    "SCENE_D01_BASEMENT": "class C: full name 'for headings', but the investigation has no place heading (tab: _TAB)",
+    # E8 design rulings (v2 demo plan E8): not displayed
+    "UI_V2_CLAIM_CAN_CUT": "ruling E8: it would tell which claim can cut his line",
+    "UI_V2_ISSUE": "ruling E8: not displayed (claims and links show the issue chip)",
+    "SCENE_D01_ATTIC": "ruling E8: full name not displayed (the investigation's tab uses SCENE_D01_ATTIC_TAB)",
+    "SCENE_D01_BASEMENT": "ruling E8: full name not displayed (the investigation's tab uses SCENE_D01_BASEMENT_TAB)",
+    "CARD_D01_P05_PUSH": "ruling E8: P05 is only ever his last card (ref model.never_in_hand), never said as 強辯",
+    "SCR_D01_S11_L003": "ruling E8: S11's button shows UI_V2_BACK_TITLE",
 }
 
 
@@ -123,6 +105,8 @@ def referenced() -> dict[str, str]:
         add(Path(p).read_text(encoding="utf-8"), f"board {Path(p).name}")
     for p in sorted(glob.glob(str(ROOT / "data" / "**" / "*.json"), recursive=True)):
         rel = Path(p).relative_to(ROOT).as_posix()
+        if rel == "data/bgmCues.json":   # E8: the music cue table names lines to time the music, it shows none
+            continue
         if rel == "data/script.json":
             for r in json.loads(Path(p).read_text(encoding="utf-8")):
                 if r.get("playable"):

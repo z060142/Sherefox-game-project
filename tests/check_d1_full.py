@@ -158,6 +158,12 @@ def check(route: str, lang: str, info: dict, fails: list, v1: bool = False) -> N
         eq(f"{lid} on the vn", ("vn" in at.vis(t), at.get(t, "vn.line")), (True, L[lid]))
     # S11, back to title
     eq("S11 shown", "d1end" in at.vis(marks["s11"]), True)
+    # E8: the chapter stays on S11 (a click beside the button, a wait) until the button is pressed
+    vis = at.vis(marks["s11_stay"])
+    eq("S11 stays until the button", ("d1end" in vis, "title" in vis), (True, False))
+    import check_d1_m3 as cm3
+    eq("S11 heading and button", (cm3.ui_text("d1end", "title"), cm3.ui_text("d1end", "btn-back")),
+       ("@UI_V2_NEXT_PLACEHOLDER", "@UI_V2_BACK_TITLE"))
     vis = at.vis(marks["back"])
     eq("back to title", ("title" in vis, sorted(vis & {"vn", "paper", "d1debate", "d1result", "d1end"})), (True, []))
     # credibility on the debate screen: two decimals at most, never below 0; 1 after a Break (ref: locked at 1)

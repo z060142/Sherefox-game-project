@@ -77,11 +77,12 @@ S = cd.S
 LOADOUTS = {k: RT.ROUTES[k].loadout for k in "ABCD"}   # B carries the talking board (P1)
 # (loadout, seed): the default run, picked with --plan 150 so that between them every situation of SITUATIONS is
 # reached (the summary fails a default run that misses one; a change to the planner's draws reshuffles them, so pick
-# again with --plan): A1 a successful 拆台 and cover that saves, A9 a Break and his last card, A62 / C9 抓住他的話,
-# A111 / B29 a Reverse Break and the §7.5 round, B8 the dying gasp (a grade 1 win), C74 / D10 the round limit, and the
-# wins A74 / B17 (grade 2), A90 / D119 (grade 3), C121 (grade 4). Random play loses most debates.
-CURATED = [("A", 1), ("A", 9), ("A", 62), ("A", 74), ("A", 90), ("A", 111), ("B", 8), ("B", 17), ("B", 29),
-           ("C", 9), ("C", 74), ("C", 121), ("D", 10), ("D", 119)]
+# again with --plan; E8 re-picked them: the greyed-out clicks now include the refuted claims' rows): A9 a Break and his
+# last card, A26 / A62 / C91 抓住他的話, A103 a successful 拆台 (a grade 3 win), A111 / B29 a Reverse Break and the §7.5
+# round, B8 the dying gasp (a grade 1 win), B39 / C30 / D42 the round limit, and the wins B96 (grade 2), A90 (grade 3),
+# C58 (grade 4). Random play loses most debates.
+CURATED = [("A", 9), ("A", 26), ("A", 62), ("A", 90), ("A", 103), ("A", 111), ("B", 8), ("B", 29), ("B", 39),
+           ("B", 96), ("C", 30), ("C", 58), ("C", 91), ("D", 42)]
 
 
 def cycle(n: int) -> list[tuple[str, int]]:
@@ -153,11 +154,19 @@ class Ref:
         self.acts = {ACT[m.kind] for m in self.legal}
         self.picker = gd.picker(s) if not s.outcome else []
         self.evs = [e for e, _ in self.picker]
+        # E8: the refuted claims are listed greyed after the others (ref known.void_rows), their evidence chip after
+        # the picker's when it has no other claim
+        self.void = K.void_rows(s) if not s.outcome else []
+        self.chips = self.evs + (cd.e8_void_evs(s) if not s.outcome else [])
         self.chain = [n.card for n in s.opp_chain]
         self.guard = any(m.guard for m in self.legal)
 
     def claims(self, ev: str) -> list[str]:
         return next((cs for e, cs in self.picker if e == ev), [])
+
+    def rows(self, ev: str) -> list[str]:
+        """The claim rows the screen lists for the evidence: the picker's, then its refuted claims (E8)."""
+        return self.claims(ev) + [c for c in self.void if ev != "CATCH" and self.s.ch.claims[c].evidence == ev]
 
     def claim_ok(self, act: int, c: str) -> bool:
         return any(ACT[m.kind] == act and m.claim == c for m in self.legal)
@@ -333,7 +342,7 @@ def plan(lo: str, seed: int) -> Plan:
             observe(f"evidence {e}")
 
         def do_claim(c: str) -> None:
-            rec.click("d1debate", (CLAIM_X, gd.claim_xy(r.claims(sel.ev).index(c))[1]), wait())
+            rec.click("d1debate", (CLAIM_X, gd.claim_xy(r.rows(sel.ev).index(c))[1]), wait())
             ok = sel.act in CLAIM_ACTS and r.claim_ok(sel.act, c)
             if ok:
                 sel.claim = c
@@ -377,7 +386,7 @@ def plan(lo: str, seed: int) -> Plan:
                 out += [lambda a=a: do_act(a, key=True) for a in (1, 2, 3, 4)]
                 out.append(lambda: do_guard(key=True))
             if sel.act in CLAIM_ACTS:
-                out += [lambda c=c: do_claim(c) for c in r.claims(sel.ev) if not r.claim_ok(sel.act, c)]
+                out += [lambda c=c: do_claim(c) for c in r.rows(sel.ev) if not r.claim_ok(sel.act, c)]
             if sel.act not in (3, 7) and r.chain:
                 out += [lambda t=t: do_target(t) for t in r.chain]
             if r.mode == 0 and not r.guard:
@@ -537,14 +546,14 @@ def check_obs(at, o: Obs, lo: str, seed: int) -> list[str]:
     # evidence chips: the picker's evidence, in its order; the chosen one
     evs = get("ev_list") or []
     got = [(e["id"], b(e["sel"])) for e in evs]
-    want = [(e, e == sel.ev) for e in r.evs]
+    want = [(e, e == sel.ev) for e in r.chips]
     if got != want:
-        extra = [e for e, _ in got if e not in r.evs]
-        miss = [e for e in r.evs if e not in [x for x, _ in got]]
+        extra = [e for e, _ in got if e not in r.chips]
+        miss = [e for e in r.chips if e not in [x for x, _ in got]]
         bad.append(f"{head}: evidence chips {got} (ref {want}; offered but not in ref: {extra}, missing: {miss})")
     # claim rows of the chosen evidence: ok = the chosen action may use it
     rows = get("claims") or [] if sel.ev else []
-    cs = r.claims(sel.ev) if sel.ev else []
+    cs = r.rows(sel.ev) if sel.ev else []
     got_ids = [c["id"] for c in rows]
     if got_ids != cs:
         bad.append(f"{head}: claim rows of {sel.ev or '-'}: {got_ids} (ref {cs})")
@@ -562,6 +571,13 @@ def check_obs(at, o: Obs, lo: str, seed: int) -> list[str]:
             view = K.view(o.s, c["id"])
             if b(c["soph"]) != view.soph:
                 bad.append(f"{head}: claim {c['id']} soph {c['soph']!r}, ref {view.soph}")
+            if c.get("note") != cd.e8_note(o.lang, o.s, c["id"]):     # E8: restated / void, every row
+                bad.append(f"{head}: claim {c['id']} tag {c.get('note')!r}, ref {cd.e8_note(o.lang, o.s, c['id'])!r}")
+    # E8: the preview, the red crack's cost and the description of the choice (no pointer moves: nothing hovered)
+    claim = sel.claim if sel.act in CLAIM_ACTS else ""
+    eq("preview_text", cd.e8_preview(o.lang, o.s, sel.act, claim))
+    eq("crack_cost_text", cd.e8_crack(o.lang, o.s, sel.act, claim))
+    eq("desc_text", cd.e8_desc(o.lang, o.s, sel.act, claim, sel.armed and r.mode == 0))
     # his chain (target chips) with the chosen target
     oc = get("ochain") or []
     got = [(x["id"], b(x["sel"]), x["label"]) for x in oc]
@@ -620,6 +636,9 @@ def check_shown(at, o: Obs, r: Ref, head: str, L: dict) -> list[str]:
         eq("tell_partial", bool(t.partial))
         key = (CARD[t.card]["tell"] if t.partial else CARD[t.card]["label"]) if t.card else ""
         eq("tell_card", L[key] if key else "")
+    eq("tell_possible", cd.e8_tell(o.lang, s, t) if r.mode in (0, 1) else "")    # E8
+    for port, want in cd.e8_round(o.lang, s).items():                            # E8: cover count, record cracks
+        eq(port, want)
     return bad
 
 

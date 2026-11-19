@@ -201,7 +201,10 @@ uv run tests/check_d1_play.py [--shots DIR]
 
 `check_d1_play.py` regenerates the recordings (`tests/gen_d1_play.py`) and replays them with `--ports`. Each one starts
 at the title's v2 entry and plays the whole D01 debate by clicking the `d1debate` screen (action, evidence, claim,
-target, cover, lock, one click per playback record), then (4.4) the ending: S08, the result screen, S09, S10 and S11's back to title.
+target, cover, lock, one click per playback record), then (4.4) the ending: S08, the result screen, S09, S10 and S11's back to title
+(E8: first a click beside the button and a wait; `check_d1_full` checks S11 is still shown then, with its heading
+UI_V2_NEXT_PLACEHOLDER and the button UI_V2_BACK_TITLE; `check_d1_m3` checks the carry confirm box holds
+UI_V2_CARRY_LEFT_ASK).
 
 | Check | Recording | What it asserts |
 |---|---|---|
@@ -257,13 +260,26 @@ Scripted debates (forced opponent, route A's loadout unless noted, harnesses `te
 | `S9` | E7: 承接 05A → 01C, 11A → 11B, two contradictions (EXCL_D01_01D_05A / 05A_05B catch and sell before REDCRACK), his credibility to 0 without a Break (S07 L006), K1 cut: grade 4; the ending's S10 L008 |
 | `S10`, `S11` | E7: the dying gasp hits: her endgame cut fails / she takes it (DESPERATE_HIT), grade 1 |
 | `S12`, `S13` | E7: his 強辯 with P07 / P06, 承接 08A → 10A, a 拆台 that knocks L3 down (CARD_D01_L3_DOWN), the endgame cut on P05 (P05_DOWN and the 截 seal); P05 taken with no crack (BEAT_D01_LASTCARD_3) |
-| `S14` | E7: route D's last stand with the red-crack 06A: 30% then −10 (32) |
+| `S14` | E7: route D's last stand with the red-crack 06A: 30% then −10 (32); E8: told in two steps, LASTSTAND_OK at 42, then his catch and her hard sell and REDCRACK at 32 (`RED_LAST`), and 06B's row greyed with UI_V2_CLAIM_VOID |
 
 E7: every scenario's whole playback is also checked step by step against ref, every round's cut-ins (the big words and
 seals, `check_d1_play.ref_cutins`), `E7_REACHED` the lines each scenario is there to show, and a scenario that ends has
 its S08 / S10 lines checked against ref epilogue. `--shots DIR` writes a TOPPLE_MISS_FACT line (S1), a LASTCARD_HIT
 line (S2), and (E7) each newly shown line, the catch node on the chain and in the public record, the last stand's 30%
 and the endgame cut's 截 seal, in zh-TW and en.
+
+E8 (design rulings): every round of every scenario (and of the four routes in `check_d1_play`) is checked at its choice
+by `check_d1_play.check_e8`: the damage preview `preview_text` (ref `preview.py`), the red crack's cost
+`crack_cost_text`, the one-line description `desc_text` of the choice (no pointer moves in a recording: nothing
+hovered), the vague tell's line `tell_possible` (★ and UI_V2_TELL_LIKELY on the likelier action), the cover count
+`guard_left_text`, the public record's `record_cracks` and every claim row's `note` (UI_V2_CLAIM_RESTATE /
+UI_V2_CLAIM_VOID); the cut opener SHF_D01_CUT_OPEN_n is part of the step-by-step playback. `E8_REACHED` keeps the
+scenarios reaching each case (a preview, a cost, every description, the stall-repeat warning (S3), a restated row (S9
+R8), a void row (S14 R8), a starred and an unstarred vague line, a record with cracks); `HOVER_PROBE` (S1 R2) moves the
+pointer (`pm`, `gen_d1_play.Rec.hover`) over 截斷, 拆台, 打迷糊仗 and 援護 and off again, each with its description;
+the record is also opened in S9 R9 (three cracks). `--shots DIR` adds each description, the preview with a starred
+vague line, the cost, the restated and void rows, the record header, the endgame heading, a cut opener and the red crack
+after the last stand.
 
 ## v2 demo: every D01 string shown or listed (E7)
 
@@ -273,7 +289,7 @@ uv run tests/check_d1_strings.py --coverage DIR [--all]  # which keys the test r
 ```
 
 Static (no CLI): every key of `source/localization/d01/` is referenced by a flow, a board, a data table (the vn's
-playable script rows only) or a generator's key pattern, or is on `NOT_DISPLAYED` with the reason (design rulings,
+playable script rows only; not `data/bgmCues.json`, which only times the music) or a generator's key pattern, or is on `NOT_DISPLAYED` with the reason (design rulings,
 templates, headings, class C questions for the design team; `docs/d01-string-coverage.md`). A new string nothing shows,
 a listed key that is shown after all, or a listed key that no longer exists fails it. `--coverage DIR`: run the D01
 checks with `SHEREFOX_TEXTLOG=DIR` (`check_playthrough.parse_events` then appends every string value of each port
@@ -421,6 +437,10 @@ each round shown also checks the labels: both chains and the public record show 
 (`CLM_D01_<id>_SHORT`, `CARD_D01_<card>_SHORT`), the claim rows the full titles. E7: a 抓住他的話 node and row show
 the caught U card's short label (`CARD_D01_U1_SHORT` / `U2_SHORT`), the picker's row `UI_V2_SEIZE`; the expectation is
 written from that rule, not read from the generated table. Every round's cut-ins are checked too (`check_lines`).
+E8: after every click also the preview, the red crack's cost and the description against ref (`check_d1_play`
+`e8_preview` / `e8_crack` / `e8_desc`) and every claim row's restated / void tag (the refuted claims are listed greyed
+after the others, their evidence chip after the picker's when it has no other claim; greyed-out clicks include them);
+each round shown also the vague tell's line, the cover count and the record's crack count.
 
 ## v2 demo: every claim and card label on the debate screen (E6, review screenshots)
 

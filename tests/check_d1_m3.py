@@ -42,6 +42,18 @@ def item_name(i: str) -> str:
     return gen_inv_v2.item_keys(i)[0]
 
 
+def ui_text(ui: str, eid: str, parent: str | None = None) -> str:
+    """E8: the fixed text (string key) of element `eid` in the imported UI ui/project/<ui>/<ui>.xt, "" for none; with
+    `parent`, only when the element sits inside that element (a board text is shown with its screen)."""
+    import re
+    xt = (ROOT / "ui" / "project" / ui / f"{ui}.xt").read_text(encoding="utf-8")
+    if parent is not None:
+        m = re.search(rf'<div id="{parent}"[^>]*>(.*?)\n\s*</div>', xt, re.S)
+        xt = m.group(1) if m else ""
+    m = re.search(rf'<div id="{eid}"[^>]*>(@[A-Z0-9_]+)<', xt)
+    return m.group(1) if m else ""
+
+
 class At:
     def __init__(self, tr: cp.Trace, events: list) -> None:
         self.tr = tr
@@ -172,6 +184,8 @@ def check(lang: str, ticks: dict, fails: list) -> None:
     eq("confirm list", at.get(marks["confirm"], "d1carry.confirm_text"),
        L["SCR_D01_S06_L009"].replace("{list}", sep.join(L[item_name(i)] for i in left)))
     eq("confirm shown", at.get(marks["confirm"], "d1carry.phase"), 1.0)
+    # E8 (design ruling): the confirm question under the list, on the confirm box shown above
+    eq("confirm question", ui_text("d1carry", "c-ask", "c-box"), "@UI_V2_CARRY_LEFT_ASK")
     # E6 (V3, ruling c): route A carries E05, E06 and E07, so nothing he could pick up stays: no L010, the step goes on
     eq("no L010 (nothing he could pick up stays)", ("d1carry" in at.vis(marks["l010"]),
                                                     at.get(marks["l010"], "d1carry.say1") == L["SCR_D01_S06_L010"]),

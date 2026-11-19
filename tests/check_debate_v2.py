@@ -624,6 +624,9 @@ def check_row(s, ev_before, events, dec, m: dict, lists: dict, strs: dict, nums:
         ids, flags = ref_claims(s)
         if lists.get("d1ClaimList", []) != ids:
             return f"claim list: expected {ids!r}, got {lists.get('d1ClaimList', [])!r}"
+        vd = K.void_rows(s)     # E8: refuted claims the picker greys out
+        if lists.get("d1ClaimVoid", []) != vd:
+            return f"void claims: expected {vd!r}, got {lists.get('d1ClaimVoid', [])!r}"
         for cid, (soph, red, stand) in flags.items():
             g_ = (bool(m["d1ClaimSoph"].get(cid)), bool(m["d1ClaimCrack"].get(cid)),
                   bool(m["d1ClaimStand"].get(cid)))
