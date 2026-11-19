@@ -45,3 +45,5 @@ D01 investigation (d1inv: the people who can be questioned stand in their place)
 | char_irene.png | images/d01/irene.png |
 | char_mrs_hyde.png | images/d01/mrs_hyde.png |
 | char_briggs.png | images/d01/briggs.png |
+| char_martha.png | images/d01/martha.png (design e20fd81; basement, by the kitchen table, HS18) |
+| char_briggs_seated.png | images/d01/briggs_seated.png (design e20fd81; hall, seated with his own bench, HS26) |

@@ -1,0 +1,13 @@
+version: 1
+id: 8a8d9d7e-96fb-4721-aa32-bc0c15687c7c
+type: image
+title: fig-martha
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_martha.png
+content: sha256:a25ff1851287a62961f2ca2a2f3e1236fdb7186a9a7b050f32596c8459df3eee
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

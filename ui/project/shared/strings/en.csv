@@ -891,6 +891,7 @@ SCENE_CH03_BOILER,The Barge Boiler Room
 SCENE_CH03_DECK,The Barge Deck
 SCENE_CH03_DOCK,The Wharf
 SCENE_D01_ATTIC,Attic (and servants' rooms)
+SCENE_D01_ATTIC_TAB,Attic
 SCENE_D01_BASEMENT,Basement (and kitchen)
 SCENE_D01_BEDROOM,Cedric's bedroom
 SCENE_D01_HALL,Entrance Hall

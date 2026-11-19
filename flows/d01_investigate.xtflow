@@ -859,7 +859,7 @@
       "params": {
         "port": "ui.d1inv.locs",
         "source": "i1Locs",
-        "fields": "{\"id\": \"item\", \"name\": \"table:d1iScene[id].name\", \"sel\": \"map:i1LocSel\", \"done\": \"map:i1LocDone\"}",
+        "fields": "{\"id\": \"item\", \"name\": \"table:d1iScene[id].tab\", \"sel\": \"map:i1LocSel\", \"done\": \"map:i1LocDone\"}",
         "localize": [
           "name"
         ]

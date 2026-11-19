@@ -94,7 +94,10 @@ def tables() -> dict[str, list[dict]]:
                       "art": f"HS_D01_{n}_ART", "x": s["x"], "y": s["y"], "w": s["w"], "h": s["h"], "type": s["icon"],
                       "ev": s["ev"], "ev0": ev[0], "ev1": ev[1], "note": s["note"], "pair": s["pair"],
                       "pairNote": s["pairNote"]})
+    # the place tab: the short name where the package has one (SCENE_D01_<id>_TAB), else the full name (headings)
+    keys = F.string_keys()
     scenes = [{"id": sid, "bg": bg, "name": f"SCENE_D01_{sid}",
+               "tab": f"SCENE_D01_{sid}_TAB" if f"SCENE_D01_{sid}_TAB" in keys else f"SCENE_D01_{sid}",
                "spots": SEP.join(s["id"] for s in SPOTS if s["scene"] == sid),
                "n": sum(1 for s in SPOTS if s["scene"] == sid)} for sid, bg in SCENES]
     items = []
@@ -215,7 +218,7 @@ def gen_d01inv() -> Graph:
     g.edge("locEach.each", g.eff("locDone", "atrium.map.set", "i1LocDone", key=li,
                                    value=g.cmp("liDone", "liLeft", g.k(0))))
     g.edge("locEach.done", g.ui_list("locList", "ui.d1inv.locs", "i1Locs",
-                                     {"id": "item", "name": tref("d1iScene", "id", "name"), "sel": "map:i1LocSel",
+                                     {"id": "item", "name": tref("d1iScene", "id", "tab"), "sel": "map:i1LocSel",
                                       "done": "map:i1LocDone"}, localize=["name"]))
     g.edge("scBg", f"{INV}.bg")
     lP = g.when("locG", f"{INV}.pick_loc.emitted", T("locOk", "d_pop == 0"))

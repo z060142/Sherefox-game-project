@@ -46,6 +46,9 @@
             <div id="figs-study" bind:display="bg | eq('study')">
               <img id="fig-irene-door" class="fig" src="../shared/img/fig-irene.png"/>
             </div>
+            <div id="figs-basement" bind:display="bg | eq('basement')">
+              <img id="fig-martha" class="fig" src="../shared/img/fig-martha.png"/>
+            </div>
             <div id="figs-hall" bind:display="bg | eq('hall')">
               <img id="fig-briggs" class="fig" src="../shared/img/fig-briggs.png"/>
             </div>
@@ -184,7 +187,7 @@
       width: 260px;
     }
     /* import: D1Inv.dc.html:1/0/0/0/8 */
-    #figs-hall {
+    #figs-basement {
       height: 720px;
       left: 0px;
       position: absolute;
@@ -192,11 +195,26 @@
       width: 1280px;
     }
     /* import: D1Inv.dc.html:1/0/0/0/8/0 */
+    #fig-martha {
+      height: 381px;
+      left: 1000px;
+      top: 262px;
+      width: 254px;
+    }
+    /* import: D1Inv.dc.html:1/0/0/0/9 */
+    #figs-hall {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: D1Inv.dc.html:1/0/0/0/9/0 */
     #fig-briggs {
-      height: 430px;
-      left: 740px;
-      top: 290px;
-      width: 287px;
+      height: 405px;
+      left: 560px;
+      top: 230px;
+      width: 270px;
     }
     /* import: D1Inv.dc.html:1/0/1 */
     #shade-top {

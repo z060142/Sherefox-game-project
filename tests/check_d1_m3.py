@@ -126,6 +126,8 @@ def check(lang: str, ticks: dict, fails: list) -> None:
         seen.add(s["id"])
     locs = at.get(marks["scene_HALL"], "d1inv.locs") or []
     eq("places done", [x["done"] for x in locs], [True] * 6)
+    eq("place tabs", [x["name"] for x in locs],
+       [L.get(f"SCENE_D01_{s}_TAB", L[f"SCENE_D01_{s}"]) for s in gm.SCENES])   # the attic's short tab name
     eq("appraisals before", at.get(marks["scene_HALL"], "d1inv.appr_text"), L["UI_V2_APPRAISE_LEFT"].replace("{n}", "2"))
     # evidence list: 13 items, two appraisals, the count, the private view, the notes page
     cards = at.get(marks["book_open"], "d1book.cards") or []
@@ -147,6 +149,11 @@ def check(lang: str, ticks: dict, fails: list) -> None:
     # carry screen
     eq("first visit hint", at.get(marks["carry1"], "d1carry.first_hint"), L["SCR_D01_S06_L001"])
     eq("back", "d1inv" in at.vis(marks["back_inv"]), True)
+    # ruling 4: Back keeps the appraisals made (the count is not reset); a new visit lets Arthur repeat himself
+    eq("first visit Arthur", at.get(marks["ask_v1"], "d1carry.say1"), L["SCR_D01_S06_L008"])
+    eq("appraisals after back", at.get(marks["back_inv"] + 20, "d1inv.appr_text"),
+       at.get(marks["before_carry"], "d1inv.appr_text"))
+    eq("appraisals after back (none left)", at.get(marks["back_inv"] + 20, "d1inv.appr_text"), L["UI_V2_APPRAISE_NONE"])
     eq("second visit hint", at.get(marks["carry2"], "d1carry.first_hint"), "")
     eq("items", [x["id"] for x in at.get(marks["carry2"], "d1carry.items") or []], gm.ITEMS)
     said = []

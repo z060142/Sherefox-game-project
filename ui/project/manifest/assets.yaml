@@ -211,6 +211,12 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1024, h: 1536, alpha: true }
+  - id: fig-martha
+    type: image
+    file: shared/img/fig-martha.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ico-device
     type: image
     file: shared/img/ico-device.png

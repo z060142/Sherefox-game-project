@@ -9,8 +9,8 @@ tests/d1_m3.atrec clicks, from the title's v2 entry (chapter 101):
 - the investigation: every place by its tab, every hotspot of it (data/d01/d1Hotspot.json), closing each note;
 - the evidence list: appraise E01 and E04 (A01, A04: the two appraisals), the private view of E01 set to 01A, the
   notes page, close;
-- end of the search -> the carry screen; back to the investigation and end again (a second visit); Ask Arthur with
-  nothing chosen, then with P1, E12, E09, E03 chosen (seven presses: the S06 priority order, L012 repeating), then
+- end of the search -> the carry screen, Ask Arthur once (L008); back to the investigation (the appraisal count
+  stays) and end again (a second visit, where Arthur may say L008 again); Ask Arthur with nothing chosen, then with P1, E12, E09, E03 chosen (seven presses: the S06 priority order, L012 repeating), then
   route A's nine (ref routes.py), a tenth click (no room), Ask Arthur once more, confirm (the list of what stays),
   yes (L010), a click on;
 - the debate: route A clicked the M2 way (tests/gen_d1_play.py), the opponent pinned by the harness; rounds 2 and 3
@@ -126,9 +126,13 @@ def book(r: Rec) -> None:
 def carry(r: Rec) -> list[tuple[str, str]]:
     """The carry screen; returns (mark, expected Ask Arthur line) for every press."""
     asks: list[tuple[str, str]] = []
+    r.mark("before_carry", 0)
     r.click("d1inv", END_BTN, 10)
     r.mark("carry1", 20)
     r.t += 20
+    r.click("d1carry", ASK, 10)          # ruling 4: Arthur's line on the first visit (L008) may come again on the next
+    r.mark("ask_v1", 6)
+    r.t += 6
     r.click("d1carry", BACK, 10)
     r.mark("back_inv", 10)
     r.t += 10

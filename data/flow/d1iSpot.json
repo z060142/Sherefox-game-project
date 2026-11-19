@@ -16,7 +16,7 @@
   {"id": "HS15", "scene": "BASEMENT", "name": "HS_D01_15_NAME", "desc": "HS_D01_15_DESC", "art": "HS_D01_15_ART", "x": 118, "y": 230, "w": 128, "h": 146, "type": 1, "ev": "E04", "ev0": "E04", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS16", "scene": "BASEMENT", "name": "HS_D01_16_NAME", "desc": "HS_D01_16_DESC", "art": "HS_D01_16_ART", "x": 360, "y": 118, "w": 196, "h": 398, "type": 0, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS17", "scene": "BASEMENT", "name": "HS_D01_17_NAME", "desc": "HS_D01_17_DESC", "art": "HS_D01_17_ART", "x": 602, "y": 288, "w": 218, "h": 172, "type": 1, "ev": "E07", "ev0": "E07", "ev1": "", "note": "", "pair": "", "pairNote": ""},
-  {"id": "HS18", "scene": "BASEMENT", "name": "HS_D01_18_NAME", "desc": "HS_D01_18_DESC", "art": "HS_D01_18_ART", "x": 858, "y": 332, "w": 254, "h": 174, "type": 2, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""},
+  {"id": "HS18", "scene": "BASEMENT", "name": "HS_D01_18_NAME", "desc": "HS_D01_18_DESC", "art": "HS_D01_18_ART", "x": 1040, "y": 276, "w": 176, "h": 358, "type": 2, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS19", "scene": "ATTIC", "name": "HS_D01_19_NAME", "desc": "HS_D01_19_DESC", "art": "HS_D01_19_ART", "x": 0, "y": 304, "w": 386, "h": 384, "type": 1, "ev": "P1", "ev0": "P1", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS20", "scene": "ATTIC", "name": "HS_D01_20_NAME", "desc": "HS_D01_20_DESC", "art": "HS_D01_20_ART", "x": 816, "y": 280, "w": 154, "h": 216, "type": 1, "ev": "E09", "ev0": "E09", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS21", "scene": "ATTIC", "name": "HS_D01_21_NAME", "desc": "HS_D01_21_DESC", "art": "HS_D01_21_ART", "x": 552, "y": 294, "w": 220, "h": 46, "type": 0, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""},
@@ -24,5 +24,5 @@
   {"id": "HS23", "scene": "BEDROOM", "name": "HS_D01_23_NAME", "desc": "HS_D01_23_DESC", "art": "HS_D01_23_ART", "x": 672, "y": 362, "w": 100, "h": 46, "type": 1, "ev": "E08", "ev0": "E08", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS24", "scene": "BEDROOM", "name": "HS_D01_24_NAME", "desc": "HS_D01_24_DESC", "art": "HS_D01_24_ART", "x": 1056, "y": 72, "w": 108, "h": 424, "type": 0, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""},
   {"id": "HS25", "scene": "HALL", "name": "HS_D01_25_NAME", "desc": "HS_D01_25_DESC", "art": "HS_D01_25_ART", "x": 1022, "y": 356, "w": 230, "h": 186, "type": 1, "ev": "E05,E06", "ev0": "E05", "ev1": "E06", "note": "", "pair": "", "pairNote": ""},
-  {"id": "HS26", "scene": "HALL", "name": "HS_D01_26_NAME", "desc": "HS_D01_26_DESC", "art": "HS_D01_26_ART", "x": 800, "y": 296, "w": 166, "h": 418, "type": 2, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""}
+  {"id": "HS26", "scene": "HALL", "name": "HS_D01_26_NAME", "desc": "HS_D01_26_DESC", "art": "HS_D01_26_ART", "x": 568, "y": 250, "w": 256, "h": 375, "type": 2, "ev": "", "ev0": "", "ev1": "", "note": "", "pair": "", "pairNote": ""}
 ]

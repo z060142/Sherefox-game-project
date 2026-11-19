@@ -16,7 +16,7 @@
  {"id": "HS15", "scene": "BASEMENT", "x": 118, "y": 230, "w": 128, "h": 146, "icon": 1, "ev": "E04", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS16", "scene": "BASEMENT", "x": 360, "y": 118, "w": 196, "h": 398, "icon": 0, "ev": "", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS17", "scene": "BASEMENT", "x": 602, "y": 288, "w": 218, "h": 172, "icon": 1, "ev": "E07", "note": "", "pair": "", "pairNote": ""},
- {"id": "HS18", "scene": "BASEMENT", "x": 858, "y": 332, "w": 254, "h": 174, "icon": 2, "ev": "", "note": "", "pair": "", "pairNote": ""},
+ {"id": "HS18", "scene": "BASEMENT", "x": 1040, "y": 276, "w": 176, "h": 358, "icon": 2, "ev": "", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS19", "scene": "ATTIC", "x": 0, "y": 304, "w": 386, "h": 384, "icon": 1, "ev": "P1", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS20", "scene": "ATTIC", "x": 816, "y": 280, "w": 154, "h": 216, "icon": 1, "ev": "E09", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS21", "scene": "ATTIC", "x": 552, "y": 294, "w": 220, "h": 46, "icon": 0, "ev": "", "note": "", "pair": "", "pairNote": ""},
@@ -24,5 +24,5 @@
  {"id": "HS23", "scene": "BEDROOM", "x": 672, "y": 362, "w": 100, "h": 46, "icon": 1, "ev": "E08", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS24", "scene": "BEDROOM", "x": 1056, "y": 72, "w": 108, "h": 424, "icon": 0, "ev": "", "note": "", "pair": "", "pairNote": ""},
  {"id": "HS25", "scene": "HALL", "x": 1022, "y": 356, "w": 230, "h": 186, "icon": 1, "ev": "E05,E06", "note": "", "pair": "", "pairNote": ""},
- {"id": "HS26", "scene": "HALL", "x": 800, "y": 296, "w": 166, "h": 418, "icon": 2, "ev": "", "note": "", "pair": "", "pairNote": ""}
+ {"id": "HS26", "scene": "HALL", "x": 568, "y": 250, "w": 256, "h": 375, "icon": 2, "ev": "", "note": "", "pair": "", "pairNote": ""}
 ]
