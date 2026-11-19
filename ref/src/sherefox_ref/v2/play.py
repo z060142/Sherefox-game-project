@@ -1,12 +1,13 @@
-"""Seeded full-policy play: the opponent policy draws from one SplitMix64 per playthrough;
-the player is a simple deterministic bot (no randomness) that reads only the tell."""
+"""Seeded full-policy play: the opponent policy draws from the debate's random streams
+(rng.DebateRng, the port of XTAtrium's atrium.rng.stream) seeded by the debate seed; the
+player is a simple deterministic bot (no randomness) that reads only the tell."""
 
 from __future__ import annotations
 
-from .. import rng as _rng
 from . import known as K
 from .model import CATCH, OA, PA, Clarity, Loadout, PlayerAction, State, initial_state
 from .policy import RngChooser, decide
+from .rng import DebateRng
 from .resolve import resolve_round
 
 
@@ -48,8 +49,7 @@ def bot(s: State, t) -> PlayerAction:
 
 def play(loadout: Loadout, seed: int, max_rounds: int = 40) -> list[dict]:
     """Play one debate to the end; returns a JSON-able trace."""
-    rng = _rng.SplitMix64(seed)
-    chooser = RngChooser(rng)
+    chooser = RngChooser(DebateRng(seed))
     s = initial_state(loadout)
     trace = []
     for _ in range(max_rounds):

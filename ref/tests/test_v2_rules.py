@@ -369,3 +369,136 @@ def test_guilt_confession_grade(cracks, grade):
     s.psych[1] = 95.0
     s1, _ = resolve_round(s, PlayerAction(PA.ARGUE, "02C"), OpponentAction(OA.ATTACK, "F1"))
     assert s1.outcome == "win" and s1.end_reason == "confession" and s1.grade == grade
+
+
+# ---------------------------------------------------------------------------- §15〔M2〕 vague tells show the card (898b522)
+
+
+def _policy_states():
+    """Between-rounds states from the routes and from seeded full-policy runs (several loadouts)."""
+    from sherefox_ref.v2.play import bot
+    from sherefox_ref.v2.rng import DebateRng
+
+    out = []
+    for name in ROUTES:
+        out += [s for s in states(name) if not s.outcome]
+    loadouts = [r.loadout for r in ROUTES.values()] + [Loadout(("E03", "E09", "E12"), (), (), warmup="fail")]
+    for seed in range(1, 13):
+        for lo in loadouts:
+            ch = RngChooser(DebateRng(seed))
+            s = initial_state(lo)
+            for _ in range(40):
+                if s.outcome:
+                    break
+                out.append(s)
+                d = decide(s, ch)
+                s, _ = resolve_round(s, bot(s, d.tell), d.action)
+    return [s for s in out if not s.endgame and not s.player_locked]
+
+
+_STATES = None
+
+
+def _states_for_tells():
+    global _STATES
+    if _STATES is None:
+        _STATES = _policy_states()
+    return _STATES
+
+
+def _can_speak(s):
+    from sherefox_ref.v2.policy import _unfav_in_hand, normal_cards
+    return bool(normal_cards(s)) or bool(_unfav_in_hand(s))
+
+
+def test_vague_tell_shows_the_would_say_card_whatever_he_does():
+    from sherefox_ref.v2.policy import choose_card
+    seen_silent = seen_speaking = 0
+    for s in _states_for_tells():
+        would = choose_card(s, False) if _can_speak(s) else None
+        for kind, card, t in possible_decisions(s):
+            clarity, _shown, _star, tcard, partial = t
+            if clarity != Clarity.VAGUE:
+                continue
+            speaks = kind in (OA.ATTACK, OA.FORCE)
+            if not _can_speak(s):
+                assert tcard is None and not speaks  # both candidates silent, no statement box
+                continue
+            assert tcard is not None  # a card is available: the box always has one
+            if speaks:
+                seen_speaking += 1
+                assert tcard == card  # he says the card shown (a slip shows the slip's card)
+                if not partial or CH.cards[would].kind == "unfav":
+                    assert card == would
+            else:
+                seen_silent += 1
+                assert tcard == would
+                assert partial == (CH.cards[would].kind == "unfav")
+    assert seen_silent > 50 and seen_speaking > 50
+
+
+def test_vague_box_does_not_tell_whether_he_speaks():
+    """In one state every vague tell without a slip shows the same card, silent or not."""
+    for s in _states_for_tells():
+        cards = {t[3] for kind, card, t in possible_decisions(s) if t[0] == Clarity.VAGUE and not t[4]}
+        assert len(cards) <= 1
+
+
+def test_would_say_card_is_not_consumed_when_he_stays_silent():
+    from sherefox_ref.v2.policy import choose_card
+    n = 0
+    for s in _states_for_tells():
+        if not _can_speak(s):
+            continue
+        would = choose_card(s, False)
+        silent = {kind for kind, card, t in possible_decisions(s)
+                  if t[0] == Clarity.VAGUE and kind in (OA.REBUT, OA.PARRY)}
+        for kind in silent:
+            s2, _ = resolve_round(s, PlayerAction(PA.STALL), OpponentAction(kind))
+            assert would in s2.hand
+            assert would not in [x.card for x in s2.opp_chain if x.card not in [y.card for y in s.opp_chain]]
+            n += 1
+    assert n > 50
+
+
+def test_clear_tells_show_the_card_only_when_he_speaks():
+    for s in _states_for_tells():
+        for kind, card, t in possible_decisions(s):
+            if t[0] != Clarity.CLEAR:
+                continue
+            if kind in (OA.ATTACK, OA.FORCE):
+                assert t[3] == card
+            else:
+                assert t[3] is None and not t[4]
+
+
+class _Recorder:
+    """A DebateRng stand-in: records the draw names, rolls from a seeded Python Random."""
+
+    def __init__(self, seed):
+        import random
+        self.py = random.Random(seed)
+        self.names = []
+
+    def for_draw(self, name):
+        rec = self
+
+        class _S:
+            def roll(self, n):
+                rec.names.append(name)
+                return rec.py.randrange(n)
+        return _S()
+
+
+def test_slip_is_drawn_only_when_he_speaks_and_draws_keep_the_contract_order():
+    from sherefox_ref.v2.rng import DRAWS
+    slips = 0
+    for i, s in enumerate(_states_for_tells()):
+        for k in range(4):
+            r = _Recorder(i * 4 + k)
+            d = decide(s, RngChooser(r))
+            assert r.names == sorted(r.names, key=DRAWS.index) and len(set(r.names)) == len(r.names)
+            if "slip" in r.names:
+                slips += 1
+                assert d.action.kind in (OA.ATTACK, OA.FORCE)
+    assert slips > 20

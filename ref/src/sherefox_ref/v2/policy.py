@@ -3,7 +3,7 @@
 ``decide(state, chooser)`` returns his action and tell for the round ``state.round``;
 ``state`` is the between-rounds state returned by resolve_round (decay already applied).
 
-Trace contract: the order of random draws (each through the chooser), every draw made
+Trace contract: the order of random draws (each through the chooser, tagged with its name), every draw made
 only when its condition holds:
 
   1. tendency rule followed?  percent(50)         a tendency rule (②>①>④) applies and no
@@ -11,23 +11,25 @@ only when its condition holds:
   2. tell clarity             weighted(clear 40, vague 60)
                                                    not forced clear (rule ③, 怒氣, 困獸,
                                                    打迷糊仗 baited a rebuttal)
-  3. slip                     percent(30)          the floating band holds (any value >=
-                                                   threshold − 15), an unfavourable fact
-                                                   and a normal card are in hand, no 困獸
-                                                   forced slip pending, and the action is
-                                                   still open or is 立論/強辯. The draw is
-                                                   made even if step 4 then picks 反駁/周旋
-                                                   (the result is unused).
-  4. base action              weighted(立論 35, 強辯 10, 反駁 35, 周旋 20) over the
+  3. base action              weighted(立論 35, 強辯 10, 反駁 35, 周旋 20) over the
                               available actions; while angry weighted(強辯 60, 反駁 40)
                                                    the action is still open
+  4. slip                     percent(30)          he really speaks (立論/強辯), the floating
+                                                   band holds (any value >= threshold − 15),
+                                                   an unfavourable fact and a normal card are
+                                                   in hand, and no 困獸 forced slip is pending
+                                                   (00_core_rules §15〔M2〕: the slip is judged
+                                                   only when he really speaks)
   5. decoy                    uniform(other available actions, canonical order)
                                                    vague tell
 
 This is the order of the design-owner ruling's list, with the 怒氣 split taking the place
-of the base weights. RngChooser maps weighted() to rng.roll(sum of weights) over the items
-in canonical order (立論, 強辯, 反駁, 周旋), percent(p) to rng.roll(100) < p and
-uniform(xs) to xs[rng.roll(len(xs))]. Cards are never random: they follow ch §11 出牌順序.
+of the base weights and the slip after the action (§15〔M2〕). RngChooser maps weighted() to
+roll(sum of weights) over the items in canonical order (立論, 強辯, 反駁, 周旋), percent(p) to
+roll(100) < p and uniform(xs) to xs[roll(len(xs))]; with a DebateRng (rng.py) each draw rolls
+its own stream, otherwise every draw rolls the one rng given. Cards are never random: they
+follow ch §11 出牌順序, so the vague tell's card ("he would say if he speaks", §15〔M2〕)
+needs no draw.
 """
 
 from __future__ import annotations
@@ -44,24 +46,30 @@ from .model import (
 
 
 class RngChooser:
+    """Draws through `rng`: a DebateRng (one stream per draw name) or any object with roll(n)."""
+
     def __init__(self, rng):
         self.rng = rng
 
-    def weighted(self, items):
+    def _roll(self, draw: str, n: int) -> int:
+        src = self.rng.for_draw(draw) if hasattr(self.rng, "for_draw") else self.rng
+        return src.roll(n)
+
+    def weighted(self, items, draw: str):
         items = [(v, w) for v, w in items if w > 0]
         total = sum(w for _, w in items)
-        r = self.rng.roll(total)
+        r = self._roll(draw, total)
         for v, w in items:
             if r < w:
                 return v
             r -= w
         raise AssertionError("unreachable")
 
-    def percent(self, p: int) -> bool:
-        return self.rng.roll(100) < p
+    def percent(self, p: int, draw: str) -> bool:
+        return self._roll(draw, 100) < p
 
-    def uniform(self, xs):
-        return xs[self.rng.roll(len(xs))]
+    def uniform(self, xs, draw: str):
+        return xs[self._roll(draw, len(xs))]
 
 
 class _EnumChooser:
@@ -79,13 +87,13 @@ class _EnumChooser:
         self.branching.append(len(options))
         return options[k]
 
-    def weighted(self, items):
+    def weighted(self, items, draw=None):
         return self._pick([v for v, w in items if w > 0])
 
-    def percent(self, p):
+    def percent(self, p, draw=None):
         return self._pick([o for o, ok in ((True, p > 0), (False, p < 100)) if ok])
 
-    def uniform(self, xs):
+    def uniform(self, xs, draw=None):
         return self._pick(list(xs))
 
 
@@ -199,12 +207,15 @@ def decide(s: State, chooser) -> Decision:
         action, forced = OA.FORCE, "rule3"
     elif rage:
         forced = "rage"
+    # the card he would say if he speaks (§15〔M2〕): the 立論 card rule without a slip, chosen
+    # at the start of the round whatever he then does; it stays in his hand if he does not speak
+    would_say = choose_card(s, False) if can_attack else None
     # 1. tendency
     if action is None and not rage:
         t = _tendency(s, avail)
         if t is not None:
             rule = t[0]
-            if chooser.percent(ch.follow_pct):
+            if chooser.percent(ch.follow_pct, "tendency"):
                 action = t[1]
     # 2. clarity
     clear_forced = forced is not None or s.over[P] or s.next_clear
@@ -212,22 +223,24 @@ def decide(s: State, chooser) -> Decision:
         clarity = Clarity.CLEAR
     else:
         c, v = ch.tell_clarity
-        clarity = chooser.weighted([(Clarity.CLEAR, c), (Clarity.VAGUE, v)])
-    # 3. slip (R-18). SPEC-QUESTION: the floating band includes values over the threshold
-    # and applies while angry too (ASSUMPTION-28 for the clash with "心理狀態好時不會打").
-    slip = False
-    if (floating(s) and _unfav_in_hand(s) and normal_cards(s) and not s.next_unfav
-            and (action is None or action in (OA.ATTACK, OA.FORCE))):
-        slip = chooser.percent(SLIP_PCT)
-    # 4. base action
+        clarity = chooser.weighted([(Clarity.CLEAR, c), (Clarity.VAGUE, v)], "clarity")
+    # 3. base action
     if action is None:
         if rage:
             f, r = ch.rage_split
-            action = chooser.weighted([(a, w) for a, w in ((OA.FORCE, f), (OA.REBUT, r)) if a in avail])
+            action = chooser.weighted([(a, w) for a, w in ((OA.FORCE, f), (OA.REBUT, r)) if a in avail],
+                                      "base")
         else:
             w = {ACTION_BY_NAME[k]: v for k, v in ch.weights.items()}
-            action = chooser.weighted([(a, w[a]) for a in avail])
-    card = choose_card(s, slip) if action in (OA.ATTACK, OA.FORCE) else None
+            action = chooser.weighted([(a, w[a]) for a in avail], "base")
+    speaks = action in (OA.ATTACK, OA.FORCE)
+    # 4. slip (R-18), judged only when he really speaks (§15〔M2〕). SPEC-QUESTION: the floating
+    # band includes values over the threshold and applies while angry too (ASSUMPTION-28 for the
+    # clash with "心理狀態好時不會打").
+    slip = False
+    if speaks and floating(s) and _unfav_in_hand(s) and normal_cards(s) and not s.next_unfav:
+        slip = chooser.percent(SLIP_PCT, "slip")
+    card = choose_card(s, slip) if speaks else None
     partial = card is not None and ch.cards[card].kind == "unfav"
     # 5. decoy
     if clarity == Clarity.VAGUE:
@@ -236,12 +249,19 @@ def decide(s: State, chooser) -> Decision:
             # SPEC-QUESTION: no legal decoy; the tell falls back to clear.
             t = tell(Clarity.CLEAR, (action,), card=card, partial=partial)
         else:
-            decoy = chooser.uniform(pool)
+            decoy = chooser.uniform(pool, "decoy")
             # SPEC-QUESTION (ch §11 vs ruling): design-owner ruling: ★ only on the true action, and only when a behaviour
             # rule points to it. (ch §11 puts ★ on the rule's action even when it is the
             # decoy; see ch §12.3 R7, §12.4 R4.)
             star = action if (rule is not None and _rule_action(ch, rule) == action) else None
-            t = tell(Clarity.VAGUE, (action, decoy), star=star, card=card, partial=partial)
+            # §15〔M2〕: a vague tell always shows the card he would say if he speaks; when he
+            # speaks it is the card he plays (a slip shows its first half, so 欲言又止 still
+            # appears only in rounds where he really speaks). SPEC-QUESTION: when he stays silent
+            # and the would-say card is an unfavourable fact (his normal cards are used up), it is
+            # shown partial, as it would be if he spoke.
+            shown = card if speaks else would_say
+            shown_partial = shown is not None and ch.cards[shown].kind == "unfav"
+            t = tell(Clarity.VAGUE, (action, decoy), star=star, card=shown, partial=shown_partial)
     else:
         t = tell(Clarity.CLEAR, (action,), card=card, partial=partial)
     return Decision(OpponentAction(action, card), t, rule, forced)

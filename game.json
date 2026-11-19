@@ -627,6 +627,10 @@
     "d1Dev": {
       "type": "bool",
       "initial": false
+    },
+    "d1Seed": {
+      "type": "number",
+      "initial": 0
     }
   },
   "input": {

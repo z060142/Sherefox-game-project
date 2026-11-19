@@ -6,6 +6,10 @@ Each round is (player action, opponent action, stated tell). The opponent's move
 tells are taken from the route tables as written; ``replay`` feeds them straight into
 resolve_round (the policy is bypassed) and records, per round, whether the policy could
 have produced that move and tell (``policy.can_produce``).
+
+Vague tells in rounds where he stays silent carry the card he would say if he spoke
+(00_core_rules §15〔M2〕, design commit 898b522): the chapter tables predate that ruling and
+name no card there; the card added is the one the 立論 card rule picks in that state.
 """
 
 from __future__ import annotations
@@ -64,20 +68,20 @@ ROUTES = {
     "A": Route("A", Loadout(("E01", "E02", "E04", "E05", "E06", "E07", "E08", "E10", "E11"),
                             ("A01", "A04"), ALL_NOTES), (
         (cut("11A"), opp(AT, "L1"), tell(V, (AT, FO), card="L1")),
-        (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR, card="F1")),
         (argue("06A"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
         (cut("01A"), opp(AT, "L2"), tell(V, (AT, FO), star=AT, card="L2")),
-        (argue("08A"), opp(PR), tell(V, (PR, RE), star=PR)),
+        (argue("08A"), opp(PR), tell(V, (PR, RE), star=PR, card="F2")),
         (argue("10A"), opp(AT, "F2"), tell(C, (AT,), card="F2")),
         (cut("07A"), opp(FO, "L4"), tell(C, (FO,), card="L4")),
-        (argue("11B"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("11B"), opp(PR), tell(V, (PR, AT), star=PR, card="L1")),
         (end_cut("04B"), opp(LAST, "K1"), tell(C, (LAST,), card="K1")),
     )),
     # ch §12.2
     "B": Route("B", Loadout(("E01", "E02", "E04", "E05", "E06", "E07", "E08", "E10", "P1"),
                             ("A01", "A02"), ALL_NOTES), (
         (argue("P1A"), opp(AT, "L1"), tell(V, (AT, FO), card="L1")),
-        (stall(), opp(RE), tell(V, (RE, AT), star=RE)),
+        (stall(), opp(RE), tell(V, (RE, AT), star=RE, card="F1")),
         (argue("02C"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
         (argue("08B"), opp(AT, "U1"), tell(V, (AT, FO), star=AT, card="U1", partial=True)),
         (argue("CATCH"), opp(FO, "F2"), tell(V, (FO, PR), card="F2")),
@@ -86,23 +90,23 @@ ROUTES = {
     "C": Route("C", Loadout(("E01", "E02", "E03", "E04", "E06", "E07", "E08", "E09", "E10"),
                             ("A02", "A04"), ("PN1", "PN3", "OBS01")), (
         (cut("06B"), opp(AT, "L1"), tell(V, (AT, FO), card="L1")),
-        (stall(), opp(RE), tell(V, (RE, PR), star=RE)),
+        (stall(), opp(RE), tell(V, (RE, PR), star=RE, card="F1")),
         (cut("06C"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
         (cut("06A"), opp(FO, "L2"), tell(C, (FO,), card="L2")),
         (accept(), opp(LAST, "P05"), tell(C, (LAST,), card="P05")),
         (argue("09A"), opp(FO, "F2"), tell(C, (FO,), card="F2")),
         (cut("07A"), opp(FO, "L4"), tell(V, (FO, AT), card="L4")),
-        (argue("10A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("10A"), opp(PR), tell(V, (PR, AT), star=PR, card="L3")),
         (cut("04B"), opp(AT, "L4"), tell(C, (AT,), card="L4")),  # L4′ (re-raised in R8)
-        (argue("08A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("08A"), opp(PR), tell(V, (PR, AT), star=PR, card="L3")),
     )),
     # ch §12.4
     "D": Route("D", Loadout(("E01", "E02", "E03", "E04", "E06", "E08", "E10", "E11", "E12"),
                             ("A02",), (), warmup="fail"), (
         (cut("11A"), opp(AT, "L1"), tell(V, (AT, FO), card="L1")),
-        (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR)),
+        (argue("04A"), opp(PR), tell(V, (PR, AT), star=PR, card="F1")),
         (cut("01B"), opp(AT, "F1"), tell(C, (AT,), card="F1")),
-        (argue("06B"), opp(RE), tell(V, (AT, RE))),
+        (argue("06B"), opp(RE), tell(V, (AT, RE), card="L2")),
         (argue("10A"), opp(AT, "L2"), tell(C, (AT,), card="L2")),
         (argue("08A"), opp(AT, "F2"), tell(C, (AT,), card="F2")),
         (argue("02A"), opp(FO, "L4"), tell(V, (FO, RE), card="L4")),

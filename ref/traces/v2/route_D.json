@@ -210,7 +210,7 @@
      "parry"
     ],
     "star": "parry",
-    "card": null,
+    "card": "F1",
     "partial": false
    },
    "policy_can_produce": true,
@@ -465,7 +465,7 @@
      "rebut"
     ],
     "star": null,
-    "card": null,
+    "card": "L2",
     "partial": false
    },
    "policy_can_produce": true,

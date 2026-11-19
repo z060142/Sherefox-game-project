@@ -11,10 +11,10 @@ Usage (from the project root):
 1. regenerates the engine (tools/gen_debate_v2.py),
 2. routes A-D (ref routes.py, read at run time): the forced replays through ref resolve_round give the expected
    state and events after each round,
-3. seeded full-policy runs: ref play.play(loadout, seed) for seeds 1..K and every route loadout, with the ref's
-   SplitMix64 replaced by a Python port of the framework's Simulation.Rng (xoshiro128**; roll(n) = floor(u * n),
-   docs/debate-engine-v2.md §3.4) so that the engine (`xtatrium run --seed S`) and ref draw the same numbers,
-   plus seeded fuzz runs: the same opponent, the player a seeded random.Random picking any action ref accepts
+3. seeded full-policy runs: ref play.play(loadout, seed) for debate seeds 1..K and every route loadout (ref draws
+   from its own port of atrium.rng.stream, rng.DebateRng; the harness gives the engine the same seed through
+   world.d1Seed, docs/debate-engine-v2.md §3.4), plus seeded fuzz runs: the same opponent, the player a seeded
+   random.Random picking any action ref accepts
    (拆台, 援護, the endgame and §7.5 choices included), and three extra carry sets (EXTRA_LOADOUTS),
 4. writes one headless harness project per job into a temporary directory (engine flow and tables copied in, a
    driver flow and its input table generated), runs them in parallel, and compares per round: every ref State field
@@ -53,58 +53,32 @@ from sherefox_ref.v2 import routes as RT  # noqa: E402
 from sherefox_ref.v2.model import PA, IllegalAction, Loadout, PlayerAction, initial_state  # noqa: E402
 from sherefox_ref.v2.policy import RngChooser, decide  # noqa: E402
 from sherefox_ref.v2.resolve import resolve_round  # noqa: E402
+from sherefox_ref.v2.rng import DebateRng, Stream  # noqa: E402
 
 H_PERIOD = 4
 VERBOSE = False
 
-# --------------------------------------------------------------------------------------------- framework rng
+# --------------------------------------------------------------------------------------------- the UI's seed
 
 
-class FrameworkRng:
-    """Python port of XTAtrium.Core.Rng (xoshiro128** 1.1, seed expanded by SplitMix64; NextFloat as atrium.rng
-    pushes it). roll(n) is the engine's draw: floor(NextFloat() * n)."""
-
-    M64 = (1 << 64) - 1
-    M32 = (1 << 32) - 1
+class GlobalRng:
+    """Python port of XTAtrium.Core.Rng, the simulation's global stream (xoshiro128** 1.1, seed expanded by
+    SplitMix64; NextFloat as atrium.rng pushes it). Only used to predict the debate seed the debate UI draws."""
 
     def __init__(self, seed: int):
-        x = seed & self.M64
-        s = []
-        for _ in range(4):
-            x = (x + 0x9E3779B97F4A7C15) & self.M64
-            z = x
-            z = ((z ^ (z >> 30)) * 0xBF58476D1CE4E5B9) & self.M64
-            z = ((z ^ (z >> 27)) * 0x94D049BB133111EB) & self.M64
-            s.append((z ^ (z >> 31)) & self.M32)
-        self.s = s
-        self.draws = 0
+        self.s = Stream(seed)
 
-    @staticmethod
-    def _rotl(x, k):
-        return ((x << k) | (x >> (32 - k))) & FrameworkRng.M32
-
-    def next_u32(self) -> int:
-        s0, s1, s2, s3 = self.s
-        result = (self._rotl((s1 * 5) & self.M32, 7) * 9) & self.M32
-        t = (s1 << 9) & self.M32
-        s2 ^= s0
-        s3 ^= s1
-        s1 ^= s2
-        s0 ^= s3
-        s2 ^= t
-        s3 = self._rotl(s3, 11)
-        self.s = [s0, s1, s2, s3]
-        return result
-
-    def roll(self, n: int) -> int:
-        self.draws += 1
-        u = (self.next_u32() >> 8) * (1.0 / (1 << 24))
-        return math.floor(u * n)
+    def next_float(self) -> float:
+        return (self.s.next_u32() >> 8) * (1.0 / (1 << 24))
 
 
-class _RngShim:
-    """Stands in for sherefox_ref.rng inside ref play.py: SplitMix64(seed) -> the framework stream."""
-    SplitMix64 = FrameworkRng
+def ui_debate_seed(run_seed: int, draws_before: int = 0) -> int:
+    """The seed flows/d01_debate_ui.xtflow gives the engine when the debate starts: floor(u * 2^24) of the next
+    atrium.rng value (docs/flows.md §4.12), `draws_before` global draws into a run with seed `run_seed`."""
+    g = GlobalRng(run_seed)
+    for _ in range(draws_before):
+        g.next_float()
+    return math.floor(g.next_float() * (1 << 24))
 
 
 # --------------------------------------------------------------------------------------------- expected side
@@ -290,7 +264,7 @@ def ref_decision(d) -> dict | None:
     if d is None:
         return None
     t = d.tell
-    return {"action": d.action.kind.value, "card": d.action.card,
+    return {"action": d.action.kind.value, "card": d.action.card, "tell_card": t.card if t else None,
             "clarity": t.clarity.value if t else None, "shown": [a.value for a in t.shown] if t else [],
             "star": t.star.value if t and t.star else None, "partial": bool(t.partial) if t else False,
             "rule": d.rule or 0, "forced": d.forced if d.forced not in (None,) else ""}
@@ -304,6 +278,7 @@ def engine_decision(m: dict) -> dict:
     shown = [act(m["ds1"])] + ([act(m["ds2"])] if m["ds2"] else [])
     forced = G.FORCED[int(m["dfo"])]
     return {"action": a, "card": G.CK[int(m["dc"]) - 1] if m["dc"] else None,
+            "tell_card": G.CK[int(m["dtc"]) - 1] if m["dtc"] and clear_tell else None,
             "clarity": ("vague" if m["dcl"] else "clear") if clear_tell else None,
             "shown": shown if clear_tell else [], "star": act(m["dst"]), "partial": bool(m["dp"]),
             "rule": int(m["drl"]), "forced": forced}
@@ -332,16 +307,18 @@ def engine_result(m: dict, lists: dict) -> dict:
 # --------------------------------------------------------------------------------------------- jobs
 
 class Debate:
-    def __init__(self, name, loadout, steps, start_decision, start_state):
-        self.name, self.loadout, self.steps = name, loadout, steps
+    def __init__(self, name, loadout, steps, start_decision, start_state, seed):
+        self.name, self.loadout, self.steps, self.seed = name, loadout, steps, seed
         self.start_decision, self.start_state = start_decision, start_state
         # steps: [(player action, override opponent action or None, state before, state after, events, decision)]
 
 
-def route_debates(names, rng) -> list[Debate]:
-    ch = RngChooser(rng)
+def route_debates(names) -> list[Debate]:
+    """Each route is one debate with its own seed (the AI still decides every round; the harness overrides it)."""
     out = []
-    for name in names:
+    for k, name in enumerate(names):
+        seed = 1000 + k
+        ch = RngChooser(DebateRng(seed))
         route = RT.ROUTES[name]
         s = initial_state(route.loadout)
         d0 = decide(s, ch)
@@ -353,7 +330,7 @@ def route_debates(names, rng) -> list[Debate]:
             d = decide(s2, ch) if not s2.outcome else None
             steps.append((pa, oa, s, s2, ev, d))
             s = s2
-        out.append(Debate(f"route {name}", route.loadout, steps, d0, initial_state(route.loadout)))
+        out.append(Debate(f"route {name}", route.loadout, steps, d0, initial_state(route.loadout), seed))
     return out
 
 
@@ -373,11 +350,11 @@ def loadouts() -> dict:
 
 
 def fuzz_debate(name, loadout, seed) -> Debate:
-    """Opponent: ref policy on the framework stream. Player: random legal actions (including 拆台, 援護, the
-    endgame and §7.5 choices) from a seeded random.Random; legality = ref resolve_round does not raise."""
+    """Opponent: ref policy on the debate's streams (debate seed `seed`). Player: random legal actions (including
+    拆台, 援護, the endgame and §7.5 choices) from a seeded random.Random; legality = ref resolve_round does not
+    raise."""
     py = random.Random(seed * 7919 + len(loadout.carried))
-    rng = FrameworkRng(seed)
-    ch = RngChooser(rng)
+    ch = RngChooser(DebateRng(seed))
     s = s0 = initial_state(loadout)
     d = d0 = decide(s, ch)
     steps = []
@@ -413,19 +390,13 @@ def fuzz_debate(name, loadout, seed) -> Debate:
         dn = decide(s2, ch) if not s2.outcome else None
         steps.append((pa, None, s, s2, ev, dn))
         s, d = s2, dn
-    return Debate(name, loadout, steps, d0, s0)
+    return Debate(name, loadout, steps, d0, s0, seed)
 
 
 def play_debate(name, loadout, seed) -> Debate:
-    """ref play.play(loadout, seed) on the framework stream, plus the full states for the field comparison."""
-    saved = P._rng
-    P._rng = _RngShim
-    try:
-        trace = P.play(loadout, seed)
-    finally:
-        P._rng = saved
-    rng = FrameworkRng(seed)
-    ch = RngChooser(rng)
+    """ref play.play(loadout, seed) (debate seed `seed`), plus the full states for the field comparison."""
+    trace = P.play(loadout, seed)
+    ch = RngChooser(DebateRng(seed))
     s = initial_state(loadout)
     s0 = s
     steps = []
@@ -443,13 +414,13 @@ def play_debate(name, loadout, seed) -> Debate:
         s, d = s2, dn
     if len(steps) != len(trace):
         raise SystemExit(f"{name}: replay length {len(steps)} != play.play {len(trace)}")
-    return Debate(name, loadout, steps, d0, s0)
+    return Debate(name, loadout, steps, d0, s0, seed)
 
 
 # --------------------------------------------------------------------------------------------- harness
 
-H_COLS = ["op", "kind", "claim", "target", "guard", "oppAct", "oppCard", "carry", "appr", "notes", "warmup"]
-H_NUM = ("guard",)
+H_COLS = ["op", "kind", "claim", "target", "guard", "oppAct", "oppCard", "carry", "appr", "notes", "warmup", "seed"]
+H_NUM = ("guard", "seed")
 SNAP_LISTS = G.ENGINE_LISTS
 SNAP_MAPS = ["d1State", "d1ClaimSoph", "d1ClaimCrack", "d1ClaimStand"]
 
@@ -461,13 +432,13 @@ def harness_rows(debates) -> tuple[list[dict], list[tuple]]:
         lo = d.loadout
         rows.append({"op": "start", "kind": "", "claim": "", "target": "", "guard": 0, "oppAct": "", "oppCard": "",
                      "carry": ",".join(lo.carried), "appr": ",".join(lo.appraisals), "notes": ",".join(lo.notes),
-                     "warmup": lo.warmup})
+                     "warmup": lo.warmup, "seed": d.seed})
         index.append((d, -1, len(rows) - 1))
         for i, (pa, oa, *_r) in enumerate(d.steps):
             rows.append({"op": "round", "kind": pa.kind.value, "claim": pa.claim or "", "target": pa.target or "",
                          "guard": int(pa.guard), "oppAct": oa.kind.value if oa else "",
                          "oppCard": (oa.card or "") if oa else "", "carry": "", "appr": "", "notes": "",
-                         "warmup": lo.warmup})
+                         "warmup": lo.warmup, "seed": d.seed})
             index.append((d, i, len(rows) - 1))
     return rows, index
 
@@ -489,7 +460,7 @@ def driver() -> str:
         em.edge("row.value", f"c_{c}.row")
     for sig, c in (("d1CmdKind", "kind"), ("d1CmdClaim", "claim"), ("d1CmdTarget", "target"),
                    ("d1CmdGuard", "guard"), ("d1OppAct", "oppAct"), ("d1OppCard", "oppCard"),
-                   ("d1Warmup", "warmup")):
+                   ("d1Warmup", "warmup"), ("d1Seed", "seed")):
         em.edge(f"c_{c}.value", f"world.{sig}")
     for op in ("start", "round"):
         n(f"is_{op}", "compare", op="eq")
@@ -659,6 +630,8 @@ def check_row(s, ev_before, events, dec, m: dict, lists: dict, strs: dict, nums:
             return "decision " + err
         if strs.get("d1TellAction") != wd["action"]:
             return f"output d1TellAction: expected {wd['action']!r}, got {strs.get('d1TellAction')!r}"
+        if strs.get("d1TellCard") != (wd["tell_card"] or ""):
+            return f"output d1TellCard: expected {wd['tell_card']!r}, got {strs.get('d1TellCard')!r}"
     else:
         err = first_diff(ref_result(s), engine_result(st, lists))
         if err:
@@ -706,8 +679,7 @@ def main(argv: list[str]) -> int:
     n_nodes, n_edges = G.graph_stats()
     drv = driver()
     jobs = []  # (label, seed, debates)
-    route_seed = 1
-    jobs.append(("routes", route_seed, route_debates(names, FrameworkRng(route_seed))))
+    jobs.append(("routes", 1, route_debates(names)))
     if "--no-play" not in argv:
         for seed in range(1, seeds + 1):
             for lname, lo in loadouts().items():

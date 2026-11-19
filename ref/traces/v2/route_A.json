@@ -227,7 +227,7 @@
      "parry"
     ],
     "star": "parry",
-    "card": null,
+    "card": "F1",
     "partial": false
    },
    "policy_can_produce": true,
@@ -644,7 +644,7 @@
      "parry"
     ],
     "star": "parry",
-    "card": null,
+    "card": "F2",
     "partial": false
    },
    "policy_can_produce": true,
@@ -1085,7 +1085,7 @@
      "parry"
     ],
     "star": "parry",
-    "card": null,
+    "card": "L1",
     "partial": false
    },
    "policy_can_produce": true,

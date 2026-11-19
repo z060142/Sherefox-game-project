@@ -20,6 +20,10 @@ state and the round's command. The round is written below in Python over symboli
 every branch on game state runs both arms and merges with selects; every effect (event record, list mirror
 operation, rng draw, map write) is recorded in program order with its path condition. `world.d1Lock` runs the
 effects in that order (05 §5.4), ending with one map.set per state key.
+
+Randomness (docs/debate-engine-v2.md §3.4): one atrium.rng.stream per draw of the policy's trace contract (ref
+rng.DebateRng), reset at d1Start from `world.d1Seed` (stream k: seed * 8 + k); each is rolled at most once per
+decision, at the point where ref draws.
 """
 
 from __future__ import annotations
@@ -155,6 +159,7 @@ SIGNALS: dict[str, dict] = {
     "d1CmdGuard": {"type": "number", "initial": 0},
     "d1OppAct": {"type": "string", "initial": ""},
     "d1OppCard": {"type": "string", "initial": ""},
+    "d1Seed": {"type": "number", "initial": 0},
 }
 OUT_NUM = ["d1Round", "d1PlayerHp", "d1PlayerMax", "d1OppHp", "d1OppMax", "d1PCombo", "d1OCombo", "d1Hachiku",
            "d1Broken", "d1BrokenUntil", "d1Shisshu", "d1PsychP", "d1PsychG", "d1PsychA", "d1PsychEndP",
@@ -269,6 +274,7 @@ DEC_KEYS = {
     "dcl": "tell clarity 0 clear / 1 vague", "ds1": "shown action 1 + 1 (canonical order)",
     "ds2": "shown action 2 + 1 (vague)", "dst": "★ action + 1", "dp": "partial (slip: unfavourable fact)",
     "drl": "tendency rule that applied", "dfo": "forced (FORCED)",
+    "dtc": "card shown in the tell idx + 1 (vague: the card he would say if he speaks, 00_core_rules §15〔M2〕)",
 }
 
 
@@ -395,16 +401,61 @@ def foreach_sub(coll: str, kind: str, table: str | None = None, cond_fn=None) ->
     T.effect("pulse", inputs=[f"{nid}.trigger"])
 
 
-def draw(prefix: str, name: str) -> N:
-    """One atrium.rng draw at this point (guarded by the path condition); returns roll's u in [0, 1)."""
-    nid = T.raw_node(f"{prefix}{name}", "atrium.rng")
-    T.effect("pulse", inputs=[f"{nid}.trigger"])
-    return T.port(f"{nid}.value")
+DRAWS = ("tendency", "clarity", "base", "slip", "decoy")  # ref rng.DRAWS (the policy's trace contract)
+SEED_STRIDE = 8  # ref rng.SEED_STRIDE: stream k is seeded with seed * 8 + k
+STREAM_FROM = "rsFrom"  # toggle: true while d1Start's cascade runs (picks the entry's n for each stream)
+_draw_n: dict = {}  # draw name -> {entry prefix: n}
 
 
-def roll(u: N, n) -> N:
-    """ref rng roll(n) on the framework stream: floor(u * n) (docs/debate-engine-v2.md §3.4)."""
-    return T.FLOOR(u * n)
+def stream_id(name: str) -> str:
+    return f"rs_{name}"
+
+
+def make_streams() -> None:
+    """The debate's random streams (ref rng.DebateRng): one atrium.rng.stream per draw, seeded from world.d1Seed."""
+    _draw_n.clear()
+    seed = T.port("world.d1Seed")
+    for k, name in enumerate(DRAWS, start=1):
+        nid = T.raw_node(stream_id(name), "atrium.rng.stream")
+        T.raw_edge(seed * SEED_STRIDE + k, f"{nid}.seed")
+    T.raw_node(STREAM_FROM, "toggle")
+    sid = T.raw_node(STREAM_FROM + "N", "select")
+    T.raw_edge(f"{STREAM_FROM}.value", f"{sid}.cond")
+    T.raw_edge(T.c(1), f"{sid}.a")
+    T.raw_edge(T.c(0), f"{sid}.b")
+
+
+def reset_streams() -> None:
+    """d1Start: reseed every stream from world.d1Seed (the node reads its seed input on reset)."""
+    T.effect("pulse", inputs=[f"{stream_id(name)}.reset" for name in DRAWS])
+
+
+def wire_stream_n() -> None:
+    """Each stream's n: a constant when both entries roll it with the same constant (the param), else the input
+    wired to (d1Start running ? n of the start entry : n of the lock entry)."""
+    from_start = T.port(f"{STREAM_FROM}N.out", isbool=True)
+    for name in DRAWS:
+        ns = _draw_n.get(name, {})
+        if not ns:
+            continue
+        vals = list(ns.values())
+        if all(v.const for v in vals) and len({v.v for v in vals}) == 1:
+            T.raw[[r["id"] for r in T.raw].index(stream_id(name))]["params"] = {"n": vals[0].v}
+            continue
+        n_start = ns.get("dS", ns.get("dL"))
+        n_lock = ns.get("dL", n_start)
+        T.raw_edge(T.SEL(from_start, n_start, n_lock), f"{stream_id(name)}.n")
+
+
+def draw(prefix: str, name: str, n) -> N:
+    """ref roll(n) of draw `name` at this point (guarded by the path condition): the stream's `roll`; its value is
+    the unbiased integer in [0, n). Each stream rolls at most once per entry."""
+    n = T.c(n)
+    if prefix in _draw_n.setdefault(name, {}):
+        raise ValueError(f"draw {name} twice in entry {prefix}")
+    _draw_n[name][prefix] = n
+    T.effect("pulse", inputs=[f"{stream_id(name)}.roll"])
+    return T.port(f"{stream_id(name)}.value")
 
 
 def fold_or(xs):
@@ -1240,8 +1291,8 @@ def resolve(cmd: Cmd) -> None:
 # --------------------------------------------------------------------------------------------- the policy
 
 def decide(prefix: str) -> None:
-    """ref policy.decide on the traced state `st`; writes d_<DEC_KEYS>. Draws (atrium.rng, prefix u1..u5) only when
-    the ref draws, in the ref order (policy.py trace contract)."""
+    """ref policy.decide on the traced state `st`; writes d_<DEC_KEYS>. Draws (one atrium.rng.stream per draw name)
+    only when the ref draws, in the ref order (policy.py trace contract)."""
     for k in DEC_KEYS:
         put(f"d_{k}", 0)
 
@@ -1252,6 +1303,7 @@ def decide(prefix: str) -> None:
     def last_round():
         put("d_da", LAST + 1)
         put("d_dc", g("egc"))
+        put("d_dtc", g("egc"))
         put("d_ds1", LAST + 1)
         put("d_dfo", FORCED.index("endgame"))
 
@@ -1316,8 +1368,7 @@ def decide(prefix: str) -> None:
         st["_d_act"] = actv
 
         def tend():
-            u = draw(prefix, "u1")
-            fol = T.LT(roll(u, 100), CH.follow_pct)
+            fol = T.LT(draw(prefix, "tendency", 100), CH.follow_pct)
             st["_d_act"] = T.SEL(fol, tact, st["_d_act"])
         _branch_draw(cond_t, tend)
         actv = st["_d_act"]
@@ -1328,24 +1379,13 @@ def decide(prefix: str) -> None:
         st["_d_vague"] = T.c(0)
 
         def clar():
-            u = draw(prefix, "u2")
-            st["_d_vague"] = T.GE(roll(u, cw + vw), cw)
+            st["_d_vague"] = T.GE(draw(prefix, "clarity", cw + vw), cw)
         _branch_draw(T.NOT(clear_forced), clar)
         vague = st["_d_vague"]
-        # 3. slip
+        # 3. base action
         thr = CH.psych_threshold
         floating = fold_or([T.GE(g(f"p{i}"), thr[i] - M.FLOAT_BAND) for i in range(3)])
         act_none = T.LT(actv, 0)
-        slip_cond = T.AND(floating, has_unfav, has_normal, T.NOT(g("nu")),
-                          T.OR(act_none, T.EQ(actv, AT), T.EQ(actv, FO)))
-        st["_d_slip"] = T.c(0)
-
-        def slip():
-            u = draw(prefix, "u3")
-            st["_d_slip"] = T.LT(roll(u, 100), M.SLIP_PCT)
-        _branch_draw(slip_cond, slip)
-        slipv = st["_d_slip"]
-        # 4. base action
         wn = {OA_NAMES.index(M.ACTION_BY_NAME[k].value): v for k, v in CH.weights.items()}
         fr, rb = CH.rage_split
         wr = {FO: fr, RE: rb}
@@ -1353,9 +1393,8 @@ def decide(prefix: str) -> None:
         st["_d_act"] = actv
 
         def base():
-            u = draw(prefix, "u4")
             total = fold_sum(w)
-            rr_ = roll(u, total)
+            rr_ = draw(prefix, "base", total)
             cum = []
             acc = None
             for k in range(4):
@@ -1368,18 +1407,26 @@ def decide(prefix: str) -> None:
         _branch_draw(act_none, base)
         actv = st["_d_act"]
         atk = T.OR(T.EQ(actv, AT), T.EQ(actv, FO))
+        # 4. slip: only when he really speaks (00_core_rules §15〔M2〕)
+        slip_cond = T.AND(atk, floating, has_unfav, has_normal, T.NOT(g("nu")))
+        st["_d_slip"] = T.c(0)
+
+        def slip():
+            st["_d_slip"] = T.LT(draw(prefix, "slip", 100), M.SLIP_PCT)
+        _branch_draw(slip_cond, slip)
+        slipv = st["_d_slip"]
         cardv = T.SEL(T.AND(g("nu"), has_unfav), u0,
                       T.SEL(T.AND(slipv, has_unfav), u0, T.SEL(has_normal, normal0, u0)))
+        # the card he would say if he speaks (§15〔M2〕): the 立論 card rule without a slip (0 = none)
+        would = T.SEL(T.AND(g("nu"), has_unfav), u0, T.SEL(has_normal, normal0, u0))
         dc = T.SEL(atk, cardv, 0)
-        partial = T.AND(T.GT(dc, 0), lk(K_UNFAV, dc - 1))
         # 5. decoy
         pool = [T.AND(av[k], T.NE(actv, k)) for k in range(4)]
         npool = fold_sum(pool)
         st["_d_decoy"] = T.c(-1)
 
         def decoy():
-            u = draw(prefix, "u5")
-            kk = roll(u, npool)
+            kk = draw(prefix, "decoy", npool)
             out = T.c(-1)
             before = T.c(0)
             sel = []
@@ -1399,7 +1446,10 @@ def decide(prefix: str) -> None:
         put("d_ds1", T.SEL(vague_t, T.MIN(actv, dec) + 1, actv + 1))
         put("d_ds2", T.SEL(vague_t, T.MAX(actv, dec) + 1, 0))
         put("d_dst", T.SEL(star, actv + 1, 0))
-        put("d_dp", partial)
+        # the tell's card: a vague tell shows the would-say card when he stays silent (§15〔M2〕)
+        dtc = T.SEL(T.AND(vague_t, T.NOT(atk)), would, dc)
+        put("d_dtc", dtc)
+        put("d_dp", T.AND(T.GT(dtc, 0), lk(K_UNFAV, dtc - 1)))
         put("d_drl", rule)
         put("d_dfo", forced)
 
@@ -1532,6 +1582,8 @@ def trace_start() -> list:
     T.st = st
     held = st.pop("_held")
     T.pc = T.c(1)
+    T.effect("pulse", inputs=[f"{STREAM_FROM}.setTrue"])
+    reset_streams()
     for coll in ENGINE_LISTS:
         T.effect("clear", coll=coll)
     for c in CK:
@@ -1585,6 +1637,8 @@ def trace_lock(reads: dict) -> list:
     for k in SCRATCH:
         st[k] = T.c(0)
     cmd = command(reads)
+    T.pc = T.c(1)
+    T.effect("pulse", inputs=[f"{STREAM_FROM}.setFalse"])
     T.pc = T.AND(reads["act"], T.EQ(reads["out"], 0))
     T.effect("clear", coll="d1Events")
     resolve(cmd)
@@ -1631,7 +1685,7 @@ def outputs(s: dict) -> list[tuple[str, object]]:
         ("d1TellClarity", T.ssel(T.AND(s["act"], T.EQ(s["out"], 0), T.NOT(s["pl"])),
                                  T.ssel(s["dcl"], "vague", "clear"), "")),
         ("d1TellShown1", actname(s["ds1"])), ("d1TellShown2", actname(s["ds2"])),
-        ("d1TellStar", actname(s["dst"])), ("d1TellCard", cardname(s["dc"])),
+        ("d1TellStar", actname(s["dst"])), ("d1TellCard", cardname(s["dtc"])),
         ("d1TellForced", T.slk(FORCED, T.MAX(0, T.MIN(len(FORCED) - 1, s["dfo"])))),
         ("d1TellAction", actname(s["da"])),
     ]
@@ -1644,9 +1698,11 @@ def build() -> Emitter:
     T.reset()
     _uid[0] = 0
     Emitter._eff_n = 0
+    make_streams()
     start_eff = trace_start()
     reads = state_reads()
     lock_eff = trace_lock(reads)
+    wire_stream_n()
     outs = outputs(reads)
     em = Emitter()
     em.add_raw(T)
