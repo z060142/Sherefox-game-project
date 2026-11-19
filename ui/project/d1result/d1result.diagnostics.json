@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 29 element(s) is written to their <layout> #id rules (#d1result, #sheet, #clip, #tape-l, #tape-r, ...)",
+      "element": "",
+      "source": "D1Result.dc.html",
+      "line": 47,
+      "col": 0,
+      "ui": "d1result",
+      "detail": {
+        "elements": "29",
+        "ids": "#d1result #sheet #clip #tape-l #tape-r #res-mast #res-rule-a #res-rule-b #grade-label #grade-box #grade #rounds #res-rule-c #rep-head #rep-list #rep-row #rep-label #rep-dots #rep-up #rep-down #res-rule-col #fav-head #fav-list #fav-row #fav-none #res-stamp #res-stamp-inner #res-stamp-text #btns"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

@@ -202,10 +202,8 @@ def debate(r: Rec) -> None:
                 r.click("d1debate", gd.SKIP_XY, gd.SKIP_GAP)
         r.t += gd.ROUND_TAIL
     r.marks["end"] = r.t
-    gd.outro(r, gd.outcome_of(rounds))     # S07 L012-L015 on the vn, then the outcome panel
-    r.marks["over"] = r.t
-    r.click("d1debate", gd.BACK_XY, 30)
-    r.marks["back"] = r.t
+    gd.outro(r, gd.outcome_of(rounds))     # S07 L012-L015 on the vn
+    gd.epilogue(r, gd.final_state(rounds))  # 4.4: S08, the result screen (mark `over`), S09, S10, S11, back to title
 
 
 def build_harness() -> None:

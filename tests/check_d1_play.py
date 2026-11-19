@@ -31,6 +31,7 @@ TESTS = ROOT / "tests"
 sys.path.insert(0, str(TESTS))
 import check_playthrough as cp  # noqa: E402
 import gen_d1_play as gd  # noqa: E402
+from tempwatch import TempWatch  # noqa: E402
 from xt_cli import EXE, XTFRAME, compile_game  # noqa: E402
 
 S = {}
@@ -79,12 +80,17 @@ SYS_UNDER_TEST = ("SYS_D01_BOTH_REBUT", "SYS_D01_CUT_EMPTY", "SYS_D01_MISS_WRONG
 
 
 def num(v: float) -> str:
-    return "%.6g" % v
+    """A number as the debate screen shows it (v2 demo 4.4): at most two decimals, the chapter's §12 style (the flow's
+    round(x * 100) / 100, half up)."""
+    import math
+    return "%.6g" % (math.floor(v * 100 + 0.5) / 100)
 
 
 def render(lang: str, key: str, vals: dict) -> str:
     out = S[lang][key].replace("{name}", S[lang]["SPK_D01_CEDRIC"])
     for k, v in vals.items():
+        if not isinstance(v, str) and k.startswith("hp"):
+            v = max(0.0, v)   # a credibility is never shown below 0
         out = out.replace("{" + k + "}", v if isinstance(v, str) else num(v))
     return out
 
@@ -373,15 +379,15 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
     at_over = [p for t, p, v, c in tr.ticks if t <= marks["over"]][-1]
     end_vis = tr.ticks[-1][2]
     grade, nrounds, outcome = want
-    exp = {"d1debate.grade_text": S[lang][f"UI_V2_GRADE_{grade}"],
-           "d1debate.rounds_text": S[lang]["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds)),
-           "d1debate.outcome_win": outcome == "win", "d1debate.mode": 3}
+    exp = {"d1result.grade_text": S[lang][f"UI_V2_GRADE_{grade}"],
+           "d1result.rounds_text": S[lang]["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds)),
+           "d1result.win": 1.0 if outcome == "win" else 0.0}
     bad = [f"{k}={at_over.get(k)!r} (want {v!r})" for k, v in exp.items() if at_over.get(k) != v]
     rounds_seen = {p.get("d1debate.round_text") for t, p, v, c in tr.ticks}
     last_round = S[lang]["UI_V2_ROUND"].replace("{n}", str(nrounds)).replace("{max}", "20")
     if last_round not in rounds_seen:
         bad.append(f"round {nrounds} was never shown ({last_round!r})")
-    if "title" not in end_vis or "d1debate" in end_vis:
+    if "title" not in end_vis or end_vis & {"vn", "paper", "d1debate", "d1result", "d1end"}:
         bad.append(f"after back to title the visible screens are {sorted(end_vis)}")
     if route:
         from sherefox_ref.v2 import lines as LN
@@ -398,7 +404,7 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
         fails.append(label)
         print(f"FAIL {label}: " + "; ".join(bad))
     else:
-        print(f"PASS {label}: grade {grade} ({exp['d1debate.grade_text']}), {nrounds} rounds, {outcome}")
+        print(f"PASS {label}: grade {grade} ({exp['d1result.grade_text']}), {nrounds} rounds, {outcome}")
 
 
 def ronpa_tick(rec: str, game: str, ticks: int) -> int:
@@ -416,9 +422,9 @@ def shots(out: Path, ticks: dict) -> None:
     rp = ronpa_tick("d1_shots", "tests/d1play_harnessA", ticks["d1_shots"])
     plan = [("d1_shots", "tests/d1play_harnessA", ticks["d1_shots"],
              {"choose_picker": mA["chosen3"], "playback": mA["lock2"] + 60, "ronpa": rp + 80,
-              "endgame": mA["chosen9"], "outcome_win": mA["over"] - 5}),
+              "endgame": mA["chosen9"], "result_win": mA["over"]}),
             ("d1_routeD", "tests/d1play_harnessD", ticks["d1_routeD"],
-             {"laststand": mD["chosen8"], "outcome_loss": mD["over"] - 5})]
+             {"laststand": mD["chosen8"], "result_loss": mD["over"]})]
     for rec, game, n, named in plan:
         for lang in ("zh-TW", "en"):
             tmp = Path(tempfile.mkdtemp(prefix="d1shots-"))
@@ -439,8 +445,7 @@ def shots(out: Path, ticks: dict) -> None:
 def main() -> int:
     argv = sys.argv[1:]
     compile_game()
-    temp = Path(tempfile.gettempdir())
-    before = set(os.listdir(temp))
+    tw = TempWatch().__enter__()   # tests/tempwatch.py: only what this run creates counts as a leak
     fails: list[str] = []
     try:
         if subprocess.run([sys.executable, str(TESTS / "gen_d1_play.py")], cwd=ROOT).returncode != 0:
@@ -460,10 +465,11 @@ def main() -> int:
     finally:
         for route in gd.ROUTES:
             shutil.rmtree(gd.harness_dir(route), ignore_errors=True)
-    left = sorted(n for n in set(os.listdir(temp)) - before if n.startswith(("d1shots-", "tmp")))
+    tw.__exit__(None, None, None)
+    left = tw.leaks
     if left:
         fails.append("temp")
-        print("FAIL temp: left in %TEMP%: " + ", ".join(left))
+        print("FAIL temp: left behind: " + ", ".join(left))
     print("ok" if not fails else f"FAILED: {', '.join(fails)}")
     return 1 if fails else 0
 

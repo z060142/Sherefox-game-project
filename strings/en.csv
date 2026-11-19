@@ -519,6 +519,9 @@ HEAD_CH03_SUB,"Inspector Baskerville: ""The killer is on that barge. This case e
 HEAD_CH04,Terror at the Opera! Soprano Miss Valen Falls from the Stage Mid-Aria
 HEAD_CH04_SUB,"Celebrated academic detective Victor Crowe has sealed off the scene: ""The truth will be made known tomorrow morning."""
 HEAD_D01,Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes
+HEAD_D01_CLOSE_DECENT,Wake Mystery Solved; Missing Codicil Found in Fireplace
+HEAD_D01_CLOSE_NORMAL,"Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed"
+HEAD_D01_CLOSE_UGLY,Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake
 HEAD_D01_DATE,February 1888
 HS_CH01_01_NAME,Fridge
 HS_CH01_02_NAME,Empty Pudding Plate

@@ -52,6 +52,38 @@
       "accepted": false
     },
     {
+      "code": "import.notice",
+      "severity": "info",
+      "message": "D1Warm.dc.html <helmet>: note: transition: filter 220ms ease-out -> effect 220ms ease-out (box-shadow, filter and text-shadow are XTFrame's effect property, 18 §18.4)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {},
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.degraded",
+      "severity": "warning",
+      "message": "D1Warm.dc.html <helmet>: filter brightness(0.86): degraded: brightness is additive in XTFrame (18 §18.3)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {},
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
       "code": "tag.repeatBinding",
       "severity": "warning",
       "message": "bind:display=\"review\" on #l-rev is inside the template of <repeat id=\"l-list\"> but reads no item(), index or count: every entry shows the same value (27 §27.3.4)",
@@ -68,6 +100,132 @@
           "attr": "data-xt-bind",
           "value": ""
         }
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "image asset \"../shared/img/bg-hall.jpg\" not found",
+      "element": "bg-hall",
+      "source": "D1Inv.dc.html",
+      "line": 81,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "generated": "d1inv.xt:40:13"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "image asset \"../shared/img/cedric-composed.png\" not found",
+      "element": "fig-cedric",
+      "source": "D1Inv.dc.html",
+      "line": 84,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "generated": "d1inv.xt:42:15"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "image asset \"../shared/img/fig-hyde.png\" not found",
+      "element": "fig-hyde",
+      "source": "D1Inv.dc.html",
+      "line": 85,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "generated": "d1inv.xt:43:15"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "image asset \"../shared/img/fig-irene.png\" not found",
+      "element": "fig-irene",
+      "source": "D1Inv.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "generated": "d1inv.xt:44:15"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "image asset \"../shared/img/bg-hall.jpg\" not found",
+      "element": "bg",
+      "source": "D1Carry.dc.html",
+      "line": 63,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "generated": "d1carry.xt:30:7"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "var(--copper) is undefined and has no fallback; using the initial value of \"color\"",
+      "element": "",
+      "source": "../shared/base.xts",
+      "line": 56,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "generated": "../shared/base.xts:56:0"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "var(--copper) is undefined and has no fallback; using the initial value of \"color\"",
+      "element": "",
+      "source": "../shared/base.xts",
+      "line": 109,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "generated": "../shared/base.xts:109:0"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
       },
       "accepted": false
     },
@@ -655,7 +813,7 @@
       "message": "anchor: #dlg-dock bottom: 20px -> anchor: center bottom; offset: 0 2px; size: 1000px 200px",
       "element": "dlg-dock",
       "source": "Vn.dc.html",
-      "line": 147,
+      "line": 164,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -703,7 +861,7 @@
       "message": "anchor: #slot-c left: 420px; bottom: auto; top: 70px -> anchor: center bottom; offset: 0 -28px; size: 440px 660px",
       "element": "slot-c",
       "source": "Vn.dc.html",
-      "line": 75,
+      "line": 77,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -727,7 +885,7 @@
       "message": "anchor: #slot-l left: 40px; bottom: auto; top: 70px -> anchor: left bottom; offset: 8px -28px; size: 440px 660px",
       "element": "slot-l",
       "source": "Vn.dc.html",
-      "line": 89,
+      "line": 96,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -751,7 +909,7 @@
       "message": "anchor: #slot-r right: auto; left: 800px; bottom: auto; top: 70px -> anchor: right bottom; offset: 8px -28px; size: 440px 660px",
       "element": "slot-r",
       "source": "Vn.dc.html",
-      "line": 103,
+      "line": 115,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -775,7 +933,7 @@
       "message": "anchor: #shade right auto -> 0",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 136,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -799,7 +957,7 @@
       "message": "anchor: #shade width 1280px -> (removed)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 136,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -823,7 +981,7 @@
       "message": "anchor: #shade bottom auto -> calc(1safe-bottom - 18px)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 136,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -847,7 +1005,7 @@
       "message": "anchor: #shade top 400px -> (removed)",
       "element": "shade",
       "source": "Vn.dc.html",
-      "line": 119,
+      "line": 136,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -871,7 +1029,7 @@
       "message": "anchor: #hit right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "hit",
       "source": "Vn.dc.html",
-      "line": 123,
+      "line": 140,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -895,7 +1053,7 @@
       "message": "anchor: #hud-tr right: 40px; top: 24px -> anchor: right top; offset: 8px 6px; size: 600px 76px",
       "element": "hud-tr",
       "source": "Vn.dc.html",
-      "line": 127,
+      "line": 144,
       "col": 0,
       "ui": "vn",
       "detail": {
@@ -919,7 +1077,7 @@
       "message": "anchor: #sheet position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px -> anchor: center center; size: 1280px 720px",
       "element": "sheet",
       "source": "Paper.dc.html",
-      "line": 103,
+      "line": 114,
       "col": 0,
       "ui": "paper",
       "detail": {
@@ -1327,7 +1485,7 @@
       "message": "anchor: #bg-d01-parlour right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "bg-d01-parlour",
       "source": "D1Debate.dc.html",
-      "line": 186,
+      "line": 183,
       "col": 0,
       "ui": "d1debate",
       "detail": {
@@ -1351,7 +1509,7 @@
       "message": "anchor: #actions right: 16px; bottom: 16px -> anchor: right bottom; offset: -16px -2px; size: 560px 52px",
       "element": "actions",
       "source": "D1Inv.dc.html",
-      "line": 137,
+      "line": 140,
       "col": 0,
       "ui": "d1inv",
       "detail": {
@@ -1375,7 +1533,7 @@
       "message": "anchor: #hud left: 16px; top: 10px -> anchor: left top; offset: -16px -8px; size: 200px 56px",
       "element": "hud",
       "source": "D1Inv.dc.html",
-      "line": 120,
+      "line": 123,
       "col": 0,
       "ui": "d1inv",
       "detail": {
@@ -1399,7 +1557,7 @@
       "message": "anchor: #locs right: auto; left: 232px; top: 10px -> anchor: right top; offset: -16px -8px; size: 1032px 56px",
       "element": "locs",
       "source": "D1Inv.dc.html",
-      "line": 127,
+      "line": 130,
       "col": 0,
       "ui": "d1inv",
       "detail": {
@@ -1423,7 +1581,7 @@
       "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "pop",
       "source": "D1Inv.dc.html",
-      "line": 149,
+      "line": 152,
       "col": 0,
       "ui": "d1inv",
       "detail": {
@@ -1562,6 +1720,438 @@
       "accepted": false
     },
     {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #bg right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "bg",
+      "source": "D1Warm.dc.html",
+      "line": 53,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hit right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "hit",
+      "source": "D1Warm.dc.html",
+      "line": 56,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #fig-l left: -10px; bottom: auto; top: 150px -> anchor: left bottom; offset: -42px 42px; size: 340px 510px",
+      "element": "fig-l",
+      "source": "D1Warm.dc.html",
+      "line": 60,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: -10px; bottom: auto; top: 150px",
+        "to": "anchor: left bottom; offset: -42px 42px; size: 340px 510px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #fig-r right: auto; left: 950px; bottom: auto; top: 150px -> anchor: right bottom; offset: -42px 42px; size: 340px 510px",
+      "element": "fig-r",
+      "source": "D1Warm.dc.html",
+      "line": 64,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 950px; bottom: auto; top: 150px",
+        "to": "anchor: right bottom; offset: -42px 42px; size: 340px 510px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head right auto -> 0",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "right",
+        "from": "auto",
+        "to": "0"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head width 1280px -> (removed)",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "width",
+        "from": "1280px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #head top 0px -> calc(1safe-top - 18px)",
+      "element": "head",
+      "source": "D1Warm.dc.html",
+      "line": 70,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "0px",
+        "to": "calc(1safe-top - 18px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #point left: 300px; top: 96px -> anchor: left top; offset: 268px 78px; size: 680px 140px",
+      "element": "point",
+      "source": "D1Warm.dc.html",
+      "line": 79,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 300px; top: 96px",
+        "to": "anchor: left top; offset: 268px 78px; size: 680px 140px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #prompt left 300px -> calc(1safe-left + 268px)",
+      "element": "prompt",
+      "source": "D1Warm.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "300px",
+        "to": "calc(1safe-left + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #prompt top 252px -> calc(36.21% - 8.69px)",
+      "element": "prompt",
+      "source": "D1Warm.dc.html",
+      "line": 86,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "252px",
+        "to": "calc(36.21% - 8.69px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-1 left 300px -> calc(1safe-left + 268px)",
+      "element": "obs-1",
+      "source": "D1Warm.dc.html",
+      "line": 88,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "300px",
+        "to": "calc(1safe-left + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-1 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-1",
+      "source": "D1Warm.dc.html",
+      "line": 88,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-2 left 532px -> calc(50% - 108px)",
+      "element": "obs-2",
+      "source": "D1Warm.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "532px",
+        "to": "calc(50% - 108px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-2 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-2",
+      "source": "D1Warm.dc.html",
+      "line": 94,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 right auto -> calc(1safe-right + 268px)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "right",
+        "from": "auto",
+        "to": "calc(1safe-right + 268px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 left 764px -> (removed)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "left",
+        "from": "764px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #obs-3 top 288px -> calc(53.73% - 98.86px)",
+      "element": "obs-3",
+      "source": "D1Warm.dc.html",
+      "line": 100,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "top",
+        "from": "288px",
+        "to": "calc(53.73% - 98.86px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #dlg left: 140px; bottom: auto; top: 520px -> anchor: left bottom; offset: 108px 6px; size: 1000px 176px",
+      "element": "dlg",
+      "source": "D1Warm.dc.html",
+      "line": 109,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 140px; bottom: auto; top: 520px",
+        "to": "anchor: left bottom; offset: 108px 6px; size: 1000px 176px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "style.geometryInline",
       "severity": "info",
       "message": "the board's inline geometry of 48 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
@@ -1614,15 +2204,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 91 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
+      "message": "the board's inline geometry of 83 element(s) is written to their <layout> #id rules (#paper, #sheet, #p1, #ear-l, #ear-l-name, ...)",
       "element": "",
       "source": "Paper.dc.html",
-      "line": 95,
+      "line": 106,
       "col": 0,
       "ui": "paper",
       "detail": {
-        "elements": "91",
-        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline-box #headline #p1-rule-d #lead-pic #pic-frame #pic-rule #pic-deck-box #pic-deck #lead-rule #lead-col-1 #lead-col-1-text #lead-col-rule #lead-col-2 #lead-col-2-text #lead-text #subhead #p1-rule-e #cols #col-1 #col-1-text #col-rule-1 #col-2 #col-2-text #col-rule-2 #col-3 #col-3-text #col-rule-3 #col-4 #col-4-text #col-rule-4 #col-5 #col-5-text #prev-case #prev-label #prev-text #prev-head #prev-sub #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-article #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #p2-briefs #brief-side #side-head #side-text #side-text-rule #brief-orn #brief-orn-rule #brief-ads #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
+        "elements": "83",
+        "ids": "#paper #sheet #p1 #ear-l #ear-l-name #ear-l-extra #ear-r #ear-r-page #ear-r-extra #mast-dock #mast #mast-art #p1-rule-a #p1-rule-b #dateline #p1-rule-c #headline-box #headline #p1-rule-d #lead-pic #pic-frame #pic-rule #pic-deck-box #pic-deck #lead-rule #lead-col-1 #lead-col-1-text #lead-col-rule #lead-col-2 #lead-col-2-text #lead-text #wcols #wcol-1 #wcol-1-text #wcol-rule-1 #wcol-2 #wcol-2-text #wcol-rule-2 #wcol-3 #wcol-3-text #prev-case #prev-label #prev-text #prev-head #prev-sub #p2 #p2-label #p2-mast #p2-date #p2-rule-a #p2-rule-b #p2-article #p2-headline #p2-rule-c #p2-cols #p2-col-1 #p2-col-1-text #p2-col-rule-1 #p2-col-2 #p2-col-2-text #p2-col-rule-2 #p2-col-3 #p2-col-3-text #p2-rule-side #p2-briefs #brief-side #side-head #side-text #side-text-rule #brief-orn #brief-orn-rule #brief-ads #ads-head #ad-box #ad-frame #ad-text #foot-rule #folio #turn-mark #stamp #stamp-inner #stamp-closed #stamp-fix"
       },
       "fix": {
         "kind": "editor",
@@ -1839,15 +2429,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 192 element(s) is written to their <layout> #id rules (#d1debate, #bg-d01-parlour, #sheet, #opp-fig, #cedric-composed, ...)",
+      "message": "the board's inline geometry of 187 element(s) is written to their <layout> #id rules (#d1debate, #bg-d01-parlour, #sheet, #opp-fig, #cedric-composed, ...)",
       "element": "",
       "source": "D1Debate.dc.html",
-      "line": 179,
+      "line": 176,
       "col": 0,
       "ui": "d1debate",
       "detail": {
-        "elements": "192",
-        "ids": "#d1debate #bg-d01-parlour #sheet #opp-fig #cedric-composed #cedric-uneasy #cedric-cornered #cedric-angry #cedric-guilt #opp-plate #opp-name #mast-bg #mast #mast-name #mast-extra #round #btn-record #btn-record-t #opp-cred #opp-cred-l #opp-cred-n #opp-track #opp-fill #float-opp #guard-down #guard-down-t #psych #g-p #g-p-n #g-p-b0 #g-p-b1 #g-p-b2 #g-p-s1 #g-p-s2 #g-p-s3 #g-g #g-g-n #g-g-b0 #g-g-b1 #g-g-b2 #g-g-s1 #g-g-s2 #g-g-s3 #g-a #g-a-n #g-a-b0 #g-a-b1 #g-a-b2 #g-a-s1 #g-a-s2 #g-a-s3 #ochain-box #ochain-title #ochain-hint #ochain-empty #ochain #oc #oc-iss #oc-t #picker #pk-ev-k #pk-ev-scroll #evs #evc #evc-t #pk-cl-k #pk-cl-scroll #cls #clm #clm-kind #clm-t #clm-tags #clm-iss #clm-crack #clm-stand #clm-extra #tell #tell-head #tell-last #tell-last-t #tell-bubble #tell-hes #tell-card #clar-c #clar-v #tell-cands #cand-a #cand-a-0 #cand-a-1 #cand-a-2 #cand-a-3 #cand-a-4 #cand-a-lk #cand-sep #cand-b #cand-b-0 #cand-b-1 #cand-b-2 #cand-b-3 #cand-b-4 #cand-b-lk #tell-gesture #tell-dying #me-cred #me-cred-l #me-track #me-fill #me-cred-n #me-combo #me-hk #me-hk-t #me-hk-n #me-shisshu #float-me #pchain-box #pchain-title #ronpa-ready #ronpa-ready-t #ronpa-t #pchain-empty #pchain #pc #pc-iss #pc-crack #pc-t #confirm #sum-claim #sum-arrow #sum-target #sum-armed #acts #acts-0 #act-1 #act-1-k #act-1-t #grp-rebut #act-2 #act-2-k #act-2-t #act-3 #act-3-k #act-3-t #act-4 #act-4-k #act-4-t #btn-guard #guard-t #guard-lamp #acts-1 #eg-prompt #act-5 #act-5-t #act-6 #act-6-t #acts-2 #ls-prompt #act-7 #act-7-t #act-6b #act-6b-t #btn-lock #btn-lock-t #hit #band #band-who #band-speech #band-sys #band-more #record #record-panel #rec-title #rec-desc #rec-close #rec-close-t #rec-rule #rec-scroll #recs #rec #rec-n #rec-t #rec-use #rec-soph #rec-crack #rec-state #outcome-veil #outcome #out-k #out-rule #out-grade #out-rounds #out-back #out-back-t"
+        "elements": "187",
+        "ids": "#d1debate #bg-d01-parlour #sheet #opp-fig #cedric-composed #cedric-uneasy #cedric-cornered #cedric-angry #cedric-guilt #opp-plate #opp-name #mast-bg #mast #mast-name #mast-extra #round #btn-record #btn-record-t #opp-cred #opp-cred-l #opp-cred-n #opp-track #opp-fill #float-opp #guard-down #guard-down-t #psych #g-p #g-p-n #g-p-b0 #g-p-b1 #g-p-b2 #g-p-s1 #g-p-s2 #g-p-s3 #g-g #g-g-n #g-g-b0 #g-g-b1 #g-g-b2 #g-g-s1 #g-g-s2 #g-g-s3 #g-a #g-a-n #g-a-b0 #g-a-b1 #g-a-b2 #g-a-s1 #g-a-s2 #g-a-s3 #ochain-box #ochain-title #ochain-hint #ochain-empty #ochain #oc #oc-iss #oc-t #picker #pk-ev-k #pk-ev-scroll #evs #evc #evc-t #pk-cl-k #pk-cl-scroll #cls #clm #clm-kind #clm-t #clm-tags #clm-iss #clm-crack #clm-stand #clm-extra #hint-wrap #hint-box #hint-who #hint-text #tell #tell-head #tell-last #tell-last-t #tell-bubble #tell-hes #tell-card #clar-c #clar-v #tell-cands #cand-a #cand-a-0 #cand-a-1 #cand-a-2 #cand-a-3 #cand-a-4 #cand-a-lk #cand-sep #cand-b #cand-b-0 #cand-b-1 #cand-b-2 #cand-b-3 #cand-b-4 #cand-b-lk #tell-gesture #tell-dying #me-cred #me-cred-l #me-track #me-fill #me-cred-n #me-combo #me-hk #me-hk-n #me-shisshu #float-me #pchain-box #pchain-title #ronpa-ready #ronpa-ready-t #ronpa-t #pchain-empty #pchain #pc #pc-iss #pc-crack #pc-t #confirm #sum-claim #sum-arrow #sum-target #sum-armed #acts #acts-0 #act-1 #act-1-k #act-1-t #grp-rebut #act-2 #act-2-k #act-2-t #act-3 #act-3-k #act-3-t #act-4 #act-4-k #act-4-t #btn-guard #guard-t #guard-lamp #acts-1 #eg-prompt #act-5 #act-5-t #act-6 #act-6-t #acts-2 #ls-prompt #act-7 #act-7-t #act-6b #act-6b-t #btn-lock #btn-lock-t #hit #band #band-who #band-speech #band-sys #band-more #record #record-panel #rec-title #rec-desc #rec-close #rec-close-t #rec-rule #rec-scroll #recs #rec #rec-n #rec-t #rec-use #rec-soph #rec-crack #rec-state"
       },
       "fix": {
         "kind": "editor",
@@ -1864,15 +2454,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 43 element(s) is written to their <layout> #id rules (#d1inv, #scene, #bg, #bg-art, #figs-parlour, ...)",
+      "message": "the board's inline geometry of 45 element(s) is written to their <layout> #id rules (#d1inv, #scene, #bg, #bg-art, #figs-parlour, ...)",
       "element": "",
       "source": "D1Inv.dc.html",
       "line": 66,
       "col": 0,
       "ui": "d1inv",
       "detail": {
-        "elements": "43",
-        "ids": "#d1inv #scene #bg #bg-art #figs-parlour #fig-cedric #fig-hyde #fig-irene #figs-study #fig-irene-door #figs-hall #fig-briggs #shade-top #spots-layer #spots-list #spot #spot-ring #spot-chip #hud #hud-title #hud-appr #locs #loc #loc-t #loc-done #actions #btn-book #book-dot #btn-notes #btn-end #pop #pop-shade #pop-card #pop-kicker #pop-title #pop-rule #pop-body #pop-line #pop-spk #pop-line-text #pop-got #pop-note #pop-close"
+        "elements": "45",
+        "ids": "#d1inv #scene #bg #bg-art #figs-parlour #fig-cedric #fig-hyde #fig-irene #figs-study #fig-irene-door #figs-basement #fig-martha #figs-hall #fig-briggs #shade-top #spots-layer #spots-list #spot #spot-ring #spot-chip #hud #hud-title #hud-appr #locs #loc #loc-t #loc-done #actions #btn-book #book-dot #btn-notes #btn-end #pop #pop-shade #pop-card #pop-kicker #pop-title #pop-rule #pop-body #pop-line #pop-spk #pop-line-text #pop-got #pop-note #pop-close"
       },
       "fix": {
         "kind": "editor",
@@ -1923,6 +2513,81 @@
       "detail": {
         "elements": "37",
         "ids": "#d1carry #bg #dim #main #sheet #k #title #count #hint #items #item #it-box #it-tick #it-n #it-d #it-k #side #arthur #arthur-art #btn-ask #btn-ask-t #btn-back #btn-confirm #dlg #who1 #say1 #who2 #say2 #confirm #c-veil #c-box #c-k #c-t #c-no #c-yes #post #post-more"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 30 element(s) is written to their <layout> #id rules (#d1warm, #bg, #hit, #fig-l, #fig-r, ...)",
+      "element": "",
+      "source": "D1Warm.dc.html",
+      "line": 48,
+      "col": 0,
+      "ui": "d1warm",
+      "detail": {
+        "elements": "30",
+        "ids": "#d1warm #bg #hit #fig-l #fig-r #head #extra #title #miss #rule-a #rule-b #point #point-t #prompt #obs-1 #obs-1-k #obs-1-n #obs-1-t #obs-2 #obs-2-k #obs-2-n #obs-2-t #obs-3 #obs-3-k #obs-3-n #obs-3-t #dlg #spk #line #more"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 29 element(s) is written to their <layout> #id rules (#d1result, #sheet, #clip, #tape-l, #tape-r, ...)",
+      "element": "",
+      "source": "D1Result.dc.html",
+      "line": 47,
+      "col": 0,
+      "ui": "d1result",
+      "detail": {
+        "elements": "29",
+        "ids": "#d1result #sheet #clip #tape-l #tape-r #res-mast #res-rule-a #res-rule-b #grade-label #grade-box #grade #rounds #res-rule-c #rep-head #rep-list #rep-row #rep-label #rep-dots #rep-up #rep-down #res-rule-col #fav-head #fav-list #fav-row #fav-none #res-stamp #res-stamp-inner #res-stamp-text #btns"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 18 element(s) is written to their <layout> #id rules (#d1end, #sheet, #sil, #sil-mast, #sil-rule, ...)",
+      "element": "",
+      "source": "D1End.dc.html",
+      "line": 22,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "elements": "18",
+        "ids": "#d1end #sheet #sil #sil-mast #sil-rule #sil-head #sil-pic #sil-c1 #sil-c2 #sil-c3 #sil-c4 #sil-c5 #sil-c6 #sil-c7 #sil-c8 #head #sub #btns"
       },
       "fix": {
         "kind": "editor",
@@ -2014,7 +2679,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-6ed937 used by 2 node(s)",
+      "message": "shared class .s-6ed937 used by 3 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -2022,7 +2687,7 @@
       "ui": "",
       "detail": {
         "class": ".s-6ed937",
-        "nodes": "2"
+        "nodes": "3"
       },
       "fix": {
         "kind": "editor",
@@ -2039,7 +2704,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-eb9710 used by 2 node(s)",
+      "message": "shared class .s-eb9710 used by 3 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -2047,7 +2712,7 @@
       "ui": "",
       "detail": {
         "class": ".s-eb9710",
-        "nodes": "2"
+        "nodes": "3"
       },
       "fix": {
         "kind": "editor",
@@ -2114,7 +2779,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-66a9df used by 12 node(s)",
+      "message": "shared class .s-66a9df used by 13 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -2122,7 +2787,7 @@
       "ui": "",
       "detail": {
         "class": ".s-66a9df",
-        "nodes": "12"
+        "nodes": "13"
       },
       "fix": {
         "kind": "editor",
@@ -2414,7 +3079,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-614666 used by 5 node(s)",
+      "message": "shared class .s-614666 used by 4 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -2422,7 +3087,7 @@
       "ui": "",
       "detail": {
         "class": ".s-614666",
-        "nodes": "5"
+        "nodes": "4"
       },
       "fix": {
         "kind": "editor",
@@ -2481,6 +3146,31 @@
           "op": "repair.dedup",
           "args": {
             "class": ".s-efadb3"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-bc4841 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-bc4841",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-bc4841"
           }
         }
       },

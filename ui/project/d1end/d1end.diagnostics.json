@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "var(--copper) is undefined and has no fallback; using the initial value of \"color\"",
+      "element": "",
+      "source": "../shared/base.xts",
+      "line": 56,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "generated": "../shared/base.xts:56:0"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "import.compileWarning",
+      "severity": "warning",
+      "message": "var(--copper) is undefined and has no fallback; using the initial value of \"color\"",
+      "element": "",
+      "source": "../shared/base.xts",
+      "line": 109,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "generated": "../shared/base.xts:109:0"
+      },
+      "fix": {
+        "kind": "none",
+        "applicability": "hint"
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 18 element(s) is written to their <layout> #id rules (#d1end, #sheet, #sil, #sil-mast, #sil-rule, ...)",
+      "element": "",
+      "source": "D1End.dc.html",
+      "line": 22,
+      "col": 0,
+      "ui": "d1end",
+      "detail": {
+        "elements": "18",
+        "ids": "#d1end #sheet #sil #sil-mast #sil-rule #sil-head #sil-pic #sil-c1 #sil-c2 #sil-c3 #sil-c4 #sil-c5 #sil-c6 #sil-c7 #sil-c8 #head #sub #btns"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

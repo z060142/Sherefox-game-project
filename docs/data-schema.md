@@ -119,7 +119,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 | kind | string | `paper`／`vn`／`warmup`／`investigate`／`board`／`debate`／`result`／`end`（原型結尾「待續」卡，只出現在最後一步，裁決 E1） |
 | sub | string | `paper`：`open`（章首合併報紙）或 `transition`（Ch.3 之後的最終報紙 `CH04_OPEN`）；`vn`：`daily`／`event`／`notes`（結案筆記）；其他空白 |
 | scene | string | 該步驟對應的劇本場景（`script.scene`，例 `S02`）；章首報紙為 `S01`；`board`、最終報紙與 `end` 空白 |
-| arg | string | `paper` → `papers.group`；`warmup`／`debate` → `opponents.id`；`investigate`／`board` → 章 key（`CH0n`，查 `hotspots.chapter`、`evidence.usable`）；`end` → 卡片文字的字串鍵 `UI_TO_BE_CONTINUED`；其他空白 |
+| arg | string | `paper` → `papers.group`（D01 章末報紙是 `D01_CLOSE`：依版本換成 `D01_CLOSE_<d1Paper>`）；`warmup`／`debate` → `opponents.id`；`investigate`／`board` → 章 key（`CH0n`，查 `hotspots.chapter`、`evidence.usable`）；`end` → 卡片文字的字串鍵 `UI_TO_BE_CONTINUED`；其他空白 |
 
 推導：依劇本每個場景的標題（`L001`）判定種類——含「報紙頭版」→ paper/open、「熱身小論戰」→ warmup、「主論戰」→ debate、「蒐證」→ investigate、「結算」→ result、「結案筆記」→ vn/notes、「日常」→ vn/daily、「事件」→ vn/event（依此順序比對）。`investigate` 之後插入 `board`（線索板沒有劇本場景，01-systems §4.1）。裁決 D5：每章開頭只有**一個** paper 步驟（`sub=open`、`scene=S01`、`arg=CH0n_OPEN`），它是章節交界的合併報紙，不再有獨立的 S01 vn 步驟，章末也不再有轉場報紙步驟；只有最後一章（Ch.3）末尾保留一個 paper 步驟（`sub=transition`、`arg=CH04_OPEN`：Ch.4 的開場合併報紙，側欄刊 Ch.3 結果），之後是 `end` 步驟（「待續」卡，`arg=UI_TO_BE_CONTINUED`）；Ch.4 本身不在範圍內（裁決 E1）。裁決 D6：`result` 步驟播放劇本的結算台詞；`NEWS_*` 結果頭條只出現在下一份報紙的側欄（§9），不在結算步驟播放。論戰台詞庫 `S90` 不是步驟。
 
@@ -335,7 +335,9 @@ Ch.3 的 E03_01 與 E03_07 分屬 `HS_CH03_01`（遺體）與 `HS_CH03_02`（外
 
 ## 9. `papers`：報紙（章節交界的合併報紙；依章）
 
-v2 示範關卡 D01（M4a，`docs/flows.md` §4.14）另有一列 `D01_OPEN`（chapter 101）：S01 的 L001 是「【報名・日期】頭條」一整行，建置時拆成 `HEAD_D01`（頭條）與 `HEAD_D01_DATE`（括號內最後一段：中文「・」、英文「, 」之後），兩者都由在地化包的文字推導；導言 `SCR_D01_S01_L002`；無圖、無副標、一頁。
+v2 示範關卡 D01（M4a，`docs/flows.md` §4.14）另有一列 `D01_OPEN`（chapter 101）：S01 的 L001 是「【報名・日期】頭條」一整行，建置時拆成 `HEAD_D01`（頭條）與 `HEAD_D01_DATE`（括號內最後一段：中文「・」、英文「, 」之後），兩者都由在地化包的文字推導；導言 `SCR_D01_S01_L002`；無副標、一頁；4.4 起有鋼版畫 `pictureId` ＝ `d01_wake`。
+
+章末報紙 S09（4.4，`docs/flows.md` §4.15）：三列 `D01_CLOSE_decent`／`_normal`／`_ugly`（`kind` ＝ `close`），頭條是該版本「【報名】頭條」一行去掉括號（`HEAD_D01_CLOSE_DECENT` 等，由 L001／L003／L005 推導），導言 L002／L004／L006；無圖、一頁、`addenda` true。步驟的 `arg` 是 `D01_CLOSE`，`main` 在執行時換成 `D01_CLOSE_<world.d1Paper>`（引擎選的版本）。
 
 裁決 D5：章節交界只有**一份**報紙，放在下一章開頭。主頭條與導言（`headlineKey`、`subKey`、`bodyKey`）是該章劇本 S01 開場（`HEAD_CH0n`、`HEAD_CH0n_SUB`、`SCR_CH0n_S01_L003`）；側欄刊上一案的結果，提供勝利／惡名／敗北三個版本，由流圖在執行時依「頭條判定順序」（01-systems §3.3）選一個。共 4 列：`CH01_OPEN`、`CH02_OPEN`、`CH03_OPEN`，以及 Ch.3 之後的最終報紙 `CH04_OPEN`（原型結尾：Ch.4 的開場合併報紙，裁決 E1）。
 
@@ -353,6 +355,7 @@ v2 示範關卡 D01（M4a，`docs/flows.md` §4.14）另有一列 `D01_OPEN`（c
 | bodyKey | string | 導言／頭版內文：劇本 `SCR_CH0n_S01_L003`（`CH04_OPEN` 用 `SCR_CH04_S01_L003`；Ch.4 的劇本行不進 `script` 表，只當這份報紙的導言） |
 | datelineKey | string | 日期線（`paper.dateline`）的字串鍵；v1 的報紙空白，v2 示範關卡 D01 的 `D01_OPEN` 是 `HEAD_D01_DATE`（M4a） |
 | pages | number | 頁數：v1 為 2（翻完第二版結束），`D01_OPEN` 為 1（頭版點一下就結束；沒有第二版、側欄、廣告與上一案結果） |
+| addenda | bool | 4.4：true ＝ 內文之後接上引擎選的 S09 附加段（`d1EpS09` 第 3 項起，接在導言之後：英文以空格分隔，中文直接相接；不換行，因為 U+000A 會畫成缺字方塊）；只有 `D01_CLOSE_*` 為 true |
 | page2HeadKey／page2BodyKey | string | 第二版文章的標題與內文（`paper.page2_head`／`page2_body`）；原型的轉場報紙都沒有第二版文章，全空白（兩欄同時有值或同時空白，建置時驗證） |
 | sideKey | string | 側欄城市短訊（`paper.side`）：`NEWS_SIDE_0n`（n＝`resultChapter`）；`CH01_OPEN` 為開場城市新聞 `NEWS_00_OPEN` |
 | adKey | string | 廣告欄（`paper.ad`）：只有 `CH01_OPEN` 有值（`NEWS_00_OPEN_SUB`，事務所招租）；其餘空白 |

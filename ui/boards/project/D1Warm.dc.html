@@ -104,8 +104,10 @@
     <div id="obs-3-t" class="obs-t" data-xt-bind="text=obs3" style="position: absolute; left: 14px; top: 32px; width: 188px; height: 142px;">熄燈時全屋的燈一起變暗、一起變亮</div>
   </div>
 
-  <!-- The line being said; a click on it goes on (not while a point waits). -->
-  <div id="dlg" class="dlg" data-xt-trigger="click(left):if port(choosing) eq false emit(advance)"
+  <!-- The line being said; a click on it goes on (not while a point waits). While a point waits (choosing) the
+       point is only in the box above: this box shows Sherefox's rebuttal, his reply and the other lines (4.4). -->
+  <div id="dlg" class="dlg" data-xt-bind="display=choosing | eq(false)"
+       data-xt-trigger="click(left):if port(choosing) eq false emit(advance)"
        style="position: absolute; left: 140px; top: 520px; width: 1000px; height: 176px;">
     <div id="spk" class="spk" data-xt-bind="text=speaker; display=speaker | ne('')" style="position: absolute; left: 32px; top: 12px; width: 600px; height: 22px;">巴斯克維爾</div>
     <div id="line" class="line" data-xt-bind="text=line" data-xt-trigger="port(line_seq):play(reveal)"

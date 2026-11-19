@@ -1,0 +1,1692 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "d1result"
+      }
+    },
+    {
+      "id": "isResK",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "langEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "langChanged",
+      "type": "merge"
+    },
+    {
+      "id": "langResG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fillM",
+      "type": "merge"
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": "win"
+      }
+    },
+    {
+      "id": "isWin",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "winN",
+      "type": "select"
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "gradeOn",
+      "type": "compare",
+      "params": {
+        "op": "gt"
+      }
+    },
+    {
+      "id": "gradeK",
+      "type": "format",
+      "params": {
+        "format": "UI_V2_GRADE_{a}"
+      }
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "gradeSel",
+      "type": "select"
+    },
+    {
+      "id": "gradeT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "roundsN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "rnd - 1"
+      }
+    },
+    {
+      "id": "roundsT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_RESULT_ROUNDS",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "repClr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUpClr",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": "grade_1"
+      }
+    },
+    {
+      "id": "repHas0",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_CLEAN"
+      }
+    },
+    {
+      "id": "repT0",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG0",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd0",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp0",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "grade_2"
+      }
+    },
+    {
+      "id": "repHas1",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_HELD"
+      }
+    },
+    {
+      "id": "repT1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG1",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd1",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp1",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "grade_3"
+      }
+    },
+    {
+      "id": "repHas2",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_COUNTERED"
+      }
+    },
+    {
+      "id": "repT2",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG2",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd2",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp2",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": "grade_4"
+      }
+    },
+    {
+      "id": "repHas3",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_GRIND"
+      }
+    },
+    {
+      "id": "repT3",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG3",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd3",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp3",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": "grade_5"
+      }
+    },
+    {
+      "id": "repHas4",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K15",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_LOSS"
+      }
+    },
+    {
+      "id": "repT4",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG4",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd4",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp4",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": "cracks"
+      }
+    },
+    {
+      "id": "repHas5",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "repT5",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_REP_CRACKS",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "repG5",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd5",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp5",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K17",
+      "type": "constant",
+      "params": {
+        "value": "private"
+      }
+    },
+    {
+      "id": "repHas6",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "repT6",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_REP_PRIVATE",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "repG6",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd6",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp6",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K18",
+      "type": "constant",
+      "params": {
+        "value": "psych_card"
+      }
+    },
+    {
+      "id": "repHas7",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K19",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_PSYCH"
+      }
+    },
+    {
+      "id": "repT7",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG7",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd7",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp7",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K20",
+      "type": "constant",
+      "params": {
+        "value": "stalls"
+      }
+    },
+    {
+      "id": "repHas8",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "K21",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_REP_STALL"
+      }
+    },
+    {
+      "id": "repT8",
+      "type": "atrium.text"
+    },
+    {
+      "id": "repG8",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd8",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp8",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "K22",
+      "type": "constant",
+      "params": {
+        "value": "denials"
+      }
+    },
+    {
+      "id": "repHas9",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1EpRep"
+      }
+    },
+    {
+      "id": "repT9",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_REP_DENY",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "repG9",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repAdd9",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Rep"
+      }
+    },
+    {
+      "id": "repUp9",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "e1RepUp"
+      }
+    },
+    {
+      "id": "repList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1result.rep",
+        "source": "e1Rep",
+        "fields": "{\"label\": \"item\", \"up\": \"map:e1RepUp\"}"
+      }
+    },
+    {
+      "id": "favClr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "e1Fav"
+      }
+    },
+    {
+      "id": "fvAbs0",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "abs(fv0)"
+      }
+    },
+    {
+      "id": "fvPos0",
+      "type": "compare",
+      "params": {
+        "op": "gt"
+      }
+    },
+    {
+      "id": "fvP0",
+      "type": "format",
+      "params": {
+        "format": "+{a}"
+      }
+    },
+    {
+      "id": "fvM0",
+      "type": "format",
+      "params": {
+        "format": "−{a}"
+      }
+    },
+    {
+      "id": "fvS0",
+      "type": "select"
+    },
+    {
+      "id": "K23",
+      "type": "constant",
+      "params": {
+        "value": "SPK_INSPECTOR_BASKERVILLE"
+      }
+    },
+    {
+      "id": "fvN0",
+      "type": "atrium.text"
+    },
+    {
+      "id": "fvT0",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_FAVOR_LINE",
+        "args": [
+          "name",
+          "delta"
+        ]
+      }
+    },
+    {
+      "id": "fvOn0",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "fvG0",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fvAdd0",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Fav"
+      }
+    },
+    {
+      "id": "fvOnN0",
+      "type": "select"
+    },
+    {
+      "id": "fvAbs1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "abs(fv1)"
+      }
+    },
+    {
+      "id": "fvPos1",
+      "type": "compare",
+      "params": {
+        "op": "gt"
+      }
+    },
+    {
+      "id": "fvP1",
+      "type": "format",
+      "params": {
+        "format": "+{a}"
+      }
+    },
+    {
+      "id": "fvM1",
+      "type": "format",
+      "params": {
+        "format": "−{a}"
+      }
+    },
+    {
+      "id": "fvS1",
+      "type": "select"
+    },
+    {
+      "id": "K24",
+      "type": "constant",
+      "params": {
+        "value": "SPK_MRS_HYDE"
+      }
+    },
+    {
+      "id": "fvN1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "fvT1",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_FAVOR_LINE",
+        "args": [
+          "name",
+          "delta"
+        ]
+      }
+    },
+    {
+      "id": "fvOn1",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "fvG1",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fvAdd1",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "e1Fav"
+      }
+    },
+    {
+      "id": "fvOnN1",
+      "type": "select"
+    },
+    {
+      "id": "favList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1result.fav",
+        "source": "e1Fav",
+        "fields": "{\"text\": \"item\"}"
+      }
+    },
+    {
+      "id": "favOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "fvOnN0 || fvOnN1"
+      }
+    },
+    {
+      "id": "nextG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.stepKind",
+      "to": "isResK.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "isResK.b"
+    },
+    {
+      "from": "world.language",
+      "to": "langEn.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "langEn.b"
+    },
+    {
+      "from": "langEn.true",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "langEn.false",
+      "to": "langChanged.in"
+    },
+    {
+      "from": "isResK.out",
+      "to": "langResG.guard"
+    },
+    {
+      "from": "langChanged.out",
+      "to": "langResG.go"
+    },
+    {
+      "from": "world.d1ResScreen",
+      "to": "fillM.in"
+    },
+    {
+      "from": "langResG.changed",
+      "to": "fillM.in"
+    },
+    {
+      "from": "world.d1Outcome",
+      "to": "isWin.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isWin.b"
+    },
+    {
+      "from": "isWin.out",
+      "to": "winN.cond"
+    },
+    {
+      "from": "K3.out",
+      "to": "winN.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "winN.b"
+    },
+    {
+      "from": "winN.out",
+      "to": "ui#d1result.win"
+    },
+    {
+      "from": "world.d1Grade",
+      "to": "gradeOn.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "gradeOn.b"
+    },
+    {
+      "from": "world.d1Grade",
+      "to": "gradeK.a"
+    },
+    {
+      "from": "gradeOn.out",
+      "to": "gradeSel.cond"
+    },
+    {
+      "from": "gradeK.out",
+      "to": "gradeSel.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "gradeSel.b"
+    },
+    {
+      "from": "gradeSel.out",
+      "to": "gradeT.key"
+    },
+    {
+      "from": "gradeT.text",
+      "to": "ui#d1result.grade_text"
+    },
+    {
+      "from": "world.d1Round",
+      "to": "roundsN.rnd"
+    },
+    {
+      "from": "roundsN.value",
+      "to": "roundsT.n"
+    },
+    {
+      "from": "roundsT.text",
+      "to": "ui#d1result.rounds_text"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repClr.trigger"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repUpClr.trigger"
+    },
+    {
+      "from": "K6.out",
+      "to": "repHas0.value"
+    },
+    {
+      "from": "K7.out",
+      "to": "repT0.key"
+    },
+    {
+      "from": "repHas0.has",
+      "to": "repG0.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG0.go"
+    },
+    {
+      "from": "repT0.text",
+      "to": "repAdd0.value"
+    },
+    {
+      "from": "repG0.changed",
+      "to": "repAdd0.trigger"
+    },
+    {
+      "from": "repT0.text",
+      "to": "repUp0.key"
+    },
+    {
+      "from": "K3.out",
+      "to": "repUp0.value"
+    },
+    {
+      "from": "repG0.changed",
+      "to": "repUp0.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "repHas1.value"
+    },
+    {
+      "from": "K9.out",
+      "to": "repT1.key"
+    },
+    {
+      "from": "repHas1.has",
+      "to": "repG1.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG1.go"
+    },
+    {
+      "from": "repT1.text",
+      "to": "repAdd1.value"
+    },
+    {
+      "from": "repG1.changed",
+      "to": "repAdd1.trigger"
+    },
+    {
+      "from": "repT1.text",
+      "to": "repUp1.key"
+    },
+    {
+      "from": "K3.out",
+      "to": "repUp1.value"
+    },
+    {
+      "from": "repG1.changed",
+      "to": "repUp1.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "repHas2.value"
+    },
+    {
+      "from": "K11.out",
+      "to": "repT2.key"
+    },
+    {
+      "from": "repHas2.has",
+      "to": "repG2.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG2.go"
+    },
+    {
+      "from": "repT2.text",
+      "to": "repAdd2.value"
+    },
+    {
+      "from": "repG2.changed",
+      "to": "repAdd2.trigger"
+    },
+    {
+      "from": "repT2.text",
+      "to": "repUp2.key"
+    },
+    {
+      "from": "K3.out",
+      "to": "repUp2.value"
+    },
+    {
+      "from": "repG2.changed",
+      "to": "repUp2.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "repHas3.value"
+    },
+    {
+      "from": "K13.out",
+      "to": "repT3.key"
+    },
+    {
+      "from": "repHas3.has",
+      "to": "repG3.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG3.go"
+    },
+    {
+      "from": "repT3.text",
+      "to": "repAdd3.value"
+    },
+    {
+      "from": "repG3.changed",
+      "to": "repAdd3.trigger"
+    },
+    {
+      "from": "repT3.text",
+      "to": "repUp3.key"
+    },
+    {
+      "from": "K3.out",
+      "to": "repUp3.value"
+    },
+    {
+      "from": "repG3.changed",
+      "to": "repUp3.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "repHas4.value"
+    },
+    {
+      "from": "K15.out",
+      "to": "repT4.key"
+    },
+    {
+      "from": "repHas4.has",
+      "to": "repG4.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG4.go"
+    },
+    {
+      "from": "repT4.text",
+      "to": "repAdd4.value"
+    },
+    {
+      "from": "repG4.changed",
+      "to": "repAdd4.trigger"
+    },
+    {
+      "from": "repT4.text",
+      "to": "repUp4.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp4.value"
+    },
+    {
+      "from": "repG4.changed",
+      "to": "repUp4.trigger"
+    },
+    {
+      "from": "K16.out",
+      "to": "repHas5.value"
+    },
+    {
+      "from": "world.d1Cracks",
+      "to": "repT5.n"
+    },
+    {
+      "from": "repHas5.has",
+      "to": "repG5.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG5.go"
+    },
+    {
+      "from": "repT5.text",
+      "to": "repAdd5.value"
+    },
+    {
+      "from": "repG5.changed",
+      "to": "repAdd5.trigger"
+    },
+    {
+      "from": "repT5.text",
+      "to": "repUp5.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp5.value"
+    },
+    {
+      "from": "repG5.changed",
+      "to": "repUp5.trigger"
+    },
+    {
+      "from": "K17.out",
+      "to": "repHas6.value"
+    },
+    {
+      "from": "world.d1Privates",
+      "to": "repT6.n"
+    },
+    {
+      "from": "repHas6.has",
+      "to": "repG6.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG6.go"
+    },
+    {
+      "from": "repT6.text",
+      "to": "repAdd6.value"
+    },
+    {
+      "from": "repG6.changed",
+      "to": "repAdd6.trigger"
+    },
+    {
+      "from": "repT6.text",
+      "to": "repUp6.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp6.value"
+    },
+    {
+      "from": "repG6.changed",
+      "to": "repUp6.trigger"
+    },
+    {
+      "from": "K18.out",
+      "to": "repHas7.value"
+    },
+    {
+      "from": "K19.out",
+      "to": "repT7.key"
+    },
+    {
+      "from": "repHas7.has",
+      "to": "repG7.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG7.go"
+    },
+    {
+      "from": "repT7.text",
+      "to": "repAdd7.value"
+    },
+    {
+      "from": "repG7.changed",
+      "to": "repAdd7.trigger"
+    },
+    {
+      "from": "repT7.text",
+      "to": "repUp7.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp7.value"
+    },
+    {
+      "from": "repG7.changed",
+      "to": "repUp7.trigger"
+    },
+    {
+      "from": "K20.out",
+      "to": "repHas8.value"
+    },
+    {
+      "from": "K21.out",
+      "to": "repT8.key"
+    },
+    {
+      "from": "repHas8.has",
+      "to": "repG8.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG8.go"
+    },
+    {
+      "from": "repT8.text",
+      "to": "repAdd8.value"
+    },
+    {
+      "from": "repG8.changed",
+      "to": "repAdd8.trigger"
+    },
+    {
+      "from": "repT8.text",
+      "to": "repUp8.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp8.value"
+    },
+    {
+      "from": "repG8.changed",
+      "to": "repUp8.trigger"
+    },
+    {
+      "from": "K22.out",
+      "to": "repHas9.value"
+    },
+    {
+      "from": "world.d1Denials",
+      "to": "repT9.n"
+    },
+    {
+      "from": "repHas9.has",
+      "to": "repG9.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repG9.go"
+    },
+    {
+      "from": "repT9.text",
+      "to": "repAdd9.value"
+    },
+    {
+      "from": "repG9.changed",
+      "to": "repAdd9.trigger"
+    },
+    {
+      "from": "repT9.text",
+      "to": "repUp9.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "repUp9.value"
+    },
+    {
+      "from": "repG9.changed",
+      "to": "repUp9.trigger"
+    },
+    {
+      "from": "fillM.out",
+      "to": "repList.trigger"
+    },
+    {
+      "from": "fillM.out",
+      "to": "favClr.trigger"
+    },
+    {
+      "from": "world.d1FavInspector",
+      "to": "fvAbs0.fv0"
+    },
+    {
+      "from": "world.d1FavInspector",
+      "to": "fvPos0.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvPos0.b"
+    },
+    {
+      "from": "fvAbs0.value",
+      "to": "fvP0.a"
+    },
+    {
+      "from": "fvAbs0.value",
+      "to": "fvM0.a"
+    },
+    {
+      "from": "fvPos0.out",
+      "to": "fvS0.cond"
+    },
+    {
+      "from": "fvP0.out",
+      "to": "fvS0.a"
+    },
+    {
+      "from": "fvM0.out",
+      "to": "fvS0.b"
+    },
+    {
+      "from": "K23.out",
+      "to": "fvN0.key"
+    },
+    {
+      "from": "fvN0.text",
+      "to": "fvT0.name"
+    },
+    {
+      "from": "fvS0.out",
+      "to": "fvT0.delta"
+    },
+    {
+      "from": "world.d1FavInspector",
+      "to": "fvOn0.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvOn0.b"
+    },
+    {
+      "from": "fvOn0.out",
+      "to": "fvG0.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "fvG0.go"
+    },
+    {
+      "from": "fvT0.text",
+      "to": "fvAdd0.value"
+    },
+    {
+      "from": "fvG0.changed",
+      "to": "fvAdd0.trigger"
+    },
+    {
+      "from": "fvOn0.out",
+      "to": "fvOnN0.cond"
+    },
+    {
+      "from": "K3.out",
+      "to": "fvOnN0.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvOnN0.b"
+    },
+    {
+      "from": "world.d1FavMrsHyde",
+      "to": "fvAbs1.fv1"
+    },
+    {
+      "from": "world.d1FavMrsHyde",
+      "to": "fvPos1.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvPos1.b"
+    },
+    {
+      "from": "fvAbs1.value",
+      "to": "fvP1.a"
+    },
+    {
+      "from": "fvAbs1.value",
+      "to": "fvM1.a"
+    },
+    {
+      "from": "fvPos1.out",
+      "to": "fvS1.cond"
+    },
+    {
+      "from": "fvP1.out",
+      "to": "fvS1.a"
+    },
+    {
+      "from": "fvM1.out",
+      "to": "fvS1.b"
+    },
+    {
+      "from": "K24.out",
+      "to": "fvN1.key"
+    },
+    {
+      "from": "fvN1.text",
+      "to": "fvT1.name"
+    },
+    {
+      "from": "fvS1.out",
+      "to": "fvT1.delta"
+    },
+    {
+      "from": "world.d1FavMrsHyde",
+      "to": "fvOn1.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvOn1.b"
+    },
+    {
+      "from": "fvOn1.out",
+      "to": "fvG1.guard"
+    },
+    {
+      "from": "fillM.out",
+      "to": "fvG1.go"
+    },
+    {
+      "from": "fvT1.text",
+      "to": "fvAdd1.value"
+    },
+    {
+      "from": "fvG1.changed",
+      "to": "fvAdd1.trigger"
+    },
+    {
+      "from": "fvOn1.out",
+      "to": "fvOnN1.cond"
+    },
+    {
+      "from": "K3.out",
+      "to": "fvOnN1.a"
+    },
+    {
+      "from": "K4.out",
+      "to": "fvOnN1.b"
+    },
+    {
+      "from": "fillM.out",
+      "to": "favList.trigger"
+    },
+    {
+      "from": "fvOnN0.out",
+      "to": "favOn.fvOnN0"
+    },
+    {
+      "from": "fvOnN1.out",
+      "to": "favOn.fvOnN1"
+    },
+    {
+      "from": "favOn.truth",
+      "to": "ui#d1result.fav_on"
+    },
+    {
+      "from": "isResK.out",
+      "to": "nextG.guard"
+    },
+    {
+      "from": "ui#d1result.next",
+      "to": "nextG.go"
+    },
+    {
+      "from": "nextG.changed",
+      "to": "world.stepDone"
+    }
+  ]
+}

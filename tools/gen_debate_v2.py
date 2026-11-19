@@ -39,6 +39,7 @@ sys.path.insert(0, str(ROOT / "ref" / "src"))
 from v2trace import T, N, S, Emitter  # noqa: E402
 from sherefox_ref.v2 import model as M  # noqa: E402
 from sherefox_ref.v2.data import load_chapter  # noqa: E402
+from sherefox_ref.v2 import epilogue as EP  # noqa: E402
 
 FLOW = ROOT / "flows" / "d01_debate_engine.xtflow"
 DATA_OUT = ROOT / "data" / "d01"
@@ -118,6 +119,12 @@ KNOWN = list(CH.evidence) + list(CH.appraisals) + list(CH.optional_known) + SAID
 REFUTE_LINES = list(CH.refute_lines)
 EXCL = [[int(j in CH.claims[c].exclusive) if c in CH.claims else 0 for j in CLAIMS] for c in CL]
 PRIV_WHO = sorted({w for w, _ in CH.private_favour.values()})
+FAV_WHO = ["inspector"] + PRIV_WHO   # ref results.favour order: the inspector, then the private matters' people
+
+
+def fav_signal(who: str) -> str:
+    """world.d1Fav<Who>: the favour change of `who` at the end (mrs_hyde -> d1FavMrsHyde)."""
+    return "d1Fav" + "".join(p.capitalize() for p in who.split("_"))
 
 
 def kn_key(item: str) -> str:
@@ -166,7 +173,7 @@ OUT_NUM = ["d1Round", "d1PlayerHp", "d1PlayerMax", "d1OppHp", "d1OppMax", "d1PCo
            "d1PsychEndG", "d1PsychEndA", "d1OverP", "d1OverG", "d1OverA", "d1ThreshP", "d1ThreshG", "d1ThreshA",
            "d1Cracks", "d1Denials", "d1GuardUsed", "d1Dying", "d1LastCardUsed", "d1PlayerLocked", "d1RoundLimit",
            "d1Grade", "d1Truth", "d1RepDelta", "d1RepAfter", "d1NextStartHp", "d1TellPartial", "d1TellRule",
-           "d1HandCount"]
+           "d1HandCount", "d1Privates"] + [fav_signal(_w) for _w in FAV_WHO]
 OUT_STR = ["d1Phase", "d1CatchCard", "d1Endgame", "d1LastCard", "d1Outcome", "d1EndReason", "d1Note", "d1Paper",
            "d1TellClarity", "d1TellShown1", "d1TellShown2", "d1TellStar", "d1TellCard", "d1TellForced",
            "d1TellAction"]
@@ -190,13 +197,18 @@ COLLECTIONS = {
     "d1ClaimStand": {"kind": "map", "type": "number", "capacity": 64},
     "d1Rep": {"kind": "list", "type": "string", "capacity": 16},
     "d1Favour": {"kind": "list", "type": "string", "capacity": 16},
+    # the chapter's ending (ref epilogue.py): S08 / S09 / S10 line ids in order
+    "d1EpS08": {"kind": "list", "type": "string", "capacity": 16},
+    "d1EpS09": {"kind": "list", "type": "string", "capacity": 8},
+    "d1EpS10": {"kind": "list", "type": "string", "capacity": 8},
+    "d1EpRep": {"kind": "list", "type": "string", "capacity": 8},   # the reputation items' names (d1Rep order)
     # loadout inputs (written by the UI / harness)
     "d1Carry": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
     "d1Appraised": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
     "d1Notes": {"kind": "list", "type": "string", "capacity": 32, "unique": True},
 }
 ENGINE_LISTS = ["d1Events", "d1PChain", "d1OChain", "d1Hand", "d1Knocked", "d1Known", "d1Record", "d1ClaimList",
-                "d1Rep", "d1Favour"]
+                "d1Rep", "d1Favour", "d1EpS08", "d1EpS09", "d1EpS10", "d1EpRep"]
 
 # --------------------------------------------------------------------------------------------- tables
 
@@ -269,6 +281,8 @@ SCALARS = {
     "rdl": "reputation delta", "rpa": "reputation after", "nhp": "next debate start credibility bonus",
     "note": "note version (NOTES)", "paper": "newspaper (PAPERS)",
 }
+for _w in FAV_WHO:
+    SCALARS[f"fv_{_w}"] = f"favour change of {_w} (results)"
 DEC_KEYS = {
     "da": "his action code + 1 for the coming round (OA_NAMES)", "dc": "his card idx + 1 (立論/強辯/last)",
     "dcl": "tell clarity 0 clear / 1 vague", "ds1": "shown action 1 + 1 (canonical order)",
@@ -1492,16 +1506,55 @@ def results() -> None:
     put("paper", T.SEL(T.LE(grade, 2), 1, T.SEL(T.LE(grade, 4), 2, 3)))
     over = T.NE(g("out"), 0)
     eff_if(over, "clear", coll="d1Rep")
+    eff_if(over, "clear", coll="d1EpRep")
     for c, name, v in items:
         eff_if(T.AND(over, c), "add", coll="d1Rep", value=T.fmt(name, v))
+        eff_if(T.AND(over, c), "add", coll="d1EpRep", value=name)
     eff_if(over, "clear", coll="d1Favour")
     insp = T.lk([CH.warmup[w]["inspector"] for w in WARMUPS], T.MAX(0, T.MIN(len(WARMUPS) - 1, g("wu"))))
     eff_if(T.AND(over, T.NE(insp, 0)), "add", coll="d1Favour", value=T.fmt("inspector", insp))
+    put("fv_inspector", insp)
     for who in PRIV_WHO:
         cl = [c for c, (w, _) in CH.private_favour.items() if w == who]
         tot = fold_sum([T.c(CH.private_favour[c][1]) * g(f"sn_{c}") for c in cl])
         anyc = fold_or([T.GT(g(f"sn_{c}"), 0) for c in cl])
         eff_if(T.AND(over, anyc), "add", coll="d1Favour", value=T.fmt(who, tot))
+        put(f"fv_{who}", tot)
+    epilogue(over, truth, grade)
+
+
+def epilogue(over, truth, grade) -> None:
+    """ref epilogue.py: the S08 lines, the S09 paper and addenda, the S10 notes and addenda (ch §2 S08-S10), from
+    the public record (sd_<claim> > 0: said in any use)."""
+    def said(cs):
+        return fold_or([T.GT(g(f"sd_{c}"), 0) for c in cs])
+    win = T.EQ(g("out"), 1)
+    par = said([c for c in CLAIMS if CH.claims[c].private])
+    brg = said(["07A", "07B"])
+    s06 = said(["06B"])
+    brd = said([c for c in CLAIMS if CH.claims[c].psych_card])
+    for coll in ("d1EpS08", "d1EpS09", "d1EpS10"):
+        eff_if(over, "clear", coll=coll)
+
+    def add(coll, prefix, nums, cond):
+        for n in nums:
+            eff_if(T.AND(over, cond), "add", coll=coll, value=T.sc(f"{prefix}{n:03d}"))
+    s08 = [(1, win), (2, T.AND(win, par)), (3, T.AND(win, par)), (4, T.AND(win, brg)), (5, T.AND(win, brg)),
+           (6, T.AND(win, T.NOT(brg))), (7, win), (8, win), (9, T.AND(win, brd)), (10, T.AND(win, brd)),
+           (11, T.NOT(win)), (12, T.NOT(win))]
+    for n, c in s08:
+        add("d1EpS08", EP.S08, [n], c)
+    for i, (name, ids) in enumerate(EP.PAPER_LINES.items()):
+        for lid in ids:
+            eff_if(T.AND(over, T.EQ(g("paper"), PAPERS.index(name))), "add", coll="d1EpS09", value=T.sc(lid))
+    add("d1EpS09", EP.S09, [7], par)
+    add("d1EpS09", EP.S09, [8], T.AND(win, T.OR(T.GE(g("den"), 1), T.GE(g("cracks"), 3))))
+    for name, ids in EP.NOTE_LINES.items():
+        for lid in ids:
+            eff_if(T.AND(over, T.EQ(g("note"), NOTES.index(name))), "add", coll="d1EpS10", value=T.sc(lid))
+    add("d1EpS10", EP.S10, [7], T.NOT(brg))
+    add("d1EpS10", EP.S10, [8], T.AND(win, s06, T.NOT(brg), T.LT(truth, 70)))
+    add("d1EpS10", EP.S10, [9], T.NOT(win))
 
 
 def claim_list() -> None:
@@ -1674,7 +1727,7 @@ def outputs(s: dict) -> list[tuple[str, object]]:
         ("d1Cracks", s["cracks"]), ("d1Denials", s["den"]), ("d1GuardUsed", s["gu"]), ("d1Dying", s["egd"]),
         ("d1LastCardUsed", s["lcu"]), ("d1PlayerLocked", s["pl"]), ("d1RoundLimit", T.c(CH.max_rounds)),
         ("d1Grade", s["grade"]), ("d1Truth", s["truth"]), ("d1RepDelta", s["rdl"]), ("d1RepAfter", s["rpa"]),
-        ("d1NextStartHp", s["nhp"]), ("d1TellPartial", s["dp"]), ("d1TellRule", s["drl"]), ("d1HandCount", hand),
+        ("d1NextStartHp", s["nhp"]), ("d1Privates", s["priv"]), *[(fav_signal(w), s[f"fv_{w}"]) for w in FAV_WHO], ("d1TellPartial", s["dp"]), ("d1TellRule", s["drl"]), ("d1HandCount", hand),
         ("d1CatchCard", cardname(s["cc"])),
         ("d1Endgame", T.slk(TRIGGERS, T.MAX(0, T.MIN(2, s["eg"])))),
         ("d1LastCard", T.ssel(s["eg"], cardname(s["egc"]), "")),

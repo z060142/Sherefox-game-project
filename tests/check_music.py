@@ -83,13 +83,17 @@ TICKS.update({f"d1_story_{k}": v["ticks"] for k, v in json.loads((ROOT / "tests"
 # BGM07 at the start (L004's cut); BGM08 at his first 破防 (round 1 in A, D; round 2 in B); BGM09 on 論破 (A8, B5);
 # B: silence from L007 (he gives up), BGM09 again with L012 (crossfade), silence at L015; A: L012 keeps BGM09, silence
 # at L015; D: BGM10 on the Reverse Break (no track: BGM08 goes on), silence from the loss (L016) through L017-L019.
+# v2 demo 4.4 (cues BGM_D01_14-19): then the result step's S08 lines BGM12 (L001's cue; by the cue table's scene rule
+# also on a loss's L011), kept under the result screen; the S09 paper BGM11 (its version's cue: L001 decent, L005
+# ugly); S10 BGM02; S11 BGM01, which the title keeps after back to title (no change, no restart).
+EPILOGUE = [("BGM12", "cross"), ("BGM11", "cross"), ("BGM02", "cross"), ("BGM01", "cross")]
 D01_ROUTES = {
     "d1_routeA": ("A", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
-                        ("", "out")]),
+                        ("", "out")] + EPILOGUE),
     "d1_routeB": ("B", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
-                        ("", "out"), ("BGM09", "cross"), ("", "out")]),
+                        ("", "out"), ("BGM09", "cross"), ("", "out")] + EPILOGUE),
     "d1_routeD": ("D", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM10", None),
-                        ("", "out")]),
+                        ("", "out")] + EPILOGUE),
 }
 TICKS.update({k: v for k, v in json.loads((ROOT / "tests" / "d1_ticks.json").read_text(encoding="utf-8")).items()
               if k in D01_ROUTES})
@@ -225,6 +229,19 @@ def value_index() -> dict[str, int]:
     return idx
 
 
+def trace_lines(text: str) -> list[str]:
+    """The --trace lines, one per tick (t=N) or host effect (tN ...): a string value with a line break (the D01
+    closing paper's paragraphs, docs/flows.md §4.15) continues on the next physical line, so such lines are joined
+    back onto the one before."""
+    out: list[str] = []
+    for raw in text.split(chr(10)):
+        if re.match(r"t=?\d+ ", raw) or not out:
+            out.append(raw)
+        else:
+            out[-1] += chr(10) + raw
+    return [ln for ln in out if ln]
+
+
 def music_values(line: str, idx: dict[str, int]) -> dict | None:
     """The music flow's values on one trace line (None when the line has none)."""
     head = " flows/music.xtflow:"
@@ -255,7 +272,7 @@ def replay(name: str, idx: dict[str, int], tmp: Path, game: str = ".") -> tuple[
         raise SystemExit(f"FAIL xtatrium run {name} (exit {p.returncode})\n{err}")
     ticks, sounds = [], {}
     with trace.open(encoding="utf-8") as f:
-        for line in f:
+        for line in trace_lines(f.read()):
             if not line.startswith("t="):   # host effect lines (XTAtrium AT-056) repeat the sound cues
                 continue
             t = int(line[2:line.index(" ")])

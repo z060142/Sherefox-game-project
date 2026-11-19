@@ -48,12 +48,13 @@
             <h1 id="headline" class="f-disp" on:port(headline)="play(intro)" bind:text="headline">百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠</h1>
           </div>
           <div id="p1-rule-d" class="rule-thin"/>
-          <div id="lead-pic" bind:display="picture | ne('')">
+          <div id="lead-pic" bind:display="picture | ne('')" bind:class.nodeck="subhead | eq('')">
             <div id="pic-frame" class="pic-frame">
               <img id="pic-ch01" class="pic-art" src="../shared/img/pic-ch01.jpg" bind:display="picture | eq('ch01')"/>
               <img id="pic-ch02" class="pic-art" src="../shared/img/pic-ch02.jpg" bind:display="picture | eq('ch02')"/>
               <img id="pic-ch03" class="pic-art" src="../shared/img/pic-ch03.jpg" bind:display="picture | eq('ch03')"/>
               <img id="pic-ch04" class="pic-art" src="../shared/img/pic-ch04.jpg" bind:display="picture | eq('ch04')"/>
+              <img id="pic-d01-wake" class="pic-art" src="../shared/img/pic-d01-wake.jpg" bind:display="picture | eq('d01_wake')"/>
             </div>
             <div id="pic-rule" class="rule-col"/>
             <div id="pic-deck-box">
@@ -69,27 +70,17 @@
             </div>
           </div>
           <div id="lead-text" bind:display="picture | eq('')">
-            <p id="subhead" class="f-body" bind:text="subhead">格雷沙姆先生：「我的錶進店時完好如初。」</p>
-            <div id="p1-rule-e" class="rule-thin"/>
-            <div id="cols">
-              <div id="col-1" class="col">
-                <div id="col-1-text" class="col-text" bind:text="body">本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。</div>
+            <div id="wcols">
+              <div id="wcol-1" class="col">
+                <div id="wcol-1-text" class="wcol" bind:text="body">本報訊，肯辛頓海德宅遺囑附錄失竊案昨日真相大白。亡者之姪塞德里克・海德為掩飾鉅額賭債，趁守靈夜關閉煤氣總閥竊取附錄，嫁禍到府修鎖的鎖匠。貝克街的狐耳偵探當眾逐一指出破綻，附錄於書房壁爐中完好尋回。鎖匠布里格斯當場獲釋。</div>
               </div>
-              <div id="col-rule-1" class="rule-col"/>
-              <div id="col-2" class="col">
-                <div id="col-2-text" class="col-text" bind:text="body">本報訊</div>
+              <div id="wcol-rule-1" class="rule-col"/>
+              <div id="wcol-2" class="col">
+                <div id="wcol-2-text" class="wcol" bind:text="body">本報訊</div>
               </div>
-              <div id="col-rule-2" class="rule-col"/>
-              <div id="col-3" class="col">
-                <div id="col-3-text" class="col-text" bind:text="body">本報訊</div>
-              </div>
-              <div id="col-rule-3" class="rule-col"/>
-              <div id="col-4" class="col">
-                <div id="col-4-text" class="col-text" bind:text="body">本報訊</div>
-              </div>
-              <div id="col-rule-4" class="rule-col"/>
-              <div id="col-5" class="col">
-                <div id="col-5-text" class="col-text" bind:text="body">本報訊</div>
+              <div id="wcol-rule-2" class="rule-col"/>
+              <div id="wcol-3" class="col">
+                <div id="wcol-3-text" class="wcol" bind:text="body">本報訊</div>
               </div>
             </div>
           </div>
@@ -410,144 +401,76 @@
       width: 1184px;
     }
     /* import: Paper.dc.html:1/0/0/10/0 */
-    #subhead {
-      height: 52px;
-      left: 100px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 0px;
-      position: absolute;
-      top: 0px;
-      width: 984px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/1 */
-    #p1-rule-e {
-      height: 1px;
+    #wcols {
+      height: 204px;
       left: 0px;
       position: absolute;
-      top: 62px;
+      top: 14px;
       width: 1184px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2 */
-    #cols {
-      height: 198px;
-      left: 0px;
-      position: absolute;
-      top: 72px;
-      width: 1184px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/0 */
-    #col-1 {
-      height: 198px;
+    /* import: Paper.dc.html:1/0/0/10/0/0 */
+    #wcol-1 {
+      height: 204px;
       left: 0px;
       position: absolute;
       top: 0px;
-      width: 216px;
+      width: 378px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/0/0 */
-    #col-1-text {
-      height: 1320px;
+    /* import: Paper.dc.html:1/0/0/10/0/0/0 */
+    #wcol-1-text {
+      height: 1224px;
       left: 0px;
       position: absolute;
       top: 0px;
-      width: 216px;
+      width: 378px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/1 */
-    #col-rule-1 {
-      height: 198px;
-      left: 228px;
+    /* import: Paper.dc.html:1/0/0/10/0/1 */
+    #wcol-rule-1 {
+      height: 204px;
+      left: 390px;
       position: absolute;
       top: 0px;
       width: 1px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/2 */
-    #col-2 {
-      height: 198px;
-      left: 242px;
+    /* import: Paper.dc.html:1/0/0/10/0/2 */
+    #wcol-2 {
+      height: 204px;
+      left: 403px;
       position: absolute;
       top: 0px;
-      width: 216px;
+      width: 378px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/2/0 */
-    #col-2-text {
-      height: 1320px;
+    /* import: Paper.dc.html:1/0/0/10/0/2/0 */
+    #wcol-2-text {
+      height: 1224px;
       left: 0px;
       position: absolute;
-      top: -198px;
-      width: 216px;
+      top: -204px;
+      width: 378px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/3 */
-    #col-rule-2 {
-      height: 198px;
-      left: 470px;
+    /* import: Paper.dc.html:1/0/0/10/0/3 */
+    #wcol-rule-2 {
+      height: 204px;
+      left: 793px;
       position: absolute;
       top: 0px;
       width: 1px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/4 */
-    #col-3 {
-      height: 198px;
-      left: 484px;
+    /* import: Paper.dc.html:1/0/0/10/0/4 */
+    #wcol-3 {
+      height: 204px;
+      left: 806px;
       position: absolute;
       top: 0px;
-      width: 216px;
+      width: 378px;
     }
-    /* import: Paper.dc.html:1/0/0/10/2/4/0 */
-    #col-3-text {
-      height: 1320px;
+    /* import: Paper.dc.html:1/0/0/10/0/4/0 */
+    #wcol-3-text {
+      height: 1224px;
       left: 0px;
       position: absolute;
-      top: -396px;
-      width: 216px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/5 */
-    #col-rule-3 {
-      height: 198px;
-      left: 712px;
-      position: absolute;
-      top: 0px;
-      width: 1px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/6 */
-    #col-4 {
-      height: 198px;
-      left: 726px;
-      position: absolute;
-      top: 0px;
-      width: 216px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/6/0 */
-    #col-4-text {
-      height: 1320px;
-      left: 0px;
-      position: absolute;
-      top: -594px;
-      width: 216px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/7 */
-    #col-rule-4 {
-      height: 198px;
-      left: 954px;
-      position: absolute;
-      top: 0px;
-      width: 1px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/8 */
-    #col-5 {
-      height: 198px;
-      left: 968px;
-      position: absolute;
-      top: 0px;
-      width: 216px;
-    }
-    /* import: Paper.dc.html:1/0/0/10/2/8/0 */
-    #col-5-text {
-      height: 1320px;
-      left: 0px;
-      position: absolute;
-      top: -792px;
-      width: 216px;
+      top: -408px;
+      width: 378px;
     }
     /* import: Paper.dc.html:1/0/0/11 */
     #prev-case {
@@ -936,48 +859,6 @@
     .tall #lead-col-2-text {
       top: -264px;
     }
-    .tall #cols {
-      height: 264px;
-    }
-    .tall #col-1 {
-      height: 264px;
-    }
-    .tall #col-2 {
-      height: 264px;
-    }
-    .tall #col-3 {
-      height: 264px;
-    }
-    .tall #col-4 {
-      height: 264px;
-    }
-    .tall #col-5 {
-      height: 264px;
-    }
-    .tall #col-rule-1 {
-      height: 264px;
-    }
-    .tall #col-rule-2 {
-      height: 264px;
-    }
-    .tall #col-rule-3 {
-      height: 264px;
-    }
-    .tall #col-rule-4 {
-      height: 264px;
-    }
-    .tall #col-2-text {
-      top: -264px;
-    }
-    .tall #col-3-text {
-      top: -528px;
-    }
-    .tall #col-4-text {
-      top: -792px;
-    }
-    .tall #col-5-text {
-      top: -1056px;
-    }
     .ad-box {
       padding-top: 5px;
       padding-right: 5px;
@@ -1046,6 +927,59 @@
     .wide #ad-text {
       width: 370px;
       height: 282px;
+    }
+    .nodeck #pic-deck-box {
+      display: none;
+    }
+    .nodeck #lead-rule {
+      display: none;
+    }
+    .nodeck #lead-col-1 {
+      top: 0px;
+      width: 223px;
+      height: 338px;
+    }
+    .nodeck #lead-col-2 {
+      top: 0px;
+      left: 961px;
+      width: 223px;
+      height: 338px;
+    }
+    .nodeck #lead-col-rule {
+      top: 0px;
+      left: 948px;
+      height: 338px;
+    }
+    .nodeck #lead-col-1-text {
+      width: 223px;
+    }
+    .nodeck #lead-col-2-text {
+      width: 223px;
+      top: -338px;
+    }
+    :lang(en) #wcols {
+      height: 203px;
+    }
+    :lang(en) #wcol-1 {
+      height: 203px;
+    }
+    :lang(en) #wcol-2 {
+      height: 203px;
+    }
+    :lang(en) #wcol-3 {
+      height: 203px;
+    }
+    :lang(en) #wcol-rule-1 {
+      height: 203px;
+    }
+    :lang(en) #wcol-rule-2 {
+      height: 203px;
+    }
+    :lang(en) #wcol-2-text {
+      top: -203px;
+    }
+    :lang(en) #wcol-3-text {
+      top: -406px;
     }
   </layout>
   <style src="../shared/base.xts"/>
@@ -1120,7 +1054,7 @@
           opacity: 1;
         }
       }
-      #cols {
+      #wcols {
         0ms {
           opacity: 0;
         }

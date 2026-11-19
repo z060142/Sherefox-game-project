@@ -139,11 +139,15 @@ END_CARD_KEY = "UI_TO_BE_CONTINUED"
 D01_CHAPTER = 101
 # M4a (docs/flows.md §4.14): S01 opening paper -> S02 / S03 vn -> S04 warm-up -> S05 investigation -> S06 carry -> S07
 # debate. (kind, scene, arg)
+# v2 demo 4.4 (docs/flows.md §4.15): S08 result (its lines, then the result screen) -> S09 closing paper (the papers
+# group D01_CLOSE_<d1Paper>: main resolves the arg) -> S10 Arthur's notes -> S11 the placeholder (back to title)
 D01_STEPS = (("paper", "S01", "D01_OPEN"), ("vn", "S02", ""), ("vn", "S03", ""), ("d1warmup", "S04", ""),
-             ("d1investigate", "S05", ""), ("d1carry", "S06", ""), ("d1debate", "S07", ""))
+             ("d1investigate", "S05", ""), ("d1carry", "S06", ""), ("d1debate", "S07", ""), ("d1result", "S08", ""),
+             ("paper", "S09", "D01_CLOSE"), ("d1notes", "S10", ""), ("d1end", "S11", ""))
 # D01 scenes whose lines become script rows (sceneKey D01_Sxx): the paper, the two vn scenes, the warm-up (its lines
 # are shown by the d01_warmup flow, which reads their speakers from the script table), the debate's S07 (v2 demo 4.3)
-D01_SCRIPT_SCENES = ("S01", "S02", "S03", "S04", "S07")
+# and (4.4) the result's S08 and Arthur's notes S10 (lines picked by the engine: d1EpS08 / d1EpS10, ref epilogue.py)
+D01_SCRIPT_SCENES = ("S01", "S02", "S03", "S04", "S07", "S08", "S10")
 # S07 around the debate (docs/flows.md §4.2, §4.12; ref sherefox_ref.v2.lines): the lines the dialogue flow plays,
 # by script.cue: before the debate (pre), after a win (postWin), after a loss (postLose; L016 is the loss line on the
 # debate screen). The other S07 lines (no cue) are shown by the debate screen itself; the dialogue never picks them.
@@ -181,7 +185,7 @@ WARMUP = {3: {"refuters": ["E03_05", "E03_02"]}}
 STAGING_BGS = {"", "office_night", "office_day", "kitchen_morning", "clockshop", "dock_fog", "barge_deck",
                "boiler_room", "debate", "d01_hall", "d01_parlour"}
 STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner",
-                 "landlady", "mrs_hyde", "briggs", "cedric_composed"}   # the last four: the v2 demo D01
+                 "landlady", "mrs_hyde", "briggs", "cedric_composed", "irene"}   # the last five: the v2 demo D01
 STAGING_PLACEHOLDER_CHARS = {"holloway", "gresham", "tommy", "old_tom"}
 STAGING_COLUMNS = ["id", "bg", "slot_l", "slot_c", "slot_r", "focus", "style", "note"]
 # BGM cue table (design staging README; 設計總覽 §十一): columns, the design's track ids (BGM01-BGM20) and silence
@@ -1319,7 +1323,7 @@ def main() -> int:
         row = {"id": pid, "chapter": c, "kind": kind, "group": group, "resultChapter": result_ch,
                "mastKey": "UI_PAPER_MAST", "pictureId": f"ch{c:02d}", "headlineKey": head, "subKey": sub,
                "bodyKey": body, "page2HeadKey": "", "page2BodyKey": "", "sideKey": side_key, "adKey": ad,
-               "datelineKey": "", "pages": 2}
+               "datelineKey": "", "pages": 2, "addenda": False}
         for name, (hk, sk) in zip(("Win", "Noto", "Lose"), res):
             row[f"side{name}Key"] = hk
             row[f"side{name}SubKey"] = sk
@@ -1360,7 +1364,28 @@ def main() -> int:
             strings["HEAD_D01_DATE"] = {lang: parts[lang][0] for lang in LANGS}
             strings["HEAD_D01"] = {lang: parts[lang][1] for lang in LANGS}
         paper("D01_OPEN", D01_CHAPTER, "open", "D01_OPEN", 0, "HEAD_D01", "", "SCR_D01_S01_L002", "", "", no_result)
-        papers[-1].update({"pictureId": "", "datelineKey": "HEAD_D01_DATE", "pages": 1})
+        # 4.4: the engraving news_d01_wake (the board's picture id d01_wake), in v1's engraving slot
+        papers[-1].update({"pictureId": "d01_wake", "datelineKey": "HEAD_D01_DATE", "pages": 1})
+    # The v2 demo D01's closing paper (S09, docs/flows.md §4.15): one row per version (decent / normal / ugly = the
+    # engine's d1Paper; the step's arg D01_CLOSE is resolved by main to D01_CLOSE_<version>); the headline is the
+    # version's 【masthead】headline line without the bracket (HEAD_D01_CLOSE_<VERSION>), the lead the next line; no
+    # picture, one page. `addenda`: the paper flow appends the S09 addenda the engine picked (d1EpS09 from index 2).
+    for ver, (hl, body) in (("decent", (1, 2)), ("normal", (3, 4)), ("ugly", (5, 6))):
+        src = strings.get(f"SCR_D01_S09_L{hl:03d}")
+        if not src:
+            continue
+        head = {}
+        for lang in LANGS:
+            m = re.fullmatch(r"【[^】]+】\s*(.+)", src[lang])
+            if not m:
+                err(f"SCR_D01_S09_L{hl:03d} [{lang}]: not 【masthead】headline: {src[lang]!r}")
+                continue
+            head[lang] = m.group(1).strip()
+        if len(head) == 2:
+            strings[f"HEAD_D01_CLOSE_{ver.upper()}"] = head
+        paper(f"D01_CLOSE_{ver}", D01_CHAPTER, "close", f"D01_CLOSE_{ver}", 0, f"HEAD_D01_CLOSE_{ver.upper()}", "",
+              f"SCR_D01_S09_L{body:03d}", "", "", no_result)
+        papers[-1].update({"pictureId": "", "pages": 1, "addenda": True})
 
     # ---- BGM cues (design staging table; data-schema §14)
     bgm_cues = build_bgm_cues(loc, script, sinfo, papers)
@@ -1512,7 +1537,7 @@ KEY_COLUMNS = {
     "difficulty": ["nameKey", "descKey"], "tags": ["nameKey"], "hotspots": ["nameKey", "noteKey", "hintKey"],
 }
 # Engravings the paper board knows (ui#paper.picture; docs/ui-contracts.md paper). "" = no picture.
-PAPER_PICTURES = {"", "ch01", "ch02", "ch03", "ch04"}
+PAPER_PICTURES = {"", "ch01", "ch02", "ch03", "ch04", "d01_wake"}   # d01_wake: the D01 opening paper (4.4)
 LIST_KEY_COLUMNS = {"hotspots": ["lines"], "evidence": ["lines"]}
 EVIDENCE_REF_COLUMNS = {"hotspots": ["yields"], "nodes": ["refutedBy"], "opponents": ["hand"], "script": ["evidence"]}
 
@@ -1668,7 +1693,9 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
     for row in tables["steps"]:
         if row["kind"] in ("warmup", "debate") and row["arg"] not in opp_ids:
             err(f"steps {row['id']}: unknown opponent {row['arg']!r}")
-        if row["kind"] == "paper" and row["arg"] not in paper_groups:
+        # the D01 closing paper's arg names a group per version (main resolves D01_CLOSE -> D01_CLOSE_<d1Paper>)
+        versions = {f"{row['arg']}_{v}" for v in ("decent", "normal", "ugly")}
+        if row["kind"] == "paper" and row["arg"] not in paper_groups and not versions <= paper_groups:
             err(f"steps {row['id']}: unknown paper group {row['arg']!r}")
         v1_steps = [r for r in tables["steps"] if r["chapter"] in CHAPTERS]
         if row["kind"] == "end" and (row["arg"] not in strings or row is not v1_steps[-1]):

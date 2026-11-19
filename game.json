@@ -639,6 +639,21 @@
     "d1Cue": {
       "type": "string",
       "initial": ""
+    },
+    "d1Privates": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1FavInspector": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1FavMrsHyde": {
+      "type": "number",
+      "initial": 0
+    },
+    "d1ResScreen": {
+      "type": "pulse"
     }
   },
   "input": {
@@ -665,6 +680,7 @@
     "flows/d01_investigate.xtflow",
     "flows/d01_debate_ui.xtflow",
     "flows/d01_debate_engine.xtflow",
+    "flows/d01_end.xtflow",
     "flows/result.xtflow",
     "flows/music.xtflow"
   ],
@@ -733,6 +749,18 @@
       },
       {
         "ui": "d1warm",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "d1result",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "d1end",
         "width": 1280,
         "height": 720,
         "visible": false
@@ -1618,6 +1646,41 @@
       "kind": "map",
       "type": "number",
       "capacity": 4
+    },
+    "d1EpS08": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "d1EpS09": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "d1EpS10": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "d1EpRep": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "e1Rep": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "e1RepUp": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 16
+    },
+    "e1Fav": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
     }
   },
   "audio": {

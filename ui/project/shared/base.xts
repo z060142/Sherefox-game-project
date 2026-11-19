@@ -20,14 +20,14 @@
 }
 
 /* import */
-/* shared by 2 nodes */
+/* shared by 3 nodes */
 .s-6ed937 {
   border: 4px #b8322a;
   opacity: 0.92;
 }
 
 /* import */
-/* shared by 2 nodes */
+/* shared by 3 nodes */
 .s-eb9710 {
   border: 1px #b8322a;
 }
@@ -45,7 +45,7 @@
 }
 
 /* import */
-/* shared by 12 nodes */
+/* shared by 13 nodes */
 .s-66a9df {
   pointer-events: none;
 }
@@ -138,7 +138,7 @@
 }
 
 /* import */
-/* shared by 5 nodes */
+/* shared by 4 nodes */
 .s-614666 {
   background-color: #123a31;
 }
@@ -153,6 +153,16 @@
 /* shared by 2 nodes */
 .s-efadb3 {
   opacity: 0;
+}
+
+/* import */
+/* shared by 2 nodes */
+.s-bc4841 {
+  color: #092e28;
+  font-size: 20px;
+  letter-spacing: 5px;
+  line-height: 30px;
+  text-align: center;
 }
 
 /* import */

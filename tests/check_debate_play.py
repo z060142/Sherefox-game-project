@@ -76,7 +76,8 @@ def run(rec: str, game: Path, ticks: int, trace: list | None = None):
             events[-1] = (t, kind, rest + "\n" + raw)
     colls = json.loads(dump.read_text(encoding="utf-8"))["collections"]
     if trace is not None:
-        trace.extend((dump.parent / "trace.txt").read_text(encoding="utf-8").splitlines())
+        import check_music
+        trace.extend(check_music.trace_lines((dump.parent / "trace.txt").read_text(encoding="utf-8")))
     shutil.rmtree(dump.parent, ignore_errors=True)
     return events, err, colls
 

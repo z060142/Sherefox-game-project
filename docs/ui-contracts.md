@@ -517,9 +517,10 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `hint_who`、`hint` | string、string | in | 預兆的台詞（4.3：亞瑟的提示，或垂死反撲時塞德里克的 S07 L010）：預兆面板右側、心理量表下方的小框（#hint-wrap，選擇中才顯示；空字串隱藏） |
 | `float_opp`、`float_me`、`float_opp_seq`、`float_me_seq` | string、string、number、number | in | 浮動數字（序號變更時重播） |
 | `shatter_seq` | number | in | 論破：他的鏈碎掉 |
-| `grade_text`、`rounds_text`、`outcome_win` | string、string、bool | in | 結果框：`UI_V2_GRADE_<n>`、`UI_V2_RESULT_ROUNDS` |
 | `pick_act`、`pick_ev`、`pick_claim`、`pick_target` | number、string、string、string | out | 選行動（1 議論、2 截斷、3 拆台、4 打迷糊仗、5 終局截斷、6 承受／放棄、7 §7.5 反駁）、證物、說法、他鏈上的一節 |
-| `guard`、`lock`、`skip`、`back_title`、`settings` | event | out | 援護開關、鎖定、播放的下一筆、回到標題、設定（Esc／F1） |
+| `guard`、`lock`、`skip`、`settings` | event | out | 援護開關、鎖定、播放的下一筆、設定（Esc／F1） |
+
+4.4：論戰結束後的暫時結果框（`grade_text`、`rounds_text`、`outcome_win`、`back_title`）已拿掉；S07 收尾台詞之後步驟結束，由 `d1result` 接手。`hp_me`／`hp_opp` 一律最多兩位小數、不小於 0（章節 §12 表格的寫法）。
 
 UI 側：背景 `bg_d01_parlour.jpg`；左上報頭（`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`round_text`）與公開紀錄鈕（`UI_V2_RECORD`，或 R：UI 自己的 `Open` 狀態，面板列出 `record`，`BTN_CLOSE` 關閉）；右側塞德里克立繪（五張依 `face`）、名牌、可信度條、破防銅牌、三條量表（三格依段點亮，旁邊 `UI_V2_GAUGE_CALM`／`FLOAT`／`BROKEN`）；上方他的鏈（可點的剪報卡）、中段說法選擇器（左證物、右說法）與預兆欄、我方可信度列、我方的鏈與論破進度、確認列；下方行動列（一般：`UI_V2_ACT_ARGUE`、`UI_V2_ACT_REBUT` 之下的 `UI_V2_REBUT_CUT`／`UI_V2_REBUT_TOPPLE`、`UI_V2_ACT_STALL`、`UI_V2_SUPPORT`；終局：`UI_V2_LAST_CARD_PROMPT`、`UI_V2_ENDGAME_CUT`、`UI_V2_ENDGAME_TAKE`；§7.5：`UI_V2_MY_LAST_CARD`、`UI_V2_ACT_REBUT`、`UI_V2_GIVE_UP_BTN`）與 `UI_V2_LOCK_IN`。播放中整個畫面可點（下一筆），播放帶蓋在中段。鍵盤：1～4、V（援護）、R、Enter（鎖定／下一筆）、Space、Esc／F1。
 
@@ -547,7 +548,33 @@ title 追加（v2 demo M2）：`v2demo`（event，out）＝ 主標題下方的�
 
 UI 側實作（板子 `ui/boards/project/D1Warm.dc.html`）：上方號外條（`UI_PAPER_EXTRA`、`title`、右側 `miss_text` 報框）；Sherefox 立繪在左、警督在右（340×510，`focus` 決定誰變暗）；中央論點框（朱紅框，`point` 改變時落下）；其下提示列（`UI_V2_WARMUP_PICK`，`choosing` 時）與三張觀察剪報（`UI_V2_TYPE_OBS`＋編號＋全文；`choosing` 時不透明、可點，滑過變黃）；下方對白框（名牌、台詞、`choosing` 以外顯示「下一行」三角）。鍵盤：1～3 選觀察、Enter／Space 下一行、Esc／F1 設定。
 
-字串鍵：`UI_PAPER_EXTRA`、`UI_V2_WARMUP_PICK`（PLACEHOLDER，`source/localization/d01_placeholders.csv`）、`UI_V2_TYPE_OBS`。
+字串鍵：`UI_PAPER_EXTRA`、`UI_V2_WARMUP_PICK`（設計 a853521 已補）、`UI_V2_TYPE_OBS`。
+
+4.4（企劃 a853521）：論點等待選擇時（`choosing`）下方對白框整個隱藏，警督的論點只在上方的論點框；對白框只在其他行出現（Sherefox 的反駁、警督的回應，以及開場、答錯、結果的台詞）。沒有新 port（`#dlg` 綁 `display=choosing | eq(false)`）。
+
+## d1result（v2 示範關卡 D01 的結算畫面，1280×720；v2 demo 4.4）
+
+依據：`v2/11_demo_chapter.md` §13「結算畫面」與 v2 demo 計畫 §2.4 隱藏數值裁定（等級五選一、聲譽的增減明細、好感變化；不顯示聲譽總和、真相度與它的段）。流圖 `flows/d01_end.xtflow`（`docs/flows.md` §4.15）。板子 `ui/boards/project/D1Result.dc.html`（沿用 v1 result 的桌上剪報）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `win` | number | in | 1 勝、0 敗（等級文字的顏色、勝利時的「結案」印） |
+| `grade_text` | string | in | `UI_V2_GRADE_<n>`（只有名稱，沒有數字） |
+| `rounds_text` | string | in | `UI_V2_RESULT_ROUNDS` |
+| `rep` | list<struct{label: string, up: number}> | in | 聲譽的每一項（`UI_V2_REP_*`，有次數的帶 ×n）與方向（1 `UI_V2_REP_UP` ↑、0 `UI_V2_REP_DOWN` ↓；設計字串註明只給方向、不給數字） |
+| `fav`、`fav_on` | list<struct{text: string}>、bool | in | 好感變化（`UI_V2_FAVOR_LINE`：名牌＋「+1」／「−1」）；沒有變化時 `fav_on` false，顯示「—」 |
+| `next` | event | out | 繼續（按鈕、Enter、Space） |
+| `settings` | event | out | 設定（Esc、F1） |
+
+固定文字：`SCR_D01_S08_TITLE`（報頭位置）、`UI_V2_GRADE_LABEL`、`UI_V2_REP_HEAD`、`UI_V2_FAVOR_HEAD`、`UI_PAPER_STAMP_CLOSED`、`BTN_RES_CONTINUE`。
+
+## d1end（v2 示範關卡 D01 的下一章預告佔位，1280×720；v2 demo 4.4）
+
+依據：`v2/11_demo_chapter.md` S11、§13「下一章預告佔位」。沒有流圖：文字是板上的字串鍵（`SCR_D01_S11_L001` 標題、`L002` 佔位文字、`L003` 按鈕），黑底與報紙剪影（純色塊）。`back`（event，out；按鈕、Enter）→ `main` 回到標題（`docs/flows.md` §4.15）；`settings`（Esc、F1）。
+
+paper 追加（4.4）：已知圖 id 加 `d01_wake`（`_blob/paper_d01_wake.jpg`，設計 `images/d01/news_d01_wake.png` 1813×868 轉成 JPEG；在 v1 的鋼版畫框裡 `object-fit: cover`，700×346 的框比原圖略窄，左右各裁一點）。有圖而 `subhead` 空字串時（D01 的開場報紙）`#lead-pic` 帶 `class.nodeck`：不留副標的空位，導言兩欄從頂端排到底（223 px 寬、338 px 高、中文 17／26 px 十三行、英文 15／21.125 px 十六行）；v1 的報紙都有副標，版面不變。無圖（D01 章末報紙）：不再有副標列與空白，內文三欄緊接頭條下方（每欄 378 px；中文 22／34 px 六行、英文 16／29 px 七行，欄高 204／203 px，同樣的位移法）；v1 沒有無圖的報紙。
+
+vn 追加（4.4）：角色 `irene`（`char_irene.png`，三個位置），S08 L003 用。
 
 ## d1inv（v2 示範關卡 D01 的蒐證，1280×720；v2 demo M3）
 

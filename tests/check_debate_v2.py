@@ -49,6 +49,7 @@ from xt_cli import EXE, XTFRAME  # noqa: E402
 from sherefox_ref.v2 import known as K  # noqa: E402
 from sherefox_ref.v2 import play as P  # noqa: E402
 from sherefox_ref.v2 import results as RS  # noqa: E402
+from sherefox_ref.v2 import epilogue as EP  # noqa: E402
 from sherefox_ref.v2 import routes as RT  # noqa: E402
 from sherefox_ref.v2.model import PA, IllegalAction, Loadout, PlayerAction, initial_state  # noqa: E402
 from sherefox_ref.v2.policy import RngChooser, decide  # noqa: E402
@@ -291,14 +292,18 @@ def ref_claims(s) -> tuple[list, dict]:
 
 def ref_result(s) -> dict:
     r = RS.compute(s)
-    return {"truth": r.truth, "rep": [f"{n}|{d}" for n, d in r.reputation], "delta": r.reputation_delta,
+    e = EP.epilogue(s)
+    return {"s08": list(e.s08), "s09": list(e.s09), "s10": list(e.s10), "rep_names": [n for n, _ in r.reputation],
+            "truth": r.truth, "rep": [f"{n}|{d}" for n, d in r.reputation], "delta": r.reputation_delta,
             "after": r.reputation_after, "next_hp": r.next_start_hp, "favour": [f"{w}|{d}" for w, d in r.favour],
             "note": r.note_version, "paper": r.newspaper, "false": len(r.false_claims), "key_left": len(r.key_left),
             "grade": r.grade, "reason": r.reason, "rounds": r.rounds}
 
 
 def engine_result(m: dict, lists: dict) -> dict:
-    return {"truth": m["truth"], "rep": lists.get("d1Rep", []), "delta": m["rdl"], "after": m["rpa"],
+    return {"s08": lists.get("d1EpS08", []), "s09": lists.get("d1EpS09", []), "s10": lists.get("d1EpS10", []),
+            "rep_names": lists.get("d1EpRep", []),
+            "truth": m["truth"], "rep": lists.get("d1Rep", []), "delta": m["rdl"], "after": m["rpa"],
             "next_hp": m["nhp"], "favour": lists.get("d1Favour", []), "note": G.NOTES[int(m["note"])],
             "paper": G.PAPERS[int(m["paper"])], "false": m["nfc"], "key_left": m["kl"], "grade": int(m["grade"]),
             "reason": G.REASONS[int(m["why"])], "rounds": m["r"] - 1}
@@ -638,6 +643,12 @@ def check_row(s, ev_before, events, dec, m: dict, lists: dict, strs: dict, nums:
             return "result " + err
         if strs.get("d1Outcome") != s.outcome or nums.get("d1Grade") != s.grade:
             return "outputs d1Outcome / d1Grade"
+        if nums.get("d1Privates") != s.privates:
+            return "output d1Privates"
+        fav = dict(RS.compute(s).favour)
+        for w in G.FAV_WHO:
+            if nums.get(G.fav_signal(w)) != fav.get(w, 0):
+                return f"output {G.fav_signal(w)}: expected {fav.get(w, 0)}, got {nums.get(G.fav_signal(w))}"
     if nums.get("d1PlayerHp") != s.player_hp or nums.get("d1Round") != s.round:
         return "outputs d1PlayerHp / d1Round"
     return None
@@ -747,6 +758,22 @@ def main(argv: list[str]) -> int:
             print(f"PASS {d.name} ({len(d.steps)} rounds, {res or 'unfinished'}{tag})")
     total = len(results)
     print(f"{total - sum(1 for _, _, e in results if e)}/{total} debates pass")
+    # v2 demo 4.4: every ending line (ch §2 S08-S10) must be reached by at least one engine-checked debate (the
+    # default four seeds and the routes do; a narrower run only reports it)
+    seen = set()
+    for d, n, err in results:
+        s = d.steps[-1][3] if d.steps else None
+        if s is not None and s.outcome and not err:
+            e = EP.epilogue(s)
+            seen.update(e.s08 + e.s09 + e.s10)
+    every = [f"SCR_D01_S08_L{i:03d}" for i in range(1, 13)] + [f"SCR_D01_S09_L{i:03d}" for i in range(1, 9)]         + [f"SCR_D01_S10_L{i:03d}" for i in range(1, 10)]
+    missing = [x for x in every if x not in seen]
+    full_run = "--route" not in argv and "--no-play" not in argv and seeds >= 4
+    print(f"ending lines reached: {len(every) - len(missing)}/{len(every)}"
+          + (f" (missing {', '.join(missing)})" if missing else ""))
+    if missing and full_run:
+        print("FAIL ending coverage")
+        failed += 1
     return 1 if failed else 0
 
 

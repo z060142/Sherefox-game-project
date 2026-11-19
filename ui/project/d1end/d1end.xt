@@ -1,0 +1,209 @@
+<xt version="2">
+  <head>
+    <title>D1End</title>
+  </head>
+
+  <ports>
+    back: event out
+    settings: event out
+  </ports>
+
+  <body on:show="play(fade-in)" key-activation="none">
+    <div id="d1end" tabindex="0" autofocus="" on:key(Enter)="emit(back)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
+      <div id="sheet">
+        <div id="sil" class="sil">
+          <div id="sil-mast" class="sil-bar"/>
+          <div id="sil-rule" class="sil-bar"/>
+          <div id="sil-head" class="sil-bar"/>
+          <div id="sil-pic" class="sil-line"/>
+          <div id="sil-c1" class="sil-line"/>
+          <div id="sil-c2" class="sil-line"/>
+          <div id="sil-c3" class="sil-line"/>
+          <div id="sil-c4" class="sil-line"/>
+          <div id="sil-c5" class="sil-line"/>
+          <div id="sil-c6" class="sil-line"/>
+          <div id="sil-c7" class="sil-line"/>
+          <div id="sil-c8" class="sil-line"/>
+        </div>
+        <div id="head" class="head">@SCR_D01_S11_L001</div>
+        <div id="sub" class="sub">@SCR_D01_S11_L002</div>
+        <div id="btns">
+          <div id="btn-back" class="btn" on:click(left)="emit(back)">@SCR_D01_S11_L003</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1End.dc.html:1 */
+    #d1end {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1End.dc.html:1/0 */
+    #sheet {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: D1End.dc.html:1/0/0 */
+    #sil {
+      height: 330px;
+      left: 390px;
+      position: absolute;
+      top: 70px;
+      transform: rotate(-4deg);
+      width: 500px;
+    }
+    /* import: D1End.dc.html:1/0/0/0 */
+    #sil-mast {
+      height: 34px;
+      left: 40px;
+      position: absolute;
+      top: 26px;
+      width: 420px;
+    }
+    /* import: D1End.dc.html:1/0/0/1 */
+    #sil-rule {
+      height: 3px;
+      left: 30px;
+      position: absolute;
+      top: 72px;
+      width: 440px;
+    }
+    /* import: D1End.dc.html:1/0/0/2 */
+    #sil-head {
+      height: 22px;
+      left: 60px;
+      position: absolute;
+      top: 92px;
+      width: 380px;
+    }
+    /* import: D1End.dc.html:1/0/0/3 */
+    #sil-pic {
+      height: 160px;
+      left: 30px;
+      position: absolute;
+      top: 134px;
+      width: 240px;
+    }
+    /* import: D1End.dc.html:1/0/0/4 */
+    #sil-c1 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 134px;
+      width: 180px;
+    }
+    /* import: D1End.dc.html:1/0/0/5 */
+    #sil-c2 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 154px;
+      width: 180px;
+    }
+    /* import: D1End.dc.html:1/0/0/6 */
+    #sil-c3 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 174px;
+      width: 160px;
+    }
+    /* import: D1End.dc.html:1/0/0/7 */
+    #sil-c4 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 194px;
+      width: 180px;
+    }
+    /* import: D1End.dc.html:1/0/0/8 */
+    #sil-c5 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 214px;
+      width: 140px;
+    }
+    /* import: D1End.dc.html:1/0/0/9 */
+    #sil-c6 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 234px;
+      width: 180px;
+    }
+    /* import: D1End.dc.html:1/0/0/10 */
+    #sil-c7 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 254px;
+      width: 170px;
+    }
+    /* import: D1End.dc.html:1/0/0/11 */
+    #sil-c8 {
+      height: 8px;
+      left: 290px;
+      position: absolute;
+      top: 274px;
+      width: 120px;
+    }
+    /* import: D1End.dc.html:1/0/1 */
+    #head {
+      height: 70px;
+      left: 140px;
+      position: absolute;
+      top: 440px;
+      width: 1000px;
+    }
+    /* import: D1End.dc.html:1/0/2 */
+    #sub {
+      height: 64px;
+      left: 140px;
+      position: absolute;
+      top: 522px;
+      width: 1000px;
+    }
+    /* import: D1End.dc.html:1/0/3 */
+    #btns {
+      display: flex;
+      flex-direction: row;
+      height: 48px;
+      justify-content: center;
+      left: 140px;
+      position: absolute;
+      top: 616px;
+      width: 1000px;
+    }
+    .btn {
+      width: 240px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1end.xts"/>
+  <timelines>
+    @timeline fade-in {
+      #sheet {
+        0ms {
+          opacity: 0;
+        }
+        900ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+  </timelines>
+</xt>

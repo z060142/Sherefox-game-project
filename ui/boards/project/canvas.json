@@ -128,6 +128,22 @@
       "h": 720,
       "title": "D1Warm",
       "page": "main"
+    },
+    "D1Result.dc.html": {
+      "x": 0,
+      "y": 12800,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Result",
+      "page": "main"
+    },
+    "D1End.dc.html": {
+      "x": 0,
+      "y": 13600,
+      "w": 1280,
+      "h": 720,
+      "title": "D1End",
+      "page": "main"
     }
   },
   "order": [
@@ -146,7 +162,9 @@
     "D1Inv.dc.html",
     "D1Book.dc.html",
     "D1Carry.dc.html",
-    "D1Warm.dc.html"
+    "D1Warm.dc.html",
+    "D1Result.dc.html",
+    "D1End.dc.html"
   ],
   "pages": [
     "main"

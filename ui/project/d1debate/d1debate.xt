@@ -64,9 +64,6 @@
     float_opp_seq: number in = 0
     float_me_seq: number in = 0
     shatter_seq: number in = 0
-    grade_text: string in = "乾淨論破"
-    rounds_text: string in = "回合數 9"
-    outcome_win: bool in = true
     pick_act: number out = 0
     pick_ev: string out = ""
     pick_claim: string out = ""
@@ -74,7 +71,6 @@
     guard: event out
     lock: event out
     skip: event out
-    back_title: event out
     settings: event out
   </ports>
 
@@ -325,16 +321,6 @@
                 </div>
               </repeat>
             </div>
-          </div>
-        </div>
-        <div id="outcome-veil" class="veil" bind:display="mode | eq(3)"/>
-        <div id="outcome" class="outcome sheet-big" bind:display="mode | eq(3)" bind:class.win="outcome_win">
-          <div id="out-k" class="kicker s-872272">@UI_V2_GRADE_LABEL</div>
-          <div id="out-rule" class="s-614666"/>
-          <div id="out-grade" class="grade-t" bind:text="grade_text">乾淨論破</div>
-          <div id="out-rounds" class="rounds-t" bind:text="rounds_text">回合數 9</div>
-          <div id="out-back" class="bbtn" on:click(left)="emit(back_title)">
-            <div id="out-back-t" class="bbtn-t">@UI_V2_BACK_TITLE</div>
           </div>
         </div>
       </div>
@@ -1809,70 +1795,6 @@
     /* import: D1Debate.dc.html:1/1/21/0/4/0/0/5 */
     #rec-state {
       height: 26px;
-    }
-    /* import: D1Debate.dc.html:1/1/22 */
-    #outcome-veil {
-      height: 720px;
-      left: 0px;
-      position: absolute;
-      top: 0px;
-      width: 1280px;
-    }
-    /* import: D1Debate.dc.html:1/1/23 */
-    #outcome {
-      height: 300px;
-      left: 360px;
-      position: absolute;
-      top: 190px;
-      width: 560px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/0 */
-    #out-k {
-      height: 18px;
-      left: 20px;
-      position: absolute;
-      top: 20px;
-      width: 520px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/1 */
-    #out-rule {
-      height: 3px;
-      left: 20px;
-      position: absolute;
-      top: 44px;
-      width: 520px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/2 */
-    #out-grade {
-      height: 52px;
-      left: 20px;
-      position: absolute;
-      top: 70px;
-      width: 520px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/3 */
-    #out-rounds {
-      height: 24px;
-      left: 20px;
-      position: absolute;
-      top: 140px;
-      width: 520px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/4 */
-    #out-back {
-      height: 44px;
-      left: 170px;
-      position: absolute;
-      top: 210px;
-      width: 220px;
-    }
-    /* import: D1Debate.dc.html:1/1/23/4/0 */
-    #out-back-t {
-      height: 30px;
-      left: 4px;
-      position: absolute;
-      top: 6px;
-      width: 212px;
     }
     .kicker {
       overflow: hidden;

@@ -67,3 +67,26 @@ SCR_D01_S07_L016,,,,,0,0,
 SCR_D01_S07_L017,d01_parlour,sherefox,baskerville,cedric_composed,2,0,after a loss: the locksmith is taken away
 SCR_D01_S07_L018,d01_parlour,sherefox,mrs_hyde,cedric_composed,3,0,Cedric to his aunt
 SCR_D01_S07_L019,d01_parlour,,,,0,1,that night the study chimney smokes once (narration)
+SCR_D01_S08_TITLE,d01_parlour,,,,0,2,"S08 (v2 demo 4.4): the result step's lines, picked by the engine (d1EpS08); then the result screen"
+SCR_D01_S08_L001,d01_parlour,sherefox,mrs_hyde,,2,0,a win: Mrs Hyde thanks Sherefox
+SCR_D01_S08_L002,d01_parlour,sherefox,mrs_hyde,,2,0,
+SCR_D01_S08_L003,d01_parlour,sherefox,mrs_hyde,irene,3,0,Irene in the corner with her tray
+SCR_D01_S08_L004,d01_parlour,sherefox,mrs_hyde,briggs,3,0,
+SCR_D01_S08_L005,d01_parlour,sherefox,mrs_hyde,briggs,2,0,
+SCR_D01_S08_L006,d01_parlour,sherefox,mrs_hyde,briggs,3,0,Briggs bows and leaves
+SCR_D01_S08_L007,d01_parlour,sherefox,baskerville,,2,0,
+SCR_D01_S08_L008,d01_parlour,sherefox,baskerville,,1,0,
+SCR_D01_S08_L009,d01_parlour,sherefox,arthur,,2,0,
+SCR_D01_S08_L010,d01_parlour,sherefox,arthur,,1,0,
+SCR_D01_S08_L011,d01_parlour,sherefox,arthur,,2,0,a loss
+SCR_D01_S08_L012,d01_parlour,sherefox,arthur,,1,0,
+SCR_D01_S10_TITLE,,,,,0,2,"S10 (v2 demo 4.4): Arthur's case notes (as v1's notes scenes: narration, notebook style), lines picked by the engine (d1EpS10)"
+SCR_D01_S10_L001,,,,,0,1,
+SCR_D01_S10_L002,,,,,0,1,
+SCR_D01_S10_L003,,,,,0,1,
+SCR_D01_S10_L004,,,,,0,1,
+SCR_D01_S10_L005,,,,,0,1,
+SCR_D01_S10_L006,,,,,0,1,
+SCR_D01_S10_L007,,,,,0,1,
+SCR_D01_S10_L008,,,,,0,1,
+SCR_D01_S10_L009,,,,,0,1,

@@ -45,20 +45,6 @@
   .tall #lead-col-rule { height: 264px }
   .tall #lead-col-2 { height: 264px }
   .tall #lead-col-2-text { top: -264px }
-  .tall #cols { height: 264px }
-  .tall #col-1 { height: 264px }
-  .tall #col-2 { height: 264px }
-  .tall #col-3 { height: 264px }
-  .tall #col-4 { height: 264px }
-  .tall #col-5 { height: 264px }
-  .tall #col-rule-1 { height: 264px }
-  .tall #col-rule-2 { height: 264px }
-  .tall #col-rule-3 { height: 264px }
-  .tall #col-rule-4 { height: 264px }
-  .tall #col-2-text { top: -264px }
-  .tall #col-3-text { top: -528px }
-  .tall #col-4-text { top: -792px }
-  .tall #col-5-text { top: -1056px }
 
   /* Page 2: with no second-section story (page2_head empty) the briefs and the advertisement take the page. */
   .ad-box { padding: 5px; border: 1px solid var(--ink) }
@@ -91,6 +77,31 @@
      column-2 shift stays one column height. */
   :lang(en) #lead-col-1-text { font-size: 13px; line-height: 16.5px }
   :lang(en) #lead-col-2-text { font-size: 13px; line-height: 16.5px }
+
+  /* v2 demo D01 (4.4): a picture with no subhead (the D01 opening paper): no deck, the lead's two columns take the
+     whole height beside the engraving, in a larger type. v1 papers all have a subhead, so they never get this. */
+  .nodeck #pic-deck-box { display: none }
+  .nodeck #lead-rule { display: none }
+  .nodeck #lead-col-1 { top: 0px; width: 223px; height: 338px }
+  .nodeck #lead-col-2 { top: 0px; left: 961px; width: 223px; height: 338px }
+  .nodeck #lead-col-rule { top: 0px; left: 948px; height: 338px }
+  .nodeck #lead-col-1-text { width: 223px; font-size: 17px; line-height: 26px }
+  .nodeck #lead-col-2-text { width: 223px; top: -338px; font-size: 17px; line-height: 26px }
+  :lang(en) .nodeck #lead-col-1-text { font-size: 15px; line-height: 21.125px }
+  :lang(en) .nodeck #lead-col-2-text { font-size: 15px; line-height: 21.125px }
+
+  /* No picture (the D01 closing paper; no v1 paper is without one): no subhead row, the body in three wide
+     columns right under the headline (zh 6 lines of 34 px, en 7 lines of 29 px per column). */
+  .wcol { font-family: var(--font-body); font-size: 22px; line-height: 34px; color: var(--ink) }
+  :lang(en) .wcol { font-size: 16px; line-height: 29px }
+  :lang(en) #wcols { height: 203px }
+  :lang(en) #wcol-1 { height: 203px }
+  :lang(en) #wcol-2 { height: 203px }
+  :lang(en) #wcol-3 { height: 203px }
+  :lang(en) #wcol-rule-1 { height: 203px }
+  :lang(en) #wcol-rule-2 { height: 203px }
+  :lang(en) #wcol-2-text { top: -203px }
+  :lang(en) #wcol-3-text { top: -406px }
 </style></helmet>
 <div id="paper" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
      data-xt-port='page:number in = 1; mast:number in = 0; dateline:string in = "1887 年 10 月・陰雨　每份一便士"; headline:string in = "百年古董懷錶遭掉包！富商怒告貝克街老鐘錶匠"; subhead:string in = "格雷沙姆先生：「我的錶進店時完好如初。」"; body:string in = "本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。格雷沙姆先生表示：「我的錶進店時完好如初，店主是唯一碰過它的人。」店主霍洛威老先生經營鐘錶店逾四十年，鄰里評價甚佳，對此指控堅決否認。據悉，富商已委託律師，最快本週提告。"; page2_head:string in = ""; page2_body:string in = ""; side:string in = "鐘錶業公會午宴，一位年輕的市政顧問出席並捐贈學徒獎學金。"; ad:string in = "招租：貝克街事務所二樓空房，限能忍受惡作劇者。"; stamp:number in = 0; picture:string in = "ch02"; result_head:string in = "市議會擬加徵煤煙稅　工廠主人聯名抗議"; result_sub:string in = ""; next:event out; prev:event out; settings:event out'
@@ -155,7 +166,7 @@
 
     <!-- With a picture: the steel engraving across columns 1-3, the deck and the lead in columns 4-5.
          The lead uses the same flowing-column trick as the five-column page (column 2 shifted up by one column height). -->
-    <div id="lead-pic" data-xt-bind="display=picture | ne('')"
+    <div id="lead-pic" data-xt-bind="display=picture | ne(''); class.nodeck=subhead | eq('')"
          data-xt-timeline="intro: 0 opacity 0, 200ms opacity 0, 560ms ease-out opacity 1"
          style="position: absolute; left: 48px; top: 330px; width: 1184px; height: 356px;">
       <div id="pic-frame" class="pic-frame" style="position: absolute; left: 0px; top: 0px; width: 700px; height: 282px;">
@@ -163,6 +174,7 @@
         <img id="pic-ch02" class="pic-art" src="/_blob/paper_ch02.jpg" data-xt-bind="display=picture | eq('ch02')">
         <img id="pic-ch03" class="pic-art" src="/_blob/paper_ch03.jpg" data-xt-bind="display=picture | eq('ch03')">
         <img id="pic-ch04" class="pic-art" src="/_blob/paper_ch04.jpg" data-xt-bind="display=picture | eq('ch04')">
+        <img id="pic-d01-wake" class="pic-art" src="/_blob/paper_d01_wake.jpg" data-xt-bind="display=picture | eq('d01_wake')">
       </div>
       <div id="pic-rule" class="rule-col" style="position: absolute; left: 713px; top: 0px; width: 1px; height: 282px;"></div>
       <div id="pic-deck-box" style="position: absolute; left: 726px; top: 0px; width: 458px; height: 72px;
@@ -182,39 +194,25 @@
       </div>
     </div>
 
-    <!-- Without a picture: the subhead across the page and the body in five flowing columns. -->
+    <!-- Without a picture (v2 demo 4.4; no v1 paper is without one): no empty subhead or engraving gap, the body in
+         three wide flowing columns right under the headline (same shift trick, column height 204 px). -->
     <div id="lead-text" data-xt-bind="display=picture | eq('')"
          style="position: absolute; left: 48px; top: 330px; width: 1184px; height: 356px;">
-      <p id="subhead" class="f-body" data-xt-bind="text=subhead"
-         style="position: absolute; left: 100px; top: 0px; width: 984px; height: 52px; margin: 0px;
-                text-align: center; font-size: 19px; line-height: 26px;
-                font-style: italic; color: #123a31; line-clamp: 2;">格雷沙姆先生：「我的錶進店時完好如初。」</p>
-      <div id="p1-rule-e" class="rule-thin" style="position: absolute; left: 0px; top: 62px; width: 1184px; height: 1px;"></div>
-      <div id="cols" data-xt-timeline="intro: 0 opacity 0, 250ms opacity 0, 600ms ease-out opacity 1"
-           style="position: absolute; left: 0px; top: 72px; width: 1184px; height: 198px;">
-        <div id="col-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 216px; height: 198px;">
-          <div id="col-1-text" class="col-text" data-xt-bind="text=body"
-               style="position: absolute; left: 0px; top: 0px; width: 216px; height: 1320px;">本報訊，富商格雷沙姆先生昨日委託貝克街報時鳥鐘錶店清潔一只百年古董懷錶，晚間開啟錶背時，赫然發現機芯已遭替換。</div>
+      <div id="wcols" data-xt-timeline="intro: 0 opacity 0, 250ms opacity 0, 600ms ease-out opacity 1"
+           style="position: absolute; left: 0px; top: 14px; width: 1184px; height: 204px;">
+        <div id="wcol-1" class="col" style="position: absolute; left: 0px; top: 0px; width: 378px; height: 204px;">
+          <div id="wcol-1-text" class="wcol" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: 0px; width: 378px; height: 1224px;">本報訊，肯辛頓海德宅遺囑附錄失竊案昨日真相大白。亡者之姪塞德里克・海德為掩飾鉅額賭債，趁守靈夜關閉煤氣總閥竊取附錄，嫁禍到府修鎖的鎖匠。貝克街的狐耳偵探當眾逐一指出破綻，附錄於書房壁爐中完好尋回。鎖匠布里格斯當場獲釋。</div>
         </div>
-        <div id="col-rule-1" class="rule-col" style="position: absolute; left: 228px; top: 0px; width: 1px; height: 198px;"></div>
-        <div id="col-2" class="col" style="position: absolute; left: 242px; top: 0px; width: 216px; height: 198px;">
-          <div id="col-2-text" class="col-text" data-xt-bind="text=body"
-               style="position: absolute; left: 0px; top: -198px; width: 216px; height: 1320px;">本報訊</div>
+        <div id="wcol-rule-1" class="rule-col" style="position: absolute; left: 390px; top: 0px; width: 1px; height: 204px;"></div>
+        <div id="wcol-2" class="col" style="position: absolute; left: 403px; top: 0px; width: 378px; height: 204px;">
+          <div id="wcol-2-text" class="wcol" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -204px; width: 378px; height: 1224px;">本報訊</div>
         </div>
-        <div id="col-rule-2" class="rule-col" style="position: absolute; left: 470px; top: 0px; width: 1px; height: 198px;"></div>
-        <div id="col-3" class="col" style="position: absolute; left: 484px; top: 0px; width: 216px; height: 198px;">
-          <div id="col-3-text" class="col-text" data-xt-bind="text=body"
-               style="position: absolute; left: 0px; top: -396px; width: 216px; height: 1320px;">本報訊</div>
-        </div>
-        <div id="col-rule-3" class="rule-col" style="position: absolute; left: 712px; top: 0px; width: 1px; height: 198px;"></div>
-        <div id="col-4" class="col" style="position: absolute; left: 726px; top: 0px; width: 216px; height: 198px;">
-          <div id="col-4-text" class="col-text" data-xt-bind="text=body"
-               style="position: absolute; left: 0px; top: -594px; width: 216px; height: 1320px;">本報訊</div>
-        </div>
-        <div id="col-rule-4" class="rule-col" style="position: absolute; left: 954px; top: 0px; width: 1px; height: 198px;"></div>
-        <div id="col-5" class="col" style="position: absolute; left: 968px; top: 0px; width: 216px; height: 198px;">
-          <div id="col-5-text" class="col-text" data-xt-bind="text=body"
-               style="position: absolute; left: 0px; top: -792px; width: 216px; height: 1320px;">本報訊</div>
+        <div id="wcol-rule-2" class="rule-col" style="position: absolute; left: 793px; top: 0px; width: 1px; height: 204px;"></div>
+        <div id="wcol-3" class="col" style="position: absolute; left: 806px; top: 0px; width: 378px; height: 204px;">
+          <div id="wcol-3-text" class="wcol" data-xt-bind="text=body"
+               style="position: absolute; left: 0px; top: -408px; width: 378px; height: 1224px;">本報訊</div>
         </div>
       </div>
     </div>

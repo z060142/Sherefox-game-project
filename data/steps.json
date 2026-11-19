@@ -32,5 +32,9 @@
 {"id":"D01_03","chapter":101,"idx":3,"kind":"d1warmup","sub":"","scene":"S04","arg":""},
 {"id":"D01_04","chapter":101,"idx":4,"kind":"d1investigate","sub":"","scene":"S05","arg":""},
 {"id":"D01_05","chapter":101,"idx":5,"kind":"d1carry","sub":"","scene":"S06","arg":""},
-{"id":"D01_06","chapter":101,"idx":6,"kind":"d1debate","sub":"","scene":"S07","arg":""}
+{"id":"D01_06","chapter":101,"idx":6,"kind":"d1debate","sub":"","scene":"S07","arg":""},
+{"id":"D01_07","chapter":101,"idx":7,"kind":"d1result","sub":"","scene":"S08","arg":""},
+{"id":"D01_08","chapter":101,"idx":8,"kind":"paper","sub":"","scene":"S09","arg":"D01_CLOSE"},
+{"id":"D01_09","chapter":101,"idx":9,"kind":"d1notes","sub":"","scene":"S10","arg":""},
+{"id":"D01_10","chapter":101,"idx":10,"kind":"d1end","sub":"","scene":"S11","arg":""}
 ]

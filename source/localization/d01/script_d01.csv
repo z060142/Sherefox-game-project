@@ -225,10 +225,10 @@ TELL_D01_PUSH_2,塞德里克,Cedric,我受夠這場鬧劇了。,I have had quite
 TELL_D01_REBUT_1,塞德里克,Cedric,請說，我洗耳恭聽。,"Please, go on. I am all ears.",預兆台詞
 TELL_D01_REBUT_2,塞德里克,Cedric,您確定要這麼說？,Are you quite sure you wish to say that?,預兆台詞
 TELL_D01_STALL_1,塞德里克,Cedric,我想，我們都需要冷靜一下。,I think we could all do with a moment's calm.,預兆台詞
-TELL_D01_HINT_ASSERT,亞瑟,Arthur,他在整理領巾。要開口了。,He's straightening his cravat. He's about to speak.,亞瑟的預兆提示
-TELL_D01_HINT_PUSH,亞瑟,Arthur,他摘手套了——準備接住。,The glove's coming off—brace yourself.,亞瑟的預兆提示
-TELL_D01_HINT_REBUT,亞瑟,Arthur,他在等妳先說。別亂拉線。,He's waiting for you to go first. Don't throw links about carelessly.,亞瑟的預兆提示
-TELL_D01_HINT_STALL,亞瑟,Arthur,他又在摸那個錶鏈……在拖時間。現在說我們的。,He's fiddling with that watch chain again... playing for time. Make our case now.,亞瑟的預兆提示
+TELL_D01_HINT_ASSERT,亞瑟,Arthur,他在整理領巾。要開口了。,He's straightening his cravat. He's about to speak.,"亞瑟的預兆提示; clear tells only, once per action per debate (timing in chapter §11)"
+TELL_D01_HINT_PUSH,亞瑟,Arthur,他摘手套了——準備接住。,The glove's coming off—brace yourself.,"亞瑟的預兆提示; clear tells only, once per action per debate (timing in chapter §11)"
+TELL_D01_HINT_REBUT,亞瑟,Arthur,他在等妳先說。別亂拉線。,He's waiting for you to go first. Don't throw links about carelessly.,"亞瑟的預兆提示; clear tells only, once per action per debate (timing in chapter §11)"
+TELL_D01_HINT_STALL,亞瑟,Arthur,他又在摸那個錶鏈……在拖時間。現在說我們的。,He's fiddling with that watch chain again... playing for time. Make our case now.,"亞瑟的預兆提示; clear tells only, once per action per debate (timing in chapter §11)"
 STATE_D01_ART_HACHIKU,亞瑟,Arthur,漂亮，讀對了。,Well done—you read him right.,亞瑟的狀態台詞（沿用 v1 的語氣）
 STATE_D01_ART_CORNERED,亞瑟,Arthur,他被逼到牆角了，接下來每一句都會很重——但也很好認。,He's backed into a corner. Every line from here will hit hard—but they'll be easy to read.,亞瑟的狀態台詞（沿用 v1 的語氣）
 STATE_D01_ART_BREACHED,亞瑟,Arthur,先站穩，下一手用正論，我陪妳撐過去。,Steady yourself first. Use a sound claim next; I'll see you through this.,亞瑟的狀態台詞（沿用 v1 的語氣）
@@ -316,11 +316,11 @@ BEAT_D01_REFUTED_4,亞瑟,Arthur,（翻筆記）……{place}，我們撿到了�
 BEAT_D01_REVERSE_1,塞德里克,Cedric,狐狸小姐，您今天說的話，連您自己都接不起來。,"Miss Fox, not even you can make what you've said today hang together.",Reverse Break
 BEAT_D01_LASTSTAND_FAIL_1,塞德里克,Cedric,那句話，不在我的鏈上。,That statement is not on my chain.,7.5 failure
 BEAT_D01_GIVEUP_1,系統,System,塞德里克沒有再開口。,Cedric says nothing more.,same as SCR_D01_S07_L007
-TELL_D01_HINT_FACT,亞瑟,Arthur,這句……是真的。打不掉。,This one... is true. We can't knock it down.,Arthur hint when his line is a true fact
-TELL_D01_HINT_SLIP,亞瑟,Arthur,他的話……沒說完。,He didn't... finish that sentence.,Arthur hint before a slip
-TELL_D01_HINT_KEY,亞瑟,Arthur,這是他整套說法的地基！,That's the foundation of his whole story!,Arthur hint when the keystone L2 is on the tell
-TELL_D01_HINT_LAST,亞瑟,Arthur,他要翻供。妳手上有能堵住這句話的東西嗎？,He's going to change his story. Have you got anything that can stop that line?,Arthur hint on the last card
-TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,We've nothing on us that can refute that.,Arthur hint when nothing carried can cut his line
+TELL_D01_HINT_FACT,亞瑟,Arthur,這句……是真的。打不掉。,This one... is true. We can't knock it down.,Arthur hint when the tell box holds a true fact (once per debate; timing in chapter §11)
+TELL_D01_HINT_SLIP,亞瑟,Arthur,他的話……沒說完。,He didn't... finish that sentence.,Arthur hint when the tell shows a half sentence (every time; timing in chapter §11)
+TELL_D01_HINT_KEY,亞瑟,Arthur,這是他整套說法的地基！,That's the foundation of his whole story!,Arthur hint when the tell box holds the keystone L2 (once per debate; timing in chapter §11)
+TELL_D01_HINT_LAST,亞瑟,Arthur,他要翻供。妳手上有能堵住這句話的東西嗎？,He's going to change his story. Have you got anything that can stop that line?,"Arthur hint on a last-card tell, incl. last gasp (every time; timing in chapter §11)"
+TELL_D01_HINT_NOCUT,亞瑟,Arthur,我們手上沒有能駁倒這句話的東西。,We've nothing on us that can refute that.,Arthur hint when the tell box holds a lie no carried sound claim can cut; sophistry does not count (once per debate; timing in chapter §11)
 FOG_D01_1,Sherefox,Sherefox,說到守靈——塞德里克先生，你知道為什麼窗戶要留一道縫嗎？聽說是給靈魂走的。不過我猜，也可以給煤氣味走。,"Speaking of wakes—Mr Cedric, do you know why the window is left open a crack? They say it's to let the soul out. Though I suppose it would let the gas smell out too.",打迷糊仗 line
 FOG_D01_2,Sherefox,Sherefox,塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？,"Mr Cedric, what lovely charms. The blue eye bead—did you buy that in Venice?",打迷糊仗 line
 FOG_D01_3,Sherefox,Sherefox,刮痕啊……說到刮痕，你的鞋跟也磨得好厲害喔。,"Scuffs, you say... speaking of scuffs, your boot heels are dreadfully worn down.",打迷糊仗 line

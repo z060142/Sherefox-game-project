@@ -90,6 +90,11 @@ EXTRAS = [
 
 # ---------------------------------------------------------------------------------------------- tables
 
+
+def R2(expr: str) -> str:
+    """An expression rounded to two decimals (the chapter's §12 tables: 103.49, 82.8, 43.31)."""
+    return f"round(({expr}) * 100) / 100"
+
 def ev_key(e: str) -> str:
     return f"C_D01_{e}_NAME" if CH.evidence[e].psych_card else f"E_D01_{e[1:]}_NAME"
 
@@ -157,7 +162,6 @@ def tables() -> dict[str, list[dict]]:
 
 
 SIGNALS = {
-    "d1Back": {"type": "pulse"},     # d01_debate_ui -> main: the outcome panel's back to title
     "bgmD1": {"type": "string", "initial": ""},    # d01_debate_ui -> music: the debate's music moment (4.3)
     "d1Cue": {"type": "string", "initial": ""},    # d01_debate_ui -> dialogue: S07's lines after it (postWin / postLose)
 }
@@ -535,8 +539,8 @@ def gen_d01ui() -> Graph:
     setn(endT, "intro", g.k(0))
     g.x("endSoon", f"now + {HOLD}")
     setn(endT, "rsAt", "endSoon")
-    # the debate is over and played out: S07's lines after it on the vn (dialogue: world.d1Cue), then the outcome
-    # panel (v2 demo 4.3; the result screen is a later ticket)
+    # the debate is over and played out: S07's lines after it on the vn (dialogue: world.d1Cue); when they end the
+    # step is done and the result step (S08, v2 demo 4.4) follows
     g.edge(g.when("endOutG", endT, T("endOut", "outOver")), "world.debEnd")
     g.edge(g.sel("d1CueV", g.cmp("d1CueWin", "world.d1Outcome", g.k("win")), g.k("postWin"), g.k("postLose")),
            "world.d1Cue")
@@ -792,19 +796,24 @@ def gen_d01ui() -> Graph:
     g.edge("whoT.text", f"{P}.speech_who")
     g.edge("lineT.text", f"{P}.speech")
     # values: hp after (pDmg / oDmg n3, lastStand n4), damage n1 / n3, the values of oHeal, the gauge's name, ...
-    g.x("vHp", "k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3")
+    # v2 demo 4.4: every credibility and damage number is shown the way the chapter's §12 tables write it: at most two
+    # decimals (R2: round(x * 100) / 100; the framework prints the shortest form), never below 0
+    g.x("vHp", f"{R2('max(0, k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3)')}")
     g.x("vPct", "round(gn5 / L_OppMax * 100)")
     g.x("vRmN", "d_rmN + 1")
-    g.x("vHpO", "k_pDmg && c_last_card ? gn5 : d_hpO")
-    g.x("vDmg", "k_pAttach ? n3 : n1")
+    g.x("vHpO", R2("max(0, k_pDmg && c_last_card ? gn5 : d_hpO)"))
+    g.x("vDmg", R2("k_pAttach ? n3 : n1"))
+    g.x("vN1", R2("max(0, n1)"))
+    g.x("vN2", R2("max(0, n2)"))
+    g.x("vPatD", R2("d_patD"))
     value = ssel(g, "vVal", [(g.cmp("xPC3", "f1", g.k("P")), g.k("UI_V2_GAUGE_PRESSURE")),
                              (g.cmp("xGC3", "f1", g.k("G")), g.k("UI_V2_GAUGE_GUILT"))], g.k("UI_V2_GAUGE_ANGER"))
     node = g.sel("vNode", g.b("vNodeB", "k_lastStand"), "f2Label", "tgtLabel")
     fact = g.sel("vFact", g.b("vFactB", "k_refuted"), g.fmt("vFactK", "{a}_FACT", "f2"), g.k(""))
     frm = g.sel("vFormula", g.b("vFrmB", "k_pDmg"), lcF, formula)
     lat = {nm: g.latch(nm + "L", src, syP) for nm, src in
-           (("sk", skey), ("vHp", "vHp"), ("vDmg", "vDmg"), ("vHpB", "n1"), ("vHpA", "n2"), ("vC", "world.d1Cracks"),
-            ("vDmgP", "d_patD"), ("vHpO", "vHpO"), ("vPct", "vPct"), ("vRmN", "vRmN"),
+           (("sk", skey), ("vHp", "vHp"), ("vDmg", "vDmg"), ("vHpB", "vN1"), ("vHpA", "vN2"), ("vC", "world.d1Cracks"),
+            ("vDmgP", "vPatD"), ("vHpO", "vHpO"), ("vPct", "vPct"), ("vRmN", "vRmN"),
             ("vValue", value), ("vNode", node), ("vClaim", "scLabel"), ("vIssue", "f1IssueName"), ("vFact", fact),
             ("vFormula", frm))}
     g.text("skT", lat["sk"])
@@ -823,13 +832,14 @@ def gen_d01ui() -> Graph:
     # numbers: the gauges follow the records (after values); floats
     pdP = g.when("pdG", parse, MN("pdOn", "k_pDmg"))
     setn(pdP, "hpM", "n3")
-    fm = g.latch("fmL2", g.fmt("fmDmg", "−{a}", "n1"), pdP)
+    g.x("fN1", R2("n1"))
+    fm = g.latch("fmL2", g.fmt("fmDmg", "−{a}", "fN1"), pdP)
     odP = g.when("odG", parse, MN("odOn", "k_oDmg"))
     setn(odP, "hpO", "n3")
     hlP = g.when("hlG", parse, MN("hlOn", "k_oHeal"))
     setn(hlP, "hpO", "n2")
-    fo = ssel(g, "foSel", [(g.b("foHeal", "k_oHeal"), g.fmt("foH", "+{a}", g.x("healAmt", "n2 - n1")))],
-              g.fmt("foD", "−{a}", "n1"))
+    fo = ssel(g, "foSel", [(g.b("foHeal", "k_oHeal"), g.fmt("foH", "+{a}", g.x("healAmt", R2("n2 - n1"))))],
+              g.fmt("foD", "−{a}", "fN1"))
     foL = g.latch("foL", fo, g.merge("foM", odP, hlP))
     g.edge(foL, f"{P}.float_opp")
     g.edge(fm, f"{P}.float_me")
@@ -842,6 +852,9 @@ def gen_d01ui() -> Graph:
     setn(g.when("gsG", parse, MN("gsOn", "k_guardSaved")), "hpM", "n1")
     setn(g.when("lsG", parse, MN("lsOn", "k_lastStand && n3 == 1")), "hpM", "n4")
     setn(g.when("lcHG", parse, MN("lcHOn", "k_lastCard && n2 == 0 && n3 == 0")), "hpO", "n5")
+    # 論破 / entering the endgame: his credibility is what the engine says after the round (1 and locked; 0 when the
+    # debate is over), not the argument record's raw value before the lock (v2 demo 4.4)
+    setn(g.when("lockHG", parse, MN("lockHOn", "k_ronpa || k_endgame")), "hpO", "world.d1OppHp")
     patP = g.when("patOnG", parse, MN("patOn", "k_pAttach"))
     setn(patP, "pat", g.k(1))
     setn(patP, "patD", "n3")
@@ -917,8 +930,8 @@ def gen_d01ui() -> Graph:
     g.edge("oppName.text", f"{P}.opp_name")
     g.edge(g.textf("credOpp", key="UI_V2_CRED_OPP", name="oppName.text"), f"{P}.opp_cred")
     g.edge(g.textf("ocTitle", key="UI_V2_CHAIN_OPP", name="oppName.text"), f"{P}.ochain_title")
-    g.edge("d_hpM", f"{P}.hp_me")
-    g.edge("d_hpO", f"{P}.hp_opp")
+    g.edge(g.x("hpMeOut", R2("max(0, d_hpM)")), f"{P}.hp_me")
+    g.edge(g.x("hpOppOut", R2("max(0, d_hpO)")), f"{P}.hp_opp")
     g.edge("L_PlayerMax", f"{P}.hp_me_max")
     g.edge("L_OppMax", f"{P}.hp_opp_max")
     # psych bands (no numbers, ch §13): 0 平常, 1 浮動 (threshold - FLOAT_BAND and up), 2 失常 (over the threshold)
@@ -1020,13 +1033,4 @@ def gen_d01ui() -> Graph:
     g.edge("needTgtOut_t", f"{P}.need_target")
     g.x("pickOn", "needClaim && d_ph == 1")
     g.edge("pickOn_t", f"{P}.picker_on")
-    # the outcome
-    g.text("gradeT", g.sel("gradeSel", T("gradeOn", "L_Grade > 0"), g.fmt("gradeK", "UI_V2_GRADE_{a}", "L_Grade"), g.k("")))
-    g.edge("gradeT.text", f"{P}.grade_text")
-    g.edge(g.textf("roundsT", key="UI_V2_RESULT_ROUNDS", n=g.x("roundsN", "L_Round - 1")), f"{P}.rounds_text")
-    g.edge(g.cmp("outWin", "L_Outcome", g.k("win")), f"{P}.outcome_win")
-    # back to the title (main switches the screen)
-    bP = g.when("backG", f"{P}.back_title", T("backOk", "d_ph == 3"))
-    setn(bP, "ph", g.k(0))
-    g.edge(bP, "world.d1Back")
     return g

@@ -110,8 +110,132 @@
       }
     },
     {
-      "id": "body",
+      "id": "bodyT",
       "type": "atrium.text"
+    },
+    {
+      "id": "addenda",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "papers",
+        "column": "addenda",
+        "type": "bool"
+      }
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "addSepEn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": " "
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "addSepV",
+      "type": "select"
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": 2
+      }
+    },
+    {
+      "id": "add2",
+      "type": "atrium.coll.get",
+      "params": {
+        "name": "d1EpS09"
+      }
+    },
+    {
+      "id": "add2T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "add2On",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "add2F",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}"
+      }
+    },
+    {
+      "id": "add2P",
+      "type": "select"
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": 3
+      }
+    },
+    {
+      "id": "add3",
+      "type": "atrium.coll.get",
+      "params": {
+        "name": "d1EpS09"
+      }
+    },
+    {
+      "id": "add3T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "add3On",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "add3F",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}"
+      }
+    },
+    {
+      "id": "add3P",
+      "type": "select"
+    },
+    {
+      "id": "bodyAdd",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "bodyV",
+      "type": "select"
     },
     {
       "id": "page2HeadKey",
@@ -166,7 +290,7 @@
       "type": "atrium.text"
     },
     {
-      "id": "K0",
+      "id": "K5",
       "type": "constant",
       "params": {
         "value": "lose"
@@ -180,7 +304,7 @@
       }
     },
     {
-      "id": "K1",
+      "id": "K6",
       "type": "constant",
       "params": {
         "value": "notorious"
@@ -438,10 +562,130 @@
     },
     {
       "from": "bodyKey.value",
-      "to": "body.key"
+      "to": "bodyT.key"
     },
     {
-      "from": "body.text",
+      "from": "prow.row",
+      "to": "addenda.row"
+    },
+    {
+      "from": "world.language",
+      "to": "addSepEn.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "addSepEn.b"
+    },
+    {
+      "from": "addSepEn.out",
+      "to": "addSepV.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "addSepV.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "addSepV.b"
+    },
+    {
+      "from": "K3.out",
+      "to": "add2.index"
+    },
+    {
+      "from": "add2.value",
+      "to": "add2T.key"
+    },
+    {
+      "from": "add2.value",
+      "to": "add2On.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "add2On.b"
+    },
+    {
+      "from": "addSepV.out",
+      "to": "add2F.a"
+    },
+    {
+      "from": "add2T.text",
+      "to": "add2F.b"
+    },
+    {
+      "from": "add2On.out",
+      "to": "add2P.cond"
+    },
+    {
+      "from": "add2F.out",
+      "to": "add2P.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "add2P.b"
+    },
+    {
+      "from": "K4.out",
+      "to": "add3.index"
+    },
+    {
+      "from": "add3.value",
+      "to": "add3T.key"
+    },
+    {
+      "from": "add3.value",
+      "to": "add3On.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "add3On.b"
+    },
+    {
+      "from": "addSepV.out",
+      "to": "add3F.a"
+    },
+    {
+      "from": "add3T.text",
+      "to": "add3F.b"
+    },
+    {
+      "from": "add3On.out",
+      "to": "add3P.cond"
+    },
+    {
+      "from": "add3F.out",
+      "to": "add3P.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "add3P.b"
+    },
+    {
+      "from": "bodyT.text",
+      "to": "bodyAdd.a"
+    },
+    {
+      "from": "add2P.out",
+      "to": "bodyAdd.b"
+    },
+    {
+      "from": "add3P.out",
+      "to": "bodyAdd.c"
+    },
+    {
+      "from": "addenda.value",
+      "to": "bodyV.cond"
+    },
+    {
+      "from": "bodyAdd.out",
+      "to": "bodyV.a"
+    },
+    {
+      "from": "bodyT.text",
+      "to": "bodyV.b"
+    },
+    {
+      "from": "bodyV.out",
       "to": "ui#paper.body"
     },
     {
@@ -497,7 +741,7 @@
       "to": "ocLose.a"
     },
     {
-      "from": "K0.out",
+      "from": "K5.out",
       "to": "ocLose.b"
     },
     {
@@ -505,7 +749,7 @@
       "to": "ocNoto.a"
     },
     {
-      "from": "K1.out",
+      "from": "K6.out",
       "to": "ocNoto.b"
     },
     {

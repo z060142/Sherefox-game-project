@@ -29,6 +29,7 @@ sys.path.insert(0, str(TESTS))
 import check_d1_play as cd  # noqa: E402
 import check_playthrough as cp  # noqa: E402
 import gen_d1_m3 as gm  # noqa: E402
+from tempwatch import TempWatch  # noqa: E402
 from xt_cli import EXE, XTFRAME, compile_game  # noqa: E402
 
 S = cd.S
@@ -178,9 +179,9 @@ def check(lang: str, ticks: dict, fails: list) -> None:
     eq("picker no view", at.get(marks["ev2"], "d1debate.sel_claim_text"), "")
     grade, nrounds, outcome = cd.expected(gm.gd.forced("A"))
     t = marks["over"]
-    eq("grade", at.get(t, "d1debate.grade_text"), L[f"UI_V2_GRADE_{grade}"])
-    eq("rounds", at.get(t, "d1debate.rounds_text"), L["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds)))
-    eq("win", at.get(t, "d1debate.outcome_win"), outcome == "win")
+    eq("grade", at.get(t, "d1result.grade_text"), L[f"UI_V2_GRADE_{grade}"])
+    eq("rounds", at.get(t, "d1result.rounds_text"), L["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds)))
+    eq("win", at.get(t, "d1result.win"), 1.0 if outcome == "win" else 0.0)
     noise = [ln for ln in err.split("\n") if ln.strip() and not ln.startswith("render: off")]
     if noise:
         bad.append("stderr: " + " | ".join(noise[:5]))
@@ -260,8 +261,7 @@ def shots(out: Path, ticks: dict) -> None:
 def main() -> int:
     argv = sys.argv[1:]
     compile_game()
-    temp = Path(tempfile.gettempdir())
-    before = set(os.listdir(temp))
+    tw = TempWatch().__enter__()   # tests/tempwatch.py: only what this run creates counts as a leak
     fails: list[str] = []
     try:
         if subprocess.run([sys.executable, str(TESTS / "gen_d1_m3.py")], cwd=ROOT).returncode != 0:
@@ -274,10 +274,11 @@ def main() -> int:
             shots(Path(argv[argv.index("--shots") + 1]), ticks)
     finally:
         shutil.rmtree(gm.HARNESS, ignore_errors=True)
-    left = sorted(n for n in set(os.listdir(temp)) - before if n.startswith(("d1m3shots-", "tmp")))
+    tw.__exit__(None, None, None)
+    left = tw.leaks
     if left:
         fails.append("temp")
-        print("FAIL temp: left in %TEMP%: " + ", ".join(left))
+        print("FAIL temp: left behind: " + ", ".join(left))
     print("ok" if not fails else f"FAILED: {', '.join(fails)}")
     return 1 if fails else 0
 

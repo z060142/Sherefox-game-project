@@ -56,7 +56,7 @@
         <div id="obs-3-n" class="obs-n">3</div>
         <div id="obs-3-t" class="obs-t" bind:text="obs3">熄燈時全屋的燈一起變暗、一起變亮</div>
       </div>
-      <div id="dlg" class="dlg" on:click(left)="if port(choosing) eq false emit(advance)">
+      <div id="dlg" class="dlg" on:click(left)="if port(choosing) eq false emit(advance)" bind:display="choosing | eq(false)">
         <div id="spk" class="spk" bind:text="speaker" bind:display="speaker | ne('')">巴斯克維爾</div>
         <div id="line" class="line" on:port(line_seq)="play(reveal)" bind:text="line">論點一！燈一滅他就動手——他下午修鎖時早就留了一手，那個筒子一碰就開！</div>
         <svg id="more" bind:display="choosing | eq(false)" viewBox="0 0 14 10">

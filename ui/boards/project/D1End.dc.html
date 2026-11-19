@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>D1End</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #0b0d0c }
+  /* The next-chapter placeholder (ch §2 S11, §13): black, a newspaper's silhouette, the two lines, back to title. */
+  .sil { background-color: #1c211f; border: 1px solid #2a312e; box-shadow: 0px 0px 40px 0px #00000099 }
+  .sil-bar { background-color: #2b322f }
+  .sil-line { background-color: #252b29 }
+  .head { font-family: var(--font-display); font-size: 52px; line-height: 70px; font-weight: 700; letter-spacing: 12px;
+          text-align: center; color: #e9e2cf }
+  :lang(en) .head { font-size: 42px; letter-spacing: 3px }
+  .sub { font-family: var(--font-body); font-size: 20px; line-height: 32px; letter-spacing: 2px; text-align: center;
+         color: #b9b19c }
+  :lang(en) .sub { font-size: 18px; letter-spacing: 0px }
+  .btn { width: 240px; height: 48px; flex-shrink: 0; text-align: center; line-height: 46px;
+         font-family: var(--font-body); font-size: 17px; letter-spacing: 2px; color: #e9e2cf;
+         background-color: #0b0d0c; border: 1px solid #b9b19c; transition: background-color 120ms linear }
+  .btn:hover { background-color: #a65432 }
+  .btn:active { background-color: #7a3c24 }
+</style></helmet>
+<div id="d1end" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='back:event out; settings:event out'
+     data-xt-trigger="show:play(fade-in); key(Enter):emit(back); key(Escape):emit(settings); key(F1):emit(settings)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden; background-color: #0b0d0c;">
+
+  <div id="sheet" data-xt-timeline="fade-in: 0 opacity 0, 900ms ease-out opacity 1"
+       style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+    <!-- The newspaper's silhouette: a sheet in shadow, a masthead bar, a picture block and column lines. -->
+    <div id="sil" class="sil" style="position: absolute; left: 390px; top: 70px; width: 500px; height: 330px; transform: rotate(-4deg);">
+      <div id="sil-mast" class="sil-bar" style="position: absolute; left: 40px; top: 26px; width: 420px; height: 34px;"></div>
+      <div id="sil-rule" class="sil-bar" style="position: absolute; left: 30px; top: 72px; width: 440px; height: 3px;"></div>
+      <div id="sil-head" class="sil-bar" style="position: absolute; left: 60px; top: 92px; width: 380px; height: 22px;"></div>
+      <div id="sil-pic" class="sil-line" style="position: absolute; left: 30px; top: 134px; width: 240px; height: 160px;"></div>
+      <div id="sil-c1" class="sil-line" style="position: absolute; left: 290px; top: 134px; width: 180px; height: 8px;"></div>
+      <div id="sil-c2" class="sil-line" style="position: absolute; left: 290px; top: 154px; width: 180px; height: 8px;"></div>
+      <div id="sil-c3" class="sil-line" style="position: absolute; left: 290px; top: 174px; width: 160px; height: 8px;"></div>
+      <div id="sil-c4" class="sil-line" style="position: absolute; left: 290px; top: 194px; width: 180px; height: 8px;"></div>
+      <div id="sil-c5" class="sil-line" style="position: absolute; left: 290px; top: 214px; width: 140px; height: 8px;"></div>
+      <div id="sil-c6" class="sil-line" style="position: absolute; left: 290px; top: 234px; width: 180px; height: 8px;"></div>
+      <div id="sil-c7" class="sil-line" style="position: absolute; left: 290px; top: 254px; width: 170px; height: 8px;"></div>
+      <div id="sil-c8" class="sil-line" style="position: absolute; left: 290px; top: 274px; width: 120px; height: 8px;"></div>
+    </div>
+
+    <div id="head" class="head" data-xt-key="SCR_D01_S11_L001"
+         style="position: absolute; left: 140px; top: 440px; width: 1000px; height: 70px;">下一章　預告</div>
+    <div id="sub" class="sub" data-xt-key="SCR_D01_S11_L002"
+         style="position: absolute; left: 140px; top: 522px; width: 1000px; height: 64px;">《（章名待定）》——本 demo 到此結束。感謝遊玩。</div>
+    <div id="btns" style="position: absolute; left: 140px; top: 616px; width: 1000px; height: 48px;
+         display: flex; flex-direction: row; justify-content: center;">
+      <div id="btn-back" class="btn" data-xt-key="SCR_D01_S11_L003" data-xt-trigger="click(left):emit(back)">回到標題畫面</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

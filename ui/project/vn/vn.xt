@@ -59,6 +59,7 @@
           <img id="ch-c-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_c | eq('partner')"/>
           <img id="ch-c-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_c | eq('landlady')"/>
           <img id="ch-c-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_c | eq('mrs_hyde')"/>
+          <img id="ch-c-irene" class="ch-art" src="../shared/img/ch-c-irene.png" bind:display="slot_c | eq('irene')"/>
           <img id="ch-c-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_c | eq('briggs')"/>
           <img id="ch-c-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_c | eq('cedric_composed')"/>
         </div>
@@ -74,6 +75,7 @@
           <img id="ch-l-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_l | eq('partner')"/>
           <img id="ch-l-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_l | eq('landlady')"/>
           <img id="ch-l-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_l | eq('mrs_hyde')"/>
+          <img id="ch-l-irene" class="ch-art" src="../shared/img/ch-c-irene.png" bind:display="slot_l | eq('irene')"/>
           <img id="ch-l-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_l | eq('briggs')"/>
           <img id="ch-l-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_l | eq('cedric_composed')"/>
         </div>
@@ -89,6 +91,7 @@
           <img id="ch-r-partner" class="ch-art" src="../shared/img/ch-c-partner.png" bind:display="slot_r | eq('partner')"/>
           <img id="ch-r-landlady" class="ch-art" src="../shared/img/ch-c-landlady.png" bind:display="slot_r | eq('landlady')"/>
           <img id="ch-r-mrs-hyde" class="ch-art" src="../shared/img/ch-c-mrs-hyde.png" bind:display="slot_r | eq('mrs_hyde')"/>
+          <img id="ch-r-irene" class="ch-art" src="../shared/img/ch-c-irene.png" bind:display="slot_r | eq('irene')"/>
           <img id="ch-r-briggs" class="ch-art" src="../shared/img/ch-c-briggs.png" bind:display="slot_r | eq('briggs')"/>
           <img id="ch-r-cedric-composed" class="ch-art" src="../shared/img/ch-c-cedric-composed.png" bind:display="slot_r | eq('cedric_composed')"/>
         </div>

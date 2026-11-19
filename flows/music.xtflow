@@ -369,6 +369,31 @@
       "type": "select"
     },
     {
+      "id": "K20",
+      "type": "constant",
+      "params": {
+        "value": "d1end"
+      }
+    },
+    {
+      "id": "isFix_d1end",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K21",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S11_L001"
+      }
+    },
+    {
+      "id": "cueFix_d1end",
+      "type": "select"
+    },
+    {
       "id": "isFixed",
       "type": "compare",
       "params": {
@@ -415,7 +440,7 @@
       }
     },
     {
-      "id": "K20",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": 101
@@ -541,7 +566,7 @@
       }
     },
     {
-      "id": "K21",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": "pre"
@@ -559,10 +584,46 @@
       "type": "select"
     },
     {
+      "id": "K24",
+      "type": "constant",
+      "params": {
+        "value": "d1result"
+      }
+    },
+    {
+      "id": "isD1ResC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1ResN",
+      "type": "select"
+    },
+    {
+      "id": "K25",
+      "type": "constant",
+      "params": {
+        "value": "d1notes"
+      }
+    },
+    {
+      "id": "isD1NoteC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1NoteN",
+      "type": "select"
+    },
+    {
       "id": "cueOk",
       "type": "atrium.expr",
       "params": {
-        "expr": "cueRow >= 0 && !(isD1DebN && d1GoN && vnPreN) && (isPaperN || fixedN || cueHereN && (isVnN || isResN || isDebK && !debOnN))"
+        "expr": "cueRow >= 0 && !(isD1DebN && d1GoN && vnPreN) && (isPaperN || fixedN || cueHereN && (isVnN || isResN || isD1ResN || isD1NoteN || isDebK && !debOnN))"
       }
     },
     {
@@ -682,7 +743,7 @@
       "type": "select"
     },
     {
-      "id": "K22",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": "cut"
@@ -1151,7 +1212,27 @@
       "to": "cueFix_d1carry.b"
     },
     {
+      "from": "world.stepKind",
+      "to": "isFix_d1end.a"
+    },
+    {
+      "from": "K20.out",
+      "to": "isFix_d1end.b"
+    },
+    {
+      "from": "isFix_d1end.out",
+      "to": "cueFix_d1end.cond"
+    },
+    {
+      "from": "K21.out",
+      "to": "cueFix_d1end.a"
+    },
+    {
       "from": "cueFix_d1carry.out",
+      "to": "cueFix_d1end.b"
+    },
+    {
+      "from": "cueFix_d1end.out",
       "to": "isFixed.a"
     },
     {
@@ -1175,7 +1256,7 @@
       "to": "cueKey.cond"
     },
     {
-      "from": "cueFix_d1carry.out",
+      "from": "cueFix_d1end.out",
       "to": "cueKey.a"
     },
     {
@@ -1207,7 +1288,7 @@
       "to": "stepSceneIsD1.a"
     },
     {
-      "from": "K20.out",
+      "from": "K22.out",
       "to": "stepSceneIsD1.b"
     },
     {
@@ -1351,7 +1432,7 @@
       "to": "vnPreC.a"
     },
     {
-      "from": "K21.out",
+      "from": "K23.out",
       "to": "vnPreC.b"
     },
     {
@@ -1365,6 +1446,46 @@
     {
       "from": "K9.out",
       "to": "vnPreN.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isD1ResC.a"
+    },
+    {
+      "from": "K24.out",
+      "to": "isD1ResC.b"
+    },
+    {
+      "from": "isD1ResC.out",
+      "to": "isD1ResN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isD1ResN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isD1ResN.b"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isD1NoteC.a"
+    },
+    {
+      "from": "K25.out",
+      "to": "isD1NoteC.b"
+    },
+    {
+      "from": "isD1NoteC.out",
+      "to": "isD1NoteN.cond"
+    },
+    {
+      "from": "K8.out",
+      "to": "isD1NoteN.a"
+    },
+    {
+      "from": "K9.out",
+      "to": "isD1NoteN.b"
     },
     {
       "from": "cueRow.row",
@@ -1401,6 +1522,14 @@
     {
       "from": "isResN.out",
       "to": "cueOk.isResN"
+    },
+    {
+      "from": "isD1ResN.out",
+      "to": "cueOk.isD1ResN"
+    },
+    {
+      "from": "isD1NoteN.out",
+      "to": "cueOk.isD1NoteN"
     },
     {
       "from": "isDebK.value",
@@ -1559,7 +1688,7 @@
       "to": "fadeCut.a"
     },
     {
-      "from": "K22.out",
+      "from": "K26.out",
       "to": "fadeCut.b"
     },
     {

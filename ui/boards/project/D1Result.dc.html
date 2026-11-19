@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>D1Result</title></head>
+<body><x-dc>
+<helmet><style>
+  body { margin: 0; background: #e3d9c2 }
+  .f-body { font-family: var(--font-body) }
+  .f-disp { font-family: var(--font-display) }
+  .kicker { font-family: var(--font-body); font-size: 13px; line-height: 20px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--copper) }
+  .rule-thin { background-color: var(--ink); }
+  .rule-thick { background-color: var(--ink); }
+  .rule-col { background-color: var(--ink); opacity: 0.55 }
+
+  /* The clipping on the desk (as the v1 result), held by two strips of tape. */
+  .clip { background-color: var(--paper); border: 1px solid #123a3166; box-shadow: 6px 7px 0px 0px #092e2840 }
+  .tape { background-color: #f3eedfb3; border: 1px solid #a6543233 }
+
+  /* The grade (one of five), set like a headline; a loss in rust. Only the grade's name, no number. */
+  .grade { font-family: var(--font-display); font-size: 60px; line-height: 80px; font-weight: 700; letter-spacing: 8px;
+           text-align: center; color: var(--ink-deep); text-shadow: 3px 3px 0px #c9a24a66 }
+  .grade.lose { color: var(--copper); text-shadow: 3px 3px 0px #092e2833 }
+  :lang(en) .grade { font-size: 44px; line-height: 80px; letter-spacing: 1px }
+  .rounds { font-family: var(--font-body); font-size: 16px; line-height: 24px; letter-spacing: 2px; text-align: center;
+            color: var(--ink) }
+
+  /* Reputation items: label .... arrow (direction only: no number, no total). */
+  .rp-label { font-family: var(--font-body); font-size: 18px; line-height: 36px; color: var(--ink-deep); white-space: nowrap }
+  :lang(en) .rp-label { font-size: 16px }
+  .rp-dots { border-top: 1px dashed #123a3180 }
+  .rp-up { font-family: var(--font-display); font-size: 22px; line-height: 36px; font-weight: 700; text-align: right;
+           color: #2f6b4f; white-space: nowrap }
+  .rp-down { font-family: var(--font-display); font-size: 22px; line-height: 36px; font-weight: 700; text-align: right;
+             color: var(--vermilion); white-space: nowrap }
+  .fv-text { font-family: var(--font-body); font-size: 18px; line-height: 36px; color: var(--ink-deep); white-space: nowrap }
+  .none { font-family: var(--font-body); font-size: 16px; line-height: 36px; font-style: italic; color: #5b6662 }
+
+  .stamp-text { font-family: var(--font-display); font-size: 46px; line-height: 60px; font-weight: 700; letter-spacing: 10px;
+                text-align: center; text-transform: uppercase; color: var(--vermilion) }
+  :lang(en) .stamp-text { font-size: 24px; letter-spacing: 2px }
+  .btn { width: 180px; height: 44px; flex-shrink: 0; text-align: center; line-height: 42px;
+         font-family: var(--font-body); font-size: 16px; letter-spacing: 2px; color: var(--paper);
+         background-color: var(--ink); border: 1px solid var(--ink-deep); box-shadow: 3px 3px 0px 0px #092e2866;
+         transition: background-color 120ms linear }
+  .btn:hover { background-color: var(--copper) }
+  .btn:active { background-color: var(--ink-deep) }
+</style></helmet>
+<div id="d1result" data-xt-uiscale="fit" tabindex="0" autofocus key-activation="none"
+     data-xt-port='win:number in = 1; grade_text:string in = "論破後被反擊仍勝"; rounds_text:string in = "共 10 回合"; rep:list&lt;struct{label: string, up: number}&gt; in = [{"label":"論破後被反擊仍勝","up":1},{"label":"說詞有裂紋 ×4","up":0},{"label":"公開了別人的私事 ×1","up":0},{"label":"硬把事實說成假的 ×1","up":0}]; fav:list&lt;struct{text: string}&gt; in = [{"text":"海德太太 −1"}]; fav_on:bool in = true; next:event out; settings:event out'
+     data-xt-trigger="show:play(grade-in); port(grade_text):play(grade-in); key(Enter):emit(next); key(Space):emit(next); key(Escape):emit(settings); key(F1):emit(settings)"
+     style="position: relative; width: 1280px; height: 720px; overflow: hidden;
+            background: radial-gradient(ellipse at 50% 40%, #e3d9c2 55%, #cbbd9c 100%); color: #123a31;">
+
+  <div id="sheet" style="position: absolute; left: calc(50% - 640px); top: calc(50% - 360px); width: 1280px; height: 720px;">
+
+  <div id="clip" class="clip" style="position: absolute; left: 120px; top: 28px; width: 1040px; height: 664px;">
+    <div id="tape-l" class="tape" style="position: absolute; left: -30px; top: -10px; width: 130px; height: 30px; transform: rotate(-24deg);"></div>
+    <div id="tape-r" class="tape" style="position: absolute; left: 940px; top: -10px; width: 130px; height: 30px; transform: rotate(22deg);"></div>
+
+    <div id="res-mast" class="f-disp" data-xt-key="SCR_D01_S08_TITLE"
+         style="position: absolute; left: 320px; top: 14px; width: 400px; height: 30px; text-align: center;
+                font-size: 20px; line-height: 30px; letter-spacing: 5px; color: #092e28;">結算</div>
+    <div id="res-rule-a" class="rule-thick" style="position: absolute; left: 32px; top: 50px; width: 976px; height: 3px;"></div>
+    <div id="res-rule-b" class="rule-thin" style="position: absolute; left: 32px; top: 56px; width: 976px; height: 1px;"></div>
+
+    <!-- The grade: its label, the grade's name stamped in, the rounds. -->
+    <div id="grade-label" class="kicker" data-xt-key="UI_V2_GRADE_LABEL"
+         style="position: absolute; left: 32px; top: 74px; width: 976px; height: 20px; text-align: center;">勝利等級</div>
+    <div id="grade-box" data-xt-timeline="grade-in: 0 opacity 0, 0 transform scale(1.3), 80ms opacity 0, 80ms transform scale(1.3), 360ms ease-in opacity 1, 360ms ease-in transform scale(1), 440ms ease-out transform scale(1.03), 520ms ease-out transform scale(1)"
+         style="position: absolute; left: 32px; top: 98px; width: 976px; height: 80px;">
+      <div id="grade" class="grade" data-xt-bind="text=grade_text; class.lose=win | eq(0)"
+           style="position: absolute; left: 0px; top: 0px; width: 976px; height: 80px;">論破後被反擊仍勝</div>
+    </div>
+    <div id="rounds" class="rounds" data-xt-bind="text=rounds_text"
+         style="position: absolute; left: 32px; top: 184px; width: 976px; height: 24px;">共 10 回合</div>
+    <div id="res-rule-c" class="rule-thin" style="position: absolute; left: 32px; top: 224px; width: 976px; height: 1px;"></div>
+
+    <!-- Left: how the town saw it, one item per row with its direction. -->
+    <div id="rep-head" class="kicker" data-xt-key="UI_V2_REP_HEAD"
+         style="position: absolute; left: 32px; top: 242px; width: 520px; height: 20px;">世人怎麼看這一場</div>
+    <div id="rep-list" data-xt-repeat="rep"
+         style="position: absolute; left: 32px; top: 270px; width: 520px; height: 300px; overflow: hidden;
+                display: flex; flex-direction: column; gap: 4px;">
+      <div id="rep-row" style="width: 520px; height: 36px; flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 12px;">
+        <div id="rep-label" class="rp-label" data-xt-bind="text=item(label)" style="height: 36px; flex-shrink: 0; min-width: 40px;">說詞有裂紋 ×4</div>
+        <div id="rep-dots" class="rp-dots" style="height: 1px; flex-grow: 1; min-width: 20px; margin: 10px 0px 0px 0px;"></div>
+        <div id="rep-up" class="rp-up" data-xt-key="UI_V2_REP_UP" data-xt-bind="display=item(up) | eq(1)" style="width: 28px; height: 36px; flex-shrink: 0;">↑</div>
+        <div id="rep-down" class="rp-down" data-xt-key="UI_V2_REP_DOWN" data-xt-bind="display=item(up) | ne(1)" style="width: 28px; height: 36px; flex-shrink: 0;">↓</div>
+      </div>
+    </div>
+    <div id="res-rule-col" class="rule-col" style="position: absolute; left: 584px; top: 242px; width: 1px; height: 330px;"></div>
+
+    <!-- Right: favour changes (who and the change). -->
+    <div id="fav-head" class="kicker" data-xt-key="UI_V2_FAVOR_HEAD"
+         style="position: absolute; left: 616px; top: 242px; width: 392px; height: 20px;">好感變化</div>
+    <div id="fav-list" data-xt-repeat="fav" data-xt-bind="display=fav_on"
+         style="position: absolute; left: 616px; top: 270px; width: 392px; height: 120px; overflow: hidden;
+                display: flex; flex-direction: column; gap: 4px;">
+      <div id="fav-row" class="fv-text" data-xt-bind="text=item(text)" style="width: 392px; height: 36px; flex-shrink: 0;">海德太太 −1</div>
+    </div>
+    <div id="fav-none" class="none" data-xt-bind="display=fav_on | eq(false)"
+         style="position: absolute; left: 616px; top: 270px; width: 392px; height: 36px;">—</div>
+
+    <!-- A win: the case-closed stamp under the favour list. -->
+    <div id="res-stamp" data-xt-bind="display=win | eq(1)"
+         data-xt-timeline="grade-in: 0 opacity 0, 0 transform rotate(-9deg) scale(1.35), 700ms opacity 0, 700ms transform rotate(-9deg) scale(1.35), 880ms ease-in opacity 0.92, 880ms ease-in transform rotate(-9deg) scale(1)"
+         style="position: absolute; left: 720px; top: 420px; width: 236px; height: 112px; padding: 4px;
+                border: 4px solid #b8322a; transform: rotate(-9deg) scale(1); opacity: 0.92;">
+      <div id="res-stamp-inner" style="width: 220px; height: 96px; display: flex; flex-direction: column;
+           align-items: center; justify-content: center; border: 1px solid #b8322a;">
+        <div id="res-stamp-text" class="stamp-text" data-xt-key="UI_PAPER_STAMP_CLOSED"
+             style="width: 210px; height: 60px; flex-shrink: 0;">結案</div>
+      </div>
+    </div>
+
+    <div id="btns" style="position: absolute; left: 616px; top: 600px; width: 392px; height: 44px;
+         display: flex; flex-direction: row; justify-content: flex-end; gap: 14px;">
+      <div id="btn-next" class="btn" data-xt-key="BTN_RES_CONTINUE"
+           data-xt-trigger="click(left):emit(next)">繼續</div>
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic { renderVals(){ return {}; } }
+</script></body></html>

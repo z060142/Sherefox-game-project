@@ -1,0 +1,13 @@
+version: 1
+id: a2d8ba32-676a-4b2f-aeb8-b7fea325e58d
+type: image
+title: pic-d01-wake
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/paper_d01_wake.jpg
+content: sha256:ec20241d0a172e958786b6c0a8f6c5d9124e01e51bc279a2cafae6f0dbf6b22b
+measured:
+  w: 1813
+  h: 868
+  alpha: false

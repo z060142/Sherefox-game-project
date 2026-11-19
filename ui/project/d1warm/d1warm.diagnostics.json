@@ -417,7 +417,7 @@
       "message": "anchor: #dlg left: 140px; bottom: auto; top: 520px -> anchor: left bottom; offset: 108px 6px; size: 1000px 176px",
       "element": "dlg",
       "source": "D1Warm.dc.html",
-      "line": 108,
+      "line": 109,
       "col": 0,
       "ui": "d1warm",
       "detail": {

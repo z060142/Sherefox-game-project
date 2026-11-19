@@ -1,0 +1,13 @@
+version: 1
+id: 7caa1b7d-0cea-422c-a4e4-40b9bc1e2e92
+type: image
+title: ch-c-irene
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_irene.png
+content: sha256:8fcd6fafd0e468a26553d67ce844bdff84dd84ce42f3409bd3f0398fb341d424
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

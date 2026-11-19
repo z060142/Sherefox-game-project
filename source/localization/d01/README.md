@@ -87,3 +87,4 @@ Every CSV row equals its strings_d01.json entry (534 of 534). Every ID appears i
 ## Changes after delivery
 
 * S06 (carry screen): Arthur's comments now play only through the 「問亞瑟的意見」 button (UI_V2_CARRY_ASK_ARTHUR), in the priority order given in each row's note. New line SCR_D01_S06_L012 (priority 7, repeatable). L010 still plays automatically. The old 「待使用者決定」 flag on L008 is gone.
+* Arthur's tell hints (`TELL_D01_HINT_*`): at most one per round, picked by the priority rule in chapter §11 ("亞瑟提示的時機"); the notes of the nine hint rows now say how often each plays. Strings unchanged.

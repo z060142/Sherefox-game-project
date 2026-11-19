@@ -33,16 +33,6 @@
   line-clamp: 3;
 }
 
-/* import: Paper.dc.html:1/0/0/10/0 */
-#subhead {
-  color: #123a31;
-  font-size: 19px;
-  font-style: italic;
-  line-clamp: 2;
-  line-height: 26px;
-  text-align: center;
-}
-
 /* import: Paper.dc.html:1/0/1/1 */
 #p2-mast {
   color: #092e28;
@@ -328,6 +318,38 @@
 :lang(en) #lead-col-2-text {
   font-size: 13px;
   line-height: 16.5px;
+}
+
+.nodeck #lead-col-1-text {
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.nodeck #lead-col-2-text {
+  font-size: 17px;
+  line-height: 26px;
+}
+
+:lang(en) .nodeck #lead-col-1-text {
+  font-size: 15px;
+  line-height: 21.125px;
+}
+
+:lang(en) .nodeck #lead-col-2-text {
+  font-size: 15px;
+  line-height: 21.125px;
+}
+
+.wcol {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 22px;
+  line-height: 34px;
+  color: var(--ink);
+}
+
+:lang(en) .wcol {
+  font-size: 16px;
+  line-height: 29px;
 }
 
 :root {

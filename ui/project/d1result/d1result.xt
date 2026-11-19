@@ -1,0 +1,356 @@
+<xt version="2">
+  <head>
+    <title>D1Result</title>
+  </head>
+
+  <ports>
+    win: number in = 1
+    grade_text: string in = "論破後被反擊仍勝"
+    rounds_text: string in = "共 10 回合"
+    rep: list<struct{label: string, up: number}> in = [{"label":"論破後被反擊仍勝","up":1},{"label":"說詞有裂紋 ×4","up":0},{"label":"公開了別人的私事 ×1","up":0},{"label":"硬把事實說成假的 ×1","up":0}]
+    fav: list<struct{text: string}> in = [{"text":"海德太太 −1"}]
+    fav_on: bool in = true
+    next: event out
+    settings: event out
+  </ports>
+
+  <body on:show="play(grade-in)" key-activation="none">
+    <div id="d1result" tabindex="0" autofocus="" on:port(grade_text)="play(grade-in)" on:key(Enter)="emit(next)" on:key(Space)="emit(next)" on:key(Escape)="emit(settings)" on:key(F1)="emit(settings)">
+      <div id="sheet">
+        <div id="clip" class="clip">
+          <div id="tape-l" class="tape"/>
+          <div id="tape-r" class="tape"/>
+          <div id="res-mast" class="f-disp s-bc4841">@SCR_D01_S08_TITLE</div>
+          <div id="res-rule-a" class="rule-thick"/>
+          <div id="res-rule-b" class="rule-thin"/>
+          <div id="grade-label" class="kicker s-872272">@UI_V2_GRADE_LABEL</div>
+          <div id="grade-box">
+            <div id="grade" class="grade" bind:text="grade_text" bind:class.lose="win | eq(0)">論破後被反擊仍勝</div>
+          </div>
+          <div id="rounds" class="rounds" bind:text="rounds_text">共 10 回合</div>
+          <div id="res-rule-c" class="rule-thin"/>
+          <div id="rep-head" class="kicker">@UI_V2_REP_HEAD</div>
+          <repeat id="rep-list" port="rep">
+            <div id="rep-row">
+              <div id="rep-label" class="rp-label" bind:text="item(label)">說詞有裂紋 ×4</div>
+              <div id="rep-dots" class="rp-dots"/>
+              <div id="rep-up" class="rp-up" bind:display="item(up) | eq(1)">@UI_V2_REP_UP</div>
+              <div id="rep-down" class="rp-down" bind:display="item(up) | ne(1)">@UI_V2_REP_DOWN</div>
+            </div>
+          </repeat>
+          <div id="res-rule-col" class="rule-col"/>
+          <div id="fav-head" class="kicker">@UI_V2_FAVOR_HEAD</div>
+          <repeat id="fav-list" port="fav" bind:display="fav_on">
+            <div id="fav-row" class="fv-text" bind:text="item(text)">海德太太 −1</div>
+          </repeat>
+          <div id="fav-none" class="none" bind:display="fav_on | eq(false)">—</div>
+          <div id="res-stamp" class="s-6ed937" bind:display="win | eq(1)">
+            <div id="res-stamp-inner" class="s-eb9710">
+              <div id="res-stamp-text" class="stamp-text">@UI_PAPER_STAMP_CLOSED</div>
+            </div>
+          </div>
+          <div id="btns">
+            <div id="btn-next" class="btn" on:click(left)="emit(next)">@BTN_RES_CONTINUE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1Result.dc.html:1 */
+    #d1result {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1Result.dc.html:1/0 */
+    #sheet {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: D1Result.dc.html:1/0/0 */
+    #clip {
+      height: 664px;
+      left: 120px;
+      position: absolute;
+      top: 28px;
+      width: 1040px;
+    }
+    /* import: D1Result.dc.html:1/0/0/0 */
+    #tape-l {
+      height: 30px;
+      left: -30px;
+      position: absolute;
+      top: -10px;
+      transform: rotate(-24deg);
+      width: 130px;
+    }
+    /* import: D1Result.dc.html:1/0/0/1 */
+    #tape-r {
+      height: 30px;
+      left: 940px;
+      position: absolute;
+      top: -10px;
+      transform: rotate(22deg);
+      width: 130px;
+    }
+    /* import: D1Result.dc.html:1/0/0/2 */
+    #res-mast {
+      height: 30px;
+      left: 320px;
+      position: absolute;
+      top: 14px;
+      width: 400px;
+    }
+    /* import: D1Result.dc.html:1/0/0/3 */
+    #res-rule-a {
+      height: 3px;
+      left: 32px;
+      position: absolute;
+      top: 50px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/4 */
+    #res-rule-b {
+      height: 1px;
+      left: 32px;
+      position: absolute;
+      top: 56px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/5 */
+    #grade-label {
+      height: 20px;
+      left: 32px;
+      position: absolute;
+      top: 74px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/6 */
+    #grade-box {
+      height: 80px;
+      left: 32px;
+      position: absolute;
+      top: 98px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/6/0 */
+    #grade {
+      height: 80px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/7 */
+    #rounds {
+      height: 24px;
+      left: 32px;
+      position: absolute;
+      top: 184px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/8 */
+    #res-rule-c {
+      height: 1px;
+      left: 32px;
+      position: absolute;
+      top: 224px;
+      width: 976px;
+    }
+    /* import: D1Result.dc.html:1/0/0/9 */
+    #rep-head {
+      height: 20px;
+      left: 32px;
+      position: absolute;
+      top: 242px;
+      width: 520px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10 */
+    #rep-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 300px;
+      left: 32px;
+      overflow: hidden;
+      position: absolute;
+      top: 270px;
+      width: 520px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10/0 */
+    #rep-row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      gap: 12px;
+      height: 36px;
+      width: 520px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10/0/0 */
+    #rep-label {
+      flex-shrink: 0;
+      height: 36px;
+      min-width: 40px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10/0/1 */
+    #rep-dots {
+      flex-grow: 1;
+      height: 1px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 10px;
+      min-width: 20px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10/0/2 */
+    #rep-up {
+      flex-shrink: 0;
+      height: 36px;
+      width: 28px;
+    }
+    /* import: D1Result.dc.html:1/0/0/10/0/3 */
+    #rep-down {
+      flex-shrink: 0;
+      height: 36px;
+      width: 28px;
+    }
+    /* import: D1Result.dc.html:1/0/0/11 */
+    #res-rule-col {
+      height: 330px;
+      left: 584px;
+      position: absolute;
+      top: 242px;
+      width: 1px;
+    }
+    /* import: D1Result.dc.html:1/0/0/12 */
+    #fav-head {
+      height: 20px;
+      left: 616px;
+      position: absolute;
+      top: 242px;
+      width: 392px;
+    }
+    /* import: D1Result.dc.html:1/0/0/13 */
+    #fav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 120px;
+      left: 616px;
+      overflow: hidden;
+      position: absolute;
+      top: 270px;
+      width: 392px;
+    }
+    /* import: D1Result.dc.html:1/0/0/13/0 */
+    #fav-row {
+      flex-shrink: 0;
+      height: 36px;
+      width: 392px;
+    }
+    /* import: D1Result.dc.html:1/0/0/14 */
+    #fav-none {
+      height: 36px;
+      left: 616px;
+      position: absolute;
+      top: 270px;
+      width: 392px;
+    }
+    /* import: D1Result.dc.html:1/0/0/15 */
+    #res-stamp {
+      height: 112px;
+      left: 720px;
+      padding-bottom: 4px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 4px;
+      position: absolute;
+      top: 420px;
+      transform: rotate(-9deg) scale(1);
+      width: 236px;
+    }
+    /* import: D1Result.dc.html:1/0/0/15/0 */
+    #res-stamp-inner {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 96px;
+      justify-content: center;
+      width: 220px;
+    }
+    /* import: D1Result.dc.html:1/0/0/15/0/0 */
+    #res-stamp-text {
+      flex-shrink: 0;
+      height: 60px;
+      width: 210px;
+    }
+    /* import: D1Result.dc.html:1/0/0/16 */
+    #btns {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      height: 44px;
+      justify-content: flex-end;
+      left: 616px;
+      position: absolute;
+      top: 600px;
+      width: 392px;
+    }
+    .btn {
+      width: 180px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1result.xts"/>
+  <timelines>
+    @timeline grade-in {
+      #grade-box {
+        0ms {
+          opacity: 0;
+          transform: scale(1.3);
+        }
+        80ms {
+          opacity: 0;
+          transform: scale(1.3);
+        }
+        360ms ease-in {
+          opacity: 1;
+          transform: scale(1);
+        }
+        440ms ease-out {
+          transform: scale(1.03);
+        }
+        520ms ease-out {
+          transform: scale(1);
+        }
+      }
+      #res-stamp {
+        0ms {
+          opacity: 0;
+          transform: rotate(-9deg) scale(1.35);
+        }
+        700ms {
+          opacity: 0;
+          transform: rotate(-9deg) scale(1.35);
+        }
+        880ms ease-in {
+          opacity: 0.92;
+          transform: rotate(-9deg) scale(1);
+        }
+      }
+    }
+  </timelines>
+</xt>

@@ -156,6 +156,22 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "d1result",
+      "doc": "d1result/d1result.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "d1end",
+      "doc": "d1end/d1end.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

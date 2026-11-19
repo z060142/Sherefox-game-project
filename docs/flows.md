@@ -1,6 +1,6 @@
 # 流圖（M4c：Ch.1～3 全程可玩：劇情、蒐證、線索板、熱身、論戰、結算）
 
-v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱身、D01 的場景 BGM，§4.10、§4.14）；4.3 2026-11-19（論戰的劇情：S07、串場、亞瑟的預兆台詞、論戰音樂，§4.2、§4.10、§4.12）。
+v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱身、D01 的場景 BGM，§4.10、§4.14）；4.3 2026-11-19（論戰的劇情：S07、串場、亞瑟的預兆台詞、論戰音樂，§4.2、§4.10、§4.12）；4.4 2026-11-19（結局：S08 台詞與結算畫面、S09 章末報紙、S10 結案筆記、S11 佔位與回到標題，§4.15；S01 報紙的版畫、熱身的對白框、論戰畫面的可信度數字，§4.12、§4.14）。
 
 狀態：場景 BGM 2026-11-07（設計的逐場景 BGM 表 `source/staging/bgm_cues_ch01-03.csv` → `data/bgmCues.json`：台詞與報紙顯示時以場景的 cue 優先於時機預設，淡化分 cross／cut／out，結尾卡淡出靜音，§2.1、§4.1、§4.2、§4.10；`tests/check_music.py` 加 Ch.3 熱身重播，§6）。音樂 2026-11-06（第一批音檔：背景音樂播放與論戰結束音效，§4.8、§4.10，`tests/check_music.py`，§6）。G5／G6 2026-11-06（熱身手牌 4 張、觀察卡 OBS_CH03_01／02，選擇器列出整手；出示觀察卡＝失誤，`MSG_WARMUP_WRONG` 之後在 vn 播放警督的反駁 W001／W002，§4.2、§4.8；熱身失敗與一次失誤以主遊戲測試，§6）。M5c 2026-11-06（XTAtrium 4352f29 起的 SDK：AT-036 `xtatrium compile --game` 在每個跑主遊戲的檢查之前執行，§6；熱身失敗的收尾台詞 S04 F001～F004 與熱身的 `postWin`／`postLose`，§4.2、§4.8；尾聲出錯牌的結算台詞，§4.8；重新論戰不重播開場台詞，§4.1、§4.2；「全部調查完畢」自動跳出結束確認，§4.4；鑑定台詞 `evidence.appraisalKey`，§4.6；論戰的對手筆記覆蓋層、預估列候選比較 `preview_vs`、狀態列旗標 `st_flags`、臨場硬接、敗北回顧，§4.8；結算的讀對預兆，§4.9；音樂掛鉤，§4.10）。M5b 2026-11-06（論戰場景的開場與收尾台詞在 vn 播放，`script.cue`，§4.2；蒐證彈窗的反應台詞、結束蒐證的確認與漏證／補撿訊息、場景名、警方報告的筆記，§4.4；論破門檻的 `{stage}`、標籤分隔符號，§4.5、§4.6；預估列 `UI_DEB_PREVIEW`（裁決 G4）與詭辯鈕的原因，§4.8；結算不重播已播過的結局台詞，§4.9）。M5a 2026-11-06（XTAtrium 5aad137：AT-047 `atrium.ui.list` 的 `bare` 寫行動鈕的可用狀態，§4.8；AT-046 `atrium.ui.list` 的欄位參照取代組合鍵表、`atrium.textf` 取代展開的字串鍵，§5.2、§7.2；AT-043 跨圖脈衝同 tick，`debCmd*` 不再鎖住，§4.8；`debScript` 以 `columns` 宣告）。M4c 草案 2026-11-06（論戰 UI、書法大字、結算與後果接上論戰引擎，§4.8、§4.9；之前：M3 M2 第二輪之後：蒐證、證物冊、線索板接上 UI 並把板面交給論戰引擎；AT-040 `.emitted` 與 `find` 的 `from`／`filters`、AT-041 `atrium.gate`／`expr.truth` 已採用）。依據：`docs/architecture.md` §3、§8；`docs/ui-contracts.md`（title、vn、paper、investigate、board、evbook）；`docs/data-schema.md` §1～§5、§9、§13；`docs/debate-engine.md` §2.2；`docs/rulings.md`（C4、D2～D4、D11、F1、F3、F5、F6）；01-systems §1、§2、§3.1；XTAtrium docs 02 §2.3、04、05 §5.4、08 §8.1～§8.5a。
 
@@ -14,7 +14,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_warmup`、`d01_investigate`、`d01_debate_ui`、`d01_debate_engine`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_warmup`、`d01_investigate`、`d01_debate_ui`、`d01_debate_engine`、`d01_end`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
@@ -28,6 +28,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 | `result` | 140／210 | `result` 步驟（§4.9）：`ui#result`、信任度、報紙側欄的結果、證物後果、重新論戰 |
 | `d01_debate_ui` | 967／1796 | v2 示範關卡 D01 的論戰畫面（§4.12）：開發入口的攜帶集合、`d01_debate_engine` 的指令、`ui#d1debate`、`ui#cutin`、事件紀錄的播放、結果框 |
 | `d01_warmup` | 76／127 | v2 示範關卡 D01 的熱身論戰（§4.14）：`ui#d1warm`、三個論點與三條觀察、失誤、`world.d1Warmup` |
+| `d01_end` | — | v2 示範關卡 D01 的結算畫面（§4.15，`tools/gen_end_v2.py`）：`ui#d1result` 的等級、名聲明細、好感、繼續 |
 | `music` | 108／191 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
 
 ### 1.1 寫法上的三條規則
@@ -332,8 +333,9 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
   - **S07 與 §12.0 重疊時的選擇**：L005（論破）與 `KEY_BREAK` 都播（C4）；L007 取代同字的 `BEAT_D01_GIVEUP_1`；L010 取代垂死反撲時亞瑟的提示（它就是那張牌的預兆台詞）；L016 在論戰畫面播（`LASTSTAND_FAIL` 之後），所以敗北後的 vn 從 L017 開始；L011 在殘局回合開頭播（§12.3 R5 沒寫出來）。
   - **預兆的台詞**（port `hint_who`、`hint`；預兆面板右側、心理量表下方的小框，選擇中才顯示，不蓋住論點框）：回合顯示的下一個節拍以 ref `tell_line` 的規則選：說溜嘴 > ★ 的行動 > 明示時：要害 > 事實 > 我方帶的正論都截不斷（`d1uiBreak` 對本回合的 `d1ClaimList` 與 `d1ClaimSoph`）> 行動；每句一場一次，用過不往下找；模糊而沒有 ★ 不說；殘局：垂死反撲 L010（塞德里克）、P05 `BEAT_D01_LASTCARD_1`、其他最後一張牌 `TELL_D01_HINT_LAST`；§7.5 沒有。
   - **修正**：他立論／強辯的台詞改依他這回合真正的行動（測試掛鉤 `d1OppAct` 有值時用它，否則 AI 的決定）；他對接上的反應的「詭辯」改看鎖定時的說法（`d1ClaimSoph` 播放時已是下一回合的）。
+  - **4.4**：論戰結束後的暫時結果框拿掉了（S07 收尾台詞之後步驟結束，§4.15）。可信度的數字（兩邊的可信度 port、浮動數字、系統台詞的 `{hp}`／`{dmg}` 等）一律四捨五入到兩位小數、不小於 0（章節 §12 表格的寫法：103.49、82.8、43.31）。論破或進入殘局的紀錄（`ronpa`、`endgame`）把他的可信度設為引擎結算後的 `world.d1OppHp`（1 並鎖定，論戰結束時 0）：之前停在論證紀錄的原始值（例：路線 B 第 5 回合顯示 117.178）。
   - **音樂**（staging README）：本圖寫 `world.bgmD1`：開始 `d1open`（BGM07，cut，即 L004 的 cue）→ 他第一次 ≤ 50% 或破防 `debate2`（BGM08）→ 論破或進入殘局 `break`（BGM09）→ 逆論破 `reverse`（BGM10，無音檔則照舊；§7.5 成功回到 BGM09）；L007 那一步與敗北的結束紀錄起 `hush`（靜音，out）。之後的 vn 由 S07 的 cue 接手（§4.10）。
-- **已知限制**：互相接上時 `SYS_D01_ATTACH` 與 `SYS_D01_CLASH` 都播（§12.1 第 3 回合只寫 CLASH，且把算式放進 `{dmg_p}`）；結算畫面、名聲與好感明細是之後的里程碑；回到標題後步驟仍是 `d1debate`，標題畫面沿用 L015／L019 的靜音（結算畫面接上後步驟會往下走）；§11 的其他狀態台詞（`STATE_D01_ART_HACHIKU`、`_ART_CORNERED`、`_SHF_SHAKEN`）與 `SYS_D01_PRIVATE`／`_PSYCH_NOTE`／`_CRACK`、`COVER_WASTED` 沒有播放（不在 4.3 的範圍；路線文字也沒有寫出前三者）；他的預兆台詞 `TELL_D01_<行動>_n` 沒有播放。
+- **已知限制**：互相接上時 `SYS_D01_ATTACH` 與 `SYS_D01_CLASH` 都播（§12.1 第 3 回合只寫 CLASH，且把算式放進 `{dmg_p}`）；結算畫面、名聲與好感明細、回到標題由 4.4 接上（§4.15）；§11 的其他狀態台詞（`STATE_D01_ART_HACHIKU`、`_ART_CORNERED`、`_SHF_SHAKEN`）與 `SYS_D01_PRIVATE`／`_PSYCH_NOTE`／`_CRACK`、`COVER_WASTED` 沒有播放（不在 4.3 的範圍；路線文字也沒有寫出前三者）；他的預兆台詞 `TELL_D01_<行動>_n` 沒有播放。
 
 ### 4.13 `d01_investigate`（v2 示範關卡 D01 的蒐證、證物清單、人物筆記、攜帶選擇；v2 demo M3；ui-contracts d1inv、d1book、d1carry）
 
@@ -363,7 +365,23 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - **S04 熱身**（`d1warmup` 步驟，`tools/gen_warm_v2.py` → `flows/d01_warmup.xtflow`；規則以 ref 為準：`ref/src/sherefox_ref/v2/warmup.py`，資料 `ref/data/d01_extra.json` `warmup_play`，測試 `ref/tests/test_v2_warmup.py`）：畫面是一串 S04 台詞，一次一行。狀態在 map `w1`：`n`（顯示 `SCR_D01_S04_L<n>`）、`pt`（論點 0～2）、`mis`（失誤）。步驟開始 → L001。點一下（`ui#d1warm.advance`，論點等待選擇時不收）→ 下一行：L001 → L002；回答 L003 → L004 → L006；L007 → L008 → L009；L010 → L011 → L012；L005 → 目前的論點再問一次；L012 → 零失誤時 L013，否則結束；L013、L015 結束；L014 → L015。結束 ＝ `world.stepDone`。論點（L002、L006、L009）等待選擇（`choosing`）：`ui#d1warm.pick` ＝ 1～3（觀察 W1～W3），等於 `pt + 1` 為正確 → 回答的第一行；否則失誤 +1 → L005，第 3 次失誤 → L014（不先播 L005）。用對過的觀察再選一次自然是錯的（每個論點的答案不同；企劃 3689f6d 確認算答錯）。不扣可信度。**結果**在確定的那一下寫 `world.d1Warmup`：答完第三點時 `pass_clean`（零失誤）或 `pass`，第 3 次失誤時 `fail`；`d01_investigate` 由它算鑑定次數（`fail` 1、其他 2）。
 - **ui#d1warm 的值**：`line`、`speaker`（劇本表該列的說話者；系統台詞不顯示名牌）、`focus`（Sherefox 1、警督 3、其他 0）、`line_seq`、`choosing`、`point`（目前的論點，L001 時空白；結束台詞時仍顯示最後的論點）、`miss_text`（`UI_WARMUP_MISS`，`{n}` ＝ 失誤）、`title`（`SCR_D01_S04_TITLE`）、`obs1`～`obs3`（`OBS_D01_W1`～`W3`）。三條觀察一開始就全部可選（設計：現場一眼可見，自動取得），不進人物筆記頁。
 - **音樂**：§4.10（S01 BGM11、S02 BGM02、S03 L001 BGM03、L003 起 BGM04（cut）、熱身 BGM07、蒐證 BGM05、攜帶 BGM06）。
+- **4.4**（企劃 a853521）：S01 報紙有鋼版畫 `d01_wake`（`papers.pictureId`），在 v1 的版畫位置，導言兩欄排滿右側（沒有副標的空位）；熱身畫面在論點等待選擇時不顯示下方對白框（論點只在上方的論點框），見 ui-contracts paper、d1warm 追加。
 - **測試**：`tests/check_d1_story.py`（`tests/gen_d1_story.py` 的三條錄影，中英文）：從標題逐行點過 S01～S03（每行的文字、名牌、演出對 `script_d01.csv` 與演出檔），熱身三種結果的每一行對 ref 的順序，`world.d1Warmup` 與蒐證的鑑定次數；`tests/check_music.py` 的 `d1_story_clean`。`tests/check_d1_m3.py` 的錄影改為從標題經 S01～S04（零失誤）進入蒐證。
+
+### 4.15 v2 示範關卡 D01 的結局（4.4；`dialogue`、`paper`、`d01_end`、`main`；ui-contracts d1result、d1end、paper）
+
+設計：`v2/11_demo_chapter.md` §2 S08～S11、§13（結算畫面、下一章預告佔位）、§12.1～§12.4 的結算表。選行規則以 ref `ref/src/sherefox_ref/v2/epilogue.py` 為準（測試 `ref/tests/test_v2_epilogue.py`）；引擎把結果寫成 `d1EpS08`／`d1EpS09`／`d1EpS10`（`docs/debate-engine-v2.md` §2.2），流圖只照清單播放、不做判斷。
+
+- **步驟**：`D01_06` `d1debate`（S07）之後是 `D01_07` `d1result`（S08）→ `D01_08` `paper`（S09，`arg` ＝ `D01_CLOSE`）→ `D01_09` `d1notes`（S10）→ `D01_10` `d1end`（S11）。開發入口（`d1debate` 那一列）也一路走到 S11。
+- **論戰的結束**：S07 收尾台詞（勝利 L012～L015、敗北 L017～L019）播完 `dialogue` 送 `world.stepDone`（和 v1 一樣；4.3 的暫時結果框拿掉了）。
+- **S08 與結算畫面的順序**：先播 S08 的台詞，再出結算畫面。理由：S08 的台詞是 S07 收尾同一個場面（靈堂裡海德太太道謝、布里格斯、警督、亞瑟）的延續；結算畫面的標題是「世人怎麼看這一場」，接著就是世人看到的章末報紙。`d1result` 開始時 `main` 切到 vn，`dialogue` 依 `d1EpS08` 逐行播放（下述清單模式）；播完 `dialogue` 送 `world.d1ResScreen`，`main` 切到 `d1result`；它的「繼續」送 `world.stepDone`。
+- **清單模式**（`dialogue`）：`d1result`、`d1notes` 步驟的台詞不是整個場景，而是引擎選的行：游標 `dlgState["li"]`（開始 0，每顯示一行 +1），顯示的列＝`find(script, id, d1EpS08[li])`（`d1notes` 用 `d1EpS10`）；清單結束（取不到列）時：`d1result` 送 `world.d1ResScreen`，`d1notes` 送 `world.stepDone`。顯示列寫 vn 各 port 與 `world.vnLine` 同一般 vn。S08、S10 的劇本列與演出：`build_data` 的 `D01_SCRIPT_SCENES` 加入 S08、S10；演出在 `source/staging/staging_d01.csv`（S08 在靈堂，對話的人物立繪；S10 照 v1 的結案筆記：無背景、筆記樣式 style 1）。
+- **結算畫面**（`flows/d01_end.xtflow`，`tools/gen_end_v2.py`）：`win`、`grade_text`（`UI_V2_GRADE_<n>`）、`rounds_text` 是即時值；名聲明細與好感清單在 `world.d1ResScreen`（以及步驟中換語言時）重寫：依 ref 的順序（等級、裂紋、私事、心理牌、迷糊仗、否定事實）逐項檢查 `d1EpRep` 有沒有那一項，有就加一列：文字（`UI_V2_REP_*`；裂紋、私事、否定事實帶次數 `{n}` ＝ `d1Cracks`／`d1Privates`／`d1Denials`）與方向（ref 常數 `REP_*` 的正負：↑／↓，不給數字）；好感依 `FAV_WHO`（警督，之後是私事的人）讀 `world.d1Fav<Who>`，不為 0 就加 `UI_V2_FAVOR_LINE`（名牌、「+1」／「−1」）。隱藏數值：不寫名聲總和、名聲結果、下一場加成、真相度與筆記版本；真相度只決定 S10 播哪一版。
+- **S09 章末報紙**：v1 的 `paper` 步驟。`main` 把 `arg` `D01_CLOSE` 換成 `D01_CLOSE_<world.d1Paper>`（`decent`／`normal`／`ugly`），所以 `paper` 與 `music` 不用特判就拿到該版本的列（`docs/data-schema.md` §9）。`papers.addenda` 為 true 時，內文＝導言，接著 `d1EpS09` 第 3、4 項（附加段）接在導言之後（英文以空格分隔，中文直接相接；不用換行：文字繪製會把 U+000A 畫成缺字方塊，已回報）。無圖、一頁（點一下結束）；版面見 ui-contracts paper 追加。
+- **S10 亞瑟的結案筆記**：`d1notes` 步驟，清單模式播 `d1EpS10`（版本的行，接著附加段），在 vn 上同 v1 的結案筆記，播完結束步驟。
+- **S11 佔位**：`d1end` 步驟，`main` 顯示 `d1end`（文字是板上的字串鍵）。「回到標題」（`ui#d1end.back`）：`main` 把步驟游標設為 −1（沒有步驟：`world.stepKind` 空字串，音樂的時機回到 title），畫面回到標題。再從標題選 v2 示範關卡：從 S01 重新開始，D01 的狀態都由各步驟在開始時清掉（選章時 `d01_investigate` 清空蒐證、筆記、鑑定、攜帶與私下的看法並把 `d1Warmup` 設回 `pass`；熱身、論戰、結算各自在步驟開始重設），`tests/check_d1_full.py` 驗證重新開始後的蒐證畫面是全新的一章。
+- **音樂**（§4.10，cue BGM_D01_14～19）：S08 的行照場景 cue（L001 的 BGM12；cue 表以場景位置推導，敗北的 L011 也是 BGM12），結算畫面接在 S08 的行之後，cue 繼續生效（staging README 規則 1）；S09 的報紙查該版本導言的列（BGM11，三個版本各自的 cue）；S10 BGM02；S11 是固定 cue 列（`D01_FIXED_CUES` 的 `d1end` ＝ `SCR_D01_S11_L001`，BGM01）；回到標題時時機是 title（BGM01），同一首不重播（README：S11 的主題曲回到標題時不中斷）。
+- **測試**：`tests/check_d1_full.py`（四條路線從標題到 S11 再回到標題、重新開始；路線 A 另跑英文）；`check_d1_play`／`check_d1_lines`／`check_d1_m3` 的錄影也走完結局並檢查結算畫面；`tests/check_music.py` 的 D01 路線延伸到 BGM12、BGM11、BGM02、BGM01。
 
 ## 5. 輔助表 `data/flow/`
 

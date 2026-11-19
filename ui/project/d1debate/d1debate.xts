@@ -65,11 +65,6 @@
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/23/4/0 */
-#out-back-t {
-  font-size: 16px;
-}
-
 .kicker {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 12px;
@@ -543,6 +538,20 @@
   text-align: center;
 }
 
+.hint-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--ink-deep);
+  line-clamp: 5;
+}
+
+:lang(en) .hint-t {
+  font-size: 12px;
+  line-height: 17px;
+  line-clamp: 6;
+}
+
 .gesture {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 12px;
@@ -872,37 +881,6 @@
   white-space: nowrap;
 }
 
-.veil {
-  background-color: #092e28b3;
-}
-
-.grade-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 40px;
-  line-height: 52px;
-  font-weight: 700;
-  color: var(--vermilion);
-  text-align: center;
-  white-space: nowrap;
-}
-
-:lang(en) .grade-t {
-  font-size: 30px;
-}
-
-.outcome.win .grade-t {
-  color: var(--ink-deep);
-}
-
-.rounds-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--ink);
-  text-align: center;
-  white-space: nowrap;
-}
-
 .name-plate {
   background-color: #092e28e6;
   border: 1px #000000;
@@ -925,19 +903,5 @@
   --lamp-gold: #e0a050;
   --paper: #f3eedf;
   --vermilion: #b8322a;
-}
-
-.hint-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 13px;
-  line-height: 19px;
-  color: var(--ink-deep);
-  line-clamp: 5;
-}
-
-:lang(en) .hint-t {
-  font-size: 12px;
-  line-height: 17px;
-  line-clamp: 6;
 }
 

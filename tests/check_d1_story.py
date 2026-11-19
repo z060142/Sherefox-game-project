@@ -31,6 +31,7 @@ sys.path.insert(0, str(TESTS))
 import check_d1_play as cd  # noqa: E402
 import check_playthrough as cp  # noqa: E402
 import gen_d1_story as gs  # noqa: E402
+from tempwatch import TempWatch  # noqa: E402
 from xt_cli import EXE, XTFRAME, compile_game  # noqa: E402
 
 S = cd.S
@@ -83,7 +84,7 @@ def check(name: str, run: dict, lang: str, fails: list) -> None:
             eq("paper dateline", p.get("paper.dateline"), L[PAPER["datelineKey"]])
             eq("paper lead", p.get("paper.body"), L[PAPER["bodyKey"]])
             eq("paper page", p.get("paper.page"), 1.0)
-            eq("paper side strip", (p.get("paper.result_head"), p.get("paper.picture")), ("", ""))
+            eq("paper strip, engraving", (p.get("paper.result_head"), p.get("paper.picture")), ("", "d01_wake"))   # 4.4
             continue
         row = SCRIPT[lid]
         spk = L[row["speaker"]] if row["speaker"] else ""
@@ -175,8 +176,7 @@ def shots(out: Path, ticks: dict) -> None:
 def main() -> int:
     argv = sys.argv[1:]
     compile_game()
-    temp = Path(tempfile.gettempdir())
-    before = set(os.listdir(temp))
+    tw = TempWatch().__enter__()   # tests/tempwatch.py: only what this run creates counts as a leak
     fails: list[str] = []
     if subprocess.run([sys.executable, str(TESTS / "gen_d1_story.py")], cwd=ROOT).returncode != 0:
         raise SystemExit("gen_d1_story failed")
@@ -186,10 +186,11 @@ def main() -> int:
             check(name, ticks[name], lang, fails)
     if "--shots" in argv:
         shots(Path(argv[argv.index("--shots") + 1]), ticks)
-    left = sorted(n for n in set(os.listdir(temp)) - before if n.startswith(("d1storyshots-", "tmp")))
+    tw.__exit__(None, None, None)
+    left = tw.leaks
     if left:
         fails.append("temp")
-        print("FAIL temp: left in %TEMP%: " + ", ".join(left))
+        print("FAIL temp: left behind: " + ", ".join(left))
     print("ok" if not fails else f"FAILED: {', '.join(fails)}")
     return 1 if fails else 0
 

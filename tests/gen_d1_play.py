@@ -5,7 +5,8 @@
 """Write the v2 demo D01 debate recordings (docs/flows.md §4.12, tests/README.md) and their forced-opponent harnesses.
 
 Every recording starts at the title, clicks the v2 entry and plays the D01 debate by clicking the d1debate screen
-(action, evidence, claim, target, cover, lock; a click per playback record), then the outcome panel's back to title:
+(action, evidence, claim, target, cover, lock; a click per playback record), then (4.4) the S07 lines after it, the result
+step (S08 lines, the result screen), the S09 paper, S10 Arthur's notes and the S11 placeholder's back to title:
 
 - tests/d1_routeA.atrec (tests/d1play_harnessA): ref route A (ch §12.1), the opponent's moves pinned by the harness
   (the engine's d1OppAct / d1OppCard test hook, debate-engine-v2 §2.1): a clean Break, grade 1 in 9 rounds.
@@ -53,7 +54,9 @@ ACT_XY = {1: (107, 664), 2: (295, 664), 3: (469, 664), 4: (657, 664), 5: (432, 6
 GUARD_XY = (847, 664)
 LOCK_XY = (1157, 664)
 SKIP_XY = (900, 580)      # #hit during playback; nothing there while choosing
-BACK_XY = (640, 422)      # #out-back
+RES_NEXT_XY = (1038, 650)  # D1Result #btn-next (繼續)
+PAPER_XY = (640, 400)      # Paper: a click anywhere turns / ends the page
+END_BACK_XY = (640, 640)   # D1End #btn-back (S11 L003)
 PA_ACT = {PA.ARGUE: 1, PA.INTERCEPT: 2, PA.DISMANTLE: 3, PA.STALL: 4, PA.CUT: 5, PA.ACCEPT: 6, PA.LAST_STAND: 7}
 VN_XY = (640, 300)        # Vn #hit (the S07 lines before and after the debate)
 VN_WAIT = 30              # ticks between vn clicks (the standees' fade-in is over)
@@ -154,7 +157,7 @@ def opening(rec: Rec) -> None:
 
 
 def outro(rec: Rec, outcome: str | None) -> None:
-    """After the last round: S07's lines after a win / a loss on the vn (a click each), then the outcome panel."""
+    """After the last round: S07's lines after a win / a loss on the vn (a click each); the step ends after them."""
     from sherefox_ref.v2 import lines as LN
     if outcome is None:
         return
@@ -165,7 +168,38 @@ def outro(rec: Rec, outcome: str | None) -> None:
     rec.t += 30
 
 
-def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset(), outcome: str | None = None) -> None:
+def final_state(rounds: list):
+    s, pa, oa = rounds[-1]
+    return resolve_round(s, pa, oa)[0]
+
+
+def epilogue(rec: Rec, final, back: bool = True) -> None:
+    """After S07's lines (v2 demo 4.4, docs/flows.md §4.15): the result step's S08 lines on the vn (ref epilogue: the
+    lines the engine picks), the result screen (mark `over`), 繼續, the S09 paper (one click), S10 Arthur's notes on
+    the vn, the S11 placeholder and (back) its back to title (mark `back`)."""
+    from sherefox_ref.v2.epilogue import epilogue as ep
+    e = ep(final)
+    for lid in e.s08:
+        rec.marks[f"s08_{lid}"] = rec.t + 20
+        rec.click("vn", VN_XY, VN_WAIT)
+    rec.marks["over"] = rec.t + 40
+    rec.t += 60
+    rec.click("d1result", RES_NEXT_XY, 0)
+    rec.marks["s09"] = rec.t + 40
+    rec.t += 70
+    rec.click("paper", PAPER_XY, 0)
+    for lid in e.s10:
+        rec.marks[f"s10_{lid}"] = rec.t + 20
+        rec.click("vn", VN_XY, VN_WAIT)
+    rec.marks["s11"] = rec.t + 80
+    rec.t += 100
+    if back:
+        rec.click("d1end", END_BACK_XY, 0)
+        rec.marks["back"] = rec.t + 30
+        rec.t += 40
+
+
+def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset(), outcome: str | None = None, final=None) -> None:
     rec.click("title", TITLE_V2, 40)
     rec.t += 40
     opening(rec)
@@ -175,9 +209,8 @@ def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset(), outcome: str |
             rec.t += NO_SKIP_WAIT
     rec.marks["end"] = rec.t
     outro(rec, outcome)
-    rec.marks["over"] = rec.t
-    rec.click("d1debate", BACK_XY, 30)
-    rec.marks["back"] = rec.t
+    if outcome is not None:
+        epilogue(rec, final or final_state(rounds))
 
 
 def outcome_of(rounds: list) -> str | None:
@@ -260,7 +293,7 @@ def main() -> int:
         ticks[name + "_marks"] = r.marks
     bot = CV.play_debate("bot", RT.ROUTES["A"].loadout, BOT_DEBATE_SEED)
     r = Rec(".", BOT_SEED)
-    play(r, [(st[2], st[0], None) for st in bot.steps], outcome=bot.steps[-1][3].outcome)
+    play(r, [(st[2], st[0], None) for st in bot.steps], outcome=bot.steps[-1][3].outcome, final=bot.steps[-1][3])
     ticks["d1_bot"] = r.write("d1_bot", 60)
     ticks["d1_bot_marks"] = r.marks
     (TESTS / "d1_ticks.json").write_text(json.dumps(ticks, indent=1) + "\n", encoding="utf-8", newline="\n")

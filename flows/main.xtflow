@@ -195,6 +195,13 @@
       "type": "merge"
     },
     {
+      "id": "endBack",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
       "id": "devRow",
       "type": "atrium.table.find",
       "params": {
@@ -262,6 +269,17 @@
       "type": "merge"
     },
     {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": -1
+      }
+    },
+    {
+      "id": "pickOrBack",
+      "type": "select"
+    },
+    {
       "id": "same",
       "type": "compare",
       "params": {
@@ -292,11 +310,40 @@
       }
     },
     {
+      "id": "chPickGo",
+      "type": "merge"
+    },
+    {
       "id": "retrying",
       "type": "toggle",
       "params": {
         "initial": false
       }
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "D01_CLOSE"
+      }
+    },
+    {
+      "id": "argD1Close",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "argD1CloseV",
+      "type": "format",
+      "params": {
+        "format": "D01_CLOSE_{a}"
+      }
+    },
+    {
+      "id": "argV",
+      "type": "select"
     },
     {
       "id": "screen",
@@ -314,7 +361,9 @@
           "d1debate",
           "d1inv",
           "d1carry",
-          "d1warm"
+          "d1warm",
+          "d1result",
+          "d1end"
         ],
         "transitions": [
           {
@@ -371,6 +420,16 @@
             "from": "*",
             "on": "to_d1warm",
             "to": "d1warm"
+          },
+          {
+            "from": "*",
+            "on": "to_d1result",
+            "to": "d1result"
+          },
+          {
+            "from": "*",
+            "on": "to_d1end",
+            "to": "d1end"
           }
         ]
       }
@@ -390,7 +449,7 @@
       }
     },
     {
-      "id": "K2",
+      "id": "K4",
       "type": "constant",
       "params": {
         "value": 101
@@ -599,11 +658,53 @@
       }
     },
     {
+      "id": "isD1ResTag",
+      "type": "constant",
+      "params": {
+        "value": "d1result"
+      }
+    },
+    {
+      "id": "isD1Res",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1NoteTag",
+      "type": "constant",
+      "params": {
+        "value": "d1notes"
+      }
+    },
+    {
+      "id": "isD1Note",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1EndTag",
+      "type": "constant",
+      "params": {
+        "value": "d1end"
+      }
+    },
+    {
+      "id": "isD1End",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "isDebN",
       "type": "select"
     },
     {
-      "id": "K3",
+      "id": "K5",
       "type": "constant",
       "params": {
         "value": 0
@@ -747,6 +848,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -758,6 +861,8 @@
         "values": [
           false,
           true,
+          false,
+          false,
           false,
           false,
           false,
@@ -785,6 +890,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -798,6 +905,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false,
           false,
           false,
@@ -823,6 +932,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -838,6 +949,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false,
           false,
           false,
@@ -861,6 +974,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -878,6 +993,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false,
           false,
           false
@@ -899,6 +1016,8 @@
           false,
           true,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -918,6 +1037,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false
         ]
       }
@@ -927,6 +1048,50 @@
       "type": "lookup",
       "params": {
         "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1result",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1end",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
           false,
           false,
           false,
@@ -1214,6 +1379,18 @@
       "to": "ui#settings.lang_sel"
     },
     {
+      "from": "ui#d1end.back",
+      "to": "endBack.setTrue"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "endBack.setFalse"
+    },
+    {
+      "from": "ui#title.v2dev",
+      "to": "endBack.setFalse"
+    },
+    {
       "from": "K0.out",
       "to": "devRow.value"
     },
@@ -1278,7 +1455,19 @@
       "to": "chStart.filterValue"
     },
     {
+      "from": "endBack.value",
+      "to": "pickOrBack.cond"
+    },
+    {
+      "from": "K2.out",
+      "to": "pickOrBack.a"
+    },
+    {
       "from": "pickRow.out",
+      "to": "pickOrBack.b"
+    },
+    {
+      "from": "pickOrBack.out",
       "to": "chPick.in"
     },
     {
@@ -1299,6 +1488,14 @@
     },
     {
       "from": "pickGo.out",
+      "to": "chPickGo.in"
+    },
+    {
+      "from": "ui#d1end.back",
+      "to": "chPickGo.in"
+    },
+    {
+      "from": "chPickGo.out",
       "to": "chPick.trigger"
     },
     {
@@ -1359,6 +1556,30 @@
     },
     {
       "from": "arg.value",
+      "to": "argD1Close.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "argD1Close.b"
+    },
+    {
+      "from": "world.d1Paper",
+      "to": "argD1CloseV.a"
+    },
+    {
+      "from": "argD1Close.out",
+      "to": "argV.cond"
+    },
+    {
+      "from": "argD1CloseV.out",
+      "to": "argV.a"
+    },
+    {
+      "from": "arg.value",
+      "to": "argV.b"
+    },
+    {
+      "from": "argV.out",
       "to": "world.stepArg"
     },
     {
@@ -1402,7 +1623,7 @@
       "to": "sceneKeyIsD1.a"
     },
     {
-      "from": "K2.out",
+      "from": "K4.out",
       "to": "sceneKeyIsD1.b"
     },
     {
@@ -1562,6 +1783,42 @@
       "to": "screen.to_d1warm"
     },
     {
+      "from": "kind.value",
+      "to": "isD1Res.a"
+    },
+    {
+      "from": "isD1ResTag.out",
+      "to": "isD1Res.b"
+    },
+    {
+      "from": "isD1Res.true",
+      "to": "screen.to_vn"
+    },
+    {
+      "from": "kind.value",
+      "to": "isD1Note.a"
+    },
+    {
+      "from": "isD1NoteTag.out",
+      "to": "isD1Note.b"
+    },
+    {
+      "from": "isD1Note.true",
+      "to": "screen.to_vn"
+    },
+    {
+      "from": "kind.value",
+      "to": "isD1End.a"
+    },
+    {
+      "from": "isD1EndTag.out",
+      "to": "isD1End.b"
+    },
+    {
+      "from": "isD1End.true",
+      "to": "screen.to_d1end"
+    },
+    {
       "from": "isDeb.out",
       "to": "isDebN.cond"
     },
@@ -1570,7 +1827,7 @@
       "to": "isDebN.a"
     },
     {
-      "from": "K3.out",
+      "from": "K5.out",
       "to": "isDebN.b"
     },
     {
@@ -1582,7 +1839,7 @@
       "to": "isWarmN.a"
     },
     {
-      "from": "K3.out",
+      "from": "K5.out",
       "to": "isWarmN.b"
     },
     {
@@ -1594,7 +1851,7 @@
       "to": "retryN.a"
     },
     {
-      "from": "K3.out",
+      "from": "K5.out",
       "to": "retryN.b"
     },
     {
@@ -1606,7 +1863,7 @@
       "to": "isD1DebN.a"
     },
     {
-      "from": "K3.out",
+      "from": "K5.out",
       "to": "isD1DebN.b"
     },
     {
@@ -1718,7 +1975,11 @@
       "to": "screen.to_vn"
     },
     {
-      "from": "world.d1Back",
+      "from": "world.d1ResScreen",
+      "to": "screen.to_d1result"
+    },
+    {
+      "from": "ui#d1end.back",
       "to": "screen.to_title"
     },
     {
@@ -1882,6 +2143,22 @@
       "to": "ui#d1warm.visible"
     },
     {
+      "from": "screen.index",
+      "to": "visD1result.index"
+    },
+    {
+      "from": "visD1result.out",
+      "to": "ui#d1result.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visD1end.index"
+    },
+    {
+      "from": "visD1end.out",
+      "to": "ui#d1end.visible"
+    },
+    {
       "from": "isInv.out",
       "to": "bookGate.guard"
     },
@@ -2027,6 +2304,14 @@
     },
     {
       "from": "ui#d1warm.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1result.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1end.settings",
       "to": "settings.open"
     },
     {

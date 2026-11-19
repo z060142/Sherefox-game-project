@@ -6,6 +6,8 @@
 
 E1／E2（2026-11-19）：模糊預兆一律顯示「他若開口，會說」的牌（企劃 898b522，00_core_rules §15〔M2〕；§2.1 `d1TellCard`、§3.4）；亂數改用框架的 `atrium.rng.stream`，論戰有自己的種子 `d1Seed`（§3.4）。
 
+4.4（2026-11-19）：結果區加上章節的結局（ref `epilogue.py`）：S08 的台詞、S09 報紙的版本與附加段、S10 筆記的版本與附加段（`d1EpS08`／`d1EpS09`／`d1EpS10`），名聲細項的名稱 `d1EpRep`，私事次數 `d1Privates`，好感 `d1FavInspector`／`d1FavMrsHyde`（§2.1、§2.2）；`check_debate_v2` 逐項比對，並要求預設的 60 場論戰合起來走到每一句結局台詞。
+
 M2（2026-11-19）：`game.json` 已接上（`tools/gen_flows.py` 把 §2 的訊號、集合與衍生表加進去，`flows` 中排在 `d01_debate_ui` 之後），論戰畫面見 `docs/flows.md` §4.12、`docs/ui-contracts.md` d1debate。
 
 ## 1. 檔案與產生方式
@@ -66,6 +68,7 @@ M2（2026-11-19）：`game.json` 已接上（`tools/gen_flows.py` 把 §2 的訊
 | `d1HandCount` | number | 他手上的牌數（含不利事實與保留的撿走證物，不含最後一張牌） |
 | `d1Outcome`、`d1Grade`、`d1EndReason` | string、number、string | `win`／`loss`、評級 1～5、結束原因（`REASONS`：`confession`、`zero`、`second_ronpa`、`dying_cut`、`last_card_cut`、`round_limit`…，同 ref） |
 | `d1Truth`、`d1RepDelta`、`d1RepAfter`、`d1NextStartHp`、`d1Note`、`d1Paper` | | 結算（ref `results.compute`）：真相度 %、名聲增減、名聲結果、下一場起始可信度加成、筆記版本 `full`／`half`／`wrong`、報紙 `decent`／`normal`／`ugly` |
+| `d1Privates`、`d1FavInspector`、`d1FavMrsHyde` | number | 4.4：說過私事的次數（`priv`，結算畫面的「×n」）；好感變化（`FAV_WHO`：警督，之後是私事的人；`d1Favour` 的數字版，沒有變化為 0） |
 | `d1TellAction` | string | 他這一手的真正行動（UI 不顯示；給除錯與對手筆記） |
 | `d1TellClarity`、`d1TellShown1`、`d1TellShown2`、`d1TellStar` | string | 預兆：`clear`／`vague`；顯示的行動（標準順序 立論、強辯、反駁、周旋；明示只有 Shown1；終局回合 Shown1＝`last`）；★（只標在真正行動上、且只在行為規則指向它時；空＝無） |
 | `d1TellCard`、`d1TellPartial` | string、number | 預兆顯示的牌：明示＝他要說的牌（立論／強辯、終局的最後一張牌；不開口時空）；**模糊＝「他若開口，會說」的牌**（00_core_rules §15〔M2〕：他真的開口就是他說的牌〔口誤時是那張不利事實〕，不開口時是回合開始時以立論選牌規則〔不含口誤〕選定、留在手上的牌；無牌可立論時空）。1＝顯示前半句（那張牌是不利事實） |
@@ -86,6 +89,8 @@ M2（2026-11-19）：`game.json` 已接上（`tools/gen_flows.py` 把 §2 的訊
 | `d1ClaimList` | list string | 引擎 | **下一回合**的說法選擇器內容（ref `known.claim_list`）：抓住他的話在最前，其餘依資料順序、只列可用的（攜帶了證物、解鎖條件已知、沒被駁倒作廢）。依證物分組用 `d1Claim.evidence` |
 | `d1ClaimSoph`、`d1ClaimCrack`、`d1ClaimStand` | map number | 引擎 | 鍵＝說法 id：顯示為詭辯、會紅色裂痕（與公開紀錄互斥）、已在鏈上（不能再接，仍可用來反駁） |
 | `d1Rep`、`d1Favour` | list string | 引擎 | 結束時：名聲細項 `項目\|增減`（`grade_<n>`、`cracks`、`private`、`psych_card`、`stalls`、`denials`）、好感變化 `對象\|增減`（`inspector`、`mrs_hyde`） |
+| `d1EpRep` | list string | 引擎 | 4.4：`d1Rep` 的項目名稱（同順序；結算畫面逐項檢查，不必拆字串） |
+| `d1EpS08`、`d1EpS09`、`d1EpS10` | list string | 引擎 | 4.4，結束時（ref `epilogue.epilogue`）：S08 依序播的台詞 id；S09 報紙＝版本的頭條與導言兩行，接著附加段（L007 公開過艾琳的身世、L008 勝利且否定事實 ≥ 1 或裂紋 ≥ 3）；S10 筆記＝版本的行（真相度 ≥ 70 L001～L003、40～69 L004～L005、＜ 40 L006），接著附加段（L007 沒說過 07A／07B、L008 見 ref 的 SPEC-QUESTION、L009 敗北）。「說過」＝公開紀錄裡有（`sd_<說法>` > 0，任何用法） |
 
 `atrium.ui.list` 可直接以 `d1ClaimList` 為來源，欄位用 `table:d1Claim[id].evidence`、`map:d1ClaimSoph` 等組出清單。
 

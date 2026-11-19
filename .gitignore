@@ -17,3 +17,7 @@ tests/d1play_harnessS1/
 tests/d1play_harnessS2/
 tests/d1play_harnessS3/
 tests/d1_lines_S*.atrec
+tests/d1full_harnessA/
+tests/d1full_harnessB/
+tests/d1full_harnessC/
+tests/d1full_harnessD/

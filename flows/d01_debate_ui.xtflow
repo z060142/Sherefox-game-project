@@ -7989,7 +7989,7 @@
       "id": "vHp",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3"
+        "expr": "round((max(0, k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3)) * 100) / 100"
       }
     },
     {
@@ -8010,14 +8010,35 @@
       "id": "vHpO",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_pDmg && c_last_card ? gn5 : d_hpO"
+        "expr": "round((max(0, k_pDmg && c_last_card ? gn5 : d_hpO)) * 100) / 100"
       }
     },
     {
       "id": "vDmg",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_pAttach ? n3 : n1"
+        "expr": "round((k_pAttach ? n3 : n1) * 100) / 100"
+      }
+    },
+    {
+      "id": "vN1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((max(0, n1)) * 100) / 100"
+      }
+    },
+    {
+      "id": "vN2",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((max(0, n2)) * 100) / 100"
+      }
+    },
+    {
+      "id": "vPatD",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((d_patD) * 100) / 100"
       }
     },
     {
@@ -8291,6 +8312,13 @@
       }
     },
     {
+      "id": "fN1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((n1) * 100) / 100"
+      }
+    },
+    {
       "id": "fmDmg",
       "type": "format",
       "params": {
@@ -8351,7 +8379,7 @@
       "id": "healAmt",
       "type": "atrium.expr",
       "params": {
-        "expr": "n2 - n1"
+        "expr": "round((n2 - n1) * 100) / 100"
       }
     },
     {
@@ -8456,6 +8484,24 @@
       }
     },
     {
+      "id": "lockHOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isMain && (k_ronpa || k_endgame)"
+      }
+    },
+    {
+      "id": "lockHG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "u1_hpO_61",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "u1"
+      }
+    },
+    {
       "id": "patOn",
       "type": "atrium.expr",
       "params": {
@@ -8467,14 +8513,14 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_pat_61",
+      "id": "u1_pat_62",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
       }
     },
     {
-      "id": "u1_patD_62",
+      "id": "u1_patD_63",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -8492,7 +8538,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_intBlk_63",
+      "id": "u1_intBlk_64",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -8510,7 +8556,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_rmN_64",
+      "id": "u1_rmN_65",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -8528,7 +8574,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_pat_65",
+      "id": "u1_pat_66",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -8990,7 +9036,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_clsP_66",
+      "id": "u1_clsP_67",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9008,7 +9054,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_m8_67",
+      "id": "u1_m8_68",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9026,7 +9072,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_m9_68",
+      "id": "u1_m9_69",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9044,7 +9090,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_m10_69",
+      "id": "u1_m10_70",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9062,7 +9108,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_m10_70",
+      "id": "u1_m10_71",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9080,7 +9126,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1_hush_71",
+      "id": "u1_hush_72",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9191,7 +9237,7 @@
       }
     },
     {
-      "id": "u1_pbAt_72",
+      "id": "u1_pbAt_73",
       "type": "atrium.map.set",
       "params": {
         "name": "u1"
@@ -9233,6 +9279,20 @@
         "args": [
           "name"
         ]
+      }
+    },
+    {
+      "id": "hpMeOut",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((max(0, d_hpM)) * 100) / 100"
+      }
+    },
+    {
+      "id": "hpOppOut",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "round((max(0, d_hpO)) * 100) / 100"
       }
     },
     {
@@ -9888,70 +9948,6 @@
       "type": "atrium.expr",
       "params": {
         "expr": "needClaim && d_ph == 1"
-      }
-    },
-    {
-      "id": "gradeOn",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "L_Grade > 0"
-      }
-    },
-    {
-      "id": "gradeK",
-      "type": "format",
-      "params": {
-        "format": "UI_V2_GRADE_{a}"
-      }
-    },
-    {
-      "id": "gradeSel",
-      "type": "select"
-    },
-    {
-      "id": "gradeT",
-      "type": "atrium.text"
-    },
-    {
-      "id": "roundsN",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "L_Round - 1"
-      }
-    },
-    {
-      "id": "roundsT",
-      "type": "atrium.textf",
-      "params": {
-        "key": "UI_V2_RESULT_ROUNDS",
-        "args": [
-          "n"
-        ]
-      }
-    },
-    {
-      "id": "outWin",
-      "type": "compare",
-      "params": {
-        "op": "eq"
-      }
-    },
-    {
-      "id": "backOk",
-      "type": "atrium.expr",
-      "params": {
-        "expr": "d_ph == 3"
-      }
-    },
-    {
-      "id": "backG",
-      "type": "atrium.gate"
-    },
-    {
-      "id": "u1_ph_73",
-      "type": "atrium.map.set",
-      "params": {
-        "name": "u1"
       }
     }
   ],
@@ -20473,6 +20469,18 @@
       "to": "vDmg.n1"
     },
     {
+      "from": "n1.value",
+      "to": "vN1.n1"
+    },
+    {
+      "from": "n2.value",
+      "to": "vN2.n2"
+    },
+    {
+      "from": "d_patD.value",
+      "to": "vPatD.d_patD"
+    },
+    {
       "from": "f1.value",
       "to": "xPC3.a"
     },
@@ -20601,7 +20609,7 @@
       "to": "vDmgL.trigger"
     },
     {
-      "from": "n1.value",
+      "from": "vN1.value",
       "to": "vHpBL.in"
     },
     {
@@ -20609,7 +20617,7 @@
       "to": "vHpBL.trigger"
     },
     {
-      "from": "n2.value",
+      "from": "vN2.value",
       "to": "vHpAL.in"
     },
     {
@@ -20625,7 +20633,7 @@
       "to": "vCL.trigger"
     },
     {
-      "from": "d_patD.value",
+      "from": "vPatD.value",
       "to": "vDmgPL.in"
     },
     {
@@ -20846,6 +20854,10 @@
     },
     {
       "from": "n1.value",
+      "to": "fN1.n1"
+    },
+    {
+      "from": "fN1.value",
       "to": "fmDmg.a"
     },
     {
@@ -20933,7 +20945,7 @@
       "to": "foH.a"
     },
     {
-      "from": "n1.value",
+      "from": "fN1.value",
       "to": "foD.a"
     },
     {
@@ -21094,6 +21106,38 @@
     },
     {
       "from": "isMain.value",
+      "to": "lockHOn.isMain"
+    },
+    {
+      "from": "k_ronpa.out",
+      "to": "lockHOn.k_ronpa"
+    },
+    {
+      "from": "k_endgame.out",
+      "to": "lockHOn.k_endgame"
+    },
+    {
+      "from": "lockHOn.value",
+      "to": "lockHG.cond"
+    },
+    {
+      "from": "parseG.pass",
+      "to": "lockHG.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "u1_hpO_61.key"
+    },
+    {
+      "from": "world.d1OppHp",
+      "to": "u1_hpO_61.value"
+    },
+    {
+      "from": "lockHG.pass",
+      "to": "u1_hpO_61.trigger"
+    },
+    {
+      "from": "isMain.value",
       "to": "patOn.isMain"
     },
     {
@@ -21110,27 +21154,27 @@
     },
     {
       "from": "K15.out",
-      "to": "u1_pat_61.key"
+      "to": "u1_pat_62.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_pat_61.value"
+      "to": "u1_pat_62.value"
     },
     {
       "from": "patOnG.pass",
-      "to": "u1_pat_61.trigger"
+      "to": "u1_pat_62.trigger"
     },
     {
       "from": "K20.out",
-      "to": "u1_patD_62.key"
+      "to": "u1_patD_63.key"
     },
     {
       "from": "n3.value",
-      "to": "u1_patD_62.value"
+      "to": "u1_patD_63.value"
     },
     {
       "from": "patOnG.pass",
-      "to": "u1_patD_62.trigger"
+      "to": "u1_patD_63.trigger"
     },
     {
       "from": "isMain.value",
@@ -21150,15 +21194,15 @@
     },
     {
       "from": "K18.out",
-      "to": "u1_intBlk_63.key"
+      "to": "u1_intBlk_64.key"
     },
     {
       "from": "n5.value",
-      "to": "u1_intBlk_63.value"
+      "to": "u1_intBlk_64.value"
     },
     {
       "from": "intBG.pass",
-      "to": "u1_intBlk_63.trigger"
+      "to": "u1_intBlk_64.trigger"
     },
     {
       "from": "isMain.value",
@@ -21178,15 +21222,15 @@
     },
     {
       "from": "K19.out",
-      "to": "u1_rmN_64.key"
+      "to": "u1_rmN_65.key"
     },
     {
       "from": "vRmN.value",
-      "to": "u1_rmN_64.value"
+      "to": "u1_rmN_65.value"
     },
     {
       "from": "rmG.pass",
-      "to": "u1_rmN_64.trigger"
+      "to": "u1_rmN_65.trigger"
     },
     {
       "from": "isMain.value",
@@ -21206,15 +21250,15 @@
     },
     {
       "from": "K15.out",
-      "to": "u1_pat_65.key"
+      "to": "u1_pat_66.key"
     },
     {
       "from": "K40.out",
-      "to": "u1_pat_65.value"
+      "to": "u1_pat_66.value"
     },
     {
       "from": "patOffG.pass",
-      "to": "u1_pat_65.trigger"
+      "to": "u1_pat_66.trigger"
     },
     {
       "from": "isMain.value",
@@ -21938,15 +21982,15 @@
     },
     {
       "from": "K28.out",
-      "to": "u1_clsP_66.key"
+      "to": "u1_clsP_67.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_clsP_66.value"
+      "to": "u1_clsP_67.value"
     },
     {
       "from": "clsPG.pass",
-      "to": "u1_clsP_66.trigger"
+      "to": "u1_clsP_67.trigger"
     },
     {
       "from": "isMain.value",
@@ -21978,15 +22022,15 @@
     },
     {
       "from": "K30.out",
-      "to": "u1_m8_67.key"
+      "to": "u1_m8_68.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_m8_67.value"
+      "to": "u1_m8_68.value"
     },
     {
       "from": "m8G.pass",
-      "to": "u1_m8_67.trigger"
+      "to": "u1_m8_68.trigger"
     },
     {
       "from": "isMain.value",
@@ -22010,15 +22054,15 @@
     },
     {
       "from": "K31.out",
-      "to": "u1_m9_68.key"
+      "to": "u1_m9_69.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_m9_68.value"
+      "to": "u1_m9_69.value"
     },
     {
       "from": "m9G.pass",
-      "to": "u1_m9_68.trigger"
+      "to": "u1_m9_69.trigger"
     },
     {
       "from": "isMain.value",
@@ -22038,15 +22082,15 @@
     },
     {
       "from": "K32.out",
-      "to": "u1_m10_69.key"
+      "to": "u1_m10_70.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_m10_69.value"
+      "to": "u1_m10_70.value"
     },
     {
       "from": "m10G.pass",
-      "to": "u1_m10_69.trigger"
+      "to": "u1_m10_70.trigger"
     },
     {
       "from": "isMain.value",
@@ -22070,15 +22114,15 @@
     },
     {
       "from": "K32.out",
-      "to": "u1_m10_70.key"
+      "to": "u1_m10_71.key"
     },
     {
       "from": "K40.out",
-      "to": "u1_m10_70.value"
+      "to": "u1_m10_71.value"
     },
     {
       "from": "m10bG.pass",
-      "to": "u1_m10_70.trigger"
+      "to": "u1_m10_71.trigger"
     },
     {
       "from": "xL7S.value",
@@ -22106,15 +22150,15 @@
     },
     {
       "from": "K33.out",
-      "to": "u1_hush_71.key"
+      "to": "u1_hush_72.key"
     },
     {
       "from": "K39.out",
-      "to": "u1_hush_71.value"
+      "to": "u1_hush_72.value"
     },
     {
       "from": "hushG.pass",
-      "to": "u1_hush_71.trigger"
+      "to": "u1_hush_72.trigger"
     },
     {
       "from": "isDebKN.out",
@@ -22226,15 +22270,15 @@
     },
     {
       "from": "K11.out",
-      "to": "u1_pbAt_72.key"
+      "to": "u1_pbAt_73.key"
     },
     {
       "from": "pbAtN.value",
-      "to": "u1_pbAt_72.value"
+      "to": "u1_pbAt_73.value"
     },
     {
       "from": "parseG.pass",
-      "to": "u1_pbAt_72.trigger"
+      "to": "u1_pbAt_73.trigger"
     },
     {
       "from": "d_ph.value",
@@ -22286,10 +22330,18 @@
     },
     {
       "from": "d_hpM.value",
+      "to": "hpMeOut.d_hpM"
+    },
+    {
+      "from": "hpMeOut.value",
       "to": "ui#d1debate.hp_me"
     },
     {
       "from": "d_hpO.value",
+      "to": "hpOppOut.d_hpO"
+    },
+    {
+      "from": "hpOppOut.value",
       "to": "ui#d1debate.hp_opp"
     },
     {
@@ -23199,86 +23251,6 @@
     {
       "from": "pickOn.truth",
       "to": "ui#d1debate.picker_on"
-    },
-    {
-      "from": "L_Grade.out",
-      "to": "gradeOn.L_Grade"
-    },
-    {
-      "from": "L_Grade.out",
-      "to": "gradeK.a"
-    },
-    {
-      "from": "gradeOn.truth",
-      "to": "gradeSel.cond"
-    },
-    {
-      "from": "gradeK.out",
-      "to": "gradeSel.a"
-    },
-    {
-      "from": "K38.out",
-      "to": "gradeSel.b"
-    },
-    {
-      "from": "gradeSel.out",
-      "to": "gradeT.key"
-    },
-    {
-      "from": "gradeT.text",
-      "to": "ui#d1debate.grade_text"
-    },
-    {
-      "from": "L_Round.out",
-      "to": "roundsN.L_Round"
-    },
-    {
-      "from": "roundsN.value",
-      "to": "roundsT.n"
-    },
-    {
-      "from": "roundsT.text",
-      "to": "ui#d1debate.rounds_text"
-    },
-    {
-      "from": "L_Outcome.out",
-      "to": "outWin.a"
-    },
-    {
-      "from": "K63.out",
-      "to": "outWin.b"
-    },
-    {
-      "from": "outWin.out",
-      "to": "ui#d1debate.outcome_win"
-    },
-    {
-      "from": "d_ph.value",
-      "to": "backOk.d_ph"
-    },
-    {
-      "from": "backOk.value",
-      "to": "backG.cond"
-    },
-    {
-      "from": "ui#d1debate.back_title",
-      "to": "backG.trigger"
-    },
-    {
-      "from": "K2.out",
-      "to": "u1_ph_73.key"
-    },
-    {
-      "from": "K40.out",
-      "to": "u1_ph_73.value"
-    },
-    {
-      "from": "backG.pass",
-      "to": "u1_ph_73.trigger"
-    },
-    {
-      "from": "backG.pass",
-      "to": "world.d1Back"
     }
   ]
 }

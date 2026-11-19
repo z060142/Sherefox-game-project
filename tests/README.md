@@ -197,17 +197,17 @@ uv run tests/check_d1_play.py [--shots DIR]
 
 `check_d1_play.py` regenerates the recordings (`tests/gen_d1_play.py`) and replays them with `--ports`. Each one starts
 at the title's v2 entry and plays the whole D01 debate by clicking the `d1debate` screen (action, evidence, claim,
-target, cover, lock, one click per playback record), then the outcome panel's back to title.
+target, cover, lock, one click per playback record), then (4.4) the ending: S08, the result screen, S09, S10 and S11's back to title.
 
 | Check | Recording | What it asserts |
 |---|---|---|
-| `route A`, `route A [en]` | `d1_routeA.atrec` on `tests/d1play_harnessA` | ref route A (ch §12.1) with Cedric's moves pinned through the engine's `d1OppAct`／`d1OppCard` test hook (a flow the harness adds): the outcome panel shows grade 1 and 9 rounds, a win; round 9 was shown; back to title leaves only the title; nothing on stderr |
+| `route A`, `route A [en]` | `d1_routeA.atrec` on `tests/d1play_harnessA` | ref route A (ch §12.1) with Cedric's moves pinned through the engine's `d1OppAct`／`d1OppCard` test hook (a flow the harness adds): the result screen shows grade 1 and 9 rounds, a win; round 9 was shown; back to title leaves only the title; nothing on stderr |
 | `route B`, `route C [en]` | `d1_routeB.atrec`, `d1_routeC.atrec` on `tests/d1play_harnessB`, `C` | ref routes B (talking board, seize his words, he gives up: grade 1, 5 rounds) and C (sophistry, a private matter, the picked-up keys as his last card taken, a second endgame: grade 3, 10 rounds), each with its own loadout |
 | `route D` | `d1_routeD.atrec` on `tests/d1play_harnessD` | ref route D (ch §12.4; the harness also swaps in route D's loadout): grade 5, 8 rounds, a loss (Reverse Break, then the last card fails; route D names L1 as the target, no longer on his chain, so no target is clicked: same result) |
 | `seeded AI (seed 3)` | `d1_bot.atrec` on the game itself | nothing pinned: the engine's AI on the debate seed the UI draws from the run's rng (`check_debate_v2.py` `ui_debate_seed`) against the moves of ref `play.bot` on the same seed; the outcome matches ref |
 
 Since v2 demo 4.3 each recording also clicks S07 L001-L003 on the vn before the debate, skips the opening step (S07
-L004) and clicks the lines after it (L012-L015 after a win, L017-L019 after a loss) before the outcome panel. For the
+L004) and clicks the lines after it (L012-L015 after a win, L017-L019 after a loss) before the ending. For the
 four routes the check also compares the whole playback step by step with ref `sherefox_ref.v2.lines` (name plate, line
 and system line of every step, in order; the opening step; the tell line `hint_who` / `hint` of every round, from
 the AI's tell on the debate seed the UI draws), a hand-written sample of the chapter's §12 text for two to four
@@ -215,9 +215,9 @@ rounds per route (`CHAPTER_SAMPLE`, `CHAPTER_TELL`: the lines must show in the c
 ref and the game share is still checked against the chapter), and the S07 lines on the vn with their name plates.
 
 The harnesses (`tests/d1play_harnessA/` … `D/`, copies of the game; gitignored) are deleted when the check ends, and the
-check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR` also writes review screenshots in
+check fails if it leaves anything behind (the temp-leak check below). `--shots DIR` also writes review screenshots in
 zh-TW and en (`xtatrium shot`): the claim picker in an ordinary round, a playback line, the 論破 cut-in, the endgame
-prompt with the last gasp, the §7.5 round, both outcome panels.
+prompt with the last gasp, the §7.5 round, the result screen after a win and after a loss (4.4).
 
 The four routes also check every round's playback lines (E3, `check_lines`): from the ref's events of the round,
 the system lines ch §12.0 calls for among BOTH_REBUT, CUT_EMPTY, MISS_WRONG, TOPPLE_MISS_FACT／WRONG, FOOLED,
@@ -250,7 +250,7 @@ uv run tests/check_d1_m3.py [--shots DIR]
 
 `check_d1_m3.py` regenerates `tests/d1_m3.atrec` (`tests/gen_d1_m3.py`) and replays it with `--ports` in zh-TW and en,
 from the title's v2 entry (chapter 101; since M4a through the S01 paper, S02 / S03 and a clean warm-up, `gen_d1_story.py`
-`story()`) to the debate's outcome panel:
+`story()`) to the debate's end and (4.4) the ending:
 
 | Check | What it asserts |
 |---|---|
@@ -258,7 +258,7 @@ from the title's v2 entry (chapter 101; since M4a through the S01 paper, S02 / S
 | `loadout` | what reached the debate (`xtatrium trace` of the harness's mirror signals): `d1Carry` = route A's nine, `d1Appraised` = A01, A04, `d1Notes` = the five notes, `d1PrivNote[E01]` = 01A |
 
 The harness `tests/d1m3_harness/` (route A's pinned opponent from `gen_d1_play.py` plus the mirror flow; gitignored) is
-deleted when the check ends, and the check fails if it leaves a `tmp*`／`d1m3shots-*` entry in `%TEMP%`. `--shots DIR`
+deleted when the check ends, and the check fails if it leaves anything behind (the temp-leak check below). `--shots DIR`
 writes the review screenshots (zh-TW and en): each place with its hotspots, a hotspot note, the evidence list with an
 appraisal and with a private view, the notes page, the carry screen (first visit, an Arthur line, the confirm list,
 L010), a playback line with the formula names and a stamp; and `DIR/overlays/` (every hotspot rectangle with its id over
@@ -280,7 +280,7 @@ uv run tests/check_d1_story.py [--shots DIR]
 Picks: clean W1 W2 W3; pass W2 (wrong), W1, W2, W1 (already used: wrong), W3; fail W2, W3, W1, W1. `--shots DIR` writes
 the S01 paper, S02 with the landlady, S03 with Briggs and with Cedric, a point with the three observations, a wrong pick
 (L005), the success (L013) and the failure (L014, L015). `tests/check_music.py` replays `d1_story_clean` for the D01
-cues. The check fails if it leaves a `tmp*`／`d1storyshots-*` entry in `%TEMP%`.
+cues. The check fails if it leaves anything behind (the temp-leak check below).
 
 `check_d1_play.py` (M2) now enters through the title's dev shortcut (`v2dev`, the D01 debate row with route A's set).
 
@@ -301,3 +301,41 @@ recordings. Keep each tag's output outside the repo for comparison.
 harnesses (deleted afterwards): title BGM01, S07 L001's silence, BGM07 (cut) when the debate starts, BGM08 at his first
 破防, BGM09 on 論破, silence from S07 L007 (B, he gives up) or the loss (D, L016) and at L015 (A, B), BGM09 again with
 L012 after B's silence; BGM10 (no track) on D's Reverse Break sends no command.
+
+## v2 demo: the D01 chapter end to end (4.4)
+
+```
+uv run tests/check_d1_full.py [--shots DIR]
+```
+
+`check_d1_full.py` regenerates `tests/d1_full{A,B,C,D}.atrec` and `tests/d1_full_ticks.json` (`tests/gen_d1_full.py`)
+and replays them with `--ports` on `tests/d1full_harness{A..D}` (gen_d1_play's harness: Cedric's moves pinned through
+the engine's test hook; deleted at the end). Each run starts at the title's v2 entry: S01 paper, S02 / S03, the
+warm-up (A-C passed with mistakes, the ref routes' `pass`; route D fails it), the real investigation (every evidence hotspot, only the route's note hotspots,
+the route's appraisals), the carry screen (the route's nine, confirm, yes, L010), the debate with the route's moves,
+S07's lines after it, S08, the result screen, the S09 paper, S10, the S11 placeholder, back to the title, and the
+chapter started again up to its investigation. Route A runs in zh-TW and en, B-D in zh-TW.
+
+| Check | What it asserts |
+|---|---|
+| `route A`-`D` | the chapter's hand-written ending (`CHAPTER`: §2 S08-S10, §12.x 結算) equals ref `epilogue` on the route's final state; the S08 lines on the vn in that order; the result screen: grade (`UI_V2_GRADE_<n>`), rounds, win, the reputation rows (label with ×n, direction only) and favour rows, and none of the hidden values (truth %, reputation total / delta) anywhere in its ports; the S09 headline (`HEAD_D01_CLOSE_<VERSION>`), lead with the addenda run on after it, no picture; the S10 lines; S11; back to title leaves only the title; the debate's credibility values have at most two decimals and are never below 0, and are 1 after a Break (A, B); the restart: the S01 paper, then an investigation with 2 appraisals, nothing found, no place done; nothing on stderr |
+
+Conditions the routes do not reach are covered by the ref tests (`ref/tests/test_v2_epilogue.py`: one test per
+condition row of S08-S10) and at engine level by `check_debate_v2.py`, which requires its 60 default debates
+(routes, seeded play, fuzz) to reach every S08 / S09 / S10 line between them, compared item by item with ref.
+`--shots DIR` writes the S01 paper with the engraving, the warm-up's point (no dialogue box), the result screen for a
+grade-1 win (A), a grade-3 win (C) and a loss (D), the three S09 versions, two S10 pages and S11, in zh-TW and en.
+
+`check_d1_play.py`, `check_d1_lines.py` and `check_d1_m3.py` now also play the ending after the debate (the outcome
+panel is gone): they check the result screen's grade, rounds and outcome, and the routes of `check_d1_play.py` end
+back on the title. `check_music.py`'s D01 routes go on through BGM12 (S08 and the result screen), BGM11 (S09),
+BGM02 (S10) and BGM01 (S11, kept by the title).
+
+## Temp-leak check (D01 checks)
+
+The D01 checks (`check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_story`, `check_d1_full`) count only what
+their own run creates (`tests/tempwatch.py`): the run gets a directory `%TEMP%/sherefox-run-*` and points TEMP / TMP /
+TMPDIR and Python's tempfile at it, for itself and every child process (the xtatrium CLI included). Anything left in
+it at the end, or a new entry with one of our prefixes (`sherefox-`, `d1shots-`, `d1m3shots-`, `d1storyshots-`,
+`d1linesshots-`, `d1fullshots-`) in the real %TEMP%, fails the check; files other processes put in %TEMP%
+(`tmp<guid>.tmp`) no longer do.

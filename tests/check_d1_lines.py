@@ -52,6 +52,7 @@ import gen_d1_play as gd  # noqa: E402
 import gen_playthrough as gp  # noqa: E402
 from sherefox_ref.v2 import routes as RT  # noqa: E402
 from sherefox_ref.v2.model import PA, PlayerAction  # noqa: E402
+from tempwatch import TempWatch  # noqa: E402
 from xt_cli import compile_game  # noqa: E402
 
 S = cd.S
@@ -134,8 +135,10 @@ def record(name: str, rt: RT.Route) -> tuple[int, dict]:
         rec.t += gd.ROUND_TAIL
     rec.marks["end"] = rec.t
     gd.outro(rec, gd.outcome_of(gd.forced(rt)))
-    rec.marks["over"] = rec.t
-    rec.click("d1debate", gd.BACK_XY, 30)
+    if gd.outcome_of(gd.forced(rt)) is not None:
+        gd.epilogue(rec, gd.final_state(gd.forced(rt)))   # 4.4: S08, the result screen (`over`), ..., back to title
+    else:
+        rec.marks["over"] = rec.t
     end = rec.write(f"d1_lines_{name}", 60)
     return end, rec.marks
 
@@ -158,11 +161,11 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     # the outcome panel and round count equal the ref's
     grade, nrounds, outcome = cd.expected(rounds)
     L = S[lang_of(len(rounds))]
-    t = marks["over"] - 5
+    t = marks["over"]
     panel = () if outcome is None else (
-        ("d1debate.grade_text", L[f"UI_V2_GRADE_{grade}"]),
-        ("d1debate.rounds_text", L["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds))),
-        ("d1debate.outcome_win", outcome == "win"), ("d1debate.mode", 3))
+        ("d1result.grade_text", L[f"UI_V2_GRADE_{grade}"]),
+        ("d1result.rounds_text", L["UI_V2_RESULT_ROUNDS"].replace("{n}", str(nrounds))),
+        ("d1result.win", 1.0 if outcome == "win" else 0.0))
     for port, want in panel:
         if at.get(t, port) != want:
             bad.append(f"outcome {port}={at.get(t, port)!r} (want {want!r})")
@@ -231,8 +234,7 @@ def shots(out: Path, name: str, tr, end: int) -> None:
 
 def main() -> int:
     compile_game()
-    temp = Path(tempfile.gettempdir())
-    before = set(os.listdir(temp))
+    tw = TempWatch().__enter__()   # tests/tempwatch.py: only what this run creates counts as a leak
     fails: list[str] = []
     try:
         for name, rt in SCENARIOS.items():
@@ -245,10 +247,11 @@ def main() -> int:
         for name in SCENARIOS:
             shutil.rmtree(gd.harness_dir(name), ignore_errors=True)
             (TESTS / f"d1_lines_{name}.atrec").unlink(missing_ok=True)
-    left = sorted(n for n in set(os.listdir(temp)) - before if n.startswith(("tmp", "d1linesshots-")))
+    tw.__exit__(None, None, None)
+    left = tw.leaks
     if left:
         fails.append("temp")
-        print("FAIL temp: left in %TEMP%: " + ", ".join(left))
+        print("FAIL temp: left behind: " + ", ".join(left))
     print("ok" if not fails else f"FAILED: {', '.join(fails)}")
     return 1 if fails else 0
 

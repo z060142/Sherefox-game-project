@@ -175,6 +175,12 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1024, h: 1536, alpha: true }
+  - id: ch-c-irene
+    type: image
+    file: shared/img/ch-c-irene.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1024, h: 1536, alpha: true }
   - id: ch-c-landlady
     type: image
     file: shared/img/ch-c-landlady.png
@@ -331,6 +337,12 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1536, h: 1024, alpha: false }
+  - id: pic-d01-wake
+    type: image
+    file: shared/img/pic-d01-wake.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1813, h: 868, alpha: false }
   - id: st-stamp-assist-img
     type: image
     file: shared/img/st-stamp-assist-img.png
