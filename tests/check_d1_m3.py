@@ -184,8 +184,9 @@ def check(lang: str, ticks: dict, fails: list) -> None:
     eq("confirm list", at.get(marks["confirm"], "d1carry.confirm_text"),
        L["SCR_D01_S06_L009"].replace("{list}", sep.join(L[item_name(i)] for i in left)))
     eq("confirm shown", at.get(marks["confirm"], "d1carry.phase"), 1.0)
-    # E8 (design ruling): the confirm question under the list, on the confirm box shown above
-    eq("confirm question", ui_text("d1carry", "c-ask", "c-box"), "@UI_V2_CARRY_LEFT_ASK")
+    # E8 (design ruling): S06 L009 already ends with the question, so the box carries no second one
+    eq("confirm box carries no second question", "UI_V2_CARRY_LEFT_ASK" in (
+        ROOT / "ui" / "project" / "d1carry" / "d1carry.xt").read_text(encoding="utf-8"), False)
     # E6 (V3, ruling c): route A carries E05, E06 and E07, so nothing he could pick up stays: no L010, the step goes on
     eq("no L010 (nothing he could pick up stays)", ("d1carry" in at.vis(marks["l010"]),
                                                     at.get(marks["l010"], "d1carry.say1") == L["SCR_D01_S06_L010"]),

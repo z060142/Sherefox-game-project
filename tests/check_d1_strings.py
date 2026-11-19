@@ -74,6 +74,7 @@ NOT_DISPLAYED = {
     "SCENE_D01_BASEMENT": "ruling E8: full name not displayed (the investigation's tab uses SCENE_D01_BASEMENT_TAB)",
     "CARD_D01_P05_PUSH": "ruling E8: P05 is only ever his last card (ref model.never_in_hand), never said as 強辯",
     "SCR_D01_S11_L003": "ruling E8: S11's button shows UI_V2_BACK_TITLE",
+    "UI_V2_CARRY_LEFT_ASK": "S06 L009 already ends with the same question (design ruling)",
 }
 
 

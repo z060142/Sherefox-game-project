@@ -3,6 +3,7 @@
 /* import: D1Carry.dc.html:1 */
 #d1carry {
   background-color: #092e28;
+  background-color: #092e28;
 }
 
 /* import: D1Carry.dc.html:1/0 */
@@ -13,38 +14,6 @@
 /* import: D1Carry.dc.html:1/1 */
 #dim {
   background-color: #092e2899;
-}
-
-.sys {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 21px;
-  color: var(--ink);
-  border-left-width: 3px;
-  border-left-color: #b8322a;
-}
-
-.tick {
-  background-color: #2f6b3a;
-}
-
-.it-n {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.it-d {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--ink);
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .kicker {
@@ -81,6 +50,15 @@
 
 :lang(en) .h1 {
   font-size: 24px;
+}
+
+.sys {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink);
+  border-left-width: 3px;
+  border-left-color: #b8322a;
 }
 
 .count {
@@ -125,8 +103,31 @@
   background-color: var(--paper);
 }
 
+.tick {
+  background-color: #2f6b3a;
+}
+
+.it-n {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 :lang(en) .it-n {
   font-size: 14px;
+}
+
+.it-d {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .it-k {

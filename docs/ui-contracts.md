@@ -642,6 +642,6 @@ d1debate（v2 demo M3）：加 `ronpa_ready_text`（string，in：`UI_V2_RONPA_R
 
 - d1debate：新 `in` port（皆 string，預設空字串）：`preview_text`（確認列的 `UI_V2_DMG_PREVIEW`）、`crack_cost_text`（確認列的 `UI_V2_CLAIM_CRACK_COST`）、`desc_text`（一行說明）、`guard_left_text`（援護按鈕上的 `UI_V2_SUPPORT_LEFT`）、`tell_possible`（模糊預兆的 `UI_V2_TELL_POSSIBLE`）、`record_cracks`（公開紀錄標題列的 `UI_V2_RECORD_CRACKS`）；新 `out` port `hover`（string，`set`）：滑鼠進入 截斷／拆台／打迷糊仗／援護 寫 `act2`／`act3`／`act4`／`guard`，進入一列說法寫該列的 `id`，離開寫空字串。`claims` 的 struct 加 `note: string`（`UI_V2_CLAIM_RESTATE`／`UI_V2_CLAIM_VOID`，已在地化；作廢的列 `ok` 0）。算法與條件見 `docs/flows.md` §4.12 E8。
 - d1debate 版面：確認列 `#confirm` 加寬到 1256 px（右側塞德里克名牌下方的地板原本空著），依序：說法 290、→、目標 330（拆台與 §7.5）、`#sum-pv` 預估（金色粗體）、`#sum-cc` 代價（560、可縮，淡紅）、援護已佈置。一行說明 `#desc-line`：行動列上方、「反駁」群組標籤右側（left 560、top 598、708×20，深色底、金色左線，`pointer-events: none`，空字串隱藏），中文 13 px、英文 12 px，單行省略。援護按鈕：燈號上移到 48 px，下方 `#guard-n`（剩餘次數）。殘局：最後一張牌提示上方的紅色小標 `#eg-head`（`UI_V2_ENDGAME`）。預兆欄：模糊預兆時在小動作的位置（top 192）顯示 `#tell-pos`。公開紀錄：標題縮為 450 px，右側 `#rec-cracks`（裂紋數，朱紅）；`UI_V2_RECORD_DESC` 在標題下（原有）。說法列：`#clm-note` 接在「已在鏈上」之後（兩者不會同時出現）。
-- d1carry：確認框左下、按鈕左側加板上文字 `#c-ask`（`UI_V2_CARRY_LEFT_ASK`）。`SCR_D01_S06_L009` 本身已以「確定嗎？」結尾，兩句並列（列給企劃）。
+- d1carry：確認框不加第二句問句。曾加過 `#c-ask`（`UI_V2_CARRY_LEFT_ASK`），企劃裁定移除：`SCR_D01_S06_L009` 本身已以「確定嗎？」結尾；確認框回到 `#c-k`、`#c-t`、`#c-no`、`#c-yes` 四個元素，按鈕位置不變，d1carry 沒有新增 port。
 - d1end：上方加小標 `#title`（`UI_V2_NEXT_PLACEHOLDER`）；按鈕改為 `UI_V2_BACK_TITLE`（`SCR_D01_S11_L003` 不再顯示）；`SCR_D01_S11_L001`／`L002` 不變。
 - d1book：人物筆記頁的 `UI_V2_NOTES_DESC` 原本就在頁首（不變）。

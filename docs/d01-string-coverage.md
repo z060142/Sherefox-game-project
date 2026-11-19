@@ -31,7 +31,7 @@
 | `UI_V2_CLAIM_RESTATE`、`UI_V2_CLAIM_VOID`（E8） | 說法列的標籤（作廢的列反灰、排在最後） | `check_e8`（S9 R8 重提、S14 R8 作廢）、check_d1_fuzz（每一列） |
 | `UI_V2_REBUT_CUT_DESC`、`_TOPPLE_DESC`、`UI_V2_ACT_STALL_DESC`／`_REPEAT`、`UI_V2_SUPPORT_DESC`、`UI_V2_CLAIM_SOPH_DESC`、`UI_V2_SEIZE_DESC`（E8） | 行動列上方的一行說明（滑鼠所在或選中的行動、援護、說法） | `check_e8`、check_d1_lines `HOVER_PROBE`（滑鼠移過四個鈕）、check_d1_fuzz |
 | `UI_V2_SUPPORT_LEFT`、`UI_V2_TELL_POSSIBLE`＋`UI_V2_TELL_LIKELY`、`UI_V2_RECORD_CRACKS`（E8） | 援護鈕、模糊預兆的一行、公開紀錄標題列 | `check_e8`、check_d1_fuzz（每回合） |
-| `UI_V2_ENDGAME`、`UI_V2_RECORD_DESC`、`UI_V2_NOTES_DESC`、`UI_V2_CARRY_LEFT_ASK`、`UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE` | 板上文字：殘局小標、公開紀錄與人物筆記的說明、攜帶確認框、S11 的標題與按鈕 | 隨畫面出現；check_d1_m3（確認框）、check_d1_full（S11 停到按下按鈕） |
+| `UI_V2_ENDGAME`、`UI_V2_RECORD_DESC`、`UI_V2_NOTES_DESC`、`UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE` | 板上文字：殘局小標、公開紀錄與人物筆記的說明、S11 的標題與按鈕 | 隨畫面出現；check_d1_full（S11 停到按下按鈕） |
 
 ## 2. E7 的處理
 
@@ -42,10 +42,10 @@
 
 E7 列給企劃的 C 類全部有了裁定，依 v2 demo 計畫 E8 實作（先 ref 再畫面）：
 
-- 顯示（見第 1 節）：`SHF_D01_CUT_OPEN_1～3`、六個 `_DESC`、`UI_V2_ACT_STALL_REPEAT`、`UI_V2_CLAIM_CRACK_COST`、`UI_V2_CLAIM_RESTATE`、`UI_V2_CLAIM_VOID`、`UI_V2_DMG_PREVIEW`、`UI_V2_ENDGAME`、`UI_V2_SUPPORT_LEFT`、`UI_V2_TELL_POSSIBLE`、`UI_V2_RECORD_CRACKS`、`UI_V2_CARRY_LEFT_ASK`、`UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE`。
-- 不顯示（`NOT_DISPLAYED`）：`UI_V2_CLAIM_CAN_CUT`（會洩漏哪個說法截得掉）、`UI_V2_ISSUE`、`SCENE_D01_ATTIC`／`SCENE_D01_BASEMENT`（全名；分頁用 `_TAB`）、`CARD_D01_P05_PUSH`（P05 只當最後一張牌：ref `model.never_in_hand`，兩個產生器不再引用它的 `_PUSH`）。另外 `SCR_D01_S11_L003`：S11 的按鈕改用 `UI_V2_BACK_TITLE`，這句不再顯示（計畫的清單沒有列，列給企劃確認）。
+- 顯示（見第 1 節）：`SHF_D01_CUT_OPEN_1～3`、六個 `_DESC`、`UI_V2_ACT_STALL_REPEAT`、`UI_V2_CLAIM_CRACK_COST`、`UI_V2_CLAIM_RESTATE`、`UI_V2_CLAIM_VOID`、`UI_V2_DMG_PREVIEW`、`UI_V2_ENDGAME`、`UI_V2_SUPPORT_LEFT`、`UI_V2_TELL_POSSIBLE`、`UI_V2_RECORD_CRACKS`、`UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE`。
+- 不顯示（`NOT_DISPLAYED`）：`UI_V2_CLAIM_CAN_CUT`（會洩漏哪個說法截得掉）、`UI_V2_ISSUE`、`SCENE_D01_ATTIC`／`SCENE_D01_BASEMENT`（全名；分頁用 `_TAB`）、`CARD_D01_P05_PUSH`（P05 只當最後一張牌：ref `model.never_in_hand`，兩個產生器不再引用它的 `_PUSH`）、`UI_V2_CARRY_LEFT_ASK`（`SCR_D01_S06_L009` 已以「確定嗎？」結尾，攜帶確認框不再加第二句；企劃裁定）。另外 `SCR_D01_S11_L003`：S11 的按鈕改用 `UI_V2_BACK_TITLE`，這句不再顯示（企劃已確認）。
 - 非 ID 的三項：`{issues}` 維持爭點全名、依鏈上出現的順序；一個說法與兩句矛盾取紀錄中最早的一句、只扣一次（確認不改）；§7.5 帶紅色裂紋的最後一擊改為兩步：先 `SYS_D01_LASTSTAND_OK`（42），再播該組矛盾台詞與 `SYS_D01_REDCRACK`（−10 → 32），裂紋照記（ref `resolve._last_stand` 與引擎都改成兩筆事件）。
-- 給企劃的備註：`SCR_D01_S06_L009` 本身以「確定嗎？」結尾，`UI_V2_CARRY_LEFT_ASK` 在它下方又問一次。
+- 企劃的裁定：`SCR_D01_S06_L009` 本身以「確定嗎？」結尾，`UI_V2_CARRY_LEFT_ASK` 不顯示（`SCR_D01_S06_L009` 不變）；S11 用 `UI_V2_BACK_TITLE`、`SCR_D01_S11_L003` 不顯示，已確認；傷害預估公式已對照規則 7.1 確認。
 
 覆蓋表 C 類沒有未被裁定涵蓋的 ID。
 

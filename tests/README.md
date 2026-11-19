@@ -203,8 +203,8 @@ uv run tests/check_d1_play.py [--shots DIR]
 at the title's v2 entry and plays the whole D01 debate by clicking the `d1debate` screen (action, evidence, claim,
 target, cover, lock, one click per playback record), then (4.4) the ending: S08, the result screen, S09, S10 and S11's back to title
 (E8: first a click beside the button and a wait; `check_d1_full` checks S11 is still shown then, with its heading
-UI_V2_NEXT_PLACEHOLDER and the button UI_V2_BACK_TITLE; `check_d1_m3` checks the carry confirm box holds
-UI_V2_CARRY_LEFT_ASK).
+UI_V2_NEXT_PLACEHOLDER and the button UI_V2_BACK_TITLE; `check_d1_m3` checks the carry confirm box no longer carries
+UI_V2_CARRY_LEFT_ASK: S06 L009 already ends with the question).
 
 | Check | Recording | What it asserts |
 |---|---|---|

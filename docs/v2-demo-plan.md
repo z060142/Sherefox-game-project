@@ -214,10 +214,11 @@
 - `UI_V2_DMG_PREVIEW`：確認列顯示所選說法的預估論證（以回合開始時的狀態計算，不含對手行動的影響）。算法先寫進 ref 並測試，畫面對上 ref；fuzz 每回合比對。不得洩漏隱藏數值（只用玩家看得到的狀態：連擊、破竹、破防、承接／重提）。
 - `UI_V2_ENDGAME`：進入殘局時，最後一張牌提示上方的小標。`UI_V2_SUPPORT_LEFT`：援護按鈕上的剩餘次數。
 - `UI_V2_TELL_POSSIBLE`：模糊預兆面板列出兩個候選行動的那一行（有★時該行動後加 `UI_V2_TELL_LIKELY`）。
-- `UI_V2_RECORD_CRACKS`：公開紀錄面板的標題列，顯示目前的裂紋數。`UI_V2_CARRY_LEFT_ASK`：攜帶確認清單下方的確認問句。
+- `UI_V2_RECORD_CRACKS`：公開紀錄面板的標題列，顯示目前的裂紋數。（`UI_V2_CARRY_LEFT_ASK` 原列為要顯示，後裁定不顯示，見本節末。）
 - `UI_V2_NEXT_PLACEHOLDER`、`UI_V2_BACK_TITLE`：S11 佔位畫面的標題與回標題的按鈕（台詞播完後停在這裡，按了才回標題）。
 - 各個 `_DESC` 說明字串（行動、截斷／拆台、援護、詭辯、抓住他的話、公開紀錄、人物筆記）：示範關卡沒有教學，這是唯一的說明。滑鼠停在或選到對應項目時，顯示在行動面板的一行說明位置；公開紀錄與人物筆記的說明放在面板標題下。
 
-**不顯示**（列入 `NOT_DISPLAYED` 並註明理由）：`UI_V2_CLAIM_CAN_CUT`（會洩漏哪個說法截得掉）、`UI_V2_ISSUE`、`SCENE_D01_ATTIC`／`BASEMENT` 全名、`CARD_D01_P05_PUSH`（P05 只當最後一張牌）。覆蓋表 C 類若還有未被上面涵蓋的 key，列出 ID 回報企劃。
+**不顯示**（列入 `NOT_DISPLAYED` 並註明理由）：`UI_V2_CARRY_LEFT_ASK`（裁定，見末行）、`UI_V2_CLAIM_CAN_CUT`（會洩漏哪個說法截得掉）、`UI_V2_ISSUE`、`SCENE_D01_ATTIC`／`BASEMENT` 全名、`CARD_D01_P05_PUSH`（P05 只當最後一張牌）。覆蓋表 C 類若還有未被上面涵蓋的 key，列出 ID 回報企劃。
 
 - ✔ 完成：ref 先改（`lines.cut_open`、`resolve._last_stand` 改為兩筆事件、`preview.py`、`known.restate`／`void_rows`、`model.never_in_hand`；`ref/tests/test_v2_e8.py`），引擎（紅色裂紋的最後一擊、`d1ClaimVoid`）與畫面對上 ref；確認列加寬放預估與代價，行動列上方一行說明（滑鼠所在或選中的項目），模糊預兆一行、援護次數、紀錄裂紋數、殘局小標、說法列的重提／作廢標籤、攜帶確認問句、S11 的標題與按鈕（停到按下）。測試：`check_e8`（路線與劇本每回合）、`check_d1_lines` `E8_REACHED`／`HOVER_PROBE`／`RED_LAST`、fuzz 每次點擊、`check_d1_full`／`check_d1_m3`；fuzz 的精選種子重選。字串：704 個要顯示的 ID 中 700 個在測試畫面出現。另列給企劃：`SCR_D01_S11_L003` 改為不顯示；`SCR_D01_S06_L009` 已以「確定嗎？」結尾，與 `UI_V2_CARRY_LEFT_ASK` 重複。
+- 企劃裁定（E8 之後）：`UI_V2_CARRY_LEFT_ASK` 不顯示，攜帶確認框不加第二句問句（`SCR_D01_S06_L009` 已以「確定嗎？」結尾，且不變）；S11 用 `UI_V2_BACK_TITLE`、`SCR_D01_S11_L003` 不顯示，確認；傷害預估公式已對照規則 7.1 確認。
