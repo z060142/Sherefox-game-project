@@ -1,0 +1,93 @@
+[
+ {
+  "id": "E01",
+  "appraisal": "A01",
+  "opponentUse": "",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E02",
+  "appraisal": "A02",
+  "opponentUse": "",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E03",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "E04",
+  "appraisal": "A04",
+  "opponentUse": "",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E05",
+  "appraisal": "",
+  "opponentUse": "P05",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "E06",
+  "appraisal": "",
+  "opponentUse": "P06",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "E07",
+  "appraisal": "",
+  "opponentUse": "P07",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E08",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E09",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "E10",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 1,
+  "psychCard": 0
+ },
+ {
+  "id": "E11",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "E12",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 0,
+  "psychCard": 0
+ },
+ {
+  "id": "P1",
+  "appraisal": "",
+  "opponentUse": "",
+  "key": 0,
+  "psychCard": 1
+ }
+]

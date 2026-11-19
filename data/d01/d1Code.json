@@ -1,0 +1,67 @@
+[
+ {
+  "id": "attack",
+  "side": "opponent",
+  "code": 0
+ },
+ {
+  "id": "force",
+  "side": "opponent",
+  "code": 1
+ },
+ {
+  "id": "rebut",
+  "side": "opponent",
+  "code": 2
+ },
+ {
+  "id": "parry",
+  "side": "opponent",
+  "code": 3
+ },
+ {
+  "id": "last",
+  "side": "opponent",
+  "code": 4
+ },
+ {
+  "id": "none",
+  "side": "opponent",
+  "code": 5
+ },
+ {
+  "id": "argue",
+  "side": "player",
+  "code": 0
+ },
+ {
+  "id": "intercept",
+  "side": "player",
+  "code": 1
+ },
+ {
+  "id": "dismantle",
+  "side": "player",
+  "code": 2
+ },
+ {
+  "id": "stall",
+  "side": "player",
+  "code": 3
+ },
+ {
+  "id": "cut",
+  "side": "player",
+  "code": 4
+ },
+ {
+  "id": "accept",
+  "side": "player",
+  "code": 5
+ },
+ {
+  "id": "last_stand",
+  "side": "player",
+  "code": 6
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "id": "pass_clean",
+  "inspector": 1,
+  "appraisalLimit": 2
+ },
+ {
+  "id": "pass",
+  "inspector": 0,
+  "appraisalLimit": 2
+ },
+ {
+  "id": "fail",
+  "inspector": -1,
+  "appraisalLimit": 1
+ }
+]
