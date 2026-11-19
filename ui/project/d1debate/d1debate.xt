@@ -883,10 +883,8 @@
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/0 */
     #clm-kind {
-      height: 18px;
       left: 6px;
       position: absolute;
-      top: 4px;
       width: 72px;
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/1 */
@@ -901,31 +899,15 @@
     #clm-tags {
       display: flex;
       flex-direction: row;
-      gap: 8px;
-      height: 16px;
       left: 6px;
       overflow: hidden;
       position: absolute;
-      top: 30px;
       width: 304px;
     }
     /* import: D1Debate.dc.html:1/1/10/3/0/0/2/0 */
     #clm-iss {
       flex-shrink: 0;
-      height: 16px;
       width: 34px;
-    }
-    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/1 */
-    #clm-crack {
-      height: 16px;
-    }
-    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/2 */
-    #clm-stand {
-      height: 16px;
-    }
-    /* import: D1Debate.dc.html:1/1/10/3/0/0/2/3 */
-    #clm-extra {
-      height: 16px;
     }
     /* import: D1Debate.dc.html:1/1/11 */
     #hint-wrap {
@@ -1897,6 +1879,37 @@
     }
     .tag {
       flex-shrink: 0;
+    }
+    #clm-kind {
+      top: 4px;
+      height: 18px;
+    }
+    #clm-iss,
+    #clm-crack,
+    #clm-stand,
+    #clm-extra {
+      height: 16px;
+    }
+    #clm-tags {
+      top: 30px;
+      height: 16px;
+      gap: 8px;
+    }
+    :lang(en) #clm-kind {
+      top: 2px;
+      height: 16px;
+    }
+    :lang(en) #clm-iss,
+    :lang(en) #clm-crack,
+    :lang(en) #clm-stand,
+    :lang(en) #clm-extra {
+      height: 13px;
+    }
+    :lang(en) #clm-tags {
+      top: 20px;
+      height: 26px;
+      flex-wrap: wrap-reverse;
+      row-gap: 0px;
     }
     .sum-t {
       overflow: hidden;

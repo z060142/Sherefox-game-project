@@ -36,11 +36,6 @@
   line-height: 24px;
 }
 
-/* import: D1Debate.dc.html:1/1/15/1/0 */
-#ronpa-ready-t {
-  font-size: 13px;
-}
-
 /* import: D1Debate.dc.html:1/1/16/3 */
 #sum-armed {
   text-align: right;
@@ -573,6 +568,27 @@
 
 :lang(en) .clm .tag {
   font-size: 10px;
+}
+
+:lang(en) #clm-kind {
+  line-height: 16px;
+}
+
+:lang(en) #clm-iss, :lang(en) #clm-crack, :lang(en) #clm-stand, :lang(en) #clm-extra {
+  line-height: 13px;
+}
+
+:lang(en) #clm-iss {
+  font-size: 10px;
+}
+
+#ronpa-ready-t {
+  font-size: 13px;
+}
+
+:lang(en) #ronpa-ready-t {
+  font-size: 11px;
+  letter-spacing: 0px;
 }
 
 .tag-cu {

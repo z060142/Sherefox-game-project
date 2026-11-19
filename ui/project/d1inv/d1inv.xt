@@ -310,10 +310,10 @@
     /* import: D1Inv.dc.html:1/2/0/0 */
     #loc-t {
       height: 36px;
-      left: 6px;
+      left: 16px;
       position: absolute;
       top: 8px;
-      width: 155px;
+      width: 135px;
     }
     /* import: D1Inv.dc.html:1/2/0/1 */
     #loc-done {

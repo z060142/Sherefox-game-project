@@ -110,6 +110,20 @@
   .tag { font-family: var(--font-body); font-size: 11px; line-height: 16px; white-space: nowrap; flex-shrink: 0 }
   .tag-red { color: var(--vermilion); font-weight: 700 }
   :lang(en) .clm .tag { font-size: 10px }
+  /* v2 demo 5.3: the claim row's tag line. zh-TW keeps the old boxes exactly. In English a row can carry three tags
+     (red crack, already on the chain, private matter / psych) which are wider than the row: the tags wrap onto a
+     second line above the first (wrap-reverse, so one line stays at the bottom of the row), the tags are 13 px high
+     and the kind chip 16 px, so the two lines clear the chip. */
+  #clm-kind { top: 4px; height: 18px }
+  #clm-iss, #clm-crack, #clm-stand, #clm-extra { height: 16px }
+  #clm-tags { top: 30px; height: 16px; gap: 8px }
+  :lang(en) #clm-kind { top: 2px; height: 16px; line-height: 16px }
+  :lang(en) #clm-iss, :lang(en) #clm-crack, :lang(en) #clm-stand, :lang(en) #clm-extra { height: 13px; line-height: 13px }
+  :lang(en) #clm-iss { font-size: 10px }
+  :lang(en) #clm-tags { top: 20px; height: 26px; flex-wrap: wrap-reverse; row-gap: 0px }
+  /* the "land a link on a second issue" plate text is longer in English than the plate: smaller, no tracking */
+  #ronpa-ready-t { font-size: 13px }
+  :lang(en) #ronpa-ready-t { font-size: 11px; letter-spacing: 0px }
   .tag-cu { color: var(--copper) }
   .tag-ink { color: #123a31aa }
 
@@ -292,13 +306,13 @@
         <div id="clm" class="clm" data-xt-bind="class.soph=item(soph) | eq(1); class.sel=item(sel); class.off=item(ok) | eq(0)"
              data-xt-trigger="click(left):if port(phase) eq 0 set(pick_claim, item(id))"
              style="position: relative; width: 318px; height: 48px; flex-shrink: 0;">
-          <div id="clm-kind" class="clm-kind" data-xt-bind="text=item(kind)" style="position: absolute; left: 6px; top: 4px; width: 72px; height: 18px;">正論</div>
+          <div id="clm-kind" class="clm-kind" data-xt-bind="text=item(kind)" style="position: absolute; left: 6px; width: 72px;">正論</div>
           <div id="clm-t" class="clm-t" data-xt-bind="text=item(label)" style="position: absolute; left: 84px; top: 2px; width: 226px; height: 28px;">鎖匠傍晚就走了</div>
-          <div id="clm-tags" style="position: absolute; left: 6px; top: 30px; width: 304px; height: 16px; display: flex; flex-direction: row; gap: 8px; overflow: hidden;">
-            <div id="clm-iss" class="iss" data-xt-bind="text=item(issue)" style="width: 34px; height: 16px; flex-shrink: 0;">機</div>
-            <div id="clm-crack" class="tag tag-red" data-xt-bind="text=item(crack)" style="height: 16px;">與妳說過的話矛盾</div>
-            <div id="clm-stand" class="tag tag-ink" data-xt-bind="text=item(stand)" style="height: 16px;"></div>
-            <div id="clm-extra" class="tag tag-cu" data-xt-bind="text=item(extra)" style="height: 16px;"></div>
+          <div id="clm-tags" style="position: absolute; left: 6px; width: 304px; display: flex; flex-direction: row; overflow: hidden;">
+            <div id="clm-iss" class="iss" data-xt-bind="text=item(issue)" style="width: 34px; flex-shrink: 0;">機</div>
+            <div id="clm-crack" class="tag tag-red" data-xt-bind="text=item(crack)">與妳說過的話矛盾</div>
+            <div id="clm-stand" class="tag tag-ink" data-xt-bind="text=item(stand)"></div>
+            <div id="clm-extra" class="tag tag-cu" data-xt-bind="text=item(extra)"></div>
           </div>
         </div>
       </div>
@@ -379,7 +393,7 @@
   <div id="pchain-box" class="paper" style="position: absolute; left: 12px; top: 456px; width: 806px; height: 98px;">
     <div id="pchain-title" class="kicker" data-xt-key="UI_V2_CHAIN_PLAYER" style="position: absolute; left: 10px; top: 3px; width: 180px; height: 18px;">我方的推理鏈</div>
     <div id="ronpa-ready" class="plate red" data-xt-bind="display=ronpa_ready" style="position: absolute; left: 196px; top: 1px; width: 436px; height: 22px;">
-      <div id="ronpa-ready-t" class="plate-t" data-xt-bind="text=ronpa_ready_text" style="position: absolute; left: 4px; top: -1px; width: 428px; height: 24px; font-size: 13px;">他破防了。這回合接上就論破！</div>
+      <div id="ronpa-ready-t" class="plate-t" data-xt-bind="text=ronpa_ready_text" style="position: absolute; left: 4px; top: -1px; width: 428px; height: 24px;">他破防了。這回合接上就論破！</div>
     </div>
     <div id="ronpa-t" class="ronpa-t" data-xt-bind="text=ronpa_text; display=show_ronpa" style="position: absolute; left: 636px; top: 3px; width: 160px; height: 18px;">鏈長 2／4　爭點 2／2</div>
     <div id="pchain-empty" class="empty" data-xt-key="UI_V2_CHAIN_EMPTY" data-xt-bind="display=pchain | item(0) | item(id) | eq('')"
