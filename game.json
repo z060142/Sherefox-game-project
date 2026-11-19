@@ -1581,6 +1581,21 @@
       "kind": "map",
       "type": "string",
       "capacity": 16
+    },
+    "u1G": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "u1GN": {
+      "kind": "list",
+      "type": "number",
+      "capacity": 16
+    },
+    "u1RecNT": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 32
     }
   },
   "audio": {

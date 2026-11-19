@@ -499,6 +499,7 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `face` | number | in | 塞德里克的表情 0 平常、1 不安、2 困獸、3 憤怒、4 罪惡感（`char_cedric_*.png`） |
 | `band_p`、`band_g`、`band_a` | number | in | 壓力、罪惡感、怒氣的段：0 平常、1 浮動、2 失常（沒有數字） |
 | `combo_text`、`hachiku`、`guard_down`、`shisshu` | string、number、bool、bool | in | `UI_V2_COMBO`、破竹層數、他破防中（一般回合）、我方失守（`UI_V2_SHISHOU_HINT`） |
+| `hachiku_text` | string | in | 破竹的文字 `UI_STATE_HACHIKU`（`{n}` ＝ 層數；`hachiku` > 0 時顯示，E3／R7） |
 | `ronpa_text`、`show_ronpa`、`ronpa_ready` | string、bool、bool | in | `UI_V2_RONPA_PROGRESS`（鏈長／4、爭點／2）；一般回合才顯示；他破防且鏈長 ≥ 3、爭點 ≥ 2 時亮 `UI_V2_RONPA_READY` |
 | `tell_on`、`tell_head`、`tell_card`、`tell_partial`、`tell_clear`、`tell_a`、`tell_b`、`tell_star`、`tell_gesture` | | in | 預兆：一般回合與終局才顯示；論點框的標題文字（`UI_V2_TELL_HEAD`，模糊而有牌時 `UI_V2_TELL_IF_SPEAKS`「他若開口，會說」；終局時不顯示）；他要說的牌（模糊時是他若開口會說的牌，不論實際行動；口誤時是前半句，前面加 `UI_V2_TELL_HESITATE`）；明示／模糊；候選行動 0 立論、1 強辯、2 反駁、3 周旋、4 最後一張牌（`tell_b` −1 ＝ 只有一個）；★ 的候選（−1 無，該格加 `UI_V2_TELL_LIKELY`）；明示時的小動作 |
 | `dying`、`dying_text` | bool、string | in | 垂死反撲（`UI_V2_DEATH_THROE`，{n} ＝ 10） |
@@ -506,7 +507,7 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `pchain` | list<struct{id, label, issue: string, crack: number}> | in | 我方的鏈（`d1PChain`），`crack` ＝ 裂紋 |
 | `ev_list` | list<struct{id, name: string, sel: bool}> | in | 說法選擇器的證物欄（有說法可用的證物；抓住他的話在最前） |
 | `claims` | list<struct{id, label, issue, kind: string, soph: number, crack, stand, extra: string, ok: number, sel: bool}> | in | 選中證物的說法：`kind` 正論／詭辯、`crack` 紅色裂紋、`stand` 已在鏈上、`extra` 心理牌／私事（皆已在地化）；`ok` 0 ＝ 目前的行動不能用（灰、點了不收） |
-| `record` | list<struct{n: number, label, use, soph, crack, state: string}> | in | 公開紀錄：回合、說法、反駁、詭辯、裂紋、站著／被打掉 |
+| `record` | list<struct{n, label, use, soph, crack, state: string}> | in | 公開紀錄：回合（`UI_DEB_ROUND` 組好的文字，E3／R7）、說法、反駁、詭辯、裂紋、站著／被打掉 |
 | `mode`、`phase`、`act` | number | in | 0 一般、1 終局、2 §7.5、3 結束；0 選擇中、1 播放中、2 結束；選中的行動 1～7 |
 | `picker_on`、`can_dismantle`、`guard_ok`、`guard_armed`、`guard_left`、`can_lock`、`need_target` | bool | in | 說法選擇器、拆台可按、援護可按／已佈置／還有、鎖定可按、拆台還沒選目標（`UI_V2_REBUT_PICK_LINK`） |
 | `sel_claim_text`、`sel_target_text` | string | in | 確認列 |

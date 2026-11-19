@@ -123,9 +123,10 @@ class Rec:
         return self.t + tail
 
 
-def forced(route: str) -> list:
-    """(state before, player action, opponent action) per round of a ref route (forced replay)."""
-    rt = RT.ROUTES[route]
+def forced(route) -> list:
+    """(state before, player action, opponent action) per round of a ref route (forced replay); `route` is a name
+    of ref routes.py or a Route (tests/check_d1_lines.py's scenarios)."""
+    rt = RT.ROUTES[route] if isinstance(route, str) else route
     s = initial_state(rt.loadout)
     out = []
     for pa, oa, _ in rt.rounds:
@@ -154,7 +155,7 @@ def harness_dir(route: str) -> Path:
     return TESTS / f"d1play_harness{route}"
 
 
-def build_harness(route: str) -> None:
+def build_harness(route: str, rt=None) -> None:
     """tests/d1play_harness<route>/: a copy of the game with one more flow (d1test, before the D01 engine) that
     writes the route's pinned opponent move of the round into the engine's test hook d1OppAct / d1OppCard, and
     replaces the dev entry's loadout with the route's 20 ms after the title's v2 entry (the debate starts 100 ms
@@ -169,12 +170,13 @@ def build_harness(route: str) -> None:
     shutil.copytree(ROOT / "ui" / "bundle", out / "ui" / "bundle")
     shutil.copytree(ROOT / "audio", out / "audio")
     game = json.loads((ROOT / "game.json").read_text(encoding="utf-8"))
+    rt = rt or RT.ROUTES[route]
     rows = [{"id": str(n), "act": oa.kind.value, "card": oa.card or ""}
-            for n, (_, _, oa) in enumerate(forced(route), start=1)]
+            for n, (_, _, oa) in enumerate(forced(rt), start=1)]
     (out / "data" / "flow" / "d1test.json").write_text("[\n" + ",\n".join(json.dumps(r) for r in rows) + "\n]\n",
                                                        encoding="utf-8", newline="\n")
     game["tables"]["d1test"] = "data/flow/d1test.json"
-    lo = RT.ROUTES[route].loadout
+    lo = rt.loadout
     nodes = [
         {"id": "rnd", "type": "toString", "params": {"decimals": 0}},
         {"id": "row", "type": "atrium.table.find", "params": {"table": "d1test", "column": "id"}},

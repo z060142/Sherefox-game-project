@@ -17,6 +17,7 @@
     band_a: number in = 0
     combo_text: string in = "連擊 ×2"
     hachiku: number in = 2
+    hachiku_text: string in = "破竹 ×2"
     guard_down: bool in = false
     shisshu: bool in = false
     ronpa_text: string in = "鏈長 2／4　爭點 2／2"
@@ -39,7 +40,7 @@
     pchain: list<struct{id: string, label: string, issue: string, crack: number}> in = [{"id":"04A","label":"總閥被人關小","issue":"法","crack":0},{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","crack":0}]
     ev_list: list<struct{id: string, name: string, sel: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","sel":false},{"id":"E02","name":"書房的座鐘","sel":false},{"id":"E04","name":"地下室煤氣總閥","sel":false},{"id":"E06","name":"布里格斯的工作單","sel":true},{"id":"E08","name":"賭場的催款信","sel":false}]
     claims: list<struct{id: string, label: string, issue: string, kind: string, soph: number, crack: string, stand: string, extra: string, ok: number, sel: bool}> in = [{"id":"06A","label":"鎖已修妥，沒留後門","issue":"法","kind":"正論","soph":0,"crack":"","stand":"已在鏈上","extra":"","ok":0,"sel":false},{"id":"06B","label":"鎖匠傍晚就走了","issue":"機","kind":"正論","soph":0,"crack":"","stand":"","extra":"","ok":1,"sel":true},{"id":"06C","label":"工作單只寫「校試」","issue":"法","kind":"詭辯","soph":1,"crack":"與妳說過的話矛盾","stand":"","extra":"","ok":1,"sel":false}]
-    record: list<struct{n: number, label: string, use: string, soph: string, crack: string, state: string}> in = [{"n":1,"label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":2,"label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]
+    record: list<struct{n: string, label: string, use: string, soph: string, crack: string, state: string}> in = [{"n":"第 1 回合","label":"燈滅前，你的椅子就空了","use":"反駁","soph":"","crack":"","state":""},{"n":"第 2 回合","label":"總閥被人關小","use":"","soph":"","crack":"","state":"站著"}]
     mode: number in = 0
     phase: number in = 0
     act: number in = 1
@@ -215,8 +216,7 @@
           <div id="me-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_me, hp_me_max)">124 / 140</div>
           <div id="me-combo" class="cred-l" bind:text="combo_text">連擊 ×2</div>
           <div id="me-hk" bind:display="hachiku | gt(0)">
-            <div id="me-hk-t" class="cred-l">@UI_V2_F_HACHIKU</div>
-            <div id="me-hk-n" class="cred-l" bind:text="format('×{0}', hachiku)">×2</div>
+            <div id="me-hk-n" class="cred-l" bind:text="hachiku_text">破竹 ×2</div>
           </div>
           <div id="me-shisshu" class="shis-t" bind:display="shisshu">@UI_V2_SHISHOU_HINT</div>
         </div>
@@ -308,7 +308,7 @@
             <div id="rec-scroll">
               <repeat id="recs" port="record">
                 <div id="rec" class="rec-row">
-                  <div id="rec-n" class="rec-n" bind:text="format('R{0}', item(n))">R1</div>
+                  <div id="rec-n" class="rec-n" bind:text="item(n)">第 1 回合</div>
                   <div id="rec-t" class="rec-t" bind:text="item(label)">燈滅前，你的椅子就空了</div>
                   <div id="rec-use" class="tag tag-cu" bind:text="item(use)">反駁</div>
                   <div id="rec-soph" class="tag tag-cu" bind:text="item(soph)"/>
@@ -1202,11 +1202,6 @@
       width: 200px;
     }
     /* import: D1Debate.dc.html:1/1/12/4/0 */
-    #me-hk-t {
-      flex-shrink: 0;
-      height: 24px;
-    }
-    /* import: D1Debate.dc.html:1/1/12/4/1 */
     #me-hk-n {
       flex-shrink: 0;
       height: 24px;
@@ -1675,7 +1670,6 @@
       position: absolute;
       top: 0px;
       width: 880px;
-      display: none;
     }
     /* import: D1Debate.dc.html:1/1/20/0/0 */
     #rec-title {
@@ -1751,13 +1745,13 @@
     /* import: D1Debate.dc.html:1/1/20/0/4/0/0/0 */
     #rec-n {
       height: 26px;
-      width: 36px;
+      width: 84px;
     }
     /* import: D1Debate.dc.html:1/1/20/0/4/0/0/1 */
     #rec-t {
       flex-shrink: 0;
       height: 26px;
-      width: 330px;
+      width: 282px;
     }
     /* import: D1Debate.dc.html:1/1/20/0/4/0/0/2 */
     #rec-use {
@@ -1923,6 +1917,9 @@
     }
     .sysl {
       padding-left: 10px;
+    }
+    #record-panel {
+      display: none;
     }
     #record:state(Open) #record-panel {
       display: block;

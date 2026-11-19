@@ -211,6 +211,27 @@ check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR`
 zh-TW and en (`xtatrium shot`): the claim picker in an ordinary round, a playback line, the 論破 cut-in, the endgame
 prompt with the last gasp, the §7.5 round, both outcome panels.
 
+The four routes also check every round's playback lines (E3, `check_lines`): from the ref's events of the round,
+the system lines ch §12.0 calls for among BOTH_REBUT, CUT_EMPTY, MISS_WRONG, TOPPLE_MISS_FACT／WRONG, FOOLED,
+FOG_REPEAT, CLASH, LASTCARD_HIT／NOHEAL／REMOVE, ZERO_WIN, KEY_BREAK／NORMAL, DENY_FACT and S07 L005／L006 are shown with
+their numbers, none of the others is, and the 斷 stamp shows exactly when the player's combo resets (ruling 7).
+
+```
+uv run tests/check_d1_lines.py [--shots DIR]
+```
+
+Scripted debates (forced opponent, route A's loadout, harnesses `tests/d1play_harnessS1` … `S3`, recordings
+`tests/d1_lines_S*.atrec`; all deleted at the end) for the lines the routes do not reach, with the same per-round
+`check_lines`:
+
+| Check | What it asserts |
+|---|---|
+| `S1` | 截斷 vs his 反駁 (BOTH_REBUT, no FOOLED), a clash, a 正論 拆台 on his fact (TOPPLE_MISS_FACT −10), a 拆台 that does not break L1 (TOPPLE_MISS_WRONG −5), 打迷糊仗 vs 反駁 twice (FOOLED once, then FOG_REPEAT), a sophistry cut on a fact (DENY_FACT), a 破竹 drop with the combo kept (no 斷) and an exposure with combo 1 (斷); English chosen in the settings overlay before round 4 (lines, round counter, `hachiku_text`, the record's rounds follow); no evidence chosen when a round starts (R4) |
+| `S2` | a Break with one crack, his last card taken: LASTCARD_HIT with his recovery and LASTCARD_REMOVE, the debate goes on, then ZERO_WIN on the second zero; the Break round is clicked on `ui#cutin` and `ui#d1debate` while the cut-in plays; grade 3, a win |
+| `S3` | both sides stall to round 20: a loss on credibility as ref says, UI_V2_TIME_UP |
+
+`--shots DIR` writes a TOPPLE_MISS_FACT line (S1) and a LASTCARD_HIT line (S2) in zh-TW and en.
+
 ## v2 demo: the D01 chapter (M3)
 
 ```
