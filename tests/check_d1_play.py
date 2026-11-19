@@ -74,7 +74,8 @@ SYS_UNDER_TEST = ("SYS_D01_BOTH_REBUT", "SYS_D01_CUT_EMPTY", "SYS_D01_MISS_WRONG
                   "SYS_D01_TOPPLE_MISS_WRONG", "SYS_D01_FOOLED", "SYS_D01_FOG_REPEAT", "SYS_D01_CLASH",
                   "SYS_D01_LASTCARD_HIT", "SYS_D01_LASTCARD_NOHEAL", "SYS_D01_LASTCARD_REMOVE", "SYS_D01_ZERO_WIN",
                   "SYS_D01_KEY_BREAK", "SYS_D01_KEY_NORMAL", "SYS_D01_DENY_FACT", "SCR_D01_S07_L005",
-                  "SCR_D01_S07_L006")
+                  "SCR_D01_S07_L006", "SYS_D01_CUT_SEALED", "SYS_D01_OPP_REBUT_MISS", "SYS_D01_LASTCARD_CORNERED",
+                  "SYS_D01_HACHIKU_KEEP")
 
 
 def num(v: float) -> str:
@@ -113,15 +114,22 @@ def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
             out.append(("SYS_D01_BOTH_REBUT", {}))
         elif icp is None:
             out.append(("SYS_D01_CUT_EMPTY", {}))
-        elif not icp.get("blocked_by_parry"):
+        elif icp.get("blocked_by_parry"):
+            out.append(("SYS_D01_CUT_SEALED", {}))   # E4: the cut barred by last round's sidestep
+        else:
             out.append(("SYS_D01_MISS_WRONG", {"hp": whiff["hp"]}))
     if pa.kind == PA.DISMANTLE and whiff:
         d = first("dismantle")
         soph = K.view(s, pa.claim).soph
-        if not s.ch.cards[d["card"]].is_fact:
-            out.append(("SYS_D01_TOPPLE_MISS_WRONG", {"dmg": whiff["amount"], "hp": whiff["hp"]}))
-        elif not soph:
+        if s.ch.cards[d["card"]].is_fact and not soph:
             out.append(("SYS_D01_TOPPLE_MISS_FACT", {"dmg": whiff["amount"], "hp": whiff["hp"]}))
+        else:   # E4: a sophistry on another issue's fact is a wrong-claim miss (−5)
+            out.append(("SYS_D01_TOPPLE_MISS_WRONG", {"dmg": whiff["amount"], "hp": whiff["hp"]}))
+    if pa.kind == PA.DISMANTLE and first("opp_damage", cause="whiff"):   # E4: he rebutted while she dismantled
+        out.append(("SYS_D01_OPP_REBUT_MISS", {"hp": first("opp_damage", cause="whiff")["hp"]}))
+    dok = first("dismantle", ok=True)
+    if dok and s.ch.cards[dok["card"]].is_fact:   # E4: a sophistry dismantle knocks down a fact
+        out.append(("SYS_D01_DENY_FACT", {}))
     if any(e["cause"] == "bad_cut" for e in pd):
         out.append(("SYS_D01_MISS_WRONG", {"hp": next(e for e in pd if e["cause"] == "bad_cut")["hp"]}))
     st = first("stall")
@@ -137,13 +145,15 @@ def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
     lc = first("last_card", cut=False)
     if lc and not lc.get("dying"):
         lcd = next(e for e in pd if e["cause"] == "last_card")
-        if s2.outcome:
-            out.append(("SYS_D01_LASTCARD_NOHEAL", {}))
-        elif "heal_void" not in kinds:
-            c0 = s.cracks
-            f = num(M.LAST_ZERO_C_DMG) if c0 == 0 else f"{num(M.LAST_PER_CRACK)} × {c0}"
-            if s.ch.cards[lc["card"]].kind == "pickup":
-                f += f" + {num(M.LAST_PICKED_EXTRA)}"
+        c0 = s.cracks
+        f = num(M.LAST_ZERO_C_DMG) if c0 == 0 else f"{num(M.LAST_PER_CRACK)} × {c0}"
+        if s.ch.cards[lc["card"]].kind == "pickup":
+            f += f" + {num(M.LAST_PICKED_EXTRA)}"
+        if s2.outcome or "heal_void" in kinds:
+            out.append(("SYS_D01_LASTCARD_NOHEAL", {"formula": f, "dmg": lcd["amount"], "hp": lcd["hp"]}))
+            if not s2.outcome:   # E4: 困獸 voids his recovery, the debate goes on
+                out.append(("SYS_D01_LASTCARD_CORNERED", {}))
+        else:
             out.append(("SYS_D01_LASTCARD_HIT", {"formula": f, "dmg": lcd["amount"], "hp": lcd["hp"],
                                                  "pct": round(lc["opp_hp"] / s.ch.opp_max_hp * 100),
                                                  "hp_o": lc["opp_hp"]}))
@@ -165,6 +175,9 @@ def ref_lines(s, pa, ev: list, s2) -> tuple[list[tuple[str, dict]], bool]:
         out.append(("SCR_D01_S07_L005", {}))
     if first("endgame", trigger="zero") and not s2.outcome:
         out.append(("SCR_D01_S07_L006", {}))
+    # E4: 破竹 held (≥ 1 layer, no layer added, not reset) in a normal round the debate goes on after
+    if s.endgame is None and not s.player_locked and not s2.outcome and s.hachiku >= 1 and s2.hachiku == s.hachiku:
+        out.append(("SYS_D01_HACHIKU_KEEP", {}))
     reset = s.player_combo > 0 and (any(e["cause"] in ("exposed", "refuted") for e in pd)
                                     or (lc is not None and not lc.get("dying")))
     return out, reset

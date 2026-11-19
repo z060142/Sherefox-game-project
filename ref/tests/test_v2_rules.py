@@ -502,3 +502,39 @@ def test_slip_is_drawn_only_when_he_speaks_and_draws_keep_the_contract_order():
                 slips += 1
                 assert d.action.kind in (OA.ATTACK, OA.FORCE)
     assert slips > 20
+
+
+# E4 (design 3689f6d): a missed 詭辯 costs −5 whatever the node is (cut or dismantle); −10 only
+# for a 正論 against a fact.
+@pytest.mark.parametrize("claim,card,soph,cost", [
+    ("04A", "L2", False, 5.0),   # 正論 that does not break the lie
+    ("06A", "F1", False, 10.0),  # 正論 against a fact
+    ("06B", "L2", True, 5.0),    # 詭辯 on another issue's lie
+    ("06B", "F1", True, 5.0),    # 詭辯 on another issue's fact
+])
+def test_failed_intercept_cost(claim, card, soph, cost):
+    s = states("C")[0]
+    v = K.view(s, claim)
+    assert v.available and v.soph == soph and not v.red_crack
+    s1, ev = resolve_round(s, PlayerAction(PA.INTERCEPT, claim), OpponentAction(OA.ATTACK, card))
+    miss = next(e for e in ev if e["kind"] == "intercept")
+    assert not miss["ok"]
+    his = 0.0 if (CH.cards[card].is_fact and not soph) else 16.0  # a fact lands without 論證 only on a 正論 miss
+    assert s1.player_hp == pytest.approx(140 - cost - his)
+
+
+@pytest.mark.parametrize("claim,target,soph,cost", [
+    ("10A", "L2", False, 5.0),   # 正論 that does not break the lie
+    ("10A", "F1", False, 10.0),  # 正論 against a fact
+    ("04C", "L2", True, 5.0),    # 詭辯 on another issue's lie
+    ("04C", "F1", True, 5.0),    # 詭辯 on another issue's fact (was −10 before E4)
+])
+def test_failed_dismantle_cost(claim, target, soph, cost):
+    s = states("D")[5]  # his chain F1, L2
+    assert [n.card for n in s.opp_chain] == ["F1", "L2"]
+    v = K.view(s, claim)
+    assert v.available and v.soph == soph and not v.red_crack
+    s1, ev = resolve_round(s, PlayerAction(PA.DISMANTLE, claim, target), OpponentAction(OA.PARRY))
+    d = next(e for e in ev if e["kind"] == "dismantle")
+    assert not d["ok"] and [n.card for n in s1.opp_chain] == ["F1", "L2"]
+    assert s1.player_hp == pytest.approx(s.player_hp - cost)

@@ -181,6 +181,8 @@ M2（2026-11-19）：`game.json` 已接上（`tools/gen_flows.py` 把 §2 的訊
 
 全部照 ref（`resolve.py` 的每個函式在產生器裡有同名函式：`_use_claim`→`use_claim`、`_player_attach`、`_opp_attach`、`_reraise`、`_psych_step`、`_stance`、`_enter_endgame`、`_endgame_round`、`_last_stand`…）。ref 會丟 `IllegalAction` 的指令，引擎不驗證（不可用的說法、已在鏈上的說法、援護用第二次、不在他鏈上的拆台目標…），結果未定義：那些按鈕由 UI 依 `d1ClaimList`、`d1ClaimStand`、`d1GuardUsed`、`d1OChain` 停用。
 
+E4（企劃 3689f6d）：拆台失敗的扣血改為「正論打事實 −10，其他（打謊言、詭辯打任何一節）−5」，與截斷一致：ref `resolve.py` 拆台失敗分支 `FACT_MISS if (cd.is_fact and not v.soph) else WHIFF`，產生器同一處加上 `NOT(soph)`。測試：`ref/tests/test_v2_rules.py` 的 `test_failed_intercept_cost`、`test_failed_dismantle_cost`（正論／詭辯 × 謊言／事實）。四條路線的數字不變。
+
 ## 5. 衍生表（`data/d01/`）
 
 | 表 | 一列 | 欄 |

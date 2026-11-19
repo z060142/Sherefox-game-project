@@ -101,7 +101,7 @@
 - 裁定 1、2、3、5、6、8：現狀正確，不改。
 - 驗收：更新熱點疊圖（地下室、門廳）與英文分頁截圖。
 
-### E4：企劃 3689f6d 的裁定（M4a 落地後做；Opus）
+### E4：企劃 3689f6d 的裁定（M4a 落地後做；Opus）✔ 完成（規則：ref 測試 `test_failed_*_cost`，四條路線數字不變；台詞：`tests/check_d1_lines.py` S4、S5）
 
 - **規則修正（先 ref、再引擎）**：詭辯拆台打在另一爭點的事實上而失敗，扣 −5 而不是 −10（「詭辯反駁選錯爭點一律 −5」，不分謊言或事實、截斷或拆台；否則扣多少會洩漏那句話的真假）。已確認 ref 目前是 −10：`resolve.py` 拆台失敗分支用 `FACT_MISS if cd.is_fact else WHIFF`，沒有看 `v.soph`；截斷分支已正確。−10 只屬於正論打事實。四條路線的數字若有變要回報企劃。台詞用 `SYS_D01_TOPPLE_MISS_WRONG`（截斷的同類用 `SYS_D01_MISS_WRONG`）。
 - 新樣板：`SYS_D01_CUT_SEALED`（截斷被封住，不帶數字）；`SYS_D01_OPP_REBUT_MISS`（他反駁而玩家是拆台，他落空；拆台自己的結果另外播；玩家是截斷時仍用 BOTH_REBUT）；最後一張牌打中但困獸使回復無效：先 `SYS_D01_LASTCARD_NOHEAL` 再 `SYS_D01_LASTCARD_CORNERED`。

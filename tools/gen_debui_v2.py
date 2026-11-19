@@ -142,7 +142,7 @@ def gen_d01ui() -> Graph:
 
     # ---- UI state
     for k in ("ph", "act", "armed", "stAt", "rsAt", "lockAt", "r2", "ref", "pb", "pbAt", "ev", "hpM", "hpO", "pat",
-              "endAt", "soph", "intBlk", "rmN", "patD"):
+              "endAt", "soph", "intBlk", "rmN", "patD", "tail"):
         g.mget("d_" + k, "u1", g.k(k))
     for k in ("ev", "claim", "target"):
         g.mget("s_" + k, "u1S", g.k(k))
@@ -402,7 +402,7 @@ def gen_d01ui() -> Graph:
     # ---- playback of the round's records (d1Events, debate-engine-v2 §2.3): pb 1 fetch, 2 play, 3 wait
     setn(lockT, "ev", g.k(0))
     setn(lockT, "pb", g.k(1))
-    for k in ("intBlk", "rmN", "patD"):
+    for k in ("intBlk", "rmN", "patD", "tail"):
         setn(lockT, k, g.k(0))
     stepP = stage("fetchG", "d_pb == 1")
     g.count("evCnt", "d1Events")
@@ -420,7 +420,17 @@ def gen_d01ui() -> Graph:
     g.edge(more, add_all(g, "gnAdd", "u1GN", "evRecNx", "|"))
     setn(more, "ev", g.x("evNext", "d_ev + 1"))
     setn(more, "pb", g.k(2))
-    endT = g.when("evDone", stepP, T("evOver", "!more"))
+    # E4: after the last record, one tail step when 破竹 was held this round (≥ 1 layer, no layer added, not reset; a
+    # normal round that the debate goes on after): the record lists are emptied, so only the tail line matches
+    g.n("outOver", g.cmp("outOverC", "world.d1Outcome", g.k(""), "ne"))
+    g.put("hkNowN", "world.d1Hachiku")
+    g.x("tailWant", "d_tail == 0 && modeN == 0 && !outOver && L_Hachiku >= 1 && hkNowN == L_Hachiku")
+    tailP = g.when("tailG", stepP, T("tailGo", "!more && tailWant"))
+    for coll in ("u1F", "u1N", "u1G", "u1GN"):
+        g.edge(tailP, g.eff(f"tClr_{coll}", "atrium.coll.clear", coll))
+    setn(tailP, "tail", g.k(1))
+    setn(tailP, "pb", g.k(2))
+    endT = g.when("evDone", stepP, T("evOver", "!more && !tailWant"))
     setn(endT, "pb", g.k(0))
     g.x("endSoon", f"now + {HOLD}")
     setn(endT, "rsAt", "endSoon")
@@ -454,7 +464,6 @@ def gen_d01ui() -> Graph:
     g.tget("nxFact", "d1uiCard", "fact", g.tfind("nxRow", "d1uiCard", "id", "g2"), "number")
     isS("stVsRebut", "f1", "rebut")
     isS("ovSecZero", "f3", "second_zero")
-    g.n("outOver", g.cmp("outOverC", "world.d1Outcome", g.k(""), "ne"))
     for v in ("P", "G", "A"):
         isS("x" + v, "f1", v)
     isS("egZero", "f1", "zero")
@@ -566,28 +575,35 @@ def gen_d01ui() -> Graph:
         # claim does not cut it (his node follows; not when the cut was barred by last round's sidestep: no line)
         (T("sy11", "k_pDmg && c_whiff && act == 2 && nx_oDmg"), "SYS_D01_BOTH_REBUT"),
         (T("sy7", "k_pDmg && c_whiff && act == 2 && (nx_oHeal || nx_healVoid)"), "SYS_D01_CUT_EMPTY"),
+        # E4: a cut barred by last round's sidestep (his node follows) has its own line, without numbers
+        (T("syCs", "k_pDmg && c_whiff && act == 2 && nx_oAttach && d_intBlk"), "SYS_D01_CUT_SEALED"),
         (T("sy8", "k_pDmg && ((c_whiff && act == 2 && nx_oAttach && !d_intBlk) || c_bad_cut)"), "SYS_D01_MISS_WRONG"),
-        # 拆台 that whiffs (its dismantle record follows): a fact hit by a 正論, or a link the claim does not break; a
-        # sophistry on a fact of another issue has no line (ch §12.0 names none)
+        # 拆台 that whiffs (its dismantle record follows): a fact hit by a 正論, or a link the claim does not break (E4:
+        # a sophistry on a fact of another issue too, −5)
         (T("syTpF", "k_pDmg && c_whiff && act == 3 && nx_dismantle && nxFact && !d_soph"), "SYS_D01_TOPPLE_MISS_FACT"),
-        (T("syTpW", "k_pDmg && c_whiff && act == 3 && nx_dismantle && !nxFact"), "SYS_D01_TOPPLE_MISS_WRONG"),
+        (T("syTpW", "k_pDmg && c_whiff && act == 3 && nx_dismantle && (!nxFact || d_soph)"),
+         "SYS_D01_TOPPLE_MISS_WRONG"),
         (T("sy9", "k_pDmg && c_fact_miss"), "SYS_D01_MISS_FACT"),
         (T("sy10", "k_pDmg && c_stalemate && act == 4"), "SYS_D01_FOG_STALL"),
         (T("sy12", "k_pDmg && c_stall_repeat"), "SYS_D01_FOG_REPEAT"),
         (T("sy13", "k_pDmg && c_dying"), "SYS_D01_DESPERATE_HIT"),
-        # his last card hits: it ends the debate, or he recovers (his lastCard record follows, with his credibility;
-        # a recovery voided by 困獸 has no line)
-        (T("sy14", "k_pDmg && c_last_card && outOver"), "SYS_D01_LASTCARD_NOHEAL"),
+        # his last card hits: it ends the debate, or 困獸 voids his recovery (E4: NOHEAL, then CORNERED at the healVoid
+        # record), or he recovers (his lastCard record follows, with his credibility)
+        (T("sy14", "k_pDmg && c_last_card && (outOver || nx_healVoid)"), "SYS_D01_LASTCARD_NOHEAL"),
+        (T("syCor", "k_healVoid && !outOver && modeN == 1"), "SYS_D01_LASTCARD_CORNERED"),
         (T("syLcH", "k_pDmg && c_last_card && !outOver && nx_lastCard"), "SYS_D01_LASTCARD_HIT"),
         (T("syLcR", "k_lastCardRemoved && !nx_lastCardRemoved"), "SYS_D01_LASTCARD_REMOVE"),
         (T("sy15b", "k_oDmg && c_intercept && myClaimSoph"), "SYS_D01_CUT_SOPH"),
         (T("sy15", f"k_oDmg && c_intercept && n1 > {M.INTERCEPT_DMG}"), "SYS_D01_CUT_PUSH"),
         (T("sy16", "k_oDmg && c_intercept"), "SYS_D01_CUT_OK"),
         (T("sy17", "k_oDmg && c_dismantle"), "SYS_D01_DISMANTLE"),
+        # E4: he rebutted while she dismantled: his whiff (the dismantle's own result was told before)
+        (T("syOrm", "k_oDmg && c_whiff && act == 3"), "SYS_D01_OPP_REBUT_MISS"),
         # the cut's record: a keystone (論破 or an ordinary cut), a fact knocked down by sophistry
         (T("syKb", "k_intercept && n3 == 1 && n4 == 1"), "SYS_D01_KEY_BREAK"),
         (T("syKn", "k_intercept && n3 == 1 && k_keyK"), "SYS_D01_KEY_NORMAL"),
         (T("syDf", "k_intercept && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),
+        (T("syDfD", "k_dismantle && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),     # E4: a sophistry 拆台 on a fact
         # his rebuttal baited by a first 打迷糊仗 (破防 and a clear tell next round): told at the stall record
         (T("sy18", "k_stall && stVsRebut && n2 == 0"), "SYS_D01_FOOLED"),
         (T("sy19", "k_oHeal"), "SYS_D01_STALL_HEAL"),
@@ -607,6 +623,8 @@ def gen_d01ui() -> Graph:
         (T("syZw", "k_over && ovSecZero"), "SYS_D01_ZERO_WIN"),
         (T("sy33", "k_over && ovWin"), "SYS_D01_WIN"),
         (T("sy34", "k_over"), "SCR_D01_S07_L016"),
+        # E4: the round's tail (after its last record): 破竹 held
+        (T("syHk", "d_tail == 1"), "SYS_D01_HACHIKU_KEEP"),
     ]
     g.x("hasSys", " || ".join(c[: -len("_t")] for c, _ in sysl))
     skey = ssel(g, "syKey", [(c, g.k(k)) for c, k in sysl], g.k(""))

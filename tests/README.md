@@ -220,7 +220,7 @@ their numbers, none of the others is, and the 斷 stamp shows exactly when the p
 uv run tests/check_d1_lines.py [--shots DIR]
 ```
 
-Scripted debates (forced opponent, route A's loadout, harnesses `tests/d1play_harnessS1` … `S3`, recordings
+Scripted debates (forced opponent, route A's loadout unless noted, harnesses `tests/d1play_harnessS1` … `S5`, recordings
 `tests/d1_lines_S*.atrec`; all deleted at the end) for the lines the routes do not reach, with the same per-round
 `check_lines`:
 
@@ -229,6 +229,8 @@ Scripted debates (forced opponent, route A's loadout, harnesses `tests/d1play_ha
 | `S1` | 截斷 vs his 反駁 (BOTH_REBUT, no FOOLED), a clash, a 正論 拆台 on his fact (TOPPLE_MISS_FACT −10), a 拆台 that does not break L1 (TOPPLE_MISS_WRONG −5), 打迷糊仗 vs 反駁 twice (FOOLED once, then FOG_REPEAT), a sophistry cut on a fact (DENY_FACT), a 破竹 drop with the combo kept (no 斷) and an exposure with combo 1 (斷); English chosen in the settings overlay before round 4 (lines, round counter, `hachiku_text`, the record's rounds follow); no evidence chosen when a round starts (R4) |
 | `S2` | a Break with one crack, his last card taken: LASTCARD_HIT with his recovery and LASTCARD_REMOVE, the debate goes on, then ZERO_WIN on the second zero; the Break round is clicked on `ui#cutin` and `ui#d1debate` while the cut-in plays; grade 3, a win |
 | `S3` | both sides stall to round 20: a loss on credibility as ref says, UI_V2_TIME_UP |
+| `S4` | E4, a loadout with the talking board: 破竹 held at 3 (HACHIKU_KEEP after the round's last system line, never at 0), 困獸 from round 5 (a sidestep's voided heal says nothing), his last card P05 hits with the recovery voided (LASTCARD_NOHEAL then LASTCARD_CORNERED), then ZERO_WIN |
+| `S5` | E4: a cut sealed by last round's sidestep (CUT_SEALED), a sophistry 拆台 on another issue's fact (TOPPLE_MISS_WRONG −5), a sophistry 拆台 that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS) |
 
 `--shots DIR` writes a TOPPLE_MISS_FACT line (S1) and a LASTCARD_HIT line (S2) in zh-TW and en.
 

@@ -432,7 +432,10 @@ def _normal_round(s: State, rd: _Round, pa: PlayerAction, oa: OpponentAction, ev
             _claim_effect(s, rd, claim_id)
         else:
             rd.read_bad = rd.guard_trigger = True
-            _hurt_player(s, rd, FACT_MISS if cd.is_fact else WHIFF, "whiff", ev)
+            # E4 (design 3689f6d): a 詭辯 that misses costs −5 whatever the node is, on a
+            # cut or a dismantle (otherwise the cost would tell the line's truth); −10 only
+            # for a 正論 against a fact.
+            _hurt_player(s, rd, FACT_MISS if (cd.is_fact and not v.soph) else WHIFF, "whiff", ev)
         ev.append({"kind": "dismantle", "claim": claim_id, "card": node.card, "ok": ok})
         if attacks:
             _opp_attach(s, rd, oa, ev)

@@ -921,7 +921,7 @@ def normal_round(cmd: Cmd) -> None:
         def fail():
             put("rd_rb", 1)
             put("rd_gt", 1)
-            hurt_player(T.SEL(lk(K_FACT, ti), M.FACT_MISS, M.WHIFF), "whiff")
+            hurt_player(T.SEL(T.AND(lk(K_FACT, ti), T.NOT(soph)), M.FACT_MISS, M.WHIFF), "whiff")  # E4
 
         T.when(okd, success, fail)
         ev("dismantle", cls(cmd.ci), cks(ti), okd)

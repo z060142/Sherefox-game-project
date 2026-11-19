@@ -23,6 +23,11 @@ system lines with the ref's events (every line ch §12.0 calls for, with its num
   (ZERO_WIN). The Break round's playback is clicked on the cut-in surface as well as the screen while the cut-in plays.
 - S3 (route A's loadout): both sides stall to the round limit: round 20 ends as the ref says (a loss on credibility,
   UI_V2_TIME_UP).
+- S4 (E4; route A's evidence with the talking board for E05): 破竹 held at 3 (SYS_D01_HACHIKU_KEEP after the round's
+  last system line), 困獸 from round 5, his last card P05 hits in round 9 with the recovery voided (LASTCARD_NOHEAL then
+  LASTCARD_CORNERED, the cracked link removed), then a second zero.
+- S5 (E4; route A's loadout): a cut sealed by last round's sidestep (CUT_SEALED), a sophistry 拆台 on another issue's
+  fact (−5, TOPPLE_MISS_WRONG), a sophistry 拆台 that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS).
 
 Usage (from the project root):
     uv run tests/check_d1_lines.py [--shots DIR]    --shots also writes a failed-拆台 line and a LASTCARD_HIT line
@@ -70,6 +75,20 @@ SCENARIOS = {
                        (RT.cut("11A"), op(A, "L1")), (RT.argue("10A"), op(P)), (RT.accept(), op(RT.LAST, "K1")),
                        (RT.argue("01A"), op(P)), (RT.argue("06A"), op(P)), (RT.argue("11B"), op(P))]),
     "S3": route("S3", [(RT.stall(), op(P))] * 20),
+    # E4 (design 3689f6d): 破竹 held (HACHIKU_KEEP, rounds 4-8); 困獸 (P over from round 5) voids his last card's
+    # recovery and the debate goes on (LASTCARD_NOHEAL then LASTCARD_CORNERED, round 9); a sidestep's voided heal
+    # says nothing (rounds 6, 8)
+    "S4": RT.Route("S4", RT.Loadout(("E01", "E02", "E04", "E06", "E07", "E08", "E10", "E11", "P1"), ("A01", "A04"),
+                                    ("PN1", "PN2", "PN3", "PN4"), warmup="pass_clean"),
+                   tuple((pa, oa, None) for pa, oa in [
+                       (RT.cut("11A"), op(A, "L1")), (RT.argue("P1B"), op(P)), (RT.cut("01A"), op(A, "L2")),
+                       (RT.argue("01B"), op(P)), (RT.cut("07A"), op(A, "L4")), (RT.argue("04A"), op(P)),
+                       (RT.cut("08A"), op(A, "L3")), (RT.argue("10A"), op(P)), (RT.accept(), op(RT.LAST, "P05")),
+                       (RT.argue("06A"), op(P))])),
+    # E4: a cut sealed by last round's sidestep (CUT_SEALED), a sophistry dismantle on another issue's fact (−5,
+    # TOPPLE_MISS_WRONG), a sophistry dismantle that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS)
+    "S5": route("S5", [(RT.cut("11A"), op(P)), (RT.cut("01A"), op(A, "L2")), (RT.argue("04A"), op(A, "F1")),
+                       (dis("06B", "F1"), op(P)), (dis("06C", "F1"), op(R))]),
 }
 LANG_SWITCH = ("S1", 4)        # (scenario, round): English chosen in the settings overlay before that round's choice
 CUTIN_CLICKS = ("S2", 5)       # (scenario, round): the playback is clicked on ui#cutin and ui#d1debate
