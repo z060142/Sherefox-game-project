@@ -235,5 +235,5 @@ def load_chapter(debate: str = "d01_debate.json", extra: str = "d01_extra.json")
         last_card_order=tuple(x["last_card_order"]["order"]),
         private_favour={k: (v["who"], int(v["delta"])) for k, v in x["private_favour"].items() if k != "ref"},
         warmup={k: dict(v) for k, v in x["warmup"].items() if k != "ref"},
-        flags={k: v for k, v in x["flags"].items() if k != "ref"},
+        flags={k: v for k, v in x.get("flags", {}).items() if k != "ref"},
     )

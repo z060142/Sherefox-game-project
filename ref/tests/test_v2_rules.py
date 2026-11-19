@@ -48,7 +48,6 @@ def test_data_relations_match_the_chapter():
     assert ("02C", "08B") in CH.continuations and ("08B", "02C") not in CH.continuations
     assert CH.player_max_hp == 140 and CH.opp_max_hp == 230 and CH.opp_base_damage == 16
     assert CH.max_rounds == 20 and CH.ronpa_len == 4
-    assert CH.flags["S06_L008"] is False
 
 
 @pytest.mark.parametrize("left,expected", [

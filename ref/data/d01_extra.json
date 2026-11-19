@@ -75,9 +75,5 @@
     "pass_clean": {"inspector": 1, "appraisal_limit": 2},
     "pass": {"inspector": 0, "appraisal_limit": 2},
     "fail": {"inspector": -1, "appraisal_limit": 1}
-  },
-  "flags": {
-    "ref": "§2 S06 L008 〔待使用者決定〕; design-owner ruling: a data flag, off by default, dialogue only",
-    "S06_L008": false
   }
 }
