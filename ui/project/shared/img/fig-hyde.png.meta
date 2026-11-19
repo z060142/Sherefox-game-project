@@ -1,0 +1,13 @@
+version: 1
+id: b35e9014-b084-4719-9f33-f33cf8f6b6b9
+type: image
+title: fig-hyde
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_mrs_hyde.png
+content: sha256:5d214c5523df466d51270485b42061eafdbcf5aeae952c8765acb5b6a18ff69c
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

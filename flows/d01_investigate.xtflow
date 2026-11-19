@@ -1,0 +1,8882 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "en"
+      }
+    },
+    {
+      "id": "langEnC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": "pop"
+      }
+    },
+    {
+      "id": "d_pop",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": "tab"
+      }
+    },
+    {
+      "id": "d_tab",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K3",
+      "type": "constant",
+      "params": {
+        "value": "rb"
+      }
+    },
+    {
+      "id": "d_rb",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K4",
+      "type": "constant",
+      "params": {
+        "value": "bk"
+      }
+    },
+    {
+      "id": "d_bk",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": "cr"
+      }
+    },
+    {
+      "id": "d_cr",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K6",
+      "type": "constant",
+      "params": {
+        "value": "cv"
+      }
+    },
+    {
+      "id": "d_cv",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K7",
+      "type": "constant",
+      "params": {
+        "value": "cph"
+      }
+    },
+    {
+      "id": "d_cph",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K8",
+      "type": "constant",
+      "params": {
+        "value": "loc"
+      }
+    },
+    {
+      "id": "s_loc",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K9",
+      "type": "constant",
+      "params": {
+        "value": "sp"
+      }
+    },
+    {
+      "id": "s_sp",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K10",
+      "type": "constant",
+      "params": {
+        "value": "card"
+      }
+    },
+    {
+      "id": "s_card",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
+        "value": "rm"
+      }
+    },
+    {
+      "id": "s_rm",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K12",
+      "type": "constant",
+      "params": {
+        "value": "w1"
+      }
+    },
+    {
+      "id": "s_w1",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K13",
+      "type": "constant",
+      "params": {
+        "value": "s1"
+      }
+    },
+    {
+      "id": "s_s1",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K14",
+      "type": "constant",
+      "params": {
+        "value": "w2"
+      }
+    },
+    {
+      "id": "s_w2",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K15",
+      "type": "constant",
+      "params": {
+        "value": "s2"
+      }
+    },
+    {
+      "id": "s_s2",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "clock",
+      "type": "clock"
+    },
+    {
+      "id": "beat",
+      "type": "filter",
+      "params": {
+        "op": "deadband",
+        "threshold": 0
+      }
+    },
+    {
+      "id": "isD01",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "chSel == 101"
+      }
+    },
+    {
+      "id": "start",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "clr_i1",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "clr_i1S",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "clr_i1SpSt",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1SpSt"
+      }
+    },
+    {
+      "id": "clr_i1Left",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "clr_i1LocSel",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1LocSel"
+      }
+    },
+    {
+      "id": "clr_i1LocDone",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1LocDone"
+      }
+    },
+    {
+      "id": "clr_i1CSel",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1CSel"
+      }
+    },
+    {
+      "id": "clr_i1CMark",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1CMark"
+      }
+    },
+    {
+      "id": "clr_i1OptSel",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1OptSel"
+      }
+    },
+    {
+      "id": "clr_d1PrivNote",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "d1PrivNote"
+      }
+    },
+    {
+      "id": "clr_i1Seen",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Seen"
+      }
+    },
+    {
+      "id": "clr_i1Have",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "clr_i1Notes",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "clr_i1Appr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "clr_i1New",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1New"
+      }
+    },
+    {
+      "id": "clr_i1Sel",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "clr_i1Said",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "clr_i1Here",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Here"
+      }
+    },
+    {
+      "id": "clr_i1Book",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "clr_i1Opt",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Opt"
+      }
+    },
+    {
+      "id": "clr_i1PN",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1PN"
+      }
+    },
+    {
+      "id": "clr_i1Locs",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Locs"
+      }
+    },
+    {
+      "id": "K16",
+      "type": "constant",
+      "params": {
+        "value": "PARLOR,STUDY,BASEMENT,ATTIC,BEDROOM,HALL"
+      }
+    },
+    {
+      "id": "add_i1Locs",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1Locs",
+        "separator": ","
+      }
+    },
+    {
+      "id": "clr_i1All",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1All"
+      }
+    },
+    {
+      "id": "K17",
+      "type": "constant",
+      "params": {
+        "value": "E01,E02,E03,E04,E05,E06,E07,E08,E09,E10,E11,E12,P1"
+      }
+    },
+    {
+      "id": "add_i1All",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1All",
+        "separator": ","
+      }
+    },
+    {
+      "id": "clr_i1NAll",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1NAll"
+      }
+    },
+    {
+      "id": "K18",
+      "type": "constant",
+      "params": {
+        "value": "PN1,PN2,PN3,PN4,OBS01"
+      }
+    },
+    {
+      "id": "add_i1NAll",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1NAll",
+        "separator": ","
+      }
+    },
+    {
+      "id": "clr_i1AAll",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1AAll"
+      }
+    },
+    {
+      "id": "K19",
+      "type": "constant",
+      "params": {
+        "value": "A01,A02,A04"
+      }
+    },
+    {
+      "id": "add_i1AAll",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1AAll",
+        "separator": ","
+      }
+    },
+    {
+      "id": "clr_i1PsyAll",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1PsyAll"
+      }
+    },
+    {
+      "id": "K20",
+      "type": "constant",
+      "params": {
+        "value": "P1"
+      }
+    },
+    {
+      "id": "add_i1PsyAll",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1PsyAll",
+        "separator": ","
+      }
+    },
+    {
+      "id": "clr_i1ClAll",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1ClAll"
+      }
+    },
+    {
+      "id": "K21",
+      "type": "constant",
+      "params": {
+        "value": "-,01A,01B,01C,01D,02A,02B,02C,03A,03B,04A,04B,04C,05A,05B,06A,06B,06C,07A,07B,08A,08B,09A,09B,10A,10B,11A,11B,12A,P1A,P1B"
+      }
+    },
+    {
+      "id": "add_i1ClAll",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1ClAll",
+        "separator": ","
+      }
+    },
+    {
+      "id": "K22",
+      "type": "constant",
+      "params": {
+        "value": "PARLOR"
+      }
+    },
+    {
+      "id": "K23",
+      "type": "constant",
+      "params": {
+        "value": 7
+      }
+    },
+    {
+      "id": "left_PARLOR",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "K24",
+      "type": "constant",
+      "params": {
+        "value": "STUDY"
+      }
+    },
+    {
+      "id": "left_STUDY",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "K25",
+      "type": "constant",
+      "params": {
+        "value": "BASEMENT"
+      }
+    },
+    {
+      "id": "K26",
+      "type": "constant",
+      "params": {
+        "value": 4
+      }
+    },
+    {
+      "id": "left_BASEMENT",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "K27",
+      "type": "constant",
+      "params": {
+        "value": "ATTIC"
+      }
+    },
+    {
+      "id": "K28",
+      "type": "constant",
+      "params": {
+        "value": 3
+      }
+    },
+    {
+      "id": "left_ATTIC",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "K29",
+      "type": "constant",
+      "params": {
+        "value": "BEDROOM"
+      }
+    },
+    {
+      "id": "left_BEDROOM",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "K30",
+      "type": "constant",
+      "params": {
+        "value": "HALL"
+      }
+    },
+    {
+      "id": "K31",
+      "type": "constant",
+      "params": {
+        "value": 2
+      }
+    },
+    {
+      "id": "left_HALL",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "i1S_loc_1",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K32",
+      "type": "constant",
+      "params": {
+        "value": "pass"
+      }
+    },
+    {
+      "id": "wuDef",
+      "type": "filter",
+      "params": {
+        "op": "sample"
+      }
+    },
+    {
+      "id": "K33",
+      "type": "constant",
+      "params": {
+        "value": "d1investigate"
+      }
+    },
+    {
+      "id": "isInvK",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "invB",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "K34",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "i1_rb_1",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "i1_bk_2",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K35",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "i1_pop_3",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "rbGGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_rb > 0"
+      }
+    },
+    {
+      "id": "rbG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1_rb_4",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "langP",
+      "type": "merge"
+    },
+    {
+      "id": "rbM",
+      "type": "merge"
+    },
+    {
+      "id": "scRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iScene",
+        "column": "id"
+      }
+    },
+    {
+      "id": "scSpots",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iScene",
+        "column": "spots",
+        "type": "string"
+      }
+    },
+    {
+      "id": "scBg",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iScene",
+        "column": "bg",
+        "type": "string"
+      }
+    },
+    {
+      "id": "clr_here",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Here"
+      }
+    },
+    {
+      "id": "add_here",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1Here",
+        "separator": ","
+      }
+    },
+    {
+      "id": "spList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1inv.spots",
+        "source": "i1Here",
+        "fields": "{\"id\": \"item\", \"name\": \"table:d1iSpot[id].name\", \"x\": \"table:d1iSpot[id].x\", \"y\": \"table:d1iSpot[id].y\", \"w\": \"table:d1iSpot[id].w\", \"h\": \"table:d1iSpot[id].h\", \"type\": \"table:d1iSpot[id].type\", \"state\": \"map:i1SpSt\"}",
+        "localize": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "locEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1Locs"
+      }
+    },
+    {
+      "id": "liSel",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "locSel",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1LocSel"
+      }
+    },
+    {
+      "id": "liLeft",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "liDone",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "locDone",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1LocDone"
+      }
+    },
+    {
+      "id": "locList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1inv.locs",
+        "source": "i1Locs",
+        "fields": "{\"id\": \"item\", \"name\": \"table:d1iScene[id].name\", \"sel\": \"map:i1LocSel\", \"done\": \"map:i1LocDone\"}",
+        "localize": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "locOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_pop == 0"
+      }
+    },
+    {
+      "id": "locG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1S_loc_2",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_rb_5",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "spRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "sp_scene",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "scene",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sp_ev",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "ev",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sp_note",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "note",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sp_pair",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "pair",
+        "type": "string"
+      }
+    },
+    {
+      "id": "sp_pairNote",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "pairNote",
+        "type": "string"
+      }
+    },
+    {
+      "id": "seenC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Seen"
+      }
+    },
+    {
+      "id": "seenN",
+      "type": "select"
+    },
+    {
+      "id": "pairSeenC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Seen"
+      }
+    },
+    {
+      "id": "pairSeenN",
+      "type": "select"
+    },
+    {
+      "id": "K36",
+      "type": "constant",
+      "params": {
+        "value": ""
+      }
+    },
+    {
+      "id": "hasEvC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "hasEvN",
+      "type": "select"
+    },
+    {
+      "id": "hasNoteC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "hasNoteN",
+      "type": "select"
+    },
+    {
+      "id": "hasPairC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "hasPairN",
+      "type": "select"
+    },
+    {
+      "id": "spLeft",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "spotOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_pop == 0"
+      }
+    },
+    {
+      "id": "spotG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "firstOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!seenN"
+      }
+    },
+    {
+      "id": "firstG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "seenAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Seen"
+      }
+    },
+    {
+      "id": "spSt",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1SpSt"
+      }
+    },
+    {
+      "id": "leftN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "spLeft - 1"
+      }
+    },
+    {
+      "id": "leftDec",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1Left"
+      }
+    },
+    {
+      "id": "evOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "hasEvN"
+      }
+    },
+    {
+      "id": "evG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "haveAdd",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1Have",
+        "separator": ","
+      }
+    },
+    {
+      "id": "newAdd",
+      "type": "atrium.coll.addAll",
+      "params": {
+        "name": "i1New",
+        "separator": ","
+      }
+    },
+    {
+      "id": "ntOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "hasNoteN"
+      }
+    },
+    {
+      "id": "ntG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "noteAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "noteNew",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1New"
+      }
+    },
+    {
+      "id": "prOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "hasPairN && pairSeenN"
+      }
+    },
+    {
+      "id": "prG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "pairAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "pairNew",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1New"
+      }
+    },
+    {
+      "id": "i1S_sp_3",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_pop_6",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "pnoteV",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "hasNoteN || (hasPairN && pairSeenN)"
+      }
+    },
+    {
+      "id": "K37",
+      "type": "constant",
+      "params": {
+        "value": "pnote"
+      }
+    },
+    {
+      "id": "i1_pnote_7",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "i1_rb_8",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "i1_bk_9",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "popSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "dismissM",
+      "type": "merge"
+    },
+    {
+      "id": "i1_pop_10",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "vRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iSpot",
+        "column": "id"
+      }
+    },
+    {
+      "id": "v_name",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "name",
+        "type": "string"
+      }
+    },
+    {
+      "id": "v_desc",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "desc",
+        "type": "string"
+      }
+    },
+    {
+      "id": "v_art",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "art",
+        "type": "string"
+      }
+    },
+    {
+      "id": "v_ev0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "ev0",
+        "type": "string"
+      }
+    },
+    {
+      "id": "v_ev1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iSpot",
+        "column": "ev1",
+        "type": "string"
+      }
+    },
+    {
+      "id": "vName",
+      "type": "atrium.text"
+    },
+    {
+      "id": "vDesc",
+      "type": "atrium.text"
+    },
+    {
+      "id": "vArt",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K38",
+      "type": "constant",
+      "params": {
+        "value": "SPK_ARTHUR"
+      }
+    },
+    {
+      "id": "vSpk",
+      "type": "atrium.text"
+    },
+    {
+      "id": "vEvR0",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iItem",
+        "column": "id"
+      }
+    },
+    {
+      "id": "vEvK0",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "name",
+        "type": "string"
+      }
+    },
+    {
+      "id": "vEvN0",
+      "type": "atrium.text"
+    },
+    {
+      "id": "vEvR1",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iItem",
+        "column": "id"
+      }
+    },
+    {
+      "id": "vEvK1",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "name",
+        "type": "string"
+      }
+    },
+    {
+      "id": "vEvN1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K39",
+      "type": "constant",
+      "params": {
+        "value": "UI_TAG_SEP"
+      }
+    },
+    {
+      "id": "sepT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "ev1C",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "ev1N",
+      "type": "select"
+    },
+    {
+      "id": "ev1B",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "vList2",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "vList",
+      "type": "select"
+    },
+    {
+      "id": "vGotT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_GOT",
+        "args": [
+          "list"
+        ]
+      }
+    },
+    {
+      "id": "ev0C",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "vGot",
+      "type": "select"
+    },
+    {
+      "id": "d_pnote",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "pnoteB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "K40",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_GOT_NOTE"
+      }
+    },
+    {
+      "id": "gotNoteT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "vNote",
+      "type": "select"
+    },
+    {
+      "id": "popOn",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "K41",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S05_TITLE"
+      }
+    },
+    {
+      "id": "hudT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "apprN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "K42",
+      "type": "constant",
+      "params": {
+        "value": "fail"
+      }
+    },
+    {
+      "id": "wuFailC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "wuFail",
+      "type": "select"
+    },
+    {
+      "id": "aLeft",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "max((wuFail ? 1 : 2) - apprN, 0)"
+      }
+    },
+    {
+      "id": "aLeftOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "aLeft > 0"
+      }
+    },
+    {
+      "id": "aLeftF",
+      "type": "atrium.textf",
+      "params": {
+        "key": "UI_V2_APPRAISE_LEFT",
+        "args": [
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "K43",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_APPRAISE_NONE"
+      }
+    },
+    {
+      "id": "aNoneT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "aLeftT",
+      "type": "select"
+    },
+    {
+      "id": "newN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "i1New"
+      }
+    },
+    {
+      "id": "book0",
+      "type": "atrium.coll.get",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "bookOpen",
+      "type": "merge"
+    },
+    {
+      "id": "bookEv",
+      "type": "merge"
+    },
+    {
+      "id": "i1_tab_11",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "bookPn",
+      "type": "merge"
+    },
+    {
+      "id": "i1_tab_12",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "hasCardC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "hasCardN",
+      "type": "select"
+    },
+    {
+      "id": "card0Ok",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!hasCardN"
+      }
+    },
+    {
+      "id": "card0G",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1S_card_4",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_rm_5",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_bk_13",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "bookClose",
+      "type": "merge"
+    },
+    {
+      "id": "clr_new",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1New"
+      }
+    },
+    {
+      "id": "tabM",
+      "type": "merge"
+    },
+    {
+      "id": "i1_tab_14",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "cardM",
+      "type": "merge"
+    },
+    {
+      "id": "i1S_card_6",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_rm_7",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_bk_15",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "cRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iItem",
+        "column": "id"
+      }
+    },
+    {
+      "id": "c_name",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "name",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_desc",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "desc",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_kind",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "kind",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_appr",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "appr",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_aprLine",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "aprLine",
+        "type": "string"
+      }
+    },
+    {
+      "id": "c_aprResult",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "aprResult",
+        "type": "string"
+      }
+    },
+    {
+      "id": "cApprC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "cApprN",
+      "type": "select"
+    },
+    {
+      "id": "cDoneC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "cDoneN",
+      "type": "select"
+    },
+    {
+      "id": "canAppr",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "hasCardN && cApprN && !cDoneN && aLeft > 0"
+      }
+    },
+    {
+      "id": "apprG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "apprAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "i1S_rm_8",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_bk_16",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "rmSeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "hasCardB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "cKindT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "cNameT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "cDescT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "cApprB",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "cResT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "cRes",
+      "type": "select"
+    },
+    {
+      "id": "rmT",
+      "type": "atrium.text"
+    },
+    {
+      "id": "optG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "K44",
+      "type": "constant",
+      "params": {
+        "value": "-"
+      }
+    },
+    {
+      "id": "optNoneC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "optNoneN",
+      "type": "select"
+    },
+    {
+      "id": "noteV",
+      "type": "select"
+    },
+    {
+      "id": "noteSet",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "d1PrivNote"
+      }
+    },
+    {
+      "id": "i1_bk_17",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "bkGGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_bk > 0"
+      }
+    },
+    {
+      "id": "bkG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1_bk_18",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "bkM",
+      "type": "merge"
+    },
+    {
+      "id": "bbclr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "bbEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1All"
+      }
+    },
+    {
+      "id": "bbHaveC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "bbHaveN",
+      "type": "select"
+    },
+    {
+      "id": "bbHaveG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bbadd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "bmEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1All"
+      }
+    },
+    {
+      "id": "biSel",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "bmSel",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1CSel"
+      }
+    },
+    {
+      "id": "biRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iItem",
+        "column": "id"
+      }
+    },
+    {
+      "id": "biAppr",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iItem",
+        "column": "appr",
+        "type": "string"
+      }
+    },
+    {
+      "id": "biDoneC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "biDoneN",
+      "type": "select"
+    },
+    {
+      "id": "biHasC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "biHasN",
+      "type": "select"
+    },
+    {
+      "id": "biMarkOn",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "biHasN && biDoneN"
+      }
+    },
+    {
+      "id": "K45",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_APPRAISED"
+      }
+    },
+    {
+      "id": "biMark",
+      "type": "select"
+    },
+    {
+      "id": "bmMark",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1CMark"
+      }
+    },
+    {
+      "id": "cardList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1book.cards",
+        "source": "i1Book",
+        "fields": "{\"id\": \"item\", \"name\": \"table:d1iItem[id].name\", \"psy\": \"coll:i1PsyAll.contains\", \"sel\": \"map:i1CSel\", \"mark\": \"map:i1CMark\", \"isnew\": \"coll:i1New.contains\"}",
+        "localize": [
+          "name",
+          "mark"
+        ]
+      }
+    },
+    {
+      "id": "clr_opt",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Opt"
+      }
+    },
+    {
+      "id": "opEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1ClAll"
+      }
+    },
+    {
+      "id": "oiRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "d1iClaim",
+        "column": "id"
+      }
+    },
+    {
+      "id": "oiEv",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iClaim",
+        "column": "evidence",
+        "type": "string"
+      }
+    },
+    {
+      "id": "oiUn",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1iClaim",
+        "column": "unlock",
+        "type": "string"
+      }
+    },
+    {
+      "id": "oiMineC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "oiMineN",
+      "type": "select"
+    },
+    {
+      "id": "oiNoneC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "oiNoneN",
+      "type": "select"
+    },
+    {
+      "id": "oiViewC",
+      "type": "format",
+      "params": {
+        "format": "{a}"
+      }
+    },
+    {
+      "id": "oiViewE",
+      "type": "format",
+      "params": {
+        "format": "{a}"
+      }
+    },
+    {
+      "id": "oiViewK",
+      "type": "select"
+    },
+    {
+      "id": "oiView",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1PrivNote"
+      }
+    },
+    {
+      "id": "oiPickI",
+      "type": "format",
+      "params": {
+        "format": "{a}"
+      }
+    },
+    {
+      "id": "oiPickV",
+      "type": "select"
+    },
+    {
+      "id": "oiPickC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "oiPickN",
+      "type": "select"
+    },
+    {
+      "id": "oiFreeC",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "oiFreeN",
+      "type": "select"
+    },
+    {
+      "id": "oiNoteC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "oiNoteN",
+      "type": "select"
+    },
+    {
+      "id": "oiApprC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "oiApprN",
+      "type": "select"
+    },
+    {
+      "id": "oiOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "oiNoneN || (oiMineN && (oiFreeN || oiNoteN || oiApprN))"
+      }
+    },
+    {
+      "id": "oiG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "optAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Opt"
+      }
+    },
+    {
+      "id": "optSel",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1OptSel"
+      }
+    },
+    {
+      "id": "optList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1book.opts",
+        "source": "i1Opt",
+        "fields": "{\"id\": \"item\", \"label\": \"table:d1iClaim[id].label\", \"sel\": \"map:i1OptSel\"}",
+        "localize": [
+          "label"
+        ]
+      }
+    },
+    {
+      "id": "clr_pn",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1PN"
+      }
+    },
+    {
+      "id": "pnEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1NAll"
+      }
+    },
+    {
+      "id": "pnHas",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "pnG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pnAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1PN"
+      }
+    },
+    {
+      "id": "pnList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1book.pnotes",
+        "source": "i1PN",
+        "fields": "{\"kind\": \"table:d1iItem[id].kind\", \"name\": \"table:d1iItem[id].name\", \"text\": \"table:d1iItem[id].desc\"}",
+        "localize": [
+          "kind",
+          "name",
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "endG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "K46",
+      "type": "constant",
+      "params": {
+        "value": "d1carry"
+      }
+    },
+    {
+      "id": "isCarK",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "carB",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "clr_said",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "i1S_w1_9",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_s1_10",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_w2_11",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_s2_12",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_cph_19",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "cvN",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cv + 1"
+      }
+    },
+    {
+      "id": "i1_cv_20",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "i1_cr_21",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "backOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 0"
+      }
+    },
+    {
+      "id": "backG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "crGGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cr > 0"
+      }
+    },
+    {
+      "id": "crG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1_cr_22",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "crM",
+      "type": "merge"
+    },
+    {
+      "id": "cbclr",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "cbEach",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1All"
+      }
+    },
+    {
+      "id": "cbHaveC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "cbHaveN",
+      "type": "select"
+    },
+    {
+      "id": "cbHaveG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cbadd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Book"
+      }
+    },
+    {
+      "id": "itemList",
+      "type": "atrium.ui.list",
+      "params": {
+        "port": "ui.d1carry.items",
+        "source": "i1Book",
+        "fields": "{\"id\": \"item\", \"name\": \"table:d1iItem[id].name\", \"desc\": \"table:d1iItem[id].desc\", \"kind\": \"table:d1iItem[id].kind\", \"psy\": \"coll:i1PsyAll.contains\", \"sel\": \"coll:i1Sel.contains\"}",
+        "localize": [
+          "name",
+          "desc",
+          "kind"
+        ]
+      }
+    },
+    {
+      "id": "selN",
+      "type": "atrium.coll.count",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "K47",
+      "type": "constant",
+      "params": {
+        "value": 9
+      }
+    },
+    {
+      "id": "countT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "SCR_D01_S06_L002",
+        "args": [
+          "max",
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "full",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "selN >= 9"
+      }
+    },
+    {
+      "id": "hint1On",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cv == 1"
+      }
+    },
+    {
+      "id": "K48",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S06_L001"
+      }
+    },
+    {
+      "id": "l001T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "hint1",
+      "type": "select"
+    },
+    {
+      "id": "pvInC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "pvInN",
+      "type": "select"
+    },
+    {
+      "id": "pickOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 0"
+      }
+    },
+    {
+      "id": "pickG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "pvRem",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pvInN"
+      }
+    },
+    {
+      "id": "pvRemG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "selRem",
+      "type": "atrium.coll.remove",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "pvAdd",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!pvInN && selN < 9"
+      }
+    },
+    {
+      "id": "pvAddG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "selAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "pvFull",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!pvInN && selN >= 9"
+      }
+    },
+    {
+      "id": "pvFullG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "K49",
+      "type": "constant",
+      "params": {
+        "value": "SPK_SYSTEM"
+      }
+    },
+    {
+      "id": "i1S_w1_13",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K50",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_CARRY_FULL"
+      }
+    },
+    {
+      "id": "i1S_s1_14",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_w2_15",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_s2_16",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1_cr_23",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "K51",
+      "type": "constant",
+      "params": {
+        "value": "E05"
+      }
+    },
+    {
+      "id": "selE05C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "selE05",
+      "type": "select"
+    },
+    {
+      "id": "K52",
+      "type": "constant",
+      "params": {
+        "value": "E03"
+      }
+    },
+    {
+      "id": "selE03C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "selE03",
+      "type": "select"
+    },
+    {
+      "id": "K53",
+      "type": "constant",
+      "params": {
+        "value": "E09"
+      }
+    },
+    {
+      "id": "selE09C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "selE09",
+      "type": "select"
+    },
+    {
+      "id": "K54",
+      "type": "constant",
+      "params": {
+        "value": "E12"
+      }
+    },
+    {
+      "id": "selE12C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "selE12",
+      "type": "select"
+    },
+    {
+      "id": "selP1C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "selP1",
+      "type": "select"
+    },
+    {
+      "id": "haveE05C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "haveE05",
+      "type": "select"
+    },
+    {
+      "id": "K55",
+      "type": "constant",
+      "params": {
+        "value": "L008"
+      }
+    },
+    {
+      "id": "saidL008C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL008",
+      "type": "select"
+    },
+    {
+      "id": "K56",
+      "type": "constant",
+      "params": {
+        "value": "L004"
+      }
+    },
+    {
+      "id": "saidL004C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL004",
+      "type": "select"
+    },
+    {
+      "id": "K57",
+      "type": "constant",
+      "params": {
+        "value": "L003"
+      }
+    },
+    {
+      "id": "saidL003C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL003",
+      "type": "select"
+    },
+    {
+      "id": "K58",
+      "type": "constant",
+      "params": {
+        "value": "L006"
+      }
+    },
+    {
+      "id": "saidL006C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL006",
+      "type": "select"
+    },
+    {
+      "id": "K59",
+      "type": "constant",
+      "params": {
+        "value": "L007"
+      }
+    },
+    {
+      "id": "saidL007C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL007",
+      "type": "select"
+    },
+    {
+      "id": "K60",
+      "type": "constant",
+      "params": {
+        "value": "L011"
+      }
+    },
+    {
+      "id": "saidL011C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saidL011",
+      "type": "select"
+    },
+    {
+      "id": "askI",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "(haveE05 && !selE05) && !saidL008 ? 0 : (selP1) && !saidL004 ? 1 : (selE12) && !saidL003 ? 2 : (selE09) && !saidL006 ? 3 : (selE03) && !saidL007 ? 4 : (selN < 9) && !saidL011 ? 5 : 6"
+      }
+    },
+    {
+      "id": "askLine",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "SCR_D01_S06_L008",
+          "SCR_D01_S06_L004",
+          "SCR_D01_S06_L003",
+          "SCR_D01_S06_L006",
+          "SCR_D01_S06_L007",
+          "SCR_D01_S06_L011",
+          "SCR_D01_S06_L012"
+        ]
+      }
+    },
+    {
+      "id": "askId",
+      "type": "lookup",
+      "params": {
+        "values": [
+          "L008",
+          "L004",
+          "L003",
+          "L006",
+          "L007",
+          "L011",
+          "L012"
+        ]
+      }
+    },
+    {
+      "id": "askOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 0"
+      }
+    },
+    {
+      "id": "askG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1S_w1_17",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_s1_18",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "askBoard",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "askI == 1"
+      }
+    },
+    {
+      "id": "K61",
+      "type": "constant",
+      "params": {
+        "value": "SPK_SHEREFOX"
+      }
+    },
+    {
+      "id": "askW2",
+      "type": "select"
+    },
+    {
+      "id": "i1S_w2_19",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K62",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S06_L005"
+      }
+    },
+    {
+      "id": "askS2",
+      "type": "select"
+    },
+    {
+      "id": "i1S_s2_20",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "askSay",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "askI < 6"
+      }
+    },
+    {
+      "id": "askSaidG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "saidAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "i1Said"
+      }
+    },
+    {
+      "id": "saySeq",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "sayM",
+      "type": "merge"
+    },
+    {
+      "id": "w1T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "s1T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "w2T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "s2T",
+      "type": "atrium.text"
+    },
+    {
+      "id": "K63",
+      "type": "constant",
+      "params": {
+        "value": "E01"
+      }
+    },
+    {
+      "id": "lhE01C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE01",
+      "type": "select"
+    },
+    {
+      "id": "lsE01C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE01",
+      "type": "select"
+    },
+    {
+      "id": "lfE01",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE01 && !lsE01"
+      }
+    },
+    {
+      "id": "K64",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_01_NAME"
+      }
+    },
+    {
+      "id": "lnE01",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE01",
+      "type": "select"
+    },
+    {
+      "id": "leE01",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE01",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE01",
+      "type": "select"
+    },
+    {
+      "id": "laE01",
+      "type": "select"
+    },
+    {
+      "id": "K65",
+      "type": "constant",
+      "params": {
+        "value": "E02"
+      }
+    },
+    {
+      "id": "lhE02C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE02",
+      "type": "select"
+    },
+    {
+      "id": "lsE02C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE02",
+      "type": "select"
+    },
+    {
+      "id": "lfE02",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE02 && !lsE02"
+      }
+    },
+    {
+      "id": "K66",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_02_NAME"
+      }
+    },
+    {
+      "id": "lnE02",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE02",
+      "type": "select"
+    },
+    {
+      "id": "leE02",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE02",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE02",
+      "type": "select"
+    },
+    {
+      "id": "laE02",
+      "type": "select"
+    },
+    {
+      "id": "lhE03C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE03",
+      "type": "select"
+    },
+    {
+      "id": "lsE03C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE03",
+      "type": "select"
+    },
+    {
+      "id": "lfE03",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE03 && !lsE03"
+      }
+    },
+    {
+      "id": "K67",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_03_NAME"
+      }
+    },
+    {
+      "id": "lnE03",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE03",
+      "type": "select"
+    },
+    {
+      "id": "leE03",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE03",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE03",
+      "type": "select"
+    },
+    {
+      "id": "laE03",
+      "type": "select"
+    },
+    {
+      "id": "K68",
+      "type": "constant",
+      "params": {
+        "value": "E04"
+      }
+    },
+    {
+      "id": "lhE04C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE04",
+      "type": "select"
+    },
+    {
+      "id": "lsE04C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE04",
+      "type": "select"
+    },
+    {
+      "id": "lfE04",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE04 && !lsE04"
+      }
+    },
+    {
+      "id": "K69",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_04_NAME"
+      }
+    },
+    {
+      "id": "lnE04",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE04",
+      "type": "select"
+    },
+    {
+      "id": "leE04",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE04",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE04",
+      "type": "select"
+    },
+    {
+      "id": "laE04",
+      "type": "select"
+    },
+    {
+      "id": "lhE05C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE05",
+      "type": "select"
+    },
+    {
+      "id": "lsE05C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE05",
+      "type": "select"
+    },
+    {
+      "id": "lfE05",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE05 && !lsE05"
+      }
+    },
+    {
+      "id": "K70",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_05_NAME"
+      }
+    },
+    {
+      "id": "lnE05",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE05",
+      "type": "select"
+    },
+    {
+      "id": "leE05",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE05",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE05",
+      "type": "select"
+    },
+    {
+      "id": "laE05",
+      "type": "select"
+    },
+    {
+      "id": "K71",
+      "type": "constant",
+      "params": {
+        "value": "E06"
+      }
+    },
+    {
+      "id": "lhE06C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE06",
+      "type": "select"
+    },
+    {
+      "id": "lsE06C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE06",
+      "type": "select"
+    },
+    {
+      "id": "lfE06",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE06 && !lsE06"
+      }
+    },
+    {
+      "id": "K72",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_06_NAME"
+      }
+    },
+    {
+      "id": "lnE06",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE06",
+      "type": "select"
+    },
+    {
+      "id": "leE06",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE06",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE06",
+      "type": "select"
+    },
+    {
+      "id": "laE06",
+      "type": "select"
+    },
+    {
+      "id": "K73",
+      "type": "constant",
+      "params": {
+        "value": "E07"
+      }
+    },
+    {
+      "id": "lhE07C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE07",
+      "type": "select"
+    },
+    {
+      "id": "lsE07C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE07",
+      "type": "select"
+    },
+    {
+      "id": "lfE07",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE07 && !lsE07"
+      }
+    },
+    {
+      "id": "K74",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_07_NAME"
+      }
+    },
+    {
+      "id": "lnE07",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE07",
+      "type": "select"
+    },
+    {
+      "id": "leE07",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE07",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE07",
+      "type": "select"
+    },
+    {
+      "id": "laE07",
+      "type": "select"
+    },
+    {
+      "id": "K75",
+      "type": "constant",
+      "params": {
+        "value": "E08"
+      }
+    },
+    {
+      "id": "lhE08C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE08",
+      "type": "select"
+    },
+    {
+      "id": "lsE08C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE08",
+      "type": "select"
+    },
+    {
+      "id": "lfE08",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE08 && !lsE08"
+      }
+    },
+    {
+      "id": "K76",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_08_NAME"
+      }
+    },
+    {
+      "id": "lnE08",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE08",
+      "type": "select"
+    },
+    {
+      "id": "leE08",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE08",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE08",
+      "type": "select"
+    },
+    {
+      "id": "laE08",
+      "type": "select"
+    },
+    {
+      "id": "lhE09C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE09",
+      "type": "select"
+    },
+    {
+      "id": "lsE09C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE09",
+      "type": "select"
+    },
+    {
+      "id": "lfE09",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE09 && !lsE09"
+      }
+    },
+    {
+      "id": "K77",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_09_NAME"
+      }
+    },
+    {
+      "id": "lnE09",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE09",
+      "type": "select"
+    },
+    {
+      "id": "leE09",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE09",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE09",
+      "type": "select"
+    },
+    {
+      "id": "laE09",
+      "type": "select"
+    },
+    {
+      "id": "K78",
+      "type": "constant",
+      "params": {
+        "value": "E10"
+      }
+    },
+    {
+      "id": "lhE10C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE10",
+      "type": "select"
+    },
+    {
+      "id": "lsE10C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE10",
+      "type": "select"
+    },
+    {
+      "id": "lfE10",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE10 && !lsE10"
+      }
+    },
+    {
+      "id": "K79",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_10_NAME"
+      }
+    },
+    {
+      "id": "lnE10",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE10",
+      "type": "select"
+    },
+    {
+      "id": "leE10",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE10",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE10",
+      "type": "select"
+    },
+    {
+      "id": "laE10",
+      "type": "select"
+    },
+    {
+      "id": "K80",
+      "type": "constant",
+      "params": {
+        "value": "E11"
+      }
+    },
+    {
+      "id": "lhE11C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE11",
+      "type": "select"
+    },
+    {
+      "id": "lsE11C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE11",
+      "type": "select"
+    },
+    {
+      "id": "lfE11",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE11 && !lsE11"
+      }
+    },
+    {
+      "id": "K81",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_11_NAME"
+      }
+    },
+    {
+      "id": "lnE11",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE11",
+      "type": "select"
+    },
+    {
+      "id": "leE11",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE11",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE11",
+      "type": "select"
+    },
+    {
+      "id": "laE11",
+      "type": "select"
+    },
+    {
+      "id": "lhE12C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhE12",
+      "type": "select"
+    },
+    {
+      "id": "lsE12C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsE12",
+      "type": "select"
+    },
+    {
+      "id": "lfE12",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhE12 && !lsE12"
+      }
+    },
+    {
+      "id": "K82",
+      "type": "constant",
+      "params": {
+        "value": "E_D01_12_NAME"
+      }
+    },
+    {
+      "id": "lnE12",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpE12",
+      "type": "select"
+    },
+    {
+      "id": "leE12",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcE12",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljE12",
+      "type": "select"
+    },
+    {
+      "id": "laE12",
+      "type": "select"
+    },
+    {
+      "id": "lhP1C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Have"
+      }
+    },
+    {
+      "id": "lhP1",
+      "type": "select"
+    },
+    {
+      "id": "lsP1C",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lsP1",
+      "type": "select"
+    },
+    {
+      "id": "lfP1",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lhP1 && !lsP1"
+      }
+    },
+    {
+      "id": "K83",
+      "type": "constant",
+      "params": {
+        "value": "C_D01_P1_NAME"
+      }
+    },
+    {
+      "id": "lnP1",
+      "type": "atrium.text"
+    },
+    {
+      "id": "lpP1",
+      "type": "select"
+    },
+    {
+      "id": "leP1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "lcP1",
+      "type": "format",
+      "params": {
+        "format": "{a}{b}{c}"
+      }
+    },
+    {
+      "id": "ljP1",
+      "type": "select"
+    },
+    {
+      "id": "laP1",
+      "type": "select"
+    },
+    {
+      "id": "nLeft",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lfE01 + lfE02 + lfE03 + lfE04 + lfE05 + lfE06 + lfE07 + lfE08 + lfE09 + lfE10 + lfE11 + lfE12 + lfP1"
+      }
+    },
+    {
+      "id": "nLeftEv",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "lfE01 + lfE02 + lfE03 + lfE04 + lfE05 + lfE06 + lfE07 + lfE08 + lfE09 + lfE10 + lfE11 + lfE12"
+      }
+    },
+    {
+      "id": "confT",
+      "type": "atrium.textf",
+      "params": {
+        "key": "SCR_D01_S06_L009",
+        "args": [
+          "list"
+        ]
+      }
+    },
+    {
+      "id": "confOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 0"
+      }
+    },
+    {
+      "id": "confG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "confAsk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nLeft > 0"
+      }
+    },
+    {
+      "id": "confAskG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1_cph_24",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "confGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nLeft == 0"
+      }
+    },
+    {
+      "id": "confGoG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "noM",
+      "type": "merge"
+    },
+    {
+      "id": "i1_cph_25",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "yesOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 1"
+      }
+    },
+    {
+      "id": "yesG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "l10On",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nLeftEv > 0"
+      }
+    },
+    {
+      "id": "l10G",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "i1_cph_26",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "i1S_w1_21",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "K84",
+      "type": "constant",
+      "params": {
+        "value": "SCR_D01_S06_L010"
+      }
+    },
+    {
+      "id": "i1S_s1_22",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_w2_23",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "i1S_s2_24",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1S"
+      }
+    },
+    {
+      "id": "yesGo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "nLeftEv == 0"
+      }
+    },
+    {
+      "id": "yesGoG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "goOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "d_cph == 2"
+      }
+    },
+    {
+      "id": "goG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "goM",
+      "type": "merge"
+    },
+    {
+      "id": "i1_cph_27",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "i1"
+      }
+    },
+    {
+      "id": "clr_d1Carry",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "d1Carry"
+      }
+    },
+    {
+      "id": "lod1Carry",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1All"
+      }
+    },
+    {
+      "id": "lod1CarryC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Sel"
+      }
+    },
+    {
+      "id": "lod1CarryG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lod1CarryAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "d1Carry"
+      }
+    },
+    {
+      "id": "clr_d1Appraised",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "d1Appraised"
+      }
+    },
+    {
+      "id": "lod1Appraised",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1AAll"
+      }
+    },
+    {
+      "id": "lod1AppraisedC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Appr"
+      }
+    },
+    {
+      "id": "lod1AppraisedG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lod1AppraisedAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "d1Appraised"
+      }
+    },
+    {
+      "id": "clr_d1Notes",
+      "type": "atrium.coll.clear",
+      "params": {
+        "name": "d1Notes"
+      }
+    },
+    {
+      "id": "lod1Notes",
+      "type": "atrium.coll.forEach",
+      "params": {
+        "name": "i1NAll"
+      }
+    },
+    {
+      "id": "lod1NotesC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "i1Notes"
+      }
+    },
+    {
+      "id": "lod1NotesG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lod1NotesAdd",
+      "type": "atrium.coll.add",
+      "params": {
+        "name": "d1Notes"
+      }
+    },
+    {
+      "id": "goDone",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "world.language",
+      "to": "langEnC.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "langEnC.b"
+    },
+    {
+      "from": "K1.out",
+      "to": "d_pop.key"
+    },
+    {
+      "from": "K2.out",
+      "to": "d_tab.key"
+    },
+    {
+      "from": "K3.out",
+      "to": "d_rb.key"
+    },
+    {
+      "from": "K4.out",
+      "to": "d_bk.key"
+    },
+    {
+      "from": "K5.out",
+      "to": "d_cr.key"
+    },
+    {
+      "from": "K6.out",
+      "to": "d_cv.key"
+    },
+    {
+      "from": "K7.out",
+      "to": "d_cph.key"
+    },
+    {
+      "from": "K8.out",
+      "to": "s_loc.key"
+    },
+    {
+      "from": "K9.out",
+      "to": "s_sp.key"
+    },
+    {
+      "from": "K10.out",
+      "to": "s_card.key"
+    },
+    {
+      "from": "K11.out",
+      "to": "s_rm.key"
+    },
+    {
+      "from": "K12.out",
+      "to": "s_w1.key"
+    },
+    {
+      "from": "K13.out",
+      "to": "s_s1.key"
+    },
+    {
+      "from": "K14.out",
+      "to": "s_w2.key"
+    },
+    {
+      "from": "K15.out",
+      "to": "s_s2.key"
+    },
+    {
+      "from": "clock.seconds",
+      "to": "beat.in"
+    },
+    {
+      "from": "ui#title.chapter",
+      "to": "isD01.chSel"
+    },
+    {
+      "from": "isD01.value",
+      "to": "start.cond"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "start.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1S.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1SpSt.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Left.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1LocSel.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1LocDone.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1CSel.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1CMark.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1OptSel.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_d1PrivNote.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Seen.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Have.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Notes.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Appr.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1New.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Sel.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Said.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Here.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Book.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Opt.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1PN.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1Locs.trigger"
+    },
+    {
+      "from": "K16.out",
+      "to": "add_i1Locs.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1Locs.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1All.trigger"
+    },
+    {
+      "from": "K17.out",
+      "to": "add_i1All.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1All.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1NAll.trigger"
+    },
+    {
+      "from": "K18.out",
+      "to": "add_i1NAll.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1NAll.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1AAll.trigger"
+    },
+    {
+      "from": "K19.out",
+      "to": "add_i1AAll.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1AAll.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1PsyAll.trigger"
+    },
+    {
+      "from": "K20.out",
+      "to": "add_i1PsyAll.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1PsyAll.trigger"
+    },
+    {
+      "from": "start.pass",
+      "to": "clr_i1ClAll.trigger"
+    },
+    {
+      "from": "K21.out",
+      "to": "add_i1ClAll.text"
+    },
+    {
+      "from": "start.pass",
+      "to": "add_i1ClAll.trigger"
+    },
+    {
+      "from": "K22.out",
+      "to": "left_PARLOR.key"
+    },
+    {
+      "from": "K23.out",
+      "to": "left_PARLOR.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_PARLOR.trigger"
+    },
+    {
+      "from": "K24.out",
+      "to": "left_STUDY.key"
+    },
+    {
+      "from": "K23.out",
+      "to": "left_STUDY.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_STUDY.trigger"
+    },
+    {
+      "from": "K25.out",
+      "to": "left_BASEMENT.key"
+    },
+    {
+      "from": "K26.out",
+      "to": "left_BASEMENT.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_BASEMENT.trigger"
+    },
+    {
+      "from": "K27.out",
+      "to": "left_ATTIC.key"
+    },
+    {
+      "from": "K28.out",
+      "to": "left_ATTIC.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_ATTIC.trigger"
+    },
+    {
+      "from": "K29.out",
+      "to": "left_BEDROOM.key"
+    },
+    {
+      "from": "K28.out",
+      "to": "left_BEDROOM.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_BEDROOM.trigger"
+    },
+    {
+      "from": "K30.out",
+      "to": "left_HALL.key"
+    },
+    {
+      "from": "K31.out",
+      "to": "left_HALL.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "left_HALL.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "i1S_loc_1.key"
+    },
+    {
+      "from": "K22.out",
+      "to": "i1S_loc_1.value"
+    },
+    {
+      "from": "start.pass",
+      "to": "i1S_loc_1.trigger"
+    },
+    {
+      "from": "K32.out",
+      "to": "wuDef.in"
+    },
+    {
+      "from": "start.pass",
+      "to": "wuDef.trigger"
+    },
+    {
+      "from": "wuDef.out",
+      "to": "world.d1Warmup"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isInvK.a"
+    },
+    {
+      "from": "K33.out",
+      "to": "isInvK.b"
+    },
+    {
+      "from": "isInvK.out",
+      "to": "invB.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "invB.go"
+    },
+    {
+      "from": "K3.out",
+      "to": "i1_rb_1.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_rb_1.value"
+    },
+    {
+      "from": "invB.changed",
+      "to": "i1_rb_1.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_2.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_2.value"
+    },
+    {
+      "from": "invB.changed",
+      "to": "i1_bk_2.trigger"
+    },
+    {
+      "from": "K1.out",
+      "to": "i1_pop_3.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_pop_3.value"
+    },
+    {
+      "from": "invB.changed",
+      "to": "i1_pop_3.trigger"
+    },
+    {
+      "from": "d_rb.value",
+      "to": "rbGGo.d_rb"
+    },
+    {
+      "from": "rbGGo.value",
+      "to": "rbG.cond"
+    },
+    {
+      "from": "beat.passed",
+      "to": "rbG.trigger"
+    },
+    {
+      "from": "K3.out",
+      "to": "i1_rb_4.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_rb_4.value"
+    },
+    {
+      "from": "rbG.pass",
+      "to": "i1_rb_4.trigger"
+    },
+    {
+      "from": "langEnC.true",
+      "to": "langP.in"
+    },
+    {
+      "from": "langEnC.false",
+      "to": "langP.in"
+    },
+    {
+      "from": "rbG.pass",
+      "to": "rbM.in"
+    },
+    {
+      "from": "langP.out",
+      "to": "rbM.in"
+    },
+    {
+      "from": "s_loc.value",
+      "to": "scRow.value"
+    },
+    {
+      "from": "scRow.row",
+      "to": "scSpots.row"
+    },
+    {
+      "from": "scRow.row",
+      "to": "scBg.row"
+    },
+    {
+      "from": "rbM.out",
+      "to": "clr_here.trigger"
+    },
+    {
+      "from": "scSpots.value",
+      "to": "add_here.text"
+    },
+    {
+      "from": "rbM.out",
+      "to": "add_here.trigger"
+    },
+    {
+      "from": "rbM.out",
+      "to": "spList.trigger"
+    },
+    {
+      "from": "rbM.out",
+      "to": "locEach.trigger"
+    },
+    {
+      "from": "locEach.item",
+      "to": "liSel.a"
+    },
+    {
+      "from": "s_loc.value",
+      "to": "liSel.b"
+    },
+    {
+      "from": "locEach.item",
+      "to": "locSel.key"
+    },
+    {
+      "from": "liSel.out",
+      "to": "locSel.value"
+    },
+    {
+      "from": "locEach.each",
+      "to": "locSel.trigger"
+    },
+    {
+      "from": "locEach.item",
+      "to": "liLeft.key"
+    },
+    {
+      "from": "liLeft.value",
+      "to": "liDone.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "liDone.b"
+    },
+    {
+      "from": "locEach.item",
+      "to": "locDone.key"
+    },
+    {
+      "from": "liDone.out",
+      "to": "locDone.value"
+    },
+    {
+      "from": "locEach.each",
+      "to": "locDone.trigger"
+    },
+    {
+      "from": "locEach.done",
+      "to": "locList.trigger"
+    },
+    {
+      "from": "scBg.value",
+      "to": "ui#d1inv.bg"
+    },
+    {
+      "from": "d_pop.value",
+      "to": "locOk.d_pop"
+    },
+    {
+      "from": "locOk.value",
+      "to": "locG.cond"
+    },
+    {
+      "from": "ui#d1inv.pick_loc.emitted",
+      "to": "locG.trigger"
+    },
+    {
+      "from": "K8.out",
+      "to": "i1S_loc_2.key"
+    },
+    {
+      "from": "ui#d1inv.pick_loc",
+      "to": "i1S_loc_2.value"
+    },
+    {
+      "from": "locG.pass",
+      "to": "i1S_loc_2.trigger"
+    },
+    {
+      "from": "K3.out",
+      "to": "i1_rb_5.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_rb_5.value"
+    },
+    {
+      "from": "locG.pass",
+      "to": "i1_rb_5.trigger"
+    },
+    {
+      "from": "ui#d1inv.spot",
+      "to": "spRow.value"
+    },
+    {
+      "from": "spRow.row",
+      "to": "sp_scene.row"
+    },
+    {
+      "from": "spRow.row",
+      "to": "sp_ev.row"
+    },
+    {
+      "from": "spRow.row",
+      "to": "sp_note.row"
+    },
+    {
+      "from": "spRow.row",
+      "to": "sp_pair.row"
+    },
+    {
+      "from": "spRow.row",
+      "to": "sp_pairNote.row"
+    },
+    {
+      "from": "ui#d1inv.spot",
+      "to": "seenC.value"
+    },
+    {
+      "from": "seenC.has",
+      "to": "seenN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "seenN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "seenN.b"
+    },
+    {
+      "from": "sp_pair.value",
+      "to": "pairSeenC.value"
+    },
+    {
+      "from": "pairSeenC.has",
+      "to": "pairSeenN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "pairSeenN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "pairSeenN.b"
+    },
+    {
+      "from": "sp_ev.value",
+      "to": "hasEvC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "hasEvC.b"
+    },
+    {
+      "from": "hasEvC.out",
+      "to": "hasEvN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "hasEvN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "hasEvN.b"
+    },
+    {
+      "from": "sp_note.value",
+      "to": "hasNoteC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "hasNoteC.b"
+    },
+    {
+      "from": "hasNoteC.out",
+      "to": "hasNoteN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "hasNoteN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "hasNoteN.b"
+    },
+    {
+      "from": "sp_pairNote.value",
+      "to": "hasPairC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "hasPairC.b"
+    },
+    {
+      "from": "hasPairC.out",
+      "to": "hasPairN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "hasPairN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "hasPairN.b"
+    },
+    {
+      "from": "sp_scene.value",
+      "to": "spLeft.key"
+    },
+    {
+      "from": "d_pop.value",
+      "to": "spotOk.d_pop"
+    },
+    {
+      "from": "spotOk.value",
+      "to": "spotG.cond"
+    },
+    {
+      "from": "ui#d1inv.spot.emitted",
+      "to": "spotG.trigger"
+    },
+    {
+      "from": "seenN.out",
+      "to": "firstOk.seenN"
+    },
+    {
+      "from": "firstOk.value",
+      "to": "firstG.cond"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "firstG.trigger"
+    },
+    {
+      "from": "ui#d1inv.spot",
+      "to": "seenAdd.value"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "seenAdd.trigger"
+    },
+    {
+      "from": "ui#d1inv.spot",
+      "to": "spSt.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "spSt.value"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "spSt.trigger"
+    },
+    {
+      "from": "spLeft.value",
+      "to": "leftN.spLeft"
+    },
+    {
+      "from": "sp_scene.value",
+      "to": "leftDec.key"
+    },
+    {
+      "from": "leftN.value",
+      "to": "leftDec.value"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "leftDec.trigger"
+    },
+    {
+      "from": "hasEvN.out",
+      "to": "evOk.hasEvN"
+    },
+    {
+      "from": "evOk.value",
+      "to": "evG.cond"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "evG.trigger"
+    },
+    {
+      "from": "sp_ev.value",
+      "to": "haveAdd.text"
+    },
+    {
+      "from": "evG.pass",
+      "to": "haveAdd.trigger"
+    },
+    {
+      "from": "sp_ev.value",
+      "to": "newAdd.text"
+    },
+    {
+      "from": "evG.pass",
+      "to": "newAdd.trigger"
+    },
+    {
+      "from": "hasNoteN.out",
+      "to": "ntOk.hasNoteN"
+    },
+    {
+      "from": "ntOk.value",
+      "to": "ntG.cond"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "ntG.trigger"
+    },
+    {
+      "from": "sp_note.value",
+      "to": "noteAdd.value"
+    },
+    {
+      "from": "ntG.pass",
+      "to": "noteAdd.trigger"
+    },
+    {
+      "from": "sp_note.value",
+      "to": "noteNew.value"
+    },
+    {
+      "from": "ntG.pass",
+      "to": "noteNew.trigger"
+    },
+    {
+      "from": "hasPairN.out",
+      "to": "prOk.hasPairN"
+    },
+    {
+      "from": "pairSeenN.out",
+      "to": "prOk.pairSeenN"
+    },
+    {
+      "from": "prOk.value",
+      "to": "prG.cond"
+    },
+    {
+      "from": "firstG.pass",
+      "to": "prG.trigger"
+    },
+    {
+      "from": "sp_pairNote.value",
+      "to": "pairAdd.value"
+    },
+    {
+      "from": "prG.pass",
+      "to": "pairAdd.trigger"
+    },
+    {
+      "from": "sp_pairNote.value",
+      "to": "pairNew.value"
+    },
+    {
+      "from": "prG.pass",
+      "to": "pairNew.trigger"
+    },
+    {
+      "from": "K9.out",
+      "to": "i1S_sp_3.key"
+    },
+    {
+      "from": "ui#d1inv.spot",
+      "to": "i1S_sp_3.value"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "i1S_sp_3.trigger"
+    },
+    {
+      "from": "K1.out",
+      "to": "i1_pop_6.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_pop_6.value"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "i1_pop_6.trigger"
+    },
+    {
+      "from": "hasNoteN.out",
+      "to": "pnoteV.hasNoteN"
+    },
+    {
+      "from": "hasPairN.out",
+      "to": "pnoteV.hasPairN"
+    },
+    {
+      "from": "pairSeenN.out",
+      "to": "pnoteV.pairSeenN"
+    },
+    {
+      "from": "K37.out",
+      "to": "i1_pnote_7.key"
+    },
+    {
+      "from": "pnoteV.value",
+      "to": "i1_pnote_7.value"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "i1_pnote_7.trigger"
+    },
+    {
+      "from": "K3.out",
+      "to": "i1_rb_8.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_rb_8.value"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "i1_rb_8.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_9.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_9.value"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "i1_bk_9.trigger"
+    },
+    {
+      "from": "spotG.pass",
+      "to": "popSeq.increment"
+    },
+    {
+      "from": "popSeq.value",
+      "to": "ui#d1inv.popup_seq"
+    },
+    {
+      "from": "ui#d1inv.dismiss",
+      "to": "dismissM.in"
+    },
+    {
+      "from": "K1.out",
+      "to": "i1_pop_10.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_pop_10.value"
+    },
+    {
+      "from": "dismissM.out",
+      "to": "i1_pop_10.trigger"
+    },
+    {
+      "from": "s_sp.value",
+      "to": "vRow.value"
+    },
+    {
+      "from": "vRow.row",
+      "to": "v_name.row"
+    },
+    {
+      "from": "vRow.row",
+      "to": "v_desc.row"
+    },
+    {
+      "from": "vRow.row",
+      "to": "v_art.row"
+    },
+    {
+      "from": "vRow.row",
+      "to": "v_ev0.row"
+    },
+    {
+      "from": "vRow.row",
+      "to": "v_ev1.row"
+    },
+    {
+      "from": "v_name.value",
+      "to": "vName.key"
+    },
+    {
+      "from": "vName.text",
+      "to": "ui#d1inv.popup_title"
+    },
+    {
+      "from": "v_desc.value",
+      "to": "vDesc.key"
+    },
+    {
+      "from": "vDesc.text",
+      "to": "ui#d1inv.popup_body"
+    },
+    {
+      "from": "v_art.value",
+      "to": "vArt.key"
+    },
+    {
+      "from": "vArt.text",
+      "to": "ui#d1inv.popup_line"
+    },
+    {
+      "from": "K38.out",
+      "to": "vSpk.key"
+    },
+    {
+      "from": "vSpk.text",
+      "to": "ui#d1inv.popup_speaker"
+    },
+    {
+      "from": "v_ev0.value",
+      "to": "vEvR0.value"
+    },
+    {
+      "from": "vEvR0.row",
+      "to": "vEvK0.row"
+    },
+    {
+      "from": "vEvK0.value",
+      "to": "vEvN0.key"
+    },
+    {
+      "from": "v_ev1.value",
+      "to": "vEvR1.value"
+    },
+    {
+      "from": "vEvR1.row",
+      "to": "vEvK1.row"
+    },
+    {
+      "from": "vEvK1.value",
+      "to": "vEvN1.key"
+    },
+    {
+      "from": "K39.out",
+      "to": "sepT.key"
+    },
+    {
+      "from": "v_ev1.value",
+      "to": "ev1C.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "ev1C.b"
+    },
+    {
+      "from": "ev1C.out",
+      "to": "ev1N.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "ev1N.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "ev1N.b"
+    },
+    {
+      "from": "ev1N.out",
+      "to": "ev1B.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "ev1B.b"
+    },
+    {
+      "from": "vEvN0.text",
+      "to": "vList2.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "vList2.b"
+    },
+    {
+      "from": "vEvN1.text",
+      "to": "vList2.c"
+    },
+    {
+      "from": "ev1B.out",
+      "to": "vList.cond"
+    },
+    {
+      "from": "vList2.out",
+      "to": "vList.a"
+    },
+    {
+      "from": "vEvN0.text",
+      "to": "vList.b"
+    },
+    {
+      "from": "vList.out",
+      "to": "vGotT.list"
+    },
+    {
+      "from": "v_ev0.value",
+      "to": "ev0C.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "ev0C.b"
+    },
+    {
+      "from": "ev0C.out",
+      "to": "vGot.cond"
+    },
+    {
+      "from": "vGotT.text",
+      "to": "vGot.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "vGot.b"
+    },
+    {
+      "from": "vGot.out",
+      "to": "ui#d1inv.popup_got"
+    },
+    {
+      "from": "K37.out",
+      "to": "d_pnote.key"
+    },
+    {
+      "from": "d_pnote.value",
+      "to": "pnoteB.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "pnoteB.b"
+    },
+    {
+      "from": "K40.out",
+      "to": "gotNoteT.key"
+    },
+    {
+      "from": "pnoteB.out",
+      "to": "vNote.cond"
+    },
+    {
+      "from": "gotNoteT.text",
+      "to": "vNote.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "vNote.b"
+    },
+    {
+      "from": "vNote.out",
+      "to": "ui#d1inv.popup_note"
+    },
+    {
+      "from": "d_pop.value",
+      "to": "popOn.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "popOn.b"
+    },
+    {
+      "from": "popOn.out",
+      "to": "ui#d1inv.popup_on"
+    },
+    {
+      "from": "K41.out",
+      "to": "hudT.key"
+    },
+    {
+      "from": "hudT.text",
+      "to": "ui#d1inv.hud_title"
+    },
+    {
+      "from": "world.d1Warmup",
+      "to": "wuFailC.a"
+    },
+    {
+      "from": "K42.out",
+      "to": "wuFailC.b"
+    },
+    {
+      "from": "wuFailC.out",
+      "to": "wuFail.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "wuFail.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "wuFail.b"
+    },
+    {
+      "from": "wuFail.out",
+      "to": "aLeft.wuFail"
+    },
+    {
+      "from": "apprN.count",
+      "to": "aLeft.apprN"
+    },
+    {
+      "from": "aLeft.value",
+      "to": "aLeftOk.aLeft"
+    },
+    {
+      "from": "aLeft.value",
+      "to": "aLeftF.n"
+    },
+    {
+      "from": "K43.out",
+      "to": "aNoneT.key"
+    },
+    {
+      "from": "aLeftOk.truth",
+      "to": "aLeftT.cond"
+    },
+    {
+      "from": "aLeftF.text",
+      "to": "aLeftT.a"
+    },
+    {
+      "from": "aNoneT.text",
+      "to": "aLeftT.b"
+    },
+    {
+      "from": "aLeftT.out",
+      "to": "ui#d1inv.appr_text"
+    },
+    {
+      "from": "newN.count",
+      "to": "ui#d1inv.book_new"
+    },
+    {
+      "from": "K35.out",
+      "to": "book0.index"
+    },
+    {
+      "from": "ui#d1inv.book",
+      "to": "bookOpen.in"
+    },
+    {
+      "from": "ui#d1inv.notes",
+      "to": "bookOpen.in"
+    },
+    {
+      "from": "ui#d1inv.book",
+      "to": "bookEv.in"
+    },
+    {
+      "from": "K2.out",
+      "to": "i1_tab_11.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_tab_11.value"
+    },
+    {
+      "from": "bookEv.out",
+      "to": "i1_tab_11.trigger"
+    },
+    {
+      "from": "ui#d1inv.notes",
+      "to": "bookPn.in"
+    },
+    {
+      "from": "K2.out",
+      "to": "i1_tab_12.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_tab_12.value"
+    },
+    {
+      "from": "bookPn.out",
+      "to": "i1_tab_12.trigger"
+    },
+    {
+      "from": "s_card.value",
+      "to": "hasCardC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "hasCardC.b"
+    },
+    {
+      "from": "hasCardC.out",
+      "to": "hasCardN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "hasCardN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "hasCardN.b"
+    },
+    {
+      "from": "hasCardN.out",
+      "to": "card0Ok.hasCardN"
+    },
+    {
+      "from": "card0Ok.value",
+      "to": "card0G.cond"
+    },
+    {
+      "from": "bookOpen.out",
+      "to": "card0G.trigger"
+    },
+    {
+      "from": "K10.out",
+      "to": "i1S_card_4.key"
+    },
+    {
+      "from": "book0.value",
+      "to": "i1S_card_4.value"
+    },
+    {
+      "from": "card0G.pass",
+      "to": "i1S_card_4.trigger"
+    },
+    {
+      "from": "K11.out",
+      "to": "i1S_rm_5.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_rm_5.value"
+    },
+    {
+      "from": "bookOpen.out",
+      "to": "i1S_rm_5.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_13.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_13.value"
+    },
+    {
+      "from": "bookOpen.out",
+      "to": "i1_bk_13.trigger"
+    },
+    {
+      "from": "ui#d1book.close",
+      "to": "bookClose.in"
+    },
+    {
+      "from": "bookClose.out",
+      "to": "clr_new.trigger"
+    },
+    {
+      "from": "d_tab.value",
+      "to": "ui#d1book.tab"
+    },
+    {
+      "from": "ui#d1book.pick_tab.emitted",
+      "to": "tabM.in"
+    },
+    {
+      "from": "K2.out",
+      "to": "i1_tab_14.key"
+    },
+    {
+      "from": "ui#d1book.pick_tab",
+      "to": "i1_tab_14.value"
+    },
+    {
+      "from": "tabM.out",
+      "to": "i1_tab_14.trigger"
+    },
+    {
+      "from": "ui#d1book.pick_card.emitted",
+      "to": "cardM.in"
+    },
+    {
+      "from": "K10.out",
+      "to": "i1S_card_6.key"
+    },
+    {
+      "from": "ui#d1book.pick_card",
+      "to": "i1S_card_6.value"
+    },
+    {
+      "from": "cardM.out",
+      "to": "i1S_card_6.trigger"
+    },
+    {
+      "from": "K11.out",
+      "to": "i1S_rm_7.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_rm_7.value"
+    },
+    {
+      "from": "cardM.out",
+      "to": "i1S_rm_7.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_15.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_15.value"
+    },
+    {
+      "from": "cardM.out",
+      "to": "i1_bk_15.trigger"
+    },
+    {
+      "from": "s_card.value",
+      "to": "cRow.value"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_name.row"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_desc.row"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_kind.row"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_appr.row"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_aprLine.row"
+    },
+    {
+      "from": "cRow.row",
+      "to": "c_aprResult.row"
+    },
+    {
+      "from": "c_appr.value",
+      "to": "cApprC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "cApprC.b"
+    },
+    {
+      "from": "cApprC.out",
+      "to": "cApprN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "cApprN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "cApprN.b"
+    },
+    {
+      "from": "c_appr.value",
+      "to": "cDoneC.value"
+    },
+    {
+      "from": "cDoneC.has",
+      "to": "cDoneN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "cDoneN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "cDoneN.b"
+    },
+    {
+      "from": "hasCardN.out",
+      "to": "canAppr.hasCardN"
+    },
+    {
+      "from": "cApprN.out",
+      "to": "canAppr.cApprN"
+    },
+    {
+      "from": "cDoneN.out",
+      "to": "canAppr.cDoneN"
+    },
+    {
+      "from": "aLeft.value",
+      "to": "canAppr.aLeft"
+    },
+    {
+      "from": "canAppr.value",
+      "to": "apprG.cond"
+    },
+    {
+      "from": "ui#d1book.appraise",
+      "to": "apprG.trigger"
+    },
+    {
+      "from": "c_appr.value",
+      "to": "apprAdd.value"
+    },
+    {
+      "from": "apprG.pass",
+      "to": "apprAdd.trigger"
+    },
+    {
+      "from": "K11.out",
+      "to": "i1S_rm_8.key"
+    },
+    {
+      "from": "c_aprLine.value",
+      "to": "i1S_rm_8.value"
+    },
+    {
+      "from": "apprG.pass",
+      "to": "i1S_rm_8.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_16.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_16.value"
+    },
+    {
+      "from": "apprG.pass",
+      "to": "i1_bk_16.trigger"
+    },
+    {
+      "from": "apprG.pass",
+      "to": "rmSeq.increment"
+    },
+    {
+      "from": "rmSeq.value",
+      "to": "ui#d1book.remark_seq"
+    },
+    {
+      "from": "hasCardN.out",
+      "to": "hasCardB.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "hasCardB.b"
+    },
+    {
+      "from": "hasCardB.out",
+      "to": "ui#d1book.has_sel"
+    },
+    {
+      "from": "c_kind.value",
+      "to": "cKindT.key"
+    },
+    {
+      "from": "cKindT.text",
+      "to": "ui#d1book.sel_kind"
+    },
+    {
+      "from": "c_name.value",
+      "to": "cNameT.key"
+    },
+    {
+      "from": "cNameT.text",
+      "to": "ui#d1book.sel_name"
+    },
+    {
+      "from": "c_desc.value",
+      "to": "cDescT.key"
+    },
+    {
+      "from": "cDescT.text",
+      "to": "ui#d1book.sel_desc"
+    },
+    {
+      "from": "cApprN.out",
+      "to": "cApprB.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "cApprB.b"
+    },
+    {
+      "from": "cApprB.out",
+      "to": "ui#d1book.appraisable"
+    },
+    {
+      "from": "cDoneC.has",
+      "to": "ui#d1book.appraised"
+    },
+    {
+      "from": "canAppr.truth",
+      "to": "ui#d1book.can_appraise"
+    },
+    {
+      "from": "aLeftT.out",
+      "to": "ui#d1book.appr_left"
+    },
+    {
+      "from": "c_aprResult.value",
+      "to": "cResT.key"
+    },
+    {
+      "from": "cDoneC.has",
+      "to": "cRes.cond"
+    },
+    {
+      "from": "cResT.text",
+      "to": "cRes.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "cRes.b"
+    },
+    {
+      "from": "cRes.out",
+      "to": "ui#d1book.sel_result"
+    },
+    {
+      "from": "s_rm.value",
+      "to": "rmT.key"
+    },
+    {
+      "from": "rmT.text",
+      "to": "ui#d1book.remark"
+    },
+    {
+      "from": "vSpk.text",
+      "to": "ui#d1book.remark_speaker"
+    },
+    {
+      "from": "hasCardB.out",
+      "to": "optG.guard"
+    },
+    {
+      "from": "ui#d1book.pick_opt.emitted",
+      "to": "optG.go"
+    },
+    {
+      "from": "ui#d1book.pick_opt",
+      "to": "optNoneC.a"
+    },
+    {
+      "from": "K44.out",
+      "to": "optNoneC.b"
+    },
+    {
+      "from": "optNoneC.out",
+      "to": "optNoneN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "optNoneN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "optNoneN.b"
+    },
+    {
+      "from": "optNoneC.out",
+      "to": "noteV.cond"
+    },
+    {
+      "from": "K36.out",
+      "to": "noteV.a"
+    },
+    {
+      "from": "ui#d1book.pick_opt",
+      "to": "noteV.b"
+    },
+    {
+      "from": "s_card.value",
+      "to": "noteSet.key"
+    },
+    {
+      "from": "noteV.out",
+      "to": "noteSet.value"
+    },
+    {
+      "from": "optG.changed",
+      "to": "noteSet.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_17.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_bk_17.value"
+    },
+    {
+      "from": "optG.changed",
+      "to": "i1_bk_17.trigger"
+    },
+    {
+      "from": "d_bk.value",
+      "to": "bkGGo.d_bk"
+    },
+    {
+      "from": "bkGGo.value",
+      "to": "bkG.cond"
+    },
+    {
+      "from": "beat.passed",
+      "to": "bkG.trigger"
+    },
+    {
+      "from": "K4.out",
+      "to": "i1_bk_18.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_bk_18.value"
+    },
+    {
+      "from": "bkG.pass",
+      "to": "i1_bk_18.trigger"
+    },
+    {
+      "from": "bkG.pass",
+      "to": "bkM.in"
+    },
+    {
+      "from": "langP.out",
+      "to": "bkM.in"
+    },
+    {
+      "from": "bkM.out",
+      "to": "bbclr.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "bbEach.trigger"
+    },
+    {
+      "from": "bbEach.item",
+      "to": "bbHaveC.value"
+    },
+    {
+      "from": "bbHaveC.has",
+      "to": "bbHaveN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "bbHaveN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "bbHaveN.b"
+    },
+    {
+      "from": "bbHaveC.has",
+      "to": "bbHaveG.guard"
+    },
+    {
+      "from": "bbEach.each",
+      "to": "bbHaveG.go"
+    },
+    {
+      "from": "bbEach.item",
+      "to": "bbadd.value"
+    },
+    {
+      "from": "bbHaveG.changed",
+      "to": "bbadd.trigger"
+    },
+    {
+      "from": "bbEach.done",
+      "to": "bmEach.trigger"
+    },
+    {
+      "from": "bmEach.item",
+      "to": "biSel.a"
+    },
+    {
+      "from": "s_card.value",
+      "to": "biSel.b"
+    },
+    {
+      "from": "bmEach.item",
+      "to": "bmSel.key"
+    },
+    {
+      "from": "biSel.out",
+      "to": "bmSel.value"
+    },
+    {
+      "from": "bmEach.each",
+      "to": "bmSel.trigger"
+    },
+    {
+      "from": "bmEach.item",
+      "to": "biRow.value"
+    },
+    {
+      "from": "biRow.row",
+      "to": "biAppr.row"
+    },
+    {
+      "from": "biAppr.value",
+      "to": "biDoneC.value"
+    },
+    {
+      "from": "biDoneC.has",
+      "to": "biDoneN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "biDoneN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "biDoneN.b"
+    },
+    {
+      "from": "biAppr.value",
+      "to": "biHasC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "biHasC.b"
+    },
+    {
+      "from": "biHasC.out",
+      "to": "biHasN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "biHasN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "biHasN.b"
+    },
+    {
+      "from": "biHasN.out",
+      "to": "biMarkOn.biHasN"
+    },
+    {
+      "from": "biDoneN.out",
+      "to": "biMarkOn.biDoneN"
+    },
+    {
+      "from": "biMarkOn.truth",
+      "to": "biMark.cond"
+    },
+    {
+      "from": "K45.out",
+      "to": "biMark.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "biMark.b"
+    },
+    {
+      "from": "bmEach.item",
+      "to": "bmMark.key"
+    },
+    {
+      "from": "biMark.out",
+      "to": "bmMark.value"
+    },
+    {
+      "from": "bmEach.each",
+      "to": "bmMark.trigger"
+    },
+    {
+      "from": "bmEach.done",
+      "to": "cardList.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "clr_opt.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "opEach.trigger"
+    },
+    {
+      "from": "opEach.item",
+      "to": "oiRow.value"
+    },
+    {
+      "from": "oiRow.row",
+      "to": "oiEv.row"
+    },
+    {
+      "from": "oiRow.row",
+      "to": "oiUn.row"
+    },
+    {
+      "from": "oiEv.value",
+      "to": "oiMineC.a"
+    },
+    {
+      "from": "s_card.value",
+      "to": "oiMineC.b"
+    },
+    {
+      "from": "oiMineC.out",
+      "to": "oiMineN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiMineN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiMineN.b"
+    },
+    {
+      "from": "opEach.item",
+      "to": "oiNoneC.a"
+    },
+    {
+      "from": "K44.out",
+      "to": "oiNoneC.b"
+    },
+    {
+      "from": "oiNoneC.out",
+      "to": "oiNoneN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiNoneN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiNoneN.b"
+    },
+    {
+      "from": "s_card.value",
+      "to": "oiViewC.a"
+    },
+    {
+      "from": "oiEv.value",
+      "to": "oiViewE.a"
+    },
+    {
+      "from": "oiNoneC.out",
+      "to": "oiViewK.cond"
+    },
+    {
+      "from": "oiViewC.out",
+      "to": "oiViewK.a"
+    },
+    {
+      "from": "oiViewE.out",
+      "to": "oiViewK.b"
+    },
+    {
+      "from": "oiViewK.out",
+      "to": "oiView.key"
+    },
+    {
+      "from": "opEach.item",
+      "to": "oiPickI.a"
+    },
+    {
+      "from": "oiNoneC.out",
+      "to": "oiPickV.cond"
+    },
+    {
+      "from": "K36.out",
+      "to": "oiPickV.a"
+    },
+    {
+      "from": "oiPickI.out",
+      "to": "oiPickV.b"
+    },
+    {
+      "from": "oiView.value",
+      "to": "oiPickC.a"
+    },
+    {
+      "from": "oiPickV.out",
+      "to": "oiPickC.b"
+    },
+    {
+      "from": "oiPickC.out",
+      "to": "oiPickN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiPickN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiPickN.b"
+    },
+    {
+      "from": "oiUn.value",
+      "to": "oiFreeC.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "oiFreeC.b"
+    },
+    {
+      "from": "oiFreeC.out",
+      "to": "oiFreeN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiFreeN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiFreeN.b"
+    },
+    {
+      "from": "oiUn.value",
+      "to": "oiNoteC.value"
+    },
+    {
+      "from": "oiNoteC.has",
+      "to": "oiNoteN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiNoteN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiNoteN.b"
+    },
+    {
+      "from": "oiUn.value",
+      "to": "oiApprC.value"
+    },
+    {
+      "from": "oiApprC.has",
+      "to": "oiApprN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "oiApprN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "oiApprN.b"
+    },
+    {
+      "from": "oiNoneN.out",
+      "to": "oiOk.oiNoneN"
+    },
+    {
+      "from": "oiMineN.out",
+      "to": "oiOk.oiMineN"
+    },
+    {
+      "from": "oiFreeN.out",
+      "to": "oiOk.oiFreeN"
+    },
+    {
+      "from": "oiNoteN.out",
+      "to": "oiOk.oiNoteN"
+    },
+    {
+      "from": "oiApprN.out",
+      "to": "oiOk.oiApprN"
+    },
+    {
+      "from": "oiOk.value",
+      "to": "oiG.cond"
+    },
+    {
+      "from": "opEach.each",
+      "to": "oiG.trigger"
+    },
+    {
+      "from": "opEach.item",
+      "to": "optAdd.value"
+    },
+    {
+      "from": "oiG.pass",
+      "to": "optAdd.trigger"
+    },
+    {
+      "from": "opEach.item",
+      "to": "optSel.key"
+    },
+    {
+      "from": "oiPickC.out",
+      "to": "optSel.value"
+    },
+    {
+      "from": "oiG.pass",
+      "to": "optSel.trigger"
+    },
+    {
+      "from": "opEach.done",
+      "to": "optList.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "clr_pn.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "pnEach.trigger"
+    },
+    {
+      "from": "pnEach.item",
+      "to": "pnHas.value"
+    },
+    {
+      "from": "pnHas.has",
+      "to": "pnG.guard"
+    },
+    {
+      "from": "pnEach.each",
+      "to": "pnG.go"
+    },
+    {
+      "from": "pnEach.item",
+      "to": "pnAdd.value"
+    },
+    {
+      "from": "pnG.changed",
+      "to": "pnAdd.trigger"
+    },
+    {
+      "from": "pnEach.done",
+      "to": "pnList.trigger"
+    },
+    {
+      "from": "isInvK.out",
+      "to": "endG.guard"
+    },
+    {
+      "from": "ui#d1inv.end",
+      "to": "endG.go"
+    },
+    {
+      "from": "endG.changed",
+      "to": "world.stepDone"
+    },
+    {
+      "from": "world.stepKind",
+      "to": "isCarK.a"
+    },
+    {
+      "from": "K46.out",
+      "to": "isCarK.b"
+    },
+    {
+      "from": "isCarK.out",
+      "to": "carB.guard"
+    },
+    {
+      "from": "world.stepBegin",
+      "to": "carB.go"
+    },
+    {
+      "from": "carB.changed",
+      "to": "clr_said.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "i1S_w1_9.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_w1_9.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1S_w1_9.trigger"
+    },
+    {
+      "from": "K13.out",
+      "to": "i1S_s1_10.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_s1_10.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1S_s1_10.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "i1S_w2_11.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_w2_11.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1S_w2_11.trigger"
+    },
+    {
+      "from": "K15.out",
+      "to": "i1S_s2_12.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_s2_12.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1S_s2_12.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "i1_cph_19.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_cph_19.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1_cph_19.trigger"
+    },
+    {
+      "from": "d_cv.value",
+      "to": "cvN.d_cv"
+    },
+    {
+      "from": "K6.out",
+      "to": "i1_cv_20.key"
+    },
+    {
+      "from": "cvN.value",
+      "to": "i1_cv_20.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1_cv_20.trigger"
+    },
+    {
+      "from": "K5.out",
+      "to": "i1_cr_21.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_cr_21.value"
+    },
+    {
+      "from": "carB.changed",
+      "to": "i1_cr_21.trigger"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "backOk.d_cph"
+    },
+    {
+      "from": "backOk.value",
+      "to": "backG.cond"
+    },
+    {
+      "from": "ui#d1carry.back",
+      "to": "backG.trigger"
+    },
+    {
+      "from": "backG.pass",
+      "to": "world.d1StepBack"
+    },
+    {
+      "from": "d_cr.value",
+      "to": "crGGo.d_cr"
+    },
+    {
+      "from": "crGGo.value",
+      "to": "crG.cond"
+    },
+    {
+      "from": "beat.passed",
+      "to": "crG.trigger"
+    },
+    {
+      "from": "K5.out",
+      "to": "i1_cr_22.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_cr_22.value"
+    },
+    {
+      "from": "crG.pass",
+      "to": "i1_cr_22.trigger"
+    },
+    {
+      "from": "crG.pass",
+      "to": "crM.in"
+    },
+    {
+      "from": "langP.out",
+      "to": "crM.in"
+    },
+    {
+      "from": "crM.out",
+      "to": "cbclr.trigger"
+    },
+    {
+      "from": "crM.out",
+      "to": "cbEach.trigger"
+    },
+    {
+      "from": "cbEach.item",
+      "to": "cbHaveC.value"
+    },
+    {
+      "from": "cbHaveC.has",
+      "to": "cbHaveN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "cbHaveN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "cbHaveN.b"
+    },
+    {
+      "from": "cbHaveC.has",
+      "to": "cbHaveG.guard"
+    },
+    {
+      "from": "cbEach.each",
+      "to": "cbHaveG.go"
+    },
+    {
+      "from": "cbEach.item",
+      "to": "cbadd.value"
+    },
+    {
+      "from": "cbHaveG.changed",
+      "to": "cbadd.trigger"
+    },
+    {
+      "from": "cbEach.done",
+      "to": "itemList.trigger"
+    },
+    {
+      "from": "K47.out",
+      "to": "countT.max"
+    },
+    {
+      "from": "selN.count",
+      "to": "countT.n"
+    },
+    {
+      "from": "countT.text",
+      "to": "ui#d1carry.count_text"
+    },
+    {
+      "from": "selN.count",
+      "to": "full.selN"
+    },
+    {
+      "from": "full.truth",
+      "to": "ui#d1carry.full"
+    },
+    {
+      "from": "d_cv.value",
+      "to": "hint1On.d_cv"
+    },
+    {
+      "from": "K48.out",
+      "to": "l001T.key"
+    },
+    {
+      "from": "hint1On.truth",
+      "to": "hint1.cond"
+    },
+    {
+      "from": "l001T.text",
+      "to": "hint1.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "hint1.b"
+    },
+    {
+      "from": "hint1.out",
+      "to": "ui#d1carry.first_hint"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "ui#d1carry.phase"
+    },
+    {
+      "from": "ui#d1carry.pick_item",
+      "to": "pvInC.value"
+    },
+    {
+      "from": "pvInC.has",
+      "to": "pvInN.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "pvInN.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "pvInN.b"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "pickOk.d_cph"
+    },
+    {
+      "from": "pickOk.value",
+      "to": "pickG.cond"
+    },
+    {
+      "from": "ui#d1carry.pick_item.emitted",
+      "to": "pickG.trigger"
+    },
+    {
+      "from": "pvInN.out",
+      "to": "pvRem.pvInN"
+    },
+    {
+      "from": "pvRem.value",
+      "to": "pvRemG.cond"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "pvRemG.trigger"
+    },
+    {
+      "from": "ui#d1carry.pick_item",
+      "to": "selRem.value"
+    },
+    {
+      "from": "pvRemG.pass",
+      "to": "selRem.trigger"
+    },
+    {
+      "from": "pvInN.out",
+      "to": "pvAdd.pvInN"
+    },
+    {
+      "from": "selN.count",
+      "to": "pvAdd.selN"
+    },
+    {
+      "from": "pvAdd.value",
+      "to": "pvAddG.cond"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "pvAddG.trigger"
+    },
+    {
+      "from": "ui#d1carry.pick_item",
+      "to": "selAdd.value"
+    },
+    {
+      "from": "pvAddG.pass",
+      "to": "selAdd.trigger"
+    },
+    {
+      "from": "pvInN.out",
+      "to": "pvFull.pvInN"
+    },
+    {
+      "from": "selN.count",
+      "to": "pvFull.selN"
+    },
+    {
+      "from": "pvFull.value",
+      "to": "pvFullG.cond"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "pvFullG.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "i1S_w1_13.key"
+    },
+    {
+      "from": "K49.out",
+      "to": "i1S_w1_13.value"
+    },
+    {
+      "from": "pvFullG.pass",
+      "to": "i1S_w1_13.trigger"
+    },
+    {
+      "from": "K13.out",
+      "to": "i1S_s1_14.key"
+    },
+    {
+      "from": "K50.out",
+      "to": "i1S_s1_14.value"
+    },
+    {
+      "from": "pvFullG.pass",
+      "to": "i1S_s1_14.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "i1S_w2_15.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_w2_15.value"
+    },
+    {
+      "from": "pvFullG.pass",
+      "to": "i1S_w2_15.trigger"
+    },
+    {
+      "from": "K15.out",
+      "to": "i1S_s2_16.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_s2_16.value"
+    },
+    {
+      "from": "pvFullG.pass",
+      "to": "i1S_s2_16.trigger"
+    },
+    {
+      "from": "K5.out",
+      "to": "i1_cr_23.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_cr_23.value"
+    },
+    {
+      "from": "pickG.pass",
+      "to": "i1_cr_23.trigger"
+    },
+    {
+      "from": "K51.out",
+      "to": "selE05C.value"
+    },
+    {
+      "from": "selE05C.has",
+      "to": "selE05.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "selE05.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "selE05.b"
+    },
+    {
+      "from": "K52.out",
+      "to": "selE03C.value"
+    },
+    {
+      "from": "selE03C.has",
+      "to": "selE03.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "selE03.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "selE03.b"
+    },
+    {
+      "from": "K53.out",
+      "to": "selE09C.value"
+    },
+    {
+      "from": "selE09C.has",
+      "to": "selE09.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "selE09.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "selE09.b"
+    },
+    {
+      "from": "K54.out",
+      "to": "selE12C.value"
+    },
+    {
+      "from": "selE12C.has",
+      "to": "selE12.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "selE12.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "selE12.b"
+    },
+    {
+      "from": "K20.out",
+      "to": "selP1C.value"
+    },
+    {
+      "from": "selP1C.has",
+      "to": "selP1.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "selP1.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "selP1.b"
+    },
+    {
+      "from": "K51.out",
+      "to": "haveE05C.value"
+    },
+    {
+      "from": "haveE05C.has",
+      "to": "haveE05.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "haveE05.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "haveE05.b"
+    },
+    {
+      "from": "K55.out",
+      "to": "saidL008C.value"
+    },
+    {
+      "from": "saidL008C.has",
+      "to": "saidL008.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL008.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL008.b"
+    },
+    {
+      "from": "K56.out",
+      "to": "saidL004C.value"
+    },
+    {
+      "from": "saidL004C.has",
+      "to": "saidL004.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL004.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL004.b"
+    },
+    {
+      "from": "K57.out",
+      "to": "saidL003C.value"
+    },
+    {
+      "from": "saidL003C.has",
+      "to": "saidL003.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL003.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL003.b"
+    },
+    {
+      "from": "K58.out",
+      "to": "saidL006C.value"
+    },
+    {
+      "from": "saidL006C.has",
+      "to": "saidL006.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL006.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL006.b"
+    },
+    {
+      "from": "K59.out",
+      "to": "saidL007C.value"
+    },
+    {
+      "from": "saidL007C.has",
+      "to": "saidL007.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL007.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL007.b"
+    },
+    {
+      "from": "K60.out",
+      "to": "saidL011C.value"
+    },
+    {
+      "from": "saidL011C.has",
+      "to": "saidL011.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "saidL011.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "saidL011.b"
+    },
+    {
+      "from": "haveE05.out",
+      "to": "askI.haveE05"
+    },
+    {
+      "from": "selE05.out",
+      "to": "askI.selE05"
+    },
+    {
+      "from": "saidL008.out",
+      "to": "askI.saidL008"
+    },
+    {
+      "from": "selP1.out",
+      "to": "askI.selP1"
+    },
+    {
+      "from": "saidL004.out",
+      "to": "askI.saidL004"
+    },
+    {
+      "from": "selE12.out",
+      "to": "askI.selE12"
+    },
+    {
+      "from": "saidL003.out",
+      "to": "askI.saidL003"
+    },
+    {
+      "from": "selE09.out",
+      "to": "askI.selE09"
+    },
+    {
+      "from": "saidL006.out",
+      "to": "askI.saidL006"
+    },
+    {
+      "from": "selE03.out",
+      "to": "askI.selE03"
+    },
+    {
+      "from": "saidL007.out",
+      "to": "askI.saidL007"
+    },
+    {
+      "from": "selN.count",
+      "to": "askI.selN"
+    },
+    {
+      "from": "saidL011.out",
+      "to": "askI.saidL011"
+    },
+    {
+      "from": "askI.value",
+      "to": "askLine.index"
+    },
+    {
+      "from": "askI.value",
+      "to": "askId.index"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "askOk.d_cph"
+    },
+    {
+      "from": "askOk.value",
+      "to": "askG.cond"
+    },
+    {
+      "from": "ui#d1carry.ask",
+      "to": "askG.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "i1S_w1_17.key"
+    },
+    {
+      "from": "K38.out",
+      "to": "i1S_w1_17.value"
+    },
+    {
+      "from": "askG.pass",
+      "to": "i1S_w1_17.trigger"
+    },
+    {
+      "from": "K13.out",
+      "to": "i1S_s1_18.key"
+    },
+    {
+      "from": "askLine.out",
+      "to": "i1S_s1_18.value"
+    },
+    {
+      "from": "askG.pass",
+      "to": "i1S_s1_18.trigger"
+    },
+    {
+      "from": "askI.value",
+      "to": "askBoard.askI"
+    },
+    {
+      "from": "askBoard.truth",
+      "to": "askW2.cond"
+    },
+    {
+      "from": "K61.out",
+      "to": "askW2.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "askW2.b"
+    },
+    {
+      "from": "K14.out",
+      "to": "i1S_w2_19.key"
+    },
+    {
+      "from": "askW2.out",
+      "to": "i1S_w2_19.value"
+    },
+    {
+      "from": "askG.pass",
+      "to": "i1S_w2_19.trigger"
+    },
+    {
+      "from": "askBoard.truth",
+      "to": "askS2.cond"
+    },
+    {
+      "from": "K62.out",
+      "to": "askS2.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "askS2.b"
+    },
+    {
+      "from": "K15.out",
+      "to": "i1S_s2_20.key"
+    },
+    {
+      "from": "askS2.out",
+      "to": "i1S_s2_20.value"
+    },
+    {
+      "from": "askG.pass",
+      "to": "i1S_s2_20.trigger"
+    },
+    {
+      "from": "askI.value",
+      "to": "askSay.askI"
+    },
+    {
+      "from": "askSay.value",
+      "to": "askSaidG.cond"
+    },
+    {
+      "from": "askG.pass",
+      "to": "askSaidG.trigger"
+    },
+    {
+      "from": "askId.out",
+      "to": "saidAdd.value"
+    },
+    {
+      "from": "askSaidG.pass",
+      "to": "saidAdd.trigger"
+    },
+    {
+      "from": "askG.pass",
+      "to": "sayM.in"
+    },
+    {
+      "from": "pvFullG.pass",
+      "to": "sayM.in"
+    },
+    {
+      "from": "sayM.out",
+      "to": "saySeq.increment"
+    },
+    {
+      "from": "s_w1.value",
+      "to": "w1T.key"
+    },
+    {
+      "from": "s_s1.value",
+      "to": "s1T.key"
+    },
+    {
+      "from": "s_w2.value",
+      "to": "w2T.key"
+    },
+    {
+      "from": "s_s2.value",
+      "to": "s2T.key"
+    },
+    {
+      "from": "w1T.text",
+      "to": "ui#d1carry.who1"
+    },
+    {
+      "from": "s1T.text",
+      "to": "ui#d1carry.say1"
+    },
+    {
+      "from": "w2T.text",
+      "to": "ui#d1carry.who2"
+    },
+    {
+      "from": "s2T.text",
+      "to": "ui#d1carry.say2"
+    },
+    {
+      "from": "K63.out",
+      "to": "lhE01C.value"
+    },
+    {
+      "from": "lhE01C.has",
+      "to": "lhE01.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE01.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE01.b"
+    },
+    {
+      "from": "K63.out",
+      "to": "lsE01C.value"
+    },
+    {
+      "from": "lsE01C.has",
+      "to": "lsE01.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE01.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE01.b"
+    },
+    {
+      "from": "lhE01.out",
+      "to": "lfE01.lhE01"
+    },
+    {
+      "from": "lsE01.out",
+      "to": "lfE01.lsE01"
+    },
+    {
+      "from": "K64.out",
+      "to": "lnE01.key"
+    },
+    {
+      "from": "lfE01.truth",
+      "to": "lpE01.cond"
+    },
+    {
+      "from": "lnE01.text",
+      "to": "lpE01.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE01.b"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE01.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE01.b"
+    },
+    {
+      "from": "K36.out",
+      "to": "lcE01.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE01.b"
+    },
+    {
+      "from": "lnE01.text",
+      "to": "lcE01.c"
+    },
+    {
+      "from": "leE01.out",
+      "to": "ljE01.cond"
+    },
+    {
+      "from": "lpE01.out",
+      "to": "ljE01.a"
+    },
+    {
+      "from": "lcE01.out",
+      "to": "ljE01.b"
+    },
+    {
+      "from": "lfE01.truth",
+      "to": "laE01.cond"
+    },
+    {
+      "from": "ljE01.out",
+      "to": "laE01.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "laE01.b"
+    },
+    {
+      "from": "K65.out",
+      "to": "lhE02C.value"
+    },
+    {
+      "from": "lhE02C.has",
+      "to": "lhE02.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE02.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE02.b"
+    },
+    {
+      "from": "K65.out",
+      "to": "lsE02C.value"
+    },
+    {
+      "from": "lsE02C.has",
+      "to": "lsE02.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE02.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE02.b"
+    },
+    {
+      "from": "lhE02.out",
+      "to": "lfE02.lhE02"
+    },
+    {
+      "from": "lsE02.out",
+      "to": "lfE02.lsE02"
+    },
+    {
+      "from": "K66.out",
+      "to": "lnE02.key"
+    },
+    {
+      "from": "lfE02.truth",
+      "to": "lpE02.cond"
+    },
+    {
+      "from": "lnE02.text",
+      "to": "lpE02.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE02.b"
+    },
+    {
+      "from": "laE01.out",
+      "to": "leE02.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE02.b"
+    },
+    {
+      "from": "laE01.out",
+      "to": "lcE02.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE02.b"
+    },
+    {
+      "from": "lnE02.text",
+      "to": "lcE02.c"
+    },
+    {
+      "from": "leE02.out",
+      "to": "ljE02.cond"
+    },
+    {
+      "from": "lpE02.out",
+      "to": "ljE02.a"
+    },
+    {
+      "from": "lcE02.out",
+      "to": "ljE02.b"
+    },
+    {
+      "from": "lfE02.truth",
+      "to": "laE02.cond"
+    },
+    {
+      "from": "ljE02.out",
+      "to": "laE02.a"
+    },
+    {
+      "from": "laE01.out",
+      "to": "laE02.b"
+    },
+    {
+      "from": "K52.out",
+      "to": "lhE03C.value"
+    },
+    {
+      "from": "lhE03C.has",
+      "to": "lhE03.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE03.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE03.b"
+    },
+    {
+      "from": "K52.out",
+      "to": "lsE03C.value"
+    },
+    {
+      "from": "lsE03C.has",
+      "to": "lsE03.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE03.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE03.b"
+    },
+    {
+      "from": "lhE03.out",
+      "to": "lfE03.lhE03"
+    },
+    {
+      "from": "lsE03.out",
+      "to": "lfE03.lsE03"
+    },
+    {
+      "from": "K67.out",
+      "to": "lnE03.key"
+    },
+    {
+      "from": "lfE03.truth",
+      "to": "lpE03.cond"
+    },
+    {
+      "from": "lnE03.text",
+      "to": "lpE03.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE03.b"
+    },
+    {
+      "from": "laE02.out",
+      "to": "leE03.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE03.b"
+    },
+    {
+      "from": "laE02.out",
+      "to": "lcE03.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE03.b"
+    },
+    {
+      "from": "lnE03.text",
+      "to": "lcE03.c"
+    },
+    {
+      "from": "leE03.out",
+      "to": "ljE03.cond"
+    },
+    {
+      "from": "lpE03.out",
+      "to": "ljE03.a"
+    },
+    {
+      "from": "lcE03.out",
+      "to": "ljE03.b"
+    },
+    {
+      "from": "lfE03.truth",
+      "to": "laE03.cond"
+    },
+    {
+      "from": "ljE03.out",
+      "to": "laE03.a"
+    },
+    {
+      "from": "laE02.out",
+      "to": "laE03.b"
+    },
+    {
+      "from": "K68.out",
+      "to": "lhE04C.value"
+    },
+    {
+      "from": "lhE04C.has",
+      "to": "lhE04.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE04.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE04.b"
+    },
+    {
+      "from": "K68.out",
+      "to": "lsE04C.value"
+    },
+    {
+      "from": "lsE04C.has",
+      "to": "lsE04.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE04.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE04.b"
+    },
+    {
+      "from": "lhE04.out",
+      "to": "lfE04.lhE04"
+    },
+    {
+      "from": "lsE04.out",
+      "to": "lfE04.lsE04"
+    },
+    {
+      "from": "K69.out",
+      "to": "lnE04.key"
+    },
+    {
+      "from": "lfE04.truth",
+      "to": "lpE04.cond"
+    },
+    {
+      "from": "lnE04.text",
+      "to": "lpE04.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE04.b"
+    },
+    {
+      "from": "laE03.out",
+      "to": "leE04.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE04.b"
+    },
+    {
+      "from": "laE03.out",
+      "to": "lcE04.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE04.b"
+    },
+    {
+      "from": "lnE04.text",
+      "to": "lcE04.c"
+    },
+    {
+      "from": "leE04.out",
+      "to": "ljE04.cond"
+    },
+    {
+      "from": "lpE04.out",
+      "to": "ljE04.a"
+    },
+    {
+      "from": "lcE04.out",
+      "to": "ljE04.b"
+    },
+    {
+      "from": "lfE04.truth",
+      "to": "laE04.cond"
+    },
+    {
+      "from": "ljE04.out",
+      "to": "laE04.a"
+    },
+    {
+      "from": "laE03.out",
+      "to": "laE04.b"
+    },
+    {
+      "from": "K51.out",
+      "to": "lhE05C.value"
+    },
+    {
+      "from": "lhE05C.has",
+      "to": "lhE05.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE05.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE05.b"
+    },
+    {
+      "from": "K51.out",
+      "to": "lsE05C.value"
+    },
+    {
+      "from": "lsE05C.has",
+      "to": "lsE05.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE05.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE05.b"
+    },
+    {
+      "from": "lhE05.out",
+      "to": "lfE05.lhE05"
+    },
+    {
+      "from": "lsE05.out",
+      "to": "lfE05.lsE05"
+    },
+    {
+      "from": "K70.out",
+      "to": "lnE05.key"
+    },
+    {
+      "from": "lfE05.truth",
+      "to": "lpE05.cond"
+    },
+    {
+      "from": "lnE05.text",
+      "to": "lpE05.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE05.b"
+    },
+    {
+      "from": "laE04.out",
+      "to": "leE05.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE05.b"
+    },
+    {
+      "from": "laE04.out",
+      "to": "lcE05.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE05.b"
+    },
+    {
+      "from": "lnE05.text",
+      "to": "lcE05.c"
+    },
+    {
+      "from": "leE05.out",
+      "to": "ljE05.cond"
+    },
+    {
+      "from": "lpE05.out",
+      "to": "ljE05.a"
+    },
+    {
+      "from": "lcE05.out",
+      "to": "ljE05.b"
+    },
+    {
+      "from": "lfE05.truth",
+      "to": "laE05.cond"
+    },
+    {
+      "from": "ljE05.out",
+      "to": "laE05.a"
+    },
+    {
+      "from": "laE04.out",
+      "to": "laE05.b"
+    },
+    {
+      "from": "K71.out",
+      "to": "lhE06C.value"
+    },
+    {
+      "from": "lhE06C.has",
+      "to": "lhE06.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE06.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE06.b"
+    },
+    {
+      "from": "K71.out",
+      "to": "lsE06C.value"
+    },
+    {
+      "from": "lsE06C.has",
+      "to": "lsE06.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE06.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE06.b"
+    },
+    {
+      "from": "lhE06.out",
+      "to": "lfE06.lhE06"
+    },
+    {
+      "from": "lsE06.out",
+      "to": "lfE06.lsE06"
+    },
+    {
+      "from": "K72.out",
+      "to": "lnE06.key"
+    },
+    {
+      "from": "lfE06.truth",
+      "to": "lpE06.cond"
+    },
+    {
+      "from": "lnE06.text",
+      "to": "lpE06.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE06.b"
+    },
+    {
+      "from": "laE05.out",
+      "to": "leE06.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE06.b"
+    },
+    {
+      "from": "laE05.out",
+      "to": "lcE06.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE06.b"
+    },
+    {
+      "from": "lnE06.text",
+      "to": "lcE06.c"
+    },
+    {
+      "from": "leE06.out",
+      "to": "ljE06.cond"
+    },
+    {
+      "from": "lpE06.out",
+      "to": "ljE06.a"
+    },
+    {
+      "from": "lcE06.out",
+      "to": "ljE06.b"
+    },
+    {
+      "from": "lfE06.truth",
+      "to": "laE06.cond"
+    },
+    {
+      "from": "ljE06.out",
+      "to": "laE06.a"
+    },
+    {
+      "from": "laE05.out",
+      "to": "laE06.b"
+    },
+    {
+      "from": "K73.out",
+      "to": "lhE07C.value"
+    },
+    {
+      "from": "lhE07C.has",
+      "to": "lhE07.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE07.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE07.b"
+    },
+    {
+      "from": "K73.out",
+      "to": "lsE07C.value"
+    },
+    {
+      "from": "lsE07C.has",
+      "to": "lsE07.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE07.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE07.b"
+    },
+    {
+      "from": "lhE07.out",
+      "to": "lfE07.lhE07"
+    },
+    {
+      "from": "lsE07.out",
+      "to": "lfE07.lsE07"
+    },
+    {
+      "from": "K74.out",
+      "to": "lnE07.key"
+    },
+    {
+      "from": "lfE07.truth",
+      "to": "lpE07.cond"
+    },
+    {
+      "from": "lnE07.text",
+      "to": "lpE07.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE07.b"
+    },
+    {
+      "from": "laE06.out",
+      "to": "leE07.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE07.b"
+    },
+    {
+      "from": "laE06.out",
+      "to": "lcE07.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE07.b"
+    },
+    {
+      "from": "lnE07.text",
+      "to": "lcE07.c"
+    },
+    {
+      "from": "leE07.out",
+      "to": "ljE07.cond"
+    },
+    {
+      "from": "lpE07.out",
+      "to": "ljE07.a"
+    },
+    {
+      "from": "lcE07.out",
+      "to": "ljE07.b"
+    },
+    {
+      "from": "lfE07.truth",
+      "to": "laE07.cond"
+    },
+    {
+      "from": "ljE07.out",
+      "to": "laE07.a"
+    },
+    {
+      "from": "laE06.out",
+      "to": "laE07.b"
+    },
+    {
+      "from": "K75.out",
+      "to": "lhE08C.value"
+    },
+    {
+      "from": "lhE08C.has",
+      "to": "lhE08.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE08.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE08.b"
+    },
+    {
+      "from": "K75.out",
+      "to": "lsE08C.value"
+    },
+    {
+      "from": "lsE08C.has",
+      "to": "lsE08.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE08.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE08.b"
+    },
+    {
+      "from": "lhE08.out",
+      "to": "lfE08.lhE08"
+    },
+    {
+      "from": "lsE08.out",
+      "to": "lfE08.lsE08"
+    },
+    {
+      "from": "K76.out",
+      "to": "lnE08.key"
+    },
+    {
+      "from": "lfE08.truth",
+      "to": "lpE08.cond"
+    },
+    {
+      "from": "lnE08.text",
+      "to": "lpE08.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE08.b"
+    },
+    {
+      "from": "laE07.out",
+      "to": "leE08.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE08.b"
+    },
+    {
+      "from": "laE07.out",
+      "to": "lcE08.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE08.b"
+    },
+    {
+      "from": "lnE08.text",
+      "to": "lcE08.c"
+    },
+    {
+      "from": "leE08.out",
+      "to": "ljE08.cond"
+    },
+    {
+      "from": "lpE08.out",
+      "to": "ljE08.a"
+    },
+    {
+      "from": "lcE08.out",
+      "to": "ljE08.b"
+    },
+    {
+      "from": "lfE08.truth",
+      "to": "laE08.cond"
+    },
+    {
+      "from": "ljE08.out",
+      "to": "laE08.a"
+    },
+    {
+      "from": "laE07.out",
+      "to": "laE08.b"
+    },
+    {
+      "from": "K53.out",
+      "to": "lhE09C.value"
+    },
+    {
+      "from": "lhE09C.has",
+      "to": "lhE09.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE09.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE09.b"
+    },
+    {
+      "from": "K53.out",
+      "to": "lsE09C.value"
+    },
+    {
+      "from": "lsE09C.has",
+      "to": "lsE09.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE09.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE09.b"
+    },
+    {
+      "from": "lhE09.out",
+      "to": "lfE09.lhE09"
+    },
+    {
+      "from": "lsE09.out",
+      "to": "lfE09.lsE09"
+    },
+    {
+      "from": "K77.out",
+      "to": "lnE09.key"
+    },
+    {
+      "from": "lfE09.truth",
+      "to": "lpE09.cond"
+    },
+    {
+      "from": "lnE09.text",
+      "to": "lpE09.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE09.b"
+    },
+    {
+      "from": "laE08.out",
+      "to": "leE09.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE09.b"
+    },
+    {
+      "from": "laE08.out",
+      "to": "lcE09.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE09.b"
+    },
+    {
+      "from": "lnE09.text",
+      "to": "lcE09.c"
+    },
+    {
+      "from": "leE09.out",
+      "to": "ljE09.cond"
+    },
+    {
+      "from": "lpE09.out",
+      "to": "ljE09.a"
+    },
+    {
+      "from": "lcE09.out",
+      "to": "ljE09.b"
+    },
+    {
+      "from": "lfE09.truth",
+      "to": "laE09.cond"
+    },
+    {
+      "from": "ljE09.out",
+      "to": "laE09.a"
+    },
+    {
+      "from": "laE08.out",
+      "to": "laE09.b"
+    },
+    {
+      "from": "K78.out",
+      "to": "lhE10C.value"
+    },
+    {
+      "from": "lhE10C.has",
+      "to": "lhE10.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE10.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE10.b"
+    },
+    {
+      "from": "K78.out",
+      "to": "lsE10C.value"
+    },
+    {
+      "from": "lsE10C.has",
+      "to": "lsE10.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE10.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE10.b"
+    },
+    {
+      "from": "lhE10.out",
+      "to": "lfE10.lhE10"
+    },
+    {
+      "from": "lsE10.out",
+      "to": "lfE10.lsE10"
+    },
+    {
+      "from": "K79.out",
+      "to": "lnE10.key"
+    },
+    {
+      "from": "lfE10.truth",
+      "to": "lpE10.cond"
+    },
+    {
+      "from": "lnE10.text",
+      "to": "lpE10.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE10.b"
+    },
+    {
+      "from": "laE09.out",
+      "to": "leE10.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE10.b"
+    },
+    {
+      "from": "laE09.out",
+      "to": "lcE10.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE10.b"
+    },
+    {
+      "from": "lnE10.text",
+      "to": "lcE10.c"
+    },
+    {
+      "from": "leE10.out",
+      "to": "ljE10.cond"
+    },
+    {
+      "from": "lpE10.out",
+      "to": "ljE10.a"
+    },
+    {
+      "from": "lcE10.out",
+      "to": "ljE10.b"
+    },
+    {
+      "from": "lfE10.truth",
+      "to": "laE10.cond"
+    },
+    {
+      "from": "ljE10.out",
+      "to": "laE10.a"
+    },
+    {
+      "from": "laE09.out",
+      "to": "laE10.b"
+    },
+    {
+      "from": "K80.out",
+      "to": "lhE11C.value"
+    },
+    {
+      "from": "lhE11C.has",
+      "to": "lhE11.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE11.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE11.b"
+    },
+    {
+      "from": "K80.out",
+      "to": "lsE11C.value"
+    },
+    {
+      "from": "lsE11C.has",
+      "to": "lsE11.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE11.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE11.b"
+    },
+    {
+      "from": "lhE11.out",
+      "to": "lfE11.lhE11"
+    },
+    {
+      "from": "lsE11.out",
+      "to": "lfE11.lsE11"
+    },
+    {
+      "from": "K81.out",
+      "to": "lnE11.key"
+    },
+    {
+      "from": "lfE11.truth",
+      "to": "lpE11.cond"
+    },
+    {
+      "from": "lnE11.text",
+      "to": "lpE11.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE11.b"
+    },
+    {
+      "from": "laE10.out",
+      "to": "leE11.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE11.b"
+    },
+    {
+      "from": "laE10.out",
+      "to": "lcE11.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE11.b"
+    },
+    {
+      "from": "lnE11.text",
+      "to": "lcE11.c"
+    },
+    {
+      "from": "leE11.out",
+      "to": "ljE11.cond"
+    },
+    {
+      "from": "lpE11.out",
+      "to": "ljE11.a"
+    },
+    {
+      "from": "lcE11.out",
+      "to": "ljE11.b"
+    },
+    {
+      "from": "lfE11.truth",
+      "to": "laE11.cond"
+    },
+    {
+      "from": "ljE11.out",
+      "to": "laE11.a"
+    },
+    {
+      "from": "laE10.out",
+      "to": "laE11.b"
+    },
+    {
+      "from": "K54.out",
+      "to": "lhE12C.value"
+    },
+    {
+      "from": "lhE12C.has",
+      "to": "lhE12.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhE12.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhE12.b"
+    },
+    {
+      "from": "K54.out",
+      "to": "lsE12C.value"
+    },
+    {
+      "from": "lsE12C.has",
+      "to": "lsE12.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsE12.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsE12.b"
+    },
+    {
+      "from": "lhE12.out",
+      "to": "lfE12.lhE12"
+    },
+    {
+      "from": "lsE12.out",
+      "to": "lfE12.lsE12"
+    },
+    {
+      "from": "K82.out",
+      "to": "lnE12.key"
+    },
+    {
+      "from": "lfE12.truth",
+      "to": "lpE12.cond"
+    },
+    {
+      "from": "lnE12.text",
+      "to": "lpE12.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpE12.b"
+    },
+    {
+      "from": "laE11.out",
+      "to": "leE12.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leE12.b"
+    },
+    {
+      "from": "laE11.out",
+      "to": "lcE12.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcE12.b"
+    },
+    {
+      "from": "lnE12.text",
+      "to": "lcE12.c"
+    },
+    {
+      "from": "leE12.out",
+      "to": "ljE12.cond"
+    },
+    {
+      "from": "lpE12.out",
+      "to": "ljE12.a"
+    },
+    {
+      "from": "lcE12.out",
+      "to": "ljE12.b"
+    },
+    {
+      "from": "lfE12.truth",
+      "to": "laE12.cond"
+    },
+    {
+      "from": "ljE12.out",
+      "to": "laE12.a"
+    },
+    {
+      "from": "laE11.out",
+      "to": "laE12.b"
+    },
+    {
+      "from": "K20.out",
+      "to": "lhP1C.value"
+    },
+    {
+      "from": "lhP1C.has",
+      "to": "lhP1.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lhP1.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lhP1.b"
+    },
+    {
+      "from": "K20.out",
+      "to": "lsP1C.value"
+    },
+    {
+      "from": "lsP1C.has",
+      "to": "lsP1.cond"
+    },
+    {
+      "from": "K34.out",
+      "to": "lsP1.a"
+    },
+    {
+      "from": "K35.out",
+      "to": "lsP1.b"
+    },
+    {
+      "from": "lhP1.out",
+      "to": "lfP1.lhP1"
+    },
+    {
+      "from": "lsP1.out",
+      "to": "lfP1.lsP1"
+    },
+    {
+      "from": "K83.out",
+      "to": "lnP1.key"
+    },
+    {
+      "from": "lfP1.truth",
+      "to": "lpP1.cond"
+    },
+    {
+      "from": "lnP1.text",
+      "to": "lpP1.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "lpP1.b"
+    },
+    {
+      "from": "laE12.out",
+      "to": "leP1.a"
+    },
+    {
+      "from": "K36.out",
+      "to": "leP1.b"
+    },
+    {
+      "from": "laE12.out",
+      "to": "lcP1.a"
+    },
+    {
+      "from": "sepT.text",
+      "to": "lcP1.b"
+    },
+    {
+      "from": "lnP1.text",
+      "to": "lcP1.c"
+    },
+    {
+      "from": "leP1.out",
+      "to": "ljP1.cond"
+    },
+    {
+      "from": "lpP1.out",
+      "to": "ljP1.a"
+    },
+    {
+      "from": "lcP1.out",
+      "to": "ljP1.b"
+    },
+    {
+      "from": "lfP1.truth",
+      "to": "laP1.cond"
+    },
+    {
+      "from": "ljP1.out",
+      "to": "laP1.a"
+    },
+    {
+      "from": "laE12.out",
+      "to": "laP1.b"
+    },
+    {
+      "from": "lfE01.value",
+      "to": "nLeft.lfE01"
+    },
+    {
+      "from": "lfE02.value",
+      "to": "nLeft.lfE02"
+    },
+    {
+      "from": "lfE03.value",
+      "to": "nLeft.lfE03"
+    },
+    {
+      "from": "lfE04.value",
+      "to": "nLeft.lfE04"
+    },
+    {
+      "from": "lfE05.value",
+      "to": "nLeft.lfE05"
+    },
+    {
+      "from": "lfE06.value",
+      "to": "nLeft.lfE06"
+    },
+    {
+      "from": "lfE07.value",
+      "to": "nLeft.lfE07"
+    },
+    {
+      "from": "lfE08.value",
+      "to": "nLeft.lfE08"
+    },
+    {
+      "from": "lfE09.value",
+      "to": "nLeft.lfE09"
+    },
+    {
+      "from": "lfE10.value",
+      "to": "nLeft.lfE10"
+    },
+    {
+      "from": "lfE11.value",
+      "to": "nLeft.lfE11"
+    },
+    {
+      "from": "lfE12.value",
+      "to": "nLeft.lfE12"
+    },
+    {
+      "from": "lfP1.value",
+      "to": "nLeft.lfP1"
+    },
+    {
+      "from": "lfE01.value",
+      "to": "nLeftEv.lfE01"
+    },
+    {
+      "from": "lfE02.value",
+      "to": "nLeftEv.lfE02"
+    },
+    {
+      "from": "lfE03.value",
+      "to": "nLeftEv.lfE03"
+    },
+    {
+      "from": "lfE04.value",
+      "to": "nLeftEv.lfE04"
+    },
+    {
+      "from": "lfE05.value",
+      "to": "nLeftEv.lfE05"
+    },
+    {
+      "from": "lfE06.value",
+      "to": "nLeftEv.lfE06"
+    },
+    {
+      "from": "lfE07.value",
+      "to": "nLeftEv.lfE07"
+    },
+    {
+      "from": "lfE08.value",
+      "to": "nLeftEv.lfE08"
+    },
+    {
+      "from": "lfE09.value",
+      "to": "nLeftEv.lfE09"
+    },
+    {
+      "from": "lfE10.value",
+      "to": "nLeftEv.lfE10"
+    },
+    {
+      "from": "lfE11.value",
+      "to": "nLeftEv.lfE11"
+    },
+    {
+      "from": "lfE12.value",
+      "to": "nLeftEv.lfE12"
+    },
+    {
+      "from": "laP1.out",
+      "to": "confT.list"
+    },
+    {
+      "from": "confT.text",
+      "to": "ui#d1carry.confirm_text"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "confOk.d_cph"
+    },
+    {
+      "from": "confOk.value",
+      "to": "confG.cond"
+    },
+    {
+      "from": "ui#d1carry.confirm",
+      "to": "confG.trigger"
+    },
+    {
+      "from": "nLeft.value",
+      "to": "confAsk.nLeft"
+    },
+    {
+      "from": "confAsk.value",
+      "to": "confAskG.cond"
+    },
+    {
+      "from": "confG.pass",
+      "to": "confAskG.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "i1_cph_24.key"
+    },
+    {
+      "from": "K34.out",
+      "to": "i1_cph_24.value"
+    },
+    {
+      "from": "confAskG.pass",
+      "to": "i1_cph_24.trigger"
+    },
+    {
+      "from": "nLeft.value",
+      "to": "confGo.nLeft"
+    },
+    {
+      "from": "confGo.value",
+      "to": "confGoG.cond"
+    },
+    {
+      "from": "confG.pass",
+      "to": "confGoG.trigger"
+    },
+    {
+      "from": "ui#d1carry.no",
+      "to": "noM.in"
+    },
+    {
+      "from": "K7.out",
+      "to": "i1_cph_25.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_cph_25.value"
+    },
+    {
+      "from": "noM.out",
+      "to": "i1_cph_25.trigger"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "yesOk.d_cph"
+    },
+    {
+      "from": "yesOk.value",
+      "to": "yesG.cond"
+    },
+    {
+      "from": "ui#d1carry.yes",
+      "to": "yesG.trigger"
+    },
+    {
+      "from": "nLeftEv.value",
+      "to": "l10On.nLeftEv"
+    },
+    {
+      "from": "l10On.value",
+      "to": "l10G.cond"
+    },
+    {
+      "from": "yesG.pass",
+      "to": "l10G.trigger"
+    },
+    {
+      "from": "K7.out",
+      "to": "i1_cph_26.key"
+    },
+    {
+      "from": "K31.out",
+      "to": "i1_cph_26.value"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "i1_cph_26.trigger"
+    },
+    {
+      "from": "K12.out",
+      "to": "i1S_w1_21.key"
+    },
+    {
+      "from": "K38.out",
+      "to": "i1S_w1_21.value"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "i1S_w1_21.trigger"
+    },
+    {
+      "from": "K13.out",
+      "to": "i1S_s1_22.key"
+    },
+    {
+      "from": "K84.out",
+      "to": "i1S_s1_22.value"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "i1S_s1_22.trigger"
+    },
+    {
+      "from": "K14.out",
+      "to": "i1S_w2_23.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_w2_23.value"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "i1S_w2_23.trigger"
+    },
+    {
+      "from": "K15.out",
+      "to": "i1S_s2_24.key"
+    },
+    {
+      "from": "K36.out",
+      "to": "i1S_s2_24.value"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "i1S_s2_24.trigger"
+    },
+    {
+      "from": "l10G.pass",
+      "to": "saySeq.increment"
+    },
+    {
+      "from": "nLeftEv.value",
+      "to": "yesGo.nLeftEv"
+    },
+    {
+      "from": "yesGo.value",
+      "to": "yesGoG.cond"
+    },
+    {
+      "from": "yesG.pass",
+      "to": "yesGoG.trigger"
+    },
+    {
+      "from": "d_cph.value",
+      "to": "goOk.d_cph"
+    },
+    {
+      "from": "goOk.value",
+      "to": "goG.cond"
+    },
+    {
+      "from": "ui#d1carry.go",
+      "to": "goG.trigger"
+    },
+    {
+      "from": "confGoG.pass",
+      "to": "goM.in"
+    },
+    {
+      "from": "yesGoG.pass",
+      "to": "goM.in"
+    },
+    {
+      "from": "goG.pass",
+      "to": "goM.in"
+    },
+    {
+      "from": "K7.out",
+      "to": "i1_cph_27.key"
+    },
+    {
+      "from": "K35.out",
+      "to": "i1_cph_27.value"
+    },
+    {
+      "from": "goM.out",
+      "to": "i1_cph_27.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "clr_d1Carry.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "lod1Carry.trigger"
+    },
+    {
+      "from": "lod1Carry.item",
+      "to": "lod1CarryC.value"
+    },
+    {
+      "from": "lod1CarryC.has",
+      "to": "lod1CarryG.guard"
+    },
+    {
+      "from": "lod1Carry.each",
+      "to": "lod1CarryG.go"
+    },
+    {
+      "from": "lod1Carry.item",
+      "to": "lod1CarryAdd.value"
+    },
+    {
+      "from": "lod1CarryG.changed",
+      "to": "lod1CarryAdd.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "clr_d1Appraised.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "lod1Appraised.trigger"
+    },
+    {
+      "from": "lod1Appraised.item",
+      "to": "lod1AppraisedC.value"
+    },
+    {
+      "from": "lod1AppraisedC.has",
+      "to": "lod1AppraisedG.guard"
+    },
+    {
+      "from": "lod1Appraised.each",
+      "to": "lod1AppraisedG.go"
+    },
+    {
+      "from": "lod1Appraised.item",
+      "to": "lod1AppraisedAdd.value"
+    },
+    {
+      "from": "lod1AppraisedG.changed",
+      "to": "lod1AppraisedAdd.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "clr_d1Notes.trigger"
+    },
+    {
+      "from": "goM.out",
+      "to": "lod1Notes.trigger"
+    },
+    {
+      "from": "lod1Notes.item",
+      "to": "lod1NotesC.value"
+    },
+    {
+      "from": "lod1NotesC.has",
+      "to": "lod1NotesG.guard"
+    },
+    {
+      "from": "lod1Notes.each",
+      "to": "lod1NotesG.go"
+    },
+    {
+      "from": "lod1Notes.item",
+      "to": "lod1NotesAdd.value"
+    },
+    {
+      "from": "lod1NotesG.changed",
+      "to": "lod1NotesAdd.trigger"
+    },
+    {
+      "from": "isCarK.out",
+      "to": "goDone.guard"
+    },
+    {
+      "from": "goM.out",
+      "to": "goDone.go"
+    },
+    {
+      "from": "goDone.changed",
+      "to": "world.stepDone"
+    }
+  ]
+}

@@ -96,6 +96,30 @@
       "h": 720,
       "title": "D1Debate",
       "page": "main"
+    },
+    "D1Inv.dc.html": {
+      "x": 0,
+      "y": 9600,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Inv",
+      "page": "main"
+    },
+    "D1Book.dc.html": {
+      "x": 0,
+      "y": 10400,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Book",
+      "page": "main"
+    },
+    "D1Carry.dc.html": {
+      "x": 0,
+      "y": 11200,
+      "w": 1280,
+      "h": 720,
+      "title": "D1Carry",
+      "page": "main"
     }
   },
   "order": [
@@ -110,7 +134,10 @@
     "Evbook.dc.html",
     "Notes.dc.html",
     "Settings.dc.html",
-    "D1Debate.dc.html"
+    "D1Debate.dc.html",
+    "D1Inv.dc.html",
+    "D1Book.dc.html",
+    "D1Carry.dc.html"
   ],
   "pages": [
     "main"

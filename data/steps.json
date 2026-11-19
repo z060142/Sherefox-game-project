@@ -25,5 +25,8 @@
 {"id":"CH03_07","chapter":3,"idx":7,"kind":"result","sub":"","scene":"S07","arg":""},
 {"id":"CH03_08","chapter":3,"idx":8,"kind":"vn","sub":"notes","scene":"S08","arg":""},
 {"id":"CH03_09","chapter":3,"idx":9,"kind":"paper","sub":"transition","scene":"","arg":"CH04_OPEN"},
-{"id":"CH03_10","chapter":3,"idx":10,"kind":"end","sub":"","scene":"","arg":"UI_TO_BE_CONTINUED"}
+{"id":"CH03_10","chapter":3,"idx":10,"kind":"end","sub":"","scene":"","arg":"UI_TO_BE_CONTINUED"},
+{"id":"D01_00","chapter":101,"idx":0,"kind":"d1investigate","sub":"","scene":"S05","arg":""},
+{"id":"D01_01","chapter":101,"idx":1,"kind":"d1carry","sub":"","scene":"S06","arg":""},
+{"id":"D01_02","chapter":101,"idx":2,"kind":"d1debate","sub":"","scene":"S07","arg":""}
 ]

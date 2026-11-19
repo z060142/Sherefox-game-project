@@ -124,6 +124,30 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "d1inv",
+      "doc": "d1inv/d1inv.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "d1book",
+      "doc": "d1book/d1book.xt",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "id": "d1carry",
+      "doc": "d1carry/d1carry.xt",
+      "size": [
+        1280,
+        720
+      ]
     }
   ],
   "shared": {

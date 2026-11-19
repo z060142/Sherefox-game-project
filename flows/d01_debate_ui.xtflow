@@ -450,8 +450,64 @@
       }
     },
     {
+      "id": "K22",
+      "type": "constant",
+      "params": {
+        "value": "d1debate"
+      }
+    },
+    {
+      "id": "isDebK",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "start",
-      "type": "merge"
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "devM",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
     },
     {
       "id": "clr_u1",
@@ -524,7 +580,7 @@
       }
     },
     {
-      "id": "K22",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": "E01,E02,E04,E05,E06,E07,E08,E10,E11"
@@ -546,7 +602,7 @@
       }
     },
     {
-      "id": "K23",
+      "id": "K24",
       "type": "constant",
       "params": {
         "value": "A01,A04"
@@ -568,7 +624,7 @@
       }
     },
     {
-      "id": "K24",
+      "id": "K25",
       "type": "constant",
       "params": {
         "value": "PN1,PN2,PN3,PN4,OBS01"
@@ -580,6 +636,13 @@
       "params": {
         "name": "d1Notes",
         "separator": ","
+      }
+    },
+    {
+      "id": "clr_d1PrivNote",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "d1PrivNote"
       }
     },
     {
@@ -604,10 +667,17 @@
       }
     },
     {
-      "id": "K25",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": "pass_clean"
+      }
+    },
+    {
+      "id": "wuDev",
+      "type": "filter",
+      "params": {
+        "op": "sample"
       }
     },
     {
@@ -860,7 +930,7 @@
       }
     },
     {
-      "id": "K26",
+      "id": "K27",
       "type": "constant",
       "params": {
         "value": "endgame"
@@ -874,7 +944,7 @@
       }
     },
     {
-      "id": "K27",
+      "id": "K28",
       "type": "constant",
       "params": {
         "value": "laststand"
@@ -888,14 +958,14 @@
       }
     },
     {
-      "id": "K28",
+      "id": "K29",
       "type": "constant",
       "params": {
         "value": 2
       }
     },
     {
-      "id": "K29",
+      "id": "K30",
       "type": "constant",
       "params": {
         "value": "over"
@@ -909,7 +979,7 @@
       }
     },
     {
-      "id": "K30",
+      "id": "K31",
       "type": "constant",
       "params": {
         "value": 3
@@ -1079,6 +1149,13 @@
       }
     },
     {
+      "id": "clr_u1LkIss",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "u1LkIss"
+      }
+    },
+    {
       "id": "evEach",
       "type": "atrium.coll.forEach",
       "params": {
@@ -1219,6 +1296,33 @@
       "type": "select"
     },
     {
+      "id": "ciIss",
+      "type": "atrium.table.get",
+      "params": {
+        "table": "d1uiClaim",
+        "column": "issue",
+        "type": "string"
+      }
+    },
+    {
+      "id": "ciLk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!ciStand"
+      }
+    },
+    {
+      "id": "ciLkG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "clLk",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "u1LkIss"
+      }
+    },
+    {
       "id": "ciOk",
       "type": "atrium.expr",
       "params": {
@@ -1284,14 +1388,14 @@
       }
     },
     {
-      "id": "K31",
+      "id": "K32",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_SOPH"
       }
     },
     {
-      "id": "K32",
+      "id": "K33",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_SOUND"
@@ -1316,7 +1420,7 @@
       }
     },
     {
-      "id": "K33",
+      "id": "K34",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_CRACK"
@@ -1341,7 +1445,7 @@
       }
     },
     {
-      "id": "K34",
+      "id": "K35",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_ON_CHAIN"
@@ -1366,7 +1470,7 @@
       }
     },
     {
-      "id": "K35",
+      "id": "K36",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_PSYCH"
@@ -1380,7 +1484,7 @@
       }
     },
     {
-      "id": "K36",
+      "id": "K37",
       "type": "constant",
       "params": {
         "value": "UI_V2_CLAIM_PRIVATE"
@@ -1588,14 +1692,14 @@
       }
     },
     {
-      "id": "K37",
+      "id": "K38",
       "type": "constant",
       "params": {
         "value": "UI_V2_RECORD_STANDING"
       }
     },
     {
-      "id": "K38",
+      "id": "K39",
       "type": "constant",
       "params": {
         "value": "UI_V2_RECORD_DOWN"
@@ -1746,6 +1850,121 @@
       }
     },
     {
+      "id": "evNowA",
+      "type": "format",
+      "params": {
+        "format": "{a}"
+      }
+    },
+    {
+      "id": "evNowB",
+      "type": "format",
+      "params": {
+        "format": "{a}"
+      }
+    },
+    {
+      "id": "evNow",
+      "type": "select"
+    },
+    {
+      "id": "pnA",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1PrivNote"
+      }
+    },
+    {
+      "id": "pnAHasC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "pnAHas",
+      "type": "select"
+    },
+    {
+      "id": "pnAInC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1ClaimList"
+      }
+    },
+    {
+      "id": "pnAIn",
+      "type": "select"
+    },
+    {
+      "id": "pnAStd",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1ClaimStand"
+      }
+    },
+    {
+      "id": "pnAOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pnAHas && pnAIn && (aV == 1 || aV == 2 || aV == 3 || aV == 5 || aV == 7) && (aV != 1 || !pnAStd)"
+      }
+    },
+    {
+      "id": "pnE",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1PrivNote"
+      }
+    },
+    {
+      "id": "pnEHasC",
+      "type": "compare",
+      "params": {
+        "op": "ne"
+      }
+    },
+    {
+      "id": "pnEHas",
+      "type": "select"
+    },
+    {
+      "id": "pnEInC",
+      "type": "atrium.coll.contains",
+      "params": {
+        "name": "d1ClaimList"
+      }
+    },
+    {
+      "id": "pnEIn",
+      "type": "select"
+    },
+    {
+      "id": "pnEStd",
+      "type": "atrium.map.get",
+      "params": {
+        "name": "d1ClaimStand"
+      }
+    },
+    {
+      "id": "pnEOk",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "pnEHas && pnEIn && (act == 1 || act == 2 || act == 3 || act == 5 || act == 7) && (act != 1 || !pnEStd)"
+      }
+    },
+    {
+      "id": "aPnG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "u1S_claim_6",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "u1S"
+      }
+    },
+    {
       "id": "u1_ref_15",
       "type": "atrium.map.set",
       "params": {
@@ -1757,7 +1976,18 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1S_ev_6",
+      "id": "u1S_ev_7",
+      "type": "atrium.map.set",
+      "params": {
+        "name": "u1S"
+      }
+    },
+    {
+      "id": "ePnG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "u1S_claim_8",
       "type": "atrium.map.set",
       "params": {
         "name": "u1S"
@@ -1789,7 +2019,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1S_claim_7",
+      "id": "u1S_claim_9",
       "type": "atrium.map.set",
       "params": {
         "name": "u1S"
@@ -1825,7 +2055,7 @@
       "type": "atrium.gate"
     },
     {
-      "id": "u1S_target_8",
+      "id": "u1S_target_10",
       "type": "atrium.map.set",
       "params": {
         "name": "u1S"
@@ -2021,7 +2251,7 @@
       }
     },
     {
-      "id": "K39",
+      "id": "K40",
       "type": "constant",
       "params": {
         "value": "UI_V2_LINK_CRACKED"
@@ -2317,7 +2547,7 @@
       }
     },
     {
-      "id": "K40",
+      "id": "K41",
       "type": "constant",
       "params": {
         "value": 4
@@ -2338,7 +2568,7 @@
       }
     },
     {
-      "id": "K41",
+      "id": "K42",
       "type": "constant",
       "params": {
         "value": 5
@@ -2359,7 +2589,7 @@
       }
     },
     {
-      "id": "K42",
+      "id": "K43",
       "type": "constant",
       "params": {
         "value": 6
@@ -2380,7 +2610,7 @@
       }
     },
     {
-      "id": "K43",
+      "id": "K44",
       "type": "constant",
       "params": {
         "value": 7
@@ -2401,7 +2631,7 @@
       }
     },
     {
-      "id": "K44",
+      "id": "K45",
       "type": "constant",
       "params": {
         "value": 8
@@ -2422,7 +2652,7 @@
       }
     },
     {
-      "id": "K45",
+      "id": "K46",
       "type": "constant",
       "params": {
         "value": 9
@@ -2443,7 +2673,7 @@
       }
     },
     {
-      "id": "K46",
+      "id": "K47",
       "type": "constant",
       "params": {
         "value": 10
@@ -2464,7 +2694,7 @@
       }
     },
     {
-      "id": "K47",
+      "id": "K48",
       "type": "constant",
       "params": {
         "value": "round"
@@ -2482,7 +2712,7 @@
       "type": "select"
     },
     {
-      "id": "K48",
+      "id": "K49",
       "type": "constant",
       "params": {
         "value": "pAttach"
@@ -2500,7 +2730,7 @@
       "type": "select"
     },
     {
-      "id": "K49",
+      "id": "K50",
       "type": "constant",
       "params": {
         "value": "oAttach"
@@ -2518,7 +2748,7 @@
       "type": "select"
     },
     {
-      "id": "K50",
+      "id": "K51",
       "type": "constant",
       "params": {
         "value": "pDmg"
@@ -2536,7 +2766,7 @@
       "type": "select"
     },
     {
-      "id": "K51",
+      "id": "K52",
       "type": "constant",
       "params": {
         "value": "oDmg"
@@ -2554,7 +2784,7 @@
       "type": "select"
     },
     {
-      "id": "K52",
+      "id": "K53",
       "type": "constant",
       "params": {
         "value": "oHeal"
@@ -2572,7 +2802,7 @@
       "type": "select"
     },
     {
-      "id": "K53",
+      "id": "K54",
       "type": "constant",
       "params": {
         "value": "reraise"
@@ -2590,7 +2820,7 @@
       "type": "select"
     },
     {
-      "id": "K54",
+      "id": "K55",
       "type": "constant",
       "params": {
         "value": "refuted"
@@ -2608,7 +2838,7 @@
       "type": "select"
     },
     {
-      "id": "K55",
+      "id": "K56",
       "type": "constant",
       "params": {
         "value": "blocked"
@@ -2626,7 +2856,7 @@
       "type": "select"
     },
     {
-      "id": "K56",
+      "id": "K57",
       "type": "constant",
       "params": {
         "value": "intercept"
@@ -2644,7 +2874,7 @@
       "type": "select"
     },
     {
-      "id": "K57",
+      "id": "K58",
       "type": "constant",
       "params": {
         "value": "dismantle"
@@ -2662,7 +2892,7 @@
       "type": "select"
     },
     {
-      "id": "K58",
+      "id": "K59",
       "type": "constant",
       "params": {
         "value": "guardSaved"
@@ -2680,7 +2910,7 @@
       "type": "select"
     },
     {
-      "id": "K59",
+      "id": "K60",
       "type": "constant",
       "params": {
         "value": "broken"
@@ -2698,7 +2928,7 @@
       "type": "select"
     },
     {
-      "id": "K60",
+      "id": "K61",
       "type": "constant",
       "params": {
         "value": "hachiku"
@@ -2716,7 +2946,7 @@
       "type": "select"
     },
     {
-      "id": "K61",
+      "id": "K62",
       "type": "constant",
       "params": {
         "value": "shisshu"
@@ -2734,7 +2964,7 @@
       "type": "select"
     },
     {
-      "id": "K62",
+      "id": "K63",
       "type": "constant",
       "params": {
         "value": "crossed"
@@ -2752,7 +2982,7 @@
       "type": "select"
     },
     {
-      "id": "K63",
+      "id": "K64",
       "type": "constant",
       "params": {
         "value": "ronpa"
@@ -2770,7 +3000,7 @@
       "type": "select"
     },
     {
-      "id": "K64",
+      "id": "K65",
       "type": "constant",
       "params": {
         "value": "reverseRonpa"
@@ -2799,7 +3029,7 @@
       "type": "select"
     },
     {
-      "id": "K65",
+      "id": "K66",
       "type": "constant",
       "params": {
         "value": "lastCard"
@@ -2817,7 +3047,7 @@
       "type": "select"
     },
     {
-      "id": "K66",
+      "id": "K67",
       "type": "constant",
       "params": {
         "value": "lastStand"
@@ -2846,7 +3076,7 @@
       "type": "select"
     },
     {
-      "id": "K67",
+      "id": "K68",
       "type": "constant",
       "params": {
         "value": "argument"
@@ -2864,7 +3094,7 @@
       "type": "select"
     },
     {
-      "id": "K68",
+      "id": "K69",
       "type": "constant",
       "params": {
         "value": "exposed"
@@ -2893,7 +3123,7 @@
       "type": "select"
     },
     {
-      "id": "K69",
+      "id": "K70",
       "type": "constant",
       "params": {
         "value": "contradiction"
@@ -2911,7 +3141,7 @@
       "type": "select"
     },
     {
-      "id": "K70",
+      "id": "K71",
       "type": "constant",
       "params": {
         "value": "whiff"
@@ -2929,7 +3159,7 @@
       "type": "select"
     },
     {
-      "id": "K71",
+      "id": "K72",
       "type": "constant",
       "params": {
         "value": "fact_miss"
@@ -2947,7 +3177,7 @@
       "type": "select"
     },
     {
-      "id": "K72",
+      "id": "K73",
       "type": "constant",
       "params": {
         "value": "stalemate"
@@ -2965,7 +3195,7 @@
       "type": "select"
     },
     {
-      "id": "K73",
+      "id": "K74",
       "type": "constant",
       "params": {
         "value": "stall_repeat"
@@ -2983,7 +3213,7 @@
       "type": "select"
     },
     {
-      "id": "K74",
+      "id": "K75",
       "type": "constant",
       "params": {
         "value": "bad_cut"
@@ -3001,7 +3231,7 @@
       "type": "select"
     },
     {
-      "id": "K75",
+      "id": "K76",
       "type": "constant",
       "params": {
         "value": "dying"
@@ -3019,7 +3249,7 @@
       "type": "select"
     },
     {
-      "id": "K76",
+      "id": "K77",
       "type": "constant",
       "params": {
         "value": "last_card"
@@ -3059,7 +3289,7 @@
       "type": "select"
     },
     {
-      "id": "K77",
+      "id": "K78",
       "type": "constant",
       "params": {
         "value": "force"
@@ -3077,7 +3307,7 @@
       "type": "select"
     },
     {
-      "id": "K78",
+      "id": "K79",
       "type": "constant",
       "params": {
         "value": "parry"
@@ -3095,7 +3325,7 @@
       "type": "select"
     },
     {
-      "id": "K79",
+      "id": "K80",
       "type": "constant",
       "params": {
         "value": "P"
@@ -3113,7 +3343,7 @@
       "type": "select"
     },
     {
-      "id": "K80",
+      "id": "K81",
       "type": "constant",
       "params": {
         "value": "G"
@@ -3131,7 +3361,7 @@
       "type": "select"
     },
     {
-      "id": "K81",
+      "id": "K82",
       "type": "constant",
       "params": {
         "value": "A"
@@ -3149,7 +3379,7 @@
       "type": "select"
     },
     {
-      "id": "K82",
+      "id": "K83",
       "type": "constant",
       "params": {
         "value": "zero"
@@ -3167,7 +3397,7 @@
       "type": "select"
     },
     {
-      "id": "K83",
+      "id": "K84",
       "type": "constant",
       "params": {
         "value": "win"
@@ -3185,7 +3415,7 @@
       "type": "select"
     },
     {
-      "id": "K84",
+      "id": "K85",
       "type": "constant",
       "params": {
         "value": "surrender"
@@ -3203,7 +3433,7 @@
       "type": "select"
     },
     {
-      "id": "K85",
+      "id": "K86",
       "type": "constant",
       "params": {
         "value": "round_limit"
@@ -3330,7 +3560,7 @@
       }
     },
     {
-      "id": "K86",
+      "id": "K87",
       "type": "constant",
       "params": {
         "value": "unfav"
@@ -3515,7 +3745,7 @@
       }
     },
     {
-      "id": "K87",
+      "id": "K88",
       "type": "constant",
       "params": {
         "value": "REACT_D01_SOPH"
@@ -3560,14 +3790,14 @@
       }
     },
     {
-      "id": "K88",
+      "id": "K89",
       "type": "constant",
       "params": {
         "value": "REACT_D01_FACT_SOPH_1"
       }
     },
     {
-      "id": "K89",
+      "id": "K90",
       "type": "constant",
       "params": {
         "value": "REACT_D01_FACT_SOPH_2"
@@ -3592,7 +3822,7 @@
       }
     },
     {
-      "id": "K90",
+      "id": "K91",
       "type": "constant",
       "params": {
         "value": "REACT_D01_LIE_SOPH"
@@ -3655,14 +3885,14 @@
       }
     },
     {
-      "id": "K91",
+      "id": "K92",
       "type": "constant",
       "params": {
         "value": "SPK_SHEREFOX"
       }
     },
     {
-      "id": "K92",
+      "id": "K93",
       "type": "constant",
       "params": {
         "value": "SPK_ARTHUR"
@@ -3750,7 +3980,7 @@
       }
     },
     {
-      "id": "K93",
+      "id": "K94",
       "type": "constant",
       "params": {
         "value": "REACT_D01_BLOCK"
@@ -3764,7 +3994,7 @@
       }
     },
     {
-      "id": "K94",
+      "id": "K95",
       "type": "constant",
       "params": {
         "value": "REACT_D01_FOOLED"
@@ -3778,7 +4008,7 @@
       }
     },
     {
-      "id": "K95",
+      "id": "K96",
       "type": "constant",
       "params": {
         "value": "STATE_D01_ART_COVER"
@@ -3799,7 +4029,7 @@
       }
     },
     {
-      "id": "K96",
+      "id": "K97",
       "type": "constant",
       "params": {
         "value": "STATE_D01_SHF_BREAK"
@@ -3813,7 +4043,7 @@
       }
     },
     {
-      "id": "K97",
+      "id": "K98",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_REVERSE_1"
@@ -3834,7 +4064,7 @@
       }
     },
     {
-      "id": "K98",
+      "id": "K99",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_LASTSTAND_FAIL_1"
@@ -3848,7 +4078,7 @@
       }
     },
     {
-      "id": "K99",
+      "id": "K100",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_GUILT_1"
@@ -3862,7 +4092,7 @@
       }
     },
     {
-      "id": "K100",
+      "id": "K101",
       "type": "constant",
       "params": {
         "value": "BEAT_D01_ANGER_1"
@@ -4078,7 +4308,7 @@
       }
     },
     {
-      "id": "K101",
+      "id": "K102",
       "type": "constant",
       "params": {
         "value": "pickup"
@@ -4103,7 +4333,7 @@
       }
     },
     {
-      "id": "K102",
+      "id": "K103",
       "type": "constant",
       "params": {
         "value": 20.0
@@ -4117,7 +4347,7 @@
       }
     },
     {
-      "id": "K103",
+      "id": "K104",
       "type": "constant",
       "params": {
         "value": 15.0
@@ -4142,7 +4372,7 @@
       }
     },
     {
-      "id": "K104",
+      "id": "K105",
       "type": "constant",
       "params": {
         "value": 10.0
@@ -4160,11 +4390,33 @@
       "type": "select"
     },
     {
+      "id": "K106",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_F_COMBO"
+      }
+    },
+    {
+      "id": "flC",
+      "type": "atrium.text"
+    },
+    {
       "id": "fmA",
       "type": "format",
       "params": {
-        "format": "{a} × {b}"
+        "format": "{a} × {b} {c}"
       }
+    },
+    {
+      "id": "K107",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_F_FOLLOW"
+      }
+    },
+    {
+      "id": "fmLK",
+      "type": "atrium.text"
     },
     {
       "id": "fmLOn",
@@ -4177,12 +4429,23 @@
       "id": "fmLT",
       "type": "format",
       "params": {
-        "format": " × {a}"
+        "format": " × {a} {b}"
       }
     },
     {
       "id": "fmL",
       "type": "select"
+    },
+    {
+      "id": "K108",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_F_RESTATE"
+      }
+    },
+    {
+      "id": "fmRK",
+      "type": "atrium.text"
     },
     {
       "id": "fmROn",
@@ -4195,12 +4458,23 @@
       "id": "fmRT",
       "type": "format",
       "params": {
-        "format": " × {a}"
+        "format": " × {a} {b}"
       }
     },
     {
       "id": "fmR",
       "type": "select"
+    },
+    {
+      "id": "K109",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_F_HACHIKU"
+      }
+    },
+    {
+      "id": "fmHK",
+      "type": "atrium.text"
     },
     {
       "id": "fmHOn",
@@ -4213,12 +4487,23 @@
       "id": "fmHT",
       "type": "format",
       "params": {
-        "format": " × {a}"
+        "format": " × {a} {b}"
       }
     },
     {
       "id": "fmH",
       "type": "select"
+    },
+    {
+      "id": "K110",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_F_GUARD"
+      }
+    },
+    {
+      "id": "fmBK",
+      "type": "atrium.text"
     },
     {
       "id": "fmBOn",
@@ -4231,7 +4516,7 @@
       "id": "fmBT",
       "type": "format",
       "params": {
-        "format": " × {a}"
+        "format": " × {a} {b}"
       }
     },
     {
@@ -4505,245 +4790,245 @@
       }
     },
     {
-      "id": "K105",
+      "id": "K111",
       "type": "constant",
       "params": {
         "value": "SYS_D01_ATTACH"
       }
     },
     {
-      "id": "K106",
+      "id": "K112",
       "type": "constant",
       "params": {
         "value": "SYS_D01_SLIP_NODMG"
       }
     },
     {
-      "id": "K107",
+      "id": "K113",
       "type": "constant",
       "params": {
         "value": "SYS_D01_FOG_TAKE"
       }
     },
     {
-      "id": "K108",
+      "id": "K114",
       "type": "constant",
       "params": {
         "value": "SYS_D01_EXPOSED"
       }
     },
     {
-      "id": "K109",
+      "id": "K115",
       "type": "constant",
       "params": {
         "value": "SYS_D01_REFUTED"
       }
     },
     {
-      "id": "K110",
+      "id": "K116",
       "type": "constant",
       "params": {
         "value": "SYS_D01_REDCRACK"
       }
     },
     {
-      "id": "K111",
+      "id": "K117",
       "type": "constant",
       "params": {
         "value": "SYS_D01_CUT_EMPTY"
       }
     },
     {
-      "id": "K112",
+      "id": "K118",
       "type": "constant",
       "params": {
         "value": "SYS_D01_MISS_WRONG"
       }
     },
     {
-      "id": "K113",
+      "id": "K119",
       "type": "constant",
       "params": {
         "value": "SYS_D01_MISS_FACT"
       }
     },
     {
-      "id": "K114",
+      "id": "K120",
       "type": "constant",
       "params": {
         "value": "SYS_D01_FOG_STALL"
       }
     },
     {
-      "id": "K115",
+      "id": "K121",
       "type": "constant",
       "params": {
         "value": "SYS_D01_BOTH_REBUT"
       }
     },
     {
-      "id": "K116",
+      "id": "K122",
       "type": "constant",
       "params": {
         "value": "SYS_D01_FOG_REPEAT"
       }
     },
     {
-      "id": "K117",
+      "id": "K123",
       "type": "constant",
       "params": {
         "value": "SYS_D01_DESPERATE_HIT"
       }
     },
     {
-      "id": "K118",
+      "id": "K124",
       "type": "constant",
       "params": {
         "value": "SYS_D01_LASTCARD_NOHEAL"
       }
     },
     {
-      "id": "K119",
+      "id": "K125",
       "type": "constant",
       "params": {
         "value": "SYS_D01_CUT_SOPH"
       }
     },
     {
-      "id": "K120",
+      "id": "K126",
       "type": "constant",
       "params": {
         "value": "SYS_D01_CUT_PUSH"
       }
     },
     {
-      "id": "K121",
+      "id": "K127",
       "type": "constant",
       "params": {
         "value": "SYS_D01_CUT_OK"
       }
     },
     {
-      "id": "K122",
+      "id": "K128",
       "type": "constant",
       "params": {
         "value": "SYS_D01_DISMANTLE"
       }
     },
     {
-      "id": "K123",
+      "id": "K129",
       "type": "constant",
       "params": {
         "value": "SYS_D01_FOOLED"
       }
     },
     {
-      "id": "K124",
+      "id": "K130",
       "type": "constant",
       "params": {
         "value": "SYS_D01_STALL_HEAL"
       }
     },
     {
-      "id": "K125",
+      "id": "K131",
       "type": "constant",
       "params": {
         "value": "SYS_D01_NOW_KNOWN"
       }
     },
     {
-      "id": "K126",
+      "id": "K132",
       "type": "constant",
       "params": {
         "value": "SYS_D01_BLOCKED"
       }
     },
     {
-      "id": "K127",
+      "id": "K133",
       "type": "constant",
       "params": {
         "value": "SYS_D01_COVER"
       }
     },
     {
-      "id": "K128",
+      "id": "K134",
       "type": "constant",
       "params": {
         "value": "SYS_D01_BREACH_HINT"
       }
     },
     {
-      "id": "K129",
+      "id": "K135",
       "type": "constant",
       "params": {
         "value": "SYS_D01_PSYCH_CROSS"
       }
     },
     {
-      "id": "K130",
+      "id": "K136",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S07_L005"
       }
     },
     {
-      "id": "K131",
+      "id": "K137",
       "type": "constant",
       "params": {
         "value": "SYS_D01_REVERSE"
       }
     },
     {
-      "id": "K132",
+      "id": "K138",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S07_L006"
       }
     },
     {
-      "id": "K133",
+      "id": "K139",
       "type": "constant",
       "params": {
         "value": "SYS_D01_CUT_WIN"
       }
     },
     {
-      "id": "K134",
+      "id": "K140",
       "type": "constant",
       "params": {
         "value": "SYS_D01_LASTSTAND_OK"
       }
     },
     {
-      "id": "K135",
+      "id": "K141",
       "type": "constant",
       "params": {
         "value": "SYS_D01_LASTSTAND_FAIL"
       }
     },
     {
-      "id": "K136",
+      "id": "K142",
       "type": "constant",
       "params": {
         "value": "UI_V2_GIVE_UP"
       }
     },
     {
-      "id": "K137",
+      "id": "K143",
       "type": "constant",
       "params": {
         "value": "UI_V2_TIME_UP"
       }
     },
     {
-      "id": "K138",
+      "id": "K144",
       "type": "constant",
       "params": {
         "value": "SYS_D01_WIN"
       }
     },
     {
-      "id": "K139",
+      "id": "K145",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S07_L016"
@@ -4922,7 +5207,7 @@
       }
     },
     {
-      "id": "K140",
+      "id": "K146",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_PRESSURE"
@@ -4936,14 +5221,14 @@
       }
     },
     {
-      "id": "K141",
+      "id": "K147",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_GUILT"
       }
     },
     {
-      "id": "K142",
+      "id": "K148",
       "type": "constant",
       "params": {
         "value": "UI_V2_GAUGE_ANGER"
@@ -5434,35 +5719,35 @@
       "id": "sm3",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_dismantle && n3 == 0"
+        "expr": "k_dismantle && n3 == 1"
       }
     },
     {
       "id": "sm4",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_oAttach && d_pat"
+        "expr": "k_dismantle"
       }
     },
     {
       "id": "sm5",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_guardSaved"
+        "expr": "k_oAttach && d_pat"
       }
     },
     {
       "id": "sm6",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_oDmg && c_whiff"
+        "expr": "k_guardSaved"
       }
     },
     {
       "id": "sm7",
       "type": "atrium.expr",
       "params": {
-        "expr": "k_hachiku && n2 > n1 && n2 < 3"
+        "expr": "k_oDmg && c_whiff"
       }
     },
     {
@@ -5487,42 +5772,42 @@
       }
     },
     {
-      "id": "K143",
+      "id": "K149",
       "type": "constant",
       "params": {
         "value": "CUT_RONPA"
       }
     },
     {
-      "id": "K144",
+      "id": "K150",
       "type": "constant",
       "params": {
         "value": "CUT_REVERSE"
       }
     },
     {
-      "id": "K145",
+      "id": "K151",
       "type": "constant",
       "params": {
         "value": "CUT_HACHIKU3"
       }
     },
     {
-      "id": "K146",
+      "id": "K152",
       "type": "constant",
       "params": {
         "value": "CUT_SHISSHU"
       }
     },
     {
-      "id": "K147",
+      "id": "K153",
       "type": "constant",
       "params": {
         "value": "CUT_KONJU"
       }
     },
     {
-      "id": "K148",
+      "id": "K154",
       "type": "constant",
       "params": {
         "value": "CUT_SHAKEN"
@@ -5553,52 +5838,17 @@
       "type": "select"
     },
     {
-      "id": "K149",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_PARRY"
-      }
-    },
-    {
-      "id": "K150",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_WHIFF"
-      }
-    },
-    {
-      "id": "K151",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_CLASH"
-      }
-    },
-    {
-      "id": "K152",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_ASSIST"
-      }
-    },
-    {
-      "id": "K153",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_TRAP"
-      }
-    },
-    {
-      "id": "K154",
-      "type": "constant",
-      "params": {
-        "value": "STAMP_HACHIKU"
-      }
-    },
-    {
       "id": "K155",
       "type": "constant",
       "params": {
-        "value": "STAMP_HACHIKU_LOST"
+        "value": "V2_TR"
+      }
+    },
+    {
+      "id": "K156",
+      "type": "constant",
+      "params": {
+        "value": "V2_BL"
       }
     },
     {
@@ -5631,6 +5881,87 @@
     },
     {
       "id": "stampId_0",
+      "type": "select"
+    },
+    {
+      "id": "K157",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_CUT"
+      }
+    },
+    {
+      "id": "K158",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_WHIFF"
+      }
+    },
+    {
+      "id": "K159",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_TOPPLE"
+      }
+    },
+    {
+      "id": "K160",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_CLASH"
+      }
+    },
+    {
+      "id": "K161",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_COVER"
+      }
+    },
+    {
+      "id": "K162",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_BAITED"
+      }
+    },
+    {
+      "id": "K163",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_STAMP_COMBO_BREAK"
+      }
+    },
+    {
+      "id": "stampKey_7",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_6",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_5",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_4",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_3",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_2",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_1",
+      "type": "select"
+    },
+    {
+      "id": "stampKey_0",
       "type": "select"
     },
     {
@@ -5670,11 +6001,15 @@
       }
     },
     {
-      "id": "stNL",
+      "id": "stKL",
       "type": "filter",
       "params": {
         "op": "sample"
       }
+    },
+    {
+      "id": "stTxt",
+      "type": "atrium.text"
     },
     {
       "id": "stSeq",
@@ -5689,14 +6024,6 @@
       "params": {
         "expr": "stSeq == 0 ? 0 : stSeq + 100000"
       }
-    },
-    {
-      "id": "cutM",
-      "type": "merge"
-    },
-    {
-      "id": "subId",
-      "type": "select"
     },
     {
       "id": "subKey",
@@ -5896,11 +6223,134 @@
       }
     },
     {
+      "id": "K164",
+      "type": "constant",
+      "params": {
+        "value": "ISSUE_D01_OPP_SHORT"
+      }
+    },
+    {
+      "id": "lkOPPH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1LkIss"
+      }
+    },
+    {
+      "id": "lkOPP",
+      "type": "select"
+    },
+    {
+      "id": "inOPPH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1Iss"
+      }
+    },
+    {
+      "id": "inOPP",
+      "type": "select"
+    },
+    {
+      "id": "K165",
+      "type": "constant",
+      "params": {
+        "value": "ISSUE_D01_METHOD_SHORT"
+      }
+    },
+    {
+      "id": "lkMETHODH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1LkIss"
+      }
+    },
+    {
+      "id": "lkMETHOD",
+      "type": "select"
+    },
+    {
+      "id": "inMETHODH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1Iss"
+      }
+    },
+    {
+      "id": "inMETHOD",
+      "type": "select"
+    },
+    {
+      "id": "K166",
+      "type": "constant",
+      "params": {
+        "value": "ISSUE_D01_MOTIVE_SHORT"
+      }
+    },
+    {
+      "id": "lkMOTIVEH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1LkIss"
+      }
+    },
+    {
+      "id": "lkMOTIVE",
+      "type": "select"
+    },
+    {
+      "id": "inMOTIVEH",
+      "type": "atrium.map.has",
+      "params": {
+        "name": "u1Iss"
+      }
+    },
+    {
+      "id": "inMOTIVE",
+      "type": "select"
+    },
+    {
+      "id": "ronpaBase",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "L_Broken && modeN == 0 && pcN >= 3"
+      }
+    },
+    {
+      "id": "ronpaTwo",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "ronpaBase && issN >= 2"
+      }
+    },
+    {
       "id": "ronpaReady",
       "type": "atrium.expr",
       "params": {
-        "expr": "L_Broken && modeN == 0 && pcN >= 3 && issN >= 2"
+        "expr": "ronpaTwo || (ronpaBase && issN == 1 && ((lkOPP && !inOPP) || (lkMETHOD && !inMETHOD) || (lkMOTIVE && !inMOTIVE)))"
       }
+    },
+    {
+      "id": "K167",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_RONPA_READY"
+      }
+    },
+    {
+      "id": "K168",
+      "type": "constant",
+      "params": {
+        "value": "UI_V2_RONPA_READY_ISSUE"
+      }
+    },
+    {
+      "id": "ronpaRK",
+      "type": "select"
+    },
+    {
+      "id": "ronpaRT",
+      "type": "atrium.text"
     },
     {
       "id": "tellOn",
@@ -5910,7 +6360,7 @@
       }
     },
     {
-      "id": "K156",
+      "id": "K169",
       "type": "constant",
       "params": {
         "value": "clear"
@@ -6555,83 +7005,107 @@
       "to": "soon.now"
     },
     {
-      "from": "ui#title.v2demo",
-      "to": "start.in"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1S.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecId.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecN.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecL.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecU.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecS.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecC.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_u1RecSt.trigger"
-    },
-    {
-      "from": "start.out",
-      "to": "clr_d1Carry.trigger"
+      "from": "world.stepKind",
+      "to": "isDebK.a"
     },
     {
       "from": "K22.out",
-      "to": "add_d1Carry.text"
+      "to": "isDebK.b"
     },
     {
-      "from": "start.out",
-      "to": "add_d1Carry.trigger"
+      "from": "isDebK.out",
+      "to": "start.guard"
     },
     {
-      "from": "start.out",
-      "to": "clr_d1Appraised.trigger"
+      "from": "world.stepBegin",
+      "to": "start.go"
+    },
+    {
+      "from": "world.d1Dev",
+      "to": "devM.guard"
+    },
+    {
+      "from": "start.changed",
+      "to": "devM.go"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1S.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecId.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecN.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecL.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecU.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecS.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecC.trigger"
+    },
+    {
+      "from": "start.changed",
+      "to": "clr_u1RecSt.trigger"
+    },
+    {
+      "from": "devM.changed",
+      "to": "clr_d1Carry.trigger"
     },
     {
       "from": "K23.out",
-      "to": "add_d1Appraised.text"
+      "to": "add_d1Carry.text"
     },
     {
-      "from": "start.out",
-      "to": "add_d1Appraised.trigger"
+      "from": "devM.changed",
+      "to": "add_d1Carry.trigger"
     },
     {
-      "from": "start.out",
-      "to": "clr_d1Notes.trigger"
+      "from": "devM.changed",
+      "to": "clr_d1Appraised.trigger"
     },
     {
       "from": "K24.out",
+      "to": "add_d1Appraised.text"
+    },
+    {
+      "from": "devM.changed",
+      "to": "add_d1Appraised.trigger"
+    },
+    {
+      "from": "devM.changed",
+      "to": "clr_d1Notes.trigger"
+    },
+    {
+      "from": "K25.out",
       "to": "add_d1Notes.text"
     },
     {
-      "from": "start.out",
+      "from": "devM.changed",
       "to": "add_d1Notes.trigger"
     },
     {
-      "from": "start.out",
+      "from": "devM.changed",
+      "to": "clr_d1PrivNote.trigger"
+    },
+    {
+      "from": "start.changed",
       "to": "clr_u1Rec.trigger"
     },
     {
@@ -6647,11 +7121,19 @@
       "to": "u1_stAt_6.value"
     },
     {
-      "from": "start.out",
+      "from": "start.changed",
       "to": "u1_stAt_6.trigger"
     },
     {
-      "from": "K25.out",
+      "from": "K26.out",
+      "to": "wuDev.in"
+    },
+    {
+      "from": "devM.changed",
+      "to": "wuDev.trigger"
+    },
+    {
+      "from": "wuDev.out",
       "to": "world.d1Warmup"
     },
     {
@@ -6951,7 +7433,7 @@
       "to": "phEg.a"
     },
     {
-      "from": "K26.out",
+      "from": "K27.out",
       "to": "phEg.b"
     },
     {
@@ -6959,7 +7441,7 @@
       "to": "phLs.a"
     },
     {
-      "from": "K27.out",
+      "from": "K28.out",
       "to": "phLs.b"
     },
     {
@@ -6967,7 +7449,7 @@
       "to": "phOv.a"
     },
     {
-      "from": "K29.out",
+      "from": "K30.out",
       "to": "phOv.b"
     },
     {
@@ -6975,7 +7457,7 @@
       "to": "phW_2.cond"
     },
     {
-      "from": "K30.out",
+      "from": "K31.out",
       "to": "phW_2.a"
     },
     {
@@ -6987,7 +7469,7 @@
       "to": "phW_1.cond"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "phW_1.a"
     },
     {
@@ -7172,6 +7654,10 @@
     },
     {
       "from": "refresh.out",
+      "to": "clr_u1LkIss.trigger"
+    },
+    {
+      "from": "refresh.out",
       "to": "evEach.trigger"
     },
     {
@@ -7271,6 +7757,34 @@
       "to": "ciInN.b"
     },
     {
+      "from": "ciRow.row",
+      "to": "ciIss.row"
+    },
+    {
+      "from": "ciStand.value",
+      "to": "ciLk.ciStand"
+    },
+    {
+      "from": "ciLk.value",
+      "to": "ciLkG.cond"
+    },
+    {
+      "from": "clEach.each",
+      "to": "ciLkG.trigger"
+    },
+    {
+      "from": "ciIss.value",
+      "to": "clLk.key"
+    },
+    {
+      "from": "K20.out",
+      "to": "clLk.value"
+    },
+    {
+      "from": "ciLkG.pass",
+      "to": "clLk.trigger"
+    },
+    {
       "from": "d_act.value",
       "to": "ciOk.act"
     },
@@ -7343,11 +7857,11 @@
       "to": "ciKindK.cond"
     },
     {
-      "from": "K31.out",
+      "from": "K32.out",
       "to": "ciKindK.a"
     },
     {
-      "from": "K32.out",
+      "from": "K33.out",
       "to": "ciKindK.b"
     },
     {
@@ -7375,7 +7889,7 @@
       "to": "ciCrkK.cond"
     },
     {
-      "from": "K33.out",
+      "from": "K34.out",
       "to": "ciCrkK.a"
     },
     {
@@ -7407,7 +7921,7 @@
       "to": "ciStdK.cond"
     },
     {
-      "from": "K34.out",
+      "from": "K35.out",
       "to": "ciStdK.a"
     },
     {
@@ -7447,7 +7961,7 @@
       "to": "ciXtr_1.cond"
     },
     {
-      "from": "K36.out",
+      "from": "K37.out",
       "to": "ciXtr_1.a"
     },
     {
@@ -7459,7 +7973,7 @@
       "to": "ciXtr_0.cond"
     },
     {
-      "from": "K35.out",
+      "from": "K36.out",
       "to": "ciXtr_0.a"
     },
     {
@@ -7623,11 +8137,11 @@
       "to": "rkSt_1.cond"
     },
     {
-      "from": "K37.out",
+      "from": "K38.out",
       "to": "rkSt_1.a"
     },
     {
-      "from": "K38.out",
+      "from": "K39.out",
       "to": "rkSt_1.b"
     },
     {
@@ -7795,6 +8309,166 @@
       "to": "u1S_ev_5.trigger"
     },
     {
+      "from": "s_ev.value",
+      "to": "evNowA.a"
+    },
+    {
+      "from": "ev0.value",
+      "to": "evNowB.a"
+    },
+    {
+      "from": "hasEvC.out",
+      "to": "evNow.cond"
+    },
+    {
+      "from": "evNowA.out",
+      "to": "evNow.a"
+    },
+    {
+      "from": "evNowB.out",
+      "to": "evNow.b"
+    },
+    {
+      "from": "evNow.out",
+      "to": "pnA.key"
+    },
+    {
+      "from": "pnA.value",
+      "to": "pnAHasC.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "pnAHasC.b"
+    },
+    {
+      "from": "pnAHasC.out",
+      "to": "pnAHas.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "pnAHas.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pnAHas.b"
+    },
+    {
+      "from": "pnA.value",
+      "to": "pnAInC.value"
+    },
+    {
+      "from": "pnAInC.has",
+      "to": "pnAIn.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "pnAIn.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pnAIn.b"
+    },
+    {
+      "from": "pnA.value",
+      "to": "pnAStd.key"
+    },
+    {
+      "from": "pnAHas.out",
+      "to": "pnAOk.pnAHas"
+    },
+    {
+      "from": "pnAIn.out",
+      "to": "pnAOk.pnAIn"
+    },
+    {
+      "from": "ui#d1debate.pick_act",
+      "to": "pnAOk.aV"
+    },
+    {
+      "from": "pnAStd.value",
+      "to": "pnAOk.pnAStd"
+    },
+    {
+      "from": "ui#d1debate.pick_ev",
+      "to": "pnE.key"
+    },
+    {
+      "from": "pnE.value",
+      "to": "pnEHasC.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "pnEHasC.b"
+    },
+    {
+      "from": "pnEHasC.out",
+      "to": "pnEHas.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "pnEHas.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pnEHas.b"
+    },
+    {
+      "from": "pnE.value",
+      "to": "pnEInC.value"
+    },
+    {
+      "from": "pnEInC.has",
+      "to": "pnEIn.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "pnEIn.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "pnEIn.b"
+    },
+    {
+      "from": "pnE.value",
+      "to": "pnEStd.key"
+    },
+    {
+      "from": "pnEHas.out",
+      "to": "pnEOk.pnEHas"
+    },
+    {
+      "from": "pnEIn.out",
+      "to": "pnEOk.pnEIn"
+    },
+    {
+      "from": "d_act.value",
+      "to": "pnEOk.act"
+    },
+    {
+      "from": "pnEStd.value",
+      "to": "pnEOk.pnEStd"
+    },
+    {
+      "from": "pnAOk.value",
+      "to": "aPnG.cond"
+    },
+    {
+      "from": "aG.pass",
+      "to": "aPnG.trigger"
+    },
+    {
+      "from": "K17.out",
+      "to": "u1S_claim_6.key"
+    },
+    {
+      "from": "pnA.value",
+      "to": "u1S_claim_6.value"
+    },
+    {
+      "from": "aPnG.pass",
+      "to": "u1S_claim_6.trigger"
+    },
+    {
       "from": "K9.out",
       "to": "u1_ref_15.key"
     },
@@ -7816,15 +8490,35 @@
     },
     {
       "from": "K12.out",
-      "to": "u1S_ev_6.key"
+      "to": "u1S_ev_7.key"
     },
     {
       "from": "ui#d1debate.pick_ev",
-      "to": "u1S_ev_6.value"
+      "to": "u1S_ev_7.value"
     },
     {
       "from": "evG.pass",
-      "to": "u1S_ev_6.trigger"
+      "to": "u1S_ev_7.trigger"
+    },
+    {
+      "from": "pnEOk.value",
+      "to": "ePnG.cond"
+    },
+    {
+      "from": "evG.pass",
+      "to": "ePnG.trigger"
+    },
+    {
+      "from": "K17.out",
+      "to": "u1S_claim_8.key"
+    },
+    {
+      "from": "pnE.value",
+      "to": "u1S_claim_8.value"
+    },
+    {
+      "from": "ePnG.pass",
+      "to": "u1S_claim_8.trigger"
     },
     {
       "from": "K9.out",
@@ -7864,15 +8558,15 @@
     },
     {
       "from": "K17.out",
-      "to": "u1S_claim_7.key"
+      "to": "u1S_claim_9.key"
     },
     {
       "from": "ui#d1debate.pick_claim",
-      "to": "u1S_claim_7.value"
+      "to": "u1S_claim_9.value"
     },
     {
       "from": "cG.pass",
-      "to": "u1S_claim_7.trigger"
+      "to": "u1S_claim_9.trigger"
     },
     {
       "from": "K9.out",
@@ -7924,15 +8618,15 @@
     },
     {
       "from": "K18.out",
-      "to": "u1S_target_8.key"
+      "to": "u1S_target_10.key"
     },
     {
       "from": "ui#d1debate.pick_target",
-      "to": "u1S_target_8.value"
+      "to": "u1S_target_10.value"
     },
     {
       "from": "tG.pass",
-      "to": "u1S_target_8.trigger"
+      "to": "u1S_target_10.trigger"
     },
     {
       "from": "K9.out",
@@ -8043,7 +8737,7 @@
       "to": "u1_ph_20.key"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "u1_ph_20.value"
     },
     {
@@ -8123,7 +8817,7 @@
       "to": "recS.cond"
     },
     {
-      "from": "K31.out",
+      "from": "K32.out",
       "to": "recS.a"
     },
     {
@@ -8143,7 +8837,7 @@
       "to": "recC.cond"
     },
     {
-      "from": "K39.out",
+      "from": "K40.out",
       "to": "recC.a"
     },
     {
@@ -8323,7 +9017,7 @@
       "to": "u1_pb_25.key"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "u1_pb_25.value"
     },
     {
@@ -8387,7 +9081,7 @@
       "to": "u1_pb_28.key"
     },
     {
-      "from": "K30.out",
+      "from": "K31.out",
       "to": "u1_pb_28.value"
     },
     {
@@ -8471,75 +9165,75 @@
       "to": "n1.index"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "f2.index"
     },
     {
-      "from": "K28.out",
+      "from": "K29.out",
       "to": "n2.index"
     },
     {
-      "from": "K30.out",
+      "from": "K31.out",
       "to": "f3.index"
     },
     {
-      "from": "K30.out",
+      "from": "K31.out",
       "to": "n3.index"
     },
     {
-      "from": "K40.out",
+      "from": "K41.out",
       "to": "f4.index"
     },
     {
-      "from": "K40.out",
+      "from": "K41.out",
       "to": "n4.index"
     },
     {
-      "from": "K41.out",
+      "from": "K42.out",
       "to": "f5.index"
     },
     {
-      "from": "K41.out",
+      "from": "K42.out",
       "to": "n5.index"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "f6.index"
     },
     {
-      "from": "K42.out",
+      "from": "K43.out",
       "to": "n6.index"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "f7.index"
     },
     {
-      "from": "K43.out",
+      "from": "K44.out",
       "to": "n7.index"
     },
     {
-      "from": "K44.out",
+      "from": "K45.out",
       "to": "f8.index"
     },
     {
-      "from": "K44.out",
+      "from": "K45.out",
       "to": "n8.index"
     },
     {
-      "from": "K45.out",
+      "from": "K46.out",
       "to": "f9.index"
     },
     {
-      "from": "K45.out",
+      "from": "K46.out",
       "to": "n9.index"
     },
     {
-      "from": "K46.out",
+      "from": "K47.out",
       "to": "f10.index"
     },
     {
-      "from": "K46.out",
+      "from": "K47.out",
       "to": "n10.index"
     },
     {
@@ -8547,7 +9241,7 @@
       "to": "kc_round.a"
     },
     {
-      "from": "K47.out",
+      "from": "K48.out",
       "to": "kc_round.b"
     },
     {
@@ -8567,7 +9261,7 @@
       "to": "kc_pAttach.a"
     },
     {
-      "from": "K48.out",
+      "from": "K49.out",
       "to": "kc_pAttach.b"
     },
     {
@@ -8587,7 +9281,7 @@
       "to": "kc_oAttach.a"
     },
     {
-      "from": "K49.out",
+      "from": "K50.out",
       "to": "kc_oAttach.b"
     },
     {
@@ -8607,7 +9301,7 @@
       "to": "kc_pDmg.a"
     },
     {
-      "from": "K50.out",
+      "from": "K51.out",
       "to": "kc_pDmg.b"
     },
     {
@@ -8627,7 +9321,7 @@
       "to": "kc_oDmg.a"
     },
     {
-      "from": "K51.out",
+      "from": "K52.out",
       "to": "kc_oDmg.b"
     },
     {
@@ -8647,7 +9341,7 @@
       "to": "kc_oHeal.a"
     },
     {
-      "from": "K52.out",
+      "from": "K53.out",
       "to": "kc_oHeal.b"
     },
     {
@@ -8667,7 +9361,7 @@
       "to": "kc_reraise.a"
     },
     {
-      "from": "K53.out",
+      "from": "K54.out",
       "to": "kc_reraise.b"
     },
     {
@@ -8687,7 +9381,7 @@
       "to": "kc_refuted.a"
     },
     {
-      "from": "K54.out",
+      "from": "K55.out",
       "to": "kc_refuted.b"
     },
     {
@@ -8707,7 +9401,7 @@
       "to": "kc_blocked.a"
     },
     {
-      "from": "K55.out",
+      "from": "K56.out",
       "to": "kc_blocked.b"
     },
     {
@@ -8727,7 +9421,7 @@
       "to": "kc_intercept.a"
     },
     {
-      "from": "K56.out",
+      "from": "K57.out",
       "to": "kc_intercept.b"
     },
     {
@@ -8747,7 +9441,7 @@
       "to": "kc_dismantle.a"
     },
     {
-      "from": "K57.out",
+      "from": "K58.out",
       "to": "kc_dismantle.b"
     },
     {
@@ -8767,7 +9461,7 @@
       "to": "kc_guardSaved.a"
     },
     {
-      "from": "K58.out",
+      "from": "K59.out",
       "to": "kc_guardSaved.b"
     },
     {
@@ -8787,7 +9481,7 @@
       "to": "kc_broken.a"
     },
     {
-      "from": "K59.out",
+      "from": "K60.out",
       "to": "kc_broken.b"
     },
     {
@@ -8807,7 +9501,7 @@
       "to": "kc_hachiku.a"
     },
     {
-      "from": "K60.out",
+      "from": "K61.out",
       "to": "kc_hachiku.b"
     },
     {
@@ -8827,7 +9521,7 @@
       "to": "kc_shisshu.a"
     },
     {
-      "from": "K61.out",
+      "from": "K62.out",
       "to": "kc_shisshu.b"
     },
     {
@@ -8847,7 +9541,7 @@
       "to": "kc_crossed.a"
     },
     {
-      "from": "K62.out",
+      "from": "K63.out",
       "to": "kc_crossed.b"
     },
     {
@@ -8867,7 +9561,7 @@
       "to": "kc_ronpa.a"
     },
     {
-      "from": "K63.out",
+      "from": "K64.out",
       "to": "kc_ronpa.b"
     },
     {
@@ -8887,7 +9581,7 @@
       "to": "kc_reverseRonpa.a"
     },
     {
-      "from": "K64.out",
+      "from": "K65.out",
       "to": "kc_reverseRonpa.b"
     },
     {
@@ -8907,7 +9601,7 @@
       "to": "kc_endgame.a"
     },
     {
-      "from": "K26.out",
+      "from": "K27.out",
       "to": "kc_endgame.b"
     },
     {
@@ -8927,7 +9621,7 @@
       "to": "kc_lastCard.a"
     },
     {
-      "from": "K65.out",
+      "from": "K66.out",
       "to": "kc_lastCard.b"
     },
     {
@@ -8947,7 +9641,7 @@
       "to": "kc_lastStand.a"
     },
     {
-      "from": "K66.out",
+      "from": "K67.out",
       "to": "kc_lastStand.b"
     },
     {
@@ -8967,7 +9661,7 @@
       "to": "kc_over.a"
     },
     {
-      "from": "K29.out",
+      "from": "K30.out",
       "to": "kc_over.b"
     },
     {
@@ -8987,7 +9681,7 @@
       "to": "c_argumentC.a"
     },
     {
-      "from": "K67.out",
+      "from": "K68.out",
       "to": "c_argumentC.b"
     },
     {
@@ -9007,7 +9701,7 @@
       "to": "c_exposedC.a"
     },
     {
-      "from": "K68.out",
+      "from": "K69.out",
       "to": "c_exposedC.b"
     },
     {
@@ -9027,7 +9721,7 @@
       "to": "c_refutedC.a"
     },
     {
-      "from": "K54.out",
+      "from": "K55.out",
       "to": "c_refutedC.b"
     },
     {
@@ -9047,7 +9741,7 @@
       "to": "c_contradictionC.a"
     },
     {
-      "from": "K69.out",
+      "from": "K70.out",
       "to": "c_contradictionC.b"
     },
     {
@@ -9067,7 +9761,7 @@
       "to": "c_whiffC.a"
     },
     {
-      "from": "K70.out",
+      "from": "K71.out",
       "to": "c_whiffC.b"
     },
     {
@@ -9087,7 +9781,7 @@
       "to": "c_fact_missC.a"
     },
     {
-      "from": "K71.out",
+      "from": "K72.out",
       "to": "c_fact_missC.b"
     },
     {
@@ -9107,7 +9801,7 @@
       "to": "c_stalemateC.a"
     },
     {
-      "from": "K72.out",
+      "from": "K73.out",
       "to": "c_stalemateC.b"
     },
     {
@@ -9127,7 +9821,7 @@
       "to": "c_stall_repeatC.a"
     },
     {
-      "from": "K73.out",
+      "from": "K74.out",
       "to": "c_stall_repeatC.b"
     },
     {
@@ -9147,7 +9841,7 @@
       "to": "c_bad_cutC.a"
     },
     {
-      "from": "K74.out",
+      "from": "K75.out",
       "to": "c_bad_cutC.b"
     },
     {
@@ -9167,7 +9861,7 @@
       "to": "c_dyingC.a"
     },
     {
-      "from": "K75.out",
+      "from": "K76.out",
       "to": "c_dyingC.b"
     },
     {
@@ -9187,7 +9881,7 @@
       "to": "c_last_cardC.a"
     },
     {
-      "from": "K76.out",
+      "from": "K77.out",
       "to": "c_last_cardC.b"
     },
     {
@@ -9207,7 +9901,7 @@
       "to": "c_interceptC.a"
     },
     {
-      "from": "K56.out",
+      "from": "K57.out",
       "to": "c_interceptC.b"
     },
     {
@@ -9227,7 +9921,7 @@
       "to": "c_dismantleC.a"
     },
     {
-      "from": "K57.out",
+      "from": "K58.out",
       "to": "c_dismantleC.b"
     },
     {
@@ -9247,7 +9941,7 @@
       "to": "hisForceC.a"
     },
     {
-      "from": "K77.out",
+      "from": "K78.out",
       "to": "hisForceC.b"
     },
     {
@@ -9267,7 +9961,7 @@
       "to": "hisParryC.a"
     },
     {
-      "from": "K78.out",
+      "from": "K79.out",
       "to": "hisParryC.b"
     },
     {
@@ -9287,7 +9981,7 @@
       "to": "xPC.a"
     },
     {
-      "from": "K79.out",
+      "from": "K80.out",
       "to": "xPC.b"
     },
     {
@@ -9307,7 +10001,7 @@
       "to": "xGC.a"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "xGC.b"
     },
     {
@@ -9327,7 +10021,7 @@
       "to": "xAC.a"
     },
     {
-      "from": "K81.out",
+      "from": "K82.out",
       "to": "xAC.b"
     },
     {
@@ -9347,7 +10041,7 @@
       "to": "egZeroC.a"
     },
     {
-      "from": "K82.out",
+      "from": "K83.out",
       "to": "egZeroC.b"
     },
     {
@@ -9367,7 +10061,7 @@
       "to": "ovWinC.a"
     },
     {
-      "from": "K83.out",
+      "from": "K84.out",
       "to": "ovWinC.b"
     },
     {
@@ -9387,7 +10081,7 @@
       "to": "rsSurrC.a"
     },
     {
-      "from": "K84.out",
+      "from": "K85.out",
       "to": "rsSurrC.b"
     },
     {
@@ -9407,7 +10101,7 @@
       "to": "rsLimitC.a"
     },
     {
-      "from": "K85.out",
+      "from": "K86.out",
       "to": "rsLimitC.b"
     },
     {
@@ -9523,7 +10217,7 @@
       "to": "cardUnfavC.a"
     },
     {
-      "from": "K86.out",
+      "from": "K87.out",
       "to": "cardUnfavC.b"
     },
     {
@@ -9643,7 +10337,7 @@
       "to": "reGen.cond"
     },
     {
-      "from": "K87.out",
+      "from": "K88.out",
       "to": "reGen.a"
     },
     {
@@ -9683,11 +10377,11 @@
       "to": "factLine.cond"
     },
     {
-      "from": "K88.out",
+      "from": "K89.out",
       "to": "factLine.a"
     },
     {
-      "from": "K89.out",
+      "from": "K90.out",
       "to": "factLine.b"
     },
     {
@@ -9723,7 +10417,7 @@
       "to": "knLine_1.cond"
     },
     {
-      "from": "K90.out",
+      "from": "K91.out",
       "to": "knLine_1.a"
     },
     {
@@ -10003,7 +10697,7 @@
       "to": "spWho_17.cond"
     },
     {
-      "from": "K92.out",
+      "from": "K93.out",
       "to": "spWho_17.a"
     },
     {
@@ -10051,7 +10745,7 @@
       "to": "spWho_13.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "spWho_13.a"
     },
     {
@@ -10063,7 +10757,7 @@
       "to": "spWho_12.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "spWho_12.a"
     },
     {
@@ -10075,7 +10769,7 @@
       "to": "spWho_11.cond"
     },
     {
-      "from": "K92.out",
+      "from": "K93.out",
       "to": "spWho_11.a"
     },
     {
@@ -10183,7 +10877,7 @@
       "to": "spWho_2.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "spWho_2.a"
     },
     {
@@ -10195,7 +10889,7 @@
       "to": "spWho_1.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "spWho_1.a"
     },
     {
@@ -10207,7 +10901,7 @@
       "to": "spWho_0.cond"
     },
     {
-      "from": "K91.out",
+      "from": "K92.out",
       "to": "spWho_0.a"
     },
     {
@@ -10219,7 +10913,7 @@
       "to": "spLine_18.cond"
     },
     {
-      "from": "K100.out",
+      "from": "K101.out",
       "to": "spLine_18.a"
     },
     {
@@ -10231,7 +10925,7 @@
       "to": "spLine_17.cond"
     },
     {
-      "from": "K99.out",
+      "from": "K100.out",
       "to": "spLine_17.a"
     },
     {
@@ -10243,7 +10937,7 @@
       "to": "spLine_16.cond"
     },
     {
-      "from": "K98.out",
+      "from": "K99.out",
       "to": "spLine_16.a"
     },
     {
@@ -10267,7 +10961,7 @@
       "to": "spLine_14.cond"
     },
     {
-      "from": "K97.out",
+      "from": "K98.out",
       "to": "spLine_14.a"
     },
     {
@@ -10279,7 +10973,7 @@
       "to": "spLine_13.cond"
     },
     {
-      "from": "K96.out",
+      "from": "K97.out",
       "to": "spLine_13.a"
     },
     {
@@ -10303,7 +10997,7 @@
       "to": "spLine_11.cond"
     },
     {
-      "from": "K95.out",
+      "from": "K96.out",
       "to": "spLine_11.a"
     },
     {
@@ -10315,7 +11009,7 @@
       "to": "spLine_10.cond"
     },
     {
-      "from": "K94.out",
+      "from": "K95.out",
       "to": "spLine_10.a"
     },
     {
@@ -10327,7 +11021,7 @@
       "to": "spLine_9.cond"
     },
     {
-      "from": "K93.out",
+      "from": "K94.out",
       "to": "spLine_9.a"
     },
     {
@@ -10503,7 +11197,7 @@
       "to": "lcPickedC.a"
     },
     {
-      "from": "K101.out",
+      "from": "K102.out",
       "to": "lcPickedC.b"
     },
     {
@@ -10523,11 +11217,11 @@
       "to": "lcZero.L_Cracks"
     },
     {
-      "from": "K102.out",
+      "from": "K103.out",
       "to": "lcZ.a"
     },
     {
-      "from": "K103.out",
+      "from": "K104.out",
       "to": "lcC.a"
     },
     {
@@ -10559,7 +11253,7 @@
       "to": "lcP.a"
     },
     {
-      "from": "K104.out",
+      "from": "K105.out",
       "to": "lcP.b"
     },
     {
@@ -10575,20 +11269,36 @@
       "to": "lcF.b"
     },
     {
+      "from": "K106.out",
+      "to": "flC.key"
+    },
+    {
       "from": "n4.value",
       "to": "fmA.a"
     },
     {
-      "from": "n5.value",
+      "from": "flC.text",
       "to": "fmA.b"
+    },
+    {
+      "from": "n5.value",
+      "to": "fmA.c"
+    },
+    {
+      "from": "K107.out",
+      "to": "fmLK.key"
     },
     {
       "from": "n6.value",
       "to": "fmLOn.n6"
     },
     {
-      "from": "n6.value",
+      "from": "fmLK.text",
       "to": "fmLT.a"
+    },
+    {
+      "from": "n6.value",
+      "to": "fmLT.b"
     },
     {
       "from": "fmLOn.truth",
@@ -10603,12 +11313,20 @@
       "to": "fmL.b"
     },
     {
+      "from": "K108.out",
+      "to": "fmRK.key"
+    },
+    {
       "from": "n7.value",
       "to": "fmROn.n7"
     },
     {
-      "from": "n7.value",
+      "from": "fmRK.text",
       "to": "fmRT.a"
+    },
+    {
+      "from": "n7.value",
+      "to": "fmRT.b"
     },
     {
       "from": "fmROn.truth",
@@ -10623,12 +11341,20 @@
       "to": "fmR.b"
     },
     {
+      "from": "K109.out",
+      "to": "fmHK.key"
+    },
+    {
       "from": "n8.value",
       "to": "fmHOn.n8"
     },
     {
-      "from": "n8.value",
+      "from": "fmHK.text",
       "to": "fmHT.a"
+    },
+    {
+      "from": "n8.value",
+      "to": "fmHT.b"
     },
     {
       "from": "fmHOn.truth",
@@ -10643,12 +11369,20 @@
       "to": "fmH.b"
     },
     {
+      "from": "K110.out",
+      "to": "fmBK.key"
+    },
+    {
       "from": "n9.value",
       "to": "fmBOn.n9"
     },
     {
-      "from": "n9.value",
+      "from": "fmBK.text",
       "to": "fmBT.a"
+    },
+    {
+      "from": "n9.value",
+      "to": "fmBT.b"
     },
     {
       "from": "fmBOn.truth",
@@ -11107,7 +11841,7 @@
       "to": "syKey_34.cond"
     },
     {
-      "from": "K139.out",
+      "from": "K145.out",
       "to": "syKey_34.a"
     },
     {
@@ -11119,7 +11853,7 @@
       "to": "syKey_33.cond"
     },
     {
-      "from": "K138.out",
+      "from": "K144.out",
       "to": "syKey_33.a"
     },
     {
@@ -11131,7 +11865,7 @@
       "to": "syKey_32.cond"
     },
     {
-      "from": "K137.out",
+      "from": "K143.out",
       "to": "syKey_32.a"
     },
     {
@@ -11143,7 +11877,7 @@
       "to": "syKey_31.cond"
     },
     {
-      "from": "K136.out",
+      "from": "K142.out",
       "to": "syKey_31.a"
     },
     {
@@ -11155,7 +11889,7 @@
       "to": "syKey_30.cond"
     },
     {
-      "from": "K135.out",
+      "from": "K141.out",
       "to": "syKey_30.a"
     },
     {
@@ -11167,7 +11901,7 @@
       "to": "syKey_29.cond"
     },
     {
-      "from": "K134.out",
+      "from": "K140.out",
       "to": "syKey_29.a"
     },
     {
@@ -11179,7 +11913,7 @@
       "to": "syKey_28.cond"
     },
     {
-      "from": "K133.out",
+      "from": "K139.out",
       "to": "syKey_28.a"
     },
     {
@@ -11191,7 +11925,7 @@
       "to": "syKey_27.cond"
     },
     {
-      "from": "K132.out",
+      "from": "K138.out",
       "to": "syKey_27.a"
     },
     {
@@ -11203,7 +11937,7 @@
       "to": "syKey_26.cond"
     },
     {
-      "from": "K131.out",
+      "from": "K137.out",
       "to": "syKey_26.a"
     },
     {
@@ -11215,7 +11949,7 @@
       "to": "syKey_25.cond"
     },
     {
-      "from": "K130.out",
+      "from": "K136.out",
       "to": "syKey_25.a"
     },
     {
@@ -11227,7 +11961,7 @@
       "to": "syKey_24.cond"
     },
     {
-      "from": "K129.out",
+      "from": "K135.out",
       "to": "syKey_24.a"
     },
     {
@@ -11239,7 +11973,7 @@
       "to": "syKey_23.cond"
     },
     {
-      "from": "K128.out",
+      "from": "K134.out",
       "to": "syKey_23.a"
     },
     {
@@ -11251,7 +11985,7 @@
       "to": "syKey_22.cond"
     },
     {
-      "from": "K127.out",
+      "from": "K133.out",
       "to": "syKey_22.a"
     },
     {
@@ -11263,7 +11997,7 @@
       "to": "syKey_21.cond"
     },
     {
-      "from": "K126.out",
+      "from": "K132.out",
       "to": "syKey_21.a"
     },
     {
@@ -11275,7 +12009,7 @@
       "to": "syKey_20.cond"
     },
     {
-      "from": "K125.out",
+      "from": "K131.out",
       "to": "syKey_20.a"
     },
     {
@@ -11287,7 +12021,7 @@
       "to": "syKey_19.cond"
     },
     {
-      "from": "K124.out",
+      "from": "K130.out",
       "to": "syKey_19.a"
     },
     {
@@ -11299,7 +12033,7 @@
       "to": "syKey_18.cond"
     },
     {
-      "from": "K123.out",
+      "from": "K129.out",
       "to": "syKey_18.a"
     },
     {
@@ -11311,7 +12045,7 @@
       "to": "syKey_17.cond"
     },
     {
-      "from": "K122.out",
+      "from": "K128.out",
       "to": "syKey_17.a"
     },
     {
@@ -11323,7 +12057,7 @@
       "to": "syKey_16.cond"
     },
     {
-      "from": "K121.out",
+      "from": "K127.out",
       "to": "syKey_16.a"
     },
     {
@@ -11335,7 +12069,7 @@
       "to": "syKey_15.cond"
     },
     {
-      "from": "K120.out",
+      "from": "K126.out",
       "to": "syKey_15.a"
     },
     {
@@ -11347,7 +12081,7 @@
       "to": "syKey_14.cond"
     },
     {
-      "from": "K119.out",
+      "from": "K125.out",
       "to": "syKey_14.a"
     },
     {
@@ -11359,7 +12093,7 @@
       "to": "syKey_13.cond"
     },
     {
-      "from": "K118.out",
+      "from": "K124.out",
       "to": "syKey_13.a"
     },
     {
@@ -11371,7 +12105,7 @@
       "to": "syKey_12.cond"
     },
     {
-      "from": "K117.out",
+      "from": "K123.out",
       "to": "syKey_12.a"
     },
     {
@@ -11383,7 +12117,7 @@
       "to": "syKey_11.cond"
     },
     {
-      "from": "K116.out",
+      "from": "K122.out",
       "to": "syKey_11.a"
     },
     {
@@ -11395,7 +12129,7 @@
       "to": "syKey_10.cond"
     },
     {
-      "from": "K115.out",
+      "from": "K121.out",
       "to": "syKey_10.a"
     },
     {
@@ -11407,7 +12141,7 @@
       "to": "syKey_9.cond"
     },
     {
-      "from": "K114.out",
+      "from": "K120.out",
       "to": "syKey_9.a"
     },
     {
@@ -11419,7 +12153,7 @@
       "to": "syKey_8.cond"
     },
     {
-      "from": "K113.out",
+      "from": "K119.out",
       "to": "syKey_8.a"
     },
     {
@@ -11431,7 +12165,7 @@
       "to": "syKey_7.cond"
     },
     {
-      "from": "K112.out",
+      "from": "K118.out",
       "to": "syKey_7.a"
     },
     {
@@ -11443,7 +12177,7 @@
       "to": "syKey_6.cond"
     },
     {
-      "from": "K111.out",
+      "from": "K117.out",
       "to": "syKey_6.a"
     },
     {
@@ -11455,7 +12189,7 @@
       "to": "syKey_5.cond"
     },
     {
-      "from": "K110.out",
+      "from": "K116.out",
       "to": "syKey_5.a"
     },
     {
@@ -11467,7 +12201,7 @@
       "to": "syKey_4.cond"
     },
     {
-      "from": "K109.out",
+      "from": "K115.out",
       "to": "syKey_4.a"
     },
     {
@@ -11479,7 +12213,7 @@
       "to": "syKey_3.cond"
     },
     {
-      "from": "K108.out",
+      "from": "K114.out",
       "to": "syKey_3.a"
     },
     {
@@ -11491,7 +12225,7 @@
       "to": "syKey_2.cond"
     },
     {
-      "from": "K107.out",
+      "from": "K113.out",
       "to": "syKey_2.a"
     },
     {
@@ -11503,7 +12237,7 @@
       "to": "syKey_1.cond"
     },
     {
-      "from": "K106.out",
+      "from": "K112.out",
       "to": "syKey_1.a"
     },
     {
@@ -11515,7 +12249,7 @@
       "to": "syKey_0.cond"
     },
     {
-      "from": "K105.out",
+      "from": "K111.out",
       "to": "syKey_0.a"
     },
     {
@@ -11575,7 +12309,7 @@
       "to": "xPC3.a"
     },
     {
-      "from": "K79.out",
+      "from": "K80.out",
       "to": "xPC3.b"
     },
     {
@@ -11583,7 +12317,7 @@
       "to": "xGC3.a"
     },
     {
-      "from": "K80.out",
+      "from": "K81.out",
       "to": "xGC3.b"
     },
     {
@@ -11591,11 +12325,11 @@
       "to": "vVal_1.cond"
     },
     {
-      "from": "K141.out",
+      "from": "K147.out",
       "to": "vVal_1.a"
     },
     {
-      "from": "K142.out",
+      "from": "K148.out",
       "to": "vVal_1.b"
     },
     {
@@ -11603,7 +12337,7 @@
       "to": "vVal_0.cond"
     },
     {
-      "from": "K140.out",
+      "from": "K146.out",
       "to": "vVal_0.a"
     },
     {
@@ -12251,36 +12985,28 @@
       "to": "sm3.n3"
     },
     {
+      "from": "k_dismantle.out",
+      "to": "sm4.k_dismantle"
+    },
+    {
       "from": "k_oAttach.out",
-      "to": "sm4.k_oAttach"
+      "to": "sm5.k_oAttach"
     },
     {
       "from": "d_pat.value",
-      "to": "sm4.d_pat"
+      "to": "sm5.d_pat"
     },
     {
       "from": "k_guardSaved.out",
-      "to": "sm5.k_guardSaved"
+      "to": "sm6.k_guardSaved"
     },
     {
       "from": "k_oDmg.out",
-      "to": "sm6.k_oDmg"
+      "to": "sm7.k_oDmg"
     },
     {
       "from": "c_whiff.out",
-      "to": "sm6.c_whiff"
-    },
-    {
-      "from": "k_hachiku.out",
-      "to": "sm7.k_hachiku"
-    },
-    {
-      "from": "n2.value",
-      "to": "sm7.n2"
-    },
-    {
-      "from": "n1.value",
-      "to": "sm7.n1"
+      "to": "sm7.c_whiff"
     },
     {
       "from": "k_hachiku.out",
@@ -12359,7 +13085,7 @@
       "to": "bigId_5.cond"
     },
     {
-      "from": "K148.out",
+      "from": "K154.out",
       "to": "bigId_5.a"
     },
     {
@@ -12371,7 +13097,7 @@
       "to": "bigId_4.cond"
     },
     {
-      "from": "K147.out",
+      "from": "K153.out",
       "to": "bigId_4.a"
     },
     {
@@ -12383,7 +13109,7 @@
       "to": "bigId_3.cond"
     },
     {
-      "from": "K146.out",
+      "from": "K152.out",
       "to": "bigId_3.a"
     },
     {
@@ -12395,7 +13121,7 @@
       "to": "bigId_2.cond"
     },
     {
-      "from": "K145.out",
+      "from": "K151.out",
       "to": "bigId_2.a"
     },
     {
@@ -12407,7 +13133,7 @@
       "to": "bigId_1.cond"
     },
     {
-      "from": "K144.out",
+      "from": "K150.out",
       "to": "bigId_1.a"
     },
     {
@@ -12419,7 +13145,7 @@
       "to": "bigId_0.cond"
     },
     {
-      "from": "K143.out",
+      "from": "K149.out",
       "to": "bigId_0.a"
     },
     {
@@ -12431,7 +13157,7 @@
       "to": "stampId_7.cond"
     },
     {
-      "from": "K155.out",
+      "from": "K156.out",
       "to": "stampId_7.a"
     },
     {
@@ -12443,7 +13169,7 @@
       "to": "stampId_6.cond"
     },
     {
-      "from": "K154.out",
+      "from": "K156.out",
       "to": "stampId_6.a"
     },
     {
@@ -12455,7 +13181,7 @@
       "to": "stampId_5.cond"
     },
     {
-      "from": "K153.out",
+      "from": "K156.out",
       "to": "stampId_5.a"
     },
     {
@@ -12467,7 +13193,7 @@
       "to": "stampId_4.cond"
     },
     {
-      "from": "K152.out",
+      "from": "K155.out",
       "to": "stampId_4.a"
     },
     {
@@ -12479,7 +13205,7 @@
       "to": "stampId_3.cond"
     },
     {
-      "from": "K151.out",
+      "from": "K156.out",
       "to": "stampId_3.a"
     },
     {
@@ -12491,7 +13217,7 @@
       "to": "stampId_2.cond"
     },
     {
-      "from": "K150.out",
+      "from": "K155.out",
       "to": "stampId_2.a"
     },
     {
@@ -12503,7 +13229,7 @@
       "to": "stampId_1.cond"
     },
     {
-      "from": "K150.out",
+      "from": "K156.out",
       "to": "stampId_1.a"
     },
     {
@@ -12515,12 +13241,108 @@
       "to": "stampId_0.cond"
     },
     {
-      "from": "K149.out",
+      "from": "K155.out",
       "to": "stampId_0.a"
     },
     {
       "from": "stampId_1.out",
       "to": "stampId_0.b"
+    },
+    {
+      "from": "sm8.truth",
+      "to": "stampKey_7.cond"
+    },
+    {
+      "from": "K163.out",
+      "to": "stampKey_7.a"
+    },
+    {
+      "from": "K19.out",
+      "to": "stampKey_7.b"
+    },
+    {
+      "from": "sm7.truth",
+      "to": "stampKey_6.cond"
+    },
+    {
+      "from": "K162.out",
+      "to": "stampKey_6.a"
+    },
+    {
+      "from": "stampKey_7.out",
+      "to": "stampKey_6.b"
+    },
+    {
+      "from": "sm6.truth",
+      "to": "stampKey_5.cond"
+    },
+    {
+      "from": "K161.out",
+      "to": "stampKey_5.a"
+    },
+    {
+      "from": "stampKey_6.out",
+      "to": "stampKey_5.b"
+    },
+    {
+      "from": "sm5.truth",
+      "to": "stampKey_4.cond"
+    },
+    {
+      "from": "K160.out",
+      "to": "stampKey_4.a"
+    },
+    {
+      "from": "stampKey_5.out",
+      "to": "stampKey_4.b"
+    },
+    {
+      "from": "sm4.truth",
+      "to": "stampKey_3.cond"
+    },
+    {
+      "from": "K158.out",
+      "to": "stampKey_3.a"
+    },
+    {
+      "from": "stampKey_4.out",
+      "to": "stampKey_3.b"
+    },
+    {
+      "from": "sm3.truth",
+      "to": "stampKey_2.cond"
+    },
+    {
+      "from": "K159.out",
+      "to": "stampKey_2.a"
+    },
+    {
+      "from": "stampKey_3.out",
+      "to": "stampKey_2.b"
+    },
+    {
+      "from": "sm2.truth",
+      "to": "stampKey_1.cond"
+    },
+    {
+      "from": "K158.out",
+      "to": "stampKey_1.a"
+    },
+    {
+      "from": "stampKey_2.out",
+      "to": "stampKey_1.b"
+    },
+    {
+      "from": "sm1.truth",
+      "to": "stampKey_0.cond"
+    },
+    {
+      "from": "K157.out",
+      "to": "stampKey_0.a"
+    },
+    {
+      "from": "stampKey_1.out",
+      "to": "stampKey_0.b"
     },
     {
       "from": "hasBig.value",
@@ -12575,16 +13397,20 @@
       "to": "ui#cutin.stamp"
     },
     {
-      "from": "n2.value",
-      "to": "stNL.in"
+      "from": "stampKey_0.out",
+      "to": "stKL.in"
     },
     {
       "from": "stG2.pass",
-      "to": "stNL.trigger"
+      "to": "stKL.trigger"
     },
     {
-      "from": "stNL.out",
-      "to": "ui#cutin.stamp_n"
+      "from": "stKL.out",
+      "to": "stTxt.key"
+    },
+    {
+      "from": "stTxt.text",
+      "to": "ui#cutin.stamp_text"
     },
     {
       "from": "stG2.pass",
@@ -12599,27 +13425,7 @@
       "to": "ui#cutin.stamp_seq"
     },
     {
-      "from": "bigG.pass",
-      "to": "cutM.in"
-    },
-    {
-      "from": "stG2.pass",
-      "to": "cutM.in"
-    },
-    {
-      "from": "hasBig.truth",
-      "to": "subId.cond"
-    },
-    {
       "from": "bigId_0.out",
-      "to": "subId.a"
-    },
-    {
-      "from": "stampId_0.out",
-      "to": "subId.b"
-    },
-    {
-      "from": "subId.out",
       "to": "subKey.a"
     },
     {
@@ -12627,7 +13433,7 @@
       "to": "subKeyL.in"
     },
     {
-      "from": "cutM.out",
+      "from": "bigG.pass",
       "to": "subKeyL.trigger"
     },
     {
@@ -12639,7 +13445,7 @@
       "to": "subNL.in"
     },
     {
-      "from": "cutM.out",
+      "from": "bigG.pass",
       "to": "subNL.trigger"
     },
     {
@@ -12935,7 +13741,7 @@
       "to": "ronpaT.n"
     },
     {
-      "from": "K40.out",
+      "from": "K41.out",
       "to": "ronpaT.need"
     },
     {
@@ -12955,24 +13761,180 @@
       "to": "ui#d1debate.show_ronpa"
     },
     {
+      "from": "K164.out",
+      "to": "lkOPPH.key"
+    },
+    {
+      "from": "lkOPPH.has",
+      "to": "lkOPP.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "lkOPP.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "lkOPP.b"
+    },
+    {
+      "from": "K164.out",
+      "to": "inOPPH.key"
+    },
+    {
+      "from": "inOPPH.has",
+      "to": "inOPP.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "inOPP.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "inOPP.b"
+    },
+    {
+      "from": "K165.out",
+      "to": "lkMETHODH.key"
+    },
+    {
+      "from": "lkMETHODH.has",
+      "to": "lkMETHOD.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "lkMETHOD.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "lkMETHOD.b"
+    },
+    {
+      "from": "K165.out",
+      "to": "inMETHODH.key"
+    },
+    {
+      "from": "inMETHODH.has",
+      "to": "inMETHOD.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "inMETHOD.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "inMETHOD.b"
+    },
+    {
+      "from": "K166.out",
+      "to": "lkMOTIVEH.key"
+    },
+    {
+      "from": "lkMOTIVEH.has",
+      "to": "lkMOTIVE.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "lkMOTIVE.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "lkMOTIVE.b"
+    },
+    {
+      "from": "K166.out",
+      "to": "inMOTIVEH.key"
+    },
+    {
+      "from": "inMOTIVEH.has",
+      "to": "inMOTIVE.cond"
+    },
+    {
+      "from": "K20.out",
+      "to": "inMOTIVE.a"
+    },
+    {
+      "from": "K21.out",
+      "to": "inMOTIVE.b"
+    },
+    {
       "from": "L_Broken.out",
-      "to": "ronpaReady.L_Broken"
+      "to": "ronpaBase.L_Broken"
     },
     {
       "from": "phW_0.out",
-      "to": "ronpaReady.modeN"
+      "to": "ronpaBase.modeN"
     },
     {
       "from": "pcN.count",
-      "to": "ronpaReady.pcN"
+      "to": "ronpaBase.pcN"
+    },
+    {
+      "from": "ronpaBase.value",
+      "to": "ronpaTwo.ronpaBase"
+    },
+    {
+      "from": "issN.count",
+      "to": "ronpaTwo.issN"
+    },
+    {
+      "from": "ronpaTwo.value",
+      "to": "ronpaReady.ronpaTwo"
+    },
+    {
+      "from": "ronpaBase.value",
+      "to": "ronpaReady.ronpaBase"
     },
     {
       "from": "issN.count",
       "to": "ronpaReady.issN"
     },
     {
+      "from": "lkOPP.out",
+      "to": "ronpaReady.lkOPP"
+    },
+    {
+      "from": "inOPP.out",
+      "to": "ronpaReady.inOPP"
+    },
+    {
+      "from": "lkMETHOD.out",
+      "to": "ronpaReady.lkMETHOD"
+    },
+    {
+      "from": "inMETHOD.out",
+      "to": "ronpaReady.inMETHOD"
+    },
+    {
+      "from": "lkMOTIVE.out",
+      "to": "ronpaReady.lkMOTIVE"
+    },
+    {
+      "from": "inMOTIVE.out",
+      "to": "ronpaReady.inMOTIVE"
+    },
+    {
       "from": "ronpaReady.truth",
       "to": "ui#d1debate.ronpa_ready"
+    },
+    {
+      "from": "ronpaTwo.truth",
+      "to": "ronpaRK.cond"
+    },
+    {
+      "from": "K167.out",
+      "to": "ronpaRK.a"
+    },
+    {
+      "from": "K168.out",
+      "to": "ronpaRK.b"
+    },
+    {
+      "from": "ronpaRK.out",
+      "to": "ronpaRT.key"
+    },
+    {
+      "from": "ronpaRT.text",
+      "to": "ui#d1debate.ronpa_ready_text"
     },
     {
       "from": "phW_0.out",
@@ -12987,7 +13949,7 @@
       "to": "tellClearC.a"
     },
     {
-      "from": "K156.out",
+      "from": "K169.out",
       "to": "tellClearC.b"
     },
     {
@@ -13235,7 +14197,7 @@
       "to": "ui#d1debate.dying"
     },
     {
-      "from": "K104.out",
+      "from": "K105.out",
       "to": "dyingT.n"
     },
     {
@@ -13395,7 +14357,7 @@
       "to": "outWin.a"
     },
     {
-      "from": "K83.out",
+      "from": "K84.out",
       "to": "outWin.b"
     },
     {

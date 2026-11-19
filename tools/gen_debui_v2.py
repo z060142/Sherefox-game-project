@@ -29,7 +29,8 @@ from sherefox_ref.v2.routes import ROUTES  # noqa: E402
 CH = load_chapter()
 UI = "d1debate"
 P = f"ui#{UI}"
-# The dev entry's loadout (ref routes.py route A, ch §12.1); warm-up result pass_clean (M2 brief).
+# The dev shortcut's loadout (ref routes.py route A, ch §12.1); warm-up result pass_clean (M2 brief). The chapter's own
+# run uses the loadout the carry step wrote and world.d1Warmup as the chapter left it (tools/gen_inv_v2.py).
 DEV = ROUTES["A"].loadout
 DEV_WARMUP = "pass_clean"
 # Player actions: the d1debate act number -> engine command word (debate-engine-v2 §2.1 d1CmdKind).
@@ -114,6 +115,7 @@ COLLECTIONS = {
     "u1OSel": {"kind": "map", "type": "bool", "capacity": 16},
     "u1PCr": {"kind": "map", "type": "number", "capacity": 16},
     "u1Iss": {"kind": "map", "type": "number", "capacity": 4},
+    "u1LkIss": {"kind": "map", "type": "number", "capacity": 4},     # issues of the claims that can still be linked
     "u1Rec": {"kind": "list", "type": "string", "capacity": 32},
     "u1RecId": {"kind": "map", "type": "string", "capacity": 32},
     "u1RecN": {"kind": "map", "type": "number", "capacity": 32},
@@ -165,17 +167,20 @@ def gen_d01ui() -> Graph:
     lockT = stage("lockG2", "d_lockAt > 0 && now >= d_lockAt", "lockAt")
     g.x("soon", f"now + {DELAY}")
 
-    # ---- start (the title's v2 entry): reset, the loadout (written now, read by d1Start a few ticks later)
-    start = g.merge("start", "ui#title.v2demo")
+    # ---- start: the d1debate step begins; the carry step wrote the loadout, or (the title's dev shortcut, world.d1Dev)
+    # route A's fixed set is written now (read by d1Start a few ticks later); reset
+    start = g.when("start", "world.stepBegin", g.cmp("isDebK", "world.stepKind", g.k("d1debate")))
+    dev = g.when("devM", start, "world.d1Dev")
     for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt"):
         g.edge(start, g.eff(f"clr_{coll}", "atrium.map.clear", coll))
     for coll, items in (("d1Carry", DEV.carried), ("d1Appraised", DEV.appraisals), ("d1Notes", DEV.notes)):
-        g.edge(start, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
-        g.edge(start, add_all(g, f"add_{coll}", coll, g.k(",".join(items))))
+        g.edge(dev, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
+        g.edge(dev, add_all(g, f"add_{coll}", coll, g.k(",".join(items))))
+    g.edge(dev, g.eff("clr_d1PrivNote", "atrium.map.clear", "d1PrivNote"))
     g.edge(start, g.eff("clr_u1Rec", "atrium.coll.clear", "u1Rec"))
     g.x("stSoon", "now + 0.1")
     setn(start, "stAt", "stSoon")
-    g.edge(g.k(DEV_WARMUP), "world.d1Warmup")
+    g.edge(g.latch("wuDev", g.k(DEV_WARMUP), dev), "world.d1Warmup")
     g.edge(stT, "world.d1Start")
     setn(stT, "rsAt", "soon")
 
@@ -211,7 +216,8 @@ def gen_d01ui() -> Graph:
     for coll in ("u1EvSel", "u1Cl"):
         typ = "atrium.coll.clear" if coll == "u1Cl" else "atrium.map.clear"
         g.edge(refresh, g.eff("clr_" + coll, typ, coll))
-    for coll in ("u1ClOk", "u1ClSel", "u1ClKind", "u1ClCrk", "u1ClStd", "u1ClXtr", "u1OSel", "u1PCr", "u1Iss"):
+    for coll in ("u1ClOk", "u1ClSel", "u1ClKind", "u1ClCrk", "u1ClStd", "u1ClXtr", "u1OSel", "u1PCr", "u1Iss",
+                 "u1LkIss"):
         g.edge(refresh, g.eff("clr_" + coll, "atrium.map.clear", coll))
     g.node("evEach", "atrium.coll.forEach", name="d1ClaimList")
     g.edge(refresh, "evEach.trigger")
@@ -237,6 +243,10 @@ def gen_d01ui() -> Graph:
     g.mget("ciSoph", "d1ClaimSoph", ci)
     g.mget("ciCrack", "d1ClaimCrack", ci)
     g.n("ciInN", g.cmp("ciIn", "ciEv", "s_ev"))
+    # the issues of the claims that can still be linked this round (the Break-ready hint, ruling d)
+    g.tget("ciIss", "d1uiClaim", "issue", crow)
+    g.edge(g.when("ciLkG", "clEach.each", T("ciLk", "!ciStand")),
+           g.eff("clLk", "atrium.map.set", "u1LkIss", key="ciIss", value=g.k(1)))
     g.x("ciOk", "act == 1 ? !ciStand : (act == 2 || act == 3 || act == 5 || act == 7) ? !ciCatch : 0")
     clG = g.when("clG", "clEach.each", "ciIn.out")
     g.edge(clG, g.eff("clAdd", "atrium.coll.add", "u1Cl", value=ci))
@@ -314,10 +324,22 @@ def gen_d01ui() -> Graph:
     sets(aP, "target", g.k(""))
     g.cget("ev0", "u1Ev", g.k(0))
     sets(g.when("aEvG", aP, T("aEvN", "!hasEvN")), "ev", "ev0")
+    # the private view (d1PrivNote, set on the evidence list, ch §13): the claim picker starts on that claim when the
+    # evidence is chosen and the action may use it (in the list, not standing for argue)
+    evNow = g.sel("evNow", "hasEvC.out", g.fmt("evNowA", "{a}", "s_ev"), g.fmt("evNowB", "{a}", "ev0"))
+    for nm, evk, actv in (("pnA", evNow, "aV"), ("pnE", f"{P}.pick_ev", "act")):
+        g.mget(nm, "d1PrivNote", evk)
+        g.n(nm + "Has", g.cmp(nm + "HasC", nm, g.k(""), "ne"))
+        g.n(nm + "In", g.contains(nm + "InC", "d1ClaimList", nm))
+        g.mget(nm + "Std", "d1ClaimStand", nm)
+        g.x(nm + "Ok", f"{nm}Has && {nm}In && (" + " || ".join(f"{actv} == {a}" for a in CLAIM_ACTS)
+            + f") && ({actv} != 1 || !{nm}Std)")
+    sets(g.when("aPnG", aP, "pnAOk_t"), "claim", "pnA")
     setn(aP, "ref", g.k(1))
     # pick_ev
     evP = g.when("evG", f"{P}.pick_ev.emitted", "inOk_t")
     sets(evP, "ev", f"{P}.pick_ev")
+    sets(g.when("ePnG", evP, "pnEOk_t"), "claim", "pnE")
     setn(evP, "ref", g.k(1))
     # pick_claim (only an enabled one)
     g.mget("cOkV", "u1ClOk", f"{P}.pick_claim")
@@ -483,9 +505,13 @@ def gen_d01ui() -> Graph:
                 g.fmt("lcC", "{a} × {b}", g.k(M.LAST_PER_CRACK), "L_Cracks"))
     lcF = g.sel("lcF", g.b("lcPickedB", "lcPicked"),
                 g.fmt("lcP", "{a} + {b}", lc0, g.k(M.LAST_PICKED_EXTRA)), lc0)
-    parts = [g.fmt("fmA", "{a} × {b}", "n4", "n5")]
-    for i, (nk, nm) in enumerate((("n6", "fmL"), ("n7", "fmR"), ("n8", "fmH"), ("n9", "fmB"))):
-        parts.append(g.sel(nm, T(nm + "On", f"{nk} != 1"), g.fmt(nm + "T", " × {a}", nk), g.k("")))
+    # the multipliers with their names (UI_V2_F_*): base × 連擊 c [× 承接 1.2] [× 重提 0.5] [× 破竹 1.x] [× 破防 1.25]
+    g.text("flC", g.k("UI_V2_F_COMBO"))
+    parts = [g.fmt("fmA", "{a} × {b} {c}", "n4", "flC", "n5")]
+    for i, (nk, nm, lk) in enumerate((("n6", "fmL", "UI_V2_F_FOLLOW"), ("n7", "fmR", "UI_V2_F_RESTATE"),
+                                      ("n8", "fmH", "UI_V2_F_HACHIKU"), ("n9", "fmB", "UI_V2_F_GUARD"))):
+        g.text(nm + "K", g.k(lk))
+        parts.append(g.sel(nm, T(nm + "On", f"{nk} != 1"), g.fmt(nm + "T", " × {a} {b}", nm + "K", nk), g.k("")))
     formula = g.fmt("fmAll2", "{a}{b}", g.fmt("fmAll", "{a}{b}{c}{d}", *parts[:4]), parts[4])
     sysl = [
         (T("sy1", "k_pAttach"), "SYS_D01_ATTACH"),
@@ -584,15 +610,16 @@ def gen_d01ui() -> Graph:
     bigs = [(T("bg1", "k_ronpa"), "CUT_RONPA"), (T("bg2", "k_reverseRonpa"), "CUT_REVERSE"),
             (T("bg3", "k_hachiku && n2 >= 3 && n1 < 3"), "CUT_HACHIKU3"), (T("bg4", "k_shisshu && n1 == 1"), "CUT_SHISSHU"),
             (T("bg5", "k_crossed && xP"), "CUT_KONJU"), (T("bg6", "k_broken"), "CUT_SHAKEN")]
-    stamps = [(T("sm1", "k_intercept && n3 == 1"), "STAMP_PARRY"), (T("sm2", "k_intercept"), "STAMP_WHIFF"),
-              (T("sm3", "k_dismantle && n3 == 0"), "STAMP_WHIFF"), (T("sm4", "k_oAttach && d_pat"), "STAMP_CLASH"),
-              (T("sm5", "k_guardSaved"), "STAMP_ASSIST"), (T("sm6", "k_oDmg && c_whiff"), "STAMP_TRAP"),
-              (T("sm7", "k_hachiku && n2 > n1 && n2 < 3"), "STAMP_HACHIKU"),
-              (T("sm8", "k_hachiku && n2 < n1"), "STAMP_HACHIKU_LOST")]
+    # stamps (ruling c): the UI_V2_STAMP_* words on a text seal; his side top right (V2_TR), ours bottom left (V2_BL)
+    stamps = [(T("sm1", "k_intercept && n3 == 1"), "CUT", "TR"), (T("sm2", "k_intercept"), "WHIFF", "BL"),
+              (T("sm3", "k_dismantle && n3 == 1"), "TOPPLE", "TR"), (T("sm4", "k_dismantle"), "WHIFF", "BL"),
+              (T("sm5", "k_oAttach && d_pat"), "CLASH", "TR"), (T("sm6", "k_guardSaved"), "COVER", "BL"),
+              (T("sm7", "k_oDmg && c_whiff"), "BAITED", "BL"), (T("sm8", "k_hachiku && n2 < n1"), "COMBO_BREAK", "BL")]
     g.x("hasBig", " || ".join(f"bg{i}" for i in range(1, len(bigs) + 1)))
     g.x("hasStamp", "!hasBig && (" + " || ".join(f"sm{i}" for i in range(1, len(stamps) + 1)) + ")")
     bid = ssel(g, "bigId", [(c, g.k(k)) for c, k in bigs], g.k(""))
-    sid = ssel(g, "stampId", [(c, g.k(k)) for c, k in stamps], g.k(""))
+    sid = ssel(g, "stampId", [(c, g.k("V2_" + side)) for c, _, side in stamps], g.k(""))
+    skey = ssel(g, "stampKey", [(c, g.k("UI_V2_STAMP_" + w)) for c, w, _ in stamps], g.k(""))
     bigP = g.when("bigG", parse, "hasBig_t")
     stP = g.when("stG2", parse, "hasStamp_t")
     g.edge(g.latch("bigL", bid, bigP), "ui#cutin.big")
@@ -600,14 +627,14 @@ def gen_d01ui() -> Graph:
     g.edge(bigP, "bigSeq.increment")
     g.edge(g.x("bigSeqOut", f"bigSeq == 0 ? 0 : bigSeq + {SEQ_BASE}"), "ui#cutin.big_seq")
     g.edge(g.latch("stL", sid, stP), "ui#cutin.stamp")
-    g.edge(g.latch("stNL", "n2", stP), "ui#cutin.stamp_n")
+    g.edge(g.text("stTxt", g.latch("stKL", skey, stP)), "ui#cutin.stamp_text")
     g.counter("stSeq", initial=0)
     g.edge(stP, "stSeq.increment")
     g.edge(g.x("stSeqOut", f"stSeq == 0 ? 0 : stSeq + {SEQ_BASE}"), "ui#cutin.stamp_seq")
-    cutM = g.merge("cutM", bigP, stP)
-    subKey = g.latch("subKeyL", g.fmt("subKey", "{a}_SUB", g.sel("subId", "hasBig_t", bid, sid)), cutM)
+    # the translation line under a big word (English, when cut-in subtitles are on); the text seals need none
+    subKey = g.latch("subKeyL", g.fmt("subKey", "{a}_SUB", bid), bigP)
     g.text("subT", subKey)
-    g.textf("subF", pattern="subT.text", n=g.latch("subNL", "n2", cutM))
+    g.textf("subF", pattern="subT.text", n=g.latch("subNL", "n2", bigP))
     g.n("subLangN", langEn)
     g.n("subOnN", "world.cutinSub")
     g.edge(g.sel("subOut", T("subOn", "subLangN && subOnN"), "subF.text", g.k("")), "ui#cutin.subtitle")
@@ -648,8 +675,20 @@ def gen_d01ui() -> Graph:
            f"{P}.ronpa_text")
     g.x("ronpaShow", "modeN == 0")
     g.edge("ronpaShow_t", f"{P}.show_ronpa")
-    g.x("ronpaReady", f"L_Broken && modeN == 0 && pcN >= {CH.ronpa_len - 1} && issN >= {CH.ronpa_issues}")
+    # "this round can break him" (ruling d): his guard is down and one more link reaches the length; the chain covers
+    # 2 issues already, or 1 and a linkable claim of another issue is in the picker
+    oth = []
+    for k in ISSUE.values():
+        key = f"ISSUE_D01_{k}_SHORT"
+        g.n(f"lk{k}", g.mhas(f"lk{k}H", "u1LkIss", g.k(key)))
+        g.n(f"in{k}", g.mhas(f"in{k}H", "u1Iss", g.k(key)))
+        oth.append(f"(lk{k} && !in{k})")
+    g.x("ronpaBase", f"L_Broken && modeN == 0 && pcN >= {CH.ronpa_len - 1}")
+    g.x("ronpaTwo", f"ronpaBase && issN >= {CH.ronpa_issues}")
+    g.x("ronpaReady", f"ronpaTwo || (ronpaBase && issN == {CH.ronpa_issues - 1} && ({' || '.join(oth)}))")
     g.edge("ronpaReady_t", f"{P}.ronpa_ready")
+    g.edge(g.text("ronpaRT", g.sel("ronpaRK", "ronpaTwo_t", g.k("UI_V2_RONPA_READY"), g.k("UI_V2_RONPA_READY_ISSUE"))),
+           f"{P}.ronpa_ready_text")
     # the tell (laststand: none)
     g.x("tellOn", "modeN == 0 || modeN == 1")
     g.edge("tellOn_t", f"{P}.tell_on")

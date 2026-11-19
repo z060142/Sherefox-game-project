@@ -1,0 +1,13 @@
+version: 1
+id: bea632f1-0e65-4cb1-8a41-3a50d5b7bf61
+type: image
+title: bg-bedroom
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_bedroom.jpg
+content: sha256:363d6c4b8f559c11ce3e52b363d1c983f1c5afbfc8a5e6a50c23f419b0485df0
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

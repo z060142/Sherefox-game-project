@@ -1,4 +1,4 @@
 ﻿ID,zh-TW,en,note
-SPK_D01_CEDRIC,塞德里克,Cedric,"PLACEHOLDER: name plate / speaker / {name}; text from the speaker columns of script_d01.csv"
-UI_V2_GIVE_UP_BTN,放棄,Give Up,"PLACEHOLDER: §7.5 player's last card round, the button that gives up (the engine's accept)"
-UI_V2_RESULT_ROUNDS,回合數 {n},Rounds: {n},"PLACEHOLDER: the debate's outcome panel, round count"
+UI_V2_EVLIST,證物清單,Evidence List,"PLACEHOLDER: the investigation's evidence list (button on the investigation screen, tab of the list); ch §13 證物清單"
+UI_V2_GOT,取得：{list},Found: {list},"PLACEHOLDER: hotspot note, the evidence / mind-game card taken there ({list} = names joined by UI_TAG_SEP)"
+UI_V2_DEV_DEBATE,開發：直接進入論戰,Dev: straight to the debate,"PLACEHOLDER: title screen dev shortcut (skips investigation and carry; route A's fixed loadout); not a player-facing feature"

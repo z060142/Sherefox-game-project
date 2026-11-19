@@ -1,0 +1,398 @@
+<xt version="2">
+  <head>
+    <title>D1Carry</title>
+  </head>
+
+  <ports>
+    phase: number in = 0
+    count_text: string in = "可攜帶：9 件。已選：8 件。"
+    full: bool in = false
+    first_hint: string in = "能帶進論戰的東西有限。留下的證物，可能落入對手手中。"
+    items: list<struct{id: string, name: string, desc: string, kind: string, psy: bool, sel: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","desc":"書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。","kind":"證物","psy":false,"sel":true},{"id":"E03","name":"落在地上的鏡子黑布","desc":"書房穿衣鏡的黑布掉在地毯上。","kind":"證物","psy":false,"sel":false},{"id":"P1","name":"通靈板","desc":"閣樓舊玩具箱裡的木製靈應盤。","kind":"心理牌","psy":true,"sel":false}]
+    who1: string in = "亞瑟"
+    say1: string in = "鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。"
+    who2: string in = ""
+    say2: string in = ""
+    say_seq: number in = 0
+    confirm_text: string in = "以下東西會留在宅邸：落在地上的鏡子黑布、通靈板。確定嗎？"
+    pick_item: string out = ""
+    ask: event out
+    confirm: event out
+    back: event out
+    yes: event out
+    no: event out
+    go: event out
+    settings: event out
+  </ports>
+
+  <body key-activation="none">
+    <div id="d1carry" tabindex="0" autofocus="" on:key(Escape)="if port(phase) eq 1 emit(no) else emit(settings)" on:key(F1)="emit(settings)" on:key(Enter)="if port(phase) eq 2 emit(go)" on:key(Space)="if port(phase) eq 2 emit(go)">
+      <img id="bg" src="../shared/img/bg-hall.jpg"/>
+      <div id="dim"/>
+      <div id="main">
+        <div id="sheet" class="sheet">
+          <div id="k" class="kicker">@SCR_D01_S06_TITLE</div>
+          <div id="title" class="h1">@UI_V2_CARRY_TITLE</div>
+          <div id="count" class="count" bind:text="count_text" bind:class.full="full">可攜帶：9 件。已選：8 件。</div>
+          <div id="hint" class="sys" bind:text="first_hint" bind:display="first_hint | ne('')">能帶進論戰的東西有限。留下的證物，可能落入對手手中。</div>
+          <repeat id="items" port="items">
+            <div id="item" class="item" on:click(left)="if port(phase) eq 0 set(pick_item, item(id))" bind:class.sel="item(sel)" bind:class.psy="item(psy)">
+              <div id="it-box" class="box">
+                <div id="it-tick" class="tick"/>
+              </div>
+              <div id="it-n" class="it-n" bind:text="item(name)">黃銅文件筒（空）</div>
+              <div id="it-d" class="it-d" bind:text="item(desc)">書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。</div>
+              <div id="it-k" class="it-k" bind:text="item(kind)">證物</div>
+            </div>
+          </repeat>
+        </div>
+        <div id="side">
+          <div id="arthur">
+            <img id="arthur-art" class="s-b00406" src="../shared/img/ch-c-arthur.png"/>
+          </div>
+          <div id="btn-ask" class="ask" on:click(left)="if port(phase) eq 0 emit(ask)">
+            <div id="btn-ask-t" class="ask-t">@UI_V2_CARRY_ASK_ARTHUR</div>
+          </div>
+          <div id="btn-back" class="btn paper" on:click(left)="if port(phase) eq 0 emit(back)">@BTN_BACK</div>
+          <div id="btn-confirm" class="btn red" on:click(left)="if port(phase) eq 0 emit(confirm)">@UI_V2_CARRY_CONFIRM</div>
+        </div>
+        <div id="dlg" class="dlg" on:port(say_seq)="play(dlg-in)" bind:display="say1 | ne('')">
+          <div id="who1" class="who" bind:text="who1">亞瑟</div>
+          <div id="say1" class="say" bind:text="say1">鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。</div>
+          <div id="who2" class="who" bind:text="who2" bind:display="say2 | ne('')">Sherefox</div>
+          <div id="say2" class="say" bind:text="say2" bind:display="say2 | ne('')">它很輕。</div>
+        </div>
+      </div>
+      <div id="confirm" bind:display="phase | eq(1)">
+        <div id="c-veil" class="veil" on:click(left)="emit(no)"/>
+        <div id="c-box" class="cbox">
+          <div id="c-k" class="kicker">@UI_V2_CARRY_LEFT_HEAD</div>
+          <div id="c-t" class="c-t" bind:text="confirm_text">以下東西會留在宅邸：落在地上的鏡子黑布、通靈板。確定嗎？</div>
+          <div id="c-no" class="btn paper" on:click(left)="emit(no)">@BTN_CANCEL</div>
+          <div id="c-yes" class="btn red" on:click(left)="emit(yes)">@BTN_OK</div>
+        </div>
+      </div>
+      <div id="post" on:click(left)="emit(go)" bind:display="phase | eq(2)">
+        <div id="post-more" class="more">@BTN_CONTINUE</div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1Carry.dc.html:1 */
+    #d1carry {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1Carry.dc.html:1/0 */
+    #bg {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Carry.dc.html:1/1 */
+    #dim {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Carry.dc.html:1/2 */
+    #main {
+      height: 720px;
+      left: calc(50% - 640px);
+      position: absolute;
+      top: calc(50% - 360px);
+      width: 1280px;
+    }
+    /* import: D1Carry.dc.html:1/2/0 */
+    #sheet {
+      height: 560px;
+      left: 32px;
+      position: absolute;
+      top: 20px;
+      width: 860px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/0 */
+    #k {
+      height: 20px;
+      left: 24px;
+      position: absolute;
+      top: 10px;
+      width: 500px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/1 */
+    #title {
+      height: 38px;
+      left: 24px;
+      position: absolute;
+      top: 30px;
+      width: 520px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/2 */
+    #count {
+      height: 30px;
+      left: 456px;
+      position: absolute;
+      top: 36px;
+      width: 380px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/3 */
+    #hint {
+      height: 21px;
+      left: 24px;
+      position: absolute;
+      top: 74px;
+      width: 800px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4 */
+    #items {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      height: 444px;
+      left: 24px;
+      position: absolute;
+      top: 104px;
+      width: 812px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0 */
+    #item {
+      flex-shrink: 0;
+      height: 31px;
+      position: relative;
+      width: 812px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0/0 */
+    #it-box {
+      height: 16px;
+      left: 10px;
+      position: absolute;
+      top: 7px;
+      width: 16px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0/0/0 */
+    #it-tick {
+      height: 8px;
+      left: 2px;
+      position: absolute;
+      top: 2px;
+      width: 8px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0/1 */
+    #it-n {
+      height: 20px;
+      left: 36px;
+      position: absolute;
+      top: 5px;
+      width: 230px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0/2 */
+    #it-d {
+      height: 16px;
+      left: 276px;
+      position: absolute;
+      top: 7px;
+      width: 440px;
+    }
+    /* import: D1Carry.dc.html:1/2/0/4/0/3 */
+    #it-k {
+      height: 16px;
+      left: 724px;
+      position: absolute;
+      top: 7px;
+      width: 78px;
+    }
+    /* import: D1Carry.dc.html:1/2/1 */
+    #side {
+      height: 560px;
+      left: 912px;
+      position: absolute;
+      top: 20px;
+      width: 336px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/0 */
+    #arthur {
+      height: 330px;
+      left: 18px;
+      overflow: hidden;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/0/0 */
+    #arthur-art {
+      height: 450px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 300px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/1 */
+    #btn-ask {
+      height: 52px;
+      left: 18px;
+      position: absolute;
+      top: 340px;
+      width: 300px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/1/0 */
+    #btn-ask-t {
+      height: 22px;
+      left: 8px;
+      position: absolute;
+      top: 15px;
+      width: 284px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/2 */
+    #btn-back {
+      height: 46px;
+      left: 18px;
+      position: absolute;
+      top: 500px;
+      width: 140px;
+    }
+    /* import: D1Carry.dc.html:1/2/1/3 */
+    #btn-confirm {
+      height: 46px;
+      left: 170px;
+      position: absolute;
+      top: 500px;
+      width: 148px;
+    }
+    /* import: D1Carry.dc.html:1/2/2 */
+    #dlg {
+      height: 116px;
+      left: 0px;
+      position: absolute;
+      top: 596px;
+      width: 1280px;
+    }
+    /* import: D1Carry.dc.html:1/2/2/0 */
+    #who1 {
+      height: 20px;
+      left: 48px;
+      position: absolute;
+      top: 10px;
+      width: 300px;
+    }
+    /* import: D1Carry.dc.html:1/2/2/1 */
+    #say1 {
+      height: 26px;
+      left: 48px;
+      position: absolute;
+      top: 30px;
+      width: 1180px;
+    }
+    /* import: D1Carry.dc.html:1/2/2/2 */
+    #who2 {
+      height: 20px;
+      left: 48px;
+      position: absolute;
+      top: 60px;
+      width: 300px;
+    }
+    /* import: D1Carry.dc.html:1/2/2/3 */
+    #say2 {
+      height: 26px;
+      left: 48px;
+      position: absolute;
+      top: 80px;
+      width: 1180px;
+    }
+    /* import: D1Carry.dc.html:1/3 */
+    #confirm {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Carry.dc.html:1/3/0 */
+    #c-veil {
+      height: 720px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 1280px;
+    }
+    /* import: D1Carry.dc.html:1/3/1 */
+    #c-box {
+      height: 230px;
+      left: calc(50% - 330px);
+      position: absolute;
+      top: calc(50% - 115px);
+      width: 660px;
+    }
+    /* import: D1Carry.dc.html:1/3/1/0 */
+    #c-k {
+      height: 20px;
+      left: 28px;
+      position: absolute;
+      top: 18px;
+      width: 600px;
+    }
+    /* import: D1Carry.dc.html:1/3/1/1 */
+    #c-t {
+      height: 100px;
+      left: 28px;
+      position: absolute;
+      top: 46px;
+      width: 604px;
+    }
+    /* import: D1Carry.dc.html:1/3/1/2 */
+    #c-no {
+      height: 46px;
+      left: 300px;
+      position: absolute;
+      top: 160px;
+      width: 150px;
+    }
+    /* import: D1Carry.dc.html:1/3/1/3 */
+    #c-yes {
+      height: 46px;
+      left: 470px;
+      position: absolute;
+      top: 160px;
+      width: 162px;
+    }
+    /* import: D1Carry.dc.html:1/4 */
+    #post {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Carry.dc.html:1/4/0 */
+    #post-more {
+      height: 16px;
+      left: 1000px;
+      position: absolute;
+      top: 690px;
+      width: 240px;
+    }
+    .sys {
+      padding-left: 10px;
+    }
+    .tick {
+      display: none;
+    }
+    .item.sel .tick {
+      display: block;
+    }
+    .it-n {
+      overflow: hidden;
+    }
+    .it-d {
+      overflow: hidden;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1carry.xts"/>
+  <timelines>
+    @timeline dlg-in {
+      #dlg {
+        0ms {
+          opacity: 0.3;
+        }
+        220ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+  </timelines>
+</xt>

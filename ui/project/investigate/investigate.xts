@@ -116,15 +116,6 @@
   text-align: center;
 }
 
-/* import: Investigate.dc.html:1/6/5/4 */
-#msg-close {
-  color: #a65432;
-  font-size: 13px;
-  letter-spacing: 2px;
-  line-height: 22px;
-  text-align: right;
-}
-
 .bg-art {
   object-fit: cover;
 }

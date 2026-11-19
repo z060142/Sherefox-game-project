@@ -116,6 +116,24 @@
   background-color: #f3eedfcc;
 }
 
+.st-v2 {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 54px;
+  line-height: 120px;
+  font-weight: 700;
+  color: #b8322a;
+  text-align: center;
+  white-space: nowrap;
+  border: 6px #b8322a;
+  border-radius: 12px;
+  background-color: #f3eedfcc;
+}
+
+:lang(en) .st-v2 {
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
 .st-hk-n {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 30px;

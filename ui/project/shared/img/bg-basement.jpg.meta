@@ -1,0 +1,13 @@
+version: 1
+id: e2697524-f1f4-4fa7-9c5f-a675e0eca2ca
+type: image
+title: bg-basement
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_basement.jpg
+content: sha256:8de049062f7299f8928ab352ee32f148ae0ab071e695488b0a8d4a1339e74bab
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

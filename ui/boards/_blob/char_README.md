@@ -36,3 +36,12 @@ d1debate board in a 330x495 box (`object-fit: contain`).
 | char_cedric_cornered.png | images/d01/cedric_cornered.png |
 | char_cedric_angry.png | images/d01/cedric_angry.png |
 | char_cedric_guilt.png | images/d01/cedric_guilt.png |
+
+D01 investigation (d1inv: the people who can be questioned stand in their place), from the design repo's
+`images/d01/<name>.png` (branch v2), re-encoded with the same command:
+
+| file | source |
+|---|---|
+| char_irene.png | images/d01/irene.png |
+| char_mrs_hyde.png | images/d01/mrs_hyde.png |
+| char_briggs.png | images/d01/briggs.png |

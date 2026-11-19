@@ -211,6 +211,29 @@ check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR`
 zh-TW and en (`xtatrium shot`): the claim picker in an ordinary round, a playback line, the 論破 cut-in, the endgame
 prompt with the last gasp, the §7.5 round, both outcome panels.
 
+## v2 demo: the D01 chapter (M3)
+
+```
+uv run tests/check_d1_m3.py [--shots DIR]
+```
+
+`check_d1_m3.py` regenerates `tests/d1_m3.atrec` (`tests/gen_d1_m3.py`) and replays it with `--ports` in zh-TW and en,
+from the title's v2 entry (chapter 101) to the debate's outcome panel:
+
+| Check | What it asserts |
+|---|---|
+| `chapter [zh-TW]`, `[en]` | every hotspot's note (name, description, Arthur's comment, what is taken, the note line; PN3 only once HS04 and HS05 are both seen), all six places done; the evidence list (13 items), A01 and A04 appraised (result, Arthur's line, the count runs out, E02 can no longer be appraised), E01's private views (none, 01A, 01B, 01C, 01D) and 01A chosen; the notes page (5); the carry screen's first-visit line (gone on the second visit after Back), Ask Arthur pressed nine times against the S06 priority order (L008, L004+L005, L003, L006, L007, L011, L012, L012, then L012 with route A's nine chosen), the no-room line, the confirm list (what stays), L010; the debate's claim picker starting on 01A when E01 is chosen and on nothing for evidence without a view; route A's result (grade 1, 9 rounds, a win); nothing on stderr |
+| `loadout` | what reached the debate (`xtatrium trace` of the harness's mirror signals): `d1Carry` = route A's nine, `d1Appraised` = A01, A04, `d1Notes` = the five notes, `d1PrivNote[E01]` = 01A |
+
+The harness `tests/d1m3_harness/` (route A's pinned opponent from `gen_d1_play.py` plus the mirror flow; gitignored) is
+deleted when the check ends, and the check fails if it leaves a `tmp*`／`d1m3shots-*` entry in `%TEMP%`. `--shots DIR`
+writes the review screenshots (zh-TW and en): each place with its hotspots, a hotspot note, the evidence list with an
+appraisal and with a private view, the notes page, the carry screen (first visit, an Arthur line, the confirm list,
+L010), a playback line with the formula names and a stamp; and `DIR/overlays/` (every hotspot rectangle with its id over
+each place, with ImageMagick).
+
+`check_d1_play.py` (M2) now enters through the title's dev shortcut (`v2dev`, the D01 debate row with route A's set).
+
 ## Edge smoothing, msaa 1 vs msaa 4 (report aid)
 
 `uv run tests/aa_compare.py OUTDIR [--screens title,debate] [--zoom N]` uses `xtatrium shot` (no window, frame-exact) to

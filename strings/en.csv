@@ -2266,12 +2266,19 @@ UI_V2_CRED_OPP,{name}'s Credibility
 UI_V2_CRED_PLAYER,Your Credibility
 UI_V2_DEATH_THROE,Last gasp: only {n} if it lands
 UI_V2_DEMO_NOTE,"Demo chapter: a standalone case, not part of the main story."
+UI_V2_DEV_DEBATE,Dev: straight to the debate
 UI_V2_DMG_PREVIEW,Est. Argument {n}
 UI_V2_ENDGAME,Endgame
 UI_V2_ENDGAME_CUT,Cut In
 UI_V2_ENDGAME_TAKE,Take It
+UI_V2_EVLIST,Evidence List
 UI_V2_FAVOR_HEAD,Standing with Others
 UI_V2_FAVOR_LINE,{name} {delta}
+UI_V2_F_COMBO,Combo
+UI_V2_F_FOLLOW,Follow-up
+UI_V2_F_GUARD,Guard Down
+UI_V2_F_HACHIKU,Unstoppable
+UI_V2_F_RESTATE,Restated
 UI_V2_GAUGE_ANGER,Anger
 UI_V2_GAUGE_BROKEN,Rattled
 UI_V2_GAUGE_CALM,Steady
@@ -2279,7 +2286,8 @@ UI_V2_GAUGE_FLOAT,Wavering
 UI_V2_GAUGE_GUILT,Guilt
 UI_V2_GAUGE_PRESSURE,Pressure
 UI_V2_GIVE_UP,{name} lowers his head and says nothing more.
-UI_V2_GIVE_UP_BTN,Give Up
+UI_V2_GIVE_UP_BTN,Concede
+UI_V2_GOT,Found: {list}
 UI_V2_GOT_NOTE,Noted.
 UI_V2_GRADE_1,Clean Break
 UI_V2_GRADE_2,Break Held
@@ -2329,13 +2337,21 @@ UI_V2_REP_PRIVATE,Exposed a private matter ×{n}
 UI_V2_REP_PSYCH,Played on his nerves
 UI_V2_REP_STALL,Stalled too often
 UI_V2_REP_UP,↑
-UI_V2_RESULT_ROUNDS,Rounds: {n}
+UI_V2_RESULT_ROUNDS,{n} rounds
 UI_V2_RONPA_PROGRESS,Chain {n}/{need}   Issues {m}/2
 UI_V2_RONPA_READY,His guard is down. Land a link this round to break him!
+UI_V2_RONPA_READY_ISSUE,His guard is down. Land a link on a second issue this round to break him!
 UI_V2_ROUND,Round {n} / {max}
 UI_V2_SEIZE,Seize His Words
 UI_V2_SEIZE_DESC,He just let something slip. No evidence needed; this round only.
 UI_V2_SHISHOU_HINT,On the back foot: read him right once to steady yourself.
+UI_V2_STAMP_BAITED,Baited
+UI_V2_STAMP_CLASH,Clash
+UI_V2_STAMP_COMBO_BREAK,Broken
+UI_V2_STAMP_COVER,Cover
+UI_V2_STAMP_CUT,Cut
+UI_V2_STAMP_TOPPLE,Down
+UI_V2_STAMP_WHIFF,Whiff
 UI_V2_SUPPORT,Cover
 UI_V2_SUPPORT_ARMED,Cover: Armed
 UI_V2_SUPPORT_DESC,"If you are exposed, refuted or whiff a rebuttal this round, Arthur smooths it over. Otherwise it is wasted."

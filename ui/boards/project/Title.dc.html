@@ -57,9 +57,12 @@
   .v2-entry:hover .v2-k { color: var(--lamp-gold) }
   .v2-entry:hover .v2-t { color: var(--paper) }
   .v2-entry:hover .v2-n { color: var(--paper) }
+  .v2-dev { font-family: var(--font-body); font-size: 11px; line-height: 22px; text-align: center; white-space: nowrap; overflow: hidden;
+            color: var(--copper); background-color: var(--paper); border: 1px dashed var(--copper); transition: background-color 150ms linear }
+  .v2-dev:hover { color: var(--paper); background-color: var(--copper) }
 </style></helmet>
 <div id="title" data-xt-uiscale="fit"
-     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false; end_dismiss:event out; open_settings:event out; quit:event out; v2demo:event out"
+     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false; end_dismiss:event out; open_settings:event out; quit:event out; v2dev:event out"
      data-xt-trigger="show:play(intro)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
@@ -128,13 +131,16 @@
               font-size: 28px; line-height: 40px; color: var(--ink);">Sherefox：霧都的狐狸偵探</p>
   </div>
 
-  <!-- The v2 demo chapter (D01): starts its debate directly (dev entry). -->
-  <div id="btn-v2" class="v2-entry" tabindex="0" data-xt-trigger="click:emit(v2demo)"
+  <!-- The v2 demo chapter (D01): chooses chapter 101 like the chapter list (its first step row D01_00). The small chip on its right is the dev shortcut straight to
+       the debate with route A's fixed loadout (a sibling over the entry, so its click does not reach the entry). -->
+  <div id="btn-v2" class="v2-entry" tabindex="0" data-xt-trigger="click:set(chapter, 101)"
        style="position: absolute; left: 48px; top: 604px; width: 712px; height: 78px;">
     <div id="btn-v2-k" class="v2-k" data-xt-key="UI_V2_TITLE_ENTRY" style="position: absolute; left: 16px; top: 6px; width: 680px; height: 20px;">v2 示範關卡</div>
     <div id="btn-v2-t" class="v2-t" data-xt-key="CHAP_D01_TITLE" style="position: absolute; left: 16px; top: 25px; width: 680px; height: 30px;">守靈夜消失的遺囑</div>
     <div id="btn-v2-n" class="v2-n" data-xt-key="UI_V2_DEMO_NOTE" style="position: absolute; left: 16px; top: 56px; width: 680px; height: 16px;">示範關卡：獨立章節，不屬於正式遊戲的故事。</div>
   </div>
+  <div id="btn-v2-dev" class="v2-dev" tabindex="0" data-xt-key="UI_V2_DEV_DEBATE" data-xt-trigger="click:emit(v2dev)"
+       style="position: absolute; left: 560px; top: 612px; width: 188px; height: 24px;">開發：直接進入論戰</div>
 
   <div id="rule-column" class="rule-thin"
        style="position: absolute; left: 792px; top: 300px; width: 1px; height: 384px;"></div>

@@ -49,7 +49,15 @@
     "shared/img/cedric-uneasy.png",
     "shared/img/cedric-cornered.png",
     "shared/img/cedric-angry.png",
-    "shared/img/cedric-guilt.png"
+    "shared/img/cedric-guilt.png",
+    "shared/img/bg-study.jpg",
+    "shared/img/bg-basement.jpg",
+    "shared/img/bg-attic.jpg",
+    "shared/img/bg-bedroom.jpg",
+    "shared/img/bg-hall.jpg",
+    "shared/img/fig-hyde.png",
+    "shared/img/fig-irene.png",
+    "shared/img/fig-briggs.png"
   ],
   "bindings": [],
   "bundle": {
@@ -91,7 +99,7 @@
       "contentHash": "c9bd1334bb763015",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 68,
+      "line": 71,
       "outId": "kicker",
       "selfHash": "34ee05a2f36b589f",
       "sourceId": "Title.dc.html:1/0",
@@ -116,7 +124,7 @@
       "contentHash": "52373fe4ec62526b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 74,
+      "line": 77,
       "outId": "lang-label",
       "selfHash": "612af15ca1f61466",
       "sourceId": "Title.dc.html:1/1/0",
@@ -136,7 +144,7 @@
       "contentHash": "6df6d8fe670e465c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 78,
+      "line": 81,
       "outId": "lang-zh",
       "selfHash": "4c10043df79e5244",
       "sourceId": "Title.dc.html:1/1/1/0",
@@ -156,7 +164,7 @@
       "contentHash": "3cabe25c3eeb841a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 80,
+      "line": 83,
       "outId": "lang-en",
       "selfHash": "cbd4b27fcea17e83",
       "sourceId": "Title.dc.html:1/1/1/1",
@@ -185,7 +193,7 @@
       "contentHash": "479f5f2495856cd8",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 76,
+      "line": 79,
       "outId": "lang-switch",
       "selfHash": "d574f8e0e8d12ce8",
       "sourceId": "Title.dc.html:1/1/1",
@@ -212,7 +220,7 @@
       "contentHash": "2c4024de5df0c684",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 71,
+      "line": 74,
       "outId": "lang-toggle",
       "selfHash": "8f37f13d8d1698ae",
       "sourceId": "Title.dc.html:1/1",
@@ -234,7 +242,7 @@
       "contentHash": "9f8ae72ef13a4f78",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 85,
+      "line": 88,
       "outId": "rule-top",
       "selfHash": "74f353e1d4457593",
       "sourceId": "Title.dc.html:1/2",
@@ -259,7 +267,7 @@
       "contentHash": "d39477f38f9d66f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 93,
+      "line": 96,
       "outId": "masthead-art",
       "selfHash": "612390f61d339dbd",
       "sourceId": "Title.dc.html:1/3/0/0",
@@ -282,7 +290,7 @@
       "contentHash": "c0b20a76e06fdccd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 91,
+      "line": 94,
       "outId": "masthead",
       "selfHash": "7a94dd2856d2b8a1",
       "sourceId": "Title.dc.html:1/3/0",
@@ -306,7 +314,7 @@
       "contentHash": "26598414c8264761",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 96,
+      "line": 99,
       "outId": "mast-tick",
       "selfHash": "8112e663c7e1bc68",
       "sourceId": "Title.dc.html:1/3/1",
@@ -326,7 +334,7 @@
       "contentHash": "7052e1fd74148d7d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 90,
+      "line": 93,
       "outId": "mast-dock",
       "selfHash": "3d673906c470bc0a",
       "sourceId": "Title.dc.html:1/3",
@@ -350,7 +358,7 @@
       "contentHash": "9e9fc70be642bbe4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 105,
+      "line": 108,
       "outId": "rule-mast-thick",
       "selfHash": "4c775b55937b1764",
       "sourceId": "Title.dc.html:1/4",
@@ -374,7 +382,7 @@
       "contentHash": "0191409c641f5b6c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 107,
+      "line": 110,
       "outId": "rule-mast-thin",
       "selfHash": "ba2ed9e2ed01b1a9",
       "sourceId": "Title.dc.html:1/5",
@@ -403,7 +411,7 @@
       "contentHash": "a4730fd9b4bb56e3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 109,
+      "line": 112,
       "outId": "paper-name",
       "selfHash": "7bebc8cda4750ea5",
       "sourceId": "Title.dc.html:1/6",
@@ -427,7 +435,7 @@
       "contentHash": "92f1397661c102ee",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 113,
+      "line": 116,
       "outId": "rule-name",
       "selfHash": "530a8219c7de4986",
       "sourceId": "Title.dc.html:1/7",
@@ -450,7 +458,7 @@
       "contentHash": "feaac93aee4e7e80",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 120,
+      "line": 123,
       "outId": "lead-kicker",
       "selfHash": "49135128b83fafa1",
       "sourceId": "Title.dc.html:1/8/0",
@@ -481,7 +489,7 @@
       "contentHash": "b12acc56e4edb4dd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 122,
+      "line": 125,
       "outId": "lead-headline",
       "selfHash": "c2c91f544474b334",
       "sourceId": "Title.dc.html:1/8/1",
@@ -503,7 +511,7 @@
       "contentHash": "c13f55154d206bc7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 125,
+      "line": 128,
       "outId": "lead-rule",
       "selfHash": "3fd9c460f3f595e4",
       "sourceId": "Title.dc.html:1/8/2",
@@ -532,7 +540,7 @@
       "contentHash": "52b1c7201f0aeb26",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 126,
+      "line": 129,
       "outId": "lead-deck",
       "selfHash": "4bc899ed63aaaa42",
       "sourceId": "Title.dc.html:1/8/3",
@@ -555,7 +563,7 @@
       "contentHash": "c0e68cf51343fa54",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 117,
+      "line": 120,
       "outId": "lead",
       "selfHash": "8b0923b256c11e12",
       "sourceId": "Title.dc.html:1/8",
@@ -580,7 +588,7 @@
       "contentHash": "795409180f7a7f2d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 134,
+      "line": 138,
       "outId": "btn-v2-k",
       "selfHash": "d0d0738f7691dd70",
       "sourceId": "Title.dc.html:1/9/0",
@@ -605,7 +613,7 @@
       "contentHash": "8b9ecd82dc50753b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 135,
+      "line": 139,
       "outId": "btn-v2-t",
       "selfHash": "d94af95318bdfb7a",
       "sourceId": "Title.dc.html:1/9/1",
@@ -630,7 +638,7 @@
       "contentHash": "e47d42b88091ea61",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 136,
+      "line": 140,
       "outId": "btn-v2-n",
       "selfHash": "3cc7a2ea17fb560b",
       "sourceId": "Title.dc.html:1/9/2",
@@ -642,7 +650,7 @@
       "base": {
         "attrs": {
           "class": "v2-entry",
-          "on:click": "emit(v2demo)",
+          "on:click": "set(chapter, 101)",
           "tabindex": "0"
         },
         "decls": {
@@ -651,14 +659,41 @@
           "size": "712px 78px"
         }
       },
-      "contentHash": "561a315e76394094",
+      "contentHash": "f92c53ea0baeaec2",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 132,
+      "line": 136,
       "outId": "btn-v2",
-      "selfHash": "8c0bbcea1c0f115e",
+      "selfHash": "0c1ea10276d1229b",
       "sourceId": "Title.dc.html:1/9",
       "sourceName": "btn-v2",
+      "ui": "title",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "v2-dev",
+          "on:click": "emit(v2dev)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "bottom": "calc(1safe-bottom + 66px)",
+          "height": "24px",
+          "left": "calc(51.28% - 96.41px)",
+          "position": "absolute",
+          "width": "188px"
+        },
+        "text": "@UI_V2_DEV_DEBATE"
+      },
+      "contentHash": "d88676aca78ce798",
+      "fidelity": "High",
+      "file": "Title.dc.html",
+      "line": 142,
+      "outId": "btn-v2-dev",
+      "selfHash": "346e188372f4a270",
+      "sourceId": "Title.dc.html:1/10",
+      "sourceName": "btn-v2-dev",
       "ui": "title",
       "warnings": []
     },
@@ -678,10 +713,10 @@
       "contentHash": "1211d91114382c2c",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 139,
+      "line": 145,
       "outId": "rule-column",
       "selfHash": "e6cf287badf98534",
-      "sourceId": "Title.dc.html:1/10",
+      "sourceId": "Title.dc.html:1/11",
       "sourceName": "rule-column",
       "ui": "title",
       "warnings": []
@@ -701,10 +736,10 @@
       "contentHash": "233dc16bea35b975",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 146,
+      "line": 152,
       "outId": "contents-heading",
       "selfHash": "05f293093193f70e",
-      "sourceId": "Title.dc.html:1/11/0",
+      "sourceId": "Title.dc.html:1/12/0",
       "sourceName": "contents-heading",
       "ui": "title",
       "warnings": []
@@ -724,10 +759,10 @@
       "contentHash": "c698067b17c6612d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 149,
+      "line": 155,
       "outId": "btn-ch1-no",
       "selfHash": "87f1f901f1e2b97b",
-      "sourceId": "Title.dc.html:1/11/1/0",
+      "sourceId": "Title.dc.html:1/12/1/0",
       "sourceName": "btn-ch1-no",
       "ui": "title",
       "warnings": []
@@ -746,10 +781,10 @@
       "contentHash": "d98d8c4159ff2bfa",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 150,
+      "line": 156,
       "outId": "btn-ch1-title",
       "selfHash": "d0c88b33f74cd4cc",
-      "sourceId": "Title.dc.html:1/11/1/1",
+      "sourceId": "Title.dc.html:1/12/1/1",
       "sourceName": "btn-ch1-title",
       "ui": "title",
       "warnings": []
@@ -768,10 +803,10 @@
       "contentHash": "8c72ed8d0703e3bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 148,
+      "line": 154,
       "outId": "btn-ch1",
       "selfHash": "4c2b9a5d56ba7057",
-      "sourceId": "Title.dc.html:1/11/1",
+      "sourceId": "Title.dc.html:1/12/1",
       "sourceName": "btn-ch1",
       "ui": "title",
       "warnings": []
@@ -791,10 +826,10 @@
       "contentHash": "d6e4ac83cf46e3d4",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 153,
+      "line": 159,
       "outId": "btn-ch2-no",
       "selfHash": "d1cfd98f26e0e3ab",
-      "sourceId": "Title.dc.html:1/11/2/0",
+      "sourceId": "Title.dc.html:1/12/2/0",
       "sourceName": "btn-ch2-no",
       "ui": "title",
       "warnings": []
@@ -813,10 +848,10 @@
       "contentHash": "49aed684c6122047",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 154,
+      "line": 160,
       "outId": "btn-ch2-title",
       "selfHash": "9bcc2c1bc3b67e50",
-      "sourceId": "Title.dc.html:1/11/2/1",
+      "sourceId": "Title.dc.html:1/12/2/1",
       "sourceName": "btn-ch2-title",
       "ui": "title",
       "warnings": []
@@ -835,10 +870,10 @@
       "contentHash": "179994c2c6917c8f",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 152,
+      "line": 158,
       "outId": "btn-ch2",
       "selfHash": "9d9e043d79fee23d",
-      "sourceId": "Title.dc.html:1/11/2",
+      "sourceId": "Title.dc.html:1/12/2",
       "sourceName": "btn-ch2",
       "ui": "title",
       "warnings": []
@@ -858,10 +893,10 @@
       "contentHash": "a04e87a29f64a96d",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 157,
+      "line": 163,
       "outId": "btn-ch3-no",
       "selfHash": "bfd22da34df1d8cf",
-      "sourceId": "Title.dc.html:1/11/3/0",
+      "sourceId": "Title.dc.html:1/12/3/0",
       "sourceName": "btn-ch3-no",
       "ui": "title",
       "warnings": []
@@ -880,10 +915,10 @@
       "contentHash": "47be5e010027e1bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 158,
+      "line": 164,
       "outId": "btn-ch3-title",
       "selfHash": "cd1763d84d255400",
-      "sourceId": "Title.dc.html:1/11/3/1",
+      "sourceId": "Title.dc.html:1/12/3/1",
       "sourceName": "btn-ch3-title",
       "ui": "title",
       "warnings": []
@@ -902,10 +937,10 @@
       "contentHash": "7d7f7ece068a2e21",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 156,
+      "line": 162,
       "outId": "btn-ch3",
       "selfHash": "aa57c5b222728017",
-      "sourceId": "Title.dc.html:1/11/3",
+      "sourceId": "Title.dc.html:1/12/3",
       "sourceName": "btn-ch3",
       "ui": "title",
       "warnings": []
@@ -923,10 +958,10 @@
       "contentHash": "288d57bd574181e7",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 162,
+      "line": 168,
       "outId": "btn-settings",
       "selfHash": "39752d0adc7d8cac",
-      "sourceId": "Title.dc.html:1/11/4/0",
+      "sourceId": "Title.dc.html:1/12/4/0",
       "sourceName": "btn-settings",
       "ui": "title",
       "warnings": []
@@ -944,10 +979,10 @@
       "contentHash": "b4f992e68ec7b7bd",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 163,
+      "line": 169,
       "outId": "btn-quit",
       "selfHash": "055a7304fc7d830b",
-      "sourceId": "Title.dc.html:1/11/4/1",
+      "sourceId": "Title.dc.html:1/12/4/1",
       "sourceName": "btn-quit",
       "ui": "title",
       "warnings": []
@@ -971,10 +1006,10 @@
       "contentHash": "a898afd287eaa972",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 160,
+      "line": 166,
       "outId": "contents-foot",
       "selfHash": "f6a12f5eb207b030",
-      "sourceId": "Title.dc.html:1/11/4",
+      "sourceId": "Title.dc.html:1/12/4",
       "sourceName": "contents-foot",
       "ui": "title",
       "warnings": []
@@ -994,10 +1029,10 @@
       "contentHash": "47c52aecb61bef95",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 143,
+      "line": 149,
       "outId": "contents",
       "selfHash": "2a8b825ec8cb116f",
-      "sourceId": "Title.dc.html:1/11",
+      "sourceId": "Title.dc.html:1/12",
       "sourceName": "contents",
       "ui": "title",
       "warnings": []
@@ -1016,10 +1051,10 @@
       "contentHash": "af23d1f1262aa2ef",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 167,
+      "line": 173,
       "outId": "rule-foot",
       "selfHash": "003a043cfa4db92f",
-      "sourceId": "Title.dc.html:1/12",
+      "sourceId": "Title.dc.html:1/13",
       "sourceName": "rule-foot",
       "ui": "title",
       "warnings": []
@@ -1041,10 +1076,10 @@
       "contentHash": "9d9311710b97541a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 178,
+      "line": 184,
       "outId": "end-mast-art",
       "selfHash": "ad2d5f8afe181de8",
-      "sourceId": "Title.dc.html:1/13/0/0/0",
+      "sourceId": "Title.dc.html:1/14/0/0/0",
       "sourceName": "end-mast-art",
       "ui": "title",
       "warnings": []
@@ -1064,10 +1099,10 @@
       "contentHash": "ad6641bf74edd5f6",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 177,
+      "line": 183,
       "outId": "end-mast",
       "selfHash": "924c2ac15ba401a2",
-      "sourceId": "Title.dc.html:1/13/0/0",
+      "sourceId": "Title.dc.html:1/14/0/0",
       "sourceName": "end-mast",
       "ui": "title",
       "warnings": []
@@ -1088,10 +1123,10 @@
       "contentHash": "e56ea059a3df441b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 181,
+      "line": 187,
       "outId": "end-rule-a",
       "selfHash": "079b53f93c774f09",
-      "sourceId": "Title.dc.html:1/13/0/1",
+      "sourceId": "Title.dc.html:1/14/0/1",
       "sourceName": "end-rule-a",
       "ui": "title",
       "warnings": []
@@ -1112,10 +1147,10 @@
       "contentHash": "e9a6b2070b728379",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 182,
+      "line": 188,
       "outId": "end-rule-b",
       "selfHash": "dbde0159673de502",
-      "sourceId": "Title.dc.html:1/13/0/2",
+      "sourceId": "Title.dc.html:1/14/0/2",
       "sourceName": "end-rule-b",
       "ui": "title",
       "warnings": []
@@ -1137,10 +1172,10 @@
       "contentHash": "e9f02341ce2ad624",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 183,
+      "line": 189,
       "outId": "end-text",
       "selfHash": "dcb22d54c5ac6146",
-      "sourceId": "Title.dc.html:1/13/0/3",
+      "sourceId": "Title.dc.html:1/14/0/3",
       "sourceName": "end-text",
       "ui": "title",
       "warnings": []
@@ -1161,10 +1196,10 @@
       "contentHash": "5cd38174b78e8b4a",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 186,
+      "line": 192,
       "outId": "end-rule-c",
       "selfHash": "887cf4238550165d",
-      "sourceId": "Title.dc.html:1/13/0/4",
+      "sourceId": "Title.dc.html:1/14/0/4",
       "sourceName": "end-rule-c",
       "ui": "title",
       "warnings": []
@@ -1185,10 +1220,10 @@
       "contentHash": "9786b658d0767466",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 187,
+      "line": 193,
       "outId": "end-rule-d",
       "selfHash": "39e60eba3b1187b6",
-      "sourceId": "Title.dc.html:1/13/0/5",
+      "sourceId": "Title.dc.html:1/14/0/5",
       "sourceName": "end-rule-d",
       "ui": "title",
       "warnings": []
@@ -1210,10 +1245,10 @@
       "contentHash": "f83a4f4f37e2dfa3",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 188,
+      "line": 194,
       "outId": "end-name",
       "selfHash": "5d8ef2d558a3e80e",
-      "sourceId": "Title.dc.html:1/13/0/6",
+      "sourceId": "Title.dc.html:1/14/0/6",
       "sourceName": "end-name",
       "ui": "title",
       "warnings": []
@@ -1232,10 +1267,10 @@
       "contentHash": "e23b3fd5293d3bff",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 176,
+      "line": 182,
       "outId": "end-dock",
       "selfHash": "23ef726b795eae1a",
-      "sourceId": "Title.dc.html:1/13/0",
+      "sourceId": "Title.dc.html:1/14/0",
       "sourceName": "end-dock",
       "ui": "title",
       "warnings": []
@@ -1256,10 +1291,10 @@
       "contentHash": "14519bafcd9ebd0b",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 172,
+      "line": 178,
       "outId": "end-card",
       "selfHash": "31a9c4841798bfb5",
-      "sourceId": "Title.dc.html:1/13",
+      "sourceId": "Title.dc.html:1/14",
       "sourceName": "end-card",
       "ui": "title",
       "warnings": []
@@ -1281,10 +1316,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "1a6481fc609b0be5",
+      "contentHash": "3d143f057a3c31fe",
       "fidelity": "High",
       "file": "Title.dc.html",
-      "line": 61,
+      "line": 64,
       "outId": "title",
       "selfHash": "aed19fb1d6d103ba",
       "sourceId": "Title.dc.html:1",
@@ -7725,25 +7760,22 @@
     },
     {
       "base": {
-        "attrs": {},
+        "attrs": {
+          "class": "s-1fc96b"
+        },
         "decls": {
-          "color": "#a65432",
           "flex-shrink": "0",
-          "font-size": "13px",
           "height": "22px",
-          "letter-spacing": "2px",
-          "line-height": "22px",
-          "text-align": "right",
           "width": "536px"
         },
         "text": "@BTN_CLOSE"
       },
-      "contentHash": "cff424a4142b7031",
+      "contentHash": "1eff47c640da881e",
       "fidelity": "High",
       "file": "Investigate.dc.html",
       "line": 333,
       "outId": "msg-close",
-      "selfHash": "e394f27d4263f410",
+      "selfHash": "476d8d3d3bae261c",
       "sourceId": "Investigate.dc.html:1/6/5/4",
       "sourceName": "msg-close",
       "ui": "investigate",
@@ -7771,7 +7803,7 @@
           "width": "600px"
         }
       },
-      "contentHash": "4a0bd11fe28cf6d3",
+      "contentHash": "15a1dde25fe56552",
       "fidelity": "High",
       "file": "Investigate.dc.html",
       "line": 319,
@@ -7791,7 +7823,7 @@
           "anchor": "stretch stretch screen"
         }
       },
-      "contentHash": "aa8d6ca1d8ff225e",
+      "contentHash": "6648eb25b7e3f624",
       "fidelity": "High",
       "file": "Investigate.dc.html",
       "line": 258,
@@ -7830,7 +7862,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "a8533fc4c1b3ffd6",
+      "contentHash": "6f91be2044b519d0",
       "fidelity": "High",
       "file": "Investigate.dc.html",
       "line": 100,
@@ -21363,7 +21395,7 @@
       "contentHash": "61aae026d9a1b211",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 32,
+      "line": 36,
       "outId": "veil",
       "selfHash": "d1de85ee2ebfc23b",
       "sourceId": "Cutin.dc.html:1/0/0",
@@ -21387,7 +21419,7 @@
       "contentHash": "4ec4c58999b057a9",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 34,
+      "line": 38,
       "outId": "band-r1",
       "selfHash": "9f4a37250438f8ee",
       "sourceId": "Cutin.dc.html:1/0/1/0",
@@ -21411,7 +21443,7 @@
       "contentHash": "6352254fb8f5ecbe",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 35,
+      "line": 39,
       "outId": "band-r2",
       "selfHash": "0479ead7577b9ea2",
       "sourceId": "Cutin.dc.html:1/0/1/1",
@@ -21435,7 +21467,7 @@
       "contentHash": "d48640de7a0ebd68",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 33,
+      "line": 37,
       "outId": "band",
       "selfHash": "6fec159364a42271",
       "sourceId": "Cutin.dc.html:1/0/1",
@@ -21461,7 +21493,7 @@
       "contentHash": "dda56dfb581a8a20",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 38,
+      "line": 42,
       "outId": "big-cut-ronpa",
       "selfHash": "91251b34a5d17ae6",
       "sourceId": "Cutin.dc.html:1/0/2/0",
@@ -21487,7 +21519,7 @@
       "contentHash": "179a420ae6c8ac91",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 39,
+      "line": 43,
       "outId": "big-cut-shaken",
       "selfHash": "c3206968f4dc14a0",
       "sourceId": "Cutin.dc.html:1/0/2/1",
@@ -21513,7 +21545,7 @@
       "contentHash": "f78d3b367589a36b",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 40,
+      "line": 44,
       "outId": "big-cut-hachiku3",
       "selfHash": "afd8c758dcd116fc",
       "sourceId": "Cutin.dc.html:1/0/2/2",
@@ -21539,7 +21571,7 @@
       "contentHash": "e4fb96be78b3f4cf",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 41,
+      "line": 45,
       "outId": "big-cut-konju",
       "selfHash": "4fe1820eace89467",
       "sourceId": "Cutin.dc.html:1/0/2/3",
@@ -21565,7 +21597,7 @@
       "contentHash": "3a48754413432582",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 42,
+      "line": 46,
       "outId": "big-cut-shisshu",
       "selfHash": "f86e2e4efaf52189",
       "sourceId": "Cutin.dc.html:1/0/2/4",
@@ -21591,7 +21623,7 @@
       "contentHash": "7be6878f74149126",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 43,
+      "line": 47,
       "outId": "big-cut-brink",
       "selfHash": "f0d3d44f73d8a234",
       "sourceId": "Cutin.dc.html:1/0/2/5",
@@ -21617,7 +21649,7 @@
       "contentHash": "4eb7617327c8fb2b",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 44,
+      "line": 48,
       "outId": "big-cut-reverse",
       "selfHash": "e2ae4367ce6dfba2",
       "sourceId": "Cutin.dc.html:1/0/2/6",
@@ -21643,7 +21675,7 @@
       "contentHash": "018fe79eca855b47",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 45,
+      "line": 49,
       "outId": "big-cut-double",
       "selfHash": "35906c6aa9cc4c6b",
       "sourceId": "Cutin.dc.html:1/0/2/7",
@@ -21669,7 +21701,7 @@
       "contentHash": "292a453309671b3a",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 46,
+      "line": 50,
       "outId": "big-cut-counter",
       "selfHash": "6c867bb9e0d9dc58",
       "sourceId": "Cutin.dc.html:1/0/2/8",
@@ -21692,7 +21724,7 @@
       "contentHash": "bf4da13df074882a",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 37,
+      "line": 41,
       "outId": "big-art",
       "selfHash": "b277e62dbb57f31c",
       "sourceId": "Cutin.dc.html:1/0/2",
@@ -21719,7 +21751,7 @@
       "contentHash": "8c356e7b640807f6",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 48,
+      "line": 52,
       "outId": "big-sub",
       "selfHash": "5cdf5954b6d9ca6a",
       "sourceId": "Cutin.dc.html:1/0/3",
@@ -21738,7 +21770,7 @@
       "contentHash": "b1509cbe32b77624",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 31,
+      "line": 35,
       "outId": "big-grp",
       "selfHash": "d65f742a91684cbc",
       "sourceId": "Cutin.dc.html:1/0",
@@ -21763,7 +21795,7 @@
       "contentHash": "5a15883143ceee9f",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 57,
+      "line": 61,
       "outId": "st-stamp-parry-img",
       "selfHash": "9cfd6a1e56c5482f",
       "sourceId": "Cutin.dc.html:1/1/0/0",
@@ -21787,7 +21819,7 @@
       "contentHash": "30e1e2474b455175",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 56,
+      "line": 60,
       "outId": "st-stamp-parry",
       "selfHash": "73693021c65ad024",
       "sourceId": "Cutin.dc.html:1/1/0",
@@ -21812,7 +21844,7 @@
       "contentHash": "a983382f247ed630",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 60,
+      "line": 64,
       "outId": "st-stamp-clash-img",
       "selfHash": "17cd7e271baa1d87",
       "sourceId": "Cutin.dc.html:1/1/1/0",
@@ -21836,11 +21868,38 @@
       "contentHash": "6774edbe9238f42e",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 59,
+      "line": 63,
       "outId": "st-stamp-clash",
       "selfHash": "412b53dfa60521ce",
       "sourceId": "Cutin.dc.html:1/1/1",
       "sourceName": "st-stamp-clash",
+      "ui": "cutin",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "stamp | eq('V2_TR')",
+          "bind:text": "stamp_text",
+          "class": "st-v2"
+        },
+        "decls": {
+          "height": "132px",
+          "left": "14px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "140px"
+        },
+        "text": "截"
+      },
+      "contentHash": "7278b13e8b2d8de2",
+      "fidelity": "High",
+      "file": "Cutin.dc.html",
+      "line": 66,
+      "outId": "st-v2-tr",
+      "selfHash": "eb1c41cc2267ee7a",
+      "sourceId": "Cutin.dc.html:1/1/2",
+      "sourceName": "st-v2-tr",
       "ui": "cutin",
       "warnings": []
     },
@@ -21861,10 +21920,10 @@
       "contentHash": "cbcec7243e3335f8",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 63,
+      "line": 68,
       "outId": "st-stamp-seen-img",
       "selfHash": "83841c12e2b4a171",
-      "sourceId": "Cutin.dc.html:1/1/2/0",
+      "sourceId": "Cutin.dc.html:1/1/3/0",
       "sourceName": "st-stamp-seen-img",
       "ui": "cutin",
       "warnings": []
@@ -21885,10 +21944,10 @@
       "contentHash": "fab412081e4f6e26",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 62,
+      "line": 67,
       "outId": "st-stamp-seen",
       "selfHash": "245332956ec98828",
-      "sourceId": "Cutin.dc.html:1/1/2",
+      "sourceId": "Cutin.dc.html:1/1/3",
       "sourceName": "st-stamp-seen",
       "ui": "cutin",
       "warnings": []
@@ -21904,10 +21963,10 @@
           "transform-origin": "100% 0%"
         }
       },
-      "contentHash": "e11a312d479db331",
+      "contentHash": "8dfd7e505046542d",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 55,
+      "line": 59,
       "outId": "stamp-tr",
       "selfHash": "95d88d73c49398c9",
       "sourceId": "Cutin.dc.html:1/1",
@@ -21934,7 +21993,7 @@
       "contentHash": "8d3d8f1571d5aa7f",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 67,
+      "line": 72,
       "outId": "sts-stamp-parry",
       "selfHash": "0db230f7d282ac20",
       "sourceId": "Cutin.dc.html:1/2/0",
@@ -21961,7 +22020,7 @@
       "contentHash": "60a92f340ae4804b",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 68,
+      "line": 73,
       "outId": "sts-stamp-clash",
       "selfHash": "048a4f0859e4289a",
       "sourceId": "Cutin.dc.html:1/2/1",
@@ -21988,7 +22047,7 @@
       "contentHash": "fa776a7f60648711",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 69,
+      "line": 74,
       "outId": "sts-stamp-seen",
       "selfHash": "7f701437bbb94c98",
       "sourceId": "Cutin.dc.html:1/2/2",
@@ -22009,7 +22068,7 @@
       "contentHash": "72e771f06dad0f6a",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 66,
+      "line": 71,
       "outId": "stamp-tr-sub",
       "selfHash": "ce5ba807d43cb89c",
       "sourceId": "Cutin.dc.html:1/2",
@@ -22034,7 +22093,7 @@
       "contentHash": "9d2a74d058ee33c9",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 73,
+      "line": 78,
       "outId": "st-stamp-trap-img",
       "selfHash": "930e9a1b3618e445",
       "sourceId": "Cutin.dc.html:1/3/0/0",
@@ -22058,7 +22117,7 @@
       "contentHash": "7f00432feddac841",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 72,
+      "line": 77,
       "outId": "st-stamp-trap",
       "selfHash": "8348f4d137a283f8",
       "sourceId": "Cutin.dc.html:1/3/0",
@@ -22083,7 +22142,7 @@
       "contentHash": "66a0c34702527d8d",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 76,
+      "line": 81,
       "outId": "st-stamp-whiff-img",
       "selfHash": "83a72ea7dc7583fb",
       "sourceId": "Cutin.dc.html:1/3/1/0",
@@ -22107,7 +22166,7 @@
       "contentHash": "d9463cf0fc3ce740",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 75,
+      "line": 80,
       "outId": "st-stamp-whiff",
       "selfHash": "989918caeaeef638",
       "sourceId": "Cutin.dc.html:1/3/1",
@@ -22132,7 +22191,7 @@
       "contentHash": "c18329b961e002b1",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 79,
+      "line": 84,
       "outId": "st-stamp-assist-img",
       "selfHash": "81eba4ff2be6e8cd",
       "sourceId": "Cutin.dc.html:1/3/2/0",
@@ -22156,7 +22215,7 @@
       "contentHash": "634dfe87a6a66299",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 78,
+      "line": 83,
       "outId": "st-stamp-assist",
       "selfHash": "4ce84fd39a108d28",
       "sourceId": "Cutin.dc.html:1/3/2",
@@ -22181,7 +22240,7 @@
       "contentHash": "f7d52e2ed753acd0",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 82,
+      "line": 87,
       "outId": "st-stamp-hachiku-lost-img",
       "selfHash": "ee81b0c4571570bf",
       "sourceId": "Cutin.dc.html:1/3/3/0",
@@ -22205,11 +22264,38 @@
       "contentHash": "27361d6021ed1529",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 81,
+      "line": 86,
       "outId": "st-stamp-hachiku-lost",
       "selfHash": "7e90485f86fa2dee",
       "sourceId": "Cutin.dc.html:1/3/3",
       "sourceName": "st-stamp-hachiku-lost",
+      "ui": "cutin",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "stamp | eq('V2_BL')",
+          "bind:text": "stamp_text",
+          "class": "st-v2"
+        },
+        "decls": {
+          "height": "132px",
+          "left": "14px",
+          "position": "absolute",
+          "top": "14px",
+          "width": "140px"
+        },
+        "text": "落空"
+      },
+      "contentHash": "825fcfa39a8af238",
+      "fidelity": "High",
+      "file": "Cutin.dc.html",
+      "line": 89,
+      "outId": "st-v2-bl",
+      "selfHash": "012ac88dd2ccf1f1",
+      "sourceId": "Cutin.dc.html:1/3/4",
+      "sourceName": "st-v2-bl",
       "ui": "cutin",
       "warnings": []
     },
@@ -22230,10 +22316,10 @@
       "contentHash": "e574b9f7f92e9155",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 85,
+      "line": 91,
       "outId": "st-hk-seal",
       "selfHash": "1c76b7aac6001e49",
-      "sourceId": "Cutin.dc.html:1/3/4/0",
+      "sourceId": "Cutin.dc.html:1/3/5/0",
       "sourceName": "st-hk-seal",
       "ui": "cutin",
       "warnings": []
@@ -22256,10 +22342,10 @@
       "contentHash": "e6b69a59d62c99a1",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 86,
+      "line": 92,
       "outId": "st-hk-n",
       "selfHash": "2d219d8725bbc60a",
-      "sourceId": "Cutin.dc.html:1/3/4/1",
+      "sourceId": "Cutin.dc.html:1/3/5/1",
       "sourceName": "st-hk-n",
       "ui": "cutin",
       "warnings": []
@@ -22280,10 +22366,10 @@
       "contentHash": "d806d3bf1317a318",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 84,
+      "line": 90,
       "outId": "st-stamp-hachiku",
       "selfHash": "d32c4ee1f6b53d6a",
-      "sourceId": "Cutin.dc.html:1/3/4",
+      "sourceId": "Cutin.dc.html:1/3/5",
       "sourceName": "st-stamp-hachiku",
       "ui": "cutin",
       "warnings": []
@@ -22299,10 +22385,10 @@
           "transform-origin": "0% 100%"
         }
       },
-      "contentHash": "610f5933e3188fc4",
+      "contentHash": "ff6e3c4cda782672",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 71,
+      "line": 76,
       "outId": "stamp-bl",
       "selfHash": "6ac7ba003a846df8",
       "sourceId": "Cutin.dc.html:1/3",
@@ -22329,7 +22415,7 @@
       "contentHash": "eefbb51097139e78",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 90,
+      "line": 96,
       "outId": "sts-stamp-trap",
       "selfHash": "4dabfcb32122246a",
       "sourceId": "Cutin.dc.html:1/4/0",
@@ -22356,7 +22442,7 @@
       "contentHash": "0abef1c9376eb2f0",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 91,
+      "line": 97,
       "outId": "sts-stamp-whiff",
       "selfHash": "ccf3fba043ffb5fa",
       "sourceId": "Cutin.dc.html:1/4/1",
@@ -22383,7 +22469,7 @@
       "contentHash": "2bad3789a219d75b",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 92,
+      "line": 98,
       "outId": "sts-stamp-assist",
       "selfHash": "ad6042d757c5c872",
       "sourceId": "Cutin.dc.html:1/4/2",
@@ -22410,7 +22496,7 @@
       "contentHash": "7112a22d0410c4e6",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 93,
+      "line": 99,
       "outId": "sts-stamp-hachiku-lost",
       "selfHash": "e7dbda1bd1cb5594",
       "sourceId": "Cutin.dc.html:1/4/3",
@@ -22437,7 +22523,7 @@
       "contentHash": "7b458bf89c1091a5",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 94,
+      "line": 100,
       "outId": "sts-stamp-hachiku",
       "selfHash": "f96b993405fef6c7",
       "sourceId": "Cutin.dc.html:1/4/4",
@@ -22458,7 +22544,7 @@
       "contentHash": "1cb363c554fef86a",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 89,
+      "line": 95,
       "outId": "stamp-bl-sub",
       "selfHash": "72631411909fb01c",
       "sourceId": "Cutin.dc.html:1/4",
@@ -22487,10 +22573,10 @@
           "width": "100vw"
         }
       },
-      "contentHash": "a99f46b5c1751b49",
+      "contentHash": "12ecb52d2c63ea77",
       "fidelity": "High",
       "file": "Cutin.dc.html",
-      "line": 24,
+      "line": 28,
       "outId": "cutin",
       "selfHash": "17000b041cc1bdf0",
       "sourceId": "Cutin.dc.html:1",
@@ -29582,14 +29668,14 @@
           "height": "24px",
           "line-height": "24px"
         },
-        "text": "@STAMP_HACHIKU"
+        "text": "@UI_V2_F_HACHIKU"
       },
-      "contentHash": "4d50442aad616780",
+      "contentHash": "f776719ae4d653e7",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 356,
       "outId": "me-hk-t",
-      "selfHash": "dd56ca3ac70261c4",
+      "selfHash": "e936a33d74ce1a23",
       "sourceId": "D1Debate.dc.html:1/1/12/4/0",
       "sourceName": "me-hk-t",
       "ui": "d1debate",
@@ -29633,15 +29719,15 @@
           "left": "576px",
           "position": "absolute",
           "top": "4px",
-          "width": "90px"
+          "width": "200px"
         }
       },
-      "contentHash": "53cc1057fa7970ce",
+      "contentHash": "cd3cce271857c244",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 355,
       "outId": "me-hk",
-      "selfHash": "94d48d529c0c4519",
+      "selfHash": "d3500edf8352a7e6",
       "sourceId": "D1Debate.dc.html:1/1/12/4",
       "sourceName": "me-hk",
       "ui": "d1debate",
@@ -29686,7 +29772,7 @@
           "width": "806px"
         }
       },
-      "contentHash": "5e1c09d26ba178e3",
+      "contentHash": "5ad010dd39f3daa8",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 348,
@@ -29751,6 +29837,7 @@
     {
       "base": {
         "attrs": {
+          "bind:text": "ronpa_ready_text",
           "class": "plate-t"
         },
         "decls": {
@@ -29761,14 +29848,14 @@
           "top": "-1px",
           "width": "428px"
         },
-        "text": "@UI_V2_RONPA_READY"
+        "text": "他破防了。這回合接上就論破！"
       },
-      "contentHash": "bd784589df31065f",
+      "contentHash": "c12009c01aae76c2",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 370,
       "outId": "ronpa-ready-t",
-      "selfHash": "863a76e2faab02e5",
+      "selfHash": "7b4c06a16457afb4",
       "sourceId": "D1Debate.dc.html:1/1/14/1/0",
       "sourceName": "ronpa-ready-t",
       "ui": "d1debate",
@@ -29788,7 +29875,7 @@
           "width": "436px"
         }
       },
-      "contentHash": "b7cb9bbd33c429a9",
+      "contentHash": "1bd90818e36fc4bd",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 369,
@@ -29993,7 +30080,7 @@
           "width": "806px"
         }
       },
-      "contentHash": "2f351107d08eff8b",
+      "contentHash": "a5fdbfd8e862d96e",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 367,
@@ -31697,7 +31784,7 @@
           "width": "1280px"
         }
       },
-      "contentHash": "38980fa6fe4c7689",
+      "contentHash": "d139de4c0758f720",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 189,
@@ -31743,7 +31830,7 @@
           "width": "100vw"
         }
       },
-      "contentHash": "dfe34a629a0af9b0",
+      "contentHash": "6caf907bde86d45d",
       "fidelity": "High",
       "file": "D1Debate.dc.html",
       "line": 179,
@@ -31752,6 +31839,3264 @@
       "sourceId": "D1Debate.dc.html:1",
       "sourceName": "D1Debate",
       "ui": "d1debate",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('parlour')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-d01-parlour.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "c82e1121dfa4cd2e",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 76,
+      "outId": "bg-parlour",
+      "selfHash": "a0b36d1adf405fd8",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/0",
+      "sourceName": "bg-parlour",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('study')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-study.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "9ceb5ec3865a62e1",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 77,
+      "outId": "bg-study",
+      "selfHash": "c4d38c0736163f6a",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/1",
+      "sourceName": "bg-study",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('basement')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-basement.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "7f7a538406d8d872",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 78,
+      "outId": "bg-basement",
+      "selfHash": "0955b3e01e582fe6",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/2",
+      "sourceName": "bg-basement",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('attic')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-attic.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "788da510030e812c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 79,
+      "outId": "bg-attic",
+      "selfHash": "a8c7070acced41d4",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/3",
+      "sourceName": "bg-attic",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('bedroom')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-bedroom.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "8f4ccb13eac9e2f2",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 80,
+      "outId": "bg-bedroom",
+      "selfHash": "453c543c389bd681",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/4",
+      "sourceName": "bg-bedroom",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('hall')",
+          "class": "bg-art",
+          "src": "../shared/img/bg-hall.jpg"
+        },
+        "decls": {}
+      },
+      "contentHash": "3c8b04e6bd5e6d24",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 81,
+      "outId": "bg-hall",
+      "selfHash": "a83783cecd055910",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/5",
+      "sourceName": "bg-hall",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "fig",
+          "src": "../shared/img/cedric-composed.png"
+        },
+        "decls": {
+          "height": "420px",
+          "left": "-10px",
+          "top": "300px",
+          "width": "280px"
+        }
+      },
+      "contentHash": "e14ea0e55bed739f",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 84,
+      "outId": "fig-cedric",
+      "selfHash": "506922225bacd20a",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/6/0",
+      "sourceName": "fig-cedric",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "fig",
+          "src": "../shared/img/fig-hyde.png"
+        },
+        "decls": {
+          "height": "420px",
+          "left": "255px",
+          "top": "300px",
+          "width": "280px"
+        }
+      },
+      "contentHash": "b9b56fd8f9781c1f",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 85,
+      "outId": "fig-hyde",
+      "selfHash": "9a73b019efa4d1da",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/6/1",
+      "sourceName": "fig-hyde",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "fig",
+          "src": "../shared/img/fig-irene.png"
+        },
+        "decls": {
+          "height": "420px",
+          "left": "700px",
+          "top": "300px",
+          "width": "280px"
+        }
+      },
+      "contentHash": "4d84cefa974b4376",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 86,
+      "outId": "fig-irene",
+      "selfHash": "a487fe78042aabd5",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/6/2",
+      "sourceName": "fig-irene",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('parlour')"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "f10d591d9b5b150c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 83,
+      "outId": "figs-parlour",
+      "selfHash": "3f6bc6c9e1fc9846",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/6",
+      "sourceName": "figs-parlour",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "fig",
+          "src": "../shared/img/fig-irene.png"
+        },
+        "decls": {
+          "height": "390px",
+          "left": "-60px",
+          "top": "260px",
+          "width": "260px"
+        }
+      },
+      "contentHash": "7e3ab2ff8b41eee3",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 89,
+      "outId": "fig-irene-door",
+      "selfHash": "b58e16e62838af6d",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/7/0",
+      "sourceName": "fig-irene-door",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('study')"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "90368629faffe16d",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 88,
+      "outId": "figs-study",
+      "selfHash": "e85903a3619515b6",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/7",
+      "sourceName": "figs-study",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "fig",
+          "src": "../shared/img/fig-briggs.png"
+        },
+        "decls": {
+          "height": "430px",
+          "left": "740px",
+          "top": "290px",
+          "width": "287px"
+        }
+      },
+      "contentHash": "60d0e4515e40deda",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 92,
+      "outId": "fig-briggs",
+      "selfHash": "e496b6cec9838ddd",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/8/0",
+      "sourceName": "fig-briggs",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "bg | eq('hall')"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "26d97dfd96c35781",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 91,
+      "outId": "figs-hall",
+      "selfHash": "3580544491f903ec",
+      "sourceId": "D1Inv.dc.html:1/0/0/0/8",
+      "sourceName": "figs-hall",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "100%",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "100%"
+        }
+      },
+      "contentHash": "cc150b5dc7a4c851",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 75,
+      "outId": "bg-art",
+      "selfHash": "a1cf03eeb3ecafa9",
+      "sourceId": "D1Inv.dc.html:1/0/0/0",
+      "sourceName": "bg-art",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:port(bg)": "play(bg-in)"
+        },
+        "decls": {
+          "background-color": "#f3eedf",
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "7fd61850726d6b55",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 74,
+      "outId": "bg",
+      "selfHash": "c5f9968aa73a6309",
+      "sourceId": "D1Inv.dc.html:1/0/0",
+      "sourceName": "bg",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "background-gradient": "linear-gradient(180deg, #092e2880 0%, #092e2800 100%)",
+          "height": "120px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "05c94127ce843951",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 96,
+      "outId": "shade-top",
+      "selfHash": "24de22fabdcf0eb2",
+      "sourceId": "D1Inv.dc.html:1/0/1",
+      "sourceName": "shade-top",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ring"
+        },
+        "decls": {
+          "bottom": "-6px",
+          "left": "-6px",
+          "position": "absolute",
+          "right": "-6px",
+          "top": "-6px"
+        }
+      },
+      "contentHash": "1b4db82ceef7ee1c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 106,
+      "outId": "spot-ring",
+      "selfHash": "025e292374f0b43a",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/0",
+      "sourceName": "spot-ring",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(0)",
+          "class": "ico",
+          "src": "../shared/img/ico-look.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "0c6ae8751a746dbf",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 108,
+      "outId": "ico-look",
+      "selfHash": "b07e3c45f56d834a",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/1/0",
+      "sourceName": "ico-look",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(1)",
+          "class": "ico",
+          "src": "../shared/img/ico-item.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "2287b225ddeace2f",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 109,
+      "outId": "ico-item",
+      "selfHash": "33ef5a2bda897d99",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/1/1",
+      "sourceName": "ico-item",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(type) | eq(2)",
+          "class": "ico",
+          "src": "../shared/img/ico-talk.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "96ff28484468b380",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 110,
+      "outId": "ico-talk",
+      "selfHash": "d1e7650ed6ed6e9e",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/1/2",
+      "sourceName": "ico-talk",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ico-done",
+          "src": "../shared/img/ico-done.png"
+        },
+        "decls": {}
+      },
+      "contentHash": "d1566d3b19abbb9a",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 111,
+      "outId": "ico-done",
+      "selfHash": "473804dbd6fab23e",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/1/3",
+      "sourceName": "ico-done",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "chip"
+        },
+        "decls": {
+          "position": "relative"
+        }
+      },
+      "contentHash": "10cc395382a6328c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 107,
+      "outId": "spot-chip",
+      "selfHash": "54b70fe1f9878290",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/1",
+      "sourceName": "spot-chip",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "spot-name"
+        },
+        "decls": {},
+        "text": "遺體照"
+      },
+      "contentHash": "a3650424239f012d",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 113,
+      "outId": "spot-name",
+      "selfHash": "39330d1e4d4abf96",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0/2",
+      "sourceName": "spot-name",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.done": "item(state) | eq(1)",
+          "bind:height": "item(h) | range(0, 720, 0px, 720px)",
+          "bind:translate-x": "item(x)",
+          "bind:translate-y": "item(y)",
+          "bind:width": "item(w) | range(0, 1280, 0px, 1280px)",
+          "class": "spot",
+          "on:click(left)": "if port(popup_on) eq false set(spot, item(id))"
+        },
+        "decls": {
+          "align-items": "center",
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "height": "62px",
+          "justify-content": "center",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "124px"
+        }
+      },
+      "contentHash": "f05da6e4354e076c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 101,
+      "outId": "spot",
+      "selfHash": "be85c57dd002e56a",
+      "sourceId": "D1Inv.dc.html:1/0/2/0/0",
+      "sourceName": "spot",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "spots"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "faf5d0f72778ca33",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 100,
+      "outId": "spots-list",
+      "selfHash": "a2deb0c6d69fd24f",
+      "sourceId": "D1Inv.dc.html:1/0/2/0",
+      "sourceName": "spots-list",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "97e9994678e5292b",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 99,
+      "outId": "spots-layer",
+      "selfHash": "0b71f51fe3ab1b9f",
+      "sourceId": "D1Inv.dc.html:1/0/2",
+      "sourceName": "spots-layer",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "2b4c1ee165bf7fec",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 73,
+      "outId": "scene",
+      "selfHash": "9778c6310b212908",
+      "sourceId": "D1Inv.dc.html:1/0",
+      "sourceName": "scene",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "hud_title",
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "176px"
+        },
+        "text": "蒐證"
+      },
+      "contentHash": "a68be0c1bca10a12",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 121,
+      "outId": "hud-title",
+      "selfHash": "ee73de593c20cc26",
+      "sourceId": "D1Inv.dc.html:1/1/0",
+      "sourceName": "hud-title",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "appr_text"
+        },
+        "decls": {
+          "color": "#a65432",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "font-size": "16px",
+          "font-weight": "700",
+          "height": "24px",
+          "left": "12px",
+          "line-height": "24px",
+          "position": "absolute",
+          "top": "25px",
+          "white-space": "nowrap",
+          "width": "176px"
+        },
+        "text": "鑑定 剩 2 次"
+      },
+      "contentHash": "d5f6d8e9e4613388",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 122,
+      "outId": "hud-appr",
+      "selfHash": "9be6356421d441f1",
+      "sourceId": "D1Inv.dc.html:1/1/1",
+      "sourceName": "hud-appr",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "hud-card"
+        },
+        "decls": {
+          "anchor": "left top",
+          "offset": "-16px -8px",
+          "padding-bottom": "4px",
+          "padding-left": "12px",
+          "padding-right": "12px",
+          "padding-top": "4px",
+          "size": "200px 56px"
+        }
+      },
+      "contentHash": "b190bed16c45e560",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 120,
+      "outId": "hud",
+      "selfHash": "95e0f5bd2fd0e341",
+      "sourceId": "D1Inv.dc.html:1/1",
+      "sourceName": "hud",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "loc-t"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "6px",
+          "position": "absolute",
+          "top": "8px",
+          "width": "155px"
+        },
+        "text": "靈堂"
+      },
+      "contentHash": "e13f2302ce4c5f6d",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 131,
+      "outId": "loc-t",
+      "selfHash": "fbcfb02a2bf9cae6",
+      "sourceId": "D1Inv.dc.html:1/2/0/0",
+      "sourceName": "loc-t",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "loc-done"
+        },
+        "decls": {
+          "height": "10px",
+          "left": "151px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "10px"
+        }
+      },
+      "contentHash": "f1961f91d2d38b24",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 132,
+      "outId": "loc-done",
+      "selfHash": "0ab3e2d8b09ba1e0",
+      "sourceId": "D1Inv.dc.html:1/2/0/1",
+      "sourceName": "loc-done",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.done": "item(done)",
+          "bind:class.sel": "item(sel)",
+          "class": "loc",
+          "on:click(left)": "if port(popup_on) eq false set(pick_loc, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "56px",
+          "position": "relative",
+          "width": "167px"
+        }
+      },
+      "contentHash": "3d5be182ff0307d7",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 128,
+      "outId": "loc",
+      "selfHash": "a4b5e84de6e82c97",
+      "sourceId": "D1Inv.dc.html:1/2/0",
+      "sourceName": "loc",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "locs"
+        },
+        "decls": {
+          "anchor": "right top",
+          "display": "flex",
+          "flex-direction": "row",
+          "gap": "6px",
+          "offset": "-16px -8px",
+          "size": "1032px 56px"
+        }
+      },
+      "contentHash": "3bb749c0b87a2c6c",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 127,
+      "outId": "locs",
+      "selfHash": "0bf434f778b4bab2",
+      "sourceId": "D1Inv.dc.html:1/2",
+      "sourceName": "locs",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn paper",
+          "on:click(left)": "emit(book)"
+        },
+        "decls": {
+          "left": "0px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "176px"
+        },
+        "text": "@UI_V2_EVLIST"
+      },
+      "contentHash": "09bfa627da5afe55",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 138,
+      "outId": "btn-book",
+      "selfHash": "ec27cc43c73b7d8d",
+      "sourceId": "D1Inv.dc.html:1/3/0",
+      "sourceName": "btn-book",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "book_new | gt(0)",
+          "bind:text": "book_new",
+          "class": "dot"
+        },
+        "decls": {
+          "height": "24px",
+          "left": "160px",
+          "position": "absolute",
+          "top": "-6px",
+          "width": "24px"
+        },
+        "text": "1"
+      },
+      "contentHash": "88f28bc2944b9b19",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 140,
+      "outId": "book-dot",
+      "selfHash": "dd3d96b8b2cd9475",
+      "sourceId": "D1Inv.dc.html:1/3/1",
+      "sourceName": "book-dot",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn paper",
+          "on:click(left)": "emit(notes)"
+        },
+        "decls": {
+          "left": "192px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "176px"
+        },
+        "text": "@UI_V2_NOTES_PAGE"
+      },
+      "contentHash": "3c2aefe59dd6d3c7",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 142,
+      "outId": "btn-notes",
+      "selfHash": "011d5bb5e807e54d",
+      "sourceId": "D1Inv.dc.html:1/3/2",
+      "sourceName": "btn-notes",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn",
+          "on:click(left)": "emit(end)"
+        },
+        "decls": {
+          "left": "384px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "176px"
+        },
+        "text": "@BTN_INV_END"
+      },
+      "contentHash": "e958da1b8ba82037",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 144,
+      "outId": "btn-end",
+      "selfHash": "cc5861b511965083",
+      "sourceId": "D1Inv.dc.html:1/3/3",
+      "sourceName": "btn-end",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "right bottom",
+          "offset": "-16px -2px",
+          "size": "560px 52px"
+        }
+      },
+      "contentHash": "de9fcdebf7b87303",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 137,
+      "outId": "actions",
+      "selfHash": "c96f8c20e1ef50d1",
+      "sourceId": "D1Inv.dc.html:1/3",
+      "sourceName": "actions",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-8ecb27",
+          "on:click(left)": "emit(dismiss)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "e88e2c0fcdc63e69",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 150,
+      "outId": "pop-shade",
+      "selfHash": "0e07d2bfa731c7a1",
+      "sourceId": "D1Inv.dc.html:1/4/0",
+      "sourceName": "pop-shade",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "hud_title",
+          "class": "kicker"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "20px",
+          "width": "564px"
+        },
+        "text": "蒐證"
+      },
+      "contentHash": "fb83a9b680340237",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 156,
+      "outId": "pop-kicker",
+      "selfHash": "2a626f2b069dad4c",
+      "sourceId": "D1Inv.dc.html:1/4/1/0",
+      "sourceName": "pop-kicker",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_title",
+          "class": "pop-title"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "564px"
+        },
+        "text": "警督保管的箱子"
+      },
+      "contentHash": "6298bac55f34056d",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 157,
+      "outId": "pop-title",
+      "selfHash": "b7219fed5ab6784c",
+      "sourceId": "D1Inv.dc.html:1/4/1/1",
+      "sourceName": "pop-title",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-614666"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "1px",
+          "width": "564px"
+        }
+      },
+      "contentHash": "3bb7a658ac3e5e37",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 158,
+      "outId": "pop-rule",
+      "selfHash": "660bf654ed3c25d9",
+      "sourceId": "D1Inv.dc.html:1/4/1/2",
+      "sourceName": "pop-rule",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_body",
+          "class": "pop-body"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "564px"
+        },
+        "text": "警督把布里格斯的東西收在一個木箱裡：一圈萬用鑰匙，每一把都油亮亮的；一張工作單，字跡工整。"
+      },
+      "contentHash": "2c9592405bd39664",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 159,
+      "outId": "pop-body",
+      "selfHash": "d8b21ac4161ae31d",
+      "sourceId": "D1Inv.dc.html:1/4/1/3",
+      "sourceName": "pop-body",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_speaker",
+          "class": "pop-spk"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "540px"
+        },
+        "text": "亞瑟"
+      },
+      "contentHash": "4f8495b15935e4b4",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 162,
+      "outId": "pop-spk",
+      "selfHash": "dbd2a71f327f9001",
+      "sourceId": "D1Inv.dc.html:1/4/1/4/0",
+      "sourceName": "pop-spk",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "popup_line",
+          "class": "pop-line-text"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "540px"
+        },
+        "text": "鑰匙全上了油。鎖匠的習慣。"
+      },
+      "contentHash": "7081edffb5044314",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 163,
+      "outId": "pop-line-text",
+      "selfHash": "5f31d9cd52ab8727",
+      "sourceId": "D1Inv.dc.html:1/4/1/4/1",
+      "sourceName": "pop-line-text",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_line | ne('')",
+          "class": "pop-line"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "2px",
+          "padding-bottom": "8px",
+          "padding-left": "12px",
+          "padding-right": "12px",
+          "padding-top": "8px",
+          "width": "564px"
+        }
+      },
+      "contentHash": "d32c82599452dfc2",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 160,
+      "outId": "pop-line",
+      "selfHash": "a9d81a8cf440a256",
+      "sourceId": "D1Inv.dc.html:1/4/1/4",
+      "sourceName": "pop-line",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_got | ne('')",
+          "bind:text": "popup_got",
+          "class": "got"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "564px"
+        },
+        "text": "取得：萬用鑰匙圈、布里格斯的工作單"
+      },
+      "contentHash": "a80d0c948844f797",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 165,
+      "outId": "pop-got",
+      "selfHash": "eb318cbe2073d9f4",
+      "sourceId": "D1Inv.dc.html:1/4/1/5",
+      "sourceName": "pop-got",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_note | ne('')",
+          "bind:text": "popup_note",
+          "class": "got"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "564px"
+        },
+        "text": "記下了一條人物筆記。"
+      },
+      "contentHash": "1aa6b7e67d6a666d",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 166,
+      "outId": "pop-note",
+      "selfHash": "499196005138ed7c",
+      "sourceId": "D1Inv.dc.html:1/4/1/6",
+      "sourceName": "pop-note",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-1fc96b"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "22px",
+          "width": "564px"
+        },
+        "text": "@BTN_CLOSE"
+      },
+      "contentHash": "b8b29b2f6efeaac7",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 167,
+      "outId": "pop-close",
+      "selfHash": "2e7305261baf637f",
+      "sourceId": "D1Inv.dc.html:1/4/1/7",
+      "sourceName": "pop-close",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "hud-card s-66a9df",
+          "on:port(popup_seq)": "play(pop-in)"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "8px",
+          "left": "330px",
+          "padding-bottom": "18px",
+          "padding-left": "28px",
+          "padding-right": "28px",
+          "padding-top": "18px",
+          "position": "absolute",
+          "top": "150px",
+          "width": "620px"
+        }
+      },
+      "contentHash": "84396cb7b146fabd",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 152,
+      "outId": "pop-card",
+      "selfHash": "a8fa1d2e51516359",
+      "sourceId": "D1Inv.dc.html:1/4/1",
+      "sourceName": "pop-card",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "popup_on"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "be9421b64e610d02",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 149,
+      "outId": "pop",
+      "selfHash": "cde9114b978c902d",
+      "sourceId": "D1Inv.dc.html:1/4",
+      "sourceName": "pop",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Enter)": "if port(popup_on) eq true emit(dismiss)",
+          "on:key(Escape)": "if port(popup_on) eq true emit(dismiss) else emit(settings)",
+          "on:key(F1)": "emit(settings)",
+          "on:key(N)": "emit(notes)",
+          "on:key(Space)": "if port(popup_on) eq true emit(dismiss)",
+          "on:key(Tab)": "emit(book)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#092e28",
+          "color": "#123a31",
+          "font-family": "\"Noto Serif\", \"Noto Sans TC\", \"Georgia\"",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "87cfca7bae8fa2ba",
+      "fidelity": "High",
+      "file": "D1Inv.dc.html",
+      "line": 66,
+      "outId": "d1inv",
+      "selfHash": "cebcc2b612b748b1",
+      "sourceId": "D1Inv.dc.html:1",
+      "sourceName": "D1Inv",
+      "ui": "d1inv",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen",
+          "background-color": "#092e28b3"
+        }
+      },
+      "contentHash": "d694ff3d529b002f",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 74,
+      "outId": "veil",
+      "selfHash": "99cbe2a359511179",
+      "sourceId": "D1Book.dc.html:1/0",
+      "sourceName": "veil",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tab-t"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "220px"
+        },
+        "text": "@UI_V2_EVLIST"
+      },
+      "contentHash": "8795c034da5dd2a2",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 81,
+      "outId": "tab-ev-t",
+      "selfHash": "5fb724e35d918936",
+      "sourceId": "D1Book.dc.html:1/1/0/0",
+      "sourceName": "tab-ev-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.sel": "tab | eq(0)",
+          "class": "tab",
+          "on:click(left)": "set(pick_tab, 0)"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "b332a3baba474e0d",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 79,
+      "outId": "tab-ev",
+      "selfHash": "2306b61e2715a28c",
+      "sourceId": "D1Book.dc.html:1/1/0",
+      "sourceName": "tab-ev",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tab-t"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "220px"
+        },
+        "text": "@UI_V2_NOTES_PAGE"
+      },
+      "contentHash": "e93da79fb5c3ad93",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 85,
+      "outId": "tab-pn-t",
+      "selfHash": "75b6348268062aa5",
+      "sourceId": "D1Book.dc.html:1/1/1/0",
+      "sourceName": "tab-pn-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.sel": "tab | eq(1)",
+          "class": "tab",
+          "on:click(left)": "set(pick_tab, 1)"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "252px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "94aca8af3ef498db",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 83,
+      "outId": "tab-pn",
+      "selfHash": "25c3e541aaa4a172",
+      "sourceId": "D1Book.dc.html:1/1/1",
+      "sourceName": "tab-pn",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "color": "#f3eedf",
+          "font-size": "22px",
+          "height": "40px",
+          "left": "0px",
+          "line-height": "38px",
+          "position": "absolute",
+          "text-align": "center",
+          "top": "0px",
+          "width": "40px"
+        },
+        "text": "×"
+      },
+      "contentHash": "675287502b5f2655",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 88,
+      "outId": "x-t",
+      "selfHash": "79a1aae52a5e06da",
+      "sourceId": "D1Book.dc.html:1/1/2/0",
+      "sourceName": "x-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "x-btn",
+          "on:click(left)": "emit(close)"
+        },
+        "decls": {
+          "height": "40px",
+          "left": "1060px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "40px"
+        }
+      },
+      "contentHash": "27ea6b48498ab794",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 87,
+      "outId": "x-btn",
+      "selfHash": "f7f08ec1dc30266b",
+      "sourceId": "D1Book.dc.html:1/1/2",
+      "sourceName": "x-btn",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-614666"
+        },
+        "decls": {
+          "height": "3px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "56px",
+          "width": "1076px"
+        }
+      },
+      "contentHash": "18b54815d2325578",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 90,
+      "outId": "tab-rule",
+      "selfHash": "a86b926e8a4e4d86",
+      "sourceId": "D1Book.dc.html:1/1/3",
+      "sourceName": "tab-rule",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "row-t"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "220px"
+        },
+        "text": "黃銅文件筒（空）"
+      },
+      "contentHash": "e2e7fb9cfcdfe9b3",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 97,
+      "outId": "card-t",
+      "selfHash": "f31ee8a1b117acad",
+      "sourceId": "D1Book.dc.html:1/1/4/0/0/0",
+      "sourceName": "card-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(mark)",
+          "class": "mark"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "216px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "96px"
+        },
+        "text": "已鑑定"
+      },
+      "contentHash": "eed0c4646e67545c",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 98,
+      "outId": "card-m",
+      "selfHash": "764051d523d00239",
+      "sourceId": "D1Book.dc.html:1/1/4/0/0/1",
+      "sourceName": "card-m",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "item(isnew)",
+          "class": "new"
+        },
+        "decls": {
+          "height": "8px",
+          "left": "318px",
+          "position": "absolute",
+          "top": "4px",
+          "width": "8px"
+        }
+      },
+      "contentHash": "876b32faf841e8bc",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 99,
+      "outId": "card-new",
+      "selfHash": "58774ce3df3b93ec",
+      "sourceId": "D1Book.dc.html:1/1/4/0/0/2",
+      "sourceName": "card-new",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.psy": "item(psy)",
+          "bind:class.sel": "item(sel)",
+          "class": "row",
+          "on:click(left)": "set(pick_card, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "36px",
+          "position": "relative",
+          "width": "330px"
+        }
+      },
+      "contentHash": "79a2c93b5851d924",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 95,
+      "outId": "card",
+      "selfHash": "ce24a946ea27f6cd",
+      "sourceId": "D1Book.dc.html:1/1/4/0/0",
+      "sourceName": "card",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "cards"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "height": "540px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "330px"
+        }
+      },
+      "contentHash": "dbff0c53dc78a490",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 94,
+      "outId": "cards",
+      "selfHash": "b8ba319b07588e8b",
+      "sourceId": "D1Book.dc.html:1/1/4/0",
+      "sourceName": "cards",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_kind",
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "400px"
+        },
+        "text": "證物"
+      },
+      "contentHash": "630dd3cad7b89cf0",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 104,
+      "outId": "d-kind",
+      "selfHash": "00ce2f0d8882a0f0",
+      "sourceId": "D1Book.dc.html:1/1/4/1/0",
+      "sourceName": "d-kind",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_name",
+          "class": "d-name s-6ce107"
+        },
+        "decls": {
+          "height": "34px",
+          "left": "0px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "22px",
+          "width": "716px"
+        },
+        "text": "黃銅文件筒（空）"
+      },
+      "contentHash": "2f4069a6fdf221d6",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 106,
+      "outId": "d-name",
+      "selfHash": "da74bed2c3adba9e",
+      "sourceId": "D1Book.dc.html:1/1/4/1/1",
+      "sourceName": "d-name",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_desc",
+          "class": "d-desc"
+        },
+        "decls": {
+          "height": "100px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "62px",
+          "width": "716px"
+        },
+        "text": "書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。鎖孔周圍光亮，沒有明顯的刮痕。"
+      },
+      "contentHash": "26ad133b859e8630",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 107,
+      "outId": "d-desc",
+      "selfHash": "d3f057608a475b6a",
+      "sourceId": "D1Book.dc.html:1/1/4/1/2",
+      "sourceName": "d-desc",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "abtn-t"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "220px"
+        },
+        "text": "@UI_V2_APPRAISE"
+      },
+      "contentHash": "6a6dec6a3add3ef0",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 112,
+      "outId": "appr-btn-t",
+      "selfHash": "700c4a4c0a524704",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/0/0",
+      "sourceName": "appr-btn-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.off": "can_appraise | not",
+          "bind:display": "appraised | not",
+          "class": "abtn",
+          "on:click(left)": "if port(can_appraise) eq true emit(appraise)"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "220px"
+        }
+      },
+      "contentHash": "aa7cb12614de7b23",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 110,
+      "outId": "appr-btn",
+      "selfHash": "9a559572270e485d",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/0",
+      "sourceName": "appr-btn",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "appraised | not",
+          "bind:text": "appr_left",
+          "class": "left-t"
+        },
+        "decls": {
+          "height": "36px",
+          "left": "236px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "400px"
+        },
+        "text": "鑑定 剩 1 次"
+      },
+      "contentHash": "e3dc549446217875",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 114,
+      "outId": "appr-left",
+      "selfHash": "4b7930c963fcd65f",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/1",
+      "sourceName": "appr-left",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "res-k"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "5px",
+          "width": "692px"
+        },
+        "text": "@UI_V2_APPRAISED"
+      },
+      "contentHash": "7f8bf0198574ccf0",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 116,
+      "outId": "res-k",
+      "selfHash": "9999ee80a5e46792",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/2/0",
+      "sourceName": "res-k",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "sel_result",
+          "class": "res-t s-6ce107"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "12px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "25px",
+          "width": "692px"
+        },
+        "text": "鎖完好；用原配鑰匙開；鎖芯無油"
+      },
+      "contentHash": "73e60b8d52903e8f",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 117,
+      "outId": "res-t",
+      "selfHash": "66e182d026b2e31a",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/2/1",
+      "sourceName": "res-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "appraised",
+          "class": "res"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "ba05e8470aea53fe",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 115,
+      "outId": "res",
+      "selfHash": "cb6d7720c0cf66a9",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3/2",
+      "sourceName": "res",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "appraisable"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "166px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "4d20aa6a194b6a79",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 109,
+      "outId": "appr-row",
+      "selfHash": "f7ea3d98d998dcee",
+      "sourceId": "D1Book.dc.html:1/1/4/1/3",
+      "sourceName": "appr-row",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "remark_speaker",
+          "class": "spk"
+        },
+        "decls": {
+          "height": "18px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "6px",
+          "width": "692px"
+        },
+        "text": "亞瑟"
+      },
+      "contentHash": "bc5ffdeab52cffe9",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 123,
+      "outId": "remark-spk",
+      "selfHash": "09aab4d398bc0479",
+      "sourceId": "D1Book.dc.html:1/1/4/1/4/0",
+      "sourceName": "remark-spk",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "remark",
+          "class": "remark-t"
+        },
+        "decls": {
+          "height": "92px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "26px",
+          "width": "692px"
+        },
+        "text": "「鎖芯完好，一道撬痕也沒有。」"
+      },
+      "contentHash": "7ad4c75d2c5257ec",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 124,
+      "outId": "remark-t",
+      "selfHash": "eb85ef49cc3b4c9b",
+      "sourceId": "D1Book.dc.html:1/1/4/1/4/1",
+      "sourceName": "remark-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "remark | ne('')",
+          "class": "remark",
+          "on:port(remark_seq)": "play(rm-in)"
+        },
+        "decls": {
+          "height": "120px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "224px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "e479c843c0fc857a",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 120,
+      "outId": "remark",
+      "selfHash": "bff72f7cacec62e8",
+      "sourceId": "D1Book.dc.html:1/1/4/1/4",
+      "sourceName": "remark",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "352px",
+          "width": "716px"
+        },
+        "text": "@UI_V2_PRIVATE_VIEW"
+      },
+      "contentHash": "476ba0e7a2d83faa",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 126,
+      "outId": "pv-k",
+      "selfHash": "fa8861d8baeb3f35",
+      "sourceId": "D1Book.dc.html:1/1/4/1/5",
+      "sourceName": "pv-k",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(label)",
+          "class": "opt-t"
+        },
+        "decls": {
+          "height": "28px",
+          "left": "12px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "690px"
+        },
+        "text": "用原配鑰匙開的"
+      },
+      "contentHash": "259c9d15ee03ae66",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 130,
+      "outId": "opt-t",
+      "selfHash": "f3a6e94bc9dd6267",
+      "sourceId": "D1Book.dc.html:1/1/4/1/6/0/0",
+      "sourceName": "opt-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.sel": "item(sel)",
+          "class": "opt",
+          "on:click(left)": "set(pick_opt, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "30px",
+          "position": "relative",
+          "width": "716px"
+        }
+      },
+      "contentHash": "d7ab51e10bb905dc",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 128,
+      "outId": "opt",
+      "selfHash": "288bbe2b8f98e296",
+      "sourceId": "D1Book.dc.html:1/1/4/1/6/0",
+      "sourceName": "opt",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "opts"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "4px",
+          "height": "174px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "374px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "041de1204a266856",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 127,
+      "outId": "opts",
+      "selfHash": "143aad2d69f0bb29",
+      "sourceId": "D1Book.dc.html:1/1/4/1/6",
+      "sourceName": "opts",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "has_sel"
+        },
+        "decls": {
+          "height": "548px",
+          "left": "380px",
+          "position": "absolute",
+          "top": "16px",
+          "width": "716px"
+        }
+      },
+      "contentHash": "cdef717eda259cf6",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 103,
+      "outId": "detail",
+      "selfHash": "f7b7b10eca47ea87",
+      "sourceId": "D1Book.dc.html:1/1/4/1",
+      "sourceName": "detail",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tab | eq(0)"
+        },
+        "decls": {
+          "height": "580px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "60px",
+          "width": "1120px"
+        }
+      },
+      "contentHash": "e0c27d9f615835e6",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 93,
+      "outId": "page-ev",
+      "selfHash": "6d4c16dd04375f2a",
+      "sourceId": "D1Book.dc.html:1/1/4",
+      "sourceName": "page-ev",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "empty"
+        },
+        "decls": {
+          "height": "24px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "12px",
+          "width": "1076px"
+        },
+        "text": "@UI_V2_NOTES_DESC"
+      },
+      "contentHash": "ce27ce0bfe42b26e",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 138,
+      "outId": "pn-desc",
+      "selfHash": "b6d1d4540d92c058",
+      "sourceId": "D1Book.dc.html:1/1/5/0",
+      "sourceName": "pn-desc",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(kind)",
+          "class": "note-k"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "18px",
+          "width": "1048px"
+        },
+        "text": "人物筆記"
+      },
+      "contentHash": "d1070a50ac10305d",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 141,
+      "outId": "pnote-k",
+      "selfHash": "0cfa4313b5f79a6a",
+      "sourceId": "D1Book.dc.html:1/1/5/1/0/0",
+      "sourceName": "pnote-k",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "note-n"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "1048px"
+        },
+        "text": "懷錶鏈上的墜子"
+      },
+      "contentHash": "8a0ddc1f0b938ef9",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 142,
+      "outId": "pnote-n",
+      "selfHash": "3892f726ae3170f4",
+      "sourceId": "D1Book.dc.html:1/1/5/1/0/1",
+      "sourceName": "pnote-n",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(text)",
+          "class": "note-t"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "width": "1048px"
+        },
+        "text": "塞德里克的懷錶鏈上掛著三個小墜子。"
+      },
+      "contentHash": "5b61aa752c5ccf99",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 143,
+      "outId": "pnote-t",
+      "selfHash": "9a2d42abed058f0c",
+      "sourceId": "D1Book.dc.html:1/1/5/1/0/2",
+      "sourceName": "pnote-t",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "note"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "flex-shrink": "0",
+          "gap": "2px",
+          "padding-bottom": "8px",
+          "padding-left": "14px",
+          "padding-right": "14px",
+          "padding-top": "6px",
+          "width": "1076px"
+        }
+      },
+      "contentHash": "021687dc9f54d36f",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 140,
+      "outId": "pnote",
+      "selfHash": "038d62d1c15493c4",
+      "sourceId": "D1Book.dc.html:1/1/5/1/0",
+      "sourceName": "pnote",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "pnotes"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "6px",
+          "height": "520px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "44px",
+          "width": "1076px"
+        }
+      },
+      "contentHash": "35ed5f05c154d9a6",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 139,
+      "outId": "pnotes",
+      "selfHash": "3722a8ac7c8dbb48",
+      "sourceId": "D1Book.dc.html:1/1/5/1",
+      "sourceName": "pnotes",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "tab | eq(1)"
+        },
+        "decls": {
+          "height": "580px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "60px",
+          "width": "1120px"
+        }
+      },
+      "contentHash": "eedaded9f82b5636",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 137,
+      "outId": "page-pn",
+      "selfHash": "51171d2e55746050",
+      "sourceId": "D1Book.dc.html:1/1/5",
+      "sourceName": "page-pn",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "sheet"
+        },
+        "decls": {
+          "height": "640px",
+          "left": "calc(50% - 560px)",
+          "position": "absolute",
+          "top": "calc(50% - 320px)",
+          "width": "1120px"
+        }
+      },
+      "contentHash": "923c56cd089c97b8",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 76,
+      "outId": "book",
+      "selfHash": "16047ac91e8fdca7",
+      "sourceId": "D1Book.dc.html:1/1",
+      "sourceName": "book",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Backspace)": "emit(close)",
+          "on:key(Escape)": "emit(close)",
+          "on:key(F1)": "emit(settings)",
+          "on:key(Tab)": "emit(close)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "transparent",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "deebb34f075f17b5",
+      "fidelity": "High",
+      "file": "D1Book.dc.html",
+      "line": 69,
+      "outId": "d1book",
+      "selfHash": "061bdea04ce18b6e",
+      "sourceId": "D1Book.dc.html:1",
+      "sourceName": "D1Book",
+      "ui": "d1book",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "src": "../shared/img/bg-hall.jpg"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen",
+          "object-fit": "cover"
+        }
+      },
+      "contentHash": "ba12778675962d95",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 63,
+      "outId": "bg",
+      "selfHash": "99eff800fa620f62",
+      "sourceId": "D1Carry.dc.html:1/0",
+      "sourceName": "bg",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "anchor": "stretch stretch screen",
+          "background-color": "#092e2899"
+        }
+      },
+      "contentHash": "a21cc266ccd82da8",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 64,
+      "outId": "dim",
+      "selfHash": "09b24708b1286fac",
+      "sourceId": "D1Carry.dc.html:1/1",
+      "sourceName": "dim",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "500px"
+        },
+        "text": "@SCR_D01_S06_TITLE"
+      },
+      "contentHash": "39976c7fa99401d2",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 68,
+      "outId": "k",
+      "selfHash": "2ec25b1118dc4ce2",
+      "sourceId": "D1Carry.dc.html:1/2/0/0",
+      "sourceName": "k",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "h1"
+        },
+        "decls": {
+          "height": "38px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "30px",
+          "width": "520px"
+        },
+        "text": "@UI_V2_CARRY_TITLE"
+      },
+      "contentHash": "42af206e2183f009",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 69,
+      "outId": "title",
+      "selfHash": "04e8553f5029feaf",
+      "sourceId": "D1Carry.dc.html:1/2/0/1",
+      "sourceName": "title",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.full": "full",
+          "bind:text": "count_text",
+          "class": "count"
+        },
+        "decls": {
+          "height": "30px",
+          "left": "456px",
+          "position": "absolute",
+          "top": "36px",
+          "width": "380px"
+        },
+        "text": "可攜帶：9 件。已選：8 件。"
+      },
+      "contentHash": "7c810a4002a095ab",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 70,
+      "outId": "count",
+      "selfHash": "df9e43dc8bb0e1d4",
+      "sourceId": "D1Carry.dc.html:1/2/0/2",
+      "sourceName": "count",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "first_hint | ne('')",
+          "bind:text": "first_hint",
+          "class": "sys"
+        },
+        "decls": {
+          "height": "21px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "74px",
+          "width": "800px"
+        },
+        "text": "能帶進論戰的東西有限。留下的證物，可能落入對手手中。"
+      },
+      "contentHash": "d379ccd4b4b66ea8",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 71,
+      "outId": "hint",
+      "selfHash": "f9f02c1c5f0111da",
+      "sourceId": "D1Carry.dc.html:1/2/0/3",
+      "sourceName": "hint",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "tick"
+        },
+        "decls": {
+          "height": "8px",
+          "left": "2px",
+          "position": "absolute",
+          "top": "2px",
+          "width": "8px"
+        }
+      },
+      "contentHash": "87516baa9d548b6b",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 76,
+      "outId": "it-tick",
+      "selfHash": "f4da0128a74ff8a9",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0/0/0",
+      "sourceName": "it-tick",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "box"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "10px",
+          "position": "absolute",
+          "top": "7px",
+          "width": "16px"
+        }
+      },
+      "contentHash": "4f73ce6276911c3e",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 75,
+      "outId": "it-box",
+      "selfHash": "468f57801ea79193",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0/0",
+      "sourceName": "it-box",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(name)",
+          "class": "it-n"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "36px",
+          "position": "absolute",
+          "top": "5px",
+          "width": "230px"
+        },
+        "text": "黃銅文件筒（空）"
+      },
+      "contentHash": "0eed261e018494f3",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 78,
+      "outId": "it-n",
+      "selfHash": "1a8f0bad696fde12",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0/1",
+      "sourceName": "it-n",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(desc)",
+          "class": "it-d"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "276px",
+          "position": "absolute",
+          "top": "7px",
+          "width": "440px"
+        },
+        "text": "書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。"
+      },
+      "contentHash": "e27d1636ab326c71",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 79,
+      "outId": "it-d",
+      "selfHash": "57e92b0e6f650dce",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0/2",
+      "sourceName": "it-d",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "item(kind)",
+          "class": "it-k"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "724px",
+          "position": "absolute",
+          "top": "7px",
+          "width": "78px"
+        },
+        "text": "證物"
+      },
+      "contentHash": "9b62d9e9ef275c2f",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 80,
+      "outId": "it-k",
+      "selfHash": "e2c7e831f394eb63",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0/3",
+      "sourceName": "it-k",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:class.psy": "item(psy)",
+          "bind:class.sel": "item(sel)",
+          "class": "item",
+          "on:click(left)": "if port(phase) eq 0 set(pick_item, item(id))"
+        },
+        "decls": {
+          "flex-shrink": "0",
+          "height": "31px",
+          "position": "relative",
+          "width": "812px"
+        }
+      },
+      "contentHash": "73cbbcc7a406a2a3",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 73,
+      "outId": "item",
+      "selfHash": "84ce861e055a31f2",
+      "sourceId": "D1Carry.dc.html:1/2/0/4/0",
+      "sourceName": "item",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "port": "items"
+        },
+        "decls": {
+          "display": "flex",
+          "flex-direction": "column",
+          "gap": "3px",
+          "height": "444px",
+          "left": "24px",
+          "position": "absolute",
+          "top": "104px",
+          "width": "812px"
+        }
+      },
+      "contentHash": "b1761fcb87c7679e",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 72,
+      "outId": "items",
+      "selfHash": "94526c78c743b38e",
+      "sourceId": "D1Carry.dc.html:1/2/0/4",
+      "sourceName": "items",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "sheet"
+        },
+        "decls": {
+          "height": "560px",
+          "left": "32px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "860px"
+        }
+      },
+      "contentHash": "7bb5e74a36b0101f",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 67,
+      "outId": "sheet",
+      "selfHash": "9a5dce4ce212f6c7",
+      "sourceId": "D1Carry.dc.html:1/2/0",
+      "sourceName": "sheet",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "s-b00406",
+          "src": "../shared/img/ch-c-arthur.png"
+        },
+        "decls": {
+          "height": "450px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "2f0211de0f116644",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 88,
+      "outId": "arthur-art",
+      "selfHash": "bfbda7ac03baaadc",
+      "sourceId": "D1Carry.dc.html:1/2/1/0/0",
+      "sourceName": "arthur-art",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "330px",
+          "left": "18px",
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "0px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "795440bcaa01b972",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 87,
+      "outId": "arthur",
+      "selfHash": "a3f7081e0b0136d7",
+      "sourceId": "D1Carry.dc.html:1/2/1/0",
+      "sourceName": "arthur",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ask-t"
+        },
+        "decls": {
+          "height": "22px",
+          "left": "8px",
+          "position": "absolute",
+          "top": "15px",
+          "width": "284px"
+        },
+        "text": "@UI_V2_CARRY_ASK_ARTHUR"
+      },
+      "contentHash": "b3d73e52d2112412",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 91,
+      "outId": "btn-ask-t",
+      "selfHash": "605101745dedb5ea",
+      "sourceId": "D1Carry.dc.html:1/2/1/1/0",
+      "sourceName": "btn-ask-t",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "ask",
+          "on:click(left)": "if port(phase) eq 0 emit(ask)"
+        },
+        "decls": {
+          "height": "52px",
+          "left": "18px",
+          "position": "absolute",
+          "top": "340px",
+          "width": "300px"
+        }
+      },
+      "contentHash": "ebbf99ed8cb3f0e9",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 90,
+      "outId": "btn-ask",
+      "selfHash": "8905b8cd86ece7ab",
+      "sourceId": "D1Carry.dc.html:1/2/1/1",
+      "sourceName": "btn-ask",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn paper",
+          "on:click(left)": "if port(phase) eq 0 emit(back)"
+        },
+        "decls": {
+          "height": "46px",
+          "left": "18px",
+          "position": "absolute",
+          "top": "500px",
+          "width": "140px"
+        },
+        "text": "@BTN_BACK"
+      },
+      "contentHash": "b374b11865575184",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 93,
+      "outId": "btn-back",
+      "selfHash": "b8074fc84f7bcc8f",
+      "sourceId": "D1Carry.dc.html:1/2/1/2",
+      "sourceName": "btn-back",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn red",
+          "on:click(left)": "if port(phase) eq 0 emit(confirm)"
+        },
+        "decls": {
+          "height": "46px",
+          "left": "170px",
+          "position": "absolute",
+          "top": "500px",
+          "width": "148px"
+        },
+        "text": "@UI_V2_CARRY_CONFIRM"
+      },
+      "contentHash": "83d4e41c8c128151",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 94,
+      "outId": "btn-confirm",
+      "selfHash": "e9ec63fb186887d9",
+      "sourceId": "D1Carry.dc.html:1/2/1/3",
+      "sourceName": "btn-confirm",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "560px",
+          "left": "912px",
+          "position": "absolute",
+          "top": "20px",
+          "width": "336px"
+        }
+      },
+      "contentHash": "5ce6f1b72d4f5ba7",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 86,
+      "outId": "side",
+      "selfHash": "eb50d7b7e8bfaf72",
+      "sourceId": "D1Carry.dc.html:1/2/1",
+      "sourceName": "side",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "who1",
+          "class": "who"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "10px",
+          "width": "300px"
+        },
+        "text": "亞瑟"
+      },
+      "contentHash": "d045edc9486a7f22",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 101,
+      "outId": "who1",
+      "selfHash": "47c6da947ae0347d",
+      "sourceId": "D1Carry.dc.html:1/2/2/0",
+      "sourceName": "who1",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "say1",
+          "class": "say"
+        },
+        "decls": {
+          "height": "26px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "30px",
+          "width": "1180px"
+        },
+        "text": "鎖匠的鑰匙不帶嗎？要是被誰拿去說嘴就麻煩了。"
+      },
+      "contentHash": "5d56e0323fbdabc5",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 102,
+      "outId": "say1",
+      "selfHash": "a510459959b5eb77",
+      "sourceId": "D1Carry.dc.html:1/2/2/1",
+      "sourceName": "say1",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "say2 | ne('')",
+          "bind:text": "who2",
+          "class": "who"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "60px",
+          "width": "300px"
+        },
+        "text": "Sherefox"
+      },
+      "contentHash": "94da54730b8ac1c5",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 103,
+      "outId": "who2",
+      "selfHash": "9a506a2ec8d18b94",
+      "sourceId": "D1Carry.dc.html:1/2/2/2",
+      "sourceName": "who2",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "say2 | ne('')",
+          "bind:text": "say2",
+          "class": "say"
+        },
+        "decls": {
+          "height": "26px",
+          "left": "48px",
+          "position": "absolute",
+          "top": "80px",
+          "width": "1180px"
+        },
+        "text": "它很輕。"
+      },
+      "contentHash": "bb2520d1df82a584",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 104,
+      "outId": "say2",
+      "selfHash": "2242d08333f940d7",
+      "sourceId": "D1Carry.dc.html:1/2/2/3",
+      "sourceName": "say2",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "say1 | ne('')",
+          "class": "dlg",
+          "on:port(say_seq)": "play(dlg-in)"
+        },
+        "decls": {
+          "height": "116px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "596px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "b38c3a0dc204dba5",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 98,
+      "outId": "dlg",
+      "selfHash": "3e8f520ec1519db3",
+      "sourceId": "D1Carry.dc.html:1/2/2",
+      "sourceName": "dlg",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {},
+        "decls": {
+          "height": "720px",
+          "left": "calc(50% - 640px)",
+          "position": "absolute",
+          "top": "calc(50% - 360px)",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "500b0a002cb54e5e",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 66,
+      "outId": "main",
+      "selfHash": "be0ef83f592265b8",
+      "sourceId": "D1Carry.dc.html:1/2",
+      "sourceName": "main",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "veil",
+          "on:click(left)": "emit(no)"
+        },
+        "decls": {
+          "height": "720px",
+          "left": "0px",
+          "position": "absolute",
+          "top": "0px",
+          "width": "1280px"
+        }
+      },
+      "contentHash": "995fd371c10125b1",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 110,
+      "outId": "c-veil",
+      "selfHash": "1064fb357ba0e172",
+      "sourceId": "D1Carry.dc.html:1/3/0",
+      "sourceName": "c-veil",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "kicker"
+        },
+        "decls": {
+          "height": "20px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "18px",
+          "width": "600px"
+        },
+        "text": "@UI_V2_CARRY_LEFT_HEAD"
+      },
+      "contentHash": "f9534e94280040e9",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 112,
+      "outId": "c-k",
+      "selfHash": "1fc2e7554a66fe1e",
+      "sourceId": "D1Carry.dc.html:1/3/1/0",
+      "sourceName": "c-k",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:text": "confirm_text",
+          "class": "c-t"
+        },
+        "decls": {
+          "height": "100px",
+          "left": "28px",
+          "position": "absolute",
+          "top": "46px",
+          "width": "604px"
+        },
+        "text": "以下東西會留在宅邸：落在地上的鏡子黑布、通靈板。確定嗎？"
+      },
+      "contentHash": "72f01a63d16009eb",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 113,
+      "outId": "c-t",
+      "selfHash": "ea9897e7b8ee4ca7",
+      "sourceId": "D1Carry.dc.html:1/3/1/1",
+      "sourceName": "c-t",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn paper",
+          "on:click(left)": "emit(no)"
+        },
+        "decls": {
+          "height": "46px",
+          "left": "300px",
+          "position": "absolute",
+          "top": "160px",
+          "width": "150px"
+        },
+        "text": "@BTN_CANCEL"
+      },
+      "contentHash": "40ffca9f11da0bb5",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 114,
+      "outId": "c-no",
+      "selfHash": "3eee4f3353b10c86",
+      "sourceId": "D1Carry.dc.html:1/3/1/2",
+      "sourceName": "c-no",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "btn red",
+          "on:click(left)": "emit(yes)"
+        },
+        "decls": {
+          "height": "46px",
+          "left": "470px",
+          "position": "absolute",
+          "top": "160px",
+          "width": "162px"
+        },
+        "text": "@BTN_OK"
+      },
+      "contentHash": "6ea330eccf45a9ce",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 115,
+      "outId": "c-yes",
+      "selfHash": "ec703713a3bd003e",
+      "sourceId": "D1Carry.dc.html:1/3/1/3",
+      "sourceName": "c-yes",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "cbox"
+        },
+        "decls": {
+          "height": "230px",
+          "left": "calc(50% - 330px)",
+          "position": "absolute",
+          "top": "calc(50% - 115px)",
+          "width": "660px"
+        }
+      },
+      "contentHash": "dacf4f05640ff43e",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 111,
+      "outId": "c-box",
+      "selfHash": "884f30aef4a49670",
+      "sourceId": "D1Carry.dc.html:1/3/1",
+      "sourceName": "c-box",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "phase | eq(1)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "4808fc4fa898449d",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 109,
+      "outId": "confirm",
+      "selfHash": "e39599970f42b2db",
+      "sourceId": "D1Carry.dc.html:1/3",
+      "sourceName": "confirm",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "class": "more"
+        },
+        "decls": {
+          "height": "16px",
+          "left": "1000px",
+          "position": "absolute",
+          "top": "690px",
+          "width": "240px"
+        },
+        "text": "@BTN_CONTINUE"
+      },
+      "contentHash": "a0bec8223eaeeaf5",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 121,
+      "outId": "post-more",
+      "selfHash": "3a0df95b1daced51",
+      "sourceId": "D1Carry.dc.html:1/4/0",
+      "sourceName": "post-more",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "bind:display": "phase | eq(2)",
+          "on:click(left)": "emit(go)"
+        },
+        "decls": {
+          "anchor": "stretch stretch screen"
+        }
+      },
+      "contentHash": "2b294fde95771288",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 120,
+      "outId": "post",
+      "selfHash": "57f647671e88de7a",
+      "sourceId": "D1Carry.dc.html:1/4",
+      "sourceName": "post",
+      "ui": "d1carry",
+      "warnings": []
+    },
+    {
+      "base": {
+        "attrs": {
+          "autofocus": "",
+          "on:key(Enter)": "if port(phase) eq 2 emit(go)",
+          "on:key(Escape)": "if port(phase) eq 1 emit(no) else emit(settings)",
+          "on:key(F1)": "emit(settings)",
+          "on:key(Space)": "if port(phase) eq 2 emit(go)",
+          "tabindex": "0"
+        },
+        "decls": {
+          "background-color": "#092e28",
+          "height": "100vh",
+          "margin-bottom": "0",
+          "margin-left": "0",
+          "margin-right": "0",
+          "margin-top": "0",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100vw"
+        }
+      },
+      "contentHash": "9091a78aac383311",
+      "fidelity": "High",
+      "file": "D1Carry.dc.html",
+      "line": 58,
+      "outId": "d1carry",
+      "selfHash": "442648eec9e04731",
+      "sourceId": "D1Carry.dc.html:1",
+      "sourceName": "D1Carry",
+      "ui": "d1carry",
       "warnings": []
     }
   ],
@@ -31765,13 +35110,13 @@
   "skipped": [],
   "topLevelFrames": [],
   "totals": {
-    "assets": 50,
+    "assets": 58,
     "dropped": 0,
-    "high": 1286,
+    "high": 1421,
     "inlineSvg": 57,
     "low": 0,
     "medium": 0,
-    "nodes": 1286,
+    "nodes": 1421,
     "rasterized": 0,
     "vectors": 0
   },
@@ -31937,6 +35282,49 @@
       "flow": "",
       "id": "d1debate",
       "name": "D1Debate",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "d1inv/d1inv.xt",
+      "flow": "",
+      "id": "d1inv",
+      "name": "D1Inv",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "d1book/d1book.xt",
+      "flow": "",
+      "id": "d1book",
+      "name": "D1Book",
+      "tokens": {
+        "--copper": "#a65432",
+        "--ink": "#123a31",
+        "--ink-deep": "#092e28",
+        "--lamp-gold": "#e0a050",
+        "--paper": "#f3eedf",
+        "--paper-old": "#e3d9c2",
+        "--vermilion": "#b8322a"
+      }
+    },
+    {
+      "doc": "d1carry/d1carry.xt",
+      "flow": "",
+      "id": "d1carry",
+      "name": "D1Carry",
       "tokens": {
         "--copper": "#a65432",
         "--ink": "#123a31",

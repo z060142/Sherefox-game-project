@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #bg right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "bg",
+      "source": "D1Carry.dc.html",
+      "line": 63,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #dim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "dim",
+      "source": "D1Carry.dc.html",
+      "line": 64,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #confirm right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "confirm",
+      "source": "D1Carry.dc.html",
+      "line": 109,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #post right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "post",
+      "source": "D1Carry.dc.html",
+      "line": 120,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 37 element(s) is written to their <layout> #id rules (#d1carry, #bg, #dim, #main, #sheet, ...)",
+      "element": "",
+      "source": "D1Carry.dc.html",
+      "line": 58,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "elements": "37",
+        "ids": "#d1carry #bg #dim #main #sheet #k #title #count #hint #items #item #it-box #it-tick #it-n #it-d #it-k #side #arthur #arthur-art #btn-ask #btn-ask-t #btn-back #btn-confirm #dlg #who1 #say1 #who2 #say2 #confirm #c-veil #c-box #c-k #c-t #c-no #c-yes #post #post-more"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

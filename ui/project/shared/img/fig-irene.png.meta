@@ -1,0 +1,13 @@
+version: 1
+id: 65fac5f4-e7d8-4ba4-af78-e47439889903
+type: image
+title: fig-irene
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/char_irene.png
+content: sha256:8fcd6fafd0e468a26553d67ce844bdff84dd84ce42f3409bd3f0398fb341d424
+measured:
+  w: 1024
+  h: 1536
+  alpha: true

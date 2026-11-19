@@ -12,3 +12,4 @@ tests/d1play_harnessC/
 tests/d1play_harnessD/
 tests/warmfail_harness/
 .xtframe-cache/
+tests/d1m3_harness/

@@ -195,6 +195,73 @@
       "type": "merge"
     },
     {
+      "id": "devRow",
+      "type": "atrium.table.find",
+      "params": {
+        "table": "steps",
+        "column": "id"
+      }
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": "D01_02"
+      }
+    },
+    {
+      "id": "entry",
+      "type": "state",
+      "params": {
+        "initial": "ch",
+        "states": [
+          "ch",
+          "dev"
+        ],
+        "transitions": [
+          {
+            "from": "*",
+            "on": "ch",
+            "to": "ch"
+          },
+          {
+            "from": "*",
+            "on": "dev",
+            "to": "dev"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d1dev",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
+      "id": "entryDev",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": 1
+      }
+    },
+    {
+      "id": "pickRow",
+      "type": "select"
+    },
+    {
+      "id": "pickGo",
+      "type": "merge"
+    },
+    {
       "id": "same",
       "type": "compare",
       "params": {
@@ -244,7 +311,9 @@
           "board",
           "debate",
           "result",
-          "d1debate"
+          "d1debate",
+          "d1inv",
+          "d1carry"
         ],
         "transitions": [
           {
@@ -286,6 +355,16 @@
             "from": "*",
             "on": "to_d1debate",
             "to": "d1debate"
+          },
+          {
+            "from": "*",
+            "on": "to_d1inv",
+            "to": "d1inv"
+          },
+          {
+            "from": "*",
+            "on": "to_d1carry",
+            "to": "d1carry"
           }
         ]
       }
@@ -433,18 +512,53 @@
       }
     },
     {
+      "id": "isD1InvTag",
+      "type": "constant",
+      "params": {
+        "value": "d1investigate"
+      }
+    },
+    {
+      "id": "isD1Inv",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1CarTag",
+      "type": "constant",
+      "params": {
+        "value": "d1carry"
+      }
+    },
+    {
+      "id": "isD1Car",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1DebTag",
+      "type": "constant",
+      "params": {
+        "value": "d1debate"
+      }
+    },
+    {
+      "id": "isD1Deb",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "isDebN",
       "type": "select"
     },
     {
-      "id": "K0",
-      "type": "constant",
-      "params": {
-        "value": 1
-      }
-    },
-    {
-      "id": "K1",
+      "id": "K2",
       "type": "constant",
       "params": {
         "value": 0
@@ -540,6 +654,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -551,6 +667,8 @@
         "values": [
           false,
           true,
+          false,
+          false,
           false,
           false,
           false,
@@ -572,6 +690,8 @@
           false,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -585,6 +705,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false,
           false,
           false,
@@ -604,6 +726,8 @@
           true,
           false,
           false,
+          false,
+          false,
           false
         ]
       }
@@ -619,6 +743,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false,
           false
         ]
@@ -636,6 +762,8 @@
           false,
           false,
           true,
+          false,
+          false,
           false
         ]
       }
@@ -645,6 +773,44 @@
       "type": "lookup",
       "params": {
         "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1inv",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "visD1carry",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          false,
           false,
           false,
           false,
@@ -704,6 +870,66 @@
     },
     {
       "id": "bookVis",
+      "type": "lookup",
+      "params": {
+        "values": [
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "d1bk",
+      "type": "state",
+      "params": {
+        "initial": "closed",
+        "states": [
+          "closed",
+          "open"
+        ],
+        "transitions": [
+          {
+            "from": "closed",
+            "on": "open",
+            "to": "open"
+          },
+          {
+            "from": "*",
+            "on": "close",
+            "to": "closed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d1bkGate",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d1bkOpen",
+      "type": "merge"
+    },
+    {
+      "id": "d1bkVis",
       "type": "lookup",
       "params": {
         "values": [
@@ -869,6 +1095,58 @@
       "to": "ui#settings.lang_sel"
     },
     {
+      "from": "K0.out",
+      "to": "devRow.value"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "entry.ch"
+    },
+    {
+      "from": "ui#title.v2dev",
+      "to": "entry.dev"
+    },
+    {
+      "from": "ui#title.v2dev",
+      "to": "d1dev.setTrue"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "d1dev.setFalse"
+    },
+    {
+      "from": "d1dev.value",
+      "to": "world.d1Dev"
+    },
+    {
+      "from": "entry.index",
+      "to": "entryDev.a"
+    },
+    {
+      "from": "K1.out",
+      "to": "entryDev.b"
+    },
+    {
+      "from": "entryDev.out",
+      "to": "pickRow.cond"
+    },
+    {
+      "from": "devRow.row",
+      "to": "pickRow.a"
+    },
+    {
+      "from": "chStart.row",
+      "to": "pickRow.b"
+    },
+    {
+      "from": "ui#title.chapter.emitted",
+      "to": "pickGo.in"
+    },
+    {
+      "from": "ui#title.v2dev",
+      "to": "pickGo.in"
+    },
+    {
       "from": "ui#title.chapter",
       "to": "chText.in"
     },
@@ -881,11 +1159,11 @@
       "to": "chStart.filterValue"
     },
     {
-      "from": "chStart.row",
+      "from": "pickRow.out",
       "to": "chPick.in"
     },
     {
-      "from": "chStart.row",
+      "from": "pickRow.out",
       "to": "same.a"
     },
     {
@@ -897,11 +1175,11 @@
       "to": "sameGate.guard"
     },
     {
-      "from": "ui#title.chapter.emitted",
+      "from": "pickGo.out",
       "to": "sameGate.go"
     },
     {
-      "from": "ui#title.chapter.emitted",
+      "from": "pickGo.out",
       "to": "chPick.trigger"
     },
     {
@@ -927,6 +1205,10 @@
     {
       "from": "world.stepDone",
       "to": "cur.increment"
+    },
+    {
+      "from": "world.d1StepBack",
+      "to": "cur.decrement"
     },
     {
       "from": "world.debRetry",
@@ -1093,15 +1375,51 @@
       "to": "screen.to_result"
     },
     {
+      "from": "kind.value",
+      "to": "isD1Inv.a"
+    },
+    {
+      "from": "isD1InvTag.out",
+      "to": "isD1Inv.b"
+    },
+    {
+      "from": "isD1Inv.true",
+      "to": "screen.to_d1inv"
+    },
+    {
+      "from": "kind.value",
+      "to": "isD1Car.a"
+    },
+    {
+      "from": "isD1CarTag.out",
+      "to": "isD1Car.b"
+    },
+    {
+      "from": "isD1Car.true",
+      "to": "screen.to_d1carry"
+    },
+    {
+      "from": "kind.value",
+      "to": "isD1Deb.a"
+    },
+    {
+      "from": "isD1DebTag.out",
+      "to": "isD1Deb.b"
+    },
+    {
+      "from": "isD1Deb.true",
+      "to": "screen.to_d1debate"
+    },
+    {
       "from": "isDeb.out",
       "to": "isDebN.cond"
     },
     {
-      "from": "K0.out",
+      "from": "K1.out",
       "to": "isDebN.a"
     },
     {
-      "from": "K1.out",
+      "from": "K2.out",
       "to": "isDebN.b"
     },
     {
@@ -1109,11 +1427,11 @@
       "to": "isWarmN.cond"
     },
     {
-      "from": "K0.out",
+      "from": "K1.out",
       "to": "isWarmN.a"
     },
     {
-      "from": "K1.out",
+      "from": "K2.out",
       "to": "isWarmN.b"
     },
     {
@@ -1121,11 +1439,11 @@
       "to": "retryN.cond"
     },
     {
-      "from": "K0.out",
+      "from": "K1.out",
       "to": "retryN.a"
     },
     {
-      "from": "K1.out",
+      "from": "K2.out",
       "to": "retryN.b"
     },
     {
@@ -1175,10 +1493,6 @@
     {
       "from": "world.resultLines",
       "to": "screen.to_vn"
-    },
-    {
-      "from": "ui#title.v2demo",
-      "to": "screen.to_d1debate"
     },
     {
       "from": "world.d1Back",
@@ -1309,6 +1623,22 @@
       "to": "ui#d1debate.visible"
     },
     {
+      "from": "screen.index",
+      "to": "visD1inv.index"
+    },
+    {
+      "from": "visD1inv.out",
+      "to": "ui#d1inv.visible"
+    },
+    {
+      "from": "screen.index",
+      "to": "visD1carry.index"
+    },
+    {
+      "from": "visD1carry.out",
+      "to": "ui#d1carry.visible"
+    },
+    {
       "from": "isInv.out",
       "to": "bookGate.guard"
     },
@@ -1339,6 +1669,42 @@
     {
       "from": "bookVis.out",
       "to": "world.bookOpen"
+    },
+    {
+      "from": "isD1Inv.out",
+      "to": "d1bkGate.guard"
+    },
+    {
+      "from": "ui#d1inv.book",
+      "to": "d1bkOpen.in"
+    },
+    {
+      "from": "ui#d1inv.notes",
+      "to": "d1bkOpen.in"
+    },
+    {
+      "from": "d1bkOpen.out",
+      "to": "d1bkGate.go"
+    },
+    {
+      "from": "d1bkGate.changed",
+      "to": "d1bk.open"
+    },
+    {
+      "from": "ui#d1book.close",
+      "to": "d1bk.close"
+    },
+    {
+      "from": "rebegin.out",
+      "to": "d1bk.close"
+    },
+    {
+      "from": "d1bk.index",
+      "to": "d1bkVis.index"
+    },
+    {
+      "from": "d1bkVis.out",
+      "to": "ui#d1book.visible"
     },
     {
       "from": "world.notesOpen",
@@ -1402,6 +1768,18 @@
     },
     {
       "from": "ui#d1debate.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1inv.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1book.settings",
+      "to": "settings.open"
+    },
+    {
+      "from": "ui#d1carry.settings",
       "to": "settings.open"
     },
     {

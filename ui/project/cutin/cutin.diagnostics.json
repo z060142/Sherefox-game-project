@@ -9,7 +9,7 @@
       "message": "effect added to base style for timeline big: #big-art effect: blur(6px) (18 §18.4)",
       "element": "big-art",
       "source": "Cutin.dc.html",
-      "line": 37,
+      "line": 41,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -35,7 +35,7 @@
       "message": "anchor: #big-grp right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "big-grp",
       "source": "Cutin.dc.html",
-      "line": 31,
+      "line": 35,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -59,7 +59,7 @@
       "message": "anchor: #stamp-tr right: auto; left: 1060px; top: 36px -> anchor: right top; offset: 20px 18px; size: 168px 168px",
       "element": "stamp-tr",
       "source": "Cutin.dc.html",
-      "line": 55,
+      "line": 59,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -83,7 +83,7 @@
       "message": "anchor: #stamp-tr-sub right: auto; left: 1060px; top: 36px -> anchor: right top; offset: 20px 18px; size: 168px 200px",
       "element": "stamp-tr-sub",
       "source": "Cutin.dc.html",
-      "line": 66,
+      "line": 71,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -107,7 +107,7 @@
       "message": "anchor: #stamp-bl left: 52px; bottom: auto; top: 500px -> anchor: left bottom; offset: 20px 34px; size: 168px 168px",
       "element": "stamp-bl",
       "source": "Cutin.dc.html",
-      "line": 71,
+      "line": 76,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -131,7 +131,7 @@
       "message": "anchor: #stamp-bl-sub left: 52px; bottom: auto; top: 500px -> anchor: left bottom; offset: 20px 34px; size: 380px 168px",
       "element": "stamp-bl-sub",
       "source": "Cutin.dc.html",
-      "line": 89,
+      "line": 95,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -152,15 +152,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 46 element(s) is written to their <layout> #id rules (#cutin, #big-grp, #veil, #band, #band-r1, ...)",
+      "message": "the board's inline geometry of 48 element(s) is written to their <layout> #id rules (#cutin, #big-grp, #veil, #band, #band-r1, ...)",
       "element": "",
       "source": "Cutin.dc.html",
-      "line": 24,
+      "line": 28,
       "col": 0,
       "ui": "cutin",
       "detail": {
-        "elements": "46",
-        "ids": "#cutin #big-grp #veil #band #band-r1 #band-r2 #big-art #big-cut-ronpa #big-cut-shaken #big-cut-hachiku3 #big-cut-konju #big-cut-shisshu #big-cut-brink #big-cut-reverse #big-cut-double #big-cut-counter #big-sub #stamp-tr #st-stamp-parry #st-stamp-parry-img #st-stamp-clash #st-stamp-clash-img #st-stamp-seen #st-stamp-seen-img #stamp-tr-sub #sts-stamp-parry #sts-stamp-clash #sts-stamp-seen #stamp-bl #st-stamp-trap #st-stamp-trap-img #st-stamp-whiff #st-stamp-whiff-img #st-stamp-assist #st-stamp-assist-img #st-stamp-hachiku-lost #st-stamp-hachiku-lost-img #st-stamp-hachiku #st-hk-seal #st-hk-n #stamp-bl-sub #sts-stamp-trap #sts-stamp-whiff #sts-stamp-assist #sts-stamp-hachiku-lost #sts-stamp-hachiku"
+        "elements": "48",
+        "ids": "#cutin #big-grp #veil #band #band-r1 #band-r2 #big-art #big-cut-ronpa #big-cut-shaken #big-cut-hachiku3 #big-cut-konju #big-cut-shisshu #big-cut-brink #big-cut-reverse #big-cut-double #big-cut-counter #big-sub #stamp-tr #st-stamp-parry #st-stamp-parry-img #st-stamp-clash #st-stamp-clash-img #st-v2-tr #st-stamp-seen #st-stamp-seen-img #stamp-tr-sub #sts-stamp-parry #sts-stamp-clash #sts-stamp-seen #stamp-bl #st-stamp-trap #st-stamp-trap-img #st-stamp-whiff #st-stamp-whiff-img #st-stamp-assist #st-stamp-assist-img #st-stamp-hachiku-lost #st-stamp-hachiku-lost-img #st-v2-bl #st-stamp-hachiku #st-hk-seal #st-hk-n #stamp-bl-sub #sts-stamp-trap #sts-stamp-whiff #sts-stamp-assist #sts-stamp-hachiku-lost #sts-stamp-hachiku"
       },
       "fix": {
         "kind": "editor",

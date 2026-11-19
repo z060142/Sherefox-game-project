@@ -359,6 +359,7 @@ SCENE_BG = {"kitchen": "kitchen_morning", "clock_shop": "clockshop", "boiler_roo
 # 10-cases 場景與登場人物 -> the scene's name key (investigate.area_name; SCENE_CH0x_*)
 SCENE_NAME = {(1, "kitchen"): "SCENE_CH01_KITCHEN", (2, "clock_shop"): "SCENE_CH02_CLOCKSHOP",
               (3, "boiler_room"): "SCENE_CH03_BOILER", (3, "deck"): "SCENE_CH03_DECK", (3, "dock"): "SCENE_CH03_DOCK"}
+D01_DEV_ROW = "D01_02"   # the v2 demo's debate row (tools/build_data.py D01_STEPS): the title's dev shortcut
 SLOTS = 15          # board: 3 chains x 5 slots (ui-contracts board)
 LOOSE = 9           # debBoard slots 15..23 (docs/debate-engine.md §2.2)
 
@@ -587,18 +588,19 @@ def audio_decl() -> dict:
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
 FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
-              "d01_debate_ui", "d01_debate_engine", "result", "music"]
+              "d01_investigate", "d01_debate_ui", "d01_debate_engine", "result", "music"]
 
 
 def game_json_text(tables: dict) -> str:
     import gen_debui
     import gen_debui_v2
     import gen_debate_v2
+    import gen_inv_v2
     game = json.loads(GAME_JSON.read_text(encoding="utf-8"))
     # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py);
     # the v2 demo: the D01 engine's (tools/gen_debate_v2.py) and its screen's (tools/gen_debui_v2.py)
     for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS, **gen_debate_v2.SIGNALS,
-                       **gen_debui_v2.SIGNALS}.items():
+                       **gen_debui_v2.SIGNALS, **gen_inv_v2.SIGNALS}.items():
         game["signals"][name] = decl
     colls = game.get("collections", {})
     colls.update(gen_debate.COLLECTIONS)
@@ -606,11 +608,21 @@ def game_json_text(tables: dict) -> str:
     colls.update(gen_debui.COLLECTIONS)
     colls.update(gen_debate_v2.COLLECTIONS)
     colls.update(gen_debui_v2.COLLECTIONS)
+    colls.update(gen_inv_v2.COLLECTIONS)
     game["collections"] = colls
     surfaces = game["ui"]["surfaces"]
     if not any(s["ui"] == gen_debui_v2.UI for s in surfaces):   # the v2 debate screen, after result (a main screen)
         at = next(i for i, s in enumerate(surfaces) if s["ui"] == "result") + 1
         surfaces.insert(at, {"ui": gen_debui_v2.UI, "width": 1280, "height": 720, "visible": False})
+    # the v2 demo's investigation and carry screens (main screens, after d1debate) and its evidence list (a modal
+    # overlay, before the settings)
+    for ui, after, modal in (("d1inv", gen_debui_v2.UI, False), ("d1carry", "d1inv", False), ("d1book", "notes", True)):
+        if not any(s["ui"] == ui for s in surfaces):
+            at = next(i for i, s in enumerate(surfaces) if s["ui"] == after) + 1
+            decl = {"ui": ui, "width": 1280, "height": 720, "visible": False}
+            if modal:
+                decl["modal"] = True
+            surfaces.insert(at, decl)
     for name in [n for n in game["tables"] if n.startswith("flow")]:   # the flow tables are all regenerated
         del game["tables"][name]
     for name in tables:
@@ -783,19 +795,42 @@ def gen_main() -> Graph:
     g.node("chapter", "atrium.table.get", table="steps", column="chapter", type="number")
     g.node("begin", "filter", op="deadband", threshold=0)
     g.node("rebegin", "merge")
+    # the v2 demo's dev shortcut (title.v2dev) enters at the D01 debate row (docs/flows.md §4.13): the same latch and
+    # restart logic as a chapter, its row chosen by `entry` (switched before the pulses reach the latch); world.d1Dev
+    # tells the debate to load route A's fixed set (a chapter choice clears it)
+    g.node("devRow", "atrium.table.find", table="steps", column="id")
+    g.edge(g.k(D01_DEV_ROW), "devRow.value")
+    g.node("entry", "state", initial="ch", states=["ch", "dev"],
+           transitions=[{"from": "*", "on": "ch", "to": "ch"}, {"from": "*", "on": "dev", "to": "dev"}])
+    g.edge("ui#title.chapter.emitted", "entry.ch")
+    g.edge("ui#title.v2dev", "entry.dev")
+    g.toggle("d1dev")
+    g.edge("ui#title.v2dev", "d1dev.setTrue")
+    g.edge("ui#title.chapter.emitted", "d1dev.setFalse")
+    g.edge("d1dev.value", "world.d1Dev")
+    g.node("entryDev", "compare", op="eq")
+    g.edge("entry.index", "entryDev.a")
+    g.edge(g.k(1), "entryDev.b")
+    g.node("pickRow", "select")
+    g.edge("entryDev.out", "pickRow.cond")
+    g.edge("devRow.row", "pickRow.a")
+    g.edge("chStart.row", "pickRow.b")
+    g.node("pickGo", "merge")
+    g.edge("ui#title.chapter.emitted", "pickGo.in")
+    g.edge("ui#title.v2dev", "pickGo.in")
     g.edge("ui#title.chapter", "chText.in")
     g.edge("chText.out", "chStart.value")
     g.edge("zeroText.out", "chStart.filterValue")
-    g.edge("chStart.row", "chPick.in")
+    g.edge("pickRow.out", "chPick.in")
     # The comparison first: whether the chosen row is already the current one (then cur does not change and the
     # step is begun again below).
     g.node("same", "compare", op="eq")
-    g.edge("chStart.row", "same.a")
+    g.edge("pickRow.out", "same.a")
     g.edge("cur.value", "same.b")
     g.gate("sameGate")
     g.edge("same.out", "sameGate.guard")
-    g.edge("ui#title.chapter.emitted", "sameGate.go")
-    g.edge("ui#title.chapter.emitted", "chPick.trigger")
+    g.edge("pickGo.out", "sameGate.go")
+    g.edge("pickGo.out", "chPick.trigger")
     g.edge("chPick.out", "cur.set")
     # A retried debate (A-14) starts without its opening lines (docs/flows.md §4.2): world.debRetrying is true from
     # the retry until the step after it begins (written before the step begins: the toggle's edges come first)
@@ -805,6 +840,8 @@ def gen_main() -> Graph:
     g.edge("ui#title.chapter.emitted", "retrying.setFalse")
     g.edge("retrying.value", "world.debRetrying")
     g.edge("world.stepDone", "cur.increment")
+    # the v2 demo: the carry screen's back goes to the investigation row again
+    g.edge("world.d1StepBack", "cur.decrement")
     g.edge("world.debRetry", "cur.decrement")    # result -> the debate step again (A-14 retry)
     g.edge("cur.value", "kind.row")
     g.edge("cur.value", "arg.row")
@@ -824,7 +861,7 @@ def gen_main() -> Graph:
     # Screens: exactly one of title / paper / vn / investigate / board / debate / result is visible; `end` shows
     # the title with its end card; warmup and debate steps show the debate; a result step shows the result, then
     # the vn for its scene's lines (world.resultLines).
-    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result", "d1debate"]
+    screens = ["title", "paper", "vn", "investigate", "board", "debate", "result", "d1debate", "d1inv", "d1carry"]
     g.node("screen", "state", initial="title", states=screens,
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
     # A debate / warmup step whose scene has `pre` lines (script.cue) starts on the vn; the debate screen comes with
@@ -835,7 +872,9 @@ def gen_main() -> Graph:
     g.x("noPre", "preRow < 0")
     for name, tag, scr in (("isEnd", "end", "title"), ("isPaper", "paper", "paper"), ("isVn", "vn", "vn"),
                            ("isInv", "investigate", "investigate"), ("isBoard", "board", "board"),
-                           ("isDeb", "debate", None), ("isWarm", "warmup", None), ("isRes", "result", "result")):
+                           ("isDeb", "debate", None), ("isWarm", "warmup", None), ("isRes", "result", "result"),
+                           ("isD1Inv", "d1investigate", "d1inv"), ("isD1Car", "d1carry", "d1carry"),
+                           ("isD1Deb", "d1debate", "d1debate")):
         g.const(name + "Tag", tag)
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
@@ -852,8 +891,8 @@ def gen_main() -> Graph:
     g.edge("world.vnShow", "screen.to_vn")
     g.edge("world.debBack", "screen.to_debate")
     g.edge("world.resultLines", "screen.to_vn")
-    # the v2 demo (docs/flows.md §4.12): the title's v2 entry shows the D01 debate screen, its back to title ends it
-    g.edge("ui#title.v2demo", "screen.to_d1debate")
+    # the v2 demo (docs/flows.md §4.12, §4.13): D01 is chapter 101 of the step table; its steps show their screens
+    # like v1's (the kinds below); the debate's back to title ends it
     g.edge("world.d1Back", "screen.to_title")
     g.edge(g.when("debPreG", "rebegin.out", "debPre_t"), "screen.to_vn")
     g.edge(g.when("debNoPreG", "rebegin.out", "debNoPre_t"), "screen.to_debate")
@@ -897,6 +936,23 @@ def gen_main() -> Graph:
     g.edge("bookVis.out", "ui#evbook.visible")
     g.edge("bookVis.out", "world.bookOpen")
 
+    # The v2 demo's evidence list / notes page (d1book, modal, docs/flows.md §4.13): the d1inv screen's list or notes
+    # button opens it during a d1investigate step, its close closes it, every step begin closes it
+    g.node("d1bk", "state", initial="closed", states=["closed", "open"],
+           transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
+    g.gate("d1bkGate")
+    g.edge("isD1Inv.out", "d1bkGate.guard")
+    g.node("d1bkOpen", "merge")
+    g.edge("ui#d1inv.book", "d1bkOpen.in")
+    g.edge("ui#d1inv.notes", "d1bkOpen.in")
+    g.edge("d1bkOpen.out", "d1bkGate.go")
+    g.edge("d1bkGate.changed", "d1bk.open")
+    g.edge("ui#d1book.close", "d1bk.close")
+    g.edge("rebegin.out", "d1bk.close")
+    g.node("d1bkVis", "lookup", values=[False, True])
+    g.edge("d1bk.index", "d1bkVis.index")
+    g.edge("d1bkVis.out", "ui#d1book.visible")
+
     # Opponent notes overlay (modal, 01-systems §4.4 亞瑟的對手筆記): debate_ui asks for it (world.notesOpen: the
     # 對手筆記 button / N, or the defeat review), its close button closes it, every step begin closes it.
     # world.notesShown tells debate_ui (the debate is paused while it is open).
@@ -917,7 +973,8 @@ def gen_main() -> Graph:
     g.node("settings", "state", initial="closed", states=["closed", "open"],
            transitions=[{"from": "closed", "on": "open", "to": "open"}, {"from": "*", "on": "close", "to": "closed"}])
     g.edge("ui#title.open_settings", "settings.open")
-    for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes", "d1debate"):
+    for ui in ("vn", "paper", "investigate", "board", "debate", "result", "evbook", "notes", "d1debate", "d1inv", "d1book",
+               "d1carry"):
         g.edge(f"ui#{ui}.settings", "settings.open")
     g.edge("ui#settings.close", "settings.close")
     g.node("settingsVis", "lookup", values=[False, True])
@@ -2157,9 +2214,10 @@ def gen_music() -> Graph:
 def graphs() -> dict:
     import gen_debui  # the debate UI and result flows (it imports this module, so not at the top)
     import gen_debui_v2  # the v2 demo D01 debate screen
+    import gen_inv_v2  # the v2 demo D01 investigation, evidence list and carry screen
     return {"main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
             "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music,
-            "d01_debate_ui": gen_debui_v2.gen_d01ui}
+            "d01_debate_ui": gen_debui_v2.gen_d01ui, "d01_investigate": gen_inv_v2.gen_d01inv}
 
 
 def outputs() -> dict[Path, str]:
@@ -2169,6 +2227,8 @@ def outputs() -> dict[Path, str]:
     tables = flow_tables()
     tables.update(gen_debui.tables())
     tables.update(gen_debui_v2.tables())
+    import gen_inv_v2
+    tables.update(gen_inv_v2.tables())
     for name, rows in tables.items():
         out[FLOW_DATA / f"{name}.json"] = table_text(rows)
     out[GAME_JSON] = game_json_text(tables)

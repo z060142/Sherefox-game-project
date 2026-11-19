@@ -42,3 +42,4 @@ Why PNG instead of inline `<svg>`: inline SVG inside a `<repeat>` template is no
 | id | file | generated size | original | note |
 | --- | --- | --- | --- | --- |
 | d01_parlour | bg_d01_parlour.jpg | 1672x941 | design repo `images/d01/bg_d01_parlour.png` (commit 70cbb23) | the wake parlour (靈堂), the D01 debate screen; upscaled to 2560x1440 with the command above |
+| d01_study, d01_basement, d01_attic, d01_bedroom, d01_hall | bg_d01_<place>.jpg | 1672x941 | design repo `images/d01/bg_d01_<place>.png` (branch v2) | the D01 investigation (d1inv; the hall also behind the carry screen); upscaled to 2560x1440 with the command above |

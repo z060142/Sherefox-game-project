@@ -1,0 +1,13 @@
+version: 1
+id: ab5bd39b-2f8c-4f2f-939e-ef42fc5ea54c
+type: image
+title: bg-attic
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_attic.jpg
+content: sha256:b4e3f621309ad82a157f5ab85196b48cc6836ca48059e76d724ac51ee6f2ae7d
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

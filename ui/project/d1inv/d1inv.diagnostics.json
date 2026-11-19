@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #actions right: 16px; bottom: 16px -> anchor: right bottom; offset: -16px -2px; size: 560px 52px",
+      "element": "actions",
+      "source": "D1Inv.dc.html",
+      "line": 137,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 16px; bottom: 16px",
+        "to": "anchor: right bottom; offset: -16px -2px; size: 560px 52px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hud left: 16px; top: 10px -> anchor: left top; offset: -16px -8px; size: 200px 56px",
+      "element": "hud",
+      "source": "D1Inv.dc.html",
+      "line": 120,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 16px; top: 10px",
+        "to": "anchor: left top; offset: -16px -8px; size: 200px 56px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #locs right: auto; left: 232px; top: 10px -> anchor: right top; offset: -16px -8px; size: 1032px 56px",
+      "element": "locs",
+      "source": "D1Inv.dc.html",
+      "line": 127,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 232px; top: 10px",
+        "to": "anchor: right top; offset: -16px -8px; size: 1032px 56px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "pop",
+      "source": "D1Inv.dc.html",
+      "line": 149,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 43 element(s) is written to their <layout> #id rules (#d1inv, #scene, #bg, #bg-art, #figs-parlour, ...)",
+      "element": "",
+      "source": "D1Inv.dc.html",
+      "line": 66,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "elements": "43",
+        "ids": "#d1inv #scene #bg #bg-art #figs-parlour #fig-cedric #fig-hyde #fig-irene #figs-study #fig-irene-door #figs-hall #fig-briggs #shade-top #spots-layer #spots-list #spot #spot-ring #spot-chip #hud #hud-title #hud-appr #locs #loc #loc-t #loc-done #actions #btn-book #book-dot #btn-notes #btn-end #pop #pop-shade #pop-card #pop-kicker #pop-title #pop-rule #pop-body #pop-line #pop-spk #pop-line-text #pop-got #pop-note #pop-close"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

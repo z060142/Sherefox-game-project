@@ -1,0 +1,20 @@
+[
+  {"id": "E01", "name": "E_D01_01_NAME", "desc": "E_D01_01_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "A01", "aprLine": "APR_D01_01_LINE", "aprResult": "APR_D01_01_RESULT"},
+  {"id": "E02", "name": "E_D01_02_NAME", "desc": "E_D01_02_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "A02", "aprLine": "APR_D01_02_LINE", "aprResult": "APR_D01_02_RESULT"},
+  {"id": "E03", "name": "E_D01_03_NAME", "desc": "E_D01_03_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E04", "name": "E_D01_04_NAME", "desc": "E_D01_04_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "A04", "aprLine": "APR_D01_04_LINE", "aprResult": "APR_D01_04_RESULT"},
+  {"id": "E05", "name": "E_D01_05_NAME", "desc": "E_D01_05_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E06", "name": "E_D01_06_NAME", "desc": "E_D01_06_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E07", "name": "E_D01_07_NAME", "desc": "E_D01_07_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E08", "name": "E_D01_08_NAME", "desc": "E_D01_08_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E09", "name": "E_D01_09_NAME", "desc": "E_D01_09_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E10", "name": "E_D01_10_NAME", "desc": "E_D01_10_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E11", "name": "E_D01_11_NAME", "desc": "E_D01_11_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "E12", "name": "E_D01_12_NAME", "desc": "E_D01_12_DESC", "kind": "UI_V2_TYPE_EVIDENCE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "P1", "name": "C_D01_P1_NAME", "desc": "C_D01_P1_DESC", "kind": "UI_V2_TYPE_PSYCH", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "PN1", "name": "PN_D01_1_NAME", "desc": "PN_D01_1_TEXT", "kind": "UI_V2_TYPE_NOTE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "PN2", "name": "PN_D01_2_NAME", "desc": "PN_D01_2_TEXT", "kind": "UI_V2_TYPE_NOTE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "PN3", "name": "PN_D01_3_NAME", "desc": "PN_D01_3_TEXT", "kind": "UI_V2_TYPE_NOTE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "PN4", "name": "PN_D01_4_NAME", "desc": "PN_D01_4_TEXT", "kind": "UI_V2_TYPE_NOTE", "appr": "", "aprLine": "", "aprResult": ""},
+  {"id": "OBS01", "name": "OBS_D01_01_NAME", "desc": "OBS_D01_01_TEXT", "kind": "UI_V2_TYPE_OBS", "appr": "", "aprLine": "", "aprResult": ""}
+]

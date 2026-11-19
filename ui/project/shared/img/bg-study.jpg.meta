@@ -1,0 +1,13 @@
+version: 1
+id: f9411691-6cf8-4893-bd24-77927ed13a7d
+type: image
+title: bg-study
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_study.jpg
+content: sha256:31b05f3e27edf91e676b850acf1ad0fee248cf4f71536003f77c4fe6fa0405b2
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

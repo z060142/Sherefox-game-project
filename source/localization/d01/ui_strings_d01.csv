@@ -121,3 +121,19 @@ UI_V2_FAVOR_HEAD,Result,好感變化,Standing with Others,
 UI_V2_FAVOR_LINE,Result,{name} {delta},{name} {delta},
 UI_V2_NEXT_PLACEHOLDER,Result,下一章預告（示範關卡到此結束）,Next chapter (the demo ends here),
 UI_V2_BACK_TITLE,Result,回到標題,Back to Title,
+SPK_D01_CEDRIC,Speaker,塞德里克,Cedric,opponent nameplate and {name}
+UI_V2_GIVE_UP_BTN,Debate: endgame,認輸,Concede,player's button in the 7.5 round when no claim can refute his chain
+UI_V2_RESULT_ROUNDS,Result,共 {n} 回合,{n} rounds,
+UI_V2_F_COMBO,Debate: formula,連擊,Combo,label inside {formula} of SYS_D01_ATTACH
+UI_V2_F_FOLLOW,Debate: formula,承接,Follow-up,×1.2 same issue or scripted follow-up
+UI_V2_F_RESTATE,Debate: formula,重提,Restated,×0.5
+UI_V2_F_HACHIKU,Debate: formula,破竹,Unstoppable,+10% per stack; also the English name of the 破竹 state
+UI_V2_F_GUARD,Debate: formula,破防,Guard Down,+25%
+UI_V2_RONPA_READY_ISSUE,Debate: chains and record,他破防了。這回合接上另一個爭點的論點就論破！,His guard is down. Land a link on a second issue this round to break him!,variant of UI_V2_RONPA_READY when the chain still covers only 1 issue
+UI_V2_STAMP_CUT,Debate: stamps,截,Cut,cut-in succeeded
+UI_V2_STAMP_TOPPLE,Debate: stamps,拆,Down,knock-down succeeded
+UI_V2_STAMP_WHIFF,Debate: stamps,落空,Whiff,cut-in or rebuttal failed
+UI_V2_STAMP_CLASH,Debate: stamps,交鋒,Clash,both links landed
+UI_V2_STAMP_BAITED,Debate: stamps,中計,Baited,stalling drew his rebuttal
+UI_V2_STAMP_COVER,Debate: stamps,援護,Cover,Arthur's cover triggered
+UI_V2_STAMP_COMBO_BREAK,Debate: stamps,斷,Broken,combo reset

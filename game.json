@@ -611,6 +611,22 @@
     },
     "d1Back": {
       "type": "pulse"
+    },
+    "d1ToCarry": {
+      "type": "pulse"
+    },
+    "d1CarryBack": {
+      "type": "pulse"
+    },
+    "d1Go": {
+      "type": "pulse"
+    },
+    "d1StepBack": {
+      "type": "pulse"
+    },
+    "d1Dev": {
+      "type": "bool",
+      "initial": false
     }
   },
   "input": {
@@ -633,6 +649,7 @@
     "flows/debate_ui.xtflow",
     "flows/debate_engine.xtflow",
     "flows/debate_warmup.xtflow",
+    "flows/d01_investigate.xtflow",
     "flows/d01_debate_ui.xtflow",
     "flows/d01_debate_engine.xtflow",
     "flows/result.xtflow",
@@ -690,6 +707,18 @@
         "visible": false
       },
       {
+        "ui": "d1inv",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
+        "ui": "d1carry",
+        "width": 1280,
+        "height": 720,
+        "visible": false
+      },
+      {
         "ui": "evbook",
         "width": 1280,
         "height": 720,
@@ -698,6 +727,13 @@
       },
       {
         "ui": "notes",
+        "width": 1280,
+        "height": 720,
+        "visible": false,
+        "modal": true
+      },
+      {
+        "ui": "d1book",
         "width": 1280,
         "height": 720,
         "visible": false,
@@ -762,6 +798,10 @@
     "d1Warmup": "data/d01/d1Warmup.json",
     "d1KnownItem": "data/d01/d1KnownItem.json",
     "d1Refute": "data/d01/d1Refute.json",
+    "d1iSpot": "data/flow/d1iSpot.json",
+    "d1iScene": "data/flow/d1iScene.json",
+    "d1iItem": "data/flow/d1iItem.json",
+    "d1iClaim": "data/flow/d1iClaim.json",
     "flowCard": "data/flow/flowCard.json",
     "flowSpot": "data/flow/flowSpot.json",
     "flowScene": "data/flow/flowScene.json",
@@ -1390,6 +1430,153 @@
       "kind": "map",
       "type": "string",
       "capacity": 32
+    },
+    "u1LkIss": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 4
+    },
+    "i1": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "i1S": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "i1Seen": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 32,
+      "unique": true
+    },
+    "i1Have": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16,
+      "unique": true
+    },
+    "i1Notes": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8,
+      "unique": true
+    },
+    "i1Appr": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 4,
+      "unique": true
+    },
+    "i1New": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 24,
+      "unique": true
+    },
+    "i1Sel": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16,
+      "unique": true
+    },
+    "i1Said": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8,
+      "unique": true
+    },
+    "i1Here": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "i1SpSt": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 32
+    },
+    "i1Left": {
+      "kind": "map",
+      "type": "number",
+      "capacity": 8
+    },
+    "i1Locs": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "i1LocSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 8
+    },
+    "i1LocDone": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 8
+    },
+    "i1All": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "i1NAll": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "i1AAll": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 4
+    },
+    "i1PsyAll": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 4
+    },
+    "i1ClAll": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 40
+    },
+    "i1Book": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 16
+    },
+    "i1CSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 16
+    },
+    "i1CMark": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
+    },
+    "i1Opt": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "i1OptSel": {
+      "kind": "map",
+      "type": "bool",
+      "capacity": 8
+    },
+    "i1PN": {
+      "kind": "list",
+      "type": "string",
+      "capacity": 8
+    },
+    "d1PrivNote": {
+      "kind": "map",
+      "type": "string",
+      "capacity": 16
     }
   },
   "audio": {

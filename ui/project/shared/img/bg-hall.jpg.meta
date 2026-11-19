@@ -1,0 +1,13 @@
+version: 1
+id: df774f08-3492-4308-8e87-f1a1b51aa029
+type: image
+title: bg-hall
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/bg_d01_hall.jpg
+content: sha256:24029a5dbe693f44e5ce8e26fb58b0fdb4887f456efb398b8899f73c2b3c3c41
+measured:
+  w: 2560
+  h: 1440
+  alpha: false

@@ -77,7 +77,7 @@
       "message": "effect added to base style for timeline big: #big-art effect: blur(6px) (18 §18.4)",
       "element": "big-art",
       "source": "Cutin.dc.html",
-      "line": 37,
+      "line": 41,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -103,7 +103,7 @@
       "message": "anchor: #kicker left: 48px; top: 16px -> anchor: left top; offset: 16px -2px; size: 520px 20px",
       "element": "kicker",
       "source": "Title.dc.html",
-      "line": 68,
+      "line": 71,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -127,7 +127,7 @@
       "message": "anchor: #lang-toggle right: 48px; top: 10px -> anchor: right top; offset: 16px -8px; size: 320px 30px",
       "element": "lang-toggle",
       "source": "Title.dc.html",
-      "line": 71,
+      "line": 74,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -151,7 +151,7 @@
       "message": "anchor: #rule-top left: 48px; top: 46px -> anchor: left top; offset: 16px 28px; size: 1184px 1px",
       "element": "rule-top",
       "source": "Title.dc.html",
-      "line": 85,
+      "line": 88,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -175,7 +175,7 @@
       "message": "anchor: #mast-dock left: 240px; top: 52px -> anchor: left top; offset: 208px 34px; size: 800px 172px",
       "element": "mast-dock",
       "source": "Title.dc.html",
-      "line": 90,
+      "line": 93,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -199,7 +199,7 @@
       "message": "anchor: #rule-mast-thick left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 105,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -223,7 +223,7 @@
       "message": "anchor: #rule-mast-thick top 230px -> calc(32.08% - 0.96px)",
       "element": "rule-mast-thick",
       "source": "Title.dc.html",
-      "line": 105,
+      "line": 108,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -247,7 +247,7 @@
       "message": "anchor: #rule-mast-thin left 48px -> calc(1safe-left + 16px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 107,
+      "line": 110,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -271,7 +271,7 @@
       "message": "anchor: #rule-mast-thin top 236px -> calc(32.82% - 0.33px)",
       "element": "rule-mast-thin",
       "source": "Title.dc.html",
-      "line": 107,
+      "line": 110,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -295,7 +295,7 @@
       "message": "anchor: #paper-name left 340px -> calc(50% - 300px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 109,
+      "line": 112,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -319,7 +319,7 @@
       "message": "anchor: #paper-name top 242px -> calc(34.97% - 9.79px)",
       "element": "paper-name",
       "source": "Title.dc.html",
-      "line": 109,
+      "line": 112,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -343,7 +343,7 @@
       "message": "anchor: #rule-name left 48px -> calc(1safe-left + 16px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 113,
+      "line": 116,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -367,7 +367,7 @@
       "message": "anchor: #rule-name top 274px -> calc(38.11% - 0.38px)",
       "element": "rule-name",
       "source": "Title.dc.html",
-      "line": 113,
+      "line": 116,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -391,7 +391,7 @@
       "message": "anchor: #lead left: 48px; bottom: auto; top: 300px -> anchor: left bottom; offset: 16px 22px; size: 712px 380px",
       "element": "lead",
       "source": "Title.dc.html",
-      "line": 117,
+      "line": 120,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -415,7 +415,7 @@
       "message": "anchor: #btn-v2 left: 48px; bottom: auto; top: 604px -> anchor: left bottom; offset: 16px 20px; size: 712px 78px",
       "element": "btn-v2",
       "source": "Title.dc.html",
-      "line": 132,
+      "line": 136,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -436,10 +436,82 @@
     {
       "code": "anchor.rewritten",
       "severity": "info",
+      "message": "anchor: #btn-v2-dev left 560px -> calc(51.28% - 96.41px)",
+      "element": "btn-v2-dev",
+      "source": "Title.dc.html",
+      "line": 142,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "left",
+        "from": "560px",
+        "to": "calc(51.28% - 96.41px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #btn-v2-dev bottom auto -> calc(1safe-bottom + 66px)",
+      "element": "btn-v2-dev",
+      "source": "Title.dc.html",
+      "line": 142,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "bottom",
+        "from": "auto",
+        "to": "calc(1safe-bottom + 66px)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #btn-v2-dev top 612px -> (removed)",
+      "element": "btn-v2-dev",
+      "source": "Title.dc.html",
+      "line": 142,
+      "col": 0,
+      "ui": "title",
+      "detail": {
+        "property": "top",
+        "from": "612px",
+        "to": "(removed)"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
       "message": "anchor: #rule-column left 792px -> calc(61.92% - 0.62px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 139,
+      "line": 145,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -463,7 +535,7 @@
       "message": "anchor: #rule-column bottom auto -> calc(1safe-bottom + 18px)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 139,
+      "line": 145,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -487,7 +559,7 @@
       "message": "anchor: #rule-column top 300px -> (removed)",
       "element": "rule-column",
       "source": "Title.dc.html",
-      "line": 139,
+      "line": 145,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -511,7 +583,7 @@
       "message": "anchor: #contents right: auto; left: 824px; bottom: auto; top: 300px -> anchor: right bottom; offset: 16px 18px; size: 408px 384px",
       "element": "contents",
       "source": "Title.dc.html",
-      "line": 143,
+      "line": 149,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -535,7 +607,7 @@
       "message": "anchor: #rule-foot left: 48px; bottom: auto; top: 692px -> anchor: left bottom; offset: 16px 9px; size: 1184px 1px",
       "element": "rule-foot",
       "source": "Title.dc.html",
-      "line": 167,
+      "line": 173,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -559,7 +631,7 @@
       "message": "anchor: #end-card right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "end-card",
       "source": "Title.dc.html",
-      "line": 172,
+      "line": 178,
       "col": 0,
       "ui": "title",
       "detail": {
@@ -1063,7 +1135,7 @@
       "message": "anchor: #big-grp right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
       "element": "big-grp",
       "source": "Cutin.dc.html",
-      "line": 31,
+      "line": 35,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -1087,7 +1159,7 @@
       "message": "anchor: #stamp-tr right: auto; left: 1060px; top: 36px -> anchor: right top; offset: 20px 18px; size: 168px 168px",
       "element": "stamp-tr",
       "source": "Cutin.dc.html",
-      "line": 55,
+      "line": 59,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -1111,7 +1183,7 @@
       "message": "anchor: #stamp-tr-sub right: auto; left: 1060px; top: 36px -> anchor: right top; offset: 20px 18px; size: 168px 200px",
       "element": "stamp-tr-sub",
       "source": "Cutin.dc.html",
-      "line": 66,
+      "line": 71,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -1135,7 +1207,7 @@
       "message": "anchor: #stamp-bl left: 52px; bottom: auto; top: 500px -> anchor: left bottom; offset: 20px 34px; size: 168px 168px",
       "element": "stamp-bl",
       "source": "Cutin.dc.html",
-      "line": 71,
+      "line": 76,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -1159,7 +1231,7 @@
       "message": "anchor: #stamp-bl-sub left: 52px; bottom: auto; top: 500px -> anchor: left bottom; offset: 20px 34px; size: 380px 168px",
       "element": "stamp-bl-sub",
       "source": "Cutin.dc.html",
-      "line": 89,
+      "line": 95,
       "col": 0,
       "ui": "cutin",
       "detail": {
@@ -1274,17 +1346,233 @@
       "accepted": false
     },
     {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #actions right: 16px; bottom: 16px -> anchor: right bottom; offset: -16px -2px; size: 560px 52px",
+      "element": "actions",
+      "source": "D1Inv.dc.html",
+      "line": 137,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: 16px; bottom: 16px",
+        "to": "anchor: right bottom; offset: -16px -2px; size: 560px 52px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #hud left: 16px; top: 10px -> anchor: left top; offset: -16px -8px; size: 200px 56px",
+      "element": "hud",
+      "source": "D1Inv.dc.html",
+      "line": 120,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "left: 16px; top: 10px",
+        "to": "anchor: left top; offset: -16px -8px; size: 200px 56px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #locs right: auto; left: 232px; top: 10px -> anchor: right top; offset: -16px -8px; size: 1032px 56px",
+      "element": "locs",
+      "source": "D1Inv.dc.html",
+      "line": 127,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; left: 232px; top: 10px",
+        "to": "anchor: right top; offset: -16px -8px; size: 1032px 56px"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #pop right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "pop",
+      "source": "D1Inv.dc.html",
+      "line": 149,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #veil right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "veil",
+      "source": "D1Book.dc.html",
+      "line": 74,
+      "col": 0,
+      "ui": "d1book",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #bg right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "bg",
+      "source": "D1Carry.dc.html",
+      "line": 63,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #dim right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "dim",
+      "source": "D1Carry.dc.html",
+      "line": 64,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #confirm right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "confirm",
+      "source": "D1Carry.dc.html",
+      "line": 109,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #post right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "post",
+      "source": "D1Carry.dc.html",
+      "line": 120,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 47 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
+      "message": "the board's inline geometry of 48 element(s) is written to their <layout> #id rules (#title, #kicker, #lang-toggle, #lang-label, #lang-switch, ...)",
       "element": "",
       "source": "Title.dc.html",
-      "line": 61,
+      "line": 64,
       "col": 0,
       "ui": "title",
       "detail": {
-        "elements": "47",
-        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #btn-v2 #btn-v2-k #btn-v2-t #btn-v2-n #rule-column #contents #contents-heading #btn-ch1 #btn-ch1-no #btn-ch1-title #btn-ch2 #btn-ch2-no #btn-ch2-title #btn-ch3 #btn-ch3-no #btn-ch3-title #contents-foot #rule-foot #end-card #end-dock #end-mast #end-mast-art #end-rule-a #end-rule-b #end-text #end-rule-c #end-rule-d #end-name"
+        "elements": "48",
+        "ids": "#title #kicker #lang-toggle #lang-label #lang-switch #rule-top #mast-dock #masthead #masthead-art #mast-tick #rule-mast-thick #rule-mast-thin #paper-name #rule-name #lead #lead-kicker #lead-headline #lead-rule #lead-deck #btn-v2 #btn-v2-k #btn-v2-t #btn-v2-n #btn-v2-dev #rule-column #contents #contents-heading #btn-ch1 #btn-ch1-no #btn-ch1-title #btn-ch2 #btn-ch2-no #btn-ch2-title #btn-ch3 #btn-ch3-no #btn-ch3-title #contents-foot #rule-foot #end-card #end-dock #end-mast #end-mast-art #end-rule-a #end-rule-b #end-text #end-rule-c #end-rule-d #end-name"
       },
       "fix": {
         "kind": "editor",
@@ -1426,15 +1714,15 @@
     {
       "code": "style.geometryInline",
       "severity": "info",
-      "message": "the board's inline geometry of 46 element(s) is written to their <layout> #id rules (#cutin, #big-grp, #veil, #band, #band-r1, ...)",
+      "message": "the board's inline geometry of 48 element(s) is written to their <layout> #id rules (#cutin, #big-grp, #veil, #band, #band-r1, ...)",
       "element": "",
       "source": "Cutin.dc.html",
-      "line": 24,
+      "line": 28,
       "col": 0,
       "ui": "cutin",
       "detail": {
-        "elements": "46",
-        "ids": "#cutin #big-grp #veil #band #band-r1 #band-r2 #big-art #big-cut-ronpa #big-cut-shaken #big-cut-hachiku3 #big-cut-konju #big-cut-shisshu #big-cut-brink #big-cut-reverse #big-cut-double #big-cut-counter #big-sub #stamp-tr #st-stamp-parry #st-stamp-parry-img #st-stamp-clash #st-stamp-clash-img #st-stamp-seen #st-stamp-seen-img #stamp-tr-sub #sts-stamp-parry #sts-stamp-clash #sts-stamp-seen #stamp-bl #st-stamp-trap #st-stamp-trap-img #st-stamp-whiff #st-stamp-whiff-img #st-stamp-assist #st-stamp-assist-img #st-stamp-hachiku-lost #st-stamp-hachiku-lost-img #st-stamp-hachiku #st-hk-seal #st-hk-n #stamp-bl-sub #sts-stamp-trap #sts-stamp-whiff #sts-stamp-assist #sts-stamp-hachiku-lost #sts-stamp-hachiku"
+        "elements": "48",
+        "ids": "#cutin #big-grp #veil #band #band-r1 #band-r2 #big-art #big-cut-ronpa #big-cut-shaken #big-cut-hachiku3 #big-cut-konju #big-cut-shisshu #big-cut-brink #big-cut-reverse #big-cut-double #big-cut-counter #big-sub #stamp-tr #st-stamp-parry #st-stamp-parry-img #st-stamp-clash #st-stamp-clash-img #st-v2-tr #st-stamp-seen #st-stamp-seen-img #stamp-tr-sub #sts-stamp-parry #sts-stamp-clash #sts-stamp-seen #stamp-bl #st-stamp-trap #st-stamp-trap-img #st-stamp-whiff #st-stamp-whiff-img #st-stamp-assist #st-stamp-assist-img #st-stamp-hachiku-lost #st-stamp-hachiku-lost-img #st-v2-bl #st-stamp-hachiku #st-hk-seal #st-hk-n #stamp-bl-sub #sts-stamp-trap #sts-stamp-whiff #sts-stamp-assist #sts-stamp-hachiku-lost #sts-stamp-hachiku"
       },
       "fix": {
         "kind": "editor",
@@ -1574,9 +1862,84 @@
       "accepted": false
     },
     {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 43 element(s) is written to their <layout> #id rules (#d1inv, #scene, #bg, #bg-art, #figs-parlour, ...)",
+      "element": "",
+      "source": "D1Inv.dc.html",
+      "line": 66,
+      "col": 0,
+      "ui": "d1inv",
+      "detail": {
+        "elements": "43",
+        "ids": "#d1inv #scene #bg #bg-art #figs-parlour #fig-cedric #fig-hyde #fig-irene #figs-study #fig-irene-door #figs-hall #fig-briggs #shade-top #spots-layer #spots-list #spot #spot-ring #spot-chip #hud #hud-title #hud-appr #locs #loc #loc-t #loc-done #actions #btn-book #book-dot #btn-notes #btn-end #pop #pop-shade #pop-card #pop-kicker #pop-title #pop-rule #pop-body #pop-line #pop-spk #pop-line-text #pop-got #pop-note #pop-close"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 41 element(s) is written to their <layout> #id rules (#d1book, #veil, #book, #tab-ev, #tab-ev-t, ...)",
+      "element": "",
+      "source": "D1Book.dc.html",
+      "line": 69,
+      "col": 0,
+      "ui": "d1book",
+      "detail": {
+        "elements": "41",
+        "ids": "#d1book #veil #book #tab-ev #tab-ev-t #tab-pn #tab-pn-t #x-btn #x-t #tab-rule #page-ev #cards #card #card-t #card-m #card-new #detail #d-kind #d-name #d-desc #appr-row #appr-btn #appr-btn-t #appr-left #res #res-k #res-t #remark #remark-spk #remark-t #pv-k #opts #opt #opt-t #page-pn #pn-desc #pnotes #pnote #pnote-k #pnote-n #pnote-t"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 37 element(s) is written to their <layout> #id rules (#d1carry, #bg, #dim, #main, #sheet, ...)",
+      "element": "",
+      "source": "D1Carry.dc.html",
+      "line": 58,
+      "col": 0,
+      "ui": "d1carry",
+      "detail": {
+        "elements": "37",
+        "ids": "#d1carry #bg #dim #main #sheet #k #title #count #hint #items #item #it-box #it-tick #it-n #it-d #it-k #side #arthur #arthur-art #btn-ask #btn-ask-t #btn-back #btn-confirm #dlg #who1 #say1 #who2 #say2 #confirm #c-veil #c-box #c-k #c-t #c-no #c-yes #post #post-more"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-b00406 used by 32 node(s)",
+      "message": "shared class .s-b00406 used by 33 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1584,7 +1947,7 @@
       "ui": "",
       "detail": {
         "class": ".s-b00406",
-        "nodes": "32"
+        "nodes": "33"
       },
       "fix": {
         "kind": "editor",
@@ -1726,7 +2089,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-8ecb27 used by 3 node(s)",
+      "message": "shared class .s-8ecb27 used by 4 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1734,7 +2097,7 @@
       "ui": "",
       "detail": {
         "class": ".s-8ecb27",
-        "nodes": "3"
+        "nodes": "4"
       },
       "fix": {
         "kind": "editor",
@@ -1751,7 +2114,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-66a9df used by 11 node(s)",
+      "message": "shared class .s-66a9df used by 12 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -1759,7 +2122,7 @@
       "ui": "",
       "detail": {
         "class": ".s-66a9df",
-        "nodes": "11"
+        "nodes": "12"
       },
       "fix": {
         "kind": "editor",
@@ -1818,6 +2181,31 @@
           "op": "repair.dedup",
           "args": {
             "class": ".s-15baa9"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-1fc96b used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-1fc96b",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-1fc96b"
           }
         }
       },
@@ -2026,7 +2414,7 @@
     {
       "code": "dedup.shared",
       "severity": "info",
-      "message": "shared class .s-614666 used by 3 node(s)",
+      "message": "shared class .s-614666 used by 5 node(s)",
       "element": "",
       "source": "",
       "line": 0,
@@ -2034,7 +2422,7 @@
       "ui": "",
       "detail": {
         "class": ".s-614666",
-        "nodes": "3"
+        "nodes": "5"
       },
       "fix": {
         "kind": "editor",
@@ -2093,6 +2481,31 @@
           "op": "repair.dedup",
           "args": {
             "class": ".s-efadb3"
+          }
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "dedup.shared",
+      "severity": "info",
+      "message": "shared class .s-6ce107 used by 2 node(s)",
+      "element": "",
+      "source": "",
+      "line": 0,
+      "col": 0,
+      "ui": "",
+      "detail": {
+        "class": ".s-6ce107",
+        "nodes": "2"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.dedup",
+          "args": {
+            "class": ".s-6ce107"
           }
         }
       },

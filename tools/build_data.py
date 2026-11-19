@@ -134,6 +134,10 @@ REQUIRED = {"E01_03", "E02_02", "E02_06", "E03_02", "E03_07"}
 GOLDEN_OUT = {"E02_01": "G-01"}
 # Ruling E1: the 「待續」 card after the final paper.
 END_CARD_KEY = "UI_TO_BE_CONTINUED"
+# The v2 demo chapter D01 in the step table (docs/flows.md §4.13): its own chapter number, outside the v1 range, and
+# rows D01_xx after the v1 rows. M3 rows: investigation -> carry screen -> debate (M4 inserts the story steps).
+D01_CHAPTER = 101
+D01_STEPS = (("d1investigate", "S05"), ("d1carry", "S06"), ("d1debate", "S07"))
 # Ruling C3: endgame second-claim refuters.
 TAIL_REFUTERS = {2: ["E02_07", "E02_01"], 3: ["E03_05", "E03_03"]}
 # Debate and warm-up scenes: lines played on the vn around the debate screen (script.cue, data-schema §3). The
@@ -1239,6 +1243,10 @@ def main() -> int:
             steps.append({"id": f"{ch_key(c)}_{i:02d}", "chapter": c, "idx": i, "kind": k, "sub": sub,
                           "scene": scene, "arg": arg})
 
+    for i, (k, scene) in enumerate(D01_STEPS):
+        steps.append({"id": f"D01_{i:02d}", "chapter": D01_CHAPTER, "idx": i, "kind": k, "sub": "", "scene": scene,
+                      "arg": ""})
+
     # ---- chapter titles: CHAP_0n_TITLE from the localization package; fallback: the closing-notes line
     # 「案件名稱：…。」 / "Case name: …."
     for c in CHAPTERS:
@@ -1519,7 +1527,8 @@ def validate(tables: dict, strings: dict, systems: dict, base: dict) -> None:
             err(f"steps {row['id']}: unknown opponent {row['arg']!r}")
         if row["kind"] == "paper" and row["arg"] not in paper_groups:
             err(f"steps {row['id']}: unknown paper group {row['arg']!r}")
-        if row["kind"] == "end" and (row["arg"] not in strings or row is not tables["steps"][-1]):
+        v1_steps = [r for r in tables["steps"] if r["chapter"] in CHAPTERS]
+        if row["kind"] == "end" and (row["arg"] not in strings or row is not v1_steps[-1]):
             err(f"steps {row['id']}: the end card must be the last step and name a string key (ruling E1)")
     # Ruling D5: each chapter starts with exactly one paper step (the S01 front page) and has no other paper
     # step, except the final transition after the last chapter.

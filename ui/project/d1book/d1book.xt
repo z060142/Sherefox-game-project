@@ -1,0 +1,462 @@
+<xt version="2">
+  <head>
+    <title>D1Book</title>
+  </head>
+
+  <ports>
+    tab: number in = 0
+    cards: list<struct{id: string, name: string, psy: bool, sel: bool, mark: string, isnew: bool}> in = [{"id":"E01","name":"黃銅文件筒（空）","psy":false,"sel":true,"mark":"已鑑定","isnew":false},{"id":"E05","name":"萬用鑰匙圈","psy":false,"sel":false,"mark":"","isnew":true},{"id":"P1","name":"通靈板","psy":true,"sel":false,"mark":"","isnew":false}]
+    has_sel: bool in = true
+    sel_kind: string in = "證物"
+    sel_name: string in = "黃銅文件筒（空）"
+    sel_desc: string in = "書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。鎖孔周圍光亮，沒有明顯的刮痕。"
+    appraisable: bool in = true
+    appraised: bool in = true
+    can_appraise: bool in = false
+    appr_left: string in = "鑑定 剩 1 次"
+    sel_result: string in = "鎖完好；用原配鑰匙開；鎖芯無油"
+    remark_speaker: string in = "亞瑟"
+    remark: string in = "「鎖芯完好，一道撬痕也沒有。」"
+    remark_seq: number in = 0
+    opts: list<struct{id: string, label: string, sel: bool}> in = [{"id":"-","label":"（還沒有看法）","sel":false},{"id":"01A","label":"用原配鑰匙開的","sel":true},{"id":"01B","label":"鎖被撬過","sel":false}]
+    pnotes: list<struct{kind: string, name: string, text: string}> in = [{"kind":"人物筆記","name":"懷錶鏈上的墜子","text":"塞德里克的懷錶鏈上掛著三個小墜子。"}]
+    pick_tab: number out = 0
+    pick_card: string out = ""
+    pick_opt: string out = ""
+    appraise: event out
+    close: event out
+    settings: event out
+  </ports>
+
+  <body on:show="play(in)" key-activation="none">
+    <div id="d1book" tabindex="0" autofocus="" on:key(Escape)="emit(close)" on:key(Tab)="emit(close)" on:key(Backspace)="emit(close)" on:key(F1)="emit(settings)">
+      <div id="veil" on:click(left)="emit(close)"/>
+      <div id="book" class="sheet">
+        <div id="tab-ev" class="tab" on:click(left)="set(pick_tab, 0)" bind:class.sel="tab | eq(0)">
+          <div id="tab-ev-t" class="tab-t">@UI_V2_EVLIST</div>
+        </div>
+        <div id="tab-pn" class="tab" on:click(left)="set(pick_tab, 1)" bind:class.sel="tab | eq(1)">
+          <div id="tab-pn-t" class="tab-t">@UI_V2_NOTES_PAGE</div>
+        </div>
+        <div id="x-btn" class="x-btn" on:click(left)="emit(close)">
+          <div id="x-t">×</div>
+        </div>
+        <div id="tab-rule" class="s-614666"/>
+        <div id="page-ev" bind:display="tab | eq(0)">
+          <repeat id="cards" port="cards">
+            <div id="card" class="row" on:click(left)="set(pick_card, item(id))" bind:class.sel="item(sel)" bind:class.psy="item(psy)">
+              <div id="card-t" class="row-t" bind:text="item(name)">黃銅文件筒（空）</div>
+              <div id="card-m" class="mark" bind:text="item(mark)">已鑑定</div>
+              <div id="card-new" class="new" bind:display="item(isnew)"/>
+            </div>
+          </repeat>
+          <div id="detail" bind:display="has_sel">
+            <div id="d-kind" class="kicker" bind:text="sel_kind">證物</div>
+            <div id="d-name" class="d-name s-6ce107" bind:text="sel_name">黃銅文件筒（空）</div>
+            <div id="d-desc" class="d-desc" bind:text="sel_desc">書桌上的黃銅文件筒，蓋子鎖著，裡面是空的。鎖孔周圍光亮，沒有明顯的刮痕。</div>
+            <div id="appr-row" bind:display="appraisable">
+              <div id="appr-btn" class="abtn" on:click(left)="if port(can_appraise) eq true emit(appraise)" bind:class.off="can_appraise | not" bind:display="appraised | not">
+                <div id="appr-btn-t" class="abtn-t">@UI_V2_APPRAISE</div>
+              </div>
+              <div id="appr-left" class="left-t" bind:text="appr_left" bind:display="appraised | not">鑑定 剩 1 次</div>
+              <div id="res" class="res" bind:display="appraised">
+                <div id="res-k" class="res-k">@UI_V2_APPRAISED</div>
+                <div id="res-t" class="res-t s-6ce107" bind:text="sel_result">鎖完好；用原配鑰匙開；鎖芯無油</div>
+              </div>
+            </div>
+            <div id="remark" class="remark" on:port(remark_seq)="play(rm-in)" bind:display="remark | ne('')">
+              <div id="remark-spk" class="spk" bind:text="remark_speaker">亞瑟</div>
+              <div id="remark-t" class="remark-t" bind:text="remark">「鎖芯完好，一道撬痕也沒有。」</div>
+            </div>
+            <div id="pv-k" class="kicker">@UI_V2_PRIVATE_VIEW</div>
+            <repeat id="opts" port="opts">
+              <div id="opt" class="opt" on:click(left)="set(pick_opt, item(id))" bind:class.sel="item(sel)">
+                <div id="opt-t" class="opt-t" bind:text="item(label)">用原配鑰匙開的</div>
+              </div>
+            </repeat>
+          </div>
+        </div>
+        <div id="page-pn" bind:display="tab | eq(1)">
+          <div id="pn-desc" class="empty">@UI_V2_NOTES_DESC</div>
+          <repeat id="pnotes" port="pnotes">
+            <div id="pnote" class="note">
+              <div id="pnote-k" class="note-k" bind:text="item(kind)">人物筆記</div>
+              <div id="pnote-n" class="note-n" bind:text="item(name)">懷錶鏈上的墜子</div>
+              <div id="pnote-t" class="note-t" bind:text="item(text)">塞德里克的懷錶鏈上掛著三個小墜子。</div>
+            </div>
+          </repeat>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <layout>
+    /* import: D1Book.dc.html:1 */
+    #d1book {
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: D1Book.dc.html:1/0 */
+    #veil {
+      anchor: stretch stretch screen;
+    }
+    /* import: D1Book.dc.html:1/1 */
+    #book {
+      height: 640px;
+      left: calc(50% - 560px);
+      position: absolute;
+      top: calc(50% - 320px);
+      width: 1120px;
+    }
+    /* import: D1Book.dc.html:1/1/0 */
+    #tab-ev {
+      height: 40px;
+      left: 24px;
+      position: absolute;
+      top: 16px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/0/0 */
+    #tab-ev-t {
+      height: 40px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/1 */
+    #tab-pn {
+      height: 40px;
+      left: 252px;
+      position: absolute;
+      top: 16px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/1/0 */
+    #tab-pn-t {
+      height: 40px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/2 */
+    #x-btn {
+      height: 40px;
+      left: 1060px;
+      position: absolute;
+      top: 16px;
+      width: 40px;
+    }
+    /* import: D1Book.dc.html:1/1/2/0 */
+    #x-t {
+      height: 40px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 40px;
+    }
+    /* import: D1Book.dc.html:1/1/3 */
+    #tab-rule {
+      height: 3px;
+      left: 24px;
+      position: absolute;
+      top: 56px;
+      width: 1076px;
+    }
+    /* import: D1Book.dc.html:1/1/4 */
+    #page-ev {
+      height: 580px;
+      left: 0px;
+      position: absolute;
+      top: 60px;
+      width: 1120px;
+    }
+    /* import: D1Book.dc.html:1/1/4/0 */
+    #cards {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 540px;
+      left: 24px;
+      position: absolute;
+      top: 16px;
+      width: 330px;
+    }
+    /* import: D1Book.dc.html:1/1/4/0/0 */
+    #card {
+      flex-shrink: 0;
+      height: 36px;
+      position: relative;
+      width: 330px;
+    }
+    /* import: D1Book.dc.html:1/1/4/0/0/0 */
+    #card-t {
+      height: 34px;
+      left: 12px;
+      position: absolute;
+      top: 0px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/4/0/0/1 */
+    #card-m {
+      height: 34px;
+      left: 216px;
+      position: absolute;
+      top: 0px;
+      width: 96px;
+    }
+    /* import: D1Book.dc.html:1/1/4/0/0/2 */
+    #card-new {
+      height: 8px;
+      left: 318px;
+      position: absolute;
+      top: 4px;
+      width: 8px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1 */
+    #detail {
+      height: 548px;
+      left: 380px;
+      position: absolute;
+      top: 16px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/0 */
+    #d-kind {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 400px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/1 */
+    #d-name {
+      height: 34px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      top: 22px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/2 */
+    #d-desc {
+      height: 100px;
+      left: 0px;
+      position: absolute;
+      top: 62px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3 */
+    #appr-row {
+      height: 52px;
+      left: 0px;
+      position: absolute;
+      top: 166px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/0 */
+    #appr-btn {
+      height: 36px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/0/0 */
+    #appr-btn-t {
+      height: 36px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 220px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/1 */
+    #appr-left {
+      height: 36px;
+      left: 236px;
+      position: absolute;
+      top: 0px;
+      width: 400px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/2 */
+    #res {
+      height: 52px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/2/0 */
+    #res-k {
+      height: 18px;
+      left: 12px;
+      position: absolute;
+      top: 5px;
+      width: 692px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/3/2/1 */
+    #res-t {
+      height: 22px;
+      left: 12px;
+      overflow: hidden;
+      position: absolute;
+      top: 25px;
+      width: 692px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/4 */
+    #remark {
+      height: 120px;
+      left: 0px;
+      position: absolute;
+      top: 224px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/4/0 */
+    #remark-spk {
+      height: 18px;
+      left: 12px;
+      position: absolute;
+      top: 6px;
+      width: 692px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/4/1 */
+    #remark-t {
+      height: 92px;
+      left: 12px;
+      position: absolute;
+      top: 26px;
+      width: 692px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/5 */
+    #pv-k {
+      height: 20px;
+      left: 0px;
+      position: absolute;
+      top: 352px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/6 */
+    #opts {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 174px;
+      left: 0px;
+      position: absolute;
+      top: 374px;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/6/0 */
+    #opt {
+      flex-shrink: 0;
+      height: 30px;
+      position: relative;
+      width: 716px;
+    }
+    /* import: D1Book.dc.html:1/1/4/1/6/0/0 */
+    #opt-t {
+      height: 28px;
+      left: 12px;
+      position: absolute;
+      top: 0px;
+      width: 690px;
+    }
+    /* import: D1Book.dc.html:1/1/5 */
+    #page-pn {
+      height: 580px;
+      left: 0px;
+      position: absolute;
+      top: 60px;
+      width: 1120px;
+    }
+    /* import: D1Book.dc.html:1/1/5/0 */
+    #pn-desc {
+      height: 24px;
+      left: 24px;
+      position: absolute;
+      top: 12px;
+      width: 1076px;
+    }
+    /* import: D1Book.dc.html:1/1/5/1 */
+    #pnotes {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      height: 520px;
+      left: 24px;
+      position: absolute;
+      top: 44px;
+      width: 1076px;
+    }
+    /* import: D1Book.dc.html:1/1/5/1/0 */
+    #pnote {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 2px;
+      padding-bottom: 8px;
+      padding-left: 14px;
+      padding-right: 14px;
+      padding-top: 6px;
+      width: 1076px;
+    }
+    /* import: D1Book.dc.html:1/1/5/1/0/0 */
+    #pnote-k {
+      flex-shrink: 0;
+      height: 18px;
+      width: 1048px;
+    }
+    /* import: D1Book.dc.html:1/1/5/1/0/1 */
+    #pnote-n {
+      flex-shrink: 0;
+      width: 1048px;
+    }
+    /* import: D1Book.dc.html:1/1/5/1/0/2 */
+    #pnote-t {
+      flex-shrink: 0;
+      width: 1048px;
+    }
+    .kicker {
+      overflow: hidden;
+    }
+    .row-t {
+      overflow: hidden;
+    }
+    .opt-t {
+      overflow: hidden;
+    }
+  </layout>
+  <style src="../shared/base.xts"/>
+  <style src="d1book.xts"/>
+  <timelines>
+    @timeline in {
+      #book {
+        0ms {
+          opacity: 0;
+          transform: translate(0px, 14px);
+        }
+        220ms ease-out {
+          opacity: 1;
+          transform: translate(0px, 0px);
+        }
+      }
+    }
+    @timeline rm-in {
+      #remark {
+        0ms {
+          opacity: 0;
+        }
+        260ms ease-out {
+          opacity: 1;
+        }
+      }
+    }
+  </timelines>
+</xt>

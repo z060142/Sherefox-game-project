@@ -46,7 +46,7 @@ STEP = 1 / 60
 GAP = 8
 BOT_SEED = 3
 # ui/boards/project/D1Debate.dc.html (1280x720 logical; the sheet is at 0, 0)
-TITLE_V2 = (404, 643)                                   # Title.dc.html #btn-v2
+TITLE_V2 = (654, 624)                                   # Title.dc.html #btn-v2-dev (the dev shortcut to the debate)
 ACT_XY = {1: (107, 664), 2: (295, 664), 3: (469, 664), 4: (657, 664), 5: (432, 664), 6: (642, 664), 7: (432, 664)}
 GUARD_XY = (847, 664)
 LOCK_XY = (1157, 664)
@@ -187,7 +187,7 @@ def build_harness(route: str) -> None:
         {"from": "row.row", "to": "card.row"},
         {"from": "act.value", "to": "world.d1OppAct"},
         {"from": "card.value", "to": "world.d1OppCard"},
-        {"from": "ui#title.v2demo", "to": "late.start"},
+        {"from": "ui#title.v2dev", "to": "late.start"},
     ]
     for coll, items in (("d1Carry", lo.carried), ("d1Appraised", lo.appraisals), ("d1Notes", lo.notes)):
         nodes.append({"id": f"k_{coll}", "type": "constant", "params": {"value": ",".join(items)}})

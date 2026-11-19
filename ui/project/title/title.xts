@@ -264,6 +264,24 @@
   color: var(--paper);
 }
 
+.v2-dev {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 11px;
+  line-height: 22px;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--copper);
+  background-color: var(--paper);
+  border: 1px #a65432;
+  border-style: dashed;
+  transition: background-color 150ms linear;
+}
+
+.v2-dev:hover {
+  color: var(--paper);
+  background-color: var(--copper);
+}
+
 :root {
   --copper: #a65432;
   --ink: #123a31;

@@ -21,6 +21,7 @@
     shisshu: bool in = false
     ronpa_text: string in = "鏈長 2／4　爭點 2／2"
     ronpa_ready: bool in = false
+    ronpa_ready_text: string in = "他破防了。這回合接上就論破！"
     show_ronpa: bool in = true
     tell_on: bool in = true
     tell_card: string in = "鎖匠碰過筒子、有萬用鑰匙"
@@ -213,7 +214,7 @@
           <div id="me-cred-n" class="cred-n" bind:text="format('{0} / {1}', hp_me, hp_me_max)">124 / 140</div>
           <div id="me-combo" class="cred-l" bind:text="combo_text">連擊 ×2</div>
           <div id="me-hk" bind:display="hachiku | gt(0)">
-            <div id="me-hk-t" class="cred-l">@STAMP_HACHIKU</div>
+            <div id="me-hk-t" class="cred-l">@UI_V2_F_HACHIKU</div>
             <div id="me-hk-n" class="cred-l" bind:text="format('×{0}', hachiku)">×2</div>
           </div>
           <div id="me-shisshu" class="shis-t" bind:display="shisshu">@UI_V2_SHISHOU_HINT</div>
@@ -222,7 +223,7 @@
         <div id="pchain-box" class="paper">
           <div id="pchain-title" class="kicker">@UI_V2_CHAIN_PLAYER</div>
           <div id="ronpa-ready" class="plate red" bind:display="ronpa_ready">
-            <div id="ronpa-ready-t" class="plate-t">@UI_V2_RONPA_READY</div>
+            <div id="ronpa-ready-t" class="plate-t" bind:text="ronpa_ready_text">他破防了。這回合接上就論破！</div>
           </div>
           <div id="ronpa-t" class="ronpa-t" bind:text="ronpa_text" bind:display="show_ronpa">鏈長 2／4　爭點 2／2</div>
           <div id="pchain-empty" class="empty" bind:display="pchain | item(0) | item(id) | eq('')">@UI_V2_CHAIN_EMPTY</div>
@@ -1197,7 +1198,7 @@
       left: 576px;
       position: absolute;
       top: 4px;
-      width: 90px;
+      width: 200px;
     }
     /* import: D1Debate.dc.html:1/1/12/4/0 */
     #me-hk-t {

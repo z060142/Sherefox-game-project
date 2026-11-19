@@ -180,7 +180,7 @@
             <div id="msg-spk" class="pop-spk" bind:text="popup_speaker" bind:display="popup_speaker | ne('')">亞瑟</div>
             <div id="msg-line-text" class="pop-line-text" bind:text="popup_line">貓、貓舔得很乾淨吧？</div>
           </div>
-          <div id="msg-close">@BTN_CLOSE</div>
+          <div id="msg-close" class="s-1fc96b">@BTN_CLOSE</div>
         </div>
       </div>
     </div>

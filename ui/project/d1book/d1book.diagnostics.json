@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "tool": "xtframe-import 0.15.0",
+  "source": "ui/boards",
+  "items": [
+    {
+      "code": "anchor.rewritten",
+      "severity": "info",
+      "message": "anchor: #veil right: auto; width: 1280px; bottom: auto; height: 720px -> anchor: stretch stretch screen",
+      "element": "veil",
+      "source": "D1Book.dc.html",
+      "line": 74,
+      "col": 0,
+      "ui": "d1book",
+      "detail": {
+        "property": "anchor",
+        "from": "right: auto; width: 1280px; bottom: auto; height: 720px",
+        "to": "anchor: stretch stretch screen"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "maybe",
+        "editor": {
+          "op": "repair.anchor",
+          "args": {}
+        }
+      },
+      "accepted": false
+    },
+    {
+      "code": "style.geometryInline",
+      "severity": "info",
+      "message": "the board's inline geometry of 41 element(s) is written to their <layout> #id rules (#d1book, #veil, #book, #tab-ev, #tab-ev-t, ...)",
+      "element": "",
+      "source": "D1Book.dc.html",
+      "line": 69,
+      "col": 0,
+      "ui": "d1book",
+      "detail": {
+        "elements": "41",
+        "ids": "#d1book #veil #book #tab-ev #tab-ev-t #tab-pn #tab-pn-t #x-btn #x-t #tab-rule #page-ev #cards #card #card-t #card-m #card-new #detail #d-kind #d-name #d-desc #appr-row #appr-btn #appr-btn-t #appr-left #res #res-k #res-t #remark #remark-spk #remark-t #pv-k #opts #opt #opt-t #page-pn #pn-desc #pnotes #pnote #pnote-k #pnote-n #pnote-t"
+      },
+      "fix": {
+        "kind": "editor",
+        "applicability": "hint",
+        "editor": {
+          "op": "doc.source",
+          "args": {
+            "file": "layout"
+          }
+        }
+      },
+      "accepted": false
+    }
+  ]
+}

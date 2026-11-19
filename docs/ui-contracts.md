@@ -519,6 +519,59 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 
 UI 側：背景 `bg_d01_parlour.jpg`；左上報頭（`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`round_text`）與公開紀錄鈕（`UI_V2_RECORD`，或 R：UI 自己的 `Open` 狀態，面板列出 `record`，`BTN_CLOSE` 關閉）；右側塞德里克立繪（五張依 `face`）、名牌、可信度條、破防銅牌、三條量表（三格依段點亮，旁邊 `UI_V2_GAUGE_CALM`／`FLOAT`／`BROKEN`）；上方他的鏈（可點的剪報卡）、中段說法選擇器（左證物、右說法）與預兆欄、我方可信度列、我方的鏈與論破進度、確認列；下方行動列（一般：`UI_V2_ACT_ARGUE`、`UI_V2_ACT_REBUT` 之下的 `UI_V2_REBUT_CUT`／`UI_V2_REBUT_TOPPLE`、`UI_V2_ACT_STALL`、`UI_V2_SUPPORT`；終局：`UI_V2_LAST_CARD_PROMPT`、`UI_V2_ENDGAME_CUT`、`UI_V2_ENDGAME_TAKE`；§7.5：`UI_V2_MY_LAST_CARD`、`UI_V2_ACT_REBUT`、`UI_V2_GIVE_UP_BTN`）與 `UI_V2_LOCK_IN`。播放中整個畫面可點（下一筆），播放帶蓋在中段。鍵盤：1～4、V（援護）、R、Enter（鎖定／下一筆）、Space、Esc／F1。
 
-字串鍵：上述 `UI_V2_*`、`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`STAMP_HACHIKU`、`BTN_CLOSE`；預留列（`source/localization/d01_placeholders.csv`，待設計補）：`SPK_D01_CEDRIC`、`UI_V2_GIVE_UP_BTN`、`UI_V2_RESULT_ROUNDS`。
+字串鍵：上述 `UI_V2_*`、`UI_PAPER_MAST`、`UI_PAPER_EXTRA`、`BTN_CLOSE`（`SPK_D01_CEDRIC`、`UI_V2_GIVE_UP_BTN`、`UI_V2_RESULT_ROUNDS` 已由設計的 ui_strings_d01.csv 補上）。
 
 title 追加（v2 demo M2）：`v2demo`（event，out）＝ 主標題下方的「v2 示範關卡」項目（`UI_V2_TITLE_ENTRY`、`CHAP_D01_TITLE`、`UI_V2_DEMO_NOTE`）；`main` 切到 `d1debate`，`d01_debate_ui` 開始 D01 論戰。
+
+## d1inv（v2 示範關卡 D01 的蒐證，1280×720；v2 demo M3）
+
+依據：`v2/11_demo_chapter.md` S05、§13。流圖 `flows/d01_investigate.xtflow`（`docs/flows.md` §4.13）。板子 `ui/boards/project/D1Inv.dc.html`。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `bg` | string | in | 地點的背景 `parlour`／`study`／`basement`／`attic`／`bedroom`／`hall`（`bg_d01_*.jpg`；靈堂、書房、門廳畫上可問話的人：塞德里克、海德太太、艾琳、布里格斯） |
+| `hud_title`、`appr_text` | string | in | `SCR_D01_S05_TITLE`；`UI_V2_APPRAISE_LEFT`／`UI_V2_APPRAISE_NONE` |
+| `locs` | list<struct{id, name: string, sel, done: bool}> | in | 六個地點分頁（`SCENE_D01_*`）；`done` ＝ 該地點都調查過（銅點） |
+| `spots` | list<struct{id, name: string, x, y, w, h, type, state: number}> | in | 目前地點的調查點（矩形，`type` 0 檢視、1 物品、2 人物；`state` 1 ＝ 看過） |
+| `book_new` | number | in | 證物清單鈕的紅點（新取得的件數） |
+| `popup_on`、`popup_seq`、`popup_title`、`popup_body`、`popup_speaker`、`popup_line`、`popup_got`、`popup_note` | | in | 調查點的彈窗：名稱、描述、亞瑟、評語、`UI_V2_GOT`、`UI_V2_GOT_NOTE`（空字串＝不顯示） |
+| `spot`、`pick_loc` | string | out | 點了調查點（彈窗關著時）、地點分頁 |
+| `dismiss`、`book`、`notes`、`end`、`settings` | event | out | 關彈窗（點任何地方、Enter／Space／Esc）、證物清單（Tab）、人物筆記（N）、結束蒐證、設定（Esc／F1） |
+
+字串鍵：`UI_V2_EVLIST`（預留列）、`UI_V2_NOTES_PAGE`、`BTN_INV_END`、`BTN_CLOSE`。
+
+## d1book（v2 示範關卡 D01 的證物清單與人物筆記頁，覆蓋層，modal；v2 demo M3）
+
+依據：`v2/11_demo_chapter.md` §3.1～§3.3、§13（證物清單的「私下的看法」、鑑定入口與剩餘次數、人物筆記頁）。可見性由 `main` 決定（§4.1）；內容由 `d01_investigate` 寫。板子 `ui/boards/project/D1Book.dc.html`。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `tab` | number | in | 0 證物清單、1 人物筆記 |
+| `cards` | list<struct{id, name: string, psy, sel: bool, mark: string, isnew: bool}> | in | 取得的證物與心理牌；`mark` ＝ `UI_V2_APPRAISED`（已鑑定）或空 |
+| `has_sel`、`sel_kind`、`sel_name`、`sel_desc` | | in | 選中的一件：種類（`UI_V2_TYPE_*`）、名稱、描述 |
+| `appraisable`、`appraised`、`can_appraise`、`appr_left`、`sel_result` | | in | 可鑑定、已鑑定、鑑定鈕可按、剩餘次數文字、鑑定結果 |
+| `remark_speaker`、`remark`、`remark_seq` | | in | 亞瑟的鑑定台詞（鑑定當下顯示，換卡清掉） |
+| `opts` | list<struct{id, label: string, sel: bool}> | in | 私下的看法：`-`（`UI_V2_PRIVATE_VIEW_NONE`）與已解鎖的說法（`CLM_D01_*`） |
+| `pnotes` | list<struct{kind, name, text: string}> | in | 人物筆記與觀察 |
+| `pick_tab`、`pick_card`、`pick_opt` | number、string、string | out | 分頁、選卡、選看法 |
+| `appraise`、`close`、`settings` | event | out | 請亞瑟鑑定、關閉（×、外圍、Esc／Tab／Backspace）、設定（F1） |
+
+## d1carry（v2 示範關卡 D01 的攜帶選擇，1280×720；v2 demo M3）
+
+依據：`v2/11_demo_chapter.md` S06、§13（攜帶選擇畫面、問亞瑟的意見）。板子 `ui/boards/project/D1Carry.dc.html`。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `phase` | number | in | 0 選擇、1 確認框、2 L010 播放中（點任何地方出發） |
+| `count_text`、`full`、`first_hint` | string、bool、string | in | `SCR_D01_S06_L002`；已滿 9 件；第一次進入的 `SCR_D01_S06_L001`（之後空） |
+| `items` | list<struct{id, name, desc, kind: string, psy, sel: bool}> | in | 取得的證物與心理牌（名稱、描述、種類） |
+| `who1`、`say1`、`who2`、`say2`、`say_seq` | | in | 下方對話框（亞瑟的評語；L004 時第二行是 Sherefox 的 L005；`UI_V2_CARRY_FULL`；L010） |
+| `confirm_text` | string | in | `SCR_D01_S06_L009`（留下的東西） |
+| `pick_item` | string | out | 拿起／放下一件 |
+| `ask`、`confirm`、`back`、`yes`、`no`、`go`、`settings` | event | out | 問亞瑟的意見、確定、返回、確認框的確定／取消、出發、設定 |
+
+字串鍵：`SCR_D01_S06_TITLE`、`UI_V2_CARRY_TITLE`、`UI_V2_CARRY_ASK_ARTHUR`、`UI_V2_CARRY_CONFIRM`、`UI_V2_CARRY_LEFT_HEAD`、`BTN_BACK`、`BTN_OK`、`BTN_CANCEL`、`BTN_CONTINUE`。
+
+title（v2 demo M3）：「v2 示範關卡」項目改為 `set(chapter, 101)`（選 D01 章，`v2demo` 移除）；旁邊的小鈕 `v2dev`（event，out，`UI_V2_DEV_DEBATE` 預留列）＝ 開發入口，直接進入 D01 的論戰列。
+
+d1debate（v2 demo M3）：加 `ronpa_ready_text`（string，in：`UI_V2_RONPA_READY`／`UI_V2_RONPA_READY_ISSUE`）；破竹的標籤改用 `UI_V2_F_HACHIKU`（英文 Unstoppable）。cutin（v2 demo M3）：加 `stamp_text`（string，in）與 `stamp` 值 `V2_TR`／`V2_BL`：文字印（右上／左下），字由 `d01_debate_ui` 寫（`UI_V2_STAMP_*`）。
