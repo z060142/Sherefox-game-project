@@ -343,7 +343,15 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - **E6 追加**（M5 審查 V1、V2、V4、5.2 的發現）：
   - **開場的第一個可見 tick**（V1）：`world.debGo` 時畫面就顯示，但引擎的第 1 回合要到開場一步（S07 L004）播完才鎖存。從步驟開始（`world.stepBegin`）與 `debGo` 起，到第 1 回合顯示為止，每個 port 都是新論戰的初始狀態：鎖存值 `L_<x>` 在這段期間是章的常數（ref `model.initial_state`：回合 1／`max_rounds`、雙方滿可信度、心理量表起始值與門檻 → 平常、表情 0、連擊與破竹 0、`choose`），之後才是引擎的鎖存值 `Lr_<x>`（同一個脈衝上切換，所以那個脈衝當下要讀的用 `Lr_<x>`）；兩條鏈、公開紀錄、證物與說法清單寫成空清單（從永遠空的 `u1None`，期間內的換語言也一樣）；`phase` 1（忙碌，開場一步接著播）、`hpM`／`hpO` 滿值；論點框（`tell_on`）、預兆台詞、播放的台詞與系統台詞、浮動數字都是空的，各自等到第 1 回合、第一個播放步、第一個浮動數字才寫（`fresh` 狀態節點）；論破進度與拆台按鈕不讀上一場的鏈。測試：`tests/check_d1_play.py` 的 `check_first_tick`（每條路線的第一場、`d1_twiceA`／`D` 打完一場後從開發入口再玩一場）與 `tests/check_d1_full.py`（章的第一場、路線 D 敗北後重玩到論戰）。
   - **音樂旗標**（V2）：`u1`（含 `m8`／`m9`／`m10`／`hush`）與各集合在步驟開始時也清空（原本只在 `debGo`）：同一局的第二場論戰不再先閃一下 BGM09。`tests/check_music.py` 的 `d1_twiceA`／`d1_twiceD`。
-  - **短標**（V4，企劃 db14007）：兩條鏈的節與公開紀錄用 `d1uiClaim.short`（`CLM_D01_<id>_SHORT`）、`d1uiCard.short`（`CARD_D01_<牌>_SHORT`）；說法選擇器、確認列與系統台詞的 `{claim}`／`{node}` 仍用全名。抓住他的話的節與紀錄顯示 `UI_V2_SEIZE`（「抓住他的話」／Seize His Words），不是被抓的 U 牌的標籤（設計假設是 U 牌的 `_SHORT`；待企劃決定，沒有自己加 ID）。
+  - **短標**（V4，企劃 db14007）：兩條鏈的節與公開紀錄用 `d1uiClaim.short`（`CLM_D01_<id>_SHORT`）、`d1uiCard.short`（`CARD_D01_<牌>_SHORT`）；說法選擇器、確認列與系統台詞的 `{claim}`／`{node}` 仍用全名。抓住他的話的節與紀錄顯示 `UI_V2_SEIZE`（「抓住他的話」／Seize His Words），不是被抓的 U 牌的標籤（設計假設是 U 牌的 `_SHORT`；待企劃決定，沒有自己加 ID）。E7 由下方取代。
+- **E7 追加**（企劃 4ac5faf 的裁定與字串稽核；選行以 ref `lines.py` 為準，測試 `ref/tests/test_v2_lines.py`；字串覆蓋表 `docs/d01-string-coverage.md`）：
+  - **抓住他的話的節**：鏈上與公開紀錄顯示被抓那張 U 牌的短標（`d1uiClaim` 的 catch 列 `short` ＝ `CARD_D01_<U>_SHORT`，中英文同一個 ID）；`UI_V2_SEIZE` 只留在說法選擇器的那一列（`label`）。
+  - **論破的條件**：鏈長論破（引擎紀錄 `ronpa|chain`）在 `STATE_D01_SHF_BREAK` 之前先播 `SYS_D01_CHAIN_READY`（`{n}` ＝ 我方鏈長 `d1PChain`、`{issues}` ＝ 鏈涵蓋的爭點全名，依鏈上第一次出現的順序，以 `UI_TAG_SEP` 連接）；抓漏洞的論破（`ronpa|keystone`）照舊只播 `KEY_BREAK`。逆論破在 `SYS_D01_REVERSE` 之前先播 `SYS_D01_REV_READY`（他的鏈 `d1OChain`）。
+  - **鏈夠長而他沒有破防**：我方接上一節，回合結算後鏈長 ≥ 論破門檻，而他在結算時不處於破防（`world.d1BrokenUntil` < 本回合）→ `pAttach` 紀錄的最後一個後置步播 `SYS_D01_CHAIN_NOBREAK`（`{n}` 鏈長），每場一次（`u1` `nbP`→`nb`）。
+  - **自相矛盾**（章 §7 互斥表）：紅色裂紋的代價紀錄（`pDmg` `contradiction`）之前先播他的 `EXCL_D01_<a>_<b>_CATCH`、再播 Sherefox 的 `_SELL`（a、b 依 ID 排序），之後才是 `SYS_D01_REDCRACK`；被矛盾的那句取公開紀錄裡最早的一列（`d1uiExcl`：每個說法的互斥說法與兩句台詞；`u1Used`：每個說法第一次進公開紀錄的列號）。§7.5 的最後一張牌帶紅色裂紋時引擎沒有代價紀錄，不播（列給企劃）。
+  - **承接**：章 §8 標 ↔ 的一對，兩個順序都播同一句 `LINK_D01_<a>_<b>`（`d1uiLine` 加反向列；ref `link_key`）。
+  - **小印**：殘局截斷成功（含垂死反撲）也蓋「截」（章 §12.1 R9）。
+  - 測試：`tests/check_d1_play.py` 的 `check_lines` 也比對每回合的大字與小印（`ref_cutins`：論破、動搖、破竹、困獸、失守、逆論破與各小印，依紀錄順序；罪惡感、怒氣越線沒有大字），以及 CHAIN_READY／REV_READY／NOBREAK／LASTSTAND_OK／DESPERATE_HIT／BLOCKED 的數字；`tests/check_d1_lines.py` S7～S14；`tests/check_d1_strings.py`（每個 D01 字串不是畫面引用就是在「不顯示」清單上）。
 - **已知限制**：互相接上時 `SYS_D01_ATTACH` 與 `SYS_D01_CLASH` 都播（§12.1 第 3 回合只寫 CLASH，且把算式放進 `{dmg_p}`）；結算畫面、名聲與好感明細、回到標題由 4.4 接上（§4.15）。
 
 ### 4.13 `d01_investigate`（v2 示範關卡 D01 的蒐證、證物清單、人物筆記、攜帶選擇；v2 demo M3；ui-contracts d1inv、d1book、d1carry）
@@ -367,6 +375,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
   - **L010**（V3，企劃裁定 (c)）：確定時只要宅邸裡還有對手撿得走的東西（ref `model.pickups_for`：撿取順序裡有 `opponent_use`、沒帶走的證物，由產生器從 ref 的資料推出 `PICKABLE`，含玩家沒找到的）就播 L010，不列出是什麼；留下的清單（L009）仍只列找到的。沒有「找到卻沒帶」的東西時不出確認框，直接播 L010（還有撿得走的）或出發。
   - **新項目數字**（V5）：證物清單按鈕的數字與「新」標記只算證物與心理牌；人物筆記與觀察不再加入 `i1New`。
   - **第一個可見 tick**（V1 的稽核）：蒐證、攜帶、熱身三個畫面的 port 在步驟開始的脈衝上寫、下一 tick 才讀回，`main` 因此晚一個 tick 才顯示它們（`D1_LATE`）；證物清單也在按鈕後一個 tick 才打開。結算畫面與 S11 原本就沒有問題。測試：`tests/check_d1_full.py` `check_settled`（每次顯示的第一個 tick 等於 5 tick 後、清單 port 都寫過）。
+- **E7 追加**（企劃 4ac5faf）：地下室的分頁用新的 `SCENE_D01_BASEMENT_TAB`（與閣樓同一條規則，中英文都用短名）；分頁文字框維持 135 px 寬可換行（英文 "Mr Cedric's bedroom" 仍需要）。有短名的地點，全名（`SCENE_D01_ATTIC`、`SCENE_D01_BASEMENT`）畫面上沒有地方顯示（蒐證畫面沒有地點標題），`d1iScene` 拿掉沒有用到的 `name` 欄，列給企劃（`docs/d01-string-coverage.md`）。
 - **已知限制**：蒐證與攜帶畫面的音樂由 D01 的 cue 表決定（§4.10）；地點與攜帶畫面沒有第一次出現的提示行以外的教學；地點分頁的完成點只看「都調查過」。
 
 ### 4.14 v2 示範關卡 D01 的劇情與熱身（M4a；`paper`、`vn`、`d01_warmup`；ui-contracts paper、vn、d1warm）

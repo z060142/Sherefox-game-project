@@ -232,7 +232,9 @@ prompt with the last gasp, the §7.5 round, the result screen after a win and af
 The four routes also check every round's playback lines (E3, `check_lines`): from the ref's events of the round,
 the system lines ch §12.0 calls for among BOTH_REBUT, CUT_EMPTY, MISS_WRONG, TOPPLE_MISS_FACT／WRONG, FOOLED,
 FOG_REPEAT, CLASH, LASTCARD_HIT／NOHEAL／REMOVE, ZERO_WIN, KEY_BREAK／NORMAL, DENY_FACT and S07 L005／L006 are shown with
-their numbers, none of the others is, and the 斷 stamp shows exactly when the player's combo resets (ruling 7).
+their numbers, none of the others is, and the 斷 stamp shows exactly when the player's combo resets (ruling 7). E7:
+also CHAIN_READY / REV_READY ({n}, {issues}), CHAIN_NOBREAK (once), LASTSTAND_OK, DESPERATE_HIT and BLOCKED, and every
+round's cut-ins equal ref's (`ref_cutins`: 論破, 動搖, 破竹, 困獸, 失守, 逆論破 and the seals, the endgame cut's 截 too).
 
 ```
 uv run tests/check_d1_lines.py [--shots DIR]
@@ -250,7 +252,33 @@ Scripted debates (forced opponent, route A's loadout unless noted, harnesses `te
 | `S4` | E4, a loadout with the talking board: 破竹 held at 3 (HACHIKU_KEEP after the round's last system line, never at 0), 困獸 from round 5 (a sidestep's voided heal says nothing), his last card P05 hits with the recovery voided (LASTCARD_NOHEAL then LASTCARD_CORNERED), then ZERO_WIN |
 | `S5` | E4: a cut sealed by last round's sidestep (CUT_SEALED), a sophistry 拆台 on another issue's fact (TOPPLE_MISS_WRONG −5), a sophistry 拆台 that knocks down a fact while he rebuts (DENY_FACT, OPP_REBUT_MISS) |
 
-`--shots DIR` writes a TOPPLE_MISS_FACT line (S1) and a LASTCARD_HIT line (S2) in zh-TW and en.
+| `S7` | E7: E05 / E06 left (he holds P06): 承接 03A → 02A (a ↔ pair in the other order) and 02A → 04B, BLOCKED, CUT_D01_03A_L1, 03B and REACT_D01_03B against P06, 05B refuted with the work order (REFUTE_D01_05B, NOW_KNOWN), a 拆台 on P06, CUT_D01_09A_L3, his slip U2 and 抓住他的話 on it (the chain and the public record, opened with R, show `CARD_D01_U2_SHORT`, never `UI_V2_SEIZE`), CHAIN_NOBREAK, a cut into his rebuttal under cover |
+| `S8` | E7: route D with A04: REV_READY, then the last stand with 04B on L4: LASTSTAND_OK, her credibility 42 (30%) when round 9 shows, the debate goes on |
+| `S9` | E7: 承接 05A → 01C, 11A → 11B, two contradictions (EXCL_D01_01D_05A / 05A_05B catch and sell before REDCRACK), his credibility to 0 without a Break (S07 L006), K1 cut: grade 4; the ending's S10 L008 |
+| `S10`, `S11` | E7: the dying gasp hits: her endgame cut fails / she takes it (DESPERATE_HIT), grade 1 |
+| `S12`, `S13` | E7: his 強辯 with P07 / P06, 承接 08A → 10A, a 拆台 that knocks L3 down (CARD_D01_L3_DOWN), the endgame cut on P05 (P05_DOWN and the 截 seal); P05 taken with no crack (BEAT_D01_LASTCARD_3) |
+| `S14` | E7: route D's last stand with the red-crack 06A: 30% then −10 (32) |
+
+E7: every scenario's whole playback is also checked step by step against ref, every round's cut-ins (the big words and
+seals, `check_d1_play.ref_cutins`), `E7_REACHED` the lines each scenario is there to show, and a scenario that ends has
+its S08 / S10 lines checked against ref epilogue. `--shots DIR` writes a TOPPLE_MISS_FACT line (S1), a LASTCARD_HIT
+line (S2), and (E7) each newly shown line, the catch node on the chain and in the public record, the last stand's 30%
+and the endgame cut's 截 seal, in zh-TW and en.
+
+## v2 demo: every D01 string shown or listed (E7)
+
+```
+uv run tests/check_d1_strings.py                       # static: every key referenced or on NOT_DISPLAYED
+uv run tests/check_d1_strings.py --coverage DIR [--all]  # which keys the test runs showed
+```
+
+Static (no CLI): every key of `source/localization/d01/` is referenced by a flow, a board, a data table (the vn's
+playable script rows only) or a generator's key pattern, or is on `NOT_DISPLAYED` with the reason (design rulings,
+templates, headings, class C questions for the design team; `docs/d01-string-coverage.md`). A new string nothing shows,
+a listed key that is shown after all, or a listed key that no longer exists fails it. `--coverage DIR`: run the D01
+checks with `SHEREFOX_TEXTLOG=DIR` (`check_playthrough.parse_events` then appends every string value of each port
+trace to `DIR/<check>.txt`), and this lists per key the checks whose screens showed its text (placeholders as
+wildcards) and the referenced keys no check showed.
 
 ## v2 demo: the D01 chapter (M3)
 
@@ -390,7 +418,9 @@ round, a Reverse Break, the round limit) and what was done around them. The defa
 so the wins and the rare situations come from the curated seeds. Claim rows are clicked at their centre (until E6 the
 faded floating number `#float-me` took the fourth row's clicks; the board now gives it `pointer-events: none`). E6 (V4):
 each round shown also checks the labels: both chains and the public record show the short labels
-(`CLM_D01_<id>_SHORT`, `CARD_D01_<card>_SHORT`), the claim rows the full titles.
+(`CLM_D01_<id>_SHORT`, `CARD_D01_<card>_SHORT`), the claim rows the full titles. E7: a 抓住他的話 node and row show
+the caught U card's short label (`CARD_D01_U1_SHORT` / `U2_SHORT`), the picker's row `UI_V2_SEIZE`; the expectation is
+written from that rule, not read from the generated table. Every round's cut-ins are checked too (`check_lines`).
 
 ## v2 demo: every claim and card label on the debate screen (E6, review screenshots)
 
@@ -401,7 +431,9 @@ uv run tests/shots_d1_labels.py DIR
 Not a pass/fail check: a copy of the game (`tests/d1labels_harness`, deleted at the end) writes pages straight into
 `ui#d1debate` once round 1 of the dev entry's debate is shown: per claim (30 and the two 抓住他的話 rows) the picker's
 four rows from it, the confirm row with its full title and a card's, our chain and his chain (seven short labels each);
-then the public record (14 rows a page). Shots in zh-TW and en under `DIR/labels/<lang>/`.
+then the public record (14 rows a page). Shots in zh-TW and en under `DIR/labels/<lang>/`. E7: before shooting it checks
+the labels against the design's keys (a claim `CLM_D01_<id>` / `_SHORT`; a 抓住他的話 row `UI_V2_SEIZE` in the picker
+and the caught U card's `CARD_D01_<U>_SHORT` on the chains and in the record) and exits 1 on a mismatch.
 
 ## Temp-leak check (D01 checks)
 

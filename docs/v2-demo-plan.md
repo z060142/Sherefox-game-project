@@ -192,3 +192,10 @@
 - V4：短標、選擇器兩行、確認列全名；`check_d1_fuzz` 檢查鏈、紀錄的短標與選擇器的全名；英文全部說法與牌的截圖 `tests/shots_d1_labels.py`。抓住他的話的節顯示 `UI_V2_SEIZE`（不是 U 牌的標籤）：回報企劃助手 B。
 - V5：新項目數字只算證物與心理牌（`check_d1_full`）。V6：拉新的 CSV。
 - 5.2：`#float-me`／`#float-opp` 加 `pointer-events: none`，`check_d1_fuzz` 的 `CLAIM_X` 回到列中央。路線 A 第 7 回合的 `DIVERGES` 移除（設計 1d56459）。未驗的三項：敗北後重玩、先玩 v1 三章再玩 D01（`check_d1_full`）、英文論戰截圖（V4）。
+
+### E7（5.3 落地後；Opus）✔ 完成（字串覆蓋表 `docs/d01-string-coverage.md`；`docs/flows.md` §4.12、§4.13 E7 追加）
+
+- 「抓住他的話」的節在鏈上與公開紀錄顯示被抓那張 U 牌的短標（`CARD_D01_U1_SHORT`／`U2_SHORT`，中文用同一個 ID）；`UI_V2_SEIZE` 只留給選擇清單上的選項名稱（企劃裁定）。測試：fuzz 的短標檢查涵蓋 catch 節。
+- S07 L004 播放時預兆框不顯示：現狀正確。
+- 5.3 英文檢查回報的版面與字串問題。
+- ✔ 完成：抓住他的話的節顯示 U 牌短標（`tests/check_d1_fuzz.py` 與 `tests/shots_d1_labels.py` 的期望值由規則寫出，改動前失敗）。拉設計 4ac5faf、fdbf90c 的字串（地下室分頁 `SCENE_D01_BASEMENT_TAB`）。字串稽核：A 類 25 個 ID（CHAIN_READY、REV_READY、CHAIN_NOBREAK、互斥表 22 句）加上 ↔ 承接反向、殘局截斷的「截」；B 類 30 個 ID 由 `tests/check_d1_lines.py` S7～S14 走到（含 §7.5 成功回到 30%）；C 類 25 個與 3 個非 ID 問題、D 類 1 個列給企劃；`tests/check_d1_strings.py` 讓沒人用的新字串會失敗；大字與小印逐回合對 ref。
