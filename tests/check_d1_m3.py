@@ -93,8 +93,9 @@ def trace_signals(ticks: int) -> dict[str, str]:
     out: dict[str, str] = {}
     for ln in p.stdout.decode("utf-8", "replace").splitlines():
         m = re.match(r"^t\d+ world\.(t1\w+) .* -> (.*)$", ln)
-        if m:
-            out[m.group(1)] = m.group(2).strip('"')
+        if m:   # `trace` quotes string values JSON-style; bools and numbers are bare
+            v = m.group(2)
+            out[m.group(1)] = json.loads(v) if v.startswith('"') else v
     return out
 
 

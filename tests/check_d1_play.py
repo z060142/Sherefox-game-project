@@ -58,15 +58,7 @@ def run(rec: str, game: str, ticks: int, lang: str) -> tuple[list, str]:
     err = p.stderr.decode("utf-8").replace("\r\n", "\n")
     if p.returncode != 0:
         raise SystemExit(f"error: xtatrium run {rec} exited {p.returncode}\n{err}")
-    events = []
-    for raw in out.split("\n"):
-        m = cp.LINE.match(raw)
-        if m:
-            events.append((-1 if m.group(1) == "load" else int(m.group(1)), m.group(2), m.group(3)))
-        elif raw and events:
-            t, kind, rest = events[-1]
-            events[-1] = (t, kind, rest + "\n" + raw)
-    return events, err
+    return cp.parse_events(out), err
 
 
 # ---- the playback's system lines (E3: every line and number from the round's records; ch §12.0 names the line)

@@ -58,9 +58,9 @@ def final_warmup(rec: str, ticks: int) -> str:
         raise SystemExit(f"trace failed: {p.stderr.decode('utf-8', 'replace')}")
     val = "pass"
     for ln in p.stdout.decode("utf-8", "replace").splitlines():
-        m = re.match(r'^t\d+ world\.d1Warmup .* -> "(.*)"$', ln)
+        m = re.match(r'^t\d+ world\.d1Warmup .* -> (".*")$', ln)
         if m:
-            val = m.group(1)
+            val = json.loads(m.group(1))   # `trace` quotes string values JSON-style
     return val
 
 

@@ -128,21 +128,57 @@ def run(recording: str, ticks: int, lang: str | None, frames: Path | None) -> tu
     err = p.stderr.decode("utf-8").replace("\r\n", "\n")
     if p.returncode != 0:
         raise SystemExit(f"error: xtatrium run exited {p.returncode}\n{err}")
+    return parse_events(out), err
+
+
+def parse_events(out: str) -> list[tuple[int, str, str]]:
+    """The `run --ports` lines as (tick, kind, rest), tick -1 for `load`. The CLI writes one record per line: a string
+    value carries no raw control character (XTAtrium AT-092: escaped, see unescape), so a line that is not a record
+    is an error, never the continuation of the one before."""
     events: list[tuple[int, str, str]] = []
     for raw in out.split("\n"):
         m = LINE.match(raw)
         if m:
-            tick = -1 if m.group(1) == "load" else int(m.group(1))
-            events.append((tick, m.group(2), m.group(3)))
-        elif raw and events:
-            t, kind, rest = events[-1]
-            events[-1] = (t, kind, rest + "\n" + raw)   # a string value with a newline
-    return events, err
+            events.append((-1 if m.group(1) == "load" else int(m.group(1)), m.group(2), m.group(3)))
+        elif raw.strip():
+            raise SystemExit(f"error: not a port trace record: {raw[:200]!r}")
+    return events
+
+
+_ESC = {"\\": "\\", "n": "\n", "r": "\r", "t": "\t", '"': '"'}
+_HEX4 = re.compile(r"[0-9a-fA-F]{4}")
+
+
+def unescape(text: str) -> str:
+    """A string value of the CLI's line-oriented output back to its text (XTAtrium AT-092, its docs 02): a backslash
+    is written doubled, LF / CR / TAB as backslash n / r / t, any other control character as backslash u and four hex
+    digits, and in the quoted forms a double quote as backslash quote. `run --trace` graph values are bare with these
+    escapes; the quoted values of `--ports` (ports, writes) are the same between their quotes (unquote)."""
+    if "\\" not in text:
+        return text
+    out, i = [], 0
+    while i < len(text):
+        c = text[i]
+        if c != "\\":
+            out.append(c)
+            i += 1
+            continue
+        n = text[i + 1] if i + 1 < len(text) else ""
+        if n == "u" and _HEX4.fullmatch(text[i + 2:i + 6]):
+            out.append(chr(int(text[i + 2:i + 6], 16)))
+            i += 6
+        elif n in _ESC:
+            out.append(_ESC[n])
+            i += 2
+        else:
+            raise ValueError(f"bad escape at {i} in {text[:120]!r}")
+    return "".join(out)
 
 
 def unquote(v: str):
-    if v.startswith('"') and v.endswith('"'):
-        return v[1:-1].replace('\\"', '"').replace("\\\\", "\\")
+    """A port value as `run --ports` prints it: a quoted escaped string, true / false or a number."""
+    if len(v) >= 2 and v.startswith('"') and v.endswith('"'):
+        return unescape(v[1:-1])
     if v in ("true", "false"):
         return v == "true"
     try:

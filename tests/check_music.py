@@ -235,16 +235,13 @@ def value_index() -> dict[str, int]:
 
 
 def trace_lines(text: str) -> list[str]:
-    """The --trace lines, one per tick (t=N) or host effect (tN ...): a string value with a line break (the D01
-    closing paper's paragraphs, docs/flows.md §4.15) continues on the next physical line, so such lines are joined
-    back onto the one before."""
-    out: list[str] = []
-    for raw in text.split(chr(10)):
-        if re.match(r"t=?\d+ ", raw) or not out:
-            out.append(raw)
-        else:
-            out[-1] += chr(10) + raw
-    return [ln for ln in out if ln]
+    """The --trace lines, one per tick (t=N) or host effect (tN ...). A string value never breaks a line (XTAtrium
+    AT-092: control characters are escaped, check_playthrough.unescape), so any other line is an error."""
+    out = [ln for ln in text.split(chr(10)) if ln]
+    bad = [ln for ln in out if not re.match(r"t=?\d+ ", ln)]
+    if bad:
+        raise SystemExit(f"FAIL trace: not a tick or effect line: {bad[0][:200]!r}")
+    return out
 
 
 def music_values(line: str, idx: dict[str, int]) -> dict | None:
@@ -257,7 +254,8 @@ def music_values(line: str, idx: dict[str, int]) -> dict | None:
         j = rest.find(sep)
         if j >= 0:
             rest = rest[:j]
-    tok = rest[1:].split(" ")   # the music flow's values are ids: no spaces ("" is an empty token)
+    # the music flow's values are ids: no spaces ("" is an empty token); bare, with the CLI's escapes undone
+    tok = [cp.unescape(x) for x in rest[1:].split(" ")]
     if len(tok) != idx["#"]:
         raise SystemExit(f"FAIL music trace: {len(tok)} values, the IR has {idx['#']}")
     v = {k: tok[idx[k]] for k in VALUES}
