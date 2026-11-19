@@ -14,6 +14,10 @@ Headless playthrough checks for the flows (`docs/flows.md`). They replay recorde
 - AT-036 (`xtatrium compile --game`, framework 4352f29 or later): `check_case.py`, `check_playthrough.py` and
   `check_debate_play.py` first run `xtatrium compile --game <repo root>` (`tests/xt_cli.py` `compile_game`)
   and stop when an endpoint does not resolve. By hand: `xtatrium compile --game .`.
+- AT-092 (framework 9a24aad or later): string values in the CLI's line output are escaped (backslash doubled, LF / CR /
+  TAB as `\n` / `\r` / `\t`, other control characters as `\u` + 4 hex digits, `\"` in quoted values), one record per
+  line. The trace parsers undo it (`check_playthrough.parse_events` / `unescape` / `unquote`; `check_music.trace_lines`;
+  `xtatrium trace` values are JSON-quoted) and stop on a line that is not a record.
 - The XTFrame converter (`xtframe-import`), only needed to re-import `ui/boards`: the npm package
   `@xtframe/converter-win32-x64` is not published, so install it from a local tarball of the XTFrame distribution:
   `npm install --no-save <path-to-xtframe-converter-win32-x64-0.15.0.tgz>` (the binary is then
@@ -331,9 +335,47 @@ panel is gone): they check the result screen's grade, rounds and outcome, and th
 back on the title. `check_music.py`'s D01 routes go on through BGM12 (S08 and the result screen), BGM11 (S09),
 BGM02 (S10) and BGM01 (S11, kept by the title).
 
+## v2 demo: the D01 debate UI fuzz (5.2)
+
+```
+uv run tests/check_d1_fuzz.py                 # the default seeds: 48 debates, about a minute (ten runs at a time)
+uv run tests/check_d1_fuzz.py --seeds N       # seeds 1..N, loadouts A, B, C, D in turn
+uv run tests/check_d1_fuzz.py --only B:29     # one debate (loadout:seed)
+uv run tests/check_d1_fuzz.py --plan 150      # ref only: the situations each seed reaches (to pick seeds)
+```
+
+The engine does not reject an illegal command, so the `d1debate` screen must offer exactly the legal ones (v2 demo plan
+§2 decision 3). Each seed plays a whole debate from the title's dev entry with Cedric's real AI (nothing pinned; the
+debate seed is the one the screen draws from the run's rng, `check_debate_v2.ui_debate_seed`), on route A's loadout
+(the game itself) or B (the talking board), C or D's carry set (`tests/d1fuzz_harness{B,C,D}`: `gen_d1_play`'s harness
+with `pin=False`, deleted at the end). A recording cannot branch on the screen, so the reference model is stepped while
+it is written: ref `legal.legal_moves` (`ref/src/sherefox_ref/v2/legal.py`, tests `ref/tests/test_v2_legal.py`) gives
+the round's legal commands, ref `policy.decide` his move. The fuzz picks at random among what is legal (action, evidence
+chip, claim row, target on his chain, cover, lock; the endgame's cut / take; §7.5's last card / give up), wanders first
+(other actions, evidence and claims, cover on and off, greyed-out items and keys that must do nothing: 拆台 with his chain
+empty, illegal claim rows, targets for an action without one, cover when spent, lock, keys 1-4 and V in the endgame and
+§7.5) and notes after each click what the screen must show. Around it, at random: the public record opened and closed
+(button or R; closed with its button, R or 關閉), the settings overlay (F1 or Esc; closed with Esc, Backspace or the
+dimmed screen) with the language switched in it from round 2 on, the playback clicked anywhere and on `ui#cutin`.
+
+| Checked | What it asserts |
+|---|---|
+| after every click | the enabled set equals ref's, both ways, naming the item: the action buttons (`mode`, `can_dismantle`), the evidence chips (`ev_list` = the picker's evidence, in order), every claim row's `ok` for the chosen action, a target chip taken exactly when ref allows that target, `guard_ok`, `can_lock`, `need_target`, `picker_on`; the selection (`act`, the chips' and rows' `sel`, `guard_armed`) is what the clicks made; `phase` is 0 (a round not shown when its choice starts: the screen stopped progressing) |
+| each round shown | the round counter, `mode`, both credibilities (two decimals), both chains (our cracks), the public record (round, rebut, sophistry, red crack, standing / down), the tell (`tell_clear`, `tell_a` / `tell_b`, `tell_star`, `tell_card`, `tell_partial`) |
+| each round's playback | `check_d1_play.check_steps` (every step and the tell's lines against ref `lines`) and `check_lines` (the system lines and their numbers, the 斷 stamp), in the language of that round |
+| the end | the result screen's grade, rounds and outcome; nothing on stderr |
+
+It prints a line per seed (rounds, grade, the situations reached) and a summary: debates, rounds, how many reached each
+situation (a successful 拆台, cover set, cover that saved, 抓住他的話, a Break, his last card, the dying gasp, the §7.5
+round, a Reverse Break, the round limit) and what was done around them. The default seeds (`CURATED`, picked with
+`--plan`, and seeds 1-36) reach every situation; a default run that misses one fails. Random play loses most debates,
+so the wins and the rare situations come from the curated seeds. Claim rows are clicked right of `#float-me`: the
+faded floating number stays over the fourth row and takes its clicks (found by this fuzz; the board needs
+`pointer-events: none` there, see `CLAIM_X`).
+
 ## Temp-leak check (D01 checks)
 
-The D01 checks (`check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_story`, `check_d1_full`) count only what
+The D01 checks (`check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_story`, `check_d1_full`, `check_d1_fuzz`) count only what
 their own run creates (`tests/tempwatch.py`): the run gets a directory `%TEMP%/sherefox-run-*` and points TEMP / TMP /
 TMPDIR and Python's tempfile at it, for itself and every child process (the xtatrium CLI included). Anything left in
 it at the end, or a new entry with one of our prefixes (`sherefox-`, `d1shots-`, `d1m3shots-`, `d1storyshots-`,

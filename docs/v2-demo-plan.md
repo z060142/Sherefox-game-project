@@ -47,7 +47,7 @@
 | 單 | 內容 | 派給 |
 |---|---|---|
 | 5.1 全程重播 | 從標題到 S11 的四條路線重播測試，加入每次改動必跑的檢查 | Opus |
-| 5.2 UI fuzz | 隨機合法點擊打完整場論戰，逐回合對 ref；任何卡住、任何與 ref 不同都算失敗；含拆台、援護、§7.5、回合上限 | Opus |
+| 5.2 UI fuzz ✔ | 隨機合法點擊打完整場論戰，逐回合對 ref；任何卡住、任何與 ref 不同都算失敗；含拆台、援護、§7.5、回合上限。完成：`tests/check_d1_fuzz.py`（合法集合 ref `legal.py`，測試 `ref/tests/test_v2_legal.py`；預設 48 場約一分鐘，涵蓋全部特殊情況）；同單清掉 trace 換行的權宜（AT-092）。發現：論戰畫面的浮動數字 `#float-me` 淡出後仍擋住說法選擇器第 4 列的點擊，板子要加 `pointer-events: none`（未改，待裁定） | Opus |
 | 5.3 英文檢查 | 字串覆蓋率（`inspect --strings`）、每個畫面的英文截圖找溢出、用語（talking board、Mr Cedric、Unstoppable） | Sonnet |
 | 5.4 獨立審查 | 不看實作者結論的審查（蒐證、攜帶、結局） | Opus |
 | 5.5 發布 | 發布到 `Sherefox-build-v2`、試玩清單交給使用者、通知企劃 | 主模型 |

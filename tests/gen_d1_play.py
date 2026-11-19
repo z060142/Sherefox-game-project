@@ -224,12 +224,13 @@ def harness_dir(route: str) -> Path:
     return TESTS / f"d1play_harness{route}"
 
 
-def build_harness(route: str, rt=None) -> None:
-    """tests/d1play_harness<route>/: a copy of the game with one more flow (d1test, before the D01 engine) that
-    writes the route's pinned opponent move of the round into the engine's test hook d1OppAct / d1OppCard, and
-    replaces the dev entry's loadout with the route's 20 ms after the title's v2 entry (the debate starts 100 ms
-    after it, so the engine reads this loadout). Game paths may not leave the game directory, so it is a copy."""
-    out = harness_dir(route)
+def build_harness(route: str, rt=None, out: Path | None = None, pin: bool = True) -> None:
+    """tests/d1play_harness<route>/ (or `out`): a copy of the game with one more flow (d1test, before the D01 engine)
+    that writes the route's pinned opponent move of the round into the engine's test hook d1OppAct / d1OppCard
+    (pin=False: nothing is pinned, his own AI plays; tests/check_d1_fuzz.py), and replaces the dev entry's loadout
+    with the route's 20 ms after the title's v2 entry (the debate starts 100 ms after it, so the engine reads this
+    loadout). Game paths may not leave the game directory, so it is a copy."""
+    out = out or harness_dir(route)
     for sub in ("flows", "data", "strings", "ui", "audio"):
         shutil.rmtree(out / sub, ignore_errors=True)
     out.mkdir(exist_ok=True)
@@ -240,28 +241,30 @@ def build_harness(route: str, rt=None) -> None:
     shutil.copytree(ROOT / "audio", out / "audio")
     game = json.loads((ROOT / "game.json").read_text(encoding="utf-8"))
     rt = rt or RT.ROUTES[route]
-    rows = [{"id": str(n), "act": oa.kind.value, "card": oa.card or ""}
-            for n, (_, _, oa) in enumerate(forced(rt), start=1)]
-    (out / "data" / "flow" / "d1test.json").write_text("[\n" + ",\n".join(json.dumps(r) for r in rows) + "\n]\n",
-                                                       encoding="utf-8", newline="\n")
-    game["tables"]["d1test"] = "data/flow/d1test.json"
     lo = rt.loadout
-    nodes = [
-        {"id": "rnd", "type": "toString", "params": {"decimals": 0}},
-        {"id": "row", "type": "atrium.table.find", "params": {"table": "d1test", "column": "id"}},
-        {"id": "act", "type": "atrium.table.get", "params": {"table": "d1test", "column": "act", "type": "string"}},
-        {"id": "card", "type": "atrium.table.get", "params": {"table": "d1test", "column": "card", "type": "string"}},
-        {"id": "late", "type": "timer", "params": {"interval": 0.02, "autostart": False, "repeat": False}},
-    ]
-    edges = [
-        {"from": "world.d1Round", "to": "rnd.in"},
-        {"from": "rnd.out", "to": "row.value"},
-        {"from": "row.row", "to": "act.row"},
-        {"from": "row.row", "to": "card.row"},
-        {"from": "act.value", "to": "world.d1OppAct"},
-        {"from": "card.value", "to": "world.d1OppCard"},
-        {"from": "ui#title.v2dev", "to": "late.start"},
-    ]
+    nodes = [{"id": "late", "type": "timer", "params": {"interval": 0.02, "autostart": False, "repeat": False}}]
+    edges = [{"from": "ui#title.v2dev", "to": "late.start"}]
+    if pin:
+        rows = [{"id": str(n), "act": oa.kind.value, "card": oa.card or ""}
+                for n, (_, _, oa) in enumerate(forced(rt), start=1)]
+        (out / "data" / "flow" / "d1test.json").write_text(
+            "[\n" + ",\n".join(json.dumps(r) for r in rows) + "\n]\n", encoding="utf-8", newline="\n")
+        game["tables"]["d1test"] = "data/flow/d1test.json"
+        nodes += [
+            {"id": "rnd", "type": "toString", "params": {"decimals": 0}},
+            {"id": "row", "type": "atrium.table.find", "params": {"table": "d1test", "column": "id"}},
+            {"id": "act", "type": "atrium.table.get", "params": {"table": "d1test", "column": "act", "type": "string"}},
+            {"id": "card", "type": "atrium.table.get",
+             "params": {"table": "d1test", "column": "card", "type": "string"}},
+        ]
+        edges += [
+            {"from": "world.d1Round", "to": "rnd.in"},
+            {"from": "rnd.out", "to": "row.value"},
+            {"from": "row.row", "to": "act.row"},
+            {"from": "row.row", "to": "card.row"},
+            {"from": "act.value", "to": "world.d1OppAct"},
+            {"from": "card.value", "to": "world.d1OppCard"},
+        ]
     for coll, items in (("d1Carry", lo.carried), ("d1Appraised", lo.appraisals), ("d1Notes", lo.notes)):
         nodes.append({"id": f"k_{coll}", "type": "constant", "params": {"value": ",".join(items)}})
         nodes.append({"id": f"clr_{coll}", "type": "atrium.coll.clear", "params": {"name": coll}})
