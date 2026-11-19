@@ -142,8 +142,13 @@ D01_CHAPTER = 101
 D01_STEPS = (("paper", "S01", "D01_OPEN"), ("vn", "S02", ""), ("vn", "S03", ""), ("d1warmup", "S04", ""),
              ("d1investigate", "S05", ""), ("d1carry", "S06", ""), ("d1debate", "S07", ""))
 # D01 scenes whose lines become script rows (sceneKey D01_Sxx): the paper, the two vn scenes, the warm-up (its lines
-# are shown by the d01_warmup flow, which reads their speakers from the script table)
-D01_SCRIPT_SCENES = ("S01", "S02", "S03", "S04")
+# are shown by the d01_warmup flow, which reads their speakers from the script table), the debate's S07 (v2 demo 4.3)
+D01_SCRIPT_SCENES = ("S01", "S02", "S03", "S04", "S07")
+# S07 around the debate (docs/flows.md §4.2, §4.12; ref sherefox_ref.v2.lines): the lines the dialogue flow plays,
+# by script.cue: before the debate (pre), after a win (postWin), after a loss (postLose; L016 is the loss line on the
+# debate screen). The other S07 lines (no cue) are shown by the debate screen itself; the dialogue never picks them.
+D01_S07_CUES = {1: "pre", 2: "pre", 3: "pre", 12: "postWin", 13: "postWin", 14: "postWin", 15: "postWin",
+                17: "postLose", 18: "postLose", 19: "postLose"}
 D01_STAGING_FILE = ROOT / "source" / "staging" / "staging_d01.csv"
 # The D01 cue table (design repo staging/bgm_cues_d01.csv). Its one pseudo start id stands for "when the investigation
 # step begins" (no script line); the music flow looks it up on a d1investigate step.
@@ -174,7 +179,7 @@ WARMUP = {3: {"refuters": ["E03_05", "E03_02"]}}
 # VN staging vocabularies (docs/ui-contracts.md, vn section). Characters without a standee yet use a slug of
 # their English name so the UI can add the standee later.
 STAGING_BGS = {"", "office_night", "office_day", "kitchen_morning", "clockshop", "dock_fog", "barge_deck",
-               "boiler_room", "debate", "d01_hall"}
+               "boiler_room", "debate", "d01_hall", "d01_parlour"}
 STAGING_CHARS = {"sherefox", "arthur", "baskerville", "victor", "wolfhart", "valet", "partner",
                  "landlady", "mrs_hyde", "briggs", "cedric_composed"}   # the last four: the v2 demo D01
 STAGING_PLACEHOLDER_CHARS = {"holloway", "gresham", "tommy", "old_tom"}
@@ -653,12 +658,20 @@ def build_d01_script(strings: dict) -> list[dict]:
             speaker = f"SPK_D01_{slug}" if f"SPK_D01_{slug}" in strings else f"SPK_{slug}"
             if speaker not in strings:
                 strings[speaker] = {"zh-TW": r["speaker_zh"], "en": r["speaker_en"]}
+        cue = D01_S07_CUES.get(int(m.group(3)), "") if scene == "S07" and not title else ""
         out.append({
             "id": r["ID"], "chapter": D01_CHAPTER, "scene": scene, "sceneKey": f"D01_{scene}",
             "seq": 0 if title else int(m.group(3)), "kind": kind, "speaker": speaker, "text": r["ID"], "branch": "",
             "round": 0, "act": "", "node": "", "evidence": "", "appraisal": False, "banner": "", "inactive": False,
-            "playable": kind == "line", "cue": "",
+            "playable": kind == "line", "cue": cue,
         })
+    # the speakers of the debate screen's spoken lines (BEAT_D01_*, REACT_D01_*, TELL_D01_HINT_*: their name plates,
+    # ref sherefox_ref.v2.lines), made the same way when no string has them yet (Martha, Irene)
+    for r in read_csv(path):
+        if r["ID"].startswith(("BEAT_D01_", "REACT_D01_", "TELL_D01_")) and r["speaker_zh"] not in PSEUDO_SPEAKERS:
+            slug = slug_upper(r["speaker_en"])
+            if f"SPK_D01_{slug}" not in strings and f"SPK_{slug}" not in strings:
+                strings[f"SPK_{slug}"] = {"zh-TW": r["speaker_zh"], "en": r["speaker_en"]}
     out.sort(key=lambda r: (r["scene"], r["seq"]))
     for scene in D01_SCRIPT_SCENES:
         if not any(r["scene"] == scene and r["playable"] for r in out):

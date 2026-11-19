@@ -886,7 +886,7 @@ def gen_main() -> Graph:
            transitions=[{"from": "*", "on": "to_" + s, "to": s} for s in screens])
     # A debate / warmup step whose scene has `pre` lines (script.cue) starts on the vn; the debate screen comes with
     # world.debGo (dialogue, after those lines). The lines after the debate show the vn again (world.vnShow).
-    g.fmt("sceneKey", "CH0{a}_{b}", "chapter.value", "scene.value")
+    scene_key(g, "sceneKey", "chapter.value", "scene.value")   # CH0n_Sxx, D01_Sxx (the v2 demo's S07)
     g.tfind("preRow", "script", "sceneKey", "sceneKey", filters={"playable": "true", "cue": "pre"})
     g.x("hasPre", "preRow >= 0")
     g.x("noPre", "preRow < 0")
@@ -894,7 +894,7 @@ def gen_main() -> Graph:
                            ("isInv", "investigate", "investigate"), ("isBoard", "board", "board"),
                            ("isDeb", "debate", None), ("isWarm", "warmup", None), ("isRes", "result", "result"),
                            ("isD1Inv", "d1investigate", "d1inv"), ("isD1Car", "d1carry", "d1carry"),
-                           ("isD1Deb", "d1debate", "d1debate"), ("isD1Warm", "d1warmup", "d1warm")):
+                           ("isD1Deb", "d1debate", None), ("isD1Warm", "d1warmup", "d1warm")):
         g.const(name + "Tag", tag)
         g.node(name, "compare", op="eq")
         g.edge("kind.value", name + ".a")
@@ -905,17 +905,26 @@ def gen_main() -> Graph:
     g.n("isDebN", "isDeb.out")
     g.n("isWarmN", "isWarm.out")
     g.n("retryN", "retrying.value")
-    g.x("debPre", "(isDebN || isWarmN) && hasPre && !retryN")
+    g.n("isD1DebN", "isD1Deb.out")
+    # the v2 demo's debate step (v2 demo 4.3): S07 L001-L003 (`pre`) on the vn, then its own screen (d1debate) with
+    # world.debGo; its lines after the debate (postWin / postLose) end with world.debBack: back to d1debate
+    g.x("debPre", "(isDebN || isWarmN || isD1DebN) && hasPre && !retryN")
     g.x("debNoPre", "(isDebN || isWarmN) && (noPre || retryN)")
-    g.edge("world.debGo", "screen.to_debate")
+    g.x("d1NoPre", "isD1DebN && noPre")
+    g.x("toV1Deb", "!isD1DebN")
+    g.x("toD1Deb", "isD1DebN")
+    g.edge(g.when("debGoV1", "world.debGo", "toV1Deb_t"), "screen.to_debate")
+    g.edge(g.when("debGoD1", "world.debGo", "toD1Deb_t"), "screen.to_d1debate")
     g.edge("world.vnShow", "screen.to_vn")
-    g.edge("world.debBack", "screen.to_debate")
+    g.edge(g.when("debBackV1", "world.debBack", "toV1Deb_t"), "screen.to_debate")
+    g.edge(g.when("debBackD1", "world.debBack", "toD1Deb_t"), "screen.to_d1debate")
     g.edge("world.resultLines", "screen.to_vn")
     # the v2 demo (docs/flows.md §4.12, §4.13): D01 is chapter 101 of the step table; its steps show their screens
     # like v1's (the kinds below); the debate's back to title ends it
     g.edge("world.d1Back", "screen.to_title")
     g.edge(g.when("debPreG", "rebegin.out", "debPre_t"), "screen.to_vn")
     g.edge(g.when("debNoPreG", "rebegin.out", "debNoPre_t"), "screen.to_debate")
+    g.edge(g.when("d1NoPreG", "rebegin.out", "d1NoPre_t"), "screen.to_d1debate")
 
     # End card: shown while the step is `end` until the title's end_dismiss. The step stays `end`, so the chapter
     # list (no longer covered) starts a new run; entering an end step shows the card again.
@@ -1101,7 +1110,8 @@ def gen_dialogue() -> Graph:
     g.n("isResN", "isRes.out")
     g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
     g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
-    g.x("isDebK", "isDebN || isWarmN")
+    g.n("isD1N", g.cmp("isD1C", "world.stepKind", g.k("d1debate")))
+    g.x("isDebK", "isDebN || isWarmN || isD1N")
     g.x("vnOrRes", "isVnN || isResN || isDebK")
     g.node("vnScene", "select")
     g.node("chText", "toString")
@@ -1136,7 +1146,8 @@ def gen_dialogue() -> Graph:
     g.toggle("asideMode")
     # a retried debate (world.debRetrying, A-14) skips its opening lines: no row has the cue "-"
     g.sel("preCue", "world.debRetrying", g.k("-"), g.k("pre"))
-    g.sel("postCue", "postMode.value", "world.debCue", "preCue")
+    g.sel("endCue", "isD1C", "world.d1Cue", "world.debCue")   # the v2 demo's debate writes its own cue
+    g.sel("postCue", "postMode.value", "endCue", "preCue")
     g.sel("cueVal", "asideMode.value", "world.debAsideCue", "postCue")
     for nm in ("dfirst", "dnext"):
         g.node(nm, "atrium.table.find", table="script", column="sceneKey", filterColumn="cue",
@@ -1194,8 +1205,9 @@ def gen_dialogue() -> Graph:
     # no lines after the debate: the step ends (on the timer's tick)
     g.n("postModeN", "postMode.value")
     g.n("asideN", "asideMode.value")
-    g.x("overDone", "!isDebK || (postModeN && !asideN)")
-    g.x("overBack", "isDebK && postModeN && asideN")
+    # the v2 demo's debate: its lines after the debate go back to its screen (the outcome panel), the step goes on
+    g.x("overDone", "!isDebK || (postModeN && !asideN && !isD1N)")
+    g.x("overBack", "isDebK && postModeN && (asideN || isD1N)")
     g.x("overGo", "isDebK && !postModeN")
     g.edge(g.when("overDoneG", over, "overDone_t"), "world.stepDone")
     g.edge(g.when("overBackG", over, "overBack_t"), "world.debBack")
@@ -2155,8 +2167,11 @@ def gen_music() -> Graph:
     cur = g.sel("m_end", "endOn_t", g.k("end"), cur)
     g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
     g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
-    g.x("isDebK", "isDebN || isWarmN")
-    mom = g.sel("moment", "isDebK_t", "world.bgmDeb", cur)
+    g.n("isD1DebN", g.cmp("isD1DebC", "world.stepKind", g.k("d1debate")))
+    g.x("isDebK", "isDebN || isWarmN || isD1DebN")
+    # the v2 demo's debate: d01_debate_ui's world.bgmD1 (BGM07 at the start, BGM08 / BGM09 / BGM10 by situation,
+    # silence for S07 L007-L008 and the loss; staging bgm_cues_d01.csv README)
+    mom = g.sel("moment", "isDebK_t", g.sel("momDeb", "isD1DebC", "world.bgmD1", "world.bgmDeb"), cur)
     g.edge(mom, "world.bgmMoment")
     mrow = g.tfind("momRow", "flowBgm", "moment", mom)
     g.tget("momBgm", "flowBgm", "bgm", mrow)
@@ -2182,10 +2197,21 @@ def gen_music() -> Graph:
     g.toggle("debOn")   # the debate screen has taken over from the step's opening lines
     g.edge("world.stepBegin", "debOn.setFalse")
     g.edge("world.debGo", "debOn.setTrue")
+    # the v2 demo's debate: its lines after the debate (S07 L012-L015 / L017-L019) carry cues (BGM09, silence)
+    g.edge(g.when("debOffD1", "world.debEnd", "isD1DebC"), "debOn.setFalse")
     for nm, flag in (("isPaperN", "is_paper"), ("isVnN", "is_vn"), ("isResN", "is_result"), ("cueHereN", "cueHere"),
                      ("debOnN", "debOn")):
         g.n(nm, flag)
-    g.x("cueOk", "cueRow >= 0 && (isPaperN || fixedN || cueHereN && (isVnN || isResN || isDebK && !debOnN))")
+    # the v2 demo's debate: once it has started, its opening lines (`pre`, still world.vnLine until the lines after
+    # it show) no longer count
+    g.toggle("d1Go")
+    g.edge("world.stepBegin", "d1Go.setFalse")
+    g.edge(g.when("d1GoOn", "world.debGo", "isD1DebC"), "d1Go.setTrue")
+    g.n("d1GoN", "d1Go.value")
+    g.n("vnPreN", g.cmp("vnPreC", g.tget("vnCue", "script", "cue", g.tfind("vnRow", "script", "id", "world.vnLine")),
+                        g.k("pre")))
+    g.x("cueOk", "cueRow >= 0 && !(isD1DebN && d1GoN && vnPreN) && "
+                 "(isPaperN || fixedN || cueHereN && (isVnN || isResN || isDebK && !debOnN))")
     g.tget("cueBgm", "bgmCues", "bgm", crow)
     g.tget("cueFade", "bgmCues", "fade", crow)
     g.tget("cueSecs", "bgmCues", "secs", crow, "number")

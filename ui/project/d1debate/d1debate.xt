@@ -53,6 +53,8 @@
     need_target: bool in = false
     can_lock: bool in = true
     picker_on: bool in = true
+    hint_who: string in = "亞瑟"
+    hint: string in = "他在整理領巾。要開口了。"
     speech_who: string in = "Sherefox"
     speech: string in = "總閥上有新鮮的扳動痕跡。燈不是自己暗的，是有人在地下室把它關小了。"
     sys_line: string in = "接上一節（手法）。論證 12 × 1 × 1.1 × 1.25 ＝ 16.5。"
@@ -81,7 +83,7 @@
       <img id="bg-d01-parlour" src="../shared/img/bg-d01-parlour.jpg"/>
       <div id="sheet">
         <div id="opp-fig">
-          <img id="cedric-composed" class="s-b00406" src="../shared/img/cedric-composed.png" bind:display="face | eq(0)"/>
+          <img id="cedric-composed" class="s-b00406" src="../shared/img/ch-c-cedric-composed.png" bind:display="face | eq(0)"/>
           <img id="cedric-uneasy" class="s-b00406" src="../shared/img/cedric-uneasy.png" bind:display="face | eq(1)"/>
           <img id="cedric-cornered" class="s-b00406" src="../shared/img/cedric-cornered.png" bind:display="face | eq(2)"/>
           <img id="cedric-angry" class="s-b00406" src="../shared/img/cedric-angry.png" bind:display="face | eq(3)"/>
@@ -173,6 +175,12 @@
                 </div>
               </div>
             </repeat>
+          </div>
+        </div>
+        <div id="hint-wrap" class="s-66a9df" bind:display="phase | eq(0)">
+          <div id="hint-box" class="bubble" bind:display="hint | ne('')">
+            <div id="hint-who" class="kicker" bind:text="hint_who">亞瑟</div>
+            <div id="hint-text" class="hint-t" bind:text="hint">他在整理領巾。要開口了。</div>
           </div>
         </div>
         <div id="tell" class="paper" bind:display="tell_on">
@@ -928,6 +936,38 @@
       height: 16px;
     }
     /* import: D1Debate.dc.html:1/1/11 */
+    #hint-wrap {
+      height: 132px;
+      left: 828px;
+      position: absolute;
+      top: 276px;
+      width: 168px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/0 */
+    #hint-box {
+      height: 132px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 168px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/0/0 */
+    #hint-who {
+      height: 18px;
+      left: 8px;
+      position: absolute;
+      top: 4px;
+      width: 152px;
+    }
+    /* import: D1Debate.dc.html:1/1/11/0/1 */
+    #hint-text {
+      height: 102px;
+      left: 8px;
+      position: absolute;
+      top: 24px;
+      width: 152px;
+    }
+    /* import: D1Debate.dc.html:1/1/12 */
     #tell {
       height: 244px;
       left: 556px;
@@ -935,7 +975,7 @@
       top: 164px;
       width: 260px;
     }
-    /* import: D1Debate.dc.html:1/1/11/0 */
+    /* import: D1Debate.dc.html:1/1/12/0 */
     #tell-head {
       height: 18px;
       left: 10px;
@@ -943,7 +983,7 @@
       top: 3px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/1 */
+    /* import: D1Debate.dc.html:1/1/12/1 */
     #tell-last {
       height: 22px;
       left: 10px;
@@ -951,7 +991,7 @@
       top: 2px;
       width: 180px;
     }
-    /* import: D1Debate.dc.html:1/1/11/1/0 */
+    /* import: D1Debate.dc.html:1/1/12/1/0 */
     #tell-last-t {
       height: 24px;
       left: 2px;
@@ -959,7 +999,7 @@
       top: -1px;
       width: 176px;
     }
-    /* import: D1Debate.dc.html:1/1/11/2 */
+    /* import: D1Debate.dc.html:1/1/12/2 */
     #tell-bubble {
       height: 84px;
       left: 10px;
@@ -967,7 +1007,7 @@
       top: 28px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/2/0 */
+    /* import: D1Debate.dc.html:1/1/12/2/0 */
     #tell-hes {
       height: 16px;
       left: 8px;
@@ -975,7 +1015,7 @@
       top: 4px;
       width: 224px;
     }
-    /* import: D1Debate.dc.html:1/1/11/2/1 */
+    /* import: D1Debate.dc.html:1/1/12/2/1 */
     #tell-card {
       height: 62px;
       left: 8px;
@@ -983,7 +1023,7 @@
       top: 20px;
       width: 224px;
     }
-    /* import: D1Debate.dc.html:1/1/11/3 */
+    /* import: D1Debate.dc.html:1/1/12/3 */
     #clar-c {
       height: 20px;
       left: 10px;
@@ -991,7 +1031,7 @@
       top: 116px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/4 */
+    /* import: D1Debate.dc.html:1/1/12/4 */
     #clar-v {
       height: 20px;
       left: 10px;
@@ -999,7 +1039,7 @@
       top: 116px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5 */
+    /* import: D1Debate.dc.html:1/1/12/5 */
     #tell-cands {
       display: flex;
       flex-direction: row;
@@ -1010,14 +1050,14 @@
       top: 138px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0 */
+    /* import: D1Debate.dc.html:1/1/12/5/0 */
     #cand-a {
       flex-shrink: 0;
       height: 46px;
       position: relative;
       width: 108px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/0 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/0 */
     #cand-a-0 {
       height: 22px;
       left: 4px;
@@ -1025,7 +1065,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/1 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/1 */
     #cand-a-1 {
       height: 22px;
       left: 4px;
@@ -1033,7 +1073,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/2 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/2 */
     #cand-a-2 {
       height: 22px;
       left: 4px;
@@ -1041,7 +1081,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/3 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/3 */
     #cand-a-3 {
       height: 22px;
       left: 4px;
@@ -1049,7 +1089,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/4 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/4 */
     #cand-a-4 {
       height: 22px;
       left: 4px;
@@ -1057,7 +1097,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/0/5 */
+    /* import: D1Debate.dc.html:1/1/12/5/0/5 */
     #cand-a-lk {
       height: 14px;
       left: 4px;
@@ -1065,20 +1105,20 @@
       top: 27px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/1 */
+    /* import: D1Debate.dc.html:1/1/12/5/1 */
     #cand-sep {
       flex-shrink: 0;
       height: 46px;
       width: 20px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2 */
+    /* import: D1Debate.dc.html:1/1/12/5/2 */
     #cand-b {
       flex-shrink: 0;
       height: 46px;
       position: relative;
       width: 108px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/0 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/0 */
     #cand-b-0 {
       height: 22px;
       left: 4px;
@@ -1086,7 +1126,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/1 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/1 */
     #cand-b-1 {
       height: 22px;
       left: 4px;
@@ -1094,7 +1134,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/2 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/2 */
     #cand-b-2 {
       height: 22px;
       left: 4px;
@@ -1102,7 +1142,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/3 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/3 */
     #cand-b-3 {
       height: 22px;
       left: 4px;
@@ -1110,7 +1150,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/4 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/4 */
     #cand-b-4 {
       height: 22px;
       left: 4px;
@@ -1118,7 +1158,7 @@
       top: 4px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/5/2/5 */
+    /* import: D1Debate.dc.html:1/1/12/5/2/5 */
     #cand-b-lk {
       height: 14px;
       left: 4px;
@@ -1126,7 +1166,7 @@
       top: 27px;
       width: 100px;
     }
-    /* import: D1Debate.dc.html:1/1/11/6 */
+    /* import: D1Debate.dc.html:1/1/12/6 */
     #tell-gesture {
       height: 32px;
       left: 10px;
@@ -1134,7 +1174,7 @@
       top: 192px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/11/7 */
+    /* import: D1Debate.dc.html:1/1/12/7 */
     #tell-dying {
       height: 40px;
       left: 10px;
@@ -1142,7 +1182,7 @@
       top: 192px;
       width: 240px;
     }
-    /* import: D1Debate.dc.html:1/1/12 */
+    /* import: D1Debate.dc.html:1/1/13 */
     #me-cred {
       height: 36px;
       left: 12px;
@@ -1150,7 +1190,7 @@
       top: 414px;
       width: 806px;
     }
-    /* import: D1Debate.dc.html:1/1/12/0 */
+    /* import: D1Debate.dc.html:1/1/13/0 */
     #me-cred-l {
       height: 20px;
       left: 10px;
@@ -1158,7 +1198,7 @@
       top: 6px;
       width: 140px;
     }
-    /* import: D1Debate.dc.html:1/1/12/1 */
+    /* import: D1Debate.dc.html:1/1/13/1 */
     #me-track {
       height: 14px;
       left: 154px;
@@ -1166,7 +1206,7 @@
       top: 9px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/12/1/0 */
+    /* import: D1Debate.dc.html:1/1/13/1/0 */
     #me-fill {
       height: 12px;
       left: 0px;
@@ -1174,7 +1214,7 @@
       top: 0px;
       width: 88%;
     }
-    /* import: D1Debate.dc.html:1/1/12/2 */
+    /* import: D1Debate.dc.html:1/1/13/2 */
     #me-cred-n {
       height: 20px;
       left: 356px;
@@ -1182,7 +1222,7 @@
       top: 6px;
       width: 90px;
     }
-    /* import: D1Debate.dc.html:1/1/12/3 */
+    /* import: D1Debate.dc.html:1/1/13/3 */
     #me-combo {
       height: 20px;
       left: 462px;
@@ -1190,7 +1230,7 @@
       top: 6px;
       width: 110px;
     }
-    /* import: D1Debate.dc.html:1/1/12/4 */
+    /* import: D1Debate.dc.html:1/1/13/4 */
     #me-hk {
       display: flex;
       flex-direction: row;
@@ -1201,12 +1241,12 @@
       top: 4px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/12/4/0 */
+    /* import: D1Debate.dc.html:1/1/13/4/0 */
     #me-hk-n {
       flex-shrink: 0;
       height: 24px;
     }
-    /* import: D1Debate.dc.html:1/1/12/5 */
+    /* import: D1Debate.dc.html:1/1/13/5 */
     #me-shisshu {
       height: 30px;
       left: 576px;
@@ -1214,7 +1254,7 @@
       top: 3px;
       width: 224px;
     }
-    /* import: D1Debate.dc.html:1/1/13 */
+    /* import: D1Debate.dc.html:1/1/14 */
     #float-me {
       height: 36px;
       left: 230px;
@@ -1222,7 +1262,7 @@
       top: 382px;
       width: 180px;
     }
-    /* import: D1Debate.dc.html:1/1/14 */
+    /* import: D1Debate.dc.html:1/1/15 */
     #pchain-box {
       height: 98px;
       left: 12px;
@@ -1230,7 +1270,7 @@
       top: 456px;
       width: 806px;
     }
-    /* import: D1Debate.dc.html:1/1/14/0 */
+    /* import: D1Debate.dc.html:1/1/15/0 */
     #pchain-title {
       height: 18px;
       left: 10px;
@@ -1238,7 +1278,7 @@
       top: 3px;
       width: 180px;
     }
-    /* import: D1Debate.dc.html:1/1/14/1 */
+    /* import: D1Debate.dc.html:1/1/15/1 */
     #ronpa-ready {
       height: 22px;
       left: 196px;
@@ -1246,7 +1286,7 @@
       top: 1px;
       width: 436px;
     }
-    /* import: D1Debate.dc.html:1/1/14/1/0 */
+    /* import: D1Debate.dc.html:1/1/15/1/0 */
     #ronpa-ready-t {
       height: 24px;
       left: 4px;
@@ -1254,7 +1294,7 @@
       top: -1px;
       width: 428px;
     }
-    /* import: D1Debate.dc.html:1/1/14/2 */
+    /* import: D1Debate.dc.html:1/1/15/2 */
     #ronpa-t {
       height: 18px;
       left: 636px;
@@ -1262,7 +1302,7 @@
       top: 3px;
       width: 160px;
     }
-    /* import: D1Debate.dc.html:1/1/14/3 */
+    /* import: D1Debate.dc.html:1/1/15/3 */
     #pchain-empty {
       height: 20px;
       left: 12px;
@@ -1270,7 +1310,7 @@
       top: 44px;
       width: 400px;
     }
-    /* import: D1Debate.dc.html:1/1/14/4 */
+    /* import: D1Debate.dc.html:1/1/15/4 */
     #pchain {
       display: flex;
       flex-direction: row;
@@ -1281,14 +1321,14 @@
       top: 24px;
       width: 788px;
     }
-    /* import: D1Debate.dc.html:1/1/14/4/0 */
+    /* import: D1Debate.dc.html:1/1/15/4/0 */
     #pc {
       flex-shrink: 0;
       height: 66px;
       position: relative;
       width: 106px;
     }
-    /* import: D1Debate.dc.html:1/1/14/4/0/0 */
+    /* import: D1Debate.dc.html:1/1/15/4/0/0 */
     #pc-iss {
       height: 16px;
       left: 4px;
@@ -1296,7 +1336,7 @@
       top: 4px;
       width: 34px;
     }
-    /* import: D1Debate.dc.html:1/1/14/4/0/1 */
+    /* import: D1Debate.dc.html:1/1/15/4/0/1 */
     #pc-crack {
       height: 22px;
       left: 80px;
@@ -1304,7 +1344,7 @@
       top: 2px;
       width: 22px;
     }
-    /* import: D1Debate.dc.html:1/1/14/4/0/2 */
+    /* import: D1Debate.dc.html:1/1/15/4/0/2 */
     #pc-t {
       height: 44px;
       left: 6px;
@@ -1312,7 +1352,7 @@
       top: 21px;
       width: 96px;
     }
-    /* import: D1Debate.dc.html:1/1/15 */
+    /* import: D1Debate.dc.html:1/1/16 */
     #confirm {
       display: flex;
       flex-direction: row;
@@ -1327,31 +1367,31 @@
       top: 560px;
       width: 806px;
     }
-    /* import: D1Debate.dc.html:1/1/15/0 */
+    /* import: D1Debate.dc.html:1/1/16/0 */
     #sum-claim {
       flex-shrink: 0;
       height: 34px;
       width: 300px;
     }
-    /* import: D1Debate.dc.html:1/1/15/1 */
+    /* import: D1Debate.dc.html:1/1/16/1 */
     #sum-arrow {
       flex-shrink: 0;
       height: 34px;
       width: 20px;
     }
-    /* import: D1Debate.dc.html:1/1/15/2 */
+    /* import: D1Debate.dc.html:1/1/16/2 */
     #sum-target {
       flex-shrink: 0;
       height: 34px;
       width: 220px;
     }
-    /* import: D1Debate.dc.html:1/1/15/3 */
+    /* import: D1Debate.dc.html:1/1/16/3 */
     #sum-armed {
       flex-shrink: 0;
       height: 34px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/16 */
+    /* import: D1Debate.dc.html:1/1/17 */
     #acts {
       height: 112px;
       left: 12px;
@@ -1359,7 +1399,7 @@
       top: 600px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0 */
+    /* import: D1Debate.dc.html:1/1/17/0 */
     #acts-0 {
       height: 112px;
       left: 0px;
@@ -1367,7 +1407,7 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/0 */
     #act-1 {
       height: 84px;
       left: 0px;
@@ -1375,7 +1415,7 @@
       top: 22px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/0/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/0/0 */
     #act-1-k {
       height: 14px;
       left: 0px;
@@ -1383,7 +1423,7 @@
       top: 6px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/0/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/0/1 */
     #act-1-t {
       height: 28px;
       left: 6px;
@@ -1391,7 +1431,7 @@
       top: 28px;
       width: 178px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/1 */
     #grp-rebut {
       height: 18px;
       left: 200px;
@@ -1399,7 +1439,7 @@
       top: 0px;
       width: 340px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/2 */
+    /* import: D1Debate.dc.html:1/1/17/0/2 */
     #act-2 {
       height: 84px;
       left: 200px;
@@ -1407,7 +1447,7 @@
       top: 22px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/2/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/2/0 */
     #act-2-k {
       height: 14px;
       left: 0px;
@@ -1415,7 +1455,7 @@
       top: 6px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/2/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/2/1 */
     #act-2-t {
       height: 28px;
       left: 6px;
@@ -1423,7 +1463,7 @@
       top: 28px;
       width: 154px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/3 */
+    /* import: D1Debate.dc.html:1/1/17/0/3 */
     #act-3 {
       height: 84px;
       left: 374px;
@@ -1431,7 +1471,7 @@
       top: 22px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/3/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/3/0 */
     #act-3-k {
       height: 14px;
       left: 0px;
@@ -1439,7 +1479,7 @@
       top: 6px;
       width: 166px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/3/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/3/1 */
     #act-3-t {
       height: 28px;
       left: 6px;
@@ -1447,7 +1487,7 @@
       top: 28px;
       width: 154px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/4 */
+    /* import: D1Debate.dc.html:1/1/17/0/4 */
     #act-4 {
       height: 84px;
       left: 550px;
@@ -1455,7 +1495,7 @@
       top: 22px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/4/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/4/0 */
     #act-4-k {
       height: 14px;
       left: 0px;
@@ -1463,7 +1503,7 @@
       top: 6px;
       width: 190px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/4/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/4/1 */
     #act-4-t {
       height: 28px;
       left: 6px;
@@ -1471,7 +1511,7 @@
       top: 28px;
       width: 178px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/5 */
+    /* import: D1Debate.dc.html:1/1/17/0/5 */
     #btn-guard {
       height: 84px;
       left: 760px;
@@ -1479,7 +1519,7 @@
       top: 22px;
       width: 150px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/5/0 */
+    /* import: D1Debate.dc.html:1/1/17/0/5/0 */
     #guard-t {
       height: 22px;
       left: 4px;
@@ -1487,7 +1527,7 @@
       top: 20px;
       width: 142px;
     }
-    /* import: D1Debate.dc.html:1/1/16/0/5/1 */
+    /* import: D1Debate.dc.html:1/1/17/0/5/1 */
     #guard-lamp {
       height: 10px;
       left: 70px;
@@ -1495,7 +1535,7 @@
       top: 52px;
       width: 10px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1 */
+    /* import: D1Debate.dc.html:1/1/17/1 */
     #acts-1 {
       height: 112px;
       left: 0px;
@@ -1503,7 +1543,7 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1/0 */
+    /* import: D1Debate.dc.html:1/1/17/1/0 */
     #eg-prompt {
       height: 66px;
       left: 0px;
@@ -1511,7 +1551,7 @@
       top: 30px;
       width: 300px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1/1 */
+    /* import: D1Debate.dc.html:1/1/17/1/1 */
     #act-5 {
       height: 84px;
       left: 320px;
@@ -1519,7 +1559,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1/1/0 */
+    /* import: D1Debate.dc.html:1/1/17/1/1/0 */
     #act-5-t {
       height: 28px;
       left: 6px;
@@ -1527,7 +1567,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1/2 */
+    /* import: D1Debate.dc.html:1/1/17/1/2 */
     #act-6 {
       height: 84px;
       left: 530px;
@@ -1535,7 +1575,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/16/1/2/0 */
+    /* import: D1Debate.dc.html:1/1/17/1/2/0 */
     #act-6-t {
       height: 28px;
       left: 6px;
@@ -1543,7 +1583,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2 */
+    /* import: D1Debate.dc.html:1/1/17/2 */
     #acts-2 {
       height: 112px;
       left: 0px;
@@ -1551,7 +1591,7 @@
       top: 0px;
       width: 1016px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2/0 */
+    /* import: D1Debate.dc.html:1/1/17/2/0 */
     #ls-prompt {
       height: 84px;
       left: 0px;
@@ -1559,7 +1599,7 @@
       top: 22px;
       width: 300px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2/1 */
+    /* import: D1Debate.dc.html:1/1/17/2/1 */
     #act-7 {
       height: 84px;
       left: 320px;
@@ -1567,7 +1607,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2/1/0 */
+    /* import: D1Debate.dc.html:1/1/17/2/1/0 */
     #act-7-t {
       height: 28px;
       left: 6px;
@@ -1575,7 +1615,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2/2 */
+    /* import: D1Debate.dc.html:1/1/17/2/2 */
     #act-6b {
       height: 84px;
       left: 530px;
@@ -1583,7 +1623,7 @@
       top: 22px;
       width: 200px;
     }
-    /* import: D1Debate.dc.html:1/1/16/2/2/0 */
+    /* import: D1Debate.dc.html:1/1/17/2/2/0 */
     #act-6b-t {
       height: 28px;
       left: 6px;
@@ -1591,7 +1631,7 @@
       top: 28px;
       width: 188px;
     }
-    /* import: D1Debate.dc.html:1/1/17 */
+    /* import: D1Debate.dc.html:1/1/18 */
     #btn-lock {
       height: 84px;
       left: 1046px;
@@ -1599,7 +1639,7 @@
       top: 622px;
       width: 222px;
     }
-    /* import: D1Debate.dc.html:1/1/17/0 */
+    /* import: D1Debate.dc.html:1/1/18/0 */
     #btn-lock-t {
       height: 40px;
       left: 4px;
@@ -1607,7 +1647,7 @@
       top: 22px;
       width: 214px;
     }
-    /* import: D1Debate.dc.html:1/1/18 */
+    /* import: D1Debate.dc.html:1/1/19 */
     #hit {
       height: 720px;
       left: 0px;
@@ -1615,7 +1655,7 @@
       top: 0px;
       width: 1280px;
     }
-    /* import: D1Debate.dc.html:1/1/19 */
+    /* import: D1Debate.dc.html:1/1/20 */
     #band {
       height: 158px;
       left: 0px;
@@ -1623,7 +1663,7 @@
       top: 250px;
       width: 1280px;
     }
-    /* import: D1Debate.dc.html:1/1/19/0 */
+    /* import: D1Debate.dc.html:1/1/20/0 */
     #band-who {
       height: 22px;
       left: 110px;
@@ -1631,7 +1671,7 @@
       top: 14px;
       width: 600px;
     }
-    /* import: D1Debate.dc.html:1/1/19/1 */
+    /* import: D1Debate.dc.html:1/1/20/1 */
     #band-speech {
       height: 56px;
       left: 110px;
@@ -1639,7 +1679,7 @@
       top: 40px;
       width: 1060px;
     }
-    /* import: D1Debate.dc.html:1/1/19/2 */
+    /* import: D1Debate.dc.html:1/1/20/2 */
     #band-sys {
       height: 44px;
       left: 110px;
@@ -1647,7 +1687,7 @@
       top: 104px;
       width: 1060px;
     }
-    /* import: D1Debate.dc.html:1/1/19/3 */
+    /* import: D1Debate.dc.html:1/1/20/3 */
     #band-more {
       height: 16px;
       left: 1180px;
@@ -1655,7 +1695,7 @@
       top: 132px;
       width: 80px;
     }
-    /* import: D1Debate.dc.html:1/1/20 */
+    /* import: D1Debate.dc.html:1/1/21 */
     #record {
       height: 540px;
       left: 200px;
@@ -1663,15 +1703,16 @@
       top: 60px;
       width: 880px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0 */
+    /* import: D1Debate.dc.html:1/1/21/0 */
     #record-panel {
       height: 540px;
       left: 0px;
       position: absolute;
       top: 0px;
       width: 880px;
+      display: none;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/0 */
+    /* import: D1Debate.dc.html:1/1/21/0/0 */
     #rec-title {
       height: 32px;
       left: 20px;
@@ -1679,7 +1720,7 @@
       top: 12px;
       width: 600px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/1 */
+    /* import: D1Debate.dc.html:1/1/21/0/1 */
     #rec-desc {
       height: 18px;
       left: 20px;
@@ -1687,7 +1728,7 @@
       top: 46px;
       width: 700px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/2 */
+    /* import: D1Debate.dc.html:1/1/21/0/2 */
     #rec-close {
       height: 32px;
       left: 740px;
@@ -1695,7 +1736,7 @@
       top: 14px;
       width: 120px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/2/0 */
+    /* import: D1Debate.dc.html:1/1/21/0/2/0 */
     #rec-close-t {
       height: 30px;
       left: 4px;
@@ -1703,7 +1744,7 @@
       top: 1px;
       width: 112px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/3 */
+    /* import: D1Debate.dc.html:1/1/21/0/3 */
     #rec-rule {
       height: 3px;
       left: 20px;
@@ -1711,7 +1752,7 @@
       top: 70px;
       width: 840px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4 */
+    /* import: D1Debate.dc.html:1/1/21/0/4 */
     #rec-scroll {
       height: 444px;
       left: 20px;
@@ -1720,14 +1761,14 @@
       top: 80px;
       width: 840px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0 */
     #recs {
       display: flex;
       flex-direction: column;
       gap: 0px;
       width: 834px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0 */
     #rec {
       display: flex;
       flex-direction: row;
@@ -1742,34 +1783,34 @@
       position: relative;
       width: 834px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/0 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/0 */
     #rec-n {
       height: 26px;
       width: 84px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/1 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/1 */
     #rec-t {
       flex-shrink: 0;
       height: 26px;
       width: 282px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/2 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/2 */
     #rec-use {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/3 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/3 */
     #rec-soph {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/4 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/4 */
     #rec-crack {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/20/0/4/0/0/5 */
+    /* import: D1Debate.dc.html:1/1/21/0/4/0/0/5 */
     #rec-state {
       height: 26px;
     }
-    /* import: D1Debate.dc.html:1/1/21 */
+    /* import: D1Debate.dc.html:1/1/22 */
     #outcome-veil {
       height: 720px;
       left: 0px;
@@ -1777,7 +1818,7 @@
       top: 0px;
       width: 1280px;
     }
-    /* import: D1Debate.dc.html:1/1/22 */
+    /* import: D1Debate.dc.html:1/1/23 */
     #outcome {
       height: 300px;
       left: 360px;
@@ -1785,7 +1826,7 @@
       top: 190px;
       width: 560px;
     }
-    /* import: D1Debate.dc.html:1/1/22/0 */
+    /* import: D1Debate.dc.html:1/1/23/0 */
     #out-k {
       height: 18px;
       left: 20px;
@@ -1793,7 +1834,7 @@
       top: 20px;
       width: 520px;
     }
-    /* import: D1Debate.dc.html:1/1/22/1 */
+    /* import: D1Debate.dc.html:1/1/23/1 */
     #out-rule {
       height: 3px;
       left: 20px;
@@ -1801,7 +1842,7 @@
       top: 44px;
       width: 520px;
     }
-    /* import: D1Debate.dc.html:1/1/22/2 */
+    /* import: D1Debate.dc.html:1/1/23/2 */
     #out-grade {
       height: 52px;
       left: 20px;
@@ -1809,7 +1850,7 @@
       top: 70px;
       width: 520px;
     }
-    /* import: D1Debate.dc.html:1/1/22/3 */
+    /* import: D1Debate.dc.html:1/1/23/3 */
     #out-rounds {
       height: 24px;
       left: 20px;
@@ -1817,7 +1858,7 @@
       top: 140px;
       width: 520px;
     }
-    /* import: D1Debate.dc.html:1/1/22/4 */
+    /* import: D1Debate.dc.html:1/1/23/4 */
     #out-back {
       height: 44px;
       left: 170px;
@@ -1825,7 +1866,7 @@
       top: 210px;
       width: 220px;
     }
-    /* import: D1Debate.dc.html:1/1/22/4/0 */
+    /* import: D1Debate.dc.html:1/1/23/4/0 */
     #out-back-t {
       height: 30px;
       left: 4px;
@@ -1917,9 +1958,6 @@
     }
     .sysl {
       padding-left: 10px;
-    }
-    #record-panel {
-      display: none;
     }
     #record:state(Open) #record-panel {
       display: block;

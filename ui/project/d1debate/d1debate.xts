@@ -3,7 +3,6 @@
 /* import: D1Debate.dc.html:1 */
 #d1debate {
   background-color: #092e28;
-  background-color: #092e28;
   color: #123a31;
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
 }
@@ -20,53 +19,53 @@
   text-transform: none;
 }
 
-/* import: D1Debate.dc.html:1/1/11/1/0 */
+/* import: D1Debate.dc.html:1/1/12/1/0 */
 #tell-last-t {
   font-size: 13px;
 }
 
-/* import: D1Debate.dc.html:1/1/12/3 */
+/* import: D1Debate.dc.html:1/1/13/3 */
 #me-combo {
   color: #a65432;
 }
 
-/* import: D1Debate.dc.html:1/1/12/4/0 */
+/* import: D1Debate.dc.html:1/1/13/4/0 */
 #me-hk-n {
   color: #2f6b3a;
   line-height: 24px;
 }
 
-/* import: D1Debate.dc.html:1/1/14/1/0 */
+/* import: D1Debate.dc.html:1/1/15/1/0 */
 #ronpa-ready-t {
   font-size: 13px;
 }
 
-/* import: D1Debate.dc.html:1/1/15/3 */
+/* import: D1Debate.dc.html:1/1/16/3 */
 #sum-armed {
   text-align: right;
 }
 
-/* import: D1Debate.dc.html:1/1/20/0/4/0/0/2 */
+/* import: D1Debate.dc.html:1/1/21/0/4/0/0/2 */
 #rec-use {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/20/0/4/0/0/3 */
+/* import: D1Debate.dc.html:1/1/21/0/4/0/0/3 */
 #rec-soph {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/20/0/4/0/0/4 */
+/* import: D1Debate.dc.html:1/1/21/0/4/0/0/4 */
 #rec-crack {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/20/0/4/0/0/5 */
+/* import: D1Debate.dc.html:1/1/21/0/4/0/0/5 */
 #rec-state {
   line-height: 26px;
 }
 
-/* import: D1Debate.dc.html:1/1/22/4/0 */
+/* import: D1Debate.dc.html:1/1/23/4/0 */
 #out-back-t {
   font-size: 16px;
 }
@@ -78,6 +77,208 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--copper);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bbtn-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: var(--paper);
+  white-space: nowrap;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.cred-l {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.plate-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--paper);
+  white-space: nowrap;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.g-name {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.g-band {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 20px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.gauge.b0 .gb-0 {
+  color: #4d6b57;
+}
+
+.gauge.b1 .gb-1 {
+  color: #9a5a14;
+}
+
+.gauge.b2 .gb-2 {
+  color: var(--vermilion);
+  font-weight: 700;
+}
+
+.iss {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--paper);
+  background-color: var(--ink);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cand-l {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.likely {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 11px;
+  line-height: 14px;
+  color: #9a5a14;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.evc-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.clm-kind {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--paper);
+  background-color: #2f6b3a;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.clm-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tag {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 11px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.sum-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 34px;
+  color: var(--paper);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sum-hint {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 34px;
+  color: #ff9a8f;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tb-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--paper);
+  text-align: center;
+  white-space: nowrap;
+  text-effect: shadow 0px -1px 0px #000000;
+  text-overflow: ellipsis;
+}
+
+.sysl {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #f3eedf;
+  border-left-width: 4px;
+  border-left-color: #b8322a;
+  line-clamp: 2;
+}
+
+.rec-n {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--copper);
+  white-space: nowrap;
+}
+
+.rec-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--ink-deep);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.desc {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ink);
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -136,27 +337,6 @@
   background-color: var(--copper);
 }
 
-.bbtn-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 13px;
-  line-height: 30px;
-  letter-spacing: 1px;
-  color: var(--paper);
-  white-space: nowrap;
-  text-align: center;
-  text-overflow: ellipsis;
-}
-
-.cred-l {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .cred-n {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 15px;
@@ -199,18 +379,6 @@
   effect: shadow(2px 2px 0px 0px #092e2866);
 }
 
-.plate-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--paper);
-  white-space: nowrap;
-  text-align: center;
-  text-overflow: ellipsis;
-}
-
 .plate.red {
   background-gradient: linear-gradient(180deg, #d23f35 0%, #b8322a 60%, #7a1d17 100%);
   border-color: #5c1913;
@@ -224,24 +392,6 @@
   to {
     opacity: 1;
   }
-}
-
-.g-name {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.g-band {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 12px;
-  line-height: 20px;
-  text-align: right;
-  white-space: nowrap;
 }
 
 .seg {
@@ -271,22 +421,6 @@
 
 .gauge.b2 .s3 {
   background-color: #b8322a;
-}
-
-.gauge.b0 .gb-0 {
-  color: #4d6b57;
-}
-
-.gauge.b1 .gb-1 {
-  color: #9a5a14;
-}
-
-.gauge.b2 .gb-2 {
-  color: var(--vermilion);
-  font-weight: 700;
-}
-
-.gauge.b2 .s3 {
   animation: redpulse 0.6s ease-in-out infinite alternate;
 }
 
@@ -313,17 +447,6 @@
   line-height: 15px;
   color: var(--ink-deep);
   line-clamp: 3;
-}
-
-.iss {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 700;
-  color: var(--paper);
-  background-color: var(--ink);
-  text-align: center;
-  white-space: nowrap;
 }
 
 .empty {
@@ -412,26 +535,6 @@
   background-color: #fff8e6;
 }
 
-.cand-l {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 15px;
-  line-height: 22px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  text-align: center;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.likely {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 11px;
-  line-height: 14px;
-  color: #9a5a14;
-  text-align: center;
-  white-space: nowrap;
-}
-
 .slash {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 20px;
@@ -474,15 +577,6 @@
   border-left-color: var(--vermilion);
 }
 
-.evc-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 12px;
-  line-height: 20px;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .evc.sel .evc-t {
   color: var(--paper);
 }
@@ -518,40 +612,12 @@
   background-color: var(--paper);
 }
 
-.clm-kind {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 12px;
-  line-height: 18px;
-  font-weight: 700;
-  color: var(--paper);
-  background-color: #2f6b3a;
-  text-align: center;
-  white-space: nowrap;
-}
-
 .clm.soph .clm-kind {
   background-color: #6b3a7a;
 }
 
-.clm-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 :lang(en) .clm-t {
   font-size: 13px;
-}
-
-.tag {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 11px;
-  line-height: 16px;
-  white-space: nowrap;
 }
 
 .tag-red {
@@ -573,15 +639,6 @@
   effect: shadow(3px 3px 0px 0px #092e2866);
 }
 
-.sum-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 34px;
-  color: var(--paper);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .sum-a {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 14px;
@@ -589,15 +646,6 @@
   color: var(--lamp-gold);
   white-space: nowrap;
   text-align: center;
-}
-
-.sum-hint {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 13px;
-  line-height: 34px;
-  color: #ff9a8f;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .tblock {
@@ -623,19 +671,6 @@
 
 .tblock.off:hover {
   background-gradient: linear-gradient(180deg, #7b8581 0%, #5b6662 100%);
-}
-
-.tb-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--paper);
-  text-align: center;
-  white-space: nowrap;
-  text-effect: shadow 0px -1px 0px #000000;
-  text-overflow: ellipsis;
 }
 
 :lang(en) .tb-t {
@@ -801,17 +836,6 @@
   line-height: 25px;
 }
 
-.sysl {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 700;
-  color: #f3eedf;
-  border-left-width: 4px;
-  border-left-color: #b8322a;
-  line-clamp: 2;
-}
-
 :lang(en) .sysl {
   font-size: 15px;
   line-height: 20px;
@@ -839,25 +863,6 @@
   border-bottom-style: dashed;
 }
 
-.rec-n {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 13px;
-  line-height: 26px;
-  font-weight: 700;
-  color: var(--copper);
-  white-space: nowrap;
-}
-
-.rec-t {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 14px;
-  line-height: 26px;
-  font-weight: 700;
-  color: var(--ink-deep);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .h1 {
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
   font-size: 24px;
@@ -865,15 +870,6 @@
   font-weight: 700;
   color: var(--ink-deep);
   white-space: nowrap;
-}
-
-.desc {
-  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--ink);
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .veil {
@@ -929,5 +925,19 @@
   --lamp-gold: #e0a050;
   --paper: #f3eedf;
   --vermilion: #b8322a;
+}
+
+.hint-t {
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--ink-deep);
+  line-clamp: 5;
+}
+
+:lang(en) .hint-t {
+  font-size: 12px;
+  line-height: 17px;
+  line-clamp: 6;
 }
 

@@ -47,3 +47,23 @@ SCR_D01_S04_L012,,,,,0,0,
 SCR_D01_S04_L013,,,,,0,0,
 SCR_D01_S04_L014,,,,,0,0,
 SCR_D01_S04_L015,,,,,0,0,
+SCR_D01_S07_TITLE,d01_parlour,,,,0,2,"S07: the lines around the debate; L004-L011 and L016 are shown on the debate screen (d1debate), not the vn"
+SCR_D01_S07_L001,d01_parlour,,,,0,1,noon in the parlour (bg_d01_parlour): narration (Arthur's notes)
+SCR_D01_S07_L002,d01_parlour,sherefox,,cedric_composed,3,0,Cedric in the chair by the coffin
+SCR_D01_S07_L003,d01_parlour,sherefox,,cedric_composed,1,0,
+SCR_D01_S07_L004,,,,,0,0,
+SCR_D01_S07_L005,,,,,0,0,
+SCR_D01_S07_L006,,,,,0,0,
+SCR_D01_S07_L007,,,,,0,0,
+SCR_D01_S07_L008,,,,,0,0,
+SCR_D01_S07_L009,,,,,0,0,
+SCR_D01_S07_L010,,,,,0,0,
+SCR_D01_S07_L011,,,,,0,0,
+SCR_D01_S07_L012,d01_parlour,,,,0,1,after a win: the codicil pulled from the study's chimney vent (narration)
+SCR_D01_S07_L013,d01_parlour,sherefox,arthur,cedric_composed,2,0,
+SCR_D01_S07_L014,d01_parlour,sherefox,baskerville,cedric_composed,2,0,the inspector arrests Cedric
+SCR_D01_S07_L015,d01_parlour,sherefox,baskerville,cedric_composed,3,0,Cedric stops at the study door on the way out
+SCR_D01_S07_L016,,,,,0,0,
+SCR_D01_S07_L017,d01_parlour,sherefox,baskerville,cedric_composed,2,0,after a loss: the locksmith is taken away
+SCR_D01_S07_L018,d01_parlour,sherefox,mrs_hyde,cedric_composed,3,0,Cedric to his aunt
+SCR_D01_S07_L019,d01_parlour,,,,0,1,that night the study chimney smokes once (narration)

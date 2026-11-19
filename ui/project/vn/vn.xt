@@ -45,6 +45,7 @@
           <img id="bg-boiler-room" class="bg-art" src="../shared/img/bg-boiler-room.jpg" bind:display="bg | eq('boiler_room')"/>
           <img id="bg-debate" class="bg-art" src="../shared/img/bg-debate.jpg" bind:display="bg | eq('debate')"/>
           <img id="bg-d01-hall" class="bg-art" src="../shared/img/bg-d01-hall.jpg" bind:display="bg | eq('d01_hall')"/>
+          <img id="bg-d01-parlour" class="bg-art" src="../shared/img/bg-d01-parlour.jpg" bind:display="bg | eq('d01_parlour')"/>
         </div>
       </div>
       <div id="slot-c" class="fig" bind:class.dim="focus | ne(2)" bind:class.narr="focus | eq(0)">

@@ -65,6 +65,7 @@ UI 側實作（板子 `ui/boards/project/Vn.dc.html`）：
 
 - **背景切換**：每個已知背景 id 各有一張 `<img id="bg-<id>">`，以 `bind:display="bg | eq('<id>')"` 只顯示相符的那一張；其他值（含空字串、未知 id）全部隱藏，露出新聞紙底色（下方墨色漸層也一併隱藏）。`bg` 變更時播 `bg-in`（360 ms 淡入）。已知 id：`office_night`、`office_day`、`kitchen_morning`、`clockshop`、`dock_fog`、`barge_deck`、`boiler_room`、`debate`；圖檔 `ui/boards/_blob/bg_<id>.jpg`（2560×1440 JPEG，品質 90，由 1672×941 原圖以 Lanczos 放大，供 2× 渲染；版面仍以 `.bg-art` 的 100%／`cover` 畫在 1280×720 邏輯框；來源見 `_blob/bg_README.md`）。
 - **立繪切換**：三個位置（`slot-l`、`slot-c`、`slot-r`）各有一組 `<img id="ch-<位置>-<id>">`，每個已知角色 id 一張去背圖，以 `bind:display="slot_x | eq('<id>')"` 只顯示相符的一張，未知或空 id 什麼都不畫（三組引用同一批圖檔，打包時去重）。位置元素綁 `class.dim = focus | ne(n)`（左 1、中 2、右 3）與 `class.narr = focus | eq(0)`：`.dim` 且非 `.narr` 時套色彩調整（亮度 −0.14、飽和度 −0.5，220 ms 過渡）；`focus` 0 時三人都不變暗。`slot_x` 變更時播 `ink-in-<位置>`（420 ms 淡入）。疊放順序：中在最下，左、右在上。不用符號：XTAtrium 會把符號實例內的每個元素（路徑 id 帶 `/`）登記成 `ui.vn.<id>.<事件>` 訊號而對每個發出「not a valid signal name」警告（一個 vn 畫面 225 行）。已知 id：`sherefox`、`arthur`、`baskerville`、`victor`、`wolfhart`、`valet`（Ch.2 費奇）、`partner`（Ch.3 皮爾斯）；圖檔 `ui/boards/_blob/char_<id>.png`（1024×1536 原圖，畫在 `.ch-art` 的 440×660 邏輯框，`contain`；來源見 `_blob/char_README.md`）。
+- v2 示範關卡 D01（4.3）：背景 `d01_parlour`（`bg_d01_parlour.jpg`，靈堂，S07 的前後）。
 - v2 示範關卡 D01（M4a）：背景 `d01_hall`（`bg_d01_hall.jpg`，與 d1inv／d1carry 共用）；角色 `landlady`（`char_landlady.png`，設計 repo `images/d01/landlady.png`）、`mrs_hyde`、`briggs`、`cedric_composed`（與 d1inv／d1debate 共用的圖檔）。
 - 新增背景或角色：在板子多加一張 `<img>`（同樣的 `eq` 綁定）並重新 import；流圖與合約不變。圖檔一律平放在 `_blob/` 下，因為 `xtframe-import` 的 blob id 只能是單一檔名（`/_blob/<file>`），不能有子目錄。
 - **文字演出**：`line_seq` 每次變更（及畫面顯示時）播 `reveal`：整句 260 ms 淡入並上移 6 px。逐字顯示（`text-reveal`）目前寫不進板子：轉換器把 `text-reveal` 當成樣式子集外的屬性丟掉。
@@ -512,7 +513,8 @@ title 的「設定」「離開遊戲」：目錄欄三章之下一列兩個小�
 | `mode`、`phase`、`act` | number | in | 0 一般、1 終局、2 §7.5、3 結束；0 選擇中、1 播放中、2 結束；選中的行動 1～7 |
 | `picker_on`、`can_dismantle`、`guard_ok`、`guard_armed`、`guard_left`、`can_lock`、`need_target` | bool | in | 說法選擇器、拆台可按、援護可按／已佈置／還有、鎖定可按、拆台還沒選目標（`UI_V2_REBUT_PICK_LINK`） |
 | `sel_claim_text`、`sel_target_text` | string | in | 確認列 |
-| `speech_who`、`speech`、`sys_line`、`line_seq` | string、string、string、number | in | 播放帶：說話者、台詞、系統台詞；`line_seq` 每換一句 +1 |
+| `speech_who`、`speech`、`sys_line`、`line_seq` | string、string、string、number | in | 播放帶：說話者、台詞、系統台詞；`line_seq` 每換一步 +1（一步同時寫三者，沒有的為空字串） |
+| `hint_who`、`hint` | string、string | in | 預兆的台詞（4.3：亞瑟的提示，或垂死反撲時塞德里克的 S07 L010）：預兆面板右側、心理量表下方的小框（#hint-wrap，選擇中才顯示；空字串隱藏） |
 | `float_opp`、`float_me`、`float_opp_seq`、`float_me_seq` | string、string、number、number | in | 浮動數字（序號變更時重播） |
 | `shatter_seq` | number | in | 論破：他的鏈碎掉 |
 | `grade_text`、`rounds_text`、`outcome_win` | string、string、bool | in | 結果框：`UI_V2_GRADE_<n>`、`UI_V2_RESULT_ROUNDS` |

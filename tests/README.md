@@ -206,6 +206,14 @@ target, cover, lock, one click per playback record), then the outcome panel's ba
 | `route D` | `d1_routeD.atrec` on `tests/d1play_harnessD` | ref route D (ch §12.4; the harness also swaps in route D's loadout): grade 5, 8 rounds, a loss (Reverse Break, then the last card fails; route D names L1 as the target, no longer on his chain, so no target is clicked: same result) |
 | `seeded AI (seed 3)` | `d1_bot.atrec` on the game itself | nothing pinned: the engine's AI on the debate seed the UI draws from the run's rng (`check_debate_v2.py` `ui_debate_seed`) against the moves of ref `play.bot` on the same seed; the outcome matches ref |
 
+Since v2 demo 4.3 each recording also clicks S07 L001-L003 on the vn before the debate, skips the opening step (S07
+L004) and clicks the lines after it (L012-L015 after a win, L017-L019 after a loss) before the outcome panel. For the
+four routes the check also compares the whole playback step by step with ref `sherefox_ref.v2.lines` (name plate, line
+and system line of every step, in order; the opening step; the tell line `hint_who` / `hint` of every round, from
+the AI's tell on the debate seed the UI draws), a hand-written sample of the chapter's §12 text for two to four
+rounds per route (`CHAPTER_SAMPLE`, `CHAPTER_TELL`: the lines must show in the chapter's order, so a reading that
+ref and the game share is still checked against the chapter), and the S07 lines on the vn with their name plates.
+
 The harnesses (`tests/d1play_harnessA/` … `D/`, copies of the game; gitignored) are deleted when the check ends, and the
 check fails if it leaves a `tmp*`／`d1shots-*` entry in `%TEMP%`. `--shots DIR` also writes review screenshots in
 zh-TW and en (`xtatrium shot`): the claim picker in an ordinary round, a playback line, the 論破 cut-in, the endgame
@@ -286,3 +294,10 @@ nearest-neighbour, source range labelled). It is not a pass/fail check. Rerun it
 tag and report the numbers to the framework session. `--against OLDDIR` also compares each mode with an earlier run (for example an uncompressed bundle
 against a BC7 one) and writes `zoom_vs_<screen>.png`; the stamp and calligraphy cut-in frames come from the debate
 recordings. Keep each tag's output outside the repo for comparison.
+
+### D01 debate music (4.3)
+
+`tests/check_music.py` also regenerates `tests/gen_d1_play.py`'s recordings and replays routes A, B and D on their
+harnesses (deleted afterwards): title BGM01, S07 L001's silence, BGM07 (cut) when the debate starts, BGM08 at his first
+破防, BGM09 on 論破, silence from S07 L007 (B, he gives up) or the loss (D, L016) and at L015 (A, B), BGM09 again with
+L012 after B's silence; BGM10 (no track) on D's Reverse Break sends no command.

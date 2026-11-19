@@ -376,11 +376,36 @@
       }
     },
     {
-      "id": "sceneKey",
+      "id": "sceneKeyV1",
       "type": "format",
       "params": {
         "format": "CH0{a}_{b}"
       }
+    },
+    {
+      "id": "sceneKeyD1",
+      "type": "format",
+      "params": {
+        "format": "D01_{a}"
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": 101
+      }
+    },
+    {
+      "id": "sceneKeyIsD1",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "sceneKey",
+      "type": "select"
     },
     {
       "id": "preRow",
@@ -578,7 +603,7 @@
       "type": "select"
     },
     {
-      "id": "K2",
+      "id": "K3",
       "type": "constant",
       "params": {
         "value": 0
@@ -593,10 +618,14 @@
       "type": "select"
     },
     {
+      "id": "isD1DebN",
+      "type": "select"
+    },
+    {
       "id": "debPre",
       "type": "atrium.expr",
       "params": {
-        "expr": "(isDebN || isWarmN) && hasPre && !retryN"
+        "expr": "(isDebN || isWarmN || isD1DebN) && hasPre && !retryN"
       }
     },
     {
@@ -607,11 +636,52 @@
       }
     },
     {
+      "id": "d1NoPre",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isD1DebN && noPre"
+      }
+    },
+    {
+      "id": "toV1Deb",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "!isD1DebN"
+      }
+    },
+    {
+      "id": "toD1Deb",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "isD1DebN"
+      }
+    },
+    {
+      "id": "debGoV1",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "debGoD1",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "debBackV1",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "debBackD1",
+      "type": "atrium.gate"
+    },
+    {
       "id": "debPreG",
       "type": "atrium.gate"
     },
     {
       "id": "debNoPreG",
+      "type": "atrium.gate"
+    },
+    {
+      "id": "d1NoPreG",
       "type": "atrium.gate"
     },
     {
@@ -1317,10 +1387,34 @@
     },
     {
       "from": "chapter.value",
-      "to": "sceneKey.a"
+      "to": "sceneKeyV1.a"
     },
     {
       "from": "scene.value",
+      "to": "sceneKeyV1.b"
+    },
+    {
+      "from": "scene.value",
+      "to": "sceneKeyD1.a"
+    },
+    {
+      "from": "chapter.value",
+      "to": "sceneKeyIsD1.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "sceneKeyIsD1.b"
+    },
+    {
+      "from": "sceneKeyIsD1.out",
+      "to": "sceneKey.cond"
+    },
+    {
+      "from": "sceneKeyD1.out",
+      "to": "sceneKey.a"
+    },
+    {
+      "from": "sceneKeyV1.out",
       "to": "sceneKey.b"
     },
     {
@@ -1456,10 +1550,6 @@
       "to": "isD1Deb.b"
     },
     {
-      "from": "isD1Deb.true",
-      "to": "screen.to_d1debate"
-    },
-    {
       "from": "kind.value",
       "to": "isD1Warm.a"
     },
@@ -1480,7 +1570,7 @@
       "to": "isDebN.a"
     },
     {
-      "from": "K2.out",
+      "from": "K3.out",
       "to": "isDebN.b"
     },
     {
@@ -1492,7 +1582,7 @@
       "to": "isWarmN.a"
     },
     {
-      "from": "K2.out",
+      "from": "K3.out",
       "to": "isWarmN.b"
     },
     {
@@ -1504,8 +1594,20 @@
       "to": "retryN.a"
     },
     {
-      "from": "K2.out",
+      "from": "K3.out",
       "to": "retryN.b"
+    },
+    {
+      "from": "isD1Deb.out",
+      "to": "isD1DebN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isD1DebN.a"
+    },
+    {
+      "from": "K3.out",
+      "to": "isD1DebN.b"
     },
     {
       "from": "isDebN.out",
@@ -1514,6 +1616,10 @@
     {
       "from": "isWarmN.out",
       "to": "debPre.isWarmN"
+    },
+    {
+      "from": "isD1DebN.out",
+      "to": "debPre.isD1DebN"
     },
     {
       "from": "hasPre.value",
@@ -1540,16 +1646,72 @@
       "to": "debNoPre.retryN"
     },
     {
+      "from": "isD1DebN.out",
+      "to": "d1NoPre.isD1DebN"
+    },
+    {
+      "from": "noPre.value",
+      "to": "d1NoPre.noPre"
+    },
+    {
+      "from": "isD1DebN.out",
+      "to": "toV1Deb.isD1DebN"
+    },
+    {
+      "from": "isD1DebN.out",
+      "to": "toD1Deb.isD1DebN"
+    },
+    {
+      "from": "toV1Deb.value",
+      "to": "debGoV1.cond"
+    },
+    {
       "from": "world.debGo",
+      "to": "debGoV1.trigger"
+    },
+    {
+      "from": "debGoV1.pass",
       "to": "screen.to_debate"
+    },
+    {
+      "from": "toD1Deb.value",
+      "to": "debGoD1.cond"
+    },
+    {
+      "from": "world.debGo",
+      "to": "debGoD1.trigger"
+    },
+    {
+      "from": "debGoD1.pass",
+      "to": "screen.to_d1debate"
     },
     {
       "from": "world.vnShow",
       "to": "screen.to_vn"
     },
     {
+      "from": "toV1Deb.value",
+      "to": "debBackV1.cond"
+    },
+    {
       "from": "world.debBack",
+      "to": "debBackV1.trigger"
+    },
+    {
+      "from": "debBackV1.pass",
       "to": "screen.to_debate"
+    },
+    {
+      "from": "toD1Deb.value",
+      "to": "debBackD1.cond"
+    },
+    {
+      "from": "world.debBack",
+      "to": "debBackD1.trigger"
+    },
+    {
+      "from": "debBackD1.pass",
+      "to": "screen.to_d1debate"
     },
     {
       "from": "world.resultLines",
@@ -1582,6 +1744,18 @@
     {
       "from": "debNoPreG.pass",
       "to": "screen.to_debate"
+    },
+    {
+      "from": "d1NoPre.value",
+      "to": "d1NoPreG.cond"
+    },
+    {
+      "from": "rebegin.out",
+      "to": "d1NoPreG.trigger"
+    },
+    {
+      "from": "d1NoPreG.pass",
+      "to": "screen.to_d1debate"
     },
     {
       "from": "isEnd.true",

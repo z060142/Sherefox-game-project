@@ -11,5 +11,7 @@
   {"moment": "reverse", "bgm": "BGM10", "play": 0, "fade": "cross", "secs": 1.5},
   {"moment": "brink", "bgm": "BGM10", "play": 0, "fade": "cross", "secs": 1.5},
   {"moment": "result", "bgm": "BGM11", "play": 1, "fade": "cross", "secs": 1.5},
-  {"moment": "end", "bgm": "", "play": 1, "fade": "out", "secs": 2.0}
+  {"moment": "end", "bgm": "", "play": 1, "fade": "out", "secs": 2.0},
+  {"moment": "d1open", "bgm": "BGM07", "play": 1, "fade": "cut", "secs": 0.2},
+  {"moment": "hush", "bgm": "", "play": 1, "fade": "out", "secs": 2.0}
 ]

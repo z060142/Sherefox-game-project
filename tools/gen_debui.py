@@ -84,8 +84,11 @@ SIGNALS = {
 # silence). "" = silence: the end card (UI_TO_BE_CONTINUED) fades out (design staging cue table, the Ch.4 teaser row).
 BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board", "BGM06"), ("debate", "BGM07"),
        ("debate2", "BGM08"), ("pudding", "BGM12"), ("warmup", "BGM07"), ("break", "BGM09"), ("reverse", "BGM10"),
-       ("brink", "BGM10"), ("result", "BGM11"), ("end", "")]
-BGM_FADE = {"end": "out"}   # every other moment change is a crossfade
+       ("brink", "BGM10"), ("result", "BGM11"), ("end", ""),
+       # the v2 demo's debate (tools/gen_debui_v2.py world.bgmD1; staging bgm_cues_d01.csv: S07 L004 BGM07 cut, the
+       # silences of S07 L007-L008 and the loss L016, out): its start and its silence; the rest as v1's moments
+       ("d1open", "BGM07"), ("hush", "")]
+BGM_FADE = {"end": "out", "hush": "out", "d1open": "cut"}   # every other moment change is a crossfade
 # The tail answered wrong (−30): the debate scene's wrong-card system line is the round's result line
 # (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046; ruling G6: no author note); other cases keep MSG_TAIL_WRONG.
 TAIL_WRONG = {"CH02_MAIN": "SCR_CH02_S05_L047", "CH03_MAIN": "SCR_CH03_S06_L046"}

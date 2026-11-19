@@ -217,6 +217,145 @@ def check_lines(tr, rounds: list, marks: dict, lang_of, end: int) -> list[str]:
     return bad
 
 
+# ---- v2 demo 4.3: the whole playback line by line against ref sherefox_ref.v2.lines (speaker and string key, in
+# order: the S07 lines, the BEAT_D01_* interludes, Arthur's hints with the tell), and a hand-written sample of the
+# chapter's §12 route texts (so that ref and the game agreeing on a wrong reading is still caught)
+
+def ui_steps(tr, lo: int, hi: int) -> list[tuple[int, tuple[str, str, str]]]:
+    """(tick, (name plate, spoken line, system line)) of every playback step shown in ticks lo..hi-1."""
+    out = []
+    for t, p, v, c in tr.ticks:
+        if lo <= t < hi and "d1debate.line_seq" in c:
+            st = (p.get("d1debate.speech_who", ""), p.get("d1debate.speech", ""), p.get("d1debate.sys_line", ""))
+            if st[1] or st[2]:
+                out.append((t, st))
+    return out
+
+
+def matches(lang: str, key: str, text: str) -> bool:
+    if not key:
+        return text == ""
+    return bool(pattern(lang, key).match(text))
+
+
+def step_ok(lang: str, want, got: tuple[str, str, str]) -> bool:
+    who = S[lang][want.who] if want.who else ""
+    return (not want.line or got[0] == who) and matches(lang, want.line, got[1]) and matches(lang, want.sys, got[2])
+
+
+def show(st) -> str:
+    return f"{st.who or '-'}:{st.line or '-'}|{st.sys or '-'}"
+
+
+def tells_for(rounds: list, seed: int) -> list:
+    """The AI's tell shown for each round of a forced replay: the engine decides every round on the debate seed
+    the UI draws (the harness only overrides the move), as ref policy.decide does on the same seed."""
+    from sherefox_ref.v2.policy import RngChooser, decide
+    from sherefox_ref.v2.rng import DebateRng
+    ch = RngChooser(DebateRng(seed))
+    return [decide(s, ch).tell for s, _, _ in rounds]
+
+
+def check_steps(tr, rounds: list, marks: dict, lang: str, seed: int, end: int) -> list[str]:
+    """Every round's playback steps and the tell line equal ref lines.round_steps / tell_line; the opening (L004)
+    plays once before round 1."""
+    from sherefox_ref.v2 import lines as LN
+    from sherefox_ref.v2.resolve import resolve_round
+    bad = []
+    intro = ui_steps(tr, marks["start"], marks["lock1"])
+    if [g for _, g in intro] != [("", "", S[lang][LN.OPENING_SYS])]:
+        bad.append(f"opening: {[g for _, g in intro]}")
+    memo = LN.Memo()
+    tells = tells_for(rounds, seed)
+    for n, ((s, pa, oa), tl) in enumerate(zip(rounds, tells), start=1):
+        s2, ev = resolve_round(s, pa, oa)
+        hint = LN.tell_line(s, tl, memo)
+        want = LN.round_steps(s, pa, oa, ev, s2, memo)
+        lo, hi = marks[f"lock{n}"], marks.get(f"lock{n + 1}", end)
+        got = ui_steps(tr, lo, hi)
+        if len(got) != len(want) or not all(step_ok(lang, w, g) for w, (_, g) in zip(want, got)):
+            k = next((i for i, (w, (_, g)) in enumerate(zip(want, got)) if not step_ok(lang, w, g)),
+                     min(len(want), len(got)))
+            bad.append(f"R{n}: step {k + 1} of {len(want)} (shown {len(got)}): want "
+                       f"{[show(w) for w in want[k:k + 2]]}, shown {[g for _, g in got[k:k + 2]]}")
+        p = [pp for t, pp, v, c in tr.ticks if t <= marks[f"chosen{n}"]][-1]
+        hw, hk = (S[lang][hint[0]], S[lang][hint[1]]) if hint else ("", "")
+        if (p.get("d1debate.hint_who", ""), p.get("d1debate.hint", "")) != (hw, hk):
+            bad.append(f"R{n}: tell line {(p.get('d1debate.hint_who'), p.get('d1debate.hint'))!r} (want {hint})")
+    return bad
+
+
+def check_vn(tr, marks: dict, lang: str, lines: tuple, prefix: str) -> list[str]:
+    """S07's lines on the vn (before the debate: pre_*, after it: post_*): each line with its name plate."""
+    rows = {r["id"]: r for r in json.loads((ROOT / "data" / "script.json").read_text(encoding="utf-8"))}
+    bad = []
+    for lid in lines:
+        t0 = marks[f"{prefix}_{lid}"]
+        p = [pp for t, pp, v, c in tr.ticks if t <= t0][-1]
+        vis = [v for t, pp, v, c in tr.ticks if t <= t0][-1]
+        spk = S[lang][rows[lid]["speaker"]] if rows[lid]["speaker"] and rows[lid]["focus"] else ""
+        if (p.get("vn.line"), p.get("vn.speaker"), "vn" in vis) != (S[lang][lid], spk, True):
+            bad.append(f"{lid}: vn {p.get('vn.line')!r} / {p.get('vn.speaker')!r} (vn shown: {'vn' in vis})")
+    return bad
+
+
+SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
+MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
+# (route, round) -> lines the chapter's §12 text shows, in its order, as (speaker or "sys", key): each must be shown
+# in this order during the round (other lines may come between). Read off the chapter by hand, not from ref.
+CHAPTER_SAMPLE = {
+    ("A", 3): [(SH, "CLM_D01_06A_LINE"), (CE, "BEAT_D01_CLASH_1"), (SH, "BEAT_D01_CLASH_2"), ("sys", "SYS_D01_CLASH"),
+               ("sys", "SYS_D01_HACHIKU_KEEP")],
+    ("A", 7): [(SH, "CLM_D01_07A_LINE"), (MAR, "BEAT_D01_07A_1"), (BRI, "BEAT_D01_07A_2"), (CE, "CARD_D01_L4_DOWN")],
+    ("A", 8): [(SH, "CLM_D01_11B_LINE"), (SH, "STATE_D01_SHF_BREAK"), ("sys", "SCR_D01_S07_L005"),
+               ("sys", "SCR_D01_S07_L009")],
+    ("A", 9): [(SH, "CLM_D01_04B_LINE"), (CE, "CARD_D01_K1_DOWN"), ("sys", "SYS_D01_CUT_WIN")],
+    ("B", 1): [(SH, "CLM_D01_P1A_LINE"), ("", "BEAT_D01_P1A_1"), (CE, "REACT_D01_P1A"), (AR, "BEAT_D01_P1A_2"),
+               ("sys", "SYS_D01_CLASH")],
+    ("B", 4): [(SH, "CLM_D01_08B_LINE"), ("sys", "SYS_D01_SLIP_NODMG"), (AR, "BEAT_D01_GUILT_1")],
+    ("B", 5): [("sys", "SCR_D01_S07_L007"), (CE, "SCR_D01_S07_L008"), ("sys", "SYS_D01_WIN")],
+    ("C", 5): [(CE, "CARD_D01_P05_STATE"), (CE, "BEAT_D01_LASTCARD_4"), (INS, "BEAT_D01_LASTCARD_2"),
+               ("sys", "SYS_D01_LASTCARD_HIT"), (SH, "BEAT_D01_LASTCARD_5"), (AR, "BEAT_D01_LASTCARD_6")],
+    ("C", 6): [(AR, "BEAT_D01_09A_1"), (SH, "CLM_D01_09A_LINE"), (IRE, "REACT_D01_09A_3"), (CE, "REACT_D01_09A_1"),
+               (MRS, "REACT_D01_09A_2")],
+    ("D", 4): [(SH, "CLM_D01_06B_LINE"), (CE, "REFUTE_D01_06B"), (BRI, "BEAT_D01_REFUTED_1"),
+               (MAR, "BEAT_D01_REFUTED_2"), (SH, "BEAT_D01_REFUTED_3"), (AR, "BEAT_D01_REFUTED_4"),
+               (SH, "STATE_D01_SHF_BREACHED"), (AR, "STATE_D01_ART_BREACHED")],
+    ("D", 8): [(SH, "CLM_D01_11B_LINE"), ("sys", "SYS_D01_LASTSTAND_FAIL"), ("sys", "SCR_D01_S07_L016")],
+}
+# tell lines the chapter shows that do not depend on the AI's tell: the endgame's (ch §12.1 R9, §12.3 R5)
+CHAPTER_TELL = {("A", 9): (CE, "SCR_D01_S07_L010"), ("C", 5): (AR, "BEAT_D01_LASTCARD_1")}
+
+
+def check_sample(tr, route: str, marks: dict, lang: str, end: int) -> list[str]:
+    bad = []
+    for (rt, n), want in CHAPTER_SAMPLE.items():
+        if rt != route:
+            continue
+        got = [g for _, g in ui_steps(tr, marks[f"lock{n}"], marks.get(f"lock{n + 1}", end))]
+        i = 0
+        for who, key in want:
+            found = False
+            while i < len(got):     # a step shows a spoken line and a system line: both may match in turn
+                g = got[i]
+                if (who == "sys" and matches(lang, key, g[2])) or (
+                        who != "sys" and g[0] == (S[lang][who] if who else "") and matches(lang, key, g[1])):
+                    found = True
+                    if who == "sys":
+                        i += 1
+                    break
+                i += 1
+            if not found:
+                bad.append(f"sample {route}{n}: {who}:{key} not shown in the chapter's order")
+                break
+    for (rt, n), (who, key) in CHAPTER_TELL.items():
+        if rt == route:
+            p = [pp for t, pp, v, c in tr.ticks if t <= marks[f"chosen{n}"]][-1]
+            if (p.get("d1debate.hint_who"), p.get("d1debate.hint")) != (S[lang][who], S[lang][key]):
+                bad.append(f"sample {route}{n}: tell line {p.get('d1debate.hint')!r} (want {key})")
+    return bad
+
+
 def expected(rounds: list) -> tuple[int, int, str]:
     """(grade, rounds played, outcome) of the ref for the recording's moves."""
     from sherefox_ref.v2.resolve import resolve_round
@@ -245,7 +384,13 @@ def check(label: str, rec: str, game: str, ticks: int, marks: dict, want: tuple[
     if "title" not in end_vis or "d1debate" in end_vis:
         bad.append(f"after back to title the visible screens are {sorted(end_vis)}")
     if route:
-        bad += check_lines(tr, gd.forced(route), marks, lambda n: lang, marks["over"])
+        from sherefox_ref.v2 import lines as LN
+        rounds = gd.forced(route)
+        bad += check_lines(tr, rounds, marks, lambda n: lang, marks["end"])
+        bad += check_steps(tr, rounds, marks, lang, gd.CV.ui_debate_seed(1), marks["end"])
+        bad += check_sample(tr, route, marks, lang, marks["end"])
+        bad += check_vn(tr, marks, lang, LN.PRE_LINES, "pre")
+        bad += check_vn(tr, marks, lang, LN.outro(outcome), "post")
     noise = [ln for ln in err.split("\n") if ln.strip() and not ln.startswith("render: off")]
     if noise:
         bad.append("stderr: " + " | ".join(noise[:5]))

@@ -175,6 +175,7 @@ def carry(r: Rec) -> list[tuple[str, str]]:
 def debate(r: Rec) -> None:
     """Route A clicked the M2 way; marks the picker right after the evidence of each claim is chosen."""
     rounds = gd.forced("A")
+    gd.opening(r)             # S07 L001-L003 on the vn, then L004 (v2 demo 4.3)
     for n, (s, pa, _) in enumerate(rounds, start=1):
         act = gd.PA_ACT[pa.kind]
         r.click("d1debate", gd.ACT_XY[act], 12)
@@ -195,11 +196,13 @@ def debate(r: Rec) -> None:
         r.click("d1debate", gd.LOCK_XY)
         r.marks[f"lock{n}"] = r.t
         if n in NO_SKIP:          # the playback runs at its own pace (screenshots of a full line and of a stamp)
-            r.t += 900
+            r.t += gd.NO_SKIP_WAIT
         else:
             for _ in range(gd.SKIPS):
                 r.click("d1debate", gd.SKIP_XY, gd.SKIP_GAP)
         r.t += gd.ROUND_TAIL
+    r.marks["end"] = r.t
+    gd.outro(r, gd.outcome_of(rounds))     # S07 L012-L015 on the vn, then the outcome panel
     r.marks["over"] = r.t
     r.click("d1debate", gd.BACK_XY, 30)
     r.marks["back"] = r.t

@@ -55,7 +55,10 @@ LOCK_XY = (1157, 664)
 SKIP_XY = (900, 580)      # #hit during playback; nothing there while choosing
 BACK_XY = (640, 422)      # #out-back
 PA_ACT = {PA.ARGUE: 1, PA.INTERCEPT: 2, PA.DISMANTLE: 3, PA.STALL: 4, PA.CUT: 5, PA.ACCEPT: 6, PA.LAST_STAND: 7}
-SKIPS = 45                # playback clicks per round (a click shows the next record)
+VN_XY = (640, 300)        # Vn #hit (the S07 lines before and after the debate)
+VN_WAIT = 30              # ticks between vn clicks (the standees' fade-in is over)
+SKIPS = 60                # playback clicks per round (a click shows the next step)
+NO_SKIP_WAIT = 2700      # a round played back at its own pace (every step its full dwell)
 SKIP_GAP = 5
 ROUND_TAIL = 70           # after the last click: the hold (0.6 s) and the next round's lists
 
@@ -137,16 +140,49 @@ def forced(route) -> list:
     return out
 
 
-def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset()) -> None:
+def opening(rec: Rec) -> None:
+    """The d1debate step has begun: S07 L001-L003 on the vn (a click each), then the debate screen with S07 L004 (a
+    click skips its dwell) before round 1 (v2 demo 4.3, docs/flows.md §4.12)."""
+    from sherefox_ref.v2 import lines as LN
+    for lid in LN.PRE_LINES:
+        rec.marks[f"pre_{lid}"] = rec.t + 20
+        rec.click("vn", VN_XY, VN_WAIT)
+    rec.marks["start"] = rec.t
+    rec.t += 20
+    rec.click("d1debate", SKIP_XY, 0)
+    rec.t += 60
+
+
+def outro(rec: Rec, outcome: str | None) -> None:
+    """After the last round: S07's lines after a win / a loss on the vn (a click each), then the outcome panel."""
+    from sherefox_ref.v2 import lines as LN
+    if outcome is None:
+        return
+    rec.marks["post"] = rec.t
+    for lid in LN.outro(outcome):
+        rec.marks[f"post_{lid}"] = rec.t + 20
+        rec.click("vn", VN_XY, VN_WAIT)
+    rec.t += 30
+
+
+def play(rec: Rec, rounds: list, no_skip: set[int] = frozenset(), outcome: str | None = None) -> None:
     rec.click("title", TITLE_V2, 40)
     rec.t += 40
+    opening(rec)
     for n, (s, pa, _) in enumerate(rounds, start=1):
         rec.round(s, pa, n, 0 if n in no_skip else SKIPS)
         if n in no_skip:
-            rec.t += 900
+            rec.t += NO_SKIP_WAIT
+    rec.marks["end"] = rec.t
+    outro(rec, outcome)
     rec.marks["over"] = rec.t
     rec.click("d1debate", BACK_XY, 30)
     rec.marks["back"] = rec.t
+
+
+def outcome_of(rounds: list) -> str | None:
+    s, pa, oa = rounds[-1]
+    return resolve_round(s, pa, oa)[0].outcome
 
 
 # ------------------------------------------------------------------------------------------------ harness
@@ -219,12 +255,12 @@ def main() -> int:
         build_harness(route)
     for name, route, no_skip in RECORDINGS:
         r = Rec(f"tests/d1play_harness{route}")
-        play(r, forced(route), no_skip)
+        play(r, forced(route), no_skip, outcome_of(forced(route)))
         ticks[name] = r.write(name, 60)
         ticks[name + "_marks"] = r.marks
     bot = CV.play_debate("bot", RT.ROUTES["A"].loadout, BOT_DEBATE_SEED)
     r = Rec(".", BOT_SEED)
-    play(r, [(st[2], st[0], None) for st in bot.steps])
+    play(r, [(st[2], st[0], None) for st in bot.steps], outcome=bot.steps[-1][3].outcome)
     ticks["d1_bot"] = r.write("d1_bot", 60)
     ticks["d1_bot_marks"] = r.marks
     (TESTS / "d1_ticks.json").write_text(json.dumps(ticks, indent=1) + "\n", encoding="utf-8", newline="\n")

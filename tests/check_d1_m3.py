@@ -171,7 +171,8 @@ def check(lang: str, ticks: dict, fails: list) -> None:
        L["SCR_D01_S06_L009"].replace("{list}", sep.join(L[item_name(i)] for i in left)))
     eq("confirm shown", at.get(marks["confirm"], "d1carry.phase"), 1.0)
     eq("L010", at.get(marks["l010"], "d1carry.say1"), L["SCR_D01_S06_L010"])
-    eq("debate shown", "d1debate" in at.vis(marks["go"] + 30), True)
+    eq("S07 before the debate", "vn" in at.vis(marks["go"] + 30), True)
+    eq("debate shown", "d1debate" in at.vis(marks["start"] + 30), True)
     # the debate: the private view preselects 01A when E01 is chosen (round 4); no view, nothing preselected
     eq("picker default E01", at.get(marks["ev4"], "d1debate.sel_claim_text"), L["CLM_D01_01A"])
     eq("picker no view", at.get(marks["ev2"], "d1debate.sel_claim_text"), "")

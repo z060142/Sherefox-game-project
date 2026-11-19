@@ -43,6 +43,49 @@ SEQ_BASE = 100000   # cut-in sequence numbers start here: v1's debate_ui writes 
 DWELL = [0.001, 0.5, 1.8, 2.4, 1.6, 4.0]
 DELAY = 0.1      # d1Start / d1Lock -> the engine's outputs are read (written after this flow; queries next tick)
 HOLD = 0.6       # after the last record, before the next round is shown
+KITCHEN = ("E07", ("06B", "04C"))   # ch §12.0 BEAT_D01_REFUTED_1/2: 06B / 04C refuted with the handkerchief
+SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
+MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
+# Arthur's tell line (ref lines.tell_line), by index: 1-4 the action hints (tell code + 1), then the situations
+HINTS = ["", "TELL_D01_HINT_ASSERT", "TELL_D01_HINT_PUSH", "TELL_D01_HINT_REBUT", "TELL_D01_HINT_STALL",
+         "TELL_D01_HINT_SLIP", "TELL_D01_HINT_KEY", "TELL_D01_HINT_FACT", "TELL_D01_HINT_NOCUT", "TELL_D01_HINT_LAST",
+         "BEAT_D01_LASTCARD_1", "SCR_D01_S07_L010"]
+# The playback's extra steps around a record (ref lines.round_steps): (name, before / after the record's main step,
+# condition, speaker key or None for a system line, line key). Conditions read only what stays put while the record
+# plays (its fields, the lock's claim, the latched round, debate flags changed between records).
+EXTRAS = [
+    ("xRc", "pre", "k_round && d_crk", AR, "BEAT_D01_REDCRACK_1"),
+    ("x09", "pre", "k_round && isC09A", AR, "BEAT_D01_09A_1"),
+    ("xL11", "pre", "k_round && modeN == 1 && !L_Dying", None, "SCR_D01_S07_L011"),
+    ("xIre", "pre", "k_pAttach && isF09A", IRE, "REACT_D01_09A_3"),
+    ("xCl1", "pre", "clashRec && !d_clsh", CE, "BEAT_D01_CLASH_1"),
+    ("xCl2", "pre", "clashRec && !d_clsh", SH, "BEAT_D01_CLASH_2"),
+    ("xLcS", "pre", "lcRec", CE, "@lcState"),
+    ("xLc4", "pre", "lcRec && lcP05 && L_Cracks >= 1", CE, "BEAT_D01_LASTCARD_4"),
+    ("xLc2", "pre", "lcRec && lcP05 && L_Cracks >= 1", INS, "BEAT_D01_LASTCARD_2"),
+    ("xLc3", "pre", "lcRec && lcP05 && L_Cracks == 0", INS, "BEAT_D01_LASTCARD_3"),
+    ("xL7", "pre", "k_over && rsSurr", None, "SCR_D01_S07_L007"),
+    ("xL8", "pre", "k_over && rsSurr", CE, "SCR_D01_S07_L008"),
+    ("x6B", "post", "k_round && isC06B && carE07", AR, "BEAT_D01_SOPH_06B_1"),
+    ("x6C", "post", "k_round && isC06C", AR, "BEAT_D01_SOPH_06C_1"),
+    ("x3C", "post", "k_round && apSoph && !(isC06B && carE07) && !isC06C", AR, "BEAT_D01_SOPH_03C_1"),
+    ("xP1", "post", "k_round && d_p1f", "", "BEAT_D01_P1A_1"),
+    ("xMrs", "post", "k_pAttach && isF09A", MRS, "REACT_D01_09A_2"),
+    ("xP1b", "post", "k_pAttach && d_p1f", AR, "BEAT_D01_P1A_2"),
+    ("x2C", "post", "k_pAttach && isF02C", MRS, "BEAT_D01_02C_1"),
+    ("x7a", "post", "(k_pAttach && isF07A) || (k_oDmg && c_intercept && isC07A)", MAR, "BEAT_D01_07A_1"),
+    ("x7b", "post", "(k_pAttach && isF07A) || (k_oDmg && c_intercept && isC07A)", BRI, "BEAT_D01_07A_2"),
+    ("xRf1", "post", "k_refuted && rfKit", BRI, "BEAT_D01_REFUTED_1"),
+    ("xRf2", "post", "k_refuted && rfKit", MAR, "BEAT_D01_REFUTED_2"),
+    ("xRf3", "post", "k_refuted && rfHas", SH, "BEAT_D01_REFUTED_3"),
+    ("xRf4", "post", "k_refuted && rfHas", AR, "BEAT_D01_REFUTED_4"),
+    ("xBr1", "post", "k_shisshu && n1 == 1", SH, "STATE_D01_SHF_BREACHED"),
+    ("xBr2", "post", "k_shisshu && n1 == 1", AR, "STATE_D01_ART_BREACHED"),
+    ("xLc5", "post", "lcEnd", SH, "BEAT_D01_LASTCARD_5"),
+    ("xLc6", "post", "lcEnd && !outOver", AR, "BEAT_D01_LASTCARD_6"),
+    ("xL9", "post", "k_endgame && dyNow && !outOver", None, "SCR_D01_S07_L009"),
+    ("xL16", "post", "k_over && rsLimit && !ovWin", None, "SCR_D01_S07_L016"),
+]
 
 
 # ---------------------------------------------------------------------------------------------- tables
@@ -54,13 +97,16 @@ def ev_key(e: str) -> str:
 def tables() -> dict[str, list[dict]]:
     claims = []
     for cid, c in CH.claims.items():
+        # appr: the appraisal the claim contradicts (BEAT_D01_SOPH_03C_1, ref lines), "" for none
+        appr = next((k for k in c.conflicts if k in CH.appraisals), "")
         claims.append({"id": cid, "evidence": c.evidence, "label": f"CLM_D01_{cid}", "line": f"CLM_D01_{cid}_LINE",
+                       "appr": appr,
                        "issue": f"ISSUE_D01_{ISSUE[c.issue]}_SHORT", "issueName": f"ISSUE_D01_{ISSUE[c.issue]}",
                        "catch": 0, "psych": int(c.psych_card), "private": int(c.private),
                        "react": f"REACT_D01_ISSUE_{ISSUE[c.issue]}"})
     for cid, cd in CH.cards.items():
         if cd.kind == "unfav":
-            claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE",
+            claims.append({"id": f"{M.CATCH}:{cid}", "evidence": M.CATCH, "label": "UI_V2_SEIZE", "appr": "",
                            "line": f"CARD_D01_{cid}_CATCH", "issue": f"ISSUE_D01_{ISSUE[cd.issue]}_SHORT",
                            "issueName": f"ISSUE_D01_{ISSUE[cd.issue]}", "catch": 1, "psych": 0, "private": 0,
                            "react": f"REACT_D01_ISSUE_{ISSUE[cd.issue]}"})
@@ -93,15 +139,31 @@ def tables() -> dict[str, list[dict]]:
             lines.append({"id": f"LINK:{parts[2]}:{parts[3]}", "key": k})
         elif k.startswith("REACT_D01_") and parts[2] in CH.claims and (len(parts) == 3 or parts[3] == "1"):
             lines.append({"id": f"REACT:{parts[2]}", "key": k})
-    return {"d1uiClaim": claims, "d1uiCard": cards, "d1uiEv": ev, "d1uiLine": lines}
+    # v2 demo 4.3 (ref sherefox_ref.v2.lines): the claims that break a card (`<card>:<claim>`, Arthur's NOCUT hint)
+    # and the refute lines with a picked-up evidence item (BEAT_D01_REFUTED_*: its name, the hotspot where it lies,
+    # the handkerchief's beat for 06B / 04C)
+    brk = [{"id": f"{card}:{cl}"} for card in CH.cards for cl in sorted(CH.breakers.get(card, ()))]
+    spots = json.loads((ROOT / "data" / "d01" / "d1Hotspot.json").read_text(encoding="utf-8"))
+    refute = []
+    for cid, c in CH.claims.items():
+        for via, line in c.opp_refute:
+            if via not in CH.evidence:
+                continue
+            hs = next(x["id"] for x in spots if via in x["ev"].split(","))
+            refute.append({"id": line, "item": ev_key(via), "place": f"HS_D01_{hs[2:]}_NAME",
+                           "kitchen": int(via == KITCHEN[0] and cid in KITCHEN[1])})
+    return {"d1uiClaim": claims, "d1uiCard": cards, "d1uiEv": ev, "d1uiLine": lines, "d1uiBreak": brk,
+            "d1uiRefute": refute}
 
 
 SIGNALS = {
     "d1Back": {"type": "pulse"},     # d01_debate_ui -> main: the outcome panel's back to title
+    "bgmD1": {"type": "string", "initial": ""},    # d01_debate_ui -> music: the debate's music moment (4.3)
+    "d1Cue": {"type": "string", "initial": ""},    # d01_debate_ui -> dialogue: S07's lines after it (postWin / postLose)
 }
 COLLECTIONS = {
-    "u1": {"kind": "map", "type": "number", "capacity": 48},
-    "u1S": {"kind": "map", "type": "string", "capacity": 16},
+    "u1": {"kind": "map", "type": "number", "capacity": 96},
+    "u1S": {"kind": "map", "type": "string", "capacity": 24},
     "u1F": {"kind": "list", "type": "string", "capacity": 16},          # the record being played, split at |
     "u1N": {"kind": "list", "type": "number", "capacity": 16},
     "u1G": {"kind": "list", "type": "string", "capacity": 16},          # the next record (lookahead), split at |
@@ -142,9 +204,10 @@ def gen_d01ui() -> Graph:
 
     # ---- UI state
     for k in ("ph", "act", "armed", "stAt", "rsAt", "lockAt", "r2", "ref", "pb", "pbAt", "ev", "hpM", "hpO", "pat",
-              "endAt", "soph", "intBlk", "rmN", "patD", "tail"):
+              "endAt", "soph", "intBlk", "rmN", "patD", "tail", "sub", "intro", "crk", "p1f", "p1u", "clsh", "clsP",
+              "cutOk", "m8", "m9", "m10", "hush"):
         g.mget("d_" + k, "u1", g.k(k))
-    for k in ("ev", "claim", "target"):
+    for k in ("ev", "claim", "target", "hintK", "hintW"):
         g.mget("s_" + k, "u1S", g.k(k))
     g.n("hasClaimN", g.cmp("hasClaimC", "s_claim", g.k(""), "ne"))
     g.n("hasTgtN", g.cmp("hasTgtC", "s_target", g.k(""), "ne"))
@@ -172,11 +235,17 @@ def gen_d01ui() -> Graph:
     g.x("soon", f"now + {DELAY}")
 
     # ---- start: the d1debate step begins; the carry step wrote the loadout, or (the title's dev shortcut, world.d1Dev)
-    # route A's fixed set is written now (read by d1Start a few ticks later); reset
-    start = g.when("start", "world.stepBegin", g.cmp("isDebK", "world.stepKind", g.k("d1debate")))
-    dev = g.when("devM", start, "world.d1Dev")
+    # route A's fixed set is written now. S07 L001-L003 play on the vn (dialogue, `pre`); the debate itself starts with
+    # world.debGo (v2 demo 4.3): reset, then d1Start a few ticks later (it reads the loadout)
+    g.cmp("isDebK", "world.stepKind", g.k("d1debate"))
+    g.n("isDebKN", "isDebK")
+    begin = g.when("begin", "world.stepBegin", "isDebK")
+    dev = g.when("devM", begin, "world.d1Dev")
+    start = g.when("start", "world.debGo", "isDebK")
     for coll in ("u1", "u1S", "u1RecId", "u1RecN", "u1RecNT", "u1RecL", "u1RecU", "u1RecS", "u1RecC", "u1RecSt"):
         g.edge(start, g.eff(f"clr_{coll}", "atrium.map.clear", coll))
+    for coll in ("u1F", "u1N", "u1G", "u1GN"):
+        g.edge(start, g.eff(f"sClr_{coll}", "atrium.coll.clear", coll))
     for coll, items in (("d1Carry", DEV.carried), ("d1Appraised", DEV.appraisals), ("d1Notes", DEV.notes)):
         g.edge(dev, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
         g.edge(dev, add_all(g, f"add_{coll}", coll, g.k(",".join(items))))
@@ -192,7 +261,10 @@ def gen_d01ui() -> Graph:
     g.put("seedU", "seedRng.value")
     g.edge(g.x("seedV", "floor(seedU * 16777216)"), "world.d1Seed")
     g.edge(stT, "world.d1Start")
-    setn(stT, "rsAt", "soon")
+    # the opening (S07 L004) plays as one playback step before round 1 is shown (the record lists are empty; ev past
+    # the end, so the playback ends after it and shows the round)
+    for k, v in (("intro", 1), ("ph", 2), ("pb", 2), ("sub", 0), ("ev", 999)):
+        setn(stT, k, g.k(v))
 
     # ---- a round is shown: latch the engine, reset the choice, rebuild the lists on the next beat
     rs = g.merge("rs", rsT)
@@ -203,6 +275,10 @@ def gen_d01ui() -> Graph:
            "d1LastCard", "d1Outcome", "d1CatchCard"]
     for sig in num + txt:
         g.latch("L_" + sig[2:], f"world.{sig}", rs)
+    # his move this round: the test hook's when it pins one (d1OppAct), else the AI's decision (debate-engine-v2 §2.1)
+    g.latch("L_OppAct", "world.d1OppAct", rs)
+    g.n("oppPinN", g.cmp("oppPinC", "L_OppAct", g.k(""), "ne"))
+    g.sel("effAct", "oppPinC", "L_OppAct", "L_TellAction")
     phase_i = ssel(g, "phW", [(g.cmp("phEg", "L_Phase", g.k("endgame")), g.k(1)),
                                (g.cmp("phLs", "L_Phase", g.k("laststand")), g.k(2)),
                                (g.cmp("phOv", "L_Phase", g.k("over")), g.k(3))], g.k(0))
@@ -216,6 +292,19 @@ def gen_d01ui() -> Graph:
     for k in ("ev", "claim", "target"):
         sets(rs, k, g.k(""))
     setn(rs, "r2", g.k(1))
+    setn(rs, "intro", g.k(0))
+    # the tell line (Arthur's hint, ref lines.tell_line) is chosen on the next beat; NOCUT needs to know whether a
+    # claim of this round's picker that shows as sound breaks the tell's card (d1uiBreak)
+    setn(rs, "cutOk", g.k(0))
+    sets(rs, "hintK", g.k(""))
+    sets(rs, "hintW", g.k(""))
+    g.node("cutEach", "atrium.coll.forEach", name="d1ClaimList")
+    g.edge(rs, "cutEach.trigger")
+    cuI = g.put("cuI", "cutEach.item")
+    g.tfind("cuBrk", "d1uiBreak", "id", g.fmt("cuBrkId", "{a}:{b}", "L_TellCard", cuI))
+    g.mget("cuSoph", "d1ClaimSoph", cuI)
+    g.edge(g.when("cuBrkG", "cutEach.each", T("cuBrkOk", "cuBrk >= 0 && !cuSoph")),
+           g.eff("cuSet", "atrium.map.set", "u1", key=g.k("cutOk"), value=g.k(1)))
 
     # ---- the lists (rebuilt on the next beat after a round is shown, after a choice, on a language change)
     refresh = g.merge("refresh", r2T, refT, "langEnC.true", "langEnC.false")
@@ -381,6 +470,13 @@ def gen_d01ui() -> Graph:
     # the claim's sophistry as it was when chosen (d1ClaimSoph already holds the next round's during playback)
     g.mget("lkSoph", "d1ClaimSoph", "s_claim")
     setn(lP, "soph", g.x("lkSophN", "needClaim && lkSoph"))
+    g.mget("lkCrk", "d1ClaimCrack", "s_claim")
+    setn(lP, "crk", g.x("lkCrkN", "needClaim && lkCrk"))
+    g.n("isP1aN", g.cmp("isP1aC", "s_claim", g.k("P1A")))
+    g.n("isP1bN", g.cmp("isP1bC", "s_claim", g.k("P1B")))
+    g.x("isP1", "isP1aN || isP1bN")
+    setn(lP, "p1f", g.x("p1fN", "needClaim && isP1 && !d_p1u"))
+    setn(lP, "p1u", g.x("p1uN", "d_p1u || (needClaim && isP1)"))
     # the public record: one row per claim used (ref RecordEntry: soph / red crack as displayed when chosen)
     g.count("recN", "u1Rec")
     rkey = g.fmt("recKey", "r{a}", "recN")
@@ -402,9 +498,13 @@ def gen_d01ui() -> Graph:
     # ---- playback of the round's records (d1Events, debate-engine-v2 §2.3): pb 1 fetch, 2 play, 3 wait
     setn(lockT, "ev", g.k(0))
     setn(lockT, "pb", g.k(1))
-    for k in ("intBlk", "rmN", "patD", "tail"):
+    for k in ("intBlk", "rmN", "patD", "tail", "sub", "intro"):
         setn(lockT, k, g.k(0))
     stepP = stage("fetchG", "d_pb == 1")
+    # the first clash's beat was played on the record before: from the next record on it is done
+    clsF = g.when("clsFG", stepP, T("clsFOn", "d_clsP == 1"))
+    setn(clsF, "clsh", g.k(1))
+    setn(clsF, "clsP", g.k(0))
     g.count("evCnt", "d1Events")
     g.cget("evRec", "d1Events", "d_ev")
     more = g.when("moreG", stepP, T("more", "d_ev < evCnt"))
@@ -432,12 +532,17 @@ def gen_d01ui() -> Graph:
     setn(tailP, "pb", g.k(2))
     endT = g.when("evDone", stepP, T("evOver", "!more && !tailWant"))
     setn(endT, "pb", g.k(0))
+    setn(endT, "intro", g.k(0))
     g.x("endSoon", f"now + {HOLD}")
     setn(endT, "rsAt", "endSoon")
+    # the debate is over and played out: S07's lines after it on the vn (dialogue: world.d1Cue), then the outcome
+    # panel (v2 demo 4.3; the result screen is a later ticket)
+    g.edge(g.when("endOutG", endT, T("endOut", "outOver")), "world.debEnd")
+    g.edge(g.sel("d1CueV", g.cmp("d1CueWin", "world.d1Outcome", g.k("win")), g.k("postWin"), g.k("postLose")),
+           "world.d1Cue")
     parse = stage("parseG", "d_pb == 2")
     setn(parse, "pb", g.k(3))
     waitP = stage("waitG", "d_pb == 3 && now >= d_pbAt")
-    setn(waitP, "pb", g.k(1))
     setn(g.when("skipG", f"{P}.skip", T("skipOn", "d_ph == 2 && d_pb == 3")), "pbAt", "now")
     for k in range(11):
         g.cget(f"f{k}", "u1F", g.k(k))
@@ -457,7 +562,7 @@ def gen_d01ui() -> Graph:
     for c in ("argument", "exposed", "refuted", "contradiction", "whiff", "fact_miss", "stalemate", "stall_repeat",
               "bad_cut", "dying", "last_card", "intercept", "dismantle"):
         isS("c_" + c, "f2", c)
-    isS("hisForce", "L_TellAction", "force")
+    isS("hisForce", "effAct", "force")
     for kd in ("oDmg", "oAttach", "oHeal", "healVoid", "lastCard", "lastCardRemoved", "dismantle"):
         isS("nx_" + kd, "g0", kd)
     # the card of the next record (a failed 拆台: its dismantle record follows the damage)
@@ -492,9 +597,8 @@ def gen_d01ui() -> Graph:
     reRow = g.tfind("reRow", "d1uiLine", "id", g.fmt("reId", "REACT:{a}", "f1"))
     g.tget("reKey", "d1uiLine", "key", reRow)
     g.tget("reIss", "d1uiClaim", "react", "f1Row")
-    g.mget("f1Soph", "d1ClaimSoph", "f1")
     react = g.sel("reLine", T("reOwn", "reRow >= 0"), "reKey",
-                  g.sel("reGen", g.b("f1SophB", "f1Soph"), g.k("REACT_D01_SOPH"), "reIss"))
+                  g.sel("reGen", g.b("f1SophB", g.p("d_soph")), g.k("REACT_D01_SOPH"), "reIss"))
     # a link of his knocked down: a fact (only sophistry does that) / a lie by sophistry / the claim's own cut line
     g.tget("k_factK", "d1uiCard", "fact", krow, "number")
     g.put("myClaimSoph", g.p("d_soph"))
@@ -510,39 +614,86 @@ def gen_d01ui() -> Graph:
                       g.x("hkI", "clamp(n2, 0, 3)"))
     claim_act = " || ".join(f"act == {a}" for a in CLAIM_ACTS)
 
+    # ---- the extra steps (v2 demo 4.3, EXTRAS; ref lines.round_steps)
+    for cid in ("09A", "06B", "06C", "07A"):
+        g.n(f"isC{cid}", g.cmp(f"isC{cid}C", "s_claim", g.k(cid)))
+    for cid in ("09A", "02C", "07A"):
+        g.n(f"isF{cid}", g.cmp(f"isF{cid}C", "f1", g.k(cid)))
+    g.n("carE07", g.contains("carE07C", "d1Carry", g.k(KITCHEN[0])))
+    g.tget("scAppr", "d1uiClaim", "appr", "scRow")
+    g.n("apHas", g.cmp("apHasC", "scAppr", g.k(""), "ne"))
+    g.n("apIn", g.contains("apInC", "d1Appraised", "scAppr"))
+    g.x("apSoph", "myClaimSoph && apHas && apIn")
+    g.x("clashRec", "k_pDmg && c_argument && d_pat")
+    g.x("lcRec", "k_pDmg && c_last_card")
+    g.n("lcP05", g.cmp("lcP05C", "L_LastCard", g.k("P05")))
+    g.tget("lcStateK", "d1uiCard", "state", g.tfind("xLcRow", "d1uiCard", "id", "L_LastCard"))
+    g.x("lcEnd", "(k_lastCard && n2 == 0 && n3 == 0 && !nx_lastCardRemoved) || (k_lastCardRemoved && !nx_lastCardRemoved)")
+    rfRow = g.tfind("rfRow", "d1uiRefute", "id", "f2")
+    g.tget("rfKitN", "d1uiRefute", "kitchen", rfRow, "number")
+    g.tget("rfItemK", "d1uiRefute", "item", rfRow)
+    g.tget("rfPlaceK", "d1uiRefute", "place", rfRow)
+    g.x("rfHas", "rfRow >= 0")
+    g.x("rfKit", "rfRow >= 0 && rfKitN == 1")
+    g.put("dyNow", "world.d1Dying")
+    pos = {"pre": [], "post": []}
+    for nm, where, cond, _, _ in EXTRAS:
+        g.x(nm + "C", f"({cond}) ? 1 : 0")
+        g.x(nm + "P", " + ".join(pos[where]) or "0")
+        pos[where].append(nm + "C")
+    g.x("preN", " + ".join(pos["pre"]))
+    g.x("postN", " + ".join(pos["post"]))
+    g.x("subTotal", "preN + 1 + postN")
+    g.x("isMain", "d_sub == preN")
+    # the record's steps: its extra steps before the main one, the main one, its extra steps after (EXTRAS)
+    subNx = g.when("subNxG", waitP, T("subMore", "d_sub + 1 < subTotal"))
+    setn(subNx, "sub", g.x("subNext", "d_sub + 1"))
+    setn(subNx, "pb", g.k(2))
+    subEnd = g.when("subEndG", waitP, T("subDone", "d_sub + 1 >= subTotal"))
+    setn(subEnd, "sub", g.k(0))
+    setn(subEnd, "pb", g.k(1))
+    ex_sp, ex_sy = [], []
+    for nm, where, cond, who, key in EXTRAS:
+        at = f"{nm}P" if where == "pre" else f"preN + 1 + {nm}P"
+        c = T(nm + "S", f"{nm}C == 1 && d_sub == {at}")
+        line_k = "lcStateK" if key == "@lcState" else g.k(key)
+        if who is None:
+            ex_sy.append((c, key))
+        else:
+            ex_sp.append((c, g.k(who), line_k))
+
+    def MN(name: str, expr: str) -> str:
+        """A condition of the record's main step."""
+        return T(name, f"isMain && ({expr})")
+
     # spoken line: (condition, speaker key, line key)
     SH, CE, AR = g.k("SPK_SHEREFOX"), g.k("SPK_D01_CEDRIC"), g.k("SPK_ARTHUR")
-    speech = [
-        (T("sp1", f"k_round && ({claim_act}) && hasClaimN"), SH, "scLine"),
-        (T("sp2", "k_round && act == 4"), SH, fog),
-        (T("sp3", "k_pAttach && lkOk"), SH, "lkKey"),
-        (T("sp3b", "k_pAttach && !lkOk"), CE, react),
-        (T("sp4", "k_oAttach"), CE, g.sel("oaLine", g.b("hisForceB", "hisForce"),
-                                         "k_pushK", "k_stateK")),
-        (T("sp5", "k_reraise"), CE, "k_retractK"),
-        (T("sp6", "k_refuted"), CE, "f2"),
-        (T("sp7", "k_intercept && n3 == 1"), CE, knocked),
-        (T("sp8", "k_dismantle && n3 == 1"), CE, knocked),
-        (T("sp8b", "k_blocked"), CE, g.k("REACT_D01_BLOCK")),
-        (T("sp8c", "k_oDmg && c_whiff"), CE, g.k("REACT_D01_FOOLED")),
-        (T("sp9", "k_guardSaved"), AR, g.k("STATE_D01_ART_COVER")),
-        (T("sp10", "k_hachiku && n2 > n1"), SH, hkLine),
-        (T("sp11", "k_ronpa"), SH, g.k("STATE_D01_SHF_BREAK")),
-        (T("sp12", "k_reverseRonpa"), CE, g.k("BEAT_D01_REVERSE_1")),
-        (T("sp13", "k_lastCard && n2 == 1"), CE, "k_downK"),
-        (T("sp14", "k_lastStand && n3 == 0"), CE, g.k("BEAT_D01_LASTSTAND_FAIL_1")),
-        (T("sp15", "k_crossed && xG"), AR, g.k("BEAT_D01_GUILT_1")),
-        (T("sp16", "k_crossed && xA"), CE, g.k("BEAT_D01_ANGER_1")),
-        (T("sp17", "k_stall"), CE, g.k("REACT_D01_FOGGED")),       # §6.7 被打迷糊仗 (every 打迷糊仗)
+    speech = ex_sp + [
+        (MN("sp1", f"k_round && ({claim_act}) && hasClaimN"), SH, "scLine"),
+        (MN("sp2", "k_round && act == 4"), SH, fog),
+        (MN("sp3", "k_pAttach && lkOk"), SH, "lkKey"),
+        (MN("sp3b", "k_pAttach && !lkOk"), CE, react),
+        (MN("sp4", "k_oAttach"), CE, g.sel("oaLine", g.b("hisForceB", "hisForce"),
+                                         "k_pushK", "k_stateK")),     # his move: pinned (test hook) or the AI's
+        (MN("sp5", "k_reraise"), CE, "k_retractK"),
+        (MN("sp6", "k_refuted"), CE, "f2"),
+        (MN("sp7", "k_intercept && n3 == 1"), CE, knocked),
+        (MN("sp8", "k_dismantle && n3 == 1"), CE, knocked),
+        (MN("sp8b", "k_blocked"), CE, g.k("REACT_D01_BLOCK")),
+        (MN("sp8c", "k_oDmg && c_whiff"), CE, g.k("REACT_D01_FOOLED")),
+        (MN("sp9", "k_guardSaved"), AR, g.k("STATE_D01_ART_COVER")),
+        (MN("sp10", "k_hachiku && n2 > n1"), SH, hkLine),
+        (MN("sp11", "k_ronpa"), SH, g.k("STATE_D01_SHF_BREAK")),
+        (MN("sp12", "k_reverseRonpa"), CE, g.k("BEAT_D01_REVERSE_1")),
+        (MN("sp13", "k_lastCard && n2 == 1"), CE, "k_downK"),
+        (MN("sp14", "k_lastStand && n3 == 0"), CE, g.k("BEAT_D01_LASTSTAND_FAIL_1")),
+        (MN("sp15", "k_crossed && xG"), AR, g.k("BEAT_D01_GUILT_1")),
+        (MN("sp16", "k_crossed && xA"), CE, g.k("BEAT_D01_ANGER_1")),
+        (MN("sp17", "k_stall"), CE, g.k("REACT_D01_FOGGED")),       # §6.7 被打迷糊仗 (every 打迷糊仗)
     ]
     g.x("hasSpeech", " || ".join(c[: -len("_t")] for c, _, _ in speech))
     who = ssel(g, "spWho", [(c, w) for c, w, _ in speech], g.k(""))
     line = ssel(g, "spLine", [(c, ln) for c, _, ln in speech], g.k(""))
-    spP = g.when("spG", parse, T("spOn", "hasSpeech || k_round"))
-    g.text("whoT", g.latch("whoL", who, spP))
-    g.text("lineT", g.latch("lineL", line, spP))
-    g.edge("whoT.text", f"{P}.speech_who")
-    g.edge("lineT.text", f"{P}.speech")
 
     # system line: (condition, template key); its values latched with it
     g.tget("lcKind", "d1uiCard", "kind", g.tfind("lcRow", "d1uiCard", "id", "L_LastCard"))
@@ -562,73 +713,84 @@ def gen_d01ui() -> Graph:
     # Every line and every number in it comes from the round's records (d1Events, in order; one record of lookahead in
     # u1G) and the player's own command (act, the claim's sophistry as chosen), never from his tell: the tell is the
     # AI's decision, which a scripted round (d1OppAct) overrides. ch §12.0 names the line of each case.
-    sysl = [
-        (T("sy1", "k_pAttach"), "SYS_D01_ATTACH"),
-        (T("sy2", "k_oAttach && cardUnfav"), "SYS_D01_SLIP_NODMG"),
-        (T("sy3", "k_pDmg && c_argument && act == 4"), "SYS_D01_FOG_TAKE"),
+    sysl = [(c, k) for c, k in ex_sy] + [
+        # the opening (S07 L004), a step of its own before round 1
+        (MN("syIntro", "d_intro == 1"), "SCR_D01_S07_L004"),
+        (MN("sy1", "k_pAttach"), "SYS_D01_ATTACH"),
+        (MN("sy2", "k_oAttach && cardUnfav"), "SYS_D01_SLIP_NODMG"),
+        (MN("sy3", "k_pDmg && c_argument && act == 4"), "SYS_D01_FOG_TAKE"),
         # both nodes landed: his 論證 follows his node (our link and its damage were played before)
-        (T("syClash", "k_pDmg && c_argument && d_pat"), "SYS_D01_CLASH"),
-        (T("sy4", "k_pDmg && c_exposed"), "SYS_D01_EXPOSED"),
-        (T("sy5", "k_pDmg && c_refuted"), "SYS_D01_REFUTED"),
-        (T("sy6", "k_pDmg && c_contradiction"), "SYS_D01_REDCRACK"),
+        (MN("syClash", "k_pDmg && c_argument && d_pat"), "SYS_D01_CLASH"),
+        (MN("sy4", "k_pDmg && c_exposed"), "SYS_D01_EXPOSED"),
+        (MN("sy5", "k_pDmg && c_refuted"), "SYS_D01_REFUTED"),
+        (MN("sy6", "k_pDmg && c_contradiction"), "SYS_D01_REDCRACK"),
         # 截斷 that whiffs: he rebutted (his own whiff follows), he sidestepped (his heal follows), or he spoke and the
         # claim does not cut it (his node follows; not when the cut was barred by last round's sidestep: no line)
-        (T("sy11", "k_pDmg && c_whiff && act == 2 && nx_oDmg"), "SYS_D01_BOTH_REBUT"),
-        (T("sy7", "k_pDmg && c_whiff && act == 2 && (nx_oHeal || nx_healVoid)"), "SYS_D01_CUT_EMPTY"),
+        (MN("sy11", "k_pDmg && c_whiff && act == 2 && nx_oDmg"), "SYS_D01_BOTH_REBUT"),
+        (MN("sy7", "k_pDmg && c_whiff && act == 2 && (nx_oHeal || nx_healVoid)"), "SYS_D01_CUT_EMPTY"),
         # E4: a cut barred by last round's sidestep (his node follows) has its own line, without numbers
-        (T("syCs", "k_pDmg && c_whiff && act == 2 && nx_oAttach && d_intBlk"), "SYS_D01_CUT_SEALED"),
-        (T("sy8", "k_pDmg && ((c_whiff && act == 2 && nx_oAttach && !d_intBlk) || c_bad_cut)"), "SYS_D01_MISS_WRONG"),
+        (MN("syCs", "k_pDmg && c_whiff && act == 2 && nx_oAttach && d_intBlk"), "SYS_D01_CUT_SEALED"),
+        (MN("sy8", "k_pDmg && ((c_whiff && act == 2 && nx_oAttach && !d_intBlk) || c_bad_cut)"), "SYS_D01_MISS_WRONG"),
         # 拆台 that whiffs (its dismantle record follows): a fact hit by a 正論, or a link the claim does not break (E4:
         # a sophistry on a fact of another issue too, −5)
-        (T("syTpF", "k_pDmg && c_whiff && act == 3 && nx_dismantle && nxFact && !d_soph"), "SYS_D01_TOPPLE_MISS_FACT"),
-        (T("syTpW", "k_pDmg && c_whiff && act == 3 && nx_dismantle && (!nxFact || d_soph)"),
+        (MN("syTpF", "k_pDmg && c_whiff && act == 3 && nx_dismantle && nxFact && !d_soph"), "SYS_D01_TOPPLE_MISS_FACT"),
+        (MN("syTpW", "k_pDmg && c_whiff && act == 3 && nx_dismantle && (!nxFact || d_soph)"),
          "SYS_D01_TOPPLE_MISS_WRONG"),
-        (T("sy9", "k_pDmg && c_fact_miss"), "SYS_D01_MISS_FACT"),
-        (T("sy10", "k_pDmg && c_stalemate && act == 4"), "SYS_D01_FOG_STALL"),
-        (T("sy12", "k_pDmg && c_stall_repeat"), "SYS_D01_FOG_REPEAT"),
-        (T("sy13", "k_pDmg && c_dying"), "SYS_D01_DESPERATE_HIT"),
+        (MN("sy9", "k_pDmg && c_fact_miss"), "SYS_D01_MISS_FACT"),
+        (MN("sy10", "k_pDmg && c_stalemate && act == 4"), "SYS_D01_FOG_STALL"),
+        (MN("sy12", "k_pDmg && c_stall_repeat"), "SYS_D01_FOG_REPEAT"),
+        (MN("sy13", "k_pDmg && c_dying"), "SYS_D01_DESPERATE_HIT"),
         # his last card hits: it ends the debate, or 困獸 voids his recovery (E4: NOHEAL, then CORNERED at the healVoid
         # record), or he recovers (his lastCard record follows, with his credibility)
-        (T("sy14", "k_pDmg && c_last_card && (outOver || nx_healVoid)"), "SYS_D01_LASTCARD_NOHEAL"),
-        (T("syCor", "k_healVoid && !outOver && modeN == 1"), "SYS_D01_LASTCARD_CORNERED"),
-        (T("syLcH", "k_pDmg && c_last_card && !outOver && nx_lastCard"), "SYS_D01_LASTCARD_HIT"),
-        (T("syLcR", "k_lastCardRemoved && !nx_lastCardRemoved"), "SYS_D01_LASTCARD_REMOVE"),
-        (T("sy15b", "k_oDmg && c_intercept && myClaimSoph"), "SYS_D01_CUT_SOPH"),
-        (T("sy15", f"k_oDmg && c_intercept && n1 > {M.INTERCEPT_DMG}"), "SYS_D01_CUT_PUSH"),
-        (T("sy16", "k_oDmg && c_intercept"), "SYS_D01_CUT_OK"),
-        (T("sy17", "k_oDmg && c_dismantle"), "SYS_D01_DISMANTLE"),
+        (MN("sy14", "k_pDmg && c_last_card && (outOver || nx_healVoid)"), "SYS_D01_LASTCARD_NOHEAL"),
+        (MN("syCor", "k_healVoid && !outOver && modeN == 1"), "SYS_D01_LASTCARD_CORNERED"),
+        (MN("syLcH", "k_pDmg && c_last_card && !outOver && nx_lastCard"), "SYS_D01_LASTCARD_HIT"),
+        (MN("syLcR", "k_lastCardRemoved && !nx_lastCardRemoved"), "SYS_D01_LASTCARD_REMOVE"),
+        (MN("sy15b", "k_oDmg && c_intercept && myClaimSoph"), "SYS_D01_CUT_SOPH"),
+        (MN("sy15", f"k_oDmg && c_intercept && n1 > {M.INTERCEPT_DMG}"), "SYS_D01_CUT_PUSH"),
+        (MN("sy16", "k_oDmg && c_intercept"), "SYS_D01_CUT_OK"),
+        (MN("sy17", "k_oDmg && c_dismantle"), "SYS_D01_DISMANTLE"),
         # E4: he rebutted while she dismantled: his whiff (the dismantle's own result was told before)
-        (T("syOrm", "k_oDmg && c_whiff && act == 3"), "SYS_D01_OPP_REBUT_MISS"),
+        (MN("syOrm", "k_oDmg && c_whiff && act == 3"), "SYS_D01_OPP_REBUT_MISS"),
         # the cut's record: a keystone (論破 or an ordinary cut), a fact knocked down by sophistry
-        (T("syKb", "k_intercept && n3 == 1 && n4 == 1"), "SYS_D01_KEY_BREAK"),
-        (T("syKn", "k_intercept && n3 == 1 && k_keyK"), "SYS_D01_KEY_NORMAL"),
-        (T("syDf", "k_intercept && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),
-        (T("syDfD", "k_dismantle && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),     # E4: a sophistry 拆台 on a fact
+        (MN("syKb", "k_intercept && n3 == 1 && n4 == 1"), "SYS_D01_KEY_BREAK"),
+        (MN("syKn", "k_intercept && n3 == 1 && k_keyK"), "SYS_D01_KEY_NORMAL"),
+        (MN("syDf", "k_intercept && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),
+        (MN("syDfD", "k_dismantle && n3 == 1 && k_factK"), "SYS_D01_DENY_FACT"),     # E4: a sophistry 拆台 on a fact
         # his rebuttal baited by a first 打迷糊仗 (破防 and a clear tell next round): told at the stall record
-        (T("sy18", "k_stall && stVsRebut && n2 == 0"), "SYS_D01_FOOLED"),
-        (T("sy19", "k_oHeal"), "SYS_D01_STALL_HEAL"),
-        (T("sy20", "k_refuted && knownN"), "SYS_D01_NOW_KNOWN"),
-        (T("sy21", "k_blocked"), "SYS_D01_BLOCKED"),
-        (T("sy22", "k_guardSaved"), "SYS_D01_COVER"),
-        (T("sy23", "k_shisshu && n1 == 1"), "SYS_D01_BREACH_HINT"),
-        (T("sy24", "k_crossed"), "SYS_D01_PSYCH_CROSS"),
-        (T("sy25", "k_ronpa && !outOver"), "SCR_D01_S07_L005"),
-        (T("sy26", "k_reverseRonpa"), "SYS_D01_REVERSE"),
-        (T("sy27", "k_endgame && egZero && !outOver"), "SCR_D01_S07_L006"),
-        (T("sy28", "k_lastCard && n2 == 1"), "SYS_D01_CUT_WIN"),
-        (T("sy29", "k_lastStand && n3 == 1"), "SYS_D01_LASTSTAND_OK"),
-        (T("sy30", "k_lastStand && n3 == 0"), "SYS_D01_LASTSTAND_FAIL"),
-        (T("sy31", "k_over && rsSurr"), "UI_V2_GIVE_UP"),
-        (T("sy32", "k_over && rsLimit"), "UI_V2_TIME_UP"),
-        (T("syZw", "k_over && ovSecZero"), "SYS_D01_ZERO_WIN"),
-        (T("sy33", "k_over && ovWin"), "SYS_D01_WIN"),
-        (T("sy34", "k_over"), "SCR_D01_S07_L016"),
+        (MN("sy18", "k_stall && stVsRebut && n2 == 0"), "SYS_D01_FOOLED"),
+        (MN("sy19", "k_oHeal"), "SYS_D01_STALL_HEAL"),
+        (MN("sy20", "k_refuted && knownN"), "SYS_D01_NOW_KNOWN"),
+        (MN("sy21", "k_blocked"), "SYS_D01_BLOCKED"),
+        (MN("sy22", "k_guardSaved"), "SYS_D01_COVER"),
+        (MN("sy23", "k_shisshu && n1 == 1"), "SYS_D01_BREACH_HINT"),
+        (MN("sy24", "k_crossed"), "SYS_D01_PSYCH_CROSS"),
+        (MN("sy25", "k_ronpa && !outOver"), "SCR_D01_S07_L005"),
+        (MN("sy26", "k_reverseRonpa"), "SYS_D01_REVERSE"),
+        (MN("sy27", "k_endgame && egZero && !outOver"), "SCR_D01_S07_L006"),
+        (MN("sy28", "k_lastCard && n2 == 1"), "SYS_D01_CUT_WIN"),
+        (MN("sy29", "k_lastStand && n3 == 1"), "SYS_D01_LASTSTAND_OK"),
+        (MN("sy30", "k_lastStand && n3 == 0"), "SYS_D01_LASTSTAND_FAIL"),
+        (MN("sy32", "k_over && rsLimit"), "UI_V2_TIME_UP"),
+        (MN("syZw", "k_over && ovSecZero"), "SYS_D01_ZERO_WIN"),
+        (MN("sy33", "k_over && ovWin"), "SYS_D01_WIN"),
+        (MN("sy34", "k_over"), "SCR_D01_S07_L016"),
         # E4: the round's tail (after its last record): 破竹 held
-        (T("syHk", "d_tail == 1"), "SYS_D01_HACHIKU_KEEP"),
+        (MN("syHk", "d_tail == 1"), "SYS_D01_HACHIKU_KEEP"),
     ]
     g.x("hasSys", " || ".join(c[: -len("_t")] for c, _ in sysl))
     skey = ssel(g, "syKey", [(c, g.k(k)) for c, k in sysl], g.k(""))
-    syP = g.when("syG", parse, T("syOn", "hasSys || k_round"))
+    # one step: both lines written together (a step without a spoken line clears it)
+    showP = g.when("showG", parse, T("showOn", "hasSpeech || hasSys || (isMain && k_round)"))
+    spP = syP = showP
+    g.text("whoT", g.latch("whoL", who, spP))
+    g.text("lineK", g.latch("lineL", line, spP))
+    # BEAT_D01_REFUTED_3/4: {item} the picked-up evidence, {place} the hotspot where it lies (d1uiRefute)
+    g.text("rfItemT", g.latch("rfItemL", "rfItemK", spP))
+    g.text("rfPlaceT", g.latch("rfPlaceL", "rfPlaceK", spP))
+    g.textf("lineT", pattern="lineK.text", item="rfItemT.text", place="rfPlaceT.text")
+    g.edge("whoT.text", f"{P}.speech_who")
+    g.edge("lineT.text", f"{P}.speech")
     # values: hp after (pDmg / oDmg n3, lastStand n4), damage n1 / n3, the values of oHeal, the gauge's name, ...
     g.x("vHp", "k_lastStand ? n4 : k_oAttach ? d_hpM : k_stall ? d_hpO : n3")
     g.x("vPct", "round(gn5 / L_OppMax * 100)")
@@ -655,16 +817,16 @@ def gen_d01ui() -> Graph:
                        dmg_o=lat["vDmg"], pct=lat["vPct"], n=lat["vRmN"])
     g.edge(sys_text, f"{P}.sys_line")
     g.counter("lineSeq", initial=0)
-    g.edge(g.merge("lineM", spP, syP), "lineSeq.increment")
+    g.edge(showP, "lineSeq.increment")
     g.edge("lineSeq.value", f"{P}.line_seq")
 
     # numbers: the gauges follow the records (after values); floats
-    pdP = g.when("pdG", parse, T("pdOn", "k_pDmg"))
+    pdP = g.when("pdG", parse, MN("pdOn", "k_pDmg"))
     setn(pdP, "hpM", "n3")
     fm = g.latch("fmL2", g.fmt("fmDmg", "−{a}", "n1"), pdP)
-    odP = g.when("odG", parse, T("odOn", "k_oDmg"))
+    odP = g.when("odG", parse, MN("odOn", "k_oDmg"))
     setn(odP, "hpO", "n3")
-    hlP = g.when("hlG", parse, T("hlOn", "k_oHeal"))
+    hlP = g.when("hlG", parse, MN("hlOn", "k_oHeal"))
     setn(hlP, "hpO", "n2")
     fo = ssel(g, "foSel", [(g.b("foHeal", "k_oHeal"), g.fmt("foH", "+{a}", g.x("healAmt", "n2 - n1")))],
               g.fmt("foD", "−{a}", "n1"))
@@ -677,29 +839,29 @@ def gen_d01ui() -> Graph:
     g.counter("fmSeq", initial=0)
     g.edge(pdP, "fmSeq.increment")
     g.edge("fmSeq.value", f"{P}.float_me_seq")
-    setn(g.when("gsG", parse, T("gsOn", "k_guardSaved")), "hpM", "n1")
-    setn(g.when("lsG", parse, T("lsOn", "k_lastStand && n3 == 1")), "hpM", "n4")
-    setn(g.when("lcHG", parse, T("lcHOn", "k_lastCard && n2 == 0 && n3 == 0")), "hpO", "n5")
-    patP = g.when("patOnG", parse, T("patOn", "k_pAttach"))
+    setn(g.when("gsG", parse, MN("gsOn", "k_guardSaved")), "hpM", "n1")
+    setn(g.when("lsG", parse, MN("lsOn", "k_lastStand && n3 == 1")), "hpM", "n4")
+    setn(g.when("lcHG", parse, MN("lcHOn", "k_lastCard && n2 == 0 && n3 == 0")), "hpO", "n5")
+    patP = g.when("patOnG", parse, MN("patOn", "k_pAttach"))
     setn(patP, "pat", g.k(1))
     setn(patP, "patD", "n3")
-    setn(g.when("intBG", parse, T("intBOn", "k_intercept")), "intBlk", "n5")
-    setn(g.when("rmG", parse, T("rmOn", "k_lastCardRemoved")), "rmN", "vRmN")
-    setn(g.when("patOffG", parse, T("patOff", "k_round")), "pat", g.k(0))
+    setn(g.when("intBG", parse, MN("intBOn", "k_intercept")), "intBlk", "n5")
+    setn(g.when("rmG", parse, MN("rmOn", "k_lastCardRemoved")), "rmN", "vRmN")
+    setn(g.when("patOffG", parse, MN("patOff", "k_round")), "pat", g.k(0))
     # 論破: his chain shatters
     g.counter("shatSeq", initial=0)
-    g.edge(g.when("shatG", parse, T("shatOn", "k_ronpa")), "shatSeq.increment")
+    g.edge(g.when("shatG", parse, MN("shatOn", "k_ronpa")), "shatSeq.increment")
     g.edge("shatSeq.value", f"{P}.shatter_seq")
 
     # cut-ins (ui#cutin, same ids as v1; 動搖 now on 破防, ch §13): one big or one stamp per record
-    bigs = [(T("bg1", "k_ronpa"), "CUT_RONPA"), (T("bg2", "k_reverseRonpa"), "CUT_REVERSE"),
-            (T("bg3", "k_hachiku && n2 >= 3 && n1 < 3"), "CUT_HACHIKU3"), (T("bg4", "k_shisshu && n1 == 1"), "CUT_SHISSHU"),
-            (T("bg5", "k_crossed && xP"), "CUT_KONJU"), (T("bg6", "k_broken"), "CUT_SHAKEN")]
+    bigs = [(MN("bg1", "k_ronpa"), "CUT_RONPA"), (MN("bg2", "k_reverseRonpa"), "CUT_REVERSE"),
+            (MN("bg3", "k_hachiku && n2 >= 3 && n1 < 3"), "CUT_HACHIKU3"), (MN("bg4", "k_shisshu && n1 == 1"), "CUT_SHISSHU"),
+            (MN("bg5", "k_crossed && xP"), "CUT_KONJU"), (MN("bg6", "k_broken"), "CUT_SHAKEN")]
     # stamps (ruling c): the UI_V2_STAMP_* words on a text seal; his side top right (V2_TR), ours bottom left (V2_BL)
-    stamps = [(T("sm1", "k_intercept && n3 == 1"), "CUT", "TR"), (T("sm2", "k_intercept"), "WHIFF", "BL"),
-              (T("sm3", "k_dismantle && n3 == 1"), "TOPPLE", "TR"), (T("sm4", "k_dismantle"), "WHIFF", "BL"),
-              (T("sm5", "k_oAttach && d_pat"), "CLASH", "TR"), (T("sm6", "k_guardSaved"), "COVER", "BL"),
-              (T("sm7", "k_oDmg && c_whiff"), "BAITED", "BL"), (T("sm8", "k_pDmg && (c_exposed || c_refuted || c_last_card) && L_PCombo > 0"), "COMBO_BREAK", "BL")]
+    stamps = [(MN("sm1", "k_intercept && n3 == 1"), "CUT", "TR"), (MN("sm2", "k_intercept"), "WHIFF", "BL"),
+              (MN("sm3", "k_dismantle && n3 == 1"), "TOPPLE", "TR"), (MN("sm4", "k_dismantle"), "WHIFF", "BL"),
+              (MN("sm5", "k_oAttach && d_pat"), "CLASH", "TR"), (MN("sm6", "k_guardSaved"), "COVER", "BL"),
+              (MN("sm7", "k_oDmg && c_whiff"), "BAITED", "BL"), (MN("sm8", "k_pDmg && (c_exposed || c_refuted || c_last_card) && L_PCombo > 0"), "COMBO_BREAK", "BL")]
     g.x("hasBig", " || ".join(f"bg{i}" for i in range(1, len(bigs) + 1)))
     g.x("hasStamp", "!hasBig && (" + " || ".join(f"sm{i}" for i in range(1, len(stamps) + 1)) + ")")
     bid = ssel(g, "bigId", [(c, g.k(k)) for c, k in bigs], g.k(""))
@@ -725,7 +887,24 @@ def gen_d01ui() -> Graph:
     g.edge(g.sel("subOut", T("subOn", "subLangN && subOnN"), "subF.text", g.k("")), "ui#cutin.subtitle")
 
     # the dwell before the next record
-    g.x("dwell", "k_ronpa ? 5 : hasBig ? 4 : hasSpeech ? 3 : hasSys ? 2 : (k_pDmg || k_oDmg || k_oHeal) ? 1 : 0")
+    g.x("dwell", "!isMain ? (hasSpeech ? 3 : 2) : k_ronpa ? 5 : hasBig ? 4 : hasSpeech ? 3 : hasSys ? 2 : "
+                 "(k_pDmg || k_oDmg || k_oHeal) ? 1 : 0")
+    # the first clash's beat: done from the next record on (clsP, read at the next fetch)
+    setn(g.when("clsPG", parse, MN("clsPOn", "clashRec && !d_clsh")), "clsP", g.k(1))
+    # ---- music (staging bgm_cues_d01.csv README): BGM07 at the start (S07 L004's cut), BGM08 when he first drops to
+    # half or is first in 破防, BGM09 on 論破 and through the endgame, BGM10 on a Reverse Break (back to BGM09 when her
+    # last card succeeds); silence from S07 L007 (he gives up) and on a loss (L016), until the lines after the debate
+    setn(g.when("m8G", parse, MN("m8C", "(k_oDmg && n3 <= L_OppMax / 2) || k_broken")), "m8", g.k(1))
+    setn(g.when("m9G", parse, MN("m9C", "k_ronpa || k_endgame")), "m9", g.k(1))
+    setn(g.when("m10G", parse, MN("m10C", "k_reverseRonpa")), "m10", g.k(1))
+    setn(g.when("m10bG", parse, MN("m10bC", "k_lastStand && n3 == 1")), "m10", g.k(0))
+    setn(g.when("hushG", parse, T("hushC", "xL7S || (isMain && k_over && !ovWin)")), "hush", g.k(1))
+    mom = ssel(g, "bgmMomD1", [(g.b("bmOffD1", g.x("bmOffD1N", "!isDebKN")), g.k("")),
+                                (g.b("bmHush", g.p("d_hush")), g.k("hush")),
+                                (g.b("bmRevD1", g.x("bmRevD1N", "d_m10 == 1")), g.k("reverse")),
+                                (g.b("bmBrkD1", g.p("d_m9")), g.k("break")),
+                                (g.b("bm8D1", g.p("d_m8")), g.k("debate2"))], g.k("d1open"))
+    g.edge(mom, "world.bgmD1")
     g.lookup("dwellS", DWELL, "dwell")
     setn(parse, "pbAt", g.x("pbAtN", "now + dwellS"))
 
@@ -806,6 +985,24 @@ def gen_d01ui() -> Graph:
     g.text("gestT", g.sel("gestSel", T("gestOn", "tellClearN && modeN == 0 && ta >= 0"), gest, g.k("")))
     g.edge("gestT.text", f"{P}.tell_gesture")
     g.edge(g.b("dyingB", "L_Dying"), f"{P}.dying")
+    # Arthur's tell line (ref lines.tell_line; ch §11, §12.0): slip > the ★ action > on a clear tell: keystone > fact >
+    # nothing carried can cut it > the action; each at most once per debate; the endgame's: the dying gasp (S07 L010,
+    # his), the picked-up keys (BEAT_D01_LASTCARD_1), any other last card (HINT_LAST); none in the §7.5 round
+    g.tget("tcKeyN", "d1uiCard", "key", "tcRow", "number")
+    g.tget("tcFactN", "d1uiCard", "fact", "tcRow", "number")
+    g.x("starCode", "starA ? ta : starB ? tb : -1")
+    g.x("hIdx", "modeN == 2 ? 0 : modeN == 1 ? (L_Dying ? 11 : lcP05 ? 10 : 9) : L_TellPartial ? 5 : starCode >= 0 ? starCode + 1"
+                " : !tellClearN ? 0 : (tcHasN && tcKeyN) ? 6 : (tcHasN && tcFactN) ? 7 : (tcHasN && !d_cutOk) ? 8"
+                " : (ta >= 0 && ta <= 3) ? ta + 1 : 0")
+    hKey = g.lookup("hKey", HINTS, "hIdx")
+    hFlag = g.fmt("hFlag", "h{a}", "hIdx")
+    g.mget("hUsed", "u1", hFlag)
+    hP = g.when("hintG", r2T, T("hintOn", "hIdx > 0 && !hUsed"))
+    sets(hP, "hintK", hKey)
+    sets(hP, "hintW", g.lookup("hWho", ["SPK_ARTHUR"] * (len(HINTS) - 1) + ["SPK_D01_CEDRIC"], "hIdx"))
+    g.edge(hP, g.eff("hMark", "atrium.map.set", "u1", key=hFlag, value=g.k(1)))
+    g.edge(g.text("hintT", "s_hintK"), f"{P}.hint")
+    g.edge(g.text("hintWT", "s_hintW"), f"{P}.hint_who")
     g.edge(g.textf("dyingT", key="UI_V2_DEATH_THROE", n=g.k(M.DYING_DMG)), f"{P}.dying_text")
     # the choice
     g.edge(g.b("canDisB", g.x("canDis", "ocN > 0")), f"{P}.can_dismantle")

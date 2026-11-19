@@ -133,7 +133,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 ## 3. `script`：劇本行（每行一列，依章、場景號、行號）
 
-v2 示範關卡 D01（M4a）：`localization/d01/script_d01.csv` 中步驟表會播的場景 S01～S04（`tools/build_data.py` `D01_SCRIPT_SCENES`）也是這張表的列，排在 v1 之後：`chapter` 101、`sceneKey` `D01_Sxx`、場景標題 `SCR_D01_Sxx_TITLE`（`seq` 0、`kind` heading、不播放），其後是 L 列（`seq` ＝ 行號）；說話者鍵為 `SPK_D01_<slug>`（在地化包有時）或 `SPK_<slug>`（沒有時由 CSV 的說話者兩欄產生，同 v1）。演出在 `source/staging/staging_d01.csv`（同欄位，本倉庫撰寫）。S04 的列由熱身畫面讀說話者，不經 vn。
+v2 示範關卡 D01（M4a）：`localization/d01/script_d01.csv` 中步驟表會播的場景 S01～S04（`tools/build_data.py` `D01_SCRIPT_SCENES`）也是這張表的列，排在 v1 之後：`chapter` 101、`sceneKey` `D01_Sxx`、場景標題 `SCR_D01_Sxx_TITLE`（`seq` 0、`kind` heading、不播放），其後是 L 列（`seq` ＝ 行號）；說話者鍵為 `SPK_D01_<slug>`（在地化包有時）或 `SPK_<slug>`（沒有時由 CSV 的說話者兩欄產生，同 v1）。演出在 `source/staging/staging_d01.csv`（同欄位，本倉庫撰寫）。S04 的列由熱身畫面讀說話者，不經 vn。4.3 加入 S07：L001～L003 的 `cue` 為 `pre`、L012～L015 `postWin`、L017～L019 `postLose`（`D01_S07_CUES`，由 `dialogue` 播放）；其他 S07 行（L004～L011、L016）沒有 cue，由論戰畫面播（`dialogue` 在論戰步驟只找有 cue 的列，同 v1 論戰場景的逐字稿）。`BEAT_D01_*`／`REACT_D01_*`／`TELL_D01_*` 的說話者沒有字串時同樣產生（`SPK_MARTHA`、`SPK_IRENE`）。
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
@@ -458,7 +458,7 @@ v2 示範關卡 D01（M4a，`docs/flows.md` §4.14）另有一列 `D01_OPEN`（c
 
 哪些行有列：`script.playable` 的列（不含 `S90`），但論戰與熱身場景只有 `cue` ＝ `pre` 的開場台詞（設計表規則 4：場景的 cue 只定開場的曲子，之後由論戰的音樂規則接手，所以收尾台詞、反駁、F 列沒有列）；加上每一份報紙的導言 `papers.bodyKey`。每一列的 cue ＝ 同場景中位置在它之前（含它自己）最近的 cue；位在分支（`script.branch`）上的 cue 只算進同一分支的列（規則 3：例 Ch.1 S06 L006「敗北」的 cue 只在 lose 分支的 L007、L008 生效），分支之前的 cue 兩支都算。cue 掛在不顯示的行（場景標題 L001、分支標記、小標）時，從其後第一個顯示的行開始生效。
 
-v2 示範關卡 D01（M4a）：`source/staging/bgm_cues_d01.csv`（設計 repo `staging/`，19 筆，`--import-staging` 一併複製）另外產生 `D01_Sxx` 的列（`tools/build_data.py` `build_d01_cues`）：`script_d01.csv` 每一個 L 行一列（S07 以後的場景也有列，但還沒有步驟播它們，所以不會生效），cue ＝ 同場景中位置在它之前最近的 cue；假 ID `SCR_D01_S05_START`（「蒐證步驟開始時」）自成一列（場景 `D01_S05`）。驗證同下（cue_id 為 `BGM_D01_nn`、`chapter` 為 `D01`、`start_id` 是 D01 的行或假 ID）。
+v2 示範關卡 D01（M4a）：`source/staging/bgm_cues_d01.csv`（設計 repo `staging/`，19 筆，`--import-staging` 一併複製）另外產生 `D01_Sxx` 的列（`tools/build_data.py` `build_d01_cues`）：`script_d01.csv` 每一個 L 行一列（S07 的列在 `d1debate` 步驟生效，4.3；S08 以後還沒有步驟），cue ＝ 同場景中位置在它之前最近的 cue；假 ID `SCR_D01_S05_START`（「蒐證步驟開始時」）自成一列（場景 `D01_S05`）。驗證同下（cue_id 為 `BGM_D01_nn`、`chapter` 為 `D01`、`start_id` 是 D01 的行或假 ID）。
 
 驗證（錯誤，建置失敗）：
 - 標頭不符；`cue_id` 不是 `BGM_CHnn_nn` 或重複；`chapter` 與 `start_id` 的章不同。

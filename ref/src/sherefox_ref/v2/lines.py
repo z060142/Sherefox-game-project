@@ -1,0 +1,514 @@
+"""What the D01 debate screen says, line by line (v2 demo 4.3; ch §2 S07, §9, §11, §12.0-§12.4).
+
+This is the oracle of the debate UI's playback (tools/gen_debui_v2.py, docs/flows.md §4.12): a pure function of the
+round's records (the engine's d1Events, which equal the ref events, debate-engine-v2 §2.3) and of the state, so the
+UI and the tests read the same selection rule.
+
+* ``tell_line``: the line shown with the tell, before the player chooses (Arthur's hint ``TELL_D01_HINT_*``, the
+  P05 beat, S07 L010 for the dying gasp). Ch §11 names a hint per action and §12.0 one per situation; neither says
+  how often Arthur speaks. Reading used here (reported as a design question): the first situation that holds, in
+  the order slip (the half sentence) > the ★ action > on a clear tell: keystone > fact > nothing-can-cut > the
+  action; each hint at most once per debate (no fall through to a lower one when the first is used). A vague tell
+  without ★ gives none (the line on it may not be said, and an action hint would tell which of the two he picks).
+  No hint in the §7.5 round.
+* ``round_steps``: the playback of one round. Every record gives at most one main step (his or her spoken line and
+  a system line shown together), with extra steps before (``pre``) or after (``post``) it for the S07 lines, the
+  ``BEAT_D01_*`` interludes and the §9 / §11 lines that have a speaker of their own. After the last record, one tail
+  step (破竹維持). Empty steps are dropped.
+* ``OPENING`` / ``outro``: S07 around the debate (L001-L003 before it as dialogue, L004 when it starts, L012-L015 after
+  a win, L017-L019 after a loss: L016 is the loss line inside the debate).
+
+Speakers are string keys (``SPK_*``); a staging beat has no name plate (``""``).
+"""
+
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from . import known as K
+from .model import CATCH, OA, PA, State
+
+SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
+MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
+STAGE = ""
+
+PRE_LINES = ("SCR_D01_S07_L001", "SCR_D01_S07_L002", "SCR_D01_S07_L003")     # dialogue before the debate
+OPENING_SYS = "SCR_D01_S07_L004"                                               # when the debate starts
+WIN_LINES = ("SCR_D01_S07_L012", "SCR_D01_S07_L013", "SCR_D01_S07_L014", "SCR_D01_S07_L015")
+LOSS_LINES = ("SCR_D01_S07_L017", "SCR_D01_S07_L018", "SCR_D01_S07_L019")    # L016 is shown in the debate
+
+ACTION_HINT = {OA.ATTACK: "TELL_D01_HINT_ASSERT", OA.FORCE: "TELL_D01_HINT_PUSH", OA.REBUT: "TELL_D01_HINT_REBUT",
+               OA.PARRY: "TELL_D01_HINT_STALL"}
+FOG = ("FOG_D01_1", "FOG_D01_2", "FOG_D01_3")
+# 06B / 04C refuted with the picked-up handkerchief (ch §12.0 BEAT_D01_REFUTED_1/2)
+KITCHEN_REFUTE = ("E07", ("06B", "04C"))
+
+_PKG = Path(__file__).resolve().parents[4] / "source" / "localization" / "d01" / "strings_d01.json"
+
+
+def package_keys() -> set[str]:
+    """The D01 localization package's keys (the fallbacks below depend on which lines exist)."""
+    return set(json.loads(_PKG.read_text(encoding="utf-8")))
+
+
+@dataclass(frozen=True)
+class Step:
+    who: str = ""     # speaker key of the spoken line ("" with a line = staging, no name plate)
+    line: str = ""    # spoken line key
+    sys: str = ""     # system line key
+
+    def empty(self) -> bool:
+        return not self.line and not self.sys
+
+
+@dataclass
+class Memo:
+    """What the playback remembers across the rounds of one debate."""
+    hints: set = field(default_factory=set)     # tell lines already shown
+    clashed: bool = False                        # BEAT_D01_CLASH_* played (first clash only)
+
+
+def outro(outcome: str) -> tuple[str, ...]:
+    return WIN_LINES if outcome == "win" else LOSS_LINES
+
+
+def outro_cue(outcome: str) -> str:
+    return "postWin" if outcome == "win" else "postLose"
+
+
+# ------------------------------------------------------------------------------------------------ the tell
+
+
+def can_cut(s: State, card: str) -> bool:
+    """A claim in this round's picker that shows as 正論 and breaks the card (ch §12.0 TELL_D01_HINT_NOCUT)."""
+    brk = s.ch.breakers.get(card, ())
+    return any(not v.soph and v.id in brk for v in K.claim_list(s) if not K.is_catch(v.id))
+
+
+def tell_line(s: State, tell, memo: Memo) -> tuple[str, str] | None:
+    """(speaker, key) shown with the tell of the round about to be chosen (state s, the AI's tell), or None.
+    Marks the hint used in `memo`."""
+    if s.outcome or s.player_locked or tell is None:
+        return None
+    if s.endgame is not None:
+        if s.endgame["dying"]:
+            return CE, "SCR_D01_S07_L010"
+        key = "BEAT_D01_LASTCARD_1" if s.endgame["card"] == "P05" else "TELL_D01_HINT_LAST"
+        out = (AR, key)
+    else:
+        card = tell.card
+        cd = s.ch.cards.get(card) if card else None
+        clear = tell.clarity.value == "clear"
+        if tell.partial:
+            key = "TELL_D01_HINT_SLIP"
+        elif tell.star is not None:
+            key = ACTION_HINT.get(tell.star)
+        elif not clear:
+            key = None
+        elif cd is not None and cd.keystone:
+            key = "TELL_D01_HINT_KEY"
+        elif cd is not None and cd.is_fact:
+            key = "TELL_D01_HINT_FACT"
+        elif cd is not None and not can_cut(s, card):
+            key = "TELL_D01_HINT_NOCUT"
+        else:
+            key = ACTION_HINT.get(tell.shown[0])
+        if key is None:
+            return None
+        out = (AR, key)
+    if out[1] in memo.hints:
+        return None
+    memo.hints.add(out[1])
+    return out
+
+
+# ------------------------------------------------------------------------------------------------ records
+
+
+def records(events: list, before: State) -> list[dict]:
+    """The engine's records (debate-engine-v2 §2.3) of a round's ref events, as dicts with `k` = the record kind;
+    sub-records (redCrackRemoved, ronpaNode, lastCardRemoved, lastStandDestroyed, reverseRonpaNode) included."""
+    ch = before.ch
+    chain = [n.claim for n in before.player_chain]
+    out: list[dict] = []
+    for e in events:
+        k = e["kind"]
+        if k == "round":
+            out.append({"k": "round"})
+        elif k == "player_damage":
+            out.append({"k": "pDmg", "amount": e["amount"], "cause": e["cause"], "hp": e["hp"]})
+        elif k == "opp_damage":
+            out.append({"k": "oDmg", "amount": e["amount"], "cause": e["cause"], "hp": e["hp"]})
+        elif k == "opp_heal":
+            out.append({"k": "oHeal"})
+        elif k == "heal_void":
+            out.append({"k": "healVoid"})
+        elif k == "reraise":
+            out.append({"k": "reraise", "card": e["card"]})
+        elif k == "psych_event":
+            out.append({"k": "psych"})
+        elif k == "opp_attach":
+            out.append({"k": "oAttach", "card": e["card"]})
+        elif k == "player_attach":
+            f = e["factors"]
+            prev = chain[-1] if "continuation" in f and chain else ""
+            out.append({"k": "pAttach", "claim": e["claim"], "prev": prev})
+            chain.append(e["claim"])
+        elif k == "red_crack":
+            out.append({"k": "redCrack"})
+            out += [{"k": "redCrackRemoved"} for c in chain if c in e["removed"]]
+            chain = [c for c in chain if c not in e["removed"]]
+        elif k == "exposed":
+            out.append({"k": "exposed"})
+        elif k == "refuted":
+            out.append({"k": "refuted", "claim": e["claim"], "line": e["line"], "reveals": e["reveals"]})
+        elif k == "blocked":
+            out.append({"k": "blocked"})
+        elif k == "intercept":
+            out.append({"k": "intercept", "claim": e["claim"], "card": e["card"], "ok": e["ok"],
+                        "keystone": e.get("keystone", False), "parried": e.get("blocked_by_parry", False)})
+        elif k == "broken":
+            out.append({"k": "broken"})
+        elif k == "dismantle":
+            out.append({"k": "dismantle", "claim": e["claim"], "card": e["card"], "ok": e["ok"]})
+        elif k == "stall":
+            out.append({"k": "stall", "vs": e["vs"], "repeat": e["repeat"]})
+        elif k == "guard_saved":
+            out.append({"k": "guardSaved"})
+        elif k == "hachiku":
+            out.append({"k": "hachiku", "before": e["before"], "after": e["after"]})
+        elif k == "shisshu":
+            out.append({"k": "shisshu", "on": e["on"]})
+        elif k == "threshold_crossed":
+            out.append({"k": "crossed", "stat": e["stat"]})
+        elif k == "debate_over":
+            out.append({"k": "over", "outcome": e["outcome"], "reason": e["reason"]})
+        elif k == "reverse_ronpa":
+            out.append({"k": "reverseRonpa"})
+            out += [{"k": "reverseRonpaNode"} for _ in e["chain"]]
+        elif k == "ronpa":
+            out.append({"k": "ronpa"})
+            out += [{"k": "ronpaNode"} for _ in e["chain"]]
+        elif k == "endgame":
+            out.append({"k": "endgame", "trigger": e["trigger"]})
+        elif k == "last_card":
+            if e["cut"]:
+                out.append({"k": "lastCard", "card": e["card"], "cut": True, "dying": False})
+            elif e.get("dying"):
+                out.append({"k": "lastCard", "card": e["card"], "cut": False, "dying": True})
+            else:
+                out.append({"k": "lastCard", "card": e["card"], "cut": False, "dying": False})
+                out += [{"k": "lastCardRemoved"} for c in chain if c in e["removed"]]
+        elif k == "last_stand":
+            out.append({"k": "lastStand", "ok": e["ok"]})
+            if e["ok"]:
+                out += [{"k": "lastStandDestroyed"} for _ in e["destroyed"]]
+        elif k == "rule3_armed":
+            out.append({"k": "rule3Armed"})
+        else:
+            raise ValueError(f"unmapped ref event {k}")
+    return out
+
+
+# ------------------------------------------------------------------------------------------------ one round
+
+
+def _card_line(keys: set, card: str, part: str) -> str:
+    """CARD_D01_<card>_<PART>; a 強辯 / 改口 line the package does not have falls back to the 立論 line."""
+    state = f"CARD_D01_{card}_STATE"
+    if part == "STATE":
+        return state
+    k = f"CARD_D01_{card}_{part}"
+    return k if k in keys else state
+
+
+def _down_line(keys: set, s: State, card: str) -> str:
+    k = f"CARD_D01_{card}_DOWN"
+    if k in keys:
+        return k
+    return "REACT_D01_FACT_SOPH_1" if s.ch.cards[card].is_fact else "REACT_D01_LIE_SOPH"
+
+
+def _react(keys: set, claim: str, soph: bool, s: State) -> str:
+    """His reaction to her link landing (§9): the claim's own, else the sophistry one, else the issue's."""
+    if not K.is_catch(claim):
+        for k in (f"REACT_D01_{claim}", f"REACT_D01_{claim}_1"):
+            if k in keys:
+                return k
+    if soph:
+        return "REACT_D01_SOPH"
+    issue = s.ch.cards[claim.split(":")[1]].issue if K.is_catch(claim) else s.ch.claims[claim].issue
+    return f"REACT_D01_ISSUE_{ {'機': 'OPP', '法': 'METHOD', '動': 'MOTIVE'}[issue] }"
+
+
+def _claim_line(s: State, claim: str) -> str:
+    if K.is_catch(claim):
+        return f"CARD_D01_{claim.split(':')[1]}_CATCH"
+    return f"CLM_D01_{claim}_LINE"
+
+
+def round_steps(s: State, pa, oa, ev: list, s2: State, memo: Memo, keys: set | None = None) -> list[Step]:
+    """The steps the screen shows for one round (state s, player action pa, opponent action oa as resolved, ref events
+    ev, state after s2), in order. Updates `memo` (first clash)."""
+    keys = package_keys() if keys is None else keys
+    ch = s.ch
+    recs = records(ev, s)
+    mode = "endgame" if s.endgame is not None else "laststand" if s.player_locked else "normal"
+    claim = pa.claim
+    if claim == CATCH:
+        claim = f"{CATCH}:{s.catch_card}"
+    view = K.view(s, claim) if claim else None
+    soph = bool(view and view.soph)
+    crack = bool(view and view.red_crack)
+    carried = set(s.loadout.carried)
+    over = s2.outcome is not None
+    dying_next = bool(s2.endgame and s2.endgame["dying"])
+    lc_card = s.endgame["card"] if s.endgame else None
+    first_p1 = claim in ("P1A", "P1B") and not any(r.claim in ("P1A", "P1B") for r in s.record)
+    appraisal_soph = bool(claim and not K.is_catch(claim) and soph and
+                          any(k in s.known and k in ch.appraisals for k in ch.claims[claim].conflicts))
+    steps: list[Step] = []
+    pat = False                      # our link landed earlier this round (CLASH)
+    int_blk = False                  # the cut was barred by last round's sidestep
+    for i, r in enumerate(recs):
+        k = r["k"]
+        nx = recs[i + 1] if i + 1 < len(recs) else {"k": ""}
+        pre: list[Step] = []
+        post: list[Step] = []
+        who = line = sysk = ""
+        # -------- the record's main lines (tools/gen_debui_v2.py speech / sysl, first match)
+        if k == "round":
+            if crack:
+                pre.append(Step(AR, "BEAT_D01_REDCRACK_1"))
+            if claim == "09A":
+                pre.append(Step(AR, "BEAT_D01_09A_1"))
+            if mode == "endgame" and not s.endgame["dying"]:
+                pre.append(Step(sys="SCR_D01_S07_L011"))
+            if claim:
+                who, line = SH, _claim_line(s, claim)
+            elif pa.kind == PA.STALL:
+                who, line = SH, FOG[(s.round - 1) % 3]
+            if claim == "06B" and "E07" in carried:
+                post.append(Step(AR, "BEAT_D01_SOPH_06B_1"))
+            elif claim == "06C":
+                post.append(Step(AR, "BEAT_D01_SOPH_06C_1"))
+            elif appraisal_soph:
+                post.append(Step(AR, "BEAT_D01_SOPH_03C_1"))
+            if first_p1:
+                post.append(Step(STAGE, "BEAT_D01_P1A_1"))
+        elif k == "pAttach":
+            pat = True
+            c = r["claim"]
+            link = f"LINK_D01_{r['prev']}_{c}"
+            if r["prev"] and link in keys:
+                who, line = SH, link
+            else:
+                who, line = CE, _react(keys, c, soph, s)
+            sysk = "SYS_D01_ATTACH"
+            if c == "09A":
+                pre.append(Step(IRE, "REACT_D01_09A_3"))
+                post.append(Step(MRS, "REACT_D01_09A_2"))
+            if first_p1:
+                post.append(Step(AR, "BEAT_D01_P1A_2"))
+            if c == "02C":
+                post.append(Step(MRS, "BEAT_D01_02C_1"))
+            if c == "07A":
+                post += [Step(MAR, "BEAT_D01_07A_1"), Step(BRI, "BEAT_D01_07A_2")]
+        elif k == "oAttach":
+            card = r["card"]
+            who, line = CE, _card_line(keys, card, "PUSH" if oa.kind == OA.FORCE else "STATE")
+            if ch.cards[card].kind == "unfav":
+                sysk = "SYS_D01_SLIP_NODMG"
+        elif k == "reraise":
+            who, line = CE, _card_line(keys, r["card"], "RETRACT")
+        elif k == "refuted":
+            who, line = CE, r["line"]
+            if r["reveals"]:
+                sysk = "SYS_D01_NOW_KNOWN"
+            via = next((v for v, ln in ch.claims[r["claim"]].opp_refute if ln == r["line"]), None)
+            if via == KITCHEN_REFUTE[0] and r["claim"] in KITCHEN_REFUTE[1]:
+                post += [Step(BRI, "BEAT_D01_REFUTED_1"), Step(MAR, "BEAT_D01_REFUTED_2")]
+            if via in ch.evidence:
+                post += [Step(SH, "BEAT_D01_REFUTED_3"), Step(AR, "BEAT_D01_REFUTED_4")]
+        elif k == "intercept":
+            int_blk = r["parried"]
+            if r["ok"]:
+                who, line = CE, _knocked(keys, s, r, soph)
+                cd = ch.cards[r["card"]]
+                if r["keystone"]:
+                    sysk = "SYS_D01_KEY_BREAK"
+                elif cd.keystone:
+                    sysk = "SYS_D01_KEY_NORMAL"
+                elif cd.is_fact:
+                    sysk = "SYS_D01_DENY_FACT"
+        elif k == "dismantle":
+            if r["ok"]:
+                who, line = CE, _knocked(keys, s, r, soph)
+                if ch.cards[r["card"]].is_fact:
+                    sysk = "SYS_D01_DENY_FACT"
+        elif k == "blocked":
+            who, line, sysk = CE, "REACT_D01_BLOCK", "SYS_D01_BLOCKED"
+        elif k == "oDmg":
+            cause = r["cause"]
+            if cause == "whiff":
+                who, line = CE, "REACT_D01_FOOLED"
+                if pa.kind == PA.DISMANTLE:
+                    sysk = "SYS_D01_OPP_REBUT_MISS"
+            elif cause == "intercept":
+                sysk = ("SYS_D01_CUT_SOPH" if soph else
+                        "SYS_D01_CUT_PUSH" if r["amount"] > 20 else "SYS_D01_CUT_OK")
+                if claim == "07A":
+                    post += [Step(MAR, "BEAT_D01_07A_1"), Step(BRI, "BEAT_D01_07A_2")]
+            elif cause == "dismantle":
+                sysk = "SYS_D01_DISMANTLE"
+        elif k == "guardSaved":
+            who, line, sysk = AR, "STATE_D01_ART_COVER", "SYS_D01_COVER"
+        elif k == "hachiku":
+            if r["after"] > r["before"]:
+                who, line = SH, f"STATE_D01_SHF_HACHIKU_{min(3, r['after'])}"
+        elif k == "ronpa":
+            who, line = SH, "STATE_D01_SHF_BREAK"
+            if not over:
+                sysk = "SCR_D01_S07_L005"
+        elif k == "reverseRonpa":
+            who, line, sysk = CE, "BEAT_D01_REVERSE_1", "SYS_D01_REVERSE"
+        elif k == "lastCard":
+            if r["cut"]:
+                who, line, sysk = CE, _down_line(keys, s, r["card"]), "SYS_D01_CUT_WIN"
+            elif not r["dying"] and nx["k"] != "lastCardRemoved":
+                post += _after_last_card(over)
+        elif k == "lastCardRemoved":
+            if nx["k"] != "lastCardRemoved":
+                sysk = "SYS_D01_LASTCARD_REMOVE"
+                post += _after_last_card(over)
+        elif k == "lastStand":
+            if r["ok"]:
+                sysk = "SYS_D01_LASTSTAND_OK"
+            else:
+                who, line, sysk = CE, "BEAT_D01_LASTSTAND_FAIL_1", "SYS_D01_LASTSTAND_FAIL"
+        elif k == "crossed":
+            sysk = "SYS_D01_PSYCH_CROSS"
+            if r["stat"] == "G":
+                who, line = AR, "BEAT_D01_GUILT_1"
+            elif r["stat"] == "A":
+                who, line = CE, "BEAT_D01_ANGER_1"
+        elif k == "stall":
+            who, line = CE, "REACT_D01_FOGGED"
+            if r["vs"] == "rebut" and not r["repeat"]:
+                sysk = "SYS_D01_FOOLED"
+        elif k == "oHeal":
+            sysk = "SYS_D01_STALL_HEAL"
+        elif k == "shisshu":
+            if r["on"]:
+                sysk = "SYS_D01_BREACH_HINT"
+                post += [Step(SH, "STATE_D01_SHF_BREACHED"), Step(AR, "STATE_D01_ART_BREACHED")]
+        elif k == "endgame":
+            if r["trigger"] == "zero" and not over:
+                sysk = "SCR_D01_S07_L006"
+            if dying_next and not over:
+                post.append(Step(sys="SCR_D01_S07_L009"))
+        elif k == "healVoid":   # his last card's recovery voided by 困獸 (a sidestep's voided heal has no line)
+            if mode == "endgame" and not over:
+                sysk = "SYS_D01_LASTCARD_CORNERED"
+        elif k == "over":
+            if r["reason"] == "surrender":
+                pre += [Step(sys="SCR_D01_S07_L007"), Step(CE, "SCR_D01_S07_L008")]
+            if r["reason"] == "round_limit":
+                sysk = "UI_V2_TIME_UP"
+                if r["outcome"] == "loss":
+                    post.append(Step(sys="SCR_D01_S07_L016"))
+            elif r["reason"] == "second_zero":
+                sysk = "SYS_D01_ZERO_WIN"
+            elif r["outcome"] == "win":
+                sysk = "SYS_D01_WIN"
+            else:
+                sysk = "SCR_D01_S07_L016"
+        elif k == "pDmg":
+            cause = r["cause"]
+            act = pa.kind
+            if cause == "argument" and act == PA.STALL:
+                sysk = "SYS_D01_FOG_TAKE"
+            elif cause == "argument" and pat:
+                sysk = "SYS_D01_CLASH"
+                if not memo.clashed:
+                    memo.clashed = True
+                    pre += [Step(CE, "BEAT_D01_CLASH_1"), Step(SH, "BEAT_D01_CLASH_2")]
+            elif cause == "exposed":
+                sysk = "SYS_D01_EXPOSED"
+            elif cause == "refuted":
+                sysk = "SYS_D01_REFUTED"
+            elif cause == "contradiction":
+                sysk = "SYS_D01_REDCRACK"
+            elif cause == "whiff" and act == PA.INTERCEPT and nx["k"] == "oDmg":
+                sysk = "SYS_D01_BOTH_REBUT"
+            elif cause == "whiff" and act == PA.INTERCEPT and nx["k"] in ("oHeal", "healVoid"):
+                sysk = "SYS_D01_CUT_EMPTY"
+            elif cause == "whiff" and act == PA.INTERCEPT and nx["k"] == "oAttach" and int_blk:
+                sysk = "SYS_D01_CUT_SEALED"
+            elif (cause == "whiff" and act == PA.INTERCEPT and nx["k"] == "oAttach") or cause == "bad_cut":
+                sysk = "SYS_D01_MISS_WRONG"
+            elif cause == "whiff" and act == PA.DISMANTLE and nx["k"] == "dismantle":
+                fact = ch.cards[nx["card"]].is_fact
+                sysk = "SYS_D01_TOPPLE_MISS_FACT" if fact and not soph else "SYS_D01_TOPPLE_MISS_WRONG"
+            elif cause == "fact_miss":
+                sysk = "SYS_D01_MISS_FACT"
+            elif cause == "stalemate" and act == PA.STALL:
+                sysk = "SYS_D01_FOG_STALL"
+            elif cause == "stall_repeat":
+                sysk = "SYS_D01_FOG_REPEAT"
+            elif cause == "dying":
+                sysk = "SYS_D01_DESPERATE_HIT"
+            elif cause == "last_card":
+                pre.append(Step(CE, _card_line(keys, lc_card, "STATE")))
+                if lc_card == "P05":
+                    if s.cracks >= 1:
+                        pre += [Step(CE, "BEAT_D01_LASTCARD_4"), Step(INS, "BEAT_D01_LASTCARD_2")]
+                    else:
+                        pre.append(Step(INS, "BEAT_D01_LASTCARD_3"))
+                if over or nx["k"] == "healVoid":
+                    sysk = "SYS_D01_LASTCARD_NOHEAL"
+                elif nx["k"] == "lastCard":
+                    sysk = "SYS_D01_LASTCARD_HIT"
+        steps += pre + [Step(who, line, sysk)] + post
+    # tail: 破竹 held (E4: ≥ 1 layer, no layer added, not reset; a normal round the debate goes on after)
+    if mode == "normal" and not over and s.hachiku >= 1 and s2.hachiku == s.hachiku:
+        steps.append(Step(sys="SYS_D01_HACHIKU_KEEP"))
+    return [st for st in steps if not st.empty()]
+
+
+def _knocked(keys: set, s: State, r: dict, soph: bool) -> str:
+    """His line when her cut / dismantle knocks his link down: a fact (only sophistry does that), a lie by
+    sophistry, the claim's own cut line (cuts only), else the card's knocked-down line."""
+    card = r["card"]
+    if s.ch.cards[card].is_fact:
+        return "REACT_D01_FACT_SOPH_1" if s.round % 2 == 1 else "REACT_D01_FACT_SOPH_2"
+    if soph:
+        return "REACT_D01_LIE_SOPH"
+    cut = f"CUT_D01_{r['claim']}_{card}"
+    if r["k"] == "intercept" and cut in keys:
+        return cut
+    return _down_line(keys, s, card)
+
+
+def _after_last_card(over: bool) -> list[Step]:
+    out = [Step(SH, "BEAT_D01_LASTCARD_5")]
+    if not over:
+        out.append(Step(AR, "BEAT_D01_LASTCARD_6"))
+    return out
+
+
+def debate_steps(rounds: list, tells: list, keys: set | None = None) -> list[dict]:
+    """The whole debate: per round {'tell': (speaker, key) | None, 'steps': [Step]}; `rounds` = [(state before, pa,
+    oa)], `tells` = the AI's tell shown for each round (None in the §7.5 round). The opening step (L004) is not
+    included (OPENING_SYS)."""
+    from .resolve import resolve_round
+    keys = package_keys() if keys is None else keys
+    memo = Memo()
+    out = []
+    for (s, pa, oa), tl in zip(rounds, tells):
+        s2, ev = resolve_round(s, pa, oa)
+        hint = tell_line(s, tl, memo)
+        out.append({"tell": hint, "steps": round_steps(s, pa, oa, ev, s2, memo, keys)})
+    return out

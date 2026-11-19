@@ -631,6 +631,14 @@
     "d1Seed": {
       "type": "number",
       "initial": 0
+    },
+    "bgmD1": {
+      "type": "string",
+      "initial": ""
+    },
+    "d1Cue": {
+      "type": "string",
+      "initial": ""
     }
   },
   "input": {
@@ -813,6 +821,8 @@
     "d1iScene": "data/flow/d1iScene.json",
     "d1iItem": "data/flow/d1iItem.json",
     "d1iClaim": "data/flow/d1iClaim.json",
+    "d1uiBreak": "data/flow/d1uiBreak.json",
+    "d1uiRefute": "data/flow/d1uiRefute.json",
     "flowCard": "data/flow/flowCard.json",
     "flowSpot": "data/flow/flowSpot.json",
     "flowScene": "data/flow/flowScene.json",
@@ -1324,12 +1334,12 @@
     "u1": {
       "kind": "map",
       "type": "number",
-      "capacity": 48
+      "capacity": 96
     },
     "u1S": {
       "kind": "map",
       "type": "string",
-      "capacity": 16
+      "capacity": 24
     },
     "u1F": {
       "kind": "list",

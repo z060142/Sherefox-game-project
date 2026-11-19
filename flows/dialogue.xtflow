@@ -116,10 +116,28 @@
       "type": "select"
     },
     {
+      "id": "K5",
+      "type": "constant",
+      "params": {
+        "value": "d1debate"
+      }
+    },
+    {
+      "id": "isD1C",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "isD1N",
+      "type": "select"
+    },
+    {
       "id": "isDebK",
       "type": "atrium.expr",
       "params": {
-        "expr": "isDebN || isWarmN"
+        "expr": "isDebN || isWarmN || isD1N"
       }
     },
     {
@@ -152,7 +170,7 @@
       }
     },
     {
-      "id": "K5",
+      "id": "K6",
       "type": "constant",
       "params": {
         "value": 101
@@ -170,7 +188,7 @@
       "type": "select"
     },
     {
-      "id": "K6",
+      "id": "K7",
       "type": "constant",
       "params": {
         "value": ""
@@ -191,7 +209,7 @@
       }
     },
     {
-      "id": "K7",
+      "id": "K8",
       "type": "constant",
       "params": {
         "value": "row"
@@ -236,14 +254,14 @@
       }
     },
     {
-      "id": "K8",
+      "id": "K9",
       "type": "constant",
       "params": {
         "value": "-"
       }
     },
     {
-      "id": "K9",
+      "id": "K10",
       "type": "constant",
       "params": {
         "value": "pre"
@@ -251,6 +269,10 @@
     },
     {
       "id": "preCue",
+      "type": "select"
+    },
+    {
+      "id": "endCue",
       "type": "select"
     },
     {
@@ -438,14 +460,14 @@
       "id": "overDone",
       "type": "atrium.expr",
       "params": {
-        "expr": "!isDebK || (postModeN && !asideN)"
+        "expr": "!isDebK || (postModeN && !asideN && !isD1N)"
       }
     },
     {
       "id": "overBack",
       "type": "atrium.expr",
       "params": {
-        "expr": "isDebK && postModeN && asideN"
+        "expr": "isDebK && postModeN && (asideN || isD1N)"
       }
     },
     {
@@ -621,7 +643,7 @@
       }
     },
     {
-      "id": "K10",
+      "id": "K11",
       "type": "constant",
       "params": {
         "value": "CHAP_D01_TITLE"
@@ -715,12 +737,36 @@
       "to": "isWarmN.b"
     },
     {
+      "from": "world.stepKind",
+      "to": "isD1C.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "isD1C.b"
+    },
+    {
+      "from": "isD1C.out",
+      "to": "isD1N.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "isD1N.a"
+    },
+    {
+      "from": "K2.out",
+      "to": "isD1N.b"
+    },
+    {
       "from": "isDebN.out",
       "to": "isDebK.isDebN"
     },
     {
       "from": "isWarmN.out",
       "to": "isDebK.isWarmN"
+    },
+    {
+      "from": "isD1N.out",
+      "to": "isDebK.isD1N"
     },
     {
       "from": "isVnN.out",
@@ -775,7 +821,7 @@
       "to": "sceneKeyIsD1.a"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "sceneKeyIsD1.b"
     },
     {
@@ -799,7 +845,7 @@
       "to": "branch.a"
     },
     {
-      "from": "K6.out",
+      "from": "K7.out",
       "to": "branch.b"
     },
     {
@@ -811,7 +857,7 @@
       "to": "first.filterValue"
     },
     {
-      "from": "K7.out",
+      "from": "K8.out",
       "to": "cur.key"
     },
     {
@@ -835,19 +881,31 @@
       "to": "preCue.cond"
     },
     {
-      "from": "K8.out",
+      "from": "K9.out",
       "to": "preCue.a"
     },
     {
-      "from": "K9.out",
+      "from": "K10.out",
       "to": "preCue.b"
+    },
+    {
+      "from": "isD1C.out",
+      "to": "endCue.cond"
+    },
+    {
+      "from": "world.d1Cue",
+      "to": "endCue.a"
+    },
+    {
+      "from": "world.debCue",
+      "to": "endCue.b"
     },
     {
       "from": "postMode.value",
       "to": "postCue.cond"
     },
     {
-      "from": "world.debCue",
+      "from": "endCue.out",
       "to": "postCue.a"
     },
     {
@@ -1127,6 +1185,10 @@
       "to": "overDone.asideN"
     },
     {
+      "from": "isD1N.out",
+      "to": "overDone.isD1N"
+    },
+    {
       "from": "isDebK.value",
       "to": "overBack.isDebK"
     },
@@ -1137,6 +1199,10 @@
     {
       "from": "asideN.out",
       "to": "overBack.asideN"
+    },
+    {
+      "from": "isD1N.out",
+      "to": "overBack.isD1N"
     },
     {
       "from": "isDebK.value",
@@ -1191,7 +1257,7 @@
       "to": "disp.trigger"
     },
     {
-      "from": "K7.out",
+      "from": "K8.out",
       "to": "setRow.key"
     },
     {
@@ -1327,7 +1393,7 @@
       "to": "chIsD1.a"
     },
     {
-      "from": "K5.out",
+      "from": "K6.out",
       "to": "chIsD1.b"
     },
     {
@@ -1335,7 +1401,7 @@
       "to": "chTitleK.cond"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "chTitleK.a"
     },
     {

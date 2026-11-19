@@ -1,0 +1,5 @@
+[
+  {"id": "REFUTE_D01_01D", "item": "E_D01_05_NAME", "place": "HS_D01_25_NAME", "kitchen": 0},
+  {"id": "REFUTE_D01_05B", "item": "E_D01_06_NAME", "place": "HS_D01_25_NAME", "kitchen": 0},
+  {"id": "REFUTE_D01_06B", "item": "E_D01_07_NAME", "place": "HS_D01_17_NAME", "kitchen": 1}
+]

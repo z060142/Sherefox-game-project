@@ -37,6 +37,7 @@ import io
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -76,6 +77,22 @@ ROUTES = {
 }
 TICKS.update({f"d1_story_{k}": v["ticks"] for k, v in json.loads((ROOT / "tests" / "d1_story_ticks.json").read_text(
     encoding="utf-8")).items()})
+# The v2 demo D01's debate (v2 demo 4.3; staging bgm_cues_d01.csv and its README), on tests/gen_d1_play.py's route
+# recordings (dev shortcut, opponent pinned by the harness): world.bgm in order and its fade; None = an id without a
+# track (BGM10), which changes world.bgm but sends no command. Title BGM01; S07 L001's silence (out) over L001-L003;
+# BGM07 at the start (L004's cut); BGM08 at his first 破防 (round 1 in A, D; round 2 in B); BGM09 on 論破 (A8, B5);
+# B: silence from L007 (he gives up), BGM09 again with L012 (crossfade), silence at L015; A: L012 keeps BGM09, silence
+# at L015; D: BGM10 on the Reverse Break (no track: BGM08 goes on), silence from the loss (L016) through L017-L019.
+D01_ROUTES = {
+    "d1_routeA": ("A", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
+                        ("", "out")]),
+    "d1_routeB": ("B", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM09", "cross"),
+                        ("", "out"), ("BGM09", "cross"), ("", "out")]),
+    "d1_routeD": ("D", [("BGM01", "cross"), ("", "out"), ("BGM07", "cut"), ("BGM08", "cross"), ("BGM10", None),
+                        ("", "out")]),
+}
+TICKS.update({k: v for k, v in json.loads((ROOT / "tests" / "d1_ticks.json").read_text(encoding="utf-8")).items()
+              if k in D01_ROUTES})
 VALUES = ("moment", "momBgm", "cueOk", "cueBgm", "bgmId", "bgmFadeA", "bgmSecsA", "bgmPlays", "bgmStops", "bgmNow")
 
 
@@ -228,9 +245,9 @@ def music_values(line: str, idx: dict[str, int]) -> dict | None:
     return v
 
 
-def replay(name: str, idx: dict[str, int], tmp: Path) -> tuple[list[tuple[int, dict]], dict[str, list[int]], str]:
+def replay(name: str, idx: dict[str, int], tmp: Path, game: str = ".") -> tuple[list[tuple[int, dict]], dict[str, list[int]], str]:
     trace = tmp / f"{name}.trace"
-    p = subprocess.run([str(EXE), "run", "--game", ".", "--replay", str(ROOT / "tests" / f"{name}.atrec"),
+    p = subprocess.run([str(EXE), "run", "--game", game, "--replay", str(ROOT / "tests" / f"{name}.atrec"),
                         "--ticks", str(TICKS[name]), "--trace", str(trace)], capture_output=True, cwd=ROOT,
                        env=dict(os.environ, XTATRIUM_XTFRAME_DIR=XTFRAME))
     err = p.stderr.decode("utf-8", errors="replace")
@@ -265,7 +282,7 @@ def fmt(seq: list[tuple[str, str]]) -> str:
 
 
 def check_route(fail: cp.Failures, name: str, ticks: list[tuple[int, dict]], sounds: dict[str, list[int]],
-                err: str) -> None:
+                err: str, want: list | None = None, jingles: dict | None = None) -> None:
     for line in err.splitlines():
         fail.check(not line.startswith(("warning:", "error:")), f"{name}: stderr: {line}")
     bad = [t for t, v in ticks if v["bgmId"] != (v["cueBgm"] if v["cueOk"] else v["momBgm"])]
@@ -284,11 +301,13 @@ def check_route(fail: cp.Failures, name: str, ticks: list[tuple[int, dict]], sou
         later = [w["now"] for _, w in ticks[i:i + 3]]
         fail.check(target in later, f"{name}: t={t}: atrium.music.playing {later} does not reach {target or 'silence'}")
     ids = bgm_sequence(ticks)
-    want = expected(name)
+    want = expected(name) if want is None else want
     fail.check(ids == [b for b, _ in want], f"{name}: world.bgm {ids}, expected {[b for b, _ in want]}")
     # the commands each expected change makes, in order
     exp_cmds = []
     for b, f in want:
+        if f is None:       # an id without a track: the current music goes on
+            continue
         if b == "":
             exp_cmds.append(("stop", f, F.FADE_SECONDS[f]))
         elif f == "cut":
@@ -304,8 +323,9 @@ def check_route(fail: cp.Failures, name: str, ticks: list[tuple[int, dict]], sou
                        and F.FADE_SECONDS["cut"] - DT <= gap <= F.FADE_SECONDS["cut"] + 2 * DT,
                        f"{name}: t={t}: the cut's play {gap:.3f} s after the stop")
     got = {c: len(ts) for c, ts in sounds.items()}
-    fail.check(got == ROUTES[name][1], f"{name}: sound cues {got}, expected {ROUTES[name][1]}")
-    print(f"{name}: expected {fmt(want)}")
+    jingles = ROUTES[name][1] if jingles is None else jingles
+    fail.check(got == jingles, f"{name}: sound cues {got}, expected {jingles}")
+    print(f"{name}: expected {fmt([(b, f or '-') for b, f in want])}")
     print(f"{name}: world.bgm {' -> '.join(b or 'silence' for b in ids)}")
     print(f"{name}: commands " + ", ".join(f"t={t} {k} {f} {s:g}s" for t, k, f, s in cmds)
           + "".join(f"; {c} at t={','.join(map(str, ts))}" for c, ts in sorted(sounds.items())))
@@ -325,6 +345,18 @@ def main() -> int:
         for name in ROUTES:
             ticks, sounds, err = replay(name, idx, Path(d))
             check_route(fail, name, ticks, sounds, err)
+        # the v2 demo D01's debate: the route recordings and their harnesses (tests/gen_d1_play.py), deleted after
+        import gen_d1_play as gd
+        try:
+            if subprocess.run([sys.executable, str(ROOT / "tests" / "gen_d1_play.py")], cwd=ROOT).returncode != 0:
+                raise SystemExit("gen_d1_play failed")
+            TICKS.update(json.loads((ROOT / "tests" / "d1_ticks.json").read_text(encoding="utf-8")))
+            for name, (route, want) in D01_ROUTES.items():
+                ticks, sounds, err = replay(name, idx, Path(d), f"tests/d1play_harness{route}")
+                check_route(fail, name, ticks, sounds, err, want, {})
+        finally:
+            for route in gd.ROUTES:
+                shutil.rmtree(gd.harness_dir(route), ignore_errors=True)
     for f in fail.items:
         print("FAIL " + f)
     print("ok" if not fail.items else f"{len(fail.items)} failure(s)")

@@ -99,6 +99,7 @@ def record(name: str, rt: RT.Route) -> tuple[int, dict]:
     rec = gd.Rec(f"tests/d1play_harness{name}")
     rec.click("title", gd.TITLE_V2, 40)
     rec.t += 40
+    gd.opening(rec)
     for n, (s, pa, _) in enumerate(gd.forced(rt), start=1):
         if (name, n) == LANG_SWITCH:
             rec.lines.append(cp_json({"t": rec.t + 10, "u": gp.key("d1debate", gp.KEY_F1)}))
@@ -124,13 +125,15 @@ def record(name: str, rt: RT.Route) -> tuple[int, dict]:
         rec.click("d1debate", gd.LOCK_XY)
         rec.marks[f"lock{n}"] = rec.t
         if (name, n) in NO_SKIP:       # the playback at its own pace: the review screenshots see whole lines
-            rec.t += 900
+            rec.t += gd.NO_SKIP_WAIT
         for k in range(0 if (name, n) in NO_SKIP else gd.SKIPS):
             ui = "cutin" if (name, n) == CUTIN_CLICKS and k % 2 == 0 else "d1debate"
             rec.click(ui, gd.SKIP_XY, gd.SKIP_GAP)
             if ui == "cutin":
                 rec.marks.setdefault("cutin_clicks", []).append(rec.t)
         rec.t += gd.ROUND_TAIL
+    rec.marks["end"] = rec.t
+    gd.outro(rec, gd.outcome_of(gd.forced(rt)))
     rec.marks["over"] = rec.t
     rec.click("d1debate", gd.BACK_XY, 30)
     end = rec.write(f"d1_lines_{name}", 60)
@@ -151,7 +154,7 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
     events, err = cd.run(f"d1_lines_{name}", f"tests/d1play_harness{name}", end, "zh-TW")
     tr = cp.Trace(events)
     at = cm.At(tr, events)
-    bad = cd.check_lines(tr, rounds, marks, lang_of, marks["over"])
+    bad = cd.check_lines(tr, rounds, marks, lang_of, marks["end"])
     # the outcome panel and round count equal the ref's
     grade, nrounds, outcome = cd.expected(rounds)
     L = S[lang_of(len(rounds))]
@@ -187,7 +190,7 @@ def check(name: str, rt: RT.Route, end: int, marks: dict, fails: list):
         if not bigs or not during:
             bad.append(f"R{n}: no click during a cut-in (cut-ins at {bigs})")
     if name == "S3":
-        lines, _ = cd.shown(tr, marks[f"lock{len(rounds)}"], marks["over"])
+        lines, _ = cd.shown(tr, marks[f"lock{len(rounds)}"], marks["end"])
         if S["zh-TW"]["UI_V2_TIME_UP"] not in lines:
             bad.append(f"round {len(rounds)}: UI_V2_TIME_UP not shown ({lines})")
     noise = [ln for ln in err.split("\n") if ln.strip() and not ln.startswith("render: off")]
