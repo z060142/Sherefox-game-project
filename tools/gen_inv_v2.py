@@ -43,6 +43,7 @@ CARRY_MAX = DEBATE["carry_limit"]          # 9 (ch §0.1)
 APPR_LIMIT = DEBATE["appraisal_limit"]     # 2 (warm-up passed), 1 after a failed warm-up (ch §0.1, §3.3)
 D01_CHAPTER = 101                          # tools/build_data.py D01_CHAPTER
 WARMUP_DEFAULT = "pass"                    # until the warm-up step (M4) writes world.d1Warmup
+CLAIM_END = "~"                             # the private-view pass's end marker (tables(): d1iClaim)
 ITEMS = [e for e in CH.evidence]           # E01..E12, P1 (carry items, data order)
 NOTES = [k["id"] for k in DEBATE["optional_known"]]
 NOTES = [n for n in ("PN1", "PN2", "PN3", "PN4", "OBS01") if n in NOTES]
@@ -82,6 +83,10 @@ def _checks() -> None:
     for c in CH.claims.values():
         if len(c.unlock) > 1:
             raise SystemExit(f"claim {c.id}: more than one unlock item (the private view's slot)")
+    rows = 1 + max(sum(1 for c in CH.claims.values() if c.evidence == e) for e in ITEMS)
+    for coll in ("i1Opt", "i1OptSel"):   # one evidence's rows ("-" + its claims); i1OptSel is cleared per rebuild
+        if COLLECTIONS[coll]["capacity"] < rows:
+            raise SystemExit(f"{coll}: capacity {COLLECTIONS[coll]['capacity']} < {rows} private-view rows")
 
 
 # ---------------------------------------------------------------------------------------------- tables
@@ -115,6 +120,11 @@ def tables() -> dict[str, list[dict]]:
     for cid, c in CH.claims.items():
         claims.append({"id": cid, "evidence": c.evidence, "label": f"CLM_D01_{cid}",
                        "unlock": c.unlock[0] if c.unlock else ""})
+    # the end marker (never a row: no evidence is "~"). The rows read d1PrivNote with a key per item, and a pure query
+    # whose key does not change is not re-read at once (XTAtrium 08 §8.0): "-" reads the selected evidence's view, so
+    # when that evidence was also the previous pass's last key (P1, the last in data order) "-" showed the view from
+    # before the click (both "-" and the new claim lit). Ending every pass on "~" makes the first key always change.
+    claims.append({"id": CLAIM_END, "evidence": CLAIM_END, "label": "UI_V2_PRIVATE_VIEW_NONE", "unlock": ""})
     return {"d1iSpot": spots, "d1iScene": scenes, "d1iItem": items, "d1iClaim": claims}
 
 
@@ -187,7 +197,8 @@ def gen_d01inv() -> Graph:
                  "i1PN"):
         g.edge(start, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
     for coll, ids in (("i1Locs", [s for s, _ in SCENES]), ("i1All", ITEMS), ("i1NAll", NOTES), ("i1AAll", APPRS),
-                      ("i1PsyAll", [i for i in ITEMS if CH.evidence[i].psych_card]), ("i1ClAll", ["-"] + list(CH.claims))):
+                      ("i1PsyAll", [i for i in ITEMS if CH.evidence[i].psych_card]),
+                      ("i1ClAll", ["-"] + list(CH.claims) + [CLAIM_END])):
         g.edge(start, g.eff(f"clr_{coll}", "atrium.coll.clear", coll))
         g.edge(start, add_all(g, f"add_{coll}", coll, g.k(SEP.join(ids))))
     for sid, _ in SCENES:
@@ -377,7 +388,10 @@ def gen_d01inv() -> Graph:
     # options: "-" (none) then the selected evidence's unlocked claims in data order
     # (the view is read inside the forEach with a key that changes per item, so it is the current one: "-" reads the
     # selected evidence's, a claim its own evidence's)
+    # i1OptSel is cleared with the list: it is keyed by claim, and a map that kept every claim ever shown filled up
+    # (capacity 8 < 31 claims) and silently dropped the rest, so most rows never showed as chosen
     g.edge(bk, g.eff("clr_opt", "atrium.coll.clear", "i1Opt"))
+    g.edge(bk, g.eff("clr_optSel", "atrium.map.clear", "i1OptSel"))
     g.node("opEach", "atrium.coll.forEach", name="i1ClAll")
     g.edge(bk, "opEach.trigger")
     oi = g.put("oi", "opEach.item")

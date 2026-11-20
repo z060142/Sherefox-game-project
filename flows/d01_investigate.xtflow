@@ -516,7 +516,7 @@
       "id": "K21",
       "type": "constant",
       "params": {
-        "value": "-,01A,01B,01C,01D,02A,02B,02C,03A,03B,04A,04B,04C,05A,05B,06A,06B,06C,07A,07B,08A,08B,09A,09B,10A,10B,11A,11B,12A,P1A,P1B"
+        "value": "-,01A,01B,01C,01D,02A,02B,02C,03A,03B,04A,04B,04C,05A,05B,06A,06B,06C,07A,07B,08A,08B,09A,09B,10A,10B,11A,11B,12A,P1A,P1B,~"
       }
     },
     {
@@ -2012,6 +2012,13 @@
       "type": "atrium.coll.clear",
       "params": {
         "name": "i1Opt"
+      }
+    },
+    {
+      "id": "clr_optSel",
+      "type": "atrium.map.clear",
+      "params": {
+        "name": "i1OptSel"
       }
     },
     {
@@ -6094,6 +6101,10 @@
     {
       "from": "bkM.out",
       "to": "clr_opt.trigger"
+    },
+    {
+      "from": "bkM.out",
+      "to": "clr_optSel.trigger"
     },
     {
       "from": "bkM.out",
