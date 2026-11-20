@@ -645,3 +645,31 @@ d1debate（v2 demo M3）：加 `ronpa_ready_text`（string，in：`UI_V2_RONPA_R
 - d1carry：確認框不加第二句問句。曾加過 `#c-ask`（`UI_V2_CARRY_LEFT_ASK`），企劃裁定移除：`SCR_D01_S06_L009` 本身已以「確定嗎？」結尾；確認框回到 `#c-k`、`#c-t`、`#c-no`、`#c-yes` 四個元素，按鈕位置不變，d1carry 沒有新增 port。
 - d1end：上方加小標 `#title`（`UI_V2_NEXT_PLACEHOLDER`）；按鈕改為 `UI_V2_BACK_TITLE`（`SCR_D01_S11_L003` 不再顯示）；`SCR_D01_S11_L001`／`L002` 不變。
 - d1book：人物筆記頁的 `UI_V2_NOTES_DESC` 原本就在頁首（不變）。
+
+## v3 片頭（`sherefox-op`、`opskip`；不屬板子；v3 分支）
+
+依據：`docs/v3-op.md`、`docs/flows.md` §4.16。兩個 UI 都**不是板子產生的**：`ui/boards/` 裡沒有它們的板子，`xtframe-import` 不寫也不刪它們（實測：0.15.0 與 0.18.0 的 `dc` 匯入，含 `--prune`，都不動沒有板子的 UI、`sherefox.xtui` 的 `uis` 條目與 `shared/fx/`；0.18.0 的 `--prune` 只刪匯入器自己寫過、已無人引用的圖檔條目）。重新匯入板子時照 v2 的做法：只保留要改的那個 UI 的輸出，其餘 `git checkout`；`sherefox-op/`、`opskip/`、`shared/fx/` 不在匯入的輸出裡，不用處理。不要把片頭改成板子再匯入（粒子、效果與自訂 shader 在板子方言裡寫不出來）。
+
+### sherefox-op（片頭，1920×1080，最上層之一，非 modal）
+
+- 文件：`ui/project/sherefox-op/sherefox-op.xt`、`.xts`，由片頭專案（UI id `sherefox-op`）原樣複製；只改兩處：(1) `<style src="../shared/base.xts"/>` 改連 `sherefox-op.base.xts`（片頭專案的 `shared/base.xts` 與遊戲的同路徑，複製到片頭目錄並只由片頭連結，所以它的 `.s-*` 類別只作用在片頭；類別名稱與遊戲的不重複，遊戲專案的 `shared/base.xts` 經專案設定也套到片頭，同樣不重複）；(2) `<layout>` 的根 `#sherefox-op` 加 `ui-scale: clamp(1, 1)`（遊戲專案的設計高 720、`uiscaleRule: fit` 會把片頭的 px 放大 1.5 倍；理由與 `none` 的問題見 `docs/v3-op.md` §5）。圖片在 `shared/img/`（檔名與遊戲的不重複；只複製片頭用到的 52 張；`extra-bg.jpg`、`opp-bg.jpg` 片頭沒用到），自訂 shader 在 `shared/fx/`。
+- 沒有 port。時間軸 `op`（59.3 秒）由片頭的 UI 流圖 `sherefox-op.xtflow`（`tools/gen_op.py` 產生，不要手改）播放：`lifecycle.shown` → 播放、`hidden` → 停止。片頭專案自己的 `.xtflow`（顯示時播放並觸發聲音 cue `op_music`）沒有複製：音樂改由邏輯圖播在 `op` 通道（跳過時要能停）。
+- 可見性由 `flows/op.xtflow` 寫（`ui#sherefox-op.visible`）。
+
+### opskip（片頭的跳過層，1920×1080，在片頭之上）
+
+- 文件：`ui/project/opskip/opskip.xt`、`.xts`（手寫）。全畫面透明元素，`tabindex` 0、`autofocus`（片頭顯示時持有焦點）。
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `skip` | event | out | 點一下（左、右、中鍵）或按 Enter、Space、Esc：要求跳過片頭。 |
+
+- 可見性與片頭相同（`flows/op.xtflow`）。片頭文件原樣保留，所以跳過的輸入放在這一層，不加進片頭文件。
+
+### title 追加（v3）
+
+| port | 型別 | 方向 | 意義 |
+|---|---|---|---|
+| `watch_op` | event | out | 頂端列的「觀看片頭」（`UI_V3_WATCH_OP`，佔位字串，`source/localization/v3_placeholders.csv`）：再播一次片頭。 |
+
+UI 側（板子 `Title.dc.html`）：`#btn-op`，頂端列機構名與語言切換之間（left 712、top 10、184×30），樣式同語言切換的框（1 px 墨色框、13 px、hover 反白、focus 銅色框）；`tabindex` 0，Enter／Space 由預設的鍵盤啟用觸發點擊。點擊 → `emit(watch_op)`。不移動既有的任何元素（錄影的點擊座標不變）。

@@ -14,7 +14,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - `data/flow/*.json`：流圖用的輔助表（§5），全部由 `data/*.json` 推導。
 - `game.json` 中流圖擁有的條目：`signals` 的 `trust`／`bookOpen`／`caseOutcome`、`collections`（§2.2）、`tables` 的 `flow*`（整組重寫：不再產生的表從 `game.json` 與 `data/flow/` 刪掉；`--check` 把多出來的檔案算成過期）與 `debScript`（物件形式，帶 `columns`）、`flows` 的清單與順序。其他條目原樣保留。
 
-`flows` 依序載入 `main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_warmup`、`d01_investigate`、`d01_debate_ui`、`d01_debate_engine`、`d01_end`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
+`flows` 依序載入 `op`（v3，§4.16）、`main`、`settings`、`dialogue`、`paper`、`investigate`、`board`、`debate_ui`、`debate_engine`、`debate_warmup`、`d01_warmup`、`d01_investigate`、`d01_debate_ui`、`d01_debate_engine`、`d01_end`、`result`、`music`（`debate_ui` 在引擎之前：它寫的值與送的脈衝引擎同 tick 都收到；引擎寫的值 `debate_ui` 下一 tick 才讀到，`docs/debate-engine.md` §7.6）；載入順序就是同一 tick 內的執行順序（05 §5.4「跨圖可見性」）。
 
 | 圖 | 節點／邊 | 職責 |
 |---|---|---|
@@ -29,6 +29,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 | `d01_debate_ui` | 967／1796 | v2 示範關卡 D01 的論戰畫面（§4.12）：開發入口的攜帶集合、`d01_debate_engine` 的指令、`ui#d1debate`、`ui#cutin`、事件紀錄的播放、結果框 |
 | `d01_warmup` | 76／127 | v2 示範關卡 D01 的熱身論戰（§4.14）：`ui#d1warm`、三個論點與三條觀察、失誤、`world.d1Warmup` |
 | `d01_end` | — | v2 示範關卡 D01 的結算畫面（§4.15，`tools/gen_end_v2.py`）：`ui#d1result` 的等級、名聲明細、好感、繼續 |
+| `op` | — | v3 片頭（§4.16，`tools/gen_op.py`）：開機與「觀看片頭」時播放片頭、跳過、結束；`world.opOn`；片頭音樂（`op` 通道） |
 | `music` | 108／191 | 背景音樂（§4.10）：`world.bgmMoment`、場景 cue（`bgmCues`）、`world.bgm`、`atrium.music.play`／`stop`（bgm 通道；cross 1.5 秒交叉淡化、cut 0.2 秒淡出後全音量、out 2 秒淡出） |
 
 ### 1.1 寫法上的三條規則
@@ -414,6 +415,14 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 - **音樂**（§4.10，cue BGM_D01_14～20）：S08 的行照場景 cue（勝利 L001 的 BGM12；E5，設計 48be4a6：敗北的 S08 只有 L011～L012，L011 是 `BGM_D01_20` 靜音，所以敗北時 S08 與結算畫面全程靜音、不播 BGM_D01_14，到 S09 報紙的 BGM11 才恢復），結算畫面接在 S08 的行之後，cue 繼續生效（staging README 規則 1）；S09 的報紙查該版本導言的列（BGM11，三個版本各自的 cue）；S10 BGM02；S11 是固定 cue 列（`D01_FIXED_CUES` 的 `d1end` ＝ `SCR_D01_S11_L001`，BGM01）；回到標題時時機是 title（BGM01），同一首不重播（README：S11 的主題曲回到標題時不中斷）。
 - **測試**：`tests/check_d1_full.py`（四條路線從標題到 S11 再回到標題、重新開始；路線 A 另跑英文）；`check_d1_play`／`check_d1_lines`／`check_d1_m3` 的錄影也走完結局並檢查結算畫面；`tests/check_music.py` 的 D01 路線延伸到 BGM12、BGM11、BGM02、BGM01。
 
+### 4.16 `op`（v3 片頭；`tools/gen_op.py`；ui-contracts sherefox-op、opskip、title v3 追加；`docs/v3-op.md`）
+
+- **狀態** `world.opOn`（bool，初始 true）：片頭在上。`main` 的標題可見性＝畫面是 title 且 `!opOn`（片頭只在開機與標題上播放，其他畫面不會在它底下）；`music` 的時機在 `opOn` 時是 `op`（`flowBgm` 的 `OP`：沒有音檔的 id，bgm 通道不送指令）。`op` 是第一張圖，`main`、`music` 同一 tick 讀到它的寫入。
+- **開始**：(1) 開機：1.5 步的自動計時器在 tick 1 的第 4 步觸發，仍是 `opOn` 時開始；不用 tick 0，因為一張圖在第 4 步（計時器）之後才讀本 tick 的輸入（第 5、8 步，XTAtrium 05 §5.4），tick 0 還不知道這一輪有沒有 `input.opSkip`。tick 0 標題已隱藏、片頭尚未顯示：一格黑畫面。(2) 標題的 `ui#title.watch_op`：`opOn` 設回 true，同 tick 停掉標題音樂（bgm 通道，0.1 秒淡出）。開始的脈衝：顯示片頭與跳過層（`shown` → `ui#sherefox-op.visible`、`ui#opskip.visible`），同一個脈衝送 `atrium.music.play`（`op` 通道、cue `op_music`、不循環、`fadeIn` 0）。片頭的時間軸由片頭的 UI 流圖在 `lifecycle.shown` 時播放（邏輯圖不能播 UI 的時間軸：`timeline` 節點的 `ui` 只能用在全域流圖），顯示發生在同一 tick 的 ui 步驟，所以時間軸與音樂指令同一 tick 開始。
+- **結束**：(1) 跳過層的 `ui#opskip.skip`（點擊、Enter、Space、Esc；UI 事件下一 tick 到達）；(2) `input.opSkip`（沒有按鍵綁定的脈衝輸入，只有錄影會送；tick 0 送出時片頭不出現，§6）；(3) 時間軸結束：邏輯圖讀不到 UI 時間軸的 end 事件，所以用一個時間軸長度（片頭文件最後一個關鍵格，59.3 秒，`gen_op.timeline_seconds`）的計時器，與時間軸同 tick 開始，同樣以固定步數計時（開機時正好在時間軸的最後一格；「觀看片頭」時晚一 tick：計時器在第 8 步的脈衝才開始，下一 tick 起算）。`opOn` 變 false 時：隱藏片頭與跳過層（UI 流圖停止時間軸），已開始過才送 `atrium.music.stop`（`op` 通道，0.1 秒淡出）；`main` 顯示標題（播 `intro`），`music` 的時機回到 title，下一 tick 播 BGM01（cross 1.5 秒，同開機）。
+- **音樂流圖的配合**（§4.10）：`world.opOn` 由 false 變 true（「觀看片頭」）時重設 `bgmNew` 的 deadband，片頭結束後同一首 BGM01 會重新播放。開機的計時器在 tick 0 第 4 步取樣時看到的是初始值（`op`，沒有音檔 → 不送指令），所以 tick 0 就跳過片頭的執行，BGM01 在 tick 1 播放（v2 是 tick 0）；之後的指令順序與 v2 相同。
+- **觀測**（`tests/check_op.py`）：`world.opPlays`／`world.opStops`（`op` 通道的 play／stop 指令數）、`world.opMusic`（`atrium.music.playing` 的 cue）；`xtatrium trace` 也列出音樂的宿主效果（`effect music.play op op_music ...`）。
+
 ## 5. 輔助表 `data/flow/`
 
 `tools/gen_flows.py` 由 `data/*.json` 推導，`game.json` 以 `flow*` 名稱載入。
@@ -450,7 +459,7 @@ v2 示範關卡 D01：M4a 2026-11-19（S01 報紙、S02～S03 劇情、S04 熱�
 
 ## 6. 驗證
 
-`tests/README.md`。跑主遊戲（或它的副本）的檢查（`check_case`、`check_playthrough`、`check_debate_play`）先執行 `xtatrium compile --game .`（在倉庫根目錄執行）（AT-036，`tests/xt_cli.py` `compile_game`），端點錯誤在重播之前就擋下。
+`tests/README.md`。v3：每個錄影在 tick 0 送 `input.opSkip`（`tests/gen_playthrough.py` `OP_SKIP`），片頭不出現、標題與 v2 一樣從 tick 0 開始；片頭本身由 `tests/check_op.py` 測（§4.16、`docs/v3-op.md` §3）。跑主遊戲（或它的副本）的檢查（`check_case`、`check_playthrough`、`check_debate_play`）先執行 `xtatrium compile --game .`（在倉庫根目錄執行）（AT-036，`tests/xt_cli.py` `compile_game`），端點錯誤在重播之前就擋下。
 
 - `uv run tests/check_playthrough.py`：story 流程（M2 的檢查），蒐證與線索板以最短路線通過（`tests/gen_case.py` 的 `MINIMAL`，第一次按「進入論戰」只顯示警告、第二次進入）；結尾卡關掉後連點同一章（值不變，經 `.emitted`）也會重新開始。
 - `uv run tests/check_case.py [--frames DIR]`：Ch.1 調查全部 10 點、不鑑定、組推薦鏈 E01_01→E01_04 並選對全部理由；Ch.2 用 3 次鑑定（1 次在證物冊）、漏 E02_05、一條詭辯（E02_04 理由錯）、一次無效彈回、兩條鏈。比對刻度、彈窗種類、提示與亞瑟台詞序列、清單 port 的 JSON（點、抽屜、格、連結、銅牌）、`oppHand`、`appraised`、`golden`，以及 `debBoard*` 與 ref 對同一路線的板面（`fixtures.ch1_board`；Ch.2 為 `ch2_case` 改 E02_04 理由錯、兩條鏈）逐格相等。
