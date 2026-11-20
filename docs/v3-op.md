@@ -65,7 +65,7 @@
 ## 框架後續（2026-11-20，XTAtrium 的回覆）
 
 - **每次執行預設訊號**：框架正在做 `--set world.<名稱>=<值>`（run／trace／shot／play，可重複；寫在 game.json `signals` 裡的值型訊號，載入後、第 0 tick 之前寫入一次；錄製時存進 `.atrec` 檔頭，舊錄製檔也可在重播時加 `--set`）。出貨後可以把「每個錄製檔第 0 tick 的 `opSkip`」換成一個宣告的訊號（例如 `world.skipOpening`）加上測試時的 `--set`，錄製檔就不必帶那一行。要改的地方：`tools/gen_op.py`（開場邏輯在開始時讀這個訊號）、共用產生器的 `OP_SKIP`、`tests/xt_cli.py`。
-- **邏輯流圖讀 UI 時間軸的結束**：框架打算讓 `end`／`marker` 可以從邏輯流圖讀（端點寫法待定）。出貨後拿掉「與時間軸等長的計時器」，OP 的長度就只寫在一處。播放仍由 UI 自己的流圖負責（顯示時播），不會改。
+- **邏輯流圖讀 UI 時間軸的結束**（框架更正：不需要改框架）：UI 流圖的 `timeline` 節點本來就有 `end`（pulse）與 `marker`（string）輸出。在 OP 的 UI 流圖把 `end` 接到該 UI 的一個文件層級輸出埠（pulse，例如 `openingDone`），邏輯流圖讀 `ui#sherefox-op.openingDone`（晚一個 tick）。這樣可以拿掉「與時間軸等長的計時器」，長度只存在時間軸裡，時間軸被停止或改長度也正確。代價：OP 的文件要多宣告一個輸出埠（目前刻意沒加埠）。待辦：在 v3 上改 `tools/gen_op.py` 與 OP 文件的 `<ports>`，`check_op` 驗證播完與跳過都仍正確；`end` 若在「顯示時播放」的情況不觸發，回報框架。
 - **tick 內的順序**：照設計不改。可被當 tick 輸入取消的動作從第 1 tick 開始是正確做法。
 - **隱藏的畫面**：照規格仍會每 tick 更新、不能卸載；`display.gpuTrim: on-hide` 已解決貼圖記憶體。若剖析顯示隱藏的 OP 佔 CPU，再把數字給框架。
 - **`ui-scale: none` 在 dpr≠1 時縮兩次**（XTFrame）：最小重現案例在 `E:\coding4\sherefox-repro\uiscale-none\`，主線確認後預計 0.19.1 修。**每個 UI 自己的設計尺寸**：XTFrame 那邊待使用者決定。
