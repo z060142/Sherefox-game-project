@@ -48,6 +48,7 @@ from sherefox_ref.v2.model import PA, initial_state  # noqa: E402
 from sherefox_ref.v2.resolve import resolve_round  # noqa: E402
 
 STEP = 1 / 60
+from gen_playthrough import OP_SKIP  # noqa: E402
 GAP = 8
 BOT_SEED = 3
 BOT_DEBATE_SEED = CV.ui_debate_seed(BOT_SEED)  # no atrium.rng draw before the debate starts
@@ -97,7 +98,8 @@ def picker(s) -> list[tuple[str, list[str]]]:
 
 class Rec:
     def __init__(self, game: str, seed: int = 1) -> None:
-        self.lines = [json.dumps({"atrec": 1, "step": STEP, "seed": seed, "game": game})]
+        # v3: the opening skipped at tick 0 (tests/gen_playthrough.py OP_SKIP, docs/v3-op.md §3)
+        self.lines = [json.dumps({"atrec": 1, "step": STEP, "seed": seed, "game": game}), OP_SKIP]
         self.t = 0
         self.marks: dict[str, int] = {}
 

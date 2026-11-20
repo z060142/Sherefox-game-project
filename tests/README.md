@@ -62,6 +62,32 @@ Exit code 0 and a final `ok` line when everything passes; each failure is printe
 `--frames` replays `ch1_playthrough` with `--ui-frames` into `<dir>/_ppm` (about 340 full-size PPM frames, ~1 GB,
 deleted afterwards) and converts three of them to PNG.
 
+## v3: the opening (OP)
+
+Every recording starts with the opening skipped: the shared generators (`tests/gen_playthrough.py` `Recording`,
+`tests/gen_d1_play.py` `Rec`) put `{"t": 0, "w": [["input.opSkip", "p"]]}` (`OP_SKIP`) right after the header.
+`input.opSkip` is a pulse no key is bound to; at tick 0 it turns the opening off in that same tick, so the run starts
+at the title exactly as before the opening existed (the title visible from tick 0; the title music's play is at tick 1
+instead of 0, same commands). A recording written by hand for the main game needs that line too, or the opening plays
+for 59.3 s first (`docs/v3-op.md` §3). The harness copies use the same recordings.
+
+```
+uv run tests/check_op.py
+```
+
+Needs the packed bundle (`xtatrium pack --game .`). About 90 s. It runs the game without the skip line:
+
+| Case | What it asserts |
+|---|---|
+| start | the title hidden from tick 0 (tick 0 draws nothing), the OP surface and the skip layer drawn from tick 1, the OP's music (`op` channel, no fade) in the tick the OP shows, no bgm command during the OP; at the timeline's end (tick 1 + 3558) the OP and its music stop, the title shows, BGM01 starts |
+| skip | click, Enter and Esc on the skip layer at t30, the middle and the last second (and Space once): the next tick the title shows, the OP music stops, BGM01 starts; after it no OP or skip-layer event, no `world.op*` change, no `op` channel command, the OP surface not drawn (also when the timeline's end would have come) |
+| again | the title's 觀看片頭 (`btn-op`) plays the OP again over the title (the title's music stops in that tick) and the title comes back at its end |
+| after | `ch1_playthrough` (to t2400) and `d1_story_clean` (to t3600) after the OP played out and after a skip: their `--ports` trace, shifted by the time the OP took, equals the original's (OP lines aside) |
+| determinism | two runs give the same `--hash` (played out; skipped in the middle); two `shot --renderer sw` runs of six ticks are byte-identical |
+
+Temp files: everything goes to a `sherefox-op-*` directory inside the run's own temp directory (`tests/tempwatch.py`),
+removed at the end; a leftover fails the check.
+
 ## Replaying by hand
 
 ```

@@ -417,7 +417,7 @@ def latest_frame(dir_: Path, ui: str, before: int) -> Path | None:
 def export_frames(fail: Failures, frames: Path, tr: Trace, ticks: int) -> None:
     raw = frames / "_ppm"
     rec = [json.loads(l) for l in (ROOT / "tests" / "ch1_playthrough.atrec").read_text(encoding="utf-8").splitlines()[1:]]
-    clicks = [e["t"] for e in rec]
+    clicks = [e["t"] for e in rec if "u" in e]   # not the opening's skip at tick 0 (gen_playthrough.OP_SKIP)
     vn_ticks = [t for t, _, _, ch in tr.ticks if ch.get("vn.line_seq") == 3]
     picks = {
         "title.png": ("title", clicks[0]),

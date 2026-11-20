@@ -475,7 +475,7 @@ def plan(lo: str, seed: int) -> Plan:
 
 def make_plan(lo: str, seed: int) -> Plan:
     pl = plan(lo, seed)
-    pl.stats["clicks"] = len(pl.rec.lines) - 1
+    pl.stats["clicks"] = len(pl.rec.lines) - 2   # the header and the opening's skip (gen_playthrough.OP_SKIP)
     return pl
 
 

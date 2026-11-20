@@ -53,6 +53,10 @@ TITLE_CH = {1: (1000, 382), 2: (1000, 490), 3: (1000, 598)}   # entries btn-ch1.
 TITLE_SETTINGS = (924, 662)   # btn-settings: x 824-1024, y 640-684
 TITLE_QUIT = (1132, 662)      # btn-quit: x 1032-1232
 END_CARD = (640, 360)
+# v3 (docs/v3-op.md §3): every recording starts with the opening skipped. input.opSkip (no key is bound to it) at
+# tick 0 turns the opening off in that same tick, before anything is shown, so a run starts at the title exactly as
+# before the opening existed (the title visible from tick 0, its music from tick 1). tests/check_op.py tests the opening.
+OP_SKIP = json.dumps({"t": 0, "w": [["input.opSkip", "p"]]})
 KEY_ENTER = 40     # XtKey.Enter
 KEY_ESC = 41       # XtKey.Escape
 KEY_BACKSPACE = 42
@@ -101,7 +105,7 @@ def key(ui: str, code: int):
 
 class Recording:
     def __init__(self) -> None:
-        self.lines = [json.dumps({"atrec": 1, "step": STEP, "seed": 1, "game": GAME})]
+        self.lines = [json.dumps({"atrec": 1, "step": STEP, "seed": 1, "game": GAME}), OP_SKIP]
         self.t = 0
 
     def at(self, dt: int, events) -> None:
@@ -116,7 +120,7 @@ class Recording:
     def write(self, name: str, tail: int) -> int:
         ticks = self.t + tail + 1
         (TESTS / f"{name}.atrec").write_bytes(("\n".join(self.lines) + "\n").encode("utf-8"))
-        print(f"wrote tests/{name}.atrec ({len(self.lines) - 1} inputs, {ticks} ticks)")
+        print(f"wrote tests/{name}.atrec ({len(self.lines) - 2} inputs, {ticks} ticks)")
         return ticks
 
 

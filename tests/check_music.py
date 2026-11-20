@@ -48,6 +48,7 @@ sys.path.insert(0, str(ROOT / "tests"))
 sys.path.insert(0, str(ROOT / "tools"))
 import check_playthrough as cp  # noqa: E402
 import gen_flows as F  # noqa: E402
+import gen_op as OP  # noqa: E402
 from xt_cli import EXE, XTFRAME, compile_game  # noqa: E402
 
 TICKS = json.loads((ROOT / "tests" / "debate_ticks.json").read_text(encoding="utf-8"))
@@ -140,7 +141,10 @@ def check_static(fail: cp.Failures) -> None:
     audio = game.get("audio", {})
     files = {p.relative_to(ROOT).as_posix() for p in (ROOT / "audio").rglob("*.mp3")}
     music, cues = audio.get("music", {}), audio.get("cues", {})
-    fail.check(audio.get("channels") == ["bgm"], f"game.json audio.channels {audio.get('channels')}")
+    # v3: the opening's music on its own channel (tools/gen_op.py; tests/check_op.py plays it)
+    fail.check(audio.get("channels") == ["bgm", OP.CHANNEL], f"game.json audio.channels {audio.get('channels')}")
+    fail.check(music.get(OP.CUE) == {"file": OP.MUSIC_FILE, "loop": False, "category": "bgm"},
+               f"game.json audio.music.{OP.CUE} {music.get(OP.CUE)}")
     fail.check({d["file"] for d in [*music.values(), *cues.values()]} == files,
                f"game.json audio does not declare exactly the files under audio/ ({sorted(files)})")
     for bid, (start, end) in F.MUSIC.items():

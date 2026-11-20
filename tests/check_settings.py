@@ -49,7 +49,9 @@ def lists(events, port: str) -> list[tuple[int, list]]:
 
 def check_static(fail: cp.Failures) -> None:
     game = json.loads((ROOT / "game.json").read_text(encoding="utf-8"))
-    fail.check(game.get("display") == {"mode": "windowed", "resolution": "auto", "msaa": 1, "gpuImageBudget": 300}, f"game.json display {game.get('display')}")
+    # v3: gpuTrim on-hide releases the opening's images once it is hidden (docs/v3-op.md §2.5)
+    fail.check(game.get("display") == {"mode": "windowed", "resolution": "auto", "msaa": 1, "gpuImageBudget": 300,
+                                       "gpuTrim": "on-hide"}, f"game.json display {game.get('display')}")
     order = [s["ui"] for s in game["ui"]["surfaces"]]
     surf = next((s for s in game["ui"]["surfaces"] if s["ui"] == "settings"), {})
     fail.check(surf.get("modal") is True and surf.get("visible") is False, f"game.json settings surface {surf}")
