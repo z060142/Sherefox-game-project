@@ -49,7 +49,7 @@ CLM_D01_05B_SHORT,萬用鑰匙打不開筒子,Keys can't open the tube,"short la
 CLM_D01_05B_LINE,就憑這副萬用鑰匙圈，連一般門鎖都未必開得了，根本打不開那個黃銅文件筒嘛！,This ring of skeleton keys struggles with an ordinary door lock. It could never open the brass tube.,claim spoken line (Sherefox); evidence E05 萬用鑰匙; issue 法
 CLM_D01_06A,鎖已修妥，沒留後門,"Lock mended, no back door left",claim short label; evidence E06 工作單; issue 法
 CLM_D01_06A_SHORT,鎖已修妥，沒留後門,"Lock mended, no back door","short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_06A"
-CLM_D01_06A_LINE,工作單寫得清清楚楚：換新彈簧、用萬用鑰匙校試三次，最後在主人面前試開、修妥。鎖修好了，布里格斯哪裡留了後門！,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it.",claim spoken line (Sherefox); evidence E06 工作單; issue 法
+CLM_D01_06A_LINE,工作單寫得很清楚：換新彈簧、校試三次，最後才當主人面試開，確認修妥。鎖修好了，布里格斯根本沒留後門！,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it.",claim spoken line (Sherefox); evidence E06 工作單; issue 法
 CLM_D01_06B,鎖匠傍晚就走了,Locksmith left in the evening,claim short label; evidence E06 工作單; issue 機
 CLM_D01_06B_SHORT,鎖匠傍晚就走了,Locksmith left by evening,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_06B"
 CLM_D01_06B_LINE,布里格斯和這樁案子毫無關係！工作單記著五點收工，他傍晚就走了，守靈夜根本不在屋裡。,The work order says he finished at five. Briggs left in the evening and wasn't in the house on wake night at all. He has nothing to do with this.,claim spoken line (Sherefox); evidence E06 工作單; issue 機
@@ -88,7 +88,7 @@ CLM_D01_11B_SHORT,你的手套指尖沾著灰,Dust on your glove tips,"short lab
 CLM_D01_11B_LINE,艾琳看得清清楚楚——燈一亮，你就站在走廊口，黑手套指尖還沾著灰！,"Irene says when the lights came back you were at the end of the corridor, with dust on the fingertips of your black gloves.",claim spoken line (Sherefox); evidence E11 艾琳的證詞; issue 機
 CLM_D01_12A,這家人很重視守靈,This family takes the wake seriously,claim short label; evidence E12 花圈; issue 機
 CLM_D01_12A_SHORT,這家人很重視守靈,They take the wake seriously,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_12A"
-CLM_D01_12A_LINE,海德家辦喪事處處照老規矩來，大門掛著黑紗花圈，連門環也纏上黑紗。這家人這麼看重守靈，熄燈三分鐘可絕非小事呢！,"The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter.",claim spoken line (Sherefox); evidence E12 花圈; issue 機
+CLM_D01_12A_LINE,大門掛著工整的黑紗花圈，連門環都纏著黑紗——海德家樣樣照老規矩辦喪事、這麼重視守靈，熄燈三分鐘怎麼可能只是小事？,"The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter.",claim spoken line (Sherefox); evidence E12 花圈; issue 機
 CLM_D01_P1A,他還在這棟屋子裡,He is still in this house,claim short label; evidence C_D01_P1 通靈板; issue 機
 CLM_D01_P1A_SHORT,他還在這棟屋子裡,He is still in this house,"short label for the chain and Public Record, en max 28 characters; full label: CLM_D01_P1A"
 CLM_D01_P1A_LINE,（把通靈板輕放上靈柩旁的小桌）守靈還沒結束，海德先生此刻仍待在這棟屋子裡。塞德里克先生，趁現在，你不想對叔叔說點什麼嗎？,"(Sets the talking board on the little table by the coffin) The wake isn't over. Mr Hyde is still in this house. Mr Cedric, is there anything you'd like to say to him?",claim spoken line (Sherefox); evidence C_D01_P1 通靈板; issue 機

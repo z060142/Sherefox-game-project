@@ -200,7 +200,7 @@
   "en": "Lock mended, no back door"
  },
  "CLM_D01_06A_LINE": {
-  "zh-TW": "工作單寫得清清楚楚：換新彈簧、用萬用鑰匙校試三次，最後在主人面前試開、修妥。鎖修好了，布里格斯哪裡留了後門！",
+  "zh-TW": "工作單寫得很清楚：換新彈簧、校試三次，最後才當主人面試開，確認修妥。鎖修好了，布里格斯根本沒留後門！",
   "en": "The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
  },
  "CLM_D01_06B": {
@@ -356,7 +356,7 @@
   "en": "They take the wake seriously"
  },
  "CLM_D01_12A_LINE": {
-  "zh-TW": "海德家辦喪事處處照老規矩來，大門掛著黑紗花圈，連門環也纏上黑紗。這家人這麼看重守靈，熄燈三分鐘可絕非小事呢！",
+  "zh-TW": "大門掛著工整的黑紗花圈，連門環都纏著黑紗——海德家樣樣照老規矩辦喪事、這麼重視守靈，熄燈三分鐘怎麼可能只是小事？",
   "en": "The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter."
  },
  "CLM_D01_P1A": {
@@ -964,7 +964,7 @@
   "en": "Early the next morning, Mrs Hyde's carriage drew up in Baker Street. She said only one thing: \"Please come. The Inspector has arrested the wrong man.\""
  },
  "SCR_D01_S03_L002": {
-  "zh-TW": "抵達海德宅時，大門已繫上黑紗，連門環都緊緊纏著黑布。一進屋，放眼望去，屋裡每一面鏡子全都罩著黑布。",
+  "zh-TW": "抵達海德宅時，大門已繫上黑紗，連門環也仔細纏著黑紗。一踏進屋內，每一面鏡子全都蓋著黑布。",
   "en": "Black crape hung on the front door of Hyde House, and the knocker was bound in black cloth. The wall clock in the entrance hall had stopped at twenty to ten, and every mirror was covered in black. Every gas lamp in the house was lit, even in daylight."
  },
  "SCR_D01_S03_L003": {
@@ -1380,11 +1380,11 @@
   "en": "Th-that was... I misremembered. I merely went to fetch a glass."
  },
  "CARD_D01_L2_STATE": {
-  "zh-TW": "那鎖匠趁下午修鎖時動了手腳，如今這個文件筒不用鑰匙也打得開。",
+  "zh-TW": "鎖匠下午修鎖時就動了手腳，狐狸小姐。那黃銅文件筒，根本不用鑰匙也打得開。",
   "en": "The locksmith tampered with the lock when he repaired it this afternoon. That tube could be opened without a key."
  },
  "CARD_D01_L2_PUSH": {
-  "zh-TW": "鎖匠修鎖時絕對動了手腳！否則好好上著鎖的文件筒，裡頭的東西怎會憑空不見？",
+  "zh-TW": "鎖匠修鎖時絕對動了手腳！否則好端端上著鎖的文件筒，您說它怎麼會空掉？",
   "en": "He tampered with it! How else does a locked tube empty itself?"
  },
  "CARD_D01_L2_RETRACT": {
@@ -1672,7 +1672,7 @@
   "en": "Every skeleton key is oiled, and without oil they won't turn—yet the tube's lock is spotlessly clean. Whatever opened it, it wasn't this ring of keys."
  },
  "LINK_D01_02A_03A": {
-  "zh-TW": "座鐘熄燈時被撞得重新走動，鏡子黑布有未乾的守靈白蠟，靠走廊那張椅子旁的燭台空了。那三分鐘有人拿蠟燭進書房！",
+  "zh-TW": "座鐘在熄燈時被撞到才重新走動，鏡子黑布上還滴著未乾的守靈白蠟。也就是說，熄燈時有人拿著守靈的蠟燭進了書房！",
   "en": "The mantel clock started up when the lights went out, and the mirror's black cloth fell at the same moment. In those three minutes, someone was in the study."
  },
  "LINK_D01_02A_04B": {
@@ -1688,7 +1688,7 @@
   "en": "The codicil cost you half your inheritance. And you owe four hundred pounds, due at the end of the month."
  },
  "LINK_D01_09A_10A": {
-  "zh-TW": "胸針和海德太太的成對，艾琳是海德先生女兒，吸墨紙「遺產之半數」歸她！",
+  "zh-TW": "艾琳是海德先生的女兒——那份附錄，正是把一半遺產留給她的！",
   "en": "Half the inheritance, left to a maid you order about every day."
  },
  "LINK_D01_11A_11B": {
@@ -1704,7 +1704,7 @@
   "en": "Locks, keys, tubes—you argue it very neatly. Unfortunately, I have no interest in locks."
  },
  "REACT_D01_ISSUE_MOTIVE": {
-  "zh-TW": "狐狸小姐，這世上誰不缺錢呢？光談錢，可定不了誰的罪。",
+  "zh-TW": "狐狸小姐，動機不過是揣測，算不上證據。這屋裡誰沒有一點理由？",
   "en": "Money? Everyone needs money, Miss Fox."
  },
  "REACT_D01_SOPH": {
@@ -1724,7 +1724,7 @@
   "en": "(His fingers stop on his watch chain) ...What happened that night has no bearing on this case."
  },
  "REACT_D01_08B": {
-  "zh-TW": "（臉色一白）我那晚待在俱樂部又能說明什麼？反正叔叔也……不會再等我了。",
+  "zh-TW": "（臉色一白）那晚待在俱樂部又能說明什麼？我只是……沒能送叔叔最後一程而已。",
   "en": "(He goes pale) I was at the club that day. What of it? Uncle... he would not have waited for me."
  },
  "REACT_D01_03B": {
@@ -1820,7 +1820,7 @@
   "en": "He's backed into a corner. Every line from here will hit hard—but they'll be easy to read."
  },
  "STATE_D01_ART_BREACHED": {
-  "zh-TW": "冷靜點！讀準一次站穩前，被他打中會更痛，改用正論，我陪妳度過這關！",
+  "zh-TW": "別急，先穩住陣腳！只要讀對一次就能站穩，有我在，一起撐過去。",
   "en": "Steady yourself first. Use a sound claim next; I'll see you through this."
  },
  "STATE_D01_ART_COVER": {
@@ -2308,7 +2308,7 @@
   "en": "Who is he protecting?"
  },
  "SCR_D01_S03_L002A": {
-  "zh-TW": "（低聲）門廳的掛鐘停在九點四十分，大白天屋裡也全點著煤氣燈。",
+  "zh-TW": "（低聲）妳看，門廳的掛鐘停在九點四十分，大白天屋裡也全點著煤氣燈。",
   "en": "(under his breath) The hall clock has stopped at twenty to ten, and every gas lamp is lit in broad daylight."
  }
 }
