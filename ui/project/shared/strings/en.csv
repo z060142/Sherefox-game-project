@@ -76,10 +76,10 @@ BEAT_D01_LASTCARD_3,Brass filings! Th-this Inspector said so all along!
 BEAT_D01_LASTCARD_4,"And another thing: everything you said a moment ago—everyone in this house heard it, and none of it was true."
 BEAT_D01_LASTCARD_5,"...Ugh, he saw right through me."
 BEAT_D01_LASTCARD_6,"Steady yourself. Take apart the rest of what he says, one line at a time."
-BEAT_D01_LASTSTAND_FAIL_1,That statement is not on my chain.
+BEAT_D01_LASTSTAND_FAIL_1,That statement is not part of my argument.
 BEAT_D01_P1A_1,"(The parlour falls silent. A draught slips in through the gap in the window, and the candle flames lean.)"
 BEAT_D01_P1A_2,"(Quietly) Sherefox, you actually brought it..."
-BEAT_D01_REDCRACK_1,"(Seeing the red crack) Sherefox, that doesn't square with what you said at the start—"
+BEAT_D01_REDCRACK_1,"(Seeing the red crack) Sherefox, that doesn't square with what you said earlier."
 BEAT_D01_REFUTED_1,I...
 BEAT_D01_REFUTED_2,(Covers her face)
 BEAT_D01_REFUTED_3,{item}...?
@@ -225,13 +225,13 @@ CLM_D01_01A,"Lock intact, opened with its key"
 CLM_D01_01A_LINE,"The lock is intact, not a single mark of forcing. Whoever opened it used a real key."
 CLM_D01_01A_SHORT,"Lock intact, true key used"
 CLM_D01_01B,The lock was tampered with
-CLM_D01_01B_LINE,"Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
+CLM_D01_01B_LINE,"Someone did tamper with that lock, yes. But not Briggs, who only came to mend it."
 CLM_D01_01B_SHORT,Lock was tampered with
 CLM_D01_01C,No oil in the lock
-CLM_D01_01C_LINE,That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it.
+CLM_D01_01C_LINE,The lock's workings are spotless. Not a drop of oil. No oiled key has ever touched them.
 CLM_D01_01C_SHORT,No oil in the lock
 CLM_D01_01D,Locksmith had nothing to open it
-CLM_D01_01D_LINE,"It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
+CLM_D01_01D_LINE,"There's nothing wrong with that lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
 CLM_D01_01D_SHORT,Locksmith couldn't open it
 CLM_D01_02A,Clock restarted when the lights died
 CLM_D01_02A_LINE,"The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece."
@@ -261,7 +261,7 @@ CLM_D01_05A,Every skeleton key is oiled
 CLM_D01_05A_LINE,"Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn."
 CLM_D01_05A_SHORT,Every skeleton key is oiled
 CLM_D01_05B,Skeleton keys can't open the tube
-CLM_D01_05B_LINE,"Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube."
+CLM_D01_05B_LINE,This ring of skeleton keys struggles with an ordinary door lock. It could never open the brass tube.
 CLM_D01_05B_SHORT,Keys can't open the tube
 CLM_D01_06A,"Lock mended, no back door left"
 CLM_D01_06A_LINE,"The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
@@ -294,7 +294,7 @@ CLM_D01_10A,The codicil halved your share
 CLM_D01_10A_LINE,"The blotter holds the codicil in mirror writing: ""half of my estate I bequeath to..."" The old will left you everything. This codicil cut your share in half."
 CLM_D01_10A_SHORT,Codicil halved your share
 CLM_D01_10B,First to see the codicil
-CLM_D01_10B_LINE,"Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done."
+CLM_D01_10B_LINE,"Mr Hyde wrote the codicil in his last days. When the study was tidied the day before yesterday, the first person to see it stood in the doorway, refused to come in, yet stayed until the tidying was done."
 CLM_D01_10B_SHORT,First to see the codicil
 CLM_D01_11A,Your chair was empty before dark
 CLM_D01_11A_LINE,Irene says your chair was already empty before the lights went out.
@@ -505,7 +505,7 @@ EXCL_D01_05A_05B_SELL,Turning isn't the same as opening!
 EXCL_D01_06A_06C_CATCH,"A moment ago you said he never touched the lock's workings, and now you say he fitted a new spring?"
 EXCL_D01_06A_06C_SELL,"A spring... doesn't count as the workings, does it?"
 EXCL_D01_06B_07A_CATCH,"A moment ago you said the locksmith was not even in the house last night and had nothing to do with this, and now you say he spent the whole night in the kitchen? Miss Fox, can your locksmith be in two places at once?"
-EXCL_D01_06B_07A_SELL,"...Let me amend that. Even gentlemen correct a typo now and then, don't they?"
+EXCL_D01_06B_07A_SELL,Let me amend that. Don't gentlemen ever misspeak?
 EXCL_D01_06B_07B_CATCH,"A moment ago you said the locksmith was not even in the house, and now you say he crept back for the cook?"
 EXCL_D01_06B_07B_SELL,He... came back very quietly.
 EXCL_D01_09A_09B_CATCH,"A moment ago you said it was merely a keepsake, and now you say she is my uncle's daughter?"
@@ -647,7 +647,7 @@ HS_D01_02_ART,"She's frightened half to death, but she put it very clearly."
 HS_D01_02_DESC,"The young maid clutches a tray, her hands still trembling. ""Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them."""
 HS_D01_02_NAME,Irene
 HS_D01_03_ART,Rather a fashionable watch chain.
-HS_D01_03_DESC,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin tricks."""
+HS_D01_03_DESC,"Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, ""Aunt, these customs are nothing but bumpkin superstition."""
 HS_D01_03_NAME,Mr Cedric
 HS_D01_04_ART,Memorial photographs are all the fashion now. Perhaps he doesn't care to be photographed.
 HS_D01_04_DESC,"In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile."
@@ -898,7 +898,7 @@ OBS_D01_W1,The brass tube's lid is shut and locked
 OBS_D01_W2,Briggs was searched on arrest and had no papers on him
 OBS_D01_W3,Every light in the house dimmed together and came back together
 PN_D01_1_NAME,Charms on his watch chain
-PN_D01_1_TEXT,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin tricks""."
+PN_D01_1_TEXT,"Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are ""all bumpkin superstition""."
 PN_D01_2_NAME,A bedside lamp by day
 PN_D01_2_TEXT,"In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
 PN_D01_3_NAME,Face turned from the photograph
@@ -924,7 +924,7 @@ REACT_D01_ISSUE_MOTIVE,"Money? Everyone needs money, Miss Fox."
 REACT_D01_ISSUE_OPP,You saw remarkably well for three minutes of darkness.
 REACT_D01_LIE_SOPH,What a marvellous story. A pity it is only a story.
 REACT_D01_P1A,"(His breath catches; his fingertips close tight on the charm on his watch chain) ...Put that thing away. This is a house of mourning, not a salon."
-REACT_D01_P1B,"(Leaps to his feet, knocking his chair over) Enough! Your hand pushed that planchette! ...You pushed it, didn't you?"
+REACT_D01_P1B,"(Leaps to his feet, knocking his chair over) Stop this hocus-pocus! Your hand pushed that planchette! ...You pushed it, didn't you?"
 REACT_D01_SOPH,Not even a country bumpkin would believe that.
 REFUTE_D01_01D,"Nothing that could open it? Then whose is this ring of skeleton keys Miss Fox left in the entrance hall? Twelve keys, every one of them oiled."
 REFUTE_D01_01D_FACT,the locksmith carried a ring of skeleton keys
@@ -1461,7 +1461,7 @@ SCR_D01_S02_L004,"Mr Pendleton, a ghost doesn't care whether your roof leaks."
 SCR_D01_S02_L005,"Ghosts don't exist, madam. That is a medical fact. When a man dies his heart stops, and nothing is left to go walking up and down the stairs."
 SCR_D01_S02_L006,"(Cradling her cocoa, one ear twitching) You're saying that very firmly, Arthur."
 SCR_D01_S02_L007,Because it's true.
-SCR_D01_S02_L008,Mm. I've just noticed that people who don't believe usually aren't afraid. It's the frightened ones who protest the loudest.
+SCR_D01_S02_L008,"Oh, nothing. It's just that people who really aren't afraid don't usually bother saying over and over that they don't believe."
 SCR_D01_S02_L009,...Are you talking about me?
 SCR_D01_S02_L010,"I'm talking about the cocoa. It's scalding, and it keeps insisting it's only ""warm""."
 SCR_D01_S02_L011,"Sip it slowly. Oh, and the paper says Mr Hyde of Kensington has passed away. They're keeping the wake the old-fashioned way, clocks stopped and all. Rich folk are particular."
@@ -1469,20 +1469,21 @@ SCR_D01_S02_L012,"Stop the clocks, cover the mirrors, leave a window open a crac
 SCR_D01_S02_TITLE,Daily life: the Baker Street office (the night before)
 SCR_D01_S03_L001,"Early the next morning, Mrs Hyde's carriage drew up in Baker Street. She said only one thing: ""Please come. The Inspector has arrested the wrong man."""
 SCR_D01_S03_L002,"Black crape hung on the front door of Hyde House, and the knocker was bound in black cloth. The wall clock in the entrance hall had stopped at twenty to ten, and every mirror was covered in black. Every gas lamp in the house was lit, even in daylight."
+SCR_D01_S03_L002A,"(under his breath) The hall clock has stopped at twenty to ten, and every gas lamp is lit in broad daylight."
 SCR_D01_S03_L003,"(In the entrance hall, dangling a ring of keys) Miss Fox! You're too late. This Inspector solved the case last night!"
 SCR_D01_S03_L004,"Good morning, Inspector. Solved so quickly the papers haven't even had time to get it wrong."
-SCR_D01_S03_L005,"Hmph! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!"
+SCR_D01_S03_L005,"Spare me your sarcasm! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!"
 SCR_D01_S03_L006,"(Held by a constable) I didn't steal anything! I, I was only... I can't say..."
 SCR_D01_S03_L007,Hear that! He can't say!
 SCR_D01_S03_L008,"(Stepping out of the parlour, straightening his black cravat) The Inspector is quite right. The locksmith rigged the lock while he was mending it that afternoon. Nothing could be plainer. Forgive me, and you are?"
 SCR_D01_S03_L009,"Sherefox, detective, of Baker Street. This is Arthur."
-SCR_D01_S03_L010,"Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country tricks the undertakers use to fleece people."
+SCR_D01_S03_L010,"Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country superstitions the undertakers use to fleece people."
 SCR_D01_S03_L011,Cedric.
 SCR_D01_S03_L012,"I only speak the truth, Aunt."
 SCR_D01_S03_L013,"(Quietly) He's not wrong, mind you. None of those customs has any scientific basis."
-SCR_D01_S03_L014,"(Quietly) True. But the whole time he was saying ""country tricks"", his hand kept going to his watch chain."
+SCR_D01_S03_L014,"(Quietly) True. But the whole time he was saying ""country superstitions"", his hand kept going to his watch chain."
 SCR_D01_S03_L015,"Enough, enough! Miss Fox, if you mean to speak up for the locksmith, you'll have to get past this Inspector first!"
-SCR_D01_S03_TITLE,"The case: Hyde House, the wake"
+SCR_D01_S03_TITLE,"The case: Hyde House, the next morning"
 SCR_D01_S04_L001,Warm-up debate: Inspector Baskerville. Point out his mistakes. Three wrong answers and it's over.
 SCR_D01_S04_L002,"Point one! The moment the lights went out he struck. He'd rigged the lock that afternoon, so the tube opened at a touch!"
 SCR_D01_S04_L003,Whoever took the codicil still had time to lock the tube again. A rigged lock wouldn't need locking back up.
@@ -1505,7 +1506,7 @@ SCR_D01_S06_L002,You can bring {max}. Chosen: {n}.
 SCR_D01_S06_L003,This really is no use.
 SCR_D01_S06_L004,"Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?"
 SCR_D01_S06_L005,"It's light. Besides, wood can talk, if someone's willing to listen."
-SCR_D01_S06_L006,This belongs to Irene. Are you sure you want to bring it out in front of everyone?
+SCR_D01_S06_L006,This belongs to Irene. Are you sure you want to take it into the parlour?
 SCR_D01_S06_L007,"A piece of cloth... Well, you're the detective."
 SCR_D01_S06_L008,Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it.
 SCR_D01_S06_L009,These will be left at the house: {list}. Are you sure?
@@ -1542,7 +1543,7 @@ SCR_D01_S08_L006,(Bows to Sherefox and hurries off without a word of explanation
 SCR_D01_S08_L007,"Miss Fox, this time... this Inspector admits his nose was a trifle blocked."
 SCR_D01_S08_L008,"It's February, Inspector. Everyone's a bit stuffed up."
 SCR_D01_S08_L009,That board of yours... how did you know it would be any use?
-SCR_D01_S08_L010,I didn't. I only know that the man who scoffs the loudest is the one carrying the most charms.
+SCR_D01_S08_L010,I didn't. It's just that the people who keep saying they don't believe always seem to carry the most charms.
 SCR_D01_S08_L011,I'm sorry. If only I'd taken that tube apart and looked.
 SCR_D01_S08_L012,"It isn't your fault, Arthur. ...I'm the one who left behind what I shouldn't have."
 SCR_D01_S08_TITLE,Results
@@ -1735,13 +1736,13 @@ TELL_D01_GESTURE_STALL,Fingers the charms on his watch chain
 TELL_D01_HINT_ASSERT,He's straightening his cravat. He's about to speak.
 TELL_D01_HINT_FACT,This one... is true. We can't knock it down.
 TELL_D01_HINT_KEY,That's the foundation of his whole story!
-TELL_D01_HINT_LAST,He's going to change his story. Have you got anything that can stop that line?
+TELL_D01_HINT_LAST,He's trying to turn the tables. Have you got anything that can stop that line?
 TELL_D01_HINT_NOCUT,We've nothing on us that can refute that.
 TELL_D01_HINT_PUSH,The glove's coming off—brace yourself.
-TELL_D01_HINT_REBUT,He's waiting for you to go first. Don't throw links about carelessly.
+TELL_D01_HINT_REBUT,He's waiting for you to go first. Don't do anything rash.
 TELL_D01_HINT_SLIP,He didn't... finish that sentence.
 TELL_D01_HINT_STALL,He's fiddling with that watch chain again... playing for time. Make our case now.
-TELL_D01_PUSH_1,Enough.
+TELL_D01_PUSH_1,Absurd.
 TELL_D01_PUSH_2,I have had quite enough of this farce.
 TELL_D01_REBUT_1,"Please, go on. I am all ears."
 TELL_D01_REBUT_2,Are you quite sure you wish to say that?

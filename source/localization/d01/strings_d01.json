@@ -32,7 +32,7 @@
   "en": "Lock intact, true key used"
  },
  "CLM_D01_01A_LINE": {
-  "zh-TW": "筒鎖完好，連一點撬痕都沒有。打開它的，是真正的鑰匙。",
+  "zh-TW": "這把筒鎖完好無損，鎖芯連半點撬痕也沒有！打開它的，正是原本那把真鑰匙。",
   "en": "The lock is intact, not a single mark of forcing. Whoever opened it used a real key."
  },
  "CLM_D01_01B": {
@@ -44,8 +44,8 @@
   "en": "Lock was tampered with"
  },
  "CLM_D01_01B_LINE": {
-  "zh-TW": "筒鎖確實被人動了手腳，但動手腳的不是來修鎖的布里格斯。",
-  "en": "Someone did tamper with that lock, yes. But not Briggs, a man who only knows how to mend them."
+  "zh-TW": "這把筒鎖的確被人動過手腳，這點我同意。但動手的，可不是下午來修鎖的布里格斯！",
+  "en": "Someone did tamper with that lock, yes. But not Briggs, who only came to mend it."
  },
  "CLM_D01_01C": {
   "zh-TW": "鎖芯裡沒有油",
@@ -56,8 +56,8 @@
   "en": "No oil in the lock"
  },
  "CLM_D01_01C_LINE": {
-  "zh-TW": "鎖芯裡乾乾淨淨，連一滴油都沒有，上過油的鑰匙根本沒碰過它。",
-  "en": "That lock is spotless inside. Not a drop of oil. No oiled key has been anywhere near it."
+  "zh-TW": "上過油的鑰匙從沒插進這把鎖——鎖芯裡非常乾淨，連半點油漬都沒留下！",
+  "en": "The lock's workings are spotless. Not a drop of oil. No oiled key has ever touched them."
  },
  "CLM_D01_01D": {
   "zh-TW": "鎖匠沒有能開鎖的東西",
@@ -68,8 +68,8 @@
   "en": "Locksmith couldn't open it"
  },
  "CLM_D01_01D_LINE": {
-  "zh-TW": "這把筒鎖沒問題，布里格斯修完也沒留備用鑰匙，他手上根本沒有能打開它的東西。",
-  "en": "It's a good lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
+  "zh-TW": "布里格斯早把筒鎖修好了，也沒留備用鑰匙。他手上根本沒有能開鎖的工具，更沒東西能打開這筒子！",
+  "en": "There's nothing wrong with that lock, and Briggs kept no spare key after mending it. He had nothing on him that could open it."
  },
  "CLM_D01_02A": {
   "zh-TW": "座鐘在熄燈時重新走動",
@@ -80,7 +80,7 @@
   "en": "Clock restarted in the dark"
  },
  "CLM_D01_02A_LINE": {
-  "zh-TW": "書房的座鐘原本停在九點四十分，卻在熄燈那三分鐘裡重新走動了。當時有人在書房裡，撞到了壁爐架。",
+  "zh-TW": "全屋的鐘都停在九點四十分，書房這座原本也不例外，卻在熄燈那三分鐘裡受震重新走了起來！當時書房裡有人，而且還撞到了壁爐架。",
   "en": "The study clock had stopped at twenty to ten. It started ticking again during those three dark minutes, because someone in the study bumped the mantelpiece."
  },
  "CLM_D01_02B": {
@@ -92,7 +92,7 @@
   "en": "Clock restarted by itself"
  },
  "CLM_D01_02B_LINE": {
-  "zh-TW": "老座鐘停久了，屋子稍微震動就會自己擺起來。它慢了一個多小時，跟熄燈沒關係。",
+  "zh-TW": "這座老鐘停了這麼久，只要房子稍微一震，鐘擺自然會自己動起來。它慢了一個多小時，與昨晚熄燈一點關係也沒有。",
   "en": "An old clock left stopped will start swinging at the slightest tremor. It's over an hour slow. Nothing to do with the lights."
  },
  "CLM_D01_02C": {
@@ -104,7 +104,7 @@
   "en": "Twenty to ten, he called you"
  },
  "CLM_D01_02C_LINE": {
-  "zh-TW": "這座鐘停在九點四十分，正是海德先生嚥氣的那一刻。他臨終前一直在叫一個人的名字。塞德里克先生，當時你在哪裡？",
+  "zh-TW": "塞德里克先生，海德先生是在九點四十分嚥氣的，這座鐘記下的正是那一刻。他臨終前一直喊著某個人的名字——當時的你，人在哪裡？",
   "en": "This clock stopped at twenty to ten, the moment Mr Hyde breathed his last. Until then he kept calling one name. Mr Cedric, where were you?"
  },
  "CLM_D01_03A": {
@@ -116,7 +116,7 @@
   "en": "Wake candle wax on the cloth"
  },
  "CLM_D01_03A_LINE": {
-  "zh-TW": "書房鏡子的黑布上，滴著一滴還沒乾透的守靈白蠟。靠走廊那張椅子旁的燭台正好是空的。熄燈時，有人就是從那個位子拿了蠟燭進書房。",
+  "zh-TW": "靈堂裡其餘五張椅子旁的蠟燭都還點著，唯獨靠走廊那張椅旁的小燭台是空的！而書房穿衣鏡的黑布上，剛好滴著一滴沒乾透的守靈白蠟——熄燈時，有人從那座位拿了蠟燭進書房！",
   "en": "On the black cloth from the study mirror there's a drop of white wax, still soft. Wake candle wax. And the candlestick by the chair nearest the corridor is empty. When the lights went out, someone took a candle from that seat into the study."
  },
  "CLM_D01_03B": {
@@ -128,7 +128,7 @@
   "en": "None dared cover the mirror"
  },
  "CLM_D01_03B_LINE": {
-  "zh-TW": "黑布是被人碰掉的，卻沒人把它蓋回去。守靈夜裡讓鏡面就這麼露在外面，那個人連回頭看一眼都不敢。",
+  "zh-TW": "這塊黑布分明是被人碰下來的，卻沒再蓋回原位。守靈夜裡放著整面鏡子露在外頭，那個人該不會連回頭瞄鏡子一眼都不敢吧？",
   "en": "The cloth was knocked off, and nobody put it back. A mirror left bare on a wake night! Whoever did it didn't dare so much as look back."
  },
  "CLM_D01_04A": {
@@ -140,7 +140,7 @@
   "en": "Valve was turned down"
  },
  "CLM_D01_04A_LINE": {
-  "zh-TW": "煤氣總閥上有剛扳動過的痕跡。燈不是自己變暗的，是有人到地下室把它關小了。",
+  "zh-TW": "地下室煤氣總閥的閥輪留著剛扳動的新痕！全屋的燈才不是莫名變暗的，分明是有人下樓把總閥關小了。",
   "en": "The main valve has fresh turn marks. The lights didn't dim on their own. Someone in the basement turned it down."
  },
  "CLM_D01_04B": {
@@ -152,7 +152,7 @@
   "en": "Study soot on the valve"
  },
  "CLM_D01_04B_LINE": {
-  "zh-TW": "閥輪上沾的是書房壁爐的煙灰。關燈的人先去了書房，再回地下室把燈開回來，他從頭到尾都在屋裡。",
+  "zh-TW": "閥輪沾的不是煤塵，而是書房壁爐的舊煙灰！關燈的人明明先去了書房，才折返地下室把燈轉亮——這個人從頭到尾都待在這棟屋子裡！",
   "en": "The soot on that valve wheel came from the study fireplace. Whoever dimmed the lights went to the study first, then back down to turn them up again. He never left the house."
  },
  "CLM_D01_04C": {
@@ -164,7 +164,7 @@
   "en": "Only Martha in the kitchen"
  },
  "CLM_D01_04C_LINE": {
-  "zh-TW": "燈滅的時候，後門一直關著，地下室廚房裡只有瑪莎一個人，根本沒人從後門跑出去。",
+  "zh-TW": "熄燈當時，地下室廚房裡只有瑪莎一個人，後門一直關得好好的，哪有可能有人從後門跑出去？",
   "en": "When the lights went out, the back door stayed shut and Martha was alone in the basement kitchen. No one ran out the back."
  },
  "CLM_D01_05A": {
@@ -176,7 +176,7 @@
   "en": "Every skeleton key is oiled"
  },
  "CLM_D01_05A_LINE": {
-  "zh-TW": "布里格斯的萬用鑰匙每一把都上了油，不上油就轉不動。",
+  "zh-TW": "布里格斯那十二把萬用鑰匙全上了油——這類鑰匙沒上油根本轉不動。",
   "en": "Every one of Briggs's skeleton keys is oiled. Without oil, they won't turn."
  },
  "CLM_D01_05B": {
@@ -188,8 +188,8 @@
   "en": "Keys can't open the tube"
  },
  "CLM_D01_05B_LINE": {
-  "zh-TW": "這圈萬用鑰匙連普通的門鎖都很難開，根本打不開黃銅文件筒。",
-  "en": "Skeleton keys off a ring like that struggle with an ordinary door, let alone a brass tube."
+  "zh-TW": "就憑這副萬用鑰匙圈，連一般門鎖都未必開得了，根本打不開那個黃銅文件筒嘛！",
+  "en": "This ring of skeleton keys struggles with an ordinary door lock. It could never open the brass tube."
  },
  "CLM_D01_06A": {
   "zh-TW": "鎖已修妥，沒留後門",
@@ -200,7 +200,7 @@
   "en": "Lock mended, no back door"
  },
  "CLM_D01_06A_LINE": {
-  "zh-TW": "工作單上寫著換了新彈簧，當著主人的面試開三次，已經修妥。鎖修好了，沒有留後門。",
+  "zh-TW": "工作單寫得清清楚楚：換新彈簧、用萬用鑰匙校試三次，最後在主人面前試開、修妥。鎖修好了，布里格斯哪裡留了後門！",
   "en": "The work order says: new spring fitted, opened three times in the owner's presence, repaired. The lock was mended, with no back door left in it."
  },
  "CLM_D01_06B": {
@@ -212,7 +212,7 @@
   "en": "Locksmith left by evening"
  },
  "CLM_D01_06B_LINE": {
-  "zh-TW": "工作單上寫著五點收工。布里格斯傍晚就離開了，守靈夜根本不在屋裡，跟這件事毫無關係。",
+  "zh-TW": "布里格斯和這樁案子毫無關係！工作單記著五點收工，他傍晚就走了，守靈夜根本不在屋裡。",
   "en": "The work order says he finished at five. Briggs left in the evening and wasn't in the house on wake night at all. He has nothing to do with this."
  },
  "CLM_D01_06C": {
@@ -224,7 +224,7 @@
   "en": "Work order says \"tested\""
  },
  "CLM_D01_06C_LINE": {
-  "zh-TW": "工作單上寫的是「校試」，不是「修理」，布里格斯根本沒動過那個筒子的鎖芯。",
+  "zh-TW": "工作單別看別處，單看這兩個字——「校試」！這叫校試、不叫修理，布里格斯根本沒碰過筒鎖的鎖芯。",
   "en": "The work order says \"tested\", not \"repaired\". Briggs never touched the inside of that lock."
  },
  "CLM_D01_07A": {
@@ -236,7 +236,7 @@
   "en": "Locksmith met Martha"
  },
  "CLM_D01_07A_LINE": {
-  "zh-TW": "這條掉在廚房爐子後面的手帕沾著機油味，還繡著廚娘瑪莎的縮寫。布里格斯晚上偷偷回來見她，熄燈時就在後門邊的廚房裡，沒人從後門跑出去。",
+  "zh-TW": "廚房爐子後面掉著一條帶著機油味的手帕，角落還繡著廚娘瑪莎的縮寫「M」。布里格斯昨晚的確偷溜回來見瑪莎，熄燈時兩人就待在後門邊的廚房裡——所以根本沒人從後門跑出去！",
   "en": "This handkerchief was behind the kitchen stove. It smells of machine oil and bears Martha the cook's initial. Briggs slipped back at night to see her. When the lights went out, he was in the kitchen by the back door, and nobody ran out the back."
  },
  "CLM_D01_07B": {
@@ -248,7 +248,7 @@
   "en": "He came back for Martha"
  },
  "CLM_D01_07B_LINE": {
-  "zh-TW": "布里格斯冒險溜回來，是為了瑪莎，不是為了什麼附錄。",
+  "zh-TW": "這條繡字手帕就是答案：布里格斯冒險溜回來只為了見瑪莎，才不是為了附錄！",
   "en": "Briggs risked sneaking back for Martha, not for any codicil."
  },
  "CLM_D01_08A": {
@@ -260,7 +260,7 @@
   "en": "£400 in gaming debts"
  },
  "CLM_D01_08A_LINE": {
-  "zh-TW": "梅費爾俱樂部，四百鎊，月底前還清。真正需要錢的人是你。",
+  "zh-TW": "梅費爾俱樂部催著討四百鎊，月底就要到期！真正急著用錢的不是鎖匠，是你才對。",
   "en": "The Mayfair Club. Four hundred pounds. Due by the end of the month. The one who needs money is you."
  },
  "CLM_D01_08B": {
@@ -272,7 +272,7 @@
   "en": "At the club when Uncle died"
  },
  "CLM_D01_08B_LINE": {
-  "zh-TW": "催款信的日期正是海德先生過世那天。那一晚，你人就在俱樂部。",
+  "zh-TW": "海德先生過世當晚，你人待在俱樂部。塞德里克先生，這封催款信的落款正好就是那一天。",
   "en": "The demand letter is dated the day Mr Hyde died. And that night, you were at the club."
  },
  "CLM_D01_09A": {
@@ -284,7 +284,7 @@
   "en": "Irene is Mr Hyde's daughter"
  },
  "CLM_D01_09A_LINE": {
-  "zh-TW": "艾琳抽屜裡的胸針和海德太太那枚是一對，編的都是海德先生的頭髮。艾琳是海德先生的女兒，那份附錄就是留給她的。",
+  "zh-TW": "艾琳房裡收著一枚刻了「給 E.」的小胸針，與海德太太那枚正是一對，編的都是海德先生的頭髮。艾琳是海德先生的女兒，附錄那一半遺產，就是留給她的！",
   "en": "The brooch in Irene's drawer is the twin of Mrs Hyde's, woven from Mr Hyde's hair. Irene is Mr Hyde's daughter. The codicil was meant for her."
  },
  "CLM_D01_09B": {
@@ -296,7 +296,7 @@
   "en": "Brooch is just a keepsake"
  },
  "CLM_D01_09B_LINE": {
-  "zh-TW": "這枚胸針是海德太太送給艾琳的紀念品，跟遺囑沒有關係。",
+  "zh-TW": "這和遺囑無關，海德太太只是送了枚胸針給艾琳當紀念品罷了。",
   "en": "Mrs Hyde gave Irene that brooch as a keepsake. It has nothing to do with the will."
  },
  "CLM_D01_10A": {
@@ -308,7 +308,7 @@
   "en": "Codicil halved your share"
  },
  "CLM_D01_10A_LINE": {
-  "zh-TW": "吸墨紙上印著附錄的反字：「將遺產之半數，贈予……」舊遺囑原本把遺產全留給你，這份附錄卻讓你少了一半。",
+  "zh-TW": "書桌吸墨紙留下了附錄的反字：「將遺產之半數，贈予……」名字雖然糊掉了，但照舊遺囑遺產原本全歸你，有了這份附錄，你直接少掉一半！",
   "en": "The blotter holds the codicil in mirror writing: \"half of my estate I bequeath to...\" The old will left you everything. This codicil cut your share in half."
  },
  "CLM_D01_10B": {
@@ -320,8 +320,8 @@
   "en": "First to see the codicil"
  },
  "CLM_D01_10B_LINE": {
-  "zh-TW": "附錄是海德先生臨終前幾天寫的。前天整理書房時，最早看到它的人就站在門口，不肯進去，卻一直待到整理完。",
-  "en": "Mr Hyde wrote the codicil in his last days. Whoever tidied the study the day before yesterday saw it first. That person stood in the doorway, refused to come in, yet stayed until the tidying was done."
+  "zh-TW": "這份附錄是海德先生臨終前幾天才寫的。前天艾琳整理書房時，有人一直站在門口不肯進去，偏要等到她整理完才走——最早瞄見附錄的人，是你吧？",
+  "en": "Mr Hyde wrote the codicil in his last days. When the study was tidied the day before yesterday, the first person to see it stood in the doorway, refused to come in, yet stayed until the tidying was done."
  },
  "CLM_D01_11A": {
   "zh-TW": "燈滅前，你的椅子就空了",
@@ -332,7 +332,7 @@
   "en": "Empty chair before the dark"
  },
  "CLM_D01_11A_LINE": {
-  "zh-TW": "艾琳說，燈滅之前，你的椅子就已經空了。",
+  "zh-TW": "艾琳親口作證：早在燈滅之前，你坐的那張椅子就已經空了！",
   "en": "Irene says your chair was already empty before the lights went out."
  },
  "CLM_D01_11B": {
@@ -344,7 +344,7 @@
   "en": "Dust on your glove tips"
  },
  "CLM_D01_11B_LINE": {
-  "zh-TW": "艾琳說，燈亮的時候你站在走廊口，黑手套的指尖沾著灰。",
+  "zh-TW": "艾琳看得清清楚楚——燈一亮，你就站在走廊口，黑手套指尖還沾著灰！",
   "en": "Irene says when the lights came back you were at the end of the corridor, with dust on the fingertips of your black gloves."
  },
  "CLM_D01_12A": {
@@ -356,7 +356,7 @@
   "en": "They take the wake seriously"
  },
  "CLM_D01_12A_LINE": {
-  "zh-TW": "整棟屋子照老規矩辦喪事，連門環都綁了黑紗。這家人這麼重視守靈，熄燈三分鐘可不是小事。",
+  "zh-TW": "海德家辦喪事處處照老規矩來，大門掛著黑紗花圈，連門環也纏上黑紗。這家人這麼看重守靈，熄燈三分鐘可絕非小事呢！",
   "en": "The whole house keeps mourning by the book, down to black crape on the door knocker. This family takes its wake seriously. So three minutes of darkness is no small matter."
  },
  "CLM_D01_P1A": {
@@ -368,7 +368,7 @@
   "en": "He is still in this house"
  },
  "CLM_D01_P1A_LINE": {
-  "zh-TW": "（把通靈板擺上靈柩旁的小桌）守靈夜還沒過去，海德先生還在這棟屋子裡。塞德里克先生，你有什麼話想對他說嗎？",
+  "zh-TW": "（把通靈板輕放上靈柩旁的小桌）守靈還沒結束，海德先生此刻仍待在這棟屋子裡。塞德里克先生，趁現在，你不想對叔叔說點什麼嗎？",
   "en": "(Sets the talking board on the little table by the coffin) The wake isn't over. Mr Hyde is still in this house. Mr Cedric, is there anything you'd like to say to him?"
  },
  "CLM_D01_P1B": {
@@ -380,7 +380,7 @@
   "en": "He knows who did it"
  },
  "CLM_D01_P1B_LINE": {
-  "zh-TW": "（指示板緩緩滑向「YES」）你看，他說他知道是誰。",
+  "zh-TW": "（指示板緩緩滑向「YES」）哎呀，海德先生回應囉——他說他知道是誰。",
   "en": "(The planchette slides slowly to \"YES\") ...Look. He says he knows who did it."
  },
  "CARD_D01_L1": {
@@ -480,15 +480,15 @@
   "en": "I went to check the valve"
  },
  "REFUTE_D01_05B_FACT": {
-  "zh-TW": "工作單寫明以萬用鑰匙校試",
+  "zh-TW": "工作單載明布里格斯以萬用鑰匙校試過筒鎖",
   "en": "the work order states the lock was tested with skeleton keys"
  },
  "REFUTE_D01_01D_FACT": {
-  "zh-TW": "鎖匠身上有萬用鑰匙圈",
+  "zh-TW": "鎖匠布里格斯隨身帶著萬用鑰匙圈",
   "en": "the locksmith carried a ring of skeleton keys"
  },
  "REFUTE_D01_06B_FACT": {
-  "zh-TW": "鎖匠昨晚回來過",
+  "zh-TW": "鎖匠布里格斯昨晚曾經回到宅邸",
   "en": "the locksmith came back last night"
  },
  "OBS_D01_W1": {
@@ -508,7 +508,7 @@
   "en": "Brass document tube (empty)"
  },
  "E_D01_01_DESC": {
-  "zh-TW": "書桌上的黃銅文件筒，蓋子鎖得好好的，裡頭卻是空的。鎖孔周圍光亮，沒有明顯刮痕。",
+  "zh-TW": "擺在書房書桌上的黃銅文件筒。蓋子確實鎖著，裡面卻已經空了；鎖孔四周一片光亮，看不見明顯刮痕。",
   "en": "The brass document tube on the desk. The lid is locked and the tube is empty. The keyhole is bright, with no obvious scratches."
  },
  "E_D01_02_NAME": {
@@ -516,7 +516,7 @@
   "en": "Study mantel clock"
  },
  "E_D01_02_DESC": {
-  "zh-TW": "全屋唯一還在走的鐘，指著十點四十八分，比實際時間慢了一個多小時。",
+  "zh-TW": "整棟宅子裡唯一仍在走動的座鐘。指針目前指著十點四十八分，比實際時間慢了一個多小時。",
   "en": "The only clock in the house that is running. It reads 10:48, more than an hour slow."
  },
  "E_D01_03_NAME": {
@@ -524,7 +524,7 @@
   "en": "Fallen mirror cloth"
  },
  "E_D01_03_DESC": {
-  "zh-TW": "書房穿衣鏡的黑布掉在地毯上，鏡面露在外面。黑布上有一滴還沒乾透的守靈白蠟。",
+  "zh-TW": "原本罩著書房穿衣鏡的黑布落在鏡前地毯上，鏡面整個露在外頭。布面上留著一滴還沒乾透的守靈白蠟。",
   "en": "The black cloth from the study's cheval glass lies on the carpet, the mirror left bare. On the cloth is a drop of white wake-candle wax, not yet set."
  },
  "E_D01_04_NAME": {
@@ -532,7 +532,7 @@
   "en": "Basement main gas valve"
  },
  "E_D01_04_DESC": {
-  "zh-TW": "閥輪上有剛扳動過的痕跡，輪緣沾著一圈黑灰。",
+  "zh-TW": "地下室煤氣總閥的閥輪留有剛扳動的痕跡，邊緣沾了一圈黑灰。",
   "en": "The valve wheel shows fresh turn marks, and its rim is ringed with black dust."
  },
  "E_D01_05_NAME": {
@@ -540,7 +540,7 @@
   "en": "Ring of skeleton keys"
  },
  "E_D01_05_DESC": {
-  "zh-TW": "布里格斯的萬用鑰匙，一共十二把，每一把都上了油。",
+  "zh-TW": "屬於鎖匠布里格斯的整套萬用鑰匙，共有十二把，每把都上了油。",
   "en": "Briggs's skeleton keys. Twelve of them, every one oiled."
  },
  "E_D01_06_NAME": {
@@ -548,7 +548,7 @@
   "en": "Briggs's work order"
  },
  "E_D01_06_DESC": {
-  "zh-TW": "「下午三時至五時，海德宅書房黃銅文件筒，換新彈簧一組，以萬用鑰匙校試三次，當主人面試開，修妥。布里格斯。」",
+  "zh-TW": "「時段：下午三時至五時。物件：海德宅書房黃銅文件筒。項目：換新彈簧一組，以萬用鑰匙校試三次，當主人面試開無誤，修妥。——布里格斯」",
   "en": "\"3 to 5 p.m. Hyde residence, study, brass document tube. One new spring fitted. Tested three times with skeleton keys. Opened in the owner's presence. Repaired. Briggs.\""
  },
  "E_D01_07_NAME": {
@@ -556,7 +556,7 @@
   "en": "Embroidered handkerchief"
  },
  "E_D01_07_DESC": {
-  "zh-TW": "廚房爐子後面撿到的男用手帕，角落繡著「M」，沾著機油味。",
+  "zh-TW": "在廚房爐子後方拾獲的男用手帕。布料帶著明顯機油味，一角繡著字母「M」。",
   "en": "A man's handkerchief found behind the kitchen stove, embroidered with an \"M\". It smells of machine oil."
  },
  "E_D01_08_NAME": {
@@ -564,7 +564,7 @@
   "en": "Gaming club's demand letter"
  },
  "E_D01_08_DESC": {
-  "zh-TW": "梅費爾俱樂部致塞德里克：欠款四百鎊，本月底前結清。日期是海德先生過世那天。",
+  "zh-TW": "梅費爾俱樂部寄給塞德里克的催款信，要求本月底前清償四百鎊欠款。落款日期正是海德先生過世當天。",
   "en": "The Mayfair Club to Mr Cedric: four hundred pounds owing, to be settled by the end of this month. Dated the day Mr Hyde died."
  },
  "E_D01_09_NAME": {
@@ -572,7 +572,7 @@
   "en": "Hair brooch (small)"
  },
  "E_D01_09_DESC": {
-  "zh-TW": "艾琳抽屜裡的哀悼胸針，和海德太太那枚款式一模一樣，只是小了一號，背面刻著「給 E.」。",
+  "zh-TW": "收在艾琳房裡抽屜中的哀悼胸針。款式與海德太太胸前佩戴的那枚一模一樣，僅尺寸小了一號，背面刻有「給 E.」。",
   "en": "A mourning brooch from Irene's drawer, identical to Mrs Hyde's but a size smaller. Engraved on the back: \"For E.\""
  },
  "E_D01_10_NAME": {
@@ -580,7 +580,7 @@
   "en": "Study blotter"
  },
  "E_D01_10_DESC": {
-  "zh-TW": "印著附錄的反字：「……將遺產之半數，贈予……」名字的部分被墨跡糊掉了。",
+  "zh-TW": "書房吸墨紙留有附錄反字，可讀出「……將遺產之半數，贈予……」，後頭的名字被墨漬糊得看不清。",
   "en": "Bears the codicil in mirror writing: \"...half of my estate I bequeath to...\" The name is lost in a smudge of ink."
  },
  "E_D01_11_NAME": {
@@ -588,7 +588,7 @@
   "en": "Irene's statement"
  },
  "E_D01_11_DESC": {
-  "zh-TW": "「燈滅之前，少爺的椅子就空了。燈亮的時候，他站在走廊口，黑手套的指尖亮亮的，像沾了灰。」",
+  "zh-TW": "「早在燈滅之前，少爺坐的椅子就空著了。等燈重新亮起時，他正站在走廊口，黑手套指尖亮亮的，看起來像沾了灰。」",
   "en": "\"Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.\""
  },
  "E_D01_12_NAME": {
@@ -596,7 +596,7 @@
   "en": "Black crape wreath"
  },
  "E_D01_12_DESC": {
-  "zh-TW": "大門內側的黑紗花圈，綁得一絲不苟。",
+  "zh-TW": "掛在宅邸大門內側的黑紗花圈，緞帶與黑紗綁得十分工整。",
   "en": "The black crape wreath on the inside of the front door, tied with meticulous care."
  },
  "C_D01_P1_NAME": {
@@ -604,7 +604,7 @@
   "en": "Talking board"
  },
  "C_D01_P1_DESC": {
-  "zh-TW": "閣樓舊玩具箱裡的木製靈應盤，盒蓋寫著「1859，給親愛的瑪格麗特」。",
+  "zh-TW": "翻自閣樓舊玩具箱的木製靈應盤，外盒蓋上題著一行字：「1859，給親愛的瑪格麗特」。",
   "en": "A wooden talking board from an old toy chest in the attic. The lid reads: \"1859, for dearest Margaret\"."
  },
  "OBS_D01_01_NAME": {
@@ -612,7 +612,7 @@
   "en": "A one-of-a-kind brooch"
  },
  "OBS_D01_01_TEXT": {
-  "zh-TW": "海德太太說，她的髮辮胸針是老爺用自己的頭髮編的，「世上只有這一枚」。",
+  "zh-TW": "海德太太親口提過，她胸前的髮辮胸針是以老爺自己的頭髮編成的，且「世上只有這一枚」。",
   "en": "Mrs Hyde says her husband wove her hair brooch from his own hair: \"There is only one in all the world.\""
  },
  "PN_D01_1_NAME": {
@@ -620,15 +620,15 @@
   "en": "Charms on his watch chain"
  },
  "PN_D01_1_TEXT": {
-  "zh-TW": "塞德里克的懷錶鏈上掛著三個小墜子：小馬蹄鐵、藍色玻璃眼珠、聖克里斯多福徽章。他對海德太太說，家裡的守靈規矩「都是鄉下人的迷信」。",
-  "en": "Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are \"all bumpkin tricks\"."
+  "zh-TW": "塞德里克對海德太太直言，海德宅這套守靈規矩「都是鄉下人的迷信」。另外，他腰間的懷錶鏈上掛著三樣小墜子：一個小馬蹄鐵、一顆藍色玻璃眼珠與一枚聖克里斯多福徽章。",
+  "en": "Three little charms hang from Mr Cedric's watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He told Mrs Hyde the household's wake customs are \"all bumpkin superstition\"."
  },
  "PN_D01_2_NAME": {
   "zh-TW": "白天的床頭燈",
   "en": "A bedside lamp by day"
  },
  "PN_D01_2_TEXT": {
-  "zh-TW": "大白天，塞德里克的床頭燈還點著。燈芯剪得很短，玻璃罩燻得發黑，整夜沒熄。",
+  "zh-TW": "明明已是大白天，塞德里克臥室的床頭燈卻依然亮著。燈芯修得極短，玻璃罩也燻黑了，顯然燒了一整夜。",
   "en": "In broad daylight, Mr Cedric's bedside lamp is still burning. The wick is trimmed very short and the glass chimney is blackened. It burned all night."
  },
  "PN_D01_3_NAME": {
@@ -636,7 +636,7 @@
   "en": "Face turned from the photograph"
  },
  "PN_D01_3_TEXT": {
-  "zh-TW": "遺體照裡，塞德里克站在最邊上，別過臉去。海德太太說，老爺過世那晚一直叫著塞德里克的名字，他卻沒有回來。",
+  "zh-TW": "靈堂遺體照裡，塞德里克站在最邊緣的位置，臉轉向一側。據海德太太所說，老爺過世那晚不斷喊著塞德里克的名字，但他並沒有回來。",
   "en": "In the memorial photograph, Mr Cedric stands at the very edge, face turned away. Mrs Hyde says: the night her husband died, he kept calling Mr Cedric's name, and he never came."
  },
  "PN_D01_4_NAME": {
@@ -644,19 +644,19 @@
   "en": "He won't enter the study"
  },
  "PN_D01_4_TEXT": {
-  "zh-TW": "艾琳說，前天下午她整理書房時，少爺站在門口不肯進來，只叫她把鏡子的黑布再拉緊一點，說「看著礙眼」。",
+  "zh-TW": "艾琳透露，前天下午她收拾書房時，少爺只站在門口不肯踏進去，吩咐她把鏡子黑布再拉緊些，嫌「看著礙眼」，一直等到她整理完才離開。",
   "en": "Irene says: when she tidied the study the afternoon before yesterday, Master Cedric stood in the doorway and wouldn't come in. He told her to pull the mirror's black cloth tighter, saying it was \"an eyesore\"."
  },
  "APR_D01_01_RESULT": {
-  "zh-TW": "鎖完好；用原本的鑰匙開；鎖芯無油",
+  "zh-TW": "筒鎖完好無損、由原本的鑰匙開啟、鎖芯內部沒有油",
   "en": "Lock intact; opened with its own key; no oil inside"
  },
  "APR_D01_02_RESULT": {
-  "zh-TW": "座鐘在熄燈時因震動重新走動",
+  "zh-TW": "座鐘在熄燈當下受到震動，這才重新開始走動",
   "en": "Jolted back into motion when the lights went out"
  },
  "APR_D01_04_RESULT": {
-  "zh-TW": "總閥上是書房壁爐的煙灰",
+  "zh-TW": "煤氣總閥閥輪沾附的灰，實為書房壁爐的舊煙灰",
   "en": "The valve bears soot from the study fireplace"
  },
  "SCENE_D01_PARLOR": {
@@ -668,7 +668,7 @@
   "en": "Coffin and chairs"
  },
  "HS_D01_01_DESC": {
-  "zh-TW": "靈柩兩旁排著六張椅子。最靠近走廊那張的椅墊還有點凹陷，一旁的小桌上放著一杯沒喝完的白蘭地，桌角的小燭台卻是空的，另外五張椅子旁的白蠟燭都還點著。",
+  "zh-TW": "靈柩兩側整齊擺著六張守靈椅。其餘五張椅子旁的白蠟燭都仍燃著火光，唯獨最靠走廊那張椅子的椅墊尚留著坐過的微凹，身旁小桌放了杯未喝完的白蘭地，桌角的小燭台卻空著。",
   "en": "Six chairs line the coffin, three to a side. The one nearest the corridor still has a slight dent in its cushion. On the little table beside it sits an unfinished glass of brandy, but the small candlestick on the table's corner is empty. By the other five chairs, the white candles are still burning."
  },
  "HS_D01_02_NAME": {
@@ -676,7 +676,7 @@
   "en": "Irene"
  },
  "HS_D01_02_DESC": {
-  "zh-TW": "年輕女僕抱著托盤，手還在發抖。「燈滅之前，塞德里克少爺坐的那張椅子就已經空了。燈亮的時候，他站在走廊口。他戴著黑手套，本來就是黑的，可是指尖亮亮的，像沾了灰。」",
+  "zh-TW": "年輕女僕艾琳緊抱托盤，雙手仍微微發抖。「早在燈滅之前，塞德里克少爺坐的椅子就空著了。等燈重新亮起時，他正站在走廊口……少爺戴著黑手套，手套原本是全黑的，可指尖亮亮的，看起來像沾了灰。」",
   "en": "The young maid clutches a tray, her hands still trembling. \"Before the lights went out, Master Cedric's chair was already empty. When they came back, he was standing at the end of the corridor. His gloves are black to begin with, but the fingertips were shiny, like they'd got dust on them.\""
  },
  "HS_D01_03_NAME": {
@@ -684,15 +684,15 @@
   "en": "Mr Cedric"
  },
  "HS_D01_03_DESC": {
-  "zh-TW": "塞德里克站在窗邊，背對著靈柩。他的懷錶鏈上掛著三個小墜子：一個小馬蹄鐵、一顆藍色玻璃眼珠、一枚聖克里斯多福徽章。他對海德太太說：「嬸嬸，這些規矩都是鄉下人的迷信。」",
-  "en": "Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, \"Aunt, these customs are nothing but bumpkin tricks.\""
+  "zh-TW": "塞德里克背對靈柩站在窗邊，客氣卻帶點輕慢地對海德太太開口：「嬸嬸，屋裡這些守靈規矩，都是鄉下人的迷信。」近看之下，他的懷錶鏈上掛著三樣小墜子：一個小馬蹄鐵、一顆藍色玻璃眼珠，還有一枚聖克里斯多福徽章。",
+  "en": "Mr Cedric stands by the window, his back to the coffin. Three little charms hang from his watch chain: a tiny horseshoe, a blue glass eye bead and a St Christopher medal. He says to Mrs Hyde, \"Aunt, these customs are nothing but bumpkin superstition.\""
  },
  "HS_D01_04_NAME": {
   "zh-TW": "遺體照",
   "en": "Memorial photograph"
  },
  "HS_D01_04_DESC": {
-  "zh-TW": "靈堂正中央掛著昨天拍的遺體照，全家人圍在亡者身旁。塞德里克站在最邊上，別過臉去，只拍到半張側臉。",
+  "zh-TW": "昨天剛拍的遺體照高掛在靈堂正中央，海德家眾人圍攏在亡者四周。唯獨塞德里克站在最外側，把臉轉開，鏡頭裡只留下一半側臉。",
   "en": "In the middle of the parlour hangs yesterday's memorial photograph, the whole family gathered round the deceased. Mr Cedric stands at the very edge, face turned away; the camera caught only half his profile."
  },
  "HS_D01_05_NAME": {
@@ -700,7 +700,7 @@
   "en": "Mrs Hyde"
  },
  "HS_D01_05_DESC": {
-  "zh-TW": "「老爺走的那晚，一直叫著塞德里克的名字。我派人去找，他沒有回來。」她輕撫胸前的髮辮胸針：「這是老爺用自己的頭髮替我編的，世上只有這一枚。」",
+  "zh-TW": "海德太太望著靈柩，聲音平靜：「老爺嚥氣那晚不斷喊著塞德里克的名字。我派人四處尋他，他始終沒有回來。」她抬手輕撫胸前的髮辮胸針：「這枚胸針是老爺用自己的頭髮為我編的，世上只有這一枚。」",
   "en": "\"The night my husband died, he kept calling Cedric's name. I sent for him, but he never came.\" She touches the hair brooch at her breast. \"My husband wove this for me from his own hair. There is only one in all the world.\""
  },
  "HS_D01_06_NAME": {
@@ -708,7 +708,7 @@
   "en": "Black crape wreath at the door"
  },
  "HS_D01_06_DESC": {
-  "zh-TW": "大門內側掛著一個黑紗花圈，綁得一絲不苟。",
+  "zh-TW": "大門內側懸掛著一只黑紗花圈，黑紗與緞帶綁得相當仔細工整。",
   "en": "A black crape wreath hangs on the inside of the front door, tied with meticulous care."
  },
  "HS_D01_07_NAME": {
@@ -716,7 +716,7 @@
   "en": "Stopped wall clock"
  },
  "HS_D01_07_DESC": {
-  "zh-TW": "靈堂的掛鐘停在九點四十分，鐘擺用一條黑緞帶綁住。",
+  "zh-TW": "靈堂牆上的掛鐘靜止在九點四十分，鐘擺被一條黑緞帶牢牢綁住。",
   "en": "The parlour's wall clock has stopped at twenty to ten, its pendulum tied still with a black satin ribbon."
  },
  "SCENE_D01_STUDY": {
@@ -728,7 +728,7 @@
   "en": "Brass document tube"
  },
  "HS_D01_08_DESC": {
-  "zh-TW": "書桌上的黃銅文件筒蓋子鎖著，裡頭卻是空的。鎖孔周圍光亮，沒有明顯刮痕。",
+  "zh-TW": "書桌上的黃銅文件筒明明蓋著鎖好，裡面卻已空了。細看鎖孔四周，表面光亮平順，找不到明顯刮痕。",
   "en": "The brass document tube on the desk. The lid is locked and there is nothing inside. The keyhole is bright, with no obvious scratches."
  },
  "HS_D01_09_NAME": {
@@ -736,7 +736,7 @@
   "en": "Clock on the mantelpiece"
  },
  "HS_D01_09_DESC": {
-  "zh-TW": "壁爐架上的座鐘還在走。全屋的鐘都停在九點四十分，只有它滴答走著，指著十點四十八分，比實際時間慢了一個多小時。",
+  "zh-TW": "全屋其餘的鐘都停在九點四十分，唯獨書房壁爐架上這座鐘還發出滴答聲。鐘面指針正指著十點四十八分，比實際時間慢了一個多小時。",
   "en": "The mantel clock is running. Every other clock in the house stopped at twenty to ten, yet this one alone is ticking, and it reads 10:48, more than an hour slow."
  },
  "HS_D01_10_NAME": {
@@ -744,7 +744,7 @@
   "en": "Mirror and black cloth"
  },
  "HS_D01_10_DESC": {
-  "zh-TW": "書房的穿衣鏡沒有蓋布，黑布皺成一團掉在鏡前的地毯上。布面上有一滴還沒乾透的白蠟。",
+  "zh-TW": "書房穿衣鏡沒罩布，鏡面全露在外頭。那塊黑布皺成一團掉在鏡前地毯上，布面留著一滴還沒乾透的白蠟。",
   "en": "The study's cheval glass is uncovered. Its black cloth lies crumpled on the carpet in front of it. On the cloth is a drop of white wax, not yet set."
  },
  "HS_D01_11_NAME": {
@@ -752,7 +752,7 @@
   "en": "Blotter on the desk"
  },
  "HS_D01_11_DESC": {
-  "zh-TW": "吸墨紙上印著幾行反字，照鏡子看（Sherefox 側身避開穿衣鏡，用小鏡子照）讀得出：「……將遺產之半數，贈予……」名字的部分被墨跡糊掉了。",
+  "zh-TW": "書桌上的吸墨紙印了幾行反字，得靠鏡子才讀得出。（Sherefox 側身避開穿衣鏡，改拿自己的小鏡子來照）能辨認出「……將遺產之半數，贈予……」，後面的名字全被墨漬糊掉了。",
   "en": "The blotter bears a few lines of reversed writing. Held up to a mirror (Sherefox turns aside from the glass and uses a small hand mirror), it reads: \"...half of my estate I bequeath to...\" The name has been lost in a smudge of ink."
  },
  "HS_D01_12_NAME": {
@@ -760,7 +760,7 @@
   "en": "Fireplace damper"
  },
  "HS_D01_12_DESC": {
-  "zh-TW": "壁爐很久沒生火，爐膛冷冰冰的。通風閥的拉桿上有一道新留下的煙灰指印，拉桿也卡住了，拉不動。",
+  "zh-TW": "書房這座壁爐顯然很久沒生火了，爐膛一片冰冷。通風閥拉桿上印著一道剛沾上去的新煙灰指印，試著一扳，拉桿卻整個卡死拉不動。",
   "en": "No fire has been lit here for a long time; the grate is stone cold. The damper lever bears a fresh sooty fingerprint. The lever is jammed and won't budge."
  },
  "HS_D01_13_NAME": {
@@ -768,7 +768,7 @@
   "en": "Study doorway"
  },
  "HS_D01_13_DESC": {
-  "zh-TW": "艾琳跟了過來，站在門口小聲說：「前天下午我整理書房時，少爺站在門口不肯進來，只叫我把鏡子的黑布再拉緊一點，說『看著礙眼』。」",
+  "zh-TW": "艾琳跟到書房門口，壓低聲音開口：「前天下午我在收拾書房，少爺只站在門邊不肯進來，吩咐我把鏡子上的黑布再拉緊一點，嫌『看著礙眼』，就這樣一直待到我整理完才走。」",
   "en": "Irene has followed you and stands in the doorway, speaking softly. \"The afternoon before yesterday, I was tidying the study, and Master Cedric stood right here and wouldn't come in. He told me to pull the mirror's black cloth tighter. He said it was 'an eyesore'.\""
  },
  "HS_D01_14_NAME": {
@@ -776,7 +776,7 @@
   "en": "Study desk drawer"
  },
  "HS_D01_14_DESC": {
-  "zh-TW": "右邊的抽屜沒有鎖，裡面有一個空的小絨布袋，袋口的形狀像是放過一把小鑰匙。",
+  "zh-TW": "書桌右側抽屜沒上鎖，裡面放著一只空的小絨布袋，袋口留下的形狀看得出曾放過一把小鑰匙。",
   "en": "The right-hand drawer is unlocked. Inside is a small empty velvet pouch, its mouth shaped as though it once held a little key."
  },
  "SCENE_D01_BASEMENT": {
@@ -788,7 +788,7 @@
   "en": "Main gas valve"
  },
  "HS_D01_15_DESC": {
-  "zh-TW": "總閥的閥輪上有剛扳動過的痕跡，輪緣沾著一圈黑灰。",
+  "zh-TW": "地下室煤氣總閥的閥輪還留著剛扳動過的痕跡，輪緣沾了一圈黑灰。",
   "en": "The wheel of the main valve shows fresh turn marks, and its rim is ringed with black dust."
  },
  "HS_D01_16_NAME": {
@@ -796,7 +796,7 @@
   "en": "Servants' stairs"
  },
  "HS_D01_16_DESC": {
-  "zh-TW": "一道窄窄的木梯，從地下室直通一樓書房旁的走廊。",
+  "zh-TW": "狹窄的傭人木梯向上延伸，從地下室一路直通一樓書房旁的走廊。",
   "en": "A narrow wooden staircase running straight up from the basement to the ground-floor corridor beside the study."
  },
  "HS_D01_17_NAME": {
@@ -804,7 +804,7 @@
   "en": "Behind the kitchen stove"
  },
  "HS_D01_17_DESC": {
-  "zh-TW": "爐子和牆之間的縫隙裡掉了一條男用手帕，角落繡著「M」，還帶有機油味。",
+  "zh-TW": "廚房爐台與牆壁間的窄縫裡，卡著一條男用手帕。一角繡著字母「M」，拿起來聞得到明顯的機油味。",
   "en": "In the gap between the stove and the wall lies a man's handkerchief with an \"M\" embroidered in one corner. It smells of machine oil."
  },
  "HS_D01_18_NAME": {
@@ -812,7 +812,7 @@
   "en": "Martha the cook"
  },
  "HS_D01_18_DESC": {
-  "zh-TW": "瑪莎一直在擦同一個盤子。「我、我整晚都在廚房，後門？後門一直關著，沒人進出……真的沒有。」她說「沒人」的時候，眼神飄向後門的掛鉤，那裡掛著一頂男用帽子。",
+  "zh-TW": "廚娘瑪莎低著頭，手裡的抹布反覆擦著同一個盤子。「我、我昨晚一直待在廚房沒離開過。後門也從頭到尾關著，真的沒人進出！」一說到「沒人」，她的視線立刻往後門邊的掛鉤飄去——上頭正掛著一頂男用帽子。",
   "en": "Martha keeps wiping the same plate. \"I-I was in the kitchen all night. The back door? The back door stayed shut, nobody came in or out... truly, nobody.\" As she says \"nobody\", her eyes drift to the hook by the back door, where a man's hat is hanging."
  },
  "SCENE_D01_ATTIC": {
@@ -824,7 +824,7 @@
   "en": "Old toy chest"
  },
  "HS_D01_19_DESC": {
-  "zh-TW": "箱子裡裝著陀螺和褪色的布偶，最底下是一塊木製靈應盤，字母排成半圓，附一個心形指示板。盒蓋上寫著「1859，給親愛的瑪格麗特」，正是海德太太的名字。",
+  "zh-TW": "打開閣樓的舊玩具箱，裡頭收著陀螺與褪色布偶。翻到最底層，壓著一塊木製靈應盤，盤面字母排成半圓，附有一片心形指示板。外盒蓋上寫著「1859，給親愛的瑪格麗特」——那正是海德太太的名字。",
   "en": "Inside are spinning tops and faded rag dolls. At the very bottom lies a wooden talking board, its letters set in a half circle, with a heart-shaped planchette. The lid reads \"1859, for dearest Margaret\": Mrs Hyde's name."
  },
  "HS_D01_20_NAME": {
@@ -832,7 +832,7 @@
   "en": "Irene's room: drawer"
  },
  "HS_D01_20_DESC": {
-  "zh-TW": "抽屜裡用手帕包著一枚小胸針，玻璃框裡編著一束灰褐色頭髮，和海德太太胸前那枚一模一樣，只是小了一號，背面刻著「給 E.」。",
+  "zh-TW": "艾琳房裡抽屜收著一枚用手帕包好的小胸針。玻璃框內編著一束灰褐色頭髮，款式與海德太太胸前那枚一模一樣，只是尺寸小一號，背面刻著「給 E.」。",
   "en": "Wrapped in a handkerchief in the drawer is a small brooch, a lock of greyish-brown hair woven under its glass. It is identical to the one Mrs Hyde wears, only a size smaller. Engraved on the back: \"For E.\""
  },
  "HS_D01_21_NAME": {
@@ -840,7 +840,7 @@
   "en": "Salt and rosemary on the sills"
  },
  "HS_D01_21_DESC": {
-  "zh-TW": "每扇窗的窗台上都撒了一小撮鹽，插著迷迭香。",
+  "zh-TW": "閣樓每扇窗台上都撒了小撮鹽巴，一旁還擺著幾枝迷迭香。",
   "en": "Every windowsill has a small pinch of salt scattered on it and a sprig of rosemary laid there."
  },
  "SCENE_D01_BEDROOM": {
@@ -852,7 +852,7 @@
   "en": "Bedside lamp"
  },
  "HS_D01_22_DESC": {
-  "zh-TW": "大白天，床頭的油燈還點著。燈芯剪得很短，玻璃罩燻得發黑，看得出整夜沒熄過。",
+  "zh-TW": "明明已是大白天，床頭那盞油燈依舊點著。燈芯修得極短，玻璃罩也燻黑了，顯然整夜未曾熄滅。",
   "en": "In broad daylight, the oil lamp by the bed is still burning. The wick is trimmed very short and the glass chimney is blackened; it plainly burned all night."
  },
  "HS_D01_23_NAME": {
@@ -860,7 +860,7 @@
   "en": "Bedroom desk drawer"
  },
  "HS_D01_23_DESC": {
-  "zh-TW": "一封梅費爾俱樂部寄來的信：「塞德里克・海德先生台鑒：閣下所欠四百鎊，請於本月底前結清。」日期是三天前，正好是海德先生過世那天。",
+  "zh-TW": "書桌抽屜裡壓著一封梅費爾俱樂部的來信：「致塞德里克・海德先生：閣下所欠四百鎊款項，務請於本月底前清償。」信末落款是三天前，恰逢海德先生過世當日。",
   "en": "A letter from the Mayfair Club: \"C. Hyde, Esq. Sir, the four hundred pounds you owe are to be settled by the end of this month.\" It is dated three days ago: the day Mr Hyde died."
  },
  "HS_D01_24_NAME": {
@@ -868,7 +868,7 @@
   "en": "Inside the wardrobe door"
  },
  "HS_D01_24_DESC": {
-  "zh-TW": "衣櫃門內側釘著一個生鏽的小馬蹄鐵，開口朝上。",
+  "zh-TW": "打開衣櫃，門板內側釘了個生鏽的小馬蹄鐵，開口朝上擺著。",
   "en": "A small rusty horseshoe is nailed to the inside of the wardrobe door, ends pointing up."
  },
  "SCENE_D01_HALL": {
@@ -880,7 +880,7 @@
   "en": "The Inspector's box"
  },
  "HS_D01_25_DESC": {
-  "zh-TW": "警督把布里格斯的東西收在木箱裡：一圈萬用鑰匙，每把都油亮亮的，還有一張字跡工整的工作單。",
+  "zh-TW": "門廳木箱裡收著布里格斯的隨身物品，由警督暫時保管：一圈萬用鑰匙，每一把都明顯上過油，還有一張字跡工整的工作單。",
   "en": "The Inspector has packed Briggs's belongings into a wooden box: a ring of skeleton keys, every one gleaming with oil, and a work order in a neat hand."
  },
  "HS_D01_26_NAME": {
@@ -888,7 +888,7 @@
   "en": "Briggs"
  },
  "HS_D01_26_DESC": {
-  "zh-TW": "布里格斯坐在門廳長椅上，警員在一旁看著他。「我發誓我沒碰過附錄。我晚上……我晚上是來辦點私事，真的不能說，說了會害到人。」",
+  "zh-TW": "布里格斯坐在門廳長椅上，一旁站著警員看守。「我向老天發誓，我半根手指都沒碰過那份附錄！至於昨晚的事……我是真的不能講，說了會害到人啊！」",
   "en": "Briggs sits on the bench in the entrance hall, a constable watching him. \"I swear I never touched that codicil. Last night I... last night I come on a private matter. I can't say what. If I did, someone'd get hurt.\""
  },
  "SCR_D01_S01_TITLE": {
@@ -896,11 +896,11 @@
   "en": "Opening newspaper"
  },
  "SCR_D01_S01_L001": {
-  "zh-TW": "【倫敦提燈報・1888 年 2 月】守靈夜燈滅三分鐘　富商遺囑附錄不翼而飛",
+  "zh-TW": "【倫敦提燈報・1888 年 2 月】富商守靈夜熄燈三分鐘　遺囑附錄憑空消失",
   "en": "【The London Lantern, February 1888】Lights Out for Three Minutes at a Wake; Merchant's Codicil Vanishes"
  },
  "SCR_D01_S01_L002": {
-  "zh-TW": "本報訊：肯辛頓富商海德先生昨夜守靈期間，宅內煤氣燈突然全數熄滅約三分鐘。燈火恢復後，海德太太發現亡夫生前新立的遺囑附錄，已從上鎖的黃銅文件筒中不見蹤影。蘇格蘭場巴斯克維爾警督當場逮捕一名同日下午到府修理筒鎖的鎖匠。警督表示：「鎖是他修的，鑰匙在他身上，本警督的鼻子從不出錯。」",
+  "zh-TW": "本報訊：肯辛頓富商海德先生守靈夜傳出失竊，蘇格蘭場巴斯克維爾警督連夜逮捕一名昨日下午赴宅修筒鎖的鎖匠，並宣稱：「鎖是他修的，鑰匙也在他身上，本警督的鼻子從不出錯。」據查，昨夜宅內煤氣燈全數一齊熄滅約三分鐘，燈火恢復後，海德太太發現亡夫生前新立的遺囑附錄，已從上鎖的黃銅文件筒中消失。",
   "en": "Our correspondent reports: during the wake of Mr Hyde, a Kensington merchant, last night, every gas lamp in the house went out at once for some three minutes. When the light returned, Mrs Hyde discovered that the codicil her late husband had recently made had vanished from its locked brass document tube. Inspector Baskerville of Scotland Yard arrested on the spot a locksmith who had called that afternoon to repair the tube's lock. Said the Inspector: \"He fixed the lock, he had the keys on him, and this Inspector's nose is never wrong.\""
  },
  "SCR_D01_S02_TITLE": {
@@ -908,115 +908,115 @@
   "en": "Daily life: the Baker Street office (the night before)"
  },
  "SCR_D01_S02_L001": {
-  "zh-TW": "二月的倫敦，霧濃得簡直能用湯匙舀。房東太太端著熱可可上樓，照例帶來了她今晚的餘興節目。",
+  "zh-TW": "二月的倫敦夜裡大霧瀰漫，連貝克街對面都模糊一片。房東太太剛端著熱可可上樓，照例又準備開講今晚的鬼故事了。",
   "en": "London in February, and the fog thick enough to eat with a spoon. The landlady came up with hot cocoa, and with this evening's entertainment."
  },
  "SCR_D01_S02_L002": {
-  "zh-TW": "你們知道對街那棟空屋為什麼租不出去嗎？上一任房客半夜聽見樓梯有腳步聲，下樓一看，半個人影都沒有，可地毯上卻留著一排濕腳印。",
+  "zh-TW": "兩位曉得對街那棟空屋為什麼老是租不出去嗎？前任房客半夜聽見樓梯傳來腳步聲，跑下去一瞧卻半個人也沒有，地毯上偏偏留著一排濕腳印喔！",
   "en": "Do you know why the empty house across the street won't let? The last tenant heard someone on the stairs in the middle of the night. He went down to look, and there was nothing. But on the carpet, there was a line of wet footprints."
  },
  "SCR_D01_S02_L003": {
-  "zh-TW": "太太，那是漏水。我上週就看到那棟房子的屋頂在滴水了。",
+  "zh-TW": "太太，那肯定是漏水。上禮拜我才親眼看見那棟屋頂在滴水。",
   "en": "That's a leak, madam. I saw their roof dripping only last week."
  },
  "SCR_D01_S02_L004": {
-  "zh-TW": "潘德爾頓先生，鬼可不管你屋頂漏不漏。",
+  "zh-TW": "（笑著搖頭）潘德爾頓先生，幽靈想散步時，可不管屋頂漏不漏水喔。",
   "en": "Mr Pendleton, a ghost doesn't care whether your roof leaks."
  },
  "SCR_D01_S02_L005": {
-  "zh-TW": "這世上沒有鬼，太太，這是醫學常識。人死了，心跳一停，就不可能還有東西在樓梯上走來走去。",
+  "zh-TW": "世上根本沒有幽靈！身為醫生我敢保證，這是基本醫學常識——人死了、心跳停止了，哪可能還有什麼東西到處走動！",
   "en": "Ghosts don't exist, madam. That is a medical fact. When a man dies his heart stops, and nothing is left to go walking up and down the stairs."
  },
  "SCR_D01_S02_L006": {
-  "zh-TW": "（捧著可可，耳朵動了一下）亞瑟，你說得真賣力。",
+  "zh-TW": "（捧著可可，狐耳一動）哎呀，亞瑟，你否認得比看診還拚命呢。",
   "en": "(Cradling her cocoa, one ear twitching) You're saying that very firmly, Arthur."
  },
  "SCR_D01_S02_L007": {
-  "zh-TW": "因為這是真的。",
+  "zh-TW": "因為我講的是真的！",
   "en": "Because it's true."
  },
  "SCR_D01_S02_L008": {
-  "zh-TW": "沒什麼，只是真正不怕的人通常懶得一直強調自己不信就是了。",
-  "en": "Mm. I've just noticed that people who don't believe usually aren't afraid. It's the frightened ones who protest the loudest."
+  "zh-TW": "別激動嘛。真正不怕的人，可不會一直把「我不信」掛在嘴邊。",
+  "en": "Oh, nothing. It's just that people who really aren't afraid don't usually bother saying over and over that they don't believe."
  },
  "SCR_D01_S02_L009": {
-  "zh-TW": "妳該不會在說我吧？",
+  "zh-TW": "（一愣）等一下，妳剛才那句該不會是在說我吧？",
   "en": "...Are you talking about me?"
  },
  "SCR_D01_S02_L010": {
-  "zh-TW": "我是在說這杯可可。明明燙得要命，卻老裝作自己只是溫的。",
+  "zh-TW": "（輕吹杯面）別多心，我在說這杯可可。表面裝得像冷掉了，裡頭其實滾燙。",
   "en": "I'm talking about the cocoa. It's scalding, and it keeps insisting it's only \"warm\"."
  },
  "SCR_D01_S02_L011": {
-  "zh-TW": "慢慢喝，別燙著。對了，報上說肯辛頓的海德先生過世了，家裡守靈照老規矩辦，連鐘都停了，有錢人家就是講究。",
+  "zh-TW": "慢點喝，小心燙嘴喔。話說回來，今天報上寫肯辛頓的海德先生過世了。聽說他們守靈全照老規矩來，連屋裡的鐘都停了，有錢人家果然講究呢。",
   "en": "Sip it slowly. Oh, and the paper says Mr Hyde of Kensington has passed away. They're keeping the wake the old-fashioned way, clocks stopped and all. Rich folk are particular."
  },
  "SCR_D01_S02_L012": {
-  "zh-TW": "停鐘、蓋鏡子、留一道窗縫。其實死人一點都不麻煩，折騰人的都是活人的規矩。",
+  "zh-TW": "停鐘、蓋鏡子，再留一道窗縫。說真的，亡者本身一點也不麻煩，偏偏是活人訂了一堆規矩來折騰自己。",
   "en": "Stop the clocks, cover the mirrors, leave a window open a crack. The dead are no trouble at all. It's the living and their rules that are the trouble."
  },
  "SCR_D01_S03_TITLE": {
-  "zh-TW": "事件：海德宅・守靈夜",
-  "en": "The case: Hyde House, the wake"
+  "zh-TW": "事件：海德宅・隔天早上",
+  "en": "The case: Hyde House, the next morning"
  },
  "SCR_D01_S03_L001": {
-  "zh-TW": "隔天一早，海德太太的馬車停在貝克街門前。她只說了一句：「請您過來一趟，警督抓錯人了。」",
+  "zh-TW": "隔天一大早，海德太太的馬車便駛到貝克街。她親自前來委託 Sherefox，沒多寒暄，只道：「請過來一趟，警督抓錯人了。」",
   "en": "Early the next morning, Mrs Hyde's carriage drew up in Baker Street. She said only one thing: \"Please come. The Inspector has arrested the wrong man.\""
  },
  "SCR_D01_S03_L002": {
-  "zh-TW": "海德宅的大門綁著黑紗，門環也纏了黑布。玄關的掛鐘停在九點四十分，屋裡所有鏡子都蓋著黑布，煤氣燈也全點著，連大白天也不例外。",
+  "zh-TW": "抵達海德宅時，大門已繫上黑紗，連門環都緊緊纏著黑布。一進屋，放眼望去，屋裡每一面鏡子全都罩著黑布。",
   "en": "Black crape hung on the front door of Hyde House, and the knocker was bound in black cloth. The wall clock in the entrance hall had stopped at twenty to ten, and every mirror was covered in black. Every gas lamp in the house was lit, even in daylight."
  },
  "SCR_D01_S03_L003": {
-  "zh-TW": "（在門廳裡，手裡拎著一圈鑰匙）狐狸小姐，妳來晚了一步，本警督昨晚就破案了！",
+  "zh-TW": "（站在門廳晃著一串鑰匙圈）哇哈哈！狐狸小姐，妳來晚一步啦！這案子本警督昨晚就漂亮破案囉！",
   "en": "(In the entrance hall, dangling a ring of keys) Miss Fox! You're too late. This Inspector solved the case last night!"
  },
  "SCR_D01_S03_L004": {
-  "zh-TW": "早安，警督。破案破得這麼神速，報社大概連校對都來不及了。",
+  "zh-TW": "早安，警督。您這結案速度可真驚人，連今早的報紙都替您印出來了。",
   "en": "Good morning, Inspector. Solved so quickly the papers haven't even had time to get it wrong."
  },
  "SCR_D01_S03_L005": {
-  "zh-TW": "少挖苦人了。鎖匠布里格斯下午修了那個黃銅文件筒，晚上燈一滅，筒子就空了。本警督在門廳逮到他時，他正要從後門溜走，身上還帶著這圈萬用鑰匙圈！",
-  "en": "Hmph! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!"
+  "zh-TW": "哼，少挖苦本警督！鎖匠布里格斯下午剛修過黃銅文件筒，晚上燈一滅筒子就空了。昨晚本警督親自去他店裡逮人，當場從他身上搜出這串萬用鑰匙圈！今早押回現場指認，等囚車一到立刻移送！",
+  "en": "Spare me your sarcasm! Briggs the locksmith mends that brass tube in the afternoon; the lights go out in the evening, and the tube is empty. When this Inspector caught him in the entrance hall he was about to slip out the back door, and he had this on him: a ring of skeleton keys!"
  },
  "SCR_D01_S03_L006": {
-  "zh-TW": "（被警員押著）我真的沒偷！我只是……這件事我實在不能說。",
+  "zh-TW": "（被警員架著，急忙搖頭）我真的沒偷！只是昨晚的事我絕對不能說，說了會害到人！",
   "en": "(Held by a constable) I didn't steal anything! I, I was only... I can't say..."
  },
  "SCR_D01_S03_L007": {
-  "zh-TW": "聽到了吧？不能說！",
+  "zh-TW": "（豎起食指）聽見了吧？「不能說」！這跟直接認罪有什麼兩樣！",
   "en": "Hear that! He can't say!"
  },
  "SCR_D01_S03_L008": {
-  "zh-TW": "（從靈堂走出來，整了整黑領巾）警督說得沒錯，鎖匠下午修鎖時就動了手腳，事情已經很明白了。抱歉，請問您是？",
+  "zh-TW": "（從靈堂信步走出，優雅地整理了一下黑領巾）警督所言甚是。鎖匠下午修鎖時動了手腳，這點已再清楚不過了。恕我冒昧，請問這位小姐是？",
   "en": "(Stepping out of the parlour, straightening his black cravat) The Inspector is quite right. The locksmith rigged the lock while he was mending it that afternoon. Nothing could be plainer. Forgive me, and you are?"
  },
  "SCR_D01_S03_L009": {
-  "zh-TW": "Sherefox，貝克街的偵探。這位是亞瑟。",
+  "zh-TW": "貝克街偵探 Sherefox。身旁這位是搭檔亞瑟。",
   "en": "Sherefox, detective, of Baker Street. This is Arthur."
  },
  "SCR_D01_S03_L010": {
-  "zh-TW": "塞德里克・海德，海德先生的姪子。久仰。嬸嬸大概是太傷心了，才會連偵探都請來。（瞥了一眼蓋著黑布的鏡子）這屋裡的規矩已經夠多了，停鐘、蓋鏡子、整夜點燈，全是殯葬業者用來騙錢的鄉下迷信。",
-  "en": "Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country tricks the undertakers use to fleece people."
+  "zh-TW": "我是塞德里克・海德，海德先生的姪子，幸會。嬸嬸因叔叔離世悲痛過度，才連偵探都請來，讓您見笑了。（瞥向蒙著黑布的鏡子）這屋裡又是停鐘、又是蓋鏡子還整夜點燈，不過全是殯葬業者斂財的鄉下迷信。",
+  "en": "Cedric Hyde, nephew of the deceased. Charmed. My aunt must be quite overcome with grief to have called in a detective. (Glancing at a black-draped mirror) This house has rules enough already. Stopped clocks, covered mirrors, lamps burning all night: country superstitions the undertakers use to fleece people."
  },
  "SCR_D01_S03_L011": {
-  "zh-TW": "塞德里克。",
+  "zh-TW": "（聲音低沉）塞德里克。",
   "en": "Cedric."
  },
  "SCR_D01_S03_L012": {
-  "zh-TW": "我只是實話實說，嬸嬸。",
+  "zh-TW": "（微微欠身）請別見怪，嬸嬸，我只是照實說而已。",
   "en": "I only speak the truth, Aunt."
  },
  "SCR_D01_S03_L013": {
-  "zh-TW": "（低聲）他說的倒沒錯，那些規矩確實沒有科學根據。",
+  "zh-TW": "（湊近低聲）話說回來，他講得滿有道理的，那些習俗本來就沒科學根據嘛。",
   "en": "(Quietly) He's not wrong, mind you. None of those customs has any scientific basis."
  },
  "SCR_D01_S03_L014": {
-  "zh-TW": "（低聲）是啊。不過他嘴上說著「鄉下迷信」，手卻一直摸著懷錶鏈。",
-  "en": "(Quietly) True. But the whole time he was saying \"country tricks\", his hand kept going to his watch chain."
+  "zh-TW": "（壓低聲音）喔？可他一邊嫌這是「鄉下迷信」，手卻一直在摸懷錶鏈。",
+  "en": "(Quietly) True. But the whole time he was saying \"country superstitions\", his hand kept going to his watch chain."
  },
  "SCR_D01_S03_L015": {
-  "zh-TW": "好了好了，狐狸小姐。妳要是想替這鎖匠說話，得先過本警督這一關！",
+  "zh-TW": "（雙手叉腰）喂，別光顧著咬耳朵！狐狸小姐，想替這鎖匠辯護，先破得了本警督的推理再說！",
   "en": "Enough, enough! Miss Fox, if you mean to speak up for the locksmith, you'll have to get past this Inspector first!"
  },
  "SCR_D01_S04_TITLE": {
@@ -1024,63 +1024,63 @@
   "en": "Warm-up debate: Inspector Baskerville (no Credibility lost)"
  },
  "SCR_D01_S04_L001": {
-  "zh-TW": "熱身論戰：巴斯克維爾警督。指出他的錯誤，答錯 3 次即結束。",
+  "zh-TW": "【熱身論戰】對手：巴斯克維爾警督。請以現場觀察指出破綻，答錯 3 次即結束。",
   "en": "Warm-up debate: Inspector Baskerville. Point out his mistakes. Three wrong answers and it's over."
  },
  "SCR_D01_S04_L002": {
-  "zh-TW": "論點一：燈一滅他就下手了。他下午修鎖時早就動了手腳，那個筒子一碰就開！",
+  "zh-TW": "論點一！本警督早就看穿了：鎖匠下午修鎖時動了手腳，筒子一碰就開，燈一滅就下手！",
   "en": "Point one! The moment the lights went out he struck. He'd rigged the lock that afternoon, so the tube opened at a touch!"
  },
  "SCR_D01_S04_L003": {
-  "zh-TW": "拿走附錄的人，還有空把筒子重新鎖好。動過手腳的鎖，用不著鎖回去。",
+  "zh-TW": "警督，您看那筒子——拿走附錄的人還費心把鎖重新鎖上呢。動過手腳的鎖，何必多此一舉？",
   "en": "Whoever took the codicil still had time to lock the tube again. A rigged lock wouldn't need locking back up."
  },
  "SCR_D01_S04_L004": {
-  "zh-TW": "鎖、鎖回去了？說不定他是個有潔癖的小偷！",
+  "zh-TW": "（一愣）鎖、鎖好又怎樣！本警督遇過不少講究整齊的小偷啦！",
   "en": "L-locked again? ...P-perhaps he's a tidy sort of thief!"
  },
  "SCR_D01_S04_L005": {
-  "zh-TW": "狐狸小姐，妳講的跟本警督說的根本不是同一件事！",
+  "zh-TW": "喂，狐狸小姐！妳扯的跟本警督的論點完全牛頭不對馬嘴！",
   "en": "Miss Fox, your answer has nothing to do with this Inspector's question!"
  },
  "SCR_D01_S04_L006": {
-  "zh-TW": "論點二：附錄一定還藏在他身上，只要搜出來，本警督立刻結案！",
+  "zh-TW": "論點二！附錄肯定還藏在那鎖匠身上，等本警督搜出來就能當場結案！",
   "en": "Point two! The codicil must still be on him. Find it, and this Inspector closes the case!"
  },
  "SCR_D01_S04_L007": {
-  "zh-TW": "您已經搜過他了，警督。附錄不在他身上。",
+  "zh-TW": "警督，您不是早就搜過他了嗎？他身上根本沒有附錄。",
   "en": "You've already searched him, Inspector. The codicil isn't on him."
  },
  "SCR_D01_S04_L008": {
-  "zh-TW": "這本警督當然知道，只是在確認妳有沒有認真聽！",
+  "zh-TW": "（清喉嚨）咳！本警督當然曉得，剛剛只是考考妳有沒有認真聽啦！",
   "en": "...Naturally this Inspector knows that! This Inspector was merely checking that you were listening!"
  },
  "SCR_D01_S04_L009": {
-  "zh-TW": "論點三：全屋的燈一起熄滅，一定是他在屋外剪斷了煤氣管！",
+  "zh-TW": "論點三！全屋同時熄燈，本警督敢說，絕對是鎖匠在屋外剪斷了煤氣管！",
   "en": "Point three! Every lamp in the house went out at once, so he must have cut the gas pipe outside!"
  },
  "SCR_D01_S04_L010": {
-  "zh-TW": "燈是一起暗、一起亮的。管子要是剪斷了，燈不會自己亮回來，一定是有人在屋裡轉了總閥。",
+  "zh-TW": "全屋的燈可是同時變暗、又同時亮回來的。管子一剪斷，燈哪可能自己復原？顯然是屋裡有人轉了煤氣總閥。",
   "en": "The lamps all dimmed together and all came back together. A cut pipe doesn't mend itself and light the lamps again. Someone inside turned the main valve."
  },
  "SCR_D01_S04_L011": {
-  "zh-TW": "在屋裡？對了，地下室！本警督本來就打算派人去地下室看！",
+  "zh-TW": "（一拍手掌）對，地下室的總閥！本警督早就準備派人去地下室查個仔細！",
   "en": "I-inside? ...The basement! This Inspector was just about to send a man to the basement!"
  },
  "SCR_D01_S04_L012": {
-  "zh-TW": "咳，鎖匠就暫時先看管起來，不急著移送。整棟房子妳要查就查，鎖匠的東西本警督收在門廳的箱子裡，要看自己去看。",
+  "zh-TW": "（抱胸撇開臉）唔……鎖匠姑且先看管著，晚點再移送。整棟屋子准妳徹底搜查，至於那傢伙的物品，本警督全放在門廳的箱子裡，愛看就自己去翻吧！",
   "en": "Ahem! The locksmith stays in custody for now; he won't be sent on. Search the house as you please. This Inspector has put the locksmith's things in the box in the entrance hall. Look for yourself if you must."
  },
  "SCR_D01_S04_L013": {
-  "zh-TW": "狐狸小姐，今天這三題，本警督就給妳及格吧。",
+  "zh-TW": "哼，狐狸小姐，看妳一題沒錯，本警督就給妳個及格吧。",
   "en": "...Miss Fox, on today's three questions, this Inspector gives you a pass."
  },
  "SCR_D01_S04_L014": {
-  "zh-TW": "到此為止！連錯三次，還想在本警督的案發現場指手畫腳？潘德爾頓小子，你過來幫忙抄筆錄！",
+  "zh-TW": "（大手一揮）夠了，今天就到這！連猜錯三次，別再對本警督的現場胡亂插嘴！潘德爾頓小子，你立刻過來幫忙抄筆錄！",
   "en": "That's enough! Three wrong answers, and you still want to lay down the law at this Inspector's scene? Pendleton, my lad, come here and help take down statements!"
  },
  "SCR_D01_S04_L015": {
-  "zh-TW": "抱歉，Sherefox，這樣一來我只能幫妳鑑定一樣東西了。",
+  "zh-TW": "（苦笑）對不起，Sherefox。這下我抽不出空，只能幫妳鑑定一樣東西了。",
   "en": "...Sorry, Sherefox. I'll only be able to appraise one thing for you now."
  },
  "SCR_D01_S05_TITLE": {
@@ -1092,51 +1092,51 @@
   "en": "Choose What to Bring"
  },
  "SCR_D01_S06_L001": {
-  "zh-TW": "能帶進論戰的東西有限。留下的證物，可能落入對手手中。",
+  "zh-TW": "【攜帶限制】能帶入論戰的物品數量有限，留置現場的證物可能會被對手取得。",
   "en": "You can only bring so much into a debate. Evidence you leave behind may fall into your opponent's hands."
  },
  "SCR_D01_S06_L002": {
-  "zh-TW": "可攜帶：{max} 件。已選：{n} 件。",
+  "zh-TW": "已選擇 {n} 件／攜帶上限 {max} 件",
   "en": "You can bring {max}. Chosen: {n}."
  },
  "SCR_D01_S06_L003": {
-  "zh-TW": "這個真的沒用。",
+  "zh-TW": "黑紗花圈就別帶了吧，這東西對案子一點用處也沒有。",
   "en": "This really is no use."
  },
  "SCR_D01_S06_L004": {
-  "zh-TW": "Sherefox，我們是去論戰，不是去開沙龍，真的要讓它佔一個位子嗎？",
+  "zh-TW": "（嘆了口氣）Sherefox，等一下要去論戰，不是玩沙龍遊戲耶。真要讓通靈板佔掉一個名額嗎？",
   "en": "Sherefox, we're going to a debate, not a parlour-game evening. Does it really need to take up a place?"
  },
  "SCR_D01_S06_L005": {
-  "zh-TW": "它又不重。再說，只要有人肯聽，木頭也是會說話的。",
+  "zh-TW": "反正帶在身上也不重。這塊木板會不會「說話」，得看是誰在聽。",
   "en": "It's light. Besides, wood can talk, if someone's willing to listen."
  },
  "SCR_D01_S06_L006": {
-  "zh-TW": "這是艾琳的私人物品，妳確定要帶去靈堂？",
-  "en": "This belongs to Irene. Are you sure you want to bring it out in front of everyone?"
+  "zh-TW": "那枚胸針畢竟是艾琳私人的東西，真的要拿到靈堂上嗎？",
+  "en": "This belongs to Irene. Are you sure you want to take it into the parlour?"
  },
  "SCR_D01_S06_L007": {
-  "zh-TW": "就一塊布？好吧，妳說了算。",
+  "zh-TW": "（搔搔頭）不太懂一塊黑布能派上什麼用場，不過照妳的判斷吧。",
   "en": "A piece of cloth... Well, you're the detective."
  },
  "SCR_D01_S06_L008": {
-  "zh-TW": "鎖匠的鑰匙不帶嗎？要是被誰拿來做文章就麻煩了。",
+  "zh-TW": "等一下，鎖匠的萬用鑰匙圈沒帶耶！留在這裡萬一被人拿去利用怎麼辦？",
   "en": "Aren't you taking the locksmith's keys? It would be awkward if somebody else got hold of them and made something of it."
  },
  "SCR_D01_S06_L009": {
-  "zh-TW": "以下物品會留在宅邸：{list}。確定嗎？",
+  "zh-TW": "將留在宅邸的物品：{list}。確定要就這樣進入論戰嗎？",
   "en": "These will be left at the house: {list}. Are you sure?"
  },
  "SCR_D01_S06_L010": {
-  "zh-TW": "警督說，我們沒帶走的東西會交給屋主保管，而現在的屋主是塞德里克先生。",
+  "zh-TW": "（神情凝重）警督剛剛交代，我們留下的物品全都會交給屋主保管——而現在的屋主，就是塞德里克先生。",
   "en": "The Inspector says whatever we don't take goes into the keeping of the master of the house. ...Which is now Mr Cedric."
  },
  "SCR_D01_S06_L011": {
-  "zh-TW": "還有空位喔。少帶一樣，就少一張牌。",
+  "zh-TW": "還有空位沒填滿。少帶一件證物，論戰時就少一張牌能出。",
   "en": "There's still room, you know. One thing fewer means one card fewer."
  },
  "SCR_D01_S06_L012": {
-  "zh-TW": "以醫生和修錶匠的眼光來看，我挑不出毛病。不過妳帶的東西裡，總有一兩樣是我看不懂、最後卻派上用場的。",
+  "zh-TW": "以我這醫生兼修錶匠的判斷來說，這套準備沒什麼破綻了。不過妳挑的東西裡，向來都有幾樣讓我摸不著頭緒，最後卻偏偏派上用場。",
   "en": "To a doctor's eye, or a clockmaker's, I can't fault it. ...Then again, there's always something in your bag I can't make sense of, and it's always the thing you end up using."
  },
  "SCR_D01_S07_TITLE": {
@@ -1144,79 +1144,79 @@
   "en": "Main debate: opening and close"
  },
  "SCR_D01_S07_L001": {
-  "zh-TW": "中午，海德太太、艾琳、瑪莎和布里格斯都到了靈堂。警督站在門口，塞德里克坐在靈柩旁那張靠走廊的椅子上，彷彿他從沒離開過。",
+  "zh-TW": "靈柩旁那張靠走廊的椅子上，塞德里克坐得從容，看來就像從未離開過。中午過後，靈堂裡齊聚了海德太太、艾琳、瑪莎與布里格斯，門口則由警督守著。",
   "en": "Noon, in the parlour. Mrs Hyde, Irene, Martha and Briggs were all present. The Inspector stood at the door, and Mr Cedric sat beside the coffin in the chair nearest the corridor, as if he had never left it."
  },
  "SCR_D01_S07_L002": {
-  "zh-TW": "狐狸小姐，請吧。我倒很好奇，您打算怎麼替一個帶著萬用鑰匙的鎖匠脫罪。",
+  "zh-TW": "（禮貌地抬手）請便，狐狸小姐。我倒想見識一下，您要如何替隨身帶著萬用鑰匙的鎖匠脫罪呢。",
   "en": "Please, Miss Fox, go ahead. I am curious to see how you mean to clear a locksmith caught carrying skeleton keys."
  },
  "SCR_D01_S07_L003": {
-  "zh-TW": "我不是來替誰脫罪的，塞德里克先生，我只是替昨晚那三分鐘作證。",
+  "zh-TW": "塞德里克先生，我可沒打算替誰脫罪。我只是要把昨晚那三分鐘發生的事說清楚。",
   "en": "I'm not here to clear anyone, Mr Cedric. I'm here to testify for those three minutes last night."
  },
  "SCR_D01_S07_L004": {
-  "zh-TW": "論戰開始。對手：塞德里克・海德。雙方同時出招。",
+  "zh-TW": "【論戰開始】對手：塞德里克・海德。本場雙方將同時出招。",
   "en": "The debate begins. Opponent: Cedric Hyde. Both sides act at the same time."
  },
  "SCR_D01_S07_L005": {
-  "zh-TW": "論破！塞德里克的推理鏈全毀，可信度降到 1 並鎖定。進入殘局。",
+  "zh-TW": "【論破成立】塞德里克的推理鏈徹底瓦解，可信度降至 1 並鎖定！隨即進入殘局。",
   "en": "Break! Cedric's chain is destroyed. His Credibility drops to 1 and is locked. On to the Endgame."
  },
  "SCR_D01_S07_L006": {
-  "zh-TW": "塞德里克的可信度見底，鎖定在 1。進入殘局。",
+  "zh-TW": "【進入殘局】塞德里克的可信度已見底，鎖定在 1！",
   "en": "Cedric's Credibility has hit bottom and is locked at 1. On to the Endgame."
  },
  "SCR_D01_S07_L007": {
-  "zh-TW": "塞德里克沒有再開口。",
+  "zh-TW": "塞德里克沉默了下來，沒有再出聲。",
   "en": "Cedric says nothing more."
  },
  "SCR_D01_S07_L008": {
-  "zh-TW": "那天晚上，他叫了我好幾次。我在牌桌上聽到了，當時只想著再打一把就回去……附錄在書房的壁爐裡，我本來打算燒掉的。",
+  "zh-TW": "（垂下肩膀，聲音低啞）叔叔臨終那晚叫了我好幾次。有人到牌桌來傳話，我明明聽見了，卻只想著再打一把就回去。附錄藏在書房的壁爐裡，我原本打算燒掉的。",
   "en": "...That night, he called for me, again and again. I heard him. I was at the card table, and I thought, one more hand and I'll go back. ...The codicil is in the study fireplace. I meant to burn it."
  },
  "SCR_D01_S07_L009": {
-  "zh-TW": "塞德里克還想說最後一句話。",
+  "zh-TW": "【垂死反撲】塞德里克仍不死心，試圖做最後一次辯解。",
   "en": "Cedric has one last thing to say."
  },
  "SCR_D01_S07_L010": {
-  "zh-TW": "我、我承認我去過地下室，但燈滅了，總得有人去看閥門吧！",
+  "zh-TW": "好、好吧，我的確下過地下室！但全屋突然熄燈，總要有人去檢查閥門吧！",
   "en": "I, I admit I went down to the basement! The lights were out; someone had to check the valve!"
  },
  "SCR_D01_S07_L011": {
-  "zh-TW": "塞德里克打出最後一張牌。",
+  "zh-TW": "【殘局反擊】塞德里克亮出了他的最後一張牌！",
   "en": "Cedric plays his last card."
  },
  "SCR_D01_S07_L012": {
-  "zh-TW": "亞瑟和警員拆開書房壁爐的通風閥，從裡面拉出一捲邊緣燻黑的紙。",
+  "zh-TW": "卡住的拉桿終於鬆開。書房壁爐的通風閥由亞瑟與警員拆下，從中取出一捲只有邊緣燻黑的紙。",
   "en": "Arthur and a constable opened the damper in the study fireplace and drew out a roll of paper, its edges blackened with soot."
  },
  "SCR_D01_S07_L013": {
-  "zh-TW": "附錄。還在。",
+  "zh-TW": "（展開確認）是附錄，還好好的。",
   "en": "The codicil. Still here."
  },
  "SCR_D01_S07_L014": {
-  "zh-TW": "塞德里克・海德，以竊取遺囑的罪名，咳，跟本警督走一趟！布里格斯，你、你可以回家了。",
+  "zh-TW": "（清喉嚨）咳！塞德里克・海德，本警督以竊取遺囑罪名逮捕你，立刻跟我走！至於布里格斯……咳，你、你可以回家啦！",
   "en": "Cedric Hyde! For the theft of a will, ahem, you will come along with this Inspector! Briggs, you, you may go home!"
  },
  "SCR_D01_S07_L015": {
-  "zh-TW": "（經過書房門口時停下，沒有往裡看）把鏡子蓋上……拜託了。",
+  "zh-TW": "（走過書房門口時停住，始終沒往裡看）求你們了，把裡面的鏡子蓋起來好嗎。",
   "en": "(Stopping as he passes the study door, not looking in) ...Cover the mirror. Please."
  },
  "SCR_D01_S07_L016": {
-  "zh-TW": "論戰敗北。",
+  "zh-TW": "【論戰敗北】這場論戰落敗了。",
   "en": "Debate lost."
  },
  "SCR_D01_S07_L017": {
-  "zh-TW": "好了，把鎖匠移送法辦！狐狸小姐，下次查案記得把東西帶齊。",
+  "zh-TW": "就這樣，把鎖匠移送法辦！狐狸小姐，本警督奉勸妳下次先把案子查清楚再來吧。",
   "en": "Right! The locksmith goes before the magistrate! Miss Fox, next time you investigate, mind you bring everything you need!"
  },
  "SCR_D01_S07_L018": {
-  "zh-TW": "嬸嬸，遺產的事我會請律師處理。至於書房，交給我整理就好。",
+  "zh-TW": "（語氣溫和）嬸嬸請別費心，遺產的事我會託律師辦妥。書房那邊，就由我來整理吧。",
   "en": "Aunt, I shall have the solicitors see to the estate. ...I'll put the study in order myself."
  },
  "SCR_D01_S07_L019": {
-  "zh-TW": "那天晚上，海德宅書房的壁爐冒過一次煙。",
+  "zh-TW": "那一晚，有一陣煙從海德宅書房的壁爐升起。",
   "en": "That night, smoke rose once from the study fireplace at Hyde House."
  },
  "SCR_D01_S08_TITLE": {
@@ -1224,51 +1224,51 @@
   "en": "Results"
  },
  "SCR_D01_S08_L001": {
-  "zh-TW": "謝謝妳，偵探小姐。艾琳的事，其實我早就猜到了。老爺那幾年，常一個人上閣樓。",
+  "zh-TW": "偵探小姐，這回多謝妳相助。至於艾琳的事，我其實早就有數。老爺那幾年，常獨自上閣樓去。",
   "en": "Thank you, Miss Detective. ...About Irene, I had guessed long ago, in truth. In those last years my husband often went up to the attic alone."
  },
  "SCR_D01_S08_L002": {
-  "zh-TW": "不過，那件事該由我來告訴她，而不是在靈堂上當著所有人的面。",
+  "zh-TW": "只是，這件事原該由我親口向她說明，而不是在靈堂上當眾說破。",
   "en": "But that was for me to tell her. Not in the parlour, in front of everyone."
  },
  "SCR_D01_S08_L003": {
-  "zh-TW": "（抱著托盤站在角落，一句話也沒說）",
+  "zh-TW": "（雙手抱著托盤站在靈堂角落，低著頭始終沒有開口）",
   "en": "(Standing in the corner holding a tray, saying nothing at all)"
  },
  "SCR_D01_S08_L004": {
-  "zh-TW": "謝謝妳。我晚上回來是為了見瑪莎。太太，請您千萬別趕她走。",
+  "zh-TW": "（深深一鞠躬）太感謝妳了！昨晚溜回來，全是為了見瑪莎。太太，求您別因此辭退她！",
   "en": "Thank you, miss. I came back that night for Martha... Ma'am, please don't send her away."
  },
  "SCR_D01_S08_L005": {
-  "zh-TW": "家規是老爺定的。老爺不在了，規矩也該改一改了。",
+  "zh-TW": "那是老爺立下的家規。如今他不在了，家規也該改了。",
   "en": "The house rules were my husband's. He is gone now, and perhaps the rules ought to change too."
  },
  "SCR_D01_S08_L006": {
-  "zh-TW": "（向 Sherefox 鞠了一躬，什麼也沒解釋，快步離開了）",
+  "zh-TW": "（朝 Sherefox 深深鞠躬致意，一句話也沒多做解釋，隨即快步離去）",
   "en": "(Bows to Sherefox and hurries off without a word of explanation)"
  },
  "SCR_D01_S08_L007": {
-  "zh-TW": "狐狸小姐，這次……本警督承認，鼻子是有點塞住了。",
+  "zh-TW": "（壓低帽簷）唔……狐狸小姐，本警督姑且承認，這回鼻子是有點塞住了啦。",
   "en": "Miss Fox, this time... this Inspector admits his nose was a trifle blocked."
  },
  "SCR_D01_S08_L008": {
-  "zh-TW": "二月嘛，大家都鼻塞。",
+  "zh-TW": "別在意，畢竟是二月的倫敦嘛，誰都會鼻塞的。",
   "en": "It's February, Inspector. Everyone's a bit stuffed up."
  },
  "SCR_D01_S08_L009": {
-  "zh-TW": "妳怎麼知道那塊木板真的有用？",
+  "zh-TW": "說起來，妳一開始怎麼會料到那塊木板真的派得上用場？",
   "en": "That board of yours... how did you know it would be any use?"
  },
  "SCR_D01_S08_L010": {
-  "zh-TW": "我也不知道，只是嘴上越說不信的人，身上的護身符反倒特別多。",
-  "en": "I didn't. I only know that the man who scoffs the loudest is the one carrying the most charms."
+  "zh-TW": "我其實也沒把握。不過，越愛把「不信」掛在嘴邊的人，身上的護身符倒是特別多。",
+  "en": "I didn't. It's just that the people who keep saying they don't believe always seem to carry the most charms."
  },
  "SCR_D01_S08_L011": {
-  "zh-TW": "對不起，要是我把那個筒子拆開來看就好了。",
+  "zh-TW": "（垂下頭）對不起……要是我剛才再細心一點，也許就能幫上更多忙了。",
   "en": "I'm sorry. If only I'd taken that tube apart and looked."
  },
  "SCR_D01_S08_L012": {
-  "zh-TW": "不是你的錯，亞瑟。是我留下了不該留的東西。",
+  "zh-TW": "這不怪你，亞瑟。是我在進靈堂前，沒能把案子查徹底。",
   "en": "It isn't your fault, Arthur. ...I'm the one who left behind what I shouldn't have."
  },
  "SCR_D01_S09_TITLE": {
@@ -1276,35 +1276,35 @@
   "en": "End-of-chapter newspaper (by result grade)"
  },
  "SCR_D01_S09_L001": {
-  "zh-TW": "【倫敦提燈報】守靈夜疑案偵破　遺囑附錄於壁爐尋回",
+  "zh-TW": "【倫敦提燈報】壁爐尋獲遺囑附錄　海德宅守靈夜案宣告偵破",
   "en": "【The London Lantern】Wake Mystery Solved; Missing Codicil Found in Fireplace"
  },
  "SCR_D01_S09_L002": {
-  "zh-TW": "本報訊：肯辛頓海德宅遺囑附錄失竊案昨日真相大白。亡者之姪塞德里克・海德為掩飾鉅額賭債，趁守靈夜關閉煤氣總閥竊取附錄，並嫁禍給到府修鎖的鎖匠。經貝克街狐耳偵探當眾逐一指出破綻，附錄已於書房壁爐中完好尋回，鎖匠布里格斯亦當場獲釋。",
+  "zh-TW": "本報訊：肯辛頓海德宅遺囑附錄失竊案昨日查明真相。經貝克街狐耳偵探當眾逐一拆穿破綻，證實為亡者姪子塞德里克・海德為掩飾賭債，守靈夜將煤氣總閥關小使燈變暗，趁機竊走附錄並嫁禍到府修鎖的鎖匠。附錄已從書房壁爐尋獲，鎖匠布里格斯當場獲釋。",
   "en": "Our correspondent reports: the truth behind the theft of a codicil from Hyde House, Kensington, came to light yesterday. Cedric Hyde, nephew of the deceased, seeking to conceal heavy gaming debts, closed the main gas valve during the wake, took the codicil and laid the blame on a locksmith who had called to mend the lock. The fox-eared detective of Baker Street exposed the flaws in his story one by one before all present, and the codicil was recovered intact from the study fireplace. The locksmith, Briggs, was released on the spot."
  },
  "SCR_D01_S09_L003": {
-  "zh-TW": "【倫敦提燈報】海德宅遺囑案逆轉　姪子被捕、鎖匠獲釋",
+  "zh-TW": "【倫敦提燈報】海德宅遺囑案翻轉　鎖匠獲釋、亡者姪子遭捕",
   "en": "【The London Lantern】Reversal in Hyde Will Case; Nephew Arrested, Locksmith Freed"
  },
  "SCR_D01_S09_L004": {
-  "zh-TW": "本報訊：海德宅遺囑附錄失竊案出現逆轉。據悉，貝克街狐耳偵探於靈堂與亡者之姪塞德里克・海德激烈交鋒，過程一度陷入僵局，最終塞德里克遭到逮捕，附錄亦已尋回。蘇格蘭場對此案不予置評。",
+  "zh-TW": "本報訊：海德宅失蹤的遺囑附錄昨日尋回，亡者姪子塞德里克・海德隨即被捕，令此案出現逆轉。據聞稍早貝克街狐耳偵探在靈堂與其激烈爭辯，雙方一度僵持不下；針對此事，蘇格蘭場不予置評。",
   "en": "Our correspondent reports: the theft of a codicil from Hyde House has taken a turn. We understand that the fox-eared detective of Baker Street clashed fiercely in the parlour with Cedric Hyde, nephew of the deceased. The exchange reached a stalemate for a time, but in the end Cedric Hyde was arrested and the codicil recovered. Scotland Yard declined to comment."
  },
  "SCR_D01_S09_L005": {
-  "zh-TW": "【倫敦提燈報】鎖匠移送法辦　狐耳偵探守靈夜鎩羽",
+  "zh-TW": "【倫敦提燈報】狐耳偵探守靈夜失利　涉案鎖匠移送法辦",
   "en": "【The London Lantern】Locksmith Sent for Trial; Fox-Eared Detective Routed at Wake"
  },
  "SCR_D01_S09_L006": {
-  "zh-TW": "本報訊：海德宅遺囑附錄失竊案，鎖匠布里格斯已正式移送法辦。貝克街狐耳偵探雖曾受託介入，卻在靈堂上與海德家人公開爭執，始終未能提出有力證據。海德家表示，遺產將按照舊遺囑辦理。",
+  "zh-TW": "本報訊：海德家昨日聲明遺產將依舊遺囑辦理，捲入遺囑附錄失竊案的鎖匠布里格斯亦正式移送法辦。先前受託介入的貝克街狐耳偵探雖在靈堂與海德家人公開爭執，卻始終提不出有力證據。",
   "en": "Our correspondent reports: in the matter of the codicil stolen from Hyde House, the locksmith Briggs has been formally committed. The fox-eared detective of Baker Street, engaged to look into the affair, argued openly with the Hyde family in the parlour but failed to produce any convincing evidence. The family states that the estate will be settled under the existing will."
  },
  "SCR_D01_S09_L007": {
-  "zh-TW": "另據知情人士透露，海德家一名年輕女僕疑為亡者私生女，此事在靈堂上被當眾揭露，海德太太事後拒絕受訪。",
+  "zh-TW": "此外，靈堂上還當眾抖出一樁家醜：知情人士透露，海德家一名年輕女僕疑為亡者私生女；海德太太事後拒絕受訪。",
   "en": "We are further informed by a source close to the household that a young maid in the Hyde family's service is believed to be the natural daughter of the deceased. The matter was revealed before all present in the parlour; Mrs Hyde has since declined to be interviewed."
  },
  "SCR_D01_S09_L008": {
-  "zh-TW": "亦有旁聽者批評，偵探在論戰中「說了不少連自己都不信的話」。",
+  "zh-TW": "不過也有旁聽者指責，偵探辯論時「講了太多連自己都不信的話」。",
   "en": "Some who attended also remarked that the detective \"said a good many things she plainly did not believe herself\"."
  },
  "SCR_D01_S10_TITLE": {
@@ -1312,39 +1312,39 @@
   "en": "Arthur's case notes (by truth level)"
  },
  "SCR_D01_S10_L001": {
-  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。手法：先到地下室關小煤氣總閥，趁黑用亡者的備用鑰匙打開黃銅文件筒，將附錄藏進書房壁爐。座鐘是因為他撞到壁爐架才重新走動；總閥上的煙灰，則是他從書房折返地下室時留下的。動機：四百鎊賭債，以及一份將一半遺產留給別人的附錄。",
+  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。動機：四百鎊賭債，加上一份把一半遺產留給他人的附錄。手法：先去地下室關小煤氣總閥，趁黑拿亡者抽屜的備用鑰匙打開黃銅文件筒，把附錄藏進書房壁爐通風閥。伸手時撞到壁爐架讓座鐘重新走動，回地下室開閥時手套又把煙灰沾上閥輪。",
   "en": "Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. Method: he turned down the main gas valve in the basement, used the dead man's spare key to open the brass tube in the dark, and hid the codicil in the study fireplace. The mantel clock started again because he knocked against the mantelpiece; the soot on the main valve was left when he went back down from the study to the basement. Motive: four hundred pounds of gaming debts, and a codicil that left half the estate to someone else."
  },
  "SCR_D01_S10_L002": {
-  "zh-TW": "附記：鎖匠布里格斯那晚是回來見廚娘瑪莎的。海德太太說，家規要改了。",
+  "zh-TW": "附記：海德太太說家規要改了。鎖匠布里格斯事後坦承，那晚折返是去見廚娘瑪莎。",
   "en": "Addendum: the locksmith Briggs came back that night to see Martha, the cook. Mrs Hyde says the house rules are to change."
  },
  "SCR_D01_S10_L003": {
-  "zh-TW": "附記二：鏡子的黑布是他碰掉的，但他沒有蓋回去。我想了很久才明白，他不是忘了，而是不敢回頭。Sherefox 說，這世上最怕鬼的人，往往心裡最清楚自己做錯了事。",
+  "zh-TW": "附記二：塞德里克碰掉書房鏡子的黑布後一直沒蓋回去。我想了很久才懂，他不是忘了，是根本不敢回頭。Sherefox 說過，越怕鬼的人，心裡往往越明白自己做錯了什麼。",
   "en": "Second addendum: he knocked the black cloth off the mirror, but he never put it back. It took me a long time to understand. He hadn't forgotten; he didn't dare look round. Sherefox says the people most afraid of ghosts are usually the ones most certain they've done wrong."
  },
  "SCR_D01_S10_L004": {
-  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。他關掉了燈、拿走了附錄，這一點毫無疑問。至於黃銅文件筒是怎麼打開的、他在那三分鐘裡究竟去了哪些地方，我們在論戰中說的，恐怕和我現在寫下的不太一樣。",
+  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。唯一能確定的，是他弄暗了燈並拿走附錄。至於黃銅文件筒到底怎麼開的、那三分鐘裡他去過何處，我們在論戰裡講的，恐怕跟我此刻寫在筆記上的對不上。",
   "en": "Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. He put out the lights and took the codicil; of that there is no doubt. As for how the tube was opened, and where exactly he went in those three minutes, I fear what we said in the debate and what I am writing now are not quite the same."
  },
  "SCR_D01_S10_L005": {
-  "zh-TW": "附記：論戰結束後，Sherefox 一個人在書房站了很久。她說，贏下這場論戰的那套說法，有一半是她自己編的。",
+  "zh-TW": "附記：論戰落幕後，Sherefox 獨自站在書房裡好一會兒。她向我承認，贏下這場論戰的那套推理，有一半不是真的。",
   "en": "Addendum: after the debate, Sherefox stood alone in the study for a long time. She said that half the account that won the day was her own invention."
  },
  "SCR_D01_S10_L006": {
-  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德。至少結論是這樣。我試著把理由寫下來，寫了三次都寫不通。鐘、鎖、燈，每一樣在論戰裡都被說成跟原本完全不同的樣子。我們是抓對了人，但我不敢說我們真的知道他做了什麼。",
+  "zh-TW": "案件名稱：守靈夜消失的遺囑。犯人：塞德里克・海德——至少結論如此。但我動筆整理理由，重寫了四回依然說不通。鐘、鎖與燈在論戰裡全被講成和原本完全不同的模樣，我實在不敢說，我們真的了解他做了什麼。",
   "en": "Case: The Will That Vanished at the Wake. Culprit: Cedric Hyde. ...That is the conclusion. I have tried three times to set down the reasoning, and three times it would not hold together. The clock, the lock, the lamps: in the debate, every one of them was made out to be something it was not. We caught the right man, but I am not sure we know what he did."
  },
  "SCR_D01_S10_L007": {
-  "zh-TW": "還有一件事沒有人解釋：布里格斯那晚為什麼會在屋裡？他說「說了會害到人」。我們沒有追問。",
+  "zh-TW": "另外還有個疑問沒解開：布里格斯那晚究竟做了什麼？他只答「說了會害到人」，我們也沒再追問。",
   "en": "One more thing nobody explained: why was Briggs in the house that night? He said \"telling would get someone hurt\". We never asked."
  },
  "SCR_D01_S10_L008": {
-  "zh-TW": "Sherefox 在論戰中說，鎖匠跟這件事毫無關係。可是他那晚明明就在屋裡。我們放他回家了，卻沒讓他把話說清楚。",
+  "zh-TW": "Sherefox 在論戰上說鎖匠傍晚就走了、跟本案毫無關係。他始終不肯說那晚去了哪裡，我們放他回家，卻沒讓他講清楚。",
   "en": "In the debate, Sherefox said the locksmith had nothing to do with any of this. Yet he was plainly in the house that night. We let him go home without ever letting him explain."
  },
  "SCR_D01_S10_L009": {
-  "zh-TW": "鎖匠今天被移送了。附錄那天晚上肯定就被燒掉了，我也明白，我們原本是可以救他的。",
+  "zh-TW": "布里格斯今天還是被移送了。附錄那晚必定已經燒掉了，我心裡清楚，我們本來救得了他。",
   "en": "The locksmith was committed today. The codicil was burnt that same night; I am sure of it. I am just as sure we could have saved him."
  },
  "SCR_D01_S11_TITLE": {
@@ -1352,203 +1352,203 @@
   "en": "Next chapter preview (placeholder)"
  },
  "SCR_D01_S11_L001": {
-  "zh-TW": "下一章　預告",
+  "zh-TW": "【下一章預告】",
   "en": "Next Chapter: Preview"
  },
  "SCR_D01_S11_L002": {
-  "zh-TW": "《（章名待定）》——本 demo 到此結束。感謝遊玩。",
+  "zh-TW": "《（章名待定）》──本次體驗版到此告一段落，誠摯感謝您的遊玩！",
   "en": "\"(Title to be decided)\": the demo ends here. Thank you for playing."
  },
  "SCR_D01_S11_L003": {
-  "zh-TW": "回到標題畫面",
+  "zh-TW": "返回標題畫面",
   "en": "Back to Title Screen"
  },
  "CARD_D01_L1_STATE": {
-  "zh-TW": "我整晚都守在叔叔的靈柩旁，一步也沒離開過。",
+  "zh-TW": "昨晚整個守靈夜我都守在叔叔靈柩旁，從未離開過一步。",
   "en": "I kept watch beside my uncle's coffin all night. I never left it for a moment."
  },
  "CARD_D01_L1_PUSH": {
-  "zh-TW": "我一步都沒離開，在場每個人都可以作證！",
+  "zh-TW": "在場諸位全都能替我作證，我當晚真的連一步都沒離開過！",
   "en": "I never stirred a step! Everyone present can vouch for me!"
  },
  "CARD_D01_L1_RETRACT": {
-  "zh-TW": "我也許起身添過一次蠟燭，但就在靈柩旁邊。",
+  "zh-TW": "真要說起來，我頂多起身添過一次蠟燭，人始終都在靈柩旁。",
   "en": "...I may have got up once to replace a candle. Right beside the coffin."
  },
  "CARD_D01_L1_DOWN": {
-  "zh-TW": "那、那是我記錯了，我只是起身拿個酒杯。",
+  "zh-TW": "我、我一時記錯了！當時只是起身去拿杯酒，並沒有離開靈堂！",
   "en": "Th-that was... I misremembered. I merely went to fetch a glass."
  },
  "CARD_D01_L2_STATE": {
-  "zh-TW": "鎖匠下午修鎖時動了手腳，那個筒子不用鑰匙也打得開。",
+  "zh-TW": "那鎖匠趁下午修鎖時動了手腳，如今這個文件筒不用鑰匙也打得開。",
   "en": "The locksmith tampered with the lock when he repaired it this afternoon. That tube could be opened without a key."
  },
  "CARD_D01_L2_PUSH": {
-  "zh-TW": "一定是他動了手腳，不然一個鎖好的筒子怎麼會自己空掉？",
+  "zh-TW": "鎖匠修鎖時絕對動了手腳！否則好好上著鎖的文件筒，裡頭的東西怎會憑空不見？",
   "en": "He tampered with it! How else does a locked tube empty itself?"
  },
  "CARD_D01_L2_RETRACT": {
-  "zh-TW": "我的意思是，鎖匠「可能」動了手腳，這不過是合理的推測。",
+  "zh-TW": "我只是提出一種合理推測：鎖匠修鎖時「或許」動了點手腳，狐狸小姐。",
   "en": "What I mean is... the locksmith \"may\" have tampered with it. A perfectly reasonable inference."
  },
  "CARD_D01_L2_DOWN": {
-  "zh-TW": "一把真正的鑰匙？可、可是那把鑰匙只有叔叔才——（住口）",
+  "zh-TW": "怎、怎麼可能……要是鎖沒被動過，能打開它的就只有叔叔——（立刻住口）",
   "en": "...A real key? B-but only my uncle had that key—(he stops himself)"
  },
  "CARD_D01_L3_STATE": {
-  "zh-TW": "鎖匠想拿附錄去勒索嬸嬸。有了它，他想開多少價碼都可以。",
+  "zh-TW": "鎖匠盯上附錄，擺明是想向嬸嬸勒索。只要文件握在他手裡，開價多少全由他說了算。",
   "en": "The locksmith meant to use the codicil to blackmail my aunt. With it in hand, he could name his price."
  },
  "CARD_D01_L3_PUSH": {
-  "zh-TW": "一個窮鎖匠看到能換錢的東西，還需要別的理由嗎？",
+  "zh-TW": "對一個手頭拮据的鎖匠來說，眼見能換錢的東西，難道還需要多餘的動機？",
   "en": "A poor locksmith sees something worth money—what more reason does he need?"
  },
  "CARD_D01_L3_RETRACT": {
-  "zh-TW": "也許不是勒索，也許是有人花錢僱他。總之，不會是我。",
+  "zh-TW": "退一步說，就算他不是想自己勒索，也可能是收錢辦事。總而言之，絕不會是我。",
   "en": "Perhaps not blackmail... perhaps someone hired him. At any rate, it was not me."
  },
  "CARD_D01_L3_DOWN": {
-  "zh-TW": "那、那不過是我的推測。",
+  "zh-TW": "我、我剛才只不過隨口猜想罷了，狐狸小姐！",
   "en": "...Th-that was merely my supposition."
  },
  "CARD_D01_L4_STATE": {
-  "zh-TW": "燈滅的時候，我聽見後門響了一聲，有人跑了出去。",
+  "zh-TW": "有人趁著熄燈從後門跑了出去，我親耳聽見那道門響了一聲。",
   "en": "When the lights went out, I heard the back door bang. Someone ran out."
  },
  "CARD_D01_L4_PUSH": {
-  "zh-TW": "就是後門！我清清楚楚聽見後門的聲音。",
+  "zh-TW": "絕不會聽錯，就是後門傳來的動靜，我聽得一清二楚！",
   "en": "The back door! I heard it as plain as day!"
  },
  "CARD_D01_L4_RETRACT": {
-  "zh-TW": "也許只是風把門吹響了。",
+  "zh-TW": "或許那只是風吹得後門作響罷了，畢竟屋裡一片漆黑。",
   "en": "Perhaps... it was the wind rattling the door."
  },
  "CARD_D01_L4_DOWN": {
-  "zh-TW": "廚、廚房裡一直有人？那我聽到的又是什麼？",
+  "zh-TW": "沒、沒人從後門離開？那我昨晚聽見的聲音，究竟是什麼……",
   "en": "S-someone was in the kitchen the whole time? ...Then what did I hear?"
  },
  "CUT_D01_03A_L1": {
-  "zh-TW": "我、我只是去添了一次蠟燭而已。",
+  "zh-TW": "離、離座又怎麼樣？我只不過起身去添了次蠟燭而已！",
   "en": "I-I only... went to replace a candle."
  },
  "CUT_D01_08A_L3": {
-  "zh-TW": "四、四百鎊又怎樣？那是紳士之間的帳，跟一個鎖匠有什麼關係？",
+  "zh-TW": "區、區區四百鎊，不過是紳士間的私帳！我個人的帳務，和鎖匠想勒索嬸嬸根本是兩碼子事！",
   "en": "F-four hundred pounds, and what of it? That is an account between gentlemen... what has it to do with a locksmith?"
  },
  "CUT_D01_09A_L3": {
-  "zh-TW": "叔叔的女兒？那、那又怎樣？這跟鎖匠想勒索有什麼關係？",
+  "zh-TW": "她、她是叔叔的女兒又如何？這種家務事跟鎖匠企圖勒索有什麼關聯！",
   "en": "...My uncle's daughter? Wh-what of it? What has that to do with the locksmith's blackmail?"
  },
  "CUT_D01_04C_L4": {
-  "zh-TW": "只、只有廚娘在？那我聽到的又是什麼？",
+  "zh-TW": "廚、廚房裡從頭到尾只有廚娘一個人？那我聽見的聲響又從哪來的！",
   "en": "O-only the cook? ...Then what did I hear?"
  },
  "CARD_D01_F1_STATE": {
-  "zh-TW": "鎖匠下午單獨碰過那個筒子，身上還帶著萬用鑰匙。這是事實。",
+  "zh-TW": "這兩件事無可否認：那鎖匠下午單獨碰過黃銅文件筒，隨身還帶著萬用鑰匙圈。",
   "en": "The locksmith was alone with that tube this afternoon, and he carried skeleton keys. Those are facts."
  },
  "CARD_D01_F1_PUSH": {
-  "zh-TW": "他碰過筒子，身上又有萬用鑰匙，這兩件事您敢否認嗎？",
+  "zh-TW": "狐狸小姐，他碰過文件筒、又隨身帶著萬用鑰匙，這兩件事您難道能否認？",
   "en": "He handled the tube, and he had skeleton keys! Do you dare deny either?"
  },
  "CARD_D01_F2_STATE": {
-  "zh-TW": "燈滅的那三分鐘，誰都看不見誰。屋裡任何一個人，都可能離席。",
+  "zh-TW": "全屋漆黑的那三分鐘，誰也看不見誰。整棟宅子裡，任何一個人都可能離開座位。",
   "en": "For those three minutes of darkness, no one could see anyone. Anyone in this house might have left their seat."
  },
  "CARD_D01_F2_PUSH": {
-  "zh-TW": "屋裡全黑了三分鐘，您憑什麼只盯著我？",
+  "zh-TW": "屋裡整整漆黑了三分鐘，狐狸小姐，您憑什麼偏偏只懷疑我？",
   "en": "Three minutes of darkness! Why single me out?"
  },
  "CARD_D01_U1_STATE": {
-  "zh-TW": "地下室那個閥門本來就鬆——（停住）",
+  "zh-TW": "地下室那邊的閥門向來就鬆——（急忙住口）",
   "en": "That valve in the basement was always loose—(he stops)"
  },
  "CARD_D01_U1_PUSH": {
-  "zh-TW": "那個閥門本來就鬆，輕輕一轉就……我、我是說，傭人都是這麼說的！",
+  "zh-TW": "那閥門向來鬆垮，隨手一轉就會動……不、不對，我是聽屋裡傭人說的！",
   "en": "That valve was always loose! One light turn and... I-I mean, so the servants say!"
  },
  "CARD_D01_U1_TELL": {
-  "zh-TW": "地下室……",
+  "zh-TW": "地下室那邊……",
   "en": "The basement..."
  },
  "CARD_D01_U1_CATCH": {
-  "zh-TW": "閥門鬆不鬆，只有親手轉過的人才清楚。塞德里克先生，你轉過。",
+  "zh-TW": "閥門有多鬆，沒親手轉過怎麼會知道？塞德里克先生，總閥就是你轉的。",
   "en": "Only a man who has turned that valve would know whether it's loose. Mr Cedric, you turned it."
  },
  "CARD_D01_U2_STATE": {
-  "zh-TW": "我是欠了點錢沒錯，哪個紳士不欠點錢？",
+  "zh-TW": "錢的事，我確實欠了點，但倫敦哪位紳士不曾欠點錢呢？",
   "en": "...Very well, I owe a little money. What gentleman doesn't?"
  },
  "CARD_D01_U2_PUSH": {
-  "zh-TW": "沒錯，我是欠了四百鎊，那又怎樣？",
+  "zh-TW": "好吧，我就是欠了四百鎊！可那又如何，這難道違法嗎？",
   "en": "Yes, I owe money! Four hundred pounds! And what of it?"
  },
  "CARD_D01_U2_TELL": {
-  "zh-TW": "錢……",
+  "zh-TW": "錢的事……",
   "en": "Money..."
  },
  "CARD_D01_U2_CATCH": {
-  "zh-TW": "欠著四百鎊、月底就到期的紳士，最不想看到遺產少一半。",
+  "zh-TW": "既然親口承認欠了錢，塞德里克先生，對你不利的附錄，你最有理由讓它消失。",
   "en": "A gentleman who owes four hundred pounds by the end of the month is the last man who wants his inheritance halved."
  },
  "CARD_D01_P05_STATE": {
-  "zh-TW": "狐狸小姐留下的這圈萬用鑰匙，我仔細看過了。這把鑰匙的齒上沾著筒鎖的黃銅屑，筒子就是用它打開的。",
+  "zh-TW": "我剛才仔細檢查過您留下的這副萬用鑰匙圈，狐狸小姐。您瞧，其中一把鑰匙齒上沾著筒鎖的黃銅屑——那文件筒就是用它打開的！",
   "en": "I have examined this ring of skeleton keys Miss Fox left behind. The teeth of this one bear brass filings from the tube's lock. This is the key that opened it."
  },
  "CARD_D01_P05_PUSH": {
-  "zh-TW": "上面有黃銅屑，證據就在您留下的鑰匙上！",
+  "zh-TW": "鐵證就在您留下的鑰匙圈上，那些黃銅屑可是騙不了人的！",
   "en": "Brass filings! The proof is on the very keys you left behind!"
  },
  "CARD_D01_P05_DOWN": {
-  "zh-TW": "乾、乾淨的鎖……？（把鑰匙圈放回桌上）",
+  "zh-TW": "鎖、鎖裡連一點痕跡都沒有……？（把鑰匙圈放回桌上）",
   "en": "A c-clean lock...? (He puts the ring of keys back on the table)"
  },
  "CARD_D01_P07_STATE": {
-  "zh-TW": "廚房裡撿到的手帕沾著機油味。鎖匠昨晚偷偷回來過，燈滅的時候，他就在這棟屋子裡。",
+  "zh-TW": "狐狸小姐，您留下的這條手帕是在廚房撿到的，上頭帶著機油味。鎖匠昨晚偷偷回來過，熄燈時他就在這棟屋子裡！",
   "en": "This handkerchief was found in the kitchen, and it smells of machine oil. The locksmith crept back last night—when the lights went out, he was in this very house."
  },
  "CARD_D01_P07_PUSH": {
-  "zh-TW": "他就在屋裡，您留下的手帕就是證據！",
+  "zh-TW": "這條您留在現場的手帕就是明證，他昨晚人就在屋子裡！",
   "en": "He was in the house! Your own handkerchief says so!"
  },
  "CARD_D01_P06_STATE": {
-  "zh-TW": "這張工作單寫得明明白白：下午三點，鎖匠一個人在書房修那個筒子。",
+  "zh-TW": "您留下的工作單寫得清清楚楚，狐狸小姐：下午三點，是鎖匠一個人在書房修黃銅文件筒。",
   "en": "This work order states it plainly: at three in the afternoon, the locksmith was alone in the study, repairing that tube."
  },
  "CARD_D01_P06_PUSH": {
-  "zh-TW": "白紙黑字，是他一個人修的！",
+  "zh-TW": "工作單上記得明明白白，當時就是那鎖匠一個人經手修理的！",
   "en": "In black and white! He repaired it alone!"
  },
  "CARD_D01_K1_STATE": {
-  "zh-TW": "我、我承認我去過地下室，可燈滅了，總得有人去看閥門吧！",
+  "zh-TW": "好、好吧，我的確下過地下室！但全屋突然熄燈，總要有人去檢查閥門吧！",
   "en": "I-I admit I went to the basement—the lights had gone out, someone had to see to the valve!"
  },
  "CARD_D01_K1_DOWN": {
-  "zh-TW": "書、書房的煙灰……（看著自己的手套）",
+  "zh-TW": "（僵住，低頭看著自己的手套）怎會……書、書房的煙灰……",
   "en": "S-soot from the study... (He looks at his own gloves)"
  },
  "REFUTE_D01_05B": {
-  "zh-TW": "打不開？狐狸小姐，鎖匠的工作單上寫得很清楚，他就是用這圈萬用鑰匙校試筒鎖的。不只打得開，還試了三次。",
+  "zh-TW": "（亮出工作單）您說打不開？真遺憾，狐狸小姐。布里格斯自己的工作單上寫明「以萬用鑰匙校試」，而且試了三次——這圈鑰匙當然打得開筒鎖！",
   "en": "Can't open it? Miss Fox, the locksmith's own work order says he tested the tube's lock with this very ring of skeleton keys. They open it—and he tried it three times."
  },
  "REFUTE_D01_01D": {
-  "zh-TW": "沒有能打開它的東西？那狐狸小姐留在門廳的這圈萬用鑰匙是誰的？整整十二把，每把都上了油。",
+  "zh-TW": "（舉起鑰匙圈）手上沒有開鎖工具？狐狸小姐，那您留在門廳的這副萬用鑰匙圈是誰的？布里格斯身上可帶著整整十二把呢！",
   "en": "Nothing that could open it? Then whose is this ring of skeleton keys Miss Fox left in the entrance hall? Twelve keys, every one of them oiled."
  },
  "REFUTE_D01_06B": {
-  "zh-TW": "毫無關係？那這條手帕怎麼解釋？廚房爐子後面撿到的，繡著廚娘名字的縮寫，還沾著機油。鎖匠昨晚偷偷回來過，燈滅時人就在屋裡。",
+  "zh-TW": "（亮出繡字手帕）狐狸小姐，您說他毫無關係？那這條廚房爐子後面找到的男用手帕怎麼說？角落繡著廚娘的縮寫「M」，還帶著機油味！那鎖匠昨晚偷偷回來過，熄燈時就在屋裡！",
   "en": "Nothing to do with it? Then what of this handkerchief? Found behind the kitchen stove, embroidered with the cook's initial, smelling of machine oil. The locksmith crept back last night—when the lights went out, he was in the house."
  },
  "REACT_D01_FACT_SOPH_1": {
-  "zh-TW": "荒謬。您明知道那是事實。",
+  "zh-TW": "太可笑了。您心裡明白那是實情，卻硬要睜眼說瞎話。",
   "en": "Absurd. You know perfectly well that is a fact."
  },
  "REACT_D01_FACT_SOPH_2": {
-  "zh-TW": "狐狸小姐，您連眼前的事實都打算無視嗎？",
+  "zh-TW": "狐狸小姐，您打算把擺在眼前的事實，就這樣當成沒看見嗎？",
   "en": "Miss Fox, will you simply trample the facts underfoot?"
  },
  "REACT_D01_LIE_SOPH": {
-  "zh-TW": "故事編得真精采，可惜終究只是編的。",
+  "zh-TW": "好一齣編得有聲有色的故事呢，您不去寫小說真是可惜。",
   "en": "What a marvellous story. A pity it is only a story."
  },
  "EXCL_D01_TEMPLATE": {
@@ -1556,299 +1556,299 @@
   "en": "A moment ago you said {a}, and now you say {b}? Miss Fox, which is it to be?"
  },
  "REACT_D01_BLOCK": {
-  "zh-TW": "這說明不了什麼。",
+  "zh-TW": "單憑這一點，什麼也證明不了。",
   "en": "That proves nothing."
  },
  "REACT_D01_FOOLED": {
-  "zh-TW": "……您在說什麼？",
+  "zh-TW": "（一愣）……狐狸小姐，您這話是什麼意思？",
   "en": "...What are you talking about?"
  },
  "REACT_D01_FOGGED": {
-  "zh-TW": "您到底是來論戰的，還是來閒聊的？",
+  "zh-TW": "請問您究竟是來查案論戰，還是專程來扯閒話的？",
   "en": "Did you come here to debate, or to chat?"
  },
  "SHF_D01_CUT_OPEN_1": {
-  "zh-TW": "等一下！",
+  "zh-TW": "先停一下！",
   "en": "Hold on!"
  },
  "SHF_D01_CUT_OPEN_2": {
-  "zh-TW": "就是那一句。",
+  "zh-TW": "抓到了，就剛才這句！",
   "en": "That's the one."
  },
  "SHF_D01_CUT_OPEN_3": {
-  "zh-TW": "這三分鐘，你走得太遠了。",
+  "zh-TW": "說到昨晚那三分鐘，你這話扯得太遠了！",
   "en": "You wandered rather far in those three minutes."
  },
  "EXCL_D01_01A_01B_CATCH": {
-  "zh-TW": "您剛才說鎖被動過手腳，現在又說鎖完好無損？",
+  "zh-TW": "狐狸小姐，您一下說筒鎖完好，一下又說動過手腳，究竟該信哪一句？",
   "en": "A moment ago you said the lock had been tampered with, and now you say it is intact?"
  },
  "EXCL_D01_01A_01B_SELL": {
-  "zh-TW": "我是說，有人對它動過「念頭」。",
+  "zh-TW": "動手腳又不一定會弄壞鎖，我說的是有人對它動了「歪腦筋」。",
   "en": "I meant it had been tampered with... \"in spirit\"."
  },
  "EXCL_D01_01B_06A_CATCH": {
-  "zh-TW": "您剛才說鎖被動過手腳，現在又說鎖匠修好了？",
+  "zh-TW": "狐狸小姐，您一邊說鎖匠修妥了，一邊又說鎖動過手腳，這說得通嗎？",
   "en": "A moment ago you said the lock had been tampered with, and now you say the locksmith repaired it?"
  },
  "EXCL_D01_01B_06A_SELL": {
-  "zh-TW": "修好之後，又被別人動了嘛。",
+  "zh-TW": "兩件事並不衝突。鎖匠修妥離開後，另有別人去動手腳，不就說得通了？",
   "en": "He repaired it, and then somebody else tampered with it."
  },
  "EXCL_D01_02A_02B_CATCH": {
-  "zh-TW": "您剛才說鐘是自己走的，現在又說有人撞到它？",
+  "zh-TW": "狐狸小姐，那座鐘您既說是自己擺起來，又說是被人撞動的，豈不荒唐？",
   "en": "A moment ago you said the clock started on its own, and now you say someone knocked into it?"
  },
  "EXCL_D01_02A_02B_SELL": {
-  "zh-TW": "鐘也是會被嚇醒的。",
+  "zh-TW": "被人撞了一下，它順勢自己擺了起來——這兩種說法本來就沒衝突。",
   "en": "Clocks can be startled awake too."
  },
  "EXCL_D01_05A_05B_CATCH": {
-  "zh-TW": "您剛才說萬用鑰匙打不開，現在又說它們上了油轉得動？",
+  "zh-TW": "狐狸小姐，您一面說萬用鑰匙上了油轉得動，一面又說它打不開筒子，不矛盾嗎？",
   "en": "A moment ago you said the skeleton keys couldn't open it, and now you say they are oiled and turn easily?"
  },
  "EXCL_D01_05A_05B_SELL": {
-  "zh-TW": "轉得動，又不代表打得開。",
+  "zh-TW": "鑰匙轉得順手是一回事，能不能解開這把鎖又是另一回事。",
   "en": "Turning isn't the same as opening!"
  },
  "EXCL_D01_01D_05A_CATCH": {
-  "zh-TW": "您剛才說鎖匠手上沒有能開鎖的東西，現在又拿出他的萬用鑰匙？",
+  "zh-TW": "狐狸小姐，您一下說鎖匠手上沒東西可開鎖，一下又端出他的萬用鑰匙圈，這是何意？",
   "en": "A moment ago you said the locksmith had nothing that could open the lock, and now you produce his skeleton keys?"
  },
  "EXCL_D01_01D_05A_SELL": {
-  "zh-TW": "我是說，沒有「合法」的東西。",
+  "zh-TW": "我指的當然是「正規」的開鎖工具，萬用鑰匙可不算數！",
   "en": "I meant... nothing \"legal\"."
  },
  "EXCL_D01_04C_07A_CATCH": {
-  "zh-TW": "您剛才說廚房裡只有廚娘，現在又說鎖匠也在？",
+  "zh-TW": "狐狸小姐，您一下說廚房只有廚娘，一下又說鎖匠也在，究竟算幾人？",
   "en": "A moment ago you said only the cook was in the kitchen, and now you say the locksmith was there too?"
  },
  "EXCL_D01_04C_07A_SELL": {
-  "zh-TW": "瑪莎嘛，很會藏人。",
+  "zh-TW": "（輕咳一聲）瑪莎把人藏得好好的，乍看之下當然只剩她一個。",
   "en": "Martha is... very good at hiding people."
  },
  "EXCL_D01_04C_07B_CATCH": {
-  "zh-TW": "您剛才說廚房裡只有廚娘，現在又說鎖匠是為了她溜回來的？",
+  "zh-TW": "狐狸小姐，您既說廚房裡只有廚娘一人，又說鎖匠專程溜回來見她，這合邏輯嗎？",
   "en": "A moment ago you said only the cook was in the kitchen, and now you say the locksmith crept back for her?"
  },
  "EXCL_D01_04C_07B_SELL": {
-  "zh-TW": "好吧，我更正。",
+  "zh-TW": "好吧，廚房只有瑪莎那句算我修正，不過結論還是照舊！",
   "en": "I-I stand corrected."
  },
  "EXCL_D01_06A_06C_CATCH": {
-  "zh-TW": "您剛才說他沒動過鎖芯，現在又說他換了彈簧？",
+  "zh-TW": "狐狸小姐，您一邊說他沒動過鎖芯，一邊又說換過彈簧，說得過去嗎？",
   "en": "A moment ago you said he never touched the lock's workings, and now you say he fitted a new spring?"
  },
  "EXCL_D01_06A_06C_SELL": {
-  "zh-TW": "彈簧應該不算鎖芯吧？",
+  "zh-TW": "彈簧是彈簧、鎖芯是鎖芯，姑且算兩個不同的零件吧！",
   "en": "A spring... doesn't count as the workings, does it?"
  },
  "EXCL_D01_06B_07A_CATCH": {
-  "zh-TW": "您剛才說鎖匠昨晚根本不在屋裡、跟這件事毫無關係，現在又說他整晚待在廚房？狐狸小姐，您這位鎖匠難道會分身嗎？",
+  "zh-TW": "狐狸小姐，您一下說鎖匠傍晚就走了、昨晚不在屋裡與此案無關，一下又說熄燈時他在後門邊的廚房？恕我直言，莫非那鎖匠能同時身在屋內跟屋外不成？",
   "en": "A moment ago you said the locksmith was not even in the house last night and had nothing to do with this, and now you say he spent the whole night in the kitchen? Miss Fox, can your locksmith be in two places at once?"
  },
  "EXCL_D01_06B_07A_SELL": {
-  "zh-TW": "我修正一下，紳士難道都不會口誤嗎？",
-  "en": "...Let me amend that. Even gentlemen correct a typo now and then, don't they?"
+  "zh-TW": "（吐吐舌頭）算我講岔了一句嘛。不過塞德里克先生，你難道從沒說錯話？",
+  "en": "Let me amend that. Don't gentlemen ever misspeak?"
  },
  "EXCL_D01_06B_07B_CATCH": {
-  "zh-TW": "您剛才說鎖匠根本不在屋裡，現在又說他是為了廚娘溜回來的？",
+  "zh-TW": "狐狸小姐，您一下說鎖匠昨晚根本不在屋裡，一下又說他為廚娘溜回來，這怎麼解釋？",
   "en": "A moment ago you said the locksmith was not even in the house, and now you say he crept back for the cook?"
  },
  "EXCL_D01_06B_07B_SELL": {
-  "zh-TW": "他回來得很安靜嘛。",
+  "zh-TW": "傍晚準時收工走人，入夜後再悄悄溜回來，哪裡矛盾了？",
   "en": "He... came back very quietly."
  },
  "EXCL_D01_09A_09B_CATCH": {
-  "zh-TW": "您剛才說那只是紀念品，現在又說她是叔叔的女兒？",
+  "zh-TW": "狐狸小姐，您一面稱胸針只是紀念品，一面又指她是叔叔的女兒？",
   "en": "A moment ago you said it was merely a keepsake, and now you say she is my uncle's daughter?"
  },
  "EXCL_D01_09A_09B_SELL": {
-  "zh-TW": "紀念品也可以拿來紀念血緣啊。",
+  "zh-TW": "（語氣轉平）那確實是份紀念品，只是紀念的，正是父女之間的血緣。",
   "en": "A keepsake can keep blood ties too."
  },
  "LINK_D01_05A_01C": {
-  "zh-TW": "萬用鑰匙每一把都上了油，不上油就轉不動，但筒鎖裡乾乾淨淨。打開它的，不是這圈鑰匙。",
+  "zh-TW": "布里格斯的萬用鑰匙每把都上了油，沒上油根本轉不動；可筒鎖的鎖芯裡卻一滴油都找不到。打開文件筒的，絕不是這副鑰匙圈！",
   "en": "Every skeleton key is oiled, and without oil they won't turn—yet the tube's lock is spotlessly clean. Whatever opened it, it wasn't this ring of keys."
  },
  "LINK_D01_02A_03A": {
-  "zh-TW": "座鐘在熄燈時重新走動，鏡子的黑布也在那時掉了下來。那三分鐘裡，書房有人。",
+  "zh-TW": "座鐘熄燈時被撞得重新走動，鏡子黑布有未乾的守靈白蠟，靠走廊那張椅子旁的燭台空了。那三分鐘有人拿蠟燭進書房！",
   "en": "The mantel clock started up when the lights went out, and the mirror's black cloth fell at the same moment. In those three minutes, someone was in the study."
  },
  "LINK_D01_02A_04B": {
-  "zh-TW": "書房的座鐘在熄燈時被撞動，總閥上又沾著書房的煙灰。關燈的人，中間去過一趟書房。",
+  "zh-TW": "熄燈時有人撞到壁爐架讓座鐘重新走動，總閥輪上又沾著書房壁爐的舊煙灰——關燈的人進過書房再回地下室開燈，一直在屋裡！",
   "en": "The study clock was jolted awake when the lights went out, and the main valve bears soot from the study. Whoever turned down the lights went by way of the study."
  },
  "LINK_D01_02C_08B": {
-  "zh-TW": "鐘停在九點四十分，那一刻他在叫你。而那天晚上你人在俱樂部，催款信上的日期就是那一天。",
+  "zh-TW": "座鐘停在九點四十分，海德先生嚥氣前一直叫著你。催款信日期正好是他過世那天——他叫你時，你人卻待在梅費爾俱樂部！",
   "en": "The clock stopped at twenty to ten, at the very moment he was calling for you. And that night, you were at the club—the date on the demand letter is that very day."
  },
  "LINK_D01_10A_08A": {
-  "zh-TW": "附錄讓你少了一半遺產，你卻還欠著四百鎊，月底就到期。",
+  "zh-TW": "吸墨紙證實附錄分走一半遺產，你欠梅費爾俱樂部四百鎊月底到期，它消失對你最有利！",
   "en": "The codicil cost you half your inheritance. And you owe four hundred pounds, due at the end of the month."
  },
  "LINK_D01_09A_10A": {
-  "zh-TW": "一半的遺產，留給了你每天使喚的女僕。",
+  "zh-TW": "胸針和海德太太的成對，艾琳是海德先生女兒，吸墨紙「遺產之半數」歸她！",
   "en": "Half the inheritance, left to a maid you order about every day."
  },
  "LINK_D01_11A_11B": {
-  "zh-TW": "燈滅前你的椅子就空了，燈亮時你站在走廊口，手套上還沾著灰。",
+  "zh-TW": "艾琳作證，熄燈前你的椅子早已空著，燈亮時你站在走廊口，黑手套指尖還沾著灰！",
   "en": "Before the lights went out, your chair was empty; when they came back, you were standing at the end of the corridor with soot on your gloves."
  },
  "REACT_D01_ISSUE_OPP": {
-  "zh-TW": "屋裡全黑的那三分鐘，您倒是看得挺清楚。",
+  "zh-TW": "熄燈一片漆黑的那三分鐘，您說起來倒像是親眼目睹似的呢。",
   "en": "You saw remarkably well for three minutes of darkness."
  },
  "REACT_D01_ISSUE_METHOD": {
-  "zh-TW": "鎖、鑰匙、筒子，您說得頭頭是道。可惜，我對鎖沒興趣。",
+  "zh-TW": "鎖具與鑰匙的學問，您分析得確實條理分明。只可惜，我向來不碰這些東西。",
   "en": "Locks, keys, tubes—you argue it very neatly. Unfortunately, I have no interest in locks."
  },
  "REACT_D01_ISSUE_MOTIVE": {
-  "zh-TW": "錢？每個人都需要錢，狐狸小姐。",
+  "zh-TW": "狐狸小姐，這世上誰不缺錢呢？光談錢，可定不了誰的罪。",
   "en": "Money? Everyone needs money, Miss Fox."
  },
  "REACT_D01_SOPH": {
-  "zh-TW": "這種說法，連鄉下人都不會信。",
+  "zh-TW": "這套牽強的論調，恐怕連鄉下人聽了都不會當真吧。",
   "en": "Not even a country bumpkin would believe that."
  },
  "REACT_D01_01B": {
-  "zh-TW": "（微笑，鬆了口氣）動了手腳的鎖？沒錯，我也是這麼說的。",
+  "zh-TW": "（鬆了口氣，從容微笑）原來您也認為鎖被動過手腳啊？真高興我們看法一致呢。",
   "en": "(Smiles, relieved) A lock that was tampered with—yes, precisely what I said."
  },
  "REACT_D01_06B": {
-  "zh-TW": "鎖匠毫無關係？那您倒是說說看，有關係的是誰？",
+  "zh-TW": "既然您斷言與鎖匠無關，狐狸小姐，不妨指明究竟是誰涉案吧？",
   "en": "The locksmith had nothing to do with it? Then pray tell, who did?"
  },
  "REACT_D01_02C": {
-  "zh-TW": "（手指停在懷錶鏈上）那天晚上的事，跟這件案子無關。",
+  "zh-TW": "（手指停在懷錶鏈上）那晚的舊事與這起案子毫無關聯，請別混為一談！",
   "en": "(His fingers stop on his watch chain) ...What happened that night has no bearing on this case."
  },
  "REACT_D01_08B": {
-  "zh-TW": "（臉色一白）那天我在俱樂部又怎樣？叔叔他……不會等我的。",
+  "zh-TW": "（臉色一白）我那晚待在俱樂部又能說明什麼？反正叔叔也……不會再等我了。",
   "en": "(He goes pale) I was at the club that day. What of it? Uncle... he would not have waited for me."
  },
  "REACT_D01_03B": {
-  "zh-TW": "（下意識別開視線，避開書房方向）鏡子？不過是一塊布掉了，您到底想說什麼？",
+  "zh-TW": "（別開視線，避開書房方向）不過就是塊黑布從鏡子上滑落而已。狐狸小姐，您拿這點小事大做文章，究竟想說什麼？",
   "en": "(Without thinking, he looks away from the direction of the study) The mirror? A cloth fell off, that is all. What are you driving at?"
  },
  "REACT_D01_09A_1": {
-  "zh-TW": "（看了艾琳一眼，冷笑）原來如此，叔叔的小秘密。狐狸小姐，您在靈堂上抖出這件事，嬸嬸會感謝您嗎？",
+  "zh-TW": "（瞥了艾琳一眼，輕蔑地笑了）喔，原來叔叔生前還藏著這樁醜聞。狐狸小姐，您在靈堂當眾揭露這件事，就不怕傷了嬸嬸的心嗎？",
   "en": "(Glances at Irene and sneers) I see. Uncle's little secret. Miss Fox, do you imagine my aunt will thank you for saying such a thing beside his coffin?"
  },
  "REACT_D01_09A_2": {
-  "zh-TW": "……偵探小姐。",
+  "zh-TW": "（閉上眼睛，語氣微沉）……偵探小姐，夠了。",
   "en": "...Miss Detective."
  },
  "REACT_D01_09A_3": {
-  "zh-TW": "（托盤掉在地上）",
+  "zh-TW": "（雙手一鬆，懷裡的托盤哐噹一聲摔落在地）",
   "en": "(The tray clatters to the floor)"
  },
  "REACT_D01_P1A": {
-  "zh-TW": "（呼吸停了一拍，指尖捏緊懷錶鏈上的護身符）把那東西收起來，這裡是靈堂，不是沙龍。",
+  "zh-TW": "（呼吸停了一拍，指尖用力捏緊懷錶鏈上的護身符）立刻把那無聊玩意收起來！這裡是莊重的靈堂，不是玩沙龍遊戲的地方！",
   "en": "(His breath catches; his fingertips close tight on the charm on his watch chain) ...Put that thing away. This is a house of mourning, not a salon."
  },
  "REACT_D01_P1B": {
-  "zh-TW": "（猛然站起來，椅子倒在地上）別裝神弄鬼了！指示板是妳用手推的……是妳推的，對吧？",
-  "en": "(Leaps to his feet, knocking his chair over) Enough! Your hand pushed that planchette! ...You pushed it, didn't you?"
+  "zh-TW": "（突然站起身，把身後的椅子撞倒在地）少在那裡裝神弄鬼！那塊指示板明明是妳用手推的……對吧？是妳自己推的吧？",
+  "en": "(Leaps to his feet, knocking his chair over) Stop this hocus-pocus! Your hand pushed that planchette! ...You pushed it, didn't you?"
  },
  "REACT_D01_12A": {
-  "zh-TW": "（看了花圈一眼）嬸嬸在這上面花了不少錢。",
+  "zh-TW": "（瞥了花圈一眼）為了這堆排場，嬸嬸倒真捨得花錢呢。",
   "en": "(Glances at the wreath) ...My aunt spent a pretty penny."
  },
  "TELL_D01_GESTURE_ASSERT": {
-  "zh-TW": "整理黑領巾、微微一笑",
+  "zh-TW": "抬手撫平黑領巾，露出從容的微笑",
   "en": "Straightens his black cravat and smiles faintly"
  },
  "TELL_D01_GESTURE_PUSH": {
-  "zh-TW": "脫下手套拍在桌上",
+  "zh-TW": "沉下臉扯下手套，重重拍在桌面上",
   "en": "Pulls off a glove and slaps it on the table"
  },
  "TELL_D01_GESTURE_REBUT": {
-  "zh-TW": "十指相抵、身體往後靠",
+  "zh-TW": "往後靠回椅背，靜靜將十指相抵",
   "en": "Steeples his fingers and leans back"
  },
  "TELL_D01_GESTURE_STALL": {
-  "zh-TW": "摸懷錶鏈上的護身符",
+  "zh-TW": "指尖不停撥弄著懷錶鏈上的護身符",
   "en": "Fingers the charms on his watch chain"
  },
  "TELL_D01_ASSERT_1": {
-  "zh-TW": "請容我把話說清楚。",
+  "zh-TW": "狐狸小姐，請容我在此陳述我的看法。",
   "en": "Permit me to make myself clear."
  },
  "TELL_D01_PUSH_1": {
-  "zh-TW": "荒唐。",
-  "en": "Enough."
+  "zh-TW": "真是無稽之談，我可聽不下去了！",
+  "en": "Absurd."
  },
  "TELL_D01_PUSH_2": {
-  "zh-TW": "這場鬧劇該結束了。",
+  "zh-TW": "夠了！這場無聊的兒戲，現在就該收場！",
   "en": "I have had quite enough of this farce."
  },
  "TELL_D01_REBUT_1": {
-  "zh-TW": "請說，我洗耳恭聽。",
+  "zh-TW": "您先請吧，狐狸小姐，我倒要聽聽您的高見。",
   "en": "Please, go on. I am all ears."
  },
  "TELL_D01_REBUT_2": {
-  "zh-TW": "您確定要這麼說？",
+  "zh-TW": "您當真打算這麼說？我可隨時奉陪。",
   "en": "Are you quite sure you wish to say that?"
  },
  "TELL_D01_STALL_1": {
-  "zh-TW": "我想，我們都需要冷靜一下。",
+  "zh-TW": "何必這麼急躁呢？諸位先冷靜片刻再談吧。",
   "en": "I think we could all do with a moment's calm."
  },
  "TELL_D01_HINT_ASSERT": {
-  "zh-TW": "他在整理領巾，要開口了。",
+  "zh-TW": "他剛撫平領巾，看樣子準備要發言了。",
   "en": "He's straightening his cravat. He's about to speak."
  },
  "TELL_D01_HINT_PUSH": {
-  "zh-TW": "他脫手套了，準備接招。",
+  "zh-TW": "手套都扯下來了，這回他打算硬壓過來，妳小心應對。",
   "en": "The glove's coming off—brace yourself."
  },
  "TELL_D01_HINT_REBUT": {
-  "zh-TW": "他在等妳先說，別輕舉妄動。",
-  "en": "He's waiting for you to go first. Don't throw links about carelessly."
+  "zh-TW": "看他靠回椅背的樣子，是在等妳先出手，別太冒進。",
+  "en": "He's waiting for you to go first. Don't do anything rash."
  },
  "TELL_D01_HINT_STALL": {
-  "zh-TW": "他又在摸錶鏈了，是在拖時間。趁現在說我們的。",
+  "zh-TW": "他又在撥弄錶鏈，看來只想拖延時間，趁現在放心講我們的論點吧。",
   "en": "He's fiddling with that watch chain again... playing for time. Make our case now."
  },
  "STATE_D01_ART_HACHIKU": {
-  "zh-TW": "漂亮，讀對了。",
+  "zh-TW": "很好，這一手妳算準了。",
   "en": "Well done—you read him right."
  },
  "STATE_D01_ART_CORNERED": {
-  "zh-TW": "他被逼到牆角了，接下來每句話都會很重，但也更好看穿。",
+  "zh-TW": "他沒退路了。接下來開口會更有殺傷力，但也藏不住意圖，他的下一步更好猜！",
   "en": "He's backed into a corner. Every line from here will hit hard—but they'll be easy to read."
  },
  "STATE_D01_ART_BREACHED": {
-  "zh-TW": "先穩住，接下來用正論，我陪妳撐過去。",
+  "zh-TW": "冷靜點！讀準一次站穩前，被他打中會更痛，改用正論，我陪妳度過這關！",
   "en": "Steady yourself first. Use a sound claim next; I'll see you through this."
  },
  "STATE_D01_ART_COVER": {
-  "zh-TW": "等一下，各位！她的意思是——（打圓場）",
+  "zh-TW": "（急忙插話打圓場）各位請聽我解釋！她想表達的其實是——",
   "en": "One moment, everyone! What she means is—(smoothing it over)"
  },
  "STATE_D01_SHF_HACHIKU_1": {
-  "zh-TW": "一分鐘。",
+  "zh-TW": "（豎起一根手指）第一分鐘，才剛暖身而已。",
   "en": "One minute."
  },
  "STATE_D01_SHF_HACHIKU_2": {
-  "zh-TW": "兩分鐘。",
+  "zh-TW": "（豎起兩根手指）第二分鐘，越走越順手了。",
   "en": "Two minutes."
  },
  "STATE_D01_SHF_HACHIKU_3": {
-  "zh-TW": "三分鐘剛剛好，勢如破竹！",
+  "zh-TW": "（豎起三根手指）三分鐘到齊，這下勢如破竹！",
   "en": "Three minutes, right on time—unstoppable!"
  },
  "STATE_D01_SHF_BREAK": {
-  "zh-TW": "三分鐘的黑暗，到此為止！",
+  "zh-TW": "（狐耳高豎，抬手一指）昨晚那三分鐘的黑暗，就在這裡徹底結束了！",
   "en": "Your three minutes of darkness are over!"
  },
  "STATE_D01_SHF_SHAKEN": {
-  "zh-TW": "燈亮了，塞德里克先生。",
+  "zh-TW": "塞德里克先生，燈亮了——這下躲不掉了。",
   "en": "The lights are back on, Mr Cedric."
  },
  "STATE_D01_SHF_BREACHED": {
-  "zh-TW": "唔，被看穿了。",
+  "zh-TW": "哎呀，這下被看破了。",
   "en": "...Ugh, he saw right through me."
  },
  "SYS_D01_TELL_CLEAR": {
@@ -2052,259 +2052,263 @@
   "en": "You win the debate."
  },
  "BEAT_D01_CLASH_1": {
-  "zh-TW": "您——",
+  "zh-TW": "您聽我——",
   "en": "You—"
  },
  "BEAT_D01_CLASH_2": {
-  "zh-TW": "——我先說完。",
+  "zh-TW": "——慢著，先聽我把這句講完！",
   "en": "—let me finish first."
  },
  "BEAT_D01_07A_1": {
-  "zh-TW": "（摀住嘴）",
+  "zh-TW": "（嚇得倒抽一口氣，急忙抬手摀住嘴）",
   "en": "(Covers her mouth)"
  },
  "BEAT_D01_07A_2": {
-  "zh-TW": "對不起，瑪莎。",
+  "zh-TW": "（低下頭，滿臉愧疚）瑪莎，真的很抱歉……",
   "en": "...I'm sorry, Martha."
  },
  "BEAT_D01_P1A_1": {
-  "zh-TW": "（靈堂裡一片安靜。窗縫吹進一陣風，蠟燭的火苗晃了一下。）",
+  "zh-TW": "（靈堂內靜得沒有半點聲響。一陣冷風穿過窗縫吹進來，燭台上的火苗跟著搖晃起來。）",
   "en": "(The parlour falls silent. A draught slips in through the gap in the window, and the candle flames lean.)"
  },
  "BEAT_D01_P1A_2": {
-  "zh-TW": "（小聲）Sherefox，妳還真的把它帶來了。",
+  "zh-TW": "（壓低聲音）不會吧，Sherefox，妳真把它帶過來了！",
   "en": "(Quietly) Sherefox, you actually brought it..."
  },
  "BEAT_D01_02C_1": {
-  "zh-TW": "（低下頭）",
+  "zh-TW": "（沉默地低下了頭）",
   "en": "(Lowers her head)"
  },
  "BEAT_D01_GUILT_1": {
-  "zh-TW": "（小聲）他在發抖。",
+  "zh-TW": "（壓低聲音）妳注意到了嗎？他在發抖。",
   "en": "(Quietly) He's... trembling."
  },
  "BEAT_D01_ANGER_1": {
-  "zh-TW": "（站起來，把手套摔在桌上）適可而止吧，我受夠這場鬧劇了。",
+  "zh-TW": "（突然站起身，把手套重重摔在桌上）這場荒唐的鬧劇，我已經忍耐到極限了！",
   "en": "(Stands and flings his glove down on the table) Enough. I have had quite enough of this farce."
  },
  "BEAT_D01_SOPH_06B_1": {
-  "zh-TW": "（小聲）可是那條手帕……",
+  "zh-TW": "（小聲嘀咕）等等，那我們手上這條手帕要怎麼算……",
   "en": "(Quietly) But that handkerchief..."
  },
  "BEAT_D01_SOPH_06C_1": {
-  "zh-TW": "（翻著工作單，小聲）上面明明寫著換新彈簧啊。",
+  "zh-TW": "（低頭翻著工作單，小聲）等一下，這上頭不是寫著換新彈簧嗎……",
   "en": "(Leafing through the work order, quietly) ...It clearly says a new spring was fitted."
  },
  "BEAT_D01_SOPH_03C_1": {
-  "zh-TW": "（小聲）Sherefox，我們剛剛才鑑定過……",
+  "zh-TW": "（壓低聲音）Sherefox，那樣東西我們才剛鑑定完……",
   "en": "(Quietly) Sherefox, we only just appraised that..."
  },
  "BEAT_D01_REDCRACK_1": {
-  "zh-TW": "（看到紅色裂紋）Sherefox，這句跟妳前面說的對不上。",
-  "en": "(Seeing the red crack) Sherefox, that doesn't square with what you said at the start—"
+  "zh-TW": "等等，Sherefox，這話跟妳先前的說法互相衝突。",
+  "en": "(Seeing the red crack) Sherefox, that doesn't square with what you said earlier."
  },
  "BEAT_D01_09A_1": {
-  "zh-TW": "Sherefox，那是艾琳的——",
+  "zh-TW": "等等，Sherefox！這牽涉到艾琳的私事，妳——",
   "en": "Sherefox, that's Irene's—"
  },
  "BEAT_D01_LASTCARD_1": {
-  "zh-TW": "那是我們留在門廳的鑰匙圈！",
+  "zh-TW": "糟了！那是我們留在門廳沒帶走的鑰匙圈！",
   "en": "That's... the ring of keys we left in the entrance hall!"
  },
  "BEAT_D01_LASTCARD_2": {
-  "zh-TW": "這、這……狐狸小姐？",
+  "zh-TW": "（眉頭緊鎖）這、這到底是怎麼回事啊，狐狸小姐？！",
   "en": "Wh-what's this... Miss Fox?"
  },
  "BEAT_D01_LASTCARD_3": {
-  "zh-TW": "黃銅屑！本、本警督就說嘛！",
+  "zh-TW": "（雙眼發亮）黃、黃銅屑！看吧，本警督果然抓對人啦！",
   "en": "Brass filings! Th-this Inspector said so all along!"
  },
  "BEAT_D01_LASTCARD_4": {
-  "zh-TW": "還有，您剛才說的那些話，這屋裡每個人都聽見了，全都不是真的。",
+  "zh-TW": "況且，您今天在靈堂裡編造的那些說詞，在場諸位全都親耳聽見了——沒半句是真的！",
   "en": "And another thing: everything you said a moment ago—everyone in this house heard it, and none of it was true."
  },
  "BEAT_D01_LASTCARD_5": {
-  "zh-TW": "唔，被看穿了。",
+  "zh-TW": "哎呀，這下被看破了。",
   "en": "...Ugh, he saw right through me."
  },
  "BEAT_D01_LASTCARD_6": {
-  "zh-TW": "先穩住，他剩下的話我們一句一句拆。",
+  "zh-TW": "別被他牽著走，我們把他剩下的論點一條一條拆開來！",
   "en": "Steady yourself. Take apart the rest of what he says, one line at a time."
  },
  "BEAT_D01_REFUTED_1": {
-  "zh-TW": "我……",
+  "zh-TW": "（臉色發白）我、我其實……",
   "en": "I..."
  },
  "BEAT_D01_REFUTED_2": {
-  "zh-TW": "（摀住臉）",
+  "zh-TW": "（雙手一顫，低頭把整張臉埋進掌心）",
   "en": "(Covers her face)"
  },
  "BEAT_D01_REFUTED_3": {
-  "zh-TW": "{item}……？",
+  "zh-TW": "怎麼會……那是{item}？！",
   "en": "{item}...?"
  },
  "BEAT_D01_REFUTED_4": {
-  "zh-TW": "（翻筆記）在{place}找到的，可是我們沒帶上來。",
+  "zh-TW": "（急忙翻看筆記）糟了，這件明明是在{place}找到的，我們卻沒帶進來！",
   "en": "(Flipping through his notes) ...{place}. We found it, but we didn't bring it."
  },
  "BEAT_D01_REVERSE_1": {
-  "zh-TW": "狐狸小姐，您今天說的話，連您自己都說不通了。",
+  "zh-TW": "狐狸小姐，您今天講的這整套推論，看來連您自己都接不起來了呢。",
   "en": "Miss Fox, not even you can make what you've said today hang together."
  },
  "BEAT_D01_LASTSTAND_FAIL_1": {
-  "zh-TW": "那句話，並不在我的論點裡。",
-  "en": "That statement is not on my chain."
+  "zh-TW": "（輕笑搖頭）真遺憾，您反駁的那一點，根本不在我的論點當中。",
+  "en": "That statement is not part of my argument."
  },
  "BEAT_D01_GIVEUP_1": {
-  "zh-TW": "塞德里克沒有再開口。",
+  "zh-TW": "塞德里克沉默了下來，沒有再出聲。",
   "en": "Cedric says nothing more."
  },
  "TELL_D01_HINT_FACT": {
-  "zh-TW": "這句是真的，駁不倒。",
+  "zh-TW": "他說的這一點確實是事實，反駁不了。",
   "en": "This one... is true. We can't knock it down."
  },
  "TELL_D01_HINT_SLIP": {
-  "zh-TW": "他這話只說了一半。",
+  "zh-TW": "不對勁，他這句話只開了個頭就停住了。",
   "en": "He didn't... finish that sentence."
  },
  "TELL_D01_HINT_KEY": {
-  "zh-TW": "這句是他整套說法的根基！",
+  "zh-TW": "他整套推論全靠這一句撐著，這正是他的關鍵要害！",
   "en": "That's the foundation of his whole story!"
  },
  "TELL_D01_HINT_LAST": {
-  "zh-TW": "他想翻盤，妳手上有能堵住這句話的東西嗎？",
-  "en": "He's going to change his story. Have you got anything that can stop that line?"
+  "zh-TW": "他打算靠這最後一搏翻盤，妳手邊有能擋住這句話的證據嗎？",
+  "en": "He's trying to turn the tables. Have you got anything that can stop that line?"
  },
  "TELL_D01_HINT_NOCUT": {
-  "zh-TW": "我們手上沒有能駁倒這句話的東西。",
+  "zh-TW": "我們帶來的東西，沒有一樣能反駁這句話。",
   "en": "We've nothing on us that can refute that."
  },
  "FOG_D01_1": {
-  "zh-TW": "說到守靈，塞德里克先生，你知道窗戶為什麼要留一道縫嗎？聽說是給靈魂走的，不過我想，拿來散煤氣味也很合適。",
+  "zh-TW": "（望向窗邊）話說回來，塞德里克先生，守靈夜把窗戶留道縫，聽說老規矩是為了讓靈魂離開。不過換個角度想，拿來散散屋裡的煤氣味，倒也滿方便的。",
   "en": "Speaking of wakes—Mr Cedric, do you know why the window is left open a crack? They say it's to let the soul out. Though I suppose it would let the gas smell out too."
  },
  "FOG_D01_2": {
-  "zh-TW": "塞德里克先生，你的護身符很漂亮。藍眼珠那顆，是在威尼斯買的嗎？",
+  "zh-TW": "塞德里克先生，你懷錶鏈上的護身符真精緻！那顆藍色玻璃眼珠是在哪挑的？",
   "en": "Mr Cedric, what lovely charms. The blue eye bead—did you buy that in Venice?"
  },
  "FOG_D01_3": {
-  "zh-TW": "刮痕啊，說到刮痕，你的鞋跟也磨得還真厲害。",
+  "zh-TW": "（低頭瞄了一眼）對了，塞德里克先生，你的鞋跟磨損得滿明顯的呢。",
   "en": "Scuffs, you say... speaking of scuffs, your boot heels are dreadfully worn down."
  },
  "APR_D01_01_LINE": {
-  "zh-TW": "鎖芯完好，連一道撬痕都沒有。彈簧是新換的，裝得很漂亮。還有一點，鎖芯裡乾乾淨淨，一滴油都沒有。萬用鑰匙得上油才轉得動，要是用它開過，裡面一定會留下油。打開它的，是一把乾淨的真鑰匙。",
+  "zh-TW": "（放下工具）我拆開黃銅文件筒的鎖檢查過了。新換的彈簧裝得很工整，鎖芯完好、沒半點撬痕，裡頭也乾乾淨淨，一滴油都找不到。萬用鑰匙不上油就轉不動，用它開過一定會留油。所以打開筒子的，是原本那把乾淨的真鑰匙。",
   "en": "The lock's workings are intact—not a single mark of forcing. The spring is new, and neatly fitted. And one more thing: the lock is spotlessly clean, not a drop of oil inside. Skeleton keys must be oiled to turn, so if one had been used, it would certainly have left oil behind. Whatever opened this was a clean, original key."
  },
  "APR_D01_02_LINE": {
-  "zh-TW": "鐘擺沒綁緞帶，是被震了一下才重新擺起來的。從九點四十分走到現在的十點四十八分，走了一小時八分鐘。往回推算，它是在昨晚十一點零二分左右開始走的，正好是燈滅的時候。",
+  "zh-TW": "（掏出懷錶對時）我查了書房的座鐘，鐘擺沒綁緞帶，一受震動就會重新擺起來。現在中午十二點十分，鐘面卻是十點四十八分，慢了一小時二十二分。原本停在九點四十分，算起來就是昨晚十一點零二分開始走的，正好是熄燈的時候！",
   "en": "The pendulum wasn't tied with a ribbon; a jolt set it swinging again. From twenty to ten to the ten forty-eight it shows now, it has run one hour and eight minutes. Counting back, it started at about two minutes past eleven last night. Exactly when the lights went out."
  },
  "APR_D01_04_LINE": {
-  "zh-TW": "閥輪上沾的不是地下室的煤塵，而是壁爐裡的細煙灰。這棟屋子裡只有書房的壁爐很久沒生火，才會積著這種舊灰。轉開總閥的那隻手，剛伸進過書房的壁爐。",
+  "zh-TW": "（放下放大鏡）我本來以為是地下室的煤塵，比對過才發現看錯了！閥輪上沾的其實是壁爐的細煙灰。整棟屋子只有書房壁爐很久沒生火，才會積這種舊灰——回頭轉開總閥的那隻手，才剛伸進過書房壁爐！",
   "en": "That isn't coal dust from the basement on the valve wheel—it's fine soot from a fireplace. The only fireplace in this house that hasn't been lit for ages and is caked with that kind of old soot is the one in the study. The hand that turned the main valve had just come from the study fireplace."
  },
  "HS_D01_01_ART": {
-  "zh-TW": "守靈的人整晚都坐在這裡。靠走廊那個位子，離傭人樓梯最近。",
+  "zh-TW": "昨晚守靈一整夜，大家就是坐在這排椅子上。靠走廊那張，離傭人樓梯最近。",
   "en": "The watchers sit here all night. The seat by the corridor... is closest to the servants' stairs."
  },
  "HS_D01_02_ART": {
-  "zh-TW": "她嚇壞了，可是說得很清楚。",
+  "zh-TW": "她雖然怕得直發抖，不過證詞很有條理，聽起來相當可信。",
   "en": "She's frightened half to death, but she put it very clearly."
  },
  "HS_D01_03_ART": {
-  "zh-TW": "這條錶鏈還滿時髦的。",
+  "zh-TW": "難怪他剛才一直摸懷錶鏈，近看做工確實講究，滿時髦的。",
   "en": "Rather a fashionable watch chain."
  },
  "HS_D01_04_ART": {
-  "zh-TW": "遺體照現在滿流行的，他大概只是不喜歡拍照吧。",
+  "zh-TW": "他大概只是不愛拍照而已。現在倫敦確實很流行拍遺體照留念嘛。",
   "en": "Memorial photographs are all the fashion now. Perhaps he doesn't care to be photographed."
  },
  "HS_D01_05_ART": {
-  "zh-TW": "髮辮首飾啊，這也是辦喪事的習俗。",
+  "zh-TW": "原來是髮辮首飾。這是常見的喪葬習俗，用來懷念逝者的。",
   "en": "Hair jewellery... another mourning custom."
  },
  "HS_D01_06_ART": {
-  "zh-TW": "規矩做得真周到，不過這個跟案子沒關係吧？",
+  "zh-TW": "這家人守靈的禮數做得真足。不過這花圈跟案子完全沒關係吧？",
   "en": "Everything done properly, by the book. This... has nothing to do with the case, surely?"
  },
  "HS_D01_07_ART": {
-  "zh-TW": "那是海德先生過世的時間，全屋的鐘都停在這裡。",
+  "zh-TW": "全屋的鐘都照規矩停在九點四十分，那是海德先生過世的時刻。",
   "en": "The moment Mr Hyde passed away. Every clock in the house is stopped at it."
  },
  "HS_D01_08_ART": {
-  "zh-TW": "可以讓我把鎖拆開看看。這種鎖有沒有被人動過，一看就知道了。",
+  "zh-TW": "交給我把鎖拆開看吧。以我修錶匠的手藝，這鎖有沒有被動過，一看就清楚。",
   "en": "Let me take the lock apart and have a look. With a lock like this, I can tell at a glance whether it's been tampered with."
  },
  "HS_D01_09_ART": {
-  "zh-TW": "這座鐘的鐘擺沒綁緞帶，可以讓我檢查看看它是什麼時候開始走的。",
+  "zh-TW": "咦，這座鐘的鐘擺沒綁緞帶。交給我檢查一下，應該能算出它是什麼時候重新走的。",
   "en": "Its pendulum isn't tied with a ribbon. Let me see when it started running."
  },
  "HS_D01_10_ART": {
-  "zh-TW": "窗戶留了一道縫，大概是風吹掉的。這滴蠟，是守靈用的那種白蠟燭嗎？",
+  "zh-TW": "因為窗戶照規矩留了道縫，黑布八成是被風吹下來的吧。話說這滴蠟，該不會是守靈用的白蠟燭？",
   "en": "The wind, probably—the window's been left open a crack. Wax... the white candles used for the wake?"
  },
  "HS_D01_11_ART": {
-  "zh-TW": "這就是附錄的內容，一半的遺產留給了別人。",
+  "zh-TW": "把一半遺產分給別人，這肯定就是那份失蹤附錄的內容了！",
   "en": "That's the text of the codicil. Half the estate, left to someone else."
  },
  "HS_D01_12_ART": {
-  "zh-TW": "裡面好像塞了什麼東西，卡得很緊，得找人來拆才行。",
+  "zh-TW": "（試著扳動）拉桿卡得死緊，裡頭似乎塞了東西，得找人幫忙拆才行。",
   "en": "Something seems to be stuffed up in there. ...Wedged in tight; we'd need someone to take it apart."
  },
  "HS_D01_13_ART": {
-  "zh-TW": "嗯，黑布確實不太好看。",
+  "zh-TW": "話說回來，屋裡罩一塊黑布確實不好看，難怪他嫌礙眼。",
   "en": "Well, the black cloth isn't much to look at, I'll grant him."
  },
  "HS_D01_14_ART": {
-  "zh-TW": "海德先生的備用鑰匙？不見了。",
+  "zh-TW": "裡面原本收的，該不會是海德先生的備用鑰匙吧？現在卻不見了。",
   "en": "Mr Hyde's spare key? Gone."
  },
  "HS_D01_15_ART": {
-  "zh-TW": "地下室到處都是煤塵，沾點灰也不奇怪，不過我可以取一點去比對看看。",
+  "zh-TW": "地下室本來就滿是煤塵，閥輪沾到黑灰倒不稀奇。不過保險起見，我可以採點樣本回去比對。",
   "en": "There's coal dust everywhere down here; a little soot is nothing odd. Still, I could take some to compare."
  },
  "HS_D01_16_ART": {
-  "zh-TW": "從靈堂走到這裡，不用一分鐘。",
+  "zh-TW": "照這距離算，從靈堂走過來根本花不到一分鐘。",
   "en": "Less than a minute's walk from the parlour."
  },
  "HS_D01_17_ART": {
-  "zh-TW": "機油味？廚房裡有誰會用到機油？",
+  "zh-TW": "（嗅了嗅）真奇怪，這手帕上有機油味。廚房裡到底誰會用到機油？",
   "en": "Machine oil... who in a kitchen would use machine oil?"
  },
  "HS_D01_18_ART": {
-  "zh-TW": "她好像很緊張。",
+  "zh-TW": "（低聲）她看起來很緊張，同一個盤子都快被她擦破了。",
   "en": "She seems very nervous."
  },
  "HS_D01_19_ART": {
-  "zh-TW": "這只是沙龍遊戲，我們小時候也玩過，指示板根本是手自己推的。這跟案子沒關係吧？妳什麼時候開始收集這種小玩意了？",
+  "zh-TW": "（愣住）等一下，妳真要帶著它？這不過是我們小時候玩過的沙龍遊戲，指示板全是手自己推的！跟案子完全無關吧，妳什麼時候迷上收藏這種玩意了？",
   "en": "A parlour game. We played it as children too—it's your own hand that pushes the planchette. This has nothing to do with the case, surely? Since when have you collected curios?"
  },
  "HS_D01_20_ART": {
-  "zh-TW": "這不是哀悼首飾嗎？女僕怎麼會有？",
+  "zh-TW": "咦，這明明是哀悼首飾，女僕房裡怎麼會收著這種東西？",
   "en": "This is... mourning jewellery. How would a maid come by it?"
  },
  "HS_D01_21_ART": {
-  "zh-TW": "這是驅邪用的，這屋子還真是什麼規矩都有。",
+  "zh-TW": "撒鹽配迷迭香是用來驅邪的。這棟宅邸還真是什麼規矩都少不了。",
   "en": "To ward off evil. This house has a custom for everything."
  },
  "HS_D01_22_ART": {
-  "zh-TW": "真浪費燈油，大概是有錢人家的習慣吧。",
+  "zh-TW": "有錢人家大概都習慣點著燈吧，不過這樣燒一整晚，未免太浪費燈油了。",
   "en": "A waste of lamp oil. A rich family's habit, I suppose."
  },
  "HS_D01_23_ART": {
-  "zh-TW": "四百鎊！這可不是小數目。",
+  "zh-TW": "整整四百鎊！這筆錢的數目也太嚇人了！",
   "en": "Four hundred pounds! That's no small sum."
  },
  "HS_D01_24_ART": {
-  "zh-TW": "上一任房客留下的吧。",
+  "zh-TW": "都生鏽成這樣了，大概是以前住過這間臥室的人釘上去的吧。",
   "en": "Left by a previous tenant, I expect."
  },
  "HS_D01_25_ART": {
-  "zh-TW": "鑰匙全上了油，這是鎖匠的習慣。",
+  "zh-TW": "每把萬用鑰匙都上了油。不上油就轉不動，這也是鎖匠保養的習慣。",
   "en": "Every key oiled. A locksmith's habit."
  },
  "HS_D01_26_ART": {
-  "zh-TW": "他在保護誰？",
+  "zh-TW": "（低聲）聽他那語氣，像是在極力保護某個人。到底是誰？",
   "en": "Who is he protecting?"
+ },
+ "SCR_D01_S03_L002A": {
+  "zh-TW": "（低聲）門廳的掛鐘停在九點四十分，大白天屋裡也全點著煤氣燈。",
+  "en": "(under his breath) The hall clock has stopped at twenty to ten, and every gas lamp is lit in broad daylight."
  }
 }

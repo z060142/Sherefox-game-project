@@ -212,7 +212,12 @@ def check_cues(fail: cp.Failures) -> None:
                f"bgmCues SCR_D01_S05_START: {r}")
     for line, cue, bgm, fade in (("SCR_CH03_S03_L002", "BGM_CH03_03", "BGM03", "cross"),
                                  ("SCR_CH03_S03_L003", "BGM_CH03_04", "BGM04", "cut"),
-                                 ("SCR_CH03_S07_L010", "BGM_CH03_09", "BGM03", "cross")):
+                                 ("SCR_CH03_S07_L010", "BGM_CH03_09", "BGM03", "cross"),
+                                 # the line inserted with the text rewrite keeps S03's carriage music; the cut to
+                                 # BGM04 still starts on L003 (the inspector)
+                                 ("SCR_D01_S03_L002", "BGM_D01_03", "BGM03", "cross"),
+                                 ("SCR_D01_S03_L002A", "BGM_D01_03", "BGM03", "cross"),
+                                 ("SCR_D01_S03_L003", "BGM_D01_04", "BGM04", "cut")):
         r = next((r for r in rows if r["line"] == line), None)
         fail.check(r is not None and (r["cue"], r["bgm"], r["fade"]) == (cue, bgm, fade), f"bgmCues {line}: {r}")
 

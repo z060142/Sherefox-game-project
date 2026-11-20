@@ -296,6 +296,41 @@ checks with `SHEREFOX_TEXTLOG=DIR` (`check_playthrough.parse_events` then append
 trace to `DIR/<check>.txt`), and this lists per key the checks whose screens showed its text (placeholders as
 wildcards) and the referenced keys no check showed.
 
+## v2 demo: re-importing the D01 text (text rewrite)
+
+A new delivery of `script_d01.csv`, `evidence_d01.csv` and `strings_d01.json` (a writer's hand-off or the design repo's
+`localization/d01/`; `README.md` and `ui_strings_d01.csv` there are never touched) goes in with one command, no hand
+edits:
+
+```
+uv run tools/import_d01_text.py DIR [--dry-run]
+```
+
+It validates first (the JSON equals the two CSVs; no key removed; every key keeps its placeholders; a new script line
+`SCR_D01_Sxx_Lnnn` + one letter, e.g. `L002A`, has a row in `source/staging/staging_d01.csv`), copies the three files
+in the repo's formatting (LF, the JSON as `indent=1`), runs `tools/build_data.py` and `tools/gen_flows.py`, the
+`--check` of build_data, gen_flows, gen_debate and gen_debate_v2, `xtatrium pack --game .` and
+`tests/check_d1_strings.py`. Then run the ref tests (one known old failure, `test_tags`), `check_debate_v2`,
+`check_d1_story`, `check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_full`, `check_d1_fuzz`, `check_music` and
+the v1 checks (`check_playthrough`, `check_case`, `check_debate`, `check_debate_play`, `check_nav`, `check_policy`,
+`check_settings`): every line expectation comes from the CSVs and the generated tables, so no test needs editing for
+new text. A new line only needs its staging row (an inserted line plays after its number: build_data gives it
+`seq` = number + letter / 10, and the music cue table carries the scene's cue on to it). Last, the text fit:
+
+```
+uv run tests/shots_d1_text.py DIR [--lang zh-TW|en] [--top N] [--boxes a,b] [--list]
+```
+
+Not a pass/fail check: for every box that shows D01 text (the vn dialogue and notes boxes, the warm-up's point,
+observation cards and dialogue box, the hotspot note's description and Arthur's comment, the evidence list's
+description, appraisal result and line, private-view rows, the people notes, the carry screen's rows, Arthur's lines,
+first-visit line and confirm box, the debate's speech band, system line, tell / hint boxes, tell card and gesture) it
+renders the longest strings that can appear there (`--top`, default 6; every candidate of a small box) by replaying
+`tests/d1_m3.atrec` on a copy of the game whose string table puts each candidate in place of a key the box shows
+(the carry confirm with every item left behind), and writes `DIR/<lang>/<box>/*.png` and `index.tsv`. Run
+`check_d1_m3` first (it regenerates the recording). The claim and card labels are not part of a text rewrite
+(`tests/shots_d1_labels.py`); the papers come from `check_d1_story --shots` (S01) and `check_d1_full --shots` (S09).
+
 ## v2 demo: the D01 chapter (M3)
 
 ```
@@ -332,7 +367,7 @@ uv run tests/check_d1_story.py [--shots DIR]
 | `clean`, `pass`, `fail` `[zh-TW]`, `[en]` | the S01 paper (headline, dateline, lead, page 1, no strip or engraving); every S02 and S03 line in script order with its name plate, staging and the chapter tab, the vn the only main screen; every warm-up line in the reference model's order (`ref sherefox_ref.v2.warmup`) with its speaker, the point, the mistakes count, the observations, `choosing` exactly on a point; L013 only on a clean pass, L005 on a mistake, L014 + L015 on the third; `world.d1Warmup` = pass_clean / pass / fail (`xtatrium trace`, zh-TW run); the investigation follows with 2 / 2 / 1 appraisals; the clean run reaches the carry screen; nothing on stderr |
 
 Picks: clean W1 W2 W3; pass W2 (wrong), W1, W2, W1 (already used: wrong), W3; fail W2, W3, W1, W1. `--shots DIR` writes
-the S01 paper, S02 with the landlady, S03 with Briggs and with Cedric, a point with the three observations, a wrong pick
+the S01 paper, S02 with the landlady, S03 with Arthur's aside (L002A), with Briggs and with Cedric, a point with the three observations, a wrong pick
 (L005), the success (L013) and the failure (L014, L015). `tests/check_music.py` replays `d1_story_clean` for the D01
 cues. The check fails if it leaves anything behind (the temp-leak check below).
 

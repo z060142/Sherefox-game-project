@@ -146,6 +146,7 @@
 {"line":"SCR_D01_S02_L012","cue":"BGM_D01_02","scene":"D01_S02","bgm":"BGM02","fade":"cross","secs":1.5},
 {"line":"SCR_D01_S03_L001","cue":"BGM_D01_03","scene":"D01_S03","bgm":"BGM03","fade":"cross","secs":1.5},
 {"line":"SCR_D01_S03_L002","cue":"BGM_D01_03","scene":"D01_S03","bgm":"BGM03","fade":"cross","secs":1.5},
+{"line":"SCR_D01_S03_L002A","cue":"BGM_D01_03","scene":"D01_S03","bgm":"BGM03","fade":"cross","secs":1.5},
 {"line":"SCR_D01_S03_L003","cue":"BGM_D01_04","scene":"D01_S03","bgm":"BGM04","fade":"cut","secs":0.2},
 {"line":"SCR_D01_S03_L004","cue":"BGM_D01_04","scene":"D01_S03","bgm":"BGM04","fade":"cut","secs":0.2},
 {"line":"SCR_D01_S03_L005","cue":"BGM_D01_04","scene":"D01_S03","bgm":"BGM04","fade":"cut","secs":0.2},

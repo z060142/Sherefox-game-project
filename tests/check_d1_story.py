@@ -140,6 +140,7 @@ def check(name: str, run: dict, lang: str, fails: list) -> None:
 SHOTS = {  # name -> (run, a predicate on the marked line); taken just before the next click (fade-ins over)
     "s01_paper": ("clean", lambda sc, lid: sc == "paper"),
     "s02_landlady": ("clean", lambda sc, lid: lid == "SCR_D01_S02_L002"),
+    "s03_arthur_aside": ("clean", lambda sc, lid: lid == "SCR_D01_S03_L002A"),   # inserted with the text rewrite
     "s03_briggs": ("clean", lambda sc, lid: lid == "SCR_D01_S03_L006"),
     "s03_cedric": ("clean", lambda sc, lid: lid == "SCR_D01_S03_L010"),
     "warm_point": ("clean", lambda sc, lid: lid == "SCR_D01_S04_L002"),

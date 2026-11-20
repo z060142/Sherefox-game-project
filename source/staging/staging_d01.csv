@@ -18,6 +18,7 @@ SCR_D01_S02_L012,office_night,sherefox,landlady,arthur,1,0,
 SCR_D01_S03_TITLE,office_day,,,,0,2,
 SCR_D01_S03_L001,office_day,,,,0,1,next morning at Baker Street: Mrs Hyde's carriage (narration)
 SCR_D01_S03_L002,d01_hall,,,,0,1,"arrival at the Hyde house: the entrance hall (bg_d01_hall), narration"
+SCR_D01_S03_L002A,d01_hall,sherefox,,arthur,3,0,"Arthur mutters (L002A, added with the text rewrite): the clock, the lamps"
 SCR_D01_S03_L003,d01_hall,sherefox,,baskerville,3,0,in the entrance hall (stage direction)
 SCR_D01_S03_L004,d01_hall,sherefox,,baskerville,1,0,
 SCR_D01_S03_L005,d01_hall,sherefox,,baskerville,3,0,

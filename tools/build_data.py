@@ -644,15 +644,16 @@ def script_cues(rows: list[dict], info: dict) -> None:
 def build_d01_script(strings: dict) -> list[dict]:
     """Script rows of the v2 demo D01 scenes the step table plays (D01_SCRIPT_SCENES; docs/flows.md §4.14), from the
     package's script_d01.csv: chapter D01_CHAPTER, sceneKey D01_Sxx, the scene heading SCR_D01_Sxx_TITLE first (seq 0,
-    not played), then the L lines (seq = line number). The rest of the columns as v1's rows (no debate markers, cue
-    empty). A speaker gets SPK_D01_<slug> when the package has that key, else SPK_<slug>, made from the CSV's speaker
-    columns when no string has it yet (as v1's speakers)."""
+    not played), then the L lines (seq = line number; a line inserted later carries a letter after its number, e.g.
+    L002A, and gets seq = number + letter / 10, so it plays right after its number). The rest of the columns as v1's
+    rows (no debate markers, cue empty). A speaker gets SPK_D01_<slug> when the package has that key, else
+    SPK_<slug>, made from the CSV's speaker columns when no string has it yet (as v1's speakers)."""
     path = D01_DIR / "script_d01.csv"
     if not path.exists():
         return []
     out = []
     for r in read_csv(path):
-        m = re.fullmatch(r"SCR_D01_(S\d\d)_(TITLE|L(\d{3}))", r["ID"])
+        m = re.fullmatch(r"SCR_D01_(S\d\d)_(TITLE|L(\d{3})([A-I]?))", r["ID"])
         if not m or m.group(1) not in D01_SCRIPT_SCENES:
             continue
         scene, title = m.group(1), m.group(2) == "TITLE"
@@ -664,9 +665,10 @@ def build_d01_script(strings: dict) -> list[dict]:
             if speaker not in strings:
                 strings[speaker] = {"zh-TW": r["speaker_zh"], "en": r["speaker_en"]}
         cue = D01_S07_CUES.get(int(m.group(3)), "") if scene == "S07" and not title else ""
+        seq = 0 if title else int(m.group(3)) + ((ord(m.group(4)) - 64) / 10 if m.group(4) else 0)
         out.append({
             "id": r["ID"], "chapter": D01_CHAPTER, "scene": scene, "sceneKey": f"D01_{scene}",
-            "seq": 0 if title else int(m.group(3)), "kind": kind, "speaker": speaker, "text": r["ID"], "branch": "",
+            "seq": seq, "kind": kind, "speaker": speaker, "text": r["ID"], "branch": "",
             "round": 0, "act": "", "node": "", "evidence": "", "appraisal": False, "banner": "", "inactive": False,
             "playable": kind == "line", "cue": cue,
         })
@@ -844,7 +846,7 @@ def build_d01_cues() -> list[dict]:
     if rows and list(rows[0].keys()) != CUE_COLUMNS:
         err(f"bgm cues D01: header must be {','.join(CUE_COLUMNS)}")
         return []
-    lines = [r["ID"] for r in read_csv(D01_DIR / "script_d01.csv") if re.fullmatch(r"SCR_D01_S\d\d_L\d{3}", r["ID"])]
+    lines = [r["ID"] for r in read_csv(D01_DIR / "script_d01.csv") if re.fullmatch(r"SCR_D01_S\d\d_L\d{3}[A-I]?", r["ID"])]
     cues, seen = {}, set()
     for r in rows:
         cid, sid, bgm, fb, fade = r["cue_id"], r["start_id"], r["bgm"], r["fallback"], r["fade"]

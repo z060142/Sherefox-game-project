@@ -133,7 +133,7 @@ S-01 依裁決 D11 用 G-01 的值，全部標擦邊。設計的「需鑑定」�
 
 ## 3. `script`：劇本行（每行一列，依章、場景號、行號）
 
-v2 示範關卡 D01（M4a）：`localization/d01/script_d01.csv` 中步驟表會播的場景 S01～S04（`tools/build_data.py` `D01_SCRIPT_SCENES`）也是這張表的列，排在 v1 之後：`chapter` 101、`sceneKey` `D01_Sxx`、場景標題 `SCR_D01_Sxx_TITLE`（`seq` 0、`kind` heading、不播放），其後是 L 列（`seq` ＝ 行號）；說話者鍵為 `SPK_D01_<slug>`（在地化包有時）或 `SPK_<slug>`（沒有時由 CSV 的說話者兩欄產生，同 v1）。演出在 `source/staging/staging_d01.csv`（同欄位，本倉庫撰寫）。S04 的列由熱身畫面讀說話者，不經 vn。4.3 加入 S07：L001～L003 的 `cue` 為 `pre`、L012～L015 `postWin`、L017～L019 `postLose`（`D01_S07_CUES`，由 `dialogue` 播放）；其他 S07 行（L004～L011、L016）沒有 cue，由論戰畫面播（`dialogue` 在論戰步驟只找有 cue 的列，同 v1 論戰場景的逐字稿）。`BEAT_D01_*`／`REACT_D01_*`／`TELL_D01_*` 的說話者沒有字串時同樣產生（`SPK_MARTHA`、`SPK_IRENE`）。
+v2 示範關卡 D01（M4a）：`localization/d01/script_d01.csv` 中步驟表會播的場景 S01～S04（`tools/build_data.py` `D01_SCRIPT_SCENES`）也是這張表的列，排在 v1 之後：`chapter` 101、`sceneKey` `D01_Sxx`、場景標題 `SCR_D01_Sxx_TITLE`（`seq` 0、`kind` heading、不播放），其後是 L 列（`seq` ＝ 行號；文本重寫後插入的行在行號後加一個字母，例如 `L002A`，`seq` ＝ 行號 ＋ 字母序／10，排在該行號之後）；說話者鍵為 `SPK_D01_<slug>`（在地化包有時）或 `SPK_<slug>`（沒有時由 CSV 的說話者兩欄產生，同 v1）。演出在 `source/staging/staging_d01.csv`（同欄位，本倉庫撰寫）。S04 的列由熱身畫面讀說話者，不經 vn。4.3 加入 S07：L001～L003 的 `cue` 為 `pre`、L012～L015 `postWin`、L017～L019 `postLose`（`D01_S07_CUES`，由 `dialogue` 播放）；其他 S07 行（L004～L011、L016）沒有 cue，由論戰畫面播（`dialogue` 在論戰步驟只找有 cue 的列，同 v1 論戰場景的逐字稿）。`BEAT_D01_*`／`REACT_D01_*`／`TELL_D01_*` 的說話者沒有字串時同樣產生（`SPK_MARTHA`、`SPK_IRENE`）。
 
 | 欄 | 型別 | 意義 |
 |---|---|---|
