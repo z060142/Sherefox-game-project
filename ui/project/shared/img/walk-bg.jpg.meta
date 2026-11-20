@@ -1,0 +1,13 @@
+version: 1
+id: 7200fabc-6f09-41cc-a5df-bc04bcba4438
+type: image
+title: walk-bg
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/street2.jpg
+content: sha256:647151c30964188878344249b4beb6ab49ade66a76d71e5f54c0365cb88a957c
+measured:
+  w: 1672
+  h: 941
+  alpha: false

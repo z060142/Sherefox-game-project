@@ -1,0 +1,13 @@
+version: 1
+id: 7fe03216-1e4b-41c1-860e-bc90d4d03814
+type: image
+title: title-corner-tl
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/corner.png
+content: sha256:476479713f1871ac42a9461a17bf5e1ab754e91bb5466a2b6d3aaaa14cee3d61
+measured:
+  w: 247
+  h: 255
+  alpha: true

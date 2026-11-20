@@ -1,0 +1,13 @@
+version: 1
+id: 59d3fbe6-e6dd-4d67-bb16-bdf77a85df7d
+type: image
+title: opp-inspector
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-inspector.png
+content: sha256:bb48475b9617071bcac159279d17157819aafe05719796e5504e8a04d11d0455
+measured:
+  w: 667
+  h: 1000
+  alpha: true

@@ -87,7 +87,10 @@ BGM = [("title", "BGM01"), ("daily", "BGM02"), ("investigate", "BGM05"), ("board
        ("brink", "BGM10"), ("result", "BGM11"), ("end", ""),
        # the v2 demo's debate (tools/gen_debui_v2.py world.bgmD1; staging bgm_cues_d01.csv: S07 L004 BGM07 cut, the
        # silences of S07 L007-L008 and the loss L016, out): its start and its silence; the rest as v1's moments
-       ("d1open", "BGM07"), ("hush", "")]
+       ("d1open", "BGM07"), ("hush", ""),
+       # v3: the opening plays its own music on its own channel (tools/gen_op.py): an id without a track, so the music
+       # flow sends nothing on bgm while it plays (from the title, the op flow stops the title's track itself)
+       ("op", "OP")]
 BGM_FADE = {"end": "out", "hush": "out", "d1open": "cut"}   # every other moment change is a crossfade
 # The tail answered wrong (−30): the debate scene's wrong-card system line is the round's result line
 # (design confirmed 2026-11-06; Ch.2 S05 L047, Ch.3 S06 L046; ruling G6: no author note); other cases keep MSG_TAIL_WRONG.

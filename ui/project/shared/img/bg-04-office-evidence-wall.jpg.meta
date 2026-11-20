@@ -1,0 +1,11 @@
+version: 1
+id: e8793596-144e-45ab-8f59-6b6693aaee35
+type: image
+status: draft
+source:
+  kind: manual
+content: sha256:01450cc6bf9ac2c1d3a05d61b84f04db6b86e3ab2c7334a1aec4147fb1fc133f
+measured:
+  w: 1920
+  h: 1080
+  alpha: false

@@ -1,0 +1,13 @@
+version: 1
+id: a59d2432-8d1b-45bb-90f9-75d5fe3410bc
+type: image
+title: london-city
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/city.jpg
+content: sha256:ac5b201e9dc8cf56af8225a0e9c8ccc5540e14d686d1a8f0d0eb7bbe58070b61
+measured:
+  w: 1672
+  h: 941
+  alpha: false

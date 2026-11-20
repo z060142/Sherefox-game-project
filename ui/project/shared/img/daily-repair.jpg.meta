@@ -1,0 +1,14 @@
+version: 1
+id: d5feb3ac-84ff-4763-a876-560862661126
+type: image
+title: daily-repair
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/d02.jpg
+  at: 2026-11-20T12:36:35Z
+content: sha256:a8399c9ef92ca25ed29a2477d0480c1cd09abeecc7bac88ba5861454d23a84de
+measured:
+  w: 1672
+  h: 941
+  alpha: false

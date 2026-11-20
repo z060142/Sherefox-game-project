@@ -1,0 +1,13 @@
+version: 1
+id: 4a5bac23-0b78-4f58-b344-9a597d0204c5
+type: image
+title: extra-frontpage
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/frontpage.png
+content: sha256:87c25e1a78f297b9409eb0074d4bcb499f085939b4adc426a7c87597f16f98e4
+measured:
+  w: 1051
+  h: 1100
+  alpha: true

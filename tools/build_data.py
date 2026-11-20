@@ -391,6 +391,20 @@ def merge_d01(strings: dict) -> None:
         strings[k] = v
 
 
+# v3 (the opening, docs/v3-op.md): the title's watch-again entry. No design key exists, so placeholder rows in
+# v3_placeholders.csv (written in this repo, note "PLACEHOLDER: ..."), merged like the D01 placeholders.
+V3_PLACEHOLDERS = LOC / "v3_placeholders.csv"
+
+
+def merge_v3(strings: dict) -> None:
+    if not V3_PLACEHOLDERS.exists():
+        return
+    for r in read_csv(V3_PLACEHOLDERS):
+        if r["ID"] in strings:
+            err(f"{V3_PLACEHOLDERS.name}: {r['ID']} is already a string key")
+        strings[r["ID"]] = {"zh-TW": r["zh-TW"], "en": r["en"]}
+
+
 def load_localization() -> dict:
     strings = json.loads(read_text(LOC / "strings.json"))
     evidence_rows = read_csv(LOC / "evidence_ch01-03.csv")
@@ -977,6 +991,7 @@ def main() -> int:
     loc = load_localization()
     strings: dict[str, dict] = {k: dict(v) for k, v in loc["strings"].items()}
     merge_d01(strings)
+    merge_v3(strings)
     ev_loc = loc["evidence"]
 
     # ---- evidence base data from the localization package (NAME note carries grade / appraisal)

@@ -60,9 +60,17 @@
   .v2-dev { font-family: var(--font-body); font-size: 11px; line-height: 22px; text-align: center; white-space: nowrap; overflow: hidden;
             color: var(--copper); background-color: var(--paper); border: 1px dashed var(--copper); transition: background-color 150ms linear }
   .v2-dev:hover { color: var(--paper); background-color: var(--copper) }
+  /* v3: watch the opening again (a small entry on the top line, the language switch's size and border). */
+  .op-entry { height: 30px; line-height: 28px; text-align: center; white-space: nowrap; overflow: hidden;
+              font-family: var(--font-body); font-size: 13px; letter-spacing: 2px; color: var(--ink);
+              background-color: var(--paper); border: 1px solid var(--ink); transition: background-color 150ms linear }
+  :lang(en) .op-entry { letter-spacing: 1px }
+  .op-entry:hover { color: var(--paper); background-color: var(--ink) }
+  .op-entry:active { color: var(--ink); background-color: var(--paper-old) }
+  .op-entry:focus { outline: 2px solid var(--copper); outline-offset: -4px }
 </style></helmet>
 <div id="title" data-xt-uiscale="fit"
-     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false; end_dismiss:event out; open_settings:event out; quit:event out; v2dev:event out"
+     data-xt-port="chapter:number out = 0; lang_toggle:event out; lang_en:bool in = false; ended:bool in = false; end_dismiss:event out; open_settings:event out; quit:event out; v2dev:event out; watch_op:event out"
      data-xt-trigger="show:play(intro)"
      style="position: relative; width: 1280px; height: 720px; overflow: hidden;
             background-color: var(--paper); font-family: var(--font-body); color: var(--ink);">
@@ -84,6 +92,10 @@
            data-xt-bind="class.active=lang_en">English</div>
     </div>
   </div>
+
+  <!-- v3: watch the opening again (docs/ui-contracts.md title, v3 追加); the flow plays it over the title. -->
+  <div id="btn-op" class="op-entry" tabindex="0" data-xt-key="UI_V3_WATCH_OP" data-xt-trigger="click:emit(watch_op)"
+       style="position: absolute; left: 712px; top: 10px; width: 184px; height: 30px;">觀看片頭</div>
 
   <div id="rule-top" class="rule-copper"
        style="position: absolute; left: 48px; top: 46px; width: 1184px; height: 1px;"></div>

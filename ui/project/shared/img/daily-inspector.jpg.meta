@@ -1,0 +1,13 @@
+version: 1
+id: b8412e92-40d4-4d93-810c-91a3a7ef5fe2
+type: image
+title: daily-inspector
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/d05.jpg
+content: sha256:8075f3fcb42bf8f27f93acfe4576c646b6b43dd2899aed36d49c47102acd7afe
+measured:
+  w: 1672
+  h: 941
+  alpha: false

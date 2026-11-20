@@ -172,6 +172,23 @@
         1280,
         720
       ]
+    },
+    {
+      "id": "sherefox-op",
+      "doc": "sherefox-op/sherefox-op.xt",
+      "size": [
+        1920,
+        1080
+      ],
+      "flow": "sherefox-op/sherefox-op.xtflow"
+    },
+    {
+      "id": "opskip",
+      "doc": "opskip/opskip.xt",
+      "size": [
+        1920,
+        1080
+      ]
     }
   ],
   "shared": {

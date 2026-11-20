@@ -1,0 +1,13 @@
+version: 1
+id: 892e2eb7-783a-4ba5-98bf-8762ff575c48
+type: image
+title: stop-clock-hour
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/hand-h.png
+content: sha256:84de5ee7c861ec5091c6efbabe8979cffd6eb28da2769042c3f6cbdf21a8a047
+measured:
+  w: 294
+  h: 93
+  alpha: true

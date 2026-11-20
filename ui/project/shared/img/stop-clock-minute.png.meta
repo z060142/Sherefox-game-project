@@ -1,0 +1,13 @@
+version: 1
+id: 873ceca6-d3ef-47ab-8764-7f0a2ba06d7f
+type: image
+title: stop-clock-minute
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/hand-m.png
+content: sha256:fd958c73d73eed9eb5f127841181aa76248778a75afdd2fa6c5c61ecb8fa9bc2
+measured:
+  w: 514
+  h: 83
+  alpha: true

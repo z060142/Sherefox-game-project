@@ -20,7 +20,7 @@
   border: 1px #123a31;
 }
 
-/* import: Title.dc.html:1/6 */
+/* import: Title.dc.html:1/7 */
 #paper-name {
   color: var(--ink);
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-/* import: Title.dc.html:1/8/1 */
+/* import: Title.dc.html:1/9/1 */
 #lead-headline {
   color: var(--ink-deep);
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
@@ -40,7 +40,7 @@
   line-height: 168px;
 }
 
-/* import: Title.dc.html:1/8/3 */
+/* import: Title.dc.html:1/9/3 */
 #lead-deck {
   color: var(--ink);
   font-family: "Noto Serif", "Noto Sans TC", "Georgia";
@@ -280,6 +280,38 @@
 .v2-dev:hover {
   color: var(--paper);
   background-color: var(--copper);
+}
+
+.op-entry {
+  line-height: 28px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Noto Serif", "Noto Sans TC", "Georgia";
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px #123a31;
+  transition: background-color 150ms linear;
+}
+
+:lang(en) .op-entry {
+  letter-spacing: 1px;
+}
+
+.op-entry:hover {
+  color: var(--paper);
+  background-color: var(--ink);
+}
+
+.op-entry:active {
+  color: var(--ink);
+  background-color: var(--paper-old);
+}
+
+.op-entry:focus {
+  outline: 2px solid #a65432;
+  outline-offset: -4px;
 }
 
 :root {

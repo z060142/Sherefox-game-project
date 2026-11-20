@@ -1,0 +1,34 @@
+// Sherefox OP: a theatre follow-spot. A soft cone from a lamp above the frame, with faint
+// streaks in the beam and an elliptical pool where it lands on the floor.
+name: Spotlight
+blurb: Follow-spot beam with a floor pool
+param origin vec2 0.5437 0.02 [-1, 2]
+param dir float 0 [-1.5, 1.5]
+param spread float 0.16 [0.02, 0.8]
+param intensity float 0.6 [0, 2]
+param floor float 0.7 [0, 1.2]
+param tint color #dfe9ff
+fallback: none
+---
+float4 xtMain(XtInput i)
+{
+    float aspect = i.layerSize.x / i.layerSize.y;
+    float px = (i.uv.x - origin.x) * aspect;
+    float py = i.uv.y - origin.y;
+    float len = sqrt(px * px + py * py);
+    float a = atan2(px, py);
+    float da = abs(a - dir);
+    float cone = 1.0 - smoothstep(spread * 0.35, spread, da);
+    float core = 1.0 - smoothstep(0.0, spread * 0.5, da);
+    float fade = smoothstep(0.1, 0.2, len) * (1.0 - smoothstep(floor - origin.y - 0.05, floor - origin.y + 0.12, py));
+    float streak = 0.82 + 0.18 * sin(a * 140.0 + xtTime * 0.7) * sin(a * 53.0 - xtTime * 0.4);
+    float beam = cone * fade * streak * (0.55 + 0.45 * core) / (1.0 + len * 0.9);
+    float hitX = origin.x + sin(dir) / cos(dir) * (floor - origin.y) / aspect;
+    float ex = (i.uv.x - hitX) * aspect / (spread * 1.9 * (floor - origin.y) + 0.02);
+    float ey = (i.uv.y - floor) / (spread * 0.45 * (floor - origin.y) + 0.01);
+    float pool = 1.0 - smoothstep(0.55, 1.0, sqrt(ex * ex + ey * ey));
+    float breathe = 0.88 + 0.12 * sin(xtTime * 2.1) * sin(xtTime * 0.83 + 1.0);
+    float alpha = saturate((beam * 0.9 + pool * 0.22) * intensity * breathe);
+    float4 base = xtSample(i.uv);
+    return float4(lerp(base.rgb, tint.rgb, alpha), max(base.a, alpha));
+}

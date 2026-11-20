@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "on",
+      "type": "toggle",
+      "params": {
+        "initial": true
+      }
+    },
+    {
+      "id": "shown",
+      "type": "toggle",
+      "params": {
+        "initial": false
+      }
+    },
+    {
+      "id": "bootG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "start",
+      "type": "merge"
+    },
+    {
+      "id": "endStart",
+      "type": "merge"
+    },
+    {
+      "id": "offAny",
+      "type": "merge"
+    },
+    {
+      "id": "K0",
+      "type": "constant",
+      "params": {
+        "value": true
+      }
+    },
+    {
+      "id": "isOn",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
+      "id": "mStopG",
+      "type": "state",
+      "params": {
+        "states": [
+          "a",
+          "b"
+        ],
+        "initial": "a",
+        "transitions": [
+          {
+            "from": "a",
+            "on": "go",
+            "to": "b"
+          },
+          {
+            "from": "b",
+            "on": "go",
+            "to": "a"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mPlay",
+      "type": "atrium.music.play",
+      "params": {
+        "channel": "op",
+        "cue": "op_music",
+        "loop": false
+      }
+    },
+    {
+      "id": "K1",
+      "type": "constant",
+      "params": {
+        "value": 0
+      }
+    },
+    {
+      "id": "mStop",
+      "type": "atrium.music.stop",
+      "params": {
+        "channel": "op"
+      }
+    },
+    {
+      "id": "K2",
+      "type": "constant",
+      "params": {
+        "value": 0.1
+      }
+    },
+    {
+      "id": "bgmStop",
+      "type": "atrium.music.stop",
+      "params": {
+        "channel": "bgm"
+      }
+    },
+    {
+      "id": "plays",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "stops",
+      "type": "counter",
+      "params": {
+        "initial": 0
+      }
+    },
+    {
+      "id": "now",
+      "type": "atrium.music.playing",
+      "params": {
+        "channel": "op"
+      }
+    },
+    {
+      "id": "boot",
+      "type": "timer",
+      "params": {
+        "interval": 0.025,
+        "autostart": true,
+        "repeat": false
+      }
+    },
+    {
+      "id": "end",
+      "type": "timer",
+      "params": {
+        "interval": 59.3,
+        "autostart": false,
+        "repeat": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "on.value",
+      "to": "world.opOn"
+    },
+    {
+      "from": "shown.value",
+      "to": "ui#sherefox-op.visible"
+    },
+    {
+      "from": "shown.value",
+      "to": "ui#opskip.visible"
+    },
+    {
+      "from": "ui#title.watch_op",
+      "to": "on.setTrue"
+    },
+    {
+      "from": "on.value",
+      "to": "bootG.guard"
+    },
+    {
+      "from": "boot.tick",
+      "to": "bootG.go"
+    },
+    {
+      "from": "bootG.changed",
+      "to": "start.in"
+    },
+    {
+      "from": "ui#title.watch_op",
+      "to": "start.in"
+    },
+    {
+      "from": "start.out",
+      "to": "shown.setTrue"
+    },
+    {
+      "from": "boot.tick",
+      "to": "endStart.in"
+    },
+    {
+      "from": "ui#title.watch_op",
+      "to": "endStart.in"
+    },
+    {
+      "from": "endStart.out",
+      "to": "end.start"
+    },
+    {
+      "from": "ui#opskip.skip",
+      "to": "offAny.in"
+    },
+    {
+      "from": "input.opSkip",
+      "to": "offAny.in"
+    },
+    {
+      "from": "end.tick",
+      "to": "offAny.in"
+    },
+    {
+      "from": "offAny.out",
+      "to": "on.setFalse"
+    },
+    {
+      "from": "on.value",
+      "to": "isOn.a"
+    },
+    {
+      "from": "K0.out",
+      "to": "isOn.b"
+    },
+    {
+      "from": "shown.value",
+      "to": "mStopG.guard"
+    },
+    {
+      "from": "isOn.false",
+      "to": "mStopG.go"
+    },
+    {
+      "from": "isOn.false",
+      "to": "shown.setFalse"
+    },
+    {
+      "from": "K1.out",
+      "to": "mPlay.fadeIn"
+    },
+    {
+      "from": "start.out",
+      "to": "mPlay.trigger"
+    },
+    {
+      "from": "K2.out",
+      "to": "mStop.fadeOut"
+    },
+    {
+      "from": "mStopG.changed",
+      "to": "mStop.trigger"
+    },
+    {
+      "from": "K2.out",
+      "to": "bgmStop.fadeOut"
+    },
+    {
+      "from": "ui#title.watch_op",
+      "to": "bgmStop.trigger"
+    },
+    {
+      "from": "start.out",
+      "to": "plays.increment"
+    },
+    {
+      "from": "plays.value",
+      "to": "world.opPlays"
+    },
+    {
+      "from": "mStopG.changed",
+      "to": "stops.increment"
+    },
+    {
+      "from": "stops.value",
+      "to": "world.opStops"
+    },
+    {
+      "from": "now.cue",
+      "to": "world.opMusic"
+    }
+  ]
+}

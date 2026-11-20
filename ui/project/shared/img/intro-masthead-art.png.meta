@@ -1,0 +1,13 @@
+version: 1
+id: 30f219df-61d4-45b3-89d6-43be7824e654
+type: image
+title: intro-masthead-art
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/masthead.png
+content: sha256:618c460583dac088f9e87257c0f8708863f8af1234ac60d7d0f329ca036ba6f5
+measured:
+  w: 900
+  h: 300
+  alpha: true

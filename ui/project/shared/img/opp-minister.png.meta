@@ -1,0 +1,13 @@
+version: 1
+id: 72a21ea3-49a9-4d28-83bd-ad53e6c14ca4
+type: image
+title: opp-minister
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-minister.png
+content: sha256:0e33aca760cec1bf294f48edbe1a90a1f8c8b8b4ebebf543845b0d3f7a06d338
+measured:
+  w: 667
+  h: 1000
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: b8173c1f-816b-4877-a1c0-32e550e8a3fd
+type: image
+title: hero-sherefox
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/closeup.png
+content: sha256:7f88cc42c28748488d3e34eec9ac70704f0f790209e12fedf3b7cc25be1b1464
+measured:
+  w: 1188
+  h: 1300
+  alpha: true

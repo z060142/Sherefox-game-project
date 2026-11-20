@@ -1,0 +1,38 @@
+// Sherefox OP: turns a filled shape into a soft light beam. Everything comes from the sampled
+// layer itself (alpha = where the beam is, red = position across it), never from screen
+// coordinates, so the beam follows whatever moves or reshapes the shape.
+// Shape recipe: fill it with a left-to-right gradient #000000 -> #ff0000, and put a
+// gradient-mask before this effect for the fall-off along the beam.
+name: BeamShape
+blurb: Renders a filled shape as a soft, breathing light beam
+param intensity float 0.55 [0, 2]
+param soften float 30 [0, 64]
+param streaks float 0.16 [0, 0.6]
+param tint color #dfe9ff
+fallback: none
+expand: 64px
+---
+float4 xtMain(XtInput i)
+{
+    float a = 0.0;
+    float r = 0.0;
+    for (int k = 0; k < 13; k++)
+    {
+        float o = (k - 6) * 0.1667 * soften;
+        float4 s = xtSample(i.uv + float2(o, 0.0) * i.texelSize);
+        a = a + s.a;
+        r = r + s.r * s.a;
+    }
+    float across = r / max(a, 0.001);
+    a = a / 13.0;
+    float c = 1.0 - abs(across * 2.0 - 1.0);
+    float core = smoothstep(0.0, 0.85, c);
+    float s1 = sin(across * 61.0 + xtTime * 0.55);
+    float s2 = sin(across * 23.0 - xtTime * 0.31 + 1.7);
+    float s3 = sin(across * 131.0 + xtTime * 0.9);
+    float streak = 1.0 + streaks * (s1 * s2 + 0.35 * s3);
+    float breathe = 0.87 + 0.13 * sin(xtTime * 2.1) * sin(xtTime * 0.83 + 1.0);
+    float body = a * a * (0.4 + 0.6 * core);
+    float alpha = saturate(body * streak * intensity * breathe);
+    return float4(tint.rgb, alpha);
+}

@@ -156,6 +156,17 @@
       "id": "K10",
       "type": "constant",
       "params": {
+        "value": "op"
+      }
+    },
+    {
+      "id": "m_op",
+      "type": "select"
+    },
+    {
+      "id": "K11",
+      "type": "constant",
+      "params": {
         "value": "debate"
       }
     },
@@ -171,7 +182,7 @@
       "type": "select"
     },
     {
-      "id": "K11",
+      "id": "K12",
       "type": "constant",
       "params": {
         "value": "warmup"
@@ -189,7 +200,7 @@
       "type": "select"
     },
     {
-      "id": "K12",
+      "id": "K13",
       "type": "constant",
       "params": {
         "value": "d1debate"
@@ -287,14 +298,14 @@
       "type": "select"
     },
     {
-      "id": "K13",
+      "id": "K14",
       "type": "constant",
       "params": {
         "value": ""
       }
     },
     {
-      "id": "K14",
+      "id": "K15",
       "type": "constant",
       "params": {
         "value": "d1warmup"
@@ -308,7 +319,7 @@
       }
     },
     {
-      "id": "K15",
+      "id": "K16",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S04_L001"
@@ -319,7 +330,7 @@
       "type": "select"
     },
     {
-      "id": "K16",
+      "id": "K17",
       "type": "constant",
       "params": {
         "value": "d1investigate"
@@ -333,7 +344,7 @@
       }
     },
     {
-      "id": "K17",
+      "id": "K18",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S05_START"
@@ -344,7 +355,7 @@
       "type": "select"
     },
     {
-      "id": "K18",
+      "id": "K19",
       "type": "constant",
       "params": {
         "value": "d1carry"
@@ -358,7 +369,7 @@
       }
     },
     {
-      "id": "K19",
+      "id": "K20",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S06_L001"
@@ -369,7 +380,7 @@
       "type": "select"
     },
     {
-      "id": "K20",
+      "id": "K21",
       "type": "constant",
       "params": {
         "value": "d1end"
@@ -383,7 +394,7 @@
       }
     },
     {
-      "id": "K21",
+      "id": "K22",
       "type": "constant",
       "params": {
         "value": "SCR_D01_S11_L001"
@@ -440,7 +451,7 @@
       }
     },
     {
-      "id": "K22",
+      "id": "K23",
       "type": "constant",
       "params": {
         "value": 101
@@ -566,7 +577,7 @@
       }
     },
     {
-      "id": "K23",
+      "id": "K24",
       "type": "constant",
       "params": {
         "value": "pre"
@@ -584,7 +595,7 @@
       "type": "select"
     },
     {
-      "id": "K24",
+      "id": "K25",
       "type": "constant",
       "params": {
         "value": "d1result"
@@ -602,7 +613,7 @@
       "type": "select"
     },
     {
-      "id": "K25",
+      "id": "K26",
       "type": "constant",
       "params": {
         "value": "d1notes"
@@ -714,6 +725,20 @@
       }
     },
     {
+      "id": "K27",
+      "type": "constant",
+      "params": {
+        "value": true
+      }
+    },
+    {
+      "id": "opRise",
+      "type": "compare",
+      "params": {
+        "op": "eq"
+      }
+    },
+    {
       "id": "bgmFadeA",
       "type": "filter",
       "params": {
@@ -743,7 +768,7 @@
       "type": "select"
     },
     {
-      "id": "K26",
+      "id": "K28",
       "type": "constant",
       "params": {
         "value": "cut"
@@ -1012,11 +1037,23 @@
       "to": "m_end.b"
     },
     {
+      "from": "world.opOn",
+      "to": "m_op.cond"
+    },
+    {
+      "from": "K10.out",
+      "to": "m_op.a"
+    },
+    {
+      "from": "m_end.out",
+      "to": "m_op.b"
+    },
+    {
       "from": "world.stepKind",
       "to": "isDebC.a"
     },
     {
-      "from": "K10.out",
+      "from": "K11.out",
       "to": "isDebC.b"
     },
     {
@@ -1036,7 +1073,7 @@
       "to": "isWarmC.a"
     },
     {
-      "from": "K11.out",
+      "from": "K12.out",
       "to": "isWarmC.b"
     },
     {
@@ -1056,7 +1093,7 @@
       "to": "isD1DebC.a"
     },
     {
-      "from": "K12.out",
+      "from": "K13.out",
       "to": "isD1DebC.b"
     },
     {
@@ -1104,7 +1141,7 @@
       "to": "moment.a"
     },
     {
-      "from": "m_end.out",
+      "from": "m_op.out",
       "to": "moment.b"
     },
     {
@@ -1156,7 +1193,7 @@
       "to": "isFix_d1warmup.a"
     },
     {
-      "from": "K14.out",
+      "from": "K15.out",
       "to": "isFix_d1warmup.b"
     },
     {
@@ -1164,11 +1201,11 @@
       "to": "cueFix_d1warmup.cond"
     },
     {
-      "from": "K15.out",
+      "from": "K16.out",
       "to": "cueFix_d1warmup.a"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "cueFix_d1warmup.b"
     },
     {
@@ -1176,7 +1213,7 @@
       "to": "isFix_d1investigate.a"
     },
     {
-      "from": "K16.out",
+      "from": "K17.out",
       "to": "isFix_d1investigate.b"
     },
     {
@@ -1184,7 +1221,7 @@
       "to": "cueFix_d1investigate.cond"
     },
     {
-      "from": "K17.out",
+      "from": "K18.out",
       "to": "cueFix_d1investigate.a"
     },
     {
@@ -1196,7 +1233,7 @@
       "to": "isFix_d1carry.a"
     },
     {
-      "from": "K18.out",
+      "from": "K19.out",
       "to": "isFix_d1carry.b"
     },
     {
@@ -1204,7 +1241,7 @@
       "to": "cueFix_d1carry.cond"
     },
     {
-      "from": "K19.out",
+      "from": "K20.out",
       "to": "cueFix_d1carry.a"
     },
     {
@@ -1216,7 +1253,7 @@
       "to": "isFix_d1end.a"
     },
     {
-      "from": "K20.out",
+      "from": "K21.out",
       "to": "isFix_d1end.b"
     },
     {
@@ -1224,7 +1261,7 @@
       "to": "cueFix_d1end.cond"
     },
     {
-      "from": "K21.out",
+      "from": "K22.out",
       "to": "cueFix_d1end.a"
     },
     {
@@ -1236,7 +1273,7 @@
       "to": "isFixed.a"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "isFixed.b"
     },
     {
@@ -1288,7 +1325,7 @@
       "to": "stepSceneIsD1.a"
     },
     {
-      "from": "K22.out",
+      "from": "K23.out",
       "to": "stepSceneIsD1.b"
     },
     {
@@ -1432,7 +1469,7 @@
       "to": "vnPreC.a"
     },
     {
-      "from": "K23.out",
+      "from": "K24.out",
       "to": "vnPreC.b"
     },
     {
@@ -1452,7 +1489,7 @@
       "to": "isD1ResC.a"
     },
     {
-      "from": "K24.out",
+      "from": "K25.out",
       "to": "isD1ResC.b"
     },
     {
@@ -1472,7 +1509,7 @@
       "to": "isD1NoteC.a"
     },
     {
-      "from": "K25.out",
+      "from": "K26.out",
       "to": "isD1NoteC.b"
     },
     {
@@ -1644,6 +1681,18 @@
       "to": "bgmNew.in"
     },
     {
+      "from": "world.opOn",
+      "to": "opRise.a"
+    },
+    {
+      "from": "K27.out",
+      "to": "opRise.b"
+    },
+    {
+      "from": "opRise.true",
+      "to": "bgmNew.reset"
+    },
+    {
       "from": "bgmFadeL.out",
       "to": "bgmFadeA.in"
     },
@@ -1668,7 +1717,7 @@
       "to": "trkNone.a"
     },
     {
-      "from": "K13.out",
+      "from": "K14.out",
       "to": "trkNone.b"
     },
     {
@@ -1688,7 +1737,7 @@
       "to": "fadeCut.a"
     },
     {
-      "from": "K26.out",
+      "from": "K28.out",
       "to": "fadeCut.b"
     },
     {

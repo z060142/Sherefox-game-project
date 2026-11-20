@@ -1,0 +1,13 @@
+version: 1
+id: 5de98bfb-a4a9-43c9-8294-07f52c3bb3a1
+type: image
+title: walk-sherefox
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/walk-sherefox.png
+content: sha256:5c350ddea9b2fd0646aed61b5913b2db9105d85a0b5da0fae5d12972754093d4
+measured:
+  w: 778
+  h: 924
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: 14006d7f-6204-4884-a243-a805a0410539
+type: image
+title: opp-shadow-figure
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/wolf-back.png
+content: sha256:d28adf87a530ad10adfedd43ef9b0bf327613bcfa75c223df8d6c3d2c1471ac6
+measured:
+  w: 800
+  h: 1200
+  alpha: true

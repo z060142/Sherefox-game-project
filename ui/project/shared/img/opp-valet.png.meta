@@ -1,0 +1,13 @@
+version: 1
+id: b2dc8da6-10ed-4cac-953a-6284935c8cc0
+type: image
+title: opp-valet
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-valet.png
+content: sha256:ca26c79f9fd96e92e311bc048b21c9b43f8ce7ce10419b484cdea0dcad9c58e5
+measured:
+  w: 667
+  h: 1000
+  alpha: true

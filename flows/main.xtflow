@@ -834,6 +834,10 @@
       "type": "select"
     },
     {
+      "id": "opOnN",
+      "type": "select"
+    },
+    {
       "id": "visTitle",
       "type": "lookup",
       "params": {
@@ -852,6 +856,17 @@
           false,
           false
         ]
+      }
+    },
+    {
+      "id": "visTitleN",
+      "type": "select"
+    },
+    {
+      "id": "titleShow",
+      "type": "atrium.expr",
+      "params": {
+        "expr": "visTitleN && !opOnN"
       }
     },
     {
@@ -2103,11 +2118,43 @@
       "to": "world.endCard"
     },
     {
+      "from": "world.opOn",
+      "to": "opOnN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "opOnN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "opOnN.b"
+    },
+    {
       "from": "screen.index",
       "to": "visTitle.index"
     },
     {
       "from": "visTitle.out",
+      "to": "visTitleN.cond"
+    },
+    {
+      "from": "K1.out",
+      "to": "visTitleN.a"
+    },
+    {
+      "from": "K5.out",
+      "to": "visTitleN.b"
+    },
+    {
+      "from": "visTitleN.out",
+      "to": "titleShow.visTitleN"
+    },
+    {
+      "from": "opOnN.out",
+      "to": "titleShow.opOnN"
+    },
+    {
+      "from": "titleShow.truth",
       "to": "ui#title.visible"
     },
     {

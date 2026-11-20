@@ -1,0 +1,4291 @@
+<xt version="2">
+  <head>
+    <title>Sherefox OP</title>
+  </head>
+
+  <body>
+    <div id="sherefox-op">
+      <div id="stage">
+        <div id="scene-intro" class="s-cfd883">
+          <img id="intro-watch" class="s-765f94" src="../shared/img/intro-watch.jpg"/>
+          <img id="intro-gear-a" class="s-3e111b" src="../shared/img/intro-gear-a.png"/>
+          <img id="intro-gear-b" class="s-3e111b" src="../shared/img/intro-gear-b.png"/>
+          <img id="intro-gear-c" class="s-3e111b" src="../shared/img/intro-gear-c.png"/>
+          <img id="intro-gear-d" class="s-3e111b" src="../shared/img/intro-gear-d.png"/>
+          <div id="intro-masthead" class="s-c987e9">
+            <img id="intro-masthead-art" class="s-3e111b" src="../shared/img/intro-masthead-art.png"/>
+          </div>
+          <particles id="intro-dust" autoplay="" blend="additive" color="#fff1cc #ffd9a0" direction="-90" lifetime="3 6" max="120" rate="30" shape="rect" size="7 2" speed="10 28" spread="70" texture="../shared/img/spark.png"/>
+          <particles id="intro-bokeh" autoplay="" blend="additive" color="#ffe2b0 #ffb060" direction="-90" lifetime="4 7" max="40" rate="2.5" shape="rect" size="70 130" speed="6 16" spread="80" texture="../shared/img/bokeh.png"/>
+        </div>
+        <div id="scene-london">
+          <img id="london-city" class="s-765f94" src="../shared/img/london-city.jpg"/>
+        </div>
+        <div id="scene-reveal">
+          <img id="reveal-street" class="s-765f94" src="../shared/img/reveal-street.jpg"/>
+          <img id="reveal-steam" src="../shared/img/reveal-steam.png"/>
+          <img id="reveal-sherefox" src="../shared/img/reveal-sherefox.png"/>
+          <particles id="reveal-glints" autoplay="" blend="additive" color="#ffffff #ffd9a0" direction="-90" lifetime="0.4 1.0" max="48" rate="0" rotation="0 45" shape="rect" size="64 0" speed="20 140" spread="360" texture="../shared/img/glint.png"/>
+        </div>
+        <div id="scene-daily-morning">
+          <img id="daily-morning" class="s-765f94" src="../shared/img/daily-morning.jpg"/>
+        </div>
+        <div id="scene-daily-repair">
+          <img id="daily-repair" class="s-765f94" src="../shared/img/daily-repair.jpg"/>
+        </div>
+        <div id="scene-daily-pudding">
+          <img id="daily-pudding" class="s-765f94" src="../shared/img/daily-pudding.jpg"/>
+        </div>
+        <div id="scene-daily-inspector">
+          <img id="daily-inspector" class="s-765f94" src="../shared/img/daily-inspector.jpg"/>
+        </div>
+        <div id="scene-daily-nap">
+          <img id="daily-nap" class="s-765f94" src="../shared/img/daily-nap.jpg"/>
+        </div>
+        <div id="scene-extra">
+          <img id="extra-bg" class="s-765f94" src="../shared/img/bg-01-lantern-press-room.jpg"/>
+          <div id="extra-dim" class="s-f8703b"/>
+          <img id="extra-frontpage" src="../shared/img/extra-frontpage.png"/>
+          <svg id="extra-line" viewBox="0 0 1920 1080">
+            <path id="extra-line-stroke" d="M -60 980 C 300 760, 560 1040, 860 700 S 1400 180, 1990 260" fill="none" stroke="#B3261E" stroke-width="7" stroke-linecap="round" path-trim="0 0"/>
+          </svg>
+          <img id="extra-paper-1" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+          <img id="extra-paper-2" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+          <img id="extra-paper-3" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+          <img id="extra-paper-4" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+          <img id="extra-paper-5" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+          <img id="extra-paper-6" class="s-3e111b" src="../shared/img/extra-frontpage.png"/>
+        </div>
+        <div id="scene-opponents">
+          <div id="opp-backdrop">
+            <img id="opp-bg" class="s-765f94" src="../shared/img/bg-02-opera-house-stage.jpg"/>
+            <div id="opp-dim" class="s-f8703b"/>
+            <div id="opp-spotlight"/>
+          </div>
+          <div id="opp-row">
+            <div id="opp-card-1" class="s-0c50c3">
+              <img id="opp-candidate" class="s-3e111b" src="../shared/img/opp-candidate.png"/>
+            </div>
+            <div id="opp-card-2" class="s-0c50c3">
+              <img id="opp-countess" class="s-3e111b" src="../shared/img/opp-countess.png"/>
+            </div>
+            <div id="opp-card-3" class="s-0c50c3">
+              <img id="opp-daughter" class="s-3e111b" src="../shared/img/opp-daughter.png"/>
+            </div>
+            <div id="opp-card-4" class="s-0c50c3">
+              <img id="opp-engineer" class="s-3e111b" src="../shared/img/opp-engineer.png"/>
+            </div>
+            <div id="opp-card-5" class="s-0c50c3">
+              <img id="opp-inspector" class="s-3e111b" src="../shared/img/opp-inspector.png"/>
+            </div>
+            <div id="opp-card-6" class="s-0c50c3">
+              <img id="opp-minister" class="s-3e111b" src="../shared/img/opp-minister.png"/>
+            </div>
+            <div id="opp-card-7" class="s-0c50c3">
+              <img id="opp-partner" class="s-3e111b" src="../shared/img/opp-partner.png"/>
+            </div>
+            <div id="opp-card-8" class="s-0c50c3">
+              <img id="opp-stationchief" class="s-3e111b" src="../shared/img/opp-stationchief.png"/>
+            </div>
+            <div id="opp-card-9" class="s-0c50c3">
+              <img id="opp-valet" class="s-3e111b" src="../shared/img/opp-valet.png"/>
+            </div>
+          </div>
+          <div id="opp-blackout" class="s-cfd883"/>
+          <img id="opp-shadow-figure" class="s-3e111b" src="../shared/img/opp-shadow-figure.png"/>
+        </div>
+        <div id="scene-stop" class="s-cfd883">
+          <div id="stop-clock">
+            <div id="stop-clock-face"/>
+            <img id="stop-clock-ring" class="s-3e111b" src="../shared/img/stop-clock-ring.png"/>
+            <img id="stop-clock-hour" class="s-3e111b" src="../shared/img/stop-clock-hour.png"/>
+            <img id="stop-clock-minute" class="s-3e111b" src="../shared/img/stop-clock-minute.png"/>
+          </div>
+        </div>
+        <div id="scene-hero">
+          <img id="hero-bg" class="s-765f94" src="../shared/img/london-city.jpg"/>
+          <div id="hero-dim"/>
+          <img id="hero-sherefox" class="s-3e111b" src="../shared/img/hero-sherefox.png"/>
+          <particles id="hero-glints" autoplay="" blend="additive" color="#ffffff #fff1c9" direction="0" lifetime="0.4 0.9" max="32" rate="0" rotation="0 45" shape="rect" size="110 0" speed="0 30" spread="360" texture="../shared/img/glint.png"/>
+        </div>
+        <div id="scene-walk">
+          <img id="walk-bg" class="s-765f94" src="../shared/img/walk-bg.jpg"/>
+          <img id="walk-steam" class="s-d977b4" src="../shared/img/reveal-steam.png"/>
+          <img id="walk-arthur" class="s-3e111b" src="../shared/img/walk-arthur.png"/>
+          <img id="walk-sherefox" class="s-3e111b" src="../shared/img/walk-sherefox.png"/>
+          <img id="walk-gear" class="s-d977b4" src="../shared/img/intro-gear-a.png"/>
+        </div>
+        <div id="scene-crowd">
+          <img id="crowd-bg" class="s-765f94" src="../shared/img/bg-03-palace-ballroom.jpg"/>
+          <div id="crowd-dim" class="s-80758e"/>
+          <div id="crowd-back">
+            <img id="crowd-minister" class="s-3e111b" src="../shared/img/opp-minister.png"/>
+            <img id="crowd-daughter" class="s-3e111b" src="../shared/img/opp-daughter.png"/>
+            <img id="crowd-stationchief" class="s-3e111b" src="../shared/img/opp-stationchief.png"/>
+          </div>
+          <div id="crowd-front">
+            <img id="crowd-engineer" class="s-3e111b" src="../shared/img/opp-engineer.png"/>
+            <img id="crowd-countess" class="s-3e111b" src="../shared/img/opp-countess.png"/>
+            <img id="crowd-candidate" class="s-3e111b" src="../shared/img/opp-candidate.png"/>
+          </div>
+        </div>
+        <div id="scene-clue">
+          <img id="clue-bg" class="s-765f94" src="../shared/img/bg-04-office-evidence-wall.jpg"/>
+          <div id="clue-dim"/>
+          <div id="clue-masthead" class="s-c987e9">
+            <img id="clue-masthead-art" class="s-3e111b" src="../shared/img/intro-masthead-art.png"/>
+          </div>
+          <img id="clue-clipping-1" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-2" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-3" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-4" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-5" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-6" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <img id="clue-clipping-7" class="s-3e111b" src="../shared/img/clue-clipping-1.png"/>
+          <svg id="clue-line" viewBox="0 0 1920 1080">
+            <path id="clue-line-stroke" d="M -60 200 C 400 120, 520 900, 980 760 S 1500 300, 1990 880" fill="none" stroke="#B3261E" stroke-width="7" stroke-linecap="round" path-trim="0 0"/>
+          </svg>
+        </div>
+        <div id="fx-speedlines"/>
+        <div id="scene-duel" class="s-cfd883">
+          <div id="duel-left">
+            <img id="duel-left-bg" class="s-765f94" src="../shared/img/bg-05-clockshop-warm.jpg"/>
+            <div id="duel-left-dim"/>
+            <img id="duel-sherefox" class="s-3e111b" src="../shared/img/reveal-sherefox.png"/>
+          </div>
+          <div id="duel-right">
+            <img id="duel-right-bg" class="s-765f94" src="../shared/img/bg-06-highland-manor-cold.jpg"/>
+            <div id="duel-right-dim" class="s-80758e"/>
+            <img id="duel-victor" class="s-3e111b" src="../shared/img/duel-victor.png"/>
+          </div>
+          <div id="duel-bar"/>
+          <particles id="duel-sparks" autoplay="" blend="additive" color="#ffffff #ffe7a8 #ffb347 #ff7a1a" direction="0" gravity="900" lifetime="0.35 1.0" max="200" rate="0" shape="rect" size="11 0" speed="500 1500" spread="360" texture="../shared/img/spark.png" drag="2.6"/>
+          <particles id="duel-glints" autoplay="" blend="additive" color="#ffffff #ffe7a8" direction="0" lifetime="0.25 0.6" max="32" rate="0" rotation="0 45" shape="rect" size="130 0" speed="0 60" spread="360" texture="../shared/img/glint.png"/>
+        </div>
+        <div id="scene-cast">
+          <img id="cast-bg" class="s-765f94" src="../shared/img/bg-07-baker-street-morning.jpg"/>
+          <div id="cast-back">
+            <img id="cast-landlady" class="s-3e111b" src="../shared/img/cast-landlady.png"/>
+            <img id="cast-arthur" class="s-3e111b" src="../shared/img/cast-arthur.png"/>
+            <img id="cast-victor" class="s-3e111b" src="../shared/img/duel-victor.png"/>
+            <img id="cast-baskerville" class="s-3e111b" src="../shared/img/cast-baskerville.png"/>
+          </div>
+          <div id="cast-front">
+            <img id="cast-sherefox" class="s-3e111b" src="../shared/img/reveal-sherefox.png"/>
+          </div>
+        </div>
+        <div id="scene-title" class="s-cfd883">
+          <img id="title-watch" class="s-765f94" src="../shared/img/intro-watch.jpg"/>
+          <div id="title-dim"/>
+          <particles id="title-embers" autoplay="" blend="additive" color="#ffffff #ffe7a8 #ffb347 #ff7a1a" direction="-90" lifetime="2.5 4" max="120" rate="0" shape="rect" size="9 0" speed="50 120" spread="40" texture="../shared/img/spark.png"/>
+          <img id="title-gear-a" class="s-3e111b" src="../shared/img/intro-gear-a.png"/>
+          <img id="title-gear-b" class="s-3e111b" src="../shared/img/intro-gear-b.png"/>
+          <img id="title-gear-c" class="s-3e111b" src="../shared/img/intro-gear-c.png"/>
+          <img id="title-gear-d" class="s-3e111b" src="../shared/img/intro-gear-d.png"/>
+          <img id="title-lantern-left" class="s-3e111b" src="../shared/img/title-lantern-left.png"/>
+          <img id="title-lantern-right" class="s-3e111b" src="../shared/img/title-lantern-left.png"/>
+          <img id="title-corner-tl" class="s-3e111b" src="../shared/img/title-corner-tl.png"/>
+          <img id="title-corner-tr" class="s-3e111b" src="../shared/img/title-corner-tl.png"/>
+          <img id="title-corner-bl" class="s-3e111b" src="../shared/img/title-corner-tl.png"/>
+          <img id="title-corner-br" class="s-3e111b" src="../shared/img/title-corner-tl.png"/>
+          <img id="title-logo" class="s-3e111b" src="../shared/img/title-logo.png"/>
+          <particles id="title-sparks" autoplay="" blend="additive" color="#ffffff #ffe7a8 #ffb347 #ff7a1a" direction="-90" gravity="320" lifetime="0.8 1.9" max="220" rate="0" shape="rect" size="13 0" speed="180 760" spread="360" texture="../shared/img/spark.png" drag="1.6"/>
+          <particles id="title-glints" autoplay="" blend="additive" color="#ffffff #ffe7a8" direction="-90" lifetime="0.5 1.3" max="64" rate="0" rotation="0 45" shape="rect" size="120 0" speed="30 160" spread="360" texture="../shared/img/glint.png"/>
+          <div id="title-close" class="s-cfd883"/>
+        </div>
+        <div id="fx-fog">
+          <img id="fx-fog-far" src="../shared/img/fx-fog-far.png"/>
+          <img id="fx-fog-near" src="../shared/img/fx-fog-far.png"/>
+        </div>
+        <div id="fx-bokeh">
+          <div id="fx-bokeh-1"/>
+          <div id="fx-bokeh-2"/>
+          <div id="fx-bokeh-3"/>
+          <div id="fx-bokeh-4"/>
+          <div id="fx-bokeh-5"/>
+          <div id="fx-bokeh-6"/>
+          <div id="fx-bokeh-7"/>
+          <div id="fx-bokeh-8"/>
+          <div id="fx-bokeh-9"/>
+          <div id="fx-bokeh-10"/>
+        </div>
+        <img id="fx-gear-wipe" class="s-3e111b" src="../shared/img/intro-gear-a.png"/>
+      </div>
+      <div id="fx-flash"/>
+    </div>
+  </body>
+
+  <layout>
+    /* import: Main.dc.html:1 */
+    /* v3 integration (Sherefox docs/v3-op.md): the game's UI project designs at logicalHeight 720 with uiscaleRule
+       fit, which would scale px by 1.5 on this 1920x1080 surface; a coefficient clamped to 1 keeps the OP's px as it
+       was made (ui-scale: none would be the natural value, but v0.19.0 applies the dpr twice with it). */
+    #sherefox-op {
+      ui-scale: clamp(1, 1);
+      height: 100vh;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 100vw;
+    }
+    /* import: Main.dc.html:1/0 */
+    #stage {
+      anchor: stretch stretch screen;
+    }
+    /* import: Main.dc.html:1/0/0 */
+    #scene-intro {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/0/0 */
+    #intro-watch {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/0/1 */
+    #intro-gear-a {
+      height: 454px;
+      left: -190px;
+      position: absolute;
+      top: -190px;
+      width: 460px;
+    }
+    /* import: Main.dc.html:1/0/0/2 */
+    #intro-gear-b {
+      height: 240px;
+      left: 228px;
+      position: absolute;
+      top: -70px;
+      width: 240px;
+    }
+    /* import: Main.dc.html:1/0/0/3 */
+    #intro-gear-c {
+      height: 540px;
+      left: 1590px;
+      position: absolute;
+      top: 750px;
+      width: 540px;
+    }
+    /* import: Main.dc.html:1/0/0/4 */
+    #intro-gear-d {
+      height: 170px;
+      left: 1450px;
+      position: absolute;
+      top: 950px;
+      width: 170px;
+    }
+    /* import: Main.dc.html:1/0/0/5 */
+    #intro-masthead {
+      height: 230px;
+      left: 460px;
+      position: absolute;
+      top: 770px;
+      width: 1000px;
+    }
+    /* import: Main.dc.html:1/0/0/5/0 */
+    #intro-masthead-art {
+      height: 213px;
+      left: 180px;
+      position: absolute;
+      top: 8px;
+      width: 640px;
+    }
+    #intro-dust {
+      height: 820px;
+      left: 520px;
+      position: absolute;
+      top: 80px;
+      width: 1300px;
+    }
+    #intro-bokeh {
+      height: 860px;
+      left: 420px;
+      position: absolute;
+      top: 60px;
+      width: 1400px;
+    }
+    /* import: Main.dc.html:1/0/1 */
+    #scene-london {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/1/0 */
+    #london-city {
+      height: 1294px;
+      left: -190px;
+      position: absolute;
+      top: 0;
+      width: 2300px;
+    }
+    /* import: Main.dc.html:1/0/2 */
+    #scene-reveal {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/2/0 */
+    #reveal-street {
+      height: 1148px;
+      left: -60px;
+      position: absolute;
+      top: -34px;
+      width: 2040px;
+    }
+    /* import: Main.dc.html:1/0/2/1 */
+    #reveal-steam {
+      height: 810px;
+      left: 180px;
+      position: absolute;
+      top: 260px;
+      width: 540px;
+    }
+    /* import: Main.dc.html:1/0/2/2 */
+    #reveal-sherefox {
+      height: 1080px;
+      left: 980px;
+      position: absolute;
+      top: 40px;
+      transform-origin: 50% 100%;
+      width: 720px;
+    }
+    #reveal-glints {
+      height: 800px;
+      left: 1040px;
+      position: absolute;
+      top: 140px;
+      width: 600px;
+    }
+    /* import: Main.dc.html:1/0/3 */
+    #scene-daily-morning {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/3/0 */
+    #daily-morning {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 30%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/4 */
+    #scene-daily-repair {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/4/0 */
+    #daily-repair {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 30%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/5 */
+    #scene-daily-pudding {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/5/0 */
+    #daily-pudding {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 30%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/6 */
+    #scene-daily-inspector {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/6/0 */
+    #daily-inspector {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 30%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/7 */
+    #scene-daily-nap {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/7/0 */
+    #daily-nap {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 30%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/8 */
+    #scene-extra {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/8/0 */
+    #extra-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/8/1 */
+    #extra-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/8/2 */
+    #extra-frontpage {
+      height: 940px;
+      left: 511px;
+      position: absolute;
+      top: 70px;
+      width: 898px;
+    }
+    /* import: Main.dc.html:1/0/8/3 */
+    #extra-line {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/8/4 */
+    #extra-paper-1 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/8/5 */
+    #extra-paper-2 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/8/6 */
+    #extra-paper-3 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/8/7 */
+    #extra-paper-4 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/8/8 */
+    #extra-paper-5 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/8/9 */
+    #extra-paper-6 {
+      height: 230px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/9 */
+    #scene-opponents {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    #opp-backdrop {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/9/0 */
+    #opp-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/9/1 */
+    #opp-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    #opp-spotlight {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/9/2 */
+    #opp-row {
+      height: 300px;
+      left: 20px;
+      position: absolute;
+      top: 380px;
+      width: 1880px;
+    }
+    /* import: Main.dc.html:1/0/9/2/0 */
+    #opp-card-1 {
+      height: 300px;
+      left: 0px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/0/0 */
+    #opp-candidate {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/1 */
+    #opp-card-2 {
+      height: 300px;
+      left: 210px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/1/0 */
+    #opp-countess {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/2 */
+    #opp-card-3 {
+      height: 300px;
+      left: 420px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/2/0 */
+    #opp-daughter {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/3 */
+    #opp-card-4 {
+      height: 300px;
+      left: 630px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/3/0 */
+    #opp-engineer {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/4 */
+    #opp-card-5 {
+      height: 300px;
+      left: 840px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/4/0 */
+    #opp-inspector {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/5 */
+    #opp-card-6 {
+      height: 300px;
+      left: 1050px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/5/0 */
+    #opp-minister {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/6 */
+    #opp-card-7 {
+      height: 300px;
+      left: 1260px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/6/0 */
+    #opp-partner {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/7 */
+    #opp-card-8 {
+      height: 300px;
+      left: 1470px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/7/0 */
+    #opp-stationchief {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/2/8 */
+    #opp-card-9 {
+      height: 300px;
+      left: 1680px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/9/2/8/0 */
+    #opp-valet {
+      height: 294px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 196px;
+    }
+    /* import: Main.dc.html:1/0/9/3 */
+    #opp-blackout {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/9/4 */
+    #opp-shadow-figure {
+      height: 1140px;
+      left: 580px;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 100%;
+      width: 760px;
+    }
+    /* import: Main.dc.html:1/0/10 */
+    #scene-stop {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/10/0 */
+    #stop-clock {
+      height: 536px;
+      left: 700px;
+      position: absolute;
+      top: 276px;
+      transform-origin: 50% 50%;
+      width: 520px;
+    }
+    /* import: Main.dc.html:1/0/10/0/0 */
+    #stop-clock-face {
+      height: 440px;
+      left: 40px;
+      position: absolute;
+      top: 48px;
+      width: 440px;
+    }
+    /* import: Main.dc.html:1/0/10/0/1 */
+    #stop-clock-ring {
+      height: 536px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 520px;
+    }
+    /* import: Main.dc.html:1/0/10/0/2 */
+    #stop-clock-hour {
+      height: 51px;
+      left: 245px;
+      position: absolute;
+      top: 243px;
+      transform: rotate(268.5deg);
+      transform-origin: 9.2% 50%;
+      width: 160px;
+    }
+    /* import: Main.dc.html:1/0/10/0/3 */
+    #stop-clock-minute {
+      height: 39px;
+      left: 249px;
+      position: absolute;
+      top: 249px;
+      transform: rotate(252deg);
+      transform-origin: 4.7% 50%;
+      width: 240px;
+    }
+    /* import: Main.dc.html:1/0/11 */
+    #scene-hero {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/11/0 */
+    #hero-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/11/1 */
+    #hero-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/11/2 */
+    #hero-sherefox {
+      height: 1250px;
+      left: 389px;
+      position: absolute;
+      top: -10px;
+      transform-origin: 50% 40%;
+      width: 1142px;
+    }
+    #hero-glints {
+      height: 220px;
+      left: 540px;
+      position: absolute;
+      top: 230px;
+      width: 220px;
+    }
+    /* import: Main.dc.html:1/0/12 */
+    #scene-walk {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/12/0 */
+    #walk-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/12/1 */
+    #walk-steam {
+      height: 780px;
+      left: 1380px;
+      position: absolute;
+      top: 120px;
+      width: 520px;
+    }
+    /* import: Main.dc.html:1/0/12/2 */
+    #walk-arthur {
+      height: 640px;
+      left: 260px;
+      position: absolute;
+      top: 400px;
+      width: 384px;
+    }
+    /* import: Main.dc.html:1/0/12/3 */
+    #walk-sherefox {
+      height: 1000px;
+      left: 880px;
+      position: absolute;
+      top: 160px;
+      width: 842px;
+    }
+    /* import: Main.dc.html:1/0/12/4 */
+    #walk-gear {
+      height: 711px;
+      left: -260px;
+      position: absolute;
+      top: 670px;
+      width: 720px;
+    }
+    /* import: Main.dc.html:1/0/13 */
+    #scene-crowd {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/13/0 */
+    #crowd-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/13/1 */
+    #crowd-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/13/2 */
+    #crowd-back {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/13/2/0 */
+    #crowd-minister {
+      height: 640px;
+      left: 40px;
+      position: absolute;
+      top: 320px;
+      width: 427px;
+    }
+    /* import: Main.dc.html:1/0/13/2/1 */
+    #crowd-daughter {
+      height: 640px;
+      left: 740px;
+      position: absolute;
+      top: 320px;
+      width: 427px;
+    }
+    /* import: Main.dc.html:1/0/13/2/2 */
+    #crowd-stationchief {
+      height: 640px;
+      left: 1440px;
+      position: absolute;
+      top: 320px;
+      width: 427px;
+    }
+    /* import: Main.dc.html:1/0/13/3 */
+    #crowd-front {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 100%;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/13/3/0 */
+    #crowd-engineer {
+      height: 980px;
+      left: 180px;
+      position: absolute;
+      top: 180px;
+      width: 653px;
+    }
+    /* import: Main.dc.html:1/0/13/3/1 */
+    #crowd-countess {
+      height: 980px;
+      left: 690px;
+      position: absolute;
+      top: 180px;
+      width: 653px;
+    }
+    /* import: Main.dc.html:1/0/13/3/2 */
+    #crowd-candidate {
+      height: 980px;
+      left: 1200px;
+      position: absolute;
+      top: 180px;
+      width: 653px;
+    }
+    /* import: Main.dc.html:1/0/14 */
+    #scene-clue {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/14/0 */
+    #clue-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/14/1 */
+    #clue-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/14/2 */
+    #clue-masthead {
+      height: 230px;
+      left: 460px;
+      position: absolute;
+      top: 400px;
+      width: 1000px;
+    }
+    /* import: Main.dc.html:1/0/14/2/0 */
+    #clue-masthead-art {
+      height: 213px;
+      left: 180px;
+      position: absolute;
+      top: 8px;
+      width: 640px;
+    }
+    /* import: Main.dc.html:1/0/14/3 */
+    #clue-clipping-1 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/4 */
+    #clue-clipping-2 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/5 */
+    #clue-clipping-3 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/6 */
+    #clue-clipping-4 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/7 */
+    #clue-clipping-5 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/8 */
+    #clue-clipping-6 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/9 */
+    #clue-clipping-7 {
+      height: 271px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 260px;
+    }
+    /* import: Main.dc.html:1/0/14/10 */
+    #clue-line {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    #fx-speedlines {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15 */
+    #scene-duel {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15/0 */
+    #duel-left {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 956px;
+    }
+    /* import: Main.dc.html:1/0/15/0/0 */
+    #duel-left-bg {
+      height: 1080px;
+      left: 0px;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15/0/1 */
+    #duel-left-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15/0/2 */
+    #duel-sherefox {
+      height: 1140px;
+      left: 100px;
+      position: absolute;
+      top: 0;
+      width: 760px;
+    }
+    /* import: Main.dc.html:1/0/15/1 */
+    #duel-right {
+      height: 1080px;
+      left: 964px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 956px;
+    }
+    /* import: Main.dc.html:1/0/15/1/0 */
+    #duel-right-bg {
+      height: 1080px;
+      left: -964px;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15/1/1 */
+    #duel-right-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/15/1/2 */
+    #duel-victor {
+      height: 1140px;
+      left: 100px;
+      position: absolute;
+      top: 0;
+      width: 760px;
+    }
+    /* import: Main.dc.html:1/0/15/2 */
+    #duel-bar {
+      height: 1080px;
+      left: 954px;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 0%;
+      width: 12px;
+    }
+    #duel-sparks {
+      height: 480px;
+      left: 940px;
+      position: absolute;
+      top: 300px;
+      width: 40px;
+    }
+    #duel-glints {
+      height: 360px;
+      left: 860px;
+      position: absolute;
+      top: 360px;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/16 */
+    #scene-cast {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/16/0 */
+    #cast-bg {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/16/1 */
+    #cast-back {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/16/1/0 */
+    #cast-landlady {
+      height: 860px;
+      left: 60px;
+      position: absolute;
+      top: 250px;
+      width: 573px;
+    }
+    /* import: Main.dc.html:1/0/16/1/1 */
+    #cast-arthur {
+      height: 950px;
+      left: 430px;
+      position: absolute;
+      top: 160px;
+      width: 633px;
+    }
+    /* import: Main.dc.html:1/0/16/1/2 */
+    #cast-victor {
+      height: 860px;
+      left: 1390px;
+      position: absolute;
+      top: 250px;
+      width: 573px;
+    }
+    /* import: Main.dc.html:1/0/16/1/3 */
+    #cast-baskerville {
+      height: 990px;
+      left: 1040px;
+      position: absolute;
+      top: 120px;
+      width: 660px;
+    }
+    /* import: Main.dc.html:1/0/16/2 */
+    #cast-front {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/16/2/0 */
+    #cast-sherefox {
+      height: 1060px;
+      left: 760px;
+      position: absolute;
+      top: 60px;
+      width: 707px;
+    }
+    /* import: Main.dc.html:1/0/17 */
+    #scene-title {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/17/0 */
+    #title-watch {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/17/1 */
+    #title-dim {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    #title-embers {
+      height: 180px;
+      left: 0px;
+      position: absolute;
+      top: 900px;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/17/2 */
+    #title-gear-a {
+      height: 454px;
+      left: -190px;
+      position: absolute;
+      top: -190px;
+      width: 460px;
+    }
+    /* import: Main.dc.html:1/0/17/3 */
+    #title-gear-b {
+      height: 240px;
+      left: 228px;
+      position: absolute;
+      top: -70px;
+      width: 240px;
+    }
+    /* import: Main.dc.html:1/0/17/4 */
+    #title-gear-c {
+      height: 540px;
+      left: 1590px;
+      position: absolute;
+      top: 750px;
+      width: 540px;
+    }
+    /* import: Main.dc.html:1/0/17/5 */
+    #title-gear-d {
+      height: 170px;
+      left: 1450px;
+      position: absolute;
+      top: 950px;
+      width: 170px;
+    }
+    /* import: Main.dc.html:1/0/17/6 */
+    #title-lantern-left {
+      height: 326px;
+      left: 150px;
+      position: absolute;
+      top: -20px;
+      transform-origin: 50% 0%;
+      width: 150px;
+    }
+    /* import: Main.dc.html:1/0/17/7 */
+    #title-lantern-right {
+      height: 326px;
+      left: 1620px;
+      position: absolute;
+      top: -20px;
+      transform-origin: 50% 0%;
+      width: 150px;
+    }
+    /* import: Main.dc.html:1/0/17/8 */
+    #title-corner-tl {
+      height: 206px;
+      left: 40px;
+      position: absolute;
+      top: 40px;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/17/9 */
+    #title-corner-tr {
+      height: 206px;
+      left: 1680px;
+      position: absolute;
+      top: 40px;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/17/10 */
+    #title-corner-bl {
+      height: 206px;
+      left: 40px;
+      position: absolute;
+      top: 834px;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/17/11 */
+    #title-corner-br {
+      height: 206px;
+      left: 1680px;
+      position: absolute;
+      top: 834px;
+      width: 200px;
+    }
+    /* import: Main.dc.html:1/0/17/12 */
+    #title-logo {
+      height: 434px;
+      left: 310px;
+      position: absolute;
+      top: 300px;
+      width: 1300px;
+    }
+    #title-sparks {
+      height: 240px;
+      left: 460px;
+      position: absolute;
+      top: 400px;
+      width: 1000px;
+    }
+    #title-glints {
+      height: 400px;
+      left: 360px;
+      position: absolute;
+      top: 320px;
+      width: 1200px;
+    }
+    /* import: Main.dc.html:1/0/17/13 */
+    #title-close {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/18 */
+    #fx-fog {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/18/0 */
+    #fx-fog-far {
+      height: 900px;
+      left: -440px;
+      position: absolute;
+      top: 240px;
+      width: 2800px;
+    }
+    /* import: Main.dc.html:1/0/18/1 */
+    #fx-fog-near {
+      height: 760px;
+      left: -340px;
+      position: absolute;
+      top: 440px;
+      width: 2600px;
+    }
+    /* import: Main.dc.html:1/0/19 */
+    #fx-bokeh {
+      height: 1080px;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    /* import: Main.dc.html:1/0/19/0 */
+    #fx-bokeh-1 {
+      height: 28px;
+      left: 90px;
+      position: absolute;
+      top: 0;
+      width: 28px;
+    }
+    /* import: Main.dc.html:1/0/19/1 */
+    #fx-bokeh-2 {
+      height: 57px;
+      left: 301px;
+      position: absolute;
+      top: 0;
+      width: 57px;
+    }
+    /* import: Main.dc.html:1/0/19/2 */
+    #fx-bokeh-3 {
+      height: 86px;
+      left: 512px;
+      position: absolute;
+      top: 0;
+      width: 86px;
+    }
+    /* import: Main.dc.html:1/0/19/3 */
+    #fx-bokeh-4 {
+      height: 55px;
+      left: 723px;
+      position: absolute;
+      top: 0;
+      width: 55px;
+    }
+    /* import: Main.dc.html:1/0/19/4 */
+    #fx-bokeh-5 {
+      height: 84px;
+      left: 934px;
+      position: absolute;
+      top: 0;
+      width: 84px;
+    }
+    /* import: Main.dc.html:1/0/19/5 */
+    #fx-bokeh-6 {
+      height: 53px;
+      left: 1145px;
+      position: absolute;
+      top: 0;
+      width: 53px;
+    }
+    /* import: Main.dc.html:1/0/19/6 */
+    #fx-bokeh-7 {
+      height: 82px;
+      left: 1356px;
+      position: absolute;
+      top: 0;
+      width: 82px;
+    }
+    /* import: Main.dc.html:1/0/19/7 */
+    #fx-bokeh-8 {
+      height: 51px;
+      left: 1567px;
+      position: absolute;
+      top: 0;
+      width: 51px;
+    }
+    /* import: Main.dc.html:1/0/19/8 */
+    #fx-bokeh-9 {
+      height: 80px;
+      left: 1778px;
+      position: absolute;
+      top: 0;
+      width: 80px;
+    }
+    /* import: Main.dc.html:1/0/19/9 */
+    #fx-bokeh-10 {
+      height: 49px;
+      left: 149px;
+      position: absolute;
+      top: 0;
+      width: 49px;
+    }
+    /* import: Main.dc.html:1/0/20 */
+    #fx-gear-wipe {
+      height: 1284px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1300px;
+    }
+    /* import: Main.dc.html:1/1 */
+    #fx-flash {
+      anchor: stretch stretch screen;
+    }
+    #opp-beam {
+      height: 1080px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1920px;
+    }
+    #opp-beam-dust {
+      height: 760px;
+      left: 760px;
+      position: absolute;
+      top: 60px;
+      width: 400px;
+    }
+  </layout>
+  <style src="sherefox-op.base.xts"/>
+  <style src="sherefox-op.xts"/>
+  <style>
+    #title-logo {
+      effect: glow(18px #ffb347 0) shine(20deg 140px #fff4d6 0 0.5 0);
+    }
+    #stop-clock {
+      effect: glow(16px #e8a25a 0.15);
+    }
+    #title-watch {
+      effect: custom("../shared/fx/ripple.xtfx");
+    }
+    #fx-fog {
+      effect: gradient-mask(linear, 0 380px, 0 1080px, #fff0 0%, #fff 45%, #fff 80%, #fff8 100%) gradient-mask(linear, 0 0, 1920px 0, #fff0 0%, #fff 18%, #fff 82%, #fff0 100%);
+      opacity: 0;
+    }
+    #reveal-steam {
+      effect: gradient-mask(linear, 0 0, 0 810px, #fff0 0%, #fff 35%, #fff 60%, #fff0 100%);
+    }
+    #walk-steam {
+      effect: gradient-mask(linear, 0 0, 0 780px, #fff0 0%, #fff 35%, #fff 60%, #fff0 100%);
+      opacity: 0.24;
+    }
+    #scene-opponents {
+      effect: color-adjust(saturate(1));
+      opacity: 0;
+    }
+    #intro-watch {
+      effect: shine(25deg 220px #fff4d6 0 0.6 0);
+      opacity: 0;
+    }
+    #hero-sherefox {
+      effect: shine(25deg 260px #ffffff 0 0.6 0);
+    }
+    #fx-speedlines {
+      background-color: #00000001;
+      effect: custom("../shared/fx/speedlines.xtfx", strength 0);
+      pointer-events: none;
+    }
+    #stage {
+      effect: custom("../shared/fx/filmlook.xtfx");
+    }
+    #fx-flash {
+      opacity: 0;
+    }
+    #fx-bokeh {
+      opacity: 0;
+    }
+    #fx-gear-wipe {
+      opacity: 0;
+    }
+    #intro-masthead {
+      opacity: 0;
+    }
+    #scene-london {
+      opacity: 0;
+    }
+    #scene-reveal {
+      opacity: 0;
+    }
+    #scene-daily-morning {
+      opacity: 0;
+    }
+    #scene-daily-repair {
+      opacity: 0;
+    }
+    #scene-daily-pudding {
+      opacity: 0;
+    }
+    #scene-daily-inspector {
+      opacity: 0;
+    }
+    #scene-daily-nap {
+      opacity: 0;
+    }
+    #scene-extra {
+      opacity: 0;
+    }
+    #scene-stop {
+      opacity: 0;
+    }
+    #scene-hero {
+      opacity: 0;
+    }
+    #scene-walk {
+      opacity: 0;
+    }
+    #scene-crowd {
+      opacity: 0;
+    }
+    #scene-clue {
+      opacity: 0;
+    }
+    #scene-duel {
+      opacity: 0;
+    }
+    #scene-cast {
+      opacity: 0;
+    }
+    #scene-title {
+      opacity: 0;
+    }
+    #extra-dim {
+      opacity: 0.45;
+    }
+    #opp-dim {
+      opacity: 0.15;
+    }
+    #crowd-dim {
+      opacity: 0.3;
+    }
+    #duel-right-dim {
+      opacity: 0.2;
+    }
+    #opp-spotlight {
+      background-color: #00000001;
+      effect: custom("../shared/fx/spotlight.xtfx", intensity 0, dir -0.165, spread 0.26);
+      pointer-events: none;
+    }
+    #opp-beam {
+      effect: gradient-mask(linear, 0 140px, 0 760px, #fff 0%, #fffc 30%, #fff6 68%, #fff0 100%) custom("../shared/fx/beamshape.xtfx", intensity 0);
+      pointer-events: none;
+    }
+  </style>
+  <timelines>
+    @timeline op {
+      #stage {
+        0s {
+          transform: translate(0px, 0px);
+          effect.FilmLook.split: 0;
+        }
+        5.49s {
+          transform: translate(0px, 0px);
+          effect.FilmLook.split: 0;
+        }
+        5.5s {
+          transform: translate(6px, -4px);
+          effect.FilmLook.split: 8;
+        }
+        5.57s {
+          transform: translate(-5px, 3px);
+        }
+        5.64s {
+          transform: translate(4px, -2px);
+        }
+        5.71s {
+          transform: translate(-2px, 2px);
+        }
+        5.78s {
+          transform: translate(1px, -1px);
+        }
+        5.85s {
+          transform: translate(0px, 0px);
+        }
+        5.9s ease-out {
+          effect.FilmLook.split: 0;
+        }
+        8.12s {
+          effect.FilmLook.split: 0;
+        }
+        8.13s {
+          effect.FilmLook.split: 6;
+        }
+        8.53s ease-out {
+          effect.FilmLook.split: 0;
+        }
+        35.94s {
+          transform: translate(0px, 0px);
+          effect.FilmLook.split: 0;
+        }
+        35.95s {
+          transform: translate(10px, -6px);
+          effect.FilmLook.split: 12;
+        }
+        36.02s {
+          transform: translate(-8px, 5px);
+        }
+        36.09s {
+          transform: translate(6px, -4px);
+        }
+        36.16s {
+          transform: translate(-4px, 3px);
+        }
+        36.23s {
+          transform: translate(2px, -1px);
+        }
+        36.3s {
+          transform: translate(0px, 0px);
+        }
+        36.35s ease-out {
+          effect.FilmLook.split: 0;
+        }
+        44.11s {
+          transform: translate(0px, 0px);
+          effect.FilmLook.split: 0;
+        }
+        44.12s {
+          transform: translate(14px, -8px);
+          effect.FilmLook.split: 16;
+        }
+        44.19s {
+          transform: translate(-11px, 7px);
+        }
+        44.26s {
+          transform: translate(8px, -6px);
+        }
+        44.33s {
+          transform: translate(-6px, 4px);
+        }
+        44.4s {
+          transform: translate(3px, -1px);
+        }
+        44.47s {
+          transform: translate(0px, 0px);
+        }
+        44.52s ease-out {
+          effect.FilmLook.split: 0;
+        }
+        53.99s {
+          transform: translate(0px, 0px);
+          effect.FilmLook.split: 0;
+        }
+        54s {
+          transform: translate(9px, -5px);
+          effect.FilmLook.split: 12;
+        }
+        54.07s {
+          transform: translate(-7px, 4px);
+        }
+        54.14s {
+          transform: translate(5px, -4px);
+        }
+        54.21s {
+          transform: translate(-4px, 3px);
+        }
+        54.28s {
+          transform: translate(2px, -1px);
+        }
+        54.35s {
+          transform: translate(0px, 0px);
+        }
+        54.4s ease-out {
+          effect.FilmLook.split: 0;
+        }
+      }
+      #scene-intro {
+        0s {
+          opacity: 1;
+        }
+        5.49s {
+          opacity: 1;
+        }
+        5.5s {
+          opacity: 0;
+        }
+      }
+      #intro-watch {
+        0s {
+          opacity: 0;
+          transform: scale(1.14);
+          effect.shine.intensity: 0;
+          effect.shine.position: 0;
+        }
+        0.1s {
+          opacity: 0;
+        }
+        1.6s ease-out {
+          opacity: 1;
+        }
+        1.8s {
+          effect.shine.intensity: 0;
+          effect.shine.position: 0;
+        }
+        1.9s {
+          effect.shine.intensity: 0.5;
+        }
+        3.5s {
+          effect.shine.intensity: 0.5;
+        }
+        3.6s {
+          effect.shine.intensity: 0;
+        }
+        3.6s ease-in-out {
+          effect.shine.position: 1;
+        }
+        5.5s linear {
+          transform: scale(1.04);
+        }
+      }
+      #intro-gear-a {
+        0s {
+          transform: rotate(0deg);
+        }
+        5.5s steps(14) {
+          transform: rotate(126.0deg);
+        }
+      }
+      #intro-gear-b {
+        0s {
+          transform: rotate(0deg);
+        }
+        5.5s steps(14) {
+          transform: rotate(-214.2deg);
+        }
+      }
+      #intro-gear-c {
+        0s {
+          transform: rotate(0deg);
+        }
+        5.5s steps(14) {
+          transform: rotate(-100.8deg);
+        }
+      }
+      #intro-gear-d {
+        0s {
+          transform: rotate(0deg);
+        }
+        5.5s steps(14) {
+          transform: rotate(327.6deg);
+        }
+      }
+      #intro-masthead {
+        0s {
+          opacity: 0;
+          transform: rotate(-2deg) scale(1.5);
+        }
+        4.47s {
+          opacity: 0;
+        }
+        4.48s {
+          opacity: 1;
+          transform: rotate(-2deg) scale(1.5);
+        }
+        4.68s ease-out {
+          transform: rotate(-2deg) scale(1);
+        }
+      }
+      #scene-london {
+        0s {
+          opacity: 0;
+        }
+        5.49s {
+          opacity: 0;
+        }
+        5.5s {
+          opacity: 1;
+        }
+        7.3s {
+          opacity: 1;
+        }
+        7.31s {
+          opacity: 0;
+        }
+      }
+      #london-city {
+        0s {
+          transform: translateY(0px) scale(1.12);
+        }
+        5.5s {
+          transform: translateY(0px) scale(1.12);
+        }
+        7.31s ease-out {
+          transform: translateY(-214px) scale(1);
+        }
+      }
+      #scene-reveal {
+        0s {
+          opacity: 0;
+          transform: translateX(900px);
+        }
+        7.3s {
+          opacity: 0;
+        }
+        7.31s {
+          opacity: 1;
+          transform: translateX(900px);
+        }
+        7.53s ease-out {
+          transform: translateX(0px);
+        }
+        12.11s {
+          opacity: 1;
+        }
+        12.12s {
+          opacity: 0;
+        }
+      }
+      #reveal-street {
+        0s {
+          transform: translateX(0px) scale(1);
+        }
+        7.31s {
+          transform: translateX(0px) scale(1);
+        }
+        12.12s linear {
+          transform: translateX(-80px) scale(1.05);
+        }
+      }
+      #reveal-steam {
+        0s {
+          transform: translateY(40px) scale(0.9);
+        }
+        7.31s {
+          transform: translateY(40px) scale(0.9);
+        }
+        12.12s linear {
+          transform: translateY(-100px) scale(1.2);
+        }
+        56.574s {
+          opacity: 0.2;
+        }
+      }
+      #reveal-sherefox {
+        0s {
+          transform: translateX(260px) scale(1);
+          effect.color-adjust.brightness: -1;
+        }
+        7.31s {
+          transform: translateX(260px) scale(1);
+        }
+        8.13s ease-out {
+          transform: translateX(0px) scale(1);
+          effect.color-adjust.brightness: -1;
+        }
+        8.14s {
+          transform: translateX(0px) scale(1.1);
+        }
+        8.4s ease-out {
+          effect.color-adjust.brightness: 0;
+        }
+        8.7s ease-out {
+          transform: translateX(0px) scale(1);
+        }
+        12.12s linear {
+          transform: translateX(0px) scale(1.03);
+        }
+      }
+      #reveal-glints {
+        0s {
+          particle-rate: 0;
+        }
+        8.12s {
+          particle-rate: 0;
+        }
+        8.13s {
+          particle-rate: 120;
+        }
+        8.35s {
+          particle-rate: 0;
+        }
+      }
+      #scene-daily-morning {
+        0s {
+          opacity: 0;
+          transform: translateX(900px);
+        }
+        12.11s {
+          opacity: 0;
+        }
+        12.12s {
+          opacity: 1;
+          transform: translateX(900px);
+        }
+        12.34s ease-out {
+          transform: translateX(0px);
+        }
+        13.71s {
+          opacity: 1;
+        }
+        13.72s {
+          opacity: 0;
+        }
+      }
+      #daily-morning {
+        0s {
+          transform: translateX(30px) scale(1.04);
+        }
+        12.12s {
+          transform: translateX(30px) scale(1.04);
+        }
+        13.72s linear {
+          transform: translateX(-30px) scale(1.09);
+        }
+      }
+      #scene-daily-repair {
+        0s {
+          opacity: 0;
+          transform: translateX(-900px);
+        }
+        13.71s {
+          opacity: 0;
+        }
+        13.72s {
+          opacity: 1;
+          transform: translateX(-900px);
+        }
+        13.94s ease-out {
+          transform: translateX(0px);
+        }
+        15.32s {
+          opacity: 1;
+        }
+        15.33s {
+          opacity: 0;
+        }
+      }
+      #daily-repair {
+        0s {
+          transform: translateX(-45px) scale(1.07);
+        }
+        13.72s {
+          transform: translateX(-45px) scale(1.07);
+        }
+        15.33s linear {
+          transform: translateX(45px) scale(1.07);
+        }
+      }
+      #scene-daily-pudding {
+        0s {
+          opacity: 0;
+          transform: translateX(900px);
+        }
+        15.32s {
+          opacity: 0;
+        }
+        15.33s {
+          opacity: 1;
+          transform: translateX(900px);
+        }
+        15.55s ease-out {
+          transform: translateX(0px);
+        }
+        16.92s {
+          opacity: 1;
+        }
+        16.93s {
+          opacity: 0;
+        }
+      }
+      #daily-pudding {
+        0s {
+          transform: translateX(0px) scale(1.12);
+        }
+        15.33s {
+          transform: translateX(0px) scale(1.12);
+        }
+        15.8s ease-out {
+          transform: translateX(0px) scale(1.05);
+        }
+        16.93s linear {
+          transform: translateX(0px) scale(1.07);
+        }
+      }
+      #scene-daily-inspector {
+        0s {
+          opacity: 0;
+          transform: translateX(-900px);
+        }
+        16.92s {
+          opacity: 0;
+        }
+        16.93s {
+          opacity: 1;
+          transform: translateX(-900px);
+        }
+        17.15s ease-out {
+          transform: translateX(0px);
+        }
+        18.52s {
+          opacity: 1;
+        }
+        18.53s {
+          opacity: 0;
+        }
+      }
+      #daily-inspector {
+        0s {
+          transform: translateX(35px) scale(1.06);
+        }
+        16.93s {
+          transform: translateX(35px) scale(1.06);
+        }
+        17.71s linear {
+          transform: translateX(1px) scale(1.08);
+        }
+        17.72s {
+          transform: translateX(0px) scale(1.13);
+        }
+        18.07s ease-out {
+          transform: translateX(-15px) scale(1.09);
+        }
+        18.53s linear {
+          transform: translateX(-35px) scale(1.1);
+        }
+      }
+      #scene-daily-nap {
+        0s {
+          opacity: 0;
+          transform: translateX(900px);
+        }
+        18.52s {
+          opacity: 0;
+        }
+        18.53s {
+          opacity: 1;
+          transform: translateX(900px);
+        }
+        18.75s ease-out {
+          transform: translateX(0px);
+        }
+        19.49s {
+          opacity: 1;
+        }
+        19.5s {
+          opacity: 0;
+        }
+      }
+      #daily-nap {
+        0s {
+          transform: translateX(0px) scale(1.09);
+        }
+        18.53s {
+          transform: translateX(0px) scale(1.09);
+        }
+        19.5s linear {
+          transform: translateX(-25px) scale(1.05);
+        }
+      }
+      #scene-extra {
+        0s {
+          opacity: 0;
+          transform: translateX(-900px);
+        }
+        19.49s {
+          opacity: 0;
+        }
+        19.5s {
+          opacity: 1;
+          transform: translateX(-900px);
+        }
+        19.72s ease-out {
+          transform: translateX(0px);
+        }
+        24.12s {
+          opacity: 1;
+        }
+        24.13s {
+          opacity: 0;
+        }
+      }
+      #extra-bg {
+        0s {
+          transform: scale(1);
+        }
+        19.5s {
+          transform: scale(1);
+        }
+        24.13s linear {
+          transform: scale(1.05);
+        }
+      }
+      #extra-frontpage {
+        0s {
+          transform: rotate(720deg) scale(0.08);
+        }
+        19.5s {
+          transform: rotate(720deg) scale(0.08);
+        }
+        20.6s ease-out {
+          transform: rotate(-4deg) scale(1);
+        }
+        24.13s linear {
+          transform: rotate(-4deg) scale(1.08);
+        }
+      }
+      #extra-line/extra-line-stroke {
+        0s {
+          path-trim-end: 0;
+        }
+        20.7s {
+          path-trim-end: 0;
+        }
+        23.4s ease-out {
+          path-trim-end: 1;
+        }
+      }
+      #extra-paper-1 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 80px) rotate(0deg);
+        }
+        19.69s {
+          opacity: 0;
+        }
+        19.7s {
+          opacity: 1;
+          transform: translate(2200px, 80px) rotate(0deg);
+        }
+        20.45s linear {
+          transform: translate(950px, -60px) rotate(-190deg);
+        }
+        21.19s {
+          opacity: 1;
+        }
+        21.2s linear {
+          opacity: 0;
+          transform: translate(-300px, 80px) rotate(-380deg);
+        }
+      }
+      #extra-paper-2 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 253px) rotate(47deg);
+        }
+        19.87s {
+          opacity: 0;
+        }
+        19.88s {
+          opacity: 1;
+          transform: translate(-320px, 253px) rotate(47deg);
+        }
+        20.63s linear {
+          transform: translate(930px, 113px) rotate(237deg);
+        }
+        21.37s {
+          opacity: 1;
+        }
+        21.38s linear {
+          opacity: 0;
+          transform: translate(2180px, 253px) rotate(427deg);
+        }
+      }
+      #extra-paper-3 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 426px) rotate(94deg);
+        }
+        20.05s {
+          opacity: 0;
+        }
+        20.06s {
+          opacity: 1;
+          transform: translate(2200px, 426px) rotate(94deg);
+        }
+        20.81s linear {
+          transform: translate(950px, 286px) rotate(-96deg);
+        }
+        21.55s {
+          opacity: 1;
+        }
+        21.56s linear {
+          opacity: 0;
+          transform: translate(-300px, 426px) rotate(-286deg);
+        }
+      }
+      #extra-paper-4 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 599px) rotate(141deg);
+        }
+        20.23s {
+          opacity: 0;
+        }
+        20.24s {
+          opacity: 1;
+          transform: translate(-320px, 599px) rotate(141deg);
+        }
+        20.99s linear {
+          transform: translate(930px, 459px) rotate(331deg);
+        }
+        21.73s {
+          opacity: 1;
+        }
+        21.74s linear {
+          opacity: 0;
+          transform: translate(2180px, 599px) rotate(521deg);
+        }
+      }
+      #extra-paper-5 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 772px) rotate(188deg);
+        }
+        20.41s {
+          opacity: 0;
+        }
+        20.42s {
+          opacity: 1;
+          transform: translate(2200px, 772px) rotate(188deg);
+        }
+        21.17s linear {
+          transform: translate(950px, 632px) rotate(-2deg);
+        }
+        21.91s {
+          opacity: 1;
+        }
+        21.92s linear {
+          opacity: 0;
+          transform: translate(-300px, 772px) rotate(-192deg);
+        }
+      }
+      #extra-paper-6 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 185px) rotate(235deg);
+        }
+        20.59s {
+          opacity: 0;
+        }
+        20.6s {
+          opacity: 1;
+          transform: translate(-320px, 185px) rotate(235deg);
+        }
+        21.35s linear {
+          transform: translate(930px, 45px) rotate(425deg);
+        }
+        22.09s {
+          opacity: 1;
+        }
+        22.1s linear {
+          opacity: 0;
+          transform: translate(2180px, 185px) rotate(615deg);
+        }
+      }
+      #scene-opponents {
+        0s {
+          opacity: 0;
+          effect.color-adjust.saturation: 1;
+        }
+        24.12s {
+          opacity: 0;
+        }
+        24.13s {
+          opacity: 1;
+        }
+        32.19s {
+          effect.color-adjust.saturation: 1;
+        }
+        32.2s {
+          effect.color-adjust.saturation: 0;
+        }
+        33.29s {
+          opacity: 1;
+        }
+        33.3s {
+          opacity: 0;
+        }
+      }
+      #opp-backdrop {
+        0s {
+          transform: translateX(0px) scale(1.08);
+        }
+        24.13s {
+          transform: translateX(40px) scale(1.08);
+        }
+        32.2s linear {
+          transform: translateX(-40px) scale(1.14);
+        }
+      }
+      #opp-spotlight {
+        0s {
+          effect.Spotlight.intensity: 0;
+          effect.Spotlight.origin: 0.5680 -0.0184;
+          effect.Spotlight.floor: 0.716;
+        }
+        24.13s {
+          effect.Spotlight.intensity: 0;
+          effect.Spotlight.origin: 0.5680 -0.0184;
+          effect.Spotlight.floor: 0.716;
+        }
+        24.6s ease-out {
+          effect.Spotlight.intensity: 0.68;
+        }
+        31.2s {
+          effect.Spotlight.intensity: 0.68;
+        }
+        31.32s {
+          effect.Spotlight.intensity: 0;
+        }
+        32.2s linear {
+          effect.Spotlight.origin: 0.5290 -0.0472;
+          effect.Spotlight.floor: 0.728;
+        }
+        33.3s {
+          effect.Spotlight.intensity: 0;
+          effect.Spotlight.origin: 0.5290 -0.0472;
+          effect.Spotlight.floor: 0.728;
+        }
+      }
+      #opp-row {
+        0s {
+          transform: translateX(30px);
+        }
+        24.13s {
+          transform: translateX(30px);
+        }
+        31.32s linear {
+          transform: translateX(-30px);
+        }
+      }
+      #opp-card-1 {
+        0s {
+          opacity: 0;
+          transform: translateY(520px) rotate(14deg);
+        }
+        29.65s {
+          opacity: 0;
+        }
+        29.66s {
+          transform: translateY(520px) rotate(14deg);
+        }
+        29.76s {
+          opacity: 1;
+        }
+        30.04s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-2 {
+        0s {
+          opacity: 0;
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        28.07s {
+          opacity: 0;
+        }
+        28.08s {
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        28.18s {
+          opacity: 1;
+        }
+        28.46s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-3 {
+        0s {
+          opacity: 0;
+          transform: translateY(520px) rotate(14deg);
+        }
+        26.49s {
+          opacity: 0;
+        }
+        26.5s {
+          transform: translateY(520px) rotate(14deg);
+        }
+        26.6s {
+          opacity: 1;
+        }
+        26.88s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-4 {
+        0s {
+          opacity: 0;
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        24.91s {
+          opacity: 0;
+        }
+        24.92s {
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        25.02s {
+          opacity: 1;
+        }
+        25.3s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-5 {
+        0s {
+          opacity: 0;
+          transform: translateY(520px) rotate(14deg);
+        }
+        24.12s {
+          opacity: 0;
+        }
+        24.13s {
+          transform: translateY(520px) rotate(14deg);
+        }
+        24.23s {
+          opacity: 1;
+        }
+        24.51s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-6 {
+        0s {
+          opacity: 0;
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        25.7s {
+          opacity: 0;
+        }
+        25.71s {
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        25.81s {
+          opacity: 1;
+        }
+        26.09s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-7 {
+        0s {
+          opacity: 0;
+          transform: translateY(520px) rotate(14deg);
+        }
+        27.28s {
+          opacity: 0;
+        }
+        27.29s {
+          transform: translateY(520px) rotate(14deg);
+        }
+        27.39s {
+          opacity: 1;
+        }
+        27.67s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-8 {
+        0s {
+          opacity: 0;
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        28.86s {
+          opacity: 0;
+        }
+        28.87s {
+          transform: translateY(-520px) rotate(-14deg);
+        }
+        28.97s {
+          opacity: 1;
+        }
+        29.25s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-card-9 {
+        0s {
+          opacity: 0;
+          transform: translateY(520px) rotate(14deg);
+        }
+        30.44s {
+          opacity: 0;
+        }
+        30.45s {
+          transform: translateY(520px) rotate(14deg);
+        }
+        30.55s {
+          opacity: 1;
+        }
+        30.83s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      #opp-blackout {
+        0s {
+          opacity: 0;
+        }
+        31.32s {
+          opacity: 0;
+        }
+        31.5s {
+          opacity: 0.93;
+        }
+      }
+      #opp-shadow-figure {
+        0s {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+        31.32s {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+        31.45s {
+          opacity: 0.4;
+        }
+        32.2s ease-out {
+          transform: scale(1);
+        }
+      }
+      #scene-stop {
+        0s {
+          opacity: 0;
+          transform: scale(1.35);
+        }
+        33.29s {
+          opacity: 0;
+        }
+        33.3s {
+          opacity: 1;
+          transform: scale(1.35);
+        }
+        35.94s {
+          opacity: 1;
+        }
+        35.95s {
+          opacity: 0;
+        }
+        35.95s linear {
+          transform: scale(1.6);
+        }
+      }
+      #stop-clock {
+        0s {
+          opacity: 0;
+          transform: scale(0.9);
+          effect.glow.intensity: 0.15;
+        }
+        33.3s {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        33.49s {
+          transform: scale(0.90);
+          effect.glow.intensity: 0.15;
+        }
+        33.5s {
+          transform: scale(0.99);
+          effect.glow.intensity: 1.3;
+        }
+        33.6s ease-out {
+          opacity: 1;
+        }
+        33.65s ease-out {
+          transform: scale(0.96);
+        }
+        33.8s ease-out {
+          effect.glow.intensity: 0.15;
+        }
+        33.99s {
+          transform: scale(0.96);
+          effect.glow.intensity: 0.15;
+        }
+        34s {
+          transform: scale(1.05);
+          effect.glow.intensity: 1.3;
+        }
+        34.15s ease-out {
+          transform: scale(1.02);
+        }
+        34.3s ease-out {
+          effect.glow.intensity: 0.15;
+        }
+        34.49s {
+          transform: scale(1.02);
+          effect.glow.intensity: 0.15;
+        }
+        34.5s {
+          transform: scale(1.11);
+          effect.glow.intensity: 1.3;
+        }
+        34.65s ease-out {
+          transform: scale(1.08);
+        }
+        34.8s ease-out {
+          effect.glow.intensity: 0.15;
+        }
+        34.99s {
+          transform: scale(1.08);
+          effect.glow.intensity: 0.15;
+        }
+        35s {
+          transform: scale(1.17);
+          effect.glow.intensity: 1.3;
+        }
+        35.15s ease-out {
+          transform: scale(1.14);
+        }
+        35.3s ease-out {
+          effect.glow.intensity: 0.15;
+        }
+      }
+      #stop-clock-minute {
+        0s {
+          transform: rotate(252deg);
+        }
+        33.3s {
+          transform: rotate(252deg);
+        }
+        33.49s {
+          transform: rotate(252deg);
+        }
+        33.5s {
+          transform: rotate(250.5deg);
+        }
+        33.62s ease-out {
+          transform: rotate(252deg);
+        }
+        33.99s {
+          transform: rotate(252deg);
+        }
+        34s {
+          transform: rotate(250.5deg);
+        }
+        34.12s ease-out {
+          transform: rotate(252deg);
+        }
+        34.49s {
+          transform: rotate(252deg);
+        }
+        34.5s {
+          transform: rotate(250.5deg);
+        }
+        34.62s ease-out {
+          transform: rotate(252deg);
+        }
+        34.99s {
+          transform: rotate(252deg);
+        }
+        35s {
+          transform: rotate(250.5deg);
+        }
+        35.12s ease-out {
+          transform: rotate(252deg);
+        }
+      }
+      #scene-hero {
+        0s {
+          opacity: 0;
+        }
+        35.94s {
+          opacity: 0;
+        }
+        35.95s {
+          opacity: 1;
+        }
+        37.7s {
+          opacity: 1;
+        }
+        37.71s {
+          opacity: 0;
+        }
+      }
+      #hero-bg {
+        0s {
+          transform: translateX(60px) scale(1.2);
+        }
+        35.95s {
+          transform: translateX(60px) scale(1.2);
+        }
+        37.71s linear {
+          transform: translateX(-60px) scale(1.12);
+        }
+      }
+      #hero-sherefox {
+        0s {
+          transform: scale(1.3) rotate(-4deg);
+          effect.shine.intensity: 0;
+          effect.shine.position: 0;
+        }
+        35.95s {
+          transform: scale(1.3) rotate(-4deg);
+        }
+        36.19s {
+          effect.shine.intensity: 0;
+        }
+        36.2s {
+          effect.shine.intensity: 0;
+          effect.shine.position: 0;
+        }
+        36.5s ease-out {
+          transform: scale(1.08) rotate(0deg);
+        }
+        37.1s {
+          effect.shine.intensity: 0;
+        }
+        37.1s ease-in-out {
+          effect.shine.position: 1;
+        }
+        37.2s {
+          effect.shine.intensity: 0;
+        }
+        37.71s linear {
+          transform: scale(1.04) rotate(0deg);
+        }
+      }
+      #hero-glints {
+        0s {
+          particle-rate: 0;
+        }
+        36.3s {
+          particle-rate: 0;
+        }
+        36.45s {
+          particle-rate: 40;
+        }
+        36.7s {
+          particle-rate: 4;
+        }
+        37.7s {
+          particle-rate: 4;
+        }
+      }
+      #scene-walk {
+        0s {
+          opacity: 0;
+          transform: translateX(900px);
+        }
+        37.7s {
+          opacity: 0;
+        }
+        37.71s {
+          opacity: 1;
+          transform: translateX(900px);
+        }
+        37.93s ease-out {
+          transform: translateX(0px);
+        }
+        39.28s {
+          opacity: 1;
+        }
+        39.29s {
+          opacity: 0;
+        }
+      }
+      #walk-bg {
+        0s {
+          transform: translateX(80px) scale(1.14);
+        }
+        37.71s {
+          transform: translateX(80px) scale(1.14);
+        }
+        39.29s linear {
+          transform: translateX(-80px) scale(1.1);
+        }
+      }
+      #walk-steam {
+        0s {
+          transform: translateY(60px) scale(0.9);
+        }
+        37.71s {
+          transform: translateY(60px) scale(0.9);
+        }
+        39.29s linear {
+          transform: translateY(-100px) scale(1.2);
+        }
+      }
+      #walk-arthur {
+        0s {
+          transform: translate(220px, 0px);
+        }
+        37.71s {
+          transform: translate(220px, -16px);
+        }
+        37.907s ease-in-out {
+          transform: translate(180px, 0px);
+        }
+        38.105s ease-in-out {
+          transform: translate(140px, -16px);
+        }
+        38.302s ease-in-out {
+          transform: translate(100px, 0px);
+        }
+        38.499s ease-in-out {
+          transform: translate(60px, -16px);
+        }
+        38.697s ease-in-out {
+          transform: translate(20px, 0px);
+        }
+        38.894s ease-in-out {
+          transform: translate(-20px, -16px);
+        }
+        39.091s ease-in-out {
+          transform: translate(-60px, 0px);
+        }
+        39.289s ease-in-out {
+          transform: translate(-100px, -16px);
+        }
+      }
+      #walk-sherefox {
+        0s {
+          transform: translate(140px, 0px);
+        }
+        37.71s {
+          transform: translate(140px, 0px);
+        }
+        37.907s ease-in-out {
+          transform: translate(110px, -12px);
+        }
+        38.105s ease-in-out {
+          transform: translate(80px, 0px);
+        }
+        38.302s ease-in-out {
+          transform: translate(50px, -12px);
+        }
+        38.499s ease-in-out {
+          transform: translate(20px, 0px);
+        }
+        38.697s ease-in-out {
+          transform: translate(-10px, -12px);
+        }
+        38.894s ease-in-out {
+          transform: translate(-40px, 0px);
+        }
+        39.091s ease-in-out {
+          transform: translate(-70px, -12px);
+        }
+        39.289s ease-in-out {
+          transform: translate(-100px, 0px);
+        }
+      }
+      #walk-gear {
+        0s {
+          transform: rotate(0deg);
+        }
+        37.71s {
+          transform: rotate(0deg);
+        }
+        39.29s linear {
+          transform: rotate(63deg);
+        }
+      }
+      #scene-crowd {
+        0s {
+          opacity: 0;
+          transform: translateX(-900px);
+        }
+        39.28s {
+          opacity: 0;
+        }
+        39.29s {
+          opacity: 1;
+          transform: translateX(-900px);
+        }
+        39.51s ease-out {
+          transform: translateX(0px);
+        }
+        40.86s {
+          opacity: 1;
+        }
+        40.87s {
+          opacity: 0;
+        }
+      }
+      #crowd-bg {
+        0s {
+          transform: translateX(30px) scale(1.06);
+        }
+        39.29s {
+          transform: translateX(30px) scale(1.06);
+        }
+        40.87s linear {
+          transform: translateX(-30px) scale(1.06);
+        }
+      }
+      #crowd-back {
+        0s {
+          transform: translateX(-60px);
+        }
+        39.29s {
+          transform: translateX(-60px);
+        }
+        40.87s linear {
+          transform: translateX(60px);
+        }
+      }
+      #crowd-front {
+        0s {
+          transform: translateX(90px) scale(1);
+        }
+        39.29s {
+          transform: translateX(90px) scale(1.05);
+        }
+        39.54s ease-out {
+          transform: translateX(62px) scale(1);
+        }
+        39.69s {
+          transform: translateX(44px) scale(1.05);
+        }
+        39.94s ease-out {
+          transform: translateX(16px) scale(1);
+        }
+        40.08s {
+          transform: translateX(0px) scale(1.05);
+        }
+        40.33s ease-out {
+          transform: translateX(-28px) scale(1);
+        }
+        40.48s {
+          transform: translateX(-46px) scale(1.05);
+        }
+        40.73s ease-out {
+          transform: translateX(-74px) scale(1);
+        }
+        40.87s linear {
+          transform: translateX(-90px) scale(1);
+        }
+      }
+      #scene-clue {
+        0s {
+          opacity: 0;
+        }
+        40.86s {
+          opacity: 0;
+        }
+        40.87s {
+          opacity: 1;
+        }
+        42.44s {
+          opacity: 1;
+        }
+        42.45s {
+          opacity: 0;
+        }
+      }
+      #clue-masthead {
+        0s {
+          transform: translateX(300px) rotate(-3deg);
+        }
+        40.87s {
+          transform: translateX(300px) rotate(-3deg);
+        }
+        42.45s linear {
+          transform: translateX(-300px) rotate(-3deg);
+        }
+      }
+      #clue-clipping-1 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 80px) rotate(0deg);
+        }
+        40.86s {
+          opacity: 0;
+        }
+        40.87s {
+          opacity: 1;
+          transform: translate(2200px, 80px) rotate(0deg);
+        }
+        41.62s linear {
+          transform: translate(950px, -120px) rotate(-190deg);
+        }
+        42.36s {
+          opacity: 1;
+        }
+        42.37s linear {
+          opacity: 0;
+          transform: translate(-300px, 80px) rotate(-380deg);
+        }
+      }
+      #clue-clipping-2 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 253px) rotate(47deg);
+        }
+        41.04s {
+          opacity: 0;
+        }
+        41.05s {
+          opacity: 1;
+          transform: translate(-320px, 253px) rotate(47deg);
+        }
+        41.8s linear {
+          transform: translate(930px, 53px) rotate(237deg);
+        }
+        42.54s {
+          opacity: 1;
+        }
+        42.55s linear {
+          opacity: 0;
+          transform: translate(2180px, 253px) rotate(427deg);
+        }
+      }
+      #clue-clipping-3 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 426px) rotate(94deg);
+        }
+        41.22s {
+          opacity: 0;
+        }
+        41.23s {
+          opacity: 1;
+          transform: translate(2200px, 426px) rotate(94deg);
+        }
+        41.98s linear {
+          transform: translate(950px, 226px) rotate(-96deg);
+        }
+        42.72s {
+          opacity: 1;
+        }
+        42.73s linear {
+          opacity: 0;
+          transform: translate(-300px, 426px) rotate(-286deg);
+        }
+      }
+      #clue-clipping-4 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 599px) rotate(141deg);
+        }
+        41.4s {
+          opacity: 0;
+        }
+        41.41s {
+          opacity: 1;
+          transform: translate(-320px, 599px) rotate(141deg);
+        }
+        42.16s linear {
+          transform: translate(930px, 399px) rotate(331deg);
+        }
+        42.9s {
+          opacity: 1;
+        }
+        42.91s linear {
+          opacity: 0;
+          transform: translate(2180px, 599px) rotate(521deg);
+        }
+      }
+      #clue-clipping-5 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 772px) rotate(188deg);
+        }
+        41.58s {
+          opacity: 0;
+        }
+        41.59s {
+          opacity: 1;
+          transform: translate(2200px, 772px) rotate(188deg);
+        }
+        42.34s linear {
+          transform: translate(950px, 572px) rotate(-2deg);
+        }
+        43.08s {
+          opacity: 1;
+        }
+        43.09s linear {
+          opacity: 0;
+          transform: translate(-300px, 772px) rotate(-192deg);
+        }
+      }
+      #clue-clipping-6 {
+        0s {
+          opacity: 0;
+          transform: translate(-320px, 185px) rotate(235deg);
+        }
+        41.76s {
+          opacity: 0;
+        }
+        41.77s {
+          opacity: 1;
+          transform: translate(-320px, 185px) rotate(235deg);
+        }
+        42.52s linear {
+          transform: translate(930px, -15px) rotate(425deg);
+        }
+        43.26s {
+          opacity: 1;
+        }
+        43.27s linear {
+          opacity: 0;
+          transform: translate(2180px, 185px) rotate(615deg);
+        }
+      }
+      #clue-clipping-7 {
+        0s {
+          opacity: 0;
+          transform: translate(2200px, 358px) rotate(282deg);
+        }
+        41.94s {
+          opacity: 0;
+        }
+        41.95s {
+          opacity: 1;
+          transform: translate(2200px, 358px) rotate(282deg);
+        }
+        42.7s linear {
+          transform: translate(950px, 158px) rotate(92deg);
+        }
+        43.44s {
+          opacity: 1;
+        }
+        43.45s linear {
+          opacity: 0;
+          transform: translate(-300px, 358px) rotate(-98deg);
+        }
+      }
+      #clue-line/clue-line-stroke {
+        0s {
+          path-trim-end: 0;
+        }
+        40.95s {
+          path-trim-end: 0;
+        }
+        42.2s ease-out {
+          path-trim-end: 1;
+        }
+      }
+      #fx-speedlines {
+        0s {
+          effect.SpeedLines.strength: 0;
+        }
+        8.12s {
+          effect.SpeedLines.strength: 0;
+        }
+        8.13s {
+          effect.SpeedLines.strength: 1;
+        }
+        9.1s ease-out {
+          effect.SpeedLines.strength: 0;
+        }
+        35.94s {
+          effect.SpeedLines.strength: 0;
+        }
+        35.95s {
+          effect.SpeedLines.strength: 0.95;
+        }
+        37.7s {
+          effect.SpeedLines.strength: 0.45;
+        }
+        37.71s {
+          effect.SpeedLines.strength: 0;
+        }
+        42.45s {
+          effect.SpeedLines.strength: 0;
+        }
+        42.5s {
+          effect.SpeedLines.strength: 0.3;
+        }
+        44.11s {
+          effect.SpeedLines.strength: 0.3;
+        }
+        44.12s {
+          effect.SpeedLines.strength: 1;
+        }
+        45.2s ease-out {
+          effect.SpeedLines.strength: 0;
+        }
+      }
+      #scene-duel {
+        0s {
+          opacity: 0;
+        }
+        42.44s {
+          opacity: 0;
+        }
+        42.45s {
+          opacity: 1;
+        }
+        45.71s {
+          opacity: 1;
+        }
+        45.72s {
+          opacity: 0;
+        }
+      }
+      #duel-left-bg {
+        0s {
+          transform: translateX(0px);
+        }
+        42.45s {
+          transform: translateX(0px);
+        }
+        45.72s linear {
+          transform: translateX(-60px);
+        }
+      }
+      #duel-sherefox {
+        0s {
+          transform: translateX(-500px) scale(1);
+        }
+        42.45s {
+          transform: translateX(-500px) scale(1);
+        }
+        42.95s ease-out {
+          transform: translateX(0px) scale(1);
+        }
+        44.11s linear {
+          transform: translateX(40px) scale(1);
+        }
+        44.12s {
+          transform: translateX(40px) scale(1.08);
+        }
+        44.5s ease-out {
+          transform: translateX(40px) scale(1);
+        }
+      }
+      #duel-right-bg {
+        0s {
+          transform: translateX(0px);
+        }
+        42.45s {
+          transform: translateX(0px);
+        }
+        45.72s linear {
+          transform: translateX(60px);
+        }
+      }
+      #duel-victor {
+        0s {
+          transform: translateX(500px) scale(1);
+        }
+        42.45s {
+          transform: translateX(500px) scale(1);
+        }
+        42.6s {
+          transform: translateX(500px) scale(1);
+        }
+        43.1s ease-out {
+          transform: translateX(0px) scale(1);
+        }
+        44.11s linear {
+          transform: translateX(-40px) scale(1);
+        }
+        44.12s {
+          transform: translateX(-40px) scale(1.08);
+        }
+        44.5s ease-out {
+          transform: translateX(-40px) scale(1);
+        }
+      }
+      #duel-bar {
+        0s {
+          transform: scaleY(0);
+        }
+        42.5s {
+          transform: scaleY(0);
+        }
+        42.9s ease-out {
+          transform: scaleY(1);
+        }
+      }
+      #duel-sparks {
+        0s {
+          particle-rate: 0;
+        }
+        44.11s {
+          particle-rate: 0;
+        }
+        44.12s {
+          particle-rate: 1200;
+        }
+        44.32s {
+          particle-rate: 0;
+        }
+      }
+      #duel-glints {
+        0s {
+          particle-rate: 0;
+        }
+        44.11s {
+          particle-rate: 0;
+        }
+        44.12s {
+          particle-rate: 60;
+        }
+        44.25s {
+          particle-rate: 0;
+        }
+      }
+      #scene-cast {
+        0s {
+          opacity: 0;
+        }
+        45.71s {
+          opacity: 0;
+        }
+        45.72s {
+          opacity: 1;
+        }
+        52.39s {
+          opacity: 1;
+        }
+        52.4s {
+          opacity: 0;
+        }
+      }
+      #cast-bg {
+        0s {
+          transform: translateX(50px) scale(1.08);
+        }
+        45.72s {
+          transform: translateX(50px) scale(1.08);
+        }
+        52.4s linear {
+          transform: translateX(-50px) scale(1.13);
+        }
+      }
+      #cast-back {
+        0s {
+          transform: translateX(30px);
+        }
+        45.72s {
+          transform: translateX(30px);
+        }
+        52.4s linear {
+          transform: translateX(-30px);
+        }
+      }
+      #cast-landlady {
+        0s {
+          opacity: 0;
+          transform: translateY(220px);
+        }
+        45.71s {
+          opacity: 0;
+        }
+        45.72s {
+          transform: translateY(220px);
+        }
+        45.87s {
+          opacity: 1;
+        }
+        46.17s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px);
+        }
+      }
+      #cast-arthur {
+        0s {
+          opacity: 0;
+          transform: translateY(220px);
+        }
+        46.11s {
+          opacity: 0;
+        }
+        46.12s {
+          transform: translateY(220px);
+        }
+        46.27s {
+          opacity: 1;
+        }
+        46.57s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px);
+        }
+      }
+      #cast-victor {
+        0s {
+          opacity: 0;
+          transform: translateY(220px);
+        }
+        46.92s {
+          opacity: 0;
+        }
+        46.93s {
+          transform: translateY(220px);
+        }
+        47.08s {
+          opacity: 1;
+        }
+        47.38s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px);
+        }
+      }
+      #cast-baskerville {
+        0s {
+          opacity: 0;
+          transform: translateY(220px);
+        }
+        46.52s {
+          opacity: 0;
+        }
+        46.53s {
+          transform: translateY(220px);
+        }
+        46.68s {
+          opacity: 1;
+        }
+        46.98s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px);
+        }
+      }
+      #cast-front {
+        0s {
+          transform: translateX(-30px);
+        }
+        45.72s {
+          transform: translateX(-30px);
+        }
+        52.4s linear {
+          transform: translateX(30px);
+        }
+      }
+      #cast-sherefox {
+        0s {
+          opacity: 0;
+          transform: translateY(220px);
+        }
+        47.31s {
+          opacity: 0;
+        }
+        47.32s {
+          transform: translateY(220px);
+        }
+        47.47s {
+          opacity: 1;
+        }
+        47.77s cubic-bezier(.34,1.56,.64,1) {
+          transform: translateY(0px);
+        }
+      }
+      #scene-title {
+        0s {
+          opacity: 0;
+        }
+        52.39s {
+          opacity: 0;
+        }
+        52.4s {
+          opacity: 1;
+        }
+        59.3s {
+          opacity: 1;
+        }
+      }
+      #title-watch {
+        0s {
+          opacity: 0;
+          transform: scale(1.1);
+          effect.0.amplitude: 10;
+        }
+        54s {
+          opacity: 0;
+          transform: scale(1.1);
+          effect.0.amplitude: 10;
+        }
+        54.3s {
+          opacity: 0.35;
+        }
+        55.2s ease-out {
+          effect.0.amplitude: 2;
+        }
+        56s linear {
+          transform: scale(1.04);
+        }
+      }
+      #title-embers {
+        0s {
+          particle-rate: 0;
+        }
+        53.99s {
+          particle-rate: 0;
+        }
+        54s {
+          particle-rate: 45;
+        }
+        56s {
+          particle-rate: 45;
+        }
+        56.2s {
+          particle-rate: 0;
+        }
+      }
+      #title-gear-a {
+        0s {
+          transform: rotate(1194.8deg);
+        }
+        52.4s {
+          transform: rotate(1194.8deg);
+        }
+        54s linear {
+          transform: rotate(1226.8deg);
+        }
+        59.3s linear {
+          transform: rotate(1862.8deg);
+        }
+      }
+      #title-gear-b {
+        0s {
+          transform: rotate(-2031.2deg);
+        }
+        52.4s {
+          transform: rotate(-2031.2deg);
+        }
+        54s linear {
+          transform: rotate(-2085.6deg);
+        }
+        59.3s linear {
+          transform: rotate(-3166.8deg);
+        }
+      }
+      #title-gear-c {
+        0s {
+          transform: rotate(-955.9deg);
+        }
+        52.4s {
+          transform: rotate(-955.9deg);
+        }
+        54s linear {
+          transform: rotate(-981.5deg);
+        }
+        59.3s linear {
+          transform: rotate(-1490.3deg);
+        }
+      }
+      #title-gear-d {
+        0s {
+          transform: rotate(3106.6deg);
+        }
+        52.4s {
+          transform: rotate(3106.6deg);
+        }
+        54s linear {
+          transform: rotate(3189.8deg);
+        }
+        59.3s linear {
+          transform: rotate(4843.4deg);
+        }
+      }
+      #title-lantern-left {
+        0s {
+          opacity: 0;
+          transform: rotate(0deg);
+        }
+        54s {
+          opacity: 0;
+          transform: rotate(0deg);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.98s ease-in-out {
+          transform: rotate(7.0deg);
+        }
+        55.96s ease-in-out {
+          transform: rotate(-5.6deg);
+        }
+        56.94s ease-in-out {
+          transform: rotate(4.5deg);
+        }
+        57.92s ease-in-out {
+          transform: rotate(-3.6deg);
+        }
+        58.9s ease-in-out {
+          transform: rotate(2.9deg);
+        }
+      }
+      #title-lantern-right {
+        0s {
+          opacity: 0;
+          transform: rotate(0deg);
+        }
+        54s {
+          opacity: 0;
+          transform: rotate(0deg);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.98s ease-in-out {
+          transform: rotate(-7.0deg);
+        }
+        55.96s ease-in-out {
+          transform: rotate(5.6deg);
+        }
+        56.94s ease-in-out {
+          transform: rotate(-4.5deg);
+        }
+        57.92s ease-in-out {
+          transform: rotate(3.6deg);
+        }
+        58.9s ease-in-out {
+          transform: rotate(-2.9deg);
+        }
+      }
+      #title-corner-tl {
+        0s {
+          opacity: 0;
+          transform: scale(1, 1) scale(0.6);
+        }
+        54s {
+          opacity: 0;
+          transform: scale(1, 1) scale(0.6);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.4s cubic-bezier(.34,1.56,.64,1) {
+          transform: scale(1, 1) scale(1);
+        }
+      }
+      #title-corner-tr {
+        0s {
+          opacity: 0;
+          transform: scale(-1, 1) scale(0.6);
+        }
+        54s {
+          opacity: 0;
+          transform: scale(-1, 1) scale(0.6);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.4s cubic-bezier(.34,1.56,.64,1) {
+          transform: scale(-1, 1) scale(1);
+        }
+      }
+      #title-corner-bl {
+        0s {
+          opacity: 0;
+          transform: scale(1, -1) scale(0.6);
+        }
+        54s {
+          opacity: 0;
+          transform: scale(1, -1) scale(0.6);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.4s cubic-bezier(.34,1.56,.64,1) {
+          transform: scale(1, -1) scale(1);
+        }
+      }
+      #title-corner-br {
+        0s {
+          opacity: 0;
+          transform: scale(-1, -1) scale(0.6);
+        }
+        54s {
+          opacity: 0;
+          transform: scale(-1, -1) scale(0.6);
+        }
+        54.2s {
+          opacity: 1;
+        }
+        54.4s cubic-bezier(.34,1.56,.64,1) {
+          transform: scale(-1, -1) scale(1);
+        }
+      }
+      #title-logo {
+        0s {
+          opacity: 0;
+          transform: scale(1.04);
+          effect.glow.intensity: 0;
+          effect.shine.position: 0;
+          effect.shine.intensity: 0;
+        }
+        52.6s {
+          opacity: 0;
+        }
+        53.8s ease-out {
+          opacity: 0.35;
+        }
+        53.99s {
+          opacity: 0.35;
+          transform: scale(1.04);
+          effect.glow.intensity: 0;
+        }
+        54s {
+          opacity: 1;
+          transform: scale(1.12);
+          effect.glow.intensity: 1.6;
+        }
+        54.24s {
+          effect.shine.intensity: 0;
+        }
+        54.25s {
+          effect.shine.position: 0;
+          effect.shine.intensity: 1;
+        }
+        54.35s cubic-bezier(.34,1.56,.64,1) {
+          transform: scale(1);
+        }
+        54.8s ease-out {
+          effect.glow.intensity: 0.5;
+        }
+        55.35s ease-in-out {
+          effect.shine.position: 1;
+        }
+        55.35s {
+          effect.shine.intensity: 1;
+        }
+        55.45s {
+          effect.shine.intensity: 0;
+        }
+        56s linear {
+          transform: scale(1.025);
+        }
+        56s {
+          effect.glow.intensity: 0.5;
+        }
+      }
+      #title-sparks {
+        0s {
+          particle-rate: 0;
+        }
+        53.99s {
+          particle-rate: 0;
+        }
+        54s {
+          particle-rate: 1400;
+        }
+        54.25s {
+          particle-rate: 0;
+        }
+      }
+      #title-glints {
+        0s {
+          particle-rate: 0;
+        }
+        53.99s {
+          particle-rate: 0;
+        }
+        54s {
+          particle-rate: 70;
+        }
+        54.3s {
+          particle-rate: 5;
+        }
+        56s {
+          particle-rate: 5;
+        }
+        56.1s {
+          particle-rate: 0;
+        }
+      }
+      #title-close {
+        0s {
+          opacity: 0;
+        }
+        56s {
+          opacity: 0;
+        }
+        56.35s ease-out {
+          opacity: 1;
+        }
+      }
+      #fx-fog {
+        0s {
+          opacity: 0;
+        }
+        5.49s {
+          opacity: 0;
+        }
+        5.5s {
+          opacity: 0.8;
+        }
+        7.3s {
+          opacity: 0.8;
+        }
+        7.31s {
+          opacity: 0.6;
+        }
+        12.11s {
+          opacity: 0.6;
+        }
+        12.12s {
+          opacity: 0;
+        }
+        24.12s {
+          opacity: 0;
+        }
+        24.13s {
+          opacity: 0.45;
+        }
+        31.31s {
+          opacity: 0.45;
+        }
+        31.32s {
+          opacity: 0;
+        }
+        40.86s {
+          opacity: 0;
+        }
+        40.87s {
+          opacity: 0.35;
+        }
+        42.44s {
+          opacity: 0.35;
+        }
+        42.45s {
+          opacity: 0;
+        }
+      }
+      #fx-fog-far {
+        0s {
+          transform: translateX(0px);
+        }
+        59.3s linear {
+          transform: translateX(-420px);
+        }
+      }
+      #fx-fog-near {
+        0s {
+          transform: translateX(-300px);
+        }
+        59.3s linear {
+          transform: translateX(300px);
+        }
+      }
+      #fx-bokeh {
+        0s {
+          opacity: 0;
+        }
+        7.3s {
+          opacity: 0;
+        }
+        7.31s {
+          opacity: 1;
+        }
+        12.11s {
+          opacity: 1;
+        }
+        12.12s {
+          opacity: 0.5;
+        }
+        19.49s {
+          opacity: 0.5;
+        }
+        19.5s {
+          opacity: 0;
+        }
+        35.94s {
+          opacity: 0;
+        }
+        35.95s {
+          opacity: 0.8;
+        }
+        39.28s {
+          opacity: 0.8;
+        }
+        39.29s {
+          opacity: 0;
+        }
+        45.71s {
+          opacity: 0;
+        }
+        45.72s {
+          opacity: 1;
+        }
+        52.39s {
+          opacity: 1;
+        }
+        52.4s {
+          opacity: 0;
+        }
+      }
+      #fx-bokeh-1 {
+        0s {
+          transform: translateY(400px);
+        }
+        59.3s linear {
+          transform: translateY(-2000px);
+        }
+      }
+      #fx-bokeh-2 {
+        0s {
+          transform: translateY(717px);
+        }
+        59.3s linear {
+          transform: translateY(-1683px);
+        }
+      }
+      #fx-bokeh-3 {
+        0s {
+          transform: translateY(1034px);
+        }
+        59.3s linear {
+          transform: translateY(-1366px);
+        }
+      }
+      #fx-bokeh-4 {
+        0s {
+          transform: translateY(1351px);
+        }
+        59.3s linear {
+          transform: translateY(-1049px);
+        }
+      }
+      #fx-bokeh-5 {
+        0s {
+          transform: translateY(1668px);
+        }
+        59.3s linear {
+          transform: translateY(-732px);
+        }
+      }
+      #fx-bokeh-6 {
+        0s {
+          transform: translateY(1985px);
+        }
+        59.3s linear {
+          transform: translateY(-415px);
+        }
+      }
+      #fx-bokeh-7 {
+        0s {
+          transform: translateY(2302px);
+        }
+        59.3s linear {
+          transform: translateY(-98px);
+        }
+      }
+      #fx-bokeh-8 {
+        0s {
+          transform: translateY(619px);
+        }
+        59.3s linear {
+          transform: translateY(-1781px);
+        }
+      }
+      #fx-bokeh-9 {
+        0s {
+          transform: translateY(936px);
+        }
+        59.3s linear {
+          transform: translateY(-1464px);
+        }
+      }
+      #fx-bokeh-10 {
+        0s {
+          transform: translateY(1253px);
+        }
+        59.3s linear {
+          transform: translateY(-1147px);
+        }
+      }
+      #fx-gear-wipe {
+        0s {
+          opacity: 0;
+          transform: translate(-1400px, -110px) rotate(0deg);
+        }
+        23.84s {
+          opacity: 0;
+        }
+        23.85s {
+          opacity: 1;
+          transform: translate(-1400px, -110px) rotate(0deg);
+        }
+        24.4s {
+          opacity: 1;
+        }
+        24.41s linear {
+          opacity: 0;
+          transform: translate(2100px, -110px) rotate(260deg);
+        }
+        45.43s {
+          opacity: 0;
+        }
+        45.44s {
+          opacity: 1;
+          transform: translate(-1400px, -110px) rotate(0deg);
+        }
+        45.99s {
+          opacity: 1;
+        }
+        46s linear {
+          opacity: 0;
+          transform: translate(2100px, -110px) rotate(260deg);
+        }
+      }
+      #fx-flash {
+        0s {
+          opacity: 0;
+        }
+        5.49s {
+          opacity: 0;
+        }
+        5.5s {
+          opacity: 0.8;
+        }
+        5.9s ease-out {
+          opacity: 0;
+        }
+        7.3s {
+          opacity: 0;
+        }
+        7.31s {
+          opacity: 0.4;
+        }
+        7.51s ease-out {
+          opacity: 0;
+        }
+        8.12s {
+          opacity: 0;
+        }
+        8.13s {
+          opacity: 0.6;
+        }
+        8.43s ease-out {
+          opacity: 0;
+        }
+        12.11s {
+          opacity: 0;
+        }
+        12.12s {
+          opacity: 0.35;
+        }
+        12.32s ease-out {
+          opacity: 0;
+        }
+        13.71s {
+          opacity: 0;
+        }
+        13.72s {
+          opacity: 0.3;
+        }
+        13.92s ease-out {
+          opacity: 0;
+        }
+        15.32s {
+          opacity: 0;
+        }
+        15.33s {
+          opacity: 0.3;
+        }
+        15.53s ease-out {
+          opacity: 0;
+        }
+        16.92s {
+          opacity: 0;
+        }
+        16.93s {
+          opacity: 0.3;
+        }
+        17.13s ease-out {
+          opacity: 0;
+        }
+        18.52s {
+          opacity: 0;
+        }
+        18.53s {
+          opacity: 0.3;
+        }
+        18.73s ease-out {
+          opacity: 0;
+        }
+        19.49s {
+          opacity: 0;
+        }
+        19.5s {
+          opacity: 0.5;
+        }
+        19.8s ease-out {
+          opacity: 0;
+        }
+        24.12s {
+          opacity: 0;
+        }
+        24.13s {
+          opacity: 0.5;
+        }
+        24.43s ease-out {
+          opacity: 0;
+        }
+        35.94s {
+          opacity: 0;
+        }
+        35.95s {
+          opacity: 0.95;
+        }
+        36.45s ease-out {
+          opacity: 0;
+        }
+        37.7s {
+          opacity: 0;
+        }
+        37.71s {
+          opacity: 0.4;
+        }
+        37.91s ease-out {
+          opacity: 0;
+        }
+        39.28s {
+          opacity: 0;
+        }
+        39.29s {
+          opacity: 0.4;
+        }
+        39.49s ease-out {
+          opacity: 0;
+        }
+        40.86s {
+          opacity: 0;
+        }
+        40.87s {
+          opacity: 0.4;
+        }
+        41.07s ease-out {
+          opacity: 0;
+        }
+        42.44s {
+          opacity: 0;
+        }
+        42.45s {
+          opacity: 0.5;
+        }
+        42.7s ease-out {
+          opacity: 0;
+        }
+        44.11s {
+          opacity: 0;
+        }
+        44.12s {
+          opacity: 0.95;
+        }
+        44.62s ease-out {
+          opacity: 0;
+        }
+        45.71s {
+          opacity: 0;
+        }
+        45.72s {
+          opacity: 0.5;
+        }
+        46.02s ease-out {
+          opacity: 0;
+        }
+        53.99s {
+          opacity: 0;
+        }
+        54s {
+          opacity: 0.9;
+        }
+        54.5s ease-out {
+          opacity: 0;
+        }
+      }
+    }
+  </timelines>
+</xt>

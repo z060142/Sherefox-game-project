@@ -1,0 +1,13 @@
+version: 1
+id: f0ecc97d-e7c5-4f7f-b58f-54937a38a25b
+type: image
+title: intro-gear-a
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/gear1.png
+content: sha256:1bd6a99abdaf7530fe99f7e195d284b535d1f2a104bfe380c992cd1da7e46f35
+measured:
+  w: 406
+  h: 401
+  alpha: true

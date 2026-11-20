@@ -1,0 +1,12 @@
+version: 1
+id: b20e6221-3da6-4403-ae4b-f14af2aeb192
+type: image
+status: draft
+source:
+  kind: manual
+  at: 2026-11-20T07:37:36Z
+content: sha256:47e3397f1a7d55180e983d9f390d1d017651b7fd342685ee537fe614615cbd16
+measured:
+  w: 128
+  h: 128
+  alpha: true

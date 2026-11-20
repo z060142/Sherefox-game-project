@@ -1,0 +1,5 @@
+/* v3: the skip layer over the opening draws nothing (docs/ui-contracts.md opskip). */
+#opskip {
+  background-color: #00000000;
+  outline: none;
+}

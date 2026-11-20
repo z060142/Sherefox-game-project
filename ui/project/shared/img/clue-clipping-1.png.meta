@@ -1,0 +1,13 @@
+version: 1
+id: f3a7f322-1913-4915-9996-2802bc332ac7
+type: image
+title: clue-clipping-1
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/clipping.png
+content: sha256:03c9f88a4411d434b43448aa9271117812c6c3da464371aac51e4cacac238fed
+measured:
+  w: 400
+  h: 417
+  alpha: true

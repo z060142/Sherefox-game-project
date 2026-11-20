@@ -1,6 +1,73 @@
 # Asset manifest (docs/design/26-layers-symbols-library.md 26.3.3); xtframe-pack fills `measured`.
 version: 1
 assets:
+  - id: beamshape
+    type: effect
+    file: shared/fx/beamshape.xtfx
+    source: manual
+    status: draft
+  - id: filmlook
+    type: effect
+    file: shared/fx/filmlook.xtfx
+    source: manual
+    status: draft
+  - id: ripple
+    type: effect
+    file: shared/fx/ripple.xtfx
+    source: manual
+    status: draft
+  - id: speedlines
+    type: effect
+    file: shared/fx/speedlines.xtfx
+    source: manual
+    status: draft
+  - id: spotlight
+    type: effect
+    file: shared/fx/spotlight.xtfx
+    source: manual
+    status: draft
+  - id: bg-01-lantern-press-room
+    type: image
+    file: shared/img/bg-01-lantern-press-room.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-02-opera-house-stage
+    type: image
+    file: shared/img/bg-02-opera-house-stage.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-03-palace-ballroom
+    type: image
+    file: shared/img/bg-03-palace-ballroom.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-04-office-evidence-wall
+    type: image
+    file: shared/img/bg-04-office-evidence-wall.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-05-clockshop-warm
+    type: image
+    file: shared/img/bg-05-clockshop-warm.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-06-highland-manor-cold
+    type: image
+    file: shared/img/bg-06-highland-manor-cold.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
+  - id: bg-07-baker-street-morning
+    type: image
+    file: shared/img/bg-07-baker-street-morning.jpg
+    source: manual
+    status: draft
+    measured: { w: 1920, h: 1080, alpha: false }
   - id: bg-attic
     type: image
     file: shared/img/bg-attic.jpg
@@ -121,6 +188,30 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1774, h: 887, alpha: true }
+  - id: bokeh
+    type: image
+    file: shared/img/bokeh.png
+    source: manual
+    status: draft
+    measured: { w: 128, h: 128, alpha: true }
+  - id: cast-arthur
+    type: image
+    file: shared/img/cast-arthur.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
+  - id: cast-baskerville
+    type: image
+    file: shared/img/cast-baskerville.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
+  - id: cast-landlady
+    type: image
+    file: shared/img/cast-landlady.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
   - id: cedric-angry
     type: image
     file: shared/img/cedric-angry.png
@@ -223,12 +314,60 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1024, h: 1536, alpha: true }
+  - id: clue-clipping-1
+    type: image
+    file: shared/img/clue-clipping-1.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 400, h: 417, alpha: true }
+  - id: daily-inspector
+    type: image
+    file: shared/img/daily-inspector.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: daily-morning
+    type: image
+    file: shared/img/daily-morning.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: daily-nap
+    type: image
+    file: shared/img/daily-nap.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: daily-pudding
+    type: image
+    file: shared/img/daily-pudding.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: daily-repair
+    type: image
+    file: shared/img/daily-repair.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
   - id: dcard-pin
     type: image
     file: shared/img/dcard-pin.png
     source: import:claude-design
     status: draft
     measured: { w: 44, h: 44, alpha: true }
+  - id: duel-victor
+    type: image
+    file: shared/img/duel-victor.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
+  - id: extra-frontpage
+    type: image
+    file: shared/img/extra-frontpage.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1051, h: 1100, alpha: true }
   - id: fig-briggs
     type: image
     file: shared/img/fig-briggs.png
@@ -253,6 +392,24 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1024, h: 1536, alpha: true }
+  - id: fx-fog-far
+    type: image
+    file: shared/img/fx-fog-far.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: true }
+  - id: glint
+    type: image
+    file: shared/img/glint.png
+    source: manual
+    status: draft
+    measured: { w: 128, h: 128, alpha: true }
+  - id: hero-sherefox
+    type: image
+    file: shared/img/hero-sherefox.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1188, h: 1300, alpha: true }
   - id: ico-device
     type: image
     file: shared/img/ico-device.png
@@ -289,6 +446,42 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 44, h: 44, alpha: true }
+  - id: intro-gear-a
+    type: image
+    file: shared/img/intro-gear-a.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 406, h: 401, alpha: true }
+  - id: intro-gear-b
+    type: image
+    file: shared/img/intro-gear-b.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 256, h: 256, alpha: true }
+  - id: intro-gear-c
+    type: image
+    file: shared/img/intro-gear-c.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 307, h: 307, alpha: true }
+  - id: intro-gear-d
+    type: image
+    file: shared/img/intro-gear-d.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 162, h: 162, alpha: true }
+  - id: intro-masthead-art
+    type: image
+    file: shared/img/intro-masthead-art.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 900, h: 300, alpha: true }
+  - id: intro-watch
+    type: image
+    file: shared/img/intro-watch.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
   - id: lg-bad-ico
     type: image
     file: shared/img/lg-bad-ico.png
@@ -307,12 +500,78 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 44, h: 44, alpha: true }
+  - id: london-city
+    type: image
+    file: shared/img/london-city.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
   - id: masthead-art
     type: image
     file: shared/img/masthead-art.png
     source: import:claude-design
     status: draft
     measured: { w: 2172, h: 724, alpha: true }
+  - id: opp-candidate
+    type: image
+    file: shared/img/opp-candidate.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-countess
+    type: image
+    file: shared/img/opp-countess.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-daughter
+    type: image
+    file: shared/img/opp-daughter.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-engineer
+    type: image
+    file: shared/img/opp-engineer.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-inspector
+    type: image
+    file: shared/img/opp-inspector.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-minister
+    type: image
+    file: shared/img/opp-minister.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-partner
+    type: image
+    file: shared/img/opp-partner.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-shadow-figure
+    type: image
+    file: shared/img/opp-shadow-figure.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
+  - id: opp-stationchief
+    type: image
+    file: shared/img/opp-stationchief.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
+  - id: opp-valet
+    type: image
+    file: shared/img/opp-valet.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 667, h: 1000, alpha: true }
   - id: pic-ch01
     type: image
     file: shared/img/pic-ch01.jpg
@@ -343,6 +602,30 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 1813, h: 868, alpha: false }
+  - id: reveal-sherefox
+    type: image
+    file: shared/img/reveal-sherefox.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 800, h: 1200, alpha: true }
+  - id: reveal-steam
+    type: image
+    file: shared/img/reveal-steam.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 600, h: 900, alpha: true }
+  - id: reveal-street
+    type: image
+    file: shared/img/reveal-street.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: spark
+    type: image
+    file: shared/img/spark.png
+    source: manual
+    status: draft
+    measured: { w: 64, h: 64, alpha: true }
   - id: st-stamp-assist-img
     type: image
     file: shared/img/st-stamp-assist-img.png
@@ -385,6 +668,42 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 631, h: 640, alpha: true }
+  - id: stop-clock-hour
+    type: image
+    file: shared/img/stop-clock-hour.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 294, h: 93, alpha: true }
+  - id: stop-clock-minute
+    type: image
+    file: shared/img/stop-clock-minute.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 514, h: 83, alpha: true }
+  - id: stop-clock-ring
+    type: image
+    file: shared/img/stop-clock-ring.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 489, h: 504, alpha: true }
+  - id: title-corner-tl
+    type: image
+    file: shared/img/title-corner-tl.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 247, h: 255, alpha: true }
+  - id: title-lantern-left
+    type: image
+    file: shared/img/title-lantern-left.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 208, h: 452, alpha: true }
+  - id: title-logo
+    type: image
+    file: shared/img/title-logo.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 1400, h: 467, alpha: true }
   - id: ui-cork
     type: image
     file: shared/img/ui-cork.jpg
@@ -397,3 +716,21 @@ assets:
     source: import:claude-design
     status: draft
     measured: { w: 8, h: 34, alpha: true }
+  - id: walk-arthur
+    type: image
+    file: shared/img/walk-arthur.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 433, h: 722, alpha: true }
+  - id: walk-bg
+    type: image
+    file: shared/img/walk-bg.jpg
+    source: import:claude-design
+    status: draft
+    measured: { w: 1672, h: 941, alpha: false }
+  - id: walk-sherefox
+    type: image
+    file: shared/img/walk-sherefox.png
+    source: import:claude-design
+    status: draft
+    measured: { w: 778, h: 924, alpha: true }

@@ -1,0 +1,14 @@
+version: 1
+id: 27b2fd9d-5f36-48bd-ba82-ab4615f697ce
+type: image
+title: daily-pudding
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/d03.jpg
+  at: 2026-11-20T12:36:35Z
+content: sha256:56abffb84bf342ce9bd51f3634c673b032eb9939e50915fea5ef821ce2021a6f
+measured:
+  w: 1672
+  h: 941
+  alpha: false

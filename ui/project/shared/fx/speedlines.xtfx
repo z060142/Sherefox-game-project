@@ -1,0 +1,26 @@
+// Sherefox OP: radial speed lines (anime impact frame). Draws over the layer; centre stays clear.
+name: SpeedLines
+blurb: Radial speed lines that flicker at 24 fps
+param strength float 1 [0, 1]
+param inner float 0.3 [0, 1]
+param density float 460 [8, 900]
+param tint color #fff4e0
+fallback: none
+---
+float4 xtMain(XtInput i)
+{
+    float dx = (i.uv.x - 0.5) * (i.layerSize.x / i.layerSize.y);
+    float dy = i.uv.y - 0.5;
+    float r = sqrt(dx * dx + dy * dy);
+    float a = atan2(dy, dx);
+    float cell = floor(a * density * 0.159155);
+    float t = floor(xtTime * 24.0);
+    float n = frac(sin(cell * 12.9898 + t * 78.233) * 43758.5453);
+    float w = frac(sin(cell * 4.1237 + t * 1.7) * 9871.13);
+    float ray = step(0.8, n);
+    float edge = inner + w * 0.22;
+    float m = smoothstep(edge, edge + 0.28, r);
+    float alpha = ray * m * strength * (0.25 + 0.4 * w);
+    float4 base = xtSample(i.uv);
+    return float4(lerp(base.rgb, tint.rgb, alpha), max(base.a, alpha));
+}

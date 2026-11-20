@@ -654,19 +654,39 @@
     },
     "d1ResScreen": {
       "type": "pulse"
+    },
+    "opOn": {
+      "type": "bool",
+      "initial": true
+    },
+    "opPlays": {
+      "type": "number",
+      "initial": 0
+    },
+    "opStops": {
+      "type": "number",
+      "initial": 0
+    },
+    "opMusic": {
+      "type": "string",
+      "initial": ""
     }
   },
   "input": {
-    "actions": {},
+    "actions": {
+      "opSkip": "pulse"
+    },
     "axes": []
   },
   "display": {
     "mode": "windowed",
     "resolution": "auto",
     "msaa": 1,
-    "gpuImageBudget": 300
+    "gpuImageBudget": 300,
+    "gpuTrim": "on-hide"
   },
   "flows": [
+    "flows/op.xtflow",
     "flows/main.xtflow",
     "flows/settings.xtflow",
     "flows/dialogue.xtflow",
@@ -797,6 +817,18 @@
         "ui": "cutin",
         "width": 1280,
         "height": 720
+      },
+      {
+        "ui": "sherefox-op",
+        "width": 1920,
+        "height": 1080,
+        "visible": false
+      },
+      {
+        "ui": "opskip",
+        "width": 1920,
+        "height": 1080,
+        "visible": false
       }
     ]
   },
@@ -1789,10 +1821,16 @@
         "loop": true,
         "loopEnd": 3772755,
         "category": "bgm"
+      },
+      "op_music": {
+        "file": "audio/op/op_music.mp3",
+        "loop": false,
+        "category": "bgm"
       }
     },
     "channels": [
-      "bgm"
+      "bgm",
+      "op"
     ]
   }
 }

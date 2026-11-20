@@ -1,0 +1,31 @@
+// Sherefox OP: one pass over the whole stage - vignette, warm grade, fine grain, and a
+// chromatic split that is keyed on the big beats.
+name: FilmLook
+blurb: Vignette, warm grade, grain and beat-driven chromatic split
+param vignette float 0.5 [0, 1]
+param grain float 0.03 [0, 0.3]
+param warmth float 0.05 [0, 0.3]
+param split float 0 [0, 24]
+fallback: none
+---
+float4 xtMain(XtInput i)
+{
+    float2 d = i.uv - float2(0.5, 0.5);
+    float r = length(d);
+    float2 off = d * (split * 2.0) * i.texelSize * (0.4 + r * 2.0);
+    float4 c = xtSample(i.uv);
+    float cr = xtSample(i.uv + off).r;
+    float cb = xtSample(i.uv - off).b;
+    float3 rgb = float3(cr, c.g, cb);
+    float v = smoothstep(0.38, 0.92, r * 1.25);
+    rgb = rgb * (1.0 - v * vignette);
+    rgb = rgb * float3(1.0 + warmth, 1.0, 1.0 - warmth);
+    float tick = floor(xtTime * 24.0);
+    float2 px = floor(i.uv * i.layerSize) + float2(tick * 37.0, tick * 91.0);
+    float3 p3 = frac(float3(px.x, px.y, px.x) * 0.1031);
+    float dp = dot(p3, float3(p3.y + 33.33, p3.z + 33.33, p3.x + 33.33));
+    p3 = p3 + float3(dp, dp, dp);
+    float g = frac((p3.x + p3.y) * p3.z) - 0.5;
+    rgb = rgb + float3(g, g, g) * grain;
+    return float4(saturate(rgb), c.a);
+}

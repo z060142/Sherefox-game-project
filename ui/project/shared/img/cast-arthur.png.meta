@@ -1,0 +1,13 @@
+version: 1
+id: 6c7b8784-0bcd-4648-8690-7fb19fa57a86
+type: image
+title: cast-arthur
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/arthur.png
+content: sha256:af12f023673acd59fccbf65164f7788197b8ae84c6986e6566b5a03fe613c9ff
+measured:
+  w: 800
+  h: 1200
+  alpha: true

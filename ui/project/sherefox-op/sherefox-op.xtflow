@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "life",
+      "type": "lifecycle"
+    },
+    {
+      "id": "tl",
+      "type": "timeline",
+      "params": {
+        "name": "op"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "life.shown",
+      "to": "tl.play"
+    },
+    {
+      "from": "life.hidden",
+      "to": "tl.stop"
+    }
+  ]
+}

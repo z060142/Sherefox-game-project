@@ -1,0 +1,13 @@
+version: 1
+id: efef35b7-b5bf-4c4c-b459-31c9f48ee88e
+type: image
+title: opp-countess
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-countess.png
+content: sha256:788b0e57e373bbb919bc67f418c04bc85939231a648faf3fbf33919d0fd1f69a
+measured:
+  w: 667
+  h: 1000
+  alpha: true

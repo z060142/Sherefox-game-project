@@ -1,0 +1,13 @@
+version: 1
+id: 0b12d4e4-b48b-4378-8c43-ac2ad0ef3b0b
+type: image
+title: cast-baskerville
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/baskerville.png
+content: sha256:0224ea062a9d6cbc95600ec9bf253c5953b4bc1f0174dc79548ae518eaf20824
+measured:
+  w: 800
+  h: 1200
+  alpha: true

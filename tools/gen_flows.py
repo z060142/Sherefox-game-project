@@ -624,15 +624,18 @@ def audio_decl() -> dict:
         music[bid] = decl
     for cid in SFX:
         cues[cid] = {"file": f"audio/sfx/{cid}.mp3", "category": "se"}
+    import gen_op   # v3: the opening's music, on its own channel (tools/gen_op.py)
+    music.update(gen_op.audio_music())
     for decl in [*music.values(), *cues.values()]:
         if not (ROOT / decl["file"]).is_file():
             raise FileNotFoundError(f"audio: {decl['file']} is declared but missing")
-    return {"cues": cues, "music": music, "channels": ["bgm"]}
+    return {"cues": cues, "music": music, "channels": ["bgm", gen_op.CHANNEL]}
 
 
+# v3: the opening (tools/gen_op.py) runs first: main (the title's visibility) and music read world.opOn in its tick.
 # debate_ui runs before the engine (its values reach the engine in the same tick, its pulses the next one,
 # docs/debate-engine.md §7.6), result after it.
-FLOW_ORDER = ["main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
+FLOW_ORDER = ["op", "main", "settings", "dialogue", "paper", "investigate", "board", "debate_ui", "debate_engine", "debate_warmup",
               "d01_warmup", "d01_investigate", "d01_debate_ui", "d01_debate_engine", "d01_end", "result", "music"]
 
 
@@ -643,12 +646,13 @@ def game_json_text(tables: dict) -> str:
     import gen_inv_v2
     import gen_warm_v2
     import gen_end_v2
+    import gen_op
     game = json.loads(GAME_JSON.read_text(encoding="utf-8"))
     # the debate engine's interface (tools/gen_debate.py) and the debate UI / result flows' (tools/gen_debui.py);
     # the v2 demo: the D01 engine's (tools/gen_debate_v2.py) and its screen's (tools/gen_debui_v2.py)
     for name, decl in {**SIGNALS, **gen_debate.SIGNALS, **gen_debui.SIGNALS, **gen_debate_v2.SIGNALS,
                        **gen_debui_v2.SIGNALS, **gen_inv_v2.SIGNALS, **gen_warm_v2.SIGNALS,
-                       **gen_end_v2.SIGNALS}.items():
+                       **gen_end_v2.SIGNALS, **gen_op.SIGNALS}.items():
         game["signals"][name] = decl
     colls = game.get("collections", {})
     colls.update(gen_debate.COLLECTIONS)
@@ -674,6 +678,11 @@ def game_json_text(tables: dict) -> str:
             if modal:
                 decl["modal"] = True
             surfaces.insert(at, decl)
+    # v3: the opening's surface and its skip layer (tools/gen_op.py), on top of everything, in that order
+    for decl in gen_op.SURFACES:
+        if not any(s["ui"] == decl["ui"] for s in surfaces):
+            surfaces.append(dict(decl))
+    game["input"]["actions"].update(gen_op.INPUT_ACTIONS)
     for name in [n for n in game["tables"] if n.startswith("flow")]:   # the flow tables are all regenerated
         del game["tables"][name]
     for name in tables:
@@ -999,11 +1008,19 @@ def gen_main() -> Graph:
     g.edge("no.out", "ended.b")
     g.edge("ended.out", "ui#title.ended")
     g.edge("ended.out", "world.endCard")   # the music fades out under the card (docs/flows.md §4.10)
+    # v3: while the opening is up (world.opOn, tools/gen_op.py) the title is hidden; no other screen is on under it
+    # (it plays at the start and from the title)
+    g.n("opOnN", "world.opOn")
     for i, ui in enumerate(screens):
         nid = "vis" + ui.capitalize()
         g.node(nid, "lookup", values=[j == i for j in range(len(screens))])
         g.edge("screen.index", nid + ".index")
-        g.edge(nid + ".out", f"ui#{ui}.visible")
+        if ui == "title":
+            g.n("visTitleN", nid + ".out")
+            g.x("titleShow", "visTitleN && !opOnN")
+            g.edge("titleShow.truth", "ui#title.visible")
+        else:
+            g.edge(nid + ".out", f"ui#{ui}.visible")
 
     # Evidence book overlay (modal): investigate.book opens it during an investigate step, its close button closes
     # it, every step begin closes it. world.bookOpen tells the investigate flow.
@@ -2276,6 +2293,9 @@ def gen_music() -> Graph:
     g.n("cardN", "world.endCard")
     g.x("endOn", "isEndN && cardN")
     cur = g.sel("m_end", "endOn_t", g.k("end"), cur)
+    # v3: the opening (world.opOn, tools/gen_op.py) plays its own music on its own channel; its moment's id (flowBgm
+    # "OP") has no track, so nothing is sent on bgm while it is up
+    cur = g.sel("m_op", "world.opOn", g.k("op"), cur)
     g.n("isDebN", g.cmp("isDebC", "world.stepKind", g.k("debate")))
     g.n("isWarmN", g.cmp("isWarmC", "world.stepKind", g.k("warmup")))
     g.n("isD1DebN", g.cmp("isD1DebC", "world.stepKind", g.k("d1debate")))
@@ -2353,6 +2373,10 @@ def gen_music() -> Graph:
     track = g.latch("bgmTrk", bid, ok)
     g.node("bgmNew", "filter", op="deadband", threshold=0)
     g.edge(track, "bgmNew.in")
+    # v3: the opening starting over the title (world.opOn rising; the op flow stops the title's track) forgets the
+    # last id, so the title's track plays again when it ends
+    g.cmp("opRise", "world.opOn", g.k(True))
+    g.edge("opRise.true", "bgmNew.reset")
     # the fade of the id that passed (a fade sampled with an unchanged id is not used); the merge settles it
     g.latch("bgmFadeA", fade_l, "bgmNew.passed")
     g.latch("bgmSecsA", secs_l, "bgmNew.passed")
@@ -2394,7 +2418,8 @@ def graphs() -> dict:
     import gen_inv_v2  # the v2 demo D01 investigation, evidence list and carry screen
     import gen_warm_v2  # the v2 demo D01 warm-up
     import gen_end_v2  # the v2 demo D01 result screen (4.4)
-    return {"main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
+    import gen_op  # v3: the opening
+    return {"op": gen_op.gen_op, "main": gen_main, "settings": gen_settings, "dialogue": gen_dialogue, "paper": gen_paper, "investigate": gen_investigate,
             "board": gen_board, "debate_ui": gen_debui.gen_debui, "result": gen_debui.gen_result, "music": gen_music,
             "d01_debate_ui": gen_debui_v2.gen_d01ui, "d01_investigate": gen_inv_v2.gen_d01inv,
             "d01_warmup": gen_warm_v2.gen_d01warm, "d01_end": gen_end_v2.gen_d01end}
@@ -2403,6 +2428,8 @@ def graphs() -> dict:
 def outputs() -> dict[Path, str]:
     import gen_debui
     out = {FLOWS / f"{name}.xtflow": fn().text_out() for name, fn in graphs().items()}
+    import gen_op   # v3: the opening's UI flow (it plays the OP's timeline)
+    out[ROOT / gen_op.UI_FLOW] = gen_op.gen_op_ui().text_out()
     import gen_debui_v2
     tables = flow_tables()
     tables.update(gen_debui.tables())

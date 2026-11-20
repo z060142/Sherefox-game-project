@@ -2431,6 +2431,7 @@ UI_V2_TYPE_NOTE,人物筆記
 UI_V2_TYPE_OBS,觀察
 UI_V2_TYPE_PSYCH,心理牌
 UI_V2_WARMUP_PICK,選一條觀察，指出他的錯誤。
+UI_V3_WATCH_OP,觀看片頭
 UI_WARMUP_MISS,失誤 {n}／3
 UI_WARMUP_TITLE,熱身　糾正誤判
 WARN_BOARD_LOCK,進入論戰後，歸類理由將會鎖定，論戰中也不能修改線索板。確定嗎？

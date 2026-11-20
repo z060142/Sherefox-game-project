@@ -1,0 +1,13 @@
+version: 1
+id: 194910d4-f8fd-4638-805e-55a32bd2aeaa
+type: image
+title: reveal-steam
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/steam.png
+content: sha256:36ecbd03bd825fbaaf5f0c93e8d37a2db9a58b25206bf6280ff08b241ad88eae
+measured:
+  w: 600
+  h: 900
+  alpha: true

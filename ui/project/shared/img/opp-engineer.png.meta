@@ -1,0 +1,13 @@
+version: 1
+id: 305fc7c0-c73c-40f5-867b-9e67f8b5aed2
+type: image
+title: opp-engineer
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-engineer.png
+content: sha256:4045c49cfbf578b9f5ab04d8a81fa21e97b0029c266a89371fe282e1886e8f31
+measured:
+  w: 667
+  h: 1000
+  alpha: true

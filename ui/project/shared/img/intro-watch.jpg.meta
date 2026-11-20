@@ -1,0 +1,13 @@
+version: 1
+id: ee10b7f9-1222-46d9-802c-95406220add4
+type: image
+title: intro-watch
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/watch.jpg
+content: sha256:760a5d5a851c7a29f088a53f2719b2366a3c2511d0adea7f18a6e504fa4e671e
+measured:
+  w: 1672
+  h: 941
+  alpha: false

@@ -1,0 +1,13 @@
+version: 1
+id: b3659e9f-7a4d-44fd-89bc-014b058428f2
+type: image
+title: reveal-street
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/street.jpg
+content: sha256:64332dcfa746b5d6cf0e4f960630b42abab5a15b1ddceb5bf56d4f4ccf20293b
+measured:
+  w: 1672
+  h: 941
+  alpha: false

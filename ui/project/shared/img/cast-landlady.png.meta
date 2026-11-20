@@ -1,0 +1,13 @@
+version: 1
+id: 6540b375-01d4-4833-a6b9-1f6a1bbf69a7
+type: image
+title: cast-landlady
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/landlady.png
+content: sha256:35830f236bb39e3ddb1c6139174bf363767f71c9bc8fda1dbd48de4df2f65ec0
+measured:
+  w: 800
+  h: 1200
+  alpha: true

@@ -1,0 +1,14 @@
+version: 1
+id: 724165da-7d4e-415b-ac70-2c2e6a360a31
+type: image
+title: daily-morning
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/d01.jpg
+  at: 2026-11-20T12:36:35Z
+content: sha256:d290400942894bd9001f8de607761a7c687ceb2974c725a5559b3f58342d653c
+measured:
+  w: 1672
+  h: 941
+  alpha: false

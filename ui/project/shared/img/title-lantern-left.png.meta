@@ -1,0 +1,13 @@
+version: 1
+id: a4ecdffb-f7db-4eb1-b3f5-4982f1a38b05
+type: image
+title: title-lantern-left
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/lantern.png
+content: sha256:1d2a6ad1512c0d07dc38a3512064ac4cbb95c42aa14b2c25b78b79905ffc111a
+measured:
+  w: 208
+  h: 452
+  alpha: true

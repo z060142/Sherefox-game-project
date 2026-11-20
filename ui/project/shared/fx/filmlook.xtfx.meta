@@ -1,0 +1,7 @@
+version: 1
+id: d2c687d9-885d-46e5-b0b8-c98d1dfd6124
+type: effect
+status: draft
+source:
+  kind: manual
+content: sha256:4b70e8672ad45819ae5e343d3526484a68eeeeda8cc9fbb0b9c7258658e9ac93

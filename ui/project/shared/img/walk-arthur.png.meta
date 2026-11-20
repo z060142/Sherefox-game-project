@@ -1,0 +1,13 @@
+version: 1
+id: d390a2a3-2222-4367-94eb-9c365641f501
+type: image
+title: walk-arthur
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/walk-arthur.png
+content: sha256:4019d0ecd132d052d15ae2be9f7b95ee343ed4b7f60d0a68b0abe4dd836058ab
+measured:
+  w: 433
+  h: 722
+  alpha: true

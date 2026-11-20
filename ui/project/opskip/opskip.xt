@@ -1,0 +1,28 @@
+<xt version="2">
+  <head>
+    <title>OP skip</title>
+  </head>
+
+  <!-- v3: the skip layer over the opening (sherefox-op). Hand-authored, not board-owned (docs/ui-contracts.md opskip):
+       a transparent full-screen element that holds the focus while the opening plays; any click, Enter, Space or Esc
+       sends `skip`. The opening's own documents stay as the OP project made them. -->
+  <ports>
+    skip: event out
+  </ports>
+
+  <body key-activation="none">
+    <div id="opskip" tabindex="0" autofocus="" on:click(left)="emit(skip)" on:click(right)="emit(skip)" on:click(middle)="emit(skip)" on:key(Enter)="emit(skip)" on:key(Space)="emit(skip)" on:key(Escape)="emit(skip)"/>
+  </body>
+
+  <layout>
+    #opskip {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+  </layout>
+
+  <style src="opskip.xts"/>
+</xt>

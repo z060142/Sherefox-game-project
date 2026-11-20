@@ -1,0 +1,13 @@
+version: 1
+id: bd3ebaac-f739-42ab-94e8-c6242fb49dae
+type: image
+title: opp-stationchief
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-stationchief.png
+content: sha256:bb62ae89ab2a035abce69ada1a110f0e54c8c53ed363056a2df627f468b00568
+measured:
+  w: 667
+  h: 1000
+  alpha: true

@@ -1,0 +1,13 @@
+version: 1
+id: b3f6aaa7-9fe6-4324-a4eb-e5ce30883c9e
+type: image
+title: duel-victor
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/victor.png
+content: sha256:b7f2797b08c2d3cea4516dc4ce126383fe5c39f056d02bac0dc0de06786e3144
+measured:
+  w: 800
+  h: 1200
+  alpha: true

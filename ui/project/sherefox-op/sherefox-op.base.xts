@@ -1,0 +1,55 @@
+/* The OP's shared classes (copied from the OP project's shared/base.xts; scoped to the OP: only sherefox-op.xt links it). */
+
+/* import */
+/* shared by 6 nodes */
+.s-cfd883 {
+  background-color: #000000;
+}
+
+/* import */
+/* shared by 18 nodes */
+.s-765f94 {
+  object-fit: cover;
+}
+
+/* import */
+/* shared by 60 nodes */
+.s-3e111b {
+  object-fit: fill;
+}
+
+/* import */
+/* shared by 2 nodes */
+.s-c987e9 {
+  background-color: #EFE4CC;
+  effect: shadow(0px 20px 40px 0px #00000099);
+}
+
+/* import */
+/* shared by 2 nodes */
+.s-f8703b {
+  background-color: #000000;
+  opacity: 0.6;
+}
+
+/* import */
+/* shared by 9 nodes */
+.s-0c50c3 {
+  background-color: #1A1510;
+  border: 2px #C9A24A;
+}
+
+/* import */
+/* shared by 2 nodes */
+.s-d977b4 {
+  object-fit: fill;
+  opacity: 0.5;
+}
+
+/* import */
+/* shared by 2 nodes */
+.s-80758e {
+  background-color: #000000;
+  opacity: 0.4;
+}
+

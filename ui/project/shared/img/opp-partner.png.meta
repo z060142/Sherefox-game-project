@@ -1,0 +1,13 @@
+version: 1
+id: 5910bd07-9dbd-4a37-b8db-9de14712b44b
+type: image
+title: opp-partner
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-partner.png
+content: sha256:467013ffc1ff9d8323ede1532ab1d7d0dc171a166cd4d105c1d4cbd2839acf8a
+measured:
+  w: 667
+  h: 1000
+  alpha: true

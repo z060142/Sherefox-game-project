@@ -1,0 +1,13 @@
+version: 1
+id: 9aec0f58-782f-47b9-94a9-a73cd96c2d3a
+type: image
+title: stop-clock-ring
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/ring.png
+content: sha256:7a4197cc4b5fc2b1e209cd7ce9badf31c10b91d7c055b40dd00f7e2625610b19
+measured:
+  w: 489
+  h: 504
+  alpha: true

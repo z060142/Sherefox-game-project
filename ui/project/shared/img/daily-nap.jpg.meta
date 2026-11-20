@@ -1,0 +1,13 @@
+version: 1
+id: 8fea4db2-8dfe-4d80-a465-59d6c1ec7845
+type: image
+title: daily-nap
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/d06.jpg
+content: sha256:da1e62ae97eb7dfac8b1ef3b086963a127c428332fe68e79549478551ebc296c
+measured:
+  w: 1672
+  h: 941
+  alpha: false

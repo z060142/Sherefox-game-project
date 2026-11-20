@@ -1,0 +1,13 @@
+version: 1
+id: e8908285-c55a-4dbf-865d-0b2d28534c0a
+type: image
+title: title-logo
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/logo.png
+content: sha256:60c1214b98dae5fc5f872ede6090be312a0d2db60311c1f9d5d7a8e1b6b8f703
+measured:
+  w: 1400
+  h: 467
+  alpha: true

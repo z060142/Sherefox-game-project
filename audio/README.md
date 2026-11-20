@@ -4,6 +4,7 @@
 
 - `bgm/<ID>.mp3`：背景音樂，`audio.music.<ID>`，分類 `bgm`，循環播放。
 - `sfx/<ID>.mp3`：一次性音效，`audio.cues.<ID>`，分類 `se`。
+- `op/op_music.mp3`（v3）：片頭（OP）的音樂，`audio.music.op_music`，分類 `bgm`、不循環，播在自己的通道 `op`（`tools/gen_op.py`；`docs/v3-op.md`）。59.30 秒，與片頭時間軸等長。
 
 檔案是交付的原檔（MP3，未轉檔、未修改）：BGM 44.1 kHz 立體聲，SFX 48 kHz 立體聲（兩個 SFX 檔內含封面圖，miniaudio 解碼正常）。
 

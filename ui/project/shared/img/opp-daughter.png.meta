@@ -1,0 +1,13 @@
+version: 1
+id: b3fbde16-1664-4cf3-a185-ece0c7fb0a1b
+type: image
+title: opp-daughter
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-daughter.png
+content: sha256:ca02f49de427591daff3a41d59c19c4028aca614f465ec7874c22f157944ba1e
+measured:
+  w: 667
+  h: 1000
+  alpha: true

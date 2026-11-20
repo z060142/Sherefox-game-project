@@ -1,0 +1,13 @@
+version: 1
+id: 4fec6239-67df-48d0-b6b8-4faa1fa47d38
+type: image
+title: fx-fog-far
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/fog.png
+content: sha256:7304e26d95f51aa846a994d9221232630bf7b629c8b6d3f12ba8470e2b756b65
+measured:
+  w: 1672
+  h: 941
+  alpha: true

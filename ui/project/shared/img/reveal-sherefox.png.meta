@@ -1,0 +1,13 @@
+version: 1
+id: 48acce06-3809-4034-a9a0-8af0325cc5be
+type: image
+title: reveal-sherefox
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/sherefox.png
+content: sha256:90d375eea2c1a4d7a91ea99d4f0b1b111adbd90c27164b7b55c1198140221968
+measured:
+  w: 800
+  h: 1200
+  alpha: true

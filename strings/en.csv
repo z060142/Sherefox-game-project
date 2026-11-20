@@ -2430,6 +2430,7 @@ UI_V2_TYPE_NOTE,Note
 UI_V2_TYPE_OBS,Observation
 UI_V2_TYPE_PSYCH,Mind Game
 UI_V2_WARMUP_PICK,Pick an observation that shows where he is wrong.
+UI_V3_WATCH_OP,Watch the Opening
 UI_WARMUP_MISS,Mistakes {n}/3
 UI_WARMUP_TITLE,Warm-up: Correct the Misjudgement
 WARN_BOARD_LOCK,"Once the Debate begins, Rationales are locked and the Clue Board can't be edited. Are you sure?"

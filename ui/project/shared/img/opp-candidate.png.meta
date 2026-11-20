@@ -1,0 +1,13 @@
+version: 1
+id: c23634f1-3fed-4414-9889-6af25d7dacc7
+type: image
+title: opp-candidate
+status: draft
+source:
+  kind: import:claude-design
+  ref: /_blob/opp-candidate.png
+content: sha256:14474bb2bab6c4af11fee58e0b16eac8050e0bc4508a198a9b468341b9bfd2e6
+measured:
+  w: 667
+  h: 1000
+  alpha: true

@@ -17,3 +17,4 @@
 | bgm/BGM12.mp3 | BGM12_The_Repaired_Clock.mp3 | provided by the project owner | distribution rights held by the project owner | — | 2026-11-06 | |
 | sfx/SFX_DEB_WIN.mp3 | SFX01_win_Deduction Accepted.mp3 | provided by the project owner | distribution rights held by the project owner | — | 2026-11-06 | |
 | sfx/SFX_DEB_LOSE.mp3 | SFX02_lose_A Brief Descent.mp3 | provided by the project owner | distribution rights held by the project owner | — | 2026-11-06 | |
+| op/op_music.mp3 | The_Pocket_Watch_Deduction.mp3 | provided by the project owner (delivered with the OP project) | distribution rights held by the project owner | — | 2026-11-20 | v3 片頭音樂 |
