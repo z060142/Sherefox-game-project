@@ -6,7 +6,7 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/lantern.png
-content: sha256:1d2a6ad1512c0d07dc38a3512064ac4cbb95c42aa14b2c25b78b79905ffc111a
+content: sha256:e3a27e5c5920ed5428a5692da9f9ed9668d7dc25ade8e5c8aed865deb9de810b
 measured:
   w: 208
   h: 452

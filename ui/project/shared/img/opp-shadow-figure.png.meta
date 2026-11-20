@@ -6,7 +6,8 @@ status: draft
 source:
   kind: import:claude-design
   ref: /_blob/wolf-back.png
-content: sha256:d28adf87a530ad10adfedd43ef9b0bf327613bcfa75c223df8d6c3d2c1471ac6
+  at: 2026-11-20T17:12:53Z
+content: sha256:8f7c3809cf55fc30380fbdd395c4715527a7e9209076e0678f29556c94718e6b
 measured:
   w: 800
   h: 1200
