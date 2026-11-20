@@ -29,5 +29,6 @@
   {"id": "11B", "evidence": "E11", "label": "CLM_D01_11B", "unlock": ""},
   {"id": "12A", "evidence": "E12", "label": "CLM_D01_12A", "unlock": ""},
   {"id": "P1A", "evidence": "P1", "label": "CLM_D01_P1A", "unlock": ""},
-  {"id": "P1B", "evidence": "P1", "label": "CLM_D01_P1B", "unlock": ""}
+  {"id": "P1B", "evidence": "P1", "label": "CLM_D01_P1B", "unlock": ""},
+  {"id": "~", "evidence": "~", "label": "UI_V2_PRIVATE_VIEW_NONE", "unlock": ""}
 ]

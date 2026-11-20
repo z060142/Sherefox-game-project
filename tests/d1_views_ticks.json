@@ -1,0 +1,11729 @@
+{
+"ticks": 14916,
+"views": {
+"E01": "01C",
+"E02": "02C",
+"E03": "03B",
+"E04": "04B",
+"E05": "05B",
+"E06": "06A",
+"E07": "07B",
+"E08": "",
+"E09": "09A",
+"E10": "10B",
+"E11": "11A",
+"E12": "12A",
+"P1": "P1B"
+},
+"checks": [
+{
+"t": 2488,
+"kind": "locs",
+"what": "place tab PARLOR at centre",
+"sel": [
+"PARLOR"
+]
+},
+{
+"t": 2500,
+"kind": "locs",
+"what": "place tab PARLOR at left",
+"sel": [
+"PARLOR"
+]
+},
+{
+"t": 2512,
+"kind": "locs",
+"what": "place tab PARLOR at right",
+"sel": [
+"PARLOR"
+]
+},
+{
+"t": 2524,
+"kind": "locs",
+"what": "place tab PARLOR at top",
+"sel": [
+"PARLOR"
+]
+},
+{
+"t": 2536,
+"kind": "locs",
+"what": "place tab PARLOR at bottom",
+"sel": [
+"PARLOR"
+]
+},
+{
+"t": 2548,
+"kind": "locs",
+"what": "place tab STUDY at centre",
+"sel": [
+"STUDY"
+]
+},
+{
+"t": 2560,
+"kind": "locs",
+"what": "place tab STUDY at left",
+"sel": [
+"STUDY"
+]
+},
+{
+"t": 2572,
+"kind": "locs",
+"what": "place tab STUDY at right",
+"sel": [
+"STUDY"
+]
+},
+{
+"t": 2584,
+"kind": "locs",
+"what": "place tab STUDY at top",
+"sel": [
+"STUDY"
+]
+},
+{
+"t": 2596,
+"kind": "locs",
+"what": "place tab STUDY at bottom",
+"sel": [
+"STUDY"
+]
+},
+{
+"t": 2608,
+"kind": "locs",
+"what": "place tab BASEMENT at centre",
+"sel": [
+"BASEMENT"
+]
+},
+{
+"t": 2620,
+"kind": "locs",
+"what": "place tab BASEMENT at left",
+"sel": [
+"BASEMENT"
+]
+},
+{
+"t": 2632,
+"kind": "locs",
+"what": "place tab BASEMENT at right",
+"sel": [
+"BASEMENT"
+]
+},
+{
+"t": 2644,
+"kind": "locs",
+"what": "place tab BASEMENT at top",
+"sel": [
+"BASEMENT"
+]
+},
+{
+"t": 2656,
+"kind": "locs",
+"what": "place tab BASEMENT at bottom",
+"sel": [
+"BASEMENT"
+]
+},
+{
+"t": 2668,
+"kind": "locs",
+"what": "place tab ATTIC at centre",
+"sel": [
+"ATTIC"
+]
+},
+{
+"t": 2680,
+"kind": "locs",
+"what": "place tab ATTIC at left",
+"sel": [
+"ATTIC"
+]
+},
+{
+"t": 2692,
+"kind": "locs",
+"what": "place tab ATTIC at right",
+"sel": [
+"ATTIC"
+]
+},
+{
+"t": 2704,
+"kind": "locs",
+"what": "place tab ATTIC at top",
+"sel": [
+"ATTIC"
+]
+},
+{
+"t": 2716,
+"kind": "locs",
+"what": "place tab ATTIC at bottom",
+"sel": [
+"ATTIC"
+]
+},
+{
+"t": 2728,
+"kind": "locs",
+"what": "place tab BEDROOM at centre",
+"sel": [
+"BEDROOM"
+]
+},
+{
+"t": 2740,
+"kind": "locs",
+"what": "place tab BEDROOM at left",
+"sel": [
+"BEDROOM"
+]
+},
+{
+"t": 2752,
+"kind": "locs",
+"what": "place tab BEDROOM at right",
+"sel": [
+"BEDROOM"
+]
+},
+{
+"t": 2764,
+"kind": "locs",
+"what": "place tab BEDROOM at top",
+"sel": [
+"BEDROOM"
+]
+},
+{
+"t": 2776,
+"kind": "locs",
+"what": "place tab BEDROOM at bottom",
+"sel": [
+"BEDROOM"
+]
+},
+{
+"t": 2788,
+"kind": "locs",
+"what": "place tab HALL at centre",
+"sel": [
+"HALL"
+]
+},
+{
+"t": 2800,
+"kind": "locs",
+"what": "place tab HALL at left",
+"sel": [
+"HALL"
+]
+},
+{
+"t": 2812,
+"kind": "locs",
+"what": "place tab HALL at right",
+"sel": [
+"HALL"
+]
+},
+{
+"t": 2824,
+"kind": "locs",
+"what": "place tab HALL at top",
+"sel": [
+"HALL"
+]
+},
+{
+"t": 2836,
+"kind": "locs",
+"what": "place tab HALL at bottom",
+"sel": [
+"HALL"
+]
+},
+{
+"t": 2910,
+"kind": "cards",
+"what": "entry E01 at centre",
+"sel": [
+"E01"
+]
+},
+{
+"t": 2910,
+"kind": "opts",
+"what": "entry E01 at centre",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 2922,
+"kind": "cards",
+"what": "entry E01 at left",
+"sel": [
+"E01"
+]
+},
+{
+"t": 2922,
+"kind": "opts",
+"what": "entry E01 at left",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 2934,
+"kind": "cards",
+"what": "entry E01 at right",
+"sel": [
+"E01"
+]
+},
+{
+"t": 2934,
+"kind": "opts",
+"what": "entry E01 at right",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 2946,
+"kind": "cards",
+"what": "entry E01 at top",
+"sel": [
+"E01"
+]
+},
+{
+"t": 2946,
+"kind": "opts",
+"what": "entry E01 at top",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 2958,
+"kind": "cards",
+"what": "entry E01 at bottom",
+"sel": [
+"E01"
+]
+},
+{
+"t": 2958,
+"kind": "opts",
+"what": "entry E01 at bottom",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 2970,
+"kind": "cards",
+"what": "entry E02 at centre",
+"sel": [
+"E02"
+]
+},
+{
+"t": 2970,
+"kind": "opts",
+"what": "entry E02 at centre",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 2982,
+"kind": "cards",
+"what": "entry E02 at left",
+"sel": [
+"E02"
+]
+},
+{
+"t": 2982,
+"kind": "opts",
+"what": "entry E02 at left",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 2994,
+"kind": "cards",
+"what": "entry E02 at right",
+"sel": [
+"E02"
+]
+},
+{
+"t": 2994,
+"kind": "opts",
+"what": "entry E02 at right",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3006,
+"kind": "cards",
+"what": "entry E02 at top",
+"sel": [
+"E02"
+]
+},
+{
+"t": 3006,
+"kind": "opts",
+"what": "entry E02 at top",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3018,
+"kind": "cards",
+"what": "entry E02 at bottom",
+"sel": [
+"E02"
+]
+},
+{
+"t": 3018,
+"kind": "opts",
+"what": "entry E02 at bottom",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3030,
+"kind": "cards",
+"what": "entry E03 at centre",
+"sel": [
+"E03"
+]
+},
+{
+"t": 3030,
+"kind": "opts",
+"what": "entry E03 at centre",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 3042,
+"kind": "cards",
+"what": "entry E03 at left",
+"sel": [
+"E03"
+]
+},
+{
+"t": 3042,
+"kind": "opts",
+"what": "entry E03 at left",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 3054,
+"kind": "cards",
+"what": "entry E03 at right",
+"sel": [
+"E03"
+]
+},
+{
+"t": 3054,
+"kind": "opts",
+"what": "entry E03 at right",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 3066,
+"kind": "cards",
+"what": "entry E03 at top",
+"sel": [
+"E03"
+]
+},
+{
+"t": 3066,
+"kind": "opts",
+"what": "entry E03 at top",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 3078,
+"kind": "cards",
+"what": "entry E03 at bottom",
+"sel": [
+"E03"
+]
+},
+{
+"t": 3078,
+"kind": "opts",
+"what": "entry E03 at bottom",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 3090,
+"kind": "cards",
+"what": "entry E04 at centre",
+"sel": [
+"E04"
+]
+},
+{
+"t": 3090,
+"kind": "opts",
+"what": "entry E04 at centre",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 3102,
+"kind": "cards",
+"what": "entry E04 at left",
+"sel": [
+"E04"
+]
+},
+{
+"t": 3102,
+"kind": "opts",
+"what": "entry E04 at left",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 3114,
+"kind": "cards",
+"what": "entry E04 at right",
+"sel": [
+"E04"
+]
+},
+{
+"t": 3114,
+"kind": "opts",
+"what": "entry E04 at right",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 3126,
+"kind": "cards",
+"what": "entry E04 at top",
+"sel": [
+"E04"
+]
+},
+{
+"t": 3126,
+"kind": "opts",
+"what": "entry E04 at top",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 3138,
+"kind": "cards",
+"what": "entry E04 at bottom",
+"sel": [
+"E04"
+]
+},
+{
+"t": 3138,
+"kind": "opts",
+"what": "entry E04 at bottom",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 3150,
+"kind": "cards",
+"what": "entry E05 at centre",
+"sel": [
+"E05"
+]
+},
+{
+"t": 3150,
+"kind": "opts",
+"what": "entry E05 at centre",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 3162,
+"kind": "cards",
+"what": "entry E05 at left",
+"sel": [
+"E05"
+]
+},
+{
+"t": 3162,
+"kind": "opts",
+"what": "entry E05 at left",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 3174,
+"kind": "cards",
+"what": "entry E05 at right",
+"sel": [
+"E05"
+]
+},
+{
+"t": 3174,
+"kind": "opts",
+"what": "entry E05 at right",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 3186,
+"kind": "cards",
+"what": "entry E05 at top",
+"sel": [
+"E05"
+]
+},
+{
+"t": 3186,
+"kind": "opts",
+"what": "entry E05 at top",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 3198,
+"kind": "cards",
+"what": "entry E05 at bottom",
+"sel": [
+"E05"
+]
+},
+{
+"t": 3198,
+"kind": "opts",
+"what": "entry E05 at bottom",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 3210,
+"kind": "cards",
+"what": "entry E06 at centre",
+"sel": [
+"E06"
+]
+},
+{
+"t": 3210,
+"kind": "opts",
+"what": "entry E06 at centre",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 3222,
+"kind": "cards",
+"what": "entry E06 at left",
+"sel": [
+"E06"
+]
+},
+{
+"t": 3222,
+"kind": "opts",
+"what": "entry E06 at left",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 3234,
+"kind": "cards",
+"what": "entry E06 at right",
+"sel": [
+"E06"
+]
+},
+{
+"t": 3234,
+"kind": "opts",
+"what": "entry E06 at right",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 3246,
+"kind": "cards",
+"what": "entry E06 at top",
+"sel": [
+"E06"
+]
+},
+{
+"t": 3246,
+"kind": "opts",
+"what": "entry E06 at top",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 3258,
+"kind": "cards",
+"what": "entry E06 at bottom",
+"sel": [
+"E06"
+]
+},
+{
+"t": 3258,
+"kind": "opts",
+"what": "entry E06 at bottom",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 3270,
+"kind": "cards",
+"what": "entry E07 at centre",
+"sel": [
+"E07"
+]
+},
+{
+"t": 3270,
+"kind": "opts",
+"what": "entry E07 at centre",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 3282,
+"kind": "cards",
+"what": "entry E07 at left",
+"sel": [
+"E07"
+]
+},
+{
+"t": 3282,
+"kind": "opts",
+"what": "entry E07 at left",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 3294,
+"kind": "cards",
+"what": "entry E07 at right",
+"sel": [
+"E07"
+]
+},
+{
+"t": 3294,
+"kind": "opts",
+"what": "entry E07 at right",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 3306,
+"kind": "cards",
+"what": "entry E07 at top",
+"sel": [
+"E07"
+]
+},
+{
+"t": 3306,
+"kind": "opts",
+"what": "entry E07 at top",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 3318,
+"kind": "cards",
+"what": "entry E07 at bottom",
+"sel": [
+"E07"
+]
+},
+{
+"t": 3318,
+"kind": "opts",
+"what": "entry E07 at bottom",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 3330,
+"kind": "cards",
+"what": "entry E08 at centre",
+"sel": [
+"E08"
+]
+},
+{
+"t": 3330,
+"kind": "opts",
+"what": "entry E08 at centre",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 3342,
+"kind": "cards",
+"what": "entry E08 at left",
+"sel": [
+"E08"
+]
+},
+{
+"t": 3342,
+"kind": "opts",
+"what": "entry E08 at left",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 3354,
+"kind": "cards",
+"what": "entry E08 at right",
+"sel": [
+"E08"
+]
+},
+{
+"t": 3354,
+"kind": "opts",
+"what": "entry E08 at right",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 3366,
+"kind": "cards",
+"what": "entry E08 at top",
+"sel": [
+"E08"
+]
+},
+{
+"t": 3366,
+"kind": "opts",
+"what": "entry E08 at top",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 3378,
+"kind": "cards",
+"what": "entry E08 at bottom",
+"sel": [
+"E08"
+]
+},
+{
+"t": 3378,
+"kind": "opts",
+"what": "entry E08 at bottom",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 3390,
+"kind": "cards",
+"what": "entry E09 at centre",
+"sel": [
+"E09"
+]
+},
+{
+"t": 3390,
+"kind": "opts",
+"what": "entry E09 at centre",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 3402,
+"kind": "cards",
+"what": "entry E09 at left",
+"sel": [
+"E09"
+]
+},
+{
+"t": 3402,
+"kind": "opts",
+"what": "entry E09 at left",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 3414,
+"kind": "cards",
+"what": "entry E09 at right",
+"sel": [
+"E09"
+]
+},
+{
+"t": 3414,
+"kind": "opts",
+"what": "entry E09 at right",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 3426,
+"kind": "cards",
+"what": "entry E09 at top",
+"sel": [
+"E09"
+]
+},
+{
+"t": 3426,
+"kind": "opts",
+"what": "entry E09 at top",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 3438,
+"kind": "cards",
+"what": "entry E09 at bottom",
+"sel": [
+"E09"
+]
+},
+{
+"t": 3438,
+"kind": "opts",
+"what": "entry E09 at bottom",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 3450,
+"kind": "cards",
+"what": "entry E10 at centre",
+"sel": [
+"E10"
+]
+},
+{
+"t": 3450,
+"kind": "opts",
+"what": "entry E10 at centre",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 3462,
+"kind": "cards",
+"what": "entry E10 at left",
+"sel": [
+"E10"
+]
+},
+{
+"t": 3462,
+"kind": "opts",
+"what": "entry E10 at left",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 3474,
+"kind": "cards",
+"what": "entry E10 at right",
+"sel": [
+"E10"
+]
+},
+{
+"t": 3474,
+"kind": "opts",
+"what": "entry E10 at right",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 3486,
+"kind": "cards",
+"what": "entry E10 at top",
+"sel": [
+"E10"
+]
+},
+{
+"t": 3486,
+"kind": "opts",
+"what": "entry E10 at top",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 3498,
+"kind": "cards",
+"what": "entry E10 at bottom",
+"sel": [
+"E10"
+]
+},
+{
+"t": 3498,
+"kind": "opts",
+"what": "entry E10 at bottom",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 3510,
+"kind": "cards",
+"what": "entry E11 at centre",
+"sel": [
+"E11"
+]
+},
+{
+"t": 3510,
+"kind": "opts",
+"what": "entry E11 at centre",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 3522,
+"kind": "cards",
+"what": "entry E11 at left",
+"sel": [
+"E11"
+]
+},
+{
+"t": 3522,
+"kind": "opts",
+"what": "entry E11 at left",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 3534,
+"kind": "cards",
+"what": "entry E11 at right",
+"sel": [
+"E11"
+]
+},
+{
+"t": 3534,
+"kind": "opts",
+"what": "entry E11 at right",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 3546,
+"kind": "cards",
+"what": "entry E11 at top",
+"sel": [
+"E11"
+]
+},
+{
+"t": 3546,
+"kind": "opts",
+"what": "entry E11 at top",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 3558,
+"kind": "cards",
+"what": "entry E11 at bottom",
+"sel": [
+"E11"
+]
+},
+{
+"t": 3558,
+"kind": "opts",
+"what": "entry E11 at bottom",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 3570,
+"kind": "cards",
+"what": "entry E12 at centre",
+"sel": [
+"E12"
+]
+},
+{
+"t": 3570,
+"kind": "opts",
+"what": "entry E12 at centre",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 3582,
+"kind": "cards",
+"what": "entry E12 at left",
+"sel": [
+"E12"
+]
+},
+{
+"t": 3582,
+"kind": "opts",
+"what": "entry E12 at left",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 3594,
+"kind": "cards",
+"what": "entry E12 at right",
+"sel": [
+"E12"
+]
+},
+{
+"t": 3594,
+"kind": "opts",
+"what": "entry E12 at right",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 3606,
+"kind": "cards",
+"what": "entry E12 at top",
+"sel": [
+"E12"
+]
+},
+{
+"t": 3606,
+"kind": "opts",
+"what": "entry E12 at top",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 3618,
+"kind": "cards",
+"what": "entry E12 at bottom",
+"sel": [
+"E12"
+]
+},
+{
+"t": 3618,
+"kind": "opts",
+"what": "entry E12 at bottom",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 3630,
+"kind": "cards",
+"what": "entry P1 at centre",
+"sel": [
+"P1"
+]
+},
+{
+"t": 3630,
+"kind": "opts",
+"what": "entry P1 at centre",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 3642,
+"kind": "cards",
+"what": "entry P1 at left",
+"sel": [
+"P1"
+]
+},
+{
+"t": 3642,
+"kind": "opts",
+"what": "entry P1 at left",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 3654,
+"kind": "cards",
+"what": "entry P1 at right",
+"sel": [
+"P1"
+]
+},
+{
+"t": 3654,
+"kind": "opts",
+"what": "entry P1 at right",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 3666,
+"kind": "cards",
+"what": "entry P1 at top",
+"sel": [
+"P1"
+]
+},
+{
+"t": 3666,
+"kind": "opts",
+"what": "entry P1 at top",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 3678,
+"kind": "cards",
+"what": "entry P1 at bottom",
+"sel": [
+"P1"
+]
+},
+{
+"t": 3678,
+"kind": "opts",
+"what": "entry P1 at bottom",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 3690,
+"kind": "cards",
+"what": "entry E01",
+"sel": [
+"E01"
+]
+},
+{
+"t": 3690,
+"kind": "opts",
+"what": "entry E01",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3700,
+"kind": "opts",
+"what": "E01 row 0 (-) at centre",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3710,
+"kind": "opts",
+"what": "E01 row 0 (-) at left",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3720,
+"kind": "opts",
+"what": "E01 row 0 (-) at right",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3730,
+"kind": "opts",
+"what": "E01 row 0 (-) at top",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3740,
+"kind": "opts",
+"what": "E01 row 0 (-) at bottom",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 3750,
+"kind": "opts",
+"what": "E01 row 1 (01B) at centre",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 3760,
+"kind": "opts",
+"what": "E01 row 1 (01B) at left",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 3770,
+"kind": "opts",
+"what": "E01 row 1 (01B) at right",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 3780,
+"kind": "opts",
+"what": "E01 row 1 (01B) at top",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 3790,
+"kind": "opts",
+"what": "E01 row 1 (01B) at bottom",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 3800,
+"kind": "opts",
+"what": "E01 row 2 (01D) at centre",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 3810,
+"kind": "opts",
+"what": "E01 row 2 (01D) at left",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 3820,
+"kind": "opts",
+"what": "E01 row 2 (01D) at right",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 3830,
+"kind": "opts",
+"what": "E01 row 2 (01D) at top",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 3840,
+"kind": "opts",
+"what": "E01 row 2 (01D) at bottom",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 3852,
+"kind": "cards",
+"what": "entry E02",
+"sel": [
+"E02"
+]
+},
+{
+"t": 3852,
+"kind": "opts",
+"what": "entry E02",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3862,
+"kind": "opts",
+"what": "E02 row 0 (-) at centre",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3872,
+"kind": "opts",
+"what": "E02 row 0 (-) at left",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3882,
+"kind": "opts",
+"what": "E02 row 0 (-) at right",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3892,
+"kind": "opts",
+"what": "E02 row 0 (-) at top",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3902,
+"kind": "opts",
+"what": "E02 row 0 (-) at bottom",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"-"
+],
+"card": "E02"
+},
+{
+"t": 3912,
+"kind": "opts",
+"what": "E02 row 1 (02B) at centre",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02B"
+],
+"card": "E02"
+},
+{
+"t": 3922,
+"kind": "opts",
+"what": "E02 row 1 (02B) at left",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02B"
+],
+"card": "E02"
+},
+{
+"t": 3932,
+"kind": "opts",
+"what": "E02 row 1 (02B) at right",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02B"
+],
+"card": "E02"
+},
+{
+"t": 3942,
+"kind": "opts",
+"what": "E02 row 1 (02B) at top",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02B"
+],
+"card": "E02"
+},
+{
+"t": 3952,
+"kind": "opts",
+"what": "E02 row 1 (02B) at bottom",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02B"
+],
+"card": "E02"
+},
+{
+"t": 3962,
+"kind": "opts",
+"what": "E02 row 2 (02C) at centre",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 3972,
+"kind": "opts",
+"what": "E02 row 2 (02C) at left",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 3982,
+"kind": "opts",
+"what": "E02 row 2 (02C) at right",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 3992,
+"kind": "opts",
+"what": "E02 row 2 (02C) at top",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 4002,
+"kind": "opts",
+"what": "E02 row 2 (02C) at bottom",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 4014,
+"kind": "cards",
+"what": "entry E03",
+"sel": [
+"E03"
+]
+},
+{
+"t": 4014,
+"kind": "opts",
+"what": "entry E03",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4024,
+"kind": "opts",
+"what": "E03 row 0 (-) at centre",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4034,
+"kind": "opts",
+"what": "E03 row 0 (-) at left",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4044,
+"kind": "opts",
+"what": "E03 row 0 (-) at right",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4054,
+"kind": "opts",
+"what": "E03 row 0 (-) at top",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4064,
+"kind": "opts",
+"what": "E03 row 0 (-) at bottom",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"-"
+],
+"card": "E03"
+},
+{
+"t": 4074,
+"kind": "opts",
+"what": "E03 row 1 (03A) at centre",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03A"
+],
+"card": "E03"
+},
+{
+"t": 4084,
+"kind": "opts",
+"what": "E03 row 1 (03A) at left",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03A"
+],
+"card": "E03"
+},
+{
+"t": 4094,
+"kind": "opts",
+"what": "E03 row 1 (03A) at right",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03A"
+],
+"card": "E03"
+},
+{
+"t": 4104,
+"kind": "opts",
+"what": "E03 row 1 (03A) at top",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03A"
+],
+"card": "E03"
+},
+{
+"t": 4114,
+"kind": "opts",
+"what": "E03 row 1 (03A) at bottom",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03A"
+],
+"card": "E03"
+},
+{
+"t": 4124,
+"kind": "opts",
+"what": "E03 row 2 (03B) at centre",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 4134,
+"kind": "opts",
+"what": "E03 row 2 (03B) at left",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 4144,
+"kind": "opts",
+"what": "E03 row 2 (03B) at right",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 4154,
+"kind": "opts",
+"what": "E03 row 2 (03B) at top",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 4164,
+"kind": "opts",
+"what": "E03 row 2 (03B) at bottom",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 4176,
+"kind": "cards",
+"what": "entry E04",
+"sel": [
+"E04"
+]
+},
+{
+"t": 4176,
+"kind": "opts",
+"what": "entry E04",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4186,
+"kind": "opts",
+"what": "E04 row 0 (-) at centre",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4196,
+"kind": "opts",
+"what": "E04 row 0 (-) at left",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4206,
+"kind": "opts",
+"what": "E04 row 0 (-) at right",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4216,
+"kind": "opts",
+"what": "E04 row 0 (-) at top",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4226,
+"kind": "opts",
+"what": "E04 row 0 (-) at bottom",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 4236,
+"kind": "opts",
+"what": "E04 row 1 (04A) at centre",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 4246,
+"kind": "opts",
+"what": "E04 row 1 (04A) at left",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 4256,
+"kind": "opts",
+"what": "E04 row 1 (04A) at right",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 4266,
+"kind": "opts",
+"what": "E04 row 1 (04A) at top",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 4276,
+"kind": "opts",
+"what": "E04 row 1 (04A) at bottom",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 4286,
+"kind": "opts",
+"what": "E04 row 2 (04C) at centre",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 4296,
+"kind": "opts",
+"what": "E04 row 2 (04C) at left",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 4306,
+"kind": "opts",
+"what": "E04 row 2 (04C) at right",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 4316,
+"kind": "opts",
+"what": "E04 row 2 (04C) at top",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 4326,
+"kind": "opts",
+"what": "E04 row 2 (04C) at bottom",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 4338,
+"kind": "cards",
+"what": "entry E05",
+"sel": [
+"E05"
+]
+},
+{
+"t": 4338,
+"kind": "opts",
+"what": "entry E05",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4348,
+"kind": "opts",
+"what": "E05 row 0 (-) at centre",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4358,
+"kind": "opts",
+"what": "E05 row 0 (-) at left",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4368,
+"kind": "opts",
+"what": "E05 row 0 (-) at right",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4378,
+"kind": "opts",
+"what": "E05 row 0 (-) at top",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4388,
+"kind": "opts",
+"what": "E05 row 0 (-) at bottom",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"-"
+],
+"card": "E05"
+},
+{
+"t": 4398,
+"kind": "opts",
+"what": "E05 row 1 (05A) at centre",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05A"
+],
+"card": "E05"
+},
+{
+"t": 4408,
+"kind": "opts",
+"what": "E05 row 1 (05A) at left",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05A"
+],
+"card": "E05"
+},
+{
+"t": 4418,
+"kind": "opts",
+"what": "E05 row 1 (05A) at right",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05A"
+],
+"card": "E05"
+},
+{
+"t": 4428,
+"kind": "opts",
+"what": "E05 row 1 (05A) at top",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05A"
+],
+"card": "E05"
+},
+{
+"t": 4438,
+"kind": "opts",
+"what": "E05 row 1 (05A) at bottom",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05A"
+],
+"card": "E05"
+},
+{
+"t": 4448,
+"kind": "opts",
+"what": "E05 row 2 (05B) at centre",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 4458,
+"kind": "opts",
+"what": "E05 row 2 (05B) at left",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 4468,
+"kind": "opts",
+"what": "E05 row 2 (05B) at right",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 4478,
+"kind": "opts",
+"what": "E05 row 2 (05B) at top",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 4488,
+"kind": "opts",
+"what": "E05 row 2 (05B) at bottom",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 4500,
+"kind": "cards",
+"what": "entry E06",
+"sel": [
+"E06"
+]
+},
+{
+"t": 4500,
+"kind": "opts",
+"what": "entry E06",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4510,
+"kind": "opts",
+"what": "E06 row 0 (-) at centre",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4520,
+"kind": "opts",
+"what": "E06 row 0 (-) at left",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4530,
+"kind": "opts",
+"what": "E06 row 0 (-) at right",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4540,
+"kind": "opts",
+"what": "E06 row 0 (-) at top",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4550,
+"kind": "opts",
+"what": "E06 row 0 (-) at bottom",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"-"
+],
+"card": "E06"
+},
+{
+"t": 4560,
+"kind": "opts",
+"what": "E06 row 1 (06A) at centre",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 4570,
+"kind": "opts",
+"what": "E06 row 1 (06A) at left",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 4580,
+"kind": "opts",
+"what": "E06 row 1 (06A) at right",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 4590,
+"kind": "opts",
+"what": "E06 row 1 (06A) at top",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 4600,
+"kind": "opts",
+"what": "E06 row 1 (06A) at bottom",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 4610,
+"kind": "opts",
+"what": "E06 row 2 (06B) at centre",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06B"
+],
+"card": "E06"
+},
+{
+"t": 4620,
+"kind": "opts",
+"what": "E06 row 2 (06B) at left",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06B"
+],
+"card": "E06"
+},
+{
+"t": 4630,
+"kind": "opts",
+"what": "E06 row 2 (06B) at right",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06B"
+],
+"card": "E06"
+},
+{
+"t": 4640,
+"kind": "opts",
+"what": "E06 row 2 (06B) at top",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06B"
+],
+"card": "E06"
+},
+{
+"t": 4650,
+"kind": "opts",
+"what": "E06 row 2 (06B) at bottom",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06B"
+],
+"card": "E06"
+},
+{
+"t": 4660,
+"kind": "opts",
+"what": "E06 row 3 (06C) at centre",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 4670,
+"kind": "opts",
+"what": "E06 row 3 (06C) at left",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 4680,
+"kind": "opts",
+"what": "E06 row 3 (06C) at right",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 4690,
+"kind": "opts",
+"what": "E06 row 3 (06C) at top",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 4700,
+"kind": "opts",
+"what": "E06 row 3 (06C) at bottom",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 4712,
+"kind": "cards",
+"what": "entry E07",
+"sel": [
+"E07"
+]
+},
+{
+"t": 4712,
+"kind": "opts",
+"what": "entry E07",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4722,
+"kind": "opts",
+"what": "E07 row 0 (-) at centre",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4732,
+"kind": "opts",
+"what": "E07 row 0 (-) at left",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4742,
+"kind": "opts",
+"what": "E07 row 0 (-) at right",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4752,
+"kind": "opts",
+"what": "E07 row 0 (-) at top",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4762,
+"kind": "opts",
+"what": "E07 row 0 (-) at bottom",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"-"
+],
+"card": "E07"
+},
+{
+"t": 4772,
+"kind": "opts",
+"what": "E07 row 1 (07A) at centre",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07A"
+],
+"card": "E07"
+},
+{
+"t": 4782,
+"kind": "opts",
+"what": "E07 row 1 (07A) at left",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07A"
+],
+"card": "E07"
+},
+{
+"t": 4792,
+"kind": "opts",
+"what": "E07 row 1 (07A) at right",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07A"
+],
+"card": "E07"
+},
+{
+"t": 4802,
+"kind": "opts",
+"what": "E07 row 1 (07A) at top",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07A"
+],
+"card": "E07"
+},
+{
+"t": 4812,
+"kind": "opts",
+"what": "E07 row 1 (07A) at bottom",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07A"
+],
+"card": "E07"
+},
+{
+"t": 4822,
+"kind": "opts",
+"what": "E07 row 2 (07B) at centre",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 4832,
+"kind": "opts",
+"what": "E07 row 2 (07B) at left",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 4842,
+"kind": "opts",
+"what": "E07 row 2 (07B) at right",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 4852,
+"kind": "opts",
+"what": "E07 row 2 (07B) at top",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 4862,
+"kind": "opts",
+"what": "E07 row 2 (07B) at bottom",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 4874,
+"kind": "cards",
+"what": "entry E08",
+"sel": [
+"E08"
+]
+},
+{
+"t": 4874,
+"kind": "opts",
+"what": "entry E08",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4884,
+"kind": "opts",
+"what": "E08 row 0 (-) at centre",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4894,
+"kind": "opts",
+"what": "E08 row 0 (-) at left",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4904,
+"kind": "opts",
+"what": "E08 row 0 (-) at right",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4914,
+"kind": "opts",
+"what": "E08 row 0 (-) at top",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4924,
+"kind": "opts",
+"what": "E08 row 0 (-) at bottom",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 4934,
+"kind": "opts",
+"what": "E08 row 1 (08A) at centre",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 4944,
+"kind": "opts",
+"what": "E08 row 1 (08A) at left",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 4954,
+"kind": "opts",
+"what": "E08 row 1 (08A) at right",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 4964,
+"kind": "opts",
+"what": "E08 row 1 (08A) at top",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 4974,
+"kind": "opts",
+"what": "E08 row 1 (08A) at bottom",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 4984,
+"kind": "opts",
+"what": "E08 row 2 (08B) at centre",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 4994,
+"kind": "opts",
+"what": "E08 row 2 (08B) at left",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 5004,
+"kind": "opts",
+"what": "E08 row 2 (08B) at right",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 5014,
+"kind": "opts",
+"what": "E08 row 2 (08B) at top",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 5024,
+"kind": "opts",
+"what": "E08 row 2 (08B) at bottom",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 5036,
+"kind": "cards",
+"what": "entry E09",
+"sel": [
+"E09"
+]
+},
+{
+"t": 5036,
+"kind": "opts",
+"what": "entry E09",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5046,
+"kind": "opts",
+"what": "E09 row 0 (-) at centre",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5056,
+"kind": "opts",
+"what": "E09 row 0 (-) at left",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5066,
+"kind": "opts",
+"what": "E09 row 0 (-) at right",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5076,
+"kind": "opts",
+"what": "E09 row 0 (-) at top",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5086,
+"kind": "opts",
+"what": "E09 row 0 (-) at bottom",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"-"
+],
+"card": "E09"
+},
+{
+"t": 5096,
+"kind": "opts",
+"what": "E09 row 1 (09A) at centre",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5106,
+"kind": "opts",
+"what": "E09 row 1 (09A) at left",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5116,
+"kind": "opts",
+"what": "E09 row 1 (09A) at right",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5126,
+"kind": "opts",
+"what": "E09 row 1 (09A) at top",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5136,
+"kind": "opts",
+"what": "E09 row 1 (09A) at bottom",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5146,
+"kind": "opts",
+"what": "E09 row 2 (09B) at centre",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5156,
+"kind": "opts",
+"what": "E09 row 2 (09B) at left",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5166,
+"kind": "opts",
+"what": "E09 row 2 (09B) at right",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5176,
+"kind": "opts",
+"what": "E09 row 2 (09B) at top",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5186,
+"kind": "opts",
+"what": "E09 row 2 (09B) at bottom",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5198,
+"kind": "cards",
+"what": "entry E10",
+"sel": [
+"E10"
+]
+},
+{
+"t": 5198,
+"kind": "opts",
+"what": "entry E10",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5208,
+"kind": "opts",
+"what": "E10 row 0 (-) at centre",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5218,
+"kind": "opts",
+"what": "E10 row 0 (-) at left",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5228,
+"kind": "opts",
+"what": "E10 row 0 (-) at right",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5238,
+"kind": "opts",
+"what": "E10 row 0 (-) at top",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5248,
+"kind": "opts",
+"what": "E10 row 0 (-) at bottom",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"-"
+],
+"card": "E10"
+},
+{
+"t": 5258,
+"kind": "opts",
+"what": "E10 row 1 (10A) at centre",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10A"
+],
+"card": "E10"
+},
+{
+"t": 5268,
+"kind": "opts",
+"what": "E10 row 1 (10A) at left",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10A"
+],
+"card": "E10"
+},
+{
+"t": 5278,
+"kind": "opts",
+"what": "E10 row 1 (10A) at right",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10A"
+],
+"card": "E10"
+},
+{
+"t": 5288,
+"kind": "opts",
+"what": "E10 row 1 (10A) at top",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10A"
+],
+"card": "E10"
+},
+{
+"t": 5298,
+"kind": "opts",
+"what": "E10 row 1 (10A) at bottom",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10A"
+],
+"card": "E10"
+},
+{
+"t": 5308,
+"kind": "opts",
+"what": "E10 row 2 (10B) at centre",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 5318,
+"kind": "opts",
+"what": "E10 row 2 (10B) at left",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 5328,
+"kind": "opts",
+"what": "E10 row 2 (10B) at right",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 5338,
+"kind": "opts",
+"what": "E10 row 2 (10B) at top",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 5348,
+"kind": "opts",
+"what": "E10 row 2 (10B) at bottom",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 5360,
+"kind": "cards",
+"what": "entry E11",
+"sel": [
+"E11"
+]
+},
+{
+"t": 5360,
+"kind": "opts",
+"what": "entry E11",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5370,
+"kind": "opts",
+"what": "E11 row 0 (-) at centre",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5380,
+"kind": "opts",
+"what": "E11 row 0 (-) at left",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5390,
+"kind": "opts",
+"what": "E11 row 0 (-) at right",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5400,
+"kind": "opts",
+"what": "E11 row 0 (-) at top",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5410,
+"kind": "opts",
+"what": "E11 row 0 (-) at bottom",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"-"
+],
+"card": "E11"
+},
+{
+"t": 5420,
+"kind": "opts",
+"what": "E11 row 1 (11A) at centre",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 5430,
+"kind": "opts",
+"what": "E11 row 1 (11A) at left",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 5440,
+"kind": "opts",
+"what": "E11 row 1 (11A) at right",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 5450,
+"kind": "opts",
+"what": "E11 row 1 (11A) at top",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 5460,
+"kind": "opts",
+"what": "E11 row 1 (11A) at bottom",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 5470,
+"kind": "opts",
+"what": "E11 row 2 (11B) at centre",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 5480,
+"kind": "opts",
+"what": "E11 row 2 (11B) at left",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 5490,
+"kind": "opts",
+"what": "E11 row 2 (11B) at right",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 5500,
+"kind": "opts",
+"what": "E11 row 2 (11B) at top",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 5510,
+"kind": "opts",
+"what": "E11 row 2 (11B) at bottom",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 5522,
+"kind": "cards",
+"what": "entry E12",
+"sel": [
+"E12"
+]
+},
+{
+"t": 5522,
+"kind": "opts",
+"what": "entry E12",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5532,
+"kind": "opts",
+"what": "E12 row 0 (-) at centre",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5542,
+"kind": "opts",
+"what": "E12 row 0 (-) at left",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5552,
+"kind": "opts",
+"what": "E12 row 0 (-) at right",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5562,
+"kind": "opts",
+"what": "E12 row 0 (-) at top",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5572,
+"kind": "opts",
+"what": "E12 row 0 (-) at bottom",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"-"
+],
+"card": "E12"
+},
+{
+"t": 5582,
+"kind": "opts",
+"what": "E12 row 1 (12A) at centre",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 5592,
+"kind": "opts",
+"what": "E12 row 1 (12A) at left",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 5602,
+"kind": "opts",
+"what": "E12 row 1 (12A) at right",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 5612,
+"kind": "opts",
+"what": "E12 row 1 (12A) at top",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 5622,
+"kind": "opts",
+"what": "E12 row 1 (12A) at bottom",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 5634,
+"kind": "cards",
+"what": "entry P1",
+"sel": [
+"P1"
+]
+},
+{
+"t": 5634,
+"kind": "opts",
+"what": "entry P1",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5644,
+"kind": "opts",
+"what": "P1 row 0 (-) at centre",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5654,
+"kind": "opts",
+"what": "P1 row 0 (-) at left",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5664,
+"kind": "opts",
+"what": "P1 row 0 (-) at right",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5674,
+"kind": "opts",
+"what": "P1 row 0 (-) at top",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5684,
+"kind": "opts",
+"what": "P1 row 0 (-) at bottom",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"-"
+],
+"card": "P1"
+},
+{
+"t": 5694,
+"kind": "opts",
+"what": "P1 row 1 (P1A) at centre",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1A"
+],
+"card": "P1"
+},
+{
+"t": 5704,
+"kind": "opts",
+"what": "P1 row 1 (P1A) at left",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1A"
+],
+"card": "P1"
+},
+{
+"t": 5714,
+"kind": "opts",
+"what": "P1 row 1 (P1A) at right",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1A"
+],
+"card": "P1"
+},
+{
+"t": 5724,
+"kind": "opts",
+"what": "P1 row 1 (P1A) at top",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1A"
+],
+"card": "P1"
+},
+{
+"t": 5734,
+"kind": "opts",
+"what": "P1 row 1 (P1A) at bottom",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1A"
+],
+"card": "P1"
+},
+{
+"t": 5744,
+"kind": "opts",
+"what": "P1 row 2 (P1B) at centre",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 5754,
+"kind": "opts",
+"what": "P1 row 2 (P1B) at left",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 5764,
+"kind": "opts",
+"what": "P1 row 2 (P1B) at right",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 5774,
+"kind": "opts",
+"what": "P1 row 2 (P1B) at top",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 5784,
+"kind": "opts",
+"what": "P1 row 2 (P1B) at bottom",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 5796,
+"kind": "cards",
+"what": "entry E01",
+"sel": [
+"E01"
+]
+},
+{
+"t": 5796,
+"kind": "opts",
+"what": "entry E01",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 5806,
+"kind": "opts",
+"what": "plan: E01 -> 01D",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 5818,
+"kind": "cards",
+"what": "entry E02",
+"sel": [
+"E02"
+]
+},
+{
+"t": 5818,
+"kind": "opts",
+"what": "entry E02",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 5828,
+"kind": "opts",
+"what": "plan: E02 -> 02C",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 5840,
+"kind": "cards",
+"what": "entry E03",
+"sel": [
+"E03"
+]
+},
+{
+"t": 5840,
+"kind": "opts",
+"what": "entry E03",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 5850,
+"kind": "opts",
+"what": "plan: E03 -> 03B",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 5862,
+"kind": "cards",
+"what": "entry E04",
+"sel": [
+"E04"
+]
+},
+{
+"t": 5862,
+"kind": "opts",
+"what": "entry E04",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 5872,
+"kind": "opts",
+"what": "plan: E04 -> 04C",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 5884,
+"kind": "cards",
+"what": "entry E05",
+"sel": [
+"E05"
+]
+},
+{
+"t": 5884,
+"kind": "opts",
+"what": "entry E05",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 5894,
+"kind": "opts",
+"what": "plan: E05 -> 05B",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 5906,
+"kind": "cards",
+"what": "entry E06",
+"sel": [
+"E06"
+]
+},
+{
+"t": 5906,
+"kind": "opts",
+"what": "entry E06",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06C"
+],
+"card": "E06"
+},
+{
+"t": 5916,
+"kind": "opts",
+"what": "plan: E06 -> 06A",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 5928,
+"kind": "cards",
+"what": "entry E07",
+"sel": [
+"E07"
+]
+},
+{
+"t": 5928,
+"kind": "opts",
+"what": "entry E07",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 5938,
+"kind": "opts",
+"what": "plan: E07 -> 07B",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 5950,
+"kind": "cards",
+"what": "entry E08",
+"sel": [
+"E08"
+]
+},
+{
+"t": 5950,
+"kind": "opts",
+"what": "entry E08",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 5960,
+"kind": "opts",
+"what": "plan: E08 -> 08A",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 5972,
+"kind": "cards",
+"what": "entry E09",
+"sel": [
+"E09"
+]
+},
+{
+"t": 5972,
+"kind": "opts",
+"what": "entry E09",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09B"
+],
+"card": "E09"
+},
+{
+"t": 5982,
+"kind": "opts",
+"what": "plan: E09 -> 09A",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 5994,
+"kind": "cards",
+"what": "entry E10",
+"sel": [
+"E10"
+]
+},
+{
+"t": 5994,
+"kind": "opts",
+"what": "entry E10",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 6004,
+"kind": "opts",
+"what": "plan: E10 -> 10B",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 6016,
+"kind": "cards",
+"what": "entry E11",
+"sel": [
+"E11"
+]
+},
+{
+"t": 6016,
+"kind": "opts",
+"what": "entry E11",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11B"
+],
+"card": "E11"
+},
+{
+"t": 6026,
+"kind": "opts",
+"what": "plan: E11 -> 11A",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 6038,
+"kind": "cards",
+"what": "entry E12",
+"sel": [
+"E12"
+]
+},
+{
+"t": 6038,
+"kind": "opts",
+"what": "entry E12",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 6048,
+"kind": "opts",
+"what": "plan: E12 -> 12A",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 6060,
+"kind": "cards",
+"what": "entry P1",
+"sel": [
+"P1"
+]
+},
+{
+"t": 6060,
+"kind": "opts",
+"what": "entry P1",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 6070,
+"kind": "opts",
+"what": "plan: P1 -> P1B",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 6082,
+"kind": "cards",
+"what": "views on every evidence: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 6082,
+"kind": "opts",
+"what": "views on every evidence: E01's view",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6094,
+"kind": "cards",
+"what": "views on every evidence: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 6094,
+"kind": "opts",
+"what": "views on every evidence: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 6106,
+"kind": "cards",
+"what": "views on every evidence: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 6106,
+"kind": "opts",
+"what": "views on every evidence: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 6118,
+"kind": "cards",
+"what": "views on every evidence: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 6118,
+"kind": "opts",
+"what": "views on every evidence: E04's view",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 6130,
+"kind": "cards",
+"what": "views on every evidence: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 6130,
+"kind": "opts",
+"what": "views on every evidence: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 6142,
+"kind": "cards",
+"what": "views on every evidence: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 6142,
+"kind": "opts",
+"what": "views on every evidence: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6154,
+"kind": "cards",
+"what": "views on every evidence: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 6154,
+"kind": "opts",
+"what": "views on every evidence: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 6166,
+"kind": "cards",
+"what": "views on every evidence: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 6166,
+"kind": "opts",
+"what": "views on every evidence: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 6178,
+"kind": "cards",
+"what": "views on every evidence: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 6178,
+"kind": "opts",
+"what": "views on every evidence: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 6190,
+"kind": "cards",
+"what": "views on every evidence: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 6190,
+"kind": "opts",
+"what": "views on every evidence: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 6202,
+"kind": "cards",
+"what": "views on every evidence: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 6202,
+"kind": "opts",
+"what": "views on every evidence: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 6214,
+"kind": "cards",
+"what": "views on every evidence: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 6214,
+"kind": "opts",
+"what": "views on every evidence: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 6226,
+"kind": "cards",
+"what": "views on every evidence: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 6226,
+"kind": "opts",
+"what": "views on every evidence: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 6238,
+"kind": "cards",
+"what": "entry E06",
+"sel": [
+"E06"
+]
+},
+{
+"t": 6238,
+"kind": "opts",
+"what": "entry E06",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6248,
+"kind": "opts",
+"what": "stray click on below the entries",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6258,
+"kind": "opts",
+"what": "stray click on the description",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6268,
+"kind": "opts",
+"what": "stray click on the heading",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6278,
+"kind": "opts",
+"what": "stray click on the remark area",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6288,
+"kind": "opts",
+"what": "stray click on the tab strip",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6298,
+"kind": "opts",
+"what": "stray click on the evidence kind",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6308,
+"kind": "opts",
+"what": "stray click on the gap under row 0",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6318,
+"kind": "opts",
+"what": "stray click on the gap under row 1",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6328,
+"kind": "opts",
+"what": "stray click on the gap under row 2",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6338,
+"kind": "opts",
+"what": "stray click on the gap under row 3",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6348,
+"kind": "opts",
+"what": "stray click on below the last row",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6378,
+"kind": "opts",
+"what": "the pointer over the rows",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6390,
+"kind": "cards",
+"what": "after the stray clicks: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 6390,
+"kind": "opts",
+"what": "after the stray clicks: E01's view",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6402,
+"kind": "cards",
+"what": "after the stray clicks: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 6402,
+"kind": "opts",
+"what": "after the stray clicks: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 6414,
+"kind": "cards",
+"what": "after the stray clicks: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 6414,
+"kind": "opts",
+"what": "after the stray clicks: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 6426,
+"kind": "cards",
+"what": "after the stray clicks: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 6426,
+"kind": "opts",
+"what": "after the stray clicks: E04's view",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 6438,
+"kind": "cards",
+"what": "after the stray clicks: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 6438,
+"kind": "opts",
+"what": "after the stray clicks: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 6450,
+"kind": "cards",
+"what": "after the stray clicks: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 6450,
+"kind": "opts",
+"what": "after the stray clicks: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6462,
+"kind": "cards",
+"what": "after the stray clicks: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 6462,
+"kind": "opts",
+"what": "after the stray clicks: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 6474,
+"kind": "cards",
+"what": "after the stray clicks: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 6474,
+"kind": "opts",
+"what": "after the stray clicks: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 6486,
+"kind": "cards",
+"what": "after the stray clicks: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 6486,
+"kind": "opts",
+"what": "after the stray clicks: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 6498,
+"kind": "cards",
+"what": "after the stray clicks: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 6498,
+"kind": "opts",
+"what": "after the stray clicks: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 6510,
+"kind": "cards",
+"what": "after the stray clicks: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 6510,
+"kind": "opts",
+"what": "after the stray clicks: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 6522,
+"kind": "cards",
+"what": "after the stray clicks: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 6522,
+"kind": "opts",
+"what": "after the stray clicks: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 6534,
+"kind": "cards",
+"what": "after the stray clicks: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 6534,
+"kind": "opts",
+"what": "after the stray clicks: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 6546,
+"kind": "cards",
+"what": "entry E01",
+"sel": [
+"E01"
+]
+},
+{
+"t": 6546,
+"kind": "opts",
+"what": "entry E01",
+"rows": [
+"-",
+"01B",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6558,
+"kind": "opts",
+"what": "E01 appraised: its view stays",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6578,
+"kind": "cards",
+"what": "entry E04",
+"sel": [
+"E04"
+]
+},
+{
+"t": 6578,
+"kind": "opts",
+"what": "entry E04",
+"rows": [
+"-",
+"04A",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 6590,
+"kind": "opts",
+"what": "E04 appraised: its view stays",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 6610,
+"kind": "cards",
+"what": "after the appraisals: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 6610,
+"kind": "opts",
+"what": "after the appraisals: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6622,
+"kind": "cards",
+"what": "after the appraisals: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 6622,
+"kind": "opts",
+"what": "after the appraisals: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 6634,
+"kind": "cards",
+"what": "after the appraisals: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 6634,
+"kind": "opts",
+"what": "after the appraisals: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 6646,
+"kind": "cards",
+"what": "after the appraisals: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 6646,
+"kind": "opts",
+"what": "after the appraisals: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 6658,
+"kind": "cards",
+"what": "after the appraisals: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 6658,
+"kind": "opts",
+"what": "after the appraisals: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 6670,
+"kind": "cards",
+"what": "after the appraisals: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 6670,
+"kind": "opts",
+"what": "after the appraisals: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 6682,
+"kind": "cards",
+"what": "after the appraisals: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 6682,
+"kind": "opts",
+"what": "after the appraisals: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 6694,
+"kind": "cards",
+"what": "after the appraisals: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 6694,
+"kind": "opts",
+"what": "after the appraisals: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 6706,
+"kind": "cards",
+"what": "after the appraisals: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 6706,
+"kind": "opts",
+"what": "after the appraisals: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 6718,
+"kind": "cards",
+"what": "after the appraisals: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 6718,
+"kind": "opts",
+"what": "after the appraisals: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 6730,
+"kind": "cards",
+"what": "after the appraisals: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 6730,
+"kind": "opts",
+"what": "after the appraisals: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 6742,
+"kind": "cards",
+"what": "after the appraisals: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 6742,
+"kind": "opts",
+"what": "after the appraisals: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 6754,
+"kind": "cards",
+"what": "after the appraisals: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 6754,
+"kind": "opts",
+"what": "after the appraisals: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 6766,
+"kind": "cards",
+"what": "entry E01",
+"sel": [
+"E01"
+]
+},
+{
+"t": 6766,
+"kind": "opts",
+"what": "entry E01",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6776,
+"kind": "opts",
+"what": "appraised E01 row - at centre",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 6786,
+"kind": "opts",
+"what": "appraised E01 row - at left",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 6796,
+"kind": "opts",
+"what": "appraised E01 row - at right",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 6806,
+"kind": "opts",
+"what": "appraised E01 row - at top",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 6816,
+"kind": "opts",
+"what": "appraised E01 row - at bottom",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"-"
+],
+"card": "E01"
+},
+{
+"t": 6826,
+"kind": "opts",
+"what": "appraised E01 row 01A at centre",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01A"
+],
+"card": "E01"
+},
+{
+"t": 6836,
+"kind": "opts",
+"what": "appraised E01 row 01A at left",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01A"
+],
+"card": "E01"
+},
+{
+"t": 6846,
+"kind": "opts",
+"what": "appraised E01 row 01A at right",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01A"
+],
+"card": "E01"
+},
+{
+"t": 6856,
+"kind": "opts",
+"what": "appraised E01 row 01A at top",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01A"
+],
+"card": "E01"
+},
+{
+"t": 6866,
+"kind": "opts",
+"what": "appraised E01 row 01A at bottom",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01A"
+],
+"card": "E01"
+},
+{
+"t": 6876,
+"kind": "opts",
+"what": "appraised E01 row 01B at centre",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 6886,
+"kind": "opts",
+"what": "appraised E01 row 01B at left",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 6896,
+"kind": "opts",
+"what": "appraised E01 row 01B at right",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 6906,
+"kind": "opts",
+"what": "appraised E01 row 01B at top",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 6916,
+"kind": "opts",
+"what": "appraised E01 row 01B at bottom",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01B"
+],
+"card": "E01"
+},
+{
+"t": 6926,
+"kind": "opts",
+"what": "appraised E01 row 01C at centre",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 6936,
+"kind": "opts",
+"what": "appraised E01 row 01C at left",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 6946,
+"kind": "opts",
+"what": "appraised E01 row 01C at right",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 6956,
+"kind": "opts",
+"what": "appraised E01 row 01C at top",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 6966,
+"kind": "opts",
+"what": "appraised E01 row 01C at bottom",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 6976,
+"kind": "opts",
+"what": "appraised E01 row 01D at centre",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6986,
+"kind": "opts",
+"what": "appraised E01 row 01D at left",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 6996,
+"kind": "opts",
+"what": "appraised E01 row 01D at right",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 7006,
+"kind": "opts",
+"what": "appraised E01 row 01D at top",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 7016,
+"kind": "opts",
+"what": "appraised E01 row 01D at bottom",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01D"
+],
+"card": "E01"
+},
+{
+"t": 7026,
+"kind": "opts",
+"what": "plan: E01 -> 01C",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 7038,
+"kind": "cards",
+"what": "entry E04",
+"sel": [
+"E04"
+]
+},
+{
+"t": 7038,
+"kind": "opts",
+"what": "entry E04",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7048,
+"kind": "opts",
+"what": "appraised E04 row - at centre",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 7058,
+"kind": "opts",
+"what": "appraised E04 row - at left",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 7068,
+"kind": "opts",
+"what": "appraised E04 row - at right",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 7078,
+"kind": "opts",
+"what": "appraised E04 row - at top",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 7088,
+"kind": "opts",
+"what": "appraised E04 row - at bottom",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"-"
+],
+"card": "E04"
+},
+{
+"t": 7098,
+"kind": "opts",
+"what": "appraised E04 row 04A at centre",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 7108,
+"kind": "opts",
+"what": "appraised E04 row 04A at left",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 7118,
+"kind": "opts",
+"what": "appraised E04 row 04A at right",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 7128,
+"kind": "opts",
+"what": "appraised E04 row 04A at top",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 7138,
+"kind": "opts",
+"what": "appraised E04 row 04A at bottom",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04A"
+],
+"card": "E04"
+},
+{
+"t": 7148,
+"kind": "opts",
+"what": "appraised E04 row 04B at centre",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7158,
+"kind": "opts",
+"what": "appraised E04 row 04B at left",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7168,
+"kind": "opts",
+"what": "appraised E04 row 04B at right",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7178,
+"kind": "opts",
+"what": "appraised E04 row 04B at top",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7188,
+"kind": "opts",
+"what": "appraised E04 row 04B at bottom",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7198,
+"kind": "opts",
+"what": "appraised E04 row 04C at centre",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7208,
+"kind": "opts",
+"what": "appraised E04 row 04C at left",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7218,
+"kind": "opts",
+"what": "appraised E04 row 04C at right",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7228,
+"kind": "opts",
+"what": "appraised E04 row 04C at top",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7238,
+"kind": "opts",
+"what": "appraised E04 row 04C at bottom",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04C"
+],
+"card": "E04"
+},
+{
+"t": 7248,
+"kind": "opts",
+"what": "plan: E04 -> 04B",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7260,
+"kind": "cards",
+"what": "entry E08",
+"sel": [
+"E08"
+]
+},
+{
+"t": 7260,
+"kind": "opts",
+"what": "entry E08",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 7270,
+"kind": "opts",
+"what": "E08 changed to 08B",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08B"
+],
+"card": "E08"
+},
+{
+"t": 7280,
+"kind": "opts",
+"what": "E08 changed to 08A",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"08A"
+],
+"card": "E08"
+},
+{
+"t": 7290,
+"kind": "opts",
+"what": "E08 changed to -",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 7302,
+"kind": "cards",
+"what": "after the change and the clear: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 7302,
+"kind": "opts",
+"what": "after the change and the clear: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 7314,
+"kind": "cards",
+"what": "after the change and the clear: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 7314,
+"kind": "opts",
+"what": "after the change and the clear: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 7326,
+"kind": "cards",
+"what": "after the change and the clear: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 7326,
+"kind": "opts",
+"what": "after the change and the clear: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 7338,
+"kind": "cards",
+"what": "after the change and the clear: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 7338,
+"kind": "opts",
+"what": "after the change and the clear: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7350,
+"kind": "cards",
+"what": "after the change and the clear: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 7350,
+"kind": "opts",
+"what": "after the change and the clear: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 7362,
+"kind": "cards",
+"what": "after the change and the clear: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 7362,
+"kind": "opts",
+"what": "after the change and the clear: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 7374,
+"kind": "cards",
+"what": "after the change and the clear: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 7374,
+"kind": "opts",
+"what": "after the change and the clear: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 7386,
+"kind": "cards",
+"what": "after the change and the clear: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 7386,
+"kind": "opts",
+"what": "after the change and the clear: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 7398,
+"kind": "cards",
+"what": "after the change and the clear: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 7398,
+"kind": "opts",
+"what": "after the change and the clear: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 7410,
+"kind": "cards",
+"what": "after the change and the clear: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 7410,
+"kind": "opts",
+"what": "after the change and the clear: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 7422,
+"kind": "cards",
+"what": "after the change and the clear: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 7422,
+"kind": "opts",
+"what": "after the change and the clear: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 7434,
+"kind": "cards",
+"what": "after the change and the clear: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 7434,
+"kind": "opts",
+"what": "after the change and the clear: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 7446,
+"kind": "cards",
+"what": "after the change and the clear: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 7446,
+"kind": "opts",
+"what": "after the change and the clear: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7490,
+"kind": "opts",
+"what": "back from the notes tab",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7502,
+"kind": "cards",
+"what": "after the notes tab: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 7502,
+"kind": "opts",
+"what": "after the notes tab: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 7514,
+"kind": "cards",
+"what": "after the notes tab: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 7514,
+"kind": "opts",
+"what": "after the notes tab: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 7526,
+"kind": "cards",
+"what": "after the notes tab: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 7526,
+"kind": "opts",
+"what": "after the notes tab: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 7538,
+"kind": "cards",
+"what": "after the notes tab: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 7538,
+"kind": "opts",
+"what": "after the notes tab: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7550,
+"kind": "cards",
+"what": "after the notes tab: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 7550,
+"kind": "opts",
+"what": "after the notes tab: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 7562,
+"kind": "cards",
+"what": "after the notes tab: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 7562,
+"kind": "opts",
+"what": "after the notes tab: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 7574,
+"kind": "cards",
+"what": "after the notes tab: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 7574,
+"kind": "opts",
+"what": "after the notes tab: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 7586,
+"kind": "cards",
+"what": "after the notes tab: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 7586,
+"kind": "opts",
+"what": "after the notes tab: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 7598,
+"kind": "cards",
+"what": "after the notes tab: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 7598,
+"kind": "opts",
+"what": "after the notes tab: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 7610,
+"kind": "cards",
+"what": "after the notes tab: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 7610,
+"kind": "opts",
+"what": "after the notes tab: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 7622,
+"kind": "cards",
+"what": "after the notes tab: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 7622,
+"kind": "opts",
+"what": "after the notes tab: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 7634,
+"kind": "cards",
+"what": "after the notes tab: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 7634,
+"kind": "opts",
+"what": "after the notes tab: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 7646,
+"kind": "cards",
+"what": "after the notes tab: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 7646,
+"kind": "opts",
+"what": "after the notes tab: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7710,
+"kind": "opts",
+"what": "reopened",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7722,
+"kind": "cards",
+"what": "after close and reopen: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 7722,
+"kind": "opts",
+"what": "after close and reopen: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 7734,
+"kind": "cards",
+"what": "after close and reopen: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 7734,
+"kind": "opts",
+"what": "after close and reopen: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 7746,
+"kind": "cards",
+"what": "after close and reopen: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 7746,
+"kind": "opts",
+"what": "after close and reopen: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 7758,
+"kind": "cards",
+"what": "after close and reopen: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 7758,
+"kind": "opts",
+"what": "after close and reopen: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 7770,
+"kind": "cards",
+"what": "after close and reopen: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 7770,
+"kind": "opts",
+"what": "after close and reopen: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 7782,
+"kind": "cards",
+"what": "after close and reopen: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 7782,
+"kind": "opts",
+"what": "after close and reopen: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 7794,
+"kind": "cards",
+"what": "after close and reopen: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 7794,
+"kind": "opts",
+"what": "after close and reopen: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 7806,
+"kind": "cards",
+"what": "after close and reopen: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 7806,
+"kind": "opts",
+"what": "after close and reopen: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 7818,
+"kind": "cards",
+"what": "after close and reopen: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 7818,
+"kind": "opts",
+"what": "after close and reopen: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 7830,
+"kind": "cards",
+"what": "after close and reopen: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 7830,
+"kind": "opts",
+"what": "after close and reopen: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 7842,
+"kind": "cards",
+"what": "after close and reopen: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 7842,
+"kind": "opts",
+"what": "after close and reopen: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 7854,
+"kind": "cards",
+"what": "after close and reopen: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 7854,
+"kind": "opts",
+"what": "after close and reopen: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 7866,
+"kind": "cards",
+"what": "after close and reopen: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 7866,
+"kind": "opts",
+"what": "after close and reopen: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7968,
+"kind": "opts",
+"what": "after the language switch en",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 7980,
+"kind": "cards",
+"what": "after the language switch en: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 7980,
+"kind": "opts",
+"what": "after the language switch en: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 7992,
+"kind": "cards",
+"what": "after the language switch en: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 7992,
+"kind": "opts",
+"what": "after the language switch en: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 8004,
+"kind": "cards",
+"what": "after the language switch en: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8004,
+"kind": "opts",
+"what": "after the language switch en: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 8016,
+"kind": "cards",
+"what": "after the language switch en: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8016,
+"kind": "opts",
+"what": "after the language switch en: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 8028,
+"kind": "cards",
+"what": "after the language switch en: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8028,
+"kind": "opts",
+"what": "after the language switch en: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 8040,
+"kind": "cards",
+"what": "after the language switch en: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 8040,
+"kind": "opts",
+"what": "after the language switch en: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 8052,
+"kind": "cards",
+"what": "after the language switch en: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 8052,
+"kind": "opts",
+"what": "after the language switch en: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 8064,
+"kind": "cards",
+"what": "after the language switch en: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 8064,
+"kind": "opts",
+"what": "after the language switch en: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 8076,
+"kind": "cards",
+"what": "after the language switch en: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 8076,
+"kind": "opts",
+"what": "after the language switch en: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 8088,
+"kind": "cards",
+"what": "after the language switch en: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 8088,
+"kind": "opts",
+"what": "after the language switch en: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 8100,
+"kind": "cards",
+"what": "after the language switch en: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 8100,
+"kind": "opts",
+"what": "after the language switch en: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 8112,
+"kind": "cards",
+"what": "after the language switch en: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 8112,
+"kind": "opts",
+"what": "after the language switch en: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 8124,
+"kind": "cards",
+"what": "after the language switch en: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 8124,
+"kind": "opts",
+"what": "after the language switch en: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 8226,
+"kind": "opts",
+"what": "after the language switch zh-TW",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 8238,
+"kind": "cards",
+"what": "after the language switch zh-TW: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8238,
+"kind": "opts",
+"what": "after the language switch zh-TW: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 8250,
+"kind": "cards",
+"what": "after the language switch zh-TW: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8250,
+"kind": "opts",
+"what": "after the language switch zh-TW: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 8262,
+"kind": "cards",
+"what": "after the language switch zh-TW: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8262,
+"kind": "opts",
+"what": "after the language switch zh-TW: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 8274,
+"kind": "cards",
+"what": "after the language switch zh-TW: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8274,
+"kind": "opts",
+"what": "after the language switch zh-TW: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 8286,
+"kind": "cards",
+"what": "after the language switch zh-TW: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8286,
+"kind": "opts",
+"what": "after the language switch zh-TW: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 8298,
+"kind": "cards",
+"what": "after the language switch zh-TW: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 8298,
+"kind": "opts",
+"what": "after the language switch zh-TW: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 8310,
+"kind": "cards",
+"what": "after the language switch zh-TW: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 8310,
+"kind": "opts",
+"what": "after the language switch zh-TW: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 8322,
+"kind": "cards",
+"what": "after the language switch zh-TW: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 8322,
+"kind": "opts",
+"what": "after the language switch zh-TW: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 8334,
+"kind": "cards",
+"what": "after the language switch zh-TW: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 8334,
+"kind": "opts",
+"what": "after the language switch zh-TW: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 8346,
+"kind": "cards",
+"what": "after the language switch zh-TW: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 8346,
+"kind": "opts",
+"what": "after the language switch zh-TW: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 8358,
+"kind": "cards",
+"what": "after the language switch zh-TW: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 8358,
+"kind": "opts",
+"what": "after the language switch zh-TW: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 8370,
+"kind": "cards",
+"what": "after the language switch zh-TW: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 8370,
+"kind": "opts",
+"what": "after the language switch zh-TW: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 8382,
+"kind": "cards",
+"what": "after the language switch zh-TW: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 8382,
+"kind": "opts",
+"what": "after the language switch zh-TW: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 8464,
+"kind": "carry",
+"what": "carry row E01 at centre: taken",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8474,
+"kind": "carry",
+"what": "carry row E01 at centre: put down",
+"sel": []
+},
+{
+"t": 8484,
+"kind": "carry",
+"what": "carry row E01 at left: taken",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8494,
+"kind": "carry",
+"what": "carry row E01 at left: put down",
+"sel": []
+},
+{
+"t": 8504,
+"kind": "carry",
+"what": "carry row E01 at right: taken",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8514,
+"kind": "carry",
+"what": "carry row E01 at right: put down",
+"sel": []
+},
+{
+"t": 8524,
+"kind": "carry",
+"what": "carry row E01 at top: taken",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8534,
+"kind": "carry",
+"what": "carry row E01 at top: put down",
+"sel": []
+},
+{
+"t": 8544,
+"kind": "carry",
+"what": "carry row E01 at bottom: taken",
+"sel": [
+"E01"
+]
+},
+{
+"t": 8554,
+"kind": "carry",
+"what": "carry row E01 at bottom: put down",
+"sel": []
+},
+{
+"t": 8564,
+"kind": "carry",
+"what": "carry row E02 at centre: taken",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8574,
+"kind": "carry",
+"what": "carry row E02 at centre: put down",
+"sel": []
+},
+{
+"t": 8584,
+"kind": "carry",
+"what": "carry row E02 at left: taken",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8594,
+"kind": "carry",
+"what": "carry row E02 at left: put down",
+"sel": []
+},
+{
+"t": 8604,
+"kind": "carry",
+"what": "carry row E02 at right: taken",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8614,
+"kind": "carry",
+"what": "carry row E02 at right: put down",
+"sel": []
+},
+{
+"t": 8624,
+"kind": "carry",
+"what": "carry row E02 at top: taken",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8634,
+"kind": "carry",
+"what": "carry row E02 at top: put down",
+"sel": []
+},
+{
+"t": 8644,
+"kind": "carry",
+"what": "carry row E02 at bottom: taken",
+"sel": [
+"E02"
+]
+},
+{
+"t": 8654,
+"kind": "carry",
+"what": "carry row E02 at bottom: put down",
+"sel": []
+},
+{
+"t": 8664,
+"kind": "carry",
+"what": "carry row E03 at centre: taken",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8674,
+"kind": "carry",
+"what": "carry row E03 at centre: put down",
+"sel": []
+},
+{
+"t": 8684,
+"kind": "carry",
+"what": "carry row E03 at left: taken",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8694,
+"kind": "carry",
+"what": "carry row E03 at left: put down",
+"sel": []
+},
+{
+"t": 8704,
+"kind": "carry",
+"what": "carry row E03 at right: taken",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8714,
+"kind": "carry",
+"what": "carry row E03 at right: put down",
+"sel": []
+},
+{
+"t": 8724,
+"kind": "carry",
+"what": "carry row E03 at top: taken",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8734,
+"kind": "carry",
+"what": "carry row E03 at top: put down",
+"sel": []
+},
+{
+"t": 8744,
+"kind": "carry",
+"what": "carry row E03 at bottom: taken",
+"sel": [
+"E03"
+]
+},
+{
+"t": 8754,
+"kind": "carry",
+"what": "carry row E03 at bottom: put down",
+"sel": []
+},
+{
+"t": 8764,
+"kind": "carry",
+"what": "carry row E04 at centre: taken",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8774,
+"kind": "carry",
+"what": "carry row E04 at centre: put down",
+"sel": []
+},
+{
+"t": 8784,
+"kind": "carry",
+"what": "carry row E04 at left: taken",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8794,
+"kind": "carry",
+"what": "carry row E04 at left: put down",
+"sel": []
+},
+{
+"t": 8804,
+"kind": "carry",
+"what": "carry row E04 at right: taken",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8814,
+"kind": "carry",
+"what": "carry row E04 at right: put down",
+"sel": []
+},
+{
+"t": 8824,
+"kind": "carry",
+"what": "carry row E04 at top: taken",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8834,
+"kind": "carry",
+"what": "carry row E04 at top: put down",
+"sel": []
+},
+{
+"t": 8844,
+"kind": "carry",
+"what": "carry row E04 at bottom: taken",
+"sel": [
+"E04"
+]
+},
+{
+"t": 8854,
+"kind": "carry",
+"what": "carry row E04 at bottom: put down",
+"sel": []
+},
+{
+"t": 8864,
+"kind": "carry",
+"what": "carry row E05 at centre: taken",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8874,
+"kind": "carry",
+"what": "carry row E05 at centre: put down",
+"sel": []
+},
+{
+"t": 8884,
+"kind": "carry",
+"what": "carry row E05 at left: taken",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8894,
+"kind": "carry",
+"what": "carry row E05 at left: put down",
+"sel": []
+},
+{
+"t": 8904,
+"kind": "carry",
+"what": "carry row E05 at right: taken",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8914,
+"kind": "carry",
+"what": "carry row E05 at right: put down",
+"sel": []
+},
+{
+"t": 8924,
+"kind": "carry",
+"what": "carry row E05 at top: taken",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8934,
+"kind": "carry",
+"what": "carry row E05 at top: put down",
+"sel": []
+},
+{
+"t": 8944,
+"kind": "carry",
+"what": "carry row E05 at bottom: taken",
+"sel": [
+"E05"
+]
+},
+{
+"t": 8954,
+"kind": "carry",
+"what": "carry row E05 at bottom: put down",
+"sel": []
+},
+{
+"t": 8964,
+"kind": "carry",
+"what": "carry row E06 at centre: taken",
+"sel": [
+"E06"
+]
+},
+{
+"t": 8974,
+"kind": "carry",
+"what": "carry row E06 at centre: put down",
+"sel": []
+},
+{
+"t": 8984,
+"kind": "carry",
+"what": "carry row E06 at left: taken",
+"sel": [
+"E06"
+]
+},
+{
+"t": 8994,
+"kind": "carry",
+"what": "carry row E06 at left: put down",
+"sel": []
+},
+{
+"t": 9004,
+"kind": "carry",
+"what": "carry row E06 at right: taken",
+"sel": [
+"E06"
+]
+},
+{
+"t": 9014,
+"kind": "carry",
+"what": "carry row E06 at right: put down",
+"sel": []
+},
+{
+"t": 9024,
+"kind": "carry",
+"what": "carry row E06 at top: taken",
+"sel": [
+"E06"
+]
+},
+{
+"t": 9034,
+"kind": "carry",
+"what": "carry row E06 at top: put down",
+"sel": []
+},
+{
+"t": 9044,
+"kind": "carry",
+"what": "carry row E06 at bottom: taken",
+"sel": [
+"E06"
+]
+},
+{
+"t": 9054,
+"kind": "carry",
+"what": "carry row E06 at bottom: put down",
+"sel": []
+},
+{
+"t": 9064,
+"kind": "carry",
+"what": "carry row E07 at centre: taken",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9074,
+"kind": "carry",
+"what": "carry row E07 at centre: put down",
+"sel": []
+},
+{
+"t": 9084,
+"kind": "carry",
+"what": "carry row E07 at left: taken",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9094,
+"kind": "carry",
+"what": "carry row E07 at left: put down",
+"sel": []
+},
+{
+"t": 9104,
+"kind": "carry",
+"what": "carry row E07 at right: taken",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9114,
+"kind": "carry",
+"what": "carry row E07 at right: put down",
+"sel": []
+},
+{
+"t": 9124,
+"kind": "carry",
+"what": "carry row E07 at top: taken",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9134,
+"kind": "carry",
+"what": "carry row E07 at top: put down",
+"sel": []
+},
+{
+"t": 9144,
+"kind": "carry",
+"what": "carry row E07 at bottom: taken",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9154,
+"kind": "carry",
+"what": "carry row E07 at bottom: put down",
+"sel": []
+},
+{
+"t": 9164,
+"kind": "carry",
+"what": "carry row E08 at centre: taken",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9174,
+"kind": "carry",
+"what": "carry row E08 at centre: put down",
+"sel": []
+},
+{
+"t": 9184,
+"kind": "carry",
+"what": "carry row E08 at left: taken",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9194,
+"kind": "carry",
+"what": "carry row E08 at left: put down",
+"sel": []
+},
+{
+"t": 9204,
+"kind": "carry",
+"what": "carry row E08 at right: taken",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9214,
+"kind": "carry",
+"what": "carry row E08 at right: put down",
+"sel": []
+},
+{
+"t": 9224,
+"kind": "carry",
+"what": "carry row E08 at top: taken",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9234,
+"kind": "carry",
+"what": "carry row E08 at top: put down",
+"sel": []
+},
+{
+"t": 9244,
+"kind": "carry",
+"what": "carry row E08 at bottom: taken",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9254,
+"kind": "carry",
+"what": "carry row E08 at bottom: put down",
+"sel": []
+},
+{
+"t": 9264,
+"kind": "carry",
+"what": "carry row E09 at centre: taken",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9274,
+"kind": "carry",
+"what": "carry row E09 at centre: put down",
+"sel": []
+},
+{
+"t": 9284,
+"kind": "carry",
+"what": "carry row E09 at left: taken",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9294,
+"kind": "carry",
+"what": "carry row E09 at left: put down",
+"sel": []
+},
+{
+"t": 9304,
+"kind": "carry",
+"what": "carry row E09 at right: taken",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9314,
+"kind": "carry",
+"what": "carry row E09 at right: put down",
+"sel": []
+},
+{
+"t": 9324,
+"kind": "carry",
+"what": "carry row E09 at top: taken",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9334,
+"kind": "carry",
+"what": "carry row E09 at top: put down",
+"sel": []
+},
+{
+"t": 9344,
+"kind": "carry",
+"what": "carry row E09 at bottom: taken",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9354,
+"kind": "carry",
+"what": "carry row E09 at bottom: put down",
+"sel": []
+},
+{
+"t": 9364,
+"kind": "carry",
+"what": "carry row E10 at centre: taken",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9374,
+"kind": "carry",
+"what": "carry row E10 at centre: put down",
+"sel": []
+},
+{
+"t": 9384,
+"kind": "carry",
+"what": "carry row E10 at left: taken",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9394,
+"kind": "carry",
+"what": "carry row E10 at left: put down",
+"sel": []
+},
+{
+"t": 9404,
+"kind": "carry",
+"what": "carry row E10 at right: taken",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9414,
+"kind": "carry",
+"what": "carry row E10 at right: put down",
+"sel": []
+},
+{
+"t": 9424,
+"kind": "carry",
+"what": "carry row E10 at top: taken",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9434,
+"kind": "carry",
+"what": "carry row E10 at top: put down",
+"sel": []
+},
+{
+"t": 9444,
+"kind": "carry",
+"what": "carry row E10 at bottom: taken",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9454,
+"kind": "carry",
+"what": "carry row E10 at bottom: put down",
+"sel": []
+},
+{
+"t": 9464,
+"kind": "carry",
+"what": "carry row E11 at centre: taken",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9474,
+"kind": "carry",
+"what": "carry row E11 at centre: put down",
+"sel": []
+},
+{
+"t": 9484,
+"kind": "carry",
+"what": "carry row E11 at left: taken",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9494,
+"kind": "carry",
+"what": "carry row E11 at left: put down",
+"sel": []
+},
+{
+"t": 9504,
+"kind": "carry",
+"what": "carry row E11 at right: taken",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9514,
+"kind": "carry",
+"what": "carry row E11 at right: put down",
+"sel": []
+},
+{
+"t": 9524,
+"kind": "carry",
+"what": "carry row E11 at top: taken",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9534,
+"kind": "carry",
+"what": "carry row E11 at top: put down",
+"sel": []
+},
+{
+"t": 9544,
+"kind": "carry",
+"what": "carry row E11 at bottom: taken",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9554,
+"kind": "carry",
+"what": "carry row E11 at bottom: put down",
+"sel": []
+},
+{
+"t": 9564,
+"kind": "carry",
+"what": "carry row E12 at centre: taken",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9574,
+"kind": "carry",
+"what": "carry row E12 at centre: put down",
+"sel": []
+},
+{
+"t": 9584,
+"kind": "carry",
+"what": "carry row E12 at left: taken",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9594,
+"kind": "carry",
+"what": "carry row E12 at left: put down",
+"sel": []
+},
+{
+"t": 9604,
+"kind": "carry",
+"what": "carry row E12 at right: taken",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9614,
+"kind": "carry",
+"what": "carry row E12 at right: put down",
+"sel": []
+},
+{
+"t": 9624,
+"kind": "carry",
+"what": "carry row E12 at top: taken",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9634,
+"kind": "carry",
+"what": "carry row E12 at top: put down",
+"sel": []
+},
+{
+"t": 9644,
+"kind": "carry",
+"what": "carry row E12 at bottom: taken",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9654,
+"kind": "carry",
+"what": "carry row E12 at bottom: put down",
+"sel": []
+},
+{
+"t": 9664,
+"kind": "carry",
+"what": "carry row P1 at centre: taken",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9674,
+"kind": "carry",
+"what": "carry row P1 at centre: put down",
+"sel": []
+},
+{
+"t": 9684,
+"kind": "carry",
+"what": "carry row P1 at left: taken",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9694,
+"kind": "carry",
+"what": "carry row P1 at left: put down",
+"sel": []
+},
+{
+"t": 9704,
+"kind": "carry",
+"what": "carry row P1 at right: taken",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9714,
+"kind": "carry",
+"what": "carry row P1 at right: put down",
+"sel": []
+},
+{
+"t": 9724,
+"kind": "carry",
+"what": "carry row P1 at top: taken",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9734,
+"kind": "carry",
+"what": "carry row P1 at top: put down",
+"sel": []
+},
+{
+"t": 9744,
+"kind": "carry",
+"what": "carry row P1 at bottom: taken",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9754,
+"kind": "carry",
+"what": "carry row P1 at bottom: put down",
+"sel": []
+},
+{
+"t": 9826,
+"kind": "opts",
+"what": "after the carry screen's Back",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 9838,
+"kind": "cards",
+"what": "after the carry screen's Back: E01's view",
+"sel": [
+"E01"
+]
+},
+{
+"t": 9838,
+"kind": "opts",
+"what": "after the carry screen's Back: E01's view",
+"rows": [
+"-",
+"01A",
+"01B",
+"01C",
+"01D"
+],
+"sel": [
+"01C"
+],
+"card": "E01"
+},
+{
+"t": 9850,
+"kind": "cards",
+"what": "after the carry screen's Back: E02's view",
+"sel": [
+"E02"
+]
+},
+{
+"t": 9850,
+"kind": "opts",
+"what": "after the carry screen's Back: E02's view",
+"rows": [
+"-",
+"02B",
+"02C"
+],
+"sel": [
+"02C"
+],
+"card": "E02"
+},
+{
+"t": 9862,
+"kind": "cards",
+"what": "after the carry screen's Back: E03's view",
+"sel": [
+"E03"
+]
+},
+{
+"t": 9862,
+"kind": "opts",
+"what": "after the carry screen's Back: E03's view",
+"rows": [
+"-",
+"03A",
+"03B"
+],
+"sel": [
+"03B"
+],
+"card": "E03"
+},
+{
+"t": 9874,
+"kind": "cards",
+"what": "after the carry screen's Back: E04's view",
+"sel": [
+"E04"
+]
+},
+{
+"t": 9874,
+"kind": "opts",
+"what": "after the carry screen's Back: E04's view",
+"rows": [
+"-",
+"04A",
+"04B",
+"04C"
+],
+"sel": [
+"04B"
+],
+"card": "E04"
+},
+{
+"t": 9886,
+"kind": "cards",
+"what": "after the carry screen's Back: E05's view",
+"sel": [
+"E05"
+]
+},
+{
+"t": 9886,
+"kind": "opts",
+"what": "after the carry screen's Back: E05's view",
+"rows": [
+"-",
+"05A",
+"05B"
+],
+"sel": [
+"05B"
+],
+"card": "E05"
+},
+{
+"t": 9898,
+"kind": "cards",
+"what": "after the carry screen's Back: E06's view",
+"sel": [
+"E06"
+]
+},
+{
+"t": 9898,
+"kind": "opts",
+"what": "after the carry screen's Back: E06's view",
+"rows": [
+"-",
+"06A",
+"06B",
+"06C"
+],
+"sel": [
+"06A"
+],
+"card": "E06"
+},
+{
+"t": 9910,
+"kind": "cards",
+"what": "after the carry screen's Back: E07's view",
+"sel": [
+"E07"
+]
+},
+{
+"t": 9910,
+"kind": "opts",
+"what": "after the carry screen's Back: E07's view",
+"rows": [
+"-",
+"07A",
+"07B"
+],
+"sel": [
+"07B"
+],
+"card": "E07"
+},
+{
+"t": 9922,
+"kind": "cards",
+"what": "after the carry screen's Back: E08's view",
+"sel": [
+"E08"
+]
+},
+{
+"t": 9922,
+"kind": "opts",
+"what": "after the carry screen's Back: E08's view",
+"rows": [
+"-",
+"08A",
+"08B"
+],
+"sel": [
+"-"
+],
+"card": "E08"
+},
+{
+"t": 9934,
+"kind": "cards",
+"what": "after the carry screen's Back: E09's view",
+"sel": [
+"E09"
+]
+},
+{
+"t": 9934,
+"kind": "opts",
+"what": "after the carry screen's Back: E09's view",
+"rows": [
+"-",
+"09A",
+"09B"
+],
+"sel": [
+"09A"
+],
+"card": "E09"
+},
+{
+"t": 9946,
+"kind": "cards",
+"what": "after the carry screen's Back: E10's view",
+"sel": [
+"E10"
+]
+},
+{
+"t": 9946,
+"kind": "opts",
+"what": "after the carry screen's Back: E10's view",
+"rows": [
+"-",
+"10A",
+"10B"
+],
+"sel": [
+"10B"
+],
+"card": "E10"
+},
+{
+"t": 9958,
+"kind": "cards",
+"what": "after the carry screen's Back: E11's view",
+"sel": [
+"E11"
+]
+},
+{
+"t": 9958,
+"kind": "opts",
+"what": "after the carry screen's Back: E11's view",
+"rows": [
+"-",
+"11A",
+"11B"
+],
+"sel": [
+"11A"
+],
+"card": "E11"
+},
+{
+"t": 9970,
+"kind": "cards",
+"what": "after the carry screen's Back: E12's view",
+"sel": [
+"E12"
+]
+},
+{
+"t": 9970,
+"kind": "opts",
+"what": "after the carry screen's Back: E12's view",
+"rows": [
+"-",
+"12A"
+],
+"sel": [
+"12A"
+],
+"card": "E12"
+},
+{
+"t": 9982,
+"kind": "cards",
+"what": "after the carry screen's Back: P1's view",
+"sel": [
+"P1"
+]
+},
+{
+"t": 9982,
+"kind": "opts",
+"what": "after the carry screen's Back: P1's view",
+"rows": [
+"-",
+"P1A",
+"P1B"
+],
+"sel": [
+"P1B"
+],
+"card": "P1"
+},
+{
+"t": 10144,
+"kind": "carry",
+"what": "route A's nine",
+"sel": [
+"E01",
+"E02",
+"E04",
+"E05",
+"E06",
+"E07",
+"E08",
+"E10",
+"E11"
+]
+},
+{
+"t": 10436,
+"kind": "claims",
+"what": "Argue: the picker starts on E01's view",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10448,
+"kind": "evs",
+"what": "chip E01 at centre",
+"sel": [
+"E01"
+]
+},
+{
+"t": 10448,
+"kind": "claims",
+"what": "chip E01 at centre: the picker starts on its view 01C",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10460,
+"kind": "evs",
+"what": "chip E01 at left",
+"sel": [
+"E01"
+]
+},
+{
+"t": 10460,
+"kind": "claims",
+"what": "chip E01 at left: the picker starts on its view 01C",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10472,
+"kind": "evs",
+"what": "chip E01 at right",
+"sel": [
+"E01"
+]
+},
+{
+"t": 10472,
+"kind": "claims",
+"what": "chip E01 at right: the picker starts on its view 01C",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10484,
+"kind": "evs",
+"what": "chip E01 at top",
+"sel": [
+"E01"
+]
+},
+{
+"t": 10484,
+"kind": "claims",
+"what": "chip E01 at top: the picker starts on its view 01C",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10496,
+"kind": "evs",
+"what": "chip E01 at bottom",
+"sel": [
+"E01"
+]
+},
+{
+"t": 10496,
+"kind": "claims",
+"what": "chip E01 at bottom: the picker starts on its view 01C",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10508,
+"kind": "claims",
+"what": "E01 claim 01A at centre",
+"sel": [
+"01A"
+],
+"ev": "E01"
+},
+{
+"t": 10520,
+"kind": "claims",
+"what": "E01 claim 01A at left",
+"sel": [
+"01A"
+],
+"ev": "E01"
+},
+{
+"t": 10532,
+"kind": "claims",
+"what": "E01 claim 01A at right",
+"sel": [
+"01A"
+],
+"ev": "E01"
+},
+{
+"t": 10544,
+"kind": "claims",
+"what": "E01 claim 01A at top",
+"sel": [
+"01A"
+],
+"ev": "E01"
+},
+{
+"t": 10556,
+"kind": "claims",
+"what": "E01 claim 01A at bottom",
+"sel": [
+"01A"
+],
+"ev": "E01"
+},
+{
+"t": 10568,
+"kind": "claims",
+"what": "E01 claim 01B at centre",
+"sel": [
+"01B"
+],
+"ev": "E01"
+},
+{
+"t": 10580,
+"kind": "claims",
+"what": "E01 claim 01B at left",
+"sel": [
+"01B"
+],
+"ev": "E01"
+},
+{
+"t": 10592,
+"kind": "claims",
+"what": "E01 claim 01B at right",
+"sel": [
+"01B"
+],
+"ev": "E01"
+},
+{
+"t": 10604,
+"kind": "claims",
+"what": "E01 claim 01B at top",
+"sel": [
+"01B"
+],
+"ev": "E01"
+},
+{
+"t": 10616,
+"kind": "claims",
+"what": "E01 claim 01B at bottom",
+"sel": [
+"01B"
+],
+"ev": "E01"
+},
+{
+"t": 10628,
+"kind": "claims",
+"what": "E01 claim 01C at centre",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10640,
+"kind": "claims",
+"what": "E01 claim 01C at left",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10652,
+"kind": "claims",
+"what": "E01 claim 01C at right",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10664,
+"kind": "claims",
+"what": "E01 claim 01C at top",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10676,
+"kind": "claims",
+"what": "E01 claim 01C at bottom",
+"sel": [
+"01C"
+],
+"ev": "E01"
+},
+{
+"t": 10688,
+"kind": "claims",
+"what": "E01 claim 01D at centre",
+"sel": [
+"01D"
+],
+"ev": "E01"
+},
+{
+"t": 10700,
+"kind": "claims",
+"what": "E01 claim 01D at left",
+"sel": [
+"01D"
+],
+"ev": "E01"
+},
+{
+"t": 10712,
+"kind": "claims",
+"what": "E01 claim 01D at right",
+"sel": [
+"01D"
+],
+"ev": "E01"
+},
+{
+"t": 10724,
+"kind": "claims",
+"what": "E01 claim 01D at top",
+"sel": [
+"01D"
+],
+"ev": "E01"
+},
+{
+"t": 10736,
+"kind": "claims",
+"what": "E01 claim 01D at bottom",
+"sel": [
+"01D"
+],
+"ev": "E01"
+},
+{
+"t": 10748,
+"kind": "evs",
+"what": "chip E02 at centre",
+"sel": [
+"E02"
+]
+},
+{
+"t": 10748,
+"kind": "claims",
+"what": "chip E02 at centre: the picker starts on its view 02C",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10760,
+"kind": "evs",
+"what": "chip E02 at left",
+"sel": [
+"E02"
+]
+},
+{
+"t": 10760,
+"kind": "claims",
+"what": "chip E02 at left: the picker starts on its view 02C",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10772,
+"kind": "evs",
+"what": "chip E02 at right",
+"sel": [
+"E02"
+]
+},
+{
+"t": 10772,
+"kind": "claims",
+"what": "chip E02 at right: the picker starts on its view 02C",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10784,
+"kind": "evs",
+"what": "chip E02 at top",
+"sel": [
+"E02"
+]
+},
+{
+"t": 10784,
+"kind": "claims",
+"what": "chip E02 at top: the picker starts on its view 02C",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10796,
+"kind": "evs",
+"what": "chip E02 at bottom",
+"sel": [
+"E02"
+]
+},
+{
+"t": 10796,
+"kind": "claims",
+"what": "chip E02 at bottom: the picker starts on its view 02C",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10808,
+"kind": "claims",
+"what": "E02 claim 02B at centre",
+"sel": [
+"02B"
+],
+"ev": "E02"
+},
+{
+"t": 10820,
+"kind": "claims",
+"what": "E02 claim 02B at left",
+"sel": [
+"02B"
+],
+"ev": "E02"
+},
+{
+"t": 10832,
+"kind": "claims",
+"what": "E02 claim 02B at right",
+"sel": [
+"02B"
+],
+"ev": "E02"
+},
+{
+"t": 10844,
+"kind": "claims",
+"what": "E02 claim 02B at top",
+"sel": [
+"02B"
+],
+"ev": "E02"
+},
+{
+"t": 10856,
+"kind": "claims",
+"what": "E02 claim 02B at bottom",
+"sel": [
+"02B"
+],
+"ev": "E02"
+},
+{
+"t": 10868,
+"kind": "claims",
+"what": "E02 claim 02C at centre",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10880,
+"kind": "claims",
+"what": "E02 claim 02C at left",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10892,
+"kind": "claims",
+"what": "E02 claim 02C at right",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10904,
+"kind": "claims",
+"what": "E02 claim 02C at top",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10916,
+"kind": "claims",
+"what": "E02 claim 02C at bottom",
+"sel": [
+"02C"
+],
+"ev": "E02"
+},
+{
+"t": 10928,
+"kind": "evs",
+"what": "chip E04 at centre",
+"sel": [
+"E04"
+]
+},
+{
+"t": 10928,
+"kind": "claims",
+"what": "chip E04 at centre: the picker starts on its view 04B",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 10940,
+"kind": "evs",
+"what": "chip E04 at left",
+"sel": [
+"E04"
+]
+},
+{
+"t": 10940,
+"kind": "claims",
+"what": "chip E04 at left: the picker starts on its view 04B",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 10952,
+"kind": "evs",
+"what": "chip E04 at right",
+"sel": [
+"E04"
+]
+},
+{
+"t": 10952,
+"kind": "claims",
+"what": "chip E04 at right: the picker starts on its view 04B",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 10964,
+"kind": "evs",
+"what": "chip E04 at top",
+"sel": [
+"E04"
+]
+},
+{
+"t": 10964,
+"kind": "claims",
+"what": "chip E04 at top: the picker starts on its view 04B",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 10976,
+"kind": "evs",
+"what": "chip E04 at bottom",
+"sel": [
+"E04"
+]
+},
+{
+"t": 10976,
+"kind": "claims",
+"what": "chip E04 at bottom: the picker starts on its view 04B",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 10988,
+"kind": "claims",
+"what": "E04 claim 04A at centre",
+"sel": [
+"04A"
+],
+"ev": "E04"
+},
+{
+"t": 11000,
+"kind": "claims",
+"what": "E04 claim 04A at left",
+"sel": [
+"04A"
+],
+"ev": "E04"
+},
+{
+"t": 11012,
+"kind": "claims",
+"what": "E04 claim 04A at right",
+"sel": [
+"04A"
+],
+"ev": "E04"
+},
+{
+"t": 11024,
+"kind": "claims",
+"what": "E04 claim 04A at top",
+"sel": [
+"04A"
+],
+"ev": "E04"
+},
+{
+"t": 11036,
+"kind": "claims",
+"what": "E04 claim 04A at bottom",
+"sel": [
+"04A"
+],
+"ev": "E04"
+},
+{
+"t": 11048,
+"kind": "claims",
+"what": "E04 claim 04B at centre",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 11060,
+"kind": "claims",
+"what": "E04 claim 04B at left",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 11072,
+"kind": "claims",
+"what": "E04 claim 04B at right",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 11084,
+"kind": "claims",
+"what": "E04 claim 04B at top",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 11096,
+"kind": "claims",
+"what": "E04 claim 04B at bottom",
+"sel": [
+"04B"
+],
+"ev": "E04"
+},
+{
+"t": 11108,
+"kind": "claims",
+"what": "E04 claim 04C at centre",
+"sel": [
+"04C"
+],
+"ev": "E04"
+},
+{
+"t": 11120,
+"kind": "claims",
+"what": "E04 claim 04C at left",
+"sel": [
+"04C"
+],
+"ev": "E04"
+},
+{
+"t": 11132,
+"kind": "claims",
+"what": "E04 claim 04C at right",
+"sel": [
+"04C"
+],
+"ev": "E04"
+},
+{
+"t": 11144,
+"kind": "claims",
+"what": "E04 claim 04C at top",
+"sel": [
+"04C"
+],
+"ev": "E04"
+},
+{
+"t": 11156,
+"kind": "claims",
+"what": "E04 claim 04C at bottom",
+"sel": [
+"04C"
+],
+"ev": "E04"
+},
+{
+"t": 11168,
+"kind": "evs",
+"what": "chip E05 at centre",
+"sel": [
+"E05"
+]
+},
+{
+"t": 11168,
+"kind": "claims",
+"what": "chip E05 at centre: the picker starts on its view 05B",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11180,
+"kind": "evs",
+"what": "chip E05 at left",
+"sel": [
+"E05"
+]
+},
+{
+"t": 11180,
+"kind": "claims",
+"what": "chip E05 at left: the picker starts on its view 05B",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11192,
+"kind": "evs",
+"what": "chip E05 at right",
+"sel": [
+"E05"
+]
+},
+{
+"t": 11192,
+"kind": "claims",
+"what": "chip E05 at right: the picker starts on its view 05B",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11204,
+"kind": "evs",
+"what": "chip E05 at top",
+"sel": [
+"E05"
+]
+},
+{
+"t": 11204,
+"kind": "claims",
+"what": "chip E05 at top: the picker starts on its view 05B",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11216,
+"kind": "evs",
+"what": "chip E05 at bottom",
+"sel": [
+"E05"
+]
+},
+{
+"t": 11216,
+"kind": "claims",
+"what": "chip E05 at bottom: the picker starts on its view 05B",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11228,
+"kind": "claims",
+"what": "E05 claim 05A at centre",
+"sel": [
+"05A"
+],
+"ev": "E05"
+},
+{
+"t": 11240,
+"kind": "claims",
+"what": "E05 claim 05A at left",
+"sel": [
+"05A"
+],
+"ev": "E05"
+},
+{
+"t": 11252,
+"kind": "claims",
+"what": "E05 claim 05A at right",
+"sel": [
+"05A"
+],
+"ev": "E05"
+},
+{
+"t": 11264,
+"kind": "claims",
+"what": "E05 claim 05A at top",
+"sel": [
+"05A"
+],
+"ev": "E05"
+},
+{
+"t": 11276,
+"kind": "claims",
+"what": "E05 claim 05A at bottom",
+"sel": [
+"05A"
+],
+"ev": "E05"
+},
+{
+"t": 11288,
+"kind": "claims",
+"what": "E05 claim 05B at centre",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11300,
+"kind": "claims",
+"what": "E05 claim 05B at left",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11312,
+"kind": "claims",
+"what": "E05 claim 05B at right",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11324,
+"kind": "claims",
+"what": "E05 claim 05B at top",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11336,
+"kind": "claims",
+"what": "E05 claim 05B at bottom",
+"sel": [
+"05B"
+],
+"ev": "E05"
+},
+{
+"t": 11348,
+"kind": "evs",
+"what": "chip E06 at centre",
+"sel": [
+"E06"
+]
+},
+{
+"t": 11348,
+"kind": "claims",
+"what": "chip E06 at centre: the picker starts on its view 06A",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11360,
+"kind": "evs",
+"what": "chip E06 at left",
+"sel": [
+"E06"
+]
+},
+{
+"t": 11360,
+"kind": "claims",
+"what": "chip E06 at left: the picker starts on its view 06A",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11372,
+"kind": "evs",
+"what": "chip E06 at right",
+"sel": [
+"E06"
+]
+},
+{
+"t": 11372,
+"kind": "claims",
+"what": "chip E06 at right: the picker starts on its view 06A",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11384,
+"kind": "evs",
+"what": "chip E06 at top",
+"sel": [
+"E06"
+]
+},
+{
+"t": 11384,
+"kind": "claims",
+"what": "chip E06 at top: the picker starts on its view 06A",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11396,
+"kind": "evs",
+"what": "chip E06 at bottom",
+"sel": [
+"E06"
+]
+},
+{
+"t": 11396,
+"kind": "claims",
+"what": "chip E06 at bottom: the picker starts on its view 06A",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11408,
+"kind": "claims",
+"what": "E06 claim 06A at centre",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11420,
+"kind": "claims",
+"what": "E06 claim 06A at left",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11432,
+"kind": "claims",
+"what": "E06 claim 06A at right",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11444,
+"kind": "claims",
+"what": "E06 claim 06A at top",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11456,
+"kind": "claims",
+"what": "E06 claim 06A at bottom",
+"sel": [
+"06A"
+],
+"ev": "E06"
+},
+{
+"t": 11468,
+"kind": "claims",
+"what": "E06 claim 06B at centre",
+"sel": [
+"06B"
+],
+"ev": "E06"
+},
+{
+"t": 11480,
+"kind": "claims",
+"what": "E06 claim 06B at left",
+"sel": [
+"06B"
+],
+"ev": "E06"
+},
+{
+"t": 11492,
+"kind": "claims",
+"what": "E06 claim 06B at right",
+"sel": [
+"06B"
+],
+"ev": "E06"
+},
+{
+"t": 11504,
+"kind": "claims",
+"what": "E06 claim 06B at top",
+"sel": [
+"06B"
+],
+"ev": "E06"
+},
+{
+"t": 11516,
+"kind": "claims",
+"what": "E06 claim 06B at bottom",
+"sel": [
+"06B"
+],
+"ev": "E06"
+},
+{
+"t": 11528,
+"kind": "claims",
+"what": "E06 claim 06C at centre",
+"sel": [
+"06C"
+],
+"ev": "E06"
+},
+{
+"t": 11540,
+"kind": "claims",
+"what": "E06 claim 06C at left",
+"sel": [
+"06C"
+],
+"ev": "E06"
+},
+{
+"t": 11552,
+"kind": "claims",
+"what": "E06 claim 06C at right",
+"sel": [
+"06C"
+],
+"ev": "E06"
+},
+{
+"t": 11564,
+"kind": "claims",
+"what": "E06 claim 06C at top",
+"sel": [
+"06C"
+],
+"ev": "E06"
+},
+{
+"t": 11576,
+"kind": "claims",
+"what": "E06 claim 06C at bottom",
+"sel": [
+"06C"
+],
+"ev": "E06"
+},
+{
+"t": 11588,
+"kind": "evs",
+"what": "chip E07 at centre",
+"sel": [
+"E07"
+]
+},
+{
+"t": 11588,
+"kind": "claims",
+"what": "chip E07 at centre: the picker starts on its view 07B",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11600,
+"kind": "evs",
+"what": "chip E07 at left",
+"sel": [
+"E07"
+]
+},
+{
+"t": 11600,
+"kind": "claims",
+"what": "chip E07 at left: the picker starts on its view 07B",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11612,
+"kind": "evs",
+"what": "chip E07 at right",
+"sel": [
+"E07"
+]
+},
+{
+"t": 11612,
+"kind": "claims",
+"what": "chip E07 at right: the picker starts on its view 07B",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11624,
+"kind": "evs",
+"what": "chip E07 at top",
+"sel": [
+"E07"
+]
+},
+{
+"t": 11624,
+"kind": "claims",
+"what": "chip E07 at top: the picker starts on its view 07B",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11636,
+"kind": "evs",
+"what": "chip E07 at bottom",
+"sel": [
+"E07"
+]
+},
+{
+"t": 11636,
+"kind": "claims",
+"what": "chip E07 at bottom: the picker starts on its view 07B",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11648,
+"kind": "claims",
+"what": "E07 claim 07A at centre",
+"sel": [
+"07A"
+],
+"ev": "E07"
+},
+{
+"t": 11660,
+"kind": "claims",
+"what": "E07 claim 07A at left",
+"sel": [
+"07A"
+],
+"ev": "E07"
+},
+{
+"t": 11672,
+"kind": "claims",
+"what": "E07 claim 07A at right",
+"sel": [
+"07A"
+],
+"ev": "E07"
+},
+{
+"t": 11684,
+"kind": "claims",
+"what": "E07 claim 07A at top",
+"sel": [
+"07A"
+],
+"ev": "E07"
+},
+{
+"t": 11696,
+"kind": "claims",
+"what": "E07 claim 07A at bottom",
+"sel": [
+"07A"
+],
+"ev": "E07"
+},
+{
+"t": 11708,
+"kind": "claims",
+"what": "E07 claim 07B at centre",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11720,
+"kind": "claims",
+"what": "E07 claim 07B at left",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11732,
+"kind": "claims",
+"what": "E07 claim 07B at right",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11744,
+"kind": "claims",
+"what": "E07 claim 07B at top",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11756,
+"kind": "claims",
+"what": "E07 claim 07B at bottom",
+"sel": [
+"07B"
+],
+"ev": "E07"
+},
+{
+"t": 11768,
+"kind": "evs",
+"what": "chip E08 at centre",
+"sel": [
+"E08"
+]
+},
+{
+"t": 11768,
+"kind": "claims",
+"what": "chip E08 at centre: the picker starts on its view (none)",
+"sel": [],
+"ev": "E08"
+},
+{
+"t": 11780,
+"kind": "evs",
+"what": "chip E08 at left",
+"sel": [
+"E08"
+]
+},
+{
+"t": 11780,
+"kind": "claims",
+"what": "chip E08 at left: the picker starts on its view (none)",
+"sel": [],
+"ev": "E08"
+},
+{
+"t": 11792,
+"kind": "evs",
+"what": "chip E08 at right",
+"sel": [
+"E08"
+]
+},
+{
+"t": 11792,
+"kind": "claims",
+"what": "chip E08 at right: the picker starts on its view (none)",
+"sel": [],
+"ev": "E08"
+},
+{
+"t": 11804,
+"kind": "evs",
+"what": "chip E08 at top",
+"sel": [
+"E08"
+]
+},
+{
+"t": 11804,
+"kind": "claims",
+"what": "chip E08 at top: the picker starts on its view (none)",
+"sel": [],
+"ev": "E08"
+},
+{
+"t": 11816,
+"kind": "evs",
+"what": "chip E08 at bottom",
+"sel": [
+"E08"
+]
+},
+{
+"t": 11816,
+"kind": "claims",
+"what": "chip E08 at bottom: the picker starts on its view (none)",
+"sel": [],
+"ev": "E08"
+},
+{
+"t": 11828,
+"kind": "claims",
+"what": "E08 claim 08A at centre",
+"sel": [
+"08A"
+],
+"ev": "E08"
+},
+{
+"t": 11840,
+"kind": "claims",
+"what": "E08 claim 08A at left",
+"sel": [
+"08A"
+],
+"ev": "E08"
+},
+{
+"t": 11852,
+"kind": "claims",
+"what": "E08 claim 08A at right",
+"sel": [
+"08A"
+],
+"ev": "E08"
+},
+{
+"t": 11864,
+"kind": "claims",
+"what": "E08 claim 08A at top",
+"sel": [
+"08A"
+],
+"ev": "E08"
+},
+{
+"t": 11876,
+"kind": "claims",
+"what": "E08 claim 08A at bottom",
+"sel": [
+"08A"
+],
+"ev": "E08"
+},
+{
+"t": 11888,
+"kind": "claims",
+"what": "E08 claim 08B at centre",
+"sel": [
+"08B"
+],
+"ev": "E08"
+},
+{
+"t": 11900,
+"kind": "claims",
+"what": "E08 claim 08B at left",
+"sel": [
+"08B"
+],
+"ev": "E08"
+},
+{
+"t": 11912,
+"kind": "claims",
+"what": "E08 claim 08B at right",
+"sel": [
+"08B"
+],
+"ev": "E08"
+},
+{
+"t": 11924,
+"kind": "claims",
+"what": "E08 claim 08B at top",
+"sel": [
+"08B"
+],
+"ev": "E08"
+},
+{
+"t": 11936,
+"kind": "claims",
+"what": "E08 claim 08B at bottom",
+"sel": [
+"08B"
+],
+"ev": "E08"
+},
+{
+"t": 11948,
+"kind": "evs",
+"what": "chip E10 at centre",
+"sel": [
+"E10"
+]
+},
+{
+"t": 11948,
+"kind": "claims",
+"what": "chip E10 at centre: the picker starts on its view 10B",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 11960,
+"kind": "evs",
+"what": "chip E10 at left",
+"sel": [
+"E10"
+]
+},
+{
+"t": 11960,
+"kind": "claims",
+"what": "chip E10 at left: the picker starts on its view 10B",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 11972,
+"kind": "evs",
+"what": "chip E10 at right",
+"sel": [
+"E10"
+]
+},
+{
+"t": 11972,
+"kind": "claims",
+"what": "chip E10 at right: the picker starts on its view 10B",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 11984,
+"kind": "evs",
+"what": "chip E10 at top",
+"sel": [
+"E10"
+]
+},
+{
+"t": 11984,
+"kind": "claims",
+"what": "chip E10 at top: the picker starts on its view 10B",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 11996,
+"kind": "evs",
+"what": "chip E10 at bottom",
+"sel": [
+"E10"
+]
+},
+{
+"t": 11996,
+"kind": "claims",
+"what": "chip E10 at bottom: the picker starts on its view 10B",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12008,
+"kind": "claims",
+"what": "E10 claim 10A at centre",
+"sel": [
+"10A"
+],
+"ev": "E10"
+},
+{
+"t": 12020,
+"kind": "claims",
+"what": "E10 claim 10A at left",
+"sel": [
+"10A"
+],
+"ev": "E10"
+},
+{
+"t": 12032,
+"kind": "claims",
+"what": "E10 claim 10A at right",
+"sel": [
+"10A"
+],
+"ev": "E10"
+},
+{
+"t": 12044,
+"kind": "claims",
+"what": "E10 claim 10A at top",
+"sel": [
+"10A"
+],
+"ev": "E10"
+},
+{
+"t": 12056,
+"kind": "claims",
+"what": "E10 claim 10A at bottom",
+"sel": [
+"10A"
+],
+"ev": "E10"
+},
+{
+"t": 12068,
+"kind": "claims",
+"what": "E10 claim 10B at centre",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12080,
+"kind": "claims",
+"what": "E10 claim 10B at left",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12092,
+"kind": "claims",
+"what": "E10 claim 10B at right",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12104,
+"kind": "claims",
+"what": "E10 claim 10B at top",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12116,
+"kind": "claims",
+"what": "E10 claim 10B at bottom",
+"sel": [
+"10B"
+],
+"ev": "E10"
+},
+{
+"t": 12128,
+"kind": "evs",
+"what": "chip E11 at centre",
+"sel": [
+"E11"
+]
+},
+{
+"t": 12128,
+"kind": "claims",
+"what": "chip E11 at centre: the picker starts on its view 11A",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12140,
+"kind": "evs",
+"what": "chip E11 at left",
+"sel": [
+"E11"
+]
+},
+{
+"t": 12140,
+"kind": "claims",
+"what": "chip E11 at left: the picker starts on its view 11A",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12152,
+"kind": "evs",
+"what": "chip E11 at right",
+"sel": [
+"E11"
+]
+},
+{
+"t": 12152,
+"kind": "claims",
+"what": "chip E11 at right: the picker starts on its view 11A",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12164,
+"kind": "evs",
+"what": "chip E11 at top",
+"sel": [
+"E11"
+]
+},
+{
+"t": 12164,
+"kind": "claims",
+"what": "chip E11 at top: the picker starts on its view 11A",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12176,
+"kind": "evs",
+"what": "chip E11 at bottom",
+"sel": [
+"E11"
+]
+},
+{
+"t": 12176,
+"kind": "claims",
+"what": "chip E11 at bottom: the picker starts on its view 11A",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12188,
+"kind": "claims",
+"what": "E11 claim 11A at centre",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12200,
+"kind": "claims",
+"what": "E11 claim 11A at left",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12212,
+"kind": "claims",
+"what": "E11 claim 11A at right",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12224,
+"kind": "claims",
+"what": "E11 claim 11A at top",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12236,
+"kind": "claims",
+"what": "E11 claim 11A at bottom",
+"sel": [
+"11A"
+],
+"ev": "E11"
+},
+{
+"t": 12248,
+"kind": "claims",
+"what": "E11 claim 11B at centre",
+"sel": [
+"11B"
+],
+"ev": "E11"
+},
+{
+"t": 12260,
+"kind": "claims",
+"what": "E11 claim 11B at left",
+"sel": [
+"11B"
+],
+"ev": "E11"
+},
+{
+"t": 12272,
+"kind": "claims",
+"what": "E11 claim 11B at right",
+"sel": [
+"11B"
+],
+"ev": "E11"
+},
+{
+"t": 12284,
+"kind": "claims",
+"what": "E11 claim 11B at top",
+"sel": [
+"11B"
+],
+"ev": "E11"
+},
+{
+"t": 12296,
+"kind": "claims",
+"what": "E11 claim 11B at bottom",
+"sel": [
+"11B"
+],
+"ev": "E11"
+},
+{
+"t": 14756,
+"kind": "chain",
+"what": "round 7: his link F1 at centre",
+"sel": [
+"F1"
+]
+},
+{
+"t": 14768,
+"kind": "chain",
+"what": "round 7: his link F1 at left",
+"sel": [
+"F1"
+]
+},
+{
+"t": 14780,
+"kind": "chain",
+"what": "round 7: his link F1 at right",
+"sel": [
+"F1"
+]
+},
+{
+"t": 14792,
+"kind": "chain",
+"what": "round 7: his link F1 at top",
+"sel": [
+"F1"
+]
+},
+{
+"t": 14804,
+"kind": "chain",
+"what": "round 7: his link F1 at bottom",
+"sel": [
+"F1"
+]
+},
+{
+"t": 14816,
+"kind": "chain",
+"what": "round 7: his link F2 at centre",
+"sel": [
+"F2"
+]
+},
+{
+"t": 14828,
+"kind": "chain",
+"what": "round 7: his link F2 at left",
+"sel": [
+"F2"
+]
+},
+{
+"t": 14840,
+"kind": "chain",
+"what": "round 7: his link F2 at right",
+"sel": [
+"F2"
+]
+},
+{
+"t": 14852,
+"kind": "chain",
+"what": "round 7: his link F2 at top",
+"sel": [
+"F2"
+]
+},
+{
+"t": 14864,
+"kind": "chain",
+"what": "round 7: his link F2 at bottom",
+"sel": [
+"F2"
+]
+}
+]
+}

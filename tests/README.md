@@ -379,6 +379,30 @@ appraisal and with a private view, the notes page, the carry screen (first visit
 L010 is in `check_d1_full.py`'s replays since E6), a playback line with the formula names and a stamp; and `DIR/overlays/` (every hotspot rectangle with its id over
 each place, with ImageMagick).
 
+### D01 click probes: every list row, the private views
+
+```
+uv run tests/check_d1_views.py
+```
+
+`check_d1_views.py` regenerates `tests/d1_views.atrec` (`tests/gen_d1_views.py`, on the route A harness
+`tests/d1views_harness/`, gitignored and deleted at the end) and replays it with `--ports --dump` in zh-TW and en. Every
+clickable row is clicked at five points (the centre, 2 px inside its left and right ends and its top and bottom edges,
+as drawn: a box's children start inside its border), and each click must select that row (`d1_views_ticks.json`
+`checks`, read from the list ports): the place tabs (`d1inv.locs`), the evidence list entries (`d1book.cards`), every
+private-view row of every evidence before the appraisals and the rows the two appraisals unlock (`d1book.opts`: the
+rows shown and the one chosen), the carry rows taken and put down (`d1carry.items`), the debate's evidence chips and
+claim rows on round 1 (`d1debate.ev_list` / `claims`; a chip must start the picker on its private view when that claim
+is in the picker) and his two links on round 7 with Dismantle (`d1debate.ochain`). The private views are set on all
+13 evidence, then must stay per evidence after stray clicks inside the list (below the entries, the description, the
+heading, the gaps between the rows, the tab strip), the pointer over the rows, the appraisals, a view changed twice and
+cleared (E08), the notes tab and back, close and reopen, the language switched and back, and the carry screen's Back;
+`d1PrivNote` at the end (`--dump`) must equal what was chosen. The warm-up's observation cards are clicked at the five
+points in recordings of their own (written to a temporary directory): each run's `d1warm` port trace must equal the
+centre run's. Regression for the private-view rows that could not be chosen (fixed with this check: `i1OptSel` was a
+map of 8 that kept every claim ever shown, and the last evidence's "(no view yet)" read the view from before the
+click; docs/flows.md §4.13).
+
 ### D01 story (M4a)
 
 ```
@@ -518,7 +542,7 @@ and the caught U card's `CARD_D01_<U>_SHORT` on the chains and in the record) an
 
 ## Temp-leak check (D01 checks)
 
-The D01 checks (`check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_story`, `check_d1_full`, `check_d1_fuzz`) count only what
+The D01 checks (`check_d1_play`, `check_d1_lines`, `check_d1_m3`, `check_d1_story`, `check_d1_full`, `check_d1_fuzz`, `check_d1_views`) count only what
 their own run creates (`tests/tempwatch.py`; `shots_d1_labels.py` too): the run gets a directory `%TEMP%/sherefox-run-*` and points TEMP / TMP /
 TMPDIR and Python's tempfile at it, for itself and every child process (the xtatrium CLI included). Anything left in
 it at the end, or a new entry with one of our prefixes (`sherefox-`, `d1shots-`, `d1m3shots-`, `d1storyshots-`,
