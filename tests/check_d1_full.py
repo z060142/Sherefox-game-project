@@ -61,14 +61,16 @@ CHAPTER = {
     # §12.1: grade 1, 9 rounds, truth 100 -> full notes (L001-L003), decent paper; 07A said (R7) -> L004-L005
     "A": dict(grade=1, rounds=9, s08=s08(1, 4, 5, 7, 8), paper="DECENT", paper_add=[], notes=s10(1, 2, 3),
               rep=["grade_1"], fav={}),
-    # §12.2: grade 1, 5 rounds, truth 85 -> full + L007 (no 07A/07B), decent; 結算台詞 L009-L010 (the board)
-    "B": dict(grade=1, rounds=5, s08=s08(1, 6, 7, 8, 9, 10), paper="DECENT", paper_add=[], notes=s10(1, 2, 3, 7),
+    # §12.2: grade 1, 5 rounds, truth 85 -> full + L007 (no 07A/07B), decent; 結算台詞 L009-L010 (the board);
+    # S10 L002 needs a win with 07A / 07B said (§2 S10, design e62621f): not here
+    "B": dict(grade=1, rounds=5, s08=s08(1, 6, 7, 8, 9, 10), paper="DECENT", paper_add=[], notes=s10(1, 3, 7),
               rep=["grade_1", "psych_card"], fav={}),
-    # §12.3: grade 3, 10 rounds, truth 50 -> half (L004-L005), normal + L007 (Irene) + L008; S08 L001-L003, L004-L005
+    # §12.3: grade 3, 10 rounds, truth 50 -> half (L004-L005: a win, cracks 4), normal + L007 (Irene) + L008; S08 L001-L003, L004-L005
     "C": dict(grade=3, rounds=10, s08=s08(1, 2, 3, 4, 5, 7, 8), paper="NORMAL", paper_add=s09(7, 8),
               notes=s10(4, 5), rep=["grade_3", "cracks", "private", "denials"], fav={"mrs_hyde": -1}),
-    # §12.4: grade 5 (a loss), 8 rounds, truth 60 -> half + L007, L009; ugly paper; S08 L011-L012; inspector −1
-    "D": dict(grade=5, rounds=8, s08=s08(11, 12), paper="UGLY", paper_add=[], notes=s10(4, 5, 7, 9),
+    # §12.4: grade 5 (a loss), 8 rounds, truth 60 -> half + L007, L009; ugly paper; S08 L011-L012; inspector −1;
+    # S10 L005 needs a win (§2 S10, design e62621f): not on a loss
+    "D": dict(grade=5, rounds=8, s08=s08(11, 12), paper="UGLY", paper_add=[], notes=s10(4, 7, 9),
               rep=["grade_5"], fav={"inspector": -1}),
 }
 REP_KEY = {"grade_1": "UI_V2_REP_CLEAN", "grade_2": "UI_V2_REP_HELD", "grade_3": "UI_V2_REP_COUNTERED",

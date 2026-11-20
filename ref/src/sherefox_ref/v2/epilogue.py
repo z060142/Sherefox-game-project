@@ -36,7 +36,8 @@ def _l(prefix: str, *nums: int) -> list[str]:
 
 # S09 versions by grade (ch §2 S09): headline + lead
 PAPER_LINES = {"decent": _l(S09, 1, 2), "normal": _l(S09, 3, 4), "ugly": _l(S09, 5, 6)}
-# S10 versions by truth band (ch §2 S10)
+# S10 versions by truth band (ch §2 S10): every line a version can show, in order; note_lines picks the ones whose
+# condition holds
 NOTE_LINES = {"full": _l(S10, 1, 2, 3), "half": _l(S10, 4, 5), "wrong": _l(S10, 6)}
 
 
@@ -60,7 +61,7 @@ class Epilogue:
     paper_lines: tuple[str, ...]  # the version's headline and lead
     paper_addenda: tuple[str, ...]  # S09 L007 / L008, in order
     notes: str  # full / half / wrong
-    note_lines: tuple[str, ...]
+    note_lines: tuple[str, ...]  # the version's lines whose condition holds (note_lines)
     note_addenda: tuple[str, ...]  # S10 L007 / L008 / L009, in order
     # the result screen (ch §13 結算畫面)
     grade: int
@@ -119,13 +120,18 @@ def paper_addenda(f: Facts) -> list[str]:
     return out
 
 
+def note_lines(f: Facts, version: str) -> list[str]:
+    """ch §2 S10, the version's rows (design e62621f): L001 / L004 / L006 head their version on a win or a loss;
+    L002 (知道全貌) only on a win where 07A or 07B was said; L003 (知道全貌) always; L005 (只知道一半) only on a win
+    with cracks c >= 1."""
+    cond = {f"{S10}002": f.win and f.briggs_explained, f"{S10}005": f.win and f.cracks >= 1}
+    return [lid for lid in NOTE_LINES[version] if cond.get(lid, True)]
+
+
 def note_addenda(f: Facts) -> list[str]:
     """ch §2 S10 addenda: L007 07A / 07B never said (any version); L008 said 06B and truth < 70; L009 a loss.
 
-    SPEC-QUESTION (L008): read literally, routes C (06B cut, truth 50, a win) and D (06B refuted, truth 60, a loss)
-    both meet "說過 06B 且真相度 < 70%", but §12.3 gives route C only L004-L005 and §12.4 route D only L007 and L009.
-    Conservative reading taken from the line itself: "我們讓他回家了" (Briggs was released: a win) and "卻沒有讓他
-    說清楚" (he never explained: 07A / 07B not said). So L008 = a win, 06B said, 07A / 07B not said, truth < 70. It
+    L008: the chapter states the condition (design e62621f): a win, 06B said, 07A / 07B not said, truth < 70. It
     matches all four §12 endings; no route reaches it (test_epilogue covers it with a constructed state)."""
     out = []
     if not f.briggs_explained:
@@ -152,7 +158,7 @@ def epilogue(s: State) -> Epilogue:
         paper_lines=tuple(PAPER_LINES[res.newspaper]),
         paper_addenda=tuple(paper_addenda(f)),
         notes=res.note_version,
-        note_lines=tuple(NOTE_LINES[res.note_version]),
+        note_lines=tuple(note_lines(f, res.note_version)),
         note_addenda=tuple(note_addenda(f)),
         grade=res.grade,
         rounds=res.rounds,

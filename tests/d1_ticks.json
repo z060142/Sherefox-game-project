@@ -43,7 +43,7 @@
   "s11_stay": 4764,
   "back": 4794
  },
- "d1_routeB": 3284,
+ "d1_routeB": 3254,
  "d1_routeB_marks": {
   "pre_SCR_D01_S07_L001": 100,
   "pre_SCR_D01_S07_L002": 130,
@@ -74,12 +74,11 @@
   "over": 2634,
   "s09": 2694,
   "s10_SCR_D01_S10_L001": 2744,
-  "s10_SCR_D01_S10_L002": 2774,
-  "s10_SCR_D01_S10_L003": 2804,
-  "s10_SCR_D01_S10_L007": 2834,
-  "s11": 2924,
-  "s11_stay": 3184,
-  "back": 3214
+  "s10_SCR_D01_S10_L003": 2774,
+  "s10_SCR_D01_S10_L007": 2804,
+  "s11": 2894,
+  "s11_stay": 3154,
+  "back": 3184
  },
  "d1_routeC": 5268,
  "d1_routeC_marks": {
@@ -128,7 +127,7 @@
   "s11_stay": 5168,
   "back": 5198
  },
- "d1_routeD": 4368,
+ "d1_routeD": 4338,
  "d1_routeD_marks": {
   "pre_SCR_D01_S07_L001": 100,
   "pre_SCR_D01_S07_L002": 130,
@@ -160,12 +159,11 @@
   "over": 3718,
   "s09": 3778,
   "s10_SCR_D01_S10_L004": 3828,
-  "s10_SCR_D01_S10_L005": 3858,
-  "s10_SCR_D01_S10_L007": 3888,
-  "s10_SCR_D01_S10_L009": 3918,
-  "s11": 4008,
-  "s11_stay": 4268,
-  "back": 4298
+  "s10_SCR_D01_S10_L007": 3858,
+  "s10_SCR_D01_S10_L009": 3888,
+  "s11": 3978,
+  "s11_stay": 4238,
+  "back": 4268
  },
  "d1_shots": 7264,
  "d1_shots_marks": {
@@ -260,7 +258,7 @@
   "again_start": 4974,
   "again_r1": 5074
  },
- "d1_twiceD": 4658,
+ "d1_twiceD": 4628,
  "d1_twiceD_marks": {
   "pre_SCR_D01_S07_L001": 100,
   "pre_SCR_D01_S07_L002": 130,
@@ -292,17 +290,16 @@
   "over": 3718,
   "s09": 3778,
   "s10_SCR_D01_S10_L004": 3828,
-  "s10_SCR_D01_S10_L005": 3858,
-  "s10_SCR_D01_S10_L007": 3888,
-  "s10_SCR_D01_S10_L009": 3918,
-  "s11": 4008,
-  "s11_stay": 4268,
-  "back": 4298,
-  "again_pre_SCR_D01_S07_L001": 4408,
-  "again_pre_SCR_D01_S07_L002": 4438,
-  "again_pre_SCR_D01_S07_L003": 4468,
-  "again_start": 4478,
-  "again_r1": 4578
+  "s10_SCR_D01_S10_L007": 3858,
+  "s10_SCR_D01_S10_L009": 3888,
+  "s11": 3978,
+  "s11_stay": 4238,
+  "back": 4268,
+  "again_pre_SCR_D01_S07_L001": 4378,
+  "again_pre_SCR_D01_S07_L002": 4408,
+  "again_pre_SCR_D01_S07_L003": 4438,
+  "again_start": 4448,
+  "again_r1": 4548
  },
  "d1_bot": 5206,
  "d1_bot_marks": {

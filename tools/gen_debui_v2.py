@@ -44,7 +44,7 @@ SEQ_BASE = 100000   # cut-in sequence numbers start here: v1's debate_ui writes 
 DWELL = [0.001, 0.5, 1.8, 2.4, 1.6, 4.0]
 DELAY = 0.1      # d1Start / d1Lock -> the engine's outputs are read (written after this flow; queries next tick)
 HOLD = 0.6       # after the last record, before the next round is shown
-KITCHEN = ("E07", ("06B", "04C"))   # ch §12.0 BEAT_D01_REFUTED_1/2: 06B / 04C refuted with the handkerchief
+KITCHEN = ("E07", ("06B",))   # ch §12.0 BEAT_D01_REFUTED_1/2: only 06B refuted with the handkerchief
 SH, CE, AR = "SPK_SHEREFOX", "SPK_D01_CEDRIC", "SPK_ARTHUR"
 MRS, BRI, MAR, IRE, INS = "SPK_MRS_HYDE", "SPK_BRIGGS", "SPK_MARTHA", "SPK_IRENE", "SPK_INSPECTOR_BASKERVILLE"
 # Arthur's hint (ref lines.hint, v2 demo E5), by index: 1-4 the action hints (tell code + 1), then the situations; 5
@@ -191,7 +191,7 @@ def tables() -> dict[str, list[dict]]:
             lines.append({"id": f"REACT:{parts[2]}", "key": k})
     # v2 demo 4.3 (ref sherefox_ref.v2.lines): the claims that break a card (`<card>:<claim>`, Arthur's NOCUT hint)
     # and the refute lines with a picked-up evidence item (BEAT_D01_REFUTED_*: its name, the hotspot where it lies,
-    # the handkerchief's beat for 06B / 04C)
+    # the handkerchief's beat for 06B only)
     brk = [{"id": f"{card}:{cl}"} for card in CH.cards for cl in sorted(CH.breakers.get(card, ()))]
     spots = json.loads((ROOT / "data" / "d01" / "d1Hotspot.json").read_text(encoding="utf-8"))
     refute = []

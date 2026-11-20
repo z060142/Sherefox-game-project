@@ -52,8 +52,9 @@ LOSS_LINES = ("SCR_D01_S07_L017", "SCR_D01_S07_L018", "SCR_D01_S07_L019")    # L
 ACTION_HINT = {OA.ATTACK: "TELL_D01_HINT_ASSERT", OA.FORCE: "TELL_D01_HINT_PUSH", OA.REBUT: "TELL_D01_HINT_REBUT",
                OA.PARRY: "TELL_D01_HINT_STALL"}
 FOG = ("FOG_D01_1", "FOG_D01_2", "FOG_D01_3")
-# 06B / 04C refuted with the picked-up handkerchief (ch §12.0 BEAT_D01_REFUTED_1/2)
-KITCHEN_REFUTE = ("E07", ("06B", "04C"))
+# only 06B refuted with the picked-up handkerchief (ch §12.0 BEAT_D01_REFUTED_1/2; design e62621f: 04C cannot be
+# refuted)
+KITCHEN_REFUTE = ("E07", ("06B",))
 
 _PKG = Path(__file__).resolve().parents[4] / "source" / "localization" / "d01" / "strings_d01.json"
 

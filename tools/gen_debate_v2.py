@@ -1561,9 +1561,12 @@ def epilogue(over, truth, grade) -> None:
             eff_if(T.AND(over, T.EQ(g("paper"), PAPERS.index(name))), "add", coll="d1EpS09", value=T.sc(lid))
     add("d1EpS09", EP.S09, [7], par)
     add("d1EpS09", EP.S09, [8], T.AND(win, T.OR(T.GE(g("den"), 1), T.GE(g("cracks"), 3))))
+    # ref note_lines: L002 only on a win with 07A / 07B said, L005 only on a win with cracks c >= 1
+    ncond = {f"{EP.S10}002": T.AND(win, brg), f"{EP.S10}005": T.AND(win, T.GE(g("cracks"), 1))}
     for name, ids in EP.NOTE_LINES.items():
         for lid in ids:
-            eff_if(T.AND(over, T.EQ(g("note"), NOTES.index(name))), "add", coll="d1EpS10", value=T.sc(lid))
+            c = T.AND(over, T.EQ(g("note"), NOTES.index(name)))
+            eff_if(T.AND(c, ncond[lid]) if lid in ncond else c, "add", coll="d1EpS10", value=T.sc(lid))
     add("d1EpS10", EP.S10, [7], T.NOT(brg))
     add("d1EpS10", EP.S10, [8], T.AND(win, s06, T.NOT(brg), T.LT(truth, 70)))
     add("d1EpS10", EP.S10, [9], T.NOT(win))

@@ -222,3 +222,16 @@
 
 - ✔ 完成：ref 先改（`lines.cut_open`、`resolve._last_stand` 改為兩筆事件、`preview.py`、`known.restate`／`void_rows`、`model.never_in_hand`；`ref/tests/test_v2_e8.py`），引擎（紅色裂紋的最後一擊、`d1ClaimVoid`）與畫面對上 ref；確認列加寬放預估與代價，行動列上方一行說明（滑鼠所在或選中的項目），模糊預兆一行、援護次數、紀錄裂紋數、殘局小標、說法列的重提／作廢標籤、攜帶確認問句、S11 的標題與按鈕（停到按下）。測試：`check_e8`（路線與劇本每回合）、`check_d1_lines` `E8_REACHED`／`HOVER_PROBE`／`RED_LAST`、fuzz 每次點擊、`check_d1_full`／`check_d1_m3`；fuzz 的精選種子重選。字串：704 個要顯示的 ID 中 700 個在測試畫面出現。另列給企劃：`SCR_D01_S11_L003` 改為不顯示；`SCR_D01_S06_L009` 已以「確定嗎？」結尾，與 `UI_V2_CARRY_LEFT_ASK` 重複。
 - 企劃裁定（E8 之後）：`UI_V2_CARRY_LEFT_ASK` 不顯示，攜帶確認框不加第二句問句（`SCR_D01_S06_L009` 已以「確定嗎？」結尾，且不變）；S11 用 `UI_V2_BACK_TITLE`、`SCR_D01_S11_L003` 不顯示，確認；傷害預估公式已對照規則 7.1 確認。
+
+### E9：S10 條件變更（企劃 e62621f；Opus）
+
+- `SCR_D01_S10_L002`：只在勝利且說過 07A 或 07B 時播（原本在「知道全貌」版無條件播）。
+- `SCR_D01_S10_L005`：只在勝利且裂紋 c ≥ 1 時播。
+- `SCR_D01_S10_L008` 的條件已寫進章節（勝利、說過 06B、沒說過 07A／07B、真相度 < 70%），與現行實作相同，確認即可。
+- `BEAT_D01_REFUTED_1/2`：只有 06B 被駁倒時觸發，核對 ref `lines.py`。
+- 先改 ref `epilogue.py`／`lines.py` 與測試，再改引擎的結局輸出；`check_debate_v2`、`check_d1_full` 的路線預期照章節更新。
+- ✔ 完成：ref `epilogue.note_lines`（L002＝勝利且說過 07A／07B；L005＝勝利且裂紋 c ≥ 1；L001／L004／L006 勝敗都播、L003 無條件），引擎結局輸出照 ref 由 `gen_debate_v2` 產生。路線變化：B 的筆記少了 L002（L001、L003＋L007），D 少了 L005（L004＋L007、L009）；A、C 不變。L008 與現行實作相同。`BEAT_D01_REFUTED_1/2`：ref 與 `gen_debui_v2` 原寫「06B／04C」，但資料裡 04C 沒有反駁台詞，行為本來就只有 06B；常數改為只列 06B，產出不變。章節 §12.2／§12.4 只寫版本名，與 S10 表一致，無衝突。
+
+### 文本重寫（進行中；使用者挑方向後開工）
+
+依據：設計 repo `v2/demo/line_functions.csv`（378 列：每句必須傳達的事實與限制，含設計主筆的裁定）與 `line_functions_notes.md`。重寫由 agy（Gemini）執行，主模型下指令與驗收。隨重寫落地的遊戲端變更：新增一行 `SCR_D01_S03_L002A`（亞瑟）；`SCR_D01_S03_TITLE` 改字；布里格斯改為「昨晚在店裡被逮、今天押回現場指認」（S03_L005／L006、HS_D01_26_DESC、S01_L002）。定稿交設計 session 收進設計 repo，英文整批重對。

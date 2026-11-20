@@ -10,7 +10,7 @@ from dataclasses import replace
 import pytest
 
 from sherefox_ref.v2.epilogue import (
-    Facts, epilogue, facts, note_addenda, paper_addenda, s08_lines, PAPER_LINES, NOTE_LINES)
+    Facts, epilogue, facts, note_addenda, note_lines, paper_addenda, s08_lines, PAPER_LINES, NOTE_LINES)
 from sherefox_ref.v2.model import RecordEntry
 from sherefox_ref.v2.routes import replay
 
@@ -119,8 +119,60 @@ def test_s10_version_by_truth(false_claims, denials, truth, version):  # ≥ 70 
         s.record.append(RecordEntry(99, c.id, "argue", False, False, False))
     e = epilogue(s)
     assert e.facts.truth == truth
-    assert e.notes == version and list(e.note_lines) == NOTE_LINES[version]
+    assert e.notes == version and list(e.note_lines) == note_lines(e.facts, version)
+    assert e.note_lines[0] == NOTE_LINES[version][0]
     assert NOTE_LINES == {"full": [s10(1), s10(2), s10(3)], "half": [s10(4), s10(5)], "wrong": [s10(6)]}
+
+
+@pytest.mark.parametrize("version,head", [("full", 1), ("half", 4), ("wrong", 6)])
+@pytest.mark.parametrize("win", [True, False])
+def test_s10_version_head_win_or_loss(version, head, win):  # L001 / L004 / L006 勝敗都播
+    assert note_lines(replace(WIN, win=win), version)[0] == s10(head)
+
+
+@pytest.mark.parametrize("win,a07,b07,expect", [
+    (True, True, False, True),  # 07A only
+    (True, False, True, True),  # 07B only
+    (True, True, True, True),
+    (True, False, False, False),  # neither
+    (False, True, False, False),  # a loss
+    (False, False, True, False),
+])
+def test_s10_l002_win_and_07a_or_07b(win, a07, b07, expect):  # L002 知道全貌：勝利且說過 07A 或 07B
+    f = replace(WIN, win=win, briggs_explained=a07 or b07)
+    out = note_lines(f, "full")
+    assert (s10(2) in out) is expect
+    assert out == ([s10(1), s10(2), s10(3)] if expect else [s10(1), s10(3)])
+
+
+def test_s10_l002_from_record():  # 07A only / 07B only / neither, from the public record
+    a = replay("A").states[-1]
+    s = copy.deepcopy(a)
+    s.record = [r for r in s.record if r.claim not in ("07A", "07B")]
+    assert s10(2) not in epilogue(s).note_lines
+    assert s10(2) in epilogue(_rec(s, "07A")).note_lines
+    assert s10(2) in epilogue(_rec(s, "07B")).note_lines
+
+
+def test_s10_l003_full_always():  # L003 知道全貌（無條件）
+    for f in (WIN, LOSS, replace(WIN, briggs_explained=True)):
+        assert s10(3) in note_lines(f, "full")
+
+
+@pytest.mark.parametrize("win,cracks,expect", [
+    (True, 0, False), (True, 1, True), (True, 4, True),  # boundary c = 0 / 1
+    (False, 0, False), (False, 1, False), (False, 4, False),  # a loss
+])
+def test_s10_l005_win_and_cracked(win, cracks, expect):  # L005 只知道一半：勝利且裂紋 c ≥ 1
+    out = note_lines(replace(WIN, win=win, cracks=cracks), "half")
+    assert out == ([s10(4), s10(5)] if expect else [s10(4)])
+
+
+def test_s10_conditions_stay_in_their_version():
+    every = replace(WIN, briggs_explained=True, cracks=3)
+    assert note_lines(every, "full") == [s10(1), s10(2), s10(3)]
+    assert note_lines(every, "half") == [s10(4), s10(5)]
+    assert note_lines(every, "wrong") == [s10(6)]
 
 
 def test_s10_no_07a_07b_any_version():  # L007 論戰中沒有說過 07A、07B（任何版本）
@@ -134,10 +186,10 @@ def test_s10_no_07a_07b_any_version():  # L007 論戰中沒有說過 07A、07B�
     (True, True, False, 69, True),
     (True, True, False, 70, False),  # truth < 70 only
     (True, False, False, 50, False),  # 06B must be said
-    (True, True, True, 50, False),  # SPEC-QUESTION reading: Briggs explained (route C)
-    (False, True, False, 60, False),  # SPEC-QUESTION reading: a loss (route D)
+    (True, True, True, 50, False),  # 07A / 07B said (route C)
+    (False, True, False, 60, False),  # a loss (route D)
 ])
-def test_s10_said_06b_low_truth(win, said06b, explained, truth, expect):  # L008 說過 06B 且真相度 ＜ 70%
+def test_s10_said_06b_low_truth(win, said06b, explained, truth, expect):  # L008 勝利、說過 06B、沒說過 07A／07B、＜ 70%
     f = replace(WIN, win=win, said_06b=said06b, briggs_explained=explained, truth=truth)
     assert (s10(8) in note_addenda(f)) is expect
 
@@ -203,15 +255,20 @@ ROUTE_END = {
 }
 
 
+# the version's lines on each route (design e62621f): B wins without 07A / 07B (no L002); D loses (no L005)
+ROUTE_NOTES = {"A": [1, 2, 3], "B": [1, 3], "C": [4, 5], "D": [4]}
+
+
 @pytest.mark.parametrize("route", list(ROUTE_END))
 def test_route_ending(route):
     s08_, paper, padd, notes, nadd, grade, rounds, rep, fav = ROUTE_END[route]
+    nlines = ROUTE_NOTES[route]
     e = epilogue(replay(route).states[-1])
     assert list(e.s08) == [s08(n) for n in s08_]
     assert e.paper == paper and list(e.paper_addenda) == [s09(n) for n in padd]
     assert list(e.s09) == PAPER_LINES[paper] + [s09(n) for n in padd]
     assert e.notes == notes and list(e.note_addenda) == [s10(n) for n in nadd]
-    assert list(e.s10) == NOTE_LINES[notes] + [s10(n) for n in nadd]
+    assert list(e.s10) == [s10(n) for n in nlines] + [s10(n) for n in nadd]
     assert e.grade == grade and e.rounds == rounds
     assert list(e.reputation) == rep
     assert list(e.favour) == fav
