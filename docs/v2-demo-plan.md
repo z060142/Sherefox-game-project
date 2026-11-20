@@ -235,3 +235,5 @@
 ### 文本重寫（進行中；使用者挑方向後開工）
 
 依據：設計 repo `v2/demo/line_functions.csv`（378 列：每句必須傳達的事實與限制，含設計主筆的裁定）與 `line_functions_notes.md`。重寫由 agy（Gemini）執行，主模型下指令與驗收。隨重寫落地的遊戲端變更：新增一行 `SCR_D01_S03_L002A`（亞瑟）；`SCR_D01_S03_TITLE` 改字；布里格斯改為「昨晚在店裡被逮、今天押回現場指認」（S03_L005／L006、HS_D01_26_DESC、S01_L002）。定稿交設計 session 收進設計 repo，英文整批重對。
+
+- 2026-11-20 落地第一批（373 列中文、`SCR_D01_S03_TITLE`、新行 `SCR_D01_S03_L002A`）：`tools/import_d01_text.py DIR` 一個指令匯入、重建、檢查、打包（`tests/README.md`「re-importing the D01 text」），之後的交付照做，不用手改。L002A 的演出：門廳，Sherefox 左、亞瑟右、亞瑟說話；BGM04 仍從 L003 切入（`check_music` 加逐行斷言）。字框容量用 `tests/shots_d1_text.py` 逐框渲染最長的字串檢查：所有框都放得下；唯一的碰撞是攜帶確認框在留下很多件時（第 4 行壓到按鈕，中文模板變長），確認框加高一行（`ui/boards` D1Carry，英文同時改善）。攜帶畫面每列的說明本來就是單行省略（完整文字在證物清單），不變。

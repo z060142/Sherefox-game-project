@@ -57,7 +57,7 @@ BOOK_BTN, NOTES_BTN, END_BTN = (792, 678), (984, 678), (1176, 678)
 TAB_EV, TAB_PN, BOOK_X = (214, 76), (442, 76), (1160, 76)
 APPRAISE = (570, 300)
 ASK, BACK, CONFIRM = (1080, 386), (1000, 543), (1156, 543)
-YES, NO, ON = (861, 428), (685, 428), (640, 300)
+YES, NO, ON = (861, 443), (685, 443), (640, 300)   # the carry confirm box's buttons (centre)
 
 
 def loc_xy(i: int) -> tuple[int, int]:
